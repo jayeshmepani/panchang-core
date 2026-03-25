@@ -275,15 +275,20 @@ class PanchangService
             throw new RuntimeException('Missing zodiac sign mapping in astrology constants.');
         }
 
+        $defaultConfig = function_exists('config') ? config('panchang.defaults', []) : [];
+        if (!is_array($defaultConfig)) {
+            $defaultConfig = [];
+        }
+
         return [
             'Display_Settings' => [
-                'measurement_system' => $options['measurement_system'] ?? 'indian_metric',
-                'date_time_format' => $options['date_time_format'] ?? 'indian_12h',
-                'time_notation' => $options['time_notation'] ?? '12h',
-                'coordinate_format' => $options['coordinate_format'] ?? 'decimal',
-                'angle_unit' => $options['angle_unit'] ?? 'degree',
-                'duration_format' => $options['duration_format'] ?? 'mixed',
-                'number_precision' => (int) ($options['number_precision'] ?? 9),
+                'measurement_system' => $options['measurement_system'] ?? $defaultConfig['measurement_system'] ?? 'indian_metric',
+                'date_time_format' => $options['date_time_format'] ?? $defaultConfig['date_time_format'] ?? 'indian_12h',
+                'time_notation' => $options['time_notation'] ?? $defaultConfig['time_notation'] ?? '12h',
+                'coordinate_format' => $options['coordinate_format'] ?? $defaultConfig['coordinate_format'] ?? 'decimal',
+                'angle_unit' => $options['angle_unit'] ?? $defaultConfig['angle_unit'] ?? 'degree',
+                'duration_format' => $options['duration_format'] ?? $defaultConfig['duration_format'] ?? 'mixed',
+                'number_precision' => (int) ($options['number_precision'] ?? $defaultConfig['number_precision'] ?? 9),
                 'timezone' => $tz,
             ],
             'Units' => [
@@ -337,7 +342,7 @@ class PanchangService
             'moon_sunrise_lon' => $moonLon,
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
             'sunrise_dt' => $relSunrise->toIso8601String(),
-            'Ayanamsa' => config('panchang.ayanamsa', 'LAHIRI'),
+            'Ayanamsa' => function_exists('config') ? config('panchang.ayanamsa', self::$ayanamsa) : self::$ayanamsa,
             'Ayanamsa_Degree' => $ayanamsaDeg,
             'Ayanamsa_At' => $ayanamsaAt->toIso8601String(),
             'Ayanamsa_JD' => $ayanamsaJd,
