@@ -154,7 +154,7 @@ class EclipseService
             'type' => 'Lunar',
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
-            'datetime' => $dt->toIso8601String(),
+            'datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($dt),
             'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
             'magnitudes' => [
                 'umbral' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
@@ -221,7 +221,7 @@ class EclipseService
             'type' => 'Solar',
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
-            'datetime' => $dt->toIso8601String(),
+            'datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($dt),
             'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
             'magnitudes' => [
                 'eclipse' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
@@ -252,7 +252,7 @@ class EclipseService
             }
             $out[$k] = [
                 'jd' => $v,
-                'time' => $this->jdToCarbon((float) $v, $tz)->toIso8601String(),
+                'time' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon((float) $v, $tz)),
             ];
         }
 
@@ -293,12 +293,12 @@ class EclipseService
             'applicable' => true,
             'start_jd' => $startJd,
             'end_jd' => $eclipseEndJd,
-            'start' => $this->jdToCarbon($startJd, $tz)->toIso8601String(),
-            'end' => $this->jdToCarbon($eclipseEndJd, $tz)->toIso8601String(),
+            'start' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($startJd, $tz)),
+            'end' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
             'relaxed_start_jd' => $relaxedStartJd,
             'relaxed_end_jd' => $eclipseEndJd,
-            'relaxed_start' => $this->jdToCarbon($relaxedStartJd, $tz)->toIso8601String(),
-            'relaxed_end' => $this->jdToCarbon($eclipseEndJd, $tz)->toIso8601String(),
+            'relaxed_start' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
+            'relaxed_end' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
             'duration_hours' => $hoursBefore,
         ];
     }

@@ -275,7 +275,7 @@ class FestivalFamilyOrchestrator
             'event_name' => $event['name'],
             'rule_key' => $ruleKey,
             'observance_date' => $date->toDateString(),
-            'observance_datetime' => $date->toIso8601String(),
+            'observance_datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($date),
             'time_of_day' => $timeOfDay,
             'tithi' => $tithi,
             'paksha' => $paksha,

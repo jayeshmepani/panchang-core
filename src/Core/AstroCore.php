@@ -179,7 +179,22 @@ final readonly class AstroCore
     }
 
     /**
-     * Format a Carbon datetime according to global config.
+     * Format a Carbon datetime string according to global config.
+     */
+    public static function formatDateTime(\Carbon\CarbonImmutable $time): string
+    {
+        $format = self::getConfig('panchang.defaults.date_time_format', 'indian_12h');
+
+        return match($format) {
+            'indian_12h' => $time->format('d/m/Y h:i:s A'),
+            'indian_24h' => $time->format('d/m/Y H:i:s'),
+            'iso8601' => $time->toIso8601String(),
+            default => $time->format('d/m/Y h:i:s A'),
+        };
+    }
+
+    /**
+     * Format a Carbon time string according to global config.
      */
     public static function formatTime(\Carbon\CarbonImmutable $time): string
     {
@@ -208,10 +223,21 @@ final readonly class AstroCore
     }
 
     /**
+     * Format coordinate according to global config (decimal vs dms).
+     */
+    public static function formatCoordinate(float $coordinate): float|string
+    {
+        $unit = self::getConfig('panchang.defaults.coordinate_format', 'decimal');
+
+        if ($unit === 'dms') {
+            return self::toDms($coordinate);
+        }
+
+        return self::r9($coordinate);
+    }
+
+    /**
      * Format a duration (in minutes or hours) according to global config.
-     * For now, handles generic text output based on format preference.
-     * Note: Most logic handles raw numbers (which we already run through r9),
-     * but this is a helper for any string-based outputs.
      */
     public static function formatDuration(float $minutes): float|string
     {
@@ -228,7 +254,15 @@ final readonly class AstroCore
             return sprintf('%dm %ss', $mins, $secs);
         }
 
-        // Fallback to standard float output
+        if ($format === 'hours') {
+            return self::r9($minutes / 60);
+        }
+
+        if ($format === 'seconds') {
+            return self::r9($minutes * 60);
+        }
+
+        // Fallback to standard float output in minutes
         return self::r9($minutes);
     }
 }
