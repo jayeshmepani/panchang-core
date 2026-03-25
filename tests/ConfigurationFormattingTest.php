@@ -78,5 +78,36 @@ class ConfigurationFormattingTest extends TestCase
         // Expect a smaller float since it's hours instead of minutes
         $this->assertIsFloat($detailsHours['Hora']['hora_duration_minutes']);
         $this->assertTrue($detailsHours['Hora']['hora_duration_minutes'] < 2.0); // An hora is ~1 hour
+
+        // --- Test Number Precision ---
+        config(['panchang.defaults.number_precision' => 2]);
+        config(['panchang.defaults.angle_unit' => 'degree']); // Reset to degree to test float precision
+        $detailsPrecise2 = $service->getDayDetails(
+            date: $date,
+            lat: 23.2472446,
+            lon: 69.668339,
+            tz: 'Asia/Kolkata'
+        );
+
+        config(['panchang.defaults.number_precision' => 16]);
+        $detailsPrecise16 = $service->getDayDetails(
+            date: $date,
+            lat: 23.2472446,
+            lon: 69.668339,
+            tz: 'Asia/Kolkata'
+        );
+
+        $sunLon2 = $detailsPrecise2['sun_sunrise_lon'];
+        $sunLon16 = $detailsPrecise16['sun_sunrise_lon'];
+
+        // Assert different strings due to precision
+        $this->assertNotSame((string) $sunLon2, (string) $sunLon16);
+
+        // Assert the lengths are different, meaning precision is affecting the output.
+        $this->assertLessThan(strlen((string) $sunLon16), strlen((string) $sunLon2));
+
+        // Ensure that length of string after decimal is at most 2 for the precision=2 config
+        $decimalPart2 = explode('.', (string) $sunLon2)[1] ?? '';
+        $this->assertLessThanOrEqual(2, strlen($decimalPart2));
     }
 }
