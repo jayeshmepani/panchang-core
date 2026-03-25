@@ -5,20 +5,16 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Pakṣa Enumeration
- * 
+ * Pakṣa Enumeration.
+ *
  * Represents the two fortnights in a lunar month.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Paksha: string
 {
     case Shukla = 'Shukla';
     case Krishna = 'Krishna';
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -26,10 +22,8 @@ enum Paksha: string
             self::Krishna => 'Kṛṣṇa Pakṣa',
         };
     }
-    
-    /**
-     * Get description
-     */
+
+    /** Get description */
     public function getDescription(): string
     {
         return match ($this) {
@@ -37,10 +31,10 @@ enum Paksha: string
             self::Krishna => 'Waning moon fortnight (dark half)',
         };
     }
-    
+
     /**
-     * Get tithi range
-     * 
+     * Get tithi range.
+     *
      * @return array{start: int, end: int} Tithi index range
      */
     public function getTithiRange(): array
@@ -50,11 +44,12 @@ enum Paksha: string
             self::Krishna => ['start' => 16, 'end' => 30],
         };
     }
-    
+
     /**
-     * Check if tithi belongs to this pakṣa
-     * 
+     * Check if tithi belongs to this pakṣa.
+     *
      * @param int $tithiIndex Tithi index (1-30)
+     *
      * @return bool True if belongs to this pakṣa
      */
     public function containsTithi(int $tithiIndex): bool
@@ -62,11 +57,12 @@ enum Paksha: string
         $range = $this->getTithiRange();
         return $tithiIndex >= $range['start'] && $tithiIndex <= $range['end'];
     }
-    
+
     /**
-     * Normalize tithi to 1-15 range
-     * 
+     * Normalize tithi to 1-15 range.
+     *
      * @param int $tithiIndex Tithi index (1-30)
+     *
      * @return int Normalized tithi (1-15)
      */
     public function normalizeTithi(int $tithiIndex): int
@@ -76,11 +72,12 @@ enum Paksha: string
             self::Krishna => $tithiIndex - 15,
         };
     }
-    
+
     /**
-     * Convert normalized tithi to absolute index
-     * 
+     * Convert normalized tithi to absolute index.
+     *
      * @param int $normalizedTithi Normalized tithi (1-15)
+     *
      * @return int Absolute tithi index (1-30)
      */
     public function toAbsoluteTithi(int $normalizedTithi): int

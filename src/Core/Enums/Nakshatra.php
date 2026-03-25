@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Nakṣatra Enumeration
- * 
+ * Nakṣatra Enumeration.
+ *
  * Represents the 27 lunar mansions in Vedic astrology.
  * Each nakṣatra spans 13°20' of the zodiac (360° / 27 = 13.333...°).
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Nakshatra: int
 {
@@ -41,10 +39,8 @@ enum Nakshatra: int
     case PurvaBhadrapada = 24;
     case UttaraBhadrapada = 25;
     case Revati = 26;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -77,10 +73,8 @@ enum Nakshatra: int
             self::Revati => 'Revati',
         };
     }
-    
-    /**
-     * Get deity of the nakṣatra
-     */
+
+    /** Get deity of the nakṣatra */
     public function getDeity(): string
     {
         return match ($this) {
@@ -113,19 +107,15 @@ enum Nakshatra: int
             self::Revati => 'Pushan',
         };
     }
-    
-    /**
-     * Get ruling planet
-     */
+
+    /** Get ruling planet */
     public function getRulingPlanet(): string
     {
         $planets = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
         return $planets[$this->value % 9];
     }
-    
-    /**
-     * Get Vedic symbol
-     */
+
+    /** Get Vedic symbol */
     public function getSymbol(): string
     {
         return match ($this) {
@@ -158,27 +148,28 @@ enum Nakshatra: int
             self::Revati => 'Fish',
         };
     }
-    
+
     /**
-     * Get Vedic longitude range
-     * 
+     * Get Vedic longitude range.
+     *
      * @return array{start: float, end: float} Longitude range in degrees
      */
     public function getLongitudeRange(): array
     {
         $start = $this->value * 13.3333333333;
         $end = ($this->value + 1) * 13.3333333333;
-        
+
         return [
             'start' => $start,
             'end' => $end,
         ];
     }
-    
+
     /**
-     * Get nakṣatra from longitude
-     * 
+     * Get nakṣatra from longitude.
+     *
      * @param float $longitude Longitude in degrees (0-360)
+     *
      * @return self Nakṣatra instance
      */
     public static function fromLongitude(float $longitude): self
@@ -187,15 +178,16 @@ enum Nakshatra: int
         if ($normalized < 0) {
             $normalized += 360.0;
         }
-        
+
         $index = (int) floor($normalized / 13.3333333333);
         return self::from($index);
     }
-    
+
     /**
-     * Get pada (quarter) from longitude
-     * 
+     * Get pada (quarter) from longitude.
+     *
      * @param float $longitude Longitude in degrees
+     *
      * @return int Pada number (1-4)
      */
     public static function getPada(float $longitude): int
@@ -204,11 +196,11 @@ enum Nakshatra: int
         if ($normalized < 0) {
             $normalized += 360.0;
         }
-        
+
         $nakshatraIndex = (int) floor($normalized / 13.3333333333);
         $nakshatraStart = $nakshatraIndex * 13.3333333333;
         $progress = $normalized - $nakshatraStart;
-        
+
         return (int) floor($progress / 3.3333333333) + 1;
     }
 }

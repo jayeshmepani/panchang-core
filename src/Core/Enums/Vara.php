@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Vāra (Weekday) Enumeration
- * 
+ * Vāra (Weekday) Enumeration.
+ *
  * Represents the 7 weekdays in Vedic astrology, each ruled by a planet.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Vara: int
 {
@@ -20,10 +18,8 @@ enum Vara: int
     case Thursday = 4;
     case Friday = 5;
     case Saturday = 6;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -36,10 +32,8 @@ enum Vara: int
             self::Saturday => 'Śanivāra',
         };
     }
-    
-    /**
-     * Get English name
-     */
+
+    /** Get English name */
     public function getEnglishName(): string
     {
         return match ($this) {
@@ -52,10 +46,8 @@ enum Vara: int
             self::Saturday => 'Saturday',
         };
     }
-    
-    /**
-     * Get ruling planet
-     */
+
+    /** Get ruling planet */
     public function getRulingPlanet(): string
     {
         return match ($this) {
@@ -68,11 +60,12 @@ enum Vara: int
             self::Saturday => 'Śani (Saturn)',
         };
     }
-    
+
     /**
-     * Get weekday from Julian Day
-     * 
+     * Get weekday from Julian Day.
+     *
      * @param float $jd Julian Day
+     *
      * @return self Vara instance
      */
     public static function fromJulianDay(float $jd): self
@@ -80,11 +73,12 @@ enum Vara: int
         $weekday = (int) floor($jd + 1.5) % 7;
         return self::from($weekday);
     }
-    
+
     /**
-     * Get weekday from Carbon date
-     * 
+     * Get weekday from Carbon date.
+     *
      * @param int $dayOfWeek Carbon day of week (0=Sunday, 6=Saturday)
+     *
      * @return self Vara instance
      */
     public static function fromDayOfWeek(int $dayOfWeek): self

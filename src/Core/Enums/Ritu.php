@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Ṛtu (Season) Enumeration
- * 
+ * Ṛtu (Season) Enumeration.
+ *
  * Represents the 6 Hindu seasons.
  * Each ṛtu spans 2 lunar months.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Ritu: int
 {
@@ -20,10 +18,8 @@ enum Ritu: int
     case Sharad = 3;
     case Hemanta = 4;
     case Shishira = 5;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -35,10 +31,8 @@ enum Ritu: int
             self::Shishira => 'Śiśira',
         };
     }
-    
-    /**
-     * Get English name
-     */
+
+    /** Get English name */
     public function getEnglishName(): string
     {
         return match ($this) {
@@ -50,10 +44,10 @@ enum Ritu: int
             self::Shishira => 'Winter',
         };
     }
-    
+
     /**
-     * Get months in this ṛtu
-     * 
+     * Get months in this ṛtu.
+     *
      * @return array<int> Month indices (0-11)
      */
     public function getMonths(): array
@@ -67,11 +61,12 @@ enum Ritu: int
             self::Shishira => [10, 11], // Magha, Phalguna
         };
     }
-    
+
     /**
-     * Get ṛtu from month index
-     * 
+     * Get ṛtu from month index.
+     *
      * @param int $monthIndex Month index (0-11)
+     *
      * @return self Ritu instance
      */
     public static function fromMonth(int $monthIndex): self

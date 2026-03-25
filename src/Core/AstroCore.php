@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core;
 
+use Carbon\CarbonImmutable;
 use DateTimeInterface;
+use Exception;
 
 /**
  * Core Astrological Calculations.
@@ -140,7 +142,7 @@ final readonly class AstroCore
         if (function_exists('config')) {
             try {
                 $precision = (int) config('panchang.defaults.number_precision', 16);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // Config not available (e.g. inside standalone unit tests without Laravel app container)
                 $precision = 16;
             }
@@ -163,25 +165,21 @@ final readonly class AstroCore
         return sprintf('%d° %d\' %s"', $d, $m, self::r9($s));
     }
 
-    /**
-     * Get global configuration value.
-     */
+    /** Get global configuration value. */
     public static function getConfig(string $key, mixed $default = null): mixed
     {
         if (function_exists('config')) {
             try {
                 return config($key, $default);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return $default;
             }
         }
         return $default;
     }
 
-    /**
-     * Format a Carbon datetime string according to global config.
-     */
-    public static function formatDateTime(\Carbon\CarbonImmutable $time): string
+    /** Format a Carbon datetime string according to global config. */
+    public static function formatDateTime(CarbonImmutable $time): string
     {
         $format = self::getConfig('panchang.defaults.date_time_format', 'indian_12h');
 
@@ -193,10 +191,8 @@ final readonly class AstroCore
         };
     }
 
-    /**
-     * Format a Carbon time string according to global config.
-     */
-    public static function formatTime(\Carbon\CarbonImmutable $time): string
+    /** Format a Carbon time string according to global config. */
+    public static function formatTime(CarbonImmutable $time): string
     {
         $notation = self::getConfig('panchang.defaults.time_notation', '12h');
 
@@ -208,9 +204,7 @@ final readonly class AstroCore
         return $time->format('h:i:s A');
     }
 
-    /**
-     * Format an angle according to global config (degree vs dms).
-     */
+    /** Format an angle according to global config (degree vs dms). */
     public static function formatAngle(float $angle): float|string
     {
         $unit = self::getConfig('panchang.defaults.angle_unit', 'degree');
@@ -222,9 +216,7 @@ final readonly class AstroCore
         return self::r9($angle);
     }
 
-    /**
-     * Format coordinate according to global config (decimal vs dms).
-     */
+    /** Format coordinate according to global config (decimal vs dms). */
     public static function formatCoordinate(float $coordinate): float|string
     {
         $unit = self::getConfig('panchang.defaults.coordinate_format', 'decimal');
@@ -236,9 +228,7 @@ final readonly class AstroCore
         return self::r9($coordinate);
     }
 
-    /**
-     * Format a duration (in minutes or hours) according to global config.
-     */
+    /** Format a duration (in minutes or hours) according to global config. */
     public static function formatDuration(float $minutes): float|string
     {
         $format = self::getConfig('panchang.defaults.duration_format', 'mixed');

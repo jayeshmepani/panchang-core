@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Tithi Enumeration
- * 
+ * Tithi Enumeration.
+ *
  * Represents the 30 lunar days in a Hindu lunar month.
  * Each tithi is completed when the Moon gains 12° on the Sun (360° / 30 = 12°).
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Tithi: int
 {
@@ -44,10 +42,8 @@ enum Tithi: int
     case KrishnaTrayodashi = 28;
     case KrishnaChaturdashi = 29;
     case Amavasya = 30;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -69,52 +65,43 @@ enum Tithi: int
             self::Amavasya => 'Amavasya',
         };
     }
-    
-    /**
-     * Get pakṣa (fortnight)
-     */
+
+    /** Get pakṣa (fortnight) */
     public function getPaksha(): Paksha
     {
         return $this->value <= 15 ? Paksha::Shukla : Paksha::Krishna;
     }
-    
-    /**
-     * Get normalized index (1-15)
-     */
+
+    /** Get normalized index (1-15) */
     public function getNormalizedIndex(): int
     {
         return $this->value <= 15 ? $this->value : $this->value - 15;
     }
-    
-    /**
-     * Check if this is Ekadashi
-     */
+
+    /** Check if this is Ekadashi */
     public function isEkadashi(): bool
     {
         return in_array($this, [self::ShuklaEkadashi, self::KrishnaEkadashi], true);
     }
-    
-    /**
-     * Check if this is Purnima or Amavasya
-     */
+
+    /** Check if this is Purnima or Amavasya */
     public function isPurnimaOrAmavasya(): bool
     {
         return in_array($this, [self::Purnima, self::Amavasya], true);
     }
-    
-    /**
-     * Check if this is Chaturdashi
-     */
+
+    /** Check if this is Chaturdashi */
     public function isChaturdashi(): bool
     {
         return in_array($this, [self::ShuklaChaturdashi, self::KrishnaChaturdashi], true);
     }
-    
+
     /**
-     * Get tithi from Sun-Moon longitude difference
-     * 
+     * Get tithi from Sun-Moon longitude difference.
+     *
      * @param float $sunLon Sun longitude in degrees
      * @param float $moonLon Moon longitude in degrees
+     *
      * @return self Tithi instance
      */
     public static function fromLongitudes(float $sunLon, float $moonLon): self
@@ -123,16 +110,17 @@ enum Tithi: int
         if ($diff < 0) {
             $diff += 360.0;
         }
-        
+
         $index = (int) floor($diff / 12.0) + 1;
         return self::from($index);
     }
-    
+
     /**
-     * Get fraction remaining in tithi
-     * 
+     * Get fraction remaining in tithi.
+     *
      * @param float $sunLon Sun longitude in degrees
      * @param float $moonLon Moon longitude in degrees
+     *
      * @return float Fraction remaining (0.0-1.0)
      */
     public static function getFractionRemaining(float $sunLon, float $moonLon): float
@@ -141,7 +129,7 @@ enum Tithi: int
         if ($diff < 0) {
             $diff += 360.0;
         }
-        
+
         return 1.0 - (fmod($diff, 12.0) / 12.0);
     }
 }

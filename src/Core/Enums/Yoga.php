@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Yoga Enumeration
- * 
+ * Yoga Enumeration.
+ *
  * Represents the 27 yogas in Vedic astrology.
  * Each yoga is completed when Sun-Moon longitude sum advances by 13°20' (360° / 27).
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Yoga: int
 {
@@ -41,10 +39,8 @@ enum Yoga: int
     case Brahma = 24;
     case Aindra = 25;
     case Vaidhriti = 26;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -77,12 +73,13 @@ enum Yoga: int
             self::Vaidhriti => 'Vaidhriti',
         };
     }
-    
+
     /**
-     * Get yoga from Sun-Moon longitude sum
-     * 
+     * Get yoga from Sun-Moon longitude sum.
+     *
      * @param float $sunLon Sun longitude in degrees
      * @param float $moonLon Moon longitude in degrees
+     *
      * @return self Yoga instance
      */
     public static function fromLongitudes(float $sunLon, float $moonLon): self
@@ -91,7 +88,7 @@ enum Yoga: int
         if ($sum < 0) {
             $sum += 360.0;
         }
-        
+
         $index = (int) floor($sum / 13.3333333333);
         return self::from($index);
     }

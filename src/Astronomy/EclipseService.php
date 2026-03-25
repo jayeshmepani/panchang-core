@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\AstroCore;
 use SwissEph\FFI\SwissEphFFI;
 
 class EclipseService
@@ -154,17 +155,17 @@ class EclipseService
             'type' => 'Lunar',
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
-            'datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($dt),
-            'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
+            'datetime' => AstroCore::formatDateTime($dt),
+            'jd' => AstroCore::r9($jdMax),
             'magnitudes' => [
-                'umbral' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
-                'penumbral' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[1]),
+                'umbral' => AstroCore::r9((float) $attr[0]),
+                'penumbral' => AstroCore::r9((float) $attr[1]),
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'penumbral_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd'])),
-                'partial_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd'])),
-                'total_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd'])),
+                'penumbral_seconds' => AstroCore::r9($this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd'])),
+                'partial_seconds' => AstroCore::r9($this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd'])),
+                'total_seconds' => AstroCore::r9($this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd'])),
             ],
             'visibility' => [
                 'visible' => $isVisible,
@@ -221,16 +222,16 @@ class EclipseService
             'type' => 'Solar',
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
-            'datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($dt),
-            'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
+            'datetime' => AstroCore::formatDateTime($dt),
+            'jd' => AstroCore::r9($jdMax),
             'magnitudes' => [
-                'eclipse' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
-                'obscuration' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[2]),
+                'eclipse' => AstroCore::r9((float) $attr[0]),
+                'obscuration' => AstroCore::r9((float) $attr[2]),
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'partial_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd'])),
-                'total_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd'])),
+                'partial_seconds' => AstroCore::r9($this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd'])),
+                'total_seconds' => AstroCore::r9($this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd'])),
             ],
             'visibility' => [
                 'visible' => $isVisible,
@@ -252,7 +253,7 @@ class EclipseService
             }
             $out[$k] = [
                 'jd' => $v,
-                'time' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon((float) $v, $tz)),
+                'time' => AstroCore::formatDateTime($this->jdToCarbon((float) $v, $tz)),
             ];
         }
 
@@ -293,12 +294,12 @@ class EclipseService
             'applicable' => true,
             'start_jd' => $startJd,
             'end_jd' => $eclipseEndJd,
-            'start' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($startJd, $tz)),
-            'end' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
+            'start' => AstroCore::formatDateTime($this->jdToCarbon($startJd, $tz)),
+            'end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
             'relaxed_start_jd' => $relaxedStartJd,
             'relaxed_end_jd' => $eclipseEndJd,
-            'relaxed_start' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
-            'relaxed_end' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
+            'relaxed_start' => AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
+            'relaxed_end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
             'duration_hours' => $hoursBefore,
         ];
     }

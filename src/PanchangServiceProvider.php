@@ -68,6 +68,17 @@ class PanchangServiceProvider extends ServiceProvider
 
         $this->app->singleton(MuhurtaService::class);
 
+        $this->app->singleton(FestivalRuleEngine::class);
+
+        $this->app->singleton(FestivalFamilyOrchestrator::class);
+
+        $this->app->singleton(FestivalService::class, function ($app) {
+            return new FestivalService(
+                $app->make(FestivalRuleEngine::class),
+                $app->make(FestivalFamilyOrchestrator::class)
+            );
+        });
+
         // Main Panchang service
         $this->app->singleton(PanchangService::class, function ($app) {
             return new PanchangService(
@@ -75,16 +86,10 @@ class PanchangServiceProvider extends ServiceProvider
                 $app->make(SunService::class),
                 $app->make(AstronomyService::class),
                 $app->make(PanchangaEngine::class),
-                $app->make(MuhurtaService::class)
+                $app->make(MuhurtaService::class),
+                $app->make(FestivalService::class)
             );
         });
-
-        // Festival layer
-        $this->app->singleton(FestivalService::class);
-
-        $this->app->singleton(FestivalRuleEngine::class);
-
-        $this->app->singleton(FestivalFamilyOrchestrator::class);
 
         $this->app->singleton(BhadraEngine::class);
     }

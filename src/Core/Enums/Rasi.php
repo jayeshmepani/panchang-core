@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Rāśi (Zodiac Sign) Enumeration
- * 
+ * Rāśi (Zodiac Sign) Enumeration.
+ *
  * Represents the 12 zodiac signs in Vedic astrology.
  * Each sign spans 30° of the zodiac.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Rasi: int
 {
@@ -26,10 +24,8 @@ enum Rasi: int
     case Makara = 9;
     case Kumbha = 10;
     case Meena = 11;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -47,10 +43,8 @@ enum Rasi: int
             self::Meena => 'Mīna',
         };
     }
-    
-    /**
-     * Get English name
-     */
+
+    /** Get English name */
     public function getEnglishName(): string
     {
         return match ($this) {
@@ -68,10 +62,8 @@ enum Rasi: int
             self::Meena => 'Pisces',
         };
     }
-    
-    /**
-     * Get symbol
-     */
+
+    /** Get symbol */
     public function getSymbol(): string
     {
         return match ($this) {
@@ -89,10 +81,8 @@ enum Rasi: int
             self::Meena => '♓',
         };
     }
-    
-    /**
-     * Get ruling planet
-     */
+
+    /** Get ruling planet */
     public function getRulingPlanet(): string
     {
         return match ($this) {
@@ -110,10 +100,8 @@ enum Rasi: int
             self::Meena => 'Guru (Jupiter)',
         };
     }
-    
-    /**
-     * Get element
-     */
+
+    /** Get element */
     public function getElement(): string
     {
         return match ($this) {
@@ -123,27 +111,28 @@ enum Rasi: int
             self::Karka, self::Vrischika, self::Meena => 'Jala (Water)',
         };
     }
-    
+
     /**
-     * Get longitude range
-     * 
+     * Get longitude range.
+     *
      * @return array{start: float, end: float} Longitude range in degrees
      */
     public function getLongitudeRange(): array
     {
         $start = $this->value * 30.0;
         $end = ($this->value + 1) * 30.0;
-        
+
         return [
             'start' => $start,
             'end' => $end,
         ];
     }
-    
+
     /**
-     * Get rāśi from longitude
-     * 
+     * Get rāśi from longitude.
+     *
      * @param float $longitude Longitude in degrees (0-360)
+     *
      * @return self Rasi instance
      */
     public static function fromLongitude(float $longitude): self
@@ -152,7 +141,7 @@ enum Rasi: int
         if ($normalized < 0) {
             $normalized += 360.0;
         }
-        
+
         $index = (int) floor($normalized / 30.0);
         return self::from($index);
     }

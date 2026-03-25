@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Choghadiya Enumeration
- * 
+ * Choghadiya Enumeration.
+ *
  * Represents the 8 choghadiya periods in a day.
  * Each choghadiya spans 1/8th of the day or night duration.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Choghadiya: int
 {
@@ -21,10 +19,8 @@ enum Choghadiya: int
     case Kaal = 4;
     case Shubh = 5;
     case Rog = 6;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -37,10 +33,8 @@ enum Choghadiya: int
             self::Rog => 'Rog',
         };
     }
-    
-    /**
-     * Get nature
-     */
+
+    /** Get nature */
     public function getNature(): string
     {
         return match ($this) {
@@ -53,19 +47,18 @@ enum Choghadiya: int
             self::Rog => 'Inauspicious',
         };
     }
-    
-    /**
-     * Check if auspicious
-     */
+
+    /** Check if auspicious */
     public function isAuspicious(): bool
     {
         return in_array($this, [self::Labh, self::Amrit, self::Shubh], true);
     }
-    
+
     /**
-     * Get choghadiya sequence for weekday
-     * 
+     * Get choghadiya sequence for weekday.
+     *
      * @param Vara $vara Weekday
+     *
      * @return array<int> Choghadiya sequence (indices 0-6)
      */
     public static function getDaySequence(Vara $vara): array
@@ -79,23 +72,24 @@ enum Choghadiya: int
             5 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],    // Friday
             6 => [self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal],    // Saturday
         ];
-        
+
         return $sequences[$vara->value];
     }
-    
+
     /**
-     * Get choghadiya from time
-     * 
+     * Get choghadiya from time.
+     *
      * @param float $jdSunrise Sunrise Julian Day
      * @param float $jdSunset Sunset Julian Day
      * @param float $jdCurrent Current Julian Day
      * @param Vara $vara Weekday
+     *
      * @return self Choghadiya instance
      */
     public static function fromTime(float $jdSunrise, float $jdSunset, float $jdCurrent, Vara $vara): self
     {
         $isDay = $jdCurrent >= $jdSunrise && $jdCurrent < $jdSunset;
-        
+
         if ($isDay) {
             $durationTotal = $jdSunset - $jdSunrise;
             $elapsed = $jdCurrent - $jdSunrise;
@@ -103,22 +97,23 @@ enum Choghadiya: int
             $durationTotal = ($jdSunrise + 1.0) - $jdSunset;
             $elapsed = $jdCurrent - $jdSunset;
         }
-        
+
         $divDuration = $durationTotal / 8.0;
         $divIdx = (int) floor($elapsed / $divDuration);
-        
+
         if ($divIdx >= 8) {
             $divIdx = 7;
         }
-        
+
         $sequence = $isDay ? self::getDaySequence($vara) : self::getNightSequence($vara);
         return $sequence[$divIdx];
     }
-    
+
     /**
-     * Get night sequence for weekday
-     * 
+     * Get night sequence for weekday.
+     *
      * @param Vara $vara Weekday
+     *
      * @return array<int> Night choghadiya sequence
      */
     public static function getNightSequence(Vara $vara): array
@@ -132,7 +127,7 @@ enum Choghadiya: int
             5 => [self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog],
             6 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],
         ];
-        
+
         return $sequences[$vara->value];
     }
 }

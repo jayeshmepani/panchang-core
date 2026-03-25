@@ -8,22 +8,25 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Core\Constants\AstrologyConstants;
-use RuntimeException;
+use JayeshMepani\PanchangCore\Core\Enums\Karana;
+use JayeshMepani\PanchangCore\Core\Enums\Masa;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
+use JayeshMepani\PanchangCore\Core\Enums\Ritu;
+use JayeshMepani\PanchangCore\Core\Enums\Samvatsara;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
+use JayeshMepani\PanchangCore\Core\Enums\Yoga;
 
 class PanchangaEngine
 {
     public function getNakshatraInfo(float $longitude): array
     {
-        $totalMinutes = $longitude * 60.0;
-        $nakIdx = (int) floor($totalMinutes / 800.0);
-        $nakshatraNames = $this->requiredConstantArray('NAKSHATRA_NAMES');
-        $vimshottari = $this->requiredConstantArray('VIMSHOTTARI_ORDER');
+        $nakshatra = Nakshatra::fromLongitude($longitude);
 
         return [
-            (string) $this->requiredArrayValue($nakshatraNames, $nakIdx % 27, 'nakshatra name'),
-            (int) floor(fmod($totalMinutes, 800.0) / 200.0) + 1,
-            (string) $this->requiredArrayValue($vimshottari, $nakIdx % 9, 'nakshatra lord'),
+            $nakshatra->getName(),
+            Nakshatra::getPada($longitude),
+            $nakshatra->getRulingPlanet(),
         ];
     }
 
@@ -32,37 +35,30 @@ class PanchangaEngine
         $tAngle = AstroCore::normalize($moonLon - $sunLon);
         $num = min(60, (int) floor($tAngle / 6.0) + 1);
 
-        $sthira = AstrologyConstants::get('STHIRA_KARANAS');
-        $chara = AstrologyConstants::get('CHARA_KARANAS');
+        $tithiIndex = (int) floor($tAngle / 12.0) + 1;
+        $fraction = fmod($tAngle, 12.0) / 12.0;
+        $karana = Karana::fromTithi($tithiIndex, $fraction);
 
-        $name = $sthira[$num] ?? $chara[($num - 2) % 7];
-
-        return [$name, $num];
+        return [$karana->getName(), $num];
     }
 
     public function calculateTithi(float $sunLon, float $moonLon): array
     {
-        $diff = AstroCore::normalize($moonLon - $sunLon);
-        $num = (int) floor($diff / 12.0) + 1;
-
-        $tithiNames = $this->requiredConstantArray('TITHI_NAMES');
+        $tithi = Tithi::fromLongitudes($sunLon, $moonLon);
         return [
-            'index' => $num,
-            'name' => (string) $this->requiredArrayValue($tithiNames, $num - 1, 'tithi name'),
-            'paksha' => $num <= 15 ? 'Shukla' : 'Krishna',
-            'fraction_left' => AstroCore::r9(1.0 - (fmod($diff, 12.0) / 12.0)),
+            'index' => $tithi->value,
+            'name' => $tithi->getName(),
+            'paksha' => $tithi->getPaksha()->name,
+            'fraction_left' => AstroCore::r9(Tithi::getFractionRemaining($sunLon, $moonLon)),
         ];
     }
 
     public function calculateYoga(float $sunLon, float $moonLon): array
     {
-        $idx = (int) floor(AstroCore::normalize($sunLon + $moonLon) / 13.3333333333);
-        $idx = min(26, $idx);
-
-        $yogaNames = $this->requiredConstantArray('YOGA_NAMES');
+        $yoga = Yoga::fromLongitudes($sunLon, $moonLon);
         return [
-            'index' => $idx + 1,
-            'name' => (string) $this->requiredArrayValue($yogaNames, $idx, 'yoga name'),
+            'index' => $yoga->value + 1, // original code used 1-based index
+            'name' => $yoga->getName(),
         ];
     }
 
@@ -76,12 +72,11 @@ class PanchangaEngine
             $actual = $dt->subDay();
         }
 
-        $vIdx = ((int) $actual->format('N')) % 7; // Python weekday: Mon=0..Sun=6; Carbon N: Mon=1..Sun=7
-
-        $varaNames = $this->requiredConstantArray('VARA_NAMES');
+        $vIdx = ((int) $actual->format('N')) % 7;
+        $vara = Vara::from($vIdx);
         return [
-            'index' => $vIdx,
-            'name' => (string) $this->requiredArrayValue($varaNames, $vIdx, 'vara name'),
+            'index' => $vara->value,
+            'name' => $vara->getName(),
         ];
     }
 
@@ -93,11 +88,7 @@ class PanchangaEngine
     public function getRitu(float $sunLon): string
     {
         $sIdx = (int) floor($sunLon / 30.0);
-        $mapping = $this->requiredConstantArray('RITU_MONTH_MAPPING');
-        $ritus = $this->requiredConstantArray('RITU_NAMES');
-        $idx = $mapping[$sIdx] ?? 0;
-
-        return (string) $this->requiredArrayValue($ritus, (int) $idx, 'ritu name');
+        return Ritu::fromMonth($sIdx)->getName();
     }
 
     public function getSamvat(int $year, int $month): array
@@ -112,9 +103,8 @@ class PanchangaEngine
 
     public function getSamvatsara(int $vikramSamvat): string
     {
-        $names = $this->requiredConstantArray('SAMVATSARA_NAMES');
         $idx = (($vikramSamvat - 135 + 11) % 60 + 60) % 60;
-        return (string) $this->requiredArrayValue($names, $idx, 'samvatsara name');
+        return Samvatsara::from($idx)->getName();
     }
 
     public function getHinduMonth(float $sunLon, float $moonLon, string $paksha = 'Shukla'): array
@@ -122,11 +112,9 @@ class PanchangaEngine
         $base = ((int) floor($sunLon / 30.0) + 1) % 12;
         $am = $paksha === 'Shukla' ? $base : ($base - 1 + 12) % 12;
 
-        $months = $this->requiredConstantArray('HINDU_MONTHS');
-
         return [
-            'Amanta' => (string) $this->requiredArrayValue($months, $am, 'amanta month'),
-            'Purnimanta' => (string) $this->requiredArrayValue($months, $base, 'purnimanta month'),
+            'Amanta' => Masa::fromIndex($am)->getName(),
+            'Purnimanta' => Masa::fromIndex($base)->getName(),
             'Amanta_Index' => $am,
             'Purnimanta_Index' => $base,
         ];
@@ -144,9 +132,8 @@ class PanchangaEngine
 
     public function getSamvatsaraNorth(int $vikramSamvat): string
     {
-        $names = $this->requiredConstantArray('SAMVATSARA_NAMES');
         $idx = (($vikramSamvat + 9) % 60 + 60) % 60;
-        return (string) $this->requiredArrayValue($names, $idx, 'north samvatsara name');
+        return Samvatsara::from($idx)->getName();
     }
 
     public function calculatePanchakaRahita(int $tithiNum, int $varaNum, int $nakNum, int $lagnaNum): array
@@ -271,23 +258,6 @@ class PanchangaEngine
     public function isVishtiKarana(float $sunLon, float $moonLon): bool
     {
         [, $idx] = $this->getKarana($sunLon, $moonLon);
-        return $idx === 7 || $idx === 8;
-    }
-
-    private function requiredConstantArray(string $key): array
-    {
-        $value = AstrologyConstants::get($key);
-        if (!is_array($value)) {
-            throw new RuntimeException("Missing or invalid constant array: {$key}");
-        }
-        return $value;
-    }
-
-    private function requiredArrayValue(array $arr, int $index, string $label): mixed
-    {
-        if (!array_key_exists($index, $arr)) {
-            throw new RuntimeException("Missing {$label} for index {$index}");
-        }
-        return $arr[$index];
+        return $idx === 8 || $idx === 15 || $idx === 22 || $idx === 29 || $idx === 36 || $idx === 43 || $idx === 50 || $idx === 57; // Vishti/Bhadra occurs in these specific 1-60 indices
     }
 }

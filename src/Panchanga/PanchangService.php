@@ -8,8 +8,9 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Core\Constants\AstrologyConstants;
-use RuntimeException;
+use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
+use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
 
 /**
@@ -31,6 +32,8 @@ class PanchangService
         private AstronomyService $astronomy,
         private PanchangaEngine $panchanga,
         private MuhurtaService $muhurta,
+        private FestivalService $festivalService,
+        private BhadraEngine $bhadraEngine,
     ) {
         $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
@@ -126,7 +129,6 @@ class PanchangService
 
         $isth = $this->calculateIshtkaal($relSunrise, $birthAt, $tz);
 
-        $transitPlanets = $this->astronomy->getPlanets($birthAt);
         $ascLon = $this->astronomy->getAscendant($birthAt);
         $ascSign = AstroCore::getSign($ascLon);
         $moonSign = AstroCore::getSign($moonLon);
@@ -270,10 +272,35 @@ class PanchangService
 
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
 
-        $zodiacSigns = AstrologyConstants::get('ZODIAC_SIGNS');
-        if (!is_array($zodiacSigns) || !array_key_exists($sunSign, $zodiacSigns) || !array_key_exists($moonSign, $zodiacSigns)) {
-            throw new RuntimeException('Missing zodiac sign mapping in astrology constants.');
-        }
+        $todaySnapshot = [
+            'Tithi' => $tithi,
+            'Nakshatra' => [
+                'name' => $nakName,
+            ],
+            'Hindu_Calendar' => [
+                'Month_Amanta' => $hinduMonth['Amanta'],
+                'Month_Purnimanta' => $hinduMonth['Purnimanta'],
+            ],
+            'Resolution_Context' => [
+                'sunrise_jd' => $jdSunrise,
+                'sunset_jd' => $jdSunset,
+                'next_sunrise_jd' => $jdNextSunrise,
+                'tithi_start_jd' => $tithiStartJd,
+                'tithi_end_jd' => $tithiEndJd,
+                'prev_tithi_end_jd' => $tithiStartJd,
+                'tithi_index_abs' => $tithiNum,
+                'tithi_index_phase' => $tithiNum > 15 ? $tithiNum - 15 : $tithiNum,
+                'paksha' => (string) ($tithi['paksha'] ?? ''),
+                'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+                'sunset_iso' => AstroCore::formatDateTime($sunset),
+                'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
+                'sankranti_rashi' => ($currentSign !== $nextSunriseSign) ? (($currentSign + 1) % 12) : null,
+            ],
+        ];
+
+        $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
+        $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+        $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
         $defaultConfig = function_exists('config') ? config('panchang.defaults', []) : [];
         if (!is_array($defaultConfig)) {
@@ -311,7 +338,6 @@ class PanchangService
                 'Dharma_Sindhu.Punya_Kaal.sankranti_jd' => 'julian_day',
                 'Dharma_Sindhu.Punya_Kaal.punya_kaal_start_jd' => 'julian_day',
                 'Dharma_Sindhu.Punya_Kaal.punya_kaal_end_jd' => 'julian_day',
-                // New classical elements units
                 'Prahara.duration_seconds' => 'second',
                 'Prahara.duration_hours' => 'hour',
                 'Brahma_Muhurta.duration_minutes' => 'minute',
@@ -408,9 +434,11 @@ class PanchangService
                 'Calendar_Type' => 'Purnimanta / Amavasyant (Calculated)',
             ],
             'Chart_Auxiliary' => [
-                'Sun_Sign' => (string) $zodiacSigns[$sunSign],
-                'Moon_Sign' => (string) $zodiacSigns[$moonSign],
+                'Sun_Sign' => Rasi::from($sunSign)->getName(),
+                'Moon_Sign' => Rasi::from($moonSign)->getName(),
             ],
+            'Festivals' => $festivals,
+            'Daily_Observances' => $dailyObservances,
             'Panchaka_Rahita' => $panchaka,
             'Hora' => $hora,
             'Chogadiya' => $chogadiya,
@@ -424,7 +452,6 @@ class PanchangService
             'Rahu_Kaal_Gulika_Yamaganda' => $badTimes,
             'Abhijit_Muhurta' => $abhijit,
 
-            // New classical elements
             'Prahara_Full_Day' => $praharaTable,
             'Brahma_Muhurta' => $brahmaMuhurta,
             'Dur_Muhurta_Full_Day' => $durMuhurtaTable,
@@ -433,6 +460,8 @@ class PanchangService
             'Pradosha_Kaal' => $pradoshaKaal,
             'Lagna' => $lagna,
             'Lagna_Full_Day' => $lagnaTable,
+
+            'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) ($tithi['paksha'] ?? '')),
 
             'Dharma_Sindhu' => array_filter([
                 'Punya_Kaal' => $punyaKaal,
@@ -503,6 +532,14 @@ class PanchangService
         $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
         $prevTithiEndJd = $tithiStartJd;
 
+        $sunLonNextSunrise = $this->getSunLongitude($jdNextSunrise);
+        $currentSign = (int) floor($sunLon / 30.0);
+        $nextSunriseSign = (int) floor($sunLonNextSunrise / 30.0);
+        $sankrantiRashi = null;
+        if ($currentSign !== $nextSunriseSign) {
+            $sankrantiRashi = ($currentSign + 1) % 12;
+        }
+
         return [
             'Tithi' => $tithi,
             'Vara' => $vara,
@@ -528,7 +565,9 @@ class PanchangService
                 'sunrise_iso' => AstroCore::formatDateTime($sunrise),
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
+                'sankranti_rashi' => $sankrantiRashi,
             ],
+            'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']),
         ];
     }
 
@@ -563,6 +602,53 @@ class PanchangService
     {
         $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
         return $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+    }
+
+    private function findBhadraPeriods(float $jdStart, float $jdEnd, int $sunriseTithi, string $paksha): array
+    {
+        $vishtiKaranas = [8, 15, 22, 29, 36, 43, 50, 57];
+        $bhadraPeriods = [];
+
+        // Check the range for any Karana transition into Vishti
+        // A day usually has 2 Karanas. We check at start, and find transitions.
+        $currentJd = $jdStart;
+        while ($currentJd < $jdEnd) {
+            $angle = $this->getMoonSunAngle($currentJd);
+            $karanaNum = (int) floor($angle / 6.0) + 1;
+
+            if (in_array($karanaNum, $vishtiKaranas, true)) {
+                $vStartAngle = ($karanaNum - 1) * 6.0;
+                $vEndAngle = $karanaNum * 6.0;
+
+                $vStartJd = $this->findAngleCrossing($currentJd, $vStartAngle, -1, fn ($jd) => $this->getMoonSunAngle($jd));
+                $vEndJd = $this->findAngleCrossing($currentJd, $vEndAngle, 1, fn ($jd) => $this->getMoonSunAngle($jd));
+
+                // Constrain to the day
+                $actualStart = max($jdStart, $vStartJd);
+                $actualEnd = min($jdEnd, $vEndJd);
+
+                if ($actualStart < $actualEnd) {
+                    $moonRasi = (int) floor($this->getMoonLongitude($actualStart) / 30.0);
+                    $bhadraPeriods[] = $this->bhadraEngine->calculateBhadra(
+                        $jdStart,
+                        $vStartJd,
+                        $vEndJd,
+                        $moonRasi,
+                        $sunriseTithi,
+                        $paksha
+                    );
+                }
+
+                $currentJd = $vEndJd + 0.01; // Move past this Karana
+            } else {
+                // Find next Karana crossing
+                $nextKaranaAngle = ceil(($angle + 0.0001) / 6.0) * 6.0;
+                $nextKaranaJd = $this->findAngleCrossing($currentJd, $nextKaranaAngle, 1, fn ($jd) => $this->getMoonSunAngle($jd));
+                $currentJd = $nextKaranaJd + 0.001;
+            }
+        }
+
+        return $bhadraPeriods;
     }
 
     private function getSunMoonSum(float $jd): float

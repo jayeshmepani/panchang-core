@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Vimśottarī Daśā Planet Enumeration
- * 
+ * Vimśottarī Daśā Planet Enumeration.
+ *
  * Represents the 9 planets in the Vimshottari Dasha system with their dasha periods.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum VimshottariDasha: int
 {
@@ -22,10 +20,8 @@ enum VimshottariDasha: int
     case Mercury = 6;
     case Ketu = 7;
     case Venus = 8;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -40,10 +36,8 @@ enum VimshottariDasha: int
             self::Venus => 'Śukra',
         };
     }
-    
-    /**
-     * Get dasha period in years
-     */
+
+    /** Get dasha period in years */
     public function getDashaYears(): int
     {
         return match ($this) {
@@ -58,11 +52,12 @@ enum VimshottariDasha: int
             self::Venus => 20,
         };
     }
-    
+
     /**
-     * Get planet from nakshatra
-     * 
+     * Get planet from nakshatra.
+     *
      * @param Nakshatra $nakshatra Nakshatra instance
+     *
      * @return self VimshottariDasha instance
      */
     public static function fromNakshatra(Nakshatra $nakshatra): self
@@ -96,7 +91,7 @@ enum VimshottariDasha: int
             self::Saturn,  // Uttara Bhadrapada (25)
             self::Mercury, // Revati (26)
         ];
-        
+
         return $planets[$nakshatra->value];
     }
 }

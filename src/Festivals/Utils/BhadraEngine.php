@@ -4,353 +4,156 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Festivals\Utils;
 
-use Carbon\CarbonImmutable;
-use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
-
 /**
- * Bhadra (Vishti Karaṇa) Calculation Engine.
+ * Bhadra (Vishti Karana) Engine.
  *
- * Classical References:
- * - Nirṇaya Sindhu 1.4.15 - Bhadra avoidance rules
- * - Muhūrta Chintāmaṇi 67 - Bhadra duration and parts
- * - Dharma Sindhu 2.3.15 - Holika Dahan Bhadra exception
+ * Classical Sources: Muhūrta Chintāmaṇi, Nirṇaya Sindhu, Ernst Wilhelm's Classical Muhurta.
  *
- * Bhadra is an inauspicious period that occurs during specific karaṇa periods.
- * Critical for festival timing - many festivals (Holika Dahan, Raksha Bandhan)
- * must avoid Bhadra or have specific rules about Bhadra overlap.
+ * Core Rules:
+ * 1. Bhadra = Vishti Karaṇa. Occurs 8 times per lunar month (4 per paksha).
+ *    Actual boundaries are computed via Swiss Ephemeris in PanchangService::findBhadraPeriods().
+ *
+ * 2. Classical Subdivision (Ghatis from start of Bhadra):
+ *    - Mukha (Mouth): First 5 Ghatis → Extremely Inauspicious
+ *    - Madhya (Body): Middle portion → Inauspicious
+ *    - Puchha (Tail): Last 3 Ghatis → Auspicious/Safe for work
+ *
+ * 3. Bhadravāsa (Lok): Determined by Moon's Rāśi at Bhadra start.
+ *    - Svargaloka (Heaven): Aries, Taurus, Gemini, Scorpio → Neutral for Earth
+ *    - Patalaloka (Underworld): Virgo, Libra, Sagittarius, Capricorn → Positive for Earth
+ *    - Mrityuloka (Earth): Cancer, Leo, Aquarius, Pisces → Strictly Inauspicious
  */
 class BhadraEngine
 {
-    /**
-     * Bhadra duration in ghaṭikās (24 minutes each)
-     * Varies by weekday.
-     *
-     * Source: Muhūrta Chintāmaṇi 67
-     */
-    private const BHADRA_DURATION_GHATI = [
-        0 => 4.0,  // Sunday
-        1 => 2.0,  // Monday
-        2 => 3.0,  // Tuesday
-        3 => 2.0,  // Wednesday
-        4 => 4.0,  // Thursday
-        5 => 2.0,  // Friday
-        6 => 3.0,  // Saturday
-    ];
+    /** Ghatis for Mukha (mouth) from start of Bhadra */
+    private const float MUKHA_GHATIS = 5.0;
+
+    /** Ghatis for Puchha (tail) before end of Bhadra */
+    private const float PUCHHA_GHATIS = 3.0;
 
     /**
-     * Bhadra start offset from sunrise in ghaṭikās
-     * Varies by weekday and pakṣa.
+     * Calculate Bhadra period with classical subdivisions.
      *
-     * Source: Nirṇaya Sindhu 1.4.15
-     */
-    private const BHADRA_START_SHUKLA = [
-        0 => 0.0,   // Sunday: starts at sunrise
-        1 => 6.0,   // Monday: starts 6 ghaṭikās after sunrise
-        2 => 3.0,   // Tuesday: starts 3 ghaṭikās after sunrise
-        3 => 1.0,   // Wednesday: starts 1 ghaṭikā after sunrise
-        4 => 5.0,   // Thursday: starts 5 ghaṭikās after sunrise
-        5 => 2.0,   // Friday: starts 2 ghaṭikās after sunrise
-        6 => 4.0,   // Saturday: starts 4 ghaṭikās after sunrise
-    ];
-
-    private const BHADRA_START_KRISHNA = [
-        0 => 5.0,   // Sunday
-        1 => 1.0,   // Monday
-        2 => 6.0,   // Tuesday
-        3 => 4.0,   // Wednesday
-        4 => 2.0,   // Thursday
-        5 => 7.0,   // Friday
-        6 => 3.0,   // Saturday
-    ];
-
-    /**
-     * Calculate Bhadra period for a given date and location.
+     * @param float $sunriseJd Julian Day of sunrise (for relative time display)
+     * @param float $vishtiStartJd Julian Day of Vishti Karana start
+     * @param float $vishtiEndJd Julian Day of Vishti Karana end
+     * @param int $moonRasiIndex Moon's rashi index (0-11) at Bhadra start
+     * @param int $tithiIndex Absolute tithi number (1-30)
+     * @param string $paksha 'Shukla' or 'Krishna'
      *
-     * @param CarbonImmutable $date Date to calculate for
-     * @param float $sunriseJd Sunrise Julian Day
-     * @param float $sunsetJd Sunset Julian Day
-     * @param int $weekday Weekday (0=Sunday, 1=Monday, etc.)
-     * @param string $paksha Paksha (Shukla or Krishna)
-     * @param int $tithi Tithi number (1-15)
-     *
-     * @return array Bhadra period information
+     * @return array Bhadra period data with classical subdivisions
      */
     public function calculateBhadra(
-        CarbonImmutable $date,
         float $sunriseJd,
-        float $sunsetJd,
-        int $weekday,
-        string $paksha,
-        int $tithi
+        float $vishtiStartJd,
+        float $vishtiEndJd,
+        int $moonRasiIndex,
+        int $tithiIndex,
+        string $paksha
     ): array {
-        // Only occurs on specific tithis (mainly 6, 8, 10, 12, 14)
-        // Source: Nirṇaya Sindhu 1.4.15
-        $hasBhadra = in_array($tithi, ClassicalTimeConstants::BHADRA_TITHIS, true);
+        $durationJd = $vishtiEndJd - $vishtiStartJd;
+        $durationGhatis = $durationJd * 60.0; // 1 day = 60 ghatis
 
-        if (!$hasBhadra) {
-            return [
-                'has_bhadra' => false,
-                'bhadra_tithi' => false,
-                'reason' => 'Bhadra only occurs on tithis ' . implode(', ', ClassicalTimeConstants::BHADRA_TITHIS),
+        // Classical ghati-to-JD conversion (1 ghati = 1/60 of a day)
+        $ghatiToJd = 1.0 / 60.0;
+
+        // Classical boundaries
+        $mukhaEndJd = $vishtiStartJd + (self::MUKHA_GHATIS * $ghatiToJd);
+        $puchhaStartJd = $vishtiEndJd - (self::PUCHHA_GHATIS * $ghatiToJd);
+
+        // Clamp to actual Bhadra boundaries
+        $mukhaEndJd = min($mukhaEndJd, $vishtiEndJd);
+        $puchhaStartJd = max($puchhaStartJd, $vishtiStartJd);
+
+        // If Bhadra is shorter than 8 ghatis, mukha and puchha may overlap;
+        // in that case the entire period is inauspicious (no safe tail).
+        $hasPuchha = $puchhaStartJd > $mukhaEndJd;
+
+        $jdToTime = function (float $jd) use ($sunriseJd): string {
+            $seconds = ($jd - $sunriseJd) * 86400.0;
+            $hours = (int) floor(abs($seconds) / 3600);
+            $minutes = (int) floor(fmod(abs($seconds), 3600) / 60);
+            $secs = (int) floor(fmod(abs($seconds), 60));
+            $sign = $seconds < 0 ? '-' : '';
+            return sprintf('%s%02d:%02d:%02d', $sign, $hours, $minutes, $secs);
+        };
+
+        $lok = $this->getBhadraLok($moonRasiIndex);
+
+        $parts = [
+            'mukha' => [
+                'start_time' => $jdToTime($vishtiStartJd),
+                'end_time' => $jdToTime($mukhaEndJd),
+                'ghatis' => round(min(self::MUKHA_GHATIS, $durationGhatis), 2),
+                'status' => 'Extremely Inauspicious',
+            ],
+        ];
+
+        // Madhya (body) only exists if there is space between mukha end and puchha start
+        if ($hasPuchha) {
+            $parts['madhya'] = [
+                'start_time' => $jdToTime($mukhaEndJd),
+                'end_time' => $jdToTime($puchhaStartJd),
+                'ghatis' => round(($puchhaStartJd - $mukhaEndJd) * 60.0, 2),
+                'status' => 'Inauspicious',
+            ];
+            $parts['puchha'] = [
+                'start_time' => $jdToTime($puchhaStartJd),
+                'end_time' => $jdToTime($vishtiEndJd),
+                'ghatis' => round(self::PUCHHA_GHATIS, 2),
+                'status' => 'Auspicious/Safe',
             ];
         }
-
-        // Get duration and start offset
-        $durationGhati = self::BHADRA_DURATION_GHATI[$weekday] ?? 2.0;
-        $startOffsets = $paksha === 'Shukla' ? self::BHADRA_START_SHUKLA : self::BHADRA_START_KRISHNA;
-        $startGhati = $startOffsets[$weekday] ?? 0.0;
-
-        // Convert to JD (exact: 1 ghaṭikā = 1/60 day)
-        $ghatiToJd = ClassicalTimeConstants::GHATIKA_PER_DAY;
-        $bhadraStartJd = $sunriseJd + ($startGhati * $ghatiToJd);
-        $bhadraEndJd = $bhadraStartJd + ($durationGhati * $ghatiToJd);
-
-        // Calculate parts (Mukha = 40%, Punchha = 60%)
-        // Source: Muhūrta Chintāmaṇi 67
-        $mukhaEndJd = $bhadraStartJd + (($durationGhati * 0.4) * $ghatiToJd);
-        $punchhaStartJd = $bhadraStartJd + (($durationGhati * 0.6) * $ghatiToJd);
-
-        // Convert to times (exact: 1 day = 86400 seconds)
-        $jdToTime = function (float $jd) use ($sunriseJd): string {
-            $seconds = ($jd - $sunriseJd) * ClassicalTimeConstants::SECONDS_PER_DAY;
-            $hours = (int) floor($seconds / ClassicalTimeConstants::SECONDS_PER_HOUR);
-            $minutes = (int) floor(fmod($seconds, ClassicalTimeConstants::SECONDS_PER_HOUR) / ClassicalTimeConstants::SECONDS_PER_MINUTE);
-            $secs = (int) floor(fmod($seconds, ClassicalTimeConstants::SECONDS_PER_MINUTE));
-            return sprintf('%02d:%02d:%02d', max(0, $hours), max(0, $minutes), max(0, $secs));
-        };
 
         return [
             'has_bhadra' => true,
-            'bhadra_tithi' => true,
-            'tithi' => $tithi,
+            'lok' => $lok['name'],
+            'lok_description' => $lok['description'],
+            'impact_on_earth' => $lok['impact'],
+            'start_jd' => $vishtiStartJd,
+            'end_jd' => $vishtiEndJd,
+            'start_time' => $jdToTime($vishtiStartJd),
+            'end_time' => $jdToTime($vishtiEndJd),
+            'duration_ghatis' => round($durationGhatis, 2),
+            'tithi' => $tithiIndex,
             'paksha' => $paksha,
-            'weekday' => $weekday,
-            'duration_ghati' => $durationGhati,
-            'duration_minutes' => $durationGhati * ClassicalTimeConstants::GHATIKA_IN_MINUTES,
-            'start_ghati' => $startGhati,
-            'bhadra_start_jd' => $bhadraStartJd,
-            'bhadra_end_jd' => $bhadraEndJd,
-            'bhadra_start_time' => $jdToTime($bhadraStartJd),
-            'bhadra_end_time' => $jdToTime($bhadraEndJd),
-            'mukha' => [
-                'start_jd' => $bhadraStartJd,
-                'end_jd' => $mukhaEndJd,
-                'start_time' => $jdToTime($bhadraStartJd),
-                'end_time' => $jdToTime($mukhaEndJd),
-                'duration_minutes' => ($durationGhati * 0.4) * ClassicalTimeConstants::GHATIKA_IN_MINUTES,
-            ],
-            'punchha' => [
-                'start_jd' => $punchhaStartJd,
-                'end_jd' => $bhadraEndJd,
-                'start_time' => $jdToTime($punchhaStartJd),
-                'end_time' => $jdToTime($bhadraEndJd),
-                'duration_minutes' => ($durationGhati * 0.6) * ClassicalTimeConstants::GHATIKA_IN_MINUTES,
-            ],
-            'festival_impact' => $this->getFestivalImpact($tithi, $paksha),
+            'parts' => $parts,
         ];
     }
 
     /**
-     * Check if a time period overlaps with Bhadra.
+     * Determine Bhadravāsa (Bhadra's dwelling) from Moon's Rāśi.
      *
-     * @param float $periodStartJd Start of period in JD
-     * @param float $periodEndJd End of period in JD
-     * @param array $bhadraData Bhadra data from calculateBhadra()
-     * @param string $partToCheck Which part to check: 'full', 'mukha', 'punchha'
-     *
-     * @return array Overlap information
+     * Classical rule (Muhūrta Chintāmaṇi):
+     * - Svargaloka: Aries(0), Taurus(1), Gemini(2), Scorpio(7)
+     * - Patalaloka: Virgo(5), Libra(6), Sagittarius(8), Capricorn(9)
+     * - Mrityuloka: Cancer(3), Leo(4), Aquarius(10), Pisces(11)
      */
-    public function checkBhadraOverlap(
-        float $periodStartJd,
-        float $periodEndJd,
-        array $bhadraData,
-        string $partToCheck = 'full'
-    ): array {
-        if (!$bhadraData['has_bhadra']) {
-            return [
-                'overlaps' => false,
-                'reason' => 'No Bhadra on this tithi',
-            ];
-        }
-
-        // Get Bhadra boundaries based on part to check
-        $bhadraBoundaries = match ($partToCheck) {
-            'mukha' => [
-                'start' => $bhadraData['mukha']['start_jd'],
-                'end' => $bhadraData['mukha']['end_jd'],
-            ],
-            'punchha' => [
-                'start' => $bhadraData['punchha']['start_jd'],
-                'end' => $bhadraData['punchha']['end_jd'],
-            ],
-            default => [
-                'start' => $bhadraData['bhadra_start_jd'],
-                'end' => $bhadraData['bhadra_end_jd'],
-            ],
-        };
-
-        // Check overlap
-        $overlaps = $periodStartJd < $bhadraBoundaries['end'] && $periodEndJd > $bhadraBoundaries['start'];
-
-        if (!$overlaps) {
-            return [
-                'overlaps' => false,
-                'reason' => 'Period does not overlap Bhadra',
-            ];
-        }
-
-        // Calculate overlap extent (exact)
-        $overlapStart = max($periodStartJd, $bhadraBoundaries['start']);
-        $overlapEnd = min($periodEndJd, $bhadraBoundaries['end']);
-        $overlapDuration = ($overlapEnd - $overlapStart) * ClassicalTimeConstants::MINUTES_PER_DAY;
-
-        // Calculate non-Bhadra portion
-        $nonBhadraStart = max($periodStartJd, $bhadraBoundaries['end']);
-        $nonBhadraEnd = min($periodEndJd, $bhadraBoundaries['start']);
-        $hasNonBhadraPortion = $nonBhadraStart < $periodEndJd || $periodStartJd < $bhadraBoundaries['start'];
-
-        return [
-            'overlaps' => true,
-            'overlap_start_jd' => $overlapStart,
-            'overlap_end_jd' => $overlapEnd,
-            'overlap_duration_minutes' => $overlapDuration,
-            'has_non_bhadra_portion' => $hasNonBhadraPortion,
-            'recommendation' => $this->getBhadraRecommendation($overlapDuration, $partToCheck),
-        ];
-    }
-
-    /**
-     * Calculate optimal festival time avoiding Bhadra.
-     *
-     * @param float $preferredStartJd Preferred start time in JD
-     * @param float $preferredEndJd Preferred end time in JD
-     * @param array $bhadraData Bhadra data
-     * @param string $partToCheck Which Bhadra part to avoid
-     *
-     * @return array Optimal timing recommendation
-     */
-    public function calculateOptimalTime(
-        float $preferredStartJd,
-        float $preferredEndJd,
-        array $bhadraData,
-        string $partToCheck = 'full'
-    ): array {
-        if (!$bhadraData['has_bhadra']) {
-            return [
-                'optimal_start_jd' => $preferredStartJd,
-                'optimal_end_jd' => $preferredEndJd,
-                'reason' => 'No Bhadra - use preferred times',
-            ];
-        }
-
-        $overlap = $this->checkBhadraOverlap($preferredStartJd, $preferredEndJd, $bhadraData, $partToCheck);
-
-        if (!$overlap['overlaps']) {
-            return [
-                'optimal_start_jd' => $preferredStartJd,
-                'optimal_end_jd' => $preferredEndJd,
-                'reason' => 'No overlap with Bhadra',
-            ];
-        }
-
-        // Calculate alternative windows
-        $beforeBhadra = match ($partToCheck) {
-            'mukha' => $bhadraData['mukha']['start_jd'],
-            'punchha' => $bhadraData['punchha']['start_jd'],
-            default => $bhadraData['bhadra_start_jd'],
-        };
-
-        $afterBhadra = match ($partToCheck) {
-            'mukha' => $bhadraData['mukha']['end_jd'],
-            'punchha' => $bhadraData['punchha']['end_jd'],
-            default => $bhadraData['bhadra_end_jd'],
-        };
-
-        $windowBefore = $beforeBhadra - $preferredStartJd;
-        $windowAfter = $preferredEndJd - $afterBhadra;
-
-        if ($windowBefore > 0 && $windowBefore >= $windowAfter) {
-            return [
-                'optimal_start_jd' => $preferredStartJd,
-                'optimal_end_jd' => $beforeBhadra,
-                'reason' => 'Before Bhadra starts',
-                'duration_minutes' => $windowBefore * ClassicalTimeConstants::MINUTES_PER_DAY,
-            ];
-        }
-
-        if ($windowAfter > 0) {
-            return [
-                'optimal_start_jd' => $afterBhadra,
-                'optimal_end_jd' => $preferredEndJd,
-                'reason' => 'After Bhadra ends',
-                'duration_minutes' => $windowAfter * ClassicalTimeConstants::MINUTES_PER_DAY,
-            ];
-        }
-
-        return [
-            'optimal_start_jd' => $afterBhadra,
-            'optimal_end_jd' => $afterBhadra + (14.0 / ClassicalTimeConstants::MINUTES_PER_DAY), // Minimum 14 minutes
-            'reason' => 'No optimal window - minimal time after Bhadra',
-            'warning' => 'Consider alternative date',
-        ];
-    }
-
-    /** Get festival-specific Bhadra impact */
-    private function getFestivalImpact(int $tithi, string $paksha): array
+    private function getBhadraLok(int $rasi): array
     {
-        $impacts = [];
-
-        // Holika Dahan (Purnima, but Bhadra rules apply to preceding Trayodashi)
-        if ($tithi === 14 && $paksha === 'Krishna') {
-            $impacts[] = [
-                'festival' => 'Holika Dahan',
-                'rule' => 'Must avoid Bhadra during Pradosh Kaal',
-                'exception' => 'If Bhadra extends into Pradosh, wait until Bhadra ends',
+        // Svargaloka: Aries(0), Taurus(1), Gemini(2), Scorpio(7)
+        if (in_array($rasi, [0, 1, 2, 7], true)) {
+            return [
+                'name' => 'Svargaloka',
+                'description' => 'Bhadra resides in Heaven',
+                'impact' => 'Neutral — no direct harm on Earth',
             ];
         }
 
-        // Raksha Bandhan (Purnima, but Bhadra rules apply)
-        if ($tithi === 15 && $paksha === 'Shukla') {
-            $impacts[] = [
-                'festival' => 'Raksha Bandhan',
-                'rule' => 'Avoid Bhadra for thread ceremony',
-                'exception' => 'Bhadra Punchha acceptable in some traditions',
+        // Patalaloka: Virgo(5), Libra(6), Sagittarius(8), Capricorn(9)
+        if (in_array($rasi, [5, 6, 8, 9], true)) {
+            return [
+                'name' => 'Patalaloka',
+                'description' => 'Bhadra resides in the Underworld',
+                'impact' => 'Positive for Earth',
             ];
         }
 
-        // General Bhadra-sensitive festivals
-        if (in_array($tithi, [6, 8, 10, 12], true)) {
-            $impacts[] = [
-                'festival' => 'General',
-                'rule' => 'Auspicious activities should avoid Bhadra',
-                'exception' => 'Nitya karma not affected',
-            ];
-        }
-
-        return $impacts;
-    }
-
-    /** Get Bhadra avoidance recommendation */
-    private function getBhadraRecommendation(float $overlapMinutes, string $partToCheck): string
-    {
-        // Threshold: 10 minutes (minimal)
-        if ($overlapMinutes < 10) {
-            return 'Minimal overlap - may proceed with caution';
-        }
-
-        // Threshold: 30 minutes (significant)
-        if ($overlapMinutes < 30) {
-            return match ($partToCheck) {
-                'mukha' => 'Consider waiting until Mukha ends',
-                'punchha' => 'Consider starting before Punchha begins',
-                default => 'Short overlap - evaluate based on festival urgency',
-            };
-        }
-
-        return match ($partToCheck) {
-            'mukha' => 'Significant Mukha overlap - wait until Mukha ends',
-            'punchha' => 'Significant Punchha overlap - start before Punchha begins',
-            default => 'Significant Bhadra overlap - reschedule if possible',
-        };
+        // Mrityuloka: Cancer(3), Leo(4), Aquarius(10), Pisces(11)
+        return [
+            'name' => 'Mrityuloka',
+            'description' => 'Bhadra resides on Earth',
+            'impact' => 'Strictly Inauspicious — avoid all auspicious work',
+        ];
     }
 }

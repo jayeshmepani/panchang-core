@@ -7,7 +7,7 @@ namespace JayeshMepani\PanchangCore\Panchanga;
 use Carbon\CarbonImmutable;
 use DateTimeZone;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Core\Constants\AstrologyConstants;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use RuntimeException;
 use SwissEph\FFI\SwissEphFFI;
 
@@ -498,11 +498,7 @@ class MuhurtaService
         // A values for each of 27 Nakshatras
         $aValues = [50, 4, 30, 40, 14, 21, 30, 20, 32, 30, 20, 1, 21, 20, 14, 14, 10, 14, 20, 20, 20, 10, 10, 18, 16, 30, 30];
 
-        $nakshatraNames = AstrologyConstants::get('NAKSHATRA_NAMES');
-        if (!is_array($nakshatraNames) || !array_key_exists($nakshatraIndex % 27, $nakshatraNames)) {
-            throw new RuntimeException('Missing nakshatra names mapping in astrology constants.');
-        }
-        $nakshatraName = (string) $nakshatraNames[$nakshatraIndex % 27];
+        $nakshatraName = Nakshatra::from($nakshatraIndex % 27)->getName();
 
         $aValue = $aValues[$nakshatraIndex % 27] ?? 50;
 

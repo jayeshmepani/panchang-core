@@ -5,20 +5,12 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
-use JayeshMepani\PanchangCore\Core\AstroCore;
-use Orchestra\Testbench\TestCase;
-use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
+use JayeshMepani\PanchangCore\PanchangServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class ConfigurationFormattingTest extends TestCase
 {
-    protected function getPackageProviders($app): array
-    {
-        return [
-            PanchangServiceProvider::class,
-        ];
-    }
-
     public function testFormattingOutputsWithDifferentConfigurations(): void
     {
         /** @var PanchangService $service */
@@ -109,5 +101,11 @@ class ConfigurationFormattingTest extends TestCase
         // Ensure that length of string after decimal is at most 2 for the precision=2 config
         $decimalPart2 = explode('.', (string) $sunLon2)[1] ?? '';
         $this->assertLessThanOrEqual(2, strlen($decimalPart2));
+    }
+    protected function getPackageProviders($app): array
+    {
+        return [
+            PanchangServiceProvider::class,
+        ];
     }
 }

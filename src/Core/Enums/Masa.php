@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Māsa (Hindu Lunar Month) Enumeration
- * 
+ * Māsa (Hindu Lunar Month) Enumeration.
+ *
  * Represents the 12 lunar months in the Hindu calendar.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Masa: int
 {
@@ -25,10 +23,8 @@ enum Masa: int
     case Pausha = 9;
     case Magha = 10;
     case Phalguna = 11;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -46,10 +42,8 @@ enum Masa: int
             self::Phalguna => 'Phālguna',
         };
     }
-    
-    /**
-     * Get English approximation
-     */
+
+    /** Get English approximation */
     public function getEnglishApproximation(): string
     {
         return match ($this) {
@@ -67,10 +61,8 @@ enum Masa: int
             self::Phalguna => 'February-March',
         };
     }
-    
-    /**
-     * Get ruling nakṣatra
-     */
+
+    /** Get ruling nakṣatra */
     public function getRulingNakshatra(): Nakshatra
     {
         return match ($this) {
@@ -88,11 +80,12 @@ enum Masa: int
             self::Phalguna => Nakshatra::PurvaPhalguni,
         };
     }
-    
+
     /**
-     * Get month from index
-     * 
+     * Get month from index.
+     *
      * @param int $index Month index (0-11)
+     *
      * @return self Masa instance
      */
     public static function fromIndex(int $index): self

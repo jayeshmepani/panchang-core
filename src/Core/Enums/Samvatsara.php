@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 /**
- * Saṃvatsara (60-Year Jupiter Cycle) Enumeration
- * 
+ * Saṃvatsara (60-Year Jupiter Cycle) Enumeration.
+ *
  * Represents the 60 years in the Jupiter cycle.
  * Each year has a specific name and characteristics.
- * 
- * @package JayeshMepani\PanchangCore
  */
 enum Samvatsara: int
 {
@@ -74,10 +72,8 @@ enum Samvatsara: int
     case Raktakshi = 57;
     case Krodhana = 58;
     case Akshaya = 59;
-    
-    /**
-     * Get Sanskrit name
-     */
+
+    /** Get Sanskrit name */
     public function getName(): string
     {
         return match ($this) {
@@ -143,35 +139,37 @@ enum Samvatsara: int
             self::Akshaya => 'Akṣaya',
         };
     }
-    
+
     /**
-     * Get saṃvatsara from year number
-     * 
+     * Get saṃvatsara from year number.
+     *
      * @param int $year Year number (1-60)
+     *
      * @return self Samvatsara instance
      */
     public static function fromYear(int $year): self
     {
         return self::from(($year - 1) % 60);
     }
-    
+
     /**
-     * Get current saṃvatsara from Gregorian year
-     * 
+     * Get current saṃvatsara from Gregorian year.
+     *
      * @param int $gregorianYear Gregorian year
+     *
      * @return self Samvatsara instance
      */
     public static function fromGregorianYear(int $gregorianYear): self
     {
-        // Reference: 1899 CE = Prabhava (year 1)
-        $referenceYear = 1899;
+        // Reference: 1987 CE = Prabhava (year 1)
+        $referenceYear = 1987;
         $yearsSinceReference = $gregorianYear - $referenceYear;
         $samvatsaraIndex = $yearsSinceReference % 60;
-        
+
         if ($samvatsaraIndex < 0) {
             $samvatsaraIndex += 60;
         }
-        
+
         return self::from($samvatsaraIndex);
     }
 }

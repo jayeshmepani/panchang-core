@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\AstroCore;
 
 /**
  * Festival Family Orchestrator.
@@ -275,7 +276,7 @@ class FestivalFamilyOrchestrator
             'event_name' => $event['name'],
             'rule_key' => $ruleKey,
             'observance_date' => $date->toDateString(),
-            'observance_datetime' => \JayeshMepani\PanchangCore\Core\AstroCore::formatDateTime($date),
+            'observance_datetime' => AstroCore::formatDateTime($date),
             'time_of_day' => $timeOfDay,
             'tithi' => $tithi,
             'paksha' => $paksha,

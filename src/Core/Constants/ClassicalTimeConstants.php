@@ -226,12 +226,18 @@ final readonly class ClassicalTimeConstants
     // ===== FESTIVAL THRESHOLDS =====
 
     /**
-     * Bhadra tithis (Vishti Karaṇa occurs on these).
+     * Bhadra tithis — reference constant for documentation.
      *
-     * Source: Nirṇaya Sindhu 1.4.15
-     * Bhadra occurs on tithis: 6, 8, 10, 12, 14
+     * Source: Nirṇaya Sindhu, Muhūrta Chintāmaṇi
+     * Bhadra (Vishti Karana) occurs on these absolute tithi numbers:
+     * - Shukla: 4, 8, 11, 15
+     * - Krishna: 3 (=18), 7 (=22), 10 (=25), 14 (=29)
+     *
+     * NOTE: Live Bhadra detection in PanchangService::findBhadraPeriods()
+     * uses ephemeris-computed Vishti Karana indices [8,15,22,29,36,43,50,57]
+     * derived from actual Moon-Sun angular separation, not this constant.
      */
-    public const array BHADRA_TITHIS = [6, 8, 10, 12, 14];
+    public const array BHADRA_TITHIS = [4, 8, 11, 15, 18, 22, 25, 29];
 
     /** Ekadashi tithi number */
     public const int EKADASHI_TITHI = 11;

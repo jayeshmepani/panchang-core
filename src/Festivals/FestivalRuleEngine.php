@@ -86,6 +86,29 @@ class FestivalRuleEngine
             return null;
         }
 
+        $observanceNote = null;
+        $todayStr = $date->toDateString();
+        $tomorrowStr = $date->addDay()->toDateString();
+        $standardDate = $winner['date']; // Default
+
+        if ($winner['day_offset'] === 0 && !$tithiAtSunriseToday && $tithiAtSunriseTomorrow) {
+            $standardDate = $tomorrowStr;
+            $observanceNote = "Exception: Standard {$paksha} Tithi {$requiredTithi} falls on {$tomorrowStr} at sunrise, but due to tradition/ritual requiring {$karmakalaType} presence, it is celebrated on {$todayStr}.";
+        } elseif ($winner['day_offset'] === 1 && $tithiAtSunriseToday && !$tithiAtSunriseTomorrow) {
+            $standardDate = $todayStr;
+            $observanceNote = "Exception: Standard {$paksha} Tithi {$requiredTithi} falls on {$todayStr} at sunrise, but due to tradition/ritual requiring {$karmakalaType} presence, observance shifts to {$tomorrowStr}.";
+        } elseif ($kshaya) {
+            $standardDate = $todayStr; // Kshaya tithi generally aligns with the day it starts
+            if ($winner['date'] !== $standardDate) {
+                $observanceNote = "Exception: {$paksha} Tithi {$requiredTithi} is a Kshaya Tithi (skips sunrise). Observance shifts to {$winner['date']} due to {$karmakalaType} rules.";
+            }
+        } elseif ($vriddhi) {
+            $standardDate = $todayStr; // Vriddhi default first day
+            if ($winner['date'] !== $standardDate) {
+                $observanceNote = "Exception: {$paksha} Tithi {$requiredTithi} is a Vriddhi Tithi (spans two sunrises). Observance shifts to {$winner['date']} due to {$karmakalaType} rules.";
+            }
+        }
+
         return [
             'festival_name' => $festivalName,
             'required_tithi' => $requiredTithi,
@@ -99,7 +122,9 @@ class FestivalRuleEngine
             'is_tithi_kshaya' => $kshaya,
             'target_tithi_start_jd' => $targetInterval['start_jd'],
             'target_tithi_end_jd' => $targetInterval['end_jd'],
+            'standard_date' => $standardDate,
             'observance_date' => $winner['date'],
+            'observance_note' => $observanceNote,
             'decision' => [
                 'strict_karmakala' => $strictKarmakala,
                 'vriddhi_preference' => $vriddhiPreference,
