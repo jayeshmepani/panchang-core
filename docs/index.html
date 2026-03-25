@@ -960,6 +960,197 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                         </div>
                     </div>
                 </section>
+
+                <!-- Vimshottari Dasha -->
+                <section id="vimshottari-dasha" class="content-section">
+                    <h2>Vimshottari Dasha</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\VimshottariDasha</code></p>
+                    <div class="enum-info">
+                        <p>Represents the planetary periods in Vedic astrology, summing up to 120 years.</p>
+                    </div>
+                </section>
+
+                <!-- Muhurta -->
+                <section id="muhurta" class="content-section">
+                    <h2>Muhurta</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Muhurta</code></p>
+                    <div class="enum-info">
+                        <p>Represents the 30 divisions of a day (approx 48 minutes each).</p>
+                    </div>
+                </section>
+
+                <!-- Choghadiya -->
+                <section id="choghadiya" class="content-section">
+                    <h2>Choghadiya</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Choghadiya</code></p>
+                    <div class="enum-info">
+                        <p>Represents the 8 day and night time divisions primarily used in North & West India.</p>
+                    </div>
+                </section>
+
+                <!-- Hora -->
+                <section id="hora" class="content-section">
+                    <h2>Hora</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Hora</code></p>
+                    <div class="enum-info">
+                        <p>Represents the 24 hourly planetary divisions of a day.</p>
+                    </div>
+                </section>
+
+                <!-- SERVICES -->
+
+                <!-- PanchangService -->
+                <section id="panchang-service" class="content-section">
+                    <h2>PanchangService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\PanchangService</code></p>
+
+                    <div class="enum-info">
+                        <p>The primary service for fetching comprehensive Panchanga payloads for any given day, combining astronomy, muhurta, and calendars.</p>
+                    </div>
+
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        <div class="method">
+                            <h4 class="method-name">getDayDetails()</h4>
+                            <p class="method-description">Returns the full Panchanga details array.</p>
+                            <div class="method-signature">
+                                <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0.0, ?CarbonImmutable $ayanamsaAt = null, array $options = []): array</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AstronomyService -->
+                <section id="astronomy-service" class="content-section">
+                    <h2>AstronomyService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\AstronomyService</code></p>
+                    <div class="enum-info">
+                        <p>Calculates planetary longitudes and Julian Days wrapping Swiss Ephemeris.</p>
+                    </div>
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        <div class="method">
+                            <h4 class="method-name">getPlanets()</h4>
+                            <p class="method-description">Returns all planetary longitudes for a given timestamp.</p>
+                            <div class="method-signature">
+                                <code>public function getPlanets(array $birth): array</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SunService -->
+                <section id="sun-service" class="content-section">
+                    <h2>SunService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\SunService</code></p>
+                    <div class="enum-info">
+                        <p>Calculates Sunrise, Sunset, and civil twilight timings using precision algorithms.</p>
+                    </div>
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        <div class="method">
+                            <h4 class="method-name">getSunriseSunset()</h4>
+                            <p class="method-description">Returns an array containing sunrise and sunset <code>CarbonImmutable</code> objects.</p>
+                            <div class="method-signature">
+                                <code>public function getSunriseSunset(array $birth): array</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EclipseService -->
+                <section id="eclipse-service" class="content-section">
+                    <h2>EclipseService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\EclipseService</code></p>
+                    <div class="enum-info">
+                        <p>Finds local occurrences of solar and lunar eclipses, calculating contact timings, sutak, and exact astronomical magnitudes.</p>
+                    </div>
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        <div class="method">
+                            <h4 class="method-name">getEclipsesForYear()</h4>
+                            <p class="method-description">Returns an array of all eclipses in a year.</p>
+                            <div class="method-signature">
+                                <code>public function getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MuhurtaService -->
+                <section id="muhurta-service" class="content-section">
+                    <h2>MuhurtaService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\MuhurtaService</code></p>
+                    <div class="enum-info">
+                        <p>Calculates time-based auspicious and inauspicious divisions like Abhijit, Brahma Muhurta, Rahu Kaal, Lagna tables, and Amrita Kaal.</p>
+                    </div>
+                </section>
+
+                <!-- PanchangaEngine -->
+                <section id="panchanga-engine" class="content-section">
+                    <h2>PanchangaEngine</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\PanchangaEngine</code></p>
+                    <div class="enum-info">
+                        <p>A lower-level math engine computing Tithi, Yoga, Karana, and Nakshatra strictly based on raw solar and lunar longitudes.</p>
+                    </div>
+                </section>
+
+                <!-- FestivalService -->
+                <section id="festival-service" class="content-section">
+                    <h2>FestivalService</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
+                    <div class="enum-info">
+                        <p>Primary API for querying festivals on a specific day based on Tithi, Nakshatra, and month.</p>
+                    </div>
+                </section>
+
+                <!-- FestivalRuleEngine -->
+                <section id="festival-rule-engine" class="content-section">
+                    <h2>FestivalRuleEngine</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine</code></p>
+                    <div class="enum-info">
+                        <p>Resolves complex festival conflicts based on karmakala precedence (e.g. Nishita timing for Janmashtami) when tithi overlaps multiple days.</p>
+                    </div>
+                </section>
+
+                <!-- FestivalFamilyOrchestrator -->
+                <section id="festival-family-orchestrator" class="content-section">
+                    <h2>FestivalFamilyOrchestrator</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator</code></p>
+                    <div class="enum-info">
+                        <p>Orchestrates multi-day festival families like Navratri, Diwali, and Holi, applying complex "exception rules".</p>
+                    </div>
+                </section>
+
+                <!-- BhadraEngine -->
+                <section id="bhadra-engine" class="content-section">
+                    <h2>BhadraEngine</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine</code></p>
+                    <div class="enum-info">
+                        <p>Detects the exact start and end times of the Bhadra (Vishti) Karana, crucial for Raksha Bandhan and Holika Dahan planning.</p>
+                    </div>
+                </section>
+
+                <!-- UTILITIES & FACADE -->
+
+                <!-- AstroCore -->
+                <section id="astro-core" class="content-section">
+                    <h2>AstroCore</h2>
+                    <p class="enum-type">Utility: <code>JayeshMepani\PanchangCore\Core\AstroCore</code></p>
+                    <div class="enum-info">
+                        <p>The centralized mathematical utility handling formatting, precision, decimal degree normalization, and global configuration mapping.</p>
+                    </div>
+                </section>
+
+                <!-- ClassicalTimeConstants -->
+                <section id="classical-time-constants" class="content-section">
+                    <h2>ClassicalTimeConstants</h2>
+                    <p class="enum-type">Utility: <code>JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants</code></p>
+                    <div class="enum-info">
+                        <p>Contains static, mathematically sound values representing classical time units (Ghatika, Vighati, Pala).</p>
+                    </div>
+                </section>
+
             </div>
         </main>
         
