@@ -32,12 +32,12 @@ class PanchangService
         private PanchangaEngine $panchanga,
         private MuhurtaService $muhurta,
     ) {
-        $ephePath = self::$ephePath ?: getenv('PANCHANG_EPHE_PATH') ?: '';
+        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $this->sweph->swe_set_ephe_path($ephePath);
         }
 
-        $this->setAyanamsa(self::$ayanamsa ?: getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI');
+        $this->setAyanamsa(self::$ayanamsa ?: (function_exists('config') ? config('panchang.ayanamsa', getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI') : (getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI')));
     }
 
     /**

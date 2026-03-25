@@ -24,8 +24,8 @@ class AstronomyService
 
     public function __construct(private SwissEphFFI $sweph)
     {
-        $ephePath = self::$ephePath ?: getenv('PANCHANG_EPHE_PATH') ?: '';
-        if ($ephePath !== '' && file_exists($ephePath)) {
+        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
+        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $this->sweph->swe_set_ephe_path($ephePath);
         }
     }
@@ -82,9 +82,9 @@ class AstronomyService
      */
     public function setAyanamsa(float $jd): void
     {
-        $ayanamsaMode = self::$ayanamsa ?: getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI';
+        $ayanamsaMode = self::$ayanamsa ?: (function_exists('config') ? config('panchang.ayanamsa', getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI') : (getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI'));
 
-        $mode = match (strtoupper($ayanamsaMode)) {
+        $mode = match (strtoupper((string) $ayanamsaMode)) {
             'LAHIRI' => SwissEphFFI::SE_SIDM_LAHIRI,
             'RAMAN' => SwissEphFFI::SE_SIDM_RAMAN,
             'KRISHNAMURTI' => SwissEphFFI::SE_SIDM_KRISHNAMURTI,

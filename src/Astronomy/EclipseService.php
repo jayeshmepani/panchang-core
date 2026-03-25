@@ -13,7 +13,7 @@ class EclipseService
 
     public function __construct(private SwissEphFFI $sweph)
     {
-        $ephePath = self::$ephePath ?: getenv('PANCHANG_EPHE_PATH') ?: '';
+        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $this->sweph->swe_set_ephe_path($ephePath);
         }

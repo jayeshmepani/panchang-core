@@ -189,9 +189,12 @@ class FestivalFamilyOrchestrator
         string $familyName,
         array $baseDate,
         array $panchangData,
-        string $tradition = 'Smarta',
-        string $region = 'North'
+        ?string $tradition = null,
+        ?string $region = null
     ): ?array {
+        $tradition = $tradition ?? (function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta');
+        $region = $region ?? (function_exists('config') ? config('panchang.festivals.default_region', 'North') : 'North');
+
         $family = self::FESTIVAL_FAMILIES[$familyName] ?? null;
         if ($family === null) {
             return null;
