@@ -1,0 +1,25 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Copper gradient background -->
+  <defs>
+    <linearGradient id="copperGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b87333;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6d4428;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="200" height="200" fill="url(#copperGradient)"/>
+  
+  <!-- Om symbol in copper/gold -->
+  <text 
+    x="100" 
+    y="130" 
+    font-family="Arial, sans-serif" 
+    font-size="140" 
+    font-weight="bold"
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    fill="#ffd89b"
+    stroke="#8b6914"
+    stroke-width="1"
+  >ॐ</text>
+</svg>
