@@ -8,9 +8,7 @@ use Carbon\CarbonImmutable;
 
 class FestivalRuleEngine
 {
-    /**
-     * Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity.
-     */
+    /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
         string $festivalName,
         array $rule,
@@ -112,9 +110,7 @@ class FestivalRuleEngine
         ];
     }
 
-    /**
-     * Adhik/Kshaya maas tagging from amanta month progression.
-     */
+    /** Adhik/Kshaya maas tagging from amanta month progression. */
     public function annotateMonthAnomalies(array $dateToDetails): array
     {
         ksort($dateToDetails);
