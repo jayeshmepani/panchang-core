@@ -141,20 +141,18 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 
 ### Formula Reference Table
 
-| Calculation | Formula | Source | Code Location |
-|-------------|---------|--------|---------------|
-| **Tithi** | (Moon Lon - Sun Lon) ÷ 12° | Sūrya Siddhānta 1.29 | `PanchangaEngine::calculateTithi()` |
-| **Nakṣatra** | Moon Lon ÷ 800 minutes | Sūrya Siddhānta 8.1 | `PanchangaEngine::getNakshatraInfo()` |
-| **Yoga** | (Sun Lon + Moon Lon) ÷ 13°20' | Sūrya Siddhānta | `PanchangaEngine::calculateYoga()` |
-| **Karana** | Tithi ÷ 2 = 6° steps | Sūrya Siddhānta | `PanchangaEngine::getKarana()` |
-| **Vara** | (JD + 1.5) mod 7 | Modern astronomy | `PanchangaEngine::calculateVara()` |
-| **Muhūrta** | 1/30 day = 48 min | Sūrya Siddhānta 1.10 | `MuhurtaService` |
-| **Ghaṭikā** | 1/60 day = 24 min | Sūrya Siddhānta 1.11 | `ClassicalTimeConstants` |
-| **Brahma Muhūrta** | 96 min before sunrise | Ashtānga Hṛdaya | `MuhurtaService::calculateBrahmaMuhurta()` |
-| **Choghadiya** | Day/Night ÷ 8 parts | Kāla Nirṇaya | `PanchangService::calculateChoghadiya()` |
-| **Horā** | Day/Night ÷ 12 parts | Traditional | `PanchangService::calculateHora()` |
-| **Samvatsara** | (Vikrama Saṃvat - 135 + 11) mod 60 | Bṛhat Saṃhitā 8 | `PanchangaEngine::getSamvatsara()` |
-| **Ritu** | Sun sign ÷ 30 → 6 seasons | Traditional | `PanchangaEngine::getRitu()` |
+| Text | Specific Implementation |
+|------|-------------------------|
+| **Sūrya Siddhānta 1.29** | Tithi |
+| **Sūrya Siddhānta 8.1** | Nakṣatra |
+| **Sūrya Siddhānta** | Yoga, Karana |
+| **Modern astronomy** | Vara |
+| **Sūrya Siddhānta 1.10** | Muhūrta |
+| **Sūrya Siddhānta 1.11** | Ghaṭikā |
+| **Ashtānga Hṛdaya** | Brahma Muhūrta |
+| **Kāla Nirṇaya** | Choghadiya |
+| **Traditional** | Horā, Ritu |
+| **Bṛhat Saṃhitā 8** | Samvatsara |
 
 ### Precision Guarantee
 
