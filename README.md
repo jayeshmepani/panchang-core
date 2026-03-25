@@ -117,27 +117,27 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 
 ### Primary Sources (Panchanga Calculations)
 
-| Text | Author/Tradition | Century | Specific Implementation |
-|------|------------------|---------|------------------------|
-| **Sūrya Siddhānta** | Sūrya → Maya Asura | 4th-5th CE | **Tithi**: Moon-Sun longitude difference ÷ 12° (1.29); **Nakṣatra**: Longitude ÷ 800 minutes (8.1); **Yoga**: (Sun + Moon) ÷ 13°20' (800 min); **Karana**: Tithi ÷ 2 = 6° steps; **Ghaṭikā**: 24 min = 1/60 day (1.11); **Muhūrta**: 48 min = 2 ghaṭikās (1.10); **Pala**: 24 seconds (1.11) |
-| **Bṛhat Saṃhitā** | Varāhamihira | 6th CE | **Samvatsara**: 60-year Jupiter cycle names (Chapter 8); **Ritu**: 6 seasons × 2 months mapping |
-| **Vimśottarī Daśā System** | Parāśara Tradition | 6th-8th CE | **Nakṣatra lords**: Ketu-Venus-Sun-Moon-Mars-Rahu-Jupiter-Saturn-Mercury sequence; **Daśā years**: 6-10-7-18-16-19-17-7-20 |
+| Text | Specific Implementation |
+|------|-------------------------|
+| **Sūrya Siddhānta** | Tithi, Nakṣatra, Yoga, Karana, Ghaṭikā, Muhūrta, Pala |
+| **Bṛhat Saṃhitā** | Samvatsara, Ritu |
+| **Vimśottarī Daśā System** | Nakṣatra lords, Daśā years |
 
 ### Secondary Sources (Muhūrta & Time)
 
-| Text | Author/Tradition | Century | Specific Implementation |
-|------|------------------|---------|------------------------|
-| **Muhūrta Chintāmaṇi** | Varāhamihira | 6th CE | **Aruṇodaya**: 4 ghaṭikās = 96 min before sunrise (5); **Pradoṣa**: 3 ghaṭikās = 72 min after sunset (45); **Bhadra**: Tithis 6,8,10,12,14 have Viṣṭi karaṇa |
-| **Ashtānga Hṛdaya** | Vāgbhaṭa | 7th CE | **Brahma Muhūrta**: 2 muhūrtas = 96 min before sunrise (Sūtrasthāna 2.1) |
-| **Charaka Saṃhitā** | Charaka | 2nd CE | **Muhūrta**: 30 muhūrtas per day, 48 min each |
+| Text | Specific Implementation |
+|------|-------------------------|
+| **Muhūrta Chintāmaṇi** | Aruṇodaya, Pradoṣa, Bhadra |
+| **Ashtānga Hṛdaya** | Brahma Muhūrta |
+| **Charaka Saṃhitā** | Muhūrta |
 
 ### Tertiary Sources (Festival Resolution)
 
-| Text | Author/Tradition | Year | Specific Implementation |
-|------|------------------|------|------------------------|
-| **Nirṇaya Sindhu** | Kamalākara Bhaṭṭa | 16th CE | **Bhadra rules**: Viṣṭi karaṇa occurs on tithis 6,8,10,12,14 (1.4.15); **Festival timing**: Tithi at sunrise method |
-| **Dharma Sindhu** | Bhaṭṭa Nīlakaṇṭha | 1790-91 CE | **Holikā Dahan**: Bhadra-free period requirement; **Vṛddhi/Kṣaya**: First/last day preference rules |
-| **Hari Bhakti Vilāsa** | Sanātana Gosvāmī | 16th CE | **Ekādaśī**: Aruṇodaya beginning requirement (12.3.15) |
+| Text | Specific Implementation |
+|------|-------------------------|
+| **Nirṇaya Sindhu** | Bhadra rules, Festival timing |
+| **Dharma Sindhu** | Holikā Dahan, Vṛddhi/Kṣaya |
+| **Hari Bhakti Vilāsa** | Ekādaśī |
 
 ### Formula Reference Table
 

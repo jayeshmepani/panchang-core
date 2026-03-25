@@ -129,34 +129,24 @@
                             <thead>
                                 <tr>
                                     <th>Text</th>
-                                    <th>Author</th>
-                                    <th>Century</th>
                                     <th>Implementation</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><strong>Sūrya Siddhānta</strong></td>
-                                    <td>Sūrya → Maya Asura</td>
-                                    <td>4th-5th CE</td>
                                     <td>Tithi, Nakṣatra, Yoga</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Muhūrta Chintāmaṇi</strong></td>
-                                    <td>Varāhamihira</td>
-                                    <td>6th CE</td>
                                     <td>Muhūrta, Bhadra</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Nirṇaya Sindhu</strong></td>
-                                    <td>Kamalākara Bhaṭṭa</td>
-                                    <td>16th CE</td>
                                     <td>Festival resolution</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Dharma Sindhu</strong></td>
-                                    <td>Bhaṭṭa Nīlakaṇṭha</td>
-                                    <td>1790-91 CE</td>
                                     <td>Holikā Dahan priority</td>
                                 </tr>
                             </tbody>
@@ -754,6 +744,106 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                             <div class="method-signature">
                                 <code>public static function fromJulianDay(float $jd): self</code>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ritu -->
+                <section id="ritu" class="content-section">
+                    <h2>Ritu</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Ritu</code></p>
+
+                    <div class="enum-info">
+                        <p>Represents the 6 Hindu seasons. Each ṛtu spans 2 lunar months.</p>
+                    </div>
+
+                    <div class="enum-cases">
+                        <h3>Cases</h3>
+                        <div class="case-grid">
+                            <div class="case-item"><code>Vasanta</code></div>
+                            <div class="case-item"><code>Grishma</code></div>
+                            <div class="case-item"><code>Varsha</code></div>
+                            <div class="case-item"><code>Sharad</code></div>
+                            <div class="case-item"><code>Hemanta</code></div>
+                            <div class="case-item"><code>Shishira</code></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Masa -->
+                <section id="masa" class="content-section">
+                    <h2>Masa</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Masa</code></p>
+
+                    <div class="enum-info">
+                        <p>Represents the 12 lunar months in the Hindu calendar.</p>
+                    </div>
+
+                    <div class="enum-cases">
+                        <h3>Cases</h3>
+                        <div class="case-grid">
+                            <div class="case-item"><code>Chaitra</code></div>
+                            <div class="case-item"><code>Vaishakha</code></div>
+                            <div class="case-item"><code>Jyeshtha</code></div>
+                            <div class="case-item"><code>Ashadha</code></div>
+                            <div class="case-item"><code>Shravana</code></div>
+                            <div class="case-item"><code>Bhadrapada</code></div>
+                            <div class="case-item"><code>Ashvina</code></div>
+                            <div class="case-item"><code>Kartika</code></div>
+                            <div class="case-item"><code>Margashirsha</code></div>
+                            <div class="case-item"><code>Pausha</code></div>
+                            <div class="case-item"><code>Magha</code></div>
+                            <div class="case-item"><code>Phalguna</code></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Samvatsara -->
+                <section id="samvatsara" class="content-section">
+                    <h2>Samvatsara</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Samvatsara</code></p>
+
+                    <div class="enum-info">
+                        <p>Represents the 60 years in the Jupiter cycle.</p>
+                    </div>
+
+                    <div class="enum-cases">
+                        <h3>Cases</h3>
+                        <div class="case-grid">
+                            <div class="case-item"><code>Prabhava</code></div>
+                            <div class="case-item"><code>Vibhava</code></div>
+                            <div class="case-item"><code>Shukla</code></div>
+                            <div class="case-item"><code>Pramoda</code></div>
+                            <div class="case-item"><code>Prajapati</code></div>
+                            <div class="case-item"><code>... (60 years)</code></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rasi -->
+                <section id="rasi" class="content-section">
+                    <h2>Rasi</h2>
+                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Rasi</code></p>
+
+                    <div class="enum-info">
+                        <p>Represents the 12 zodiac signs in Vedic astrology.</p>
+                    </div>
+
+                    <div class="enum-cases">
+                        <h3>Cases</h3>
+                        <div class="case-grid">
+                            <div class="case-item"><code>Mesha</code></div>
+                            <div class="case-item"><code>Vrishabha</code></div>
+                            <div class="case-item"><code>Mithuna</code></div>
+                            <div class="case-item"><code>Karka</code></div>
+                            <div class="case-item"><code>Simha</code></div>
+                            <div class="case-item"><code>Kanya</code></div>
+                            <div class="case-item"><code>Tula</code></div>
+                            <div class="case-item"><code>Vrischika</code></div>
+                            <div class="case-item"><code>Dhanu</code></div>
+                            <div class="case-item"><code>Makara</code></div>
+                            <div class="case-item"><code>Kumbha</code></div>
+                            <div class="case-item"><code>Meena</code></div>
                         </div>
                     </div>
                 </section>
