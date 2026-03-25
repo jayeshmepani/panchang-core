@@ -115,44 +115,52 @@ $festivals = Panchang::getFestivals(
 
 This package implements algorithms from **authentic Sanskrit texts** with verified formulas:
 
-### Primary Sources (Panchanga Calculations)
+### Sūrya Siddhānta (Sage-Attributed)
 
-| Text | Specific Implementation |
-|------|-------------------------|
-| **Sūrya Siddhānta** | Tithi, Nakṣatra, Yoga, Karana, Ghaṭikā, Muhūrta, Pala |
-| **Bṛhat Saṃhitā** | Samvatsara, Ritu |
-| **Vimśottarī Daśā System** | Nakṣatra lords, Daśā years |
+| Reference | Implementation |
+|-----------|----------------|
+| **Sūrya Siddhānta 1.29** | Tithi calculation |
+| **Sūrya Siddhānta 8.1** | Nakṣatra calculation |
+| **Sūrya Siddhānta** | Yoga, Karana |
+| **Sūrya Siddhānta 1.10** | Muhūrta |
+| **Sūrya Siddhānta 1.11** | Ghaṭikā, Pala |
 
-### Secondary Sources (Muhūrta & Time)
+### Bṛhat Parāśara Horā Śāstra (BPHS)
 
-| Text | Specific Implementation |
-|------|-------------------------|
+| Reference | Implementation |
+|-----------|----------------|
+| **BPHS** | Vimśottarī Daśā System, Nakṣatra lords, Daśā years |
+| **BPHS** | Horā |
+
+### Bṛhat Saṃhitā (Varāhamihira)
+
+| Reference | Implementation |
+|-----------|----------------|
+| **Bṛhat Saṃhitā 8** | Samvatsara |
+| **Bṛhat Saṃhitā** | Ritu |
+
+### Muhūrta & Kāla Nirṇaya
+
+| Text | Implementation |
+|------|----------------|
 | **Muhūrta Chintāmaṇi** | Aruṇodaya, Pradoṣa, Bhadra |
 | **Ashtānga Hṛdaya** | Brahma Muhūrta |
 | **Charaka Saṃhitā** | Muhūrta |
+| **Kāla Nirṇaya** | Choghadiya |
 
-### Tertiary Sources (Festival Resolution)
+### Festival Resolution
 
-| Text | Specific Implementation |
-|------|-------------------------|
+| Text | Implementation |
+|------|----------------|
 | **Nirṇaya Sindhu** | Bhadra rules, Festival timing |
 | **Dharma Sindhu** | Holikā Dahan, Vṛddhi/Kṣaya |
 | **Hari Bhakti Vilāsa** | Ekādaśī |
 
-### Formula Reference Table
+### Modern Astronomy
 
-| Text | Specific Implementation |
-|------|-------------------------|
-| **Sūrya Siddhānta 1.29** | Tithi |
-| **Sūrya Siddhānta 8.1** | Nakṣatra |
-| **Sūrya Siddhānta** | Yoga, Karana |
-| **Modern astronomy** | Vara |
-| **Sūrya Siddhānta 1.10** | Muhūrta |
-| **Sūrya Siddhānta 1.11** | Ghaṭikā |
-| **Ashtānga Hṛdaya** | Brahma Muhūrta |
-| **Kāla Nirṇaya** | Choghadiya |
-| **Traditional** | Horā, Ritu |
-| **Bṛhat Saṃhitā 8** | Samvatsara |
+| Source | Implementation |
+|--------|----------------|
+| **Swiss Ephemeris** | Vara (weekday), Ayanāṃśa, Graha Sphuṭa |
 
 ### Precision Guarantee
 

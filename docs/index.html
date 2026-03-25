@@ -3,10 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panchang Core - API Documentation</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <title>Panchang Core - Vedic Panchanga API Documentation</title>
+    
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <meta name="description" content="Complete API documentation for Panchang Core - Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision. Calculate Tithi, Nakshatra, Yoga, Karana, Muhurta, and 50+ Hindu festivals.">
+    <meta name="keywords" content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals, janmashtami, diwali">
+    <meta name="author" content="Jayesh Mepani">
+    <meta name="robots" content="index, follow">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#6366f1">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
+    
+    <link rel="canonical" href="https://jayeshmepani.github.io/panchang-core/docs/">
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a10 10 0 0 0 0 20'/%3E%3C/svg%3E">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Panchang Core - Vedic Panchanga API Documentation">
+    <meta property="og:description" content="Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision. Complete API documentation for Tithi, Nakshatra, Yoga, Karana, and festival calculations.">
+    <meta property="og:url" content="https://jayeshmepani.github.io/panchang-core/docs/">
+    <meta property="og:image" content="https://jayeshmepani.github.io/panchang-core/docs/social-preview.png">
+    <meta property="og:image:alt" content="Panchang Core documentation preview">
+    <meta property="og:site_name" content="Panchang Core">
+    <meta property="og:locale" content="en_US">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panchang Core Documentation">
+    <meta name="twitter:description" content="Complete API documentation for Vedic Panchanga calculations with Swiss Ephemeris precision.">
+    <meta name="twitter:image" content="https://jayeshmepani.github.io/panchang-core/docs/social-preview.png">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "Panchang Core",
+          "codeRepository": "https://github.com/jayeshmepani/panchang-core",
+          "url": "https://jayeshmepani.github.io/panchang-core/docs/",
+          "description": "Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision for PHP and Laravel.",
+          "runtimePlatform": "PHP 8.3+",
+          "license": "https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE",
+          "author": {
+            "@type": "Person",
+            "name": "Jayesh Mepani",
+            "url": "https://jayeshmepani.site",
+            "sameAs": [
+              "https://github.com/jayeshmepani",
+              "https://www.linkedin.com/in/jayeshmepani/"
+            ]
+          },
+          "applicationCategory": "DeveloperApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "name": "Panchang Core Documentation",
+          "url": "https://jayeshmepani.github.io/panchang-core/docs/",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Panchang Core",
+            "url": "https://jayeshmepani.github.io/panchang-core/docs/"
+          },
+          "about": {
+            "@type": "SoftwareSourceCode",
+            "name": "Panchang Core"
+          }
+        }
+      ]
+    }
+    </script>
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="app">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
@@ -28,6 +110,7 @@
                         <li><a href="#installation" class="nav-link">Installation</a></li>
                         <li><a href="#quickstart" class="nav-link">Quick Start</a></li>
                         <li><a href="#configuration" class="nav-link">Configuration</a></li>
+                        <li><a href="#laravel-usage" class="nav-link">Laravel Integration</a></li>
                     </ul>
                 </div>
                 
@@ -40,14 +123,7 @@
                         <li><a href="#yoga" class="nav-link">Yoga</a></li>
                         <li><a href="#karana" class="nav-link">Karana</a></li>
                         <li><a href="#vara" class="nav-link">Vara</a></li>
-                        <li><a href="#ritu" class="nav-link">Ritu</a></li>
-                        <li><a href="#masa" class="nav-link">Masa</a></li>
-                        <li><a href="#samvatsara" class="nav-link">Samvatsara</a></li>
-                        <li><a href="#rasi" class="nav-link">Rasi</a></li>
-                        <li><a href="#vimshottari-dasha" class="nav-link">Vimshottari Dasha</a></li>
-                        <li><a href="#muhurta" class="nav-link">Muhurta</a></li>
-                        <li><a href="#choghadiya" class="nav-link">Choghadiya</a></li>
-                        <li><a href="#hora" class="nav-link">Hora</a></li>
+                        <li><a href="#core-enums" class="nav-link">Core Enums (Ritu, Masa, etc.)</a></li>
                     </ul>
                 </div>
                 
@@ -60,16 +136,17 @@
                         <li><a href="#panchanga-engine" class="nav-link">PanchangaEngine</a></li>
                         <li><a href="#muhurta-service" class="nav-link">MuhurtaService</a></li>
                         <li><a href="#festival-service" class="nav-link">FestivalService</a></li>
-                        <li><a href="#festival-rule-engine" class="nav-link">FestivalRuleEngine</a></li>
-                        <li><a href="#bhadra-engine" class="nav-link">BhadraEngine</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="nav-section">
-                    <h3 class="nav-heading">Utilities</h3>
+                    <h3 class="nav-heading">Reference</h3>
                     <ul class="nav-list">
-                        <li><a href="#astro-core" class="nav-link">AstroCore</a></li>
-                        <li><a href="#classical-time-constants" class="nav-link">ClassicalTimeConstants</a></li>
+                        <li><a href="#return-structures" class="nav-link">Return Structures</a></li>
+                        <li><a href="#examples" class="nav-link">Examples</a></li>
+                        <li><a href="#error-handling" class="nav-link">Error Handling</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="#quick-reference" class="nav-link">Quick Reference</a></li>
                     </ul>
                 </div>
             </nav>
@@ -84,7 +161,7 @@
         </aside>
         
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content" id="main-content">
             <!-- Mobile Header -->
             <header class="mobile-header">
                 <button class="sidebar-toggle" id="mobileSidebarToggle" aria-label="Toggle sidebar">
@@ -135,20 +212,90 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td colspan="2" class="section-header"><strong>Sūrya Siddhānta (Sage-Attributed)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sūrya Siddhānta 1.29</strong></td>
+                                    <td>Tithi calculation</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sūrya Siddhānta 8.1</strong></td>
+                                    <td>Nakṣatra calculation</td>
+                                </tr>
+                                <tr>
                                     <td><strong>Sūrya Siddhānta</strong></td>
-                                    <td>Tithi, Nakṣatra, Yoga</td>
+                                    <td>Yoga, Karana</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sūrya Siddhānta 1.10</strong></td>
+                                    <td>Muhūrta</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sūrya Siddhānta 1.11</strong></td>
+                                    <td>Ghaṭikā, Pala</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="section-header"><strong>Bṛhat Parāśara Horā Śāstra (BPHS)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BPHS</strong></td>
+                                    <td>Vimśottarī Daśā System, Nakṣatra lords, Daśā years</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BPHS</strong></td>
+                                    <td>Horā</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="section-header"><strong>Bṛhat Saṃhitā (Varāhamihira)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bṛhat Saṃhitā 8</strong></td>
+                                    <td>Samvatsara</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bṛhat Saṃhitā</strong></td>
+                                    <td>Ritu</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="section-header"><strong>Muhūrta & Kāla Nirṇaya</strong></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Muhūrta Chintāmaṇi</strong></td>
-                                    <td>Muhūrta, Bhadra</td>
+                                    <td>Aruṇodaya, Pradoṣa, Bhadra</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ashtānga Hṛdaya</strong></td>
+                                    <td>Brahma Muhūrta</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Charaka Saṃhitā</strong></td>
+                                    <td>Muhūrta</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Kāla Nirṇaya</strong></td>
+                                    <td>Choghadiya</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="section-header"><strong>Festival Resolution</strong></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Nirṇaya Sindhu</strong></td>
-                                    <td>Festival resolution</td>
+                                    <td>Bhadra rules, Festival timing</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Dharma Sindhu</strong></td>
-                                    <td>Holikā Dahan priority</td>
+                                    <td>Holikā Dahan, Vṛddhi/Kṣaya</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hari Bhakti Vilāsa</strong></td>
+                                    <td>Ekādaśī</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="section-header"><strong>Modern Astronomy</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Swiss Ephemeris</strong></td>
+                                    <td>Vara (weekday), Ayanāṃśa, Graha Sphuṭa</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -246,42 +393,45 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                         <tbody>
                             <tr>
                                 <td><strong>measurement_system</strong></td>
-                                <td>The unit system used for generic dimensions and lengths.</td>
+                                <td>The unit system used for generic dimensions and lengths (e.g., elevation, distances).</td>
                                 <td>
-                                    <code>indian_metric</code>, <code>western</code>
+                                    <code>indian_metric</code>: Metric system (meters, kilometers)<br>
+                                    <strong>Example:</strong> Elevation: "150 meters"<br><br>
+                                    <code>western</code>: Imperial system (feet, miles)<br>
+                                    <strong>Example:</strong> Elevation: "492 feet"
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>date_time_format</strong></td>
                                 <td>Controls the string formatting of generic date-time outputs.</td>
                                 <td>
-                                    <code>indian_12h</code>: "dd/mm/YYYY hh:mm:ss A"<br>
-                                    <code>indian_24h</code>: "dd/mm/YYYY HH:mm:ss"<br>
-                                    <code>iso8601</code>: Standard ISO 8601 strings
+                                    <code>indian_12h</code>: "24/03/2026 06:14:00 AM"<br>
+                                    <code>indian_24h</code>: "24/03/2026 06:14:00"<br>
+                                    <code>iso8601</code>: "2026-03-24T06:14:00+05:30"
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>time_notation</strong></td>
                                 <td>Global time output behavior (e.g. for sunrise, sunset, and muhurtas).</td>
                                 <td>
-                                    <code>12h</code> (e.g. 06:14:00 AM)<br>
-                                    <code>24h</code> (e.g. 18:14:00)
+                                    <code>12h</code>: "06:14:00 AM", "05:32:00 PM"<br>
+                                    <code>24h</code>: "06:14:00", "17:32:00"
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>coordinate_format</strong></td>
                                 <td>Format for geographical coordinates (latitude and longitude).</td>
                                 <td>
-                                    <code>decimal</code>: Floating point decimal numbers<br>
-                                    <code>dms</code>: Degrees, Minutes, Seconds string
+                                    <code>decimal</code>: 23.2472446, 69.668339<br>
+                                    <code>dms</code>: "23°14'50.1\"N, 69°40'06.0\"E"
                                 </td>
                             </tr>
                             <tr>
                                 <td><strong>angle_unit</strong></td>
                                 <td>Format for astronomical degrees (e.g. planet longitudes, Ascendant, Ayanamsa).</td>
                                 <td>
-                                    <code>degree</code>: Decimal representation of degrees<br>
-                                    <code>dms</code>: Degrees, Minutes, Seconds string
+                                    <code>degree</code>: 350.5234°<br>
+                                    <code>dms</code>: "350°31'24\""
                                 </td>
                             </tr>
                             <tr>
@@ -338,11 +488,31 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                 <section id="nakshatra" class="content-section">
                     <h2>Nakshatra</h2>
                     <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Nakshatra</code></p>
-                    
+
                     <div class="enum-info">
                         <p>Represents the 27 lunar mansions in Vedic astrology. Each nakṣatra spans 13°20' of the zodiac.</p>
                     </div>
-                    
+
+                    <div class="info-box" style="margin: 1.5rem 0; padding: 1rem; background: var(--bg-tertiary); border-left: 4px solid var(--accent-primary); border-radius: 0.5rem;">
+                        <h4 style="margin-top: 0;">📋 Quick Usage</h4>
+                        <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
+
+// Get nakshatra from moon longitude
+$nakshatra = Nakshatra::fromLongitude(125.3); // Magha
+echo $nakshatra->getName(); // "Magha"
+echo $nakshatra->getDeity(); // "Pitṛs"
+echo $nakshatra->getRulingPlanet(); // "Sun"
+echo $nakshatra->getSymbol(); // "Royal Throne"
+
+// Get pada (quarter)
+$pada = Nakshatra::getPada(125.3); // 2
+echo "Pada: $pada\n"; // Pada: 2
+
+// Get longitude range
+$range = Nakshatra::Ashwini->getLongitudeRange();
+echo $range['start'] . "° - " . $range['end'] . "°\n"; // 0° - 13.333°</code></pre>
+                    </div>
+
                     <div class="enum-cases">
                         <h3>Cases</h3>
                         <div class="case-grid">
@@ -477,11 +647,29 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                 <section id="tithi" class="content-section">
                     <h2>Tithi</h2>
                     <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Tithi</code></p>
-                    
+
                     <div class="enum-info">
                         <p>Represents the 30 lunar days in a Hindu lunar month. Each tithi is completed when the Moon gains 12° on the Sun.</p>
                     </div>
-                    
+
+                    <div class="info-box" style="margin: 1.5rem 0; padding: 1rem; background: var(--bg-tertiary); border-left: 4px solid var(--accent-primary); border-radius: 0.5rem;">
+                        <h4 style="margin-top: 0;">📋 Quick Usage</h4>
+                        <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+
+// Get tithi by index (1-30)
+$tithi = Tithi::from(12); // Shukla Dwadashi
+echo $tithi->getName(); // "Dwadashi"
+echo $tithi->getPaksha()->name; // "Shukla"
+
+// Check paksha
+if ($tithi->getPaksha() === Paksha::Shukla) {
+    echo "Waxing moon phase\n";
+}
+
+// Get normalized index (1-15 for both pakshas)
+echo $tithi->getNormalizedIndex(); // 12</code></pre>
+                    </div>
+
                     <div class="enum-cases">
                         <h3>Cases</h3>
                         <div class="case-grid">
@@ -861,139 +1049,181 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     </div>
                 </section>
 
-                <!-- Ritu -->
-                <section id="ritu" class="content-section">
-                    <h2>Ritu</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Ritu</code></p>
+                <!-- Core Enums -->
+                <section id="core-enums" class="content-section">
+                    <h2>Core Enums</h2>
+                    <p class="lead">Basic enumeration types used throughout the package</p>
 
-                    <div class="enum-info">
-                        <p>Represents the 6 Hindu seasons. Each ṛtu spans 2 lunar months.</p>
-                    </div>
-
-                    <div class="enum-cases">
-                        <h3>Cases</h3>
-                        <div class="case-grid">
-                            <div class="case-item"><code>Vasanta</code></div>
-                            <div class="case-item"><code>Grishma</code></div>
-                            <div class="case-item"><code>Varsha</code></div>
-                            <div class="case-item"><code>Sharad</code></div>
-                            <div class="case-item"><code>Hemanta</code></div>
-                            <div class="case-item"><code>Shishira</code></div>
+                    <!-- Ritu -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Ritu (Seasons)</h4>
+                        <p class="method-description">Represents the 6 Hindu seasons. Each ṛtu spans 2 lunar months.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Vasanta</code> (Spring)</div>
+                                <div class="case-item"><code>Grishma</code> (Summer)</div>
+                                <div class="case-item"><code>Varsha</code> (Monsoon)</div>
+                                <div class="case-item"><code>Sharad</code> (Autumn)</div>
+                                <div class="case-item"><code>Hemanta</code> (Pre-Winter)</div>
+                                <div class="case-item"><code>Shishira</code> (Winter)</div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>PanchangaEngine::getRitu($sunLon)</code> returns season from Sun longitude
                         </div>
                     </div>
-                </section>
 
-                <!-- Masa -->
-                <section id="masa" class="content-section">
-                    <h2>Masa</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Masa</code></p>
-
-                    <div class="enum-info">
-                        <p>Represents the 12 lunar months in the Hindu calendar.</p>
-                    </div>
-
-                    <div class="enum-cases">
-                        <h3>Cases</h3>
-                        <div class="case-grid">
-                            <div class="case-item"><code>Chaitra</code></div>
-                            <div class="case-item"><code>Vaishakha</code></div>
-                            <div class="case-item"><code>Jyeshtha</code></div>
-                            <div class="case-item"><code>Ashadha</code></div>
-                            <div class="case-item"><code>Shravana</code></div>
-                            <div class="case-item"><code>Bhadrapada</code></div>
-                            <div class="case-item"><code>Ashvina</code></div>
-                            <div class="case-item"><code>Kartika</code></div>
-                            <div class="case-item"><code>Margashirsha</code></div>
-                            <div class="case-item"><code>Pausha</code></div>
-                            <div class="case-item"><code>Magha</code></div>
-                            <div class="case-item"><code>Phalguna</code></div>
+                    <!-- Masa -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Masa (Lunar Months)</h4>
+                        <p class="method-description">Represents the 12 lunar months in the Hindu calendar.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Chaitra</code></div>
+                                <div class="case-item"><code>Vaishakha</code></div>
+                                <div class="case-item"><code>Jyeshtha</code></div>
+                                <div class="case-item"><code>Ashadha</code></div>
+                                <div class="case-item"><code>Shravana</code></div>
+                                <div class="case-item"><code>Bhadrapada</code></div>
+                                <div class="case-item"><code>Ashvina</code></div>
+                                <div class="case-item"><code>Kartika</code></div>
+                                <div class="case-item"><code>Margashirsha</code></div>
+                                <div class="case-item"><code>Pausha</code></div>
+                                <div class="case-item"><code>Magha</code></div>
+                                <div class="case-item"><code>Phalguna</code></div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>PanchangaEngine::getHinduMonth($sunLon, $moonLon)</code> returns Amanta and Purnimanta months
                         </div>
                     </div>
-                </section>
 
-                <!-- Samvatsara -->
-                <section id="samvatsara" class="content-section">
-                    <h2>Samvatsara</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Samvatsara</code></p>
-
-                    <div class="enum-info">
-                        <p>Represents the 60 years in the Jupiter cycle.</p>
-                    </div>
-
-                    <div class="enum-cases">
-                        <h3>Cases</h3>
-                        <div class="case-grid">
-                            <div class="case-item"><code>Prabhava</code></div>
-                            <div class="case-item"><code>Vibhava</code></div>
-                            <div class="case-item"><code>Shukla</code></div>
-                            <div class="case-item"><code>Pramoda</code></div>
-                            <div class="case-item"><code>Prajapati</code></div>
-                            <div class="case-item"><code>... (60 years)</code></div>
+                    <!-- Samvatsara -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Samvatsara (60-Year Cycle)</h4>
+                        <p class="method-description">Represents the 60 years in the Jupiter cycle.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Prabhava</code></div>
+                                <div class="case-item"><code>Vibhava</code></div>
+                                <div class="case-item"><code>Shukla</code></div>
+                                <div class="case-item"><code>Pramoda</code></div>
+                                <div class="case-item"><code>Prajapati</code></div>
+                                <div class="case-item"><code>... (60 total)</code></div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>PanchangaEngine::getSamvatsara($vikramSamvat)</code> returns cycle year name
                         </div>
                     </div>
-                </section>
 
-                <!-- Rasi -->
-                <section id="rasi" class="content-section">
-                    <h2>Rasi</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Rasi</code></p>
-
-                    <div class="enum-info">
-                        <p>Represents the 12 zodiac signs in Vedic astrology.</p>
-                    </div>
-
-                    <div class="enum-cases">
-                        <h3>Cases</h3>
-                        <div class="case-grid">
-                            <div class="case-item"><code>Mesha</code></div>
-                            <div class="case-item"><code>Vrishabha</code></div>
-                            <div class="case-item"><code>Mithuna</code></div>
-                            <div class="case-item"><code>Karka</code></div>
-                            <div class="case-item"><code>Simha</code></div>
-                            <div class="case-item"><code>Kanya</code></div>
-                            <div class="case-item"><code>Tula</code></div>
-                            <div class="case-item"><code>Vrischika</code></div>
-                            <div class="case-item"><code>Dhanu</code></div>
-                            <div class="case-item"><code>Makara</code></div>
-                            <div class="case-item"><code>Kumbha</code></div>
-                            <div class="case-item"><code>Meena</code></div>
+                    <!-- Rasi -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Rasi (Zodiac Signs)</h4>
+                        <p class="method-description">Represents the 12 zodiac signs in Vedic astrology.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Mesha</code> (Aries)</div>
+                                <div class="case-item"><code>Vrishabha</code> (Taurus)</div>
+                                <div class="case-item"><code>Mithuna</code> (Gemini)</div>
+                                <div class="case-item"><code>Karka</code> (Cancer)</div>
+                                <div class="case-item"><code>Simha</code> (Leo)</div>
+                                <div class="case-item"><code>Kanya</code> (Virgo)</div>
+                                <div class="case-item"><code>Tula</code> (Libra)</div>
+                                <div class="case-item"><code>Vrischika</code> (Scorpio)</div>
+                                <div class="case-item"><code>Dhanu</code> (Sagittarius)</div>
+                                <div class="case-item"><code>Makara</code> (Capricorn)</div>
+                                <div class="case-item"><code>Kumbha</code> (Aquarius)</div>
+                                <div class="case-item"><code>Meena</code> (Pisces)</div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> Used internally for sign calculations. Each rasi spans 30° of the zodiac.
                         </div>
                     </div>
-                </section>
 
-                <!-- Vimshottari Dasha -->
-                <section id="vimshottari-dasha" class="content-section">
-                    <h2>Vimshottari Dasha</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\VimshottariDasha</code></p>
-                    <div class="enum-info">
-                        <p>Represents the planetary periods in Vedic astrology, summing up to 120 years.</p>
+                    <!-- Vimshottari Dasha -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Vimshottari Dasha</h4>
+                        <p class="method-description">Represents the planetary periods in Vedic astrology, summing up to 120 years.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Ketu</code> (7 years)</div>
+                                <div class="case-item"><code>Venus</code> (20 years)</div>
+                                <div class="case-item"><code>Sun</code> (6 years)</div>
+                                <div class="case-item"><code>Moon</code> (10 years)</div>
+                                <div class="case-item"><code>Mars</code> (7 years)</div>
+                                <div class="case-item"><code>Rahu</code> (18 years)</div>
+                                <div class="case-item"><code>Jupiter</code> (16 years)</div>
+                                <div class="case-item"><code>Saturn</code> (19 years)</div>
+                                <div class="case-item"><code>Mercury</code> (17 years)</div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> Used for dasha calculations. Total cycle: 120 years.
+                        </div>
                     </div>
-                </section>
 
-                <!-- Muhurta -->
-                <section id="muhurta" class="content-section">
-                    <h2>Muhurta</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Muhurta</code></p>
-                    <div class="enum-info">
-                        <p>Represents the 30 divisions of a day (approx 48 minutes each).</p>
+                    <!-- Muhurta -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Muhurta</h4>
+                        <p class="method-description">Represents the 30 divisions of a day (approx 48 minutes each).</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Rudra</code></div>
+                                <div class="case-item"><code>Ahi</code></div>
+                                <div class="case-item"><code>Mitra</code></div>
+                                <div class="case-item"><code>Pitri</code></div>
+                                <div class="case-item"><code>Vasu</code></div>
+                                <div class="case-item"><code>Varaha</code></div>
+                                <div class="case-item"><code>Vishvedeva</code></div>
+                                <div class="case-item"><code>Vidhi</code></div>
+                                <div class="case-item"><code>... (30 total)</code></div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>MuhurtaService::calculateMuhurtaTable($sunrise, $sunset, $nextSunrise)</code>
+                        </div>
                     </div>
-                </section>
 
-                <!-- Choghadiya -->
-                <section id="choghadiya" class="content-section">
-                    <h2>Choghadiya</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Choghadiya</code></p>
-                    <div class="enum-info">
-                        <p>Represents the 8 day and night time divisions primarily used in North & West India.</p>
+                    <!-- Choghadiya -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Choghadiya</h4>
+                        <p class="method-description">Represents the 8 day and night time divisions primarily used in North & West India.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Udveg</code> (Inauspicious)</div>
+                                <div class="case-item"><code>Chal</code> (Neutral)</div>
+                                <div class="case-item"><code>Labh</code> (Auspicious)</div>
+                                <div class="case-item"><code>Amrita</code> (Very Auspicious)</div>
+                                <div class="case-item"><code>Kala</code> (Inauspicious)</div>
+                                <div class="case-item"><code>Shubh</code> (Auspicious)</div>
+                                <div class="case-item"><code>Rog</code> (Inauspicious)</div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>MuhurtaService::calculateChoghadiyaTable()</code> calculates day/night periods
+                        </div>
                     </div>
-                </section>
 
-                <!-- Hora -->
-                <section id="hora" class="content-section">
-                    <h2>Hora</h2>
-                    <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Hora</code></p>
-                    <div class="enum-info">
-                        <p>Represents the 24 hourly planetary divisions of a day.</p>
+                    <!-- Hora -->
+                    <div class="method" style="margin-bottom: 2rem;">
+                        <h4 class="method-name">Hora</h4>
+                        <p class="method-description">Represents the 24 hourly planetary divisions of a day.</p>
+                        <div class="enum-cases">
+                            <div class="case-grid">
+                                <div class="case-item"><code>Sun</code></div>
+                                <div class="case-item"><code>Venus</code></div>
+                                <div class="case-item"><code>Mercury</code></div>
+                                <div class="case-item"><code>Moon</code></div>
+                                <div class="case-item"><code>Saturn</code></div>
+                                <div class="case-item"><code>Jupiter</code></div>
+                                <div class="case-item"><code>Mars</code></div>
+                            </div>
+                        </div>
+                        <div class="method-returns" style="margin-top: 1rem;">
+                            <strong>Usage:</strong> <code>MuhurtaService::calculateHoraTable()</code> - Each hora spans ~1 hour
+                        </div>
                     </div>
                 </section>
 
@@ -1005,16 +1235,67 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\PanchangService</code></p>
 
                     <div class="enum-info">
-                        <p>The primary service for fetching comprehensive Panchanga payloads for any given day, combining astronomy, muhurta, and calendars.</p>
+                        <p>Main service for calculating Vedic Panchanga: Tithi, Vara, Nakṣatra, Yoga, Karaṇa, Muhūrta, and festival data.</p>
+                    </div>
+
+                    <div class="info-box" style="margin: 1.5rem 0; padding: 1rem; background: var(--bg-tertiary); border-left: 4px solid var(--accent-primary); border-radius: 0.5rem;">
+                        <h4 style="margin-top: 0;">📋 Quick Usage</h4>
+                        <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>$panchang = new PanchangService($sweph, $sunService, $astronomy, $engine, $muhurta);
+
+$details = $panchang->getDayDetails(
+    date: CarbonImmutable::parse('2026-03-24'),
+    lat: 23.2472446,
+    lon: 69.668339,
+    tz: 'Asia/Kolkata'
+);
+
+echo $details['Tithi']['name']; // e.g., "Dwadashi"</code></pre>
                     </div>
 
                     <div class="methods-section">
                         <h3>Methods</h3>
+                        
                         <div class="method">
                             <h4 class="method-name">getDayDetails()</h4>
-                            <p class="method-description">Returns the full Panchanga details array.</p>
+                            <p class="method-description">Returns complete Panchanga details for a given date and location. Includes Tithi, Nakshatra, Yoga, Karana, Muhurta, Choghadiya, Hora, and festival data.</p>
                             <div class="method-signature">
                                 <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0.0, ?CarbonImmutable $ayanamsaAt = null, array $options = []): array</code>
+                            </div>
+                            <div class="method-params">
+                                <strong>Parameters:</strong>
+                                <ul>
+                                    <li><code>$date</code> (CarbonImmutable) - Date to calculate</li>
+                                    <li><code>$lat</code> (float) - Latitude in degrees</li>
+                                    <li><code>$lon</code> (float) - Longitude in degrees</li>
+                                    <li><code>$tz</code> (string) - Timezone (e.g., 'Asia/Kolkata')</li>
+                                    <li><code>$elevation</code> (float, optional) - Elevation in meters (default: 0.0)</li>
+                                    <li><code>$ayanamsaAt</code> (CarbonImmutable, optional) - Custom ayanamsa calculation time</li>
+                                    <li><code>$options</code> (array, optional) - Additional options array</li>
+                                </ul>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Complete panchanga data with keys: Tithi, Nakshatra, Yoga, Karana, Vara, Muhurta, Choghadiya, Hora, Festivals, etc.
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getFestivalSnapshot()</h4>
+                            <p class="method-description">Lightweight daily snapshot for festival resolution. Faster than getDayDetails when you only need festival data.</p>
+                            <div class="method-signature">
+                                <code>public function getFestivalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0.0): array</code>
+                            </div>
+                            <div class="method-params">
+                                <strong>Parameters:</strong>
+                                <ul>
+                                    <li><code>$date</code> (CarbonImmutable) - Date to calculate</li>
+                                    <li><code>$lat</code> (float) - Latitude</li>
+                                    <li><code>$lon</code> (float) - Longitude</li>
+                                    <li><code>$tz</code> (string) - Timezone</li>
+                                    <li><code>$elevation</code> (float, optional) - Elevation in meters</li>
+                                </ul>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Festival data and minimal panchanga elements
                             </div>
                         </div>
                     </div>
@@ -1025,15 +1306,65 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     <h2>AstronomyService</h2>
                     <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\AstronomyService</code></p>
                     <div class="enum-info">
-                        <p>Calculates planetary longitudes and Julian Days wrapping Swiss Ephemeris.</p>
+                        <p>Calculates planetary longitudes and Julian Days using Swiss Ephemeris.</p>
                     </div>
+
                     <div class="methods-section">
                         <h3>Methods</h3>
+                        
+                        <div class="method">
+                            <h4 class="method-name">toJulianDayUtc()</h4>
+                            <p class="method-description">Convert birth array to Julian Day (UTC)</p>
+                            <div class="method-signature">
+                                <code>public function toJulianDayUtc(array $birth): float</code>
+                            </div>
+                            <div class="method-params">
+                                <strong>Parameters:</strong>
+                                <ul>
+                                    <li><code>$birth</code> (array) - Birth data [year, month, day, hour, minute, second, timezone, lat, lon, elevation]</li>
+                                </ul>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>float</code> - Julian Day number
+                            </div>
+                        </div>
+
                         <div class="method">
                             <h4 class="method-name">getPlanets()</h4>
-                            <p class="method-description">Returns all planetary longitudes for a given timestamp.</p>
+                            <p class="method-description">Returns all planetary longitudes</p>
                             <div class="method-signature">
                                 <code>public function getPlanets(array $birth): array</code>
+                            </div>
+                            <div class="method-params">
+                                <strong>Parameters:</strong>
+                                <ul>
+                                    <li><code>$birth</code> (array) - Birth data array</li>
+                                </ul>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Planetary longitudes [Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu]
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getAscendant()</h4>
+                            <p class="method-description">Calculate ascendant (Lagna) longitude</p>
+                            <div class="method-signature">
+                                <code>public function getAscendant(array $birth): float</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>float</code> - Ascendant longitude in degrees
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getAyanamsa()</h4>
+                            <p class="method-description">Get ayanamsa value for a given Julian Day</p>
+                            <div class="method-signature">
+                                <code>public function getAyanamsa(float $jd): float</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>float</code> - Ayanamsa in degrees
                             </div>
                         </div>
                     </div>
@@ -1044,34 +1375,192 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     <h2>SunService</h2>
                     <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\SunService</code></p>
                     <div class="enum-info">
-                        <p>Calculates Sunrise, Sunset, and civil twilight timings using precision algorithms.</p>
+                        <p>Calculates sunrise, sunset, and solar events using precision algorithms.</p>
                     </div>
+
                     <div class="methods-section">
                         <h3>Methods</h3>
+                        
                         <div class="method">
                             <h4 class="method-name">getSunriseSunset()</h4>
-                            <p class="method-description">Returns an array containing sunrise and sunset <code>CarbonImmutable</code> objects.</p>
+                            <p class="method-description">Calculate sunrise and sunset times</p>
                             <div class="method-signature">
                                 <code>public function getSunriseSunset(array $birth): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - [CarbonImmutable sunrise, CarbonImmutable sunset]
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getMoonriseMoonset()</h4>
+                            <p class="method-description">Calculate moonrise and moonset times</p>
+                            <div class="method-signature">
+                                <code>public function getMoonriseMoonset(array $birth): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - [moonrise, moonset] CarbonImmutable objects
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getTwilightTimes()</h4>
+                            <p class="method-description">Calculate civil, nautical, and astronomical twilight</p>
+                            <div class="method-signature">
+                                <code>public function getTwilightTimes(array $birth): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - civil_dawn, civil_dusk, nautical_dawn, nautical_dusk, astronomical_dawn, astronomical_dusk
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getSolarTransits()</h4>
+                            <p class="method-description">Calculate solar noon and transit times</p>
+                            <div class="method-signature">
+                                <code>public function getSolarTransits(array $birth): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - solar_noon, sunrise, sunset
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">isDayBirth()</h4>
+                            <p class="method-description">Check if birth occurred during daylight</p>
+                            <div class="method-signature">
+                                <code>public function isDayBirth(array $birth): bool</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>bool</code> - True if day birth, false if night
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- EclipseService -->
-                <section id="eclipse-service" class="content-section">
-                    <h2>EclipseService</h2>
-                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\EclipseService</code></p>
+                <!-- PanchangaEngine -->
+                <section id="panchanga-engine" class="content-section">
+                    <h2>PanchangaEngine</h2>
+                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\PanchangaEngine</code></p>
                     <div class="enum-info">
-                        <p>Finds local occurrences of solar and lunar eclipses, calculating contact timings, sutak, and exact astronomical magnitudes.</p>
+                        <p>Core panchanga calculation engine (no ephemeris dependencies)</p>
                     </div>
+
                     <div class="methods-section">
                         <h3>Methods</h3>
+                        
                         <div class="method">
-                            <h4 class="method-name">getEclipsesForYear()</h4>
-                            <p class="method-description">Returns an array of all eclipses in a year.</p>
+                            <h4 class="method-name">calculateTithi()</h4>
+                            <p class="method-description">Calculate Tithi from Sun and Moon longitudes</p>
                             <div class="method-signature">
-                                <code>public function getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array</code>
+                                <code>public function calculateTithi(float $sunLon, float $moonLon): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {index, name, paksha, fraction_left}
+                            </div>
+                            <div class="method-example">
+                                <strong>Example:</strong>
+                                <pre><code>$tithi = $engine->calculateTithi(350.5, 125.3);
+echo $tithi['name']; // "Dwadashi"</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getNakshatraInfo()</h4>
+                            <p class="method-description">Get Nakshatra from Moon longitude</p>
+                            <div class="method-signature">
+                                <code>public function getNakshatraInfo(float $longitude): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - [name, pada, lord]
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateYoga()</h4>
+                            <p class="method-description">Calculate Yoga from Sun and Moon longitudes</p>
+                            <div class="method-signature">
+                                <code>public function calculateYoga(float $sunLon, float $moonLon): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {index, name}
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getKarana()</h4>
+                            <p class="method-description">Get Karana from Sun and Moon longitudes</p>
+                            <div class="method-signature">
+                                <code>public function getKarana(float $sunLon, float $moonLon): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - [name, number]
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateVara()</h4>
+                            <p class="method-description">Calculate weekday (Vara)</p>
+                            <div class="method-signature">
+                                <code>public function calculateVara(array $birth, SunService $sunService): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {index, name, lord}
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getRitu()</h4>
+                            <p class="method-description">Get season (Ritu) from Sun longitude</p>
+                            <div class="method-signature">
+                                <code>public function getRitu(float $sunLon): string</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>string</code> - Vasanta, Grishma, Varsha, Sharad, Hemanta, or Shishira
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getAyana()</h4>
+                            <p class="method-description">Get solar ayana (Uttarayana/Dakshinayana)</p>
+                            <div class="method-signature">
+                                <code>public function getAyana(float $sunLon): string</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>string</code> - Uttarayana or Dakshinayana
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getSamvat()</h4>
+                            <p class="method-description">Calculate Vikram Samvat and Saka Samvat</p>
+                            <div class="method-signature">
+                                <code>public function getSamvat(int $year, int $month): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {Vikram_Samvat, Saka_Samvat}
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getSamvatsara()</h4>
+                            <p class="method-description">Get 60-year Jupiter cycle name</p>
+                            <div class="method-signature">
+                                <code>public function getSamvatsara(int $vikramSamvat): string</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>string</code> - Samvatsara name (e.g., "Vishvavasu")
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">getHinduMonth()</h4>
+                            <p class="method-description">Get Hindu lunar month</p>
+                            <div class="method-signature">
+                                <code>public function getHinduMonth(float $sunLon, float $moonLon, string $paksha = 'Shukla'): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {Amanta, Purnimanta, Amanta_Index, Purnimanta_Index}
                             </div>
                         </div>
                     </div>
@@ -1082,16 +1571,132 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     <h2>MuhurtaService</h2>
                     <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\MuhurtaService</code></p>
                     <div class="enum-info">
-                        <p>Calculates time-based auspicious and inauspicious divisions like Abhijit, Brahma Muhurta, Rahu Kaal, Lagna tables, and Amrita Kaal.</p>
+                        <p>Calculates Muhurta, Choghadiya, Hora, and other time-based divisions</p>
                     </div>
-                </section>
 
-                <!-- PanchangaEngine -->
-                <section id="panchanga-engine" class="content-section">
-                    <h2>PanchangaEngine</h2>
-                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Panchanga\PanchangaEngine</code></p>
-                    <div class="enum-info">
-                        <p>A lower-level math engine computing Tithi, Yoga, Karana, and Nakshatra strictly based on raw solar and lunar longitudes.</p>
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        
+                        <div class="method">
+                            <h4 class="method-name">calculateMuhurtaTable()</h4>
+                            <p class="method-description">Calculate 30 Muhurtas for the day</p>
+                            <div class="method-signature">
+                                <code>public function calculateMuhurtaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Array of 30 muhurta periods with start/end times
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateChoghadiyaTable()</h4>
+                            <p class="method-description">Calculate day and night Choghadiyas</p>
+                            <div class="method-signature">
+                                <code>public function calculateChoghadiyaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Day and night Choghadiya periods
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateHoraTable()</h4>
+                            <p class="method-description">Calculate 24 Hora periods</p>
+                            <div class="method-signature">
+                                <code>public function calculateHoraTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - 24 Hora periods with ruling planets
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateAbhijitMuhurta()</h4>
+                            <p class="method-description">Calculate Abhijit Muhurta (most auspicious)</p>
+                            <div class="method-signature">
+                                <code>public function calculateAbhijitMuhurta(CarbonImmutable $sunrise, CarbonImmutable $sunset): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {start, end, duration}
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateBrahmaMuhurta()</h4>
+                            <p class="method-description">Calculate Brahma Muhurta (Ashtanga Hridaya Sutrasthana 2:1)</p>
+                            <div class="method-signature">
+                                <code>public function calculateBrahmaMuhurta(CarbonImmutable $sunrise): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {start, end}
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateDurMuhurta()</h4>
+                            <p class="method-description">Calculate Dur Muhurta (inauspicious periods)</p>
+                            <div class="method-signature">
+                                <code>public function calculateDurMuhurta(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Inauspicious muhurta periods
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculatePrahara()</h4>
+                            <p class="method-description">Calculate 8 Prahara (4 day + 4 night) as per Srimad Bhagavata Purana</p>
+                            <div class="method-signature">
+                                <code>public function calculatePrahara(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - 8 Prahara periods
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateVarjyam()</h4>
+                            <p class="method-description">Calculate Varjyam (Tyajyam) - inauspicious period based on Nakshatra</p>
+                            <div class="method-signature">
+                                <code>public function calculateVarjyam(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Varjyam start and end times
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateAmritaKaal()</h4>
+                            <p class="method-description">Calculate Amrita Kaal (auspicious period - opposite of Varjyam)</p>
+                            <div class="method-signature">
+                                <code>public function calculateAmritaKaal(CarbonImmutable $sunrise, array $varjyam): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Amrita Kaal period
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculatePradoshaKaal()</h4>
+                            <p class="method-description">Calculate Pradosha Kaal on Trayodashi (13th Tithi)</p>
+                            <div class="method-signature">
+                                <code>public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Pradosha period
+                            </div>
+                        </div>
+
+                        <div class="method">
+                            <h4 class="method-name">calculateBadTimes()</h4>
+                            <p class="method-description">Calculate inauspicious times (Rahu Kala, Gulika, Yamaganda)</p>
+                            <div class="method-signature">
+                                <code>public function calculateBadTimes(CarbonImmutable $sunrise, CarbonImmutable $sunset, int $varaIdx): array</code>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - {rahu_kala, gulika, yamaganda}
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -1100,54 +1705,463 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     <h2>FestivalService</h2>
                     <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
                     <div class="enum-info">
-                        <p>Primary API for querying festivals on a specific day based on Tithi, Nakshatra, and month.</p>
+                        <p>Calculate Hindu festivals based on Tithi, Nakshatra, and regional traditions</p>
+                    </div>
+
+                    <div class="methods-section">
+                        <h3>Methods</h3>
+                        
+                        <div class="method">
+                            <h4 class="method-name">getFestivals()</h4>
+                            <p class="method-description">Get all festivals for a date with tradition/region support</p>
+                            <div class="method-signature">
+                                <code>public function getFestivals(CarbonImmutable $date, float $lat, float $lon, string $tz, string $tradition = 'Smarta', string $region = 'North', float $elevation = 0.0): array</code>
+                            </div>
+                            <div class="method-params">
+                                <strong>Parameters:</strong>
+                                <ul>
+                                    <li><code>$date</code> (CarbonImmutable) - Date to calculate</li>
+                                    <li><code>$lat</code> (float) - Latitude</li>
+                                    <li><code>$lon</code> (float) - Longitude</li>
+                                    <li><code>$tz</code> (string) - Timezone</li>
+                                    <li><code>$tradition</code> (string) - 'Smarta' or 'Vaishnava' (default: 'Smarta')</li>
+                                    <li><code>$region</code> (string) - 'North', 'South', 'Bengal', 'Maharashtra', 'Tamil' (default: 'North')</li>
+                                    <li><code>$elevation</code> (float) - Elevation in meters</li>
+                                </ul>
+                            </div>
+                            <div class="method-returns">
+                                <strong>Returns:</strong> <code>array</code> - Array of festival names and details
+                            </div>
+                            <div class="method-example">
+                                <strong>Example:</strong>
+                                <pre><code>$festivals = $festivalService->getFestivals(
+    date: CarbonImmutable::parse('2026-03-24'),
+    lat: 23.2472446,
+    lon: 69.668339,
+    tz: 'Asia/Kolkata',
+    tradition: 'Smarta',
+    region: 'North'
+);
+
+foreach ($festivals as $festival) {
+    echo $festival['name'] . "\n";
+}</code></pre>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                <!-- FestivalRuleEngine -->
-                <section id="festival-rule-engine" class="content-section">
-                    <h2>FestivalRuleEngine</h2>
-                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine</code></p>
-                    <div class="enum-info">
-                        <p>Resolves complex festival conflicts based on karmakala precedence (e.g. Nishita timing for Janmashtami) when tithi overlaps multiple days.</p>
+                <!-- Laravel Usage -->
+                <section id="laravel-usage" class="content-section">
+                    <h2>Laravel Integration</h2>
+                    <p class="lead">Complete guide for using Panchang Core in Laravel applications</p>
+
+                    <div class="info-box">
+                        <h3>📦 Installation</h3>
+                        <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>composer require jayeshmepani/panchang-core</code></pre>
+                    </div>
+
+                    <h3>Configuration</h3>
+                    <p>Publish the configuration file:</p>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangServiceProvider" --tag="panchang-config"</code></pre>
+
+                    <p>This creates <code>config/panchang.php</code>:</p>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>return [
+    'ephe_path' => env('PANCHANG_EPHE_PATH', ''),
+    'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
+    'defaults' => [
+        'tradition' => 'Smarta',
+        'region' => 'North',
+    ],
+];</code></pre>
+
+                    <h3>Using the Facade</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>use JayeshMepani\PanchangCore\Facades\Panchang;
+use Carbon\CarbonImmutable;
+
+// Get complete panchanga
+$details = Panchang::getDayDetails(
+    date: CarbonImmutable::parse('2026-03-24'),
+    lat: 23.2472446,
+    lon: 69.668339,
+    tz: 'Asia/Kolkata'
+);
+
+// Access data
+echo $details['Tithi']['name']; // "Dwadashi"
+echo $details['Nakshatra']['name']; // "Magha"</code></pre>
+
+                    <h3>Service Container</h3>
+                    <p>Or inject via constructor:</p>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>use JayeshMepani\PanchangCore\Panchanga\PanchangService;
+
+class PanchangController extends Controller
+{
+    public function __construct(
+        private PanchangService $panchang
+    ) {}
+
+    public function show()
+    {
+        $details = $this->panchang->getDayDetails(
+            date: CarbonImmutable::now(),
+            lat: 28.6139,
+            lon: 77.2090,
+            tz: 'Asia/Kolkata'
+        );
+
+        return view('panchang', compact('details'));
+    }
+}</code></pre>
+                </section>
+
+                <!-- Return Value Structures -->
+                <section id="return-structures" class="content-section">
+                    <h2>Return Value Structures</h2>
+                    <p class="lead">Complete data structures returned by main methods</p>
+
+                    <h3>getDayDetails() Return Structure</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>[
+    'Tithi' => [
+        'index' => 12,
+        'name' => 'Dwadashi',
+        'paksha' => 'Shukla',
+        'fraction_left' => 0.7666,
+    ],
+    'Nakshatra' => [
+        'index' => 10,
+        'name' => 'Magha',
+        'pada' => 2,
+        'lord' => 'Sun',
+    ],
+    'Yoga' => [
+        'index' => 9,
+        'name' => 'Shula',
+    ],
+    'Karana' => [
+        'index' => 23,
+        'name' => 'Bava',
+    ],
+    'Vara' => [
+        'index' => 2,
+        'name' => 'Tuesday',
+        'lord' => 'Mars',
+    ],
+    'Muhurta' => [
+        ['name' => 'Rudra', 'start' => '06:14', 'end' => '07:02'],
+        // ... 30 muhurtas
+    ],
+    'Choghadiya' => [
+        'day' => [...],
+        'night' => [...],
+    ],
+    'Hora' => [
+        ['planet' => 'Sun', 'start' => '06:14', 'end' => '07:14'],
+        // ... 24 horas
+    ],
+    'Festivals' => [
+        ['name' => 'Pradosh Vrat', 'type' => 'vrat'],
+    ],
+    'Sunrise' => '06:14:00',
+    'Sunset' => '18:32:00',
+    'Moonrise' => '15:45:00',
+    'Moonset' => '04:20:00',
+]</code></pre>
+
+                    <h3>getFestivalSnapshot() Return Structure</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>[
+    'Festivals' => [
+        [
+            'name' => 'Holika Dahan',
+            'type' => 'festival',
+            'priority' => 1,
+        ],
+    ],
+    'Tithi' => [...],
+    'Nakshatra' => [...],
+]</code></pre>
+                </section>
+
+                <!-- Real World Examples -->
+                <section id="examples" class="content-section">
+                    <h2>Real-World Examples</h2>
+                    <p class="lead">Complete working examples for common use cases</p>
+
+                    <h3>1. Daily Panchang Display</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Show today's panchang
+$today = Panchang::getDayDetails(
+    date: CarbonImmutable::now(),
+    lat: $userLatitude,
+    lon: $userLongitude,
+    tz: $userTimezone
+);
+
+echo "Today's Tithi: " . $today['Tithi']['name'] . "\n";
+echo "Nakshatra: " . $today['Nakshatra']['name'] . "\n";
+echo "Yoga: " . $today['Yoga']['name'] . "\n";</code></pre>
+
+                    <h3>2. Festival Calendar</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Get festivals for entire month
+$monthFestivals = [];
+for ($day = 1; $day <= 30; $day++) {
+    $date = CarbonImmutable::create(2026, 3, $day);
+    $festivals = Panchang::getFestivalSnapshot(
+        date: $date,
+        lat: 28.6139,
+        lon: 77.2090,
+        tz: 'Asia/Kolkata'
+    );
+    
+    if (!empty($festivals['Festivals'])) {
+        $monthFestivals[$day] = $festivals['Festivals'];
+    }
+}</code></pre>
+
+                    <h3>3. Muhurta Finder</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Find auspicious times for wedding
+$details = Panchang::getDayDetails(
+    date: $weddingDate,
+    lat: $venueLat,
+    lon: $venueLon,
+    tz: $venueTimezone
+);
+
+// Get Abhijit Muhurta (most auspicious)
+$abhijit = $details['Muhurta']['abhijit'];
+echo "Abhijit Muhurta: {$abhijit['start']} - {$abhijit['end']}\n";
+
+// Avoid Rahu Kala
+$rahuKala = $details['Muhurta']['rahu_kala'];
+echo "Avoid Rahu Kala: {$rahuKala['start']} - {$rahuKala['end']}\n";</code></pre>
+
+                    <h3>4. Birth Chart Basics</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Get planetary positions at birth
+$birthDetails = [
+    'year' => 1990,
+    'month' => 5,
+    'day' => 15,
+    'hour' => 14,
+    'minute' => 30,
+    'second' => 0,
+    'timezone' => 'Asia/Kolkata',
+    'latitude' => 28.6139,
+    'longitude' => 77.2090,
+];
+
+$planets = $astronomy->getPlanets($birthDetails);
+$ascendant = $astronomy->getAscendant($birthDetails);
+
+echo "Sun: {$planets['Sun']}°\n";
+echo "Moon: {$planets['Moon']}°\n";
+echo "Ascendant: $ascendant°\n";</code></pre>
+
+                    <h3>5. Tradition-Specific Festivals</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Smarta tradition Janmashtami
+$smarta = Panchang::getFestivals(
+    date: CarbonImmutable::parse('2026-09-06'),
+    lat: 28.6139,
+    lon: 77.2090,
+    tz: 'Asia/Kolkata',
+    tradition: 'Smarta',
+    region: 'North'
+);
+
+// Vaishnava tradition Janmashtami
+$vaishnava = Panchang::getFestivals(
+    date: CarbonImmutable::parse('2026-09-07'),
+    lat: 28.6139,
+    lon: 77.2090,
+    tz: 'Asia/Kolkata',
+    tradition: 'Vaishnava',
+    region: 'North'
+);</code></pre>
+                </section>
+
+                <!-- Error Handling -->
+                <section id="error-handling" class="content-section">
+                    <h2>Error Handling</h2>
+                    <p class="lead">Understanding and handling errors</p>
+
+                    <h3>Common Exceptions</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Exception</th>
+                                <th>When It Occurs</th>
+                                <th>How to Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>RuntimeException</code></td>
+                                <td>Swiss Ephemeris file not found</td>
+                                <td>Set correct ephe_path in config</td>
+                            </tr>
+                            <tr>
+                                <td><code>InvalidArgumentException</code></td>
+                                <td>Invalid latitude/longitude</td>
+                                <td>Validate coordinates before calling</td>
+                            </tr>
+                            <tr>
+                                <td><code>RuntimeException</code></td>
+                                <td>Timezone not found</td>
+                                <td>Use valid PHP timezone identifiers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Best Practices</h3>
+                    <pre style="background: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>try {
+    $details = Panchang::getDayDetails(
+        date: $date,
+        lat: $lat, // Validate: -90 to 90
+        lon: $lon, // Validate: -180 to 180
+        tz: $tz // Validate: timezone_exists($tz)
+    );
+} catch (RuntimeException $e) {
+    // Log error and show user-friendly message
+    Log::error('Panchang calculation failed', [
+        'error' => $e->getMessage(),
+        'location' => compact('lat', 'lon', 'tz')
+    ]);
+    
+    return response()->json([
+        'error' => 'Unable to calculate panchang for this location'
+    ], 500);
+}</code></pre>
+                </section>
+
+                <!-- FAQ -->
+                <section id="faq" class="content-section">
+                    <h2>FAQ & Troubleshooting</h2>
+                    <p class="lead">Common questions and solutions</p>
+
+                    <div class="info-box">
+                        <h3>Q: Why are my calculations different from other panchang apps?</h3>
+                        <p><strong>A:</strong> Differences can occur due to:</p>
+                        <ul>
+                            <li><strong>Ayanamsa:</strong> We use Lahiri by default. Change via config if needed.</li>
+                            <li><strong>Location:</strong> Ensure exact latitude/longitude</li>
+                            <li><strong>Tradition:</strong> Smarta vs Vaishnava have different rules</li>
+                            <li><strong>Tithi calculation:</strong> We use Swiss Ephemeris for maximum precision</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Q: How do I change the ayanamsa?</h3>
+                        <p><strong>A:</strong> Set in config or pass to getDayDetails():</p>
+                        <pre style="background: var(--code-bg); color: var(--code-text); padding: 0.5rem; border-radius: 0.5rem;"><code>// In config/panchang.php
+'ayanamsa' => 'RAMAN', // Options: LAHIRI, RAMAN, KRISHNAMURTI
+
+// Or per-call
+$details = Panchang::getDayDetails(
+    date: $date,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    ayanamsaAt: CarbonImmutable::now() // Custom calculation time
+);</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Q: Why is Janmashtami on different dates?</h3>
+                        <p><strong>A:</strong> This is normal! Smarta tradition celebrates on one day (based on ashtami at sunrise), Vaishnava on another (based on ashtami + Rohini nakshatra at midnight). Use the <code>tradition</code> parameter to get the correct date for your tradition.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Q: How accurate are the calculations?</h3>
+                        <p><strong>A:</strong> We use Swiss Ephemeris which provides accuracy to within 1 arcsecond for planetary positions. All calculations use IEEE 754 double precision (53-bit significand) with no intermediate rounding.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Q: Can I use this for historical dates?</h3>
+                        <p><strong>A:</strong> Yes! Swiss Ephemeris supports dates from 3000 BCE to 3000 CE. Just pass any valid CarbonImmutable date.</p>
                     </div>
                 </section>
 
-                <!-- FestivalFamilyOrchestrator -->
-                <section id="festival-family-orchestrator" class="content-section">
-                    <h2>FestivalFamilyOrchestrator</h2>
-                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator</code></p>
-                    <div class="enum-info">
-                        <p>Orchestrates multi-day festival families like Navratri, Diwali, and Holi, applying complex "exception rules".</p>
+                <!-- Quick Reference -->
+                <section id="quick-reference" class="content-section">
+                    <h2>Quick Reference</h2>
+                    
+                    <div class="info-box">
+                        <h3>What to Use When</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>I want to...</th>
+                                    <th>Use this method</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Get complete panchanga for a day</td>
+                                    <td><code>PanchangService::getDayDetails()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get only festivals</td>
+                                    <td><code>PanchangService::getFestivalSnapshot()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get planetary positions</td>
+                                    <td><code>AstronomyService::getPlanets()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get sunrise/sunset</td>
+                                    <td><code>SunService::getSunriseSunset()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Calculate Tithi manually</td>
+                                    <td><code>PanchangaEngine::calculateTithi()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get Nakshatra from Moon position</td>
+                                    <td><code>PanchangaEngine::getNakshatraInfo()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get Muhurta times</td>
+                                    <td><code>MuhurtaService::calculateMuhurtaTable()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get auspicious times</td>
+                                    <td><code>MuhurtaService::calculateAbhijitMuhurta()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get Brahma Muhurta</td>
+                                    <td><code>MuhurtaService::calculateBrahmaMuhurta()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get Rahu Kala, Gulika</td>
+                                    <td><code>MuhurtaService::calculateBadTimes()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get festivals by tradition</td>
+                                    <td><code>FestivalService::getFestivals()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get season (Ritu)</td>
+                                    <td><code>PanchangaEngine::getRitu()</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Get Samvatsara</td>
+                                    <td><code>PanchangaEngine::getSamvatsara()</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </section>
 
-                <!-- BhadraEngine -->
-                <section id="bhadra-engine" class="content-section">
-                    <h2>BhadraEngine</h2>
-                    <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine</code></p>
-                    <div class="enum-info">
-                        <p>Detects the exact start and end times of the Bhadra (Vishti) Karana, crucial for Raksha Bandhan and Holika Dahan planning.</p>
-                    </div>
-                </section>
-
-                <!-- UTILITIES & FACADE -->
-
-                <!-- AstroCore -->
-                <section id="astro-core" class="content-section">
-                    <h2>AstroCore</h2>
-                    <p class="enum-type">Utility: <code>JayeshMepani\PanchangCore\Core\AstroCore</code></p>
-                    <div class="enum-info">
-                        <p>The centralized mathematical utility handling formatting, precision, decimal degree normalization, and global configuration mapping.</p>
-                    </div>
-                </section>
-
-                <!-- ClassicalTimeConstants -->
-                <section id="classical-time-constants" class="content-section">
-                    <h2>ClassicalTimeConstants</h2>
-                    <p class="enum-type">Utility: <code>JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants</code></p>
-                    <div class="enum-info">
-                        <p>Contains static, mathematically sound values representing classical time units (Ghatika, Vighati, Pala).</p>
+                    <div class="info-box" style="margin-top: 2rem;">
+                        <h3>Classical Text References</h3>
+                        <p>All calculations are based on authentic Sanskrit texts:</p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✅ <strong>Sūrya Siddhānta 1.29</strong> → Tithi</li>
+                            <li>✅ <strong>Sūrya Siddhānta 8.1</strong> → Nakṣatra</li>
+                            <li>✅ <strong>Sūrya Siddhānta</strong> → Yoga, Karana</li>
+                            <li>✅ <strong>BPHS</strong> → Vimśottarī Daśā, Horā</li>
+                            <li>✅ <strong>Bṛhat Saṃhitā 8</strong> → Samvatsara, Ritu</li>
+                            <li>✅ <strong>Muhūrta Chintāmaṇi</strong> → Muhūrta</li>
+                            <li>✅ <strong>Kāla Nirṇaya</strong> → Choghadiya</li>
+                            <li>✅ <strong>Ashtānga Hṛdaya</strong> → Brahma Muhūrta</li>
+                        </ul>
                     </div>
                 </section>
 
