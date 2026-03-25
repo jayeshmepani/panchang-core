@@ -18,7 +18,7 @@ use DateTimeInterface;
 final readonly class AstroCore
 {
     /**
-     * Normalize angle to 0-360° range.
+     * Normalize angle to 0-360° range and apply configured precision.
      *
      * @param float $x Input angle in degrees
      *
@@ -30,7 +30,7 @@ final readonly class AstroCore
         if ($val < 0) {
             $val += 360.0;
         }
-        return $val;
+        return self::r9($val);
     }
 
     /**
@@ -127,15 +127,25 @@ final readonly class AstroCore
     }
 
     /**
-     * Identity function (placeholder for compatibility).
+     * Round a floating point number to the configured global precision.
+     * Uses `panchang.defaults.number_precision` from config if available.
      *
      * @param float $x Input value
      *
-     * @return float Same value
+     * @return float Rounded value
      */
     public static function r9(float $x): float
     {
-        return $x;
+        $precision = 16;
+        if (function_exists('config')) {
+            try {
+                $precision = (int) config('panchang.defaults.number_precision', 16);
+            } catch (\Exception $e) {
+                // Config not available (e.g. inside standalone unit tests without Laravel app container)
+                $precision = 16;
+            }
+        }
+        return round($x, $precision);
     }
 
     /**
@@ -150,6 +160,109 @@ final readonly class AstroCore
         $d = (int) floor($deg);
         $m = (int) floor(($deg - $d) * 60.0);
         $s = ($deg - $d - $m / 60.0) * 3600.0;
-        return sprintf('%d° %d\' %s"', $d, $m, $s);
+        return sprintf('%d° %d\' %s"', $d, $m, self::r9($s));
+    }
+
+    /**
+     * Get global configuration value.
+     */
+    public static function getConfig(string $key, mixed $default = null): mixed
+    {
+        if (function_exists('config')) {
+            try {
+                return config($key, $default);
+            } catch (\Exception $e) {
+                return $default;
+            }
+        }
+        return $default;
+    }
+
+    /**
+     * Format a Carbon datetime string according to global config.
+     */
+    public static function formatDateTime(\Carbon\CarbonImmutable $time): string
+    {
+        $format = self::getConfig('panchang.defaults.date_time_format', 'indian_12h');
+
+        return match($format) {
+            'indian_12h' => $time->format('d/m/Y h:i:s A'),
+            'indian_24h' => $time->format('d/m/Y H:i:s'),
+            'iso8601' => $time->toIso8601String(),
+            default => $time->format('d/m/Y h:i:s A'),
+        };
+    }
+
+    /**
+     * Format a Carbon time string according to global config.
+     */
+    public static function formatTime(\Carbon\CarbonImmutable $time): string
+    {
+        $notation = self::getConfig('panchang.defaults.time_notation', '12h');
+
+        if ($notation === '24h') {
+            return $time->format('H:i:s');
+        }
+
+        // 12h by default
+        return $time->format('h:i:s A');
+    }
+
+    /**
+     * Format an angle according to global config (degree vs dms).
+     */
+    public static function formatAngle(float $angle): float|string
+    {
+        $unit = self::getConfig('panchang.defaults.angle_unit', 'degree');
+
+        if ($unit === 'dms') {
+            return self::toDms($angle);
+        }
+
+        return self::r9($angle);
+    }
+
+    /**
+     * Format coordinate according to global config (decimal vs dms).
+     */
+    public static function formatCoordinate(float $coordinate): float|string
+    {
+        $unit = self::getConfig('panchang.defaults.coordinate_format', 'decimal');
+
+        if ($unit === 'dms') {
+            return self::toDms($coordinate);
+        }
+
+        return self::r9($coordinate);
+    }
+
+    /**
+     * Format a duration (in minutes or hours) according to global config.
+     */
+    public static function formatDuration(float $minutes): float|string
+    {
+        $format = self::getConfig('panchang.defaults.duration_format', 'mixed');
+
+        if ($format === 'mixed') {
+            $hours = (int) floor($minutes / 60);
+            $mins = (int) floor(fmod($minutes, 60));
+            $secs = self::r9(fmod($minutes * 60, 60));
+
+            if ($hours > 0) {
+                return sprintf('%dh %dm %ss', $hours, $mins, $secs);
+            }
+            return sprintf('%dm %ss', $mins, $secs);
+        }
+
+        if ($format === 'hours') {
+            return self::r9($minutes / 60);
+        }
+
+        if ($format === 'seconds') {
+            return self::r9($minutes * 60);
+        }
+
+        // Fallback to standard float output in minutes
+        return self::r9($minutes);
     }
 }

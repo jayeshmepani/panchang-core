@@ -32,12 +32,12 @@ class PanchangService
         private PanchangaEngine $panchanga,
         private MuhurtaService $muhurta,
     ) {
-        $ephePath = self::$ephePath ?: getenv('PANCHANG_EPHE_PATH') ?: '';
+        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $this->sweph->swe_set_ephe_path($ephePath);
         }
 
-        $this->setAyanamsa(self::$ayanamsa ?: getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI');
+        $this->setAyanamsa(self::$ayanamsa ?: (function_exists('config') ? config('panchang.ayanamsa', getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI') : (getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI')));
     }
 
     /**
@@ -275,15 +275,20 @@ class PanchangService
             throw new RuntimeException('Missing zodiac sign mapping in astrology constants.');
         }
 
+        $defaultConfig = function_exists('config') ? config('panchang.defaults', []) : [];
+        if (!is_array($defaultConfig)) {
+            $defaultConfig = [];
+        }
+
         return [
             'Display_Settings' => [
-                'measurement_system' => $options['measurement_system'] ?? 'indian_metric',
-                'date_time_format' => $options['date_time_format'] ?? 'indian_12h',
-                'time_notation' => $options['time_notation'] ?? '12h',
-                'coordinate_format' => $options['coordinate_format'] ?? 'decimal',
-                'angle_unit' => $options['angle_unit'] ?? 'degree',
-                'duration_format' => $options['duration_format'] ?? 'mixed',
-                'number_precision' => (int) ($options['number_precision'] ?? 9),
+                'measurement_system' => $options['measurement_system'] ?? $defaultConfig['measurement_system'] ?? 'indian_metric',
+                'date_time_format' => $options['date_time_format'] ?? $defaultConfig['date_time_format'] ?? 'indian_12h',
+                'time_notation' => $options['time_notation'] ?? $defaultConfig['time_notation'] ?? '12h',
+                'coordinate_format' => $options['coordinate_format'] ?? $defaultConfig['coordinate_format'] ?? 'decimal',
+                'angle_unit' => $options['angle_unit'] ?? $defaultConfig['angle_unit'] ?? 'degree',
+                'duration_format' => $options['duration_format'] ?? $defaultConfig['duration_format'] ?? 'mixed',
+                'number_precision' => (int) ($options['number_precision'] ?? $defaultConfig['number_precision'] ?? 9),
                 'timezone' => $tz,
             ],
             'Units' => [
@@ -330,38 +335,38 @@ class PanchangService
             'Yoga' => $yoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
             'Is_Vishti_Karana' => $this->panchanga->isVishtiKarana($sunLon, $moonLon),
-            'Sunrise' => $relSunrise->format('H:i:s'),
-            'Sunset' => $sunset->format('H:i:s'),
+            'Sunrise' => AstroCore::formatTime($relSunrise),
+            'Sunset' => AstroCore::formatTime($sunset),
             'Ishtkaal' => $isth,
-            'sun_sunrise_lon' => $sunLon,
-            'moon_sunrise_lon' => $moonLon,
+            'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
+            'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
-            'sunrise_dt' => $relSunrise->toIso8601String(),
-            'Ayanamsa' => config('panchang.ayanamsa', 'LAHIRI'),
-            'Ayanamsa_Degree' => $ayanamsaDeg,
-            'Ayanamsa_At' => $ayanamsaAt->toIso8601String(),
-            'Ayanamsa_JD' => $ayanamsaJd,
+            'sunrise_dt' => AstroCore::formatDateTime($relSunrise),
+            'Ayanamsa' => function_exists('config') ? config('panchang.ayanamsa', self::$ayanamsa) : self::$ayanamsa,
+            'Ayanamsa_Degree' => AstroCore::formatAngle($ayanamsaDeg),
+            'Ayanamsa_At' => AstroCore::formatDateTime($ayanamsaAt),
+            'Ayanamsa_JD' => AstroCore::r9($ayanamsaJd),
             'Day_Types' => [
-                'civil_day_start' => $civilDayStart->toIso8601String(),
-                'civil_day_end' => $civilDayEnd->toIso8601String(),
-                'civil_day_length_seconds' => $civilDaySeconds,
-                'mean_solar_day_seconds' => 86400.0,
-                'apparent_solar_day_seconds' => $apparentSolarDaySeconds,
-                'solar_noon' => $solarTransits['solar_noon']->toIso8601String(),
-                'solar_midnight' => $solarTransits['solar_midnight']->toIso8601String(),
+                'civil_day_start' => AstroCore::formatDateTime($civilDayStart),
+                'civil_day_end' => AstroCore::formatDateTime($civilDayEnd),
+                'civil_day_length_seconds' => AstroCore::r9($civilDaySeconds),
+                'mean_solar_day_seconds' => AstroCore::r9(86400.0),
+                'apparent_solar_day_seconds' => AstroCore::r9($apparentSolarDaySeconds),
+                'solar_noon' => AstroCore::formatDateTime($solarTransits['solar_noon']),
+                'solar_midnight' => AstroCore::formatDateTime($solarTransits['solar_midnight']),
             ],
             'Twilight' => [
                 'civil' => [
-                    'dawn' => $twilight['civil']['dawn']->toIso8601String(),
-                    'dusk' => $twilight['civil']['dusk']->toIso8601String(),
+                    'dawn' => AstroCore::formatDateTime($twilight['civil']['dawn']),
+                    'dusk' => AstroCore::formatDateTime($twilight['civil']['dusk']),
                 ],
                 'nautical' => [
-                    'dawn' => $twilight['nautical']['dawn']->toIso8601String(),
-                    'dusk' => $twilight['nautical']['dusk']->toIso8601String(),
+                    'dawn' => AstroCore::formatDateTime($twilight['nautical']['dawn']),
+                    'dusk' => AstroCore::formatDateTime($twilight['nautical']['dusk']),
                 ],
                 'astronomical' => [
-                    'dawn' => $twilight['astronomical']['dawn']->toIso8601String(),
-                    'dusk' => $twilight['astronomical']['dusk']->toIso8601String(),
+                    'dawn' => AstroCore::formatDateTime($twilight['astronomical']['dawn']),
+                    'dusk' => AstroCore::formatDateTime($twilight['astronomical']['dusk']),
                 ],
             ],
             'Panchanga' => [
@@ -374,20 +379,20 @@ class PanchangService
                 ],
                 'Yoga' => $yoga,
                 'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
-                'Sunrise' => $relSunrise->format('H:i:s'),
-                'Sunset' => $sunset->format('H:i:s'),
-                'Moonrise' => $moonrise->format('H:i:s'),
-                'Moonset' => $moonset->format('H:i:s'),
+                'Sunrise' => AstroCore::formatTime($relSunrise),
+                'Sunset' => AstroCore::formatTime($sunset),
+                'Moonrise' => AstroCore::formatTime($moonrise),
+                'Moonset' => AstroCore::formatTime($moonset),
                 'Ishtkaal' => $isth,
-                'sun_sunrise_lon' => $sunLon,
-                'moon_sunrise_lon' => $moonLon,
+                'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
+                'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
                 'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
-                'sunrise_dt' => $relSunrise->toIso8601String(),
-                'tithi_start_dt' => $this->sunService->jdToCarbonPublic($tithiStartJd, $tz)->toIso8601String(),
-                'tithi_end_dt' => $this->sunService->jdToCarbonPublic($tithiEndJd, $tz)->toIso8601String(),
-                'nakshatra_end_dt' => $this->sunService->jdToCarbonPublic($nakEndJd, $tz)->toIso8601String(),
-                'yoga_end_dt' => $this->sunService->jdToCarbonPublic($yogaEndJd, $tz)->toIso8601String(),
-                'karana_end_dt' => $this->sunService->jdToCarbonPublic($karanaEndJd, $tz)->toIso8601String(),
+                'sunrise_dt' => AstroCore::formatDateTime($relSunrise),
+                'tithi_start_dt' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($tithiStartJd, $tz)),
+                'tithi_end_dt' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($tithiEndJd, $tz)),
+                'nakshatra_end_dt' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($nakEndJd, $tz)),
+                'yoga_end_dt' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($yogaEndJd, $tz)),
+                'karana_end_dt' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($karanaEndJd, $tz)),
             ],
             'Hindu_Calendar' => [
                 'Ayana' => $this->panchanga->getAyana($sunLon),
@@ -410,8 +415,8 @@ class PanchangService
             'Hora' => $hora,
             'Chogadiya' => $chogadiya,
             'Chogadiya_Duration' => [
-                'day_each_seconds' => ($sunset->getTimestamp() - $relSunrise->getTimestamp()) / 8.0,
-                'night_each_seconds' => ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0,
+                'day_each_seconds' => AstroCore::r9(($sunset->getTimestamp() - $relSunrise->getTimestamp()) / 8.0),
+                'night_each_seconds' => AstroCore::r9(($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0),
             ],
             'Hora_Full_Day' => $horaTable,
             'Chogadiya_Full_Day' => $chogadiyaTable,
@@ -520,9 +525,9 @@ class PanchangService
                 'tithi_index_abs' => $tithiNum,
                 'tithi_index_phase' => $tithiNum > 15 ? $tithiNum - 15 : $tithiNum,
                 'paksha' => (string) ($tithi['paksha'] ?? ''),
-                'sunrise_iso' => $sunrise->toIso8601String(),
-                'sunset_iso' => $sunset->toIso8601String(),
-                'next_sunrise_iso' => $nextSunrise->toIso8601String(),
+                'sunrise_iso' => AstroCore::formatDateTime($sunrise),
+                'sunset_iso' => AstroCore::formatDateTime($sunset),
+                'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
             ],
         ];
     }
@@ -722,11 +727,7 @@ class PanchangService
 
     private function normalize(float $value): float
     {
-        $val = fmod($value, 360.0);
-        if ($val < 0) {
-            $val += 360.0;
-        }
-        return $val;
+        return AstroCore::normalize($value);
     }
 
 }

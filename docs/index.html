@@ -27,6 +27,7 @@
                         <li><a href="#introduction" class="nav-link active">Introduction</a></li>
                         <li><a href="#installation" class="nav-link">Installation</a></li>
                         <li><a href="#quickstart" class="nav-link">Quick Start</a></li>
+                        <li><a href="#configuration" class="nav-link">Configuration</a></li>
                     </ul>
                 </div>
                 
@@ -221,6 +222,118 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                     </div>
                 </section>
                 
+                <!-- Configuration -->
+                <section id="configuration" class="content-section">
+                    <h2>Configuration</h2>
+                    <p class="lead">Global settings and formatting preferences available in <code>config/panchang.php</code>.</p>
+
+                    <div class="info-box">
+                        <h3>Overview</h3>
+                        <p>When running inside Laravel, you can publish the configuration file to <code>config/panchang.php</code>. These settings control the default formatting across the entire package output, allowing you to globally enforce timezone notations, unit systems, and double precision decimals.</p>
+                    </div>
+
+                    <h3>Default Calculation Options</h3>
+                    <p>The <code>defaults</code> array configures formatting representations. The acceptable values are:</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Description</th>
+                                <th>Acceptable Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>measurement_system</strong></td>
+                                <td>The unit system used for generic dimensions and lengths.</td>
+                                <td>
+                                    <code>indian_metric</code>, <code>western</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>date_time_format</strong></td>
+                                <td>Controls the string formatting of generic date-time outputs.</td>
+                                <td>
+                                    <code>indian_12h</code>: "dd/mm/YYYY hh:mm:ss A"<br>
+                                    <code>indian_24h</code>: "dd/mm/YYYY HH:mm:ss"<br>
+                                    <code>iso8601</code>: Standard ISO 8601 strings
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>time_notation</strong></td>
+                                <td>Global time output behavior (e.g. for sunrise, sunset, and muhurtas).</td>
+                                <td>
+                                    <code>12h</code> (e.g. 06:14:00 AM)<br>
+                                    <code>24h</code> (e.g. 18:14:00)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>coordinate_format</strong></td>
+                                <td>Format for geographical coordinates (latitude and longitude).</td>
+                                <td>
+                                    <code>decimal</code>: Floating point decimal numbers<br>
+                                    <code>dms</code>: Degrees, Minutes, Seconds string
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>angle_unit</strong></td>
+                                <td>Format for astronomical degrees (e.g. planet longitudes, Ascendant, Ayanamsa).</td>
+                                <td>
+                                    <code>degree</code>: Decimal representation of degrees<br>
+                                    <code>dms</code>: Degrees, Minutes, Seconds string
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>duration_format</strong></td>
+                                <td>How lengths of time are formatted in output payloads.</td>
+                                <td>
+                                    <code>mixed</code>: A human-readable string combining units (e.g. "1h 30m 0s")<br>
+                                    <code>minutes</code>: Total duration as decimal minutes (e.g. 90.0)<br>
+                                    <code>seconds</code>: Total duration as decimal seconds (e.g. 5400.0)<br>
+                                    <code>hours</code>: Total duration as decimal hours (e.g. 1.5)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>number_precision</strong></td>
+                                <td>The number of decimal points to maintain for <strong>all</strong> floating-point and angular outputs. Maximum accuracy is guaranteed internally via IEEE 754 precision.</td>
+                                <td>
+                                    Integer (Default is <code>16</code> for maximum double precision).
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Festival Calculation Settings</h3>
+                    <p>The <code>festivals</code> array provides defaults for region and tradition if they are not explicitly supplied during calculation.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Description</th>
+                                <th>Acceptable Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>default_tradition</strong></td>
+                                <td>The default sect or tradition used to resolve conflicting festival rules (e.g. Janmashtami timing).</td>
+                                <td>
+                                    <code>Smarta</code>, <code>Vaishnava</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>default_region</strong></td>
+                                <td>The default geographical region for festival rule variations.</td>
+                                <td>
+                                    <code>North</code>, <code>South</code>, <code>Bengal</code>, <code>Maharashtra</code>, <code>Tamil</code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
                 <!-- Enums Documentation -->
                 <section id="nakshatra" class="content-section">
                     <h2>Nakshatra</h2>
