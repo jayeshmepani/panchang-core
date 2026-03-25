@@ -121,6 +121,12 @@ class AstronomyService
         }
 
         $out['Ketu'] = AstroCore::normalize($out['Rahu'] + 180.0);
+
+        // Ensure all planet longitudes use configured precision
+        foreach ($out as $name => $lon) {
+            $out[$name] = AstroCore::r9($lon);
+        }
+
         return $out;
     }
 
@@ -143,12 +149,12 @@ class AstronomyService
             $ascmc
         );
 
-        return AstroCore::normalize($ascmc[0] - $ayanamsa);
+        return AstroCore::r9(AstroCore::normalize($ascmc[0] - $ayanamsa));
     }
 
     public function getAyanamsa(float $jd): float
     {
         $this->setAyanamsa($jd);
-        return $this->sweph->swe_get_ayanamsa_ut($jd);
+        return AstroCore::r9($this->sweph->swe_get_ayanamsa_ut($jd));
     }
 }

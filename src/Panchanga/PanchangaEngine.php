@@ -50,7 +50,7 @@ class PanchangaEngine
             'index' => $num,
             'name' => (string) $this->requiredArrayValue($tithiNames, $num - 1, 'tithi name'),
             'paksha' => $num <= 15 ? 'Shukla' : 'Krishna',
-            'fraction_left' => 1.0 - (fmod($diff, 12.0) / 12.0),
+            'fraction_left' => AstroCore::r9(1.0 - (fmod($diff, 12.0) / 12.0)),
         ];
     }
 
@@ -191,7 +191,7 @@ class PanchangaEngine
         [$nakName, $pada, $lord] = $this->getNakshatraInfo($kundaVal);
 
         return [
-            'kunda_longitude' => $kundaVal,
+            'kunda_longitude' => AstroCore::r9($kundaVal),
             'nakshatra' => $nakName,
             'pada' => $pada,
             'lord' => $lord,

@@ -155,16 +155,16 @@ class EclipseService
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
             'datetime' => $dt->toIso8601String(),
-            'jd' => $jdMax,
+            'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
             'magnitudes' => [
-                'umbral' => (float) $attr[0],
-                'penumbral' => (float) $attr[1],
+                'umbral' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
+                'penumbral' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[1]),
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'penumbral_seconds' => $this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd']),
-                'partial_seconds' => $this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd']),
-                'total_seconds' => $this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd']),
+                'penumbral_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd'])),
+                'partial_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd'])),
+                'total_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd'])),
             ],
             'visibility' => [
                 'visible' => $isVisible,
@@ -222,15 +222,15 @@ class EclipseService
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
             'datetime' => $dt->toIso8601String(),
-            'jd' => $jdMax,
+            'jd' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($jdMax),
             'magnitudes' => [
-                'eclipse' => (float) $attr[0],
-                'obscuration' => (float) $attr[2],
+                'eclipse' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[0]),
+                'obscuration' => \JayeshMepani\PanchangCore\Core\AstroCore::r9((float) $attr[2]),
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'partial_seconds' => $this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd']),
-                'total_seconds' => $this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd']),
+                'partial_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd'])),
+                'total_seconds' => \JayeshMepani\PanchangCore\Core\AstroCore::r9($this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd'])),
             ],
             'visibility' => [
                 'visible' => $isVisible,

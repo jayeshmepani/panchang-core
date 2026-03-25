@@ -18,7 +18,7 @@ use DateTimeInterface;
 final readonly class AstroCore
 {
     /**
-     * Normalize angle to 0-360° range.
+     * Normalize angle to 0-360° range and apply configured precision.
      *
      * @param float $x Input angle in degrees
      *
@@ -30,7 +30,7 @@ final readonly class AstroCore
         if ($val < 0) {
             $val += 360.0;
         }
-        return $val;
+        return self::r9($val);
     }
 
     /**
@@ -127,15 +127,25 @@ final readonly class AstroCore
     }
 
     /**
-     * Identity function (placeholder for compatibility).
+     * Round a floating point number to the configured global precision.
+     * Uses `panchang.defaults.number_precision` from config if available.
      *
      * @param float $x Input value
      *
-     * @return float Same value
+     * @return float Rounded value
      */
     public static function r9(float $x): float
     {
-        return $x;
+        $precision = 9;
+        if (function_exists('config')) {
+            try {
+                $precision = (int) config('panchang.defaults.number_precision', 9);
+            } catch (\Exception $e) {
+                // Config not available (e.g. inside standalone unit tests without Laravel app container)
+                $precision = 9;
+            }
+        }
+        return round($x, $precision);
     }
 
     /**

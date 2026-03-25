@@ -727,11 +727,7 @@ class PanchangService
 
     private function normalize(float $value): float
     {
-        $val = fmod($value, 360.0);
-        if ($val < 0) {
-            $val += 360.0;
-        }
-        return $val;
+        return AstroCore::normalize($value);
     }
 
 }
