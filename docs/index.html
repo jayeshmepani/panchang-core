@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Vedic Panchanga API Documentation</title>
   <meta name="description"
-    content="Complete API documentation for Panchang Core - Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision. Calculate Tithi, Nakshatra, Yoga, Karana, Muhurta, and 50+ Hindu festivals.">
+    content="Complete API documentation for Panchang Core - Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision. Calculate Tithi, Nakshatra, Yoga, Karana, Muhurta, and 160+ Hindu festivals.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -337,7 +337,7 @@
                   <line x1="16" y1="2" x2="16" y2="6" />
                   <line x1="8" y1="2" x2="8" y2="6" />
                   <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>50+ Festivals</h4>
+                </svg>140+ Festivals</h4>
               <p>Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī with tradition profiles</p>
             </div>
             <div class="feature-card">
@@ -482,7 +482,7 @@
           <div class="code-block-wrapper">
             <div class="code-header"><span class="code-title">Standalone Usage</span><button class="copy-btn"
                 type="button" data-copy-target="quickstart-code" aria-label="Copy code">Copy</button></div>
-            <pre><code id="quickstart-code" class="language-php">&lt;?phprequire 'vendor/autoload.php';use JayeshMepani\PanchangCore\Panchanga\PanchangService;use JayeshMepani\PanchangCore\Astronomy\AstronomyService;use JayeshMepani\PanchangCore\Astronomy\SunService;use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;use SwissEph\FFI\SwissEphFFI;use Carbon\CarbonImmutable;// Initialize services$sweph=new SwissEphFFI();$panchang=new PanchangService( $sweph, new SunService($sweph), new AstronomyService($sweph), new PanchangaEngine(), new MuhurtaService());// Calculate panchanga$date=CarbonImmutable::parse('2026-03-24');$details=$panchang-&gt;getDayDetails( date: $date, lat: 23.2472446, lon: 69.668339, tz: 'Asia/Kolkata');echo "Tithi: " . $details['Tithi']['name'] . "\n";echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
+            <pre><code id="quickstart-code" class="language-php">&lt;?phprequire 'vendor/autoload.php';use JayeshMepani\PanchangCore\Panchanga\PanchangService;use JayeshMepani\PanchangCore\Astronomy\AstronomyService;use JayeshMepani\PanchangCore\Astronomy\SunService;use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;use JayeshMepani\PanchangCore\Festivals\FestivalService;use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;use SwissEph\FFI\SwissEphFFI;use Carbon\CarbonImmutable;// Initialize services$sweph=new SwissEphFFI();$ruleEngine=new FestivalRuleEngine();$orchestrator=new FestivalFamilyOrchestrator();$panchang=new PanchangService( $sweph, new SunService($sweph), new AstronomyService($sweph), new PanchangaEngine(), new MuhurtaService(), new FestivalService($ruleEngine, $orchestrator), new BhadraEngine());// Calculate panchanga$date=CarbonImmutable::parse('2026-03-24');$details=$panchang-&gt;getDayDetails( date: $date, lat: 23.2472446, lon: 69.668339, tz: 'Asia/Kolkata');echo "Tithi: " . $details['Tithi']['name'] . "\n";echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
           </div>
         </section>
         <section id="configuration" class="content-section">

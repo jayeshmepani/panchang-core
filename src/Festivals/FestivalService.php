@@ -145,6 +145,14 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
+        'Vasi Uttarayan' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 15,
+            'description' => 'Second day of the kite festival in Gujarat',
+            'regions' => ['Gujarat'],
+        ],
         'Chaitra (Vasant] Navaratri Day 1 (Shailaputri Puja]' =>
         [
             'type' => 'tithi',
@@ -601,6 +609,17 @@ class FestivalService
             'deity' => 'Kamala',
             'karmakala_type' => 'sunrise',
         ],
+        'Sheetala Ashtami (Basoda)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Worship of Goddess Sheetala for protection from diseases',
+            'deity' => 'Sheetala Mata',
+        ],
         'Papmochani Ekadashi' =>
         [
             'type' => 'tithi',
@@ -723,6 +742,17 @@ class FestivalService
             'deity' => 'Vishnu/Lakshmi',
             'karmakala_type' => 'sunrise',
         ],
+        'Adi Shankaracharya Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Adi Shankaracharya',
+            'deity' => 'Shiva/Shankaracharya',
+        ],
         'Ganga Saptami' =>
         [
             'type' => 'tithi',
@@ -783,6 +813,17 @@ class FestivalService
             'description' => 'Appearance day of Lord Buddha / Kurma Jayanti',
             'deity' => 'Buddha/Kurma',
             'karmakala_type' => 'sunrise',
+        ],
+        'Narsinh Mehta Janma Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Adi Kavi Narsinh Mehta',
+            'deity' => 'Krishna/Narsinh Mehta',
         ],
         'Apara Ekadashi' =>
         [
@@ -916,6 +957,28 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
+        'Gauri Vrat (Molakat) Begins' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => '5-day fast by young girls (without salt)',
+            'deity' => 'Gauri/Parvati',
+        ],
+        'Jaya Parvati Vrat Begins' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 13,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => '5-day fast for marital bliss and good husband',
+            'deity' => 'Jaya/Parvati',
+        ],
         'Guru Purnima' =>
         [
             'type' => 'tithi',
@@ -973,6 +1036,17 @@ class FestivalService
             'month_purnimanta' => 'Shravana',
             'description' => 'Birth of Kalki Avatar',
             'deity' => 'Kalki',
+        ],
+        'Tulsidas Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Birth anniversary of Goswami Tulsidas',
+            'deity' => 'Rama/Tulsidas',
         ],
         'Shravana Putrada Ekadashi' =>
         [
@@ -1035,6 +1109,51 @@ class FestivalService
             'description' => 'Kajari Teej festival',
             'deity' => 'Parvati/Shiva',
         ],
+        'Bol Choth' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of cows and calves (Bahula Chaturthi)',
+            'deity' => 'Krishna/Cows',
+        ],
+        'Goga Pancham (Nag Panchami - Krishna Paksha)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 5,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of Goga Ji and Serpent Gods',
+            'deity' => 'Nagas/Goga Ji',
+        ],
+        'Randhan Chhath / Balarama Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 6,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Cooking day for Sheetala Saptami / Birth of Lord Balarama (Hala Shashti)',
+            'deity' => 'Balarama',
+        ],
+        'Sheetala Saptami' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 7,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Eating cold food to honor Goddess Sheetala for protection from heat-related diseases',
+            'deity' => 'Sheetala Mata',
+            'fasting' => true,
+        ],
         'Krishna Janmashtami' =>
         [
             'type' => 'tithi',
@@ -1060,6 +1179,28 @@ class FestivalService
             'month_purnimanta' => 'Bhadrapada',
             'description' => 'Monsoon festival observed by women',
             'deity' => 'Parvati/Shiva',
+        ],
+        'Varaha Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Appearance day of Lord Varaha (Boar Avatar)',
+            'deity' => 'Vishnu/Varaha',
+        ],
+        'Kevada Trij' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Gujarat version of Hartalika Teej (worship with Kevada flowers)',
+            'deity' => 'Shiva/Parvati',
         ],
         'Ganesh Chaturthi' =>
         [
@@ -1181,6 +1322,17 @@ class FestivalService
             'deity' => 'Pitrus',
             'karmakala_type' => 'aparahna',
         ],
+        'Lalita Panchami' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Worship of Goddess Lalita Tripurasundari during Navaratri',
+            'deity' => 'Lalita',
+        ],
         'Dussehra / Vijayadashami' =>
         [
             'type' => 'tithi',
@@ -1218,6 +1370,28 @@ class FestivalService
             'description' => 'Kojagari Purnima / Birth of Gunatitanand Swami',
             'deity' => 'Lakshmi/Krishna/Swaminarayan',
             'karmakala_type' => 'nishitha',
+        ],
+        'Valmiki Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of Sage Valmiki',
+            'deity' => 'Valmiki',
+        ],
+        'Manekthari Punam' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Sharad Purnima celebrated at Dakor and other shrines',
+            'deity' => 'Krishna/Ranchhodraoji',
         ],
         'Rama Ekadashi' =>
         [
@@ -1257,6 +1431,18 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'pradosha',
         ],
+        'Vagh Baras (Govatsa Dwadashi)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Worship of cows and calves',
+            'deity' => 'Krishna/Cows',
+            'karmakala_type' => 'pradosha',
+        ],
         'Dhanteras' =>
         [
             'type' => 'tithi',
@@ -1268,6 +1454,19 @@ class FestivalService
             'description' => 'Worship of Lakshmi and Dhanvantari',
             'deity' => 'Lakshmi/Dhanvantari',
             'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Kali Chaudas (Naraka Chaturdashi)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Worship of Goddess Kali and victory over Narakasura',
+            'deity' => 'Kali/Hanuman/Krishna',
+            'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
         ],
         'Kali Puja / Diwali' =>
@@ -1331,6 +1530,17 @@ class FestivalService
             'deity' => 'Murugan/Surya',
             'fasting' => true,
         ],
+        'Jalaram Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Birth anniversary of Saint Jalaram Bapa of Virpur',
+            'deity' => 'Rama/Jalaram Bapa',
+        ],
         'Gopashtami' =>
         [
             'type' => 'tithi',
@@ -1388,7 +1598,19 @@ class FestivalService
             'description' => 'Ceremonial marriage of Tulsi to Vishnu',
             'deity' => 'Tulsi/Vishnu',
         ],
-        'Dev Diwali / Karthigai Deepam' =>
+        'Vaikuntha Chaturdashi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 14,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Sacred day for both Vishnu and Shiva worshippers',
+            'deity' => 'Vishnu/Shiva',
+            'karmakala_type' => 'nishitha',
+        ],
+        'Dev Diwali (Tripurari Purnima) / Karthigai Deepam' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1396,7 +1618,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'Diwali of the Gods / Festival of Lamps',
+            'description' => 'End of Kartika month festivals; lighting of lamps',
             'deity' => 'Shiva/Karthikeya',
             'karmakala_type' => 'pradosha',
         ],

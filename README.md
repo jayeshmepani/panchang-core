@@ -7,7 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
 
-This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 50+ Hindu festivals with tradition/region profiles.
+This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 160+ Hindu festivals with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
@@ -16,16 +16,16 @@ This package provides **zero-tolerance, maximum precision** calculations for Ved
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Achieves **100% output parity** with reference implementations
 - ✅ Provides **zero-tolerance calculations** (IEEE 754 double precision)
-- ✅ Supports **50+ festivals** with tradition/region resolution
+- ✅ Supports **140+ festivals** with tradition/region resolution
 - ✅ Works **standalone** (no Laravel required)
 
 ## Features
 
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
-- **50+ Hindu Festivals**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, etc.
+- **140+ Hindu Festivals**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda
-- **Time Determination**: Choghadiya, Hora, Bhadra/Vishti detection
+- **Time Determination**: Choghadiya, Hora, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
 - **Tradition Profiles**: Smarta, Vaishnava, North, South, Bengal, Maharashtra, Tamil
 - **Classical Accuracy**: Based on Sūrya Siddhānta, Muhūrta Chintāmaṇi, Nirṇaya Sindhu
 
@@ -55,17 +55,25 @@ use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
+use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
+use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
+use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
 use Carbon\CarbonImmutable;
 
 // Initialize services
 $sweph = new SwissEphFFI();
+$ruleEngine = new FestivalRuleEngine();
+$orchestrator = new FestivalFamilyOrchestrator();
 $panchang = new PanchangService(
     $sweph,
     new SunService($sweph),
     new AstronomyService($sweph),
     new PanchangaEngine(),
-    new MuhurtaService()
+    new MuhurtaService(),
+    new FestivalService($ruleEngine, $orchestrator),
+    new BhadraEngine()
 );
 
 // Calculate panchanga for a specific date/location
@@ -203,7 +211,7 @@ PanchangService::configure(
 );
 ```
 
-## Supported Festivals (50+)
+## Supported Festivals (140+)
 
 ### Solar-Based (Saṅkrānti)
 - Makara Saṅkrānti (Jan 14)
@@ -257,9 +265,9 @@ composer test
 | Category | Elements | Status |
 |----------|----------|--------|
 | **Panchanga** | Tithi, Vara, Nakṣatra, Yoga, Karaṇa | ✅ Complete |
-| **Muhūrta** | 15 Muhūrtas, Abhijit, Brahma | ✅ Complete |
-| **Kāla Nirṇaya** | Choghadiya, Hora, Rahu Kāla | ✅ Complete |
-| **Festivals** | 50+ major & minor | ✅ Complete |
+| **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma | ✅ Complete |
+| **Kāla Nirṇaya** | Choghadiya, Hora, Rahu Kāla, Bhadra | ✅ Complete |
+| **Festivals** | 140+ major & minor | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Requirements
