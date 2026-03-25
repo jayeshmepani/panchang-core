@@ -251,6 +251,21 @@ body {
     z-index: 100;
 }
 
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
 .mobile-logo {
     font-size: 1.25rem;
     font-weight: 700;
