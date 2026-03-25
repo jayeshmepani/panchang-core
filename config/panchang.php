@@ -29,18 +29,31 @@ return [
     | Default Calculation Options
     |--------------------------------------------------------------------------
     |
-    | Default options for panchanga calculations.
+    | Default options for panchanga calculations and representation formats.
     |
     */
 
     'defaults' => [
+        // 'indian_metric', 'western'
         'measurement_system' => 'indian_metric',
+
+        // 'indian_12h', 'indian_24h', 'iso8601'
         'date_time_format' => 'indian_12h',
+
+        // '12h', '24h'
         'time_notation' => '12h',
+
+        // 'decimal', 'dms' (degrees, minutes, seconds)
         'coordinate_format' => 'decimal',
+
+        // 'degree', 'dms'
         'angle_unit' => 'degree',
+
+        // 'mixed', 'minutes', 'seconds', 'hours'
         'duration_format' => 'mixed',
-        'number_precision' => 9,
+
+        // Integer specifying the number of decimal points (default 16 for double precision)
+        'number_precision' => 16,
     ],
 
     /*

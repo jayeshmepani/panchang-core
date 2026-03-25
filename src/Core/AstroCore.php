@@ -136,13 +136,13 @@ final readonly class AstroCore
      */
     public static function r9(float $x): float
     {
-        $precision = 9;
+        $precision = 16;
         if (function_exists('config')) {
             try {
-                $precision = (int) config('panchang.defaults.number_precision', 9);
+                $precision = (int) config('panchang.defaults.number_precision', 16);
             } catch (\Exception $e) {
                 // Config not available (e.g. inside standalone unit tests without Laravel app container)
-                $precision = 9;
+                $precision = 16;
             }
         }
         return round($x, $precision);
@@ -160,6 +160,75 @@ final readonly class AstroCore
         $d = (int) floor($deg);
         $m = (int) floor(($deg - $d) * 60.0);
         $s = ($deg - $d - $m / 60.0) * 3600.0;
-        return sprintf('%d° %d\' %s"', $d, $m, $s);
+        return sprintf('%d° %d\' %s"', $d, $m, self::r9($s));
+    }
+
+    /**
+     * Get global configuration value.
+     */
+    public static function getConfig(string $key, mixed $default = null): mixed
+    {
+        if (function_exists('config')) {
+            try {
+                return config($key, $default);
+            } catch (\Exception $e) {
+                return $default;
+            }
+        }
+        return $default;
+    }
+
+    /**
+     * Format a Carbon datetime according to global config.
+     */
+    public static function formatTime(\Carbon\CarbonImmutable $time): string
+    {
+        $notation = self::getConfig('panchang.defaults.time_notation', '12h');
+
+        if ($notation === '24h') {
+            return $time->format('H:i:s');
+        }
+
+        // 12h by default
+        return $time->format('h:i:s A');
+    }
+
+    /**
+     * Format an angle according to global config (degree vs dms).
+     */
+    public static function formatAngle(float $angle): float|string
+    {
+        $unit = self::getConfig('panchang.defaults.angle_unit', 'degree');
+
+        if ($unit === 'dms') {
+            return self::toDms($angle);
+        }
+
+        return self::r9($angle);
+    }
+
+    /**
+     * Format a duration (in minutes or hours) according to global config.
+     * For now, handles generic text output based on format preference.
+     * Note: Most logic handles raw numbers (which we already run through r9),
+     * but this is a helper for any string-based outputs.
+     */
+    public static function formatDuration(float $minutes): float|string
+    {
+        $format = self::getConfig('panchang.defaults.duration_format', 'mixed');
+
+        if ($format === 'mixed') {
+            $hours = (int) floor($minutes / 60);
+            $mins = (int) floor(fmod($minutes, 60));
+            $secs = self::r9(fmod($minutes * 60, 60));
+
+            if ($hours > 0) {
+                return sprintf('%dh %dm %ss', $hours, $mins, $secs);
+            }
+            return sprintf('%dm %ss', $mins, $secs);
+        }
+
+        // Fallback to standard float output
+        return self::r9($minutes);
     }
 }

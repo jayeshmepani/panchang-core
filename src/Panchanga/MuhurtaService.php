@@ -128,8 +128,8 @@ class MuhurtaService
             $start = $this->addFloatSeconds($sunrise, ($pIdx - 1) * $part);
             $end = $this->addFloatSeconds($start, $part);
             return [
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'duration_min' => AstroCore::r9($part / 60.0),
             ];
         };
@@ -152,9 +152,9 @@ class MuhurtaService
 
         return [
             'source' => 'Muhūrta Chintāmaṇi / Nārada Saṁhitā',
-            'abhijit_start' => $abhijitStart->format('H:i:s'),
-            'abhijit_end' => $abhijitEnd->format('H:i:s'),
-            'solar_noon' => $solarNoon->format('H:i:s'),
+            'abhijit_start' => AstroCore::formatTime($abhijitStart),
+            'abhijit_end' => AstroCore::formatTime($abhijitEnd),
+            'solar_noon' => AstroCore::formatTime($solarNoon),
             'muhurta_duration_minutes' => AstroCore::r9($muhurtaDuration / 60.0),
             'muhurta_number' => '8th of 15 (Abhijit)',
         ];
@@ -191,8 +191,8 @@ class MuhurtaService
                 'hora_number' => $i + 1,
                 'is_day_hora' => $isDayHora,
                 'ruler' => $this->horaPlanetsOrder[($startIdx + $i) % 7],
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'start_iso' => $start->toIso8601String(),
                 'end_iso' => $end->toIso8601String(),
                 'duration_seconds' => AstroCore::r9($duration),
@@ -248,8 +248,8 @@ class MuhurtaService
                 'division' => $i + 1,
                 'name' => $name,
                 'is_auspicious' => in_array($name, ['Amrit', 'Shubh', 'Labh'], true),
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'start_iso' => $start->toIso8601String(),
                 'end_iso' => $end->toIso8601String(),
                 'duration_seconds' => AstroCore::r9($dayDuration),
@@ -271,8 +271,8 @@ class MuhurtaService
                 'division' => $i + 1,
                 'name' => $name,
                 'is_auspicious' => in_array($name, ['Amrit', 'Shubh', 'Labh'], true),
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'start_iso' => $start->toIso8601String(),
                 'end_iso' => $end->toIso8601String(),
                 'duration_seconds' => AstroCore::r9($nightDuration),
@@ -315,8 +315,8 @@ class MuhurtaService
                 'period' => 'Day',
                 'muhurta_number' => $i + 1,
                 'name' => $dayMuhurtaNames[$i],
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'start_iso' => $start->toIso8601String(),
                 'end_iso' => $end->toIso8601String(),
                 'duration_seconds' => AstroCore::r9($dayDuration),
@@ -336,8 +336,8 @@ class MuhurtaService
                 'period' => 'Night',
                 'muhurta_number' => $i + 1,
                 'name' => $nightMuhurtaNames[$i],
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'start_iso' => $start->toIso8601String(),
                 'end_iso' => $end->toIso8601String(),
                 'duration_seconds' => AstroCore::r9($nightDuration),
@@ -386,8 +386,8 @@ class MuhurtaService
                 'prahara_number' => $i + 1,
                 'name' => $dayNames[$i],
                 'sanskrit_name' => explode(' ', $dayNames[$i])[0],
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'duration_seconds' => AstroCore::r9($dayPraharaDuration),
                 'duration_hours' => AstroCore::r9($dayPraharaDuration / 3600.0),
             ];
@@ -402,8 +402,8 @@ class MuhurtaService
                 'prahara_number' => $i + 5,
                 'name' => $nightNames[$i],
                 'sanskrit_name' => explode(' ', $nightNames[$i])[0],
-                'start' => $start->format('H:i:s'),
-                'end' => $end->format('H:i:s'),
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
                 'duration_seconds' => AstroCore::r9($nightPraharaDuration),
                 'duration_hours' => AstroCore::r9($nightPraharaDuration / 3600.0),
             ];
@@ -426,8 +426,8 @@ class MuhurtaService
 
         return [
             'source' => 'Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92',
-            'brahma_muhurta_start' => $brahmaStart->format('H:i:s'),
-            'brahma_muhurta_end' => $brahmaEnd->format('H:i:s'),
+            'brahma_muhurta_start' => AstroCore::formatTime($brahmaStart),
+            'brahma_muhurta_end' => AstroCore::formatTime($brahmaEnd),
             'duration_minutes' => AstroCore::r9(48.0),
             'duration_seconds' => AstroCore::r9($muhurtaSeconds),
             'significance' => 'Most auspicious time for meditation, study, and spiritual practices. Sattvik period filled with purity, calmness, and clarity.',
@@ -520,8 +520,8 @@ class MuhurtaService
         $varjyamEnd = $this->addFloatSeconds($varjyamStart, $varjyamDuration);
 
         return [
-            'varjyam_start' => $varjyamStart->format('H:i:s'),
-            'varjyam_end' => $varjyamEnd->format('H:i:s'),
+            'varjyam_start' => AstroCore::formatTime($varjyamStart),
+            'varjyam_end' => AstroCore::formatTime($varjyamEnd),
             'duration_minutes' => AstroCore::r9($varjyamDuration / 60.0),
             'nakshatra_start_jd' => AstroCore::r9($nakshatraStartJd),
             'nakshatra_end_jd' => AstroCore::r9($nakshatraEndJd),
@@ -553,8 +553,8 @@ class MuhurtaService
         $amritaEnd = $this->addFloatSeconds($amritaStart, $amritaDuration);
 
         return [
-            'amrita_kaal_start' => $amritaStart->format('H:i:s'),
-            'amrita_kaal_end' => $amritaEnd->format('H:i:s'),
+            'amrita_kaal_start' => AstroCore::formatTime($amritaStart),
+            'amrita_kaal_end' => AstroCore::formatTime($amritaEnd),
             'duration_minutes' => AstroCore::r9($varjyam['duration_minutes']),
             'is_auspicious' => true,
         ];
@@ -576,9 +576,9 @@ class MuhurtaService
         $pradoshaEnd = $this->addFloatSeconds($sunset, $pradoshaDuration); // 90 min after sunset
 
         return [
-            'pradosha_start' => $pradoshaStart->format('H:i:s'),
-            'pradosha_end' => $pradoshaEnd->format('H:i:s'),
-            'sunset' => $sunset->format('H:i:s'),
+            'pradosha_start' => AstroCore::formatTime($pradoshaStart),
+            'pradosha_end' => AstroCore::formatTime($pradoshaEnd),
+            'sunset' => AstroCore::formatTime($sunset),
             'duration_minutes' => AstroCore::r9(180.0),
             'is_trayodashi' => $isTrayodashi,
             'is_auspicious' => $isTrayodashi,
@@ -717,8 +717,8 @@ class MuhurtaService
                 'lagna_number' => $signIndex + 1,
                 'sign_name' => $signNames[$signIndex],
                 'sign_index' => $signIndex,
-                'start' => $startTime->format('H:i:s') . ($isAfterMidnight ? '*' : ''),
-                'end' => $endTime->format('H:i:s') . ($isEndAfterMidnight ? '*' : ''),
+                'start' => AstroCore::formatTime($startTime) . ($isAfterMidnight ? '*' : ''),
+                'end' => AstroCore::formatTime($endTime) . ($isEndAfterMidnight ? '*' : ''),
                 'start_iso' => $startTime->toIso8601String(),
                 'end_iso' => $endTime->toIso8601String(),
                 'duration_minutes' => AstroCore::r9($durationMinutes),
