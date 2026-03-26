@@ -495,12 +495,43 @@ class MuhurtaService
         float $nakshatraStartJd,
         float $nakshatraEndJd
     ): array {
-        // A values for each of 27 Nakshatras
-        $aValues = [50, 4, 30, 40, 14, 21, 30, 20, 32, 30, 20, 1, 21, 20, 14, 14, 10, 14, 20, 20, 20, 10, 10, 18, 16, 30, 30];
+        // Nakshatra Thyajya Ghati ranges (start..end) for 27 nakshatras.
+        // Source alignment: widely used Panchangam Tyajyam table representation.
+        $tyajyaRanges = [
+            [51, 54], // Ashwini
+            [25, 28], // Bharani
+            [31, 34], // Krittika
+            [41, 44], // Rohini
+            [15, 18], // Mrigashira
+            [22, 25], // Ardra
+            [31, 34], // Punarvasu
+            [21, 24], // Pushya
+            [33, 36], // Ashlesha
+            [31, 34], // Magha
+            [21, 24], // Purva Phalguni
+            [19, 22], // Uttara Phalguni
+            [22, 25], // Hasta
+            [21, 24], // Chitra
+            [15, 18], // Swati
+            [15, 18], // Vishakha
+            [11, 14], // Anuradha
+            [15, 18], // Jyeshtha
+            [57, 60], // Mula
+            [25, 28], // Purva Ashadha
+            [21, 24], // Uttara Ashadha
+            [11, 14], // Shravana
+            [11, 14], // Dhanishtha
+            [19, 22], // Shatabhisha
+            [17, 20], // Purva Bhadrapada
+            [25, 28], // Uttara Bhadrapada
+            [31, 34], // Revati
+        ];
 
         $nakshatraName = Nakshatra::from($nakshatraIndex % 27)->getName();
-
-        $aValue = $aValues[$nakshatraIndex % 27] ?? 50;
+        [$tyajyaStartGhatiRaw, $tyajyaEndGhati] = $tyajyaRanges[$nakshatraIndex % 27] ?? [31, 34];
+        // Panchang implementations commonly interpret the listed start as inclusive boundary.
+        // Convert to interval arithmetic by shifting start one ghati earlier.
+        $tyajyaStartGhati = max(0, $tyajyaStartGhatiRaw - 1);
 
         // Calculate full Nakshatra duration from start->end boundary, not sunrise->end.
         $nakshatraDurationSeconds = ($nakshatraEndJd - $nakshatraStartJd) * 86400.0;
@@ -508,8 +539,8 @@ class MuhurtaService
             throw new RuntimeException('Invalid nakshatra duration: end JD must be greater than start JD.');
         }
 
-        $varjyamStartOffset = ($aValue * $nakshatraDurationSeconds) / 60.0;
-        $varjyamDuration = $nakshatraDurationSeconds / 15.0;
+        $varjyamStartOffset = ($tyajyaStartGhati * $nakshatraDurationSeconds) / 60.0;
+        $varjyamDuration = (($tyajyaEndGhati - $tyajyaStartGhati) * $nakshatraDurationSeconds) / 60.0;
 
         $nakshatraStart = $this->jdToCarbon($nakshatraStartJd, $sunrise->getTimezone());
         $varjyamStart = $this->addFloatSeconds($nakshatraStart, $varjyamStartOffset);
@@ -524,7 +555,8 @@ class MuhurtaService
             'nakshatra_end_jd' => AstroCore::r9($nakshatraEndJd),
             'nakshatra_index' => $nakshatraIndex + 1,
             'nakshatra_name' => $nakshatraName,
-            'a_value' => $aValue,
+            'tyajya_ghati_start' => $tyajyaStartGhati,
+            'tyajya_ghati_end' => $tyajyaEndGhati,
             'is_auspicious' => false,
         ];
     }
@@ -728,7 +760,7 @@ class MuhurtaService
             ];
         }
 
-        usort($lagnas, static fn (array $a, array $b): int => strcmp((string) $a['start_iso'], (string) $b['start_iso']));
+        usort($lagnas, static fn (array $a, array $b): int => ((float) ($a['start_jd'] ?? 0.0)) <=> ((float) ($b['start_jd'] ?? 0.0)));
 
         // Panchang presentation convention: show one complete 12-sign cycle for the day.
         // If a repeated starting sign appears near next sunrise due to sidereal-vs-solar day drift,

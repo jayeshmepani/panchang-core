@@ -12,6 +12,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
+use Throwable;
 
 /**
  * Panchang Service.
@@ -206,12 +207,13 @@ class PanchangService
         $nakStartAngle = $nakIdx * (360.0 / 27.0);
         $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn (float $jd) => $this->getMoonLongitude($jd));
 
-        // Varjyam calculation (depends on $nakEndJd)
-        $varjyam = $this->muhurta->calculateVarjyam($relSunrise, $sunset, $nextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
+        // Varjyam (Tyajyam) can occur once or twice between sunrise and next sunrise.
+        $varjyamWindows = $this->calculateVarjyamWindows($relSunrise, $sunset, $nextSunrise, $jdSunrise, $jdNextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
+        $varjyam = $this->buildVarjyamPayload($varjyamWindows);
         $amritaKaal = $this->muhurta->calculateAmritaKaal($relSunrise, $varjyam);
 
-        // Pradosha Kaal (only on Trayodashi)
-        $pradoshaKaal = $this->muhurta->calculatePradoshaKaal($sunset, $tithiNum);
+        // Pradosha Kaal: first 1/5th of night, auspicious only when Trayodashi overlaps it.
+        $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $nextSunrise, $jdSunset, $jdNextSunrise, $tz);
 
         // Lagna calculation
         $lagna = $this->muhurta->calculateLagna(
@@ -307,7 +309,7 @@ class PanchangService
             $defaultConfig = [];
         }
 
-        return [
+        $payload = [
             'Display_Settings' => [
                 'measurement_system' => $options['measurement_system'] ?? $defaultConfig['measurement_system'] ?? 'indian_metric',
                 'date_time_format' => $options['date_time_format'] ?? $defaultConfig['date_time_format'] ?? 'indian_12h',
@@ -467,6 +469,8 @@ class PanchangService
                 'Punya_Kaal' => $punyaKaal,
             ], static fn ($v) => $v !== null),
         ];
+
+        return $this->annotateTimeOnlyFieldsWithDateTime($payload, $relSunrise, $tz);
     }
 
     /**
@@ -657,6 +661,280 @@ class PanchangService
         $sun = $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
         return AstroCore::normalize($sun + $moon);
+    }
+
+    /**
+     * Add deterministic *_iso companions for time-only fields in payload.
+     * Rule: times earlier than sunrise belong to the next civil date in Panchang-day context.
+     */
+    private function annotateTimeOnlyFieldsWithDateTime(array $payload, CarbonImmutable $sunrise, string $tz): array
+    {
+        $annotate = function (array $node) use (&$annotate, $sunrise, $tz): array {
+            foreach ($node as $key => $value) {
+                if (is_array($value)) {
+                    $node[$key] = $annotate($value);
+                    continue;
+                }
+
+                if (!is_string($value) || !$this->isTimeOnlyString($value)) {
+                    continue;
+                }
+
+                $isoKey = $key . '_iso';
+                if (array_key_exists($isoKey, $node)) {
+                    continue;
+                }
+
+                $dt = $this->resolveTimeStringToDateTime($value, $sunrise, $tz);
+                if ($dt !== null) {
+                    $node[$isoKey] = AstroCore::formatDateTime($dt);
+                }
+            }
+
+            return $node;
+        };
+
+        return $annotate($payload);
+    }
+
+    private function isTimeOnlyString(string $value): bool
+    {
+        $v = trim($value);
+        if ($v === '') {
+            return false;
+        }
+
+        // Skip values that already include a date marker.
+        if (str_contains($v, '/') || str_contains($v, '-') || str_contains($v, ',')) {
+            return false;
+        }
+
+        $v = rtrim($v, '*');
+
+        return (bool) preg_match('/^\d{1,2}:\d{2}(:\d{2})?\s?(AM|PM)?$/i', $v);
+    }
+
+    private function resolveTimeStringToDateTime(string $timeString, CarbonImmutable $sunrise, string $tz): ?CarbonImmutable
+    {
+        $raw = trim(rtrim($timeString, '*'));
+        $formats = ['h:i:s A', 'h:i A', 'H:i:s', 'H:i'];
+
+        foreach ($formats as $format) {
+            try {
+                $parsed = CarbonImmutable::createFromFormat($format, $raw, $tz);
+            } catch (Throwable $e) {
+                $parsed = false;
+            }
+
+            if ($parsed === false) {
+                continue;
+            }
+
+            $dt = $sunrise->setTime((int) $parsed->format('H'), (int) $parsed->format('i'), (int) $parsed->format('s'));
+            if ($dt->lessThan($sunrise)) {
+                $dt = $dt->addDay();
+            }
+
+            return $dt;
+        }
+
+        return null;
+    }
+
+    /**
+     * Calculate all Varjyam windows that overlap this Panchang day (sunrise -> next sunrise).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function calculateVarjyamWindows(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        float $jdSunrise,
+        float $jdNextSunrise,
+        int $nakIdxAtSunrise,
+        float $nakStartJdAtSunrise,
+        float $nakEndJdAtSunrise
+    ): array {
+        $windows = [];
+        $nakshatraSpan = 360.0 / 27.0;
+
+        $currentNakIdx = $nakIdxAtSunrise;
+        $currentNakStartJd = $nakStartJdAtSunrise;
+        $currentNakEndJd = $nakEndJdAtSunrise;
+
+        for ($i = 0; $i < 4; $i++) {
+            if ($currentNakStartJd >= $jdNextSunrise) {
+                break;
+            }
+
+            $window = $this->muhurta->calculateVarjyam(
+                $sunrise,
+                $sunset,
+                $nextSunrise,
+                $currentNakIdx,
+                $currentNakStartJd,
+                $currentNakEndJd
+            );
+
+            $windowStartJd = $window['nakshatra_start_jd'] + (($window['tyajya_ghati_start'] / 60.0) * ($window['nakshatra_end_jd'] - $window['nakshatra_start_jd']));
+            $windowEndJd = $windowStartJd + (($window['tyajya_ghati_end'] - $window['tyajya_ghati_start']) / 60.0) * ($window['nakshatra_end_jd'] - $window['nakshatra_start_jd']);
+
+            if ($windowEndJd > $jdSunrise && $windowStartJd < $jdNextSunrise) {
+                $window['window_start_jd'] = AstroCore::r9($windowStartJd);
+                $window['window_end_jd'] = AstroCore::r9($windowEndJd);
+                $windows[] = $window;
+            }
+
+            $currentNakIdx = ($currentNakIdx + 1) % 27;
+            $currentNakStartJd = $currentNakEndJd;
+            $targetAngle = (($currentNakIdx + 1) % 27) * $nakshatraSpan;
+            $currentNakEndJd = $this->findAngleCrossing(
+                $currentNakStartJd + 1e-6,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+
+            if ($currentNakEndJd <= $currentNakStartJd) {
+                break;
+            }
+        }
+
+        usort(
+            $windows,
+            static fn (array $a, array $b): int => ((float) ($a['window_start_jd'] ?? 0.0)) <=> ((float) ($b['window_start_jd'] ?? 0.0))
+        );
+
+        return $windows;
+    }
+
+    /** Backward-compatible Varjyam payload with multi-window support. */
+    private function buildVarjyamPayload(array $windows): array
+    {
+        if ($windows === []) {
+            return [
+                'is_available' => false,
+                'window_count' => 0,
+                'windows' => [],
+            ];
+        }
+
+        $primary = $windows[0];
+
+        return [
+            ...$primary,
+            'is_available' => true,
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    /** Calculate Pradosha Kaal using first 1/5th of night and Trayodashi overlap logic. */
+    private function calculatePradoshaKaal(
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        float $jdSunset,
+        float $jdNextSunrise,
+        string $tz
+    ): array {
+        $nightDurationJd = $jdNextSunrise - $jdSunset;
+        $pradoshaEndJd = $jdSunset + ($nightDurationJd / 5.0);
+
+        $trayodashiOverlaps = [];
+        $cursor = $jdSunset + 1e-7;
+
+        for ($i = 0; $i < 6 && $cursor < $pradoshaEndJd; $i++) {
+            $interval = $this->getTithiIntervalAtJd($cursor);
+            $tithiIndex = (int) ($interval['index'] ?? 0);
+            $tithiPhase = $tithiIndex > 15 ? $tithiIndex - 15 : $tithiIndex;
+
+            $overlapStartJd = max((float) $interval['start_jd'], $jdSunset);
+            $overlapEndJd = min((float) $interval['end_jd'], $pradoshaEndJd);
+
+            if ($tithiPhase === 13 && $overlapEndJd > $overlapStartJd) {
+                $trayodashiOverlaps[] = [
+                    'start_jd' => AstroCore::r9($overlapStartJd),
+                    'end_jd' => AstroCore::r9($overlapEndJd),
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($overlapStartJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($overlapEndJd, $tz)),
+                    'duration_minutes' => AstroCore::r9(($overlapEndJd - $overlapStartJd) * 1440.0),
+                ];
+            }
+
+            $nextCursor = max((float) $interval['end_jd'] + 1e-6, $cursor + 1e-5);
+            if ($nextCursor <= $cursor) {
+                break;
+            }
+            $cursor = $nextCursor;
+        }
+
+        $trayodashiDurationMinutes = AstroCore::r9(
+            array_reduce(
+                $trayodashiOverlaps,
+                static fn (float $carry, array $row): float => $carry + (float) ($row['duration_minutes'] ?? 0.0),
+                0.0
+            )
+        );
+
+        $hasTrayodashiOverlap = $trayodashiOverlaps !== [];
+        $basePradoshaDurationMinutes = AstroCore::r9(($pradoshaEndJd - $jdSunset) * 1440.0);
+        $effectiveStartJd = $hasTrayodashiOverlap
+            ? (float) min(array_column($trayodashiOverlaps, 'start_jd'))
+            : $jdSunset;
+        $effectiveEndJd = $hasTrayodashiOverlap
+            ? (float) max(array_column($trayodashiOverlaps, 'end_jd'))
+            : $pradoshaEndJd;
+        $effectiveDurationMinutes = AstroCore::r9(($effectiveEndJd - $effectiveStartJd) * 1440.0);
+
+        $baseStart = $sunset;
+        $baseEnd = $this->sunService->jdToCarbonPublic($pradoshaEndJd, $tz);
+        $effectiveStart = $this->sunService->jdToCarbonPublic($effectiveStartJd, $tz);
+        $effectiveEnd = $this->sunService->jdToCarbonPublic($effectiveEndJd, $tz);
+
+        return [
+            'pradosha_start' => AstroCore::formatTime($effectiveStart),
+            'pradosha_end' => AstroCore::formatTime($effectiveEnd),
+            'pradosha_start_iso' => AstroCore::formatDateTime($effectiveStart),
+            'pradosha_end_iso' => AstroCore::formatDateTime($effectiveEnd),
+            'sunset' => AstroCore::formatTime($sunset),
+            'duration_minutes' => $effectiveDurationMinutes,
+            'base_pradosha_start' => AstroCore::formatTime($baseStart),
+            'base_pradosha_end' => AstroCore::formatTime($baseEnd),
+            'base_pradosha_start_iso' => AstroCore::formatDateTime($baseStart),
+            'base_pradosha_end_iso' => AstroCore::formatDateTime($baseEnd),
+            'base_duration_minutes' => $basePradoshaDurationMinutes,
+            'is_trayodashi' => $hasTrayodashiOverlap,
+            'is_auspicious' => $hasTrayodashiOverlap,
+            'trayodashi_overlap_minutes' => $trayodashiDurationMinutes,
+            'trayodashi_overlaps' => $trayodashiOverlaps,
+            'significance' => $hasTrayodashiOverlap
+                ? 'Trayodashi overlaps Pradosha Kaal; this is Pradosh-observance eligible.'
+                : 'No Trayodashi overlap in Pradosha Kaal for this day.',
+        ];
+    }
+
+    /**
+     * Return precise tithi interval (start/end JD) containing given JD.
+     *
+     * @return array{index:int,start_jd:float,end_jd:float}
+     */
+    private function getTithiIntervalAtJd(float $jd): array
+    {
+        $angle = $this->getMoonSunAngle($jd);
+        $tithiIndex = (int) floor($angle / 12.0) + 1; // 1..30
+
+        $startAngle = (($tithiIndex - 1) % 30) * 12.0;
+        $endAngle = ($tithiIndex % 30) * 12.0;
+
+        $startJd = $this->findAngleCrossing($jd, $startAngle, -1, fn (float $probe): float => $this->getMoonSunAngle($probe));
+        $endJd = $this->findAngleCrossing($jd, $endAngle, 1, fn (float $probe): float => $this->getMoonSunAngle($probe));
+
+        return [
+            'index' => $tithiIndex,
+            'start_jd' => $startJd,
+            'end_jd' => $endJd,
+        ];
     }
 
     private function calcBodyAtJd(float $jd, int $planet, int $flags): float

@@ -1983,13 +1983,13 @@ class FestivalService
             // Check Hindu month match
             if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
                 $calendar = $todayDetails['Hindu_Calendar'] ?? [];
-                $amanta = (string) ($calendar['Month_Amanta'] ?? '');
-                $purnimanta = (string) ($calendar['Month_Purnimanta'] ?? '');
+                $amanta = self::normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
+                $purnimanta = self::normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
                 $monthMatch = false;
-                if (isset($rules['month_amanta']) && strcasecmp((string) $rules['month_amanta'], $amanta) === 0) {
+                if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                     $monthMatch = true;
                 }
-                if (isset($rules['month_purnimanta']) && strcasecmp((string) $rules['month_purnimanta'], $purnimanta) === 0) {
+                if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
                     $monthMatch = true;
                 }
                 if (!$monthMatch) {
@@ -2109,14 +2109,14 @@ class FestivalService
         // Check Hindu month match for tithi-based rules
         if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
             $calendar = $panchangDetails['Hindu_Calendar'] ?? [];
-            $amanta = (string) ($calendar['Month_Amanta'] ?? '');
-            $purnimanta = (string) ($calendar['Month_Purnimanta'] ?? '');
+            $amanta = self::normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
+            $purnimanta = self::normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
             $monthMatch = false;
 
-            if (isset($rules['month_amanta']) && strcasecmp((string) $rules['month_amanta'], $amanta) === 0) {
+            if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                 $monthMatch = true;
             }
-            if (isset($rules['month_purnimanta']) && strcasecmp((string) $rules['month_purnimanta'], $purnimanta) === 0) {
+            if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
                 $monthMatch = true;
             }
 
@@ -2125,8 +2125,8 @@ class FestivalService
             }
         }
 
-        // Check fixed Gregorian solar dates
-        if (($rules['type'] ?? '') === 'solar' && isset($rules['month'], $rules['day'])) {
+        // Check fixed Gregorian dates
+        if (in_array((string) ($rules['type'] ?? ''), ['fixed_date', 'solar'], true) && isset($rules['month'], $rules['day'])) {
             if ((int) $rules['month'] !== (int) $date->month || (int) $rules['day'] !== (int) $date->day) {
                 return false;
             }
@@ -2148,5 +2148,36 @@ class FestivalService
         }
 
         return true;
+    }
+
+    /** Normalize Sanskrit month names for robust matching across ASCII and diacritic forms. */
+    private static function normalizeMonthName(string $month): string
+    {
+        $month = trim($month);
+        if ($month === '') {
+            return '';
+        }
+
+        $transliterated = strtr($month, [
+            'Ā' => 'A', 'ā' => 'a',
+            'Ī' => 'I', 'ī' => 'i',
+            'Ū' => 'U', 'ū' => 'u',
+            'Ṛ' => 'R', 'ṛ' => 'r',
+            'Ṝ' => 'R', 'ṝ' => 'r',
+            'Ḷ' => 'L', 'ḷ' => 'l',
+            'Ḍ' => 'D', 'ḍ' => 'd',
+            'Ṭ' => 'T', 'ṭ' => 't',
+            'Ṅ' => 'N', 'ṅ' => 'n',
+            'Ñ' => 'N', 'ñ' => 'n',
+            'Ṇ' => 'N', 'ṇ' => 'n',
+            'Ś' => 'S', 'ś' => 's',
+            'Ṣ' => 'S', 'ṣ' => 's',
+            'Ḥ' => 'H', 'ḥ' => 'h',
+            'ṁ' => 'm', 'ṃ' => 'm',
+        ]);
+
+        $asciiOnly = preg_replace('/[^A-Za-z]/', '', $transliterated) ?? '';
+
+        return strtolower($asciiOnly);
     }
 }
