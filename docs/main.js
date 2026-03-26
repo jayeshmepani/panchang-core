@@ -40,18 +40,27 @@ function initNavigation() {
         t = document.getElementById("mobileSidebarToggle"),
         n = document.getElementById("sidebarOverlay"),
         o = document.querySelectorAll(".nav-link");
+    const isMobileQuery = window.matchMedia("(max-width: 768px)");
+
     function r() {
-        (e.classList.remove("open"),
-            n.classList.remove("active"),
-            t?.setAttribute("aria-expanded", "false"),
-            (document.body.style.overflow = ""),
-            window.innerWidth <= 768 && e.setAttribute("inert", ""),
-            t?.focus());
+        const isMobile = isMobileQuery.matches;
+        e.classList.remove("open");
+        n.classList.remove("active");
+        t?.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        if (isMobile) {
+            e.setAttribute("inert", "");
+        }
+        t?.focus();
     }
+
     function i() {
-        window.innerWidth <= 768 && !e.classList.contains("open")
-            ? e.setAttribute("inert", "")
-            : e.removeAttribute("inert");
+        const isMobile = isMobileQuery.matches;
+        if (isMobile && !e.classList.contains("open")) {
+            e.setAttribute("inert", "");
+        } else {
+            e.removeAttribute("inert");
+        }
     }
     (i(),
         window.addEventListener("resize", i, { passive: !0 }),
@@ -77,12 +86,13 @@ function initNavigation() {
                 const n = e.getAttribute("href")?.slice(1);
                 if (!n) return;
                 const i = document.getElementById(n);
-                i &&
-                    (o.forEach((e) => e.classList.remove("active")),
-                        e.classList.add("active"),
-                        i.scrollIntoView({ behavior: "smooth", block: "start" }),
-                        window.innerWidth <= 768 && r(),
-                        history.pushState(null, "", `#${n}`));
+                if (i) {
+                    o.forEach((e) => e.classList.remove("active"));
+                    e.classList.add("active");
+                    i.scrollIntoView({ behavior: "smooth", block: "start" });
+                    if (isMobileQuery.matches) r();
+                    history.pushState(null, "", `#${n}`);
+                }
             });
         }));
     const a = window.location.hash.slice(1);

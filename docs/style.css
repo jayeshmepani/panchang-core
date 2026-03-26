@@ -50,9 +50,9 @@
   :root {
     --clr-brand-300: oklch(75% .11 162);
     --clr-brand-400: oklch(69% .13 165);
-    --clr-brand-500: oklch(61.71% .141 158.3);
-    --clr-brand-600: oklch(54% .15 158);
-    --clr-brand-700: oklch(46% .14 158);
+    --clr-brand-500: oklch(46% .12 158);
+    --clr-brand-600: oklch(42% .13 158);
+    --clr-brand-700: oklch(38% .12 158);
     --bg-color: oklch(.985 .010 175);
     --bg-secondary: oklch(.970 .012 183);
     --bg-tertiary: oklch(.955 .016 190);
@@ -66,8 +66,8 @@
     --code-header-bg: oklch(.910 .026 195);
     --section-bg: oklch(.995 .004 180 / .92);
     --nav-bg: oklch(.975 .010 185 / .96);
-    --link-color: oklch(.42 .090 202);
-    --link-hover-color: oklch(.34 .080 202);
+    --link-color: oklch(42% .09 202);
+    --link-hover-color: oklch(34% .08 202);
     --accent-color: var(--clr-brand-400);
     --accent-primary: var(--clr-brand-500);
     --primary-color: var(--clr-brand-500);
@@ -114,8 +114,8 @@
     --bg-secondary: oklch(.185 .035 204);
     --bg-tertiary: oklch(.210 .040 202);
     --text-color: oklch(.930 .015 180);
-    --text-secondary: oklch(.700 .025 185);
-    --text-muted: oklch(.7 .02 190.4);
+    --text-secondary: oklch(.780 .020 185);
+    --text-muted: oklch(.780 .020 190.4);
     --border-color: oklch(.330 .050 198);
     --border-subtle: oklch(.270 .040 200);
     --code-bg: oklch(.195 .040 200);
@@ -123,11 +123,11 @@
     --code-header-bg: oklch(.170 .035 200);
     --section-bg: oklch(.215 .038 202 / .86);
     --nav-bg: oklch(.180 .032 202 / .96);
-    --link-color: oklch(.720 .110 170);
-    --link-hover-color: oklch(.790 .115 170);
-    --accent-color: oklch(.690 .130 165);
-    --accent-primary: oklch(.650 .140 158);
-    --primary-color: oklch(.690 .130 165);
+    --link-color: oklch(78% .11 170);
+    --link-hover-color: oklch(85% .115 170);
+    --accent-color: oklch(78% .11 165);
+    --accent-primary: oklch(78% .11 158);
+    --primary-color: oklch(78% .11 165);
     --shadow-color: oklch(0 0 0 / .30);
     --shadow-sm: 0 1px 4px var(--shadow-color);
     --shadow-md: 0 4px 16px var(--shadow-color);
@@ -228,6 +228,17 @@
 
     &:hover {
       color: var(--link-hover-color)
+    }
+
+    .content-wrapper & {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: color-mix(in oklch, currentColor 30%, transparent);
+
+      &:hover {
+        text-decoration-color: currentColor;
+      }
     }
   }
 
