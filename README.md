@@ -4,6 +4,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/jayeshmepani/panchang-core.svg?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/jayeshmepani/panchang-core?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![License](https://img.shields.io/github/license/jayeshmepani/panchang-core?style=flat-square)](https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE)
+[![AGPL-3.0 License](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
 
@@ -126,7 +127,7 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 ### Sūrya Siddhānta (Sage-Attributed)
 
 | Reference | Implementation |
-|-----------|----------------|
+| :--- | :--- |
 | **Sūrya Siddhānta 1.29** | Tithi calculation |
 | **Sūrya Siddhānta 8.1** | Nakṣatra calculation |
 | **Sūrya Siddhānta** | Yoga, Karana |
@@ -175,6 +176,7 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 ### Precision Guarantee
 
 All calculations use:
+
 - **IEEE 754 double precision** (53-bit significand)
 - **No intermediate rounding** (lossless calculations)
 - **Binary search convergence** (80 iterations, 1e-24 JD precision)
@@ -184,7 +186,7 @@ All calculations use:
 The core engine utilizes the Swiss Ephemeris (SwissEph) for maximum astronomical precision.
 
 | Mode | Date Range | Precision | Requirement |
-|------|------------|-----------|-------------|
+| :--- | :--- | :--- | :--- |
 | **High Precision** | 13,201 BCE to 17,191 CE | 0.001 arcsec | `.se1` Data Files |
 | **Standard (Moshier)** | 3,000 BCE to 3,000 CE | 0.1 arcsec | Built-in (Automatic) |
 
@@ -291,7 +293,7 @@ composer test
 | **Festivals** | 162 major & minor | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
-## Requirements
+## Full System Requirements
 
 ### Core Requirements
 
@@ -328,7 +330,14 @@ If you find this package helpful, consider sponsoring the development:
 
 ## 📄 License
 
-This repository is licensed under the [MIT License](LICENSE).
+This repository is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. 
+
+### Swiss Ephemeris Licensing
+This core engine utilizes the **Swiss Ephemeris**, which has a dual-licensing model:
+1.  **Open Source**: Licensed under **GNU AGPLv3**. If you use this package in an open-source project, you must also use AGPLv3.
+2.  **Commercial**: If you wish to use this package in a closed-source or commercial application, you **MUST** purchase a commercial license from [Astrodienst AG](https://www.astro.com/swisseph/swephprg.htm#licence).
+
+See the [LICENSE](LICENSE) file for the full license text.
 
 ## 🙏 Credits
 
