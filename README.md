@@ -108,15 +108,8 @@ $details = Panchang::getDayDetails(
     tz: 'Asia/Kolkata'
 );
 
-// Get festivals for a date
-$festivals = Panchang::getFestivals(
-    date: CarbonImmutable::parse('2026-03-24'),
-    lat: 23.2472446,
-    lon: 69.668339,
-    tz: 'Asia/Kolkata',
-    tradition: 'Smarta',
-    region: 'North'
-);
+// Festivals are included in day details
+$festivals = $details['Festivals'];
 ```
 
 ## Classical Texts & Sources
@@ -212,14 +205,41 @@ php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangService
 Edit `config/panchang.php`:
 ```php
 return [
-    'ephe_path' => env('PANCHANG_EPHE_PATH', ''),
+    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
     'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
     'defaults' => [
-        'tradition' => 'Smarta',
-        'region' => 'North',
+        'measurement_system' => 'indian_metric',
+        'date_time_format' => 'indian_12h',
+        'time_notation' => '12h',
+        'coordinate_format' => 'decimal',
+        'angle_unit' => 'degree',
+        'duration_format' => 'mixed',
+        'number_precision' => 16,
+    ],
+    'festivals' => [
+        'default_tradition' => 'Smarta',
+        'default_region' => 'North',
     ],
 ];
 ```
+
+### Time Output Semantics
+
+- All time-like fields now include date-qualified companions as `*_iso` (example: `varjyam_start_iso`).
+- Panchang day context is `sunrise -> next sunrise`; times earlier than sunrise are dated to the next civil date.
+- `Varjyam` supports multiple windows per day (`window_count`, `windows[]`) and keeps top-level compatibility keys.
+- `Pradosha_Kaal` is computed from night-fraction plus Trayodashi overlap and returns both base window and effective overlap window.
+
+### Raw JSON Exporter
+
+```bash
+php panchang_raw_output.php > output.json
+```
+
+This exporter writes three sections in one JSON file:
+- `festivals_2026`: all festival entries for the full year
+- `eclipses_2026_2032`: all eclipse entries for 7 years
+- `todays_complete_details`: full `getDayDetails()` payload for Bhuj (`Asia/Kolkata`)
 
 ### Standalone Configuration
 

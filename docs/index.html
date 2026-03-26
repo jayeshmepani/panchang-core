@@ -620,6 +620,15 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
               </tr>
             </tbody>
           </table>
+          <div class="info-box">
+            <h3>Timing Semantics</h3>
+            <ul>
+              <li>Time-only fields include date-qualified companion keys as <code>*_iso</code> where applicable.</li>
+              <li>Panchang day is evaluated from sunrise to next sunrise; times earlier than sunrise belong to next civil date.</li>
+              <li><code>Varjyam</code> supports multiple windows via <code>window_count</code> and <code>windows[]</code>.</li>
+              <li><code>Pradosha_Kaal</code> in day output includes base night window and Trayodashi-overlap effective window.</li>
+            </ul>
+          </div>
         </section>
         <section id="nakshatra" class="content-section">
           <h2>Nakshatra</h2>
@@ -1757,7 +1766,7 @@ echo $tithi['name']; // "Dwadashi"
 
             <div class="method">
               <h4 class="method-name">calculateVarjyam()</h4>
-              <p class="method-description">Calculate Varjyam (Tyajyam) — inauspicious period based on Nakshatra.</p>
+              <p class="method-description">Calculate one Varjyam (Tyajyam) window for a specific Nakshatra span.</p>
               <div class="method-signature">
                 <code>public function calculateVarjyam(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $nakIdx, float $nakStartJd, float $nakEndJd): array</code>
               </div>
@@ -1768,7 +1777,7 @@ echo $tithi['name']; // "Dwadashi"
                   <li><code>$nakStartJd, $nakEndJd</code>(float) — Nakshatra span boundaries.</li>
                 </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — <code>{varjyam_start, varjyam_end, duration_minutes}</code></div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Varjyam window payload for that Nakshatra. Day-level aggregation is done in <code>PanchangService</code>.</div>
             </div>
 
             <div class="method">
@@ -1788,7 +1797,7 @@ echo $tithi['name']; // "Dwadashi"
 
             <div class="method">
               <h4 class="method-name">calculatePradoshaKaal()</h4>
-              <p class="method-description">Calculate Pradosha Kaal timing on Trayodashi (13th Tithi).</p>
+              <p class="method-description">Legacy helper around sunset. Full Trayodashi-overlap Pradosha logic in day output is computed by <code>PanchangService</code>.</p>
               <div class="method-signature">
                 <code>public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array</code>
               </div>
@@ -1960,7 +1969,7 @@ echo $tithi['name']; // "Dwadashi"
               <tr>
                 <td><code>ephe_path</code></td>
                 <td>string</td>
-                <td><code>''</code></td>
+                <td><code>__DIR__ . '/../ephe'</code></td>
                 <td>Path to Swiss Ephemeris <code>.se1</code> files.</td>
               </tr>
               <tr>
@@ -1970,22 +1979,34 @@ echo $tithi['name']; // "Dwadashi"
                 <td>Default calculation system (LAHIRI, RAMAN, etc.).</td>
               </tr>
               <tr>
-                <td><code>defaults.tradition</code></td>
+                <td><code>defaults.measurement_system</code></td>
+                <td>string</td>
+                <td><code>'indian_metric'</code></td>
+                <td>Unit system for generic measurements.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.date_time_format</code></td>
+                <td>string</td>
+                <td><code>'indian_12h'</code></td>
+                <td>Date-time output format.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.time_notation</code></td>
+                <td>string</td>
+                <td><code>'12h'</code></td>
+                <td>Time output notation.</td>
+              </tr>
+              <tr>
+                <td><code>festivals.default_tradition</code></td>
                 <td>string</td>
                 <td><code>'Smarta'</code></td>
-                <td>Calculation rules (Smarta/Vaishnava).</td>
+                <td>Default tradition used for festival resolution.</td>
               </tr>
               <tr>
-                <td><code>defaults.region</code></td>
+                <td><code>festivals.default_region</code></td>
                 <td>string</td>
                 <td><code>'North'</code></td>
-                <td>Regional festival resolution rules.</td>
-              </tr>
-              <tr>
-                <td><code>time_format</code></td>
-                <td>string</td>
-                <td><code>'H:i:s'</code></td>
-                <td>PHP date format for returning times.</td>
+                <td>Default region used for festival resolution.</td>
               </tr>
             </tbody>
           </table>
@@ -2034,27 +2055,37 @@ echo $tithi['name']; // "Dwadashi"
             <h3>Methods</h3>
 
             <div class="method">
-              <h4 class="method-name">getFestivals()</h4>
-              <p class="method-description">Get all festivals for a date with specific tradition and region support.</p>
+              <h4 class="method-name">resolveFestivalsForDate()</h4>
+              <p class="method-description">Resolve all festivals for a date using today's and tomorrow's snapshot context.</p>
               <div class="method-signature">
-                <code>public function getFestivals(CarbonImmutable $date, float $lat, float $lon, string $tz, string $tradition='Smarta', string $region='North', float $elevation=0.0): array</code>
+                <code>public function resolveFestivalsForDate(CarbonImmutable $date, array $todayDetails, array $tomorrowDetails): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
                   <li><code>$date</code>(CarbonImmutable) — Target date.</li>
-                  <li><code>$lat, $lon</code>(float) — Coordinates.</li>
-                  <li><code>$tz</code>(string) — Timezone.</li>
-                  <li><code>$tradition</code>(string) — Calculation tradition.</li>
-                  <li><code>$region</code>(string) — Target region.</li>
+                  <li><code>$todayDetails</code>(array) — Festival snapshot for date.</li>
+                  <li><code>$tomorrowDetails</code>(array) — Festival snapshot for next date.</li>
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — List of festival objects with names, types, and metadata.</div>
               <div class="method-example"><strong>Example:</strong>
-                <pre><code class="language-php">$festivals = $festivalService->getFestivals(
-    date: CarbonImmutable::parse('2026-03-24'),
-    lat: 23.247,
-    lon: 69.668,
-    tz: 'Asia/Kolkata'
+                <pre><code class="language-php">$today = $panchang->getFestivalSnapshot(
+    CarbonImmutable::parse('2026-03-24'),
+    23.247,
+    69.668,
+    'Asia/Kolkata'
+);
+$tomorrow = $panchang->getFestivalSnapshot(
+    CarbonImmutable::parse('2026-03-25'),
+    23.247,
+    69.668,
+    'Asia/Kolkata'
+);
+
+$festivals = $festivalService->resolveFestivalsForDate(
+    CarbonImmutable::parse('2026-03-24'),
+    $today,
+    $tomorrow
 );
 
 foreach ($festivals as $festival) {
@@ -2200,19 +2231,17 @@ for ($day = 1; $day <= 31; $day++) {
 }</code></pre>
 
           <h3>3. Tradition-Specific Resolution</h3>
-          <pre><code class="language-php">// Smarta tradition Janmashtami
-$smarta = Panchang::getFestivals(
-    date: CarbonImmutable::parse('2026-09-06'),
-    lat: 28.61, lon: 77.20, tz: 'Asia/Kolkata',
-    tradition: 'Smarta'
-);
+          <pre><code class="language-php">// Smarta-style date resolution (date-scoped festivals)
+$smarta = Panchang::getDayDetails(
+    CarbonImmutable::parse('2026-09-06'),
+    28.61, 77.20, 'Asia/Kolkata'
+)['Festivals'];
 
-// Vaishnava tradition Janmashtami
-$vaishnava = Panchang::getFestivals(
-    date: CarbonImmutable::parse('2026-09-07'),
-    lat: 28.61, lon: 77.20, tz: 'Asia/Kolkata',
-    tradition: 'Vaishnava'
-);</code></pre>
+// Next-day festival context (for comparison)
+$vaishnava = Panchang::getDayDetails(
+    CarbonImmutable::parse('2026-09-07'),
+    28.61, 77.20, 'Asia/Kolkata'
+)['Festivals'];</code></pre>
           <h3>4. Birth Chart Basics</h3>
           <pre><code class="language-php">// Get planetary positions for a birth date
 $birthData = [
@@ -2470,8 +2499,8 @@ $details = Panchang::getDayDetails(
                   <td><code>MuhurtaService::calculateBadTimes()</code></td>
                 </tr>
                 <tr>
-                  <td>Get festivals by tradition</td>
-                  <td><code>FestivalService::getFestivals()</code></td>
+                  <td>Get resolved festivals for a date</td>
+                  <td><code>PanchangService::getDayDetails()</code> / <code>FestivalService::resolveFestivalsForDate()</code></td>
                 </tr>
                 <tr>
                   <td>Get season (Ritu)</td>
