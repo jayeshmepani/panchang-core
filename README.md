@@ -3,8 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jayeshmepani/panchang-core.svg?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![Total Downloads](https://img.shields.io/packagist/dt/jayeshmepani/panchang-core.svg?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/jayeshmepani/panchang-core?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
-[![License](https://img.shields.io/github/license/jayeshmepani/panchang-core?style=flat-square)](https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE)
-[![AGPL-3.0 License](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
 
@@ -136,34 +135,34 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 
 ### Bṛhat Parāśara Horā Śāstra (BPHS)
 
-| Reference | Implementation |
-|-----------|----------------|
-| **BPHS** | Vimśottarī Daśā System, Nakṣatra lords, Daśā years |
-| **BPHS** | Horā |
+| Reference | Implementation                                     |
+| --------- | -------------------------------------------------- |
+| **BPHS**  | Vimśottarī Daśā System, Nakṣatra lords, Daśā years |
+| **BPHS**  | Horā                                               |
 
 ### Bṛhat Saṃhitā (Varāhamihira)
 
-| Reference | Implementation |
-|-----------|----------------|
-| **Bṛhat Saṃhitā 8** | Samvatsara |
-| **Bṛhat Saṃhitā** | Ritu |
+| Reference           | Implementation |
+| ------------------- | -------------- |
+| **Bṛhat Saṃhitā 8** | Samvatsara     |
+| **Bṛhat Saṃhitā**   | Ritu           |
 
 ### Muhūrta & Kāla Nirṇaya
 
-| Text | Implementation |
-|------|----------------|
-| **Muhūrta Chintāmaṇi** | Aruṇodaya, Pradoṣa, Bhadra |
-| **Ashtānga Hṛdaya** | Brahma Muhūrta |
-| **Charaka Saṃhitā** | Muhūrta |
-| **Kāla Nirṇaya** | Choghadiya |
+| Text                  | Implementation              |
+| --------------------- | --------------------------- |
+| **Muhūrta Chintāmaṇi**| Aruṇodaya, Pradoṣa, Bhadra  |
+| **Ashtānga Hṛdaya**   | Brahma Muhūrta              |
+| **Charaka Saṃhitā**   | Muhūrta                     |
+| **Kāla Nirṇaya**      | Choghadiya                  |
 
 ### Festival Resolution
 
-| Text | Implementation |
-|------|----------------|
-| **Nirṇaya Sindhu** | Bhadra rules, Festival timing |
-| **Dharma Sindhu** | Holikā Dahan, Vṛddhi/Kṣaya |
-| **Hari Bhakti Vilāsa** | Ekādaśī |
+| Text                   | Implementation                |
+| ---------------------- | ----------------------------- |
+| **Nirṇaya Sindhu**     | Bhadra rules, Festival timing |
+| **Dharma Sindhu**      | Holikā Dahan, Vṛddhi/Kṣaya    |
+| **Hari Bhakti Vilāsa** | Ekādaśī                       |
 
 ### Modern Astronomy
 
