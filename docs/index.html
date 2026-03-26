@@ -71,25 +71,28 @@
     ]
   }
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body><a href="#main-content" class="skip-link">Skip to main content</a>
-  <div class="scroll-progress" role="progressbar" aria-hidden="true" aria-label="Reading progress"></div>
+  <div class="scroll-progress" role="progressbar" aria-label="Reading progress"></div>
   <div class="app">
     <aside class="sidebar" id="sidebar" aria-label="Site navigation">
       <div class="sidebar-header"><a href="#introduction" class="logo"
           aria-label="Panchang Core — go to introduction"><span class="logo-icon" aria-hidden="true">🕉</span><span
             class="logo-text">Panchang Core</span></a></div>
-      <div class="sidebar-search">
+      <search class="sidebar-search">
         <div class="search-input-wrap"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             aria-hidden="true">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg><input type="search" id="sidebarSearch" placeholder="Filter…" aria-label="Filter navigation"></div>
-      </div>
+      </search>
       <nav class="sidebar-nav" aria-label="Documentation sections">
         <div class="nav-section">
           <h2 class="nav-heading">Getting Started</h2>
@@ -312,6 +315,7 @@
               </svg></span></button></div>
       </header>
       <div class="content-wrapper">
+        <h1 class="sr-only">Panchang Core — Advanced Vedic Astrology Engine for PHP</h1>
         <section id="introduction" class="content-section">
           <h2>Introduction</h2>
           <p class="lead">Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision.</p>
@@ -323,11 +327,11 @@
           </div>
           <div class="features-grid">
             <div class="feature-card">
-              <h4><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M16.24 7.76l-1.8 5.42-5.42 1.8 1.8-5.42z" />
-                </svg>Complete Panchanga</h4>
+                </svg>Complete Panchanga</h3>
               <p>Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions</p>
             </div>
             <div class="feature-card">
@@ -336,21 +340,21 @@
             <p>Comprehensive library covering major and minor festivals for all regions and traditions.</p>
           </div>
             <div class="feature-card">
-              <h4><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
-                </svg>Muhūrta</h4>
+                </svg>Muhūrta</h3>
               <p>Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda</p>
             </div>
             <div class="feature-card">
-              <h4><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
                   <line x1="2" y1="12" x2="22" y2="12" />
                   <path
                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>Regional Support</h4>
+                </svg>Regional Support</h3>
               <p>Smarta, Vaishnava, North, South, Bengal, Maharashtra, Tamil traditions</p>
             </div>
           </div>
@@ -618,11 +622,11 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
             <p>Represents the 27 lunar mansions in Vedic astrology. Each nakṣatra spans 13°20' of the zodiac.</p>
           </div>
           <div class="info-box">
-            <h4><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                 <rect x="8" y="2" width="8" height="4" rx="1" />
-              </svg>Quick Usage</h4>
+              </svg>Quick Usage</h3>
             <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 
 // Get nakshatra from moon longitude
@@ -740,11 +744,11 @@ echo $range['start'] . "° - " . $range['end'] . "°\n"; // 0° - 13.333°</code
               the Sun.</p>
           </div>
           <div class="info-box">
-            <h4><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                 <rect x="8" y="2" width="8" height="4" rx="1" />
-              </svg>Quick Usage</h4>
+              </svg>Quick Usage</h3>
             <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 
 // Get tithi by index (1-30)
@@ -1044,7 +1048,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
           <h2>Core Enums</h2>
           <p class="lead">Basic enumeration types used throughout the package.</p>
           <div class="method">
-            <h4 class="method-name">Ritu (Seasons)</h4>
+            <h3 class="method-name">Ritu (Seasons)</h3>
             <p class="method-description">Represents the 6 Hindu seasons. Each ṛtu spans 2 lunar months.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1060,7 +1064,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
               season from Sun longitude</div>
           </div>
           <div class="method">
-            <h4 class="method-name">Masa (Lunar Months)</h4>
+            <h3 class="method-name">Masa (Lunar Months)</h3>
             <p class="method-description">Represents the 12 lunar months in the Hindu calendar.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1083,7 +1087,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             </div>
           </div>
           <div class="method">
-            <h4 class="method-name">Samvatsara (60-Year Cycle)</h4>
+            <h3 class="method-name">Samvatsara (60-Year Cycle)</h3>
             <p class="method-description">Represents the 60 years in the Jupiter cycle.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1100,7 +1104,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             </div>
           </div>
           <div class="method">
-            <h4 class="method-name">Rasi (Zodiac Signs)</h4>
+            <h3 class="method-name">Rasi (Zodiac Signs)</h3>
             <p class="method-description">Represents the 12 zodiac signs in Vedic astrology.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1122,7 +1126,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
               30°.</div>
           </div>
           <div class="method">
-            <h4 class="method-name">Vimshottari Dasha</h4>
+            <h3 class="method-name">Vimshottari Dasha</h3>
             <p class="method-description">Planetary periods in Vedic astrology, summing to 120 years.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1139,7 +1143,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             </div>
           </div>
           <div class="method">
-            <h4 class="method-name">Muhurta</h4>
+            <h3 class="method-name">Muhurta</h3>
             <p class="method-description">Represents the 30 divisions of a day (approx 48 minutes each).</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1159,7 +1163,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             </div>
           </div>
           <div class="method">
-            <h4 class="method-name">Choghadiya</h4>
+            <h3 class="method-name">Choghadiya</h3>
             <p class="method-description">8 day and night time divisions primarily used in North &amp; West India.</p>
             <div class="enum-cases">
               <div class="case-grid">
@@ -1176,7 +1180,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             </div>
           </div>
           <div class="method">
-            <h4 class="method-name">Hora</h4>
+            <h3 class="method-name">Hora</h3>
             <p class="method-description">24 hourly planetary divisions of a day.</p>
             <div class="enum-cases">
               <div class="case-grid">
