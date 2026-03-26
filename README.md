@@ -7,7 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
 
-This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 160+ Hindu festivals with tradition/region profiles.
+This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 162 Hindu festivals with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
@@ -16,13 +16,13 @@ This package provides **zero-tolerance, maximum precision** calculations for Ved
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Achieves **100% output parity** with reference implementations
 - ✅ Provides **zero-tolerance calculations** (IEEE 754 double precision)
-- ✅ Supports **140+ festivals** with tradition/region resolution
+- ✅ Supports **162 Hindu festivals** with tradition/region resolution
 - ✅ Works **standalone** (no Laravel required)
 
 ## Features
 
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
-- **140+ Hindu Festivals**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
+- **162 Hindu festivals**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda
 - **Time Determination**: Choghadiya, Hora, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
@@ -170,13 +170,34 @@ This package implements algorithms from **authentic Sanskrit texts** with verifi
 |--------|----------------|
 | **Swiss Ephemeris** | Vara (weekday), Ayanāṃśa, Graha Sphuṭa |
 
+- **Exact fractions** (1/60, 1/30, not decimal approximations)
+
 ### Precision Guarantee
 
 All calculations use:
 - **IEEE 754 double precision** (53-bit significand)
 - **No intermediate rounding** (lossless calculations)
 - **Binary search convergence** (80 iterations, 1e-24 JD precision)
-- **Exact fractions** (1/60, 1/30, not decimal approximations)
+
+## 🛠️ Swiss Ephemeris Technical Specs
+
+The core engine utilizes the Swiss Ephemeris (SwissEph) for maximum astronomical precision.
+
+| Mode | Date Range | Precision | Requirement |
+|------|------------|-----------|-------------|
+| **High Precision** | 13,201 BCE to 17,191 CE | 0.001 arcsec | `.se1` Data Files |
+| **Standard (Moshier)** | 3,000 BCE to 3,000 CE | 0.1 arcsec | Built-in (Automatic) |
+
+### Precision Details
+- **Planetary/Solar**: 0.001 arcsec with DE431 files.
+- **Lunar**: 3 arcsec (Moshier) / 0.001 arcsec (DE431).
+- **Asteroids**: Main asteroids covered 5401 BCE to 5399 CE.
+
+### Data File Structure (`.se1`)
+Ephemeris data is split into 600-year files:
+- **CE (AD) Dates**: Files prefixed with `sepl_` or `semo_` (e.g., `sepl_18.se1` for 1800-2400 CE).
+- **BCE (BC) Dates**: Files prefixed with `seplm` or `semom`.
+- **Asteroids**: Files prefixed with `se00` or `se0j`.
 
 ## Configuration
 
@@ -211,7 +232,7 @@ PanchangService::configure(
 );
 ```
 
-## Supported Festivals (140+)
+## Supported Festivals (162)
 
 ### Solar-Based (Saṅkrānti)
 - Makara Saṅkrānti (Jan 14)
@@ -267,7 +288,7 @@ composer test
 | **Panchanga** | Tithi, Vara, Nakṣatra, Yoga, Karaṇa | ✅ Complete |
 | **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma | ✅ Complete |
 | **Kāla Nirṇaya** | Choghadiya, Hora, Rahu Kāla, Bhadra | ✅ Complete |
-| **Festivals** | 140+ major & minor | ✅ Complete |
+| **Festivals** | 162 major & minor | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Requirements
