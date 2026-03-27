@@ -198,7 +198,9 @@ class FestivalRuleEngine
             ];
         }
 
-        if ($todayAbs + 1 === $targetAbs) {
+        // Handle transition (e.g., 30 -> 1)
+        $todayPlusOne = ($todayAbs % 30) + 1;
+        if ($todayPlusOne === $targetAbs) {
             return [
                 'start_jd' => (float) $ctxToday['tithi_end_jd'],
                 'end_jd' => (float) $ctxTomorrow['tithi_end_jd'],

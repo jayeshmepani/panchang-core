@@ -32,7 +32,7 @@ final readonly class AstroCore
         if ($val < 0) {
             $val += 360.0;
         }
-        return self::r9($val);
+        return $val;
     }
 
     /**
@@ -129,28 +129,6 @@ final readonly class AstroCore
     }
 
     /**
-     * Round a floating point number to the configured global precision.
-     * Uses `panchang.defaults.number_precision` from config if available.
-     *
-     * @param float $x Input value
-     *
-     * @return float Rounded value
-     */
-    public static function r9(float $x): float
-    {
-        $precision = 16;
-        if (function_exists('config')) {
-            try {
-                $precision = (int) config('panchang.defaults.number_precision', 16);
-            } catch (Exception $e) {
-                // Config not available (e.g. inside standalone unit tests without Laravel app container)
-                $precision = 16;
-            }
-        }
-        return round($x, $precision);
-    }
-
-    /**
      * Convert decimal degrees to DMS string.
      *
      * @param float $deg Decimal degrees
@@ -162,7 +140,7 @@ final readonly class AstroCore
         $d = (int) floor($deg);
         $m = (int) floor(($deg - $d) * 60.0);
         $s = ($deg - $d - $m / 60.0) * 3600.0;
-        return sprintf('%d° %d\' %s"', $d, $m, self::r9($s));
+        return sprintf('%d° %d\' %s"', $d, $m, $s);
     }
 
     /** Get global configuration value. */
@@ -213,7 +191,7 @@ final readonly class AstroCore
             return self::toDms($angle);
         }
 
-        return self::r9($angle);
+        return $angle;
     }
 
     /** Format coordinate according to global config (decimal vs dms). */
@@ -225,7 +203,7 @@ final readonly class AstroCore
             return self::toDms($coordinate);
         }
 
-        return self::r9($coordinate);
+        return $coordinate;
     }
 
     /** Format a duration (in minutes or hours) according to global config. */
@@ -234,9 +212,9 @@ final readonly class AstroCore
         $format = self::getConfig('panchang.defaults.duration_format', 'mixed');
 
         if ($format === 'mixed') {
-            $hours = (int) floor($minutes / 60);
-            $mins = (int) floor(fmod($minutes, 60));
-            $secs = self::r9(fmod($minutes * 60, 60));
+            $hours = (int) floor($minutes / 60.0);
+            $mins = (int) floor(fmod($minutes, 60.0));
+            $secs = fmod($minutes * 60.0, 60.0);
 
             if ($hours > 0) {
                 return sprintf('%dh %dm %ss', $hours, $mins, $secs);
@@ -245,14 +223,13 @@ final readonly class AstroCore
         }
 
         if ($format === 'hours') {
-            return self::r9($minutes / 60);
+            return $minutes / 60.0;
         }
 
         if ($format === 'seconds') {
-            return self::r9($minutes * 60);
+            return $minutes * 60.0;
         }
 
-        // Fallback to standard float output in minutes
-        return self::r9($minutes);
+        return $minutes;
     }
 }

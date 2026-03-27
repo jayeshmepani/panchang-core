@@ -16,7 +16,103 @@ use LogicException;
  */
 class FestivalService
 {
-    public const TITHI_VRATAS = [];
+    public const TITHI_VRATAS = [
+        1 => [
+            'vrata' => 'Pratipada Vrata',
+            'deity' => 'Agni',
+            'benefit' => 'Removal of physical ailments; purification of internal fire (Jatharagni)',
+            'description' => 'Auspicious for house construction and travel.',
+        ],
+        2 => [
+            'vrata' => 'Dwitiya Vrata',
+            'deity' => 'Ashwini Kumaras / Brahma',
+            'benefit' => 'Stable health and relief from chronic diseases',
+            'description' => 'Favorable for ornaments, music, and Vastu Karma.',
+        ],
+        3 => [
+            'vrata' => 'Tritiya Vrata',
+            'deity' => 'Gauri / Parvati',
+            'benefit' => 'Marital bliss (Saubhagya) and desired life partner',
+            'description' => 'Reading Gauri Kalyanam is highly recommended today.',
+        ],
+        4 => [
+            'vrata' => 'Chaturthi Vrata',
+            'deity' => 'Ganesha',
+            'benefit' => 'Removal of obstacles (Vighnaharta)',
+            'shukla_name' => 'Vinayaka Chaturthi',
+            'krishna_name' => 'Sankashti Chaturthi',
+            'gujarati_special' => 'Bol Choth (Shravan Krishna 4)',
+        ],
+        5 => [
+            'vrata' => 'Panchami Vrata',
+            'deity' => 'Naga Devatas',
+            'benefit' => 'Protection from toxins, serpents, and hidden enemies',
+            'description' => 'Lending money on this day is traditionally avoided.',
+        ],
+        6 => [
+            'vrata' => 'Shashthi Vrata',
+            'deity' => 'Kartikeya / Skanda',
+            'benefit' => 'Victory over challenges and protection of children',
+            'gujarati_special' => 'Randhan Chhath (Shravan Krishna 6)',
+        ],
+        7 => [
+            'vrata' => 'Saptami Vrata',
+            'deity' => 'Surya (Sun God)',
+            'benefit' => 'Vitality, eye health, and spiritual radiance',
+            'gujarati_special' => 'Shitala Satam (Shravan Krishna 7)',
+        ],
+        8 => [
+            'vrata' => 'Ashtami Vrata',
+            'deity' => 'Durga / Shiva (Rudra)',
+            'benefit' => 'Strength to overcome enemies and internal fear',
+            'shukla_note' => 'Durga Ashtami - Divine Shakti worship.',
+            'krishna_note' => 'Krishna Janmashtami (Shravan Krishna 8).',
+        ],
+        9 => [
+            'vrata' => 'Navami Vrata',
+            'deity' => 'Sita-Rama / Durga',
+            'benefit' => 'Victory of Dharma and divine protection',
+            'description' => 'Auspicious for Shakti Upasana and Rama Taraka Mantra.',
+        ],
+        10 => [
+            'vrata' => 'Dashami Vrata',
+            'deity' => 'Ashta Dikpalakas',
+            'benefit' => 'Success in directions and vehicle-related prosperity',
+            'description' => 'Excellent for beginning new business ventures.',
+        ],
+        11 => [
+            'vrata' => 'Ekadashi Vrata',
+            'deity' => 'Vishnu',
+            'benefit' => 'Moksha (Liberation) and extreme mental peace',
+            'description' => 'Strict fasting (Nirjala or Phalahari) to purify past karmas.',
+            'gujarati_special' => 'Gauri Vrat begins (Ashad Shukla 11).',
+        ],
+        12 => [
+            'vrata' => 'Dwadashi Vrata',
+            'deity' => 'Vishnu / Hanuman',
+            'benefit' => 'Global welfare and absolute stability',
+            'description' => 'Tulsi Puja is particularly auspicious.',
+        ],
+        13 => [
+            'vrata' => 'Trayodashi Vrata',
+            'deity' => 'Kama / Shiva (Pradosha)',
+            'benefit' => 'Marital happiness and fulfillment of worldly desires',
+            'name' => 'Pradosh Vrat (Twilight Worship)',
+        ],
+        14 => [
+            'vrata' => 'Chaturdashi Vrata',
+            'deity' => 'Shiva / Rudra',
+            'benefit' => 'Dissolution of negative habits and deep transformation',
+            'krishna_name' => 'Masik Shivaratri',
+        ],
+        15 => [
+            'vrata' => 'Purnima / Amavasya Vrata',
+            'deity' => 'Chandra (Purnima) / Pitrus (Amavasya)',
+            'purnima_benefit' => 'Emotional balance and Satyanarayan blessings',
+            'amavasya_benefit' => 'Ancestral peace and karmic balancing',
+            'gujarati_special' => 'Kokila Vrat (Ashad Purnima)',
+        ],
+    ];
 
     /**
      * Complete list of Hindu festivals with calculation rules
@@ -1098,6 +1194,28 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
+        'Goga Pancham / Goga Panchami (Nag Panchami - Gujarat)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 5,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities',
+            'deity' => 'Goga Ji / Goga Bapa',
+            'regions' => ['Gujarat'],
+        ],
+        'Shravana Somvar (Monday Fasting)' =>
+        [
+            'type' => 'weekday_in_month',
+            'weekday' => 1,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Auspicious Monday of Shravana month dedicated to Lord Shiva',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
         'Kajari Teej' =>
         [
             'type' => 'tithi',
@@ -1120,18 +1238,7 @@ class FestivalService
             'description' => 'Worship of cows and calves (Bahula Chaturthi)',
             'deity' => 'Krishna/Cows',
         ],
-        'Goga Pancham (Nag Panchami - Krishna Paksha)' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 5,
-            'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Worship of Goga Ji and Serpent Gods',
-            'deity' => 'Nagas/Goga Ji',
-        ],
-        'Randhan Chhath / Balarama Jayanti' =>
+        'Randhan Chhath / Balarama Jayanti (Hala Shashthi)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1139,10 +1246,10 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Cooking day for Sheetala Saptami / Birth of Lord Balarama (Hala Shashti)',
+            'description' => 'Gujarati Randhan Chhath and the wider Hala Shashthi / Balarama Jayanti observance on Krishna Shashthi',
             'deity' => 'Balarama',
         ],
-        'Sheetala Saptami' =>
+        'Sheetala Satam / Sheetala Saptami' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1150,7 +1257,7 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Eating cold food to honor Goddess Sheetala for protection from heat-related diseases',
+            'description' => 'Sheetala Mata observance, known in Gujarat as Sheetala Satam, marked by cold-food offerings and prayers for health',
             'deity' => 'Sheetala Mata',
             'fasting' => true,
         ],
@@ -1169,7 +1276,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'last',
         ],
-        'Hartalika Teej' =>
+        'Hartalika Teej / Kevada Trij' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1177,7 +1284,7 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Monsoon festival observed by women',
+            'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
         ],
         'Varaha Jayanti' =>
@@ -1190,17 +1297,6 @@ class FestivalService
             'month_purnimanta' => 'Bhadrapada',
             'description' => 'Appearance day of Lord Varaha (Boar Avatar)',
             'deity' => 'Vishnu/Varaha',
-        ],
-        'Kevada Trij' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 3,
-            'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Gujarat version of Hartalika Teej (worship with Kevada flowers)',
-            'deity' => 'Shiva/Parvati',
         ],
         'Ganesh Chaturthi' =>
         [
@@ -1359,7 +1455,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Sharad Purnima / Gunatitanand Swami Jayanti' =>
+        'Sharad Purnima / Manekthari Punam / Gunatitanand Swami Jayanti' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1367,7 +1463,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
-            'description' => 'Kojagari Purnima / Birth of Gunatitanand Swami',
+            'description' => 'Sharad Purnima, known in Gujarat as Manekthari Punam, and the birth anniversary of Gunatitanand Swami',
             'deity' => 'Lakshmi/Krishna/Swaminarayan',
             'karmakala_type' => 'nishitha',
         ],
@@ -1381,17 +1477,6 @@ class FestivalService
             'month_purnimanta' => 'Ashvina',
             'description' => 'Birth anniversary of Sage Valmiki',
             'deity' => 'Valmiki',
-        ],
-        'Manekthari Punam' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
-            'description' => 'Sharad Purnima celebrated at Dakor and other shrines',
-            'deity' => 'Krishna/Ranchhodraoji',
         ],
         'Rama Ekadashi' =>
         [
@@ -1939,6 +2024,26 @@ class FestivalService
             'deity' => 'Lakshmi',
             'fasting' => true,
         ],
+        'Padmini Ekadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'description' => 'Special Ekadashi occurring ONLY during Adhik Maas',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'adhika_only' => true,
+        ],
+        'Parama Ekadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 11,
+            'description' => 'Special Ekadashi occurring ONLY during Adhik Maas Krishna Paksha',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'adhika_only' => true,
+        ],
     ];
 
     /** Month name mapping */
@@ -1978,6 +2083,23 @@ class FestivalService
         $paksha = $tithi['paksha'] ?? 'Shukla';
 
         foreach (self::FESTIVALS as $name => $rules) {
+            $calendar = $todayDetails['Hindu_Calendar'] ?? [];
+            $isAdhika = (bool) ($calendar['Is_Adhika'] ?? false);
+
+            // Adhik Maas filtering logic
+            $adhikaAllowed = (bool) ($rules['allow_adhika'] ?? false);
+            $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
+
+            if ($isAdhika) {
+                if (!$adhikaAllowed && !$adhikaOnly) {
+                    continue; // Skip standard festivals during Adhik Maas
+                }
+            } else {
+                if ($adhikaOnly) {
+                    continue; // Skip Adhik-only festivals during normal months
+                }
+            }
+
             $isClassical = self::usesClassicalResolver($rules);
 
             // Check Hindu month match
@@ -2147,6 +2269,29 @@ class FestivalService
             }
         }
 
+        // Check weekday_in_month (e.g., Shravan Somvar)
+        if (($rules['type'] ?? '') === 'weekday_in_month' && isset($rules['weekday'])) {
+            $varaIdx = $panchangDetails['Vara']['index'] ?? null;
+            if ($varaIdx === null || (int) $rules['weekday'] !== $varaIdx) {
+                return false;
+            }
+
+            $amanta = self::normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Amanta'] ?? ''));
+            $purnimanta = self::normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Purnimanta'] ?? ''));
+            $monthMatch = false;
+
+            if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
+                $monthMatch = true;
+            }
+            if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
+                $monthMatch = true;
+            }
+
+            if (!$monthMatch) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -2162,16 +2307,16 @@ class FestivalService
             'Ā' => 'A', 'ā' => 'a',
             'Ī' => 'I', 'ī' => 'i',
             'Ū' => 'U', 'ū' => 'u',
-            'Ṛ' => 'R', 'ṛ' => 'r',
-            'Ṝ' => 'R', 'ṝ' => 'r',
-            'Ḷ' => 'L', 'ḷ' => 'l',
+            'Ṛ' => 'Ri', 'ṛ' => 'ri',
+            'Ṝ' => 'Ri', 'ṝ' => 'ri',
+            'Ḷ' => 'Li', 'ḷ' => 'li',
             'Ḍ' => 'D', 'ḍ' => 'd',
             'Ṭ' => 'T', 'ṭ' => 't',
             'Ṅ' => 'N', 'ṅ' => 'n',
             'Ñ' => 'N', 'ñ' => 'n',
             'Ṇ' => 'N', 'ṇ' => 'n',
-            'Ś' => 'S', 'ś' => 's',
-            'Ṣ' => 'S', 'ṣ' => 's',
+            'Ś' => 'Sh', 'ś' => 'sh',
+            'Ṣ' => 'Sh', 'ṣ' => 'sh',
             'Ḥ' => 'H', 'ḥ' => 'h',
             'ṁ' => 'm', 'ṃ' => 'm',
         ]);

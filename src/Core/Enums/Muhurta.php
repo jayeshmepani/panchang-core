@@ -85,27 +85,4 @@ enum Muhurta: int
         return self::from($index);
     }
 
-    /**
-     * Get Abhijit Muhurta (special muhurta).
-     *
-     * @param float $jdSunrise Sunrise Julian Day
-     * @param float $jdSunset Sunset Julian Day
-     *
-     * @return array{start_jd: float, end_jd: float, duration_minutes: float}
-     */
-    public static function getAbhijit(float $jdSunrise, float $jdSunset): array
-    {
-        $dayDuration = $jdSunset - $jdSunrise;
-        $muhurtaDuration = $dayDuration / 15.0;
-
-        // Abhijit is the 8th muhurta
-        $start = $jdSunrise + (7 * $muhurtaDuration);
-        $end = $start + $muhurtaDuration;
-
-        return [
-            'start_jd' => $start,
-            'end_jd' => $end,
-            'duration_minutes' => ($muhurtaDuration * 1440.0),
-        ];
-    }
 }

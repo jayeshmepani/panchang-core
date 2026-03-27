@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use SwissEph\FFI\SwissEphFFI;
 
@@ -19,15 +20,13 @@ use SwissEph\FFI\SwissEphFFI;
  */
 class AstronomyService
 {
-    private static string $ephePath = '';
+    use ConfiguresEphemeris;
+
     private static string $ayanamsa = 'LAHIRI';
 
     public function __construct(private SwissEphFFI $sweph)
     {
-        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
-        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
-            $this->sweph->swe_set_ephe_path($ephePath);
-        }
+        $this->initializeEphemerisPath($this->sweph);
     }
 
     /**
@@ -38,7 +37,7 @@ class AstronomyService
      */
     public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
     {
-        self::$ephePath = $ephePath;
+        self::setEphemerisPath($ephePath);
         self::$ayanamsa = $ayanamsaMode;
     }
 
@@ -124,7 +123,7 @@ class AstronomyService
 
         // Ensure all planet longitudes use configured precision
         foreach ($out as $name => $lon) {
-            $out[$name] = AstroCore::r9($lon);
+            $out[$name] = $lon;
         }
 
         return $out;
@@ -149,12 +148,12 @@ class AstronomyService
             $ascmc
         );
 
-        return AstroCore::r9(AstroCore::normalize($ascmc[0] - $ayanamsa));
+        return AstroCore::normalize($ascmc[0] - $ayanamsa);
     }
 
     public function getAyanamsa(float $jd): float
     {
         $this->setAyanamsa($jd);
-        return AstroCore::r9($this->sweph->swe_get_ayanamsa_ut($jd));
+        return $this->sweph->swe_get_ayanamsa_ut($jd);
     }
 }

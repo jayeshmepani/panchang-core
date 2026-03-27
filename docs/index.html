@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 162 Hindu festivals, 30 Muhurtas, sub-second astronomical accuracy.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 163 festival definitions, 30 Muhurtas, sub-second astronomical accuracy.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -342,8 +342,8 @@
             </div>
             <div class="feature-card">
             <div class="feature-icon">🕉</div>
-            <h3>162 Hindu Festivals</h3>
-            <p>Comprehensive library covering major and minor festivals for all regions and traditions.</p>
+            <h3>163 Festival Definitions</h3>
+            <p>Comprehensive library of festival definitions covering major and minor observances for all regions and traditions.</p>
           </div>
             <div class="feature-card">
               <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -585,12 +585,6 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
                 <td>How lengths of time are formatted.</td>
                 <td><code>mixed</code>: "1h 30m 0s"<br><code>minutes</code>: 90.0<br><code>seconds</code>:
                   5400.0<br><code>hours</code>: 1.5 </td>
-              </tr>
-              <tr>
-                <td><code>number_precision</code></td>
-                <td>Decimal points for all floating-point and angular outputs. Maximum accuracy guaranteed via IEEE 754.
-                </td>
-                <td>Integer (Default: <code>16</code>)</td>
               </tr>
             </tbody>
           </table>
@@ -1223,7 +1217,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
 
             <div class="method">
               <h4 class="method-name">getDayDetails()</h4>
-              <p class="method-description">Returns complete Panchanga details for a given date and location. Includes Tithi, Nakshatra, Yoga, Karana, Muhurta, Choghadiya, Hora, and festival data.</p>
+              <p class="method-description">Returns complete Panchanga details for a given date and location. Includes Tithi, Nakshatra, Yoga, Karana, Muhurta, Choghadiya, Hora, festival data, Bhadra windows, Dharma Sindhu windows, and expanded Hindu calendar metadata.</p>
               <div class="method-signature">
                 <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $ayanamsaAt=null, array $options=[]): array</code>
               </div>
@@ -1236,7 +1230,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>$ayanamsaAt</code>(CarbonImmutable, optional) — Custom ayanamsa calculation time<br>
                 <code>$options</code>(array, optional) — Additional options
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data with keys: Tithi, Nakshatra, Yoga, Karana, Vara, Muhurta, Choghadiya, Hora, Festivals, etc.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data including keys such as <code>Tithi</code>, <code>Nakshatra</code>, <code>Yoga</code>, <code>Karana</code>, <code>Vara</code>, <code>Hora</code>, <code>Chogadiya</code>, <code>Bhadra</code>, <code>Dharma_Sindhu</code>, <code>Varjyam</code>, <code>Pradosha_Kaal</code>, and <code>Hindu_Calendar</code> with <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, and <code>Amanta_Index</code>.</div>
             </div>
 
             <div class="method">
@@ -1253,6 +1247,16 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>$elevation</code>(float, optional) — Elevation in meters
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Festival data and minimal panchanga elements.</div>
+            </div>
+
+            <div class="info-box">
+              <h3>Output Notes</h3>
+              <ul>
+                <li><code>Hindu_Calendar</code> in service output includes <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, and <code>Amanta_Index</code>.</li>
+                <li>Service-level month resolution uses exact solar transit boundaries between amavasyas for final day output.</li>
+                <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no applicable window exists for that Panchang day.</li>
+                <li>The verified festival catalog currently contains <code>163</code> definitions after merging true alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
+              </ul>
             </div>
 
             <div class="method">
@@ -1542,6 +1546,10 @@ echo $tithi['name']; // "Dwadashi"
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — <code>{Amanta, Purnimanta, Amanta_Index, Purnimanta_Index}</code></div>
+            </div>
+
+            <div class="info-box">
+              <p><strong>Note:</strong> This method documents the simpler <code>PanchangaEngine</code> month helper. Final <code>PanchangService</code> day output uses a stricter true-month resolution based on exact amavasya and sankranti boundaries, and therefore also exposes flags such as <code>Is_Adhika</code> and <code>Is_Kshaya</code>.</p>
             </div>
 
             <div class="method">
@@ -1935,20 +1943,6 @@ echo $tithi['name']; // "Dwadashi"
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>string</code> — Formatted duration.</div>
-            </div>
-
-            <div class="method">
-              <h4 class="method-name">r9()</h4>
-              <p class="method-description">Round value to high precision (9 decimal places) for consistency.</p>
-              <div class="method-signature">
-                <code>public static function r9(float $value): float</code>
-              </div>
-              <div class="method-params"><strong>Parameters:</strong>
-                <ul>
-                  <li><code>$value</code>(float) — Decimal value.</li>
-                </ul>
-              </div>
-              <div class="method-returns"><strong>Returns:</strong><code>float</code> — Rounded value.</div>
             </div>
           </div>
         </section>

@@ -87,7 +87,8 @@ class PanchangServiceProvider extends ServiceProvider
                 $app->make(AstronomyService::class),
                 $app->make(PanchangaEngine::class),
                 $app->make(MuhurtaService::class),
-                $app->make(FestivalService::class)
+                $app->make(FestivalService::class),
+                $app->make(BhadraEngine::class)
             );
         });
 

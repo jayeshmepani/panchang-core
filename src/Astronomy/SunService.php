@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use SwissEph\FFI\SwissEphFFI;
 
 class SunService
 {
-    private static string $ephePath = '';
+    use ConfiguresEphemeris;
 
     public function __construct(private SwissEphFFI $sweph)
     {
-        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
-        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
-            $this->sweph->swe_set_ephe_path($ephePath);
-        }
+        $this->initializeEphemerisPath($this->sweph);
     }
 
     /**
@@ -27,7 +25,7 @@ class SunService
      */
     public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
     {
-        self::$ephePath = $ephePath;
+        self::setEphemerisPath($ephePath);
     }
 
     /** Get sunrise and sunset as timezone-aware Carbon instances. */
@@ -46,40 +44,9 @@ class SunService
         $geopos[1] = (float) $birth['latitude'];
         $geopos[2] = (float) ($birth['elevation'] ?? 0.0);
 
-        $trise = $this->sweph->getFFI()->new('double[1]');
-        $tset = $this->sweph->getFFI()->new('double[1]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_SUN,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_RISE,
-            $geopos,
-            1013.25,
-            15.0,
-            $trise,
-            $serr
-        );
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_SUN,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_SET,
-            $geopos,
-            1013.25,
-            15.0,
-            $tset,
-            $serr
-        );
-
         $tz = $birth['timezone'];
-
-        $sunrise = $this->jdToCarbon($trise[0], $tz);
-        $sunset = $this->jdToCarbon($tset[0], $tz);
+        $sunrise = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_RISE, $tz);
+        $sunset = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_SET, $tz);
 
         return [$sunrise, $sunset];
     }
@@ -93,36 +60,8 @@ class SunService
         );
 
         $geopos = $this->newGeoPos($birth);
-        $tret = $this->sweph->getFFI()->new('double[1]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_MOON,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_RISE,
-            $geopos,
-            1013.25,
-            15.0,
-            $tret,
-            $serr
-        );
-        $moonrise = $this->jdToCarbon($tret[0], $birth['timezone']);
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_MOON,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_SET,
-            $geopos,
-            1013.25,
-            15.0,
-            $tret,
-            $serr
-        );
-        $moonset = $this->jdToCarbon($tret[0], $birth['timezone']);
+        $moonrise = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_MOON, SwissEphFFI::SE_CALC_RISE, $birth['timezone']);
+        $moonset = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_MOON, SwissEphFFI::SE_CALC_SET, $birth['timezone']);
 
         return [$moonrise, $moonset];
     }
@@ -150,36 +89,8 @@ class SunService
         );
         $geopos = $this->newGeoPos($birth);
 
-        $tret = $this->sweph->getFFI()->new('double[1]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_SUN,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_MTRANSIT,
-            $geopos,
-            1013.25,
-            15.0,
-            $tret,
-            $serr
-        );
-        $solarNoon = $this->jdToCarbon($tret[0], $birth['timezone']);
-
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_SUN,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_ITRANSIT,
-            $geopos,
-            1013.25,
-            15.0,
-            $tret,
-            $serr
-        );
-        $solarMidnight = $this->jdToCarbon($tret[0], $birth['timezone']);
+        $solarNoon = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_MTRANSIT, $birth['timezone']);
+        $solarMidnight = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_ITRANSIT, $birth['timezone']);
 
         return [
             'solar_noon' => $solarNoon,
@@ -256,38 +167,31 @@ class SunService
         );
         $geopos = $this->newGeoPos($birth);
 
+        $rise = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_RISE | $twilightFlag, $birth['timezone']);
+        $set = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_SET | $twilightFlag, $birth['timezone']);
+
+        return ['dawn' => $rise, 'dusk' => $set];
+    }
+
+    private function runRiseTransit(float $jd, object $geopos, int $body, int $eventFlag, string $timezone): CarbonImmutable
+    {
         $tret = $this->sweph->getFFI()->new('double[1]');
         $serr = $this->sweph->getFFI()->new('char[256]');
 
         $this->sweph->swe_rise_trans(
             $jd,
-            SwissEphFFI::SE_SUN,
+            $body,
             '',
             SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_RISE | $twilightFlag,
+            $eventFlag,
             $geopos,
             1013.25,
             15.0,
             $tret,
             $serr
         );
-        $rise = $this->jdToCarbon($tret[0], $birth['timezone']);
 
-        $this->sweph->swe_rise_trans(
-            $jd,
-            SwissEphFFI::SE_SUN,
-            '',
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_CALC_SET | $twilightFlag,
-            $geopos,
-            1013.25,
-            15.0,
-            $tret,
-            $serr
-        );
-        $set = $this->jdToCarbon($tret[0], $birth['timezone']);
-
-        return ['dawn' => $rise, 'dusk' => $set];
+        return $this->jdToCarbon($tret[0], $timezone);
     }
 
     private function newGeoPos(array $birth)

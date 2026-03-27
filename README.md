@@ -7,7 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
 
-This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 162 Hindu festivals with tradition/region profiles.
+This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 163 festival definitions with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
@@ -16,13 +16,13 @@ This package provides **zero-tolerance, maximum precision** calculations for Ved
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Achieves **100% output parity** with reference implementations
 - ✅ Provides **zero-tolerance calculations** (IEEE 754 double precision)
-- ✅ Supports **162 Hindu festivals** with tradition/region resolution
+- ✅ Supports **163 festival definitions** with tradition/region resolution
 - ✅ Works **standalone** (no Laravel required)
 
 ## Features
 
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
-- **162 Hindu festivals**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
+- **163 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda
 - **Time Determination**: Choghadiya, Hora, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
@@ -214,7 +214,6 @@ return [
         'coordinate_format' => 'decimal',
         'angle_unit' => 'degree',
         'duration_format' => 'mixed',
-        'number_precision' => 16,
     ],
     'festivals' => [
         'default_tradition' => 'Smarta',
@@ -230,6 +229,17 @@ return [
 - `Varjyam` supports multiple windows per day (`window_count`, `windows[]`) and keeps top-level compatibility keys.
 - `Pradosha_Kaal` is computed from night-fraction plus Trayodashi overlap and returns both base window and effective overlap window.
 
+### Hindu Calendar Output
+
+- `getDayDetails()` and `getFestivalSnapshot()` now expose a richer `Hindu_Calendar` block.
+- Returned keys include:
+  - `Month_Amanta`
+  - `Month_Purnimanta`
+  - `Is_Adhika`
+  - `Is_Kshaya`
+  - `Amanta_Index`
+- `PanchangService` resolves month names using exact amavasya-to-amavasya solar transit logic, so final month output can differ from simpler longitude-only month heuristics.
+
 ### Raw JSON Exporter
 
 ```bash
@@ -240,6 +250,16 @@ This exporter writes three sections in one JSON file:
 - `festivals_2026`: all festival entries for the full year
 - `eclipses_2026_2032`: all eclipse entries for 7 years
 - `todays_complete_details`: full `getDayDetails()` payload for Bhuj (`Asia/Kolkata`)
+
+Notes:
+- `todays_complete_details` is intentionally date-sensitive and changes based on the day the script is run.
+- Empty arrays such as `Bhadra: []` or `Dharma_Sindhu: []` are valid outputs when no matching window exists for that Panchang day.
+
+### Festival Catalog Notes
+
+- The canonical source of truth is `FestivalService::FESTIVALS`.
+- The current verified catalog contains `163` festival definitions after merging true alias/variant duplicates.
+- Festivals that legitimately share the same tithi or civil date remain separate entries when they represent different observances.
 
 ### Standalone Configuration
 
@@ -253,7 +273,7 @@ PanchangService::configure(
 );
 ```
 
-## Supported Festivals (162)
+## Supported Festival Definitions (163)
 
 ### Solar-Based (Saṅkrānti)
 - Makara Saṅkrānti (Jan 14)
@@ -309,7 +329,7 @@ composer test
 | **Panchanga** | Tithi, Vara, Nakṣatra, Yoga, Karaṇa | ✅ Complete |
 | **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma | ✅ Complete |
 | **Kāla Nirṇaya** | Choghadiya, Hora, Rahu Kāla, Bhadra | ✅ Complete |
-| **Festivals** | 162 major & minor | ✅ Complete |
+| **Festivals** | 163 festival definitions | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Full System Requirements

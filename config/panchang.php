@@ -51,9 +51,6 @@ return [
 
         // 'mixed' (e.g. '1h 30m 0s'), 'minutes' (90), 'seconds' (5400), 'hours' (1.5)
         'duration_format' => 'mixed',
-
-        // Integer specifying the number of decimal points (default 16 for double precision)
-        'number_precision' => 16,
     ],
 
     /*

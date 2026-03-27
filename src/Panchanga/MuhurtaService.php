@@ -13,6 +13,38 @@ use SwissEph\FFI\SwissEphFFI;
 
 class MuhurtaService
 {
+    private const CHOGADIYA_DAY_SEQUENCES = [
+        0 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
+        1 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
+        2 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
+        3 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
+        4 => ['Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh'],
+        5 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
+        6 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
+    ];
+
+    private const CHOGADIYA_NIGHT_SEQUENCES = [
+        0 => ['Shubh', 'Amrit', 'Chal', 'Labh', 'Udveg', 'Shubh', 'Amrit', 'Chal'],
+        1 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
+        2 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
+        3 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
+        4 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
+        5 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
+        6 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
+    ];
+
+    private const AUSPICIOUS_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
+    private const DAY_MUHURTA_NAMES = [
+        'Rudra', 'Sarpa', 'Mitra', 'Pitri', 'Vasu',
+        'Vara', 'Vishvedeva', 'Vidhi', 'Brahma', 'Indra',
+        'Indragni', 'Daitya', 'Varuna', 'Aryaman', 'Bhaga',
+    ];
+    private const NIGHT_MUHURTA_NAMES = [
+        'Ishvara', 'Ajapada', 'Ahirbudhnya', 'Pushya', 'Nasatya',
+        'Yama', 'Vahni', 'Dhala', 'Shashi', 'Aditya',
+        'Guru', 'Acyuta', 'Arka', 'Tvashta', 'Vayu',
+    ];
+
     private array $horaPlanetsOrder = ['Sun', 'Venus', 'Mercury', 'Moon', 'Saturn', 'Jupiter', 'Mars'];
     private array $weekPlanets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
@@ -53,7 +85,7 @@ class MuhurtaService
             'hora_number' => $baseOffset + $horaIdx,
             'is_day_hora' => $isDay,
             'ruler' => $currentRuler,
-            'hora_duration_seconds' => AstroCore::r9($horaDuration),
+            'hora_duration_seconds' => $horaDuration,
             'hora_duration_minutes' => AstroCore::formatDuration($horaDuration / 60.0),
         ];
     }
@@ -83,34 +115,14 @@ class MuhurtaService
             $divIdx = 7;
         }
 
-        $daySeq = [
-            0 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
-            1 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
-            2 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
-            3 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            4 => ['Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh'],
-            5 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            6 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
-        ];
-
-        $nightSeq = [
-            0 => ['Shubh', 'Amrit', 'Chal', 'Labh', 'Udveg', 'Shubh', 'Amrit', 'Chal'],
-            1 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            2 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
-            3 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
-            4 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
-            5 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
-            6 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-        ];
-
-        $seq = ($isDay ? $daySeq : $nightSeq)[$varaIdx] ?? $daySeq[0];
+        $seq = $this->getChogadiyaPattern($varaIdx, $isDay);
         $name = $seq[$divIdx];
 
         return [
             'mode' => $mode,
             'division' => $divIdx + 1,
             'name' => $name,
-            'is_auspicious' => in_array($name, ['Amrit', 'Shubh', 'Labh'], true),
+            'is_auspicious' => $this->isAuspiciousChogadiya($name),
             'division_duration_minutes' => AstroCore::formatDuration($divDuration / 60.0),
         ];
     }
@@ -180,23 +192,11 @@ class MuhurtaService
             } else {
                 $start = $this->addFloatSeconds($sunset, ($i - 12) * $duration);
             }
-            $end = $this->addFloatSeconds($start, $duration);
-
-            // Check if time is after midnight
-            $isAfterMidnight = $start->format('H:i:s') < $sunrise->format('H:i:s');
-            $startStr = $start->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-            $endStr = $end->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-
-            $rows[] = [
+            $rows[] = $this->buildTimedRow($start, $duration, [
                 'hora_number' => $i + 1,
                 'is_day_hora' => $isDayHora,
                 'ruler' => $this->horaPlanetsOrder[($startIdx + $i) % 7],
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => AstroCore::r9($duration),
-            ];
+            ]);
         }
 
         return $rows;
@@ -208,75 +208,34 @@ class MuhurtaService
         CarbonImmutable $nextSunrise,
         int $varaIdx
     ): array {
-        $daySeq = [
-            0 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
-            1 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
-            2 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
-            3 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            4 => ['Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh'],
-            5 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            6 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
-        ];
-        $nightSeq = [
-            0 => ['Shubh', 'Amrit', 'Chal', 'Labh', 'Udveg', 'Shubh', 'Amrit', 'Chal'],
-            1 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-            2 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
-            3 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
-            4 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
-            5 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
-            6 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
-        ];
-
         $rows = [];
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 8.0;
         $nightDuration = ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0;
-        $dayPattern = $daySeq[$varaIdx] ?? $daySeq[0];
-        $nightPattern = $nightSeq[$varaIdx] ?? $nightSeq[0];
+        $dayPattern = $this->getChogadiyaPattern($varaIdx, true);
+        $nightPattern = $this->getChogadiyaPattern($varaIdx, false);
 
         for ($i = 0; $i < 8; $i++) {
             $start = $this->addFloatSeconds($sunrise, $i * $dayDuration);
-            $end = $this->addFloatSeconds($start, $dayDuration);
             $name = $dayPattern[$i];
 
-            // Check if time is after midnight
-            $isAfterMidnight = $start->format('H:i:s') < $sunrise->format('H:i:s');
-            $startStr = $start->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-            $endStr = $end->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-
-            $rows[] = [
+            $rows[] = $this->buildTimedRow($start, $dayDuration, [
                 'mode' => 'Day',
                 'division' => $i + 1,
                 'name' => $name,
-                'is_auspicious' => in_array($name, ['Amrit', 'Shubh', 'Labh'], true),
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => AstroCore::r9($dayDuration),
-            ];
+                'is_auspicious' => $this->isAuspiciousChogadiya($name),
+            ]);
         }
 
         for ($i = 0; $i < 8; $i++) {
             $start = $this->addFloatSeconds($sunset, $i * $nightDuration);
-            $end = $this->addFloatSeconds($start, $nightDuration);
             $name = $nightPattern[$i];
 
-            // Check if time is after midnight
-            $isAfterMidnight = $start->format('H:i:s') < $sunrise->format('H:i:s');
-            $startStr = $start->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-            $endStr = $end->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-
-            $rows[] = [
+            $rows[] = $this->buildTimedRow($start, $nightDuration, [
                 'mode' => 'Night',
                 'division' => $i + 1,
                 'name' => $name,
-                'is_auspicious' => in_array($name, ['Amrit', 'Shubh', 'Labh'], true),
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => AstroCore::r9($nightDuration),
-            ];
+                'is_auspicious' => $this->isAuspiciousChogadiya($name),
+            ]);
         }
 
         return $rows;
@@ -290,58 +249,23 @@ class MuhurtaService
         $rows = [];
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 15.0;
         $nightDuration = ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 15.0;
-        // Brihat Samhita Appendix 9 (30 Muhurtas: 15 day + 15 night).
-        $dayMuhurtaNames = [
-            'Rudra', 'Sarpa', 'Mitra', 'Pitri', 'Vasu',
-            'Vara', 'Vishvedeva', 'Vidhi', 'Brahma', 'Indra',
-            'Indragni', 'Daitya', 'Varuna', 'Aryaman', 'Bhaga',
-        ];
-        $nightMuhurtaNames = [
-            'Ishvara', 'Ajapada', 'Ahirbudhnya', 'Pushya', 'Nasatya',
-            'Yama', 'Vahni', 'Dhala', 'Shashi', 'Aditya',
-            'Guru', 'Acyuta', 'Arka', 'Tvashta', 'Vayu',
-        ];
 
         for ($i = 0; $i < 15; $i++) {
             $start = $this->addFloatSeconds($sunrise, $i * $dayDuration);
-            $end = $this->addFloatSeconds($start, $dayDuration);
-
-            // Check if time is after midnight
-            $isAfterMidnight = $start->format('H:i:s') < $sunrise->format('H:i:s');
-            $startStr = $start->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-            $endStr = $end->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-
-            $rows[] = [
+            $rows[] = $this->buildTimedRow($start, $dayDuration, [
                 'period' => 'Day',
                 'muhurta_number' => $i + 1,
-                'name' => $dayMuhurtaNames[$i],
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => AstroCore::r9($dayDuration),
-            ];
+                'name' => self::DAY_MUHURTA_NAMES[$i],
+            ]);
         }
 
         for ($i = 0; $i < 15; $i++) {
             $start = $this->addFloatSeconds($sunset, $i * $nightDuration);
-            $end = $this->addFloatSeconds($start, $nightDuration);
-
-            // Check if time is after midnight
-            $isAfterMidnight = $start->format('H:i:s') < $sunrise->format('H:i:s');
-            $startStr = $start->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-            $endStr = $end->format('H:i:s') . ($isAfterMidnight ? '*' : '');
-
-            $rows[] = [
+            $rows[] = $this->buildTimedRow($start, $nightDuration, [
                 'period' => 'Night',
                 'muhurta_number' => $i + 1,
-                'name' => $nightMuhurtaNames[$i],
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => AstroCore::r9($nightDuration),
-            ];
+                'name' => self::NIGHT_MUHURTA_NAMES[$i],
+            ]);
         }
 
         return $rows;
@@ -388,8 +312,8 @@ class MuhurtaService
                 'sanskrit_name' => explode(' ', $dayNames[$i])[0],
                 'start' => AstroCore::formatTime($start),
                 'end' => AstroCore::formatTime($end),
-                'duration_seconds' => AstroCore::r9($dayPraharaDuration),
-                'duration_hours' => AstroCore::r9($dayPraharaDuration / 3600.0),
+                'duration_seconds' => $dayPraharaDuration,
+                'duration_hours' => $dayPraharaDuration / 3600.0,
             ];
         }
 
@@ -404,8 +328,8 @@ class MuhurtaService
                 'sanskrit_name' => explode(' ', $nightNames[$i])[0],
                 'start' => AstroCore::formatTime($start),
                 'end' => AstroCore::formatTime($end),
-                'duration_seconds' => AstroCore::r9($nightPraharaDuration),
-                'duration_hours' => AstroCore::r9($nightPraharaDuration / 3600.0),
+                'duration_seconds' => $nightPraharaDuration,
+                'duration_hours' => $nightPraharaDuration / 3600.0,
             ];
         }
 
@@ -428,8 +352,8 @@ class MuhurtaService
             'source' => 'Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92',
             'brahma_muhurta_start' => AstroCore::formatTime($brahmaStart),
             'brahma_muhurta_end' => AstroCore::formatTime($brahmaEnd),
-            'duration_minutes' => AstroCore::r9(48.0),
-            'duration_seconds' => AstroCore::r9($muhurtaSeconds),
+            'duration_minutes' => 48.0,
+            'duration_seconds' => $muhurtaSeconds,
             'significance' => 'Most auspicious time for meditation, study, and spiritual practices. Sattvik period filled with purity, calmness, and clarity.',
         ];
     }
@@ -472,7 +396,7 @@ class MuhurtaService
                 'name' => $name,
                 'start' => $row['start'],
                 'end' => $row['end'],
-                'duration_seconds' => AstroCore::r9($row['duration_seconds']),
+                'duration_seconds' => $row['duration_seconds'],
                 'is_auspicious' => false,
             ];
         }
@@ -551,8 +475,8 @@ class MuhurtaService
             'varjyam_end' => AstroCore::formatTime($varjyamEnd),
             'duration_minutes' => AstroCore::formatDuration($varjyamDuration / 60.0),
             'duration_seconds_raw' => $varjyamDuration,
-            'nakshatra_start_jd' => AstroCore::r9($nakshatraStartJd),
-            'nakshatra_end_jd' => AstroCore::r9($nakshatraEndJd),
+            'nakshatra_start_jd' => $nakshatraStartJd,
+            'nakshatra_end_jd' => $nakshatraEndJd,
             'nakshatra_index' => $nakshatraIndex + 1,
             'nakshatra_name' => $nakshatraName,
             'tyajya_ghati_start' => $tyajyaStartGhati,
@@ -611,7 +535,7 @@ class MuhurtaService
             'pradosha_start' => AstroCore::formatTime($pradoshaStart),
             'pradosha_end' => AstroCore::formatTime($pradoshaEnd),
             'sunset' => AstroCore::formatTime($sunset),
-            'duration_minutes' => AstroCore::r9(180.0),
+            'duration_minutes' => 180.0,
             'is_trayodashi' => $isTrayodashi,
             'is_auspicious' => $isTrayodashi,
             'significance' => $isTrayodashi ? 'Most auspicious for Lord Shiva worship' : 'Pradosha occurs on Trayodashi (13th lunar day)',
@@ -663,12 +587,12 @@ class MuhurtaService
         ];
 
         return [
-            'lagna_longitude_nirayana' => AstroCore::r9($nirayanaLagna),
-            'lagna_longitude_sayana' => AstroCore::r9($ascLongitude),
+            'lagna_longitude_nirayana' => $nirayanaLagna,
+            'lagna_longitude_sayana' => $ascLongitude,
             'sign_index' => $signIndex,
             'sign_name' => $signNames[$signIndex],
-            'degree_in_sign' => AstroCore::r9($signDegree),
-            'ayanamsa_applied' => AstroCore::r9($ayanamsaDeg),
+            'degree_in_sign' => $signDegree,
+            'ayanamsa_applied' => $ayanamsaDeg,
         ];
     }
 
@@ -753,10 +677,10 @@ class MuhurtaService
                 'end' => AstroCore::formatTime($endTime) . ($isEndAfterMidnight ? '*' : ''),
                 'start_iso' => AstroCore::formatDateTime($startTime),
                 'end_iso' => AstroCore::formatDateTime($endTime),
-                'duration_minutes' => AstroCore::r9($durationMinutes),
+                'duration_minutes' => $durationMinutes,
                 'is_day_lagna' => $startTime->lessThan($sunset),
-                'start_jd' => AstroCore::r9($startJd),
-                'end_jd' => AstroCore::r9($endJd),
+                'start_jd' => $startJd,
+                'end_jd' => $endJd,
             ];
         }
 
@@ -783,6 +707,31 @@ class MuhurtaService
         $micros = (int) floor($fraction * 1_000_000);
 
         return $dt->addSeconds($whole)->addMicroseconds($micros);
+    }
+
+    private function getChogadiyaPattern(int $varaIdx, bool $isDay): array
+    {
+        $sequences = $isDay ? self::CHOGADIYA_DAY_SEQUENCES : self::CHOGADIYA_NIGHT_SEQUENCES;
+
+        return $sequences[$varaIdx] ?? $sequences[0];
+    }
+
+    private function isAuspiciousChogadiya(string $name): bool
+    {
+        return in_array($name, self::AUSPICIOUS_CHOGADIYA, true);
+    }
+
+    private function buildTimedRow(CarbonImmutable $start, float $duration, array $payload): array
+    {
+        $end = $this->addFloatSeconds($start, $duration);
+
+        return $payload + [
+            'start' => AstroCore::formatTime($start),
+            'end' => AstroCore::formatTime($end),
+            'start_iso' => AstroCore::formatDateTime($start),
+            'end_iso' => AstroCore::formatDateTime($end),
+            'duration_seconds' => $duration,
+        ];
     }
 
     /**

@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
@@ -26,6 +27,7 @@ class PanchangService
 {
     private static string $ephePath = '';
     private static string $ayanamsa = 'LAHIRI';
+    private array $monthCache = [];
 
     public function __construct(
         private SwissEphFFI $sweph,
@@ -234,7 +236,7 @@ class PanchangService
         $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
 
         $kalaEngine = new KalaNirnayaEngine($lat, $lon);
-        $hinduMonth = $this->panchanga->getHinduMonth($sunLon, $moonLon, $tithi['paksha']);
+        $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
 
         $sankrantiNameMap = [
             0 => 'Mesha',
@@ -280,8 +282,11 @@ class PanchangService
                 'name' => $nakName,
             ],
             'Hindu_Calendar' => [
-                'Month_Amanta' => $hinduMonth['Amanta'],
-                'Month_Purnimanta' => $hinduMonth['Purnimanta'],
+                'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Is_Adhika' => $hinduMonth['Is_Adhika'],
+                'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
+                'Amanta_Index' => $hinduMonth['Amanta_Index'],
             ],
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
@@ -317,7 +322,6 @@ class PanchangService
                 'coordinate_format' => $options['coordinate_format'] ?? $defaultConfig['coordinate_format'] ?? 'decimal',
                 'angle_unit' => $options['angle_unit'] ?? $defaultConfig['angle_unit'] ?? 'degree',
                 'duration_format' => $options['duration_format'] ?? $defaultConfig['duration_format'] ?? 'mixed',
-                'number_precision' => (int) ($options['number_precision'] ?? $defaultConfig['number_precision'] ?? 9),
                 'timezone' => $tz,
             ],
             'Units' => [
@@ -373,13 +377,13 @@ class PanchangService
             'Ayanamsa' => function_exists('config') ? config('panchang.ayanamsa', self::$ayanamsa) : self::$ayanamsa,
             'Ayanamsa_Degree' => AstroCore::formatAngle($ayanamsaDeg),
             'Ayanamsa_At' => AstroCore::formatDateTime($ayanamsaAt),
-            'Ayanamsa_JD' => AstroCore::r9($ayanamsaJd),
+            'Ayanamsa_JD' => $ayanamsaJd,
             'Day_Types' => [
                 'civil_day_start' => AstroCore::formatDateTime($civilDayStart),
                 'civil_day_end' => AstroCore::formatDateTime($civilDayEnd),
-                'civil_day_length_seconds' => AstroCore::r9($civilDaySeconds),
-                'mean_solar_day_seconds' => AstroCore::r9(86400.0),
-                'apparent_solar_day_seconds' => AstroCore::r9($apparentSolarDaySeconds),
+                'civil_day_length_seconds' => $civilDaySeconds,
+                'mean_solar_day_seconds' => 86400.0,
+                'apparent_solar_day_seconds' => $apparentSolarDaySeconds,
                 'solar_noon' => AstroCore::formatDateTime($solarTransits['solar_noon']),
                 'solar_midnight' => AstroCore::formatDateTime($solarTransits['solar_midnight']),
             ],
@@ -431,8 +435,10 @@ class PanchangService
                 'Kali_Samvat' => $kali,
                 'Samvatsara' => $samvatsara,
                 'Samvatsara_North' => $samvatsaraNorth,
-                'Month_Amanta' => $hinduMonth['Amanta'],
-                'Month_Purnimanta' => $hinduMonth['Purnimanta'],
+                'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Is_Adhika' => $hinduMonth['Is_Adhika'],
+                'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Calendar_Type' => 'Purnimanta / Amavasyant (Calculated)',
             ],
             'Chart_Auxiliary' => [
@@ -445,8 +451,8 @@ class PanchangService
             'Hora' => $hora,
             'Chogadiya' => $chogadiya,
             'Chogadiya_Duration' => [
-                'day_each_seconds' => AstroCore::r9(($sunset->getTimestamp() - $relSunrise->getTimestamp()) / 8.0),
-                'night_each_seconds' => AstroCore::r9(($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0),
+                'day_each_seconds' => ($sunset->getTimestamp() - $relSunrise->getTimestamp()) / 8.0,
+                'night_each_seconds' => ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0,
             ],
             'Hora_Full_Day' => $horaTable,
             'Chogadiya_Full_Day' => $chogadiyaTable,
@@ -523,9 +529,9 @@ class PanchangService
         $tithi = $this->panchanga->calculateTithi($sunLon, $moonLon);
         [$nakName, $nakPada, $nakLord] = $this->panchanga->getNakshatraInfo($moonLon);
         $vara = $this->panchanga->calculateVara($birthBase, $this->sunService);
-        $hinduMonth = $this->panchanga->getHinduMonth($sunLon, $moonLon, (string) $tithi['paksha']);
 
         $jdSunrise = $this->toJulianDayFromCarbon($sunrise, $tz);
+        $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
 
@@ -553,8 +559,11 @@ class PanchangService
                 'lord' => $nakLord,
             ],
             'Hindu_Calendar' => [
-                'Month_Amanta' => $hinduMonth['Amanta'],
-                'Month_Purnimanta' => $hinduMonth['Purnimanta'],
+                'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Is_Adhika' => $hinduMonth['Is_Adhika'],
+                'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
+                'Amanta_Index' => $hinduMonth['Amanta_Index'],
             ],
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
@@ -781,8 +790,8 @@ class PanchangService
             $windowEndJd = $windowStartJd + (($window['tyajya_ghati_end'] - $window['tyajya_ghati_start']) / 60.0) * ($window['nakshatra_end_jd'] - $window['nakshatra_start_jd']);
 
             if ($windowEndJd > $jdSunrise && $windowStartJd < $jdNextSunrise) {
-                $window['window_start_jd'] = AstroCore::r9($windowStartJd);
-                $window['window_end_jd'] = AstroCore::r9($windowEndJd);
+                $window['window_start_jd'] = $windowStartJd;
+                $window['window_end_jd'] = $windowEndJd;
                 $windows[] = $window;
             }
 
@@ -854,11 +863,11 @@ class PanchangService
 
             if ($tithiPhase === 13 && $overlapEndJd > $overlapStartJd) {
                 $trayodashiOverlaps[] = [
-                    'start_jd' => AstroCore::r9($overlapStartJd),
-                    'end_jd' => AstroCore::r9($overlapEndJd),
+                    'start_jd' => $overlapStartJd,
+                    'end_jd' => $overlapEndJd,
                     'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($overlapStartJd, $tz)),
                     'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($overlapEndJd, $tz)),
-                    'duration_minutes' => AstroCore::r9(($overlapEndJd - $overlapStartJd) * 1440.0),
+                    'duration_minutes' => ($overlapEndJd - $overlapStartJd) * 1440.0,
                 ];
             }
 
@@ -869,23 +878,22 @@ class PanchangService
             $cursor = $nextCursor;
         }
 
-        $trayodashiDurationMinutes = AstroCore::r9(
+        $trayodashiDurationMinutes =
             array_reduce(
                 $trayodashiOverlaps,
                 static fn (float $carry, array $row): float => $carry + (float) ($row['duration_minutes'] ?? 0.0),
                 0.0
-            )
-        );
+            );
 
         $hasTrayodashiOverlap = $trayodashiOverlaps !== [];
-        $basePradoshaDurationMinutes = AstroCore::r9(($pradoshaEndJd - $jdSunset) * 1440.0);
+        $basePradoshaDurationMinutes = ($pradoshaEndJd - $jdSunset) * 1440.0;
         $effectiveStartJd = $hasTrayodashiOverlap
             ? (float) min(array_column($trayodashiOverlaps, 'start_jd'))
             : $jdSunset;
         $effectiveEndJd = $hasTrayodashiOverlap
             ? (float) max(array_column($trayodashiOverlaps, 'end_jd'))
             : $pradoshaEndJd;
-        $effectiveDurationMinutes = AstroCore::r9(($effectiveEndJd - $effectiveStartJd) * 1440.0);
+        $effectiveDurationMinutes = ($effectiveEndJd - $effectiveStartJd) * 1440.0;
 
         $baseStart = $sunset;
         $baseEnd = $this->sunService->jdToCarbonPublic($pradoshaEndJd, $tz);
@@ -947,8 +955,8 @@ class PanchangService
 
     private function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float
     {
-        $step = 0.5 * $direction;
-        $maxSteps = 20;
+        $step = 0.25 * $direction;
+        $maxSteps = 100;
         $jd1 = $jd0;
         $f0 = $this->signedDiff($angleFn($jd1), $targetAngle);
         $jd2 = $jd1;
@@ -960,7 +968,7 @@ class PanchangService
             if ($f0 === 0.0) {
                 return $jd1;
             }
-            if ($f0 === 0.0 || ($f0 < 0 && $f1 > 0) || ($f0 > 0 && $f1 < 0)) {
+            if ($f0 === 0.0 || (abs($f1 - $f0) < 180.0 && (($f0 < 0 && $f1 > 0) || ($f0 > 0 && $f1 < 0)))) {
                 break;
             }
             $jd1 = $jd2;
@@ -1013,7 +1021,18 @@ class PanchangService
 
     private function getSunMoonLongitudes(array $birth): array
     {
-        $jd = $this->toJulianDayUTC($birth);
+        $jd = $this->toJulianDayFromCarbon(
+            CarbonImmutable::create(
+                (int) $birth['year'],
+                (int) $birth['month'],
+                (int) $birth['day'],
+                (int) $birth['hour'],
+                (int) $birth['minute'],
+                (int) $birth['second'],
+                $birth['timezone']
+            ),
+            $birth['timezone']
+        );
 
         $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
 
@@ -1094,4 +1113,79 @@ class PanchangService
         return AstroCore::normalize($value);
     }
 
+    /**
+     * Calculate True Hindu Month using exact solar transits (Sankranti)
+     * between exact Sun-Moon conjunctions (Amavasya).
+     *
+     * Lossless algorithm as per Siddhantic tradition.
+     */
+    private function getTrueHinduMonth(float $jd): array
+    {
+        /*
+        foreach ($this->monthCache as $cache) {
+            if ($jd >= $cache['start'] && $jd < $cache['end']) {
+                return $cache['data'];
+            }
+        }
+        */
+
+        $prevAmavasya = $this->findAngleCrossing($jd, 0.0, -1, fn (float $t) => $this->getMoonSunAngle($t));
+        $nextAmavasya = $this->findAngleCrossing($jd, 0.0, 1, fn (float $t) => $this->getMoonSunAngle($t));
+
+        $sunPrev = $this->getSunLongitude($prevAmavasya);
+        $sunNext = $this->getSunLongitude($nextAmavasya);
+
+        $signPrev = (int) floor($sunPrev / 30.0);
+        $signNext = (int) floor($sunNext / 30.0);
+
+        // Count how many signs the Sun crossed.
+        $diff = ($signNext - $signPrev + 12) % 12;
+
+        $isAdhika = ($diff === 0);
+        $isKshaya = ($diff >= 2);
+
+        $amantaIdx = $signNext;
+        if ($isAdhika || $isKshaya) {
+            $amantaIdx = $signPrev;
+        }
+
+        $amantaName = Masa::fromIndex($amantaIdx)->getName();
+        if ($isAdhika) {
+            $amantaName .= ' (Adhika)';
+        } elseif ($isKshaya) {
+            $amantaName .= ' (Kśaya)';
+        }
+
+        // Purnimanta month is determined by the Amanta month and current paksha.
+        $moonSunAngle = $this->getMoonSunAngle($jd);
+        $paksha = ($moonSunAngle < 180.0) ? 'Shukla' : 'Krishna';
+
+        $purnimantaIdx = ($paksha === 'Shukla') ? $amantaIdx : ($amantaIdx + 1) % 12;
+        $purnimantaName = Masa::fromIndex($purnimantaIdx)->getName();
+        if ($isAdhika) {
+            $purnimantaName .= ' (Adhika)';
+        }
+
+        $data = [
+            'Month_Amanta' => $amantaName,
+            'Month_Purnimanta' => $purnimantaName,
+            'Amanta_Index' => $amantaIdx,
+            'Purnimanta_Index' => $purnimantaIdx,
+            'Is_Adhika' => $isAdhika,
+            'Is_Kshaya' => $isKshaya,
+        ];
+
+        $this->monthCache[] = [
+            'start' => $prevAmavasya,
+            'end' => $nextAmavasya,
+            'data' => $data,
+        ];
+
+        // Keep cache manageable (LRU-ish)
+        if (count($this->monthCache) > 3) {
+            array_shift($this->monthCache);
+        }
+
+        return $data;
+    }
 }

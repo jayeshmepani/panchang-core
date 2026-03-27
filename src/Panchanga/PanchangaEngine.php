@@ -49,7 +49,7 @@ class PanchangaEngine
             'index' => $tithi->value,
             'name' => $tithi->getName(),
             'paksha' => $tithi->getPaksha()->name,
-            'fraction_left' => AstroCore::r9(Tithi::getFractionRemaining($sunLon, $moonLon)),
+            'fraction_left' => Tithi::getFractionRemaining($sunLon, $moonLon),
         ];
     }
 
@@ -178,7 +178,7 @@ class PanchangaEngine
         [$nakName, $pada, $lord] = $this->getNakshatraInfo($kundaVal);
 
         return [
-            'kunda_longitude' => AstroCore::r9($kundaVal),
+            'kunda_longitude' => $kundaVal,
             'nakshatra' => $nakName,
             'pada' => $pada,
             'lord' => $lord,

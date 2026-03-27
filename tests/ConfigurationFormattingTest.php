@@ -23,7 +23,6 @@ class ConfigurationFormattingTest extends TestCase
         config(['panchang.defaults.duration_format' => 'mixed']);
         config(['panchang.defaults.angle_unit' => 'degree']);
         config(['panchang.defaults.coordinate_format' => 'decimal']);
-        config(['panchang.defaults.number_precision' => 16]);
 
         $details = $service->getDayDetails(
             date: $date,
@@ -72,7 +71,6 @@ class ConfigurationFormattingTest extends TestCase
         $this->assertTrue($detailsHours['Hora']['hora_duration_minutes'] < 2.0); // An hora is ~1 hour
 
         // --- Test Number Precision ---
-        config(['panchang.defaults.number_precision' => 2]);
         config(['panchang.defaults.angle_unit' => 'degree']); // Reset to degree to test float precision
         $detailsPrecise2 = $service->getDayDetails(
             date: $date,
@@ -81,7 +79,6 @@ class ConfigurationFormattingTest extends TestCase
             tz: 'Asia/Kolkata'
         );
 
-        config(['panchang.defaults.number_precision' => 16]);
         $detailsPrecise16 = $service->getDayDetails(
             date: $date,
             lat: 23.2472446,

@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use SwissEph\FFI\SwissEphFFI;
 
 class EclipseService
 {
-    private static string $ephePath = '';
+    use ConfiguresEphemeris;
 
     public function __construct(private SwissEphFFI $sweph)
     {
-        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
-        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
-            $this->sweph->swe_set_ephe_path($ephePath);
-        }
+        $this->initializeEphemerisPath($this->sweph);
     }
 
     /**
@@ -28,7 +26,7 @@ class EclipseService
      */
     public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
     {
-        self::$ephePath = $ephePath;
+        self::setEphemerisPath($ephePath);
     }
 
     public function getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array
@@ -156,16 +154,16 @@ class EclipseService
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
-            'jd' => AstroCore::r9($jdMax),
+            'jd' => $jdMax,
             'magnitudes' => [
-                'umbral' => AstroCore::r9((float) $attr[0]),
-                'penumbral' => AstroCore::r9((float) $attr[1]),
+                'umbral' => (float) $attr[0],
+                'penumbral' => (float) $attr[1],
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'penumbral_seconds' => AstroCore::r9($this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd'])),
-                'partial_seconds' => AstroCore::r9($this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd'])),
-                'total_seconds' => AstroCore::r9($this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd'])),
+                'penumbral_seconds' => $this->durationSeconds($contacts['penumbral_begin_jd'], $contacts['penumbral_end_jd']),
+                'partial_seconds' => $this->durationSeconds($contacts['partial_begin_jd'], $contacts['partial_end_jd']),
+                'total_seconds' => $this->durationSeconds($contacts['total_begin_jd'], $contacts['total_end_jd']),
             ],
             'visibility' => [
                 'visible' => $isVisible,
@@ -223,15 +221,15 @@ class EclipseService
             'eclipse_type' => $type,
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
-            'jd' => AstroCore::r9($jdMax),
+            'jd' => $jdMax,
             'magnitudes' => [
-                'eclipse' => AstroCore::r9((float) $attr[0]),
-                'obscuration' => AstroCore::r9((float) $attr[2]),
+                'eclipse' => (float) $attr[0],
+                'obscuration' => (float) $attr[2],
             ],
             'contacts' => $this->formatContactTimes($contacts, $tz),
             'durations' => [
-                'partial_seconds' => AstroCore::r9($this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd'])),
-                'total_seconds' => AstroCore::r9($this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd'])),
+                'partial_seconds' => $this->durationSeconds($contacts['first_contact_jd'], $contacts['fourth_contact_jd']),
+                'total_seconds' => $this->durationSeconds($contacts['second_contact_jd'], $contacts['third_contact_jd']),
             ],
             'visibility' => [
                 'visible' => $isVisible,
