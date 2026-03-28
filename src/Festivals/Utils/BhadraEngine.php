@@ -7,7 +7,9 @@ namespace JayeshMepani\PanchangCore\Festivals\Utils;
 /**
  * Bhadra (Vishti Karana) Engine.
  *
- * Classical Sources: Muhūrta Chintāmaṇi, Nirṇaya Sindhu, Ernst Wilhelm's Classical Muhurta.
+ * Source attributions used by the package:
+ * - Traditional Bhadra/Vishti references in Muhūrta Chintāmaṇi and Nirṇaya Sindhu
+ * - Modern secondary discussion in Ernst Wilhelm's Classical Muhurta
  *
  * Core Rules:
  * 1. Bhadra = Vishti Karaṇa. Occurs 8 times per lunar month (4 per paksha).

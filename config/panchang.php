@@ -66,7 +66,7 @@ return [
         'default_tradition' => 'Smarta',
         'default_region' => 'North',
         'supported_traditions' => ['Smarta', 'Vaishnava'],
-        'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil'],
+        'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
     ],
 
     /*

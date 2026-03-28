@@ -13,20 +13,19 @@ use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 
 /**
- * Electional Astrology (Muhurta) Evaluator.
+ * Electional Astrology (Muhurta) evaluator.
  *
- * Evaluates muhurta quality based on classical Muhurta texts:
- * - Muhurta Chintamani
- * - Brihat Samhita
- * - Muhurta Martanda
- * - Kalaprakashika
- * - Grihya Sutras
+ * This class mixes:
+ * - transit facts computed elsewhere in the package,
+ * - package rule mappings attributed to traditional muhurta literature,
+ * - and a small number of explicitly marked legacy or heuristic helpers.
  *
- * All calculations are based on CURRENT TRANSIT positions.
+ * It should be treated as a package evaluation layer, not as a fully text-critical
+ * edition of every cited classical source.
  */
 final class ElectionalEvaluator
 {
-    /** Panchaka remainder to type mapping (EXACT from classical texts). */
+    /** Package Panchaka remainder mapping attributed to classical Muhurta sources. */
     private const PANCHAKA_TYPES = [
         1 => ['name' => 'Mrityu', 'english' => 'Death', 'severity' => 'critical'],
         2 => ['name' => 'Agni', 'english' => 'Fire', 'severity' => 'high'],
@@ -40,7 +39,7 @@ final class ElectionalEvaluator
         0 => ['name' => 'Rahita', 'english' => 'Auspicious', 'severity' => 'none'],
     ];
 
-    /** Nakshatra Visha Ghati constants for Varjyam calculation (EXACT from classical texts). */
+    /** Package Visha Ghati constants used for the legacy Varjyam helper. */
     private const VISHA_GHATI_CONSTANTS = [
         1 => 50, 2 => 4, 3 => 30, 4 => 40, 5 => 14, 6 => 21, 7 => 30, 8 => 20, 9 => 32,
         10 => 30, 11 => 20, 12 => 1, 13 => 21, 14 => 20, 15 => 14, 16 => 14, 17 => 10,
@@ -48,14 +47,8 @@ final class ElectionalEvaluator
         26 => 30, 27 => 30,
     ];
 
-    /** Complete 27 Nakshatra Vedha pairs (EXACT from classical texts). */
-    private const NAKSHATRA_VEDHA_PAIRS = [
-        [0, 17], [1, 16], [2, 15], [3, 14], [4, 13], [5, 12], [6, 11],
-        [7, 10], [8, 9], [18, 26], [19, 25], [20, 24], [21, 23], [22, 22],
-    ];
-
     /**
-     * Dagdha Tithi mappings from Muhurta Chintamani Chapter 4, Sloka 12-15.
+     * Package Dagdha Tithi mapping attributed to Muhurta Chintamani.
      * Format: Rashi index (0=Aries) => [Tithi numbers].
      */
     private const DAGDHA_TITHI_MAP = [
@@ -99,13 +92,13 @@ final class ElectionalEvaluator
         $minutes = (int) $matches[2];
         $seconds = (int) $matches[3];
         $period = strtoupper($matches[4]);
-        
+
         if ($period === 'PM' && $hours !== 12) {
             $hours += 12;
         } elseif ($period === 'AM' && $hours === 12) {
             $hours = 0;
         }
-        
+
         return (float) $hours + ($minutes / 60.0) + ($seconds / 3600.0);
     }
 
@@ -132,7 +125,7 @@ final class ElectionalEvaluator
             $jd = $varjyamData['nakshatra_start_jd'];
             $jdFraction = $jd - floor($jd);
             $nakshatraStart = $jdFraction * 24.0;
-            
+
             if (isset($varjyamData['nakshatra_end_jd'])) {
                 $durationDays = $varjyamData['nakshatra_end_jd'] - $varjyamData['nakshatra_start_jd'];
                 $nakshatraDuration = $durationDays * 24.0 * 60.0;
@@ -142,147 +135,48 @@ final class ElectionalEvaluator
         return [$nakshatraNumber, $nakshatraStart, $nakshatraDuration];
     }
 
-    /** Karmakala requirements for all 16+ activities (EXACT from classical texts). */
-    private const KARMAKALA_REQUIREMENTS = [
-        'vivaha' => [
-            'activity_name' => 'Vivaha (Marriage)',
-            'source' => 'Muhurta Chintamani / Brihat Samhita',
-            'min_duration_minutes' => 240,
-            'required_empty_houses' => [7],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttara Bhadrapada, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces',
-        ],
-        'griha_pravasha' => [
-            'activity_name' => 'Griha Pravasha (House Entry)',
-            'source' => 'Muhurta Chintamani / Classical Griha Pravasha Texts',
-            'min_duration_minutes' => 120,
-            'required_empty_houses' => [8],
-            'forbidden_houses' => [4, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Shravana, Dhanishtha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Sagittarius, Aquarius, Pisces',
-        ],
-        'upanayana' => [
-            'activity_name' => 'Upanayana (Sacred Thread Ceremony)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 180,
-            'required_empty_houses' => [6, 8, 12],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha required',
-            'tithi_preference' => '2, 3, 5, 10, 11, 12',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces',
-        ],
-        'namakarana' => [
-            'activity_name' => 'Namakarana (Naming Ceremony)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras / Manu Smriti',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'annaprashana' => [
-            'activity_name' => 'Annaprashana (First Feeding)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'mundan' => [
-            'activity_name' => 'Mundan (Head Shaving)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'karnavedha' => [
-            'activity_name' => 'Karnavedha (Ear Piercing)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'aksharabhyasa' => [
-            'activity_name' => 'Aksharabhyasa (Learning Start)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'nishkramana' => [
-            'activity_name' => 'Nishkramana (First Outing)',
-            'source' => 'Muhurta Chintamani / Grihya Sutras',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ],
-        'yatra' => [
-            'activity_name' => 'Yatra (Travel)',
-            'source' => 'Muhurta Chintamani / Brihat Samhita',
-            'min_duration_minutes' => 30,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Ashwini, Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces',
-        ],
-        'vyapara' => [
-            'activity_name' => 'Vyapara (Business/Trade)',
-            'source' => 'Muhurta Chintamani / Brihat Samhita',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Dhanishtha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces',
-        ],
-        'pratishtha' => [
-            'activity_name' => 'Pratishtha (Installation/Consecration)',
-            'source' => 'Muhurta Chintamani / Brihat Samhita / Agama Shastras',
-            'min_duration_minutes' => 120,
-            'required_empty_houses' => [8, 12],
-            'forbidden_houses' => [4, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Uttara Phalguni, Uttara Ashadha, Uttara Bhadrapada, Revati',
-            'lagna_preference' => 'Taurus, Leo, Virgo, Libra, Sagittarius, Pisces',
-        ],
-    ];
+    /**
+     * Legacy moorthy classifier from nakshatra context.
+     * This is not source-verified against a primary textual rule in the package.
+     */
+    public static function calculateTransitMoorthy(string $nakshatraName): array
+    {
+        $normalized = strtolower(preg_replace('/\s+/', '', trim($nakshatraName)));
+        $nakshatraNumber = 1;
+
+        foreach (Nakshatra::cases() as $case) {
+            $caseName = strtolower(preg_replace('/\s+/', '', $case->getName()));
+            if ($caseName === $normalized) {
+                $nakshatraNumber = $case->value + 1;
+                break;
+            }
+        }
+
+        $moorthyIdx = $nakshatraNumber % 4;
+        $moorthy = match ($moorthyIdx) {
+            1 => ['name' => 'Suvarna', 'english' => 'Gold', 'quality' => 'excellent', 'score' => 4],
+            2 => ['name' => 'Rajata', 'english' => 'Silver', 'quality' => 'good', 'score' => 3],
+            3 => ['name' => 'Tamra', 'english' => 'Copper', 'quality' => 'mixed', 'score' => 2],
+            default => ['name' => 'Lauha', 'english' => 'Iron', 'quality' => 'challenging', 'score' => 1],
+        };
+
+        return [
+            'source' => 'Unverified heuristic moorthy classifier',
+            'is_verified' => false,
+            'nakshatra_name' => $nakshatraName,
+            'nakshatra_number' => $nakshatraNumber,
+            'moorthy' => $moorthy['name'],
+            'moorthy_english' => $moorthy['english'],
+            'quality' => $moorthy['quality'],
+            'score' => $moorthy['score'],
+        ];
+    }
 
     /**
-     * Calculate Panchaka Dosha from classical Muhurta texts.
-     * Source: Muhurta Chintamani, Brihat Samhita.
+     * Calculate Panchaka Dosha using the package mapping attributed to
+     * Muhurta Chintamani and Brihat Samhita.
      *
-     * Classical Formula (EXACT):
+     * Package formula:
      * Sum = Tithi + Vara + Nakshatra + Lagna
      * Remainder = Sum mod 9
      *
@@ -300,13 +194,25 @@ final class ElectionalEvaluator
 
         $panchakaInfo = self::PANCHAKA_TYPES[$remainder];
         $hasDosha = in_array($remainder, [1, 2, 4, 6, 8], true);
+        $tithi = Tithi::from($tithiNumber);
+        $vara = Vara::from($varaNumber - 1);
+        $nakshatra = Nakshatra::from($nakshatraNumber - 1);
+        $lagna = Rasi::from($lagnaNumber - 1);
 
         return [
-            'source' => 'Muhurta Chintamani / Brihat Samhita',
+            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Brihat Samhita',
             'tithi' => $tithiNumber,
+            'tithi_name' => $tithi->getName(),
+            'tithi_number_base' => 1,
             'vara' => $varaNumber,
+            'vara_name' => $vara->getEnglishName(),
+            'vara_number_base' => 1,
             'nakshatra' => $nakshatraNumber,
+            'nakshatra_name' => $nakshatra->getName(),
+            'nakshatra_number_base' => 1,
             'lagna' => $lagnaNumber,
+            'lagna_name' => $lagna->getName(),
+            'lagna_number_base' => 1,
             'sum' => $sum,
             'remainder' => $remainder,
             'panchaka_name' => $panchakaInfo['name'],
@@ -320,9 +226,9 @@ final class ElectionalEvaluator
     }
 
     /**
-     * Calculate Dagdha Tithi from Muhurta Chintamani Chapter 4, Sloka 12-15.
+     * Calculate Dagdha Tithi using the package mapping attributed to Muhurta Chintamani.
      *
-     * Classical Formula (EXACT):
+     * Package formula:
      * Tithi + Rashi combinations from classical mapping table.
      *
      * @param int $tithiNumber Tithi number (1-30)
@@ -334,12 +240,24 @@ final class ElectionalEvaluator
     {
         $dagdhaTithis = self::DAGDHA_TITHI_MAP[$moonSignIdx] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
+        $tithi = Tithi::from($tithiNumber);
+        $moonSign = Rasi::from($moonSignIdx);
 
         return [
-            'source' => 'Muhurta Chintamani Chapter 4, Sloka 12-15',
+            'source' => 'Package rule mapping attributed to Muhurta Chintamani',
             'tithi_number' => $tithiNumber,
+            'tithi_name' => $tithi->getName(),
+            'tithi_number_base' => 1,
             'moon_sign_idx' => $moonSignIdx,
+            'moon_sign_index_base' => 0,
+            'moon_sign_number' => $moonSignIdx + 1,
+            'moon_sign_number_base' => 1,
+            'moon_sign_name' => $moonSign->getEnglishName(),
             'dagdha_tithis_for_sign' => $dagdhaTithis,
+            'dagdha_tithi_names_for_sign' => array_map(
+                static fn (int $candidate): string => Tithi::from($candidate)->getName(),
+                $dagdhaTithis
+            ),
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
@@ -351,7 +269,7 @@ final class ElectionalEvaluator
     /**
      * Calculate Dagdha Yoga from classical texts.
      *
-     * Classical Formula (EXACT):
+     * Package formula:
      * Vara + Tithi combinations from classical mapping table.
      *
      * @param int $varaNumber Vara number (0-6, 0=Sunday)
@@ -364,14 +282,24 @@ final class ElectionalEvaluator
         $dagdhaTithis = self::DAGDHA_YOGA_MAP[$varaNumber] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
 
-        $varaNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $vara = Vara::from($varaNumber);
+        $tithi = Tithi::from($tithiNumber);
 
         return [
-            'source' => 'Classical Muhurta Texts',
+            'source' => 'Package rule mapping attributed to classical Muhurta texts',
             'vara_number' => $varaNumber,
-            'vara_name' => $varaNames[$varaNumber] ?? 'Unknown',
+            'vara_name' => $vara->getEnglishName(),
+            'vara_index_base' => 0,
+            'vara_sequence_number' => $varaNumber + 1,
+            'vara_sequence_number_base' => 1,
             'tithi_number' => $tithiNumber,
+            'tithi_name' => $tithi->getName(),
+            'tithi_number_base' => 1,
             'dagdha_tithis_for_vara' => $dagdhaTithis,
+            'dagdha_tithi_names_for_vara' => array_map(
+                static fn (int $candidate): string => Tithi::from($candidate)->getName(),
+                $dagdhaTithis
+            ),
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
@@ -381,46 +309,11 @@ final class ElectionalEvaluator
     }
 
     /**
-     * Calculate Nakshatra Vedha from classical texts.
+     * Legacy Bhadra helper.
      *
-     * Classical Formula (EXACT):
-     * Complete 27 Nakshatra Vedha pairs - marriage prohibited if Moon in either nakshatra of the pair.
-     *
-     * @param int $nakshatraIdx1 First Nakshatra index (0-26)
-     * @param int $nakshatraIdx2 Second Nakshatra index (0-26)
-     *
-     * @return array Nakshatra Vedha assessment
-     */
-    public static function calculateNakshatraVedha(int $nakshatraIdx1, int $nakshatraIdx2): array
-    {
-        $hasVedha = false;
-        foreach (self::NAKSHATRA_VEDHA_PAIRS as $pair) {
-            if (($nakshatraIdx1 === $pair[0] && $nakshatraIdx2 === $pair[1]) ||
-                ($nakshatraIdx1 === $pair[1] && $nakshatraIdx2 === $pair[0])) {
-                $hasVedha = true;
-                break;
-            }
-        }
-
-        return [
-            'source' => 'Classical Muhurta Texts',
-            'nakshatra_1_idx' => $nakshatraIdx1,
-            'nakshatra_2_idx' => $nakshatraIdx2,
-            'has_vedha' => $hasVedha,
-            'has_dosha' => $hasVedha,
-            'severity' => $hasVedha ? 'critical' : 'none',
-            'blocked_activities' => $hasVedha ? ['marriage', 'all_auspicious_work'] : [],
-            'description' => $hasVedha ? 'Nakshatra Vedha - Marriage prohibited' : 'No Nakshatra Vedha',
-        ];
-    }
-
-    /**
-     * Calculate Bhadra/Vishti Karana abode from Muhurta Martanda.
-     *
-     * Classical Formula (EXACT):
-     * Earth signs (Cancer, Leo, Aquarius, Pisces) = Inauspicious
-     * Heaven signs (Aries, Taurus, Gemini, Scorpio) = Neutral
-     * Underworld signs (Virgo, Libra, Sagittarius, Capricorn) = Good for wealth
+     * This only classifies a moon-sign based Bhadravasa heuristic and does not determine
+     * whether Vishti/Bhadra is actually active at a given time. For accurate Bhadra usage,
+     * use PanchangService day output and its timed Bhadra windows.
      *
      * @param int $moonSignIdx Moon Sign index (0-11, 0=Aries)
      *
@@ -456,7 +349,8 @@ final class ElectionalEvaluator
         ];
 
         return [
-            'source' => 'Muhurta Martanda',
+            'source' => 'Legacy Bhadravasa heuristic',
+            'is_verified' => false,
             'moon_sign_idx' => $moonSignIdx,
             'moon_sign_name' => $moonSign->getEnglishName(),
             'moon_sign_symbol' => $moonSign->getSymbol(),
@@ -467,19 +361,20 @@ final class ElectionalEvaluator
             'blocked_activities' => $blockedActivities,
             'allowed_activities' => $allowedActivities,
             'description' => match ($abodeType) {
-                'earth' => 'Bhadra on Earth - Inauspicious, avoid all auspicious work',
-                'heaven' => 'Bhadra in Heaven - Neutral, good for spiritual work',
-                'underworld' => 'Bhadra in Underworld - Auspicious for wealth-related activities',
-                default => 'Unknown Bhadra position',
+                'earth' => 'Moon-sign heuristic maps Bhadravasa to Earth; this is not a timed active-Bhadra judgement.',
+                'heaven' => 'Moon-sign heuristic maps Bhadravasa to Heaven; this is not a timed active-Bhadra judgement.',
+                'underworld' => 'Moon-sign heuristic maps Bhadravasa to Underworld; this is not a timed active-Bhadra judgement.',
+                default => 'Unknown Bhadravasa heuristic state',
             },
         ];
     }
 
     /**
      * Calculate Rikta Tithi dosha from classical Muhurta texts.
-     * Source: Muhurta Chintamani, Gargiya Jyotisha, classical Tithi texts.
+     * Source attributions used by the package: Muhurta Chintamani, Gargiya Jyotisha,
+     * and other Rikta Tithi traditions.
      *
-     * Classical Formula (EXACT from classical texts):
+     * Package baseline rule:
      * Rikta Tithi = 4th (Chaturthi), 9th (Navami), 14th (Chaturdashi)
      *
      * @param int $tithiNumber Tithi number (1-30)
@@ -494,6 +389,7 @@ final class ElectionalEvaluator
 
         $specialAvoidTithis = $isKrishnaPaksha ? [13] : [1];
         $isSpecialAvoid = in_array($tithiNumber, $specialAvoidTithis, true);
+        $tithi = Tithi::from($tithiNumber);
 
         $severity = 'none';
         if ($isRikta) {
@@ -505,8 +401,10 @@ final class ElectionalEvaluator
         $hasDosha = $isRikta || $isSpecialAvoid;
 
         return [
-            'source' => 'Muhurta Chintamani / Gargiya Jyotisha / Classical Tithi Texts',
+            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Gargiya Jyotisha',
             'tithi_number' => $tithiNumber,
+            'tithi_name' => $tithi->getName(),
+            'tithi_number_base' => 1,
             'is_krishna_paksha' => $isKrishnaPaksha,
             'paksha_name' => $isKrishnaPaksha ? 'Krishna Paksha (waning)' : 'Shukla Paksha (waxing)',
             'is_rikta' => $isRikta,
@@ -521,9 +419,9 @@ final class ElectionalEvaluator
 
     /**
      * Calculate Varjyam (Visha Ghati) from classical Muhurta texts.
-     * Source: Classical Panchanga calculation texts, KP System.
+     * Source basis used by the package: published Panchanga Varjyam tables and KP-style references.
      *
-     * Classical Formula (EXACT from classical texts):
+     * Package helper formula:
      * Varjyam is calculated based on Nakshatra duration and fixed constants (Nakshatra Visha Ghati).
      *
      * @param int $nakshatraNumber Nakshatra number (1-27, Aswini=1)
@@ -535,6 +433,7 @@ final class ElectionalEvaluator
     public static function calculateVarjyam(int $nakshatraNumber, float $nakshatraStartTime, float $nakshatraDurationMinutes): array
     {
         $vishaGhati = self::VISHA_GHATI_CONSTANTS[$nakshatraNumber] ?? 0;
+        $nakshatra = Nakshatra::from($nakshatraNumber - 1);
 
         $startOffsetMinutes = ($vishaGhati * $nakshatraDurationMinutes) / 60.0;
         $durationMinutes = $nakshatraDurationMinutes / 15.0;
@@ -543,8 +442,10 @@ final class ElectionalEvaluator
         $varjyamEnd = $varjyamStart + ($durationMinutes / 60.0);
 
         return [
-            'source' => 'Classical Panchanga Calculation Texts / KP System',
+            'source' => 'Legacy package helper using published Visha Ghati constants',
             'nakshatra_number' => $nakshatraNumber,
+            'nakshatra_name' => $nakshatra->getName(),
+            'nakshatra_number_base' => 1,
             'visha_ghati_constant' => $vishaGhati,
             'nakshatra_start_time' => $nakshatraStartTime,
             'nakshatra_duration_minutes' => $nakshatraDurationMinutes,
@@ -560,11 +461,9 @@ final class ElectionalEvaluator
     }
 
     /**
-     * Calculate Amrita Kaal from classical Muhurta texts.
-     * Source: Classical Panchanga calculation texts, Chaughadia system.
+     * Legacy Amrit-segment helper based on Choghadiya.
      *
-     * Classical Formula (EXACT from classical texts):
-     * Amrita Kaal is derived from Chaughadia Muhurta system.
+     * This is not the same concept as Panchang "Amrita Kalam" derived from Varjyam-opposite timing.
      *
      * @param int $varaNumber Vara number (0-6, Sunday=0)
      * @param float $sunrise Sunrise time in decimal hours (e.g., 6.5 for 6:30 AM)
@@ -630,7 +529,8 @@ final class ElectionalEvaluator
         }
 
         return [
-            'source' => 'Classical Panchanga Calculation Texts / Chaughadia System',
+            'source' => 'Legacy Choghadiya-based Amrit segment helper',
+            'is_verified' => false,
             'vara_number' => $varaNumber,
             'vara_name' => $vara->getEnglishName(),
             'sunrise' => $sunrise,
@@ -650,9 +550,10 @@ final class ElectionalEvaluator
 
     /**
      * Calculate Abhijit Muhurta cancellation power from classical Muhurta texts.
-     * Source: Muhurta Chintamani, Muhurta Martanda, classical Dosha Nivarana texts.
+     * Source attributions used by the package: Muhurta Chintamani, Muhurta Martanda,
+     * and later dosha-nivarana traditions.
      *
-     * Classical Formula (EXACT from classical texts):
+     * Package formula:
      * Abhijit Muhurta is the 8th Muhurta of the day, centered at solar noon.
      * It destroys innumerable doshas and is considered a universal remedy.
      *
@@ -681,7 +582,7 @@ final class ElectionalEvaluator
         $hasCancellationPower = $isInAbhijit && !$isWednesday;
 
         return [
-            'source' => 'Muhurta Chintamani / Muhurta Martanda / Classical Dosha Nivarana Texts',
+            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Muhurta Martanda',
             'sunrise' => $sunrise,
             'sunset' => $sunset,
             'vara_number' => $varaNumber,
@@ -709,31 +610,9 @@ final class ElectionalEvaluator
     }
 
     /**
-     * Get Karmakala event window requirements for specific activities.
-     * Source: Muhurta Chintamani, Brihat Samhita, Drik Panchang classical rules.
-     *
-     * @param string $activityKey Activity key (e.g., 'vivaha', 'griha_pravasha')
-     *
-     * @return array Karmakala requirements with duration, empty houses, and planetary requirements
-     */
-    public static function getKarmakalaRequirements(string $activityKey): array
-    {
-        return self::KARMAKALA_REQUIREMENTS[$activityKey] ?? [
-            'activity_name' => 'Unknown Activity',
-            'source' => 'Classical Muhurta Texts',
-            'min_duration_minutes' => 60,
-            'required_empty_houses' => [],
-            'forbidden_houses' => [6, 8, 12],
-            'paksha_preference' => 'Shukla Paksha preferred',
-            'tithi_preference' => '2, 3, 5, 7, 10, 11, 13',
-            'nakshatra_preference' => 'Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Revati',
-            'lagna_preference' => 'Taurus, Gemini, Virgo, Libra, Pisces',
-        ];
-    }
-
-    /**
      * Generate detailed rejection report for Muhurta evaluation.
-     * Source: Muhurta Chintamani, Brihat Samhita, classical Dosha analysis texts.
+     * Source basis used by the package: evaluator rules attributed to Muhurta Chintamani,
+     * Brihat Samhita, and related dosha-analysis traditions.
      *
      * @param array $evaluationResults Evaluation results from evaluateActivityProfile
      * @param string $activityKey Activity being evaluated
@@ -754,7 +633,7 @@ final class ElectionalEvaluator
             if (isset($result['has_dosha']) && $result['has_dosha'] === true) {
                 $severity = $result['severity'] ?? 'medium';
                 $doshaName = $result['name'] ?? $factor;
-                $source = $result['source'] ?? 'Classical Muhurta Texts';
+                $source = $result['source'] ?? 'Package evaluator result';
                 $blockedActivities = $result['blocked_activities'] ?? [];
                 $description = $result['description'] ?? 'Dosha present';
 
@@ -780,7 +659,7 @@ final class ElectionalEvaluator
             if (isset($result['is_good']) && $result['is_good'] === false) {
                 $balaName = $result['name'] ?? $factor;
                 $severity = 'low';
-                $source = $result['source'] ?? 'Classical Muhurta Texts';
+                $source = $result['source'] ?? 'Package evaluator result';
                 $description = $result['description'] ?? 'Weak strength';
 
                 $warnings[] = [
@@ -810,7 +689,7 @@ final class ElectionalEvaluator
         }
 
         return [
-            'source' => 'Muhurta Chintamani / Brihat Samhita / Classical Dosha Analysis Texts',
+            'source' => 'Package evaluation summary from configured/transit-only rule mappings',
             'activity_key' => $activityKey,
             'overall_verdict' => $overallVerdict,
             'confidence_level' => $confidenceLevel,
@@ -835,14 +714,4 @@ final class ElectionalEvaluator
         ];
     }
 
-    /**
-     * Get complete classical activity matrix for all 16+ Muhurta activities.
-     * Source: Muhurta Chintamani, Brihat Samhita, Grihya Sutras, classical Samskara texts.
-     *
-     * @return array Complete activity matrix with all classical requirements
-     */
-    public static function getCompleteActivityMatrix(): array
-    {
-        return self::KARMAKALA_REQUIREMENTS;
-    }
 }

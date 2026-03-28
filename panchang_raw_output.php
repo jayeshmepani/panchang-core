@@ -3,7 +3,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/vendor/autoload.php';
+$baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
+require $baseDir . '/vendor/autoload.php';
 
 use Carbon\CarbonImmutable;
 use Illuminate\Config\Repository;
@@ -15,7 +16,6 @@ use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
@@ -55,7 +55,7 @@ if (!function_exists('env')) {
 }
 
 $configStore = [
-    'panchang' => require __DIR__ . '/config/panchang.php',
+    'panchang' => require $baseDir . '/config/panchang.php',
 ];
 
 if (class_exists(Container::class) && class_exists(Repository::class)) {
@@ -180,59 +180,20 @@ $todayDetails = $panchangService->getDayDetails(
     ayanamsaAt: $now,
 );
 
-// Get complete Muhurta evaluation using ElectionalEvaluator
-// Extract today's panchanga elements for Muhurta evaluation
-$tithiNumber = $todayDetails['tithi']['number'] ?? 1;
-$varaNumber = $todayDetails['vara']['number'] ?? 0;
-$nakshatraNumber = $todayDetails['Nakshatra']['number'] ?? 1;
-$lagnaNumber = $todayDetails['lagna']['number'] ?? 1;
-$moonSignIdx = $todayDetails['moon_sign']['index'] ?? 0;
-$isKrishnaPaksha = $todayDetails['paksha']['is_krishna'] ?? false;
-
-// Get sunrise/sunset times from PanchangService
-$sunriseStr = $todayDetails['Sunrise'];
-$sunsetStr = $todayDetails['Sunset'];
-$nextSunriseStr = $todayDetails['next_sunrise_iso'] ?? $todayDetails['Sunrise'];
-
-// Convert time strings to decimal hours using ElectionalEvaluator helper
-$sunrise = ElectionalEvaluator::timeStringToDecimal($sunriseStr);
-$sunset = ElectionalEvaluator::timeStringToDecimal($sunsetStr);
-$nextSunrise = ElectionalEvaluator::timeStringToDecimal($nextSunriseStr);
-$currentTime = $now->format('G') + ($now->format('i') / 60.0) + ($now->format('s') / 3600.0);
-
-// Get nakshatra timing using ElectionalEvaluator helper
-$nakshatraData = $todayDetails['Varjyam'] ?? null;
-[$nakshatraNumberActual, $nakshatraStart, $nakshatraDuration] = ElectionalEvaluator::getNakshatraTiming($nakshatraData, $sunrise, 60.0);
-
-$muhurtaEvaluation = [
-    'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber + 1, $nakshatraNumber, $lagnaNumber),
-    'dagdha_tithi' => ElectionalEvaluator::calculateDagdhaTithi($tithiNumber, $moonSignIdx),
-    'dagdha_yoga' => ElectionalEvaluator::calculateDagdhaYoga($varaNumber, $tithiNumber),
-    'nakshatra_vedha' => ElectionalEvaluator::calculateNakshatraVedha(0, $nakshatraNumber - 1),
-    'bhadra' => ElectionalEvaluator::calculateBhadra($moonSignIdx),
-    'rikta_tithi' => ElectionalEvaluator::calculateRiktaTithi($tithiNumber, $isKrishnaPaksha),
-    'varjyam' => ElectionalEvaluator::calculateVarjyam($nakshatraNumberActual, $nakshatraStart, $nakshatraDuration),
-    'amrita_kaal' => ElectionalEvaluator::calculateAmritaKaal($varaNumber, $sunrise, $sunset, $nextSunrise, $currentTime),
-    'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
-];
-
-// Get Karmakala requirements for key activities
-$karmakalaRequirements = [
-    'vivaha' => ElectionalEvaluator::getKarmakalaRequirements('vivaha'),
-    'griha_pravasha' => ElectionalEvaluator::getKarmakalaRequirements('griha_pravasha'),
-    'upanayana' => ElectionalEvaluator::getKarmakalaRequirements('upanayana'),
-    'namakarana' => ElectionalEvaluator::getKarmakalaRequirements('namakarana'),
-];
-
-// Generate rejection report for today's Muhurta
-$rejectionReport = ElectionalEvaluator::generateRejectionReport($muhurtaEvaluation, 'general_auspicious');
-
-// Get complete activity matrix
-$completeActivityMatrix = ElectionalEvaluator::getCompleteActivityMatrix();
+$dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(
+    date: $todayDate,
+    lat: $latitude,
+    lon: $longitude,
+    tz: $timezone,
+    activityKey: 'general_auspicious',
+    currentAt: $now,
+    elevation: $elevation,
+);
 
 $output = [
     'meta' => [
         'generated_at' => $now->toIso8601String(),
+        'muhurta_mode' => 'transit_only',
         'location' => [
             'city' => $city,
             'country' => $country,
@@ -241,7 +202,7 @@ $output = [
             'timezone' => $timezone,
             'elevation' => $elevation,
         ],
-        'config_source' => __DIR__ . '/config/panchang.php',
+        'config_source' => $baseDir . '/config/panchang.php',
     ],
     'festivals_2026' => [
         'title' => 'Festivals 2026 - All festivals for the entire year',
@@ -265,32 +226,16 @@ $output = [
         'date' => $todayDate->toDateString(),
         'details' => $todayDetails,
     ],
-    'muhurta_evaluation' => [
-        'title' => 'Complete Muhurta Evaluation - All newly implemented classical Muhurta engines',
-        'input_parameters' => [
-            'tithi_number' => $tithiNumber,
-            'vara_number' => $varaNumber,
-            'nakshatra_number' => $nakshatraNumber,
-            'lagna_number' => $lagnaNumber,
-            'moon_sign_idx' => $moonSignIdx,
-            'is_krishna_paksha' => $isKrishnaPaksha,
-            'sunrise' => $sunrise,
-            'sunset' => $sunset,
-            'next_sunrise' => $nextSunrise,
-            'current_time' => $currentTime,
+    'muhurta_evaluation' => array_merge(
+        [
+            'scope' => 'transit_only',
+            'notes' => [
+                'No natal or person-specific inputs are used.',
+                'Evaluation is derived only from current Panchang and transit state for the configured location/time.',
+            ],
         ],
-        'evaluation_results' => $muhurtaEvaluation,
-        'rejection_report' => $rejectionReport,
-    ],
-    'karmakala_requirements' => [
-        'title' => 'Karmakala Event Window Requirements - Classical rules for key activities',
-        'requirements' => $karmakalaRequirements,
-    ],
-    'complete_activity_matrix' => [
-        'title' => 'Complete Classical Activity Matrix - All 16+ Muhurta activities with exact classical requirements',
-        'activity_count' => count($completeActivityMatrix),
-        'activities' => $completeActivityMatrix,
-    ],
+        $dailyMuhurtaEvaluation
+    ),
 ];
 
 $json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

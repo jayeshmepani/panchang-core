@@ -3,7 +3,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/vendor/autoload.php';
+$baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
+require $baseDir . '/vendor/autoload.php';
 
 use Carbon\CarbonImmutable;
 use Illuminate\Config\Repository;
@@ -54,7 +55,7 @@ if (!function_exists('env')) {
 }
 
 $configStore = [
-    'panchang' => require __DIR__ . '/config/panchang.php',
+    'panchang' => require $baseDir . '/config/panchang.php',
 ];
 
 if (class_exists(Container::class) && class_exists(Repository::class)) {
@@ -179,9 +180,20 @@ $todayDetails = $panchangService->getDayDetails(
     ayanamsaAt: $now,
 );
 
+$dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(
+    date: $todayDate,
+    lat: $latitude,
+    lon: $longitude,
+    tz: $timezone,
+    activityKey: 'general_auspicious',
+    currentAt: $now,
+    elevation: $elevation,
+);
+
 $output = [
     'meta' => [
         'generated_at' => $now->toIso8601String(),
+        'muhurta_mode' => 'transit_only',
         'location' => [
             'city' => $city,
             'country' => $country,
@@ -190,7 +202,7 @@ $output = [
             'timezone' => $timezone,
             'elevation' => $elevation,
         ],
-        'config_source' => __DIR__ . '/config/panchang.php',
+        'config_source' => $baseDir . '/config/panchang.php',
     ],
     'festivals_2026' => [
         'title' => 'Festivals 2026 - All festivals for the entire year',
@@ -214,6 +226,16 @@ $output = [
         'date' => $todayDate->toDateString(),
         'details' => $todayDetails,
     ],
+    'muhurta_evaluation' => array_merge(
+        [
+            'scope' => 'transit_only',
+            'notes' => [
+                'No natal or person-specific inputs are used.',
+                'Evaluation is derived only from current Panchang and transit state for the configured location/time.',
+            ],
+        ],
+        $dailyMuhurtaEvaluation
+    ),
 ];
 
 $json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

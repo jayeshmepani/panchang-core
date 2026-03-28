@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Constants;
 
 /**
- * Classical Time Measurement Constants.
+ * Time measurement and calendrical constants used by the package.
  *
- * All values derived from authoritative Sanskrit texts:
- * - Sūrya Siddhānta (4th-5th century CE)
- * - Muhūrta Chintāmaṇi (15th century)
- * - Nirṇaya Sindhu (16th century)
- *
- * Precision Guarantee:
- * - All constants are exact values (no approximations)
- * - Derived from classical definitions, not modern approximations
- * - Used throughout the festival engine for zero-tolerance calculations
+ * Notes on provenance:
+ * - Some constants are modern arithmetic identities (seconds/day, minutes/hour).
+ * - Some are standard classical Jyotisha conventions used across Panchang calculation
+ *   (ghaṭikā, muhūrta, tithi span, nakṣatra span).
+ * - Some are package-level traditional reference values used to support festival or
+ *   muhurta logic, where practice can vary by tradition.
  */
 final readonly class ClassicalTimeConstants
 {
@@ -51,7 +48,7 @@ final readonly class ClassicalTimeConstants
      * - 1 ghaṭikā = 24 minutes (exact)
      * - 60 ghaṭikās = 1 day (Sūrya Siddhānta 1.11)
      *
-     * Source: Sūrya Siddhānta 1.11, Muhūrta Chintāmaṇi 3
+     * Classical convention used in Jyotisha/Panchang literature.
      */
     public const float GHATIKA_IN_MINUTES = 24.0;
 
@@ -68,7 +65,7 @@ final readonly class ClassicalTimeConstants
      * - 1 pala = 24 seconds (exact)
      * - 60 palas = 1 ghaṭikā (Sūrya Siddhānta 1.11)
      *
-     * Source: Sūrya Siddhānta 1.11
+     * Classical convention used in Jyotisha/Panchang literature.
      */
     public const float PALA_IN_SECONDS = 24.0;
 
@@ -79,7 +76,7 @@ final readonly class ClassicalTimeConstants
      * - 1 muhūrta = 2 ghaṭikās = 48 minutes (exact)
      * - 30 muhūrtas = 1 day (Sūrya Siddhānta 1.10)
      *
-     * Source: Sūrya Siddhānta 1.10, Muhūrta Chintāmaṇi 1
+     * Classical convention used in Jyotisha/Panchang literature.
      */
     public const float MUHURTA_IN_MINUTES = 48.0;
 
@@ -98,8 +95,8 @@ final readonly class ClassicalTimeConstants
      * - Aruṇodaya = 4 ghaṭikās before sunrise = 96 minutes (exact)
      * - "Aruṇodaya is the dawn when Aruṇa (sun's charioteer) appears"
      *
-     * Source: Muhūrta Chintāmaṇi 5, Nirṇaya Sindhu 1.2.3
-     * Usage: Ekadashi fasting begins (Hari Bhakti Vilāsa 12.3.15)
+     * Traditional dawn offset used by this package for Aruṇodaya-sensitive festival logic.
+     * Usage in fasting logic is tradition-dependent.
      */
     public const float ARUNODAYA_MINUTES = 96.0;
 
@@ -113,8 +110,8 @@ final readonly class ClassicalTimeConstants
      * - Pradoṣa = 3 ghaṭikās after sunset = 72 minutes (exact)
      * - "Pradoṣa is most auspicious for Śiva worship"
      *
-     * Source: Muhūrta Chintāmaṇi 45, Nirṇaya Sindhu 1.4.18
-     * Usage: Holika Dahan, Dīpāvalī Lakṣmī Pūjā
+     * Traditional Pradoṣa window reference used by package festival logic.
+     * Usage may vary across ritual contexts.
      */
     public const float PRADOSHA_MINUTES = 72.0;
 
@@ -128,8 +125,8 @@ final readonly class ClassicalTimeConstants
      * - Brahma Muhūrta = 2 muhūrtas before sunrise = 96 minutes (exact)
      * - "Brahma Muhūrta is most auspicious for Vedic study and meditation"
      *
-     * Source: Ashtānga Hṛdaya Sūtrasthāna 2.1, Charaka Saṃhitā
-     * Usage: Vedic study, yoga, meditation
+     * Traditional Brahma Muhūrta reference used by the package.
+     * Usage contexts vary across ritual, Ayurvedic, and study traditions.
      */
     public const float BRAHMA_MUHURTA_MINUTES = 96.0;
 
@@ -151,7 +148,7 @@ final readonly class ClassicalTimeConstants
      * Degrees per nakṣatra (exact)
      * 360° / 27 nakṣatras = 13.333...° per nakṣatra.
      *
-     * Source: Sūrya Siddhānta 8.1
+     * Standard Panchang convention.
      */
     public const float DEGREES_PER_NAKSHATRA = 360.0 / 27.0;
 
@@ -159,7 +156,7 @@ final readonly class ClassicalTimeConstants
      * Degrees per tithi (exact)
      * Moon-Sun longitude difference for one tithi.
      *
-     * Source: Sūrya Siddhānta 1.29
+     * Standard Panchang convention.
      */
     public const float DEGREES_PER_TITHI = 12.0;
 
@@ -181,7 +178,7 @@ final readonly class ClassicalTimeConstants
      * Julian Day epsilon for comparisons.
      *
      * Precision: 1e-12 days = ~0.000086 seconds
-     * This ensures zero-tolerance for rounding errors
+     * This keeps internal comparison noise very small.
      */
     public const float JD_EPSILON = 1.0e-12;
 
@@ -228,7 +225,7 @@ final readonly class ClassicalTimeConstants
     /**
      * Bhadra tithis — reference constant for documentation.
      *
-     * Source: Nirṇaya Sindhu, Muhūrta Chintāmaṇi
+     * Traditional reference list used for documentation/supporting logic.
      * Bhadra (Vishti Karana) occurs on these absolute tithi numbers:
      * - Shukla: 4, 8, 11, 15
      * - Krishna: 3 (=18), 7 (=22), 10 (=25), 14 (=29)

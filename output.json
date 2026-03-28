@@ -1,6 +1,7 @@
 {
     "meta": {
-        "generated_at": "2026-03-28T08:34:12+05:30",
+        "generated_at": "2026-03-28T17:08:02+05:30",
+        "muhurta_mode": "transit_only",
         "location": {
             "city": "Bhuj",
             "country": "IN",
@@ -9,7 +10,7 @@
             "timezone": "Asia/Kolkata",
             "elevation": 0
         },
-        "config_source": "E:\\project\\astrology\\panchang-core/config/panchang.php"
+        "config_source": "/home/shreesoftech/projects/panchang-core/config/panchang.php"
     },
     "festivals_2026": {
         "title": "Festivals 2026 - All festivals for the entire year",
@@ -7627,7 +7628,7 @@
                     "jd": 2463007.8020253866,
                     "magnitudes": {
                         "eclipse": 0.5414176764720033,
-                        "obscuration": 0.43177908613707766
+                        "obscuration": 0.43177908613707755
                     },
                     "contacts": {
                         "first_contact_jd": {
@@ -9295,7 +9296,7 @@
                 "jd": 2463007.8020253866,
                 "magnitudes": {
                     "eclipse": 0.5414176764720033,
-                    "obscuration": 0.43177908613707766
+                    "obscuration": 0.43177908613707755
                 },
                 "contacts": {
                     "first_contact_jd": {
@@ -9698,7 +9699,7 @@
     },
     "todays_complete_details": {
         "title": "Today's Complete Details - Every single data point from the package",
-        "input_now": "2026-03-28T08:34:12+05:30",
+        "input_now": "2026-03-28T17:08:02+05:30",
         "date": "2026-03-28",
         "details": {
             "Display_Settings": {
@@ -9732,9 +9733,27 @@
                 "Dharma_Sindhu.Punya_Kaal.punya_kaal_end_jd": "julian_day",
                 "Prahara.duration_seconds": "second",
                 "Prahara.duration_hours": "hour",
+                "Daylight_Fivefold_Division.duration_seconds": "second",
+                "Daylight_Fivefold_Division.duration_hours": "hour",
                 "Brahma_Muhurta.duration_minutes": "minute",
                 "Brahma_Muhurta.duration_seconds": "second",
                 "Dur_Muhurta.duration_seconds": "second",
+                "Nishita_Muhurta.muhurta_duration_seconds": "second",
+                "Nishita_Muhurta.muhurta_duration_minutes": "minute",
+                "Vijaya_Muhurta.muhurta_duration_seconds": "second",
+                "Vijaya_Muhurta.muhurta_duration_minutes": "minute",
+                "Godhuli_Muhurta.duration_seconds": "second",
+                "Godhuli_Muhurta.duration_minutes": "minute",
+                "Sandhya.Pratah_Sandhya.duration_seconds": "second",
+                "Sandhya.Pratah_Sandhya.duration_minutes": "minute",
+                "Sandhya.Madhyahna_Sandhya.duration_seconds": "second",
+                "Sandhya.Madhyahna_Sandhya.duration_minutes": "minute",
+                "Sandhya.Sayahna_Sandhya.duration_seconds": "second",
+                "Sandhya.Sayahna_Sandhya.duration_minutes": "minute",
+                "Gowri_Panchangam.division_duration_seconds": "second",
+                "Gowri_Panchangam.division_duration_minutes": "minute",
+                "Kala_Vela.division_duration_seconds": "second",
+                "Kala_Vela.division_duration_minutes": "minute",
                 "Varjyam.duration_minutes": "minute",
                 "Amrita_Kaal.duration_minutes": "minute",
                 "Pradosha_Kaal.duration_minutes": "minute",
@@ -9769,7 +9788,7 @@
             "Is_Vishti_Karana": false,
             "Sunrise": "06:47:51 AM",
             "Sunset": "07:05:18 PM",
-            "Ishtkaal": "04:25:50",
+            "Ishtkaal": "25:50:25",
             "sun_sunrise_lon": 343.1517228133833,
             "moon_sunrise_lon": 102.11392521917718,
             "sunrise_hm": [
@@ -9778,9 +9797,9 @@
             ],
             "sunrise_dt": "28/03/2026 06:47:51 AM",
             "Ayanamsa": "LAHIRI",
-            "Ayanamsa_Degree": 24.223598295144086,
-            "Ayanamsa_At": "28/03/2026 08:34:12 AM",
-            "Ayanamsa_JD": 2461127.6279166667,
+            "Ayanamsa_Degree": 24.223611943527715,
+            "Ayanamsa_At": "28/03/2026 05:08:02 PM",
+            "Ayanamsa_JD": 2461127.98474537,
             "Day_Types": {
                 "civil_day_start": "28/03/2026 12:00:00 AM",
                 "civil_day_end": "29/03/2026 12:00:00 AM",
@@ -9832,7 +9851,7 @@
                 "Sunset": "07:05:18 PM",
                 "Moonrise": "02:49:13 PM",
                 "Moonset": "04:21:27 AM",
-                "Ishtkaal": "04:25:50",
+                "Ishtkaal": "25:50:25",
                 "sun_sunrise_lon": 343.1517228133833,
                 "moon_sunrise_lon": 102.11392521917718,
                 "sunrise_hm": [
@@ -9845,11 +9864,11 @@
                 "nakshatra_end_dt": "28/03/2026 02:50:20 PM",
                 "yoga_end_dt": "28/03/2026 08:06:06 PM",
                 "karana_end_dt": "28/03/2026 08:46:12 AM",
-                "Sunrise_iso": "29/03/2026 06:47:51 AM",
+                "Sunrise_iso": "28/03/2026 06:47:51 AM",
                 "Sunset_iso": "28/03/2026 07:05:18 PM",
                 "Moonrise_iso": "28/03/2026 02:49:13 PM",
                 "Moonset_iso": "29/03/2026 04:21:27 AM",
-                "Ishtkaal_iso": "29/03/2026 04:25:50 AM"
+                "Ishtkaal_iso": "29/03/2026 01:50:25 AM"
             },
             "Hindu_Calendar": {
                 "Ayana": "Uttarayana",
@@ -9864,6 +9883,8 @@
                 "Month_Purnimanta": "Chaitra",
                 "Is_Adhika": false,
                 "Is_Kshaya": false,
+                "Amanta_Index": 0,
+                "Purnimanta_Index": 0,
                 "Calendar_Type": "Purnimanta / Amavasyant (Calculated)"
             },
             "Chart_Auxiliary": {
@@ -9880,22 +9901,22 @@
                 }
             ],
             "Panchaka_Rahita": {
-                "sum": 26,
-                "remainder": 8,
-                "panchaka_name": "Nish-Panchaka",
+                "sum": 30,
+                "remainder": 3,
+                "panchaka_name": "Shubha Panchaka",
                 "is_auspicious": true
             },
             "Hora": {
-                "hora_number": 2,
+                "hora_number": 11,
                 "is_day_hora": true,
-                "ruler": "Jupiter",
+                "ruler": "Sun",
                 "hora_duration_seconds": 3687.25,
                 "hora_duration_minutes": "1h 1m 27.25s"
             },
             "Chogadiya": {
                 "mode": "Day",
-                "division": 2,
-                "name": "Shubh",
+                "division": 7,
+                "name": "Amrit",
                 "is_auspicious": true,
                 "division_duration_minutes": "1h 32m 10.875s"
             },
@@ -10637,7 +10658,7 @@
                     "start": "06:47:51 AM",
                     "end": "08:20:02 AM",
                     "duration_min": "1h 32m 10.875s",
-                    "start_iso": "29/03/2026 06:47:51 AM",
+                    "start_iso": "28/03/2026 06:47:51 AM",
                     "end_iso": "28/03/2026 08:20:02 AM"
                 },
                 "Yamaganda": {
@@ -10649,7 +10670,7 @@
                 }
             },
             "Abhijit_Muhurta": {
-                "source": "Muhūrta Chintāmaṇi / Nārada Saṁhitā",
+                "source": "Package attribution: Muhūrta Chintāmaṇi / Nārada Saṁhitā",
                 "abhijit_start": "12:32:00 PM",
                 "abhijit_end": "01:21:10 PM",
                 "solar_noon": "12:56:35 PM",
@@ -10669,7 +10690,7 @@
                     "end": "09:52:13 AM",
                     "duration_seconds": 11061.75,
                     "duration_hours": 3.0727083333333334,
-                    "start_iso": "29/03/2026 06:47:51 AM",
+                    "start_iso": "28/03/2026 06:47:51 AM",
                     "end_iso": "28/03/2026 09:52:13 AM"
                 },
                 {
@@ -10754,7 +10775,54 @@
                     "duration_seconds": 10523.75,
                     "duration_hours": 2.923263888888889,
                     "start_iso": "29/03/2026 03:51:30 AM",
-                    "end_iso": "29/03/2026 06:46:53 AM"
+                    "end_iso": "28/03/2026 06:46:53 AM"
+                }
+            ],
+            "Daylight_Fivefold_Division": [
+                {
+                    "name": "Pratah",
+                    "division_number": 1,
+                    "start": "06:47:51 AM",
+                    "end": "09:15:21 AM",
+                    "start_iso": "28/03/2026 06:47:51 AM",
+                    "end_iso": "28/03/2026 09:15:21 AM",
+                    "duration_seconds": 8849.4
+                },
+                {
+                    "name": "Sangava",
+                    "division_number": 2,
+                    "start": "09:15:21 AM",
+                    "end": "11:42:50 AM",
+                    "start_iso": "28/03/2026 09:15:21 AM",
+                    "end_iso": "28/03/2026 11:42:50 AM",
+                    "duration_seconds": 8849.4
+                },
+                {
+                    "name": "Madhyahna",
+                    "division_number": 3,
+                    "start": "11:42:50 AM",
+                    "end": "02:10:19 PM",
+                    "start_iso": "28/03/2026 11:42:50 AM",
+                    "end_iso": "28/03/2026 02:10:19 PM",
+                    "duration_seconds": 8849.4
+                },
+                {
+                    "name": "Aparahna",
+                    "division_number": 4,
+                    "start": "02:10:19 PM",
+                    "end": "04:37:49 PM",
+                    "start_iso": "28/03/2026 02:10:19 PM",
+                    "end_iso": "28/03/2026 04:37:49 PM",
+                    "duration_seconds": 8849.4
+                },
+                {
+                    "name": "Sayahna",
+                    "division_number": 5,
+                    "start": "04:37:49 PM",
+                    "end": "07:05:18 PM",
+                    "start_iso": "28/03/2026 04:37:49 PM",
+                    "end_iso": "28/03/2026 07:05:18 PM",
+                    "duration_seconds": 8849.4
                 }
             ],
             "Brahma_Muhurta": {
@@ -10776,7 +10844,7 @@
                     "end": "07:37:01 AM",
                     "duration_seconds": 2949.8,
                     "is_auspicious": false,
-                    "start_iso": "29/03/2026 06:47:51 AM",
+                    "start_iso": "28/03/2026 06:47:51 AM",
                     "end_iso": "28/03/2026 07:37:01 AM"
                 },
                 {
@@ -10879,6 +10947,639 @@
                     "end_iso": "29/03/2026 12:32:43 AM"
                 }
             ],
+            "Nishita_Muhurta": {
+                "source": "Package derivation from 15-part night Muhurta model",
+                "nishita_start": "12:32:43 AM",
+                "nishita_end": "01:19:29 AM",
+                "nishita_start_iso": "29/03/2026 12:32:43 AM",
+                "nishita_end_iso": "29/03/2026 01:19:29 AM",
+                "night_midpoint": "12:56:06 AM",
+                "night_midpoint_iso": "29/03/2026 12:56:06 AM",
+                "muhurta_duration_minutes": "46m 46.333333333333s",
+                "muhurta_number": "8th of 15 (Nishita)"
+            },
+            "Vijaya_Muhurta": {
+                "source": "30 Muhurta day division",
+                "vijaya_start": "02:59:29 PM",
+                "vijaya_end": "03:48:39 PM",
+                "vijaya_start_iso": "28/03/2026 02:59:29 PM",
+                "vijaya_end_iso": "28/03/2026 03:48:39 PM",
+                "muhurta_duration_minutes": "49m 9.8000000000002s",
+                "muhurta_number": "11th of 15 (Vijaya)"
+            },
+            "Godhuli_Muhurta": {
+                "source": "Observed Panchang convention; tradition-dependent",
+                "godhuli_start": "07:05:18 PM",
+                "godhuli_end": "07:28:42 PM",
+                "godhuli_start_iso": "28/03/2026 07:05:18 PM",
+                "godhuli_end_iso": "28/03/2026 07:28:42 PM",
+                "duration_minutes": "23m 23.166666666667s"
+            },
+            "Sandhya": {
+                "source": "Sandhyavandanam practice convention",
+                "pratah_sandhya": {
+                    "start": "05:37:42 AM",
+                    "end": "06:47:51 AM",
+                    "start_iso": "28/03/2026 05:37:42 AM",
+                    "end_iso": "28/03/2026 06:47:51 AM",
+                    "duration_minutes": "1h 10m 9.5s"
+                },
+                "madhyahna_sandhya": {
+                    "start": "12:20:24 PM",
+                    "end": "01:32:24 PM",
+                    "start_iso": "28/03/2026 12:20:24 PM",
+                    "end_iso": "28/03/2026 01:32:24 PM",
+                    "duration_minutes": "1h 12m 0s"
+                },
+                "sayahna_sandhya": {
+                    "start": "07:05:18 PM",
+                    "end": "08:15:28 PM",
+                    "start_iso": "28/03/2026 07:05:18 PM",
+                    "end_iso": "28/03/2026 08:15:28 PM",
+                    "duration_minutes": "1h 10m 9.5s"
+                }
+            },
+            "Gowri_Panchangam": {
+                "source": "Published Gowri/Pambu table convention",
+                "day": [
+                    {
+                        "division": 1,
+                        "label": "Soram",
+                        "quality": "bad",
+                        "is_auspicious": false,
+                        "is_day": true,
+                        "start": "06:47:51 AM",
+                        "end": "08:20:02 AM",
+                        "start_iso": "28/03/2026 06:47:51 AM",
+                        "end_iso": "28/03/2026 08:20:02 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 2,
+                        "label": "Uthi",
+                        "quality": "good",
+                        "is_auspicious": true,
+                        "is_day": true,
+                        "start": "08:20:02 AM",
+                        "end": "09:52:13 AM",
+                        "start_iso": "28/03/2026 08:20:02 AM",
+                        "end_iso": "28/03/2026 09:52:13 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 3,
+                        "label": "Visham",
+                        "quality": "bad",
+                        "is_auspicious": false,
+                        "is_day": true,
+                        "start": "09:52:13 AM",
+                        "end": "11:24:24 AM",
+                        "start_iso": "28/03/2026 09:52:13 AM",
+                        "end_iso": "28/03/2026 11:24:24 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 4,
+                        "label": "Amirdha",
+                        "quality": "best",
+                        "is_auspicious": true,
+                        "is_day": true,
+                        "start": "11:24:24 AM",
+                        "end": "12:56:35 PM",
+                        "start_iso": "28/03/2026 11:24:24 AM",
+                        "end_iso": "28/03/2026 12:56:35 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 5,
+                        "label": "Rogam",
+                        "quality": "evil",
+                        "is_auspicious": false,
+                        "is_day": true,
+                        "start": "12:56:35 PM",
+                        "end": "02:28:46 PM",
+                        "start_iso": "28/03/2026 12:56:35 PM",
+                        "end_iso": "28/03/2026 02:28:46 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 6,
+                        "label": "Laabam",
+                        "quality": "gain",
+                        "is_auspicious": true,
+                        "is_day": true,
+                        "start": "02:28:46 PM",
+                        "end": "04:00:56 PM",
+                        "start_iso": "28/03/2026 02:28:46 PM",
+                        "end_iso": "28/03/2026 04:00:56 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 7,
+                        "label": "Dhanam",
+                        "quality": "wealth",
+                        "is_auspicious": true,
+                        "is_day": true,
+                        "start": "04:00:56 PM",
+                        "end": "05:33:07 PM",
+                        "start_iso": "28/03/2026 04:00:56 PM",
+                        "end_iso": "28/03/2026 05:33:07 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 8,
+                        "label": "Sugam",
+                        "quality": "good",
+                        "is_auspicious": true,
+                        "is_day": true,
+                        "start": "05:33:07 PM",
+                        "end": "07:05:18 PM",
+                        "start_iso": "28/03/2026 05:33:07 PM",
+                        "end_iso": "28/03/2026 07:05:18 PM",
+                        "duration_seconds": 5530.875
+                    }
+                ],
+                "night": [
+                    {
+                        "division": 1,
+                        "label": "Laabam",
+                        "quality": "gain",
+                        "is_auspicious": true,
+                        "is_day": false,
+                        "start": "07:05:18 PM",
+                        "end": "08:33:00 PM",
+                        "start_iso": "28/03/2026 07:05:18 PM",
+                        "end_iso": "28/03/2026 08:33:00 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 2,
+                        "label": "Dhanam",
+                        "quality": "wealth",
+                        "is_auspicious": true,
+                        "is_day": false,
+                        "start": "08:33:00 PM",
+                        "end": "10:00:42 PM",
+                        "start_iso": "28/03/2026 08:33:00 PM",
+                        "end_iso": "28/03/2026 10:00:42 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 3,
+                        "label": "Sugam",
+                        "quality": "good",
+                        "is_auspicious": true,
+                        "is_day": false,
+                        "start": "10:00:42 PM",
+                        "end": "11:28:24 PM",
+                        "start_iso": "28/03/2026 10:00:42 PM",
+                        "end_iso": "28/03/2026 11:28:24 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 4,
+                        "label": "Soram",
+                        "quality": "bad",
+                        "is_auspicious": false,
+                        "is_day": false,
+                        "start": "11:28:24 PM",
+                        "end": "12:56:06 AM",
+                        "start_iso": "28/03/2026 11:28:24 PM",
+                        "end_iso": "29/03/2026 12:56:06 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 5,
+                        "label": "Uthi",
+                        "quality": "good",
+                        "is_auspicious": true,
+                        "is_day": false,
+                        "start": "12:56:06 AM",
+                        "end": "02:23:48 AM",
+                        "start_iso": "29/03/2026 12:56:06 AM",
+                        "end_iso": "29/03/2026 02:23:48 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 6,
+                        "label": "Visham",
+                        "quality": "bad",
+                        "is_auspicious": false,
+                        "is_day": false,
+                        "start": "02:23:48 AM",
+                        "end": "03:51:30 AM",
+                        "start_iso": "29/03/2026 02:23:48 AM",
+                        "end_iso": "29/03/2026 03:51:30 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 7,
+                        "label": "Amirdha",
+                        "quality": "best",
+                        "is_auspicious": true,
+                        "is_day": false,
+                        "start": "03:51:30 AM",
+                        "end": "05:19:11 AM",
+                        "start_iso": "29/03/2026 03:51:30 AM",
+                        "end_iso": "29/03/2026 05:19:11 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 8,
+                        "label": "Soram",
+                        "quality": "bad",
+                        "is_auspicious": false,
+                        "is_day": false,
+                        "start": "05:19:11 AM",
+                        "end": "06:46:53 AM",
+                        "start_iso": "29/03/2026 05:19:11 AM",
+                        "end_iso": "29/03/2026 06:46:53 AM",
+                        "duration_seconds": 5261.875
+                    }
+                ],
+                "auspicious_labels": [
+                    "Amirdha",
+                    "Dhanam",
+                    "Uthi",
+                    "Laabam",
+                    "Sugam"
+                ],
+                "inauspicious_labels": [
+                    "Rogam",
+                    "Soram",
+                    "Visham"
+                ]
+            },
+            "Kala_Vela": {
+                "source": "Secondary-source Kala Vela convention attributed to Saravali",
+                "day": [
+                    {
+                        "division": 1,
+                        "planetary_lord": "Saturn",
+                        "is_optional_eighth_portion": false,
+                        "start": "06:47:51 AM",
+                        "end": "08:20:02 AM",
+                        "start_iso": "28/03/2026 06:47:51 AM",
+                        "end_iso": "28/03/2026 08:20:02 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 2,
+                        "planetary_lord": "Sun",
+                        "is_optional_eighth_portion": false,
+                        "start": "08:20:02 AM",
+                        "end": "09:52:13 AM",
+                        "start_iso": "28/03/2026 08:20:02 AM",
+                        "end_iso": "28/03/2026 09:52:13 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 3,
+                        "planetary_lord": "Moon",
+                        "is_optional_eighth_portion": false,
+                        "start": "09:52:13 AM",
+                        "end": "11:24:24 AM",
+                        "start_iso": "28/03/2026 09:52:13 AM",
+                        "end_iso": "28/03/2026 11:24:24 AM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 4,
+                        "planetary_lord": "Mars",
+                        "is_optional_eighth_portion": false,
+                        "start": "11:24:24 AM",
+                        "end": "12:56:35 PM",
+                        "start_iso": "28/03/2026 11:24:24 AM",
+                        "end_iso": "28/03/2026 12:56:35 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 5,
+                        "planetary_lord": "Mercury",
+                        "is_optional_eighth_portion": false,
+                        "start": "12:56:35 PM",
+                        "end": "02:28:46 PM",
+                        "start_iso": "28/03/2026 12:56:35 PM",
+                        "end_iso": "28/03/2026 02:28:46 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 6,
+                        "planetary_lord": "Jupiter",
+                        "is_optional_eighth_portion": false,
+                        "start": "02:28:46 PM",
+                        "end": "04:00:56 PM",
+                        "start_iso": "28/03/2026 02:28:46 PM",
+                        "end_iso": "28/03/2026 04:00:56 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 7,
+                        "planetary_lord": "Venus",
+                        "is_optional_eighth_portion": false,
+                        "start": "04:00:56 PM",
+                        "end": "05:33:07 PM",
+                        "start_iso": "28/03/2026 04:00:56 PM",
+                        "end_iso": "28/03/2026 05:33:07 PM",
+                        "duration_seconds": 5530.875
+                    },
+                    {
+                        "division": 8,
+                        "planetary_lord": null,
+                        "is_optional_eighth_portion": true,
+                        "start": "05:33:07 PM",
+                        "end": "07:05:18 PM",
+                        "start_iso": "28/03/2026 05:33:07 PM",
+                        "end_iso": "28/03/2026 07:05:18 PM",
+                        "duration_seconds": 5530.875
+                    }
+                ],
+                "night": [
+                    {
+                        "division": 1,
+                        "planetary_lord": "Mercury",
+                        "is_optional_eighth_portion": false,
+                        "start": "07:05:18 PM",
+                        "end": "08:33:00 PM",
+                        "start_iso": "28/03/2026 07:05:18 PM",
+                        "end_iso": "28/03/2026 08:33:00 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 2,
+                        "planetary_lord": "Jupiter",
+                        "is_optional_eighth_portion": false,
+                        "start": "08:33:00 PM",
+                        "end": "10:00:42 PM",
+                        "start_iso": "28/03/2026 08:33:00 PM",
+                        "end_iso": "28/03/2026 10:00:42 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 3,
+                        "planetary_lord": "Venus",
+                        "is_optional_eighth_portion": false,
+                        "start": "10:00:42 PM",
+                        "end": "11:28:24 PM",
+                        "start_iso": "28/03/2026 10:00:42 PM",
+                        "end_iso": "28/03/2026 11:28:24 PM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 4,
+                        "planetary_lord": "Saturn",
+                        "is_optional_eighth_portion": false,
+                        "start": "11:28:24 PM",
+                        "end": "12:56:06 AM",
+                        "start_iso": "28/03/2026 11:28:24 PM",
+                        "end_iso": "29/03/2026 12:56:06 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 5,
+                        "planetary_lord": "Sun",
+                        "is_optional_eighth_portion": false,
+                        "start": "12:56:06 AM",
+                        "end": "02:23:48 AM",
+                        "start_iso": "29/03/2026 12:56:06 AM",
+                        "end_iso": "29/03/2026 02:23:48 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 6,
+                        "planetary_lord": "Moon",
+                        "is_optional_eighth_portion": false,
+                        "start": "02:23:48 AM",
+                        "end": "03:51:30 AM",
+                        "start_iso": "29/03/2026 02:23:48 AM",
+                        "end_iso": "29/03/2026 03:51:30 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 7,
+                        "planetary_lord": "Mars",
+                        "is_optional_eighth_portion": false,
+                        "start": "03:51:30 AM",
+                        "end": "05:19:11 AM",
+                        "start_iso": "29/03/2026 03:51:30 AM",
+                        "end_iso": "29/03/2026 05:19:11 AM",
+                        "duration_seconds": 5261.875
+                    },
+                    {
+                        "division": 8,
+                        "planetary_lord": null,
+                        "is_optional_eighth_portion": true,
+                        "start": "05:19:11 AM",
+                        "end": "06:46:53 AM",
+                        "start_iso": "29/03/2026 05:19:11 AM",
+                        "end_iso": "29/03/2026 06:46:53 AM",
+                        "duration_seconds": 5261.875
+                    }
+                ],
+                "named_kala_velas": {
+                    "kala": [
+                        {
+                            "division": 2,
+                            "start": "08:20:02 AM",
+                            "end": "09:52:13 AM",
+                            "start_iso": "28/03/2026 08:20:02 AM",
+                            "end_iso": "28/03/2026 09:52:13 AM"
+                        },
+                        {
+                            "division": 5,
+                            "start": "12:56:06 AM",
+                            "end": "02:23:48 AM",
+                            "start_iso": "29/03/2026 12:56:06 AM",
+                            "end_iso": "29/03/2026 02:23:48 AM"
+                        }
+                    ],
+                    "mrityu": [
+                        {
+                            "division": 4,
+                            "start": "11:24:24 AM",
+                            "end": "12:56:35 PM",
+                            "start_iso": "28/03/2026 11:24:24 AM",
+                            "end_iso": "28/03/2026 12:56:35 PM"
+                        },
+                        {
+                            "division": 7,
+                            "start": "03:51:30 AM",
+                            "end": "05:19:11 AM",
+                            "start_iso": "29/03/2026 03:51:30 AM",
+                            "end_iso": "29/03/2026 05:19:11 AM"
+                        }
+                    ],
+                    "ardhaprahara": [
+                        {
+                            "division": 5,
+                            "start": "12:56:35 PM",
+                            "end": "02:28:46 PM",
+                            "start_iso": "28/03/2026 12:56:35 PM",
+                            "end_iso": "28/03/2026 02:28:46 PM"
+                        },
+                        {
+                            "division": 1,
+                            "start": "07:05:18 PM",
+                            "end": "08:33:00 PM",
+                            "start_iso": "28/03/2026 07:05:18 PM",
+                            "end_iso": "28/03/2026 08:33:00 PM"
+                        }
+                    ],
+                    "yamaghantaka": [
+                        {
+                            "division": 6,
+                            "start": "02:28:46 PM",
+                            "end": "04:00:56 PM",
+                            "start_iso": "28/03/2026 02:28:46 PM",
+                            "end_iso": "28/03/2026 04:00:56 PM"
+                        },
+                        {
+                            "division": 2,
+                            "start": "08:33:00 PM",
+                            "end": "10:00:42 PM",
+                            "start_iso": "28/03/2026 08:33:00 PM",
+                            "end_iso": "28/03/2026 10:00:42 PM"
+                        }
+                    ],
+                    "gulika": [
+                        {
+                            "division": 1,
+                            "start": "06:47:51 AM",
+                            "end": "08:20:02 AM",
+                            "start_iso": "28/03/2026 06:47:51 AM",
+                            "end_iso": "28/03/2026 08:20:02 AM"
+                        },
+                        {
+                            "division": 4,
+                            "start": "11:28:24 PM",
+                            "end": "12:56:06 AM",
+                            "start_iso": "28/03/2026 11:28:24 PM",
+                            "end_iso": "29/03/2026 12:56:06 AM"
+                        }
+                    ]
+                }
+            },
+            "Karmakala_Windows": {
+                "sunrise": {
+                    "label": "Sunrise",
+                    "type": "instant",
+                    "time": "06:47:51 AM",
+                    "time_iso": "28/03/2026 06:47:51 AM"
+                },
+                "pratah": {
+                    "name": "Pratah",
+                    "division_number": 1,
+                    "start": "06:47:51 AM",
+                    "end": "09:15:21 AM",
+                    "start_iso": "28/03/2026 06:47:51 AM",
+                    "end_iso": "28/03/2026 09:15:21 AM",
+                    "duration_seconds": 8849.4
+                },
+                "sangava": {
+                    "name": "Sangava",
+                    "division_number": 2,
+                    "start": "09:15:21 AM",
+                    "end": "11:42:50 AM",
+                    "start_iso": "28/03/2026 09:15:21 AM",
+                    "end_iso": "28/03/2026 11:42:50 AM",
+                    "duration_seconds": 8849.4
+                },
+                "madhyahna": {
+                    "name": "Madhyahna",
+                    "division_number": 3,
+                    "start": "11:42:50 AM",
+                    "end": "02:10:19 PM",
+                    "start_iso": "28/03/2026 11:42:50 AM",
+                    "end_iso": "28/03/2026 02:10:19 PM",
+                    "duration_seconds": 8849.4
+                },
+                "aparahna": {
+                    "name": "Aparahna",
+                    "division_number": 4,
+                    "start": "02:10:19 PM",
+                    "end": "04:37:49 PM",
+                    "start_iso": "28/03/2026 02:10:19 PM",
+                    "end_iso": "28/03/2026 04:37:49 PM",
+                    "duration_seconds": 8849.4
+                },
+                "sayahna": {
+                    "name": "Sayahna",
+                    "division_number": 5,
+                    "start": "04:37:49 PM",
+                    "end": "07:05:18 PM",
+                    "start_iso": "28/03/2026 04:37:49 PM",
+                    "end_iso": "28/03/2026 07:05:18 PM",
+                    "duration_seconds": 8849.4
+                },
+                "pradosha": {
+                    "pradosha_start": "07:05:17 PM",
+                    "pradosha_end": "09:25:36 PM",
+                    "pradosha_start_iso": "28/03/2026 07:05:17 PM",
+                    "pradosha_end_iso": "28/03/2026 09:25:36 PM",
+                    "sunset": "07:05:18 PM",
+                    "duration_minutes": 140.31666666269302,
+                    "base_pradosha_start": "07:05:18 PM",
+                    "base_pradosha_end": "09:25:36 PM",
+                    "base_pradosha_start_iso": "28/03/2026 07:05:18 PM",
+                    "base_pradosha_end_iso": "28/03/2026 09:25:36 PM",
+                    "base_duration_minutes": 140.31666666269302,
+                    "is_trayodashi": false,
+                    "is_auspicious": false,
+                    "trayodashi_overlap_minutes": 0,
+                    "trayodashi_overlaps": [],
+                    "significance": "No Trayodashi overlap in Pradosha Kaal for this day.",
+                    "sunset_iso": "28/03/2026 07:05:18 PM"
+                },
+                "nishitha": {
+                    "source": "Package derivation from 15-part night Muhurta model",
+                    "nishita_start": "12:32:43 AM",
+                    "nishita_end": "01:19:29 AM",
+                    "nishita_start_iso": "29/03/2026 12:32:43 AM",
+                    "nishita_end_iso": "29/03/2026 01:19:29 AM",
+                    "night_midpoint": "12:56:06 AM",
+                    "night_midpoint_iso": "29/03/2026 12:56:06 AM",
+                    "muhurta_duration_minutes": "46m 46.333333333333s",
+                    "muhurta_number": "8th of 15 (Nishita)"
+                },
+                "brahma_muhurta": {
+                    "source": "Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92",
+                    "brahma_muhurta_start": "05:11:51 AM",
+                    "brahma_muhurta_end": "05:59:51 AM",
+                    "duration_minutes": 48,
+                    "duration_seconds": 2880,
+                    "significance": "Most auspicious time for meditation, study, and spiritual practices. Sattvik period filled with purity, calmness, and clarity.",
+                    "brahma_muhurta_start_iso": "29/03/2026 05:11:51 AM",
+                    "brahma_muhurta_end_iso": "29/03/2026 05:59:51 AM"
+                },
+                "abhijit": {
+                    "source": "Package attribution: Muhūrta Chintāmaṇi / Nārada Saṁhitā",
+                    "abhijit_start": "12:32:00 PM",
+                    "abhijit_end": "01:21:10 PM",
+                    "solar_noon": "12:56:35 PM",
+                    "muhurta_duration_minutes": "49m 9.8000000000002s",
+                    "muhurta_number": "8th of 15 (Abhijit)",
+                    "abhijit_start_iso": "28/03/2026 12:32:00 PM",
+                    "abhijit_end_iso": "28/03/2026 01:21:10 PM",
+                    "solar_noon_iso": "28/03/2026 12:56:35 PM"
+                },
+                "vijaya": {
+                    "source": "30 Muhurta day division",
+                    "vijaya_start": "02:59:29 PM",
+                    "vijaya_end": "03:48:39 PM",
+                    "vijaya_start_iso": "28/03/2026 02:59:29 PM",
+                    "vijaya_end_iso": "28/03/2026 03:48:39 PM",
+                    "muhurta_duration_minutes": "49m 9.8000000000002s",
+                    "muhurta_number": "11th of 15 (Vijaya)"
+                },
+                "godhuli": {
+                    "source": "Observed Panchang convention; tradition-dependent",
+                    "godhuli_start": "07:05:18 PM",
+                    "godhuli_end": "07:28:42 PM",
+                    "godhuli_start_iso": "28/03/2026 07:05:18 PM",
+                    "godhuli_end_iso": "28/03/2026 07:28:42 PM",
+                    "duration_minutes": "23m 23.166666666667s"
+                }
+            },
             "Varjyam": {
                 "varjyam_start": "03:31:48 AM",
                 "varjyam_end": "05:06:59 AM",
@@ -10945,12 +11646,12 @@
                 "sunset_iso": "28/03/2026 07:05:18 PM"
             },
             "Lagna": {
-                "lagna_longitude_nirayana": 16.021737897733473,
-                "lagna_longitude_sayana": 40.24533619287756,
-                "sign_index": 0,
-                "sign_name": "Mesha",
-                "degree_in_sign": 16.021737897733473,
-                "ayanamsa_applied": 24.223598295144086
+                "lagna_longitude_nirayana": 137.53609367593523,
+                "lagna_longitude_sayana": 161.75970561946295,
+                "sign_index": 4,
+                "sign_name": "Simha",
+                "degree_in_sign": 17.536093675935234,
+                "ayanamsa_applied": 24.223611943527715
             },
             "Lagna_Full_Day": [
                 {
@@ -11154,55 +11855,99 @@
                 }
             ],
             "Dharma_Sindhu": [],
-            "Sunrise_iso": "29/03/2026 06:47:51 AM",
+            "Sunrise_iso": "28/03/2026 06:47:51 AM",
             "Sunset_iso": "28/03/2026 07:05:18 PM",
-            "Ishtkaal_iso": "29/03/2026 04:25:50 AM"
+            "Ishtkaal_iso": "29/03/2026 01:50:25 AM"
         }
     },
     "muhurta_evaluation": {
-        "title": "Complete Muhurta Evaluation - All newly implemented classical Muhurta engines",
+        "scope": "transit_only",
+        "notes": [
+            "No natal or person-specific inputs are used.",
+            "Evaluation is derived only from current Panchang and transit state for the configured location/time."
+        ],
+        "title": "Complete Muhurta Evaluation - Centralized package output",
+        "activity_key": "general_auspicious",
+        "input_now": "28/03/2026 05:08:02 PM",
+        "date": "2026-03-28",
         "input_parameters": {
-            "tithi_number": 1,
-            "vara_number": 0,
-            "nakshatra_number": 1,
-            "lagna_number": 1,
-            "moon_sign_idx": 0,
+            "tithi_number": 11,
+            "tithi_name": "Ekadashi",
+            "tithi_number_base": 1,
+            "vara_number": 6,
+            "vara_name": "Saturday",
+            "vara_index_base": 0,
+            "vara_sequence_number": 7,
+            "vara_sequence_number_base": 1,
+            "nakshatra_number": 9,
+            "nakshatra_name": "Ashlesha",
+            "nakshatra_number_base": 1,
+            "lagna_number": 5,
+            "lagna_name": "Siṃha",
+            "lagna_number_base": 1,
+            "moon_sign_idx": 3,
+            "moon_sign_name": "Cancer",
+            "moon_sign_index_base": 0,
+            "moon_sign_number": 4,
+            "moon_sign_number_base": 1,
             "is_krishna_paksha": false,
-            "sunrise": 6.7975,
-            "sunset": 19.08833333333333,
-            "next_sunrise": 6.7975,
-            "current_time": 8.57
+            "sunrise": "06:47:51 AM",
+            "sunrise_iso": "28/03/2026 06:47:51 AM",
+            "sunrise_decimal_hours": 6.7975,
+            "sunset": "07:05:18 PM",
+            "sunset_iso": "28/03/2026 07:05:18 PM",
+            "sunset_decimal_hours": 19.088333333333335,
+            "next_sunrise": "06:47:51 AM",
+            "next_sunrise_iso": "29/03/2026 06:47:51 AM",
+            "next_sunrise_decimal_hours": 30.7975,
+            "current_time": "05:08:02 PM",
+            "current_time_iso": "28/03/2026 05:08:02 PM",
+            "current_time_decimal_hours": 17.13388888888889
         },
         "evaluation_results": {
             "panchaka_dosha": {
-                "source": "Muhurta Chintamani / Brihat Samhita",
-                "tithi": 1,
-                "vara": 1,
-                "nakshatra": 1,
-                "lagna": 1,
-                "sum": 4,
-                "remainder": 4,
-                "panchaka_name": "Raja",
-                "panchaka_english": "King",
-                "severity": "medium",
-                "has_dosha": true,
-                "is_panchaka_rahita": false,
-                "blocked_activities": [
-                    "marriage",
-                    "griha_pravesh",
-                    "surgery",
-                    "important_work"
-                ],
-                "description": "King Panchaka - Inauspicious"
+                "source": "Package rule mapping attributed to Muhurta Chintamani / Brihat Samhita",
+                "tithi": 11,
+                "tithi_name": "Ekadashi",
+                "tithi_number_base": 1,
+                "vara": 7,
+                "vara_name": "Saturday",
+                "vara_number_base": 1,
+                "nakshatra": 9,
+                "nakshatra_name": "Ashlesha",
+                "nakshatra_number_base": 1,
+                "lagna": 5,
+                "lagna_name": "Siṃha",
+                "lagna_number_base": 1,
+                "sum": 32,
+                "remainder": 5,
+                "panchaka_name": "Rahita",
+                "panchaka_english": "Auspicious",
+                "severity": "none",
+                "has_dosha": false,
+                "is_panchaka_rahita": true,
+                "blocked_activities": [],
+                "description": "Panchaka Rahita - Auspicious"
             },
             "dagdha_tithi": {
-                "source": "Muhurta Chintamani Chapter 4, Sloka 12-15",
-                "tithi_number": 1,
-                "moon_sign_idx": 0,
+                "source": "Package rule mapping attributed to Muhurta Chintamani",
+                "tithi_number": 11,
+                "tithi_name": "Ekadashi",
+                "tithi_number_base": 1,
+                "moon_sign_idx": 3,
+                "moon_sign_index_base": 0,
+                "moon_sign_number": 4,
+                "moon_sign_number_base": 1,
+                "moon_sign_name": "Cancer",
                 "dagdha_tithis_for_sign": [
-                    12,
-                    17,
-                    22
+                    10,
+                    15,
+                    20
+                ],
+                "dagdha_tithi_names_for_sign": [
+                    "Dashami",
+                    "Purnima",
+                    "Panchami"
                 ],
                 "is_dagdha": false,
                 "has_dosha": false,
@@ -11211,12 +11956,20 @@
                 "description": "Not Dagdha Tithi"
             },
             "dagdha_yoga": {
-                "source": "Classical Muhurta Texts",
-                "vara_number": 0,
-                "vara_name": "Sunday",
-                "tithi_number": 1,
+                "source": "Package rule mapping attributed to classical Muhurta texts",
+                "vara_number": 6,
+                "vara_name": "Saturday",
+                "vara_index_base": 0,
+                "vara_sequence_number": 7,
+                "vara_sequence_number_base": 1,
+                "tithi_number": 11,
+                "tithi_name": "Ekadashi",
+                "tithi_number_base": 1,
                 "dagdha_tithis_for_vara": [
-                    12
+                    9
+                ],
+                "dagdha_tithi_names_for_vara": [
+                    "Navami"
                 ],
                 "is_dagdha": false,
                 "has_dosha": false,
@@ -11224,134 +11977,118 @@
                 "blocked_activities": [],
                 "description": "Not Dagdha Yoga"
             },
-            "nakshatra_vedha": {
-                "source": "Classical Muhurta Texts",
-                "nakshatra_1_idx": 0,
-                "nakshatra_2_idx": 0,
-                "has_vedha": false,
-                "has_dosha": false,
-                "severity": "none",
-                "blocked_activities": [],
-                "description": "No Nakshatra Vedha"
-            },
             "bhadra": {
-                "source": "Muhurta Martanda",
-                "moon_sign_idx": 0,
-                "moon_sign_name": "Aries",
-                "moon_sign_symbol": "♈",
-                "abode_type": "heaven",
-                "abode_name": "Heaven (Swarga Loka)",
-                "severity": "low",
-                "is_auspicious": true,
-                "blocked_activities": [],
-                "allowed_activities": [
-                    "spiritual_work",
-                    "charity"
+                "source": "Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation",
+                "is_active": true,
+                "active_part": "madhya",
+                "active_period": {
+                    "has_bhadra": true,
+                    "lok": "Mrityuloka",
+                    "lok_description": "Bhadra resides on Earth",
+                    "impact_on_earth": "Strictly Inauspicious — avoid all auspicious work",
+                    "start_jd": 2461128.1137463497,
+                    "end_jd": 2461128.595082608,
+                    "start_time": "13:25:56",
+                    "end_time": "24:59:04",
+                    "duration_ghatis": 28.88,
+                    "tithi": 10,
+                    "paksha": "Shukla",
+                    "parts": {
+                        "mukha": {
+                            "start_time": "13:25:56",
+                            "end_time": "15:25:56",
+                            "ghatis": 5,
+                            "status": "Extremely Inauspicious",
+                            "start_time_iso": "28/03/2026 01:25:56 PM",
+                            "end_time_iso": "28/03/2026 03:25:56 PM"
+                        },
+                        "madhya": {
+                            "start_time": "15:25:56",
+                            "end_time": "23:47:04",
+                            "ghatis": 20.88,
+                            "status": "Inauspicious",
+                            "start_time_iso": "28/03/2026 03:25:56 PM",
+                            "end_time_iso": "28/03/2026 11:47:04 PM"
+                        },
+                        "puchha": {
+                            "start_time": "23:47:04",
+                            "end_time": "24:59:04",
+                            "ghatis": 3,
+                            "status": "Auspicious/Safe",
+                            "start_time_iso": "28/03/2026 11:47:04 PM",
+                            "end_time_iso": "29/03/2026 12:59:04 AM"
+                        }
+                    },
+                    "start_time_iso": "28/03/2026 01:25:56 PM",
+                    "end_time_iso": "29/03/2026 12:59:04 AM"
+                },
+                "has_dosha": true,
+                "severity": "high",
+                "is_auspicious": false,
+                "blocked_activities": [
+                    "all_auspicious_work",
+                    "marriage",
+                    "griha_pravesh",
+                    "new_ventures"
                 ],
-                "description": "Bhadra in Heaven - Neutral, good for spiritual work"
+                "description": "Bhadra is active in a blocked portion now."
             },
             "rikta_tithi": {
-                "source": "Muhurta Chintamani / Gargiya Jyotisha / Classical Tithi Texts",
-                "tithi_number": 1,
+                "source": "Package rule mapping attributed to Muhurta Chintamani / Gargiya Jyotisha",
+                "tithi_number": 11,
+                "tithi_name": "Ekadashi",
+                "tithi_number_base": 1,
                 "is_krishna_paksha": false,
                 "paksha_name": "Shukla Paksha (waxing)",
                 "is_rikta": false,
-                "is_special_avoid": true,
-                "has_dosha": true,
-                "severity": "medium",
-                "blocked_activities": [
-                    "all_auspicious_work",
-                    "marriage",
-                    "griha_pravesh",
-                    "new_ventures",
-                    "important_work"
-                ],
-                "allowed_activities": [
-                    "destruction",
-                    "exorcism",
-                    "removal_of_obstacles",
-                    "harsh_acts"
-                ],
-                "description": "Rikta Tithi - avoid all auspicious beginnings"
+                "is_special_avoid": false,
+                "has_dosha": false,
+                "severity": "none",
+                "blocked_activities": [],
+                "allowed_activities": [],
+                "description": "Not Rikta Tithi"
             },
             "varjyam": {
-                "source": "Classical Panchanga Calculation Texts / KP System",
-                "nakshatra_number": 10,
-                "visha_ghati_constant": 30,
-                "nakshatra_start_time": 21.339170582592487,
-                "nakshatra_duration_minutes": 1427.7398063242435,
-                "varjyam_start_offset_minutes": 713.8699031621218,
-                "varjyam_duration_minutes": 95.18265375494957,
-                "varjyam_start_time": 33.23700230196118,
-                "varjyam_end_time": 34.823379864543675,
-                "has_varjyam": true,
-                "severity": "high",
-                "description": "Varjyam (Visha Ghati) - poison period, avoid all auspicious work",
-                "blocked_activities": [
-                    "all_auspicious_work",
-                    "marriage",
-                    "griha_pravesh",
-                    "new_ventures",
-                    "important_work"
-                ]
+                "source": "Classical Panchanga Calculation Texts",
+                "window_count": 1,
+                "has_dosha": false,
+                "is_active": false,
+                "severity": "none",
+                "active_window": null,
+                "description": "Varjyam is not active at the evaluation time.",
+                "blocked_activities": []
             },
             "amrita_kaal": {
-                "source": "Classical Panchanga Calculation Texts / Chaughadia System",
-                "vara_number": 0,
-                "vara_name": "Sunday",
-                "sunrise": 6.7975,
-                "sunset": 19.08833333333333,
-                "next_sunrise": 6.7975,
-                "current_time": 8.57,
-                "day_chaughadia_duration_minutes": 92.18124999999999,
-                "night_chaughadia_duration_minutes": -92.18124999999999,
-                "amrita_periods": [
-                    {
-                        "period": "day",
-                        "start": 11.4065625,
-                        "end": 12.942916666666665,
-                        "duration_minutes": 92.18124999999999,
-                        "choghadiya_name": "Amṛta",
-                        "nature": "Very Auspicious"
-                    },
-                    {
-                        "period": "night",
-                        "start": 17.551979166666666,
-                        "end": 16.015625,
-                        "duration_minutes": -92.18124999999999,
-                        "choghadiya_name": "Amṛta",
-                        "nature": "Very Auspicious"
-                    },
-                    {
-                        "period": "night",
-                        "start": 9.870208333333332,
-                        "end": 8.333854166666665,
-                        "duration_minutes": -92.18124999999999,
-                        "choghadiya_name": "Amṛta",
-                        "nature": "Very Auspicious"
-                    }
-                ],
-                "is_in_amrita_kaal": false,
-                "current_amrita_period": null,
+                "source": "Classical Panchanga Calculation Texts",
+                "label": "Amrita Kaal",
+                "is_active": false,
                 "is_auspicious": false,
-                "description": "Not in Amrita Kaal",
-                "enhanced_activities": []
+                "start": "05:06:59 AM",
+                "end": "06:42:09 AM",
+                "start_iso": "29/03/2026 05:06:59 AM",
+                "end_iso": "29/03/2026 06:42:09 AM",
+                "description": "Amrita Kaal is not active at the evaluation time.",
+                "enhanced_activities": [],
+                "has_dosha": false,
+                "severity": "none"
             },
             "abhijit_cancellation": {
                 "source": "Muhurta Chintamani / Muhurta Martanda / Classical Dosha Nivarana Texts",
-                "sunrise": 6.7975,
-                "sunset": 19.08833333333333,
-                "vara_number": 0,
-                "vara_name": "Sunday",
-                "current_time": 8.57,
-                "abhijit_start": 12.533222222222221,
-                "abhijit_end": 13.352611111111111,
-                "abhijit_duration_minutes": 49.16333333333333,
-                "muhurta_number": "8 of 15 (Abhijit)",
-                "is_in_abhijit": false,
+                "label": "Abhijit Muhurta",
+                "is_active": false,
+                "is_auspicious": false,
+                "start": "12:32:00 PM",
+                "end": "01:21:10 PM",
+                "start_iso": "28/03/2026 12:32:00 PM",
+                "end_iso": "28/03/2026 01:21:10 PM",
+                "description": "Abhijit Muhurta is not active at the evaluation time.",
+                "enhanced_activities": [],
+                "has_dosha": false,
+                "severity": "none",
+                "vara_number": 6,
+                "vara_name": "Saturday",
                 "is_wednesday": false,
                 "has_cancellation_power": false,
-                "cancellation_note": "Not in Abhijit Muhurta",
                 "cancellable_doshas": {
                     "rikta_tithi": true,
                     "nakshatra_dosha": true,
@@ -11360,353 +12097,56 @@
                     "minor_graha_dosha": true,
                     "varjyam": false,
                     "grahan": false
-                },
-                "description": "Not in Abhijit Muhurta"
+                }
             }
         },
         "rejection_report": {
-            "source": "Muhurta Chintamani / Brihat Samhita / Classical Dosha Analysis Texts",
+            "source": "Package evaluation summary from configured/transit-only rule mappings",
             "activity_key": "general_auspicious",
-            "overall_verdict": "accepted_with_warnings",
-            "confidence_level": "medium",
-            "rejection_count": 0,
-            "warning_count": 2,
+            "overall_verdict": "rejected_but_can_try_remedies",
+            "confidence_level": "low",
+            "rejection_count": 1,
+            "warning_count": 0,
             "acceptance_count": 0,
             "critical_rejections": [],
-            "high_severity_rejections": [],
-            "medium_severity_warnings": [
+            "high_severity_rejections": [
                 {
-                    "dosha_name": "panchaka_dosha",
-                    "severity": "medium",
-                    "source": "Muhurta Chintamani / Brihat Samhita",
-                    "description": "King Panchaka - Inauspicious",
-                    "blocked_activities": [
-                        "marriage",
-                        "griha_pravesh",
-                        "surgery",
-                        "important_work"
-                    ],
-                    "cancellation_possible": true,
-                    "cancellation_method": "Abhijit Muhurta or specific remedies"
-                },
-                {
-                    "dosha_name": "rikta_tithi",
-                    "severity": "medium",
-                    "source": "Muhurta Chintamani / Gargiya Jyotisha / Classical Tithi Texts",
-                    "description": "Rikta Tithi - avoid all auspicious beginnings",
+                    "dosha_name": "bhadra",
+                    "severity": "high",
+                    "source": "Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation",
+                    "description": "Bhadra is active in a blocked portion now.",
                     "blocked_activities": [
                         "all_auspicious_work",
                         "marriage",
                         "griha_pravesh",
-                        "new_ventures",
-                        "important_work"
+                        "new_ventures"
                     ],
-                    "cancellation_possible": true,
-                    "cancellation_method": "Abhijit Muhurta or specific remedies"
+                    "cancellation_possible": false,
+                    "cancellation_method": null
                 }
             ],
+            "medium_severity_warnings": [],
             "low_severity_acceptances": [],
-            "detailed_rejections": [],
-            "detailed_warnings": [
+            "detailed_rejections": [
                 {
-                    "dosha_name": "panchaka_dosha",
-                    "severity": "medium",
-                    "source": "Muhurta Chintamani / Brihat Samhita",
-                    "description": "King Panchaka - Inauspicious",
-                    "blocked_activities": [
-                        "marriage",
-                        "griha_pravesh",
-                        "surgery",
-                        "important_work"
-                    ],
-                    "cancellation_possible": true,
-                    "cancellation_method": "Abhijit Muhurta or specific remedies"
-                },
-                {
-                    "dosha_name": "rikta_tithi",
-                    "severity": "medium",
-                    "source": "Muhurta Chintamani / Gargiya Jyotisha / Classical Tithi Texts",
-                    "description": "Rikta Tithi - avoid all auspicious beginnings",
+                    "dosha_name": "bhadra",
+                    "severity": "high",
+                    "source": "Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation",
+                    "description": "Bhadra is active in a blocked portion now.",
                     "blocked_activities": [
                         "all_auspicious_work",
                         "marriage",
                         "griha_pravesh",
-                        "new_ventures",
-                        "important_work"
+                        "new_ventures"
                     ],
-                    "cancellation_possible": true,
-                    "cancellation_method": "Abhijit Muhurta or specific remedies"
+                    "cancellation_possible": false,
+                    "cancellation_method": null
                 }
             ],
+            "detailed_warnings": [],
             "detailed_acceptances": [],
             "remedies_available": false,
-            "recommendation": "Muhurta is acceptable but has minor doshas. Consider remedies."
-        }
-    },
-    "karmakala_requirements": {
-        "title": "Karmakala Event Window Requirements - Classical rules for key activities",
-        "requirements": {
-            "vivaha": {
-                "activity_name": "Vivaha (Marriage)",
-                "source": "Muhurta Chintamani / Brihat Samhita",
-                "min_duration_minutes": 240,
-                "required_empty_houses": [
-                    7
-                ],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttara Bhadrapada, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "griha_pravasha": {
-                "activity_name": "Griha Pravasha (House Entry)",
-                "source": "Muhurta Chintamani / Classical Griha Pravasha Texts",
-                "min_duration_minutes": 120,
-                "required_empty_houses": [
-                    8
-                ],
-                "forbidden_houses": [
-                    4,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Shravana, Dhanishtha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Aquarius, Pisces"
-            },
-            "upanayana": {
-                "activity_name": "Upanayana (Sacred Thread Ceremony)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 180,
-                "required_empty_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha required",
-                "tithi_preference": "2, 3, 5, 10, 11, 12",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "namakarana": {
-                "activity_name": "Namakarana (Naming Ceremony)",
-                "source": "Muhurta Chintamani / Grihya Sutras / Manu Smriti",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            }
-        }
-    },
-    "complete_activity_matrix": {
-        "title": "Complete Classical Activity Matrix - All 16+ Muhurta activities with exact classical requirements",
-        "activity_count": 12,
-        "activities": {
-            "vivaha": {
-                "activity_name": "Vivaha (Marriage)",
-                "source": "Muhurta Chintamani / Brihat Samhita",
-                "min_duration_minutes": 240,
-                "required_empty_houses": [
-                    7
-                ],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttara Bhadrapada, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "griha_pravasha": {
-                "activity_name": "Griha Pravasha (House Entry)",
-                "source": "Muhurta Chintamani / Classical Griha Pravasha Texts",
-                "min_duration_minutes": 120,
-                "required_empty_houses": [
-                    8
-                ],
-                "forbidden_houses": [
-                    4,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Shravana, Dhanishtha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Aquarius, Pisces"
-            },
-            "upanayana": {
-                "activity_name": "Upanayana (Sacred Thread Ceremony)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 180,
-                "required_empty_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha required",
-                "tithi_preference": "2, 3, 5, 10, 11, 12",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "namakarana": {
-                "activity_name": "Namakarana (Naming Ceremony)",
-                "source": "Muhurta Chintamani / Grihya Sutras / Manu Smriti",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "annaprashana": {
-                "activity_name": "Annaprashana (First Feeding)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "mundan": {
-                "activity_name": "Mundan (Head Shaving)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "karnavedha": {
-                "activity_name": "Karnavedha (Ear Piercing)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "aksharabhyasa": {
-                "activity_name": "Aksharabhyasa (Learning Start)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "nishkramana": {
-                "activity_name": "Nishkramana (First Outing)",
-                "source": "Muhurta Chintamani / Grihya Sutras",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Pisces"
-            },
-            "yatra": {
-                "activity_name": "Yatra (Travel)",
-                "source": "Muhurta Chintamani / Brihat Samhita",
-                "min_duration_minutes": 30,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Ashwini, Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "vyapara": {
-                "activity_name": "Vyapara (Business/Trade)",
-                "source": "Muhurta Chintamani / Brihat Samhita",
-                "min_duration_minutes": 60,
-                "required_empty_houses": [],
-                "forbidden_houses": [
-                    6,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Dhanishtha, Revati",
-                "lagna_preference": "Taurus, Gemini, Virgo, Libra, Sagittarius, Pisces"
-            },
-            "pratishtha": {
-                "activity_name": "Pratishtha (Installation/Consecration)",
-                "source": "Muhurta Chintamani / Brihat Samhita / Agama Shastras",
-                "min_duration_minutes": 120,
-                "required_empty_houses": [
-                    8,
-                    12
-                ],
-                "forbidden_houses": [
-                    4,
-                    8,
-                    12
-                ],
-                "paksha_preference": "Shukla Paksha preferred",
-                "tithi_preference": "2, 3, 5, 7, 10, 11, 13",
-                "nakshatra_preference": "Rohini, Uttara Phalguni, Uttara Ashadha, Uttara Bhadrapada, Revati",
-                "lagna_preference": "Taurus, Leo, Virgo, Libra, Sagittarius, Pisces"
-            }
+            "recommendation": "Muhurta has significant doshas. Remedies may help but alternative preferred."
         }
     }
 }

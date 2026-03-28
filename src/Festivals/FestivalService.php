@@ -116,7 +116,7 @@ class FestivalService
 
     /**
      * Complete list of Hindu festivals with calculation rules
-     * Based on Drik Panchang, traditional texts, and regional variations.
+     * Based on traditional texts and regional variations.
      */
     public const FESTIVALS = [
         'Mesha Sankranti (Baisakhi / Puthandu]' =>

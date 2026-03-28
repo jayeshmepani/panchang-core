@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 163 festival definitions, 30 Muhurtas, sub-second astronomical accuracy.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 163 festival definitions, 30 Muhurtas, Karmakala windows, and Swiss Ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -327,9 +327,9 @@
           <p class="lead">Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision.</p>
           <div class="info-box">
             <h3>Overview</h3>
-            <p>Panchang Core is a comprehensive PHP package for calculating Vedic Panchanga elements, Muhūrtas, and
-              Hindu festivals with maximum astronomical precision. Built on Swiss Ephemeris FFI, it provides
-              zero-tolerance calculations for authentic Vedic astrology applications.</p>
+            <p>Panchang Core is a comprehensive PHP package for calculating Vedic Panchanga elements, Muhūrtas, Karmakala
+              windows, and Hindu festivals with high astronomical precision. Built on Swiss Ephemeris FFI, it provides
+              a reusable calculation engine for authentic Vedic astrology applications.</p>
           </div>
           <div class="features-grid">
             <div class="feature-card">
@@ -351,7 +351,7 @@
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
                 </svg>Muhūrta</h3>
-              <p>Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda</p>
+              <p>Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Varjyam, Pradosha</p>
             </div>
             <div class="feature-card">
               <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -366,103 +366,180 @@
           </div>
           <div class="classical-texts">
             <h3>Classical Sources</h3>
+            <div class="info-box" style="margin-bottom: 1.5rem;">
+              <p><strong>Important:</strong> This is a <strong>source-integrity map</strong>, not a manuscript-critical proof. The codebase mixes direct conventions, package rule mappings, regional almanac conventions, modern references, and legacy helpers. For complete details, see <a href="TRADITIONAL_TEXT_SOURCES.md" style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a>.</p>
+            </div>
+            
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 1: Direct or Standard Panchang Conventions</h4>
             <table class="data-table">
-              <caption class="sr-only">Classical Sanskrit texts used for calculations</caption>
+              <caption class="sr-only">Standard Panchang conventions used for calculations</caption>
               <thead>
                 <tr>
-                  <th scope="col">Text</th>
+                  <th scope="col">Source</th>
                   <th scope="col">Implementation</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td colspan="2" class="section-header">Sūrya Siddhānta (Sage-Attributed)</td>
-                </tr>
-                <tr>
                   <td><strong>Sūrya Siddhānta 1.29</strong></td>
-                  <td>Tithi calculation</td>
+                  <td>Tithi calculation (30 lunar days, 12° each)</td>
                 </tr>
                 <tr>
                   <td><strong>Sūrya Siddhānta 8.1</strong></td>
-                  <td>Nakṣatra calculation</td>
+                  <td>Nakṣatra calculation (27 lunar mansions, 13°20' each)</td>
                 </tr>
                 <tr>
-                  <td><strong>Sūrya Siddhānta</strong></td>
-                  <td>Yoga, Karana</td>
+                  <td><strong>Sūrya Siddhānta 3.1-3</strong></td>
+                  <td>Yoga calculation (27 combinations, 13°20' Sun-Moon sum)</td>
                 </tr>
                 <tr>
-                  <td><strong>Sūrya Siddhānta 1.10</strong></td>
-                  <td>Muhūrta</td>
+                  <td><strong>Muhūrta Chintāmaṇi Chapter 2</strong></td>
+                  <td>Karana calculation (11 half lunar days, 6° each)</td>
                 </tr>
                 <tr>
-                  <td><strong>Sūrya Siddhānta 1.11</strong></td>
-                  <td>Ghaṭikā, Pala</td>
-                </tr>
-                <tr>
-                  <td colspan="2" class="section-header">Bṛhat Parāśara Horā Śāstra (BPHS)</td>
-                </tr>
-                <tr>
-                  <td><strong>BPHS</strong></td>
-                  <td>Vimśottarī Daśā System, Nakṣatra lords, Daśā years</td>
-                </tr>
-                <tr>
-                  <td><strong>BPHS</strong></td>
-                  <td>Horā</td>
-                </tr>
-                <tr>
-                  <td colspan="2" class="section-header">Bṛhat Saṃhitā (Varāhamihira)</td>
-                </tr>
-                <tr>
-                  <td><strong>Bṛhat Saṃhitā 8</strong></td>
-                  <td>Samvatsara</td>
-                </tr>
-                <tr>
-                  <td><strong>Bṛhat Saṃhitā</strong></td>
-                  <td>Ritu</td>
-                </tr>
-                <tr>
-                  <td colspan="2" class="section-header">Muhūrta &amp; Kāla Nirṇaya</td>
-                </tr>
-                <tr>
-                  <td><strong>Muhūrta Chintāmaṇi</strong></td>
-                  <td>Aruṇodaya, Pradoṣa, Bhadra</td>
-                </tr>
-                <tr>
-                  <td><strong>Ashtānga Hṛdaya</strong></td>
-                  <td>Brahma Muhūrta</td>
-                </tr>
-                <tr>
-                  <td><strong>Charaka Saṃhitā</strong></td>
-                  <td>Muhūrta</td>
-                </tr>
-                <tr>
-                  <td><strong>Kāla Nirṇaya</strong></td>
-                  <td>Choghadiya</td>
-                </tr>
-                <tr>
-                  <td colspan="2" class="section-header">Festival Resolution</td>
-                </tr>
-                <tr>
-                  <td><strong>Nirṇaya Sindhu</strong></td>
-                  <td>Bhadra rules, Festival timing</td>
-                </tr>
-                <tr>
-                  <td><strong>Dharma Sindhu</strong></td>
-                  <td>Holikā Dahan, Vṛddhi/Kṣaya</td>
-                </tr>
-                <tr>
-                  <td><strong>Hari Bhakti Vilāsa</strong></td>
-                  <td>Ekādaśī</td>
-                </tr>
-                <tr>
-                  <td colspan="2" class="section-header">Modern Astronomy</td>
-                </tr>
-                <tr>
-                  <td><strong>Swiss Ephemeris</strong></td>
-                  <td>Vara (weekday), Ayanāṃśa, Graha Sphuṭa</td>
+                  <td><strong>Sūrya Siddhānta 1.10-1.11</strong></td>
+                  <td>Muhūrta, Ghaṭikā, Pala time units</td>
                 </tr>
               </tbody>
             </table>
+
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 2: Package Rule Mappings</h4>
+            <table class="data-table">
+              <caption class="sr-only">Package rule mappings attributed to traditional literature</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Source</th>
+                  <th scope="col">Implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Muhūrta Chintāmaṇi</strong></td>
+                  <td>Universal bad tithis, Vara-Tithi Yogas, Activity profiles</td>
+                </tr>
+                <tr>
+                  <td><strong>Bṛhat Saṃhitā</strong></td>
+                  <td>Muhurta rules, Samvatsara, Ritu</td>
+                </tr>
+                <tr>
+                  <td><strong>Māyamata</strong></td>
+                  <td>Vāstu muhurtas (Griha Pravesha)</td>
+                </tr>
+                <tr>
+                  <td><strong>Vaikhānasa Āgama</strong></td>
+                  <td>Temple installation muhurtas (Pratishtha)</td>
+                </tr>
+                <tr>
+                  <td><strong>Aśvalāyana Gṛhya Sūtra</strong></td>
+                  <td>Samskara muhurtas (Upanayana, Namakarana, etc.)</td>
+                </tr>
+                <tr>
+                  <td><strong>Muhūrta Mārtaṇḍa</strong></td>
+                  <td>Advanced muhurta calculations</td>
+                </tr>
+                <tr>
+                  <td><strong>Gargiya Jyotisha</strong></td>
+                  <td>Rikta Tithi dosha</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 3: Festival-Resolution Logic</h4>
+            <table class="data-table">
+              <caption class="sr-only">Festival resolution sources</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Source</th>
+                  <th scope="col">Implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Nirṇaya Sindhu</strong></td>
+                  <td>Festival timing, Bhadra rules</td>
+                </tr>
+                <tr>
+                  <td><strong>Muhūrta Chintāmaṇi</strong></td>
+                  <td>Aruṇodaya, Pradoṣa, Ekadashi handling</td>
+                </tr>
+                <tr>
+                  <td><strong>Hari Bhakti Vilāsa</strong></td>
+                  <td>Vaishnava Ekadashi rules</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 4: Published Panchang Conventions</h4>
+            <table class="data-table">
+              <caption class="sr-only">Published Panchang conventions</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Source</th>
+                  <th scope="col">Implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tamil Gowri/Pambu Panchangam</strong></td>
+                  <td>Gowri Panchangam (8-part day/night division)</td>
+                </tr>
+                <tr>
+                  <td><strong>Sarāvalī</strong></td>
+                  <td>Kala Vela rules (Rahu, Gulika, Yamaghantaka)</td>
+                </tr>
+                <tr>
+                  <td><strong>Aṣṭāṅga Hṛdaya</strong></td>
+                  <td>Brahma Muhurta timing</td>
+                </tr>
+                <tr>
+                  <td><strong>Charaka Saṃhitā</strong></td>
+                  <td>Muhurta concepts</td>
+                </tr>
+                <tr>
+                  <td><strong>Manusmṛti</strong></td>
+                  <td>Brahma Muhurta for Vedic study</td>
+                </tr>
+                <tr>
+                  <td><strong>Sandhyāvandanam Tradition</strong></td>
+                  <td>Sandhya windows (living tradition)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 5: Modern Systems</h4>
+            <table class="data-table">
+              <caption class="sr-only">Modern systems used</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Source</th>
+                  <th scope="col">Implementation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Swiss Ephemeris</strong></td>
+                  <td>Planetary longitudes, Ayanāṃśa, Vara</td>
+                </tr>
+                <tr>
+                  <td><strong>KP System</strong></td>
+                  <td>Varjyam (Visha Ghati) calculation</td>
+                </tr>
+                <tr>
+                  <td><strong>Ernst Wilhelm's Classical Muhurta</strong></td>
+                  <td>Bhadra subdivisions</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="info-box" style="margin-top: 1.5rem; background: var(--color-warning-bg); border-color: var(--color-warning);">
+              <h4 style="color: var(--color-warning); margin-top: 0;">What This Does NOT Claim</h4>
+              <ul style="margin-bottom: 0;">
+                <li>❌ Every package rule is 1:1 from a single primary text</li>
+                <li>❌ All regional or sectarian variants are covered</li>
+                <li>❌ Modern almanac conventions are identical across traditions</li>
+                <li>❌ Independent verification against critical Sanskrit editions</li>
+              </ul>
+            </div>
           </div>
         </section>
         <section id="installation" class="content-section">
@@ -614,14 +691,79 @@ echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
               </tr>
             </tbody>
           </table>
-          <div class="info-box">
-            <h3>Timing Semantics</h3>
+          <div class="info-box" style="background: var(--color-warning-bg); border-color: var(--color-warning);">
+            <h3 style="color: var(--color-warning);">⚠️ Critical Implementation Notes</h3>
+            
+            <h4 style="margin-top: 1rem;">1. Panchang Day Context (Sunrise to Sunrise)</h4>
+            <p><strong>Most Important:</strong> In Vedic Panchang, a day runs from <strong>sunrise to next sunrise</strong>, NOT midnight to midnight. This affects:</p>
             <ul>
-              <li>Time-only fields include date-qualified companion keys as <code>*_iso</code> where applicable.</li>
-              <li>Panchang day is evaluated from sunrise to next sunrise; times earlier than sunrise belong to next civil date.</li>
-              <li><code>Varjyam</code> supports multiple windows via <code>window_count</code> and <code>windows[]</code>.</li>
-              <li><code>Pradosha_Kaal</code> in day output includes base night window and Trayodashi-overlap effective window.</li>
+              <li><strong>Tithi calculation:</strong> The tithi at sunrise determines the day's primary tithi</li>
+              <li><strong>Festival resolution:</strong> If a tithi ends before sunrise, it belongs to the previous Panchang day</li>
+              <li><strong>Time outputs:</strong> Times earlier than sunrise are dated to the <strong>next civil date</strong></li>
             </ul>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Example: Sunrise at 6:14 AM
+// Event at 5:30 AM belongs to NEXT Panchang day
+$details = $panchang->getDayDetails($date, $lat, $lon, $tz);
+// Times before sunrise in output are dated to next civil date</code></pre>
+            
+            <h4 style="margin-top: 1.5rem;">2. ISO Timestamps vs Time-Only Fields</h4>
+            <p>All time-like fields include <strong>date-qualified companions</strong> with <code>_iso</code> suffix:</p>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Time-only (for display)
+$varjyam_start = $details['Varjyam']['varjyam_start']; // "03:31:48 AM"
+
+// Full ISO timestamp (for storage/database)
+$varjyam_start_iso = $details['Varjyam']['varjyam_start_iso']; // "28/03/2026 03:31:48 AM"
+
+// ALWAYS use _iso fields when:
+// - Storing in database
+// - Displaying to users
+// - Comparing across timezones</code></pre>
+            
+            <h4 style="margin-top: 1.5rem;">3. Multiple Varjyam Windows</h4>
+            <p>Varjyam can occur <strong>0, 1, or 2 times</strong> per day depending on nakshatra transitions:</p>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Check how many windows exist
+$windowCount = $details['Varjyam']['window_count']; // 0, 1, or 2
+
+// Access all windows
+foreach ($details['Varjyam']['windows'] as $window) {
+    echo $window['start'] . " - " . $window['end'];
+}
+
+// Top-level keys maintain backward compatibility
+$details['Varjyam']['varjyam_start']; // First window start
+$details['Varjyam']['varjyam_end'];   // First window end</code></pre>
+            
+            <h4 style="margin-top: 1.5rem;">4. Pradosha Kaal Calculation</h4>
+            <p>Pradosha is computed from two factors:</p>
+            <ol style="margin-top: 0.5rem;">
+              <li><strong>Night fraction:</strong> First 1/5th of night (sunset to next sunrise)</li>
+              <li><strong>Trayodashi overlap:</strong> Only auspicious when Trayodashi tithi overlaps the window</li>
+            </ol>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Returns both base and effective windows
+$pradosha = $details['Pradosha_Kaal'];
+$base_window = $pradosha['pradosha_window'];           // Base 1/5th night
+$effective = $pradosha['effective_trayodashi_window']; // Overlap with T13</code></pre>
+            
+            <h4 style="margin-top: 1.5rem;">5. Hindu Calendar Month Resolution</h4>
+            <p>The package uses <strong>exact amavasya-to-amavasya</strong> solar transit logic:</p>
+            <ul>
+              <li><strong>Amanta:</strong> Month ends at new moon (amavasya)</li>
+              <li><strong>Purnimanta:</strong> Month ends at full moon (purnima)</li>
+              <li><strong>Adhika Masa:</strong> Extra month when two amavasyas occur without solar transit</li>
+              <li><strong>Kshaya Masa:</strong> Lost month when no amavasya occurs in solar month (rare)</li>
+            </ul>
+            <p style="margin-top: 0.5rem; font-style: italic; color: var(--color-warning);"><strong>Note:</strong> Final month output can differ from simpler longitude-only heuristics used by other packages.</p>
+            
+            <h4 style="margin-top: 1.5rem;">6. Karmakala Windows in getDayDetails()</h4>
+            <p>The following dedicated Karmakala outputs are available:</p>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>$karmakala = $details['Karmakala_Windows'];
+$daylight   = $details['Daylight_Fivefold_Division']; // Pratah, Sangava, etc.
+$nishita    = $details['Nishita_Muhurta'];            // Night midpoint
+$vijaya     = $details['Vijaya_Muhurta'];             // 11th of 15 day muhurtas
+$godhuli    = $details['Godhuli_Muhurta'];            // Evening twilight
+$sandhya    = $details['Sandhya'];                    // Pratah, Madhyahna, Sayahna
+$gowri      = $details['Gowri_Panchangam'];           // Tamil 8-part division
+$kalaVela   = $details['Kala_Vela'];                  // Kala, Mrityu, etc.</code></pre>
           </div>
         </section>
         <section id="nakshatra" class="content-section">
@@ -1185,7 +1327,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <div class="case-item"><code>Rog</code>(Inauspicious)</div>
               </div>
             </div>
-            <div class="method-returns"><strong>Usage:</strong><code>MuhurtaService::calculateChoghadiyaTable()</code>
+            <div class="method-returns"><strong>Usage:</strong><code>MuhurtaService::calculateChogadiyaTable()</code>
             </div>
           </div>
           <div class="method">
@@ -1217,7 +1359,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
 
             <div class="method">
               <h4 class="method-name">getDayDetails()</h4>
-              <p class="method-description">Returns complete Panchanga details for a given date and location. Includes Tithi, Nakshatra, Yoga, Karana, Muhurta, Choghadiya, Hora, festival data, Bhadra windows, Dharma Sindhu windows, and expanded Hindu calendar metadata.</p>
+              <p class="method-description">Returns complete Panchanga details for a given date and location. Includes Tithi, Nakshatra, Yoga, Karana, Muhurta, Chogadiya, Hora, festival data, Bhadra windows, Dharma Sindhu windows, expanded Hindu calendar metadata, and dedicated Karmakala outputs.</p>
               <div class="method-signature">
                 <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $ayanamsaAt=null, array $options=[]): array</code>
               </div>
@@ -1230,7 +1372,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>$ayanamsaAt</code>(CarbonImmutable, optional) — Custom ayanamsa calculation time<br>
                 <code>$options</code>(array, optional) — Additional options
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data including keys such as <code>Tithi</code>, <code>Nakshatra</code>, <code>Yoga</code>, <code>Karana</code>, <code>Vara</code>, <code>Hora</code>, <code>Chogadiya</code>, <code>Bhadra</code>, <code>Dharma_Sindhu</code>, <code>Varjyam</code>, <code>Pradosha_Kaal</code>, and <code>Hindu_Calendar</code> with <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, and <code>Amanta_Index</code>.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data including keys such as <code>Tithi</code>, <code>Nakshatra</code>, <code>Yoga</code>, <code>Karana</code>, <code>Vara</code>, <code>Hora</code>, <code>Chogadiya</code>, <code>Bhadra</code>, <code>Dharma_Sindhu</code>, <code>Varjyam</code>, <code>Amrita_Kaal</code>, <code>Pradosha_Kaal</code>, <code>Daylight_Fivefold_Division</code>, <code>Nishita_Muhurta</code>, <code>Vijaya_Muhurta</code>, <code>Godhuli_Muhurta</code>, <code>Sandhya</code>, <code>Gowri_Panchangam</code>, <code>Kala_Vela</code>, <code>Karmakala_Windows</code>, and <code>Hindu_Calendar</code> with <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, <code>Amanta_Index</code>, and <code>Purnimanta_Index</code>.</div>
             </div>
 
             <div class="method">
@@ -1249,13 +1391,57 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Festival data and minimal panchanga elements.</div>
             </div>
 
+            <div class="method">
+              <h4 class="method-name">getElectionalSnapshot()</h4>
+              <p class="method-description">Returns transit-only electional context for a day, including planet states, mahadosha checks, and available activity profiles.</p>
+              <div class="method-signature">
+                <code>public function getElectionalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Snapshot with <code>day_details</code>, <code>activity_profiles</code>, <code>mahadoshas</code>, <code>planetary_states</code>, and sunrise-context metadata.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getDailyMuhurtaEvaluation()</h4>
+              <p class="method-description">Returns a centralized transit-only muhurta evaluation package for one date/time and activity profile.</p>
+              <div class="method-signature">
+                <code>public function getDailyMuhurtaEvaluation(CarbonImmutable $date, float $lat, float $lon, string $tz, string $activityKey='general_auspicious', ?CarbonImmutable $currentAt=null, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Evaluation bundle with input parameters, active dosha/window checks, and rejection report.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getActivityMuhurtas()</h4>
+              <p class="method-description">Build candidate windows for a transit-only activity profile by scanning intra-day transitions and rejecting failing intervals.</p>
+              <div class="method-signature">
+                <code>public function getActivityMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, string $activity, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Activity label, source list, and accepted candidate windows with factor details.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getVivahaMuhurtas()</h4>
+              <p class="method-description">Shortcut for <code>getActivityMuhurtas(..., 'vivaha')</code>.</p>
+              <div class="method-signature">
+                <code>public function getVivahaMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getGrihaPraveshaMuhurtas()</h4>
+              <p class="method-description">Shortcut for <code>getActivityMuhurtas(..., 'griha_pravesha')</code>.</p>
+              <div class="method-signature">
+                <code>public function getGrihaPraveshaMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+            </div>
+
             <div class="info-box">
               <h3>Output Notes</h3>
               <ul>
-                <li><code>Hindu_Calendar</code> in service output includes <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, and <code>Amanta_Index</code>.</li>
+                <li><code>Hindu_Calendar</code> in service output includes <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>, <code>Is_Kshaya</code>, <code>Amanta_Index</code>, and <code>Purnimanta_Index</code>.</li>
                 <li>Service-level month resolution uses exact solar transit boundaries between amavasyas for final day output.</li>
                 <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no applicable window exists for that Panchang day.</li>
                 <li>The verified festival catalog currently contains <code>163</code> definitions after merging true alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
+                <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>, <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.</li>
               </ul>
             </div>
 
@@ -1652,6 +1838,22 @@ echo $tithi['name']; // "Dwadashi"
             <h3>Methods</h3>
 
             <div class="method">
+              <h4 class="method-name">calculateHora()</h4>
+              <p class="method-description">Return the currently active Hora at the supplied calculation moment.</p>
+              <div class="method-signature">
+                <code>public function calculateHora(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $birthAt, int $varaIdx): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateChogadiya()</h4>
+              <p class="method-description">Return the currently active Chogadiya at the supplied calculation moment.</p>
+              <div class="method-signature">
+                <code>public function calculateChogadiya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $birthAt, int $varaIdx): array</code>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">calculateMuhurtaTable()</h4>
               <p class="method-description">Calculate all 30 named Muhurtas for a full 24-hour cycle.</p>
               <div class="method-signature">
@@ -1668,10 +1870,10 @@ echo $tithi['name']; // "Dwadashi"
             </div>
 
             <div class="method">
-              <h4 class="method-name">calculateChoghadiyaTable()</h4>
-              <p class="method-description">Calculate 8 day and 8 night Choghadiya periods.</p>
+              <h4 class="method-name">calculateChogadiyaTable()</h4>
+              <p class="method-description">Calculate 8 day and 8 night Chogadiya periods.</p>
               <div class="method-signature">
-                <code>public function calculateChoghadiyaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
+                <code>public function calculateChogadiyaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
@@ -1681,7 +1883,63 @@ echo $tithi['name']; // "Dwadashi"
                   <li><code>$varaIdx</code>(int) — Weekday index (0-6).</li>
                 </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Detailed list of 16 Choghadiya divisions.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Detailed list of 16 Chogadiya divisions.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateDaylightFivefoldDivision()</h4>
+              <p class="method-description">Calculate the canonical five daylight divisions: Pratah, Sangava, Madhyahna, Aparahna, and Sayahna.</p>
+              <div class="method-signature">
+                <code>public function calculateDaylightFivefoldDivision(CarbonImmutable $sunrise, CarbonImmutable $sunset): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateNishitaMuhurta()</h4>
+              <p class="method-description">Calculate the 8th of 15 night Muhurtas centered on the night midpoint.</p>
+              <div class="method-signature">
+                <code>public function calculateNishitaMuhurta(CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateVijayaMuhurta()</h4>
+              <p class="method-description">Calculate the 11th of 15 daytime Muhurtas.</p>
+              <div class="method-signature">
+                <code>public function calculateVijayaMuhurta(CarbonImmutable $sunrise, CarbonImmutable $sunset): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateGodhuliMuhurta()</h4>
+              <p class="method-description">Calculate the evening twilight Godhuli Muhurta near sunset.</p>
+              <div class="method-signature">
+                <code>public function calculateGodhuliMuhurta(CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateSandhya()</h4>
+              <p class="method-description">Calculate Pratah, Madhyahna, and Sayahna Sandhya windows.</p>
+              <div class="method-signature">
+                <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $solarNoon): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateGowriPanchangam()</h4>
+              <p class="method-description">Calculate weekday-specific Gowri Panchangam day and night divisions.</p>
+              <div class="method-signature">
+                <code>public function calculateGowriPanchangam(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">calculateKalaVela()</h4>
+              <p class="method-description">Calculate Kala Vela day/night divisions and named Kala Vela windows.</p>
+              <div class="method-signature">
+                <code>public function calculateKalaVela(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx): array</code>
+              </div>
             </div>
 
             <div class="method">
@@ -1917,6 +2175,16 @@ echo $tithi['name']; // "Dwadashi"
             <div class="method">
               <h4 class="method-name">formatAngle()</h4>
               <p class="method-description">Format decimal degrees to DMS (Deg° Min' Sec") string.</p>
+              <div class="method-signature">
+                <code>public static function formatAngle(float $angle): float|string</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$angle</code>(float) — Angle in decimal degrees.</li>
+                </ul>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>float|string</code> — Decimal degrees or DMS string depending on config.</div>
+            </div>
             <div class="method">
               <h4 class="method-name">formatTime()</h4>
               <p class="method-description">Format time based on library configuration (12h/24h).</p>
@@ -2001,6 +2269,54 @@ echo $tithi['name']; // "Dwadashi"
                 <td>string</td>
                 <td><code>'North'</code></td>
                 <td>Default region used for festival resolution.</td>
+              </tr>
+              <tr>
+                <td><code>festivals.supported_traditions</code></td>
+                <td>array</td>
+                <td><code>['Smarta', 'Vaishnava']</code></td>
+                <td>Supported tradition identifiers for consumer-side validation.</td>
+              </tr>
+              <tr>
+                <td><code>festivals.supported_regions</code></td>
+                <td>array</td>
+                <td><code>['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat']</code></td>
+                <td>Supported region identifiers for consumer-side validation.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.coordinate_format</code></td>
+                <td>string</td>
+                <td><code>'decimal'</code></td>
+                <td>Coordinate output format.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.angle_unit</code></td>
+                <td>string</td>
+                <td><code>'degree'</code></td>
+                <td>Angle formatting for longitudes and ayanamsa.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.duration_format</code></td>
+                <td>string</td>
+                <td><code>'mixed'</code></td>
+                <td>Duration formatting mode.</td>
+              </tr>
+              <tr>
+                <td><code>cache.enabled</code></td>
+                <td>bool</td>
+                <td><code>true</code></td>
+                <td>Enable package caching.</td>
+              </tr>
+              <tr>
+                <td><code>cache.ttl</code></td>
+                <td>int</td>
+                <td><code>86400</code></td>
+                <td>Cache time-to-live in seconds.</td>
+              </tr>
+              <tr>
+                <td><code>cache.prefix</code></td>
+                <td>string</td>
+                <td><code>'panchang_'</code></td>
+                <td>Cache key prefix.</td>
               </tr>
             </tbody>
           </table>
@@ -2087,6 +2403,22 @@ foreach ($festivals as $festival) {
 }</code></pre>
               </div>
             </div>
+
+            <div class="method">
+              <h4 class="method-name">getDailyObservances()</h4>
+              <p class="method-description">Return generic daily vrata/observance guidance from the current Panchang snapshot.</p>
+              <div class="method-signature">
+                <code>public function getDailyObservances(array $panchangDetails): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getFestivalsForYear()</h4>
+              <p class="method-description">Return the canonical festival definition catalog grouped for yearly use.</p>
+              <div class="method-signature">
+                <code>public function getFestivalsForYear(int $year, string $pakshaSystem='Amanta'): array</code>
+              </div>
+            </div>
           </div>
         </section>
         <section id="laravel-usage" class="content-section">
@@ -2107,11 +2439,26 @@ foreach ($festivals as $festival) {
           <pre><code class="language-bash">php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangServiceProvider" --tag="panchang-config"</code></pre>
           <p>This creates <code>config/panchang.php</code>:</p>
           <pre><code class="language-php">return [
-    'ephe_path' => env('PANCHANG_EPHE_PATH', ''),
+    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
     'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
     'defaults' => [
-        'tradition' => 'Smarta',
-        'region' => 'North',
+        'measurement_system' => 'indian_metric',
+        'date_time_format' => 'indian_12h',
+        'time_notation' => '12h',
+        'coordinate_format' => 'decimal',
+        'angle_unit' => 'degree',
+        'duration_format' => 'mixed',
+    ],
+    'festivals' => [
+        'default_tradition' => 'Smarta',
+        'default_region' => 'North',
+        'supported_traditions' => ['Smarta', 'Vaishnava'],
+        'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
+    ],
+    'cache' => [
+        'enabled' => true,
+        'ttl' => 86400,
+        'prefix' => 'panchang_',
     ],
 ];</code></pre>
           <h3>Using the Facade</h3>
@@ -2156,34 +2503,41 @@ class PanchangController extends Controller
           <p class="lead">Complete data structures returned by main methods.</p>
           <h3>getDayDetails() Return Structure</h3>
           <pre><code class="language-php">[
-  'Tithi'=>[ 'index'=>12, 'name'=>'Dwadashi', 'paksha'=>'Shukla', 'fraction_left'=>0.7666, ],
-  'Nakshatra'=>[ 'index'=>10, 'name'=>'Magha', 'pada'=>2, 'lord'=>'Sun', ],
-  'Yoga'=>['index'=>9, 'name'=>'Shula'],
-  'Karana'=>['index'=>23, 'name'=>'Bava'],
-  'Vara'=>['index'=>2, 'name'=>'Tuesday', 'lord'=>'Mars'],
-  'Muhurta_Full_Day'=>[ 
-    ['name'=>'Rudra', 'start'=>'06:14', 'end'=>'07:02'], // ... 30 periods
+  'Display_Settings' => [...],
+  'Units' => [...],
+  'Tithi' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
+  'Nakshatra' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
+  'Yoga' => ['index' => 9, 'name' => 'Shula'],
+  'Karana' => ['index' => 23, 'name' => 'Bava'],
+  'Vara' => ['index' => 2, 'name' => 'Tuesday', 'lord' => 'Mars'],
+  'Hindu_Calendar' => [
+    'Month_Amanta' => 'Chaitra',
+    'Month_Purnimanta' => 'Chaitra',
+    'Amanta_Index' => 1,
+    'Purnimanta_Index' => 1,
   ],
-  'Chogadiya_Full_Day'=>[
-    ['name'=>'Amrit', 'mode'=>'Day', 'start'=>'06:14', 'end'=>'07:46'], // ... 16 divisions
-  ],
-  'Hora_Full_Day'=>[
-    ['planet'=>'Sun', 'start'=>'06:14', 'end'=>'07:14'], // ... 24 horas
-  ],
-  'Prahara_Full_Day'=>[
-    ['name'=>'Pratah Prahara', 'start'=>'06:14', 'end'=>'09:18'], // ... 8 objects
-  ],
-  'Lagna_Full_Day'=>[
-    ['sign_name'=>'Mesha', 'start'=>'06:14', 'end'=>'08:22'], // ... 12/13 signs
-  ],
-  'Dur_Muhurta_Full_Day'=>[
-    ['name'=>'Rudra', 'start'=>'06:14', 'end'=>'07:02'], // Inauspicious Muhurtas only
-  ],
-  'Festivals'=>[['name'=>'Pradosh Vrat', 'type'=>'vrat']],
-  'Sunrise'=>'06:14:00',
-  'Sunset'=>'18:32:00',
-  'Moonrise'=>'15:45:00',
-  'Moonset'=>'04:20:00',
+  'Hora_Full_Day' => [...],
+  'Chogadiya_Full_Day' => [...],
+  'Muhurta_Full_Day' => [...],
+  'Prahara_Full_Day' => [...],
+  'Lagna_Full_Day' => [...],
+  'Dur_Muhurta_Full_Day' => [...],
+  'Daylight_Fivefold_Division' => [...],
+  'Nishita_Muhurta' => [...],
+  'Vijaya_Muhurta' => [...],
+  'Godhuli_Muhurta' => [...],
+  'Sandhya' => [...],
+  'Gowri_Panchangam' => [...],
+  'Kala_Vela' => [...],
+  'Karmakala_Windows' => [...],
+  'Varjyam' => [...],
+  'Amrita_Kaal' => [...],
+  'Pradosha_Kaal' => [...],
+  'Bhadra' => [...],
+  'Dharma_Sindhu' => [...],
+  'Festivals' => [...],
+  'Daily_Observances' => [...],
+  'Resolution_Context' => [...],
 ]</code></pre>
 
           <h3>getFestivalSnapshot() Return Structure</h3>
@@ -2258,7 +2612,28 @@ $lagnas   = $details['Lagna_Full_Day'];     // Exact Sign entry times
 $horas    = $details['Hora_Full_Day'];       // 24 planetary rulers
 $praharas = $details['Prahara_Full_Day'];    // 8 canonical periods
 $muhurtas = $details['Muhurta_Full_Day'];    // 30 named Muhurtas
-$durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas</code></pre>
+$durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas
+$sandhya  = $details['Sandhya'];              // Pratah / Madhyahna / Sayahna
+$gowri    = $details['Gowri_Panchangam'];     // Day + night Gowri divisions
+$karmakala = $details['Karmakala_Windows'];   // Named daily windows</code></pre>
+
+          <h3>6. Transit-Only Muhurta Evaluation</h3>
+          <pre><code class="language-php">$evaluation = Panchang::getDailyMuhurtaEvaluation(
+    date: CarbonImmutable::now()->startOfDay(),
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    activityKey: 'general_auspicious',
+    currentAt: CarbonImmutable::now($tz)
+);
+
+$verdict = $evaluation['rejection_report']['overall_verdict'];
+$bhadraActive = $evaluation['evaluation_results']['bhadra']['is_active'];
+$varjyamActive = $evaluation['evaluation_results']['varjyam']['is_active'];</code></pre>
+
+          <h3>7. Raw JSON Exporter</h3>
+          <pre><code class="language-bash">php panchang_raw_output.php > output.json</code></pre>
+          <p>This writes <code>meta</code>, <code>festivals_2026</code>, <code>eclipses_2026_2032</code>, <code>todays_complete_details</code>, and <code>muhurta_evaluation</code> in one file.</p>
         </section>
         <section id="accuracy" class="content-section">
           <h2>Accuracy & Date Range</h2>
@@ -2367,7 +2742,7 @@ $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas</code></p
           <p class="lead">Common questions and solutions.</p>
           <div class="faq-list">
             <details name="faq">
-              <summary>Why are my calculations different from other panchang apps?</summary>
+              <summary>⚠️ Why are my calculations different from other panchang apps?</summary>
               <dl class="qa-pair">
                 <dt class="sr-only">Answer</dt>
                 <dd>
@@ -2376,7 +2751,64 @@ $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas</code></p
                     <li><strong>Location:</strong> Ensure exact latitude/longitude.</li>
                     <li><strong>Tradition:</strong> Smarta vs Vaishnava have different rules.</li>
                     <li><strong>Precision Mode:</strong> Ensure you have <code>.se1</code> ephemeris files installed for 0.001" accuracy. Without them, the engine falls back to the Moshier model (0.1" precision).</li>
+                    <li><strong>Panchang Day:</strong> Remember we use sunrise-to-sunrise days, not midnight-to-midnight.</li>
                   </ul>
+                </dd>
+              </dl>
+            </details>
+            <details name="faq">
+              <summary>⚠️ Why is the time wrong in my database/storage?</summary>
+              <dl class="qa-pair">
+                <dt class="sr-only">Answer</dt>
+                <dd>
+                  <p><strong>Always use <code>_iso</code> fields</strong> for storage. Time-only fields lack date context:</p>
+                  <pre><code class="language-php">// WRONG - loses date context
+DB::table('events')->insert([
+    'varjyam_start' => $details['Varjyam']['varjyam_start'] // "03:31 AM"
+]);
+
+// CORRECT - includes full date
+DB::table('events')->insert([
+    'varjyam_start' => $details['Varjyam']['varjyam_start_iso'] // "28/03/2026 03:31 AM"
+]);</code></pre>
+                </dd>
+              </dl>
+            </details>
+            <details name="faq">
+              <summary>⚠️ Why does Varjyam show different times than expected?</summary>
+              <dl class="qa-pair">
+                <dt class="sr-only">Answer</dt>
+                <dd>
+                  <p>Varjyam can occur <strong>0, 1, or 2 times</strong> per day. Always check <code>window_count</code>:</p>
+                  <pre><code class="language-php">// Check how many windows exist
+$count = $details['Varjyam']['window_count'];
+
+if ($count === 0) {
+    // No Varjyam today
+} elseif ($count === 1) {
+    // One window - use top-level keys
+    $start = $details['Varjyam']['varjyam_start'];
+} else {
+    // Two windows - iterate windows array
+    foreach ($details['Varjyam']['windows'] as $window) {
+        // Process each window
+    }
+}</code></pre>
+                </dd>
+              </dl>
+            </details>
+            <details name="faq">
+              <summary>⚠️ Why is the Hindu month different from other calendars?</summary>
+              <dl class="qa-pair">
+                <dt class="sr-only">Answer</dt>
+                <dd>
+                  <p>We use <strong>exact amavasya-to-amavasya solar transit logic</strong>, not simple longitude heuristics:</p>
+                  <ul>
+                    <li>Month is determined by which solar transit occurs between two amavasyas</li>
+                    <li>Adhika Masa (extra month) occurs when two amavasyas happen without a solar transit</li>
+                    <li>Kshaya Masa (lost month) occurs when no amavasya occurs in a solar month (very rare)</li>
+                  </ul>
+                  <p>This is more accurate than simpler methods but can differ from other packages.</p>
                 </dd>
               </dl>
             </details>
@@ -2385,14 +2817,14 @@ $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas</code></p
               <dl class="qa-pair">
                 <dt class="sr-only">Answer</dt>
                 <dd>
-                  <p>Set in config or pass to <code>getDayDetails()</code>:</p>
+                  <p>Set it in config or configure the service before usage:</p>
                   <pre><code class="language-php">// In config/panchang.php
 'ayanamsa' => 'RAMAN', // Options: LAHIRI, RAMAN, KRISHNAMURTI
 
-// Or per-call
-$details = Panchang::getDayDetails(
-    date: $date, lat: $lat, lon: $lon, tz: $tz,
-    ayanamsaAt: CarbonImmutable::now()
+// Or in standalone usage
+PanchangService::configure(
+    ephePath: '/path/to/ephe',
+    ayanamsaMode: 'RAMAN'
 );</code></pre>
                 </dd>
               </dl>
@@ -2402,7 +2834,7 @@ $details = Panchang::getDayDetails(
               <dl class="qa-pair">
                 <dt class="sr-only">Answer</dt>
                 <dd>
-                  <p>This is normal. Smarta tradition celebrates on one day (ashtami at sunrise), Vaishnava on another (ashtami + Rohini nakshatra at midnight). Use the <code>tradition</code> parameter for the correct date.</p>
+                  <p>This is normal. Smarta tradition celebrates on one day (ashtami at sunrise), Vaishnava on another (ashtami + Rohini nakshatra at midnight). Use the configured festival tradition profile or compare adjacent-day festival outputs.</p>
                 </dd>
               </dl>
             </details>
@@ -2421,6 +2853,21 @@ $details = Panchang::getDayDetails(
                 <dt class="sr-only">Answer</dt>
                 <dd>
                   <p>Yes! Swiss Ephemeris supports dates from 3000 BCE to 3000 CE. Just pass any valid CarbonImmutable date.</p>
+                </dd>
+              </dl>
+            </details>
+            <details name="faq">
+              <summary>How do I handle multiple traditions?</summary>
+              <dl class="qa-pair">
+                <dt class="sr-only">Answer</dt>
+                <dd>
+                  <p>Calculate for both traditions and compare:</p>
+                  <pre><code class="language-php">$smarta = $panchang->getDayDetails($date, $lat, $lon, $tz, elevation: 0.0, options: ['tradition' => 'Smarta']);
+$vaishnava = $panchang->getDayDetails($date, $lat, $lon, $tz, elevation: 0.0, options: ['tradition' => 'Vaishnava']);
+
+// Compare festivals
+$smartaFestivals = $smarta['Festivals'];
+$vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
                 </dd>
               </dl>
             </details>
@@ -2461,6 +2908,14 @@ $details = Panchang::getDayDetails(
                   <td><code>PanchangService::getFestivalSnapshot()</code></td>
                 </tr>
                 <tr>
+                  <td>Get transit-only muhurta evaluation for now</td>
+                  <td><code>PanchangService::getDailyMuhurtaEvaluation()</code></td>
+                </tr>
+                <tr>
+                  <td>Get accepted windows for an activity</td>
+                  <td><code>PanchangService::getActivityMuhurtas()</code></td>
+                </tr>
+                <tr>
                   <td>Get planetary positions</td>
                   <td><code>AstronomyService::getPlanets()</code></td>
                 </tr>
@@ -2489,6 +2944,18 @@ $details = Panchang::getDayDetails(
                   <td><code>MuhurtaService::calculateBrahmaMuhurta()</code></td>
                 </tr>
                 <tr>
+                  <td>Get named daily Karmakala windows</td>
+                  <td><code>PanchangService::getDayDetails()</code> → <code>Karmakala_Windows</code></td>
+                </tr>
+                <tr>
+                  <td>Get Gowri Panchangam</td>
+                  <td><code>MuhurtaService::calculateGowriPanchangam()</code></td>
+                </tr>
+                <tr>
+                  <td>Get Kala Vela</td>
+                  <td><code>MuhurtaService::calculateKalaVela()</code></td>
+                </tr>
+                <tr>
                   <td>Get Rahu Kala, Gulika</td>
                   <td><code>MuhurtaService::calculateBadTimes()</code></td>
                 </tr>
@@ -2509,48 +2976,53 @@ $details = Panchang::getDayDetails(
           </div>
           <div class="info-box">
             <h3>Classical Text References</h3>
-            <p>All calculations are based on authentic Sanskrit texts:</p>
+            <p>All calculations reference authentic Sanskrit texts and traditions. See <a href="TRADITIONAL_TEXT_SOURCES.md" style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a> for complete source-integrity map with confidence tiers.</p>
             <ul>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Sūrya Siddhānta 1.29</strong>→ Tithi</li>
+                </svg><strong>Sūrya Siddhānta 1.29</strong>→ Tithi (30 lunar days, 12° each)</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Sūrya Siddhānta 8.1</strong>→ Nakṣatra</li>
+                </svg><strong>Sūrya Siddhānta 8.1</strong>→ Nakṣatra (27 lunar mansions, 13°20' each)</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Sūrya Siddhānta</strong>→ Yoga, Karana</li>
+                </svg><strong>Sūrya Siddhānta 3.1-3</strong>→ Yoga (27 combinations, 13°20' Sun-Moon sum)</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>BPHS</strong>→ Vimśottarī Daśā, Horā</li>
+                </svg><strong>Muhūrta Chintāmaṇi Chapter 2</strong>→ Karana (11 half lunar days, 6° each)</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Bṛhat Saṃhitā 8</strong>→ Samvatsara, Ritu</li>
+                </svg><strong>Muhūrta Chintāmaṇi</strong>→ Muhūrta, Aruṇodaya, Pradoṣa</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Muhūrta Chintāmaṇi</strong>→ Muhūrta</li>
+                </svg><strong>Bṛhat Saṃhitā</strong>→ Samvatsara, Ritu, Muhurta rules</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Kāla Nirṇaya</strong>→ Choghadiya</li>
+                </svg><strong>Nirṇaya Sindhu</strong>→ Festival timing, Bhadra rules</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Ashtānga Hṛdaya</strong>→ Brahma Muhūrta</li>
+                </svg><strong>Aṣṭāṅga Hṛdaya</strong>→ Brahma Muhūrta timing</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Hari Bhakti Vilāsa</strong>→ Vaishnava Ekadashi rules</li>
             </ul>
           </div>
         </section>

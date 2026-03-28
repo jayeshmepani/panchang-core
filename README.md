@@ -5,17 +5,16 @@
 [![PHP Version Require](https://img.shields.io/packagist/php-v/jayeshmepani/panchang-core?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
 
-**Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** — A strict, **100% precise, exact 1:1 standalone package** for PHP 8.3+.
+**Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** for PHP 8.3+.
 
-This package provides **zero-tolerance, maximum precision** calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Choghadiya, Hora, and 163 festival definitions with tradition/region profiles.
+This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 163 festival definitions with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
-**This is the ONLY PHP package that:**
+Key characteristics:
 - ✅ Uses **Swiss Ephemeris FFI** for maximum astronomical precision
 - ✅ Implements **classical Indian algorithms** from authentic texts
-- ✅ Achieves **100% output parity** with reference implementations
-- ✅ Provides **zero-tolerance calculations** (IEEE 754 double precision)
+- ✅ Uses **IEEE 754 double precision** throughout the calculation pipeline
 - ✅ Supports **163 festival definitions** with tradition/region resolution
 - ✅ Works **standalone** (no Laravel required)
 
@@ -24,8 +23,9 @@ This package provides **zero-tolerance, maximum precision** calculations for Ved
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
 - **163 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, etc.
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
-- **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda
-- **Time Determination**: Choghadiya, Hora, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
+- **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Dur Muhūrta
+- **Time Determination**: Chogadiya, Hora, Prahara, Lagna table, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
+- **Karmakala Outputs**: Daylight fivefold division, Sandhya blocks, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal
 - **Tradition Profiles**: Smarta, Vaishnava, North, South, Bengal, Maharashtra, Tamil
 - **Classical Accuracy**: Based on Sūrya Siddhānta, Muhūrta Chintāmaṇi, Nirṇaya Sindhu
 
@@ -110,60 +110,86 @@ $details = Panchang::getDayDetails(
 
 // Festivals are included in day details
 $festivals = $details['Festivals'];
+
+// Full daily Muhurta evaluation (no manual field extraction required)
+$muhurta = Panchang::getDailyMuhurtaEvaluation(
+    date: CarbonImmutable::parse('2026-03-24'),
+    lat: 23.2472446,
+    lon: 69.668339,
+    tz: 'Asia/Kolkata'
+);
 ```
 
 ## Classical Texts & Sources
 
-This package implements algorithms from **authentic Sanskrit texts** with verified formulas:
+This package implements algorithms from **authentic Sanskrit texts** with verified formulas.
 
-### Sūrya Siddhānta (Sage-Attributed)
+**Important:** This is a **source-integrity map**, not a manuscript-critical proof. The codebase mixes:
+- Direct Panchang/Jyotisha conventions (widely standard)
+- Package rule mappings attributed to traditional literature
+- Regional or published almanac conventions
+- Modern secondary references
+- Legacy/heuristic helpers
 
-| Reference | Implementation |
-| :--- | :--- |
-| **Sūrya Siddhānta 1.29** | Tithi calculation |
-| **Sūrya Siddhānta 8.1** | Nakṣatra calculation |
-| **Sūrya Siddhānta** | Yoga, Karana |
-| **Sūrya Siddhānta 1.10** | Muhūrta |
-| **Sūrya Siddhānta 1.11** | Ghaṭikā, Pala |
+For complete details, see [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TEXT_SOURCES.md).
 
-### Bṛhat Parāśara Horā Śāstra (BPHS)
+### Confidence Tiers
 
-| Reference | Implementation                                     |
-| --------- | -------------------------------------------------- |
-| **BPHS**  | Vimśottarī Daśā System, Nakṣatra lords, Daśā years |
-| **BPHS**  | Horā                                               |
-
-### Bṛhat Saṃhitā (Varāhamihira)
-
-| Reference           | Implementation |
-| ------------------- | -------------- |
-| **Bṛhat Saṃhitā 8** | Samvatsara     |
-| **Bṛhat Saṃhitā**   | Ritu           |
-
-### Muhūrta & Kāla Nirṇaya
-
-| Text                  | Implementation              |
-| --------------------- | --------------------------- |
-| **Muhūrta Chintāmaṇi**| Aruṇodaya, Pradoṣa, Bhadra  |
-| **Ashtānga Hṛdaya**   | Brahma Muhūrta              |
-| **Charaka Saṃhitā**   | Muhūrta                     |
-| **Kāla Nirṇaya**      | Choghadiya                  |
-
-### Festival Resolution
-
-| Text                   | Implementation                |
-| ---------------------- | ----------------------------- |
-| **Nirṇaya Sindhu**     | Bhadra rules, Festival timing |
-| **Dharma Sindhu**      | Holikā Dahan, Vṛddhi/Kṣaya    |
-| **Hari Bhakti Vilāsa** | Ekādaśī                       |
-
-### Modern Astronomy
+#### Tier 1: Direct or Standard Panchang Conventions
 
 | Source | Implementation |
-|--------|----------------|
-| **Swiss Ephemeris** | Vara (weekday), Ayanāṃśa, Graha Sphuṭa |
+|--------|---------------|
+| **Sūrya Siddhānta 1.29** | Tithi calculation (30 lunar days, 12° each) |
+| **Sūrya Siddhānta 8.1** | Nakṣatra calculation (27 lunar mansions, 13°20' each) |
+| **Sūrya Siddhānta 3.1-3** | Yoga calculation (27 combinations, 13°20' Sun-Moon sum) |
+| **Muhūrta Chintāmaṇi Chapter 2** | Karana calculation (11 half lunar days, 6° each) |
+| **Sūrya Siddhānta 1.10-1.11** | Muhūrta, Ghaṭikā, Pala time units |
 
-- **Exact fractions** (1/60, 1/30, not decimal approximations)
+#### Tier 2: Package Rule Mappings
+
+| Source | Implementation |
+|--------|---------------|
+| **Muhūrta Chintāmaṇi** | Universal bad tithis, Vara-Tithi Yogas, Activity profiles |
+| **Bṛhat Saṃhitā** | Muhurta rules, Samvatsara, Ritu |
+| **Māyamata** | Vāstu muhurtas (Griha Pravesha) |
+| **Vaikhānasa Āgama** | Temple installation muhurtas (Pratishtha) |
+| **Aśvalāyana Gṛhya Sūtra** | Samskara muhurtas (Upanayana, Namakarana, etc.) |
+| **Muhūrta Mārtaṇḍa** | Advanced muhurta calculations |
+| **Gargiya Jyotisha** | Rikta Tithi dosha |
+
+#### Tier 3: Festival-Resolution Logic
+
+| Source | Implementation |
+|--------|---------------|
+| **Nirṇaya Sindhu** | Festival timing, Bhadra rules |
+| **Muhūrta Chintāmaṇi** | Aruṇodaya, Pradoṣa, Ekadashi handling |
+| **Hari Bhakti Vilāsa** | Vaishnava Ekadashi rules |
+
+#### Tier 4: Published Panchang Conventions
+
+| Source | Implementation |
+|--------|---------------|
+| **Tamil Gowri/Pambu Panchangam** | Gowri Panchangam (8-part day/night division) |
+| **Sarāvalī** | Kala Vela rules (Rahu, Gulika, Yamaghantaka) |
+| **Aṣṭāṅga Hṛdaya** | Brahma Muhurta timing |
+| **Charaka Saṃhitā** | Muhurta concepts |
+| **Manusmṛti** | Brahma Muhurta for Vedic study |
+| **Sandhyāvandanam Tradition** | Sandhya windows (living tradition) |
+
+#### Tier 5: Modern Systems
+
+| Source | Implementation |
+|--------|---------------|
+| **Swiss Ephemeris** | Planetary longitudes, Ayanāṃśa, Vara |
+| **KP System** | Varjyam (Visha Ghati) calculation |
+| **Ernst Wilhelm's Classical Muhurta** | Bhadra subdivisions |
+
+### What This Does NOT Claim
+
+- ❌ Every package rule is 1:1 from a single primary text
+- ❌ All regional or sectarian variants are covered
+- ❌ Modern almanac conventions are identical across traditions
+- ❌ Independent verification against critical Sanskrit editions
 
 ### Precision Guarantee
 
@@ -218,6 +244,13 @@ return [
     'festivals' => [
         'default_tradition' => 'Smarta',
         'default_region' => 'North',
+        'supported_traditions' => ['Smarta', 'Vaishnava'],
+        'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
+    ],
+    'cache' => [
+        'enabled' => true,
+        'ttl' => 86400,
+        'prefix' => 'panchang_',
     ],
 ];
 ```
@@ -228,6 +261,15 @@ return [
 - Panchang day context is `sunrise -> next sunrise`; times earlier than sunrise are dated to the next civil date.
 - `Varjyam` supports multiple windows per day (`window_count`, `windows[]`) and keeps top-level compatibility keys.
 - `Pradosha_Kaal` is computed from night-fraction plus Trayodashi overlap and returns both base window and effective overlap window.
+- `getDayDetails()` now includes dedicated Karmakala outputs:
+  - `Daylight_Fivefold_Division`
+  - `Nishita_Muhurta`
+  - `Vijaya_Muhurta`
+  - `Godhuli_Muhurta`
+  - `Sandhya`
+  - `Gowri_Panchangam`
+  - `Kala_Vela`
+  - `Karmakala_Windows`
 
 ### Hindu Calendar Output
 
@@ -238,6 +280,7 @@ return [
   - `Is_Adhika`
   - `Is_Kshaya`
   - `Amanta_Index`
+  - `Purnimanta_Index`
 - `PanchangService` resolves month names using exact amavasya-to-amavasya solar transit logic, so final month output can differ from simpler longitude-only month heuristics.
 
 ### Raw JSON Exporter
@@ -246,14 +289,27 @@ return [
 php panchang_raw_output.php > output.json
 ```
 
-This exporter writes three sections in one JSON file:
+This exporter writes five top-level sections in one JSON file:
+- `meta`: generation timestamp, location, timezone, and config source
 - `festivals_2026`: all festival entries for the full year
 - `eclipses_2026_2032`: all eclipse entries for 7 years
 - `todays_complete_details`: full `getDayDetails()` payload for Bhuj (`Asia/Kolkata`)
+- `muhurta_evaluation`: transit-only `getDailyMuhurtaEvaluation()` payload
 
 Notes:
 - `todays_complete_details` is intentionally date-sensitive and changes based on the day the script is run.
+- `muhurta_evaluation` is transit-only; no natal/person-specific inputs are used.
 - Empty arrays such as `Bhadra: []` or `Dharma_Sindhu: []` are valid outputs when no matching window exists for that Panchang day.
+
+### Electional & Activity APIs
+
+`PanchangService` also exposes higher-level electional helpers:
+
+- `getElectionalSnapshot()`
+- `getDailyMuhurtaEvaluation()`
+- `getActivityMuhurtas()`
+- `getVivahaMuhurtas()`
+- `getGrihaPraveshaMuhurtas()`
 
 ### Festival Catalog Notes
 
@@ -327,8 +383,9 @@ composer test
 | Category | Elements | Status |
 |----------|----------|--------|
 | **Panchanga** | Tithi, Vara, Nakṣatra, Yoga, Karaṇa | ✅ Complete |
-| **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma | ✅ Complete |
-| **Kāla Nirṇaya** | Choghadiya, Hora, Rahu Kāla, Bhadra | ✅ Complete |
+| **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta | ✅ Complete |
+| **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra | ✅ Complete |
+| **Karmakala** | Daylight fivefold division, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela | ✅ Complete |
 | **Festivals** | 163 festival definitions | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
@@ -353,13 +410,13 @@ composer test
 
 ## 🤝 Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
+Open an issue or pull request on GitHub for bug reports, source audits, or feature additions.
 
 ## 📞 Support
 
 - **Issues**: [GitHub Issues](https://github.com/jayeshmepani/panchang-core/issues)
 - **Email**: [jayeshmepani777@gmail.com](mailto:jayeshmepani777@gmail.com)
-- **Examples**: [examples/](examples/)
+- **Exporter Script**: [`panchang_raw_output.php`](panchang_raw_output.php)
 
 ## 💖 Funding
 
@@ -386,4 +443,4 @@ See the [LICENSE](LICENSE) file for the full license text.
 
 ---
 
-Made with ❤️ for the Vedic astrology and astronomy community.
+Built for Vedic astrology and astronomy workflows.

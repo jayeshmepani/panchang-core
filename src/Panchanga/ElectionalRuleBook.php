@@ -42,7 +42,7 @@ final class ElectionalRuleBook
     public const UNIVERSAL_BAD_KARANAS = ['Vishti', 'Shakuni', 'Chatushpada', 'Naga'];
 
     /**
-     * Planetary combustion orbs (general rules, not natal-dependent).
+     * Planetary combustion orbs (general transit-only rules).
      * Source: Classical astronomy texts.
      */
     public const COMBUSTION_ORBS = [
@@ -116,7 +116,7 @@ final class ElectionalRuleBook
     ];
 
     /**
-     * Activity profiles for general/common Muhurta (NO natal-dependent requirements).
+     * Activity profiles for general/common Muhurta (transit-only requirements).
      * All requirements are based on current transit positions only.
      */
     public const ACTIVITY_PROFILES = [
@@ -152,7 +152,7 @@ final class ElectionalRuleBook
         ],
         'griha_pravesha' => [
             'label' => 'Griha Pravesha (House Entry)',
-            'sources' => ['Muhurta Chintamani', 'Vastu Texts'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Mayamata'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 300,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -168,7 +168,7 @@ final class ElectionalRuleBook
         ],
         'bhumi_pujan' => [
             'label' => 'Bhumi Pujan / Shilanyasa',
-            'sources' => ['Muhurta Texts'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -183,7 +183,7 @@ final class ElectionalRuleBook
         ],
         'upanayana' => [
             'label' => 'Upanayana',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -197,7 +197,7 @@ final class ElectionalRuleBook
         ],
         'namakarana' => [
             'label' => 'Namakarana',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -211,7 +211,7 @@ final class ElectionalRuleBook
         ],
         'annaprashana' => [
             'label' => 'Annaprashana',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -225,7 +225,7 @@ final class ElectionalRuleBook
         ],
         'mundan' => [
             'label' => 'Mundan / Chudakarana',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -239,7 +239,7 @@ final class ElectionalRuleBook
         ],
         'aksharabhyasa' => [
             'label' => 'Aksharabhyasa / Vidyarambha',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -253,7 +253,7 @@ final class ElectionalRuleBook
         ],
         'karnavedha' => [
             'label' => 'Karnavedha',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -267,7 +267,7 @@ final class ElectionalRuleBook
         ],
         'nishkramana' => [
             'label' => 'Nishkramana',
-            'sources' => ['Muhurta Chintamani', 'Grihya Sutras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Ashvalayana Grihya Sutra'],
             'block_high_doshas' => true,
             'minimum_duration_seconds' => 0,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
@@ -309,7 +309,7 @@ final class ElectionalRuleBook
         ],
         'pratishtha' => [
             'label' => 'Pratishtha',
-            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Agama Shastras'],
+            'sources' => ['Muhurta Chintamani', 'Brihat Samhita', 'Vaikhanasa Agama'],
             'block_high_doshas' => true,
             'forbidden_tithis' => self::UNIVERSAL_BAD_TITHIS,
             'forbidden_yogas' => self::UNIVERSAL_BAD_YOGAS,

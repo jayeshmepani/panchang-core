@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Panchanga;
 
+/**
+ * Kala Nirnaya Engine - Time Determination for Hindu Festivals.
+ *
+ * Source basis used by the package:
+ * - Nirṇaya Sindhu as a major traditional reference for festival resolution
+ * - Sūrya Siddhānta style time-unit conventions
+ * - Muhūrta Chintāmaṇi style karmakala references
+ * - Hari Bhakti Vilāsa for Vaishnava Ekadashi-related handling
+ */
 class KalaNirnayaEngine
 {
     public const GHATI_IN_MINUTES = 24.0;

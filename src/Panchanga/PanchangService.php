@@ -9,7 +9,10 @@ use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use RuntimeException;
@@ -182,6 +185,13 @@ class PanchangService
         $praharaTable = $this->muhurta->calculatePrahara($relSunrise, $sunset, $nextSunrise);
         $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($relSunrise);
         $durMuhurtaTable = $this->muhurta->calculateDurMuhurta($relSunrise, $sunset, $nextSunrise);
+        $daylightFivefold = $this->muhurta->calculateDaylightFivefoldDivision($relSunrise, $sunset);
+        $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
+        $vijayaMuhurta = $this->muhurta->calculateVijayaMuhurta($relSunrise, $sunset);
+        $godhuliMuhurta = $this->muhurta->calculateGodhuliMuhurta($sunset, $nextSunrise);
+        $sandhya = $this->muhurta->calculateSandhya($relSunrise, $sunset, $nextSunrise, $solarTransits['solar_noon']);
+        $gowriPanchangam = $this->muhurta->calculateGowriPanchangam($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
+        $kalaVela = $this->muhurta->calculateKalaVela($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
 
         // Lagna table for full day (Whole Sign system - exact sign entry times)
         $lagnaTable = $this->muhurta->calculateLagnaTable(
@@ -288,6 +298,7 @@ class PanchangService
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
+                'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
             ],
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
@@ -309,6 +320,31 @@ class PanchangService
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
         $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
+        $daylightFivefoldByName = [];
+        foreach ($daylightFivefold as $division) {
+            if (is_array($division) && isset($division['name']) && is_string($division['name'])) {
+                $daylightFivefoldByName[strtolower($division['name'])] = $division;
+            }
+        }
+        $karmakalaWindows = [
+            'sunrise' => [
+                'label' => 'Sunrise',
+                'type' => 'instant',
+                'time' => AstroCore::formatTime($relSunrise),
+                'time_iso' => AstroCore::formatDateTime($relSunrise),
+            ],
+            'pratah' => $daylightFivefoldByName['pratah'] ?? null,
+            'sangava' => $daylightFivefoldByName['sangava'] ?? null,
+            'madhyahna' => $daylightFivefoldByName['madhyahna'] ?? null,
+            'aparahna' => $daylightFivefoldByName['aparahna'] ?? null,
+            'sayahna' => $daylightFivefoldByName['sayahna'] ?? null,
+            'pradosha' => $pradoshaKaal,
+            'nishitha' => $nishitaMuhurta,
+            'brahma_muhurta' => $brahmaMuhurta,
+            'abhijit' => $abhijit,
+            'vijaya' => $vijayaMuhurta,
+            'godhuli' => $godhuliMuhurta,
+        ];
 
         $defaultConfig = function_exists('config') ? config('panchang.defaults', []) : [];
         if (!is_array($defaultConfig)) {
@@ -347,9 +383,27 @@ class PanchangService
                 'Dharma_Sindhu.Punya_Kaal.punya_kaal_end_jd' => 'julian_day',
                 'Prahara.duration_seconds' => 'second',
                 'Prahara.duration_hours' => 'hour',
+                'Daylight_Fivefold_Division.duration_seconds' => 'second',
+                'Daylight_Fivefold_Division.duration_hours' => 'hour',
                 'Brahma_Muhurta.duration_minutes' => 'minute',
                 'Brahma_Muhurta.duration_seconds' => 'second',
                 'Dur_Muhurta.duration_seconds' => 'second',
+                'Nishita_Muhurta.muhurta_duration_seconds' => 'second',
+                'Nishita_Muhurta.muhurta_duration_minutes' => 'minute',
+                'Vijaya_Muhurta.muhurta_duration_seconds' => 'second',
+                'Vijaya_Muhurta.muhurta_duration_minutes' => 'minute',
+                'Godhuli_Muhurta.duration_seconds' => 'second',
+                'Godhuli_Muhurta.duration_minutes' => 'minute',
+                'Sandhya.Pratah_Sandhya.duration_seconds' => 'second',
+                'Sandhya.Pratah_Sandhya.duration_minutes' => 'minute',
+                'Sandhya.Madhyahna_Sandhya.duration_seconds' => 'second',
+                'Sandhya.Madhyahna_Sandhya.duration_minutes' => 'minute',
+                'Sandhya.Sayahna_Sandhya.duration_seconds' => 'second',
+                'Sandhya.Sayahna_Sandhya.duration_minutes' => 'minute',
+                'Gowri_Panchangam.division_duration_seconds' => 'second',
+                'Gowri_Panchangam.division_duration_minutes' => 'minute',
+                'Kala_Vela.division_duration_seconds' => 'second',
+                'Kala_Vela.division_duration_minutes' => 'minute',
                 'Varjyam.duration_minutes' => 'minute',
                 'Amrita_Kaal.duration_minutes' => 'minute',
                 'Pradosha_Kaal.duration_minutes' => 'minute',
@@ -440,6 +494,8 @@ class PanchangService
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
+                'Amanta_Index' => $hinduMonth['Amanta_Index'],
+                'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
                 'Calendar_Type' => 'Purnimanta / Amavasyant (Calculated)',
             ],
             'Chart_Auxiliary' => [
@@ -462,8 +518,16 @@ class PanchangService
             'Abhijit_Muhurta' => $abhijit,
 
             'Prahara_Full_Day' => $praharaTable,
+            'Daylight_Fivefold_Division' => $daylightFivefold,
             'Brahma_Muhurta' => $brahmaMuhurta,
             'Dur_Muhurta_Full_Day' => $durMuhurtaTable,
+            'Nishita_Muhurta' => $nishitaMuhurta,
+            'Vijaya_Muhurta' => $vijayaMuhurta,
+            'Godhuli_Muhurta' => $godhuliMuhurta,
+            'Sandhya' => $sandhya,
+            'Gowri_Panchangam' => $gowriPanchangam,
+            'Kala_Vela' => $kalaVela,
+            'Karmakala_Windows' => $karmakalaWindows,
             'Varjyam' => $varjyam,
             'Amrita_Kaal' => $amritaKaal,
             'Pradosha_Kaal' => $pradoshaKaal,
@@ -565,6 +629,7 @@ class PanchangService
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
+                'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
             ],
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
@@ -590,8 +655,6 @@ class PanchangService
         float $lat,
         float $lon,
         string $tz,
-        ?int $birthNakshatraIdx = null,
-        ?int $birthMoonSignIdx = null,
         float $elevation = 0.0,
         array $options = []
     ): array {
@@ -631,14 +694,124 @@ class PanchangService
         ];
     }
 
+    /**
+     * Compute complete daily Muhurta evaluation package from canonical day details.
+     * This centralizes ElectionalEvaluator input extraction so consumer scripts stay thin.
+     */
+    public function getDailyMuhurtaEvaluation(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        string $activityKey = 'general_auspicious',
+        ?CarbonImmutable $currentAt = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $at = $currentAt instanceof CarbonImmutable ? $currentAt->setTimezone($tz) : CarbonImmutable::now($tz);
+        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, $at, $options);
+        $sunriseDt = $this->parseDisplayDateTime((string) ($dayDetails['sunrise_dt'] ?? ''), $tz);
+        $currentBirth = $this->buildBirthArray($at, $lat, $lon, $tz, $elevation);
+        $sunMoon = $this->getSunMoonLongitudes($currentBirth);
+        $moonLongitude = (float) ($sunMoon['Moon'] ?? 0.0);
+        $moonSignIdx = ((int) floor($moonLongitude / 30.0)) % 12;
+        $nakshatraIdxCurrent = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+        $currentTithi = $this->panchanga->calculateTithi((float) ($sunMoon['Sun'] ?? 0.0), $moonLongitude);
+        $currentAscLongitude = $this->astronomy->getAscendant($currentBirth);
+
+        $tithiNumber = max(1, (int) ($currentTithi['index'] ?? ($dayDetails['Tithi']['index'] ?? 1)));
+        $varaNumber = ((int) ($this->panchanga->calculateVara($currentBirth, $this->sunService)['index'] ?? ($dayDetails['Vara']['index'] ?? 0))) % 7;
+        $nakshatraNumber = max(1, $nakshatraIdxCurrent + 1);
+        $lagnaNumber = (AstroCore::getSign($currentAscLongitude) % 12) + 1;
+        $isKrishnaPaksha = strcasecmp((string) ($currentTithi['paksha'] ?? ($dayDetails['Tithi']['paksha'] ?? '')), 'Krishna') === 0;
+        $tithiEnum = Tithi::from($tithiNumber);
+        $varaEnum = Vara::from($varaNumber);
+        $nakshatraEnum = Nakshatra::from($nakshatraNumber - 1);
+        $lagnaEnum = Rasi::from($lagnaNumber - 1);
+        $moonSignEnum = Rasi::from($moonSignIdx);
+
+        $sunsetDt = $this->resolveTimeStringToDateTime((string) ($dayDetails['Sunset'] ?? ''), $sunriseDt, $tz) ?? $sunriseDt;
+        $nextSunriseIso = (string) (($dayDetails['Resolution_Context']['next_sunrise_iso'] ?? $dayDetails['next_sunrise_iso'] ?? ''));
+        $nextSunriseDt = $nextSunriseIso !== ''
+            ? $this->parseDisplayDateTime($nextSunriseIso, $tz)
+            : $sunriseDt->addDay();
+        $midnight = $sunriseDt->startOfDay();
+
+        $sunrise = $this->toDecimalHoursFromBase($sunriseDt, $midnight);
+        $sunset = $this->toDecimalHoursFromBase($sunsetDt, $midnight);
+        $nextSunrise = $this->toDecimalHoursFromBase($nextSunriseDt, $midnight);
+        $currentTime = $this->toDecimalHoursFromBase($at, $midnight);
+
+        $evaluationResults = [
+            'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber + 1, $nakshatraNumber, $lagnaNumber),
+            'dagdha_tithi' => ElectionalEvaluator::calculateDagdhaTithi($tithiNumber, $moonSignIdx),
+            'dagdha_yoga' => ElectionalEvaluator::calculateDagdhaYoga($varaNumber, $tithiNumber),
+            'bhadra' => $this->evaluateCurrentBhadra($at, (array) ($dayDetails['Bhadra'] ?? [])),
+            'rikta_tithi' => ElectionalEvaluator::calculateRiktaTithi($tithiNumber, $isKrishnaPaksha),
+            'varjyam' => $this->evaluateCurrentVarjyam($at, (array) ($dayDetails['Varjyam'] ?? []), $tz),
+            'amrita_kaal' => $this->evaluateCurrentNamedWindow(
+                $at,
+                (array) ($dayDetails['Amrita_Kaal'] ?? []),
+                'amrita_kaal_start',
+                'amrita_kaal_end',
+                'Amrita Kaal',
+                'Classical Panchanga Calculation Texts'
+            ),
+            'abhijit_cancellation' => $this->evaluateCurrentAbhijit($at, (array) ($dayDetails['Abhijit_Muhurta'] ?? []), $varaNumber),
+        ];
+
+        $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults, $activityKey);
+
+        return [
+            'title' => 'Complete Muhurta Evaluation - Centralized package output',
+            'activity_key' => $activityKey,
+            'input_now' => AstroCore::formatDateTime($at),
+            'date' => $date->toDateString(),
+            'input_parameters' => [
+                'tithi_number' => $tithiNumber,
+                'tithi_name' => $tithiEnum->getName(),
+                'tithi_number_base' => 1,
+                'vara_number' => $varaNumber,
+                'vara_name' => $varaEnum->getEnglishName(),
+                'vara_index_base' => 0,
+                'vara_sequence_number' => $varaNumber + 1,
+                'vara_sequence_number_base' => 1,
+                'nakshatra_number' => $nakshatraNumber,
+                'nakshatra_name' => $nakshatraEnum->getName(),
+                'nakshatra_number_base' => 1,
+                'lagna_number' => $lagnaNumber,
+                'lagna_name' => $lagnaEnum->getName(),
+                'lagna_number_base' => 1,
+                'moon_sign_idx' => $moonSignIdx,
+                'moon_sign_name' => $moonSignEnum->getEnglishName(),
+                'moon_sign_index_base' => 0,
+                'moon_sign_number' => $moonSignIdx + 1,
+                'moon_sign_number_base' => 1,
+                'is_krishna_paksha' => $isKrishnaPaksha,
+                'sunrise' => AstroCore::formatTime($sunriseDt),
+                'sunrise_iso' => AstroCore::formatDateTime($sunriseDt),
+                'sunrise_decimal_hours' => $sunrise,
+                'sunset' => AstroCore::formatTime($sunsetDt),
+                'sunset_iso' => AstroCore::formatDateTime($sunsetDt),
+                'sunset_decimal_hours' => $sunset,
+                'next_sunrise' => AstroCore::formatTime($nextSunriseDt),
+                'next_sunrise_iso' => AstroCore::formatDateTime($nextSunriseDt),
+                'next_sunrise_decimal_hours' => $nextSunrise,
+                'current_time' => AstroCore::formatTime($at),
+                'current_time_iso' => AstroCore::formatDateTime($at),
+                'current_time_decimal_hours' => $currentTime,
+            ],
+            'evaluation_results' => $evaluationResults,
+            'rejection_report' => $rejectionReport,
+        ];
+    }
+
     public function getActivityMuhurtas(
         CarbonImmutable $date,
         float $lat,
         float $lon,
         string $tz,
         string $activity,
-        ?int $birthNakshatraIdx = null,
-        ?int $birthMoonSignIdx = null,
         float $elevation = 0.0,
         array $options = []
     ): array {
@@ -705,8 +878,6 @@ class PanchangService
                 $tz,
                 $elevation,
                 $dayDetails,
-                $birthNakshatraIdx,
-                $birthMoonSignIdx,
                 $profile,
                 $endTs - $startTs
             );
@@ -749,12 +920,10 @@ class PanchangService
         float $lat,
         float $lon,
         string $tz,
-        ?int $birthNakshatraIdx = null,
-        ?int $birthMoonSignIdx = null,
         float $elevation = 0.0,
         array $options = []
     ): array {
-        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'vivaha', $birthNakshatraIdx, $birthMoonSignIdx, $elevation, $options);
+        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'vivaha', $elevation, $options);
     }
 
     public function getGrihaPraveshaMuhurtas(
@@ -762,12 +931,177 @@ class PanchangService
         float $lat,
         float $lon,
         string $tz,
-        ?int $birthNakshatraIdx = null,
-        ?int $birthMoonSignIdx = null,
         float $elevation = 0.0,
         array $options = []
     ): array {
-        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'griha_pravesha', $birthNakshatraIdx, $birthMoonSignIdx, $elevation, $options);
+        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'griha_pravesha', $elevation, $options);
+    }
+
+    private function toDecimalHoursFromBase(CarbonImmutable $dt, CarbonImmutable $base): float
+    {
+        return ($dt->getTimestamp() - $base->getTimestamp()) / 3600.0;
+    }
+
+    private function evaluateCurrentVarjyam(CarbonImmutable $at, array $varjyam, string $tz): array
+    {
+        $windows = $varjyam['windows'] ?? [];
+        if (!is_array($windows)) {
+            $windows = [];
+        }
+
+        $activeWindow = null;
+        foreach ($windows as $window) {
+            if (!is_array($window)) {
+                continue;
+            }
+
+            $startJd = $window['window_start_jd'] ?? null;
+            $endJd = $window['window_end_jd'] ?? null;
+            if ((!is_float($startJd) && !is_int($startJd)) || (!is_float($endJd) && !is_int($endJd))) {
+                continue;
+            }
+
+            $from = $this->sunService->jdToCarbonPublic((float) $startJd, $tz);
+            $to = $this->sunService->jdToCarbonPublic((float) $endJd, $tz);
+            if ($at >= $from && $at < $to) {
+                $activeWindow = $window;
+                break;
+            }
+        }
+
+        return [
+            'source' => 'Classical Panchanga Calculation Texts',
+            'window_count' => (int) ($varjyam['window_count'] ?? count($windows)),
+            'has_dosha' => $activeWindow !== null,
+            'is_active' => $activeWindow !== null,
+            'severity' => $activeWindow !== null ? 'high' : 'none',
+            'active_window' => $activeWindow,
+            'description' => $activeWindow !== null
+                ? 'Varjyam is active now; avoid auspicious work in this window.'
+                : 'Varjyam is not active at the evaluation time.',
+            'blocked_activities' => $activeWindow !== null ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work'] : [],
+        ];
+    }
+
+    private function evaluateCurrentNamedWindow(
+        CarbonImmutable $at,
+        array $window,
+        string $startKey,
+        string $endKey,
+        string $label,
+        string $source
+    ): array {
+        $from = $this->resolveNamedWindowBoundary($window, $startKey, $at->timezoneName);
+        $to = $this->resolveNamedWindowBoundary($window, $endKey, $at->timezoneName);
+        $isActive = $from !== null && $to !== null && $at >= $from && $at < $to;
+
+        return [
+            'source' => $source,
+            'label' => $label,
+            'is_active' => $isActive,
+            'is_auspicious' => $isActive,
+            'start' => $from ? AstroCore::formatTime($from) : null,
+            'end' => $to ? AstroCore::formatTime($to) : null,
+            'start_iso' => $from ? AstroCore::formatDateTime($from) : null,
+            'end_iso' => $to ? AstroCore::formatDateTime($to) : null,
+            'description' => $isActive ? $label . ' is active now.' : $label . ' is not active at the evaluation time.',
+            'enhanced_activities' => $isActive ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work', 'spiritual_practices'] : [],
+            'has_dosha' => false,
+            'severity' => 'none',
+        ];
+    }
+
+    private function evaluateCurrentAbhijit(CarbonImmutable $at, array $abhijit, int $varaNumber): array
+    {
+        $base = $this->evaluateCurrentNamedWindow(
+            $at,
+            $abhijit,
+            'abhijit_start',
+            'abhijit_end',
+            'Abhijit Muhurta',
+            'Muhurta Chintamani / Muhurta Martanda / Classical Dosha Nivarana Texts'
+        );
+        $isWednesday = $varaNumber === 3;
+
+        $base['vara_number'] = $varaNumber;
+        $base['vara_name'] = Vara::from($varaNumber)->getEnglishName();
+        $base['is_wednesday'] = $isWednesday;
+        $base['has_cancellation_power'] = $base['is_active'] && !$isWednesday;
+        $base['cancellable_doshas'] = [
+            'rikta_tithi' => true,
+            'nakshatra_dosha' => true,
+            'yoga_dosha' => true,
+            'karana_dosha' => true,
+            'minor_graha_dosha' => true,
+            'varjyam' => false,
+            'grahan' => false,
+        ];
+        $base['description'] = $isWednesday
+            ? 'Abhijit on Wednesday has restricted cancellation use.'
+            : ($base['is_active'] ? 'Abhijit Muhurta is active now and can cancel many minor doshas.' : 'Abhijit Muhurta is not active at the evaluation time.');
+
+        return $base;
+    }
+
+    private function evaluateCurrentBhadra(CarbonImmutable $at, array $bhadraPeriods): array
+    {
+        $active = null;
+        $activePart = null;
+
+        foreach ($bhadraPeriods as $period) {
+            if (!is_array($period)) {
+                continue;
+            }
+
+            $periodStart = isset($period['start_time_iso']) ? $this->parseDisplayDateTime((string) $period['start_time_iso'], $at->timezoneName) : null;
+            $periodEnd = isset($period['end_time_iso']) ? $this->parseDisplayDateTime((string) $period['end_time_iso'], $at->timezoneName) : null;
+            if ($periodStart === null || $periodEnd === null || $at < $periodStart || $at >= $periodEnd) {
+                continue;
+            }
+
+            $active = $period;
+            foreach (['mukha', 'madhya', 'puchha'] as $partKey) {
+                $part = (array) (($period['parts'] ?? [])[$partKey] ?? []);
+                $partStart = isset($part['start_time_iso']) ? $this->parseDisplayDateTime((string) $part['start_time_iso'], $at->timezoneName) : null;
+                $partEnd = isset($part['end_time_iso']) ? $this->parseDisplayDateTime((string) $part['end_time_iso'], $at->timezoneName) : null;
+                if ($partStart !== null && $partEnd !== null && $at >= $partStart && $at < $partEnd) {
+                    $activePart = $partKey;
+                    break;
+                }
+            }
+            break;
+        }
+
+        $hasDosha = $activePart === 'mukha' || $activePart === 'madhya';
+        $severity = $activePart === 'mukha' ? 'critical' : ($activePart === 'madhya' ? 'high' : 'none');
+
+        return [
+            'source' => 'Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation',
+            'is_active' => $active !== null,
+            'active_part' => $activePart,
+            'active_period' => $active,
+            'has_dosha' => $hasDosha,
+            'severity' => $severity,
+            'is_auspicious' => !$hasDosha,
+            'blocked_activities' => $hasDosha ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures'] : [],
+            'description' => $active === null
+                ? 'Bhadra is not active at the evaluation time.'
+                : ($hasDosha ? 'Bhadra is active in a blocked portion now.' : 'Only Bhadra Puchha is active now; this portion is relatively safe.'),
+        ];
+    }
+
+    private function resolveNamedWindowBoundary(array $window, string $key, string $tz): ?CarbonImmutable
+    {
+        $isoKey = $key . '_iso';
+        if (isset($window[$isoKey]) && is_string($window[$isoKey]) && $window[$isoKey] !== '') {
+            return $this->parseDisplayDateTime($window[$isoKey], $tz);
+        }
+
+        if (isset($window[$key]) && is_string($window[$key]) && $window[$key] !== '') {
+            return $this->parseDisplayDateTime($window[$key], $tz);
+        }
+
+        return null;
     }
 
     private function toJulianDayFromCarbon(CarbonImmutable $dt, string $tz): float
@@ -926,7 +1260,8 @@ class PanchangService
             }
 
             $dt = $sunrise->setTime((int) $parsed->format('H'), (int) $parsed->format('i'), (int) $parsed->format('s'));
-            if ($dt->lessThan($sunrise)) {
+            $secondsDeltaFromSunrise = abs($dt->diffInSeconds($sunrise, false));
+            if ($dt->lessThan($sunrise) && $secondsDeltaFromSunrise >= 60) {
                 $dt = $dt->addDay();
             }
 
@@ -1554,8 +1889,6 @@ class PanchangService
         string $tz,
         float $elevation,
         array $dayDetails,
-        ?int $birthNakshatraIdx,
-        ?int $birthMoonSignIdx,
         array $profile,
         int $durationSeconds
     ): array {

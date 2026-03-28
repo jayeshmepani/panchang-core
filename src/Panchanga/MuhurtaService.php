@@ -34,6 +34,35 @@ class MuhurtaService
     ];
 
     private const AUSPICIOUS_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
+    private const GOWRI_DAY_SEQUENCES = [
+        0 => ['Uthi', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Visham'],
+        1 => ['Amirdha', 'Visham', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi'],
+        2 => ['Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha'],
+        3 => ['Laabam', 'Dhanam', 'Sugam', 'Soram', 'Visham', 'Uthi', 'Amirdha', 'Rogam'],
+        4 => ['Dhanam', 'Sugam', 'Soram', 'Uthi', 'Amirdha', 'Visham', 'Rogam', 'Laabam'],
+        5 => ['Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam'],
+        6 => ['Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam'],
+    ];
+    private const GOWRI_NIGHT_SEQUENCES = [
+        0 => ['Dhanam', 'Sugam', 'Soram', 'Visham', 'Uthi', 'Amirdha', 'Rogam', 'Laabam'],
+        1 => ['Sugam', 'Soram', 'Uthi', 'Amirdha', 'Visham', 'Rogam', 'Laabam', 'Dhanam'],
+        2 => ['Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam'],
+        3 => ['Uthi', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Visham'],
+        4 => ['Amirdha', 'Visham', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi'],
+        5 => ['Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha'],
+        6 => ['Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha', 'Soram'],
+    ];
+    private const GOWRI_AUSPICIOUS = ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam'];
+    private const GOWRI_LABELS = [
+        'Amirdha' => ['quality' => 'best', 'is_auspicious' => true],
+        'Dhanam' => ['quality' => 'wealth', 'is_auspicious' => true],
+        'Uthi' => ['quality' => 'good', 'is_auspicious' => true],
+        'Laabam' => ['quality' => 'gain', 'is_auspicious' => true],
+        'Sugam' => ['quality' => 'good', 'is_auspicious' => true],
+        'Rogam' => ['quality' => 'evil', 'is_auspicious' => false],
+        'Soram' => ['quality' => 'bad', 'is_auspicious' => false],
+        'Visham' => ['quality' => 'bad', 'is_auspicious' => false],
+    ];
     private const DAY_MUHURTA_NAMES = [
         'Rudra', 'Sarpa', 'Mitra', 'Pitri', 'Vasu',
         'Vara', 'Vishvedeva', 'Vidhi', 'Brahma', 'Indra',
@@ -47,6 +76,7 @@ class MuhurtaService
 
     private array $horaPlanetsOrder = ['Sun', 'Venus', 'Mercury', 'Moon', 'Saturn', 'Jupiter', 'Mars'];
     private array $weekPlanets = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
+    private array $weekdayPlanetOrder = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
     public function calculateHora(
         CarbonImmutable $sunrise,
@@ -163,7 +193,7 @@ class MuhurtaService
         $solarNoon = $this->addFloatSeconds($sunrise, $daySeconds / 2.0);
 
         return [
-            'source' => 'Muhūrta Chintāmaṇi / Nārada Saṁhitā',
+            'source' => 'Package attribution: Muhūrta Chintāmaṇi / Nārada Saṁhitā',
             'abhijit_start' => AstroCore::formatTime($abhijitStart),
             'abhijit_end' => AstroCore::formatTime($abhijitEnd),
             'solar_noon' => AstroCore::formatTime($solarNoon),
@@ -272,7 +302,201 @@ class MuhurtaService
     }
 
     /**
-     * Calculate 8 Prahara (4 day + 4 night) as per Srimad Bhagavata Purana 3.11.8, 3.11.10
+     * Calculate canonical fivefold daylight division:
+     * Pratah, Sangava, Madhyahna, Aparahna, Sayahna.
+     */
+    public function calculateDaylightFivefoldDivision(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset
+    ): array {
+        $duration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 5.0;
+        $names = [
+            'Pratah',
+            'Sangava',
+            'Madhyahna',
+            'Aparahna',
+            'Sayahna',
+        ];
+
+        $rows = [];
+        foreach ($names as $index => $name) {
+            $start = $this->addFloatSeconds($sunrise, $index * $duration);
+            $rows[] = $this->buildTimedRow($start, $duration, [
+                'name' => $name,
+                'division_number' => $index + 1,
+            ]);
+        }
+
+        return $rows;
+    }
+
+    /** Calculate Nishita Muhurta as the 8th of 15 night Muhurtas. */
+    public function calculateNishitaMuhurta(
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
+        $nightMuhurta = $nightDuration / 15.0;
+        $start = $this->addFloatSeconds($sunset, 7 * $nightMuhurta);
+        $end = $this->addFloatSeconds($start, $nightMuhurta);
+        $midpoint = $this->addFloatSeconds($start, $nightMuhurta / 2.0);
+
+        return [
+            'source' => 'Package derivation from 15-part night Muhurta model',
+            'nishita_start' => AstroCore::formatTime($start),
+            'nishita_end' => AstroCore::formatTime($end),
+            'nishita_start_iso' => AstroCore::formatDateTime($start),
+            'nishita_end_iso' => AstroCore::formatDateTime($end),
+            'night_midpoint' => AstroCore::formatTime($midpoint),
+            'night_midpoint_iso' => AstroCore::formatDateTime($midpoint),
+            'muhurta_duration_minutes' => AstroCore::formatDuration($nightMuhurta / 60.0),
+            'muhurta_number' => '8th of 15 (Nishita)',
+        ];
+    }
+
+    /** Calculate Vijaya Muhurta as the 11th of 15 day Muhurtas. */
+    public function calculateVijayaMuhurta(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset
+    ): array {
+        $dayDuration = $sunset->getTimestamp() - $sunrise->getTimestamp();
+        $muhurtaDuration = $dayDuration / 15.0;
+        $start = $this->addFloatSeconds($sunrise, 10 * $muhurtaDuration);
+        $end = $this->addFloatSeconds($start, $muhurtaDuration);
+
+        return [
+            'source' => '30 Muhurta day division',
+            'vijaya_start' => AstroCore::formatTime($start),
+            'vijaya_end' => AstroCore::formatTime($end),
+            'vijaya_start_iso' => AstroCore::formatDateTime($start),
+            'vijaya_end_iso' => AstroCore::formatDateTime($end),
+            'muhurta_duration_minutes' => AstroCore::formatDuration($muhurtaDuration / 60.0),
+            'muhurta_number' => '11th of 15 (Vijaya)',
+        ];
+    }
+
+    /** Calculate Godhuli Muhurta from the first 1/30th of the night. */
+    public function calculateGodhuliMuhurta(
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
+        $duration = $nightDuration / 30.0;
+        $start = $sunset;
+        $end = $this->addFloatSeconds($start, $duration);
+
+        return [
+            'source' => 'Observed Panchang convention; tradition-dependent',
+            'godhuli_start' => AstroCore::formatTime($start),
+            'godhuli_end' => AstroCore::formatTime($end),
+            'godhuli_start_iso' => AstroCore::formatDateTime($start),
+            'godhuli_end_iso' => AstroCore::formatDateTime($end),
+            'duration_minutes' => AstroCore::formatDuration($duration / 60.0),
+        ];
+    }
+
+    /**
+     * Calculate Sandhya windows:
+     * Pratah and Sayahna from 1/10th of night, Madhyahna ± 1.5 ghati around solar noon.
+     */
+    public function calculateSandhya(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        CarbonImmutable $solarNoon
+    ): array {
+        $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
+        $twilightDuration = $nightDuration / 10.0;
+        $madhyahnaHalf = 36.0 * 60.0;
+
+        $pratahStart = $this->addFloatSeconds($sunrise, -$twilightDuration);
+        $pratahEnd = $sunrise;
+        $sayahnaStart = $sunset;
+        $sayahnaEnd = $this->addFloatSeconds($sunset, $twilightDuration);
+        $madhyahnaStart = $this->addFloatSeconds($solarNoon, -$madhyahnaHalf);
+        $madhyahnaEnd = $this->addFloatSeconds($solarNoon, $madhyahnaHalf);
+
+        return [
+            'source' => 'Sandhyavandanam practice convention',
+            'pratah_sandhya' => [
+                'start' => AstroCore::formatTime($pratahStart),
+                'end' => AstroCore::formatTime($pratahEnd),
+                'start_iso' => AstroCore::formatDateTime($pratahStart),
+                'end_iso' => AstroCore::formatDateTime($pratahEnd),
+                'duration_minutes' => AstroCore::formatDuration($twilightDuration / 60.0),
+            ],
+            'madhyahna_sandhya' => [
+                'start' => AstroCore::formatTime($madhyahnaStart),
+                'end' => AstroCore::formatTime($madhyahnaEnd),
+                'start_iso' => AstroCore::formatDateTime($madhyahnaStart),
+                'end_iso' => AstroCore::formatDateTime($madhyahnaEnd),
+                'duration_minutes' => AstroCore::formatDuration((2 * $madhyahnaHalf) / 60.0),
+            ],
+            'sayahna_sandhya' => [
+                'start' => AstroCore::formatTime($sayahnaStart),
+                'end' => AstroCore::formatTime($sayahnaEnd),
+                'start_iso' => AstroCore::formatDateTime($sayahnaStart),
+                'end_iso' => AstroCore::formatDateTime($sayahnaEnd),
+                'duration_minutes' => AstroCore::formatDuration($twilightDuration / 60.0),
+            ],
+        ];
+    }
+
+    /** Calculate a Gowri Panchangam style day/night table using 8 equal parts each. */
+    public function calculateGowriPanchangam(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        int $varaIdx
+    ): array {
+        $dayRows = $this->buildNamedEightfoldTable(
+            $sunrise,
+            ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 8.0,
+            self::GOWRI_DAY_SEQUENCES[$varaIdx] ?? self::GOWRI_DAY_SEQUENCES[0],
+            true
+        );
+        $nightRows = $this->buildNamedEightfoldTable(
+            $sunset,
+            ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0,
+            self::GOWRI_NIGHT_SEQUENCES[$varaIdx] ?? self::GOWRI_NIGHT_SEQUENCES[0],
+            false
+        );
+
+        return [
+            'source' => 'Published Gowri/Pambu table convention',
+            'day' => $dayRows,
+            'night' => $nightRows,
+            'auspicious_labels' => array_values(self::GOWRI_AUSPICIOUS),
+            'inauspicious_labels' => ['Rogam', 'Soram', 'Visham'],
+        ];
+    }
+
+    /** Calculate Kala Vela day/night portions using weekday-lord progression. */
+    public function calculateKalaVela(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        int $varaIdx
+    ): array {
+        $dayPortions = $this->buildKalaVelaPortions($sunrise, ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 8.0, $varaIdx);
+        $nightPortions = $this->buildKalaVelaPortions($sunset, ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0, ($varaIdx + 4) % 7);
+
+        return [
+            'source' => 'Secondary-source Kala Vela convention attributed to Saravali',
+            'day' => $dayPortions,
+            'night' => $nightPortions,
+            'named_kala_velas' => [
+                'kala' => $this->extractKalaVelaWindows('Sun', $dayPortions, $nightPortions),
+                'mrityu' => $this->extractKalaVelaWindows('Mars', $dayPortions, $nightPortions),
+                'ardhaprahara' => $this->extractKalaVelaWindows('Mercury', $dayPortions, $nightPortions),
+                'yamaghantaka' => $this->extractKalaVelaWindows('Jupiter', $dayPortions, $nightPortions),
+                'gulika' => $this->extractKalaVelaWindows('Saturn', $dayPortions, $nightPortions),
+            ],
+        ];
+    }
+
+    /**
+     * Calculate 8 Prahara (4 day + 4 night) as per Sūrya Siddhānta 1.10-1.11 and Śrīmad Bhāgavata Purāṇa 3.11.8, 3.11.10
      * Each Prahara = ~3 hours (6-7 Nadikas).
      */
     public function calculatePrahara(
@@ -714,6 +938,59 @@ class MuhurtaService
         $sequences = $isDay ? self::CHOGADIYA_DAY_SEQUENCES : self::CHOGADIYA_NIGHT_SEQUENCES;
 
         return $sequences[$varaIdx] ?? $sequences[0];
+    }
+
+    private function buildNamedEightfoldTable(CarbonImmutable $startAt, float $duration, array $labels, bool $isDay): array
+    {
+        $rows = [];
+        foreach ($labels as $index => $label) {
+            $start = $this->addFloatSeconds($startAt, $index * $duration);
+            $meta = self::GOWRI_LABELS[$label] ?? ['quality' => 'unknown', 'is_auspicious' => false];
+            $rows[] = $this->buildTimedRow($start, $duration, [
+                'division' => $index + 1,
+                'label' => $label,
+                'quality' => $meta['quality'],
+                'is_auspicious' => $meta['is_auspicious'],
+                'is_day' => $isDay,
+            ]);
+        }
+
+        return $rows;
+    }
+
+    private function buildKalaVelaPortions(CarbonImmutable $startAt, float $duration, int $startLordIdx): array
+    {
+        $rows = [];
+        for ($i = 0; $i < 8; $i++) {
+            $start = $this->addFloatSeconds($startAt, $i * $duration);
+            $lord = $i < 7 ? $this->weekdayPlanetOrder[($startLordIdx + $i) % 7] : null;
+            $rows[] = $this->buildTimedRow($start, $duration, [
+                'division' => $i + 1,
+                'planetary_lord' => $lord,
+                'is_optional_eighth_portion' => $i === 7,
+            ]);
+        }
+
+        return $rows;
+    }
+
+    private function extractKalaVelaWindows(string $planet, array $dayPortions, array $nightPortions): array
+    {
+        $matches = [];
+        foreach (array_merge($dayPortions, $nightPortions) as $portion) {
+            if (($portion['planetary_lord'] ?? null) !== $planet) {
+                continue;
+            }
+            $matches[] = [
+                'division' => $portion['division'] ?? null,
+                'start' => $portion['start'] ?? null,
+                'end' => $portion['end'] ?? null,
+                'start_iso' => $portion['start_iso'] ?? null,
+                'end_iso' => $portion['end_iso'] ?? null,
+            ];
+        }
+
+        return $matches;
     }
 
     private function isAuspiciousChogadiya(string $name): bool
