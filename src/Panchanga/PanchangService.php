@@ -12,6 +12,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
+use RuntimeException;
 use SwissEph\FFI\SwissEphFFI;
 use Throwable;
 
@@ -582,6 +583,191 @@ class PanchangService
             ],
             'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']),
         ];
+    }
+
+    public function getElectionalSnapshot(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        ?int $birthNakshatraIdx = null,
+        ?int $birthMoonSignIdx = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, null, $options);
+        $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
+        [$sunset] = [$this->resolveTimeStringToDateTime((string) $dayDetails['Sunset'], $sunrise, $tz)];
+
+        $sunriseBirth = $this->buildBirthArray($sunrise, $lat, $lon, $tz, $elevation);
+        $sunMoon = $this->getSunMoonLongitudes($sunriseBirth);
+        $moonLongitude = (float) $sunMoon['Moon'];
+        $nakIndex = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
+        $moonSign = (int) floor($moonLongitude / 30.0);
+        $ascLongitude = $this->astronomy->getAscendant($sunriseBirth);
+        $planetaryStates = $this->astronomy->getPlanetaryStates($sunriseBirth);
+        $planets = [];
+        foreach ($planetaryStates as $planet => $state) {
+            if (isset($state['lon'])) {
+                $planets[$planet] = (float) $state['lon'];
+            }
+        }
+
+        return [
+            'day_details' => $dayDetails,
+            'activity_profiles' => array_keys(ElectionalRuleBook::ACTIVITY_PROFILES),
+            'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy((string) ($dayDetails['Nakshatra']['name'] ?? '')),
+            'mahadoshas' => ElectionalEvaluator::evaluateMahadoshas($planets, $ascLongitude),
+            'planetary_states' => $planetaryStates,
+            'sunrise_context' => [
+                'sunrise_iso' => AstroCore::formatDateTime($sunrise),
+                'sunset_iso' => $sunset instanceof CarbonImmutable ? AstroCore::formatDateTime($sunset) : null,
+                'nakshatra_index' => $nakIndex,
+                'moon_sign_index' => $moonSign,
+                'lagna_sign' => Rasi::from(AstroCore::getSign($ascLongitude))->getName(),
+                'lagna_degree_in_sign' => fmod(AstroCore::normalize($ascLongitude), 30.0),
+                'lagna_kakshya_lord' => ElectionalEvaluator::getKakshyaLord(fmod(AstroCore::normalize($ascLongitude), 30.0)),
+            ],
+        ];
+    }
+
+    public function getActivityMuhurtas(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        string $activity,
+        ?int $birthNakshatraIdx = null,
+        ?int $birthMoonSignIdx = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $profile = ElectionalRuleBook::getProfile($activity);
+        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, null, $options);
+        $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
+        $nextDay = $date->addDay();
+        [$nextSunrise] = $this->sunService->getSunriseSunset([
+            'year' => $nextDay->year,
+            'month' => $nextDay->month,
+            'day' => $nextDay->day,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
+            'timezone' => $tz,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'elevation' => $elevation,
+        ]);
+        $sunset = $this->resolveTimeStringToDateTime((string) $dayDetails['Sunset'], $sunrise, $tz) ?? $sunrise;
+
+        $boundaries = [
+            $sunrise->getTimestamp(),
+            $nextSunrise->getTimestamp(),
+        ];
+
+        foreach ($this->collectIsoBoundariesFromPayload($dayDetails) as $boundary) {
+            if ($boundary >= $sunrise && $boundary <= $nextSunrise) {
+                $boundaries[] = $boundary->getTimestamp();
+            }
+        }
+
+        foreach ($this->collectElectionalTransitions($sunrise, $nextSunrise, $lat, $lon, $tz, $elevation) as $boundary) {
+            if ($boundary >= $sunrise && $boundary <= $nextSunrise) {
+                $boundaries[] = $boundary->getTimestamp();
+            }
+        }
+
+        $boundaries = array_values(array_unique($boundaries));
+        sort($boundaries, SORT_NUMERIC);
+
+        $candidates = [];
+        for ($i = 0; $i < count($boundaries) - 1; $i++) {
+            $startTs = (int) $boundaries[$i];
+            $endTs = (int) $boundaries[$i + 1];
+            if ($endTs <= $startTs) {
+                continue;
+            }
+
+            $start = CarbonImmutable::createFromTimestamp($startTs, $tz);
+            $end = CarbonImmutable::createFromTimestamp($endTs, $tz);
+            $midpointTs = $startTs + (($endTs - $startTs) / 2.0);
+            $midpoint = CarbonImmutable::createFromTimestamp($midpointTs, $tz);
+
+            $factors = $this->buildIntervalFactors(
+                $midpoint,
+                $start,
+                $end,
+                $sunrise,
+                $sunset,
+                $nextSunrise,
+                $lat,
+                $lon,
+                $tz,
+                $elevation,
+                $dayDetails,
+                $birthNakshatraIdx,
+                $birthMoonSignIdx,
+                $profile,
+                $endTs - $startTs
+            );
+
+            $decision = ElectionalEvaluator::evaluateActivityProfile($profile, $factors);
+            if (!$decision['accepted']) {
+                continue;
+            }
+
+            $candidates[] = [
+                'start' => AstroCore::formatTime($start),
+                'end' => AstroCore::formatTime($end),
+                'start_iso' => AstroCore::formatDateTime($start),
+                'end_iso' => AstroCore::formatDateTime($end),
+                'duration_seconds' => $endTs - $startTs,
+                'score' => $decision['score'],
+                'bonuses' => $decision['bonuses'],
+                'factors' => $factors,
+            ];
+        }
+
+        usort(
+            $candidates,
+            static fn (array $left, array $right): int => ($right['score'] <=> $left['score']) ?: strcmp((string) $left['start_iso'], (string) $right['start_iso'])
+        );
+
+        return [
+            'activity' => $profile['activity_key'],
+            'label' => $profile['label'] ?? $activity,
+            'sources' => $profile['sources'] ?? [],
+            'date' => $date->toDateString(),
+            'candidate_count' => count($candidates),
+            'candidates' => $candidates,
+            'day_details' => $dayDetails,
+        ];
+    }
+
+    public function getVivahaMuhurtas(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        ?int $birthNakshatraIdx = null,
+        ?int $birthMoonSignIdx = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'vivaha', $birthNakshatraIdx, $birthMoonSignIdx, $elevation, $options);
+    }
+
+    public function getGrihaPraveshaMuhurtas(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        ?int $birthNakshatraIdx = null,
+        ?int $birthMoonSignIdx = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'griha_pravesha', $birthNakshatraIdx, $birthMoonSignIdx, $elevation, $options);
     }
 
     private function toJulianDayFromCarbon(CarbonImmutable $dt, string $tz): float
@@ -1187,5 +1373,455 @@ class PanchangService
         }
 
         return $data;
+    }
+
+    private function buildBirthArray(
+        CarbonImmutable $dt,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0
+    ): array {
+        return [
+            'year' => (int) $dt->format('Y'),
+            'month' => (int) $dt->format('m'),
+            'day' => (int) $dt->format('d'),
+            'hour' => (int) $dt->format('H'),
+            'minute' => (int) $dt->format('i'),
+            'second' => (int) $dt->format('s'),
+            'timezone' => $tz,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'elevation' => $elevation,
+        ];
+    }
+
+    private function parseDisplayDateTime(string $value, string $tz): CarbonImmutable
+    {
+        $formats = ['d/m/Y h:i:s A', 'd/m/Y h:i A', 'Y-m-d H:i:s', 'Y-m-d\\TH:i:sP', 'Y-m-d H:i'];
+        foreach ($formats as $format) {
+            try {
+                $parsed = CarbonImmutable::createFromFormat($format, trim($value), $tz);
+            } catch (Throwable) {
+                $parsed = false;
+            }
+
+            if ($parsed instanceof CarbonImmutable) {
+                return $parsed;
+            }
+        }
+
+        return CarbonImmutable::parse($value, $tz);
+    }
+
+    /** @return array<int, CarbonImmutable> */
+    private function collectIsoBoundariesFromPayload(array $payload): array
+    {
+        $boundaries = [];
+
+        $walker = function (mixed $node) use (&$walker, &$boundaries): void {
+            if (!is_array($node)) {
+                return;
+            }
+
+            foreach ($node as $key => $value) {
+                if (is_array($value)) {
+                    $walker($value);
+                    continue;
+                }
+
+                if (!is_string($value)) {
+                    continue;
+                }
+
+                if (is_string($key) && str_ends_with($key, '_iso')) {
+                    try {
+                        $boundaries[] = CarbonImmutable::parse($value);
+                    } catch (Throwable) {
+                    }
+                }
+            }
+        };
+
+        $walker($payload);
+
+        return $boundaries;
+    }
+
+    /** @return array<int, CarbonImmutable> */
+    private function collectElectionalTransitions(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $nextSunrise,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation
+    ): array {
+        $jdStart = $this->toJulianDayFromCarbon($sunrise, $tz);
+        $jdEnd = $this->toJulianDayFromCarbon($nextSunrise, $tz);
+
+        $transitions = [];
+        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 12.0, fn (float $jd): float => $this->getMoonSunAngle($jd), 4) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 6.0, fn (float $jd): float => $this->getMoonSunAngle($jd), 8) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 360.0 / 27.0, fn (float $jd): float => $this->getMoonLongitude($jd), 4) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 360.0 / 27.0, fn (float $jd): float => $this->getSunMoonSum($jd), 4) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 30.0, fn (float $jd): float => $this->getMoonLongitude($jd), 2) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+        foreach ($this->collectAscendantTransitions($jdStart, $jdEnd, 30.0 / 9.0, $lat, $lon, $this->astronomy->getAyanamsa($jdStart), 12) as $jd) {
+            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
+        }
+
+        return $transitions;
+    }
+
+    /** @return array<int, float> */
+    private function collectAscendantTransitions(
+        float $jdStart,
+        float $jdEnd,
+        float $stepDegrees,
+        float $lat,
+        float $lon,
+        float $ayanamsaDeg,
+        int $maxTransitions
+    ): array {
+        $out = [];
+        $cursor = $jdStart;
+
+        for ($i = 0; $i < $maxTransitions; $i++) {
+            $current = $this->getAscendantSiderealAtJd($cursor, $lat, $lon, $ayanamsaDeg);
+            $target = fmod((floor(($current + 1.0e-7) / $stepDegrees) + 1.0) * $stepDegrees, 360.0);
+            $crossing = $this->findAngleCrossing(
+                $cursor + 1.0e-6,
+                $target,
+                1,
+                fn (float $jd): float => $this->getAscendantSiderealAtJd($jd, $lat, $lon, $ayanamsaDeg)
+            );
+            if ($crossing <= $cursor || $crossing >= $jdEnd) {
+                break;
+            }
+
+            $out[] = $crossing;
+            $cursor = $crossing + 1.0e-6;
+        }
+
+        return $out;
+    }
+
+    /** @return array<int, float> */
+    private function collectAngleTransitions(
+        float $jdStart,
+        float $jdEnd,
+        float $stepDegrees,
+        callable $angleFn,
+        int $maxTransitions
+    ): array {
+        $out = [];
+        $cursor = $jdStart;
+
+        for ($i = 0; $i < $maxTransitions; $i++) {
+            $current = AstroCore::normalize($angleFn($cursor));
+            $target = fmod((floor(($current + 1.0e-7) / $stepDegrees) + 1.0) * $stepDegrees, 360.0);
+            $crossing = $this->findAngleCrossing($cursor + 1.0e-6, $target, 1, $angleFn);
+            if ($crossing <= $cursor || $crossing >= $jdEnd) {
+                break;
+            }
+
+            $out[] = $crossing;
+            $cursor = $crossing + 1.0e-6;
+        }
+
+        return $out;
+    }
+
+    private function buildIntervalFactors(
+        CarbonImmutable $midpoint,
+        CarbonImmutable $start,
+        CarbonImmutable $end,
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation,
+        array $dayDetails,
+        ?int $birthNakshatraIdx,
+        ?int $birthMoonSignIdx,
+        array $profile,
+        int $durationSeconds
+    ): array {
+        $birth = $this->buildBirthArray($midpoint, $lat, $lon, $tz, $elevation);
+        $sunMoon = $this->getSunMoonLongitudes($birth);
+        $moonLongitude = (float) $sunMoon['Moon'];
+        $tithi = $this->panchanga->calculateTithi((float) $sunMoon['Sun'], $moonLongitude);
+        $yoga = $this->panchanga->calculateYoga((float) $sunMoon['Sun'], $moonLongitude);
+        [$karanaName, $karanaIdx] = $this->panchanga->getKarana((float) $sunMoon['Sun'], $moonLongitude);
+        [$nakName] = $this->panchanga->getNakshatraInfo($moonLongitude);
+        $nakIdx = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
+        $moonSign = (int) floor($moonLongitude / 30.0);
+        $vara = $this->panchanga->calculateVara($birth, $this->sunService);
+        $hora = $this->muhurta->calculateHora($sunrise, $sunset, $nextSunrise, $midpoint, (int) $vara['index']);
+        $chogadiya = $this->muhurta->calculateChogadiya($sunrise, $sunset, $nextSunrise, $midpoint, (int) $vara['index']);
+        $ascLongitude = $this->astronomy->getAscendant($birth);
+        $lagnaSign = Rasi::from(AstroCore::getSign($ascLongitude))->getName();
+        $lagnaDegreeInSign = fmod(AstroCore::normalize($ascLongitude), 30.0);
+        $planetaryStates = $this->astronomy->getPlanetaryStates($birth);
+        $planets = [];
+        foreach ($planetaryStates as $planet => $state) {
+            if (isset($state['lon'])) {
+                $planets[$planet] = (float) $state['lon'];
+            }
+        }
+        $mahadoshas = ElectionalEvaluator::evaluateMahadoshas($planets, $ascLongitude);
+        $planetHouses = [];
+        $planetNavamsaHouses = [];
+        foreach ($planets as $planet => $longitude) {
+            $planetHouses[$planet] = AstroCore::getHouseNumFromLagna(AstroCore::getSign((float) $longitude), AstroCore::getSign($ascLongitude));
+            $planetNavamsaHouses[$planet] = AstroCore::getHouseNumFromLagna($this->getNavamsaSignIndex((float) $longitude), $this->getNavamsaSignIndex($ascLongitude));
+        }
+        $lagnaNavamsaSignIdx = $this->getNavamsaSignIndex($ascLongitude);
+        $lagnaSignIdx = AstroCore::getSign($ascLongitude);
+        $lagnaLord = $this->getSignLordPlanet($lagnaSignIdx);
+        $lagnaLordHouse = $planetHouses[$lagnaLord] ?? null;
+        $lagnaNavamsaLord = $this->getSignLordPlanet($lagnaNavamsaSignIdx);
+        $lagnaNavamsaLordHouse = $planetHouses[$lagnaNavamsaLord] ?? null;
+        $moonSunAngle = AstroCore::normalize($moonLongitude - (float) $sunMoon['Sun']);
+        $tithiPhase = (int) $tithi['index'] > 15 ? (int) $tithi['index'] - 15 : (int) $tithi['index'];
+
+        return [
+            'midpoint_iso' => AstroCore::formatDateTime($midpoint),
+            'duration_seconds' => $durationSeconds,
+            'vara_index' => (int) $vara['index'],
+            'tithi_index_abs' => (int) $tithi['index'],
+            'tithi_index_phase' => $tithiPhase,
+            'tithi_name' => (string) $tithi['name'],
+            'paksha' => (string) ($tithi['paksha'] ?? ''),
+            'is_adhika_month' => (bool) ($dayDetails['Hindu_Calendar']['Is_Adhika'] ?? false),
+            'hindu_month_amanta' => $this->getPlainMonthName((string) ($dayDetails['Hindu_Calendar']['Month_Amanta'] ?? '')),
+            'nakshatra_index' => $nakIdx,
+            'nakshatra_name' => $nakName,
+            'yoga_index' => (int) $yoga['index'],
+            'yoga_name' => (string) $yoga['name'],
+            'karana_index' => $karanaIdx,
+            'karana_name' => $karanaName,
+            'moon_sign_index' => $moonSign,
+            'moon_sign_name' => Rasi::from($moonSign)->getName(),
+            'weekday_name' => (string) ($vara['name'] ?? ''),
+            'moon_house_from_lagna' => AstroCore::getHouseNumFromLagna($moonSign, AstroCore::getSign($ascLongitude)),
+            'lagna_sign_name' => $lagnaSign,
+            'lagna_degree_in_sign' => $lagnaDegreeInSign,
+            'lagna_kakshya_lord' => ElectionalEvaluator::getKakshyaLord($lagnaDegreeInSign),
+            'lagna_lord_planet' => $lagnaLord,
+            'lagna_lord_house' => $lagnaLordHouse,
+            'lagna_navamsa_lord_planet' => $lagnaNavamsaLord,
+            'lagna_navamsa_lord_house' => $lagnaNavamsaLordHouse,
+            'lagna_navamsa_sign_name' => Rasi::from($lagnaNavamsaSignIdx)->getName(),
+            'lagna_navamsa_mode' => $this->getNavamsaMode($lagnaNavamsaSignIdx),
+            'hora_ruler' => (string) ($hora['ruler'] ?? ''),
+            'chogadiya_name' => (string) ($chogadiya['name'] ?? ''),
+            'chogadiya_is_auspicious' => (bool) ($chogadiya['is_auspicious'] ?? false),
+            'suunya_rasi' => ElectionalEvaluator::calculateSuunyaRasi($tithiPhase, $lagnaSign),
+            'gandanta' => ElectionalEvaluator::calculateGandanta($lagnaSign, $lagnaDegreeInSign, $moonSunAngle),
+            'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy($nakName),
+            'mahadoshas' => $mahadoshas,
+            'vara_tithi_yogas' => ElectionalEvaluator::evaluateVaraTithiYogas((int) $vara['index'], $tithiPhase),
+            'planetary_states' => $planetaryStates,
+            'planet_houses' => $planetHouses,
+            'planet_navamsa_houses' => $planetNavamsaHouses,
+            'lagna_shuddhi' => $this->evaluateLagnaShuddhi($profile['activity_key'] ?? 'general_auspicious', $planetHouses, AstroCore::getHouseNumFromLagna($moonSign, AstroCore::getSign($ascLongitude)), $this->getNavamsaMode($lagnaNavamsaSignIdx)),
+            'window_flags' => [
+                'rahu_kaal' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Rahu_Kaal_Gulika_Yamaganda']['Rahu_Kaal'] ?? []), 'start', 'end'),
+                'yamaganda' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Rahu_Kaal_Gulika_Yamaganda']['Yamaganda'] ?? []), 'start', 'end'),
+                'varjyam' => $this->intervalOverlapsVarjyam($start, $end, (array) ($dayDetails['Varjyam'] ?? []), $tz),
+                'dur_muhurta' => $this->intervalOverlapsTable($start, $end, (array) ($dayDetails['Dur_Muhurta_Full_Day'] ?? [])),
+                'bhadra_blocked' => $this->intervalOverlapsBhadra($start, $end, (array) ($dayDetails['Bhadra'] ?? [])),
+                'abhijit' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Abhijit_Muhurta'] ?? []), 'abhijit_start', 'abhijit_end'),
+                'amrita_kaal' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Amrita_Kaal'] ?? []), 'amrita_kaal_start', 'amrita_kaal_end'),
+                'brahma_muhurta' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Brahma_Muhurta'] ?? []), 'brahma_muhurta_start', 'brahma_muhurta_end'),
+                'pradosha' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Pradosha_Kaal'] ?? []), 'pradosha_start', 'pradosha_end'),
+                'vishti_karana' => strcasecmp($karanaName, 'Vishti') === 0,
+            ],
+        ];
+    }
+
+    private function evaluateLagnaShuddhi(string $activityKey, array $planetHouses, int $moonHouseFromLagna, string $navamsaMode): array
+    {
+        $malefics = ['Sun', 'Mars', 'Saturn', 'Rahu', 'Ketu'];
+        $lagnaMalefics = [];
+        $seventhMalefics = [];
+
+        foreach ($malefics as $planet) {
+            $house = $planetHouses[$planet] ?? null;
+            if ($house === 1) {
+                $lagnaMalefics[] = $planet;
+            }
+            if ($house === 7) {
+                $seventhMalefics[] = $planet;
+            }
+        }
+
+        return [
+            'activity' => $activityKey,
+            'is_clean' => $lagnaMalefics === [] && $seventhMalefics === [] && $moonHouseFromLagna !== 8,
+            'lagna_malefics' => $lagnaMalefics,
+            'seventh_malefics' => $seventhMalefics,
+            'moon_house_from_lagna' => $moonHouseFromLagna,
+            'is_ashtama_chandra_from_lagna' => $moonHouseFromLagna === 8,
+            'navamsa_mode' => $navamsaMode,
+        ];
+    }
+
+    private function intervalOverlapsNamedWindow(
+        CarbonImmutable $start,
+        CarbonImmutable $end,
+        array $window,
+        string $startKey,
+        string $endKey
+    ): bool {
+        $startIso = $window[$startKey . '_iso'] ?? null;
+        $endIso = $window[$endKey . '_iso'] ?? null;
+        if (!is_string($startIso) || !is_string($endIso)) {
+            return false;
+        }
+
+        $from = $this->parseDisplayDateTime($startIso, $start->getTimezone()->getName());
+        $to = $this->parseDisplayDateTime($endIso, $end->getTimezone()->getName());
+
+        return $start < $to && $end > $from;
+    }
+
+    private function intervalOverlapsTable(CarbonImmutable $start, CarbonImmutable $end, array $rows): bool
+    {
+        foreach ($rows as $row) {
+            if (!is_array($row)) {
+                continue;
+            }
+
+            if ($this->intervalOverlapsNamedWindow($start, $end, $row, 'start', 'end')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function intervalOverlapsVarjyam(CarbonImmutable $start, CarbonImmutable $end, array $varjyam, string $tz): bool
+    {
+        $windows = $varjyam['windows'] ?? [];
+        if (!is_array($windows)) {
+            return false;
+        }
+
+        foreach ($windows as $window) {
+            if (!is_array($window)) {
+                continue;
+            }
+
+            $startJd = $window['window_start_jd'] ?? null;
+            $endJd = $window['window_end_jd'] ?? null;
+            if (!is_float($startJd) && !is_int($startJd)) {
+                continue;
+            }
+            if (!is_float($endJd) && !is_int($endJd)) {
+                continue;
+            }
+
+            $from = $this->sunService->jdToCarbonPublic((float) $startJd, $tz);
+            $to = $this->sunService->jdToCarbonPublic((float) $endJd, $tz);
+            if ($start < $to && $end > $from) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function intervalOverlapsBhadra(CarbonImmutable $start, CarbonImmutable $end, array $bhadra): bool
+    {
+        foreach ($bhadra as $period) {
+            if (!is_array($period)) {
+                continue;
+            }
+
+            $parts = (array) ($period['parts'] ?? []);
+            foreach (['mukha', 'madhya'] as $blockedPart) {
+                $part = (array) ($parts[$blockedPart] ?? []);
+                if ($this->intervalOverlapsNamedWindow($start, $end, $part, 'start_time', 'end_time')) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function getNavamsaSignIndex(float $nirayanaLongitude): int
+    {
+        $normalized = AstroCore::normalize($nirayanaLongitude);
+        $signIndex = (int) floor($normalized / 30.0);
+        $degreesInSign = fmod($normalized, 30.0);
+        $navamsaWithinSign = (int) floor($degreesInSign / (30.0 / 9.0));
+
+        $movable = [0, 3, 6, 9];
+        $fixed = [1, 4, 7, 10];
+
+        if (in_array($signIndex, $movable, true)) {
+            return ($signIndex + $navamsaWithinSign) % 12;
+        }
+        if (in_array($signIndex, $fixed, true)) {
+            return ($signIndex + 8 + $navamsaWithinSign) % 12;
+        }
+
+        return ($signIndex + 4 + $navamsaWithinSign) % 12;
+    }
+
+    private function getNavamsaMode(int $navamsaSignIndex): string
+    {
+        return match ($navamsaSignIndex) {
+            2, 5, 6, 10 => 'biped',
+            3, 7, 11 => 'watery',
+            default => 'quadruped',
+        };
+    }
+
+    private function getPlainMonthName(string $value): string
+    {
+        $plain = preg_replace('/\s*\(.+$/u', '', trim($value));
+        return is_string($plain) ? $plain : trim($value);
+    }
+
+    private function getSignLordPlanet(int $signIndex): string
+    {
+        return match ($signIndex) {
+            0, 7 => 'Mars',
+            1, 6 => 'Venus',
+            2, 5 => 'Mercury',
+            3 => 'Moon',
+            4 => 'Sun',
+            8, 11 => 'Jupiter',
+            9, 10 => 'Saturn',
+            default => 'Sun',
+        };
+    }
+
+    private function getAscendantSiderealAtJd(float $jd, float $lat, float $lon, float $ayanamsaDeg): float
+    {
+        $cusps = $this->sweph->getFFI()->new('double[13]');
+        $ascmc = $this->sweph->getFFI()->new('double[10]');
+        $retFlag = $this->sweph->swe_houses($jd, $lat, $lon, ord('P'), $cusps, $ascmc);
+        if ($retFlag < 0) {
+            throw new RuntimeException('Swiss Ephemeris failed while calculating ascendant transitions.');
+        }
+
+        return AstroCore::normalize($ascmc[0] - $ayanamsaDeg);
     }
 }
