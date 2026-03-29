@@ -177,12 +177,23 @@
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.65;
-    min-height: 100dvh;
     transition: background-color .3s var(--ease-out), color .3s var(--ease-out);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
   }
+
+html,
+body {
+    max-width: 100dvw;
+    min-height: 100dvh;
+    height: auto;
+    width: auto;
+    background-attachment: scroll;
+    isolation: isolate;
+    z-index: 9999;
+    position: relative;
+}
 
   h1,
   h2,
@@ -249,6 +260,7 @@
     color: var(--code-text);
     padding: .18em .45em;
     border-radius: var(--radius-sm);
+    overflow-wrap: anywhere;
     border: 1px solid var(--border-subtle)
   }
 
@@ -344,7 +356,6 @@
 @layer layout {
   .app {
     display: flex;
-    min-height: 100dvh
   }
 
   .main-content {
@@ -818,7 +829,7 @@
 
 @layer content {
   .content-section {
-    scroll-margin-block-start: var(--space-6);
+    scroll-margin-block-start: 5rem;
     padding-block-end: var(--space-8);
     border-block-end: 1px solid var(--border-subtle);
     margin-block-end: var(--space-7);
