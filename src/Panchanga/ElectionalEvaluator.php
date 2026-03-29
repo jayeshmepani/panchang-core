@@ -220,7 +220,6 @@ final class ElectionalEvaluator
             'severity' => $panchakaInfo['severity'],
             'has_dosha' => $hasDosha,
             'is_panchaka_rahita' => !$hasDosha,
-            'blocked_activities' => $hasDosha ? ['marriage', 'griha_pravesh', 'surgery', 'important_work'] : [],
             'description' => $hasDosha ? "{$panchakaInfo['english']} Panchaka - Inauspicious" : 'Panchaka Rahita - Auspicious',
         ];
     }
@@ -261,7 +260,6 @@ final class ElectionalEvaluator
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
-            'blocked_activities' => $isDagdha ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures'] : [],
             'description' => $isDagdha ? 'Dagdha Tithi - Inauspicious for this Moon sign' : 'Not Dagdha Tithi',
         ];
     }
@@ -303,7 +301,6 @@ final class ElectionalEvaluator
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
-            'blocked_activities' => $isDagdha ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures'] : [],
             'description' => $isDagdha ? 'Dagdha Yoga - Inauspicious for this Vara' : 'Not Dagdha Yoga',
         ];
     }
@@ -317,28 +314,23 @@ final class ElectionalEvaluator
      *
      * @param int $moonSignIdx Moon Sign index (0-11, 0=Aries)
      *
-     * @return array Bhadra assessment with abode type and allowed/blocked activities
+     * @return array Bhadra assessment with abode type
      */
     public static function calculateBhadra(int $moonSignIdx): array
     {
         $moonSign = Rasi::from($moonSignIdx);
         $abodeType = 'unknown';
         $severity = 'none';
-        $blockedActivities = [];
-        $allowedActivities = [];
 
         if (in_array($moonSignIdx, self::BHADRA_ABODES['earth'], true)) {
             $abodeType = 'earth';
             $severity = 'critical';
-            $blockedActivities = ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures'];
         } elseif (in_array($moonSignIdx, self::BHADRA_ABODES['heaven'], true)) {
             $abodeType = 'heaven';
             $severity = 'low';
-            $allowedActivities = ['spiritual_work', 'charity'];
         } elseif (in_array($moonSignIdx, self::BHADRA_ABODES['underworld'], true)) {
             $abodeType = 'underworld';
             $severity = 'none';
-            $allowedActivities = ['wealth_related', 'business', 'financial_transactions'];
         }
 
         $abodeNames = [
@@ -358,8 +350,6 @@ final class ElectionalEvaluator
             'abode_name' => $abodeNames[$abodeType],
             'severity' => $severity,
             'is_auspicious' => $abodeType !== 'earth',
-            'blocked_activities' => $blockedActivities,
-            'allowed_activities' => $allowedActivities,
             'description' => match ($abodeType) {
                 'earth' => 'Moon-sign heuristic maps Bhadravasa to Earth; this is not a timed active-Bhadra judgement.',
                 'heaven' => 'Moon-sign heuristic maps Bhadravasa to Heaven; this is not a timed active-Bhadra judgement.',
@@ -411,8 +401,6 @@ final class ElectionalEvaluator
             'is_special_avoid' => $isSpecialAvoid,
             'has_dosha' => $hasDosha,
             'severity' => $severity,
-            'blocked_activities' => $hasDosha ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work'] : [],
-            'allowed_activities' => $hasDosha ? ['destruction', 'exorcism', 'removal_of_obstacles', 'harsh_acts'] : [],
             'description' => $hasDosha ? 'Rikta Tithi - avoid all auspicious beginnings' : 'Not Rikta Tithi',
         ];
     }
@@ -456,7 +444,6 @@ final class ElectionalEvaluator
             'has_varjyam' => $vishaGhati > 0,
             'severity' => $vishaGhati > 0 ? 'high' : 'none',
             'description' => $vishaGhati > 0 ? 'Varjyam (Visha Ghati) - poison period, avoid all auspicious work' : 'No Varjyam',
-            'blocked_activities' => $vishaGhati > 0 ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work'] : [],
         ];
     }
 
@@ -544,7 +531,6 @@ final class ElectionalEvaluator
             'current_amrita_period' => $currentPeriod,
             'is_auspicious' => $isInAmritaKaal,
             'description' => $isInAmritaKaal ? 'Amrita Kaal - highly auspicious period, excellent for all auspicious work' : 'Not in Amrita Kaal',
-            'enhanced_activities' => $isInAmritaKaal ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work', 'spiritual_practices'] : [],
         ];
     }
 
@@ -614,12 +600,11 @@ final class ElectionalEvaluator
      * Source basis used by the package: evaluator rules attributed to Muhurta Chintamani,
      * Brihat Samhita, and related dosha-analysis traditions.
      *
-     * @param array $evaluationResults Evaluation results from evaluateActivityProfile
-     * @param string $activityKey Activity being evaluated
+     * @param array $evaluationResults Evaluation results from getDailyMuhurtaEvaluation
      *
-     * @return array Detailed rejection report with rationale, severity, and alternatives
+     * @return array Detailed rejection report with rationale and severity
      */
-    public static function generateRejectionReport(array $evaluationResults, string $activityKey): array
+    public static function generateRejectionReport(array $evaluationResults): array
     {
         $rejections = [];
         $warnings = [];
@@ -634,7 +619,6 @@ final class ElectionalEvaluator
                 $severity = $result['severity'] ?? 'medium';
                 $doshaName = $result['name'] ?? $factor;
                 $source = $result['source'] ?? 'Package evaluator result';
-                $blockedActivities = $result['blocked_activities'] ?? [];
                 $description = $result['description'] ?? 'Dosha present';
 
                 $rejectionEntry = [
@@ -642,7 +626,6 @@ final class ElectionalEvaluator
                     'severity' => $severity,
                     'source' => $source,
                     'description' => $description,
-                    'blocked_activities' => $blockedActivities,
                     'cancellation_possible' => in_array($severity, ['low', 'medium'], true),
                     'cancellation_method' => in_array($severity, ['low', 'medium'], true) ? 'Abhijit Muhurta or specific remedies' : null,
                 ];
@@ -667,7 +650,6 @@ final class ElectionalEvaluator
                     'severity' => $severity,
                     'source' => $source,
                     'description' => $description,
-                    'blocked_activities' => [],
                     'cancellation_possible' => true,
                     'cancellation_method' => 'Strengthen through remedies or wait for better time',
                 ];
@@ -690,7 +672,6 @@ final class ElectionalEvaluator
 
         return [
             'source' => 'Package evaluation summary from configured/transit-only rule mappings',
-            'activity_key' => $activityKey,
             'overall_verdict' => $overallVerdict,
             'confidence_level' => $confidenceLevel,
             'rejection_count' => count($rejections),

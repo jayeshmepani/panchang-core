@@ -678,9 +678,7 @@ class PanchangService
 
         return [
             'day_details' => $dayDetails,
-            'activity_profiles' => array_keys(ElectionalRuleBook::ACTIVITY_PROFILES),
             'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy((string) ($dayDetails['Nakshatra']['name'] ?? '')),
-            'mahadoshas' => ElectionalEvaluator::evaluateMahadoshas($planets, $ascLongitude),
             'planetary_states' => $planetaryStates,
             'sunrise_context' => [
                 'sunrise_iso' => AstroCore::formatDateTime($sunrise),
@@ -689,7 +687,6 @@ class PanchangService
                 'moon_sign_index' => $moonSign,
                 'lagna_sign' => Rasi::from(AstroCore::getSign($ascLongitude))->getName(),
                 'lagna_degree_in_sign' => fmod(AstroCore::normalize($ascLongitude), 30.0),
-                'lagna_kakshya_lord' => ElectionalEvaluator::getKakshyaLord(fmod(AstroCore::normalize($ascLongitude), 30.0)),
             ],
         ];
     }
@@ -703,7 +700,6 @@ class PanchangService
         float $lat,
         float $lon,
         string $tz,
-        string $activityKey = 'general_auspicious',
         ?CarbonImmutable $currentAt = null,
         float $elevation = 0.0,
         array $options = []
@@ -757,14 +753,13 @@ class PanchangService
                 'Amrita Kaal',
                 'Classical Panchanga Calculation Texts'
             ),
-            'abhijit_cancellation' => $this->evaluateCurrentAbhijit($at, (array) ($dayDetails['Abhijit_Muhurta'] ?? []), $varaNumber),
+            'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
         ];
 
-        $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults, $activityKey);
+        $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults);
 
         return [
             'title' => 'Complete Muhurta Evaluation - Centralized package output',
-            'activity_key' => $activityKey,
             'input_now' => AstroCore::formatDateTime($at),
             'date' => $date->toDateString(),
             'input_parameters' => [
@@ -804,243 +799,6 @@ class PanchangService
             'evaluation_results' => $evaluationResults,
             'rejection_report' => $rejectionReport,
         ];
-    }
-
-    public function getActivityMuhurtas(
-        CarbonImmutable $date,
-        float $lat,
-        float $lon,
-        string $tz,
-        string $activity,
-        float $elevation = 0.0,
-        array $options = []
-    ): array {
-        $profile = ElectionalRuleBook::getProfile($activity);
-        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, null, $options);
-        $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
-        $nextDay = $date->addDay();
-        [$nextSunrise] = $this->sunService->getSunriseSunset([
-            'year' => $nextDay->year,
-            'month' => $nextDay->month,
-            'day' => $nextDay->day,
-            'hour' => 0,
-            'minute' => 0,
-            'second' => 0,
-            'timezone' => $tz,
-            'latitude' => $lat,
-            'longitude' => $lon,
-            'elevation' => $elevation,
-        ]);
-        $sunset = $this->resolveTimeStringToDateTime((string) $dayDetails['Sunset'], $sunrise, $tz) ?? $sunrise;
-
-        $boundaries = [
-            $sunrise->getTimestamp(),
-            $nextSunrise->getTimestamp(),
-        ];
-
-        foreach ($this->collectIsoBoundariesFromPayload($dayDetails) as $boundary) {
-            if ($boundary >= $sunrise && $boundary <= $nextSunrise) {
-                $boundaries[] = $boundary->getTimestamp();
-            }
-        }
-
-        foreach ($this->collectElectionalTransitions($sunrise, $nextSunrise, $lat, $lon, $tz, $elevation) as $boundary) {
-            if ($boundary >= $sunrise && $boundary <= $nextSunrise) {
-                $boundaries[] = $boundary->getTimestamp();
-            }
-        }
-
-        $boundaries = array_values(array_unique($boundaries));
-        sort($boundaries, SORT_NUMERIC);
-
-        $candidates = [];
-        for ($i = 0; $i < count($boundaries) - 1; $i++) {
-            $startTs = (int) $boundaries[$i];
-            $endTs = (int) $boundaries[$i + 1];
-            if ($endTs <= $startTs) {
-                continue;
-            }
-
-            $start = CarbonImmutable::createFromTimestamp($startTs, $tz);
-            $end = CarbonImmutable::createFromTimestamp($endTs, $tz);
-            $midpointTs = $startTs + (($endTs - $startTs) / 2.0);
-            $midpoint = CarbonImmutable::createFromTimestamp($midpointTs, $tz);
-
-            $factors = $this->buildIntervalFactors(
-                $midpoint,
-                $start,
-                $end,
-                $sunrise,
-                $sunset,
-                $nextSunrise,
-                $lat,
-                $lon,
-                $tz,
-                $elevation,
-                $dayDetails,
-                $profile,
-                $endTs - $startTs
-            );
-
-            $decision = ElectionalEvaluator::evaluateActivityProfile($profile, $factors);
-            if (!$decision['accepted']) {
-                continue;
-            }
-
-            $candidates[] = [
-                'start' => AstroCore::formatTime($start),
-                'end' => AstroCore::formatTime($end),
-                'start_iso' => AstroCore::formatDateTime($start),
-                'end_iso' => AstroCore::formatDateTime($end),
-                'duration_seconds' => $endTs - $startTs,
-                'score' => $decision['score'],
-                'bonuses' => $decision['bonuses'],
-                'factors' => $factors,
-            ];
-        }
-
-        usort(
-            $candidates,
-            static fn (array $left, array $right): int => ($right['score'] <=> $left['score']) ?: strcmp((string) $left['start_iso'], (string) $right['start_iso'])
-        );
-
-        return [
-            'activity' => $profile['activity_key'],
-            'label' => $profile['label'] ?? $activity,
-            'sources' => $profile['sources'] ?? [],
-            'date' => $date->toDateString(),
-            'candidate_count' => count($candidates),
-            'candidates' => $candidates,
-            'day_details' => $dayDetails,
-        ];
-    }
-
-    public function getVivahaMuhurtas(
-        CarbonImmutable $date,
-        float $lat,
-        float $lon,
-        string $tz,
-        float $elevation = 0.0,
-        array $options = []
-    ): array {
-        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'vivaha', $elevation, $options);
-    }
-
-    public function getGrihaPraveshaMuhurtas(
-        CarbonImmutable $date,
-        float $lat,
-        float $lon,
-        string $tz,
-        float $elevation = 0.0,
-        array $options = []
-    ): array {
-        return $this->getActivityMuhurtas($date, $lat, $lon, $tz, 'griha_pravesha', $elevation, $options);
-    }
-
-    private function toDecimalHoursFromBase(CarbonImmutable $dt, CarbonImmutable $base): float
-    {
-        return ($dt->getTimestamp() - $base->getTimestamp()) / 3600.0;
-    }
-
-    private function evaluateCurrentVarjyam(CarbonImmutable $at, array $varjyam, string $tz): array
-    {
-        $windows = $varjyam['windows'] ?? [];
-        if (!is_array($windows)) {
-            $windows = [];
-        }
-
-        $activeWindow = null;
-        foreach ($windows as $window) {
-            if (!is_array($window)) {
-                continue;
-            }
-
-            $startJd = $window['window_start_jd'] ?? null;
-            $endJd = $window['window_end_jd'] ?? null;
-            if ((!is_float($startJd) && !is_int($startJd)) || (!is_float($endJd) && !is_int($endJd))) {
-                continue;
-            }
-
-            $from = $this->sunService->jdToCarbonPublic((float) $startJd, $tz);
-            $to = $this->sunService->jdToCarbonPublic((float) $endJd, $tz);
-            if ($at >= $from && $at < $to) {
-                $activeWindow = $window;
-                break;
-            }
-        }
-
-        return [
-            'source' => 'Classical Panchanga Calculation Texts',
-            'window_count' => (int) ($varjyam['window_count'] ?? count($windows)),
-            'has_dosha' => $activeWindow !== null,
-            'is_active' => $activeWindow !== null,
-            'severity' => $activeWindow !== null ? 'high' : 'none',
-            'active_window' => $activeWindow,
-            'description' => $activeWindow !== null
-                ? 'Varjyam is active now; avoid auspicious work in this window.'
-                : 'Varjyam is not active at the evaluation time.',
-            'blocked_activities' => $activeWindow !== null ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work'] : [],
-        ];
-    }
-
-    private function evaluateCurrentNamedWindow(
-        CarbonImmutable $at,
-        array $window,
-        string $startKey,
-        string $endKey,
-        string $label,
-        string $source
-    ): array {
-        $from = $this->resolveNamedWindowBoundary($window, $startKey, $at->timezoneName);
-        $to = $this->resolveNamedWindowBoundary($window, $endKey, $at->timezoneName);
-        $isActive = $from !== null && $to !== null && $at >= $from && $at < $to;
-
-        return [
-            'source' => $source,
-            'label' => $label,
-            'is_active' => $isActive,
-            'is_auspicious' => $isActive,
-            'start' => $from ? AstroCore::formatTime($from) : null,
-            'end' => $to ? AstroCore::formatTime($to) : null,
-            'start_iso' => $from ? AstroCore::formatDateTime($from) : null,
-            'end_iso' => $to ? AstroCore::formatDateTime($to) : null,
-            'description' => $isActive ? $label . ' is active now.' : $label . ' is not active at the evaluation time.',
-            'enhanced_activities' => $isActive ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures', 'important_work', 'spiritual_practices'] : [],
-            'has_dosha' => false,
-            'severity' => 'none',
-        ];
-    }
-
-    private function evaluateCurrentAbhijit(CarbonImmutable $at, array $abhijit, int $varaNumber): array
-    {
-        $base = $this->evaluateCurrentNamedWindow(
-            $at,
-            $abhijit,
-            'abhijit_start',
-            'abhijit_end',
-            'Abhijit Muhurta',
-            'Muhurta Chintamani / Muhurta Martanda / Classical Dosha Nivarana Texts'
-        );
-        $isWednesday = $varaNumber === 3;
-
-        $base['vara_number'] = $varaNumber;
-        $base['vara_name'] = Vara::from($varaNumber)->getEnglishName();
-        $base['is_wednesday'] = $isWednesday;
-        $base['has_cancellation_power'] = $base['is_active'] && !$isWednesday;
-        $base['cancellable_doshas'] = [
-            'rikta_tithi' => true,
-            'nakshatra_dosha' => true,
-            'yoga_dosha' => true,
-            'karana_dosha' => true,
-            'minor_graha_dosha' => true,
-            'varjyam' => false,
-            'grahan' => false,
-        ];
-        $base['description'] = $isWednesday
-            ? 'Abhijit on Wednesday has restricted cancellation use.'
-            : ($base['is_active'] ? 'Abhijit Muhurta is active now and can cancel many minor doshas.' : 'Abhijit Muhurta is not active at the evaluation time.');
-
-        return $base;
     }
 
     private function evaluateCurrentBhadra(CarbonImmutable $at, array $bhadraPeriods): array
@@ -1083,11 +841,101 @@ class PanchangService
             'has_dosha' => $hasDosha,
             'severity' => $severity,
             'is_auspicious' => !$hasDosha,
-            'blocked_activities' => $hasDosha ? ['all_auspicious_work', 'marriage', 'griha_pravesh', 'new_ventures'] : [],
             'description' => $active === null
                 ? 'Bhadra is not active at the evaluation time.'
                 : ($hasDosha ? 'Bhadra is active in a blocked portion now.' : 'Only Bhadra Puchha is active now; this portion is relatively safe.'),
         ];
+    }
+
+    private function evaluateCurrentVarjyam(CarbonImmutable $at, array $varjyam, string $tz): array
+    {
+        $windows = [];
+        if (isset($varjyam['windows']) && is_array($varjyam['windows']) && $varjyam['windows'] !== []) {
+            $windows = $varjyam['windows'];
+        } elseif ($varjyam !== []) {
+            $windows = [$varjyam];
+        }
+
+        $activeWindow = null;
+        foreach ($windows as $window) {
+            if (!is_array($window)) {
+                continue;
+            }
+
+            $start = null;
+            $end = null;
+            if (isset($window['window_start_jd'], $window['window_end_jd'])) {
+                $start = $this->sunService->jdToCarbonPublic((float) $window['window_start_jd'], $tz);
+                $end = $this->sunService->jdToCarbonPublic((float) $window['window_end_jd'], $tz);
+                $window['window_start_iso'] = $window['window_start_iso'] ?? AstroCore::formatDateTime($start);
+                $window['window_end_iso'] = $window['window_end_iso'] ?? AstroCore::formatDateTime($end);
+            } else {
+                $start = $this->resolveNamedWindowBoundary($window, 'varjyam_start', $tz);
+                $end = $this->resolveNamedWindowBoundary($window, 'varjyam_end', $tz);
+            }
+
+            if ($start !== null && $end !== null && $at >= $start && $at < $end) {
+                $activeWindow = $window;
+                break;
+            }
+        }
+
+        $isActive = $activeWindow !== null;
+
+        return [
+            'source' => 'Varjyam (Tyajyam) window from Panchang day calculation',
+            'is_active' => $isActive,
+            'active_window' => $activeWindow,
+            'window_count' => count($windows),
+            'severity' => $isActive ? 'high' : 'none',
+            'is_auspicious' => !$isActive,
+            'description' => $isActive ? 'Varjyam is active at the evaluation time.' : 'Varjyam is not active at the evaluation time.',
+        ];
+    }
+
+    private function evaluateCurrentNamedWindow(
+        CarbonImmutable $at,
+        array $window,
+        string $startKey,
+        string $endKey,
+        string $label,
+        string $source
+    ): array {
+        $start = $this->resolveNamedWindowBoundary($window, $startKey, $at->timezoneName);
+        $end = $this->resolveNamedWindowBoundary($window, $endKey, $at->timezoneName);
+
+        if ($start === null || $end === null) {
+            return [
+                'source' => $source,
+                'label' => $label,
+                'is_active' => false,
+                'is_available' => false,
+                'is_auspicious' => false,
+                'description' => $label . ' window is not available for the evaluation time.',
+            ];
+        }
+
+        $isActive = $at >= $start && $at < $end;
+
+        return [
+            'source' => $source,
+            'label' => $label,
+            'is_active' => $isActive,
+            'is_available' => true,
+            'is_auspicious' => $isActive,
+            'window' => [
+                'start_iso' => AstroCore::formatDateTime($start),
+                'end_iso' => AstroCore::formatDateTime($end),
+            ],
+            'description' => $isActive
+                ? $label . ' is active at the evaluation time.'
+                : $label . ' is not active at the evaluation time.',
+        ];
+    }
+
+    private function toDecimalHoursFromBase(CarbonImmutable $dt, CarbonImmutable $base): float
+    {
+        return ($dt->getTimestamp() - $base->getTimestamp()) / 3600.0;
     }
 
     private function resolveNamedWindowBoundary(array $window, string $key, string $tz): ?CarbonImmutable
@@ -1750,382 +1598,6 @@ class PanchangService
     }
 
     /** @return array<int, CarbonImmutable> */
-    private function collectIsoBoundariesFromPayload(array $payload): array
-    {
-        $boundaries = [];
-
-        $walker = function (mixed $node) use (&$walker, &$boundaries): void {
-            if (!is_array($node)) {
-                return;
-            }
-
-            foreach ($node as $key => $value) {
-                if (is_array($value)) {
-                    $walker($value);
-                    continue;
-                }
-
-                if (!is_string($value)) {
-                    continue;
-                }
-
-                if (is_string($key) && str_ends_with($key, '_iso')) {
-                    try {
-                        $boundaries[] = CarbonImmutable::parse($value);
-                    } catch (Throwable) {
-                    }
-                }
-            }
-        };
-
-        $walker($payload);
-
-        return $boundaries;
-    }
-
-    /** @return array<int, CarbonImmutable> */
-    private function collectElectionalTransitions(
-        CarbonImmutable $sunrise,
-        CarbonImmutable $nextSunrise,
-        float $lat,
-        float $lon,
-        string $tz,
-        float $elevation
-    ): array {
-        $jdStart = $this->toJulianDayFromCarbon($sunrise, $tz);
-        $jdEnd = $this->toJulianDayFromCarbon($nextSunrise, $tz);
-
-        $transitions = [];
-        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 12.0, fn (float $jd): float => $this->getMoonSunAngle($jd), 4) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 6.0, fn (float $jd): float => $this->getMoonSunAngle($jd), 8) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 360.0 / 27.0, fn (float $jd): float => $this->getMoonLongitude($jd), 4) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 360.0 / 27.0, fn (float $jd): float => $this->getSunMoonSum($jd), 4) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-        foreach ($this->collectAngleTransitions($jdStart, $jdEnd, 30.0, fn (float $jd): float => $this->getMoonLongitude($jd), 2) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-        foreach ($this->collectAscendantTransitions($jdStart, $jdEnd, 30.0 / 9.0, $lat, $lon, $this->astronomy->getAyanamsa($jdStart), 12) as $jd) {
-            $transitions[] = $this->sunService->jdToCarbonPublic($jd, $tz);
-        }
-
-        return $transitions;
-    }
-
-    /** @return array<int, float> */
-    private function collectAscendantTransitions(
-        float $jdStart,
-        float $jdEnd,
-        float $stepDegrees,
-        float $lat,
-        float $lon,
-        float $ayanamsaDeg,
-        int $maxTransitions
-    ): array {
-        $out = [];
-        $cursor = $jdStart;
-
-        for ($i = 0; $i < $maxTransitions; $i++) {
-            $current = $this->getAscendantSiderealAtJd($cursor, $lat, $lon, $ayanamsaDeg);
-            $target = fmod((floor(($current + 1.0e-7) / $stepDegrees) + 1.0) * $stepDegrees, 360.0);
-            $crossing = $this->findAngleCrossing(
-                $cursor + 1.0e-6,
-                $target,
-                1,
-                fn (float $jd): float => $this->getAscendantSiderealAtJd($jd, $lat, $lon, $ayanamsaDeg)
-            );
-            if ($crossing <= $cursor || $crossing >= $jdEnd) {
-                break;
-            }
-
-            $out[] = $crossing;
-            $cursor = $crossing + 1.0e-6;
-        }
-
-        return $out;
-    }
-
-    /** @return array<int, float> */
-    private function collectAngleTransitions(
-        float $jdStart,
-        float $jdEnd,
-        float $stepDegrees,
-        callable $angleFn,
-        int $maxTransitions
-    ): array {
-        $out = [];
-        $cursor = $jdStart;
-
-        for ($i = 0; $i < $maxTransitions; $i++) {
-            $current = AstroCore::normalize($angleFn($cursor));
-            $target = fmod((floor(($current + 1.0e-7) / $stepDegrees) + 1.0) * $stepDegrees, 360.0);
-            $crossing = $this->findAngleCrossing($cursor + 1.0e-6, $target, 1, $angleFn);
-            if ($crossing <= $cursor || $crossing >= $jdEnd) {
-                break;
-            }
-
-            $out[] = $crossing;
-            $cursor = $crossing + 1.0e-6;
-        }
-
-        return $out;
-    }
-
-    private function buildIntervalFactors(
-        CarbonImmutable $midpoint,
-        CarbonImmutable $start,
-        CarbonImmutable $end,
-        CarbonImmutable $sunrise,
-        CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise,
-        float $lat,
-        float $lon,
-        string $tz,
-        float $elevation,
-        array $dayDetails,
-        array $profile,
-        int $durationSeconds
-    ): array {
-        $birth = $this->buildBirthArray($midpoint, $lat, $lon, $tz, $elevation);
-        $sunMoon = $this->getSunMoonLongitudes($birth);
-        $moonLongitude = (float) $sunMoon['Moon'];
-        $tithi = $this->panchanga->calculateTithi((float) $sunMoon['Sun'], $moonLongitude);
-        $yoga = $this->panchanga->calculateYoga((float) $sunMoon['Sun'], $moonLongitude);
-        [$karanaName, $karanaIdx] = $this->panchanga->getKarana((float) $sunMoon['Sun'], $moonLongitude);
-        [$nakName] = $this->panchanga->getNakshatraInfo($moonLongitude);
-        $nakIdx = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
-        $moonSign = (int) floor($moonLongitude / 30.0);
-        $vara = $this->panchanga->calculateVara($birth, $this->sunService);
-        $hora = $this->muhurta->calculateHora($sunrise, $sunset, $nextSunrise, $midpoint, (int) $vara['index']);
-        $chogadiya = $this->muhurta->calculateChogadiya($sunrise, $sunset, $nextSunrise, $midpoint, (int) $vara['index']);
-        $ascLongitude = $this->astronomy->getAscendant($birth);
-        $lagnaSign = Rasi::from(AstroCore::getSign($ascLongitude))->getName();
-        $lagnaDegreeInSign = fmod(AstroCore::normalize($ascLongitude), 30.0);
-        $planetaryStates = $this->astronomy->getPlanetaryStates($birth);
-        $planets = [];
-        foreach ($planetaryStates as $planet => $state) {
-            if (isset($state['lon'])) {
-                $planets[$planet] = (float) $state['lon'];
-            }
-        }
-        $mahadoshas = ElectionalEvaluator::evaluateMahadoshas($planets, $ascLongitude);
-        $planetHouses = [];
-        $planetNavamsaHouses = [];
-        foreach ($planets as $planet => $longitude) {
-            $planetHouses[$planet] = AstroCore::getHouseNumFromLagna(AstroCore::getSign((float) $longitude), AstroCore::getSign($ascLongitude));
-            $planetNavamsaHouses[$planet] = AstroCore::getHouseNumFromLagna($this->getNavamsaSignIndex((float) $longitude), $this->getNavamsaSignIndex($ascLongitude));
-        }
-        $lagnaNavamsaSignIdx = $this->getNavamsaSignIndex($ascLongitude);
-        $lagnaSignIdx = AstroCore::getSign($ascLongitude);
-        $lagnaLord = $this->getSignLordPlanet($lagnaSignIdx);
-        $lagnaLordHouse = $planetHouses[$lagnaLord] ?? null;
-        $lagnaNavamsaLord = $this->getSignLordPlanet($lagnaNavamsaSignIdx);
-        $lagnaNavamsaLordHouse = $planetHouses[$lagnaNavamsaLord] ?? null;
-        $moonSunAngle = AstroCore::normalize($moonLongitude - (float) $sunMoon['Sun']);
-        $tithiPhase = (int) $tithi['index'] > 15 ? (int) $tithi['index'] - 15 : (int) $tithi['index'];
-
-        return [
-            'midpoint_iso' => AstroCore::formatDateTime($midpoint),
-            'duration_seconds' => $durationSeconds,
-            'vara_index' => (int) $vara['index'],
-            'tithi_index_abs' => (int) $tithi['index'],
-            'tithi_index_phase' => $tithiPhase,
-            'tithi_name' => (string) $tithi['name'],
-            'paksha' => (string) ($tithi['paksha'] ?? ''),
-            'is_adhika_month' => (bool) ($dayDetails['Hindu_Calendar']['Is_Adhika'] ?? false),
-            'hindu_month_amanta' => $this->getPlainMonthName((string) ($dayDetails['Hindu_Calendar']['Month_Amanta'] ?? '')),
-            'nakshatra_index' => $nakIdx,
-            'nakshatra_name' => $nakName,
-            'yoga_index' => (int) $yoga['index'],
-            'yoga_name' => (string) $yoga['name'],
-            'karana_index' => $karanaIdx,
-            'karana_name' => $karanaName,
-            'moon_sign_index' => $moonSign,
-            'moon_sign_name' => Rasi::from($moonSign)->getName(),
-            'weekday_name' => (string) ($vara['name'] ?? ''),
-            'moon_house_from_lagna' => AstroCore::getHouseNumFromLagna($moonSign, AstroCore::getSign($ascLongitude)),
-            'lagna_sign_name' => $lagnaSign,
-            'lagna_degree_in_sign' => $lagnaDegreeInSign,
-            'lagna_kakshya_lord' => ElectionalEvaluator::getKakshyaLord($lagnaDegreeInSign),
-            'lagna_lord_planet' => $lagnaLord,
-            'lagna_lord_house' => $lagnaLordHouse,
-            'lagna_navamsa_lord_planet' => $lagnaNavamsaLord,
-            'lagna_navamsa_lord_house' => $lagnaNavamsaLordHouse,
-            'lagna_navamsa_sign_name' => Rasi::from($lagnaNavamsaSignIdx)->getName(),
-            'lagna_navamsa_mode' => $this->getNavamsaMode($lagnaNavamsaSignIdx),
-            'hora_ruler' => (string) ($hora['ruler'] ?? ''),
-            'chogadiya_name' => (string) ($chogadiya['name'] ?? ''),
-            'chogadiya_is_auspicious' => (bool) ($chogadiya['is_auspicious'] ?? false),
-            'suunya_rasi' => ElectionalEvaluator::calculateSuunyaRasi($tithiPhase, $lagnaSign),
-            'gandanta' => ElectionalEvaluator::calculateGandanta($lagnaSign, $lagnaDegreeInSign, $moonSunAngle),
-            'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy($nakName),
-            'mahadoshas' => $mahadoshas,
-            'vara_tithi_yogas' => ElectionalEvaluator::evaluateVaraTithiYogas((int) $vara['index'], $tithiPhase),
-            'planetary_states' => $planetaryStates,
-            'planet_houses' => $planetHouses,
-            'planet_navamsa_houses' => $planetNavamsaHouses,
-            'lagna_shuddhi' => $this->evaluateLagnaShuddhi($profile['activity_key'] ?? 'general_auspicious', $planetHouses, AstroCore::getHouseNumFromLagna($moonSign, AstroCore::getSign($ascLongitude)), $this->getNavamsaMode($lagnaNavamsaSignIdx)),
-            'window_flags' => [
-                'rahu_kaal' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Rahu_Kaal_Gulika_Yamaganda']['Rahu_Kaal'] ?? []), 'start', 'end'),
-                'yamaganda' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Rahu_Kaal_Gulika_Yamaganda']['Yamaganda'] ?? []), 'start', 'end'),
-                'varjyam' => $this->intervalOverlapsVarjyam($start, $end, (array) ($dayDetails['Varjyam'] ?? []), $tz),
-                'dur_muhurta' => $this->intervalOverlapsTable($start, $end, (array) ($dayDetails['Dur_Muhurta_Full_Day'] ?? [])),
-                'bhadra_blocked' => $this->intervalOverlapsBhadra($start, $end, (array) ($dayDetails['Bhadra'] ?? [])),
-                'abhijit' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Abhijit_Muhurta'] ?? []), 'abhijit_start', 'abhijit_end'),
-                'amrita_kaal' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Amrita_Kaal'] ?? []), 'amrita_kaal_start', 'amrita_kaal_end'),
-                'brahma_muhurta' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Brahma_Muhurta'] ?? []), 'brahma_muhurta_start', 'brahma_muhurta_end'),
-                'pradosha' => $this->intervalOverlapsNamedWindow($start, $end, (array) ($dayDetails['Pradosha_Kaal'] ?? []), 'pradosha_start', 'pradosha_end'),
-                'vishti_karana' => strcasecmp($karanaName, 'Vishti') === 0,
-            ],
-        ];
-    }
-
-    private function evaluateLagnaShuddhi(string $activityKey, array $planetHouses, int $moonHouseFromLagna, string $navamsaMode): array
-    {
-        $malefics = ['Sun', 'Mars', 'Saturn', 'Rahu', 'Ketu'];
-        $lagnaMalefics = [];
-        $seventhMalefics = [];
-
-        foreach ($malefics as $planet) {
-            $house = $planetHouses[$planet] ?? null;
-            if ($house === 1) {
-                $lagnaMalefics[] = $planet;
-            }
-            if ($house === 7) {
-                $seventhMalefics[] = $planet;
-            }
-        }
-
-        return [
-            'activity' => $activityKey,
-            'is_clean' => $lagnaMalefics === [] && $seventhMalefics === [] && $moonHouseFromLagna !== 8,
-            'lagna_malefics' => $lagnaMalefics,
-            'seventh_malefics' => $seventhMalefics,
-            'moon_house_from_lagna' => $moonHouseFromLagna,
-            'is_ashtama_chandra_from_lagna' => $moonHouseFromLagna === 8,
-            'navamsa_mode' => $navamsaMode,
-        ];
-    }
-
-    private function intervalOverlapsNamedWindow(
-        CarbonImmutable $start,
-        CarbonImmutable $end,
-        array $window,
-        string $startKey,
-        string $endKey
-    ): bool {
-        $startIso = $window[$startKey . '_iso'] ?? null;
-        $endIso = $window[$endKey . '_iso'] ?? null;
-        if (!is_string($startIso) || !is_string($endIso)) {
-            return false;
-        }
-
-        $from = $this->parseDisplayDateTime($startIso, $start->getTimezone()->getName());
-        $to = $this->parseDisplayDateTime($endIso, $end->getTimezone()->getName());
-
-        return $start < $to && $end > $from;
-    }
-
-    private function intervalOverlapsTable(CarbonImmutable $start, CarbonImmutable $end, array $rows): bool
-    {
-        foreach ($rows as $row) {
-            if (!is_array($row)) {
-                continue;
-            }
-
-            if ($this->intervalOverlapsNamedWindow($start, $end, $row, 'start', 'end')) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function intervalOverlapsVarjyam(CarbonImmutable $start, CarbonImmutable $end, array $varjyam, string $tz): bool
-    {
-        $windows = $varjyam['windows'] ?? [];
-        if (!is_array($windows)) {
-            return false;
-        }
-
-        foreach ($windows as $window) {
-            if (!is_array($window)) {
-                continue;
-            }
-
-            $startJd = $window['window_start_jd'] ?? null;
-            $endJd = $window['window_end_jd'] ?? null;
-            if (!is_float($startJd) && !is_int($startJd)) {
-                continue;
-            }
-            if (!is_float($endJd) && !is_int($endJd)) {
-                continue;
-            }
-
-            $from = $this->sunService->jdToCarbonPublic((float) $startJd, $tz);
-            $to = $this->sunService->jdToCarbonPublic((float) $endJd, $tz);
-            if ($start < $to && $end > $from) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function intervalOverlapsBhadra(CarbonImmutable $start, CarbonImmutable $end, array $bhadra): bool
-    {
-        foreach ($bhadra as $period) {
-            if (!is_array($period)) {
-                continue;
-            }
-
-            $parts = (array) ($period['parts'] ?? []);
-            foreach (['mukha', 'madhya'] as $blockedPart) {
-                $part = (array) ($parts[$blockedPart] ?? []);
-                if ($this->intervalOverlapsNamedWindow($start, $end, $part, 'start_time', 'end_time')) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private function getNavamsaSignIndex(float $nirayanaLongitude): int
-    {
-        $normalized = AstroCore::normalize($nirayanaLongitude);
-        $signIndex = (int) floor($normalized / 30.0);
-        $degreesInSign = fmod($normalized, 30.0);
-        $navamsaWithinSign = (int) floor($degreesInSign / (30.0 / 9.0));
-
-        $movable = [0, 3, 6, 9];
-        $fixed = [1, 4, 7, 10];
-
-        if (in_array($signIndex, $movable, true)) {
-            return ($signIndex + $navamsaWithinSign) % 12;
-        }
-        if (in_array($signIndex, $fixed, true)) {
-            return ($signIndex + 8 + $navamsaWithinSign) % 12;
-        }
-
-        return ($signIndex + 4 + $navamsaWithinSign) % 12;
-    }
-
-    private function getNavamsaMode(int $navamsaSignIndex): string
-    {
-        return match ($navamsaSignIndex) {
-            2, 5, 6, 10 => 'biped',
-            3, 7, 11 => 'watery',
-            default => 'quadruped',
-        };
-    }
-
     private function getPlainMonthName(string $value): string
     {
         $plain = preg_replace('/\s*\(.+$/u', '', trim($value));

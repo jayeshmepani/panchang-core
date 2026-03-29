@@ -185,7 +185,6 @@ $dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(
     lat: $latitude,
     lon: $longitude,
     tz: $timezone,
-    activityKey: 'general_auspicious',
     currentAt: $now,
     elevation: $elevation,
 );

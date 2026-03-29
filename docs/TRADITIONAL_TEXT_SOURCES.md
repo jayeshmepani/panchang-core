@@ -40,9 +40,9 @@ They should be read as **package mappings**, not as proof that every table entry
 
 | File | Functions/Constants | Source Attribution |
 |------|-------------------|-------------------|
-| `ElectionalRuleBook.php` | `UNIVERSAL_BAD_TITHIS`<br>`VARA_TITHI_YOGAS`<br>`ACTIVITY_PROFILES` | **Package attribution:** Muhurta Chintamani, Brihat Samhita, Mayamata, Vaikhanasa Agama, Ashvalayana Grihya Sutra |
+| `ElectionalRuleBook.php` | `UNIVERSAL_BAD_TITHIS`<br>`VARA_TITHI_YOGAS` | **Package attribution:** Muhurta Chintamani, Brihat Samhita, Mayamata, Vaikhanasa Agama, Ashvalayana Grihya Sutra |
 | `ElectionalEvaluator.php` | `calculatePanchakaDosha()`<br>`calculateDagdhaTithi()`<br>`calculateDagdhaYoga()`<br>`calculateRiktaTithi()`<br>`calculateAbhijitCancellation()`<br>`generateRejectionReport()` | **Package attribution:** Muhurta Chintamani, Brihat Samhita, Gargiya Jyotisha |
-| `PanchangService.php` | `getElectionalSnapshot()`<br>`getDailyMuhurtaEvaluation()`<br>`getActivityMuhurtas()`<br>`getVivahaMuhurtas()`<br>`getGrihaPraveshaMuhurtas()` | **Package attribution:** Muhurta Chintamani, Muhurta Martanda |
+| `PanchangService.php` | `getElectionalSnapshot()`<br>`getDailyMuhurtaEvaluation()` | **Package attribution:** Muhurta Chintamani, Muhurta Martanda |
 
 ---
 

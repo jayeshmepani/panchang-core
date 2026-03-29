@@ -149,11 +149,11 @@ For complete details, see [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TE
 
 | Source | Implementation |
 |--------|---------------|
-| **Muhūrta Chintāmaṇi** | Universal bad tithis, Vara-Tithi Yogas, Activity profiles |
+| **Muhūrta Chintāmaṇi** | Universal bad tithis, Vara-Tithi Yogas |
 | **Bṛhat Saṃhitā** | Muhurta rules, Samvatsara, Ritu |
-| **Māyamata** | Vāstu muhurtas (Griha Pravesha) |
-| **Vaikhānasa Āgama** | Temple installation muhurtas (Pratishtha) |
-| **Aśvalāyana Gṛhya Sūtra** | Samskara muhurtas (Upanayana, Namakarana, etc.) |
+| **Māyamata** | Vāstu muhurta guidance |
+| **Vaikhānasa Āgama** | Āgama-based muhurta guidance |
+| **Aśvalāyana Gṛhya Sūtra** | Gṛhya-sūtra muhurta guidance |
 | **Muhūrta Mārtaṇḍa** | Advanced muhurta calculations |
 | **Gargiya Jyotisha** | Rikta Tithi dosha |
 
@@ -301,15 +301,12 @@ Notes:
 - `muhurta_evaluation` is transit-only; no natal/person-specific inputs are used.
 - Empty arrays such as `Bhadra: []` or `Dharma_Sindhu: []` are valid outputs when no matching window exists for that Panchang day.
 
-### Electional & Activity APIs
+### Muhurta APIs
 
 `PanchangService` also exposes higher-level electional helpers:
 
 - `getElectionalSnapshot()`
 - `getDailyMuhurtaEvaluation()`
-- `getActivityMuhurtas()`
-- `getVivahaMuhurtas()`
-- `getGrihaPraveshaMuhurtas()`
 
 ### Festival Catalog Notes
 

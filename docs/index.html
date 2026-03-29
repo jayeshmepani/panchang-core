@@ -415,7 +415,7 @@
               <tbody>
                 <tr>
                   <td><strong>Muhūrta Chintāmaṇi</strong></td>
-                  <td>Universal bad tithis, Vara-Tithi Yogas, Activity profiles</td>
+                  <td>Universal bad tithis, Vara-Tithi Yogas</td>
                 </tr>
                 <tr>
                   <td><strong>Bṛhat Saṃhitā</strong></td>
@@ -423,15 +423,15 @@
                 </tr>
                 <tr>
                   <td><strong>Māyamata</strong></td>
-                  <td>Vāstu muhurtas (Griha Pravesha)</td>
+                  <td>Vāstu muhurta guidance</td>
                 </tr>
                 <tr>
                   <td><strong>Vaikhānasa Āgama</strong></td>
-                  <td>Temple installation muhurtas (Pratishtha)</td>
+                  <td>Āgama-based muhurta guidance</td>
                 </tr>
                 <tr>
                   <td><strong>Aśvalāyana Gṛhya Sūtra</strong></td>
-                  <td>Samskara muhurtas (Upanayana, Namakarana, etc.)</td>
+                  <td>Gṛhya-sūtra muhurta guidance</td>
                 </tr>
                 <tr>
                   <td><strong>Muhūrta Mārtaṇḍa</strong></td>
@@ -1393,45 +1393,22 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
 
             <div class="method">
               <h4 class="method-name">getElectionalSnapshot()</h4>
-              <p class="method-description">Returns transit-only electional context for a day, including planet states, mahadosha checks, and available activity profiles.</p>
+              <p class="method-description">Returns transit-only electional context for a day, including planet states and mahadosha checks.</p>
               <div class="method-signature">
                 <code>public function getElectionalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Snapshot with <code>day_details</code>, <code>activity_profiles</code>, <code>mahadoshas</code>, <code>planetary_states</code>, and sunrise-context metadata.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Snapshot with <code>day_details</code>, <code>mahadoshas</code>, <code>planetary_states</code>, and sunrise-context metadata.</div>
             </div>
 
             <div class="method">
               <h4 class="method-name">getDailyMuhurtaEvaluation()</h4>
-              <p class="method-description">Returns a centralized transit-only muhurta evaluation package for one date/time and activity profile.</p>
+              <p class="method-description">Returns a centralized transit-only muhurta evaluation package for one date/time.</p>
               <div class="method-signature">
-                <code>public function getDailyMuhurtaEvaluation(CarbonImmutable $date, float $lat, float $lon, string $tz, string $activityKey='general_auspicious', ?CarbonImmutable $currentAt=null, float $elevation=0.0, array $options=[]): array</code>
+                <code>public function getDailyMuhurtaEvaluation(CarbonImmutable $date, float $lat, float $lon, string $tz, ?CarbonImmutable $currentAt=null, float $elevation=0.0, array $options=[]): array</code>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Evaluation bundle with input parameters, active dosha/window checks, and rejection report.</div>
             </div>
 
-            <div class="method">
-              <h4 class="method-name">getActivityMuhurtas()</h4>
-              <p class="method-description">Build candidate windows for a transit-only activity profile by scanning intra-day transitions and rejecting failing intervals.</p>
-              <div class="method-signature">
-                <code>public function getActivityMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, string $activity, float $elevation=0.0, array $options=[]): array</code>
-              </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Activity label, source list, and accepted candidate windows with factor details.</div>
-            </div>
-
-            <div class="method">
-              <h4 class="method-name">getVivahaMuhurtas()</h4>
-              <p class="method-description">Shortcut for <code>getActivityMuhurtas(..., 'vivaha')</code>.</p>
-              <div class="method-signature">
-                <code>public function getVivahaMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
-              </div>
-            </div>
-
-            <div class="method">
-              <h4 class="method-name">getGrihaPraveshaMuhurtas()</h4>
-              <p class="method-description">Shortcut for <code>getActivityMuhurtas(..., 'griha_pravesha')</code>.</p>
-              <div class="method-signature">
-                <code>public function getGrihaPraveshaMuhurtas(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
-              </div>
             </div>
 
             <div class="info-box">
@@ -2622,9 +2599,7 @@ $karmakala = $details['Karmakala_Windows'];   // Named daily windows</code></pre
     date: CarbonImmutable::now()->startOfDay(),
     lat: $lat,
     lon: $lon,
-    tz: $tz,
-    activityKey: 'general_auspicious',
-    currentAt: CarbonImmutable::now($tz)
+    tz: $tz,    currentAt: CarbonImmutable::now($tz)
 );
 
 $verdict = $evaluation['rejection_report']['overall_verdict'];
@@ -2912,10 +2887,6 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
                   <td><code>PanchangService::getDailyMuhurtaEvaluation()</code></td>
                 </tr>
                 <tr>
-                  <td>Get accepted windows for an activity</td>
-                  <td><code>PanchangService::getActivityMuhurtas()</code></td>
-                </tr>
-                <tr>
                   <td>Get planetary positions</td>
                   <td><code>AstronomyService::getPlanets()</code></td>
                 </tr>
@@ -3037,3 +3008,6 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 </body>
 
 </html>
+
+
+
