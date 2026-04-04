@@ -149,7 +149,7 @@ final readonly class AstroCore
         if (function_exists('config')) {
             try {
                 return config($key, $default);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 return $default;
             }
         }
@@ -232,4 +232,5 @@ final readonly class AstroCore
 
         return $minutes;
     }
+
 }

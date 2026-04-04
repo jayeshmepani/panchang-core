@@ -26,7 +26,7 @@ if (!function_exists('env')) {
     {
         $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
 
-        if ($value === false || $value === null) {
+        if ($value === false) {
             return $default;
         }
 
@@ -82,7 +82,7 @@ if (!function_exists('config')) {
                         $ref = [];
                     }
                     if (!array_key_exists($segment, $ref) || !is_array($ref[$segment])) {
-                        $ref[$segment] = $ref[$segment] ?? [];
+                        $ref[$segment] ??= [];
                     }
                     $ref = &$ref[$segment];
                 }
@@ -93,7 +93,7 @@ if (!function_exists('config')) {
             return true;
         }
 
-        $segments = explode('.', (string) $key);
+        $segments = explode('.', $key);
         $value = $configStore;
 
         foreach ($segments as $segment) {
@@ -117,7 +117,7 @@ $country = 'IN';
 $sweph = new SwissEphFFI;
 $ruleEngine = new FestivalRuleEngine;
 $orchestrator = new FestivalFamilyOrchestrator;
-$festivalService = new FestivalService($ruleEngine, $orchestrator);
+$festivalService = new FestivalService($ruleEngine);
 
 $panchangService = new PanchangService(
     $sweph,
@@ -177,7 +177,7 @@ $todayDetails = $panchangService->getDayDetails(
     lon: $longitude,
     tz: $timezone,
     elevation: $elevation,
-    ayanamsaAt: $now,
+    calculationAt: $now,
 );
 
 $dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(

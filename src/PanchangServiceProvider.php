@@ -16,6 +16,7 @@ use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
+use Override;
 use SwissEph\FFI\SwissEphFFI;
 
 /**
@@ -28,6 +29,7 @@ use SwissEph\FFI\SwissEphFFI;
 class PanchangServiceProvider extends ServiceProvider
 {
     /** Register any application services. */
+    #[Override]
     public function register(): void
     {
         // Core services (no dependencies)
@@ -43,25 +45,18 @@ class PanchangServiceProvider extends ServiceProvider
                 $sweph->swe_set_ephe_path($ephePath);
             }
 
-            // Set default ayanamsa
-            $ayanamsa = config('panchang.ayanamsa', 'LAHIRI');
-            $this->setAyanamsa($sweph, is_string($ayanamsa) ? $ayanamsa : 'LAHIRI');
+            // For any authentic Hindu Panchanga, Lahiri is the only absolute standard.
+            $sweph->swe_set_sid_mode(SwissEphFFI::SE_SIDM_LAHIRI, 0.0, 0.0);
 
             return $sweph;
         });
 
         // Astronomy layer
-        $this->app->singleton(AstronomyService::class, function ($app) {
-            return new AstronomyService($app->make(SwissEphFFI::class));
-        });
+        $this->app->singleton(AstronomyService::class, fn ($app) => new AstronomyService($app->make(SwissEphFFI::class)));
 
-        $this->app->singleton(SunService::class, function ($app) {
-            return new SunService($app->make(SwissEphFFI::class));
-        });
+        $this->app->singleton(SunService::class, fn ($app) => new SunService($app->make(SwissEphFFI::class)));
 
-        $this->app->singleton(EclipseService::class, function ($app) {
-            return new EclipseService($app->make(SwissEphFFI::class));
-        });
+        $this->app->singleton(EclipseService::class, fn ($app) => new EclipseService($app->make(SwissEphFFI::class)));
 
         // Panchanga layer
         $this->app->singleton(PanchangaEngine::class);
@@ -72,25 +67,20 @@ class PanchangServiceProvider extends ServiceProvider
 
         $this->app->singleton(FestivalFamilyOrchestrator::class);
 
-        $this->app->singleton(FestivalService::class, function ($app) {
-            return new FestivalService(
-                $app->make(FestivalRuleEngine::class),
-                $app->make(FestivalFamilyOrchestrator::class)
-            );
-        });
+        $this->app->singleton(FestivalService::class, fn ($app) => new FestivalService(
+            $app->make(FestivalRuleEngine::class)
+        ));
 
         // Main Panchang service
-        $this->app->singleton(PanchangService::class, function ($app) {
-            return new PanchangService(
-                $app->make(SwissEphFFI::class),
-                $app->make(SunService::class),
-                $app->make(AstronomyService::class),
-                $app->make(PanchangaEngine::class),
-                $app->make(MuhurtaService::class),
-                $app->make(FestivalService::class),
-                $app->make(BhadraEngine::class)
-            );
-        });
+        $this->app->singleton(PanchangService::class, fn ($app) => new PanchangService(
+            $app->make(SwissEphFFI::class),
+            $app->make(SunService::class),
+            $app->make(AstronomyService::class),
+            $app->make(PanchangaEngine::class),
+            $app->make(MuhurtaService::class),
+            $app->make(FestivalService::class),
+            $app->make(BhadraEngine::class)
+        ));
 
         $this->app->singleton(BhadraEngine::class);
     }
@@ -106,16 +96,4 @@ class PanchangServiceProvider extends ServiceProvider
         }
     }
 
-    /** Set ayanamsa mode on Swiss Ephemeris instance */
-    private function setAyanamsa(SwissEphFFI $sweph, string $ayanamsa): void
-    {
-        $mode = match (strtoupper($ayanamsa)) {
-            'LAHIRI' => SwissEphFFI::SE_SIDM_LAHIRI,
-            'RAMAN' => SwissEphFFI::SE_SIDM_RAMAN,
-            'KRISHNAMURTI' => SwissEphFFI::SE_SIDM_KRISHNAMURTI,
-            default => SwissEphFFI::SE_SIDM_LAHIRI,
-        };
-
-        $sweph->swe_set_sid_mode($mode, 0.0, 0.0);
-    }
 }

@@ -134,6 +134,13 @@
                   <line x1="9" y1="8" x2="15" y2="8" />
                   <line x1="17" y1="16" x2="23" y2="16" />
                 </svg>Configuration</a></li>
+            <li><a href="#ayanamsa-authority" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  <path d="M2 12h20" />
+                </svg>Ayanamsa Authority</a></li>
             <li><a href="#laravel-usage" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   aria-hidden="true">
@@ -625,6 +632,53 @@ echo "Tithi: " . $details['Tithi']['name'] . "\n";
 echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
           </div>
         </section>
+        <section id="ayanamsa-authority" class="content-section">
+          <h2>🪐 Ayanamsa Authority</h2>
+          <p class="lead">The Ayanamsa defines the starting point of the sidereal zodiac. For Panchanga calculations, this is a fixed religious and legal anchor.</p>
+
+          <div class="info-box" style="border-left-color: var(--color-danger); background: rgba(239, 68, 68, 0.05);">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <span style="background: var(--color-danger); color: white; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">Locked Standard</span>
+              <h3 style="margin: 0; font-size: 1.25rem;">Strict Lahiri (Chitra Paksha)</h3>
+            </div>
+            <p>For any authentic Hindu Panchanga (Tithi, Vara, Nakshatra, Yoga, Karana), <strong>Lahiri</strong> is the absolute mandatory standard. Using any other Ayanamsa results in incorrect festival dates and Nakshatra transitions.</p>
+            <p style="margin-top: 0.5rem; font-weight: 600; color: var(--color-danger);">This package does not support and has intentionally removed all other Ayanamsa systems to maintain calculation integrity.</p>
+          </div>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 1rem;">System Core Policy</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ayanamsa</th>
+                <th>Standard</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lahiri (Chitra Paksha)</strong></td>
+                <td><strong>National Standard of India</strong></td>
+                <td>✅ <strong>Hardcoded Core</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="code-gallery" style="margin-top: 3rem;">
+            <h3>Calculated Accuracy</h3>
+            <p>Even though the system is locked to Lahiri, the engine still provides exact calculation data for each timestamp.</p>
+            
+            <div class="code-block-wrapper">
+              <div class="code-header"><span class="code-title">Tithi Calculation (Anchored to Lahiri)</span></div>
+              <pre><code class="language-php">// The engine automatically applies Lahiri to Sun/Moon longitudes
+$details = $panchang->getDayDetails($date, $lat, $lon, $tz);
+
+echo "Ayanamsa Index: " . $details['Ayanamsa']; // "LAHIRI (Chitra Paksha)"
+echo "Ayanamsa Value: " . $details['Ayanamsa_Degree']; // e.g. 24.1234
+echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code></pre>
+            </div>
+          </div>
+        </section>
+
         <section id="configuration" class="content-section">
           <h2>Configuration</h2>
           <p class="lead">Global settings and formatting preferences available in <code>config/panchang.php</code>.</p>
@@ -1385,7 +1439,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 Tithi, Nakshatra, Yoga, Karana, Muhurta, Chogadiya, Hora, festival data, Bhadra windows, Dharma Sindhu
                 windows, expanded Hindu calendar metadata, and dedicated Karmakala outputs.</p>
               <div class="method-signature">
-                <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $ayanamsaAt=null, array $options=[]): array</code>
+                <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, array $options=[]): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
                 <code>$date</code>(CarbonImmutable) — Date to calculate<br>
@@ -1393,7 +1447,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>$lon</code>(float) — Longitude in degrees<br>
                 <code>$tz</code>(string) — Timezone (e.g., 'Asia/Kolkata')<br>
                 <code>$elevation</code>(float, optional) — Elevation in meters (default: 0.0)<br>
-                <code>$ayanamsaAt</code>(CarbonImmutable, optional) — Custom ayanamsa calculation time<br>
+                <code>$calculationAt</code>(CarbonImmutable, optional) — Calculation timestamp override<br>
                 <code>$options</code>(array, optional) — Additional options
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data
@@ -1473,12 +1527,11 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             <h4 class="method-name">configure()</h4>
             <p class="method-description">Global configuration for the service (typically used in standalone mode).</p>
             <div class="method-signature">
-              <code>public static function configure(string $ephePath, string $ayanamsa='LAHIRI'): void</code>
+              <code>public static function configure(string $ephePath): void</code>
             </div>
             <div class="method-params"><strong>Parameters:</strong>
               <ul>
                 <li><code>$ephePath</code>(string) — Absolute path to ephemeris files</li>
-                <li><code>$ayanamsa</code>(string) — 'LAHIRI', 'RAMAN', or 'KRISHNAMURTI'</li>
               </ul>
             </div>
           </div>
@@ -2306,7 +2359,7 @@ echo $tithi['name']; // "Dwadashi"
                 <td><code>ayanamsa</code></td>
                 <td>string</td>
                 <td><code>'LAHIRI'</code></td>
-                <td>Default calculation system (LAHIRI, RAMAN, etc.).</td>
+                <td>Sidereal system is fixed to LAHIRI (Chitra Paksha).</td>
               </tr>
               <tr>
                 <td><code>defaults.measurement_system</code></td>
@@ -2395,16 +2448,7 @@ echo $tithi['name']; // "Dwadashi"
           <p class="lead">Available options for calculation parameters.</p>
           <div class="grid-container"
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-            <div class="info-box">
-              <h3>Ayanamsa Systems</h3>
-              <ul>
-                <li><code>LAHIRI</code>— Chitra Paksha (Standard)</li>
-                <li><code>RAMAN</code>— BV Raman</li>
-                <li><code>KRISHNAMURTI</code>— KP System</li>
-                <li><code>SAYANA</code>— Tropical (Zero offset)</li>
-                <li><code>JNRBHASIN</code>— JN Bhasin</li>
-              </ul>
-            </div>
+            <div class="info-box"><h3>Ayanamsa System</h3><ul><li><code>LAHIRI</code> — Chitra Paksha (fixed, mandatory for this package)</li></ul></div>
             <div class="info-box">
               <h3>Traditions</h3>
               <ul>
@@ -2511,9 +2555,7 @@ foreach ($festivals as $festival) {
           <pre><code class="language-bash">php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangServiceProvider" --tag="panchang-config"</code></pre>
           <p>This creates <code>config/panchang.php</code>:</p>
           <pre><code class="language-php">return [
-    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
-    'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
-    'defaults' => [
+    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),    'defaults' => [
         'measurement_system' => 'indian_metric',
         'date_time_format' => 'indian_12h',
         'time_notation' => '12h',
@@ -2820,7 +2862,7 @@ $varjyamActive = $evaluation['evaluation_results']['varjyam']['is_active'];</cod
                 <dt class="sr-only">Answer</dt>
                 <dd>
                   <ul>
-                    <li><strong>Ayanamsa:</strong> We use Lahiri by default. Change via config if needed.</li>
+                    <li><strong>Ayanamsa:</strong> Lahiri is fixed and cannot be changed in this package.</li>
                     <li><strong>Location:</strong> Ensure exact latitude/longitude.</li>
                     <li><strong>Tradition:</strong> Smarta vs Vaishnava have different rules.</li>
                     <li><strong>Precision Mode:</strong> Ensure you have <code>.se1</code> ephemeris files installed for
@@ -2890,23 +2932,7 @@ if ($count === 0) {
                 </dd>
               </dl>
             </details>
-            <details name="faq">
-              <summary>How do I change the ayanamsa?</summary>
-              <dl class="qa-pair">
-                <dt class="sr-only">Answer</dt>
-                <dd>
-                  <p>Set it in config or configure the service before usage:</p>
-                  <pre><code class="language-php">// In config/panchang.php
-'ayanamsa' => 'RAMAN', // Options: LAHIRI, RAMAN, KRISHNAMURTI
-
-// Or in standalone usage
-PanchangService::configure(
-    ephePath: '/path/to/ephe',
-    ayanamsaMode: 'RAMAN'
-);</code></pre>
-                </dd>
-              </dl>
-            </details>
+            <details name="faq"><summary>Can I change the ayanamsa?</summary><dl class="qa-pair"><dt class="sr-only">Answer</dt><dd>No. This package is Lahiri-only by design for Panchang correctness.</dd></dl></details>
             <details name="faq">
               <summary>Why is Janmashtami on different dates?</summary>
               <dl class="qa-pair">
@@ -3126,3 +3152,6 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 </body>
 
 </html>
+
+
+

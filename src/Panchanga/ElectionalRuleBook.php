@@ -15,37 +15,37 @@ final class ElectionalRuleBook
      * Universal Bad Tithis (apply to everyone, no birth data needed).
      * Source: Muhurta Chintamani.
      */
-    public const UNIVERSAL_BAD_TITHIS = [4, 9, 14, 29, 30];
+    public const array UNIVERSAL_BAD_TITHIS = [4, 9, 14, 29, 30];
 
     /**
      * Universal Bad Choghadiya (apply to everyone).
      * Source: Classical Choghadiya texts.
      */
-    public const UNIVERSAL_BAD_CHOGADIYA = ['Kaal', 'Rog', 'Udveg'];
+    public const array UNIVERSAL_BAD_CHOGADIYA = ['Kaal', 'Rog', 'Udveg'];
 
     /** Universal Good Choghadiya (apply to everyone). */
-    public const UNIVERSAL_GOOD_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
+    public const array UNIVERSAL_GOOD_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
 
     /** Universal Good Horas (apply to everyone). */
-    public const UNIVERSAL_GOOD_HORAS = ['Moon', 'Mercury', 'Jupiter', 'Venus'];
+    public const array UNIVERSAL_GOOD_HORAS = ['Moon', 'Mercury', 'Jupiter', 'Venus'];
 
     /**
      * Universal Bad Yogas (apply to everyone).
      * Source: Classical Yoga texts.
      */
-    public const UNIVERSAL_BAD_YOGAS = ['Vyatipata', 'Vaidhriti'];
+    public const array UNIVERSAL_BAD_YOGAS = ['Vyatipata', 'Vaidhriti'];
 
     /** Universal Good Karanas (apply to everyone). */
-    public const UNIVERSAL_GOOD_KARANAS = ['Bava', 'Balava', 'Kaulava', 'Taitila', 'Gara', 'Vanija'];
+    public const array UNIVERSAL_GOOD_KARANAS = ['Bava', 'Balava', 'Kaulava', 'Taitila', 'Gara', 'Vanija'];
 
     /** Universal Bad Karanas (apply to everyone). */
-    public const UNIVERSAL_BAD_KARANAS = ['Vishti', 'Shakuni', 'Chatushpada', 'Naga'];
+    public const array UNIVERSAL_BAD_KARANAS = ['Vishti', 'Shakuni', 'Chatushpada', 'Naga'];
 
     /**
      * Planetary combustion orbs (general transit-only rules).
      * Source: Classical astronomy texts.
      */
-    public const COMBUSTION_ORBS = [
+    public const array COMBUSTION_ORBS = [
         'Moon' => 12.0,
         'Mars' => 17.0,
         'Mercury' => 14.0,
@@ -55,7 +55,7 @@ final class ElectionalRuleBook
     ];
 
     /** Combustion orbs for retrograde planets. */
-    public const COMBUSTION_ORBS_RETRO = [
+    public const array COMBUSTION_ORBS_RETRO = [
         'Mercury' => 12.0,
         'Venus' => 8.0,
     ];
@@ -64,7 +64,7 @@ final class ElectionalRuleBook
      * Vara-Tithi Yogas (general combinations, no birth data needed).
      * Source: Muhurta Chintamani.
      */
-    public const VARA_TITHI_YOGAS = [
+    public const array VARA_TITHI_YOGAS = [
         'mrityu' => [
             0 => [1, 6, 11],
             2 => [1, 6, 11],

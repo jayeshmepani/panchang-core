@@ -13,7 +13,7 @@ use SwissEph\FFI\SwissEphFFI;
 
 class MuhurtaService
 {
-    private const CHOGADIYA_DAY_SEQUENCES = [
+    private const array CHOGADIYA_DAY_SEQUENCES = [
         0 => ['Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg'],
         1 => ['Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit'],
         2 => ['Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog'],
@@ -23,7 +23,7 @@ class MuhurtaService
         6 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
     ];
 
-    private const CHOGADIYA_NIGHT_SEQUENCES = [
+    private const array CHOGADIYA_NIGHT_SEQUENCES = [
         0 => ['Shubh', 'Amrit', 'Chal', 'Labh', 'Udveg', 'Shubh', 'Amrit', 'Chal'],
         1 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
         2 => ['Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal', 'Labh', 'Amrit', 'Kaal'],
@@ -33,8 +33,8 @@ class MuhurtaService
         6 => ['Chal', 'Labh', 'Amrit', 'Kaal', 'Shubh', 'Rog', 'Udveg', 'Chal'],
     ];
 
-    private const AUSPICIOUS_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
-    private const GOWRI_DAY_SEQUENCES = [
+    private const array AUSPICIOUS_CHOGADIYA = ['Amrit', 'Shubh', 'Labh'];
+    private const array GOWRI_DAY_SEQUENCES = [
         0 => ['Uthi', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Visham'],
         1 => ['Amirdha', 'Visham', 'Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi'],
         2 => ['Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha'],
@@ -43,7 +43,7 @@ class MuhurtaService
         5 => ['Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam'],
         6 => ['Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam'],
     ];
-    private const GOWRI_NIGHT_SEQUENCES = [
+    private const array GOWRI_NIGHT_SEQUENCES = [
         0 => ['Dhanam', 'Sugam', 'Soram', 'Visham', 'Uthi', 'Amirdha', 'Rogam', 'Laabam'],
         1 => ['Sugam', 'Soram', 'Uthi', 'Amirdha', 'Visham', 'Rogam', 'Laabam', 'Dhanam'],
         2 => ['Soram', 'Uthi', 'Visham', 'Amirdha', 'Rogam', 'Laabam', 'Dhanam', 'Sugam'],
@@ -52,8 +52,8 @@ class MuhurtaService
         5 => ['Rogam', 'Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha'],
         6 => ['Laabam', 'Dhanam', 'Sugam', 'Soram', 'Uthi', 'Visham', 'Amirdha', 'Soram'],
     ];
-    private const GOWRI_AUSPICIOUS = ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam'];
-    private const GOWRI_LABELS = [
+    private const array GOWRI_AUSPICIOUS = ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam'];
+    private const array GOWRI_LABELS = [
         'Amirdha' => ['quality' => 'best', 'is_auspicious' => true],
         'Dhanam' => ['quality' => 'wealth', 'is_auspicious' => true],
         'Uthi' => ['quality' => 'good', 'is_auspicious' => true],
@@ -63,12 +63,12 @@ class MuhurtaService
         'Soram' => ['quality' => 'bad', 'is_auspicious' => false],
         'Visham' => ['quality' => 'bad', 'is_auspicious' => false],
     ];
-    private const DAY_MUHURTA_NAMES = [
+    private const array DAY_MUHURTA_NAMES = [
         'Rudra', 'Sarpa', 'Mitra', 'Pitri', 'Vasu',
         'Vara', 'Vishvedeva', 'Vidhi', 'Brahma', 'Indra',
         'Indragni', 'Daitya', 'Varuna', 'Aryaman', 'Bhaga',
     ];
-    private const NIGHT_MUHURTA_NAMES = [
+    private const array NIGHT_MUHURTA_NAMES = [
         'Ishvara', 'Ajapada', 'Ahirbudhnya', 'Pushya', 'Nasatya',
         'Yama', 'Vahni', 'Dhala', 'Shashi', 'Aditya',
         'Guru', 'Acyuta', 'Arka', 'Tvashta', 'Vayu',
@@ -466,7 +466,7 @@ class MuhurtaService
             'source' => 'Published Gowri/Pambu table convention',
             'day' => $dayRows,
             'night' => $nightRows,
-            'auspicious_labels' => array_values(self::GOWRI_AUSPICIOUS),
+            'auspicious_labels' => self::GOWRI_AUSPICIOUS,
             'inauspicious_labels' => ['Rogam', 'Soram', 'Visham'],
         ];
     }
@@ -908,15 +908,15 @@ class MuhurtaService
             ];
         }
 
-        usort($lagnas, static fn (array $a, array $b): int => ((float) ($a['start_jd'] ?? 0.0)) <=> ((float) ($b['start_jd'] ?? 0.0)));
+        usort($lagnas, static fn (array $a, array $b): int => $a['start_jd'] <=> $b['start_jd']);
 
         // Panchang presentation convention: show one complete 12-sign cycle for the day.
         // If a repeated starting sign appears near next sunrise due to sidereal-vs-solar day drift,
         // drop the trailing duplicate segment to keep canonical 12 rows.
         if (count($lagnas) > 12) {
-            $firstSign = $lagnas[0]['sign_index'] ?? null;
-            $lastSign = $lagnas[count($lagnas) - 1]['sign_index'] ?? null;
-            if ($firstSign !== null && $firstSign === $lastSign) {
+            $firstSign = $lagnas[0]['sign_index'];
+            $lastSign = $lagnas[count($lagnas) - 1]['sign_index'];
+            if ($firstSign === $lastSign) {
                 array_pop($lagnas);
             }
         }

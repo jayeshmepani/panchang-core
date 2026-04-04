@@ -193,8 +193,8 @@ class FestivalFamilyOrchestrator
         ?string $tradition = null,
         ?string $region = null
     ): ?array {
-        $tradition = $tradition ?? (function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta');
-        $region = $region ?? (function_exists('config') ? config('panchang.festivals.default_region', 'North') : 'North');
+        $tradition ??= function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta';
+        $region ??= function_exists('config') ? config('panchang.festivals.default_region', 'North') : 'North';
 
         $family = self::FESTIVAL_FAMILIES[$familyName] ?? null;
         if ($family === null) {
@@ -252,11 +252,9 @@ class FestivalFamilyOrchestrator
         }
 
         // Check tradition variants
-        if (isset($event['tradition_variants'])) {
-            if (!in_array($tradition, $event['tradition_variants'], true)) {
-                // Use default rule for this tradition
-                $rule = $this->getDefaultRuleForTradition($ruleKey, $tradition);
-            }
+        if (isset($event['tradition_variants']) && !in_array($tradition, $event['tradition_variants'], true)) {
+            // Use default rule for this tradition
+            $rule = $this->getDefaultRuleForTradition($ruleKey, $tradition);
         }
 
         $ctx = $eventDate['Resolution_Context'] ?? [];
@@ -449,14 +447,22 @@ class FestivalFamilyOrchestrator
         return $panchangData[$index] ?? null;
     }
 
-    /** Get event rule */
+    /**
+     * Get event rule.
+     *
+     * @phpstan-ignore return.unusedType
+     */
     private function getEventRule(string $ruleKey, string $tradition, string $region): ?array
     {
         // Keep aligned with app behavior: rules are not resolved at this layer.
         return null;
     }
 
-    /** Get default rule for tradition */
+    /**
+     * Get default rule for tradition.
+     *
+     * @phpstan-ignore return.unusedType
+     */
     private function getDefaultRuleForTradition(string $ruleKey, string $tradition): ?array
     {
         return null;

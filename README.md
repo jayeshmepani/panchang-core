@@ -219,6 +219,11 @@ Ephemeris data is split into 600-year files:
 - **BCE (BC) Dates**: Files prefixed with `seplm` or `semom`.
 - **Asteroids**: Files prefixed with `se00` or `se0j`.
 
+## 🪐 Ayanamsa Authority
+For any authentic Hindu Panchanga (Tithi, Vara, Nakshatra, Yoga, Karana), **Lahiri (Chitra Paksha)** is the absolute mandatory legal and religious standard in India. 
+
+The `panchang-core` engine is **permanently locked to Lahiri** to ensure 100% calculation integrity. Support for alternative Ayanamsas (Raman, KP, Fagan) has been intentionally removed to prevent "wrong" dates for festivals and Nakshatras.
+
 ## Configuration
 
 ### Laravel Configuration
@@ -232,7 +237,6 @@ Edit `config/panchang.php`:
 ```php
 return [
     'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
-    'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
     'defaults' => [
         'measurement_system' => 'indian_metric',
         'date_time_format' => 'indian_12h',
@@ -321,8 +325,7 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 
 // Configure before instantiation
 PanchangService::configure(
-    ephePath: '/path/to/ephe',
-    ayanamsaMode: 'LAHIRI'
+    ephePath: '/path/to/ephe'
 );
 ```
 

@@ -19,10 +19,8 @@ namespace JayeshMepani\PanchangCore\Tests;
 
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
-use JayeshMepani\PanchangCore\Core\Types\AyanamsaMode;
-use JayeshMepani\PanchangCore\Core\Types\KarmaKalaType;
-use JayeshMepani\PanchangCore\Core\Types\Paksha;
-use JayeshMepani\PanchangCore\Core\Types\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Paksha;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use PHPUnit\Framework\TestCase;
 
 class CoreTest extends TestCase
@@ -101,22 +99,18 @@ class CoreTest extends TestCase
     /** Test Paksha enum */
     public function testPakshaEnum(): void
     {
-        // Test values
-        $this->assertEquals('Shukla', Paksha::SHUKLA->value);
-        $this->assertEquals('Krishna', Paksha::KRISHNA->value);
-
         // Test tithi range
-        $this->assertEquals([1, 15], Paksha::SHUKLA->getTithiRange());
-        $this->assertEquals([16, 30], Paksha::KRISHNA->getTithiRange());
+        $this->assertEquals(['start' => 1, 'end' => 15], Paksha::Shukla->getTithiRange());
+        $this->assertEquals(['start' => 16, 'end' => 30], Paksha::Krishna->getTithiRange());
 
         // Test contains
-        $this->assertTrue(Paksha::SHUKLA->containsTithi(5));
-        $this->assertFalse(Paksha::SHUKLA->containsTithi(20));
-        $this->assertTrue(Paksha::KRISHNA->containsTithi(20));
+        $this->assertTrue(Paksha::Shukla->containsTithi(5));
+        $this->assertFalse(Paksha::Shukla->containsTithi(20));
+        $this->assertTrue(Paksha::Krishna->containsTithi(20));
 
         // Test normalize
-        $this->assertEquals(5, Paksha::SHUKLA->normalizeTithi(5));
-        $this->assertEquals(5, Paksha::KRISHNA->normalizeTithi(20));
+        $this->assertEquals(5, Paksha::Shukla->normalizeTithi(5));
+        $this->assertEquals(5, Paksha::Krishna->normalizeTithi(20));
     }
 
     /** Test Tithi enum */
@@ -126,51 +120,18 @@ class CoreTest extends TestCase
         $this->assertCount(30, Tithi::cases());
 
         // Test names
-        $this->assertEquals('Pratipada', Tithi::PRATIPADA_SHUKLA->getName());
-        $this->assertEquals('Purnima', Tithi::PURNIMA->getName());
-        $this->assertEquals('Amavasya', Tithi::AMAVASYA->getName());
+        $this->assertEquals('Pratipada', Tithi::ShuklaPratipada->getName());
+        $this->assertEquals('Purnima', Tithi::Purnima->getName());
+        $this->assertEquals('Amavasya', Tithi::Amavasya->getName());
 
         // Test paksha
-        $this->assertEquals(Paksha::SHUKLA, Tithi::PRATIPADA_SHUKLA->getPaksha());
-        $this->assertEquals(Paksha::KRISHNA, Tithi::PRATIPADA_KRISHNA->getPaksha());
+        $this->assertEquals(Paksha::Shukla, Tithi::ShuklaPratipada->getPaksha());
+        $this->assertEquals(Paksha::Krishna, Tithi::KrishnaPratipada->getPaksha());
 
         // Test special tithis
-        $this->assertTrue(Tithi::EKADASHI_SHUKLA->isEkadashi());
-        $this->assertTrue(Tithi::PURNIMA->isPurnimaOrAmavasya());
-        $this->assertTrue(Tithi::AMAVASYA->isPurnimaOrAmavasya());
+        $this->assertTrue(Tithi::ShuklaEkadashi->isEkadashi());
+        $this->assertTrue(Tithi::Purnima->isPurnimaOrAmavasya());
+        $this->assertTrue(Tithi::Amavasya->isPurnimaOrAmavasya());
     }
 
-    /** Test KarmaKalaType enum */
-    public function testKarmaKalaTypeEnum(): void
-    {
-        // Test values
-        $this->assertEquals('sunrise', KarmaKalaType::SUNRISE->value);
-        $this->assertEquals('arunodaya', KarmaKalaType::ARUNODAYA->value);
-
-        // Test Sanskrit names
-        $this->assertEquals('Udaya', KarmaKalaType::SUNRISE->getSanskritName());
-        $this->assertEquals('Aruṇodaya', KarmaKalaType::ARUNODAYA->getSanskritName());
-
-        // Test durations
-        $this->assertEquals(0.0, KarmaKalaType::SUNRISE->getDurationMinutes());
-        $this->assertEquals(96.0, KarmaKalaType::ARUNODAYA->getDurationMinutes());
-        $this->assertEquals(72.0, KarmaKalaType::PRADOSHA->getDurationMinutes());
-    }
-
-    /** Test AyanamsaMode enum */
-    public function testAyanamsaModeEnum(): void
-    {
-        // Test values
-        $this->assertEquals('LAHIRI', AyanamsaMode::LAHIRI->value);
-        $this->assertEquals('RAMAN', AyanamsaMode::RAMAN->value);
-
-        // Test Swiss Eph mode
-        $this->assertIsInt(AyanamsaMode::LAHIRI->toSwissEphMode());
-
-        // Test descriptions
-        $this->assertStringContainsString('Lahiri', AyanamsaMode::LAHIRI->getDescription());
-
-        // Test Y2K values
-        $this->assertGreaterThan(20.0, AyanamsaMode::LAHIRI->getApproximateValueForY2K());
-    }
 }

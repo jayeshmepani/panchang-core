@@ -2062,8 +2062,7 @@ class FestivalService
         'Phalguna' => 12,
     ];
     public function __construct(
-        private FestivalRuleEngine $ruleEngine,
-        private FestivalFamilyOrchestrator $orchestrator
+        private readonly FestivalRuleEngine $ruleEngine
     ) {
     }
     /**
@@ -2094,10 +2093,9 @@ class FestivalService
                 if (!$adhikaAllowed && !$adhikaOnly) {
                     continue; // Skip standard festivals during Adhik Maas
                 }
-            } else {
-                if ($adhikaOnly) {
-                    continue; // Skip Adhik-only festivals during normal months
-                }
+            } elseif ($adhikaOnly) {
+                continue;
+                // Skip Adhik-only festivals during normal months
             }
 
             $isClassical = self::usesClassicalResolver($rules);
@@ -2105,13 +2103,13 @@ class FestivalService
             // Check Hindu month match
             if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
                 $calendar = $todayDetails['Hindu_Calendar'] ?? [];
-                $amanta = self::normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
-                $purnimanta = self::normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
+                $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
+                $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
                 $monthMatch = false;
-                if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
+                if (isset($rules['month_amanta']) && $this->normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                     $monthMatch = true;
                 }
-                if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
+                if (isset($rules['month_purnimanta']) && $this->normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
                     $monthMatch = true;
                 }
                 if (!$monthMatch) {
@@ -2132,16 +2130,14 @@ class FestivalService
                         'rules_applied' => $resolved['decision'] ?? [],
                     ];
                 }
-            } else {
-                if ($this->matchesFestivalRules($date, $rules, $tithiNum, $paksha, $todayDetails)) {
-                    $festivals[] = [
-                        'name' => $name,
-                        'description' => $rules['description'],
-                        'deity' => $rules['deity'] ?? null,
-                        'fasting' => $rules['fasting'] ?? false,
-                        'regions' => $rules['regions'] ?? ['Pan-India'],
-                    ];
-                }
+            } elseif ($this->matchesFestivalRules($date, $rules, $tithiNum, $paksha, $todayDetails)) {
+                $festivals[] = [
+                    'name' => $name,
+                    'description' => $rules['description'],
+                    'deity' => $rules['deity'] ?? null,
+                    'fasting' => $rules['fasting'] ?? false,
+                    'regions' => $rules['regions'] ?? ['Pan-India'],
+                ];
             }
         }
 
@@ -2222,23 +2218,21 @@ class FestivalService
         }
 
         // Check weekday match
-        if (isset($rules['weekday'])) {
-            if ($date->dayOfWeek !== $rules['weekday']) {
-                return false;
-            }
+        if (isset($rules['weekday']) && $date->dayOfWeek !== $rules['weekday']) {
+            return false;
         }
 
         // Check Hindu month match for tithi-based rules
         if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
             $calendar = $panchangDetails['Hindu_Calendar'] ?? [];
-            $amanta = self::normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
-            $purnimanta = self::normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
+            $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
+            $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
             $monthMatch = false;
 
-            if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
+            if (isset($rules['month_amanta']) && $this->normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                 $monthMatch = true;
             }
-            if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
+            if (isset($rules['month_purnimanta']) && $this->normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
                 $monthMatch = true;
             }
 
@@ -2248,10 +2242,8 @@ class FestivalService
         }
 
         // Check fixed Gregorian dates
-        if (in_array((string) ($rules['type'] ?? ''), ['fixed_date', 'solar'], true) && isset($rules['month'], $rules['day'])) {
-            if ((int) $rules['month'] !== (int) $date->month || (int) $rules['day'] !== (int) $date->day) {
-                return false;
-            }
+        if (in_array((string) ($rules['type'] ?? ''), ['fixed_date', 'solar'], true) && isset($rules['month'], $rules['day']) && ((int) $rules['month'] !== $date->month || (int) $rules['day'] !== $date->day)) {
+            return false;
         }
 
         // Check solar sankranti (transit into specific rashi)
@@ -2263,10 +2255,8 @@ class FestivalService
         }
 
         // Check nakshatra match (if specified)
-        if (isset($rules['nakshatra'], $panchangDetails['Nakshatra']['name'])) {
-            if ($panchangDetails['Nakshatra']['name'] !== $rules['nakshatra']) {
-                return false;
-            }
+        if (isset($rules['nakshatra'], $panchangDetails['Nakshatra']['name']) && $panchangDetails['Nakshatra']['name'] !== $rules['nakshatra']) {
+            return false;
         }
 
         // Check weekday_in_month (e.g., Shravan Somvar)
@@ -2276,14 +2266,14 @@ class FestivalService
                 return false;
             }
 
-            $amanta = self::normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Amanta'] ?? ''));
-            $purnimanta = self::normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Purnimanta'] ?? ''));
+            $amanta = $this->normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Amanta'] ?? ''));
+            $purnimanta = $this->normalizeMonthName((string) ($panchangDetails['Hindu_Calendar']['Month_Purnimanta'] ?? ''));
             $monthMatch = false;
 
-            if (isset($rules['month_amanta']) && self::normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
+            if (isset($rules['month_amanta']) && $this->normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                 $monthMatch = true;
             }
-            if (isset($rules['month_purnimanta']) && self::normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
+            if (isset($rules['month_purnimanta']) && $this->normalizeMonthName((string) $rules['month_purnimanta']) === $purnimanta) {
                 $monthMatch = true;
             }
 
@@ -2296,7 +2286,7 @@ class FestivalService
     }
 
     /** Normalize Sanskrit month names for robust matching across ASCII and diacritic forms. */
-    private static function normalizeMonthName(string $month): string
+    private function normalizeMonthName(string $month): string
     {
         $month = trim($month);
         if ($month === '') {

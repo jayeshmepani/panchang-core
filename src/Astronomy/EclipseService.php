@@ -22,9 +22,8 @@ class EclipseService
      * Configure service (optional, for standalone usage).
      *
      * @param string $ephePath Ephemeris path (empty for default)
-     * @param string $ayanamsaMode Ayanamsa mode ('LAHIRI', 'RAMAN', 'KRISHNAMURTI')
      */
-    public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
+    public static function configure(string $ephePath = ''): void
     {
         self::setEphemerisPath($ephePath);
     }
@@ -42,7 +41,7 @@ class EclipseService
             $nextLunar = $this->nextLunarEclipse($cursor, $lat, $lon, $tz);
             $nextSolar = $this->nextSolarEclipse($cursor, $lat, $lon, $tz);
 
-            $candidates = array_values(array_filter([$nextLunar, $nextSolar], static fn ($v) => is_array($v)));
+            $candidates = array_values(array_filter([$nextLunar, $nextSolar], is_array(...)));
             if ($candidates === []) {
                 break;
             }
@@ -134,7 +133,7 @@ class EclipseService
             'penumbral_begin_jd' => $contactsFromSameEvent && $tretLoc[6] > 0 ? (float) $tretLoc[6] : null,
             'partial_begin_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
             'total_begin_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
-            'maximum_jd' => (float) $jdMax,
+            'maximum_jd' => $jdMax,
             'total_end_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
             'partial_end_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
             'penumbral_end_jd' => $contactsFromSameEvent && $tretLoc[7] > 0 ? (float) $tretLoc[7] : null,
@@ -200,7 +199,7 @@ class EclipseService
         $contacts = [
             'first_contact_jd' => $contactsFromSameEvent && $tretLoc[1] > 0 ? (float) $tretLoc[1] : null,
             'second_contact_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
-            'maximum_jd' => (float) $jdMax,
+            'maximum_jd' => $jdMax,
             'third_contact_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
             'fourth_contact_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
             'sunrise_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
@@ -302,8 +301,10 @@ class EclipseService
         ];
     }
 
-    private function newGeoPos(float $lat, float $lon)
+    /** @phpstan-ignore return.unusedType */
+    private function newGeoPos(float $lat, float $lon): object
     {
+        /** @var \FFI\CData $geo */
         $geo = $this->sweph->getFFI()->new('double[3]');
         $geo[0] = $lon;
         $geo[1] = $lat;

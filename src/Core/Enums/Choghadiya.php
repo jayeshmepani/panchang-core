@@ -59,7 +59,7 @@ enum Choghadiya: int
      *
      * @param Vara $vara Weekday
      *
-     * @return array<int> Choghadiya sequence (indices 0-6)
+     * @return array<int, self> Choghadiya sequence
      */
     public static function getDaySequence(Vara $vara): array
     {
@@ -114,7 +114,7 @@ enum Choghadiya: int
      *
      * @param Vara $vara Weekday
      *
-     * @return array<int> Night choghadiya sequence
+     * @return array<int, self> Night choghadiya sequence
      */
     public static function getNightSequence(Vara $vara): array
     {

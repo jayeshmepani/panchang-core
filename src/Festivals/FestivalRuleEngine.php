@@ -81,10 +81,7 @@ class FestivalRuleEngine
             $filtered,
             fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $vriddhiPreference)
         );
-        $winner = $filtered[0] ?? null;
-        if ($winner === null) {
-            return null;
-        }
+        $winner = $filtered[0];
 
         $observanceNote = null;
         $todayStr = $date->toDateString();
@@ -155,8 +152,9 @@ class FestivalRuleEngine
         $tagsByDate = [];
         $monthOrder = array_keys(FestivalService::MONTHS);
         $monthIndex = array_flip($monthOrder);
+        $counter = count($monthStartDates);
 
-        for ($i = 1; $i < count($monthStartDates); $i++) {
+        for ($i = 1; $i < $counter; $i++) {
             $prev = $monthStartDates[$i - 1];
             $cur = $monthStartDates[$i];
             $prevIdx = $monthIndex[$prev['month']] ?? null;
@@ -172,10 +170,8 @@ class FestivalRuleEngine
 
             $expected = ($prevIdx + 1) % 12;
             if ($curIdx !== $expected) {
-                $missing = $monthOrder[$expected] ?? null;
-                if ($missing !== null) {
-                    $tagsByDate[$cur['date']] = ['month_status' => 'Kshaya Maas Transition', 'missing_month' => $missing];
-                }
+                $missing = $monthOrder[$expected];
+                $tagsByDate[$cur['date']] = ['month_status' => 'Kshaya Maas Transition', 'missing_month' => $missing];
             }
         }
 

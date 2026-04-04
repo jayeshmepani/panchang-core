@@ -258,6 +258,6 @@ class PanchangaEngine
     public function isVishtiKarana(float $sunLon, float $moonLon): bool
     {
         [, $idx] = $this->getKarana($sunLon, $moonLon);
-        return $idx === 8 || $idx === 15 || $idx === 22 || $idx === 29 || $idx === 36 || $idx === 43 || $idx === 50 || $idx === 57; // Vishti/Bhadra occurs in these specific 1-60 indices
+        return in_array($idx, [8, 15, 22, 29, 36, 43, 50, 57], true); // Vishti/Bhadra occurs in these specific 1-60 indices
     }
 }

@@ -21,9 +21,8 @@ class SunService
      * Configure service (optional, for standalone usage).
      *
      * @param string $ephePath Ephemeris path (empty for default)
-     * @param string $ayanamsaMode Ayanamsa mode ('LAHIRI', 'RAMAN', 'KRISHNAMURTI')
      */
-    public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
+    public static function configure(string $ephePath = ''): void
     {
         self::setEphemerisPath($ephePath);
     }
@@ -39,6 +38,7 @@ class SunService
             SwissEphFFI::SE_GREG_CAL
         );
 
+        /** @var \FFI\CData $geopos */
         $geopos = $this->sweph->getFFI()->new('double[3]');
         $geopos[0] = (float) $birth['longitude'];
         $geopos[1] = (float) $birth['latitude'];
@@ -194,8 +194,10 @@ class SunService
         return $this->jdToCarbon($tret[0], $timezone);
     }
 
-    private function newGeoPos(array $birth)
+    /** @phpstan-ignore return.unusedType */
+    private function newGeoPos(array $birth): object
     {
+        /** @var \FFI\CData $geopos */
         $geopos = $this->sweph->getFFI()->new('double[3]');
         $geopos[0] = (float) $birth['longitude'];
         $geopos[1] = (float) $birth['latitude'];

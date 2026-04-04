@@ -23,8 +23,6 @@ class AstronomyService
 {
     use ConfiguresEphemeris;
 
-    private static string $ayanamsa = 'LAHIRI';
-
     public function __construct(private SwissEphFFI $sweph)
     {
         $this->initializeEphemerisPath($this->sweph);
@@ -34,12 +32,10 @@ class AstronomyService
      * Configure service (optional, for standalone usage).
      *
      * @param string $ephePath Ephemeris path (empty for default)
-     * @param string $ayanamsaMode Ayanamsa mode ('LAHIRI', 'RAMAN', 'KRISHNAMURTI')
      */
-    public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
+    public static function configure(string $ephePath = ''): void
     {
         self::setEphemerisPath($ephePath);
-        self::$ayanamsa = $ayanamsaMode;
     }
 
     /**
@@ -52,12 +48,12 @@ class AstronomyService
     public function toJulianDayUtc(array $birth): float
     {
         $local = CarbonImmutable::create(
-            (int) $birth['year'],
-            (int) $birth['month'],
-            (int) $birth['day'],
-            (int) $birth['hour'],
-            (int) $birth['minute'],
-            (int) $birth['second'],
+            $birth['year'],
+            $birth['month'],
+            $birth['day'],
+            $birth['hour'],
+            $birth['minute'],
+            $birth['second'],
             $birth['timezone']
         );
 
@@ -75,23 +71,10 @@ class AstronomyService
         );
     }
 
-    /**
-     * Set ayanamsa mode.
-     *
-     * @param float $jd Julian Day
-     */
     public function setAyanamsa(float $jd): void
     {
-        $ayanamsaMode = self::$ayanamsa ?: (function_exists('config') ? config('panchang.ayanamsa', getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI') : (getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI'));
-
-        $mode = match (strtoupper((string) $ayanamsaMode)) {
-            'LAHIRI' => SwissEphFFI::SE_SIDM_LAHIRI,
-            'RAMAN' => SwissEphFFI::SE_SIDM_RAMAN,
-            'KRISHNAMURTI' => SwissEphFFI::SE_SIDM_KRISHNAMURTI,
-            default => SwissEphFFI::SE_SIDM_LAHIRI,
-        };
-
-        $this->sweph->swe_set_sid_mode($mode, 0.0, 0.0);
+        // For any authentic Hindu Panchanga, Lahiri is the only absolute standard.
+        $this->sweph->swe_set_sid_mode(SwissEphFFI::SE_SIDM_LAHIRI, 0.0, 0.0);
     }
 
     public function getPlanets(array $birth): array
@@ -178,7 +161,7 @@ class AstronomyService
             }
 
             $isCombust = false;
-            if ($name !== 'Sun' && $name !== 'Rahu' && $name !== 'Ketu' && $orb !== null) {
+            if (!in_array($name, ['Sun', 'Rahu'], true) && $orb !== null) {
                 $outerRetrogradeExempt = in_array($name, ['Mars', 'Jupiter', 'Saturn'], true) && $isRetrograde;
                 $isCombust = !$outerRetrogradeExempt && $separation <= $orb;
             }
@@ -195,12 +178,12 @@ class AstronomyService
         }
 
         if (isset($states['Rahu'])) {
-            $ketuLongitude = AstroCore::normalize((float) $states['Rahu']['lon'] + 180.0);
+            $ketuLongitude = AstroCore::normalize($states['Rahu']['lon'] + 180.0);
             $states['Ketu'] = [
                 'lon' => $ketuLongitude,
-                'speed_deg_per_day' => -((float) $states['Rahu']['speed_deg_per_day']),
-                'is_retrograde' => (bool) $states['Rahu']['is_retrograde'],
-                'is_stationary' => (bool) $states['Rahu']['is_stationary'],
+                'speed_deg_per_day' => -($states['Rahu']['speed_deg_per_day']),
+                'is_retrograde' => $states['Rahu']['is_retrograde'],
+                'is_stationary' => $states['Rahu']['is_stationary'],
                 'is_combust' => false,
                 'separation_from_sun' => $sunLongitude === null ? 0.0 : $this->minimalAngularSeparation($ketuLongitude, $sunLongitude),
                 'orb_used' => null,

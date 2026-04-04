@@ -16,6 +16,9 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Tests;
 
+use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\SunService;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use PHPUnit\Framework\TestCase;
 
@@ -99,8 +102,30 @@ class PanchangaTest extends TestCase
     /** Test Vara (weekday) calculation */
     public function testCalculateVara(): void
     {
-        // This test requires SunService, so we'll test the logic separately
-        $this->markTestIncomplete('Requires SunService integration');
+        $birth = [
+            'year' => 2026,
+            'month' => 4,
+            'day' => 6,
+            'hour' => 7,
+            'minute' => 0,
+            'second' => 0,
+            'timezone' => 'Asia/Kolkata',
+            'latitude' => 23.2472446,
+            'longitude' => 69.668339,
+        ];
+
+        $sunrise = CarbonImmutable::create(2026, 4, 6, 6, 0, 0, 'Asia/Kolkata');
+        $birthDt = CarbonImmutable::create(2026, 4, 6, 7, 0, 0, 'Asia/Kolkata');
+
+        /** @var \PHPUnit\Framework\MockObject\MockObject&SunService $sunService */
+        $sunService = $this->createMock(SunService::class);
+        $sunService->method('getSunriseSunset')->willReturn([$sunrise, $sunrise->addHours(12)]);
+        $sunService->method('getBirthDatetime')->willReturn($birthDt);
+
+        $vara = $this->panchanga->calculateVara($birth, $sunService);
+
+        $this->assertEquals(1, $vara['index']);
+        $this->assertEquals(Vara::from(1)->getName(), $vara['name']);
     }
 
     /** Test precision of calculations */

@@ -15,7 +15,6 @@ use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use RuntimeException;
 use SwissEph\FFI\SwissEphFFI;
 use Throwable;
 
@@ -30,36 +29,32 @@ use Throwable;
 class PanchangService
 {
     private static string $ephePath = '';
-    private static string $ayanamsa = 'LAHIRI';
     private array $monthCache = [];
 
     public function __construct(
-        private SwissEphFFI $sweph,
-        private SunService $sunService,
-        private AstronomyService $astronomy,
-        private PanchangaEngine $panchanga,
-        private MuhurtaService $muhurta,
-        private FestivalService $festivalService,
-        private BhadraEngine $bhadraEngine,
+        private readonly SwissEphFFI $sweph,
+        private readonly SunService $sunService,
+        private readonly AstronomyService $astronomy,
+        private readonly PanchangaEngine $panchanga,
+        private readonly MuhurtaService $muhurta,
+        private readonly FestivalService $festivalService,
+        private readonly BhadraEngine $bhadraEngine,
     ) {
-        $ephePath = self::$ephePath ?: (function_exists('config') ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') ?: '') : (getenv('PANCHANG_EPHE_PATH') ?: ''));
-        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
+        $envEphePath = getenv('PANCHANG_EPHE_PATH');
+        $envEphePath = is_string($envEphePath) ? $envEphePath : '';
+        $configEphePath = function_exists('config') ? config('panchang.ephe_path', $envEphePath) : $envEphePath;
+        $ephePath = self::$ephePath !== '' ? self::$ephePath : (is_string($configEphePath) ? $configEphePath : '');
+        if ($ephePath !== '' && file_exists($ephePath)) {
             $this->sweph->swe_set_ephe_path($ephePath);
         }
 
-        $this->setAyanamsa(self::$ayanamsa ?: (function_exists('config') ? config('panchang.ayanamsa', getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI') : (getenv('PANCHANG_AYANAMSA') ?: 'LAHIRI')));
+        // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
+        $this->sweph->swe_set_sid_mode(SwissEphFFI::SE_SIDM_LAHIRI, 0.0, 0.0);
     }
 
-    /**
-     * Configure service (optional, for standalone usage).
-     *
-     * @param string $ephePath Ephemeris path (empty for default)
-     * @param string $ayanamsaMode Ayanamsa mode ('LAHIRI', 'RAMAN', 'KRISHNAMURTI')
-     */
-    public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void
+    public static function configure(string $ephePath = ''): void
     {
         self::$ephePath = $ephePath;
-        self::$ayanamsa = $ayanamsaMode;
     }
 
     public function getDayDetails(
@@ -68,7 +63,7 @@ class PanchangService
         float $lon,
         string $tz,
         float $elevation = 0.0,
-        ?CarbonImmutable $ayanamsaAt = null,
+        ?CarbonImmutable $calculationAt = null,
         array $options = []
     ): array
     {
@@ -87,14 +82,14 @@ class PanchangService
 
         [$sunrise, $sunset] = $this->sunService->getSunriseSunset($birthBase);
 
-        $ayanamsaAt = $ayanamsaAt ?? $sunrise;
+        $calculationAt ??= $sunrise;
         $birthAt = $birthBase;
-        $birthAt['hour'] = (int) $ayanamsaAt->format('H');
-        $birthAt['minute'] = (int) $ayanamsaAt->format('i');
-        $birthAt['second'] = (int) $ayanamsaAt->format('s');
+        $birthAt['hour'] = (int) $calculationAt->format('H');
+        $birthAt['minute'] = (int) $calculationAt->format('i');
+        $birthAt['second'] = (int) $calculationAt->format('s');
 
         $relSunrise = $sunrise;
-        if ($ayanamsaAt->lessThan($sunrise)) {
+        if ($calculationAt->lessThan($sunrise)) {
             $prev = $date->subDay();
             $prevBirth = [
                 'year' => $prev->year,
@@ -172,8 +167,8 @@ class PanchangService
         $civilDayEnd = $civilDayStart->addDay();
         $civilDaySeconds = $civilDayEnd->getTimestamp() - $civilDayStart->getTimestamp();
 
-        $hora = $this->muhurta->calculateHora($relSunrise, $sunset, $nextSunrise, $ayanamsaAt, $vara['index']);
-        $chogadiya = $this->muhurta->calculateChogadiya($relSunrise, $sunset, $nextSunrise, $ayanamsaAt, $vara['index']);
+        $hora = $this->muhurta->calculateHora($relSunrise, $sunset, $nextSunrise, $calculationAt, $vara['index']);
+        $chogadiya = $this->muhurta->calculateChogadiya($relSunrise, $sunset, $nextSunrise, $calculationAt, $vara['index']);
         $horaTable = $this->muhurta->calculateHoraTable($relSunrise, $sunset, $nextSunrise, $vara['index']);
         $chogadiyaTable = $this->muhurta->calculateChogadiyaTable($relSunrise, $sunset, $nextSunrise, $vara['index']);
         $muhurtaTable = $this->muhurta->calculateMuhurtaTable($relSunrise, $sunset, $nextSunrise);
@@ -230,7 +225,7 @@ class PanchangService
 
         // Lagna calculation
         $lagna = $this->muhurta->calculateLagna(
-            $ayanamsaAt,
+            $calculationAt,
             $relSunrise,
             $sunMoon['Sun'],
             $ayanamsaDeg,
@@ -429,9 +424,9 @@ class PanchangService
             'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
             'sunrise_dt' => AstroCore::formatDateTime($relSunrise),
-            'Ayanamsa' => function_exists('config') ? config('panchang.ayanamsa', self::$ayanamsa) : self::$ayanamsa,
+            'Ayanamsa' => 'LAHIRI (Chitra Paksha)',
             'Ayanamsa_Degree' => AstroCore::formatAngle($ayanamsaDeg),
-            'Ayanamsa_At' => AstroCore::formatDateTime($ayanamsaAt),
+            'Ayanamsa_At' => AstroCore::formatDateTime($calculationAt),
             'Ayanamsa_JD' => $ayanamsaJd,
             'Day_Types' => [
                 'civil_day_start' => AstroCore::formatDateTime($civilDayStart),
@@ -607,9 +602,16 @@ class PanchangService
         $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
         $prevTithiEndJd = $tithiStartJd;
 
-        $sunLonNextSunrise = $this->getSunLongitude($jdNextSunrise);
-        $currentSign = (int) floor($sunLon / 30.0);
-        $nextSunriseSign = (int) floor($sunLonNextSunrise / 30.0);
+        // Sankranti date should map to the civil date on which ingress occurs.
+        // Using sunrise->next-sunrise can backshift pre-sunrise ingress to previous date.
+        $civilStart = $date->startOfDay();
+        $civilEnd = $civilStart->addDay();
+        $jdCivilStart = $this->toJulianDayFromCarbon($civilStart, $tz);
+        $jdCivilEnd = $this->toJulianDayFromCarbon($civilEnd, $tz);
+        $sunLonCivilStart = $this->getSunLongitude($jdCivilStart);
+        $sunLonCivilEnd = $this->getSunLongitude($jdCivilEnd);
+        $currentSign = (int) floor($sunLonCivilStart / 30.0);
+        $nextSunriseSign = (int) floor($sunLonCivilEnd / 30.0);
         $sankrantiRashi = null;
         if ($currentSign !== $nextSunriseSign) {
             $sankrantiRashi = ($currentSign + 1) % 12;
@@ -813,7 +815,7 @@ class PanchangService
 
             $periodStart = isset($period['start_time_iso']) ? $this->parseDisplayDateTime((string) $period['start_time_iso'], $at->timezoneName) : null;
             $periodEnd = isset($period['end_time_iso']) ? $this->parseDisplayDateTime((string) $period['end_time_iso'], $at->timezoneName) : null;
-            if ($periodStart === null || $periodEnd === null || $at < $periodStart || $at >= $periodEnd) {
+            if (!$periodStart instanceof CarbonImmutable || !$periodEnd instanceof CarbonImmutable || $at < $periodStart || $at >= $periodEnd) {
                 continue;
             }
 
@@ -822,7 +824,7 @@ class PanchangService
                 $part = (array) (($period['parts'] ?? [])[$partKey] ?? []);
                 $partStart = isset($part['start_time_iso']) ? $this->parseDisplayDateTime((string) $part['start_time_iso'], $at->timezoneName) : null;
                 $partEnd = isset($part['end_time_iso']) ? $this->parseDisplayDateTime((string) $part['end_time_iso'], $at->timezoneName) : null;
-                if ($partStart !== null && $partEnd !== null && $at >= $partStart && $at < $partEnd) {
+                if ($partStart instanceof CarbonImmutable && $partEnd instanceof CarbonImmutable && $at >= $partStart && $at < $partEnd) {
                     $activePart = $partKey;
                     break;
                 }
@@ -867,14 +869,14 @@ class PanchangService
             if (isset($window['window_start_jd'], $window['window_end_jd'])) {
                 $start = $this->sunService->jdToCarbonPublic((float) $window['window_start_jd'], $tz);
                 $end = $this->sunService->jdToCarbonPublic((float) $window['window_end_jd'], $tz);
-                $window['window_start_iso'] = $window['window_start_iso'] ?? AstroCore::formatDateTime($start);
-                $window['window_end_iso'] = $window['window_end_iso'] ?? AstroCore::formatDateTime($end);
+                $window['window_start_iso'] ??= AstroCore::formatDateTime($start);
+                $window['window_end_iso'] ??= AstroCore::formatDateTime($end);
             } else {
                 $start = $this->resolveNamedWindowBoundary($window, 'varjyam_start', $tz);
                 $end = $this->resolveNamedWindowBoundary($window, 'varjyam_end', $tz);
             }
 
-            if ($start !== null && $end !== null && $at >= $start && $at < $end) {
+            if ($start instanceof CarbonImmutable && $end instanceof CarbonImmutable && $at >= $start && $at < $end) {
                 $activeWindow = $window;
                 break;
             }
@@ -904,7 +906,7 @@ class PanchangService
         $start = $this->resolveNamedWindowBoundary($window, $startKey, $at->timezoneName);
         $end = $this->resolveNamedWindowBoundary($window, $endKey, $at->timezoneName);
 
-        if ($start === null || $end === null) {
+        if (!$start instanceof CarbonImmutable || !$end instanceof CarbonImmutable) {
             return [
                 'source' => $source,
                 'label' => $label,
@@ -1063,7 +1065,7 @@ class PanchangService
                 }
 
                 $dt = $this->resolveTimeStringToDateTime($value, $sunrise, $tz);
-                if ($dt !== null) {
+                if ($dt instanceof CarbonImmutable) {
                     $node[$isoKey] = AstroCore::formatDateTime($dt);
                 }
             }
@@ -1099,7 +1101,7 @@ class PanchangService
         foreach ($formats as $format) {
             try {
                 $parsed = CarbonImmutable::createFromFormat($format, $raw, $tz);
-            } catch (Throwable $e) {
+            } catch (Throwable) {
                 $parsed = false;
             }
 
@@ -1181,7 +1183,7 @@ class PanchangService
 
         usort(
             $windows,
-            static fn (array $a, array $b): int => ((float) ($a['window_start_jd'] ?? 0.0)) <=> ((float) ($b['window_start_jd'] ?? 0.0))
+            static fn (array $a, array $b): int => $a['window_start_jd'] <=> $b['window_start_jd']
         );
 
         return $windows;
@@ -1224,11 +1226,11 @@ class PanchangService
 
         for ($i = 0; $i < 6 && $cursor < $pradoshaEndJd; $i++) {
             $interval = $this->getTithiIntervalAtJd($cursor);
-            $tithiIndex = (int) ($interval['index'] ?? 0);
+            $tithiIndex = $interval['index'];
             $tithiPhase = $tithiIndex > 15 ? $tithiIndex - 15 : $tithiIndex;
 
-            $overlapStartJd = max((float) $interval['start_jd'], $jdSunset);
-            $overlapEndJd = min((float) $interval['end_jd'], $pradoshaEndJd);
+            $overlapStartJd = max($interval['start_jd'], $jdSunset);
+            $overlapEndJd = min($interval['end_jd'], $pradoshaEndJd);
 
             if ($tithiPhase === 13 && $overlapEndJd > $overlapStartJd) {
                 $trayodashiOverlaps[] = [
@@ -1240,7 +1242,7 @@ class PanchangService
                 ];
             }
 
-            $nextCursor = max((float) $interval['end_jd'] + 1e-6, $cursor + 1e-5);
+            $nextCursor = max($interval['end_jd'] + 1e-6, $cursor + 1e-5);
             if ($nextCursor <= $cursor) {
                 break;
             }
@@ -1250,17 +1252,17 @@ class PanchangService
         $trayodashiDurationMinutes =
             array_reduce(
                 $trayodashiOverlaps,
-                static fn (float $carry, array $row): float => $carry + (float) ($row['duration_minutes'] ?? 0.0),
+                static fn (float $carry, array $row): float => $carry + $row['duration_minutes'],
                 0.0
             );
 
         $hasTrayodashiOverlap = $trayodashiOverlaps !== [];
         $basePradoshaDurationMinutes = ($pradoshaEndJd - $jdSunset) * 1440.0;
         $effectiveStartJd = $hasTrayodashiOverlap
-            ? (float) min(array_column($trayodashiOverlaps, 'start_jd'))
+            ? min(array_column($trayodashiOverlaps, 'start_jd'))
             : $jdSunset;
         $effectiveEndJd = $hasTrayodashiOverlap
-            ? (float) max(array_column($trayodashiOverlaps, 'end_jd'))
+            ? max(array_column($trayodashiOverlaps, 'end_jd'))
             : $pradoshaEndJd;
         $effectiveDurationMinutes = ($effectiveEndJd - $effectiveStartJd) * 1440.0;
 
@@ -1376,18 +1378,6 @@ class PanchangService
         return $diff;
     }
 
-    private function setAyanamsa(string $ayanamsa): void
-    {
-        $mode = match (strtoupper($ayanamsa)) {
-            'LAHIRI' => SwissEphFFI::SE_SIDM_LAHIRI,
-            'RAMAN' => SwissEphFFI::SE_SIDM_RAMAN,
-            'KRISHNAMURTI' => SwissEphFFI::SE_SIDM_KRISHNAMURTI,
-            default => SwissEphFFI::SE_SIDM_LAHIRI,
-        };
-
-        $this->sweph->swe_set_sid_mode($mode, 0.0, 0.0);
-    }
-
     private function getSunMoonLongitudes(array $birth): array
     {
         $jd = $this->toJulianDayFromCarbon(
@@ -1424,33 +1414,6 @@ class PanchangService
         return $this->normalize($xx[0]);
     }
 
-    private function toJulianDayUTC(array $birth): float
-    {
-        $local = CarbonImmutable::create(
-            (int) $birth['year'],
-            (int) $birth['month'],
-            (int) $birth['day'],
-            (int) $birth['hour'],
-            (int) $birth['minute'],
-            (int) $birth['second'],
-            $birth['timezone']
-        );
-
-        $utc = $local->setTimezone('UTC');
-
-        $hour = (int) $utc->format('H')
-            + ((int) $utc->format('i')) / 60.0
-            + ((int) $utc->format('s')) / 3600.0;
-
-        return $this->sweph->swe_julday(
-            $utc->year,
-            $utc->month,
-            $utc->day,
-            $hour,
-            SwissEphFFI::SE_GREG_CAL
-        );
-    }
-
     private function calculateIshtkaal(CarbonImmutable $sunrise, array $birth, string $tz): string
     {
         $dt = CarbonImmutable::create(
@@ -1468,7 +1431,7 @@ class PanchangService
             $relSunrise = $sunrise->subDay();
         }
 
-        $sec = (int) abs((float) $dt->diffInSeconds($relSunrise, false));
+        $sec = (int) abs($dt->diffInSeconds($relSunrise, false));
 
         $gh = (int) floor($sec / 1440);
         $pl = (int) floor(($sec % 1440) / 24);
@@ -1597,36 +1560,4 @@ class PanchangService
         return CarbonImmutable::parse($value, $tz);
     }
 
-    /** @return array<int, CarbonImmutable> */
-    private function getPlainMonthName(string $value): string
-    {
-        $plain = preg_replace('/\s*\(.+$/u', '', trim($value));
-        return is_string($plain) ? $plain : trim($value);
-    }
-
-    private function getSignLordPlanet(int $signIndex): string
-    {
-        return match ($signIndex) {
-            0, 7 => 'Mars',
-            1, 6 => 'Venus',
-            2, 5 => 'Mercury',
-            3 => 'Moon',
-            4 => 'Sun',
-            8, 11 => 'Jupiter',
-            9, 10 => 'Saturn',
-            default => 'Sun',
-        };
-    }
-
-    private function getAscendantSiderealAtJd(float $jd, float $lat, float $lon, float $ayanamsaDeg): float
-    {
-        $cusps = $this->sweph->getFFI()->new('double[13]');
-        $ascmc = $this->sweph->getFFI()->new('double[10]');
-        $retFlag = $this->sweph->swe_houses($jd, $lat, $lon, ord('P'), $cusps, $ascmc);
-        if ($retFlag < 0) {
-            throw new RuntimeException('Swiss Ephemeris failed while calculating ascendant transitions.');
-        }
-
-        return AstroCore::normalize($ascmc[0] - $ayanamsaDeg);
-    }
 }

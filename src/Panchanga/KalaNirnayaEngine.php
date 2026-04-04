@@ -123,9 +123,8 @@ class KalaNirnayaEngine
      * Configure service (optional, for standalone usage).
      *
      * @param string $ephePath Ephemeris path (empty for default)
-     * @param string $ayanamsaMode Ayanamsa mode ('LAHIRI', 'RAMAN', 'KRISHNAMURTI')
      */
-    public static function configure(string $ephePath = '', string $ayanamsaMode = 'LAHIRI'): void {}
+    public static function configure(string $ephePath = ''): void {}
 
     public function determineViddhaTithi(
         int $tithiNumber,
@@ -153,11 +152,7 @@ class KalaNirnayaEngine
             $result['observance_day_jd'] = $sunriseDay1Jd;
         } elseif ($tithiAtSunriseDay1) {
             $result['status'] = 'Viddha';
-            if ($tithiAtSunriseDay2) {
-                $result['observance_day_jd'] = $sunriseDay2Jd;
-            } else {
-                $result['observance_day_jd'] = $sunriseDay1Jd;
-            }
+            $result['observance_day_jd'] = $tithiAtSunriseDay2 ? $sunriseDay2Jd : $sunriseDay1Jd;
         } elseif ($tithiAtSunriseDay2) {
             $result['status'] = 'Shuddha';
             $result['observance_day_jd'] = $sunriseDay2Jd;
@@ -202,14 +197,12 @@ class KalaNirnayaEngine
             } elseif ($dashamiAtArunodaya) {
                 $result['status'] = 'Viddha_Ekadashi';
                 $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
+            } elseif ($ekadashiAtNextSunrise) {
+                $result['status'] = 'Ekadashi_Next_Day';
+                $result['fasting_day'] = 'Tomorrow';
             } else {
-                if ($ekadashiAtNextSunrise) {
-                    $result['status'] = 'Ekadashi_Next_Day';
-                    $result['fasting_day'] = 'Tomorrow';
-                } else {
-                    $result['status'] = 'Unmillani_Mahadvadashi';
-                    $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
-                }
+                $result['status'] = 'Unmillani_Mahadvadashi';
+                $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
             }
         } elseif ($tradition === 'Smarta') {
             $dashamiAtSunrise = $dashamiEndJd > $sunriseJd;
@@ -288,20 +281,13 @@ class KalaNirnayaEngine
         $dayDuration = $sunsetJd - $sunriseJd;
 
         $karmakalaType = $rules['karmakala_type'];
-        if ($karmakalaType === 'sunrise') {
-            $karmakalaJd = $sunriseJd;
-        } elseif ($karmakalaType === 'madhyahna') {
-            $karmakalaJd = $sunriseJd + ($dayDuration / 2.0);
-        } elseif ($karmakalaType === 'aparahna') {
-            $karmakalaJd = $sunriseJd + ($dayDuration * 3.0 / 4.0);
-        } elseif ($karmakalaType === 'nishitha') {
-            $nightDuration = $nextSunriseJd - $sunsetJd;
-            $karmakalaJd = $sunsetJd + ($nightDuration / 2.0);
-        } elseif ($karmakalaType === 'pradosha') {
-            $karmakalaJd = $sunsetJd + (3.0 / 24.0);
-        } else {
-            $karmakalaJd = $sunriseJd;
-        }
+        $karmakalaJd = match ($karmakalaType) {
+            'sunrise' => $sunriseJd,
+            'madhyahna' => $sunriseJd + ($dayDuration / 2.0),
+            'aparahna' => $sunriseJd + ($dayDuration * 3.0 / 4.0),
+            'nishitha' => $sunsetJd + (($nextSunriseJd - $sunsetJd) / 2.0),
+            default => $sunsetJd + (3.0 / 24.0), // pradosha fallback
+        };
 
         $tithiAtKarmakala = ($tithiStartJd <= $karmakalaJd) && ($tithiEndJd > $karmakalaJd);
         $tithiAtSunrise = ($tithiStartJd <= $sunriseJd) && ($tithiEndJd > $sunriseJd);

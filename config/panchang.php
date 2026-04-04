@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -11,18 +13,6 @@ return [
     */
 
     'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Ayanamsa System
-    |--------------------------------------------------------------------------
-    |
-    | Supported: LAHIRI, RAMAN, KRISHNAMURTI
-    | Default: LAHIRI (most widely used in Vedic astrology)
-    |
-    */
-
-    'ayanamsa' => env('PANCHANG_AYANAMSA', 'LAHIRI'),
 
     /*
     |--------------------------------------------------------------------------

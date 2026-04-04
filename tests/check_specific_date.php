@@ -10,7 +10,6 @@ use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
@@ -22,7 +21,6 @@ use SwissEph\FFI\SwissEphFFI;
 $configStore = [
     'panchang' => [
         'ephe_path' => '',
-        'ayanamsa' => 'LAHIRI',
         'defaults' => [
             'measurement_system' => 'indian_metric',
             'date_time_format' => 'indian_12h',
@@ -62,8 +60,7 @@ $elevation = 0.0;
 
 $sweph = new SwissEphFFI;
 $ruleEngine = new FestivalRuleEngine;
-$orchestrator = new FestivalFamilyOrchestrator;
-$festivalService = new FestivalService($ruleEngine, $orchestrator);
+$festivalService = new FestivalService($ruleEngine);
 
 $panchangService = new PanchangService(
     $sweph,

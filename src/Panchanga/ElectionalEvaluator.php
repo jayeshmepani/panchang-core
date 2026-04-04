@@ -26,7 +26,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Vara;
 final class ElectionalEvaluator
 {
     /** Package Panchaka remainder mapping attributed to classical Muhurta sources. */
-    private const PANCHAKA_TYPES = [
+    private const array PANCHAKA_TYPES = [
         1 => ['name' => 'Mrityu', 'english' => 'Death', 'severity' => 'critical'],
         2 => ['name' => 'Agni', 'english' => 'Fire', 'severity' => 'high'],
         3 => ['name' => 'Rahita', 'english' => 'Auspicious', 'severity' => 'none'],
@@ -40,7 +40,7 @@ final class ElectionalEvaluator
     ];
 
     /** Package Visha Ghati constants used for the legacy Varjyam helper. */
-    private const VISHA_GHATI_CONSTANTS = [
+    private const array VISHA_GHATI_CONSTANTS = [
         1 => 50, 2 => 4, 3 => 30, 4 => 40, 5 => 14, 6 => 21, 7 => 30, 8 => 20, 9 => 32,
         10 => 30, 11 => 20, 12 => 1, 13 => 21, 14 => 20, 15 => 14, 16 => 14, 17 => 10,
         18 => 14, 19 => 20, 20 => 20, 21 => 20, 22 => 10, 23 => 10, 24 => 18, 25 => 16,
@@ -51,7 +51,7 @@ final class ElectionalEvaluator
      * Package Dagdha Tithi mapping attributed to Muhurta Chintamani.
      * Format: Rashi index (0=Aries) => [Tithi numbers].
      */
-    private const DAGDHA_TITHI_MAP = [
+    private const array DAGDHA_TITHI_MAP = [
         0 => [12, 17, 22], 1 => [7, 27], 2 => [2, 25], 3 => [10, 15, 20],
         4 => [5, 23], 5 => [1, 26], 6 => [11, 16, 21], 7 => [6, 28],
         8 => [3, 24], 9 => [9, 14, 19], 10 => [4, 29], 11 => [8, 13, 18, 30],
@@ -61,7 +61,7 @@ final class ElectionalEvaluator
      * Dagdha Yoga (Vara+Tithi) mappings from classical texts.
      * Format: Vara index (0=Sunday) => [Tithi numbers].
      */
-    private const DAGDHA_YOGA_MAP = [
+    private const array DAGDHA_YOGA_MAP = [
         0 => [12], 1 => [11], 2 => [5], 3 => [3], 4 => [6], 5 => [8], 6 => [9],
     ];
 
@@ -69,7 +69,7 @@ final class ElectionalEvaluator
      * Bhadra abode mappings from Muhurta Martanda.
      * Format: Rashi index => abode type.
      */
-    private const BHADRA_ABODES = [
+    private const array BHADRA_ABODES = [
         'earth' => [3, 4, 10, 11], // Cancer, Leo, Aquarius, Pisces
         'heaven' => [0, 1, 2, 9], // Aries, Taurus, Gemini, Scorpio
         'underworld' => [5, 6, 7, 8], // Virgo, Libra, Sagittarius, Capricorn
@@ -117,11 +117,11 @@ final class ElectionalEvaluator
         $nakshatraStart = $defaultStart;
         $nakshatraDuration = $defaultDuration;
 
-        if ($varjyamData && isset($varjyamData['nakshatra_index'])) {
+        if ($varjyamData !== null && isset($varjyamData['nakshatra_index'])) {
             $nakshatraNumber = $varjyamData['nakshatra_index'] + 1; // Convert 0-based to 1-based
         }
 
-        if ($varjyamData && isset($varjyamData['nakshatra_start_jd'])) {
+        if ($varjyamData !== null && isset($varjyamData['nakshatra_start_jd'])) {
             $jd = $varjyamData['nakshatra_start_jd'];
             $jdFraction = $jd - floor($jd);
             $nakshatraStart = $jdFraction * 24.0;
@@ -141,11 +141,11 @@ final class ElectionalEvaluator
      */
     public static function calculateTransitMoorthy(string $nakshatraName): array
     {
-        $normalized = strtolower(preg_replace('/\s+/', '', trim($nakshatraName)));
+        $normalized = strtolower((string) preg_replace('/\s+/', '', trim($nakshatraName)));
         $nakshatraNumber = 1;
 
         foreach (Nakshatra::cases() as $case) {
-            $caseName = strtolower(preg_replace('/\s+/', '', $case->getName()));
+            $caseName = strtolower((string) preg_replace('/\s+/', '', $case->getName()));
             if ($caseName === $normalized) {
                 $nakshatraNumber = $case->value + 1;
                 break;
@@ -659,13 +659,13 @@ final class ElectionalEvaluator
         $overallVerdict = 'rejected';
         $confidenceLevel = 'high';
 
-        if (empty($rejections) && empty($warnings)) {
+        if ($rejections === [] && $warnings === []) {
             $overallVerdict = 'accepted';
             $confidenceLevel = 'high';
-        } elseif (empty($rejections) && !empty($warnings)) {
+        } elseif ($rejections === []) {
             $overallVerdict = 'accepted_with_warnings';
             $confidenceLevel = 'medium';
-        } elseif (!empty($rejections) && count($rejections) <= 2) {
+        } elseif (count($rejections) <= 2) {
             $overallVerdict = 'rejected_but_can_try_remedies';
             $confidenceLevel = 'low';
         }
@@ -684,13 +684,12 @@ final class ElectionalEvaluator
             'detailed_rejections' => $rejections,
             'detailed_warnings' => $warnings,
             'detailed_acceptances' => $acceptances,
-            'remedies_available' => !empty(array_filter($rejections, fn ($r) => $r['cancellation_possible'])),
+            'remedies_available' => array_filter($rejections, fn ($r) => $r['cancellation_possible']) !== [],
             'recommendation' => match ($overallVerdict) {
                 'accepted' => 'Muhurta is auspicious. Proceed with confidence.',
                 'accepted_with_warnings' => 'Muhurta is acceptable but has minor doshas. Consider remedies.',
                 'rejected_but_can_try_remedies' => 'Muhurta has significant doshas. Remedies may help but alternative preferred.',
-                'rejected' => 'Muhurta is inauspicious. Strongly recommend finding alternative time.',
-                default => 'Unable to determine. Consult classical texts.',
+                default => 'Muhurta is inauspicious. Strongly recommend finding alternative time.',
             },
         ];
     }
