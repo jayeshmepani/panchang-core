@@ -57,7 +57,6 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
 use Carbon\CarbonImmutable;
@@ -65,14 +64,13 @@ use Carbon\CarbonImmutable;
 // Initialize services
 $sweph = new SwissEphFFI();
 $ruleEngine = new FestivalRuleEngine();
-$orchestrator = new FestivalFamilyOrchestrator();
 $panchang = new PanchangService(
     $sweph,
     new SunService($sweph),
     new AstronomyService($sweph),
     new PanchangaEngine(),
     new MuhurtaService(),
-    new FestivalService($ruleEngine, $orchestrator),
+    new FestivalService($ruleEngine),
     new BhadraEngine()
 );
 
@@ -304,6 +302,7 @@ Notes:
 - `todays_complete_details` is intentionally date-sensitive and changes based on the day the script is run.
 - `muhurta_evaluation` is transit-only; no natal/person-specific inputs are used.
 - Empty arrays such as `Bhadra: []` or `Dharma_Sindhu: []` are valid outputs when no matching window exists for that Panchang day.
+- Saṅkrānti festivals are assigned by civil-date ingress tagging (00:00-24:00 local day), so pre-sunrise ingress stays on the same calendar date.
 
 ### Muhurta APIs
 
@@ -332,7 +331,7 @@ PanchangService::configure(
 ## Supported Festival Definitions (163)
 
 ### Solar-Based (Saṅkrānti)
-- Makara Saṅkrānti (Jan 14)
+- Makara Saṅkrānti (solar ingress-based; civil date can vary by year/location)
 - Viṣṇu Pūjā (Sep 17)
 
 ### Tithi-Based (Major)

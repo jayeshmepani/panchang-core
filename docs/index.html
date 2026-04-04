@@ -599,7 +599,6 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
 use Carbon\CarbonImmutable;
@@ -607,7 +606,6 @@ use Carbon\CarbonImmutable;
 // Initialize services
 $sweph = new SwissEphFFI();
 $ruleEngine = new FestivalRuleEngine();
-$orchestrator = new FestivalFamilyOrchestrator();
 
 $panchang = new PanchangService(
     $sweph,
@@ -615,7 +613,7 @@ $panchang = new PanchangService(
     new AstronomyService($sweph),
     new PanchangaEngine(),
     new MuhurtaService(),
-    new FestivalService($ruleEngine, $orchestrator),
+    new FestivalService($ruleEngine),
     new BhadraEngine()
 );
 
@@ -1512,6 +1510,8 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>Amanta_Index</code>, and <code>Purnimanta_Index</code>.</li>
               <li>Service-level month resolution uses exact solar transit boundaries between amavasyas for final day
                 output.</li>
+              <li>Saṅkrānti tagging is mapped to civil-day ingress (00:00-24:00 local date), so pre-sunrise ingress
+                remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
               <li>The verified festival catalog currently contains <code>163</code> definitions after merging true
@@ -2354,12 +2354,6 @@ echo $tithi['name']; // "Dwadashi"
                 <td>string</td>
                 <td><code>__DIR__ . '/../ephe'</code></td>
                 <td>Path to Swiss Ephemeris <code>.se1</code> files.</td>
-              </tr>
-              <tr>
-                <td><code>ayanamsa</code></td>
-                <td>string</td>
-                <td><code>'LAHIRI'</code></td>
-                <td>Sidereal system is fixed to LAHIRI (Chitra Paksha).</td>
               </tr>
               <tr>
                 <td><code>defaults.measurement_system</code></td>
