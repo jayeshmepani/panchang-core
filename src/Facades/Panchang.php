@@ -14,6 +14,7 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
  * @method static array getFestivalSnapshot(\Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0.0)
  * @method static array getElectionalSnapshot(\Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0.0, array $options = [])
  * @method static array getDailyMuhurtaEvaluation(\Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, ?\Carbon\CarbonImmutable $currentAt = null, float $elevation = 0.0, array $options = [])
+ * @method static array getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation = 0.0, array $options = [])
  *
  * @see \JayeshMepani\PanchangCore\Panchanga\PanchangService
  */

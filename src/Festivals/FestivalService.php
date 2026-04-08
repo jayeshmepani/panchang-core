@@ -119,7 +119,7 @@ class FestivalService
      * Based on traditional texts and regional variations.
      */
     public const FESTIVALS = [
-        'Mesha Sankranti (Baisakhi / Puthandu]' =>
+        'Mesha Sankranti (Baisakhi / Puthandu)' =>
         [
             'type' => 'solar_sankranti',
             'rashi' => 0,
@@ -169,11 +169,11 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Kanya Sankranti (Vishwakarma Puja]' =>
+        'Kanya Sankranti (Vishwakarma Puja)' =>
         [
             'type' => 'solar_sankranti',
             'rashi' => 5,
-            'description' => 'Worship of divine architect',
+            'description' => 'Worship of divine architect Vishwakarma',
             'regions' =>
             [
                 0 => 'Pan-India',
@@ -210,7 +210,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Makara Sankranti (Pongal]' =>
+        'Makara Sankranti (Pongal)' =>
         [
             'type' => 'solar_sankranti',
             'rashi' => 9,
@@ -249,19 +249,17 @@ class FestivalService
             'description' => 'Second day of the kite festival in Gujarat',
             'regions' => ['Gujarat'],
         ],
-        'Chaitra (Vasant] Navaratri Day 1 (Shailaputri Puja]' =>
+        'Lohri' =>
         [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 1,
-            'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Shailaputri (Daughter of the Mountain]',
-            'deity' => 'Durga/Shailaputri',
-            'karmakala_type' => 'sunrise',
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 13,
+            'description' => 'Punjabi harvest festival; bonfire celebration marking end of winter solstice',
+            'deity' => 'Agni/Surya',
+            'regions' => ['Punjab', 'Haryana', 'Delhi', 'North India'],
         ],
-        'Chaitra (Vasant] Navaratri Day 2 (Brahmacharini Puja]' =>
+
+        'Cheti Chand' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -269,11 +267,170 @@ class FestivalService
             'tithi' => 2,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Brahmacharini (The Ascetic]',
+            'description' => 'Sindhi Hindu New Year; birth of Jhulelal (Ishta-Devta)',
+            'deity' => 'Jhulelal/Varuna',
+            'regions' => ['Sindhi', 'Gujarat', 'Rajasthan'],
+        ],
+        'Vishu' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Kerala Hindu New Year; first day of Medam month; Vishukkani arrangement',
+            'deity' => 'Krishna/Vishnu',
+            'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
+        ],
+
+        'Shastriji Maharaj Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Birth anniversary of Shastriji Maharaj, founder of BAPS; coincides with Vasant Panchami',
+            'deity' => 'Swaminarayan',
+        ],
+
+        'Pramukh Varni Din' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Day when Pramukh Swami Maharaj was appointed administrative president of BAPS (1950)',
+            'deity' => 'Swaminarayan',
+        ],
+
+        'Ashadhi Bij' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Kutchi New Year; marks beginning of monsoon and kharif crop season; traditional weather prediction',
+            'deity' => 'Varuna/Indra',
+            'regions' => ['Kutch', 'Gujarat'],
+        ],
+
+        'Ravechi Mata Fair' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Ancient fair at Ravechi Mata Temple (Rapar, Kutch); thousands of Rabari and Ahir devotees gather',
+            'deity' => 'Ravechi Mata',
+            'regions' => ['Kutch', 'Gujarat'],
+        ],
+
+        'Tarnetar Fair' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Saurashtra\'s famous matchmaking fair at Trinetreshwar Mahadev Temple; Bhadarva Sud 4-6',
+            'deity' => 'Shiva',
+            'regions' => ['Saurashtra', 'Gujarat'],
+        ],
+        'Tarnetar Fair Day 2' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Second day of Tarnetar Fair (Bhadarva Sud 5)',
+            'deity' => 'Shiva',
+            'regions' => ['Saurashtra', 'Gujarat'],
+        ],
+        'Tarnetar Fair Day 3' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Third day of Tarnetar Fair (Bhadarva Sud 6)',
+            'deity' => 'Shiva',
+            'regions' => ['Saurashtra', 'Gujarat'],
+        ],
+
+        'Mota Yaksh Fair (Jakh Bahotera)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14',
+            'deity' => '72 Yakshas',
+            'regions' => ['Kutch', 'Gujarat'],
+        ],
+
+        'Dada Mekan Fair (Dhrang Mela)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Fair at Dhrang village honoring saint Mekan Dada who saved lost travelers in Rann of Kutch',
+            'deity' => 'Mekan Dada',
+            'regions' => ['Kutch', 'Gujarat'],
+        ],
+
+        'Rang Panchami' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Fifth day of Holi celebrations; continuation of color play; especially celebrated in Maharashtra and MP',
+            'deity' => 'Krishna',
+            'regions' => ['Maharashtra', 'Madhya Pradesh', 'North India'],
+        ],
+
+        'Chaitra (Vasant) Navaratri Day 1 (Shailaputri Puja)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Shailaputri (Daughter of the Mountain]',
+            'deity' => 'Durga/Shailaputri',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chaitra (Vasant) Navaratri Day 2 (Brahmacharini Puja)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Brahmacharini (The Ascetic]',
             'deity' => 'Durga/Brahmacharini',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 3 (Chandraghanta Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 3 (Chandraghanta Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -281,11 +438,11 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]',
             'deity' => 'Durga/Chandraghanta',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 4 (Kushmanda Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 4 (Kushmanda Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -293,11 +450,11 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]',
             'deity' => 'Durga/Kushmanda',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 5 (Skandamata Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 5 (Skandamata Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -305,11 +462,11 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Skandamata (Mother of Skanda]',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Skandamata (Mother of Skanda]',
             'deity' => 'Durga/Skandamata',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 6 (Katyayani Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 6 (Katyayani Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -317,11 +474,11 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Katyayani (The Warrior Goddess]',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Katyayani (The Warrior Goddess]',
             'deity' => 'Durga/Katyayani',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 7 (Kalaratri Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 7 (Kalaratri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -329,11 +486,11 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami',
             'deity' => 'Durga/Kalaratri',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 8 (Mahagauri Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 8 (Mahagauri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -341,11 +498,11 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami',
             'deity' => 'Durga/Mahagauri',
             'karmakala_type' => 'sunrise',
         ],
-        'Chaitra (Vasant] Navaratri Day 9 (Siddhidatri Puja]' =>
+        'Chaitra (Vasant) Navaratri Day 9 (Siddhidatri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -353,11 +510,11 @@ class FestivalService
             'tithi' => 9,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Chaitra (Vasant] Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami',
+            'description' => 'Chaitra (Vasant) Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami',
             'deity' => 'Durga/Siddhidatri',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 1 (Shailaputri Puja]' =>
+        'Ashvina Sharad Navaratri Day 1 (Shailaputri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -369,7 +526,7 @@ class FestivalService
             'deity' => 'Durga/Shailaputri',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 2 (Brahmacharini Puja]' =>
+        'Ashvina Sharad Navaratri Day 2 (Brahmacharini Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -381,7 +538,7 @@ class FestivalService
             'deity' => 'Durga/Brahmacharini',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 3 (Chandraghanta Puja]' =>
+        'Ashvina Sharad Navaratri Day 3 (Chandraghanta Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -393,7 +550,7 @@ class FestivalService
             'deity' => 'Durga/Chandraghanta',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 4 (Kushmanda Puja]' =>
+        'Ashvina Sharad Navaratri Day 4 (Kushmanda Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -405,7 +562,7 @@ class FestivalService
             'deity' => 'Durga/Kushmanda',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 5 (Skandamata Puja]' =>
+        'Ashvina Sharad Navaratri Day 5 (Skandamata Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -417,7 +574,7 @@ class FestivalService
             'deity' => 'Durga/Skandamata',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 6 (Katyayani Puja]' =>
+        'Ashvina Sharad Navaratri Day 6 (Katyayani Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -429,7 +586,7 @@ class FestivalService
             'deity' => 'Durga/Katyayani',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashvina Sharad Navaratri Day 7 (Kalaratri Puja]' =>
+        'Ashvina Sharad Navaratri Day 7 (Kalaratri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -441,7 +598,7 @@ class FestivalService
             'deity' => 'Durga/Kalaratri',
             'karmakala_type' => 'sunrise',
         ],
-        'Durga Ashtami (Mahagauri Puja]' =>
+        'Durga Ashtami (Mahagauri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -453,7 +610,7 @@ class FestivalService
             'deity' => 'Durga/Mahagauri',
             'karmakala_type' => 'sunrise',
         ],
-        'Maha Navami (Siddhidatri Puja]' =>
+        'Maha Navami (Siddhidatri Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -465,7 +622,7 @@ class FestivalService
             'deity' => 'Durga/Siddhidatri',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 1 (Kali Puja]' =>
+        'Ashadha Gupt Navaratri Day 1 (Kali Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -477,7 +634,7 @@ class FestivalService
             'deity' => 'Mahavidya/Kali',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 2 (Tara Puja]' =>
+        'Ashadha Gupt Navaratri Day 2 (Tara Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -489,7 +646,7 @@ class FestivalService
             'deity' => 'Mahavidya/Tara',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 3 (Tripura Sundari Puja]' =>
+        'Ashadha Gupt Navaratri Day 3 (Tripura Sundari Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -501,7 +658,7 @@ class FestivalService
             'deity' => 'Mahavidya/Tripura Sundari',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 4 (Bhuvaneshwari Puja]' =>
+        'Ashadha Gupt Navaratri Day 4 (Bhuvaneshwari Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -513,7 +670,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bhuvaneshwari',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 5 (Bhairavi Puja]' =>
+        'Ashadha Gupt Navaratri Day 5 (Bhairavi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -525,7 +682,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bhairavi',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 6 (Chhinnamasta Puja]' =>
+        'Ashadha Gupt Navaratri Day 6 (Chhinnamasta Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -537,7 +694,7 @@ class FestivalService
             'deity' => 'Mahavidya/Chhinnamasta',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 7 (Dhumavati Puja]' =>
+        'Ashadha Gupt Navaratri Day 7 (Dhumavati Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -549,7 +706,7 @@ class FestivalService
             'deity' => 'Mahavidya/Dhumavati',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 8 (Bagalamukhi Puja]' =>
+        'Ashadha Gupt Navaratri Day 8 (Bagalamukhi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -561,7 +718,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bagalamukhi',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 9 (Matangi Puja]' =>
+        'Ashadha Gupt Navaratri Day 9 (Matangi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -573,7 +730,7 @@ class FestivalService
             'deity' => 'Mahavidya/Matangi',
             'karmakala_type' => 'sunrise',
         ],
-        'Ashadha Gupt Navaratri Day 10 (Kamala Puja]' =>
+        'Ashadha Gupt Navaratri Day 10 (Kamala Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -585,7 +742,7 @@ class FestivalService
             'deity' => 'Kamala',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 1 (Kali Puja]' =>
+        'Magha Gupt Navaratri Day 1 (Kali Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -597,7 +754,7 @@ class FestivalService
             'deity' => 'Mahavidya/Kali',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 2 (Tara Puja]' =>
+        'Magha Gupt Navaratri Day 2 (Tara Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -609,7 +766,7 @@ class FestivalService
             'deity' => 'Mahavidya/Tara',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 3 (Tripura Sundari Puja]' =>
+        'Magha Gupt Navaratri Day 3 (Tripura Sundari Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -621,7 +778,7 @@ class FestivalService
             'deity' => 'Mahavidya/Tripura Sundari',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 4 (Bhuvaneshwari Puja]' =>
+        'Magha Gupt Navaratri Day 4 (Bhuvaneshwari Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -633,7 +790,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bhuvaneshwari',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 5 (Bhairavi Puja]' =>
+        'Magha Gupt Navaratri Day 5 (Bhairavi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -645,7 +802,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bhairavi',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 6 (Chhinnamasta Puja]' =>
+        'Magha Gupt Navaratri Day 6 (Chhinnamasta Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -657,7 +814,7 @@ class FestivalService
             'deity' => 'Mahavidya/Chhinnamasta',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 7 (Dhumavati Puja]' =>
+        'Magha Gupt Navaratri Day 7 (Dhumavati Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -669,7 +826,7 @@ class FestivalService
             'deity' => 'Mahavidya/Dhumavati',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 8 (Bagalamukhi Puja]' =>
+        'Magha Gupt Navaratri Day 8 (Bagalamukhi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -681,7 +838,7 @@ class FestivalService
             'deity' => 'Mahavidya/Bagalamukhi',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 9 (Matangi Puja]' =>
+        'Magha Gupt Navaratri Day 9 (Matangi Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -693,7 +850,7 @@ class FestivalService
             'deity' => 'Mahavidya/Matangi',
             'karmakala_type' => 'sunrise',
         ],
-        'Magha Gupt Navaratri Day 10 (Kamala Puja]' =>
+        'Magha Gupt Navaratri Day 10 (Kamala Puja)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -724,7 +881,7 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Phalguna',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Fasting for Papmochani Ekadashi (Liberation from Sins]',
+            'description' => 'Fasting for Papmochani Ekadashi (Liberation from Sins)',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -763,7 +920,7 @@ class FestivalService
             'description' => 'Descent of Goddess Yamuna / Summer Chhath',
             'deity' => 'Surya/Yamuna',
         ],
-        'Rama Navami / Swaminarayan Jayanti' =>
+        'Rama Navami' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -771,8 +928,22 @@ class FestivalService
             'tithi' => 9,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Birth anniversary of Lord Rama / Birth of Bhagwan Swaminarayan (Hari-Nom]',
-            'deity' => 'Rama/Swaminarayan',
+            'description' => 'Birth anniversary of Lord Rama, seventh avatar of Vishnu',
+            'deity' => 'Rama',
+            'fasting' => true,
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
+        ],
+        'Swaminarayan Jayanti (Hari-Nom)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth of Bhagwan Swaminarayan; celebrated with assemblies, cultural programs, and devotional singing',
+            'deity' => 'Swaminarayan',
             'fasting' => true,
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
@@ -785,7 +956,7 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Fasting for Kamada Ekadashi (Fulfiller of Desires]',
+            'description' => 'Fasting for Kamada Ekadashi (Fulfiller of Desires)',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -1348,15 +1519,26 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Mahant Swami Maharaj Jayanti' =>
+        'Mahant Swami Maharaj Janma Jayanti' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 13,
+            'paksha' => 'Krishna',
+            'tithi' => 9,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Birth of Pragat Brahmaswarup Mahant Swami Maharaj',
+            'description' => 'Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)',
+            'deity' => 'Swaminarayan',
+        ],
+        'Mahant Swami Maharaj Parshadi Diksha Din (Official Jayanti)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 1,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)',
             'deity' => 'Swaminarayan',
         ],
         'Vamana Jayanti' =>
@@ -1414,7 +1596,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Ashvina',
-            'description' => 'Final day of Pitru Paksha (Sarvapitri Amavasya]',
+            'description' => 'Final day of Pitru Paksha (Sarvapitri Amavasya)',
             'deity' => 'Pitrus',
             'karmakala_type' => 'aparahna',
         ],
@@ -1576,7 +1758,7 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'Annakut (Swaminarayan] / Gujarati New Year',
+            'description' => 'Annakut (Swaminarayan) / Gujarati New Year',
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
         ],
@@ -1603,7 +1785,7 @@ class FestivalService
             'description' => 'Auspicious day for businesses in Gujarat',
             'deity' => 'Lakshmi/Ganesha',
         ],
-        'Skanda Shashti / Chhath Puja' =>
+        'Skanda Shashti' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1611,9 +1793,24 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'Murugan festival / Sun God worship',
-            'deity' => 'Murugan/Surya',
+            'description' => 'Six-day festival dedicated to Lord Murugan, celebrating his victory over demon Surapadman',
+            'deity' => 'Murugan/Skanda',
             'fasting' => true,
+            'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
+        ],
+        'Chhath Puja (Sandhya Arghya)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Major day (3rd of 4) of Chhath Puja - evening arghya to Surya; festival runs Kartika Shukla 4-7',
+            'deity' => 'Surya/Chhathi Maiya',
+            'fasting' => true,
+            'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
+            'karmakala_type' => 'aparahna',
         ],
         'Jalaram Jayanti' =>
         [
@@ -1653,13 +1850,13 @@ class FestivalService
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
-            'tithi' => 10,
-            'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Kartika',
-            'description' => 'Birth of Pramukh Swami Maharaj',
+            'tithi' => 8,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Birth anniversary of Pramukh Swami Maharaj (7 December 1921, Magshar Sud 8, VS 1978)',
             'deity' => 'Swaminarayan',
         ],
-        'Devutthana (Prabodhini] Ekadashi' =>
+        'Devutthana (Prabodhini) Ekadashi' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1695,7 +1892,7 @@ class FestivalService
             'deity' => 'Vishnu/Shiva',
             'karmakala_type' => 'nishitha',
         ],
-        'Dev Diwali (Tripurari Purnima) / Karthigai Deepam' =>
+        'Dev Diwali (Tripurari Purnima)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1703,8 +1900,22 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'End of Kartika month festivals; lighting of lamps',
+            'description' => 'Festival of Varanasi celebrating Shiva\'s victory over Tripurasura; ghats illuminated with lamps',
+            'deity' => 'Shiva',
+            'regions' => ['Varanasi', 'Uttar Pradesh'],
+            'karmakala_type' => 'pradosha',
+        ],
+        'Karthigai Deepam' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Tamil festival of lights; Maha Deepam lit at Tiruvannamalai',
             'deity' => 'Shiva/Karthikeya',
+            'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
             'karmakala_type' => 'pradosha',
         ],
         'Utpanna Ekadashi' =>
@@ -1804,7 +2015,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Shakambhari Purnima / Thai Poosam' =>
+        'Shakambhari Purnima' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1812,8 +2023,29 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Pausha',
             'month_purnimanta' => 'Pausha',
-            'description' => 'Culmination of Shakambhari Navaratri / Lord Murugan festival',
-            'deity' => 'Shakambhari/Murugan',
+            'description' => 'Culmination of Shakambhari Navaratri; worship of Goddess Shakambhari who nourished the world with vegetables and fruits',
+            'deity' => 'Shakambhari/Devi',
+            'regions' => ['Rajasthan', 'Uttar Pradesh', 'Madhya Pradesh', 'Bihar'],
+        ],
+        'Thai Poosam' =>
+        [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Pushya',
+            'requires_purnima' => true,
+            'allowed_months_amanta' => ['Pausha', 'Magha'],
+            'description' => 'Tamil festival dedicated to Lord Murugan; observed when Pushya nakshatra coincides with Purnima in Tamil month Thai (Jan-Feb)',
+            'deity' => 'Murugan',
+            'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana', 'Sri Lanka', 'Malaysia', 'Singapore'],
+        ],
+        'Onam (Thiruvonam)' =>
+        [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Shravana',
+            'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
+            'description' => 'Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali\'s annual visit',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
+            'karmakala_type' => 'madhyahna',
         ],
         'Gunatitanand Swami Diksha Day' =>
         [
@@ -1909,7 +2141,7 @@ class FestivalService
             'description' => 'Kumbh Mela bathing day / Tamil holy bathing day',
             'deity' => 'Ganga/Shiva',
         ],
-        'Pushpadolotsav (Dhuleti]' =>
+        'Pushpadolotsav (Dhuleti)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1995,7 +2227,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Phalguna',
             'month_purnimanta' => 'Phalguna',
-            'description' => 'Birth of Bhagatji Maharaj (Swaminarayan Sect]',
+            'description' => 'Birth of Bhagatji Maharaj (Swaminarayan Sect)',
             'deity' => 'Swaminarayan',
         ],
         'Holi' =>
@@ -2099,8 +2331,9 @@ class FestivalService
             }
 
             $isClassical = self::usesClassicalResolver($rules);
+            $isNakshatra = (bool) ($rules['nakshatra_only'] ?? false);
 
-            // Check Hindu month match
+            // Check Hindu month match for tithi-based festivals
             if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
                 $calendar = $todayDetails['Hindu_Calendar'] ?? [];
                 $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
@@ -2119,6 +2352,20 @@ class FestivalService
 
             if ($isClassical) {
                 $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
+                if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
+                    $festivals[] = [
+                        'name' => $name,
+                        'description' => $rules['description'],
+                        'deity' => $rules['deity'] ?? null,
+                        'fasting' => $rules['fasting'] ?? false,
+                        'regions' => $rules['regions'] ?? ['Pan-India'],
+                        'observance_note' => $resolved['observance_note'] ?? null,
+                        'rules_applied' => $resolved['decision'] ?? [],
+                    ];
+                }
+            } elseif ($isNakshatra) {
+                // Handle nakshatra-based festivals
+                $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
                     $festivals[] = [
                         'name' => $name,
@@ -2163,10 +2410,14 @@ class FestivalService
 
         if (isset(self::TITHI_VRATAS[$idx])) {
             $rule = self::TITHI_VRATAS[$idx];
+            $benefit = $rule['benefit'] ?? '';
+            if ($idx === 15) {
+                $benefit = $paksha === 'Shukla' ? $rule['purnima_benefit'] : $rule['amavasya_benefit'];
+            }
             $out[] = [
                 'name' => $rule['vrata'],
                 'deity' => $rule['deity'],
-                'benefit' => $rule['benefit'],
+                'benefit' => $benefit,
                 'paksha' => $paksha,
             ];
         }

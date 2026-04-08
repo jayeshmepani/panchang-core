@@ -116,6 +116,15 @@ $muhurta = Panchang::getDailyMuhurtaEvaluation(
     lon: 69.668339,
     tz: 'Asia/Kolkata'
 );
+
+// Get month-wise calendar summary (ideal for grid views)
+$calendar = Panchang::getMonthCalendar(
+    year: 2026,
+    month: 4,
+    lat: 23.2472446,
+    lon: 69.668339,
+    tz: 'Asia/Kolkata'
+);
 ```
 
 ## Classical Texts & Sources

@@ -587,6 +587,8 @@ class PanchangService
         $moonLon = $sunMoon['Moon'];
 
         $tithi = $this->panchanga->calculateTithi($sunLon, $moonLon);
+        $yoga = $this->panchanga->calculateYoga($sunLon, $moonLon);
+        [$karanaName, $karanaIdx] = $this->panchanga->getKarana($sunLon, $moonLon);
         [$nakName, $nakPada, $nakLord] = $this->panchanga->getNakshatraInfo($moonLon);
         $vara = $this->panchanga->calculateVara($birthBase, $this->sunService);
 
@@ -625,6 +627,9 @@ class PanchangService
                 'pada' => $nakPada,
                 'lord' => $nakLord,
             ],
+            'Yoga' => $yoga,
+            'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
+            'Moon_Sign' => Rasi::from(AstroCore::getSign($moonLon))->getName(),
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -633,6 +638,8 @@ class PanchangService
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
                 'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
             ],
+            'Sunrise' => AstroCore::formatTime($sunrise),
+            'Sunset' => AstroCore::formatTime($sunset),
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
                 'sunset_jd' => $jdSunset,
@@ -650,6 +657,66 @@ class PanchangService
             ],
             'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']),
         ];
+    }
+
+    /**
+     * Get a month-wise calendar summary of Panchang details.
+     * Ideal for grid-based calendar views.
+     *
+     * @return array<string, array<string, mixed>> Indexed by YYYY-MM-DD
+     */
+    public function getMonthCalendar(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
+        $daysInMonth = $start->daysInMonth;
+
+        $snapshots = [];
+        for ($i = 0; $i <= $daysInMonth; $i++) {
+            $date = $start->addDays($i);
+            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation);
+        }
+
+        $calendar = [];
+        for ($i = 0; $i < $daysInMonth; $i++) {
+            $date = $start->addDays($i);
+            $todaySnapshot = $snapshots[$i];
+            $tomorrowSnapshot = $snapshots[$i + 1];
+
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+            $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
+
+            $sankranti = null;
+            if ($todaySnapshot['Resolution_Context']['sankranti_rashi'] !== null) {
+                $rashiIdx = $todaySnapshot['Resolution_Context']['sankranti_rashi'];
+                $sankranti = Rasi::from($rashiIdx)->getName() . ' Sankranti';
+            }
+
+            $calendar[$date->toDateString()] = [
+                'date' => $date->toDateString(),
+                'day' => (int) $date->format('d'),
+                'tithi' => $todaySnapshot['Tithi'],
+                'nakshatra' => $todaySnapshot['Nakshatra'],
+                'yoga' => $todaySnapshot['Yoga'],
+                'karana' => $todaySnapshot['Karana'],
+                'vara' => $todaySnapshot['Vara'],
+                'moon_sign' => $todaySnapshot['Moon_Sign'],
+                'sunrise' => $todaySnapshot['Sunrise'],
+                'sunset' => $todaySnapshot['Sunset'],
+                'hindu_calendar' => $todaySnapshot['Hindu_Calendar'],
+                'festivals' => $festivals,
+                'daily_observances' => $dailyObservances,
+                'sankranti' => $sankranti,
+            ];
+        }
+
+        return $calendar;
     }
 
     public function getElectionalSnapshot(

@@ -22,6 +22,11 @@ class FestivalRuleEngine
             return null;
         }
 
+        // Check if this is a nakshatra-only based festival (no tithi requirement)
+        if (isset($rule['nakshatra_only']) && $rule['nakshatra_only']) {
+            return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
+        }
+
         $paksha = (string) ($rule['paksha'] ?? '');
         $requiredTithi = (int) ($rule['tithi'] ?? 0);
         if ($requiredTithi <= 0) {
@@ -128,6 +133,128 @@ class FestivalRuleEngine
                 'preferred_nakshatra' => $rule['nakshatra'] ?? null,
                 'winning_reason' => $winner['reason'],
                 'winning_score' => $winner['score'],
+            ],
+        ];
+    }
+
+    /** Resolve nakshatra-based festival (e.g., Onam, Thai Poosam) - public wrapper. */
+    public function resolveNakshatraBasedFestival(
+        string $festivalName,
+        array $rule,
+        CarbonImmutable $date,
+        array $today,
+        array $tomorrow
+    ): ?array {
+        return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
+    }
+
+    /** Resolve nakshatra-based festival (e.g., Onam, Thai Poosam). */
+    private function resolveNakshatraFestival(
+        string $festivalName,
+        array $rule,
+        CarbonImmutable $date,
+        array $today,
+        array $tomorrow
+    ): ?array {
+        $ctxToday = (array) ($today['Resolution_Context'] ?? []);
+        $ctxTomorrow = (array) ($tomorrow['Resolution_Context'] ?? []);
+        if ($ctxToday === [] || $ctxTomorrow === []) {
+            return null;
+        }
+
+        $requiredNakshatra = (string) ($rule['nakshatra'] ?? '');
+        if ($requiredNakshatra === '') {
+            return null;
+        }
+
+        $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
+        $nakshatraToday = (string) ($today['Nakshatra']['name'] ?? '');
+        $nakshatraTomorrow = (string) ($tomorrow['Nakshatra']['name'] ?? '');
+
+        $nakshatraTodayMatch = strcasecmp($requiredNakshatra, $nakshatraToday) === 0;
+        $nakshatraTomorrowMatch = strcasecmp($requiredNakshatra, $nakshatraTomorrow) === 0;
+
+        // If nakshatra doesn't match today or tomorrow, skip
+        if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
+            return null;
+        }
+
+        // Check month constraint if specified (e.g., Onam in Shravana/Bhadrapada, Thai Poosam in Pausha/Magha)
+        $allowedMonths = (array) ($rule['allowed_months_amanta'] ?? []);
+        if ($allowedMonths !== []) {
+            $monthToday = (string) ($today['Hindu_Calendar']['Month_Amanta'] ?? '');
+            $monthTomorrow = (string) ($tomorrow['Hindu_Calendar']['Month_Amanta'] ?? '');
+            $monthTodayMatch = in_array(strtolower($monthToday), array_map('strtolower', $allowedMonths), true);
+            $monthTomorrowMatch = in_array(strtolower($monthTomorrow), array_map('strtolower', $allowedMonths), true);
+
+            // If nakshatra matches but month doesn't for that day, exclude that day
+            if ($nakshatraTodayMatch && !$monthTodayMatch) {
+                $nakshatraTodayMatch = false;
+            }
+            if ($nakshatraTomorrowMatch && !$monthTomorrowMatch) {
+                $nakshatraTomorrowMatch = false;
+            }
+
+            // If neither day matches after month filtering, skip
+            if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
+                return null;
+            }
+        }
+
+        // Check if purnima is also required (e.g., Thai Poosam = Pushya + Purnima)
+        $requiresPurnima = (bool) ($rule['requires_purnima'] ?? false);
+        if ($requiresPurnima) {
+            $tithiToday = (array) ($today['Tithi'] ?? []);
+            $tithiTomorrow = (array) ($tomorrow['Tithi'] ?? []);
+            $pakshaToday = (string) ($tithiToday['paksha'] ?? '');
+            $tithiIndexToday = (int) ($tithiToday['index'] ?? 0);
+            $pakshaTomorrow = (string) ($tithiTomorrow['paksha'] ?? '');
+            $tithiIndexTomorrow = (int) ($tithiTomorrow['index'] ?? 0);
+
+            $isPurnimaToday = ($pakshaToday === 'Shukla' && $tithiIndexToday === 15);
+            $isPurnimaTomorrow = ($pakshaTomorrow === 'Shukla' && $tithiIndexTomorrow === 15);
+
+            // Both nakshatra AND purnima must match
+            if ($nakshatraTodayMatch && $isPurnimaToday) {
+                return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
+            }
+            if ($nakshatraTomorrowMatch && $isPurnimaTomorrow) {
+                return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
+            }
+            return null;
+        }
+
+        // Simple nakshatra-only match
+        if ($nakshatraTodayMatch) {
+            return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_match');
+        }
+        if ($nakshatraTomorrowMatch) {
+            return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_match');
+        }
+
+        return null;
+    }
+
+    /** Build nakshatra-based festival result. */
+    private function buildNakshatraResult(
+        string $festivalName,
+        array $rule,
+        CarbonImmutable $observanceDate,
+        string $karmakalaType,
+        string $nakshatraName,
+        string $reason
+    ): array {
+        return [
+            'festival_name' => $festivalName,
+            'required_nakshatra' => $nakshatraName,
+            'karmakala_type' => $karmakalaType,
+            'standard_date' => $observanceDate->toDateString(),
+            'observance_date' => $observanceDate->toDateString(),
+            'observance_note' => null,
+            'decision' => [
+                'nakshatra_based' => true,
+                'nakshatra_name' => $nakshatraName,
+                'winning_reason' => $reason,
             ],
         ];
     }
