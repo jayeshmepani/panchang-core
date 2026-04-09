@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Vāra (Weekday) Enumeration.
  *
@@ -20,17 +22,9 @@ enum Vara: int
     case Saturday = 6;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Sunday => 'Ravivāra',
-            self::Monday => 'Somavāra',
-            self::Tuesday => 'Maṅgalavāra',
-            self::Wednesday => 'Budhavāra',
-            self::Thursday => 'Guruvāra',
-            self::Friday => 'Śukravāra',
-            self::Saturday => 'Śanivāra',
-        };
+        return Localization::translate('Vara', $this->value, $locale);
     }
 
     /** Get English name */

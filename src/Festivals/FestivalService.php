@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\Localization;
 use LogicException;
 
 /**
@@ -1077,8 +1078,8 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'description' => 'Appearance day of Lord Buddha / Kurma Jayanti',
-            'deity' => 'Buddha/Kurma',
+            'description' => 'Vaishakha Purnima — Hindu observance of Sugata Buddha (9th avatar of Vishnu, distinct from Gautama Buddha of Buddhism) and Kurma Jayanti (birth of Lord Vishnu\'s tortoise avatar). The Hindu Buddha-avatar is described in Bhagavata Purana 1.3.24 and Agni Purana as appearing in Kikata/Gaya to delude demons from Vedic rituals (Bhagavata view) or to teach compassion and end animal sacrifice (Jayadeva\'s Gita Govinda view). Puri Shankaracharya Swami Nischalananda Saraswati and scholars recognize these as two different persons: the Puranic Sugata Buddha (Brahmin varna, upheld Vedas, ancient timeline) vs. Gautama Buddha (Kshatriya Shakya clan, Lumbini birth ~563 BCE, rejected Vedas). Also coincides with Kurma Jayanti and is the most auspicious day for Satyanarayan Puja. Regional variation: Odisha and Bengal traditions replace Buddha with Balarama as the 9th avatar in Dashavatara.',
+            'deity' => 'Sugata Buddha/Kurma/Vishnu',
             'karmakala_type' => 'sunrise',
         ],
         'Narsinh Mehta Janma Jayanti' =>
@@ -2336,8 +2337,8 @@ class FestivalService
             // Check Hindu month match for tithi-based festivals
             if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
                 $calendar = $todayDetails['Hindu_Calendar'] ?? [];
-                $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
-                $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
+                $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
+                $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? ''));
                 $monthMatch = false;
                 if (isset($rules['month_amanta']) && $this->normalizeMonthName((string) $rules['month_amanta']) === $amanta) {
                     $monthMatch = true;
@@ -2354,7 +2355,7 @@ class FestivalService
                 $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
                     $festivals[] = [
-                        'name' => $name,
+                        'name' => Localization::translate('Festival', $name),
                         'description' => $rules['description'],
                         'deity' => $rules['deity'] ?? null,
                         'fasting' => $rules['fasting'] ?? false,
@@ -2368,7 +2369,7 @@ class FestivalService
                 $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
                     $festivals[] = [
-                        'name' => $name,
+                        'name' => Localization::translate('Festival', $name),
                         'description' => $rules['description'],
                         'deity' => $rules['deity'] ?? null,
                         'fasting' => $rules['fasting'] ?? false,
@@ -2379,7 +2380,7 @@ class FestivalService
                 }
             } elseif ($this->matchesFestivalRules($date, $rules, $tithiNum, $paksha, $todayDetails)) {
                 $festivals[] = [
-                    'name' => $name,
+                    'name' => Localization::translate('Festival', $name),
                     'description' => $rules['description'],
                     'deity' => $rules['deity'] ?? null,
                     'fasting' => $rules['fasting'] ?? false,
@@ -2415,7 +2416,7 @@ class FestivalService
                 $benefit = $paksha === 'Shukla' ? $rule['purnima_benefit'] : $rule['amavasya_benefit'];
             }
             $out[] = [
-                'name' => $rule['vrata'],
+                'name' => Localization::translate('Vrata', $rule['vrata']),
                 'deity' => $rule['deity'],
                 'benefit' => $benefit,
                 'paksha' => $paksha,
@@ -2476,8 +2477,8 @@ class FestivalService
         // Check Hindu month match for tithi-based rules
         if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
             $calendar = $panchangDetails['Hindu_Calendar'] ?? [];
-            $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta'] ?? ''));
-            $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta'] ?? ''));
+            $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
+            $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? ''));
             $monthMatch = false;
 
             if (isset($rules['month_amanta']) && $this->normalizeMonthName((string) $rules['month_amanta']) === $amanta) {

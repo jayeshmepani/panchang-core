@@ -24,6 +24,9 @@ return [
     */
 
     'defaults' => [
+        // 'en', 'hi', 'gu'
+        'locale' => env('PANCHANG_LOCALE', 'en'),
+
         // 'indian_metric', 'western'
         'measurement_system' => 'indian_metric',
 

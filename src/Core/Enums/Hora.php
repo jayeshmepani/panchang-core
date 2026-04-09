@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Horā (Planetary Hour) Enumeration.
  *
- * Represents the 7 planets that rule the hourly periods.
- * Each hora spans 1/12th of the day or night duration.
+ * Represents the 24 horas in a day, each ruled by a planet.
  */
 enum Hora: int
 {
@@ -21,75 +22,68 @@ enum Hora: int
     case Mars = 6;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
+    {
+        return Localization::translate('Planet', $this->toPlanetIndex(), $locale);
+    }
+
+    /**
+     * Map Hora enum index to standard Planet index in Localization.
+     * Localization 'Planet' order: Sun (0), Moon (1), Mars (2), Rahu (3), Jupiter (4), Saturn (5), Mercury (6), Ketu (7), Venus (8)
+     */
+    private function toPlanetIndex(): int
     {
         return match ($this) {
-            self::Sun => 'Sūrya',
-            self::Venus => 'Śukra',
-            self::Mercury => 'Budha',
-            self::Moon => 'Chandra',
-            self::Saturn => 'Śani',
-            self::Jupiter => 'Guru',
-            self::Mars => 'Maṅgala',
+            self::Sun => 0,
+            self::Moon => 1,
+            self::Mars => 2,
+            self::Jupiter => 4,
+            self::Saturn => 5,
+            self::Mercury => 6,
+            self::Venus => 8,
         };
     }
 
     /**
-     * Get hora sequence starting planet for weekday.
+     * Get horā sequence for weekday.
      *
      * @param Vara $vara Weekday
      *
-     * @return self Starting planet
+     * @return array<int, self> Hora sequence (24 horas)
      */
-    public static function getStartingPlanet(Vara $vara): self
+    public static function getSequence(Vara $vara): array
     {
-        return match ($vara) {
-            Vara::Sunday => self::Sun,
-            Vara::Monday => self::Moon,
-            Vara::Tuesday => self::Mars,
-            Vara::Wednesday => self::Mercury,
-            Vara::Thursday => self::Jupiter,
-            Vara::Friday => self::Venus,
-            Vara::Saturday => self::Saturn,
-        };
-    }
+        // Sequence follows descending order of orbital speeds:
+        // Saturn -> Jupiter -> Mars -> Sun -> Venus -> Mercury -> Moon
+        $baseOrder = [
+            self::Sun,
+            self::Venus,
+            self::Mercury,
+            self::Moon,
+            self::Saturn,
+            self::Jupiter,
+            self::Mars,
+        ];
 
-    /**
-     * Get hora ruler at given time.
-     *
-     * @param float $jdSunrise Sunrise Julian Day
-     * @param float $jdSunset Sunset Julian Day
-     * @param float $jdNextSunrise Next sunrise Julian Day
-     * @param float $jdCurrent Current Julian Day
-     * @param Vara $vara Weekday
-     *
-     * @return self Hora instance
-     */
-    public static function fromTime(float $jdSunrise, float $jdSunset, float $jdNextSunrise, float $jdCurrent, Vara $vara): self
-    {
-        $isDay = $jdCurrent >= $jdSunrise && $jdCurrent < $jdSunset;
+        // Day starts with the lord of the weekday
+        $startLords = [
+            0 => self::Sun,     // Sunday
+            1 => self::Moon,    // Monday
+            2 => self::Mars,    // Tuesday
+            3 => self::Mercury, // Wednesday
+            4 => self::Jupiter, // Thursday
+            5 => self::Venus,   // Friday
+            6 => self::Saturn,  // Saturday
+        ];
 
-        if ($isDay) {
-            $durationTotal = $jdSunset - $jdSunrise;
-            $elapsed = $jdCurrent - $jdSunrise;
-            $baseOffset = 0;
-        } else {
-            $durationTotal = $jdNextSunrise - $jdSunset;
-            $elapsed = $jdCurrent - $jdSunset;
-            $baseOffset = 12;
+        $firstHora = $startLords[$vara->value];
+        $startIndex = array_search($firstHora, $baseOrder, true);
+
+        $sequence = [];
+        for ($i = 0; $i < 24; $i++) {
+            $sequence[] = $baseOrder[($startIndex + $i) % 7];
         }
 
-        $horaDuration = $durationTotal / 12.0;
-        $horaIdx = (int) floor($elapsed / $horaDuration);
-
-        if ($horaIdx > 11) {
-            $horaIdx = 11;
-        }
-
-        $startPlanet = self::getStartingPlanet($vara);
-        $totalHoursPassed = $baseOffset + $horaIdx;
-        $planetIndex = ($startPlanet->value + $totalHoursPassed) % 7;
-
-        return self::from($planetIndex);
+        return $sequence;
     }
 }

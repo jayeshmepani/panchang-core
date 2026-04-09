@@ -16,6 +16,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Samvatsara;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Enums\Yoga;
+use JayeshMepani\PanchangCore\Core\Localization;
 
 class PanchangaEngine
 {
@@ -48,7 +49,7 @@ class PanchangaEngine
         return [
             'index' => $tithi->value,
             'name' => $tithi->getName(),
-            'paksha' => $tithi->getPaksha()->name,
+            'paksha' => $tithi->getPaksha()->getName(),
             'fraction_left' => Tithi::getFractionRemaining($sunLon, $moonLon),
         ];
     }
@@ -82,7 +83,9 @@ class PanchangaEngine
 
     public function getAyana(float $sunLon): string
     {
-        return ($sunLon >= 90.0 && $sunLon < 270.0) ? 'Dakshinayana' : 'Uttarayana';
+        return ($sunLon >= 90.0 && $sunLon < 270.0) 
+            ? Localization::translate('Ayana', 1) 
+            : Localization::translate('Ayana', 0);
     }
 
     public function getRitu(float $sunLon): string
@@ -113,8 +116,8 @@ class PanchangaEngine
         $am = $paksha === 'Shukla' ? $base : ($base - 1 + 12) % 12;
 
         return [
-            'Amanta' => Masa::fromIndex($am)->getName(),
-            'Purnimanta' => Masa::fromIndex($base)->getName(),
+            'Amanta' => Masa::from($am)->getName(),
+            'Purnimanta' => Masa::from($base)->getName(),
             'Amanta_Index' => $am,
             'Purnimanta_Index' => $base,
         ];

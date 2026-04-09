@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Choghadiya Enumeration.
  *
@@ -21,17 +23,9 @@ enum Choghadiya: int
     case Rog = 6;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Udveg => 'Udveg',
-            self::Chal => 'Chal',
-            self::Labh => 'Lābh',
-            self::Amrit => 'Amṛta',
-            self::Kaal => 'Kāla',
-            self::Shubh => 'Śubh',
-            self::Rog => 'Rog',
-        };
+        return Localization::translate('Choghadiya', $this->value, $locale);
     }
 
     /** Get nature */

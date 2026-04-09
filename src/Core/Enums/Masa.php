@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
- * Māsa (Hindu Lunar Month) Enumeration.
+ * Māsa (Lunar Month) Enumeration.
  *
  * Represents the 12 lunar months in the Hindu calendar.
+ * In a purnimānta calendar, months end on full moon days.
+ * In an amānta calendar, months end on new moon days.
  */
 enum Masa: int
 {
@@ -25,64 +29,43 @@ enum Masa: int
     case Phalguna = 11;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Chaitra => 'Chaitra',
-            self::Vaishakha => 'Vaiśākha',
-            self::Jyeshtha => 'Jyeṣṭha',
-            self::Ashadha => 'Āṣāḍha',
-            self::Shravana => 'Śrāvaṇa',
-            self::Bhadrapada => 'Bhādrapada',
-            self::Ashvina => 'Āśvina',
-            self::Kartika => 'Kārtika',
-            self::Margashirsha => 'Mārgaśīrṣa',
-            self::Pausha => 'Pauṣa',
-            self::Magha => 'Māgha',
-            self::Phalguna => 'Phālguna',
-        };
-    }
-
-    /** Get English approximation */
-    public function getEnglishApproximation(): string
-    {
-        return match ($this) {
-            self::Chaitra => 'March-April',
-            self::Vaishakha => 'April-May',
-            self::Jyeshtha => 'May-June',
-            self::Ashadha => 'June-July',
-            self::Shravana => 'July-August',
-            self::Bhadrapada => 'August-September',
-            self::Ashvina => 'September-October',
-            self::Kartika => 'October-November',
-            self::Margashirsha => 'November-December',
-            self::Pausha => 'December-January',
-            self::Magha => 'January-February',
-            self::Phalguna => 'February-March',
-        };
-    }
-
-    /** Get ruling nakṣatra */
-    public function getRulingNakshatra(): Nakshatra
-    {
-        return match ($this) {
-            self::Chaitra => Nakshatra::Chitra,
-            self::Vaishakha => Nakshatra::Vishakha,
-            self::Jyeshtha => Nakshatra::Jyeshtha,
-            self::Ashadha => Nakshatra::UttaraAshadha,
-            self::Shravana => Nakshatra::Shravana,
-            self::Bhadrapada => Nakshatra::PurvaBhadrapada,
-            self::Ashvina => Nakshatra::Ashwini,
-            self::Kartika => Nakshatra::Krittika,
-            self::Margashirsha => Nakshatra::Mrigashira,
-            self::Pausha => Nakshatra::Pushya,
-            self::Magha => Nakshatra::Magha,
-            self::Phalguna => Nakshatra::PurvaPhalguni,
-        };
+        return Localization::translate('Masa', $this->value, $locale);
     }
 
     /**
-     * Get month from index.
+     * Get māsa from Sun longitude.
+     *
+     * @param float $sunLon Sun longitude in degrees
+     *
+     * @return self Masa instance
+     */
+    public static function fromSunLongitude(float $sunLon): self
+    {
+        $normalized = fmod($sunLon, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        $index = (int) floor($normalized / 30.0);
+        return self::from($index);
+    }
+
+    /**
+     * Get māsa from amānta index (0-11).
+     *
+     * @param int $index Month index
+     *
+     * @return self Masa instance
+     */
+    public static function fromAmantaIndex(int $index): self
+    {
+        return self::from($index % 12);
+    }
+
+    /**
+     * Alias for from().
      *
      * @param int $index Month index (0-11)
      *

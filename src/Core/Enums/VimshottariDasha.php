@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Vimśottarī Daśā Planet Enumeration.
  *
@@ -22,19 +24,9 @@ enum VimshottariDasha: int
     case Venus = 8;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Sun => 'Sūrya',
-            self::Moon => 'Chandra',
-            self::Mars => 'Maṅgala',
-            self::Rahu => 'Rāhu',
-            self::Jupiter => 'Guru',
-            self::Saturn => 'Śani',
-            self::Mercury => 'Budha',
-            self::Ketu => 'Ketu',
-            self::Venus => 'Śukra',
-        };
+        return Localization::translate('Planet', $this->value, $locale);
     }
 
     /** Get dasha period in years */

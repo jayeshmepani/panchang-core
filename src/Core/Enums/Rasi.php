@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Rāśi (Zodiac Sign) Enumeration.
  *
@@ -26,22 +28,9 @@ enum Rasi: int
     case Meena = 11;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Mesha => 'Meṣa',
-            self::Vrishabha => 'Vṛiṣabha',
-            self::Mithuna => 'Mithuna',
-            self::Karka => 'Karkaṭa',
-            self::Simha => 'Siṃha',
-            self::Kanya => 'Kanyā',
-            self::Tula => 'Tulā',
-            self::Vrischika => 'Vṛiśchika',
-            self::Dhanu => 'Dhanuṣ',
-            self::Makara => 'Makara',
-            self::Kumbha => 'Kumbha',
-            self::Meena => 'Mīna',
-        };
+        return Localization::translate('Rasi', $this->value, $locale);
     }
 
     /** Get English name */

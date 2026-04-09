@@ -4,80 +4,99 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Karaṇa Enumeration.
  *
- * Represents the 11 karanas (half lunar days) in Vedic astrology.
- * Each tithi is divided into two karanas (each 6° of Moon-Sun longitude difference).
+ * Represents the 11 half-tithis (karaṇas) in Vedic astrology.
+ * 7 of these are repeating (movable), and 4 are fixed.
  */
 enum Karana: int
 {
-    case Bava = 1;
-    case Balava = 2;
-    case Kaulava = 3;
-    case Taitila = 4;
-    case Gara = 5;
-    case Vanija = 6;
-    case Vishti = 7;
-    case Shakuni = 8;
-    case Chatushpada = 9;
-    case Naga = 10;
-    case Kimstughna = 11;
+    case Bava = 0;
+    case Balava = 1;
+    case Kaulava = 2;
+    case Taitila = 3;
+    case Gara = 4;
+    case Vanija = 5;
+    case Vishti = 6;
+    case Shakuni = 7;
+    case Chatushpada = 8;
+    case Naga = 9;
+    case Kintughna = 10;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Bava => 'Bava',
-            self::Balava => 'Balava',
-            self::Kaulava => 'Kaulava',
-            self::Taitila => 'Taitila',
-            self::Gara => 'Gara',
-            self::Vanija => 'Vanija',
-            self::Vishti => 'Vishti',
-            self::Shakuni => 'Shakuni',
-            self::Chatushpada => 'Chatushpada',
-            self::Naga => 'Naga',
-            self::Kimstughna => 'Kimstughna',
-        };
-    }
-
-    /** Get type (Chara/Movable or Sthira/Fixed) */
-    public function getType(): string
-    {
-        return in_array($this->value, [8, 9, 10, 11], true) ? 'Sthira' : 'Chara';
+        return Localization::translate('Karana', $this->value, $locale);
     }
 
     /**
-     * Get karana from tithi index.
+     * Get karaṇa from Sun-Moon longitude difference.
+     *
+     * @param float $sunLon Sun longitude in degrees
+     * @param float $moonLon Moon longitude in degrees
+     *
+     * @return array{0: string, 1: int} [Name, Index (1-60)]
+     */
+    public static function getFromLongitudes(float $sunLon, float $moonLon): array
+    {
+        $diff = fmod($moonLon - $sunLon, 360.0);
+        if ($diff < 0) {
+            $diff += 360.0;
+        }
+
+        $index = (int) floor($diff / 6.0) + 1; // 1-60
+
+        if ($index === 1) {
+            return [self::Kintughna->getName(), $index];
+        }
+
+        if ($index >= 2 && $index <= 57) {
+            $enumIdx = ($index - 2) % 7;
+            return [self::from($enumIdx)->getName(), $index];
+        }
+
+        if ($index === 58) {
+            return [self::Shakuni->getName(), $index];
+        }
+
+        if ($index === 59) {
+            return [self::Chatushpada->getName(), $index];
+        }
+
+        return [self::Naga->getName(), $index];
+    }
+
+    /**
+     * Get karaṇa from tithi index and its completion fraction.
      *
      * @param int $tithiIndex Tithi index (1-30)
-     * @param float $fraction Tithi fraction (0.0-1.0)
+     * @param float $fraction Completion fraction of tithi (0-1)
      *
      * @return self Karana instance
      */
     public static function fromTithi(int $tithiIndex, float $fraction): self
     {
-        $adjustedTithi = $tithiIndex - 1;
-        if ($adjustedTithi < 0) {
-            $adjustedTithi = 29;
+        $kIdx = ($tithiIndex - 1) * 2 + ($fraction < 0.5 ? 0 : 1) + 1;
+
+        if ($kIdx === 1) {
+            return self::Kintughna;
         }
 
-        $isFirstHalf = $fraction < 0.5;
-        $index = ($adjustedTithi * 2) + ($isFirstHalf ? 0 : 1);
+        if ($kIdx >= 2 && $kIdx <= 57) {
+            return self::from(($kIdx - 2) % 7);
+        }
 
-        if ($index === 0) { return self::Kimstughna; }
-        if ($index === 57) { return self::Shakuni; }
-        if ($index === 58) { return self::Chatushpada; }
-        if ($index === 59) { return self::Naga; }
+        if ($kIdx === 58) {
+            return self::Shakuni;
+        }
 
-        $charaValue = (($index - 1) % 7) + 1;
-        return self::from($charaValue);
-    }
+        if ($kIdx === 59) {
+            return self::Chatushpada;
+        }
 
-    /** Check if this is Vishti (Bhadra) */
-    public function isVishti(): bool
-    {
-        return $this === self::Vishti;
+        return self::Naga;
     }
 }

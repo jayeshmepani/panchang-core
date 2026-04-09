@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Yoga Enumeration.
  *
  * Represents the 27 yogas in Vedic astrology.
- * Each yoga is completed when Sun-Moon longitude sum advances by 13°20' (360° / 27).
+ * Each yoga is completed when the sum of Sun and Moon longitudes gains 13°20'.
  */
 enum Yoga: int
 {
-    case Vishkambha = 0;
+    case Vishkumbha = 0;
     case Priti = 1;
     case Ayushman = 2;
     case Saubhagya = 3;
@@ -37,41 +39,13 @@ enum Yoga: int
     case Shubha = 22;
     case Shukla = 23;
     case Brahma = 24;
-    case Aindra = 25;
+    case Indra = 25;
     case Vaidhriti = 26;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Vishkambha => 'Vishkambha',
-            self::Priti => 'Priti',
-            self::Ayushman => 'Ayushman',
-            self::Saubhagya => 'Saubhagya',
-            self::Shobhana => 'Shobhana',
-            self::Atiganda => 'Atiganda',
-            self::Sukarma => 'Sukarma',
-            self::Dhriti => 'Dhriti',
-            self::Shula => 'Shula',
-            self::Ganda => 'Ganda',
-            self::Vriddhi => 'Vriddhi',
-            self::Dhruva => 'Dhruva',
-            self::Vyaghata => 'Vyaghata',
-            self::Harshana => 'Harshana',
-            self::Vajra => 'Vajra',
-            self::Siddhi => 'Siddhi',
-            self::Vyatipata => 'Vyatipata',
-            self::Variyana => 'Variyana',
-            self::Parigha => 'Parigha',
-            self::Shiva => 'Shiva',
-            self::Siddha => 'Siddha',
-            self::Sadhya => 'Sadhya',
-            self::Shubha => 'Shubha',
-            self::Shukla => 'Shukla',
-            self::Brahma => 'Brahma',
-            self::Aindra => 'Aindra',
-            self::Vaidhriti => 'Vaidhriti',
-        };
+        return Localization::translate('Yoga', $this->value, $locale);
     }
 
     /**
@@ -91,5 +65,23 @@ enum Yoga: int
 
         $index = (int) floor($sum / 13.3333333333);
         return self::from($index);
+    }
+
+    /**
+     * Get fraction remaining in yoga.
+     *
+     * @param float $sunLon Sun longitude in degrees
+     * @param float $moonLon Moon longitude in degrees
+     *
+     * @return float Fraction remaining (0.0-1.0)
+     */
+    public static function getFractionRemaining(float $sunLon, float $moonLon): float
+    {
+        $sum = fmod($sunLon + $moonLon, 360.0);
+        if ($sum < 0) {
+            $sum += 360.0;
+        }
+
+        return 1.0 - (fmod($sum, 13.3333333333) / 13.3333333333);
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Nakṣatra Enumeration.
  *
@@ -41,37 +43,9 @@ enum Nakshatra: int
     case Revati = 26;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Ashwini => 'Ashwini',
-            self::Bharani => 'Bharani',
-            self::Krittika => 'Krittika',
-            self::Rohini => 'Rohini',
-            self::Mrigashira => 'Mrigashira',
-            self::Ardra => 'Ardra',
-            self::Punarvasu => 'Punarvasu',
-            self::Pushya => 'Pushya',
-            self::Ashlesha => 'Ashlesha',
-            self::Magha => 'Magha',
-            self::PurvaPhalguni => 'Purva Phalguni',
-            self::UttaraPhalguni => 'Uttara Phalguni',
-            self::Hasta => 'Hasta',
-            self::Chitra => 'Chitra',
-            self::Swati => 'Swati',
-            self::Vishakha => 'Vishakha',
-            self::Anuradha => 'Anuradha',
-            self::Jyeshtha => 'Jyeshtha',
-            self::Mula => 'Mula',
-            self::PurvaAshadha => 'Purva Ashadha',
-            self::UttaraAshadha => 'Uttara Ashadha',
-            self::Shravana => 'Shravana',
-            self::Dhanishta => 'Dhanishta',
-            self::Shatabhisha => 'Shatabhisha',
-            self::PurvaBhadrapada => 'Purva Bhadrapada',
-            self::UttaraBhadrapada => 'Uttara Bhadrapada',
-            self::Revati => 'Revati',
-        };
+        return Localization::translate('Nakshatra', $this->value, $locale);
     }
 
     /** Get deity of the nakṣatra */
@@ -111,8 +85,7 @@ enum Nakshatra: int
     /** Get ruling planet */
     public function getRulingPlanet(): string
     {
-        $planets = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
-        return $planets[$this->value % 9];
+        return VimshottariDasha::fromNakshatra($this)->getName();
     }
 
     /** Get Vedic symbol */

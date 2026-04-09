@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Saṃvatsara (60-Year Jupiter Cycle) Enumeration.
  *
@@ -74,70 +76,9 @@ enum Samvatsara: int
     case Akshaya = 59;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Prabhava => 'Prabhava',
-            self::Vibhava => 'Vibhava',
-            self::Shukla => 'Śukla',
-            self::Pramoda => 'Pramoda',
-            self::Prajapati => 'Prajāpati',
-            self::Angirasa => 'Aṅgirasa',
-            self::Srimukha => 'Śrīmukha',
-            self::Bhava => 'Bhava',
-            self::Yuva => 'Yuva',
-            self::Dhata => 'Dhātā',
-            self::Ishvara => 'Īśvara',
-            self::Bahudhanya => 'Bahudhanya',
-            self::Pramathi => 'Pramathi',
-            self::Vikrama => 'Vikrama',
-            self::Vrisha => 'Vṛiṣha',
-            self::Chitrabhanu => 'Chitrabhānu',
-            self::Svabhanu => 'Svabhānu',
-            self::Tarana => 'Tārana',
-            self::Parthiva => 'Pārthiva',
-            self::Vyaya => 'Vyaya',
-            self::Sarvajit => 'Sarvajit',
-            self::Sarvadhari => 'Sarvadhāri',
-            self::Virodhi => 'Virodhi',
-            self::Vikriti => 'Vikṛiti',
-            self::Khara => 'Khara',
-            self::Nandana => 'Nandana',
-            self::Vijaya => 'Vijaya',
-            self::Jaya => 'Jaya',
-            self::Manmatha => 'Manmatha',
-            self::Durmukhi => 'Durmukhi',
-            self::Hevilambi => 'Hevilambi',
-            self::Vilambi => 'Vilambi',
-            self::Vikari => 'Vikāri',
-            self::Sharvari => 'Śarvari',
-            self::Plava => 'Plava',
-            self::Shubhakritu => 'Śubhakṛtu',
-            self::Shobhakritu => 'Śobhakṛtu',
-            self::Krodhi => 'Krodhi',
-            self::Vishvavasu => 'Viśvāvasu',
-            self::Parabhava => 'Parābhava',
-            self::Plavanga => 'Plavanga',
-            self::Kilaka => 'Kīlaka',
-            self::Saumya => 'Saumya',
-            self::Sadharana => 'Sādhāraṇa',
-            self::Virodhikritu => 'Virodhikṛtu',
-            self::Paritapi => 'Paritāpi',
-            self::Pramadi => 'Pramādi',
-            self::Ananda => 'Ānanda',
-            self::Rakshasa => 'Rākṣasa',
-            self::Nala => 'Nala',
-            self::Pingala => 'Piṅgala',
-            self::Kalayukti => 'Kalāyukti',
-            self::Siddharthi => 'Siddhārthi',
-            self::Raudri => 'Raudri',
-            self::Durmati => 'Durmati',
-            self::Dundubhi => 'Dundubhi',
-            self::Rudhirodgari => 'Rudhirodgāri',
-            self::Raktakshi => 'Rākṣakṣi',
-            self::Krodhana => 'Krodhana',
-            self::Akshaya => 'Akṣaya',
-        };
+        return Localization::translate('Samvatsara', $this->value, $locale);
     }
 
     /**

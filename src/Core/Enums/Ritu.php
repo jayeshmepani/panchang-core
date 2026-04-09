@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Ṛtu (Season) Enumeration.
  *
- * Represents the 6 Hindu seasons.
- * Each ṛtu spans 2 lunar months.
+ * Represents the 6 seasons in the Hindu calendar.
+ * Each ritu spans 60° of the zodiac (approx. 2 lunar months).
  */
 enum Ritu: int
 {
@@ -20,58 +22,38 @@ enum Ritu: int
     case Shishira = 5;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::Vasanta => 'Vasanta',
-            self::Grishma => 'Grīṣma',
-            self::Varsha => 'Varṣā',
-            self::Sharad => 'Śarad',
-            self::Hemanta => 'Hemanta',
-            self::Shishira => 'Śiśira',
-        };
-    }
-
-    /** Get English name */
-    public function getEnglishName(): string
-    {
-        return match ($this) {
-            self::Vasanta => 'Spring',
-            self::Grishma => 'Summer',
-            self::Varsha => 'Monsoon',
-            self::Sharad => 'Autumn',
-            self::Hemanta => 'Pre-Winter',
-            self::Shishira => 'Winter',
-        };
+        return Localization::translate('Ritu', $this->value, $locale);
     }
 
     /**
-     * Get months in this ṛtu.
+     * Get ṛtu from Sun longitude.
      *
-     * @return array<int> Month indices (0-11)
+     * @param float $sunLon Sun longitude in degrees
+     *
+     * @return self Ritu instance
      */
-    public function getMonths(): array
+    public static function fromSunLongitude(float $sunLon): self
     {
-        return match ($this) {
-            self::Vasanta => [0, 1],  // Chaitra, Vaishakha
-            self::Grishma => [2, 3],  // Jyeshtha, Ashadha
-            self::Varsha => [4, 5],   // Shravana, Bhadrapada
-            self::Sharad => [6, 7],   // Ashvina, Kartika
-            self::Hemanta => [8, 9],  // Margashirsha, Pausha
-            self::Shishira => [10, 11], // Magha, Phalguna
-        };
+        $normalized = fmod($sunLon, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        $index = (int) floor($normalized / 60.0);
+        return self::from($index);
     }
 
     /**
-     * Get ṛtu from month index.
+     * Get ṛtu from solar month index (0-11).
      *
-     * @param int $monthIndex Month index (0-11)
+     * @param int $monthIndex Month index (0=Mesha/Chaitra)
      *
      * @return self Ritu instance
      */
     public static function fromMonth(int $monthIndex): self
     {
-        $rituMap = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-        return self::from($rituMap[$monthIndex]);
+        return self::from((int) floor(($monthIndex % 12) / 2.0));
     }
 }

@@ -13,6 +13,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
+use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use SwissEph\FFI\SwissEphFFI;
@@ -178,8 +179,8 @@ class PanchangService
 
         // New calculations: Prahara, Brahma Muhurta, Dur Muhurta
         $praharaTable = $this->muhurta->calculatePrahara($relSunrise, $sunset, $nextSunrise);
-        $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($relSunrise);
-        $durMuhurtaTable = $this->muhurta->calculateDurMuhurta($relSunrise, $sunset, $nextSunrise);
+        $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($nextSunrise);
+        $durMuhurtaTable = $this->muhurta->calculateDurMuhurta($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
         $daylightFivefold = $this->muhurta->calculateDaylightFivefoldDivision($relSunrise, $sunset);
         $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
         $vijayaMuhurta = $this->muhurta->calculateVijayaMuhurta($relSunrise, $sunset);
@@ -289,7 +290,9 @@ class PanchangService
             ],
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Month_Purnimanta_En' => $hinduMonth['Month_Purnimanta_En'],
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
@@ -461,10 +464,30 @@ class PanchangService
                 ],
                 'Yoga' => $yoga,
                 'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
-                'Sunrise' => AstroCore::formatTime($relSunrise),
-                'Sunset' => AstroCore::formatTime($sunset),
-                'Moonrise' => AstroCore::formatTime($moonrise),
-                'Moonset' => AstroCore::formatTime($moonset),
+                'Sunrise' => [
+                    'jd' => $jdSunrise,
+                    'iso' => AstroCore::formatDateTime($relSunrise),
+                    'display' => AstroCore::formatTime($relSunrise),
+                    'timestamp' => $relSunrise->getTimestamp(),
+                ],
+                'Sunset' => [
+                    'jd' => $jdSunset,
+                    'iso' => AstroCore::formatDateTime($sunset),
+                    'display' => AstroCore::formatTime($sunset),
+                    'timestamp' => $sunset->getTimestamp(),
+                ],
+                'Moonrise' => [
+                    'jd' => $this->toJulianDayFromCarbon($moonrise, $tz),
+                    'iso' => AstroCore::formatDateTime($moonrise),
+                    'display' => AstroCore::formatTime($moonrise),
+                    'timestamp' => $moonrise->getTimestamp(),
+                ],
+                'Moonset' => [
+                    'jd' => $this->toJulianDayFromCarbon($moonset, $tz),
+                    'iso' => AstroCore::formatDateTime($moonset),
+                    'display' => AstroCore::formatTime($moonset),
+                    'timestamp' => $moonset->getTimestamp(),
+                ],
                 'Ishtkaal' => $isth,
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
                 'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
@@ -519,9 +542,26 @@ class PanchangService
             'Nishita_Muhurta' => $nishitaMuhurta,
             'Vijaya_Muhurta' => $vijayaMuhurta,
             'Godhuli_Muhurta' => $godhuliMuhurta,
-            'Sandhya' => $sandhya,
+            'Sandhya' => [
+                'pratah_sandhya' => [
+                    ...$sandhya['pratah_sandhya'],
+                    'duration_minutes' => AstroCore::formatDuration(($jdSunrise - $this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['pratah_sandhya']['start_iso']), $tz)) * 1440.0),
+                ],
+                'madhyahna_sandhya' => [
+                    ...$sandhya['madhyahna_sandhya'],
+                    'duration_minutes' => AstroCore::formatDuration(($this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['madhyahna_sandhya']['end_iso']), $tz) - $this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['madhyahna_sandhya']['start_iso']), $tz)) * 1440.0),
+                ],
+                'sayahna_sandhya' => [
+                    ...$sandhya['sayahna_sandhya'],
+                    'duration_minutes' => AstroCore::formatDuration(($this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['sayahna_sandhya']['end_iso']), $tz) - $jdSunset) * 1440.0),
+                ],
+            ],
             'Gowri_Panchangam' => $gowriPanchangam,
-            'Kala_Vela' => $kalaVela,
+            'Kala_Vela' => [
+                'named_kala_velas' => $kalaVela['named_kala_velas'],
+                'day' => $kalaVela['day'],
+                'night' => $kalaVela['night'],
+            ],
             'Karmakala_Windows' => $karmakalaWindows,
             'Varjyam' => $varjyam,
             'Amrita_Kaal' => $amritaKaal,
@@ -634,7 +674,9 @@ class PanchangService
             'Moon_Sign' => Rasi::from(AstroCore::getSign($moonLon))->getName(),
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Month_Purnimanta_En' => $hinduMonth['Month_Purnimanta_En'],
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
@@ -699,7 +741,7 @@ class PanchangService
             $sankranti = null;
             if ($todaySnapshot['Resolution_Context']['sankranti_rashi'] !== null) {
                 $rashiIdx = $todaySnapshot['Resolution_Context']['sankranti_rashi'];
-                $sankranti = Rasi::from($rashiIdx)->getName() . ' Sankranti';
+                $sankranti = Rasi::from($rashiIdx)->getName() . ' ' . Localization::translate('Common', 'Sankranti');
             }
 
             $calendar[$date->toDateString()] = [
@@ -1578,11 +1620,17 @@ class PanchangService
             $amantaIdx = $signPrev;
         }
 
-        $amantaName = Masa::fromIndex($amantaIdx)->getName();
+        $adhikaStr = ' (' . Localization::translate('Common', 'Adhika') . ')';
+        $kshayaStr = ' (' . Localization::translate('Common', 'Kshaya') . ')';
+
+        $amantaName = Masa::from($amantaIdx)->getName();
+        $amantaNameEn = Masa::from($amantaIdx)->getName('en');
         if ($isAdhika) {
-            $amantaName .= ' (Adhika)';
+            $amantaName .= $adhikaStr;
+            $amantaNameEn .= ' (Adhika)';
         } elseif ($isKshaya) {
-            $amantaName .= ' (Kśaya)';
+            $amantaName .= $kshayaStr;
+            $amantaNameEn .= ' (Kshaya)';
         }
 
         // Purnimanta month is determined by the Amanta month and current paksha.
@@ -1590,14 +1638,18 @@ class PanchangService
         $paksha = ($moonSunAngle < 180.0) ? 'Shukla' : 'Krishna';
 
         $purnimantaIdx = ($paksha === 'Shukla') ? $amantaIdx : ($amantaIdx + 1) % 12;
-        $purnimantaName = Masa::fromIndex($purnimantaIdx)->getName();
+        $purnimantaName = Masa::from($purnimantaIdx)->getName();
+        $purnimantaNameEn = Masa::from($purnimantaIdx)->getName('en');
         if ($isAdhika) {
-            $purnimantaName .= ' (Adhika)';
+            $purnimantaName .= $adhikaStr;
+            $purnimantaNameEn .= ' (Adhika)';
         }
 
         $data = [
             'Month_Amanta' => $amantaName,
+            'Month_Amanta_En' => $amantaNameEn,
             'Month_Purnimanta' => $purnimantaName,
+            'Month_Purnimanta_En' => $purnimantaNameEn,
             'Amanta_Index' => $amantaIdx,
             'Purnimanta_Index' => $purnimantaIdx,
             'Is_Adhika' => $isAdhika,

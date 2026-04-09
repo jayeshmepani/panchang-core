@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Tithi Enumeration.
  *
@@ -44,26 +46,9 @@ enum Tithi: int
     case Amavasya = 30;
 
     /** Get Sanskrit name */
-    public function getName(): string
+    public function getName(?string $locale = null): string
     {
-        return match ($this) {
-            self::ShuklaPratipada, self::KrishnaPratipada => 'Pratipada',
-            self::ShuklaDwitiya, self::KrishnaDwitiya => 'Dwitiya',
-            self::ShuklaTritiya, self::KrishnaTritiya => 'Tritiya',
-            self::ShuklaChaturthi, self::KrishnaChaturthi => 'Chaturthi',
-            self::ShuklaPanchami, self::KrishnaPanchami => 'Panchami',
-            self::ShuklaShashthi, self::KrishnaShashthi => 'Shashthi',
-            self::ShuklaSaptami, self::KrishnaSaptami => 'Saptami',
-            self::ShuklaAshtami, self::KrishnaAshtami => 'Ashtami',
-            self::ShuklaNavami, self::KrishnaNavami => 'Navami',
-            self::ShuklaDashami, self::KrishnaDashami => 'Dashami',
-            self::ShuklaEkadashi, self::KrishnaEkadashi => 'Ekadashi',
-            self::ShuklaDwadashi, self::KrishnaDwadashi => 'Dwadashi',
-            self::ShuklaTrayodashi, self::KrishnaTrayodashi => 'Trayodashi',
-            self::ShuklaChaturdashi, self::KrishnaChaturdashi => 'Chaturdashi',
-            self::Purnima => 'Purnima',
-            self::Amavasya => 'Amavasya',
-        };
+        return Localization::translate('Tithi', $this->getNormalizedIndex(), $locale);
     }
 
     /** Get pakṣa (fortnight) */
