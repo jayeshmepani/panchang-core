@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
+use Override;
 
 /**
  * Panchang Facade.
@@ -21,6 +22,7 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 class Panchang extends Facade
 {
     /** Get the registered name of the component. */
+    #[Override]
     protected static function getFacadeAccessor(): string
     {
         return PanchangService::class;

@@ -51,7 +51,7 @@
     },
     "scripts": {
         "test": "phpunit --do-not-fail-on-warning --do-not-fail-on-phpunit-warning --do-not-fail-on-incomplete --do-not-fail-on-deprecation --do-not-fail-on-phpunit-deprecation",
-        "rector": "vendor/bin/rector process src",
+        "rector": "vendor/bin/rector process",
         "lint": "pint",
         "lint:fix": "pint",
         "lint:check": "pint --test",

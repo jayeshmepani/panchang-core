@@ -148,6 +148,52 @@ class FestivalRuleEngine
         return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
     }
 
+    /** Adhik/Kshaya maas tagging from amanta month progression. */
+    public function annotateMonthAnomalies(array $dateToDetails): array
+    {
+        ksort($dateToDetails);
+        $monthStartDates = [];
+        foreach ($dateToDetails as $date => $details) {
+            $tithi = (array) ($details['Tithi'] ?? []);
+            $idx = (int) ($tithi['index'] ?? 0);
+            $paksha = (string) ($tithi['paksha'] ?? '');
+            if ($idx === 1 && $paksha === 'Shukla') {
+                $month = (string) (($details['Hindu_Calendar']['Month_Amanta'] ?? ''));
+                if ($month !== '') {
+                    $monthStartDates[] = ['date' => $date, 'month' => $month];
+                }
+            }
+        }
+
+        $tagsByDate = [];
+        $monthOrder = array_keys(FestivalService::MONTHS);
+        $monthIndex = array_flip($monthOrder);
+        $counter = count($monthStartDates);
+
+        for ($i = 1; $i < $counter; $i++) {
+            $prev = $monthStartDates[$i - 1];
+            $cur = $monthStartDates[$i];
+            $prevIdx = $monthIndex[$prev['month']] ?? null;
+            $curIdx = $monthIndex[$cur['month']] ?? null;
+            if ($prevIdx === null || $curIdx === null) {
+                continue;
+            }
+
+            if ($prev['month'] === $cur['month']) {
+                $tagsByDate[$cur['date']] = ['month_status' => 'Adhik Maas', 'month_name' => $cur['month']];
+                continue;
+            }
+
+            $expected = ($prevIdx + 1) % 12;
+            if ($curIdx !== $expected) {
+                $missing = $monthOrder[$expected];
+                $tagsByDate[$cur['date']] = ['month_status' => 'Kshaya Maas Transition', 'missing_month' => $missing];
+            }
+        }
+
+        return $tagsByDate;
+    }
+
     /** Resolve nakshatra-based festival (e.g., Onam, Thai Poosam). */
     private function resolveNakshatraFestival(
         string $festivalName,
@@ -224,15 +270,13 @@ class FestivalRuleEngine
             return null;
         }
 
-        // Simple nakshatra-only match
+        // Simple nakshatra-only match (at least one match is guaranteed here due to early returns above)
         if ($nakshatraTodayMatch) {
             return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_match');
         }
-        if ($nakshatraTomorrowMatch) {
-            return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_match');
-        }
 
-        return null;
+        // $nakshatraTomorrowMatch must be true at this point
+        return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_match');
     }
 
     /** Build nakshatra-based festival result. */
@@ -257,52 +301,6 @@ class FestivalRuleEngine
                 'winning_reason' => $reason,
             ],
         ];
-    }
-
-    /** Adhik/Kshaya maas tagging from amanta month progression. */
-    public function annotateMonthAnomalies(array $dateToDetails): array
-    {
-        ksort($dateToDetails);
-        $monthStartDates = [];
-        foreach ($dateToDetails as $date => $details) {
-            $tithi = (array) ($details['Tithi'] ?? []);
-            $idx = (int) ($tithi['index'] ?? 0);
-            $paksha = (string) ($tithi['paksha'] ?? '');
-            if ($idx === 1 && $paksha === 'Shukla') {
-                $month = (string) (($details['Hindu_Calendar']['Month_Amanta'] ?? ''));
-                if ($month !== '') {
-                    $monthStartDates[] = ['date' => $date, 'month' => $month];
-                }
-            }
-        }
-
-        $tagsByDate = [];
-        $monthOrder = array_keys(FestivalService::MONTHS);
-        $monthIndex = array_flip($monthOrder);
-        $counter = count($monthStartDates);
-
-        for ($i = 1; $i < $counter; $i++) {
-            $prev = $monthStartDates[$i - 1];
-            $cur = $monthStartDates[$i];
-            $prevIdx = $monthIndex[$prev['month']] ?? null;
-            $curIdx = $monthIndex[$cur['month']] ?? null;
-            if ($prevIdx === null || $curIdx === null) {
-                continue;
-            }
-
-            if ($prev['month'] === $cur['month']) {
-                $tagsByDate[$cur['date']] = ['month_status' => 'Adhik Maas', 'month_name' => $cur['month']];
-                continue;
-            }
-
-            $expected = ($prevIdx + 1) % 12;
-            if ($curIdx !== $expected) {
-                $missing = $monthOrder[$expected];
-                $tagsByDate[$cur['date']] = ['month_status' => 'Kshaya Maas Transition', 'missing_month' => $missing];
-            }
-        }
-
-        return $tagsByDate;
     }
 
     private function deriveTargetInterval(int $targetAbs, int $todayAbs, int $tomorrowAbs, array $ctxToday, array $ctxTomorrow): ?array

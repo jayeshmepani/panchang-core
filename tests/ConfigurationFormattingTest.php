@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
+use Override;
 
 class ConfigurationFormattingTest extends TestCase
 {
@@ -71,6 +72,7 @@ class ConfigurationFormattingTest extends TestCase
         $this->assertTrue($detailsHours['Hora']['hora_duration_minutes'] < 2.0); // An hora is ~1 hour
 
     }
+    #[Override]
     protected function getPackageProviders($app): array
     {
         return [

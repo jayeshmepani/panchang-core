@@ -20,12 +20,14 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class PanchangaTest extends TestCase
 {
     private PanchangaEngine $panchanga;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->panchanga = new PanchangaEngine;

@@ -6,7 +6,6 @@ declare(strict_types=1);
 $baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
 require $baseDir . '/vendor/autoload.php';
 
-use Carbon\CarbonImmutable;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
@@ -38,11 +37,11 @@ if (class_exists(Container::class) && class_exists(Repository::class)) {
 if (!function_exists('config')) {
     function config(array|string|null $key = null, mixed $default = null): mixed {
         global $configStore;
-        if ($key === null) return $configStore;
+        if ($key === null) { return $configStore; }
         $segments = explode('.', $key);
         $value = $configStore;
         foreach ($segments as $segment) {
-            if (!is_array($value) || !array_key_exists($segment, $value)) return $default;
+            if (!is_array($value) || !array_key_exists($segment, $value)) { return $default; }
             $value = $value[$segment];
         }
         return $value;

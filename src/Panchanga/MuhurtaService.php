@@ -725,7 +725,7 @@ class MuhurtaService
         }
 
         // We assume varjyam_end_iso is passed along internally, but if it is just a formatted time, we rely on the object
-        $varjyamEndStr = preg_replace('/[^0-9:]/', '', $varjyam['varjyam_end']);
+        $varjyamEndStr = preg_replace('/[^0-9:]/', '', (string) $varjyam['varjyam_end']);
         $varjyamEnd = CarbonImmutable::createFromFormat('H:i:s', $varjyamEndStr)->setDate($sunrise->year, $sunrise->month, $sunrise->day);
 
         $amritaDuration = (float) $varjyam['duration_seconds_raw'];

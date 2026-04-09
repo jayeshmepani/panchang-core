@@ -564,6 +564,7 @@ class PanchangService
         ];
 
         [$sunrise, $sunset] = $this->sunService->getSunriseSunset($birthBase);
+        [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
         $nextDay = $date->addDay();
         [$nextSunrise] = $this->sunService->getSunriseSunset([
             ...$birthBase,
@@ -629,6 +630,7 @@ class PanchangService
             ],
             'Yoga' => $yoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
+            'Sun_Sign' => Rasi::from(AstroCore::getSign($sunLon))->getName(),
             'Moon_Sign' => Rasi::from(AstroCore::getSign($moonLon))->getName(),
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
@@ -640,6 +642,8 @@ class PanchangService
             ],
             'Sunrise' => AstroCore::formatTime($sunrise),
             'Sunset' => AstroCore::formatTime($sunset),
+            'Moonrise' => AstroCore::formatTime($moonrise),
+            'Moonset' => AstroCore::formatTime($moonset),
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
                 'sunset_jd' => $jdSunset,
@@ -706,9 +710,12 @@ class PanchangService
                 'yoga' => $todaySnapshot['Yoga'],
                 'karana' => $todaySnapshot['Karana'],
                 'vara' => $todaySnapshot['Vara'],
+                'sun_sign' => $todaySnapshot['Sun_Sign'],
                 'moon_sign' => $todaySnapshot['Moon_Sign'],
                 'sunrise' => $todaySnapshot['Sunrise'],
                 'sunset' => $todaySnapshot['Sunset'],
+                'moonrise' => $todaySnapshot['Moonrise'],
+                'moonset' => $todaySnapshot['Moonset'],
                 'hindu_calendar' => $todaySnapshot['Hindu_Calendar'],
                 'festivals' => $festivals,
                 'daily_observances' => $dailyObservances,
@@ -1116,24 +1123,37 @@ class PanchangService
     private function annotateTimeOnlyFieldsWithDateTime(array $payload, CarbonImmutable $sunrise, string $tz): array
     {
         $annotate = function (array $node) use (&$annotate, $sunrise, $tz): array {
+            $lastResolvedDt = null;
             foreach ($node as $key => $value) {
                 if (is_array($value)) {
                     $node[$key] = $annotate($value);
+                    // Reset context for next array/object at same level?
+                    // Usually ranges are in the same object.
                     continue;
                 }
 
                 if (!is_string($value) || !$this->isTimeOnlyString($value)) {
+                    // If it's an ISO string, track it as last resolved
+                    if (is_string($value) && str_contains($value, 'T') && str_contains($value, ':')) {
+                        try {
+                            $lastResolvedDt = CarbonImmutable::parse($value, $tz);
+                        } catch (Throwable) {}
+                    }
                     continue;
                 }
 
                 $isoKey = $key . '_iso';
                 if (array_key_exists($isoKey, $node)) {
+                    try {
+                        $lastResolvedDt = CarbonImmutable::parse((string)$node[$isoKey], $tz);
+                    } catch (Throwable) {}
                     continue;
                 }
 
-                $dt = $this->resolveTimeStringToDateTime($value, $sunrise, $tz);
+                $dt = $this->resolveTimeStringToDateTime($value, $sunrise, $tz, $lastResolvedDt);
                 if ($dt instanceof CarbonImmutable) {
                     $node[$isoKey] = AstroCore::formatDateTime($dt);
+                    $lastResolvedDt = $dt;
                 }
             }
 
@@ -1160,7 +1180,7 @@ class PanchangService
         return (bool) preg_match('/^\d{1,2}:\d{2}(:\d{2})?\s?(AM|PM)?$/i', $v);
     }
 
-    private function resolveTimeStringToDateTime(string $timeString, CarbonImmutable $sunrise, string $tz): ?CarbonImmutable
+    private function resolveTimeStringToDateTime(string $timeString, CarbonImmutable $sunrise, string $tz, ?CarbonImmutable $baseTime = null): ?CarbonImmutable
     {
         $raw = trim(rtrim($timeString, '*'));
         $formats = ['h:i:s A', 'h:i A', 'H:i:s', 'H:i'];
@@ -1176,10 +1196,20 @@ class PanchangService
                 continue;
             }
 
-            $dt = $sunrise->setTime((int) $parsed->format('H'), (int) $parsed->format('i'), (int) $parsed->format('s'));
-            $secondsDeltaFromSunrise = abs($dt->diffInSeconds($sunrise, false));
-            if ($dt->lessThan($sunrise) && $secondsDeltaFromSunrise >= 60) {
-                $dt = $dt->addDay();
+            $reference = $baseTime ?? $sunrise;
+            $dt = $reference->setTime((int) $parsed->format('H'), (int) $parsed->format('i'), (int) $parsed->format('s'));
+
+            // If we have a base time (like a start time), ensure this time is after it
+            if ($baseTime instanceof CarbonImmutable) {
+                if ($dt->lessThan($baseTime)) {
+                    $dt = $dt->addDay();
+                }
+            } else {
+                // Original logic relative to sunrise
+                $secondsDeltaFromSunrise = abs($dt->diffInSeconds($sunrise, false));
+                if ($dt->lessThan($sunrise) && $secondsDeltaFromSunrise >= 60) {
+                    $dt = $dt->addDay();
+                }
             }
 
             return $dt;

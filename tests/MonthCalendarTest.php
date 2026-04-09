@@ -4,19 +4,13 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Tests;
 
-use Carbon\CarbonImmutable;
-use JayeshMepani\PanchangCore\Panchanga\PanchangService;
-use Orchestra\Testbench\TestCase;
-use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use JayeshMepani\PanchangCore\Facades\Panchang;
+use JayeshMepani\PanchangCore\PanchangServiceProvider;
+use Orchestra\Testbench\TestCase;
+use Override;
 
 class MonthCalendarTest extends TestCase
 {
-    protected function getPackageProviders($app)
-    {
-        return [PanchangServiceProvider::class];
-    }
-
     public function test_month_calendar_retrieval()
     {
         $lat = 23.247;
@@ -37,23 +31,31 @@ class MonthCalendarTest extends TestCase
         $this->assertArrayHasKey('moon_sign', $firstDay);
         $this->assertArrayHasKey('sunrise', $firstDay);
         $this->assertArrayHasKey('sunset', $firstDay);
+        $this->assertArrayHasKey('moonrise', $firstDay);
+        $this->assertArrayHasKey('moonset', $firstDay);
+        $this->assertArrayHasKey('sun_sign', $firstDay);
         $this->assertArrayHasKey('yoga', $firstDay);
         $this->assertArrayHasKey('karana', $firstDay);
-        
+
         // On 2026-04-01, it should be Chaitra Shukla 14 or 15 depending on sunrise
         // Let's just check if data is populated
         $this->assertNotEmpty($firstDay['tithi']['name']);
-        
+
         // Check for Hanuman Jayanti (usually Chaitra Purnima)
         // 2026-04-01 is Chaitra Shukla Chaturdashi/Purnima
         $foundHanumanJayanti = false;
         foreach ($calendar as $day) {
             foreach ($day['festivals'] as $fest) {
-                if (str_contains($fest['name'], 'Hanuman Jayanti')) {
+                if (str_contains((string) $fest['name'], 'Hanuman Jayanti')) {
                     $foundHanumanJayanti = true;
                 }
             }
         }
         $this->assertTrue($foundHanumanJayanti, 'Hanuman Jayanti should be in April 2026');
+    }
+    #[Override]
+    protected function getPackageProviders($app)
+    {
+        return [PanchangServiceProvider::class];
     }
 }
