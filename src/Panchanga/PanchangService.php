@@ -318,10 +318,13 @@ class PanchangService
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
         $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
+
+        // Build fivefold lookup by English name (lowercase) since translated names may differ
+        $englishNames = ['pratah', 'sangava', 'madhyahna', 'aparahna', 'sayahna'];
         $daylightFivefoldByName = [];
-        foreach ($daylightFivefold as $division) {
-            if (is_array($division) && isset($division['name']) && is_string($division['name'])) {
-                $daylightFivefoldByName[strtolower($division['name'])] = $division;
+        foreach ($daylightFivefold as $index => $division) {
+            if (is_array($division) && isset($englishNames[$index])) {
+                $daylightFivefoldByName[$englishNames[$index]] = $division;
             }
         }
         $karmakalaWindows = [

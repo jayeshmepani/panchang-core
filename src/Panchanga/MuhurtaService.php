@@ -249,7 +249,7 @@ class MuhurtaService
         foreach ($names as $index => $name) {
             $start = $this->addFloatSeconds($sunrise, $index * $duration);
             $rows[] = $this->buildTimedRow($start, $duration, [
-                'name' => Localization::translate('Fivefold', $name),
+                'name' => Localization::translate('Fivefold', $index),
                 'division_number' => $index + 1,
             ]);
         }

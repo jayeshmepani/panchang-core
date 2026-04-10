@@ -69,7 +69,9 @@ class PanchangaEngine
         $dt = $sunService->getBirthDatetime($birth);
 
         $actual = $dt;
-        if ($dt < $sunrise) {
+        // Compare using integer timestamps to avoid sub-second precision issues
+        // when birth time equals or is very close to sunrise time.
+        if ($dt->timestamp < $sunrise->timestamp) {
             $actual = $dt->subDay();
         }
 
