@@ -49,7 +49,7 @@ class PanchangaEngine
         return [
             'index' => $tithi->value,
             'name' => $tithi->getName(),
-            'paksha' => $tithi->getPaksha()->getName(),
+            'paksha' => $tithi->getPaksha()->getRawName(),
             'fraction_left' => Tithi::getFractionRemaining($sunLon, $moonLon),
         ];
     }

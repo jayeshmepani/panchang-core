@@ -128,7 +128,7 @@ class MuhurtaService
         $solarNoon = $this->addFloatSeconds($sunrise, $daySeconds / 2.0);
 
         return [
-            'source' => 'Package attribution: Muhūrta Chintāmaṇi / Nārada Saṁhitā',
+            'source' => Localization::translate('Source', 'Muhūrta Chintāmaṇi / Nārada Saṁhitā'),
             'abhijit_start' => AstroCore::formatTime($abhijitStart),
             'abhijit_end' => AstroCore::formatTime($abhijitEnd),
             'solar_noon' => AstroCore::formatTime($solarNoon),
@@ -268,7 +268,7 @@ class MuhurtaService
         $midpoint = $this->addFloatSeconds($start, $nightMuhurta / 2.0);
 
         return [
-            'source' => 'Package derivation from 15-part night Muhurta model',
+            'source' => Localization::translate('Source', '15-part night Muhurta model'),
             'nishita_start' => AstroCore::formatTime($start),
             'nishita_end' => AstroCore::formatTime($end),
             'nishita_start_iso' => AstroCore::formatDateTime($start),
@@ -290,7 +290,7 @@ class MuhurtaService
         $end = $this->addFloatSeconds($start, $muhurtaDuration);
 
         return [
-            'source' => '30 Muhurta day division',
+            'source' => Localization::translate('Source', '30 Muhurta day division'),
             'vijaya_start' => AstroCore::formatTime($start),
             'vijaya_end' => AstroCore::formatTime($end),
             'vijaya_start_iso' => AstroCore::formatDateTime($start),
@@ -310,7 +310,7 @@ class MuhurtaService
         $end = $this->addFloatSeconds($start, $duration);
 
         return [
-            'source' => 'Observed Panchang convention; tradition-dependent',
+            'source' => Localization::translate('Source', 'Observed Panchang convention; tradition-dependent'),
             'godhuli_start' => AstroCore::formatTime($start),
             'godhuli_end' => AstroCore::formatTime($end),
             'godhuli_start_iso' => AstroCore::formatDateTime($start),
@@ -337,24 +337,27 @@ class MuhurtaService
         $madhyahnaEnd = $this->addFloatSeconds($solarNoon, $madhyahnaHalf);
 
         return [
-            'source' => 'Sandhyavandanam practice convention',
+            'source' => Localization::translate('Source', 'Sandhyavandanam practice convention'),
             'pratah_sandhya' => [
                 'start' => AstroCore::formatTime($pratahStart),
                 'end' => AstroCore::formatTime($pratahEnd),
                 'start_iso' => AstroCore::formatDateTime($pratahStart),
                 'end_iso' => AstroCore::formatDateTime($pratahEnd),
+                'duration_seconds' => $pratahEnd->getTimestamp() - $pratahStart->getTimestamp(),
             ],
             'madhyahna_sandhya' => [
                 'start' => AstroCore::formatTime($madhyahnaStart),
                 'end' => AstroCore::formatTime($madhyahnaEnd),
                 'start_iso' => AstroCore::formatDateTime($madhyahnaStart),
                 'end_iso' => AstroCore::formatDateTime($madhyahnaEnd),
+                'duration_seconds' => $madhyahnaEnd->getTimestamp() - $madhyahnaStart->getTimestamp(),
             ],
             'sayahna_sandhya' => [
                 'start' => AstroCore::formatTime($sayahnaStart),
                 'end' => AstroCore::formatTime($sayahnaEnd),
                 'start_iso' => AstroCore::formatDateTime($sayahnaStart),
                 'end_iso' => AstroCore::formatDateTime($sayahnaEnd),
+                'duration_seconds' => $sayahnaEnd->getTimestamp() - $sayahnaStart->getTimestamp(),
             ],
         ];
     }
@@ -395,7 +398,7 @@ class MuhurtaService
             $dayRows[] = $this->buildTimedRow($start, $dayDuration, [
                 'division' => $idx + 1,
                 'label' => Localization::translate('Gowri', $lbl),
-                'quality' => $gowriLabelsEn[$lbl]['quality'],
+                'quality' => Localization::translate('GowriQuality', $gowriLabelsEn[$lbl]['quality']),
                 'is_auspicious' => $gowriLabelsEn[$lbl]['is_auspicious'],
                 'is_day' => true,
             ]);
@@ -417,18 +420,18 @@ class MuhurtaService
             $nightRows[] = $this->buildTimedRow($start, $nightDuration, [
                 'division' => $idx + 1,
                 'label' => Localization::translate('Gowri', $lbl),
-                'quality' => $gowriLabelsEn[$lbl]['quality'],
+                'quality' => Localization::translate('GowriQuality', $gowriLabelsEn[$lbl]['quality']),
                 'is_auspicious' => $gowriLabelsEn[$lbl]['is_auspicious'],
                 'is_day' => false,
             ]);
         }
 
         return [
-            'source' => 'Published Gowri/Pambu table convention',
+            'source' => Localization::translate('Source', 'Published Gowri/Pambu table convention'),
             'day' => $dayRows,
             'night' => $nightRows,
-            'auspicious_labels' => ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam'],
-            'inauspicious_labels' => ['Rogam', 'Soram', 'Visham'],
+            'auspicious_labels' => array_map(fn($l) => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
+            'inauspicious_labels' => array_map(fn($l) => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
         ];
     }
 
@@ -543,12 +546,12 @@ class MuhurtaService
         $end = $sunrise->subSeconds((int) $muhurtaSeconds);
 
         return [
-            'source' => 'Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92',
+            'source' => Localization::translate('Source', 'Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92'),
             'brahma_muhurta_start' => AstroCore::formatTime($start),
             'brahma_muhurta_end' => AstroCore::formatTime($end),
             'duration_minutes' => 48,
             'duration_seconds' => 2880,
-            'significance' => 'Most auspicious time for meditation, study, and spiritual practices. Sattvik period filled with purity, calmness, and clarity.',
+            'significance' => Localization::translate('MuhurtaDesc', 'Brahma Muhurta significance'),
             'brahma_muhurta_start_iso' => AstroCore::formatDateTime($start),
             'brahma_muhurta_end_iso' => AstroCore::formatDateTime($end),
         ];
@@ -703,18 +706,20 @@ class MuhurtaService
         SwissEphFFI $sweph
     ): array {
         $jdStart = $this->carbonToJulianDayUtc($sweph, $sunrise);
-        $jdEnd = $this->carbonToJulianDayUtc($sweph, $nextSunrise);
-        
+        $jdSunset = $this->carbonToJulianDayUtc($sweph, $sunset);
+        $jdEnd = $jdStart + 1.0; // One solar day (24 hours from sunrise)
+
         $lagnas = [];
         $step = 120.0 / 86400.0;
         $prevSign = -1;
+        $signsCollected = 0;
 
-        // Sampling phase
-        for ($jd = $jdStart; $jd <= $jdEnd + $step; $jd += $step) {
+        // Sampling phase - collect exactly 12 lagna sign transitions
+        for ($jd = $jdStart; $jd <= $jdEnd + $step && $signsCollected < 12; $jd += $step) {
             $asc = $this->getAscendantSiderealAtJd($sweph, $jd, $lat, $lon, $ayanamsaDeg);
             $signIdx = (int) floor($asc / 30.0) % 12;
-            
-            if ($signIdx !== $prevSign) {
+
+            if ($signIdx !== $prevSign && $signsCollected < 12) {
                 $transitionJd = $jd;
                 if ($prevSign !== -1) {
                     // Refine transition using binary search
@@ -742,19 +747,20 @@ class MuhurtaService
                     'start_jd' => $transitionJd,
                 ];
                 $prevSign = $signIdx;
+                $signsCollected++;
             }
         }
 
         // Finalize durations and end times
         $count = count($lagnas);
         for ($i = 0; $i < $count; $i++) {
-            $nextJd = ($i === $count - 1) ? $jdEnd : $lagnas[$i+1]['start_jd'];
+            $nextJd = ($i === $count - 1) ? ($jdStart + 1.0) : $lagnas[$i+1]['start_jd'];
             $lagnas[$i]['end_jd'] = $nextJd;
             $endTime = $this->jdToCarbon($nextJd, $sunrise->getTimezone());
             $lagnas[$i]['end'] = AstroCore::formatTime($endTime);
             $lagnas[$i]['end_iso'] = AstroCore::formatDateTime($endTime);
             $lagnas[$i]['duration_minutes'] = ($nextJd - $lagnas[$i]['start_jd']) * 1440.0;
-            $lagnas[$i]['is_day_lagna'] = $lagnas[$i]['start_jd'] < $this->carbonToJulianDayUtc($sweph, $sunset);
+            $lagnas[$i]['is_day_lagna'] = $lagnas[$i]['start_jd'] < $jdSunset;
         }
 
         return $lagnas;
@@ -781,7 +787,10 @@ class MuhurtaService
 
     private function jdToCarbon(float $jd, DateTimeZone $tz): CarbonImmutable
     {
-        return CarbonImmutable::createFromTimestamp((int) (($jd - 2440587.5) * 86400.0), $tz);
+        $unixTimestamp = ($jd - 2440587.5) * 86400.0;
+        $seconds = (int) floor($unixTimestamp);
+        $microseconds = (int) (($unixTimestamp - $seconds) * 1_000_000);
+        return CarbonImmutable::createFromTimestamp($seconds, $tz)->addMicroseconds($microseconds);
     }
 
     private function carbonToJulianDayUtc(SwissEphFFI $sweph, CarbonImmutable $dt): float

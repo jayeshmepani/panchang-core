@@ -228,10 +228,15 @@ class FestivalRuleEngine
         // Check month constraint if specified (e.g., Onam in Shravana/Bhadrapada, Thai Poosam in Pausha/Magha)
         $allowedMonths = (array) ($rule['allowed_months_amanta'] ?? []);
         if ($allowedMonths !== []) {
-            $monthToday = (string) ($today['Hindu_Calendar']['Month_Amanta'] ?? '');
-            $monthTomorrow = (string) ($tomorrow['Hindu_Calendar']['Month_Amanta'] ?? '');
-            $monthTodayMatch = in_array(strtolower($monthToday), array_map('strtolower', $allowedMonths), true);
-            $monthTomorrowMatch = in_array(strtolower($monthTomorrow), array_map('strtolower', $allowedMonths), true);
+            $calendarToday = (array) ($today['Hindu_Calendar'] ?? []);
+            $calendarTomorrow = (array) ($tomorrow['Hindu_Calendar'] ?? []);
+            $monthToday = (string) ($calendarToday['Month_Amanta_En'] ?? $calendarToday['Month_Amanta'] ?? '');
+            $monthTomorrow = (string) ($calendarTomorrow['Month_Amanta_En'] ?? $calendarTomorrow['Month_Amanta'] ?? '');
+            $monthTodayNorm = $this->normalizeMonthName($monthToday);
+            $monthTomorrowNorm = $this->normalizeMonthName($monthTomorrow);
+            $allowedMonthsNorm = array_map(fn($m) => $this->normalizeMonthName((string) $m), $allowedMonths);
+            $monthTodayMatch = in_array($monthTodayNorm, $allowedMonthsNorm, true);
+            $monthTomorrowMatch = in_array($monthTomorrowNorm, $allowedMonthsNorm, true);
 
             // If nakshatra matches but month doesn't for that day, exclude that day
             if ($nakshatraTodayMatch && !$monthTodayMatch) {
@@ -435,5 +440,39 @@ class FestivalRuleEngine
             'pradosha' => $sunset + (3.0 / 24.0),
             default => $sunrise,
         };
+    }
+
+    /** Normalize month name for comparison (strips diacritics, non-alpha, lowercases). */
+    private function normalizeMonthName(string $month): string
+    {
+        $month = trim($month);
+        if ($month === '') {
+            return '';
+        }
+
+        // Strip parenthetical suffixes like "(Adhika)", "(Kshaya)"
+        $month = preg_replace('/\s*\(.*?\)\s*/', '', $month) ?? $month;
+
+        $transliterated = strtr($month, [
+            'Ā' => 'A', 'ā' => 'a',
+            'Ī' => 'I', 'ī' => 'i',
+            'Ū' => 'U', 'ū' => 'u',
+            'Ṛ' => 'Ri', 'ṛ' => 'ri',
+            'Ṝ' => 'Ri', 'ṝ' => 'ri',
+            'Ḷ' => 'Li', 'ḷ' => 'li',
+            'Ḍ' => 'D', 'ḍ' => 'd',
+            'Ṭ' => 'T', 'ṭ' => 't',
+            'Ṅ' => 'N', 'ṅ' => 'n',
+            'Ñ' => 'N', 'ñ' => 'n',
+            'Ṇ' => 'N', 'ṇ' => 'n',
+            'Ś' => 'Sh', 'ś' => 'sh',
+            'Ṣ' => 'Sh', 'ṣ' => 'sh',
+            'Ḥ' => 'H', 'ḥ' => 'h',
+            'ṁ' => 'm', 'ṃ' => 'm',
+        ]);
+
+        $asciiOnly = preg_replace('/[^A-Za-z]/', '', $transliterated) ?? '';
+
+        return strtolower($asciiOnly);
     }
 }

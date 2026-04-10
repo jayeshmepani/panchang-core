@@ -171,13 +171,24 @@ for ($year = 2026; $year <= 2032; $year++) {
 
 $now = CarbonImmutable::now($timezone);
 $todayDate = $now->startOfDay();
+
+// First get sunrise time to use as fixed calculation reference
+$tempDetails = $panchangService->getDayDetails(
+    date: $todayDate,
+    lat: $latitude,
+    lon: $longitude,
+    tz: $timezone,
+    elevation: $elevation,
+);
+$sunriseTime = CarbonImmutable::parse($tempDetails['sunrise_dt'], $timezone);
+
 $todayDetails = $panchangService->getDayDetails(
     date: $todayDate,
     lat: $latitude,
     lon: $longitude,
     tz: $timezone,
     elevation: $elevation,
-    calculationAt: $now,
+    calculationAt: $sunriseTime,
 );
 
 $dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(
@@ -185,7 +196,7 @@ $dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(
     lat: $latitude,
     lon: $longitude,
     tz: $timezone,
-    currentAt: $now,
+    currentAt: $sunriseTime,
     elevation: $elevation,
 );
 

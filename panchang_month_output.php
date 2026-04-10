@@ -8,6 +8,7 @@ require $baseDir . '/vendor/autoload.php';
 
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
+use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
@@ -58,6 +59,9 @@ $elevation = 0.0;
 $year = isset($argv[1]) ? (int) $argv[1] : (int) date('Y');
 $month = isset($argv[2]) ? (int) $argv[2] : (int) date('m');
 
+// Use a fixed reference date (first day of month at midnight) for deterministic output
+$fixedRefDate = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $timezone);
+
 $sweph = new SwissEphFFI;
 $ruleEngine = new FestivalRuleEngine;
 $festivalService = new FestivalService($ruleEngine);
@@ -78,7 +82,8 @@ $calendar = $panchangService->getMonthCalendar(
     lat: $latitude,
     lon: $longitude,
     tz: $timezone,
-    elevation: $elevation
+    elevation: $elevation,
+    calculationAt: $fixedRefDate,
 );
 
 $output = [

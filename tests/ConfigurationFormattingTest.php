@@ -33,7 +33,7 @@ class ConfigurationFormattingTest extends TestCase
         );
 
         $this->assertStringContainsString('AM', $details['Sunrise']); // 12h check
-        $this->assertStringContainsString('AM', $details['Panchanga']['Sunrise']); // 12h check
+        $this->assertStringContainsString('AM', $details['Panchanga']['Sunrise']['display']); // 12h check (nested structure)
         $this->assertIsFloat($details['sun_sunrise_lon']); // degree check
         $this->assertStringContainsString('m', (string) $details['Hora']['hora_duration_minutes']); // duration format mixed check
 

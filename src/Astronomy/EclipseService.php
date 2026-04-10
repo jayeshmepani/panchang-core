@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Astronomy;
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Localization;
 use SwissEph\FFI\SwissEphFFI;
 
 class EclipseService
@@ -149,8 +150,8 @@ class EclipseService
         $sutakEndAnchor = $contacts['partial_end_jd'];
 
         return [
-            'type' => 'Lunar',
-            'eclipse_type' => $type,
+            'type' => Localization::translate('String', 'Lunar'),
+            'eclipse_type' => Localization::translate('Eclipse', $type),
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
             'jd' => $jdMax,
@@ -216,8 +217,8 @@ class EclipseService
         $sutakEndAnchor = $contacts['fourth_contact_jd'];
 
         return [
-            'type' => 'Solar',
-            'eclipse_type' => $type,
+            'type' => Localization::translate('String', 'Solar'),
+            'eclipse_type' => Localization::translate('Eclipse', $type),
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
             'jd' => $jdMax,

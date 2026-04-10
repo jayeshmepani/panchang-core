@@ -122,12 +122,12 @@ final class ElectionalEvaluator
             : $panchakaName . ' - ' . Localization::translate('Common', 'Auspicious');
 
         return [
-            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Brihat Samhita',
+            'source' => Localization::translate('Source', 'Muhurta Chintamani / Brihat Samhita'),
             'tithi' => $tithiNumber,
             'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
             'tithi_number_base' => 1,
             'vara' => $varaNumber + 1,
-            'vara_name' => Vara::from($varaNumber)->getName(),
+            'vara_name' => Vara::from($varaNumber % 7)->getName(),
             'vara_number_base' => 1,
             'nakshatra' => $nakshatraNumber,
             'nakshatra_name' => Nakshatra::from(($nakshatraNumber - 1) % 27)->getName(),
@@ -154,7 +154,7 @@ final class ElectionalEvaluator
         $names = array_map(fn($idx) => Tithi::from($idx % 30 ?: 30)->getName(), $dagdhaTithis);
 
         return [
-            'source' => 'Package rule mapping attributed to Muhurta Chintamani',
+            'source' => Localization::translate('Source', 'Muhurta Chintamani'),
             'tithi_number' => $tithiNumber,
             'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
             'tithi_number_base' => 1,
@@ -181,7 +181,7 @@ final class ElectionalEvaluator
         $names = array_map(fn($idx) => Tithi::from($idx % 30 ?: 30)->getName(), $dagdhaTithis);
 
         return [
-            'source' => 'Package rule mapping attributed to classical Muhurta texts',
+            'source' => Localization::translate('Source', 'Classical Muhurta texts'),
             'vara_number' => $varaNumber,
             'vara_name' => Vara::from($varaNumber)->getName(),
             'vara_index_base' => 0,
@@ -227,7 +227,7 @@ final class ElectionalEvaluator
         $pakshaName = $isKrishnaPaksha ? 'Krishna Paksha (waning)' : 'Shukla Paksha (waxing)';
 
         return [
-            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Gargiya Jyotisha',
+            'source' => Localization::translate('Source', 'Muhurta Chintamani / Gargiya Jyotisha'),
             'tithi_number' => $tithiNumber,
             'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
             'tithi_number_base' => 1,
@@ -250,7 +250,7 @@ final class ElectionalEvaluator
         $hasDosha = $vishaGhati > 0;
 
         return [
-            'source' => 'Package rule mapping attributed to traditional Visha Ghati constants',
+            'source' => Localization::translate('Source', 'Visha Ghati constants'),
             'nakshatra_number' => $nakshatraNumber,
             'nakshatra_name' => Nakshatra::from(($nakshatraNumber - 1) % 27)->getName(),
             'nakshatra_number_base' => 1,
@@ -292,7 +292,7 @@ final class ElectionalEvaluator
             : ($isInAbhijit ? 'Abhijit power cancelled (Wednesday)' : 'Not in Abhijit Muhurta');
 
         return [
-            'source' => 'Package rule mapping attributed to Muhurta Chintamani / Muhurta Martanda',
+            'source' => Localization::translate('Source', 'Muhurta Chintamani / Muhurta Martanda'),
             'sunrise' => $sunrise,
             'sunset' => $sunset,
             'vara_number' => $varaNumber,
@@ -301,7 +301,7 @@ final class ElectionalEvaluator
             'abhijit_start' => $abhijitStart,
             'abhijit_end' => $abhijitEnd,
             'abhijit_duration_minutes' => $muhurtaDurationSeconds / 60.0,
-            'muhurta_number' => '8 of 15 (Abhijit)',
+            'muhurta_number' => Localization::translate('String', '8th of 15 (Abhijit)'),
             'is_in_abhijit' => $isInAbhijit,
             'is_wednesday' => $isWednesday,
             'has_cancellation_power' => $hasCancellationPower,
@@ -330,8 +330,8 @@ final class ElectionalEvaluator
                 $rejection = [
                     'dosha_name' => $factor,
                     'severity' => $result['severity'] ?? 'medium',
-                    'source' => $result['source'] ?? 'Package rule engine',
-                    'description' => $result['description'] ?? 'Inauspicious combination',
+                    'source' => Localization::translate('Source', 'Rule engine'),
+                    'description' => $result['description'] ?? Localization::translate('Common', 'Inauspicious combination'),
                     'cancellation_possible' => false,
                     'cancellation_method' => null,
                 ];
@@ -346,7 +346,7 @@ final class ElectionalEvaluator
         if (count($rejections) === 0) $overallVerdict = 'accepted';
 
         return [
-            'source' => 'Package evaluation summary from configured/transit-only rule mappings',
+            'source' => Localization::translate('Source', 'Transit-only evaluation'),
             'overall_verdict' => Localization::translate('Common', $overallVerdict),
             'confidence_level' => 'low',
             'rejection_count' => count($rejections),

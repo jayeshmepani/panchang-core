@@ -509,7 +509,9 @@ class PanchangService
                 'Samvatsara' => $samvatsara,
                 'Samvatsara_North' => $samvatsaraNorth,
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
+                'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
+                'Month_Purnimanta_En' => $hinduMonth['Month_Purnimanta_En'],
                 'Is_Adhika' => $hinduMonth['Is_Adhika'],
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
@@ -545,15 +547,15 @@ class PanchangService
             'Sandhya' => [
                 'pratah_sandhya' => [
                     ...$sandhya['pratah_sandhya'],
-                    'duration_minutes' => AstroCore::formatDuration(($jdSunrise - $this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['pratah_sandhya']['start_iso']), $tz)) * 1440.0),
+                    'duration_human' => AstroCore::formatDuration($sandhya['pratah_sandhya']['duration_seconds'] / 60.0),
                 ],
                 'madhyahna_sandhya' => [
                     ...$sandhya['madhyahna_sandhya'],
-                    'duration_minutes' => AstroCore::formatDuration(($this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['madhyahna_sandhya']['end_iso']), $tz) - $this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['madhyahna_sandhya']['start_iso']), $tz)) * 1440.0),
+                    'duration_human' => AstroCore::formatDuration($sandhya['madhyahna_sandhya']['duration_seconds'] / 60.0),
                 ],
                 'sayahna_sandhya' => [
                     ...$sandhya['sayahna_sandhya'],
-                    'duration_minutes' => AstroCore::formatDuration(($this->toJulianDayFromCarbon(CarbonImmutable::parse($sandhya['sayahna_sandhya']['end_iso']), $tz) - $jdSunset) * 1440.0),
+                    'duration_human' => AstroCore::formatDuration($sandhya['sayahna_sandhya']['duration_seconds'] / 60.0),
                 ],
             ],
             'Gowri_Panchangam' => $gowriPanchangam,
@@ -588,7 +590,8 @@ class PanchangService
         float $lat,
         float $lon,
         string $tz,
-        float $elevation = 0.0
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null
     ): array {
         $birthBase = [
             'year' => $date->year,
@@ -613,6 +616,14 @@ class PanchangService
             'day' => $nextDay->day,
         ]);
 
+        // Use fixed calculation reference (sunrise) for deterministic Ayanamsa
+        $ayanamsaRef = $calculationAt ?? $sunrise;
+        $ayanamsaJd = $this->toJulianDayFromCarbon($ayanamsaRef, $tz);
+        $ayanamsaDeg = $this->astronomy->getAyanamsa($ayanamsaJd);
+
+        $jdSunrise = $this->toJulianDayFromCarbon($sunrise, $tz);
+        $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
+        $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
         $sunriseBirth = [
             ...$birthBase,
             'year' => (int) $sunrise->format('Y'),
@@ -633,10 +644,7 @@ class PanchangService
         [$nakName, $nakPada, $nakLord] = $this->panchanga->getNakshatraInfo($moonLon);
         $vara = $this->panchanga->calculateVara($birthBase, $this->sunService);
 
-        $jdSunrise = $this->toJulianDayFromCarbon($sunrise, $tz);
         $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
-        $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
-        $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
 
         $tithiNum = (int) ($tithi['index'] ?? 0);
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
@@ -718,7 +726,8 @@ class PanchangService
         float $lon,
         string $tz,
         float $elevation = 0.0,
-        array $options = []
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null
     ): array {
         $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
         $daysInMonth = $start->daysInMonth;
@@ -726,7 +735,7 @@ class PanchangService
         $snapshots = [];
         for ($i = 0; $i <= $daysInMonth; $i++) {
             $date = $start->addDays($i);
-            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation);
+            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt);
         }
 
         $calendar = [];
@@ -952,7 +961,7 @@ class PanchangService
         $severity = $activePart === 'mukha' ? 'critical' : ($activePart === 'madhya' ? 'high' : 'none');
 
         return [
-            'source' => 'Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation',
+            'source' => Localization::translate('Source', 'Muhurta Martanda / Bhadra (Vishti Karana) window from Panchang day calculation'),
             'is_active' => $active !== null,
             'active_part' => $activePart,
             'active_period' => $active,
@@ -960,8 +969,8 @@ class PanchangService
             'severity' => $severity,
             'is_auspicious' => !$hasDosha,
             'description' => $active === null
-                ? 'Bhadra is not active at the evaluation time.'
-                : ($hasDosha ? 'Bhadra is active in a blocked portion now.' : 'Only Bhadra Puchha is active now; this portion is relatively safe.'),
+                ? Localization::translate('MuhurtaDesc', 'Bhadra not active')
+                : ($hasDosha ? Localization::translate('MuhurtaDesc', 'Bhadra active blocked') : Localization::translate('MuhurtaDesc', 'Bhadra puchha active')),
         ];
     }
 
@@ -1001,13 +1010,13 @@ class PanchangService
         $isActive = $activeWindow !== null;
 
         return [
-            'source' => 'Varjyam (Tyajyam) window from Panchang day calculation',
+            'source' => Localization::translate('Source', 'Varjyam (Tyajyam) window from Panchang day calculation'),
             'is_active' => $isActive,
             'active_window' => $activeWindow,
             'window_count' => count($windows),
             'severity' => $isActive ? 'high' : 'none',
             'is_auspicious' => !$isActive,
-            'description' => $isActive ? 'Varjyam is active at the evaluation time.' : 'Varjyam is not active at the evaluation time.',
+            'description' => $isActive ? Localization::translate('MuhurtaDesc', 'Varjyam active') : Localization::translate('MuhurtaDesc', 'Varjyam not active'),
         ];
     }
 
@@ -1029,7 +1038,7 @@ class PanchangService
                 'is_active' => false,
                 'is_available' => false,
                 'is_auspicious' => false,
-                'description' => $label . ' window is not available for the evaluation time.',
+                'description' => $label . ' ' . Localization::translate('MuhurtaDesc', 'Named window not available'),
             ];
         }
 
@@ -1046,8 +1055,8 @@ class PanchangService
                 'end_iso' => AstroCore::formatDateTime($end),
             ],
             'description' => $isActive
-                ? $label . ' is active at the evaluation time.'
-                : $label . ' is not active at the evaluation time.',
+                ? $label . ' ' . Localization::translate('MuhurtaDesc', 'Named window active')
+                : $label . ' ' . Localization::translate('MuhurtaDesc', 'Named window not active'),
         ];
     }
 

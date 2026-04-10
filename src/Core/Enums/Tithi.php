@@ -48,7 +48,7 @@ enum Tithi: int
     /** Get Sanskrit name */
     public function getName(?string $locale = null): string
     {
-        return Localization::translate('Tithi', $this->getNormalizedIndex(), $locale);
+        return Localization::translate('Tithi', $this->value, $locale);
     }
 
     /** Get pakṣa (fortnight) */

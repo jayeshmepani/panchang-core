@@ -2354,12 +2354,13 @@ class FestivalService
             if ($isClassical) {
                 $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
+                    $regions = $rules['regions'] ?? ['Pan-India'];
                     $festivals[] = [
                         'name' => Localization::translate('Festival', $name),
                         'description' => $rules['description'],
-                        'deity' => $rules['deity'] ?? null,
+                        'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
-                        'regions' => $rules['regions'] ?? ['Pan-India'],
+                        'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
                         'observance_note' => $resolved['observance_note'] ?? null,
                         'rules_applied' => $resolved['decision'] ?? [],
                     ];
@@ -2368,23 +2369,25 @@ class FestivalService
                 // Handle nakshatra-based festivals
                 $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString()) {
+                    $regions = $rules['regions'] ?? ['Pan-India'];
                     $festivals[] = [
                         'name' => Localization::translate('Festival', $name),
                         'description' => $rules['description'],
-                        'deity' => $rules['deity'] ?? null,
+                        'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
-                        'regions' => $rules['regions'] ?? ['Pan-India'],
+                        'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
                         'observance_note' => $resolved['observance_note'] ?? null,
                         'rules_applied' => $resolved['decision'] ?? [],
                     ];
                 }
             } elseif ($this->matchesFestivalRules($date, $rules, $tithiNum, $paksha, $todayDetails)) {
+                $regions = $rules['regions'] ?? ['Pan-India'];
                 $festivals[] = [
                     'name' => Localization::translate('Festival', $name),
                     'description' => $rules['description'],
-                    'deity' => $rules['deity'] ?? null,
+                    'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                     'fasting' => $rules['fasting'] ?? false,
-                    'regions' => $rules['regions'] ?? ['Pan-India'],
+                    'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
                 ];
             }
         }
@@ -2544,6 +2547,9 @@ class FestivalService
         if ($month === '') {
             return '';
         }
+
+        // Strip parenthetical suffixes like "(Adhika)", "(Kshaya)"
+        $month = preg_replace('/\s*\(.*?\)\s*/', '', $month) ?? $month;
 
         $transliterated = strtr($month, [
             'Ā' => 'A', 'ā' => 'a',

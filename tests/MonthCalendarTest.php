@@ -19,6 +19,9 @@ class MonthCalendarTest extends TestCase
         $year = 2026;
         $month = 4; // April 2026
 
+        // Set locale to English for consistent test assertions
+        config(['panchang.defaults.locale' => 'en']);
+
         $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz);
 
         $this->assertIsArray($calendar);
