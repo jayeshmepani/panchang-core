@@ -28,23 +28,6 @@ enum Hora: int
     }
 
     /**
-     * Map Hora enum index to standard Planet index in Localization.
-     * Localization 'Planet' order: Sun (0), Moon (1), Mars (2), Rahu (3), Jupiter (4), Saturn (5), Mercury (6), Ketu (7), Venus (8)
-     */
-    private function toPlanetIndex(): int
-    {
-        return match ($this) {
-            self::Sun => 0,
-            self::Moon => 1,
-            self::Mars => 2,
-            self::Jupiter => 4,
-            self::Saturn => 5,
-            self::Mercury => 6,
-            self::Venus => 8,
-        };
-    }
-
-    /**
      * Get horā sequence for weekday.
      *
      * @param Vara $vara Weekday
@@ -85,5 +68,22 @@ enum Hora: int
         }
 
         return $sequence;
+    }
+
+    /**
+     * Map Hora enum index to standard Planet index in Localization.
+     * Localization 'Planet' order: Sun (0), Moon (1), Mars (2), Rahu (3), Jupiter (4), Saturn (5), Mercury (6), Ketu (7), Venus (8).
+     */
+    private function toPlanetIndex(): int
+    {
+        return match ($this) {
+            self::Sun => 0,
+            self::Moon => 1,
+            self::Mars => 2,
+            self::Jupiter => 4,
+            self::Saturn => 5,
+            self::Mercury => 6,
+            self::Venus => 8,
+        };
     }
 }

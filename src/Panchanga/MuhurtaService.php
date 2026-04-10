@@ -11,11 +11,10 @@ use JayeshMepani\PanchangCore\Core\Enums\Choghadiya;
 use JayeshMepani\PanchangCore\Core\Enums\Hora;
 use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
-use JayeshMepani\PanchangCore\Core\Enums\Vara;
-use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Enums\VimshottariDasha;
-use RuntimeException;
+use JayeshMepani\PanchangCore\Core\Localization;
 use SwissEph\FFI\SwissEphFFI;
 
 class MuhurtaService
@@ -46,7 +45,7 @@ class MuhurtaService
             $baseOffset = 12;
         }
 
-        if ($horaIdx >= 12) $horaIdx = 11;
+        if ($horaIdx >= 12) { $horaIdx = 11; }
         $currentHora = $seq[($baseOffset + $horaIdx) % 24];
 
         return [
@@ -78,7 +77,7 @@ class MuhurtaService
 
         $divDuration = $durationTotal / 8.0;
         $divIdx = (int) floor($elapsed / $divDuration);
-        if ($divIdx >= 8) $divIdx = 7;
+        if ($divIdx >= 8) { $divIdx = 7; }
 
         $pattern = $isDay ? Choghadiya::getDaySequence($vara) : Choghadiya::getNightSequence($vara);
         $choghadiya = $pattern[$divIdx];
@@ -430,8 +429,8 @@ class MuhurtaService
             'source' => Localization::translate('Source', 'Published Gowri/Pambu table convention'),
             'day' => $dayRows,
             'night' => $nightRows,
-            'auspicious_labels' => array_map(fn($l) => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
-            'inauspicious_labels' => array_map(fn($l) => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
+            'auspicious_labels' => array_map(fn ($l) => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
+            'inauspicious_labels' => array_map(fn ($l) => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
         ];
     }
 
@@ -479,30 +478,6 @@ class MuhurtaService
             'day' => $dayPortions,
             'night' => $nightPortions,
         ];
-    }
-
-    private function extractKalaVelaWindows(string $planet, array $dayPortions, array $nightPortions): array
-    {
-        $matches = [];
-        foreach (array_merge($dayPortions, $nightPortions) as $portion) {
-            if (($portion['planetary_lord_en'] ?? null) !== $planet) continue;
-            $matches[] = [
-                'division' => $portion['division'],
-                'start' => $portion['start'],
-                'end' => $portion['end'],
-                'start_iso' => $portion['start_iso'],
-                'end_iso' => $portion['end_iso'],
-            ];
-        }
-        return $matches;
-    }
-
-    private function getPlanetIndex(string $name): int
-    {
-        return match ($name) {
-            'Sun' => 0, 'Moon' => 1, 'Mars' => 2, 'Rahu' => 3, 'Jupiter' => 4, 'Saturn' => 5, 'Mercury' => 6, 'Ketu' => 7, 'Venus' => 8,
-            default => 0
-        };
     }
 
     public function calculatePrahara(
@@ -680,7 +655,7 @@ class MuhurtaService
         $cusp = $sweph->getFFI()->new('double[13]');
         $ascmc = $sweph->getFFI()->new('double[10]');
         $sweph->swe_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
-        
+
         $nirayanaLagna = AstroCore::normalize($ascmc[0] - $ayanamsaDeg);
         $sayanaLagna = AstroCore::normalize($ascmc[0]);
         $sign = Rasi::fromLongitude($nirayanaLagna);
@@ -719,7 +694,7 @@ class MuhurtaService
             $asc = $this->getAscendantSiderealAtJd($sweph, $jd, $lat, $lon, $ayanamsaDeg);
             $signIdx = (int) floor($asc / 30.0) % 12;
 
-            if ($signIdx !== $prevSign && $signsCollected < 12) {
+            if ($signIdx !== $prevSign) {
                 $transitionJd = $jd;
                 if ($prevSign !== -1) {
                     // Refine transition using binary search
@@ -730,7 +705,7 @@ class MuhurtaService
                         $mid = ($low + $high) / 2.0;
                         $midAsc = $this->getAscendantSiderealAtJd($sweph, $mid, $lat, $lon, $ayanamsaDeg);
                         $diff = AstroCore::normalize($midAsc - $targetAngle);
-                        if ($diff < 180.0) $high = $mid; else $low = $mid;
+                        if ($diff < 180.0) { $high = $mid; } else { $low = $mid; }
                     }
                     $transitionJd = $high;
                 } else {
@@ -754,7 +729,7 @@ class MuhurtaService
         // Finalize durations and end times
         $count = count($lagnas);
         for ($i = 0; $i < $count; $i++) {
-            $nextJd = ($i === $count - 1) ? ($jdStart + 1.0) : $lagnas[$i+1]['start_jd'];
+            $nextJd = ($i === $count - 1) ? ($jdStart + 1.0) : $lagnas[$i + 1]['start_jd'];
             $lagnas[$i]['end_jd'] = $nextJd;
             $endTime = $this->jdToCarbon($nextJd, $sunrise->getTimezone());
             $lagnas[$i]['end'] = AstroCore::formatTime($endTime);
@@ -764,6 +739,30 @@ class MuhurtaService
         }
 
         return $lagnas;
+    }
+
+    private function extractKalaVelaWindows(string $planet, array $dayPortions, array $nightPortions): array
+    {
+        $matches = [];
+        foreach (array_merge($dayPortions, $nightPortions) as $portion) {
+            if (($portion['planetary_lord_en'] ?? null) !== $planet) { continue; }
+            $matches[] = [
+                'division' => $portion['division'],
+                'start' => $portion['start'],
+                'end' => $portion['end'],
+                'start_iso' => $portion['start_iso'],
+                'end_iso' => $portion['end_iso'],
+            ];
+        }
+        return $matches;
+    }
+
+    private function getPlanetIndex(string $name): int
+    {
+        return match ($name) {
+            'Sun' => 0, 'Moon' => 1, 'Mars' => 2, 'Rahu' => 3, 'Jupiter' => 4, 'Saturn' => 5, 'Mercury' => 6, 'Ketu' => 7, 'Venus' => 8,
+            default => 0
+        };
     }
 
     private function addFloatSeconds(CarbonImmutable $dt, float $seconds): CarbonImmutable
@@ -796,7 +795,7 @@ class MuhurtaService
     private function carbonToJulianDayUtc(SwissEphFFI $sweph, CarbonImmutable $dt): float
     {
         $u = $dt->setTimezone('UTC');
-        return $sweph->swe_julday($u->year, $u->month, $u->day, $u->hour + $u->minute/60.0 + $u->second/3600.0, SwissEphFFI::SE_GREG_CAL);
+        return $sweph->swe_julday($u->year, $u->month, $u->day, $u->hour + $u->minute / 60.0 + $u->second / 3600.0, SwissEphFFI::SE_GREG_CAL);
     }
 
     private function getAscendantSiderealAtJd(SwissEphFFI $sweph, float $jd, float $lat, float $lon, float $ayanamsa): float

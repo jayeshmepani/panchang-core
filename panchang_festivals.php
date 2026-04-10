@@ -12,7 +12,6 @@ declare(strict_types=1);
  *
  * This data is static — run once per year.
  */
-
 $baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
 require $baseDir . '/vendor/autoload.php';
 
@@ -40,10 +39,10 @@ if (!function_exists('env')) {
         if (is_string($value)) {
             $trimmed = trim($value);
             $lower = strtolower($trimmed);
-            if ($lower === 'true' || $lower === '(true)') return true;
-            if ($lower === 'false' || $lower === '(false)') return false;
-            if ($lower === 'null' || $lower === '(null)') return null;
-            if ($lower === 'empty' || $lower === '(empty)') return '';
+            if ($lower === 'true' || $lower === '(true)') { return true; }
+            if ($lower === 'false' || $lower === '(false)') { return false; }
+            if ($lower === 'null' || $lower === '(null)') { return null; }
+            if ($lower === 'empty' || $lower === '(empty)') { return ''; }
             return $trimmed;
         }
         return $value;
@@ -170,4 +169,4 @@ if ($json === false) {
 $filename = "festivals_{$festivalYear}.json";
 file_put_contents($filename, $json . PHP_EOL);
 
-echo "Written {$filename} — " . count($festivalsByDate) . " festival days, " . count($festivalFlat) . " entries." . PHP_EOL;
+echo "Written {$filename} — " . count($festivalsByDate) . ' festival days, ' . count($festivalFlat) . ' entries.' . PHP_EOL;

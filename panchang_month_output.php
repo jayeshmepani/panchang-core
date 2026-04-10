@@ -6,9 +6,9 @@ declare(strict_types=1);
 $baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
 require $baseDir . '/vendor/autoload.php';
 
+use Carbon\CarbonImmutable;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
-use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;

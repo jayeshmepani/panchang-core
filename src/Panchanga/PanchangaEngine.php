@@ -85,8 +85,8 @@ class PanchangaEngine
 
     public function getAyana(float $sunLon): string
     {
-        return ($sunLon >= 90.0 && $sunLon < 270.0) 
-            ? Localization::translate('Ayana', 1) 
+        return ($sunLon >= 90.0 && $sunLon < 270.0)
+            ? Localization::translate('Ayana', 1)
             : Localization::translate('Ayana', 0);
     }
 

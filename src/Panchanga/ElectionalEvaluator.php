@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
-use JayeshMepani\PanchangCore\Core\Enums\Choghadiya;
 use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
@@ -13,9 +12,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
 
-/**
- * Electional Astrology (Muhurta) evaluator.
- */
+/** Electional Astrology (Muhurta) evaluator. */
 final class ElectionalEvaluator
 {
     /** Package Panchaka remainder mapping attributed to classical Muhurta sources. */
@@ -40,25 +37,19 @@ final class ElectionalEvaluator
         26 => 30, 27 => 30,
     ];
 
-    /**
-     * Package Dagdha Tithi mapping attributed to Muhurta Chintamani.
-     */
+    /** Package Dagdha Tithi mapping attributed to Muhurta Chintamani. */
     private const array DAGDHA_TITHI_MAP = [
         0 => [12, 17, 22], 1 => [7, 27], 2 => [2, 25], 3 => [10, 15, 20],
         4 => [5, 23], 5 => [1, 26], 6 => [11, 16, 21], 7 => [6, 28],
         8 => [3, 24], 9 => [9, 14, 19], 10 => [4, 29], 11 => [8, 13, 18, 30],
     ];
 
-    /**
-     * Dagdha Yoga (Vara+Tithi) mappings from classical texts.
-     */
+    /** Dagdha Yoga (Vara+Tithi) mappings from classical texts. */
     private const array DAGDHA_YOGA_MAP = [
         0 => [12], 1 => [11], 2 => [5], 3 => [3], 4 => [6], 5 => [8], 6 => [9],
     ];
 
-    /**
-     * Bhadra abode mappings from Muhurta Martanda.
-     */
+    /** Bhadra abode mappings from Muhurta Martanda. */
     private const array BHADRA_ABODES = [
         'earth' => [3, 4, 10, 11],
         'heaven' => [0, 1, 2, 9],
@@ -96,7 +87,7 @@ final class ElectionalEvaluator
         return [
             'moorthy' => Localization::translate('Moorthy', $moorthyKey),
             'quality' => Localization::translate('Common', $qualityKey),
-            'score' => match($moorthyIdx) { 1=>4, 2=>3, 3=>2, default=>1 },
+            'score' => match($moorthyIdx) { 1 => 4, 2 => 3, 3 => 2, default => 1 },
         ];
     }
 
@@ -105,7 +96,7 @@ final class ElectionalEvaluator
         // Adjust indices to match 1-based logic usually expected in Muhurta manuals for the sum
         // tithi (1-30), vara (1-7, Sun=1), nakshatra (1-27), lagna (1-12)
         $tNum = $tithiNumber;
-        $vNum = $varaNumber + 1; 
+        $vNum = $varaNumber + 1;
         $nNum = $nakshatraNumber;
         $lNum = $lagnaNumber;
 
@@ -114,17 +105,17 @@ final class ElectionalEvaluator
 
         $panchakaInfo = self::PANCHAKA_TYPES[$remainder];
         $hasDosha = in_array($remainder, [1, 2, 4, 6, 8], true);
-        
+
         $panchakaName = Localization::translate('Panchaka', $panchakaInfo['name']);
         $panchakaEng = Localization::translate('Panchaka', $panchakaInfo['english'], 'en');
-        $description = $hasDosha 
+        $description = $hasDosha
             ? $panchakaName . ' - ' . Localization::translate('Common', 'Inauspicious')
             : $panchakaName . ' - ' . Localization::translate('Common', 'Auspicious');
 
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani / Brihat Samhita'),
             'tithi' => $tithiNumber,
-            'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
+            'tithi_name' => Tithi::from(self::normalizeTithiNumber($tithiNumber))->getName(),
             'tithi_number_base' => 1,
             'vara' => $varaNumber + 1,
             'vara_name' => Vara::from($varaNumber % 7)->getName(),
@@ -151,12 +142,12 @@ final class ElectionalEvaluator
         $dagdhaTithis = self::DAGDHA_TITHI_MAP[$moonSignIdx] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
 
-        $names = array_map(fn($idx) => Tithi::from($idx % 30 ?: 30)->getName(), $dagdhaTithis);
+        $names = array_map(fn ($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
 
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani'),
             'tithi_number' => $tithiNumber,
-            'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
+            'tithi_name' => Tithi::from(self::normalizeTithiNumber($tithiNumber))->getName(),
             'tithi_number_base' => 1,
             'moon_sign_idx' => $moonSignIdx,
             'moon_sign_index_base' => 0,
@@ -168,7 +159,7 @@ final class ElectionalEvaluator
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
-            'description' => $isDagdha 
+            'description' => $isDagdha
                 ? Localization::translate('String', 'Dagdha Tithi') . ' - ' . Localization::translate('Common', 'Inauspicious')
                 : 'Not Dagdha Tithi',
         ];
@@ -178,7 +169,7 @@ final class ElectionalEvaluator
     {
         $dagdhaTithis = self::DAGDHA_YOGA_MAP[$varaNumber] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
-        $names = array_map(fn($idx) => Tithi::from($idx % 30 ?: 30)->getName(), $dagdhaTithis);
+        $names = array_map(fn ($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
 
         return [
             'source' => Localization::translate('Source', 'Classical Muhurta texts'),
@@ -188,14 +179,14 @@ final class ElectionalEvaluator
             'vara_sequence_number' => $varaNumber + 1,
             'vara_sequence_number_base' => 1,
             'tithi_number' => $tithiNumber,
-            'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
+            'tithi_name' => Tithi::from(self::normalizeTithiNumber($tithiNumber))->getName(),
             'tithi_number_base' => 1,
             'dagdha_tithis_for_vara' => $dagdhaTithis,
             'dagdha_tithi_names_for_vara' => $names,
             'is_dagdha' => $isDagdha,
             'has_dosha' => $isDagdha,
             'severity' => $isDagdha ? 'high' : 'none',
-            'description' => $isDagdha 
+            'description' => $isDagdha
                 ? Localization::translate('String', 'Dagdha Yoga') . ' - ' . Localization::translate('Common', 'Inauspicious')
                 : 'Not Dagdha Yoga',
         ];
@@ -229,7 +220,7 @@ final class ElectionalEvaluator
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani / Gargiya Jyotisha'),
             'tithi_number' => $tithiNumber,
-            'tithi_name' => Tithi::from($tithiNumber % 30 ?: 30)->getName(),
+            'tithi_name' => Tithi::from(self::normalizeTithiNumber($tithiNumber))->getName(),
             'tithi_number_base' => 1,
             'is_krishna_paksha' => $isKrishnaPaksha,
             'paksha_name' => Localization::translate('String', $pakshaName),
@@ -237,12 +228,11 @@ final class ElectionalEvaluator
             'is_special_avoid' => false,
             'has_dosha' => $hasDosha,
             'severity' => $hasDosha ? 'high' : 'none',
-            'description' => $hasDosha 
+            'description' => $hasDosha
                 ? Localization::translate('String', 'Rikta Tithi') . ' - ' . Localization::translate('Common', 'Inauspicious')
                 : 'Not Rikta Tithi',
         ];
     }
-
 
     public static function calculateVarjyam(int $nakshatraNumber, float $nakshatraStartTime, float $nakshatraDurationMinutes): array
     {
@@ -259,7 +249,7 @@ final class ElectionalEvaluator
             'is_special_varjyam' => false,
             'has_dosha' => $hasDosha,
             'severity' => $hasDosha ? 'high' : 'none',
-            'description' => $hasDosha 
+            'description' => $hasDosha
                 ? Localization::translate('String', 'Varjyam (Visha Ghati)') . ' - ' . Localization::translate('Common', 'Inauspicious')
                 : 'No Varjyam',
         ];
@@ -287,7 +277,7 @@ final class ElectionalEvaluator
         $isWednesday = $vara === Vara::Wednesday;
         $hasCancellationPower = $isInAbhijit && !$isWednesday;
 
-        $note = $hasCancellationPower 
+        $note = $hasCancellationPower
             ? 'Abhijit Muhurta - High Dosha Cancellation Power'
             : ($isInAbhijit ? 'Abhijit power cancelled (Wednesday)' : 'Not in Abhijit Muhurta');
 
@@ -325,7 +315,7 @@ final class ElectionalEvaluator
         $highSeverity = [];
 
         foreach ($evaluationResults as $factor => $result) {
-            if (!is_array($result)) continue;
+            if (!is_array($result)) { continue; }
             if (isset($result['has_dosha']) && $result['has_dosha'] === true) {
                 $rejection = [
                     'dosha_name' => $factor,
@@ -343,7 +333,6 @@ final class ElectionalEvaluator
         }
 
         $overallVerdict = count($rejections) > 0 ? 'rejected_but_can_try_remedies' : 'accepted';
-        if (count($rejections) === 0) $overallVerdict = 'accepted';
 
         return [
             'source' => Localization::translate('Source', 'Transit-only evaluation'),
@@ -362,9 +351,14 @@ final class ElectionalEvaluator
             'remedies_available' => false,
             'recommendation' => match ($overallVerdict) {
                 'accepted' => Localization::translate('String', 'Muhurta is auspicious. Proceed with confidence.'),
-                'rejected_but_can_try_remedies' => Localization::translate('String', 'Muhurta has significant doshas. Remedies may help but alternative preferred.'),
-                default => Localization::translate('String', 'Muhurta is inauspicious. Finding alternative time recommended.'),
+                'rejected_but_can_try_remedies' => Localization::translate('String', 'Muhurta has significant doshas. Remedies may help but alternative preferred.')
             },
         ];
+    }
+
+    private static function normalizeTithiNumber(int $tithiNumber): int
+    {
+        $normalized = $tithiNumber % 30;
+        return $normalized === 0 ? 30 : $normalized;
     }
 }

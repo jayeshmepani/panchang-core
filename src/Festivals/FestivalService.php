@@ -2360,7 +2360,7 @@ class FestivalService
                         'description' => $rules['description'],
                         'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
-                        'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
+                        'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
                         'observance_note' => $resolved['observance_note'] ?? null,
                         'rules_applied' => $resolved['decision'] ?? [],
                     ];
@@ -2375,7 +2375,7 @@ class FestivalService
                         'description' => $rules['description'],
                         'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
-                        'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
+                        'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
                         'observance_note' => $resolved['observance_note'] ?? null,
                         'rules_applied' => $resolved['decision'] ?? [],
                     ];
@@ -2387,7 +2387,7 @@ class FestivalService
                     'description' => $rules['description'],
                     'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                     'fasting' => $rules['fasting'] ?? false,
-                    'regions' => array_map(fn($r) => Localization::translate('Region', $r), $regions),
+                    'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
                 ];
             }
         }

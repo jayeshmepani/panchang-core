@@ -234,7 +234,7 @@ class FestivalRuleEngine
             $monthTomorrow = (string) ($calendarTomorrow['Month_Amanta_En'] ?? $calendarTomorrow['Month_Amanta'] ?? '');
             $monthTodayNorm = $this->normalizeMonthName($monthToday);
             $monthTomorrowNorm = $this->normalizeMonthName($monthTomorrow);
-            $allowedMonthsNorm = array_map(fn($m) => $this->normalizeMonthName((string) $m), $allowedMonths);
+            $allowedMonthsNorm = array_map(fn ($m) => $this->normalizeMonthName((string) $m), $allowedMonths);
             $monthTodayMatch = in_array($monthTodayNorm, $allowedMonthsNorm, true);
             $monthTomorrowMatch = in_array($monthTomorrowNorm, $allowedMonthsNorm, true);
 

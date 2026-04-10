@@ -11,7 +11,6 @@ declare(strict_types=1);
  *
  * This data changes daily — run whenever you need current data.
  */
-
 $baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
 require $baseDir . '/vendor/autoload.php';
 
@@ -40,10 +39,10 @@ if (!function_exists('env')) {
         if (is_string($value)) {
             $trimmed = trim($value);
             $lower = strtolower($trimmed);
-            if ($lower === 'true' || $lower === '(true)') return true;
-            if ($lower === 'false' || $lower === '(false)') return false;
-            if ($lower === 'null' || $lower === '(null)') return null;
-            if ($lower === 'empty' || $lower === '(empty)') return '';
+            if ($lower === 'true' || $lower === '(true)') { return true; }
+            if ($lower === 'false' || $lower === '(false)') { return false; }
+            if ($lower === 'null' || $lower === '(null)') { return null; }
+            if ($lower === 'empty' || $lower === '(empty)') { return ''; }
             return $trimmed;
         }
         return $value;

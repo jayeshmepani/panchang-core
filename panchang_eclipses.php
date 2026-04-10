@@ -12,7 +12,6 @@ declare(strict_types=1);
  *
  * This data is static — run once for a multi-year range.
  */
-
 $baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
 require $baseDir . '/vendor/autoload.php';
 
@@ -80,7 +79,7 @@ $output = [
         ],
     ],
     'eclipses' => [
-        'title' => "Eclipses {$startYear}-{$endYear} - All eclipses for " . ($endYear - $startYear + 1) . " years",
+        'title' => "Eclipses {$startYear}-{$endYear} - All eclipses for " . ($endYear - $startYear + 1) . ' years',
         'from_year' => $startYear,
         'to_year' => $endYear,
         'total_eclipse_count' => count($eclipsesFlat),
@@ -98,4 +97,4 @@ if ($json === false) {
 $filename = "eclipses_{$startYear}_{$endYear}.json";
 file_put_contents($filename, $json . PHP_EOL);
 
-echo "Written {$filename} — " . count($eclipsesFlat) . " eclipses across " . ($endYear - $startYear + 1) . " years." . PHP_EOL;
+echo "Written {$filename} — " . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;
