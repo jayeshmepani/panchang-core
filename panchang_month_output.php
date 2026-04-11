@@ -55,6 +55,9 @@ $latitude = 23.2472446;
 $longitude = 69.668339;
 $elevation = 0.0;
 
+// Get calendar type from config
+$calendarType = config('panchang.defaults.calendar_type', 'purnimanta');
+
 // Allow overriding via CLI arguments: php panchang_month_output.php [year] [month]
 $year = isset($argv[1]) ? (int) $argv[1] : (int) date('Y');
 $month = isset($argv[2]) ? (int) $argv[2] : (int) date('m');
@@ -84,6 +87,7 @@ $calendar = $panchangService->getMonthCalendar(
     tz: $timezone,
     elevation: $elevation,
     calculationAt: $fixedRefDate,
+    calendarType: $calendarType
 );
 
 $output = [

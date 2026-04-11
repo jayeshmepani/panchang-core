@@ -104,14 +104,14 @@ class FestivalFamilyOrchestrator
         'navratri' => [
             'name' => 'Navratri Family',
             'sequence' => [
-                ['name' => 'Ghatasthapana', 'offset' => 0, 'rule_key' => 'ghatasthapana', 'time_of_day' => 'sunrise'],
+                ['name' => 'Ghatasthapana', 'offset' => 0, 'rule_key' => 'ghatasthapana', 'time_of_day' => 'madhyahna'],
                 ['name' => 'Day 2', 'offset' => 1, 'rule_key' => 'navratri_day_2', 'time_of_day' => 'day'],
                 ['name' => 'Day 3', 'offset' => 2, 'rule_key' => 'navratri_day_3', 'time_of_day' => 'day'],
                 ['name' => 'Day 4', 'offset' => 3, 'rule_key' => 'navratri_day_4', 'time_of_day' => 'day'],
                 ['name' => 'Day 5', 'offset' => 4, 'rule_key' => 'navratri_day_5', 'time_of_day' => 'day'],
                 ['name' => 'Day 6', 'offset' => 5, 'rule_key' => 'navratri_day_6', 'time_of_day' => 'day'],
-                ['name' => 'Durga Ashtami', 'offset' => 6, 'rule_key' => 'durga_ashtami', 'time_of_day' => 'day'],
-                ['name' => 'Maha Navami', 'offset' => 7, 'rule_key' => 'maha_navami', 'time_of_day' => 'day'],
+                ['name' => 'Durga Ashtami', 'offset' => 6, 'rule_key' => 'durga_ashtami', 'time_of_day' => 'tithi_transition'],
+                ['name' => 'Maha Navami', 'offset' => 7, 'rule_key' => 'maha_navami', 'time_of_day' => 'tithi_transition'],
                 ['name' => 'Vijayadashami', 'offset' => 8, 'rule_key' => 'vijayadashami', 'time_of_day' => 'aparahna'],
             ],
             'exception_logic' => 'navratri_sequence',
@@ -163,8 +163,8 @@ class FestivalFamilyOrchestrator
             'logic' => 'tradition_based_selection',
         ],
         'navratri_sequence' => [
-            'description' => 'Navratri runs Pratipada to Dashami continuously',
-            'logic' => 'continuous_sequence',
+            'description' => 'Navratri shell is Pratipada to Navami with Dashami parana; Vijayadashami uses Dashami-in-Aparahna priority',
+            'logic' => 'pratipada_to_navami_with_dashami_parana',
         ],
         'pitru_paksha_sequence' => [
             'description' => 'Pitru Paksha runs from Purnima to Amavasya with tithi-based shraddha',

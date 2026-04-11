@@ -56,6 +56,9 @@ if (class_exists(Container::class) && class_exists(Repository::class)) {
     Container::setInstance($container);
 }
 
+// Get calendar type from config
+$calendarType = config('panchang.defaults.calendar_type', 'purnimanta');
+
 if (!function_exists('config')) {
     function config(array|string|null $key = null, mixed $default = null): mixed
     {
@@ -131,6 +134,7 @@ $todayDetails = $panchangService->getDayDetails(
     tz: $timezone,
     elevation: $elevation,
     calculationAt: $sunriseTime,
+    calendarType: $calendarType
 );
 
 $dailyMuhurtaEvaluation = $panchangService->getDailyMuhurtaEvaluation(

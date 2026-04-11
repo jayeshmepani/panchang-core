@@ -5,9 +5,40 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\Localization;
 
 class FestivalRuleEngine
 {
+    private const NAKSHATRA_NUMBERS = [
+        'Ashwini' => 1,
+        'Bharani' => 2,
+        'Krittika' => 3,
+        'Rohini' => 4,
+        'Mrigashira' => 5,
+        'Ardra' => 6,
+        'Punarvasu' => 7,
+        'Pushya' => 8,
+        'Ashlesha' => 9,
+        'Magha' => 10,
+        'Purva Phalguni' => 11,
+        'Uttara Phalguni' => 12,
+        'Hasta' => 13,
+        'Chitra' => 14,
+        'Swati' => 15,
+        'Vishakha' => 16,
+        'Anuradha' => 17,
+        'Jyeshtha' => 18,
+        'Mula' => 19,
+        'Purva Ashadha' => 20,
+        'Uttara Ashadha' => 21,
+        'Shravana' => 22,
+        'Dhanishta' => 23,
+        'Shatabhisha' => 24,
+        'Purva Bhadrapada' => 25,
+        'Uttara Bhadrapada' => 26,
+        'Revati' => 27,
+    ];
+
     /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
         string $festivalName,
@@ -45,6 +76,7 @@ class FestivalRuleEngine
         $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
         $vriddhiPreference = (string) ($rule['vriddhi_preference'] ?? ($karmakalaType === 'sunrise' ? 'first' : 'last'));
         $strictKarmakala = (bool) ($rule['strict_karmakala'] ?? ($karmakalaType !== 'sunrise'));
+        $preferFirstKarmakala = (bool) ($rule['prefer_first_karmakala'] ?? false);
         $preferNakshatra = (bool) ($rule['prefer_nakshatra'] ?? false);
 
         $tithiAtSunriseToday = $this->isTargetAtPoint((float) $ctxToday['sunrise_jd'], $targetInterval);
@@ -84,7 +116,7 @@ class FestivalRuleEngine
 
         usort(
             $filtered,
-            fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $vriddhiPreference)
+            fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $vriddhiPreference, $preferFirstKarmakala)
         );
         $winner = $filtered[0];
 
@@ -212,13 +244,21 @@ class FestivalRuleEngine
         if ($requiredNakshatra === '') {
             return null;
         }
+        $requiredNakshatraNumber = $this->resolveNakshatraNumber($requiredNakshatra);
 
         $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
-        $nakshatraToday = (string) ($today['Nakshatra']['name'] ?? '');
-        $nakshatraTomorrow = (string) ($tomorrow['Nakshatra']['name'] ?? '');
+        $todayNakshatraNumber = $this->resolveSnapshotNakshatraNumber((array) ($today['Nakshatra'] ?? []));
+        $tomorrowNakshatraNumber = $this->resolveSnapshotNakshatraNumber((array) ($tomorrow['Nakshatra'] ?? []));
 
-        $nakshatraTodayMatch = strcasecmp($requiredNakshatra, $nakshatraToday) === 0;
-        $nakshatraTomorrowMatch = strcasecmp($requiredNakshatra, $nakshatraTomorrow) === 0;
+        if ($requiredNakshatraNumber !== null && $todayNakshatraNumber !== null && $tomorrowNakshatraNumber !== null) {
+            $nakshatraTodayMatch = $todayNakshatraNumber === $requiredNakshatraNumber;
+            $nakshatraTomorrowMatch = $tomorrowNakshatraNumber === $requiredNakshatraNumber;
+        } else {
+            $nakshatraToday = (string) ($today['Nakshatra']['name'] ?? '');
+            $nakshatraTomorrow = (string) ($tomorrow['Nakshatra']['name'] ?? '');
+            $nakshatraTodayMatch = strcasecmp($requiredNakshatra, $nakshatraToday) === 0;
+            $nakshatraTomorrowMatch = strcasecmp($requiredNakshatra, $nakshatraTomorrow) === 0;
+        }
 
         // If nakshatra doesn't match today or tomorrow, skip
         if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
@@ -327,9 +367,10 @@ class FestivalRuleEngine
         // Handle transition (e.g., 30 -> 1)
         $todayPlusOne = ($todayAbs % 30) + 1;
         if ($todayPlusOne === $targetAbs) {
+            $targetEnd = (float) ($ctxTomorrow['prev_tithi_end_jd'] ?? $ctxTomorrow['tithi_start_jd'] ?? $ctxTomorrow['tithi_end_jd']);
             return [
                 'start_jd' => (float) $ctxToday['tithi_end_jd'],
-                'end_jd' => (float) $ctxTomorrow['tithi_end_jd'],
+                'end_jd' => $targetEnd,
             ];
         }
 
@@ -396,10 +437,20 @@ class FestivalRuleEngine
         ];
     }
 
-    private function compareCandidates(array $left, array $right, bool $vriddhi, string $vriddhiPreference): int
+    private function compareCandidates(
+        array $left,
+        array $right,
+        bool $vriddhi,
+        string $vriddhiPreference,
+        bool $preferFirstKarmakala = false
+    ): int
     {
         if ($left['score'] !== $right['score']) {
             return $right['score'] <=> $left['score'];
+        }
+
+        if ($preferFirstKarmakala && $left['target_at_karmakala'] && $right['target_at_karmakala']) {
+            return $left['day_offset'] <=> $right['day_offset'];
         }
 
         if ($vriddhi) {
@@ -474,5 +525,64 @@ class FestivalRuleEngine
         $asciiOnly = preg_replace('/[^A-Za-z]/', '', $transliterated) ?? '';
 
         return strtolower($asciiOnly);
+    }
+
+    /** Resolve canonical nakshatra number (1..27) from a localized/english label. */
+    private function resolveNakshatraNumber(string $label): ?int
+    {
+        $labelNorm = $this->normalizeLabel($label);
+        if ($labelNorm === '') {
+            return null;
+        }
+
+        foreach (self::NAKSHATRA_NUMBERS as $name => $number) {
+            if ($this->normalizeLabel((string) $name) === $labelNorm) {
+                return (int) $number;
+            }
+        }
+
+        foreach (['en', 'hi', 'gu'] as $locale) {
+            for ($idx = 0; $idx < 27; $idx++) {
+                $translated = Localization::translate('Nakshatra', $idx, $locale);
+                if ($this->normalizeLabel($translated) === $labelNorm) {
+                    return $idx + 1;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /** Resolve nakshatra number from festival snapshot payload. */
+    private function resolveSnapshotNakshatraNumber(array $nakshatra): ?int
+    {
+        $explicitNumber = (int) ($nakshatra['number'] ?? 0);
+        if ($explicitNumber >= 1 && $explicitNumber <= 27) {
+            return $explicitNumber;
+        }
+
+        $explicitIndex = (int) ($nakshatra['index'] ?? -1);
+        if ($explicitIndex >= 0 && $explicitIndex <= 26) {
+            return $explicitIndex + 1;
+        }
+
+        $name = (string) ($nakshatra['name'] ?? '');
+
+        return $this->resolveNakshatraNumber($name);
+    }
+
+    /** Normalize free-text labels (ASCII/Unicode) for robust equality checks. */
+    private function normalizeLabel(string $label): string
+    {
+        $label = trim($label);
+        if ($label === '') {
+            return '';
+        }
+
+        $label = preg_replace('/\s*\(.*?\)\s*/u', '', $label) ?? $label;
+        $label = function_exists('mb_strtolower') ? mb_strtolower($label, 'UTF-8') : strtolower($label);
+
+        // Keep letters across all scripts (Latin + Indic) and remove separators/punctuation.
+        return preg_replace('/[^\p{L}]+/u', '', $label) ?? '';
     }
 }

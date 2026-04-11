@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-10T15:11:41+00:00",
+        "generated_at": "2026-04-11T13:18:35+00:00",
         "type": "festivals",
         "year": 2026,
         "location": {
@@ -15,8 +15,8 @@
     "festivals": {
         "title": "Festivals 2026 - All festivals for the entire year",
         "year": 2026,
-        "festival_day_count": 144,
-        "festival_entry_count": 188,
+        "festival_day_count": 148,
+        "festival_entry_count": 193,
         "by_date": {
             "2026-01-03": [
                 {
@@ -42,25 +42,6 @@
                 {
                     "name": "गुणातीतानंद स्वामी दीक्षा दिन",
                     "description": "Diksha day of Gunatitanand Swami",
-                    "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            ],
-            "2026-01-04": [
-                {
-                    "name": "महंत स्वामी महाराज पार्षदी दीक्षा दिन (आधिकारिक जयंती)",
-                    "description": "Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)",
                     "deity": "स्वामीनारायण",
                     "fasting": false,
                     "regions": [
@@ -150,17 +131,17 @@
             ],
             "2026-01-19": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 1 (काली पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Kali (Destroyer of Time]",
-                    "deity": "महाविद्या/काली",
+                    "name": "Magha Gupt Navaratri Day 1 (Ghatasthapana)",
+                    "description": "Magha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -169,9 +150,9 @@
             ],
             "2026-01-20": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 2 (तारा पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Tara (Protector and Guide]",
-                    "deity": "महाविद्या/तारा",
+                    "name": "Magha Gupt Navaratri Day 2",
+                    "description": "Magha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -188,9 +169,9 @@
             ],
             "2026-01-21": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 3 (त्रिपुर सुंदरी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Tripura Sundari / Shodashi (Beauty of Three Worlds]",
-                    "deity": "महाविद्या/त्रिपुर सुंदरी",
+                    "name": "Magha Gupt Navaratri Day 3",
+                    "description": "Magha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -207,9 +188,9 @@
             ],
             "2026-01-22": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 4 (भुवनेश्वरी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bhuvaneshwari (Goddess of the Universe]",
-                    "deity": "महाविद्या/भुवनेश्वरी",
+                    "name": "Magha Gupt Navaratri Day 4",
+                    "description": "Magha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -243,9 +224,9 @@
                     }
                 },
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 5 (भैरवी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bhairavi (Fierce Goddess of Decay and Rebirth]",
-                    "deity": "महाविद्या/भैरवी",
+                    "name": "Magha Gupt Navaratri Day 5",
+                    "description": "Magha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -279,9 +260,9 @@
             ],
             "2026-01-24": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 6 (छिन्नमस्ता पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Chhinnamasta (Self-Decapitated Goddess]",
-                    "deity": "महाविद्या/छिन्नमस्ता",
+                    "name": "Magha Gupt Navaratri Day 6",
+                    "description": "Magha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -298,9 +279,9 @@
             ],
             "2026-01-25": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 7 (धूमावती पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Dhumavati (The Widow Goddess]",
-                    "deity": "महाविद्या/धूमावती",
+                    "name": "Magha Gupt Navaratri Day 7",
+                    "description": "Magha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -334,9 +315,9 @@
             ],
             "2026-01-26": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 8 (बगलामुखी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bagalamukhi (Paralyzer of Enemies]",
-                    "deity": "महाविद्या/बगलामुखी",
+                    "name": "Magha Gupt Navaratri Day 8",
+                    "description": "Magha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -370,9 +351,9 @@
             ],
             "2026-01-27": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Magha Gupt Navaratri Day 9",
+                    "description": "Magha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -389,9 +370,9 @@
             ],
             "2026-01-28": [
                 {
-                    "name": "माघ गुप्त नवरात्रि दिन 10 (कमला पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Kamala (Tantric Lakshmi / Prosperity and Fertility]",
-                    "deity": "कमला",
+                    "name": "Magha Gupt Navaratri Parana (Dashami)",
+                    "description": "Magha Gupta Navaratri Parana on Dashami after Navami completion (Nirnaya-Sindhu rule family).",
+                    "deity": "Devi",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -427,6 +408,28 @@
             ],
             "2026-02-01": [
                 {
+                    "name": "थाई पूसम",
+                    "description": "Tamil festival dedicated to Lord Murugan; observed when Pushya nakshatra coincides with Purnima in Tamil month Thai (Jan-Feb)",
+                    "deity": "मुरुगन",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु",
+                        "केरल",
+                        "कर्नाटक",
+                        "आंध्र प्रदेश",
+                        "तेलुగు",
+                        "श्रीलंका",
+                        "मलेशिया",
+                        "सिंगापुर"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Pushya",
+                        "winning_reason": "nakshatra_and_purnima_match"
+                    }
+                },
+                {
                     "name": "माघी पूर्णिमा / मासी मगम",
                     "description": "Kumbh Mela bathing day / Tamil holy bathing day",
                     "deity": "गंगा/शिव",
@@ -449,23 +452,6 @@
                     "name": "महंत स्वामी महाराज पार्षदी दीक्षा दिन (आधिकारिक जयंती)",
                     "description": "Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)",
                     "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                },
-                {
-                    "name": "पुष्पदोलोत्सव (धुलेटी)",
-                    "description": "Festival of colors (Dhuleti/Pushpadolotsav]",
-                    "deity": "कृष्ण/स्वामीनारायण",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -544,23 +530,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                },
-                {
-                    "name": "महा शिवरात्रि",
-                    "description": "Great night of Lord Shiva",
-                    "deity": "शिव",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             ],
@@ -644,23 +613,6 @@
             ],
             "2026-03-03": [
                 {
-                    "name": "होलिका दहन",
-                    "description": "Bonfire ceremony, victory of good over evil",
-                    "deity": "विष्णु/हिरण्यकशिपु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
-                {
                     "name": "भगतजी महाराज जयंती",
                     "description": "Birth of Bhagatji Maharaj (Swaminarayan Sect)",
                     "deity": "स्वामीनारायण",
@@ -676,6 +628,16 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "होली",
+                    "description": "Festival of colors",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": "Observed 1 day(s) after होलिका दहन"
                 }
             ],
             "2026-03-04": [
@@ -695,6 +657,16 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "होली",
+                    "description": "Festival of colors",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": "Observed 1 day(s) after होलिका दहन"
                 }
             ],
             "2026-03-11": [
@@ -744,10 +716,84 @@
                     }
                 }
             ],
+            "2026-03-19": [
+                {
+                    "name": "चैत्र (वसंत) नवरात्रि दिन 1 (शैलपुत्री पूजा)",
+                    "description": "Chaitra (Vasant) Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.",
+                    "deity": "दुर्गा/शैलपुत्री",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                },
+                {
+                    "name": "उगादी / गुड़ी पड़वा",
+                    "description": "Lunar New Year / First day of Chaitra",
+                    "deity": "ब्रह्मा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
+            "2026-03-20": [
+                {
+                    "name": "चेटी चंड",
+                    "description": "Sindhi Hindu New Year; birth of Jhulelal (Ishta-Devta)",
+                    "deity": "झूलेलाल/वरुण",
+                    "fasting": false,
+                    "regions": [
+                        "सिंधी",
+                        "गुजरात",
+                        "राजस्थान"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                },
+                {
+                    "name": "चैत्र (वसंत) नवरात्रि दिन 2 (ब्रह्मचारिणी पूजा)",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Brahmacharini (The Ascetic)",
+                    "deity": "दुर्गा/ब्रह्मचारिणी",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
             "2026-03-21": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 3 (चंद्रघंटा पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)",
                     "deity": "दुर्गा/चंद्रघंटा",
                     "fasting": false,
                     "regions": [
@@ -783,7 +829,7 @@
             "2026-03-22": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 4 (कूष्मांडा पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)",
                     "deity": "दुर्गा/कूष्मांडा",
                     "fasting": false,
                     "regions": [
@@ -802,7 +848,7 @@
             "2026-03-23": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 5 (स्कंदमाता पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Skandamata (Mother of Skanda]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Skandamata (Mother of Skanda)",
                     "deity": "दुर्गा/स्कंदमाता",
                     "fasting": false,
                     "regions": [
@@ -821,7 +867,7 @@
             "2026-03-24": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 6 (कात्यायनी पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Katyayani (The Warrior Goddess]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Katyayani (The Warrior Goddess)",
                     "deity": "दुर्गा/कात्यायनी",
                     "fasting": false,
                     "regions": [
@@ -857,7 +903,7 @@
             "2026-03-25": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Kalaratri (The Fierce Night) / Maha Saptami",
                     "deity": "दुर्गा/कालरात्रि",
                     "fasting": false,
                     "regions": [
@@ -876,7 +922,7 @@
             "2026-03-26": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 8 (महागौरी पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami",
                     "deity": "दुर्गा/महागौरी",
                     "fasting": false,
                     "regions": [
@@ -929,7 +975,7 @@
             "2026-03-27": [
                 {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 9 (सिद्धिदात्री पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers) / Maha Navami",
                     "deity": "दुर्गा/सिद्धिदात्री",
                     "fasting": false,
                     "regions": [
@@ -942,40 +988,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                },
-                {
-                    "name": "राम नवमी",
-                    "description": "Birth anniversary of Lord Rama, seventh avatar of Vishnu",
-                    "deity": "राम",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
-                {
-                    "name": "स्वामीनारायण जयंती (हरि-नोम)",
-                    "description": "Birth of Bhagwan Swaminarayan; celebrated with assemblies, cultural programs, and devotional singing",
-                    "deity": "स्वामीनारायण",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             ],
@@ -1189,25 +1201,6 @@
                     }
                 }
             ],
-            "2026-04-30": [
-                {
-                    "name": "नरसिंह जयंती",
-                    "description": "Appearance day of Lord Narasimha",
-                    "deity": "नरसिंह",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            ],
             "2026-05-01": [
                 {
                     "name": "बुद्ध पूर्णिमा",
@@ -1312,12 +1305,69 @@
                     }
                 }
             ],
-            "2026-05-26": [
+            "2026-05-20": [
                 {
-                    "name": "Padmini Ekadashi",
-                    "description": "Special Ekadashi occurring ONLY during Adhik Maas",
-                    "deity": "विष्णु",
-                    "fasting": true,
+                    "name": "प्रमुख वर्णी दिन",
+                    "description": "Day when Pramukh Swami Maharaj was appointed administrative president of BAPS (1950)",
+                    "deity": "स्वामीनारायण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
+            "2026-05-22": [
+                {
+                    "name": "जामाइ षष्ठी",
+                    "description": "Bengali festival dedicated to son-in-laws",
+                    "deity": "षष्ठी",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
+            "2026-05-24": [
+                {
+                    "name": "महेश नवमी",
+                    "description": "Worship of Lord Shiva by Maheshwari community",
+                    "deity": "शिव",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
+            "2026-05-25": [
+                {
+                    "name": "गंगा दशहरा",
+                    "description": "Descent of Mother Ganga to Earth",
+                    "deity": "गंगा",
+                    "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
@@ -1350,6 +1400,25 @@
                     }
                 }
             ],
+            "2026-05-31": [
+                {
+                    "name": "वट पूर्णिमा",
+                    "description": "Vat Savitri observed by Purnimanta calendar",
+                    "deity": "सावित्री/ब्रह्मा",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            ],
             "2026-06-11": [
                 {
                     "name": "Parama Ekadashi",
@@ -1367,6 +1436,17 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                }
+            ],
+            "2026-06-15": [
+                {
+                    "name": "मिथुन संक्रांति",
+                    "description": "Sun enters Mithuna",
+                    "deity": "",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
                 }
             ],
             "2026-06-18": [
@@ -1483,12 +1563,12 @@
                     }
                 }
             ],
-            "2026-07-15": [
+            "2026-07-10": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 1 (काली पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Kali (Destroyer of Time]",
-                    "deity": "महाविद्या/काली",
-                    "fasting": false,
+                    "name": "योगिनी एकादशी",
+                    "description": "Fasting for Yogini Ekadashi",
+                    "deity": "विष्णु",
+                    "fasting": true,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
@@ -1497,8 +1577,27 @@
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
+                    }
+                }
+            ],
+            "2026-07-15": [
+                {
+                    "name": "Ashadha Gupt Navaratri Day 1 (Ghatasthapana)",
+                    "description": "Ashadha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_sunrise",
+                        "winning_score": 700
                     }
                 }
             ],
@@ -1531,9 +1630,9 @@
                     }
                 },
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 2 (तारा पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Tara (Protector and Guide]",
-                    "deity": "महाविद्या/तारा",
+                    "name": "Ashadha Gupt Navaratri Day 2",
+                    "description": "Ashadha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1567,9 +1666,9 @@
             ],
             "2026-07-17": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 3 (त्रिपुर सुंदरी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Tripura Sundari / Shodashi (Beauty of Three Worlds]",
-                    "deity": "महाविद्या/त्रिपुर सुंदरी",
+                    "name": "Ashadha Gupt Navaratri Day 3",
+                    "description": "Ashadha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1582,13 +1681,30 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "Ashadha Gupt Navaratri Day 4",
+                    "description": "Ashadha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
+                    }
                 }
             ],
             "2026-07-18": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 5 (भैरवी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Bhairavi (Fierce Goddess of Decay and Rebirth]",
-                    "deity": "महाविद्या/भैरवी",
+                    "name": "Ashadha Gupt Navaratri Day 5",
+                    "description": "Ashadha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1605,9 +1721,9 @@
             ],
             "2026-07-19": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 6 (छिन्नमस्ता पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Chhinnamasta (Self-Decapitated Goddess]",
-                    "deity": "महाविद्या/छिन्नमस्ता",
+                    "name": "Ashadha Gupt Navaratri Day 6",
+                    "description": "Ashadha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1624,9 +1740,9 @@
             ],
             "2026-07-20": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 7 (धूमावती पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Dhumavati (The Widow Goddess]",
-                    "deity": "महाविद्या/धूमावती",
+                    "name": "Ashadha Gupt Navaratri Day 7",
+                    "description": "Ashadha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1643,28 +1759,9 @@
             ],
             "2026-07-21": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 8 (बगलामुखी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Bagalamukhi (Paralyzer of Enemies]",
-                    "deity": "महाविद्या/बगलामुखी",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            ],
-            "2026-07-22": [
-                {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Ashadha Gupt Navaratri Day 8",
+                    "description": "Ashadha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1681,9 +1778,9 @@
             ],
             "2026-07-23": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Ashadha Gupt Navaratri Day 9",
+                    "description": "Ashadha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1700,9 +1797,9 @@
             ],
             "2026-07-24": [
                 {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 10 (कमला पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Kamala (Tantric Lakshmi / Prosperity and Fertility]",
-                    "deity": "कमला",
+                    "name": "Ashadha Gupt Navaratri Parana (Dashami)",
+                    "description": "Ashadha Gupta Navaratri Parana on Dashami after Navami completion (Nirnaya-Sindhu rule family).",
+                    "deity": "Devi",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1855,6 +1952,15 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
                 }
             ],
             "2026-08-18": [
@@ -1914,10 +2020,40 @@
                     }
                 }
             ],
+            "2026-08-24": [
+                {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
+                }
+            ],
+            "2026-08-26": [
+                {
+                    "name": "ओणम (तिरुवोणम)",
+                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
+                    "deity": "विष्णु/महाबली",
+                    "fasting": false,
+                    "regions": [
+                        "केरल",
+                        "तमिलनाडु",
+                        "कर्नाटक"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Shravana",
+                        "winning_reason": "nakshatra_match"
+                    }
+                }
+            ],
             "2026-08-27": [
                 {
-                    "name": "रक्षा बंधन / अवनी अवित्तम",
-                    "description": "Brother-sister bond / Hayagriva birth / Upakarma",
+                    "name": "अवनी अवित्तम (यजुर उपाकर्म)",
+                    "description": "Yajur Upakarma (Avani Avittam): sacred thread renewal and Vedic recommitment",
                     "deity": "हयग्रीव",
                     "fasting": false,
                     "regions": [
@@ -1935,9 +2071,9 @@
             ],
             "2026-08-28": [
                 {
-                    "name": "रक्षा बंधन / अवनी अवित्तम",
-                    "description": "Brother-sister bond / Hayagriva birth / Upakarma",
-                    "deity": "हयग्रीव",
+                    "name": "रक्षा बंधन",
+                    "description": "Brother-sister bond festival; tie Rakhi during auspicious Purnima window",
+                    "deity": "Vishnu/Indra",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -1945,10 +2081,10 @@
                     "observance_note": null,
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "vriddhi_preference": "last",
+                        "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
                     }
                 },
                 {
@@ -1962,6 +2098,15 @@
                 }
             ],
             "2026-08-31": [
+                {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
+                },
                 {
                     "name": "कजरी तीज",
                     "description": "Kajari Teej festival",
@@ -1981,6 +2126,23 @@
                 }
             ],
             "2026-09-01": [
+                {
+                    "name": "गोगा पंचम / गोगा पंचमी (नाग पंचमी - गुजरात)",
+                    "description": "Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities",
+                    "deity": "गोगा जी / गोगा बापा",
+                    "fasting": false,
+                    "regions": [
+                        "गुजरात"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
+                    }
+                },
                 {
                     "name": "बोल चौथ",
                     "description": "Worship of cows and calves (Bahula Chaturthi)",
@@ -2056,25 +2218,6 @@
                     }
                 }
             ],
-            "2026-09-05": [
-                {
-                    "name": "महंत स्वामी महाराज जन्म जयंती",
-                    "description": "Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)",
-                    "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            ],
             "2026-09-07": [
                 {
                     "name": "अजा एकादशी",
@@ -2092,26 +2235,15 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
-                }
-            ],
-            "2026-09-08": [
+                },
                 {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
                     "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
+                        "संपूर्ण भारत"
+                    ]
                 }
             ],
             "2026-09-11": [
@@ -2206,23 +2338,6 @@
                     }
                 },
                 {
-                    "name": "गणेश चतुर्थी",
-                    "description": "Birth anniversary of Lord Ganesha",
-                    "deity": "गणेश",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
-                {
                     "name": "ऋषि पंचमी",
                     "description": "Worship of the Saptarishis",
                     "deity": "सप्तर्षि",
@@ -2257,23 +2372,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                },
-                {
-                    "name": "ऋषि पंचमी",
-                    "description": "Worship of the Saptarishis",
-                    "deity": "सप्तर्षि",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             ],
@@ -2364,6 +2462,24 @@
             ],
             "2026-09-23": [
                 {
+                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Sud 12-14",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                },
+                {
                     "name": "वामन जयंती",
                     "description": "Birth of Vamana Avatar",
                     "deity": "वामन",
@@ -2379,6 +2495,36 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "ओणम (तिरुवोणम)",
+                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
+                    "deity": "विष्णु/महाबली",
+                    "fasting": false,
+                    "regions": [
+                        "केरल",
+                        "तमिलनाडु",
+                        "कर्नाटक"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Shravana",
+                        "winning_reason": "nakshatra_match"
+                    }
+                }
+            ],
+            "2026-09-24": [
+                {
+                    "name": "मोटा यक्ष मेला दिन 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 13)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)"
                 }
             ],
             "2026-09-25": [
@@ -2398,6 +2544,17 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                },
+                {
+                    "name": "मोटा यक्ष मेला दिन 3",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 14)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": "Observed 2 day(s) after मोटा यक्ष मेला (जख बहोतेरा)"
                 }
             ],
             "2026-09-26": [
@@ -2457,26 +2614,6 @@
                     }
                 }
             ],
-            "2026-10-07": [
-                {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            ],
             "2026-10-10": [
                 {
                     "name": "महालय अमावस्या",
@@ -2499,7 +2636,7 @@
             "2026-10-11": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 1 (शैलपुत्री पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Shailaputri (Daughter of the Mountain]",
+                    "description": "Ashvina Sharad Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.",
                     "deity": "दुर्गा/शैलपुत्री",
                     "fasting": false,
                     "regions": [
@@ -2507,8 +2644,8 @@
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -2518,7 +2655,7 @@
             "2026-10-12": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 2 (ब्रह्मचारिणी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic)",
                     "deity": "दुर्गा/ब्रह्मचारिणी",
                     "fasting": false,
                     "regions": [
@@ -2537,7 +2674,7 @@
             "2026-10-13": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 3 (चंद्रघंटा पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)",
                     "deity": "दुर्गा/चंद्रघंटा",
                     "fasting": false,
                     "regions": [
@@ -2556,7 +2693,7 @@
             "2026-10-14": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 4 (कूष्मांडा पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)",
                     "deity": "दुर्गा/कूष्मांडा",
                     "fasting": false,
                     "regions": [
@@ -2575,7 +2712,7 @@
             "2026-10-15": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 5 (स्कंदमाता पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Skandamata (Mother of Skanda]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Skandamata (Mother of Skanda)",
                     "deity": "दुर्गा/स्कंदमाता",
                     "fasting": false,
                     "regions": [
@@ -2611,7 +2748,7 @@
             "2026-10-16": [
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 6 (कात्यायनी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Katyayani (The Warrior Goddess]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Katyayani (The Warrior Goddess)",
                     "deity": "दुर्गा/कात्यायनी",
                     "fasting": false,
                     "regions": [
@@ -2639,7 +2776,7 @@
                 },
                 {
                     "name": "अश्विन शरद नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
+                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night) / Maha Saptami",
                     "deity": "दुर्गा/कालरात्रि",
                     "fasting": false,
                     "regions": [
@@ -2647,8 +2784,8 @@
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -2657,17 +2794,17 @@
             ],
             "2026-10-18": [
                 {
-                    "name": "अश्विन शरद नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
-                    "deity": "दुर्गा/कालरात्रि",
+                    "name": "दुर्गा अष्टमी (महागौरी पूजा)",
+                    "description": "Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami",
+                    "deity": "दुर्गा/महागौरी",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "observance_note": null,
+                    "observance_note": "Exception: Standard Shukla Tithi 8 falls on 2026-10-19 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-10-18.",
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -2676,17 +2813,17 @@
             ],
             "2026-10-19": [
                 {
-                    "name": "दुर्गा अष्टमी (महागौरी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami",
-                    "deity": "दुर्गा/महागौरी",
+                    "name": "महा नवमी (सिद्धिदात्री पूजा)",
+                    "description": "Ashvina Sharad Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers) / Maha Navami",
+                    "deity": "दुर्गा/सिद्धिदात्री",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "observance_note": null,
+                    "observance_note": "Exception: Standard Shukla Tithi 9 falls on 2026-10-20 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-10-19.",
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -2694,23 +2831,6 @@
                 }
             ],
             "2026-10-20": [
-                {
-                    "name": "महा नवमी (सिद्धिदात्री पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami",
-                    "deity": "दुर्गा/सिद्धिदात्री",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                },
                 {
                     "name": "दशहरा / विजयदशमी",
                     "description": "Victory of Lord Rama over Ravana / End of Sharad Navaratri",
@@ -2726,25 +2846,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            ],
-            "2026-10-21": [
-                {
-                    "name": "दशहरा / विजयदशमी",
-                    "description": "Victory of Lord Rama over Ravana / End of Sharad Navaratri",
-                    "deity": "राम/दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             ],
@@ -2787,23 +2888,6 @@
                 }
             ],
             "2026-10-26": [
-                {
-                    "name": "शरद पूर्णिमा / माणेकठारी पूनम / गुणातीतानंद स्वामी जयंती",
-                    "description": "Sharad Purnima, known in Gujarat as Manekthari Punam, and the birth anniversary of Gunatitanand Swami",
-                    "deity": "लक्ष्मी/कृष्ण/स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
                 {
                     "name": "वाल्मीकि जयंती",
                     "description": "Birth anniversary of Sage Valmiki",
@@ -2860,25 +2944,6 @@
                     }
                 }
             ],
-            "2026-11-02": [
-                {
-                    "name": "अहोई अष्टमी",
-                    "description": "Mothers fast for wellbeing of children",
-                    "deity": "अहोई माता",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            ],
             "2026-11-05": [
                 {
                     "name": "रमा एकादशी",
@@ -2917,23 +2982,6 @@
             ],
             "2026-11-06": [
                 {
-                    "name": "वाघ बारस (गोवत्स द्वादशी)",
-                    "description": "Worship of cows and calves",
-                    "deity": "कृष्ण/गाएं",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
-                {
                     "name": "धनतेरस",
                     "description": "Worship of Lakshmi and Dhanvantari",
                     "deity": "लक्ष्मी/धन्वंतरि",
@@ -2952,23 +3000,6 @@
                 }
             ],
             "2026-11-07": [
-                {
-                    "name": "धनतेरस",
-                    "description": "Worship of Lakshmi and Dhanvantari",
-                    "deity": "लक्ष्मी/धन्वंतरि",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
                 {
                     "name": "काली चौदस (नरक चतुर्दशी)",
                     "description": "Worship of Goddess Kali and victory over Narakasura",
@@ -2989,23 +3020,6 @@
             ],
             "2026-11-08": [
                 {
-                    "name": "काली चौदस (नरक चतुर्दशी)",
-                    "description": "Worship of Goddess Kali and victory over Narakasura",
-                    "deity": "काली/हनुमान/कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                },
-                {
                     "name": "काली पूजा / दिवाली",
                     "description": "Festival of lights / Worship of Goddess Kali",
                     "deity": "लक्ष्मी/काली/गणेश",
@@ -3020,25 +3034,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            ],
-            "2026-11-09": [
-                {
-                    "name": "काली पूजा / दिवाली",
-                    "description": "Festival of lights / Worship of Goddess Kali",
-                    "deity": "लक्ष्मी/काली/गणेश",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             ],
@@ -3205,6 +3200,25 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
+                    }
+                }
+            ],
+            "2026-11-20": [
+                {
+                    "name": "देवोत्थान (प्रबोधिनी) एकादशी",
+                    "description": "Prabodhini Ekadashi / End of Chaturmas",
+                    "deity": "विष्णु/स्वामीनारायण",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
                     }
                 }
             ],
@@ -3411,6 +3425,25 @@
                         "winning_score": 1000
                     }
                 }
+            ],
+            "2026-12-23": [
+                {
+                    "name": "दत्तात्रेय जयंती",
+                    "description": "Birth of Dattatreya (Annapurna Jayanti]",
+                    "deity": "दत्तात्रेय/अन्नपूर्णा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
             ]
         },
         "flat": [
@@ -3442,26 +3475,6 @@
                 "festival": {
                     "name": "गुणातीतानंद स्वामी दीक्षा दिन",
                     "description": "Diksha day of Gunatitanand Swami",
-                    "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-01-04",
-                "festival": {
-                    "name": "महंत स्वामी महाराज पार्षदी दीक्षा दिन (आधिकारिक जयंती)",
-                    "description": "Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)",
                     "deity": "स्वामीनारायण",
                     "fasting": false,
                     "regions": [
@@ -3559,17 +3572,17 @@
             {
                 "date": "2026-01-19",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 1 (काली पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Kali (Destroyer of Time]",
-                    "deity": "महाविद्या/काली",
+                    "name": "Magha Gupt Navaratri Day 1 (Ghatasthapana)",
+                    "description": "Magha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -3579,9 +3592,9 @@
             {
                 "date": "2026-01-20",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 2 (तारा पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Tara (Protector and Guide]",
-                    "deity": "महाविद्या/तारा",
+                    "name": "Magha Gupt Navaratri Day 2",
+                    "description": "Magha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3599,9 +3612,9 @@
             {
                 "date": "2026-01-21",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 3 (त्रिपुर सुंदरी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Tripura Sundari / Shodashi (Beauty of Three Worlds]",
-                    "deity": "महाविद्या/त्रिपुर सुंदरी",
+                    "name": "Magha Gupt Navaratri Day 3",
+                    "description": "Magha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3619,9 +3632,9 @@
             {
                 "date": "2026-01-22",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 4 (भुवनेश्वरी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bhuvaneshwari (Goddess of the Universe]",
-                    "deity": "महाविद्या/भुवनेश्वरी",
+                    "name": "Magha Gupt Navaratri Day 4",
+                    "description": "Magha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3659,9 +3672,9 @@
             {
                 "date": "2026-01-23",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 5 (भैरवी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bhairavi (Fierce Goddess of Decay and Rebirth]",
-                    "deity": "महाविद्या/भैरवी",
+                    "name": "Magha Gupt Navaratri Day 5",
+                    "description": "Magha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3699,9 +3712,9 @@
             {
                 "date": "2026-01-24",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 6 (छिन्नमस्ता पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Chhinnamasta (Self-Decapitated Goddess]",
-                    "deity": "महाविद्या/छिन्नमस्ता",
+                    "name": "Magha Gupt Navaratri Day 6",
+                    "description": "Magha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3719,9 +3732,9 @@
             {
                 "date": "2026-01-25",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 7 (धूमावती पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Dhumavati (The Widow Goddess]",
-                    "deity": "महाविद्या/धूमावती",
+                    "name": "Magha Gupt Navaratri Day 7",
+                    "description": "Magha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3759,9 +3772,9 @@
             {
                 "date": "2026-01-26",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 8 (बगलामुखी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Bagalamukhi (Paralyzer of Enemies]",
-                    "deity": "महाविद्या/बगलामुखी",
+                    "name": "Magha Gupt Navaratri Day 8",
+                    "description": "Magha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3799,9 +3812,9 @@
             {
                 "date": "2026-01-27",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Magha Gupt Navaratri Day 9",
+                    "description": "Magha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3819,9 +3832,9 @@
             {
                 "date": "2026-01-28",
                 "festival": {
-                    "name": "माघ गुप्त नवरात्रि दिन 10 (कमला पूजा)",
-                    "description": "Magha Gupt Navaratri (10 Mahavidyas] - Worship of Kamala (Tantric Lakshmi / Prosperity and Fertility]",
-                    "deity": "कमला",
+                    "name": "Magha Gupt Navaratri Parana (Dashami)",
+                    "description": "Magha Gupta Navaratri Parana on Dashami after Navami completion (Nirnaya-Sindhu rule family).",
+                    "deity": "Devi",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3859,6 +3872,31 @@
             {
                 "date": "2026-02-01",
                 "festival": {
+                    "name": "थाई पूसम",
+                    "description": "Tamil festival dedicated to Lord Murugan; observed when Pushya nakshatra coincides with Purnima in Tamil month Thai (Jan-Feb)",
+                    "deity": "मुरुगन",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु",
+                        "केरल",
+                        "कर्नाटक",
+                        "आंध्र प्रदेश",
+                        "तेलुగు",
+                        "श्रीलंका",
+                        "मलेशिया",
+                        "सिंगापुर"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Pushya",
+                        "winning_reason": "nakshatra_and_purnima_match"
+                    }
+                }
+            },
+            {
+                "date": "2026-02-01",
+                "festival": {
                     "name": "माघी पूर्णिमा / मासी मगम",
                     "description": "Kumbh Mela bathing day / Tamil holy bathing day",
                     "deity": "गंगा/शिव",
@@ -3882,26 +3920,6 @@
                     "name": "महंत स्वामी महाराज पार्षदी दीक्षा दिन (आधिकारिक जयंती)",
                     "description": "Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)",
                     "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-02-02",
-                "festival": {
-                    "name": "पुष्पदोलोत्सव (धुलेटी)",
-                    "description": "Festival of colors (Dhuleti/Pushpadolotsav]",
-                    "deity": "कृष्ण/स्वामीनारायण",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -3990,26 +4008,6 @@
                 }
             },
             {
-                "date": "2026-02-16",
-                "festival": {
-                    "name": "महा शिवरात्रि",
-                    "description": "Great night of Lord Shiva",
-                    "deity": "शिव",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
                 "date": "2026-02-19",
                 "festival": {
                     "name": "फुलेरा दूज",
@@ -4088,26 +4086,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-03-03",
-                "festival": {
-                    "name": "होलिका दहन",
-                    "description": "Bonfire ceremony, victory of good over evil",
-                    "deity": "विष्णु/हिरण्यकशिपु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -4204,10 +4182,92 @@
                 }
             },
             {
+                "date": "2026-03-19",
+                "festival": {
+                    "name": "चैत्र (वसंत) नवरात्रि दिन 1 (शैलपुत्री पूजा)",
+                    "description": "Chaitra (Vasant) Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.",
+                    "deity": "दुर्गा/शैलपुत्री",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-03-19",
+                "festival": {
+                    "name": "उगादी / गुड़ी पड़वा",
+                    "description": "Lunar New Year / First day of Chaitra",
+                    "deity": "ब्रह्मा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-03-20",
+                "festival": {
+                    "name": "चेटी चंड",
+                    "description": "Sindhi Hindu New Year; birth of Jhulelal (Ishta-Devta)",
+                    "deity": "झूलेलाल/वरुण",
+                    "fasting": false,
+                    "regions": [
+                        "सिंधी",
+                        "गुजरात",
+                        "राजस्थान"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-03-20",
+                "festival": {
+                    "name": "चैत्र (वसंत) नवरात्रि दिन 2 (ब्रह्मचारिणी पूजा)",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Brahmacharini (The Ascetic)",
+                    "deity": "दुर्गा/ब्रह्मचारिणी",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
                 "date": "2026-03-21",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 3 (चंद्रघंटा पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)",
                     "deity": "दुर्गा/चंद्रघंटा",
                     "fasting": false,
                     "regions": [
@@ -4247,7 +4307,7 @@
                 "date": "2026-03-22",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 4 (कूष्मांडा पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)",
                     "deity": "दुर्गा/कूष्मांडा",
                     "fasting": false,
                     "regions": [
@@ -4267,7 +4327,7 @@
                 "date": "2026-03-23",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 5 (स्कंदमाता पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Skandamata (Mother of Skanda]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Skandamata (Mother of Skanda)",
                     "deity": "दुर्गा/स्कंदमाता",
                     "fasting": false,
                     "regions": [
@@ -4287,7 +4347,7 @@
                 "date": "2026-03-24",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 6 (कात्यायनी पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Katyayani (The Warrior Goddess]",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Katyayani (The Warrior Goddess)",
                     "deity": "दुर्गा/कात्यायनी",
                     "fasting": false,
                     "regions": [
@@ -4327,7 +4387,7 @@
                 "date": "2026-03-25",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Kalaratri (The Fierce Night) / Maha Saptami",
                     "deity": "दुर्गा/कालरात्रि",
                     "fasting": false,
                     "regions": [
@@ -4347,7 +4407,7 @@
                 "date": "2026-03-26",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 8 (महागौरी पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami",
                     "deity": "दुर्गा/महागौरी",
                     "fasting": false,
                     "regions": [
@@ -4407,7 +4467,7 @@
                 "date": "2026-03-27",
                 "festival": {
                     "name": "चैत्र (वसंत) नवरात्रि दिन 9 (सिद्धिदात्री पूजा)",
-                    "description": "Chaitra (Vasant) Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami",
+                    "description": "Chaitra (Vasant) Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers) / Maha Navami",
                     "deity": "दुर्गा/सिद्धिदात्री",
                     "fasting": false,
                     "regions": [
@@ -4420,46 +4480,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-03-27",
-                "festival": {
-                    "name": "राम नवमी",
-                    "description": "Birth anniversary of Lord Rama, seventh avatar of Vishnu",
-                    "deity": "राम",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
-                "date": "2026-03-27",
-                "festival": {
-                    "name": "स्वामीनारायण जयंती (हरि-नोम)",
-                    "description": "Birth of Bhagwan Swaminarayan; celebrated with assemblies, cultural programs, and devotional singing",
-                    "deity": "स्वामीनारायण",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -4690,26 +4710,6 @@
                 }
             },
             {
-                "date": "2026-04-30",
-                "festival": {
-                    "name": "नरसिंह जयंती",
-                    "description": "Appearance day of Lord Narasimha",
-                    "deity": "नरसिंह",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
                 "date": "2026-05-01",
                 "festival": {
                     "name": "बुद्ध पूर्णिमा",
@@ -4822,12 +4822,72 @@
                 }
             },
             {
-                "date": "2026-05-26",
+                "date": "2026-05-20",
                 "festival": {
-                    "name": "Padmini Ekadashi",
-                    "description": "Special Ekadashi occurring ONLY during Adhik Maas",
-                    "deity": "विष्णु",
-                    "fasting": true,
+                    "name": "प्रमुख वर्णी दिन",
+                    "description": "Day when Pramukh Swami Maharaj was appointed administrative president of BAPS (1950)",
+                    "deity": "स्वामीनारायण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-05-22",
+                "festival": {
+                    "name": "जामाइ षष्ठी",
+                    "description": "Bengali festival dedicated to son-in-laws",
+                    "deity": "षष्ठी",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-05-24",
+                "festival": {
+                    "name": "महेश नवमी",
+                    "description": "Worship of Lord Shiva by Maheshwari community",
+                    "deity": "शिव",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-05-25",
+                "festival": {
+                    "name": "गंगा दशहरा",
+                    "description": "Descent of Mother Ganga to Earth",
+                    "deity": "गंगा",
+                    "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
@@ -4862,6 +4922,26 @@
                 }
             },
             {
+                "date": "2026-05-31",
+                "festival": {
+                    "name": "वट पूर्णिमा",
+                    "description": "Vat Savitri observed by Purnimanta calendar",
+                    "deity": "सावित्री/ब्रह्मा",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
                 "date": "2026-06-11",
                 "festival": {
                     "name": "Parama Ekadashi",
@@ -4879,6 +4959,18 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                }
+            },
+            {
+                "date": "2026-06-15",
+                "festival": {
+                    "name": "मिथुन संक्रांति",
+                    "description": "Sun enters Mithuna",
+                    "deity": "",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
                 }
             },
             {
@@ -5002,12 +5094,12 @@
                 }
             },
             {
-                "date": "2026-07-15",
+                "date": "2026-07-10",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 1 (काली पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Kali (Destroyer of Time]",
-                    "deity": "महाविद्या/काली",
-                    "fasting": false,
+                    "name": "योगिनी एकादशी",
+                    "description": "Fasting for Yogini Ekadashi",
+                    "deity": "विष्णु",
+                    "fasting": true,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
@@ -5016,8 +5108,28 @@
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
+                    }
+                }
+            },
+            {
+                "date": "2026-07-15",
+                "festival": {
+                    "name": "Ashadha Gupt Navaratri Day 1 (Ghatasthapana)",
+                    "description": "Ashadha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_sunrise",
+                        "winning_score": 700
                     }
                 }
             },
@@ -5057,9 +5169,9 @@
             {
                 "date": "2026-07-16",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 2 (तारा पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Tara (Protector and Guide]",
-                    "deity": "महाविद्या/तारा",
+                    "name": "Ashadha Gupt Navaratri Day 2",
+                    "description": "Ashadha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5097,9 +5209,9 @@
             {
                 "date": "2026-07-17",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 3 (त्रिपुर सुंदरी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Tripura Sundari / Shodashi (Beauty of Three Worlds]",
-                    "deity": "महाविद्या/त्रिपुर सुंदरी",
+                    "name": "Ashadha Gupt Navaratri Day 3",
+                    "description": "Ashadha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5115,11 +5227,31 @@
                 }
             },
             {
+                "date": "2026-07-17",
+                "festival": {
+                    "name": "Ashadha Gupt Navaratri Day 4",
+                    "description": "Ashadha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
+                    }
+                }
+            },
+            {
                 "date": "2026-07-18",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 5 (भैरवी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Bhairavi (Fierce Goddess of Decay and Rebirth]",
-                    "deity": "महाविद्या/भैरवी",
+                    "name": "Ashadha Gupt Navaratri Day 5",
+                    "description": "Ashadha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5137,9 +5269,9 @@
             {
                 "date": "2026-07-19",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 6 (छिन्नमस्ता पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Chhinnamasta (Self-Decapitated Goddess]",
-                    "deity": "महाविद्या/छिन्नमस्ता",
+                    "name": "Ashadha Gupt Navaratri Day 6",
+                    "description": "Ashadha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5157,9 +5289,9 @@
             {
                 "date": "2026-07-20",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 7 (धूमावती पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Dhumavati (The Widow Goddess]",
-                    "deity": "महाविद्या/धूमावती",
+                    "name": "Ashadha Gupt Navaratri Day 7",
+                    "description": "Ashadha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5177,29 +5309,9 @@
             {
                 "date": "2026-07-21",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 8 (बगलामुखी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Bagalamukhi (Paralyzer of Enemies]",
-                    "deity": "महाविद्या/बगलामुखी",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-07-22",
-                "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Ashadha Gupt Navaratri Day 8",
+                    "description": "Ashadha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5217,9 +5329,9 @@
             {
                 "date": "2026-07-23",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 9 (मातंगी पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Matangi (Tantric Saraswati / Arts and Music]",
-                    "deity": "महाविद्या/मातंगी",
+                    "name": "Ashadha Gupt Navaratri Day 9",
+                    "description": "Ashadha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).",
+                    "deity": "Devi (lineage-specific)",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5237,9 +5349,9 @@
             {
                 "date": "2026-07-24",
                 "festival": {
-                    "name": "आषाढ़ गुप्त नवरात्रि दिन 10 (कमला पूजा)",
-                    "description": "Ashadha Gupt Navaratri (10 Mahavidyas] - Worship of Kamala (Tantric Lakshmi / Prosperity and Fertility]",
-                    "deity": "कमला",
+                    "name": "Ashadha Gupt Navaratri Parana (Dashami)",
+                    "description": "Ashadha Gupta Navaratri Parana on Dashami after Navami completion (Nirnaya-Sindhu rule family).",
+                    "deity": "Devi",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5407,6 +5519,18 @@
                 }
             },
             {
+                "date": "2026-08-17",
+                "festival": {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
+                }
+            },
+            {
                 "date": "2026-08-18",
                 "festival": {
                     "name": "कल्कि जयंती",
@@ -5467,10 +5591,42 @@
                 }
             },
             {
+                "date": "2026-08-24",
+                "festival": {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
+                }
+            },
+            {
+                "date": "2026-08-26",
+                "festival": {
+                    "name": "ओणम (तिरुवोणम)",
+                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
+                    "deity": "विष्णु/महाबली",
+                    "fasting": false,
+                    "regions": [
+                        "केरल",
+                        "तमिलनाडु",
+                        "कर्नाटक"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Shravana",
+                        "winning_reason": "nakshatra_match"
+                    }
+                }
+            },
+            {
                 "date": "2026-08-27",
                 "festival": {
-                    "name": "रक्षा बंधन / अवनी अवित्तम",
-                    "description": "Brother-sister bond / Hayagriva birth / Upakarma",
+                    "name": "अवनी अवित्तम (यजुर उपाकर्म)",
+                    "description": "Yajur Upakarma (Avani Avittam): sacred thread renewal and Vedic recommitment",
                     "deity": "हयग्रीव",
                     "fasting": false,
                     "regions": [
@@ -5489,9 +5645,9 @@
             {
                 "date": "2026-08-28",
                 "festival": {
-                    "name": "रक्षा बंधन / अवनी अवित्तम",
-                    "description": "Brother-sister bond / Hayagriva birth / Upakarma",
-                    "deity": "हयग्रीव",
+                    "name": "रक्षा बंधन",
+                    "description": "Brother-sister bond festival; tie Rakhi during auspicious Purnima window",
+                    "deity": "Vishnu/Indra",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5499,10 +5655,10 @@
                     "observance_note": null,
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "vriddhi_preference": "last",
+                        "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
                     }
                 }
             },
@@ -5512,6 +5668,18 @@
                     "name": "वरलक्ष्मी व्रतम",
                     "description": "Worship of Goddess Lakshmi for prosperity",
                     "deity": "लक्ष्मी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ]
+                }
+            },
+            {
+                "date": "2026-08-31",
+                "festival": {
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
                     "fasting": true,
                     "regions": [
                         "संपूर्ण भारत"
@@ -5535,6 +5703,26 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-09-01",
+                "festival": {
+                    "name": "गोगा पंचम / गोगा पंचमी (नाग पंचमी - गुजरात)",
+                    "description": "Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities",
+                    "deity": "गोगा जी / गोगा बापा",
+                    "fasting": false,
+                    "regions": [
+                        "गुजरात"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
                     }
                 }
             },
@@ -5619,26 +5807,6 @@
                 }
             },
             {
-                "date": "2026-09-05",
-                "festival": {
-                    "name": "महंत स्वामी महाराज जन्म जयंती",
-                    "description": "Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)",
-                    "deity": "स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
                 "date": "2026-09-07",
                 "festival": {
                     "name": "अजा एकादशी",
@@ -5659,24 +5827,15 @@
                 }
             },
             {
-                "date": "2026-09-08",
+                "date": "2026-09-07",
                 "festival": {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
+                    "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "description": "Auspicious Monday of Shravana month dedicated to Lord Shiva",
+                    "deity": "शिव",
+                    "fasting": true,
                     "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
+                        "संपूर्ण भारत"
+                    ]
                 }
             },
             {
@@ -5783,26 +5942,6 @@
             {
                 "date": "2026-09-15",
                 "festival": {
-                    "name": "गणेश चतुर्थी",
-                    "description": "Birth anniversary of Lord Ganesha",
-                    "deity": "गणेश",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
-                "date": "2026-09-15",
-                "festival": {
                     "name": "ऋषि पंचमी",
                     "description": "Worship of the Saptarishis",
                     "deity": "सप्तर्षि",
@@ -5838,26 +5977,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-09-16",
-                "festival": {
-                    "name": "ऋषि पंचमी",
-                    "description": "Worship of the Saptarishis",
-                    "deity": "सप्तर्षि",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -5958,6 +6077,27 @@
             {
                 "date": "2026-09-23",
                 "festival": {
+                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Sud 12-14",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-09-23",
+                "festival": {
                     "name": "वामन जयंती",
                     "description": "Birth of Vamana Avatar",
                     "deity": "वामन",
@@ -5972,6 +6112,26 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-09-23",
+                "festival": {
+                    "name": "ओणम (तिरुवोणम)",
+                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
+                    "deity": "विष्णु/महाबली",
+                    "fasting": false,
+                    "regions": [
+                        "केरल",
+                        "तमिलनाडु",
+                        "कर्नाटक"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Shravana",
+                        "winning_reason": "nakshatra_match"
                     }
                 }
             },
@@ -6056,27 +6216,6 @@
                 }
             },
             {
-                "date": "2026-10-07",
-                "festival": {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
                 "date": "2026-10-10",
                 "festival": {
                     "name": "महालय अमावस्या",
@@ -6100,7 +6239,7 @@
                 "date": "2026-10-11",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 1 (शैलपुत्री पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Shailaputri (Daughter of the Mountain]",
+                    "description": "Ashvina Sharad Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.",
                     "deity": "दुर्गा/शैलपुत्री",
                     "fasting": false,
                     "regions": [
@@ -6108,8 +6247,8 @@
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -6120,7 +6259,7 @@
                 "date": "2026-10-12",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 2 (ब्रह्मचारिणी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic)",
                     "deity": "दुर्गा/ब्रह्मचारिणी",
                     "fasting": false,
                     "regions": [
@@ -6140,7 +6279,7 @@
                 "date": "2026-10-13",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 3 (चंद्रघंटा पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)",
                     "deity": "दुर्गा/चंद्रघंटा",
                     "fasting": false,
                     "regions": [
@@ -6160,7 +6299,7 @@
                 "date": "2026-10-14",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 4 (कूष्मांडा पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)",
                     "deity": "दुर्गा/कूष्मांडा",
                     "fasting": false,
                     "regions": [
@@ -6180,7 +6319,7 @@
                 "date": "2026-10-15",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 5 (स्कंदमाता पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Skandamata (Mother of Skanda]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Skandamata (Mother of Skanda)",
                     "deity": "दुर्गा/स्कंदमाता",
                     "fasting": false,
                     "regions": [
@@ -6220,7 +6359,7 @@
                 "date": "2026-10-16",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 6 (कात्यायनी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Katyayani (The Warrior Goddess]",
+                    "description": "Ashvina Sharad Navaratri - Worship of Katyayani (The Warrior Goddess)",
                     "deity": "दुर्गा/कात्यायनी",
                     "fasting": false,
                     "regions": [
@@ -6252,7 +6391,7 @@
                 "date": "2026-10-17",
                 "festival": {
                     "name": "अश्विन शरद नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
+                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night) / Maha Saptami",
                     "deity": "दुर्गा/कालरात्रि",
                     "fasting": false,
                     "regions": [
@@ -6260,8 +6399,8 @@
                     ],
                     "observance_note": null,
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -6271,17 +6410,17 @@
             {
                 "date": "2026-10-18",
                 "festival": {
-                    "name": "अश्विन शरद नवरात्रि दिन 7 (कालरात्रि पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Kalaratri (The Fierce Night] / Maha Saptami",
-                    "deity": "दुर्गा/कालरात्रि",
+                    "name": "दुर्गा अष्टमी (महागौरी पूजा)",
+                    "description": "Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami",
+                    "deity": "दुर्गा/महागौरी",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "observance_note": null,
+                    "observance_note": "Exception: Standard Shukla Tithi 8 falls on 2026-10-19 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-10-18.",
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -6291,37 +6430,17 @@
             {
                 "date": "2026-10-19",
                 "festival": {
-                    "name": "दुर्गा अष्टमी (महागौरी पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One] / Maha Ashtami",
-                    "deity": "दुर्गा/महागौरी",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-10-20",
-                "festival": {
                     "name": "महा नवमी (सिद्धिदात्री पूजा)",
-                    "description": "Ashvina Sharad Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers] / Maha Navami",
+                    "description": "Ashvina Sharad Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers) / Maha Navami",
                     "deity": "दुर्गा/सिद्धिदात्री",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "observance_note": null,
+                    "observance_note": "Exception: Standard Shukla Tithi 9 falls on 2026-10-20 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-10-19.",
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
@@ -6345,26 +6464,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-10-21",
-                "festival": {
-                    "name": "दशहरा / विजयदशमी",
-                    "description": "Victory of Lord Rama over Ravana / End of Sharad Navaratri",
-                    "deity": "राम/दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -6405,26 +6504,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-10-26",
-                "festival": {
-                    "name": "शरद पूर्णिमा / माणेकठारी पूनम / गुणातीतानंद स्वामी जयंती",
-                    "description": "Sharad Purnima, known in Gujarat as Manekthari Punam, and the birth anniversary of Gunatitanand Swami",
-                    "deity": "लक्ष्मी/कृष्ण/स्वामीनारायण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -6489,26 +6568,6 @@
                 }
             },
             {
-                "date": "2026-11-02",
-                "festival": {
-                    "name": "अहोई अष्टमी",
-                    "description": "Mothers fast for wellbeing of children",
-                    "deity": "अहोई माता",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
                 "date": "2026-11-05",
                 "festival": {
                     "name": "रमा एकादशी",
@@ -6551,26 +6610,6 @@
             {
                 "date": "2026-11-06",
                 "festival": {
-                    "name": "वाघ बारस (गोवत्स द्वादशी)",
-                    "description": "Worship of cows and calves",
-                    "deity": "कृष्ण/गाएं",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
-                "date": "2026-11-06",
-                "festival": {
                     "name": "धनतेरस",
                     "description": "Worship of Lakshmi and Dhanvantari",
                     "deity": "लक्ष्मी/धन्वंतरि",
@@ -6585,26 +6624,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-11-07",
-                "festival": {
-                    "name": "धनतेरस",
-                    "description": "Worship of Lakshmi and Dhanvantari",
-                    "deity": "लक्ष्मी/धन्वंतरि",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -6631,26 +6650,6 @@
             {
                 "date": "2026-11-08",
                 "festival": {
-                    "name": "काली चौदस (नरक चतुर्दशी)",
-                    "description": "Worship of Goddess Kali and victory over Narakasura",
-                    "deity": "काली/हनुमान/कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
-                    }
-                }
-            },
-            {
-                "date": "2026-11-08",
-                "festival": {
                     "name": "काली पूजा / दिवाली",
                     "description": "Festival of lights / Worship of Goddess Kali",
                     "deity": "लक्ष्मी/काली/गणेश",
@@ -6665,26 +6664,6 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
-                    }
-                }
-            },
-            {
-                "date": "2026-11-09",
-                "festival": {
-                    "name": "काली पूजा / दिवाली",
-                    "description": "Festival of lights / Worship of Goddess Kali",
-                    "deity": "लक्ष्मी/काली/गणेश",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "observance_note": null,
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
                     }
                 }
             },
@@ -6864,6 +6843,26 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-11-20",
+                "festival": {
+                    "name": "देवोत्थान (प्रबोधिनी) एकादशी",
+                    "description": "Prabodhini Ekadashi / End of Chaturmas",
+                    "deity": "विष्णु/स्वामीनारायण",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_during_observance",
+                        "winning_score": 300
                     }
                 }
             },
@@ -7082,6 +7081,80 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000
                     }
+                }
+            },
+            {
+                "date": "2026-12-23",
+                "festival": {
+                    "name": "दत्तात्रेय जयंती",
+                    "description": "Birth of Dattatreya (Annapurna Jayanti]",
+                    "deity": "दत्तात्रेय/अन्नपूर्णा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": null,
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000
+                    }
+                }
+            },
+            {
+                "date": "2026-09-24",
+                "festival": {
+                    "name": "मोटा यक्ष मेला दिन 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 13)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)"
+                }
+            },
+            {
+                "date": "2026-09-25",
+                "festival": {
+                    "name": "मोटा यक्ष मेला दिन 3",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 14)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "observance_note": "Observed 2 day(s) after मोटा यक्ष मेला (जख बहोतेरा)"
+                }
+            },
+            {
+                "date": "2026-03-03",
+                "festival": {
+                    "name": "होली",
+                    "description": "Festival of colors",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": "Observed 1 day(s) after होलिका दहन"
+                }
+            },
+            {
+                "date": "2026-03-04",
+                "festival": {
+                    "name": "होली",
+                    "description": "Festival of colors",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": "Observed 1 day(s) after होलिका दहन"
                 }
             }
         ]
