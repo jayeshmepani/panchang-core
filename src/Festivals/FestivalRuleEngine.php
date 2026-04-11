@@ -536,8 +536,8 @@ class FestivalRuleEngine
         }
 
         foreach (self::NAKSHATRA_NUMBERS as $name => $number) {
-            if ($this->normalizeLabel((string) $name) === $labelNorm) {
-                return (int) $number;
+            if ($this->normalizeLabel($name) === $labelNorm) {
+                return $number;
             }
         }
 

@@ -27,10 +27,10 @@ return [
         // 'en', 'hi', 'gu'
         'locale' => env('PANCHANG_LOCALE', 'hi'),
 
-        // 'amanta', 'purnimanta'
+        // 'amanta', 'amanta'
         // Amanta: Month ends on Amavasya (South, West, Central India)
         // Purnimanta: Month ends on Purnima (North, East India)
-        'calendar_type' => env('PANCHANG_CALENDAR_TYPE', 'amanta'),
+        'calendar_type' => env('PANCHANG_CALENDAR_TYPE', 'purnimanta'),
 
         // 'indian_metric', 'western'
         'measurement_system' => 'indian_metric',

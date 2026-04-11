@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Localization;
 use LogicException;
 
@@ -1300,7 +1301,7 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Jyeshtha',
             'month_purnimanta' => 'Jyeshtha',
-            'description' => 'Toughest Ekadashi vrat (observed without water] / Gayatri Jayanti',
+            'description' => 'Toughest Ekadashi vrat (observed without water) / Gayatri Jayanti',
             'deity' => 'Vishnu/Gayatri',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -1670,7 +1671,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 9,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)',
             'deity' => 'Swaminarayan',
         ],
@@ -1681,7 +1682,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 1,
             'month_amanta' => 'Magha',
-            'month_purnimanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
             'description' => 'Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)',
             'deity' => 'Swaminarayan',
         ],
@@ -2098,7 +2099,7 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Margashirsha',
-            'description' => 'Birth of Lord Kalabhairav (Shiva]',
+            'description' => 'Birth of Lord Kalabhairav (Shiva)',
             'deity' => 'Kalabhairav',
         ],
         'Vivah Panchami' =>
@@ -2133,7 +2134,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Margashirsha',
             'month_purnimanta' => 'Margashirsha',
-            'description' => 'Birth of Dattatreya (Annapurna Jayanti]',
+            'description' => 'Birth of Dattatreya (Annapurna Jayanti)',
             'deity' => 'Dattatreya/Annapurna',
             'karmakala_type' => 'pradosha',
         ],
@@ -2296,8 +2297,8 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 1,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
-            'description' => 'Festival of colors (Dhuleti/Pushpadolotsav]',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Festival of colors (Dhuleti/Pushpadolotsav)',
             'deity' => 'Krishna/Swaminarayan',
             'karmakala_type' => 'sunrise',
         ],
@@ -2486,7 +2487,8 @@ class FestivalService
                 // current calendar mode when stripping Adhika suffixes.
                 $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? config('panchang.defaults.calendar_type', 'amanta')));
                 $amantaCleanNorm = $this->normalizeMonthName(str_replace(' (Adhika)', '', (string) ($calendar['Month_Amanta_En'] ?? '')));
-                $purnimantaCleanNorm = $this->normalizeMonthName(str_replace(' (Adhika)', '', (string) ($calendar['Month_Purnimanta_En'] ?? '')));
+                $dynamicPurnimanta = $this->getDynamicPurnimantaName($rules, $calendar);
+                $purnimantaCleanNorm = $this->normalizeMonthName(str_replace(' (Adhika)', '', $dynamicPurnimanta));
                 $monthAmantaRule = $this->normalizeMonthName((string) ($rules['month_amanta'] ?? ''));
                 $monthPurnimantaRule = $this->normalizeMonthName((string) ($rules['month_purnimanta'] ?? ''));
                 $hasMonthRule = ($monthAmantaRule !== '' || $monthPurnimantaRule !== '');
@@ -2633,7 +2635,7 @@ class FestivalService
         if ((bool) (($todayDetails['Hindu_Calendar']['Is_Adhika'] ?? false)) && $festivals !== []) {
             $hasAdhikaOnlyEkadashi = false;
             foreach ($festivalMeta as $meta) {
-                if (($meta['is_ekadashi'] ?? false) && ($meta['adhika_only'] ?? false)) {
+                if ($meta['is_ekadashi'] && $meta['adhika_only']) {
                     $hasAdhikaOnlyEkadashi = true;
                     break;
                 }
@@ -2644,8 +2646,8 @@ class FestivalService
                 $filteredMeta = [];
                 foreach ($festivals as $idx => $festival) {
                     $meta = $festivalMeta[$idx] ?? ['is_ekadashi' => false, 'adhika_only' => false];
-                    $isEkadashi = (bool) ($meta['is_ekadashi'] ?? false);
-                    $isAdhikaOnly = (bool) ($meta['adhika_only'] ?? false);
+                    $isEkadashi = $meta['is_ekadashi'];
+                    $isAdhikaOnly = $meta['adhika_only'];
                     if (!$isEkadashi || $isAdhikaOnly) {
                         $filteredFestivals[] = $festival;
                         $filteredMeta[] = $meta;
@@ -2814,7 +2816,8 @@ class FestivalService
     private function monthRuleMatches(array $rules, array $calendar): bool
     {
         $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
-        $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? ''));
+        $dynamicPurnimanta = $this->getDynamicPurnimantaName($rules, $calendar);
+        $purnimanta = $this->normalizeMonthName($dynamicPurnimanta);
         $ruleAmanta = isset($rules['month_amanta']) ? $this->normalizeMonthName((string) $rules['month_amanta']) : '';
         $rulePurnimanta = isset($rules['month_purnimanta']) ? $this->normalizeMonthName((string) $rules['month_purnimanta']) : '';
         $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? config('panchang.defaults.calendar_type', 'amanta')));
@@ -2838,5 +2841,33 @@ class FestivalService
         }
 
         return true;
+    }
+
+    /**
+     * Dynamically determine the expected Purnimanta month name based on the festival rule's paksha.
+     * This fixes edge cases where the daily snapshot's Purnimanta month (from a Krishna sunrise)
+     * mismatches a Shukla festival occurring later that same day.
+     */
+    private function getDynamicPurnimantaName(array $rules, array $calendar): string
+    {
+        $basePurnimanta = (string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? '');
+
+        if (isset($rules['paksha'], $calendar['Amanta_Index'])) {
+            $rulePakshas = is_array($rules['paksha']) ? $rules['paksha'] : [$rules['paksha']];
+            if (count($rulePakshas) === 1) {
+                $rulePaksha = $rulePakshas[0];
+                $amantaIdx = (int) $calendar['Amanta_Index'];
+                // In Purnimanta, Shukla paksha takes the Amanta month name; Krishna paksha takes the next month.
+                $purnimantaIdx = ($rulePaksha === 'Shukla') ? $amantaIdx : ($amantaIdx + 1) % 12;
+                $purnimantaDynamic = Masa::from($purnimantaIdx)->getName('en');
+
+                if ((bool) ($calendar['Is_Adhika'] ?? false) && $rulePaksha === 'Shukla') {
+                    $purnimantaDynamic .= ' (Adhika)';
+                }
+                return $purnimantaDynamic;
+            }
+        }
+
+        return $basePurnimanta;
     }
 }

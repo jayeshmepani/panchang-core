@@ -542,7 +542,7 @@ class PanchangService
                 'Is_Kshaya' => $hinduMonth['Is_Kshaya'],
                 'Amanta_Index' => $hinduMonth['Amanta_Index'],
                 'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
-                'Calendar_Type' => 'Purnimanta / Amavasyant (Calculated)',
+                'Calendar_Type' => $calendarType->value,
             ],
             'Chart_Auxiliary' => [
                 'Sun_Sign' => Rasi::from($sunSign)->getName(),
