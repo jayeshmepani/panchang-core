@@ -352,7 +352,7 @@ class PanchangService
         }
         $karmakalaWindows = [
             'sunrise' => [
-                'label' => 'Sunrise',
+                'label' => Localization::translate('String', 'Sunrise'),
                 'type' => 'instant',
                 'time' => AstroCore::formatTime($relSunrise),
                 'time_iso' => AstroCore::formatDateTime($relSunrise),
@@ -921,8 +921,8 @@ class PanchangService
                 (array) ($dayDetails['Amrita_Kaal'] ?? []),
                 'amrita_kaal_start',
                 'amrita_kaal_end',
-                'Amrita Kaal',
-                'Classical Panchanga Calculation Texts'
+                Localization::translate('String', 'Amrita Kaal'),
+                Localization::translate('Source', 'Classical Panchanga Calculation Texts')
             ),
             'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
         ];
@@ -930,7 +930,7 @@ class PanchangService
         $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults);
 
         return [
-            'title' => 'Complete Muhurta Evaluation - Centralized package output',
+            'title' => Localization::translate('String', 'Complete Muhurta Evaluation - Centralized package output'),
             'input_now' => AstroCore::formatDateTime($at),
             'date' => $date->toDateString(),
             'input_parameters' => [
@@ -938,7 +938,7 @@ class PanchangService
                 'tithi_name' => $tithiEnum->getName(),
                 'tithi_number_base' => 1,
                 'vara_number' => $varaNumber,
-                'vara_name' => $varaEnum->getEnglishName(),
+                'vara_name' => $varaEnum->getName(),
                 'vara_index_base' => 0,
                 'vara_sequence_number' => $varaNumber + 1,
                 'vara_sequence_number_base' => 1,
@@ -949,7 +949,7 @@ class PanchangService
                 'lagna_name' => $lagnaEnum->getName(),
                 'lagna_number_base' => 1,
                 'moon_sign_idx' => $moonSignIdx,
-                'moon_sign_name' => $moonSignEnum->getEnglishName(),
+                'moon_sign_name' => $moonSignEnum->getName(),
                 'moon_sign_index_base' => 0,
                 'moon_sign_number' => $moonSignIdx + 1,
                 'moon_sign_number_base' => 1,
@@ -1480,8 +1480,8 @@ class PanchangService
             'trayodashi_overlap_minutes' => $trayodashiDurationMinutes,
             'trayodashi_overlaps' => $trayodashiOverlaps,
             'significance' => $hasTrayodashiOverlap
-                ? 'Trayodashi overlaps Pradosha Kaal; this is Pradosh-observance eligible.'
-                : 'No Trayodashi overlap in Pradosha Kaal for this day.',
+                ? Localization::translate('String', 'Trayodashi overlaps Pradosha Kaal; this is Pradosh-observance eligible.')
+                : Localization::translate('String', 'No Trayodashi overlap in Pradosha Kaal for this day.'),
         ];
     }
 

@@ -50,6 +50,7 @@ class PanchangaEngine
             'index' => $tithi->value,
             'name' => $tithi->getName(),
             'paksha' => $tithi->getPaksha()->getRawName(),
+            'paksha_name' => $tithi->getPaksha()->getName(),
             'fraction_left' => Tithi::getFractionRemaining($sunLon, $moonLon),
         ];
     }
@@ -168,7 +169,7 @@ class PanchangaEngine
         return [
             'sum' => $total,
             'remainder' => $r,
-            'panchaka_name' => $name,
+            'panchaka_name' => Localization::translate('Panchaka', $name),
             'is_auspicious' => $isGood,
         ];
     }

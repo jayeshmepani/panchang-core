@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Festivals\Utils;
 
+use JayeshMepani\PanchangCore\Core\Localization;
+
 /**
  * Bhadra (Vishti Karana) Engine.
  *
@@ -137,8 +139,8 @@ class BhadraEngine
         if (in_array($rasi, [0, 1, 2, 7], true)) {
             return [
                 'name' => 'Svargaloka',
-                'description' => 'Bhadra resides in Heaven',
-                'impact' => 'Neutral — no direct harm on Earth',
+                'description' => Localization::translate('String', 'Bhadra resides in Heaven'),
+                'impact' => Localization::translate('String', 'Neutral — no direct harm on Earth'),
             ];
         }
 
@@ -146,16 +148,16 @@ class BhadraEngine
         if (in_array($rasi, [5, 6, 8, 9], true)) {
             return [
                 'name' => 'Patalaloka',
-                'description' => 'Bhadra resides in the Underworld',
-                'impact' => 'Positive for Earth',
+                'description' => Localization::translate('String', 'Bhadra resides in the Underworld'),
+                'impact' => Localization::translate('String', 'Positive for Earth'),
             ];
         }
 
         // Mrityuloka: Cancer(3), Leo(4), Aquarius(10), Pisces(11)
         return [
             'name' => 'Mrityuloka',
-            'description' => 'Bhadra resides on Earth',
-            'impact' => 'Strictly Inauspicious — avoid all auspicious work',
+            'description' => Localization::translate('String', 'Bhadra resides on Earth'),
+            'impact' => Localization::translate('String', 'Strictly Inauspicious — avoid all auspicious work'),
         ];
     }
 }

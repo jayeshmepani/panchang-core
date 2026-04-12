@@ -272,7 +272,8 @@ class EclipseService
         if (!$isVisible || $eclipseStartJd === null || $eclipseEndJd === null) {
             return [
                 'applicable' => false,
-                'reason' => 'eclipse_not_visible_at_location',
+                'reason' => Localization::translate('String', 'eclipse_not_visible_at_location'),
+                'reason_key' => 'eclipse_not_visible_at_location',
                 'start_jd' => null,
                 'end_jd' => null,
                 'start' => null,

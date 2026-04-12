@@ -12,7 +12,6 @@ use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
@@ -116,7 +115,6 @@ $country = 'IN';
 
 $sweph = new SwissEphFFI;
 $ruleEngine = new FestivalRuleEngine;
-$orchestrator = new FestivalFamilyOrchestrator;
 $festivalService = new FestivalService($ruleEngine);
 
 $panchangService = new PanchangService(

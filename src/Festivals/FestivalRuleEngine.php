@@ -39,6 +39,20 @@ class FestivalRuleEngine
         'Revati' => 27,
     ];
 
+    private function localizedPaksha(string $paksha): string
+    {
+        return match ($paksha) {
+            'Shukla' => Localization::translate('String', 'Shukla Paksha (waxing)'),
+            'Krishna' => Localization::translate('String', 'Krishna Paksha (waning)'),
+            default => $paksha,
+        };
+    }
+
+    private function localizedKarmakala(string $karmakalaType): string
+    {
+        return Localization::translate('String', $karmakalaType);
+    }
+
     /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
         string $festivalName,
@@ -124,22 +138,32 @@ class FestivalRuleEngine
         $todayStr = $date->toDateString();
         $tomorrowStr = $date->addDay()->toDateString();
         $standardDate = $winner['date']; // Default
+        $localizedPaksha = $this->localizedPaksha($paksha);
+        $localizedKarmakala = $this->localizedKarmakala($karmakalaType);
 
         if ($winner['day_offset'] === 0 && !$tithiAtSunriseToday && $tithiAtSunriseTomorrow) {
             $standardDate = $tomorrowStr;
-            $observanceNote = "Exception: Standard {$paksha} Tithi {$requiredTithi} falls on {$tomorrowStr} at sunrise, but due to tradition/ritual requiring {$karmakalaType} presence, it is celebrated on {$todayStr}.";
+            $observanceNote = Localization::translate('String', 'observance_note_sunrise_shift_today') !== 'observance_note_sunrise_shift_today'
+                ? sprintf(Localization::translate('String', 'observance_note_sunrise_shift_today'), $localizedPaksha, $requiredTithi, $tomorrowStr, $localizedKarmakala, $todayStr)
+                : "Exception: Standard {$localizedPaksha} Tithi {$requiredTithi} falls on {$tomorrowStr} at sunrise, but due to tradition/ritual requiring {$localizedKarmakala} presence, it is celebrated on {$todayStr}.";
         } elseif ($winner['day_offset'] === 1 && $tithiAtSunriseToday && !$tithiAtSunriseTomorrow) {
             $standardDate = $todayStr;
-            $observanceNote = "Exception: Standard {$paksha} Tithi {$requiredTithi} falls on {$todayStr} at sunrise, but due to tradition/ritual requiring {$karmakalaType} presence, observance shifts to {$tomorrowStr}.";
+            $observanceNote = Localization::translate('String', 'observance_note_sunrise_shift_tomorrow') !== 'observance_note_sunrise_shift_tomorrow'
+                ? sprintf(Localization::translate('String', 'observance_note_sunrise_shift_tomorrow'), $localizedPaksha, $requiredTithi, $todayStr, $localizedKarmakala, $tomorrowStr)
+                : "Exception: Standard {$localizedPaksha} Tithi {$requiredTithi} falls on {$todayStr} at sunrise, but due to tradition/ritual requiring {$localizedKarmakala} presence, observance shifts to {$tomorrowStr}.";
         } elseif ($kshaya) {
             $standardDate = $todayStr; // Kshaya tithi generally aligns with the day it starts
             if ($winner['date'] !== $standardDate) {
-                $observanceNote = "Exception: {$paksha} Tithi {$requiredTithi} is a Kshaya Tithi (skips sunrise). Observance shifts to {$winner['date']} due to {$karmakalaType} rules.";
+                $observanceNote = Localization::translate('String', 'observance_note_kshaya') !== 'observance_note_kshaya'
+                    ? sprintf(Localization::translate('String', 'observance_note_kshaya'), $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala)
+                    : "Exception: {$localizedPaksha} Tithi {$requiredTithi} is a Kshaya Tithi (skips sunrise). Observance shifts to {$winner['date']} due to {$localizedKarmakala} rules.";
             }
         } elseif ($vriddhi) {
             $standardDate = $todayStr; // Vriddhi default first day
             if ($winner['date'] !== $standardDate) {
-                $observanceNote = "Exception: {$paksha} Tithi {$requiredTithi} is a Vriddhi Tithi (spans two sunrises). Observance shifts to {$winner['date']} due to {$karmakalaType} rules.";
+                $observanceNote = Localization::translate('String', 'observance_note_vriddhi') !== 'observance_note_vriddhi'
+                    ? sprintf(Localization::translate('String', 'observance_note_vriddhi'), $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala)
+                    : "Exception: {$localizedPaksha} Tithi {$requiredTithi} is a Vriddhi Tithi (spans two sunrises). Observance shifts to {$winner['date']} due to {$localizedKarmakala} rules.";
             }
         }
 

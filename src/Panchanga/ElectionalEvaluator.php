@@ -161,7 +161,7 @@ final class ElectionalEvaluator
             'severity' => $isDagdha ? 'high' : 'none',
             'description' => $isDagdha
                 ? Localization::translate('String', 'Dagdha Tithi') . ' - ' . Localization::translate('Common', 'Inauspicious')
-                : 'Not Dagdha Tithi',
+                : Localization::translate('String', 'Not Dagdha Tithi'),
         ];
     }
 
@@ -188,7 +188,7 @@ final class ElectionalEvaluator
             'severity' => $isDagdha ? 'high' : 'none',
             'description' => $isDagdha
                 ? Localization::translate('String', 'Dagdha Yoga') . ' - ' . Localization::translate('Common', 'Inauspicious')
-                : 'Not Dagdha Yoga',
+                : Localization::translate('String', 'Not Dagdha Yoga'),
         ];
     }
 
@@ -230,7 +230,7 @@ final class ElectionalEvaluator
             'severity' => $hasDosha ? 'high' : 'none',
             'description' => $hasDosha
                 ? Localization::translate('String', 'Rikta Tithi') . ' - ' . Localization::translate('Common', 'Inauspicious')
-                : 'Not Rikta Tithi',
+                : Localization::translate('String', 'Not Rikta Tithi'),
         ];
     }
 
@@ -260,7 +260,7 @@ final class ElectionalEvaluator
         return [
             'is_in_amrita_kaal' => false,
             'is_auspicious' => false,
-            'description' => 'Not in Amrita Kaal',
+            'description' => Localization::translate('String', 'Not in Amrita Kaal'),
         ];
     }
 

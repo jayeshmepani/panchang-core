@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
+use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 use JayeshMepani\PanchangCore\Core\Localization;
 use LogicException;
 
@@ -121,10 +122,11 @@ class FestivalService
      * Based on traditional texts and regional variations.
      */
     public const FESTIVALS = [
-        'Mesha Sankranti (Baisakhi / Puthandu)' =>
+        'Mesha Sankranti' =>
         [
             'type' => 'solar_sankranti',
             'rashi' => 0,
+            'aliases' => ['Baisakhi', 'Puthandu'],
             'description' => 'Solar New Year',
             'regions' =>
             [
@@ -698,8 +700,8 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 1 (Ghatasthapana). Tantric Mahavidya: Maa Kali. Nava Varahi: Swapna Varahi. Standard Navadurga: Maa Shailputri.',
+            'deity' => 'Kali / Shailputri / Swapna Varahi',
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
             'ghatasthapana_preference' => 'first_one_third_of_day_then_abhijit',
@@ -716,8 +718,8 @@ class FestivalService
             'tithi' => 2,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 2. Tantric Mahavidya: Maa Tara. Nava Varahi: Maha Varahi. Standard Navadurga: Maa Brahmacharini.',
+            'deity' => 'Tara / Brahmacharini / Maha Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -731,8 +733,8 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 3. Tantric Mahavidya: Tripura Sundari. Nava Varahi: Kroda Varahi. Standard Navadurga: Maa Chandraghanta.',
+            'deity' => 'Tripura Sundari / Chandraghanta / Kroda Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -746,8 +748,8 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 4. Tantric Mahavidya: Maa Bhuvaneshwari. Nava Varahi: Vikrita Varahi. Standard Navadurga: Maa Kushmanda.',
+            'deity' => 'Bhuvaneshwari / Kushmanda / Vikrita Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -761,8 +763,8 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 5. Tantric Mahavidya: Maa Bhairavi. Nava Varahi: Varahi Panchami. Standard Navadurga: Maa Skandamata.',
+            'deity' => 'Bhairavi / Skandamata / Varahi Panchami',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -776,8 +778,8 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 6. Tantric Mahavidya: Maa Chinnamasta. Nava Varahi: Ajna Varahi. Standard Navadurga: Maa Katyayani.',
+            'deity' => 'Chinnamasta / Katyayani / Ajna Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -791,8 +793,8 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 7. Tantric Mahavidya: Maa Dhumavati. Nava Varahi: Dandini Varahi. Standard Navadurga: Maa Kalaratri.',
+            'deity' => 'Dhumavati / Kalaratri / Dandini Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -806,8 +808,8 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 8. Tantric Mahavidya: Maa Bagalamukhi. Nava Varahi: Mrita Sanjivani Varahi. Standard Navadurga: Maa Mahagauri.',
+            'deity' => 'Bagalamukhi / Mahagauri / Mrita Sanjivani Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -821,8 +823,8 @@ class FestivalService
             'tithi' => 9,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Ashadha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Ashadha Gupta Navaratri Day 9. Tantric Mahavidya: Maa Matangi. Nava Varahi: Vaishnavi Varahi. Standard Navadurga: Maa Siddhidatri.',
+            'deity' => 'Matangi / Siddhidatri / Vaishnavi Varahi',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -850,8 +852,8 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 1 (Ghatasthapana). Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 1 (Ghatasthapana). Tantric Mahavidya: Maa Kali. Standard Navadurga: Maa Shailputri.',
+            'deity' => 'Kali / Shailputri',
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
             'ghatasthapana_preference' => 'first_one_third_of_day_then_abhijit',
@@ -868,8 +870,8 @@ class FestivalService
             'tithi' => 2,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 2. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 2. Tantric Mahavidya: Maa Tara. Standard Navadurga: Maa Brahmacharini.',
+            'deity' => 'Tara / Brahmacharini',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -883,8 +885,8 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 3. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 3. Tantric Mahavidya: Tripura Sundari. Standard Navadurga: Maa Chandraghanta.',
+            'deity' => 'Tripura Sundari / Chandraghanta',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -898,8 +900,8 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 4. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 4. Tantric Mahavidya: Maa Bhuvaneshwari. Standard Navadurga: Maa Kushmanda.',
+            'deity' => 'Bhuvaneshwari / Kushmanda',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -913,8 +915,8 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 5. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 5. Tantric Mahavidya: Maa Bhairavi (collides with Vasant Panchami). Standard Navadurga: Maa Skandamata.',
+            'deity' => 'Bhairavi / Skandamata',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -928,8 +930,8 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 6. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 6. Tantric Mahavidya: Maa Chinnamasta. Standard Navadurga: Maa Katyayani.',
+            'deity' => 'Chinnamasta / Katyayani',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -943,8 +945,8 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 7. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 7. Tantric Mahavidya: Maa Dhumavati. Standard Navadurga: Maa Kalaratri.',
+            'deity' => 'Dhumavati / Kalaratri',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -958,8 +960,8 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 8. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 8. Tantric Mahavidya: Maa Bagalamukhi. Standard Navadurga: Maa Mahagauri.',
+            'deity' => 'Bagalamukhi / Mahagauri',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -973,8 +975,8 @@ class FestivalService
             'tithi' => 9,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'description' => 'Magha Gupta Navaratri Day 9. Worship sequence is lineage-dependent (Navadurga/Mahavidya/custom).',
-            'deity' => 'Devi (lineage-specific)',
+            'description' => 'Magha Gupta Navaratri Day 9. Tantric Mahavidya: Maa Matangi. Standard Navadurga: Maa Siddhidatri.',
+            'deity' => 'Matangi / Siddhidatri',
             'karmakala_type' => 'sunrise',
             'navratri_type' => 'magha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
@@ -1018,7 +1020,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Ugadi / Gudi Padwa' =>
+        'Ugadi' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1026,6 +1028,7 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Gudi Padwa'],
             'description' => 'Lunar New Year / First day of Chaitra',
             'deity' => 'Brahma',
             'karmakala_type' => 'sunrise',
@@ -1041,7 +1044,7 @@ class FestivalService
             'description' => 'Worship of Gauri',
             'deity' => 'Parvati',
         ],
-        'Yamuna Chhath / Chaiti Chhath' =>
+        'Yamuna Chhath' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1049,8 +1052,19 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'description' => 'Descent of Goddess Yamuna / Summer Chhath',
-            'deity' => 'Surya/Yamuna',
+            'description' => 'Descent of Goddess Yamuna',
+            'deity' => 'Yamuna',
+        ],
+        'Chaiti Chhath' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Summer Chhath festival',
+            'deity' => 'Surya',
         ],
         'Rama Navami' =>
         [
@@ -1248,7 +1262,7 @@ class FestivalService
             'description' => 'Birth of Brahmaswarup Yogi Maharaj',
             'deity' => 'Swaminarayan',
         ],
-        'Shani Jayanti / Savitri Amavasya' =>
+        'Shani Jayanti' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1256,8 +1270,19 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Jyeshtha',
-            'description' => 'Birth of Lord Shani / Savitri Vrat',
-            'deity' => 'Shani/Savitri',
+            'description' => 'Birth of Lord Shani',
+            'deity' => 'Shani',
+        ],
+        'Savitri Amavasya' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Savitri Vrat',
+            'deity' => 'Savitri',
         ],
         'Jamai Shashti' =>
         [
@@ -1486,7 +1511,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
         ],
-        'Pola / Kushotpatini Amavasya' =>
+        'Pola' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1496,6 +1521,18 @@ class FestivalService
             'month_purnimanta' => 'Bhadrapada',
             'description' => 'Thanksgiving festival for farmers and bulls',
             'deity' => 'Shiva',
+            'regions' => ['Maharashtra'],
+        ],
+        'Kushotpatini Amavasya' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Amavasya dedicated to Goddess Kushotpatini',
+            'deity' => 'Kushotpatini',
         ],
         'Aja Ekadashi' =>
         [
@@ -1510,7 +1547,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Goga Pancham / Goga Panchami (Nag Panchami - Gujarat)' =>
+        'Goga Pancham' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1518,6 +1555,7 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Goga Panchami (Nag Panchami - Gujarat)'],
             'description' => 'Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities',
             'deity' => 'Goga Ji / Goga Bapa',
             'regions' => ['Gujarat'],
@@ -1554,7 +1592,7 @@ class FestivalService
             'description' => 'Worship of cows and calves (Bahula Chaturthi)',
             'deity' => 'Krishna/Cows',
         ],
-        'Randhan Chhath / Balarama Jayanti (Hala Shashthi)' =>
+        'Randhan Chhath' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1562,10 +1600,22 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Gujarati Randhan Chhath and the wider Hala Shashthi / Balarama Jayanti observance on Krishna Shashthi',
+            'description' => 'Gujarati Randhan Chhath - cooking all food one day in advance, offering cold food to Sheetala Mata',
+            'deity' => 'Sheetala Mata',
+            'regions' => ['Gujarat'],
+        ],
+        'Balarama Jayanti (Hala Shashthi)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 6,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth celebration of Lord Balarama, worship of Haladhara (plough bearer)',
             'deity' => 'Balarama',
         ],
-        'Sheetala Satam / Sheetala Saptami' =>
+        'Sheetala Satam' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1573,6 +1623,7 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Sheetala Saptami'],
             'description' => 'Sheetala Mata observance, known in Gujarat as Sheetala Satam, marked by cold-food offerings and prayers for health',
             'deity' => 'Sheetala Mata',
             'fasting' => true,
@@ -1592,7 +1643,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'last',
         ],
-        'Hartalika Teej / Kevada Trij' =>
+        'Hartalika Teej' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1600,6 +1651,7 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Kevada Trij'],
             'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
         ],
@@ -1651,7 +1703,7 @@ class FestivalService
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
         ],
-        'Parsva Ekadashi / Jal Jhilani Ekadashi' =>
+        'Parsva Ekadashi' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1659,8 +1711,9 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Jal Jhilani Ekadashi'],
             'description' => 'Lord Vishnu changes sides / Swaminarayan Jal Jhilani Utsav',
-            'deity' => 'Vishnu/Swaminarayan',
+            'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
@@ -1756,7 +1809,7 @@ class FestivalService
             'description' => 'Worship of Goddess Lalita Tripurasundari during Navaratri',
             'deity' => 'Lalita',
         ],
-        'Dussehra / Vijayadashami' =>
+        'Dussehra' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1764,6 +1817,7 @@ class FestivalService
             'tithi' => 10,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Vijayadashami'],
             'description' => 'Victory of Lord Rama over Ravana / End of Sharad Navaratri',
             'deity' => 'Rama/Durga',
             'karmakala_type' => 'aparahna',
@@ -1786,7 +1840,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Sharad Purnima / Manekthari Punam / Gunatitanand Swami Jayanti' =>
+        'Sharad Purnima' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1794,9 +1848,21 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
-            'description' => 'Sharad Purnima, known in Gujarat as Manekthari Punam, and the birth anniversary of Gunatitanand Swami',
-            'deity' => 'Lakshmi/Krishna/Swaminarayan',
+            'aliases' => ['Manekthari Punam'],
+            'description' => 'Sharad Purnima, known in Gujarat as Manekthari Punam',
+            'deity' => 'Lakshmi/Krishna',
             'karmakala_type' => 'nishitha',
+        ],
+        'Gunatitanand Swami Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of Gunatitanand Swami',
+            'deity' => 'Swaminarayan',
         ],
         'Valmiki Jayanti' =>
         [
@@ -1885,7 +1951,7 @@ class FestivalService
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
         ],
-        'Kali Puja / Diwali' =>
+        'Kali Puja' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1893,13 +1959,14 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Diwali'],
             'description' => 'Festival of lights / Worship of Goddess Kali',
-            'deity' => 'Lakshmi/Kali/Ganesha',
+            'deity' => 'Kali',
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
             'vriddhi_preference' => 'first',
         ],
-        'Govardhan Puja / Bestu Varas / Annakut' =>
+        'Govardhan Puja' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1907,9 +1974,22 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Annakut'],
             'description' => 'Annakut (Swaminarayan) / Gujarati New Year',
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
+        ],
+        'Bestu Varas' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Gujarati New Year',
+            'deity' => 'Lakshmi/Ganesha',
+            'regions' => ['Gujarat'],
         ],
         'Bhai Dooj' =>
         [
@@ -2113,7 +2193,7 @@ class FestivalService
             'description' => 'Wedding anniversary of Rama and Sita',
             'deity' => 'Rama/Sita',
         ],
-        'Geeta Jayanti / Mokshada Ekadashi / Vaikunta Ekadasi' =>
+        'Geeta Jayanti' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2121,8 +2201,9 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Margashirsha',
             'month_purnimanta' => 'Margashirsha',
+            'aliases' => ['Mokshada Ekadashi'],
             'description' => 'Celebration of Bhagavad Gita / Gateway to Heaven',
-            'deity' => 'Krishna/Vishnu',
+            'deity' => 'Krishna',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
@@ -2232,7 +2313,7 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
         ],
-        'Vasant Panchami / Shikshapatri Jayanti' =>
+        'Vasant Panchami' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2240,8 +2321,9 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
+            'aliases' => ['Shikshapatri Jayanti'],
             'description' => 'Worship of Goddess Saraswati / Shikshapatri presentation',
-            'deity' => 'Saraswati/Swaminarayan',
+            'deity' => 'Saraswati',
             'karmakala_type' => 'sunrise',
         ],
         'Ratha Saptami' =>
@@ -2279,7 +2361,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Maghi Purnima / Masi Magam' =>
+        'Maghi Purnima' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2287,6 +2369,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
+            'aliases' => ['Masi Magam'],
             'description' => 'Kumbh Mela bathing day / Tamil holy bathing day',
             'deity' => 'Ganga/Shiva',
         ],
@@ -2535,7 +2618,7 @@ class FestivalService
                     $regions = $rules['regions'] ?? ['Pan-India'];
                     $festivals[] = [
                         'name' => Localization::translate('Festival', $name),
-                        'description' => $rules['description'],
+                        'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
                         'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
                         'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
@@ -2556,7 +2639,7 @@ class FestivalService
                         $regions = $rules['regions'] ?? ['Pan-India'];
                         $festivals[] = [
                             'name' => Localization::translate('Festival', $name),
-                            'description' => $rules['description'],
+                            'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
                             'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                             'fasting' => $rules['fasting'] ?? false,
                             'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
@@ -2578,7 +2661,7 @@ class FestivalService
                     $regions = $rules['regions'] ?? ['Pan-India'];
                     $festivals[] = [
                         'name' => Localization::translate('Festival', $name),
-                        'description' => $rules['description'],
+                        'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
                         'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                         'fasting' => $rules['fasting'] ?? false,
                         'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
@@ -2597,7 +2680,7 @@ class FestivalService
                         $regions = $rules['regions'] ?? ['Pan-India'];
                         $festivals[] = [
                             'name' => Localization::translate('Festival', $name),
-                            'description' => $rules['description'],
+                            'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
                             'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                             'fasting' => $rules['fasting'] ?? false,
                             'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
@@ -2616,7 +2699,7 @@ class FestivalService
                 $regions = $rules['regions'] ?? ['Pan-India'];
                 $festivals[] = [
                     'name' => Localization::translate('Festival', $name),
-                    'description' => $rules['description'],
+                    'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
                     'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
                     'fasting' => $rules['fasting'] ?? false,
                     'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
@@ -2686,9 +2769,10 @@ class FestivalService
             }
             $out[] = [
                 'name' => Localization::translate('Vrata', $rule['vrata']),
-                'deity' => $rule['deity'],
-                'benefit' => $benefit,
+                'deity' => Localization::translate('Deity', $rule['deity']),
+                'benefit' => Localization::translate('Benefit', $benefit),
                 'paksha' => $paksha,
+                'paksha_name' => constant(Paksha::class . '::' . $paksha)->getName(),
             ];
         }
 
@@ -2720,6 +2804,20 @@ class FestivalService
         // Dependent festivals (e.g. Holi after Holika Dahan) are resolved by orchestration layer.
         if ($type === 'day_after') {
             return false;
+        }
+
+        // Handle Adhika Masa rules: only allow tithi-based festivals in Adhika Masa if explicitly allowed.
+        if ($type === 'tithi') {
+            $isAdhika = (bool) ($panchangDetails['Hindu_Calendar']['Is_Adhika'] ?? false);
+            $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
+            $allowsAdhika = (bool) ($rules['allows_adhika'] ?? false);
+
+            if ($isAdhika && !$adhikaOnly && !$allowsAdhika) {
+                return false; // Regular lunar festivals are blocked in Adhika Masa
+            }
+            if (!$isAdhika && $adhikaOnly) {
+                return false; // Adhika-only lunar festivals shouldn't appear in Nija Masa
+            }
         }
 
         // Check tithi match
