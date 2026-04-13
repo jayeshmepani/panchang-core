@@ -56,8 +56,6 @@ $eclipseService = new EclipseService($sweph);
 $eclipsesByYear = [];
 $eclipsesFlat = [];
 
-echo "Building eclipses for {$startYear}-{$endYear}..." . PHP_EOL;
-
 for ($year = $startYear; $year <= $endYear; $year++) {
     $events = $eclipseService->getEclipsesForYear($year, $latitude, $longitude, $timezone);
     $eclipsesByYear[(string) $year] = $events;
@@ -102,5 +100,4 @@ if ($json === false) {
 
 $filename = "eclipses_{$startYear}_{$endYear}.json";
 file_put_contents($filename, $json . PHP_EOL);
-
-echo "Written {$filename} — " . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;
+echo $json . PHP_EOL;

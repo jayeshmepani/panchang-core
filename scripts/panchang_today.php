@@ -124,7 +124,8 @@ $tempDetails = $panchangService->getDayDetails(
     tz: $timezone,
     elevation: $elevation,
 );
-$sunriseTime = CarbonImmutable::parse($tempDetails['sunrise_dt'], $timezone);
+$sunriseTime = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', $tempDetails['sunrise_dt'], $timezone)
+    ?: CarbonImmutable::parse($tempDetails['sunrise_dt'], $timezone);
 
 $todayDetails = $panchangService->getDayDetails(
     date: $todayDate,
@@ -185,5 +186,4 @@ if ($json === false) {
 }
 
 file_put_contents('today_panchang.json', $json . PHP_EOL);
-
-echo "Written today_panchang.json — {$todayDate->format('Y-m-d')} for {$city}, {$country}." . PHP_EOL;
+echo $json . PHP_EOL;

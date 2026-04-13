@@ -39,20 +39,6 @@ class FestivalRuleEngine
         'Revati' => 27,
     ];
 
-    private function localizedPaksha(string $paksha): string
-    {
-        return match ($paksha) {
-            'Shukla' => Localization::translate('String', 'Shukla Paksha (waxing)'),
-            'Krishna' => Localization::translate('String', 'Krishna Paksha (waning)'),
-            default => $paksha,
-        };
-    }
-
-    private function localizedKarmakala(string $karmakalaType): string
-    {
-        return Localization::translate('String', $karmakalaType);
-    }
-
     /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
         string $festivalName,
@@ -248,6 +234,20 @@ class FestivalRuleEngine
         }
 
         return $tagsByDate;
+    }
+
+    private function localizedPaksha(string $paksha): string
+    {
+        return match ($paksha) {
+            'Shukla' => Localization::translate('String', 'Shukla Paksha (waxing)'),
+            'Krishna' => Localization::translate('String', 'Krishna Paksha (waning)'),
+            default => $paksha,
+        };
+    }
+
+    private function localizedKarmakala(string $karmakalaType): string
+    {
+        return Localization::translate('String', $karmakalaType);
     }
 
     /** Resolve nakshatra-based festival (e.g., Onam, Thai Poosam). */

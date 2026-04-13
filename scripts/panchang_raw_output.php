@@ -178,7 +178,8 @@ $tempDetails = $panchangService->getDayDetails(
     tz: $timezone,
     elevation: $elevation,
 );
-$sunriseTime = CarbonImmutable::parse($tempDetails['sunrise_dt'], $timezone);
+$sunriseTime = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', $tempDetails['sunrise_dt'], $timezone)
+    ?: CarbonImmutable::parse($tempDetails['sunrise_dt'], $timezone);
 
 $todayDetails = $panchangService->getDayDetails(
     date: $todayDate,
