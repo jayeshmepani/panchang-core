@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 163 festival definitions, 30 Muhurtas, Karmakala windows, and Swiss Ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 191 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, and Swiss Ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -356,7 +356,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>163 Festival Definitions</h3>
+              <h3>191 Festival Definitions</h3>
               <p>Comprehensive library of festival definitions covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -375,8 +375,18 @@
                   <line x1="2" y1="12" x2="22" y2="12" />
                   <path
                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>Regional Support</h3>
+              </svg>Regional Support</h3>
               <p>Smarta, Vaishnava, North, South, Bengal, Maharashtra, Tamil traditions</p>
+            </div>
+            <div class="feature-card">
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 5h16" />
+                  <path d="M4 12h10" />
+                  <path d="M4 19h16" />
+                  <path d="M17 9l3 3-3 3" />
+                </svg>Localization & Calendar Types</h3>
+              <p>English, Hindi, and Gujarati localization with Amanta and Purnimanta month representation.</p>
             </div>
           </div>
           <div class="classical-texts">
@@ -683,11 +693,12 @@ echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code><
           <div class="info-box">
             <h3>Overview</h3>
             <p>When running inside Laravel, you can publish the configuration file to <code>config/panchang.php</code>.
-              These settings control the default formatting across the entire package output, allowing you to globally
-              enforce timezone notations, unit systems, and double precision decimals.</p>
+              These settings control default locale, calendar type, and representation formatting across package output
+              without truncating the raw calculation floats.</p>
           </div>
           <h3>Default Calculation Options</h3>
-          <p>The <code>defaults</code>array configures formatting representations.</p>
+          <p>The <code>defaults</code> array configures localization, calendar-system selection, and formatting
+            representations.</p>
           <table class="data-table">
             <caption class="sr-only">Default calculation configuration options</caption>
             <thead>
@@ -698,6 +709,16 @@ echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code><
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td><code>locale</code></td>
+                <td>Language used for localized names and descriptions.</td>
+                <td><code>en</code>, <code>hi</code>, <code>gu</code></td>
+              </tr>
+              <tr>
+                <td><code>calendar_type</code></td>
+                <td>Preferred lunar month naming system for representation.</td>
+                <td><code>amanta</code>: month ends at Amavasya<br><code>purnimanta</code>: month ends at Purnima</td>
+              </tr>
               <tr>
                 <td><code>measurement_system</code></td>
                 <td>Unit system for generic dimensions and lengths.</td>
@@ -735,7 +756,7 @@ echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code><
             </tbody>
           </table>
           <h3>Festival Calculation Settings</h3>
-          <p>The <code>festivals</code>array provides defaults for region and tradition if not explicitly supplied.</p>
+          <p>The <code>festivals</code> array provides defaults for region and tradition if not explicitly supplied.</p>
           <table class="data-table">
             <caption class="sr-only">Festival calculation configuration</caption>
             <thead>
@@ -755,8 +776,37 @@ echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code><
                 <td><code>default_region</code></td>
                 <td>Default geographical region for festival rule variations.</td>
                 <td><code>North</code>, <code>South</code>, <code>Bengal</code>, <code>Maharashtra</code>,
-                  <code>Tamil</code>
+                  <code>Tamil</code>, <code>Gujarat</code>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>Cache Settings</h3>
+          <p>The <code>cache</code> array controls package cache behavior in Laravel applications.</p>
+          <table class="data-table">
+            <caption class="sr-only">Cache configuration options</caption>
+            <thead>
+              <tr>
+                <th scope="col">Setting</th>
+                <th scope="col">Description</th>
+                <th scope="col">Default / Environment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>enabled</code></td>
+                <td>Enable package cache.</td>
+                <td><code>PANCHANG_CACHE_ENABLED=true</code></td>
+              </tr>
+              <tr>
+                <td><code>ttl</code></td>
+                <td>Cache lifetime in seconds.</td>
+                <td><code>PANCHANG_CACHE_TTL=86400</code></td>
+              </tr>
+              <tr>
+                <td><code>prefix</code></td>
+                <td>Cache key prefix.</td>
+                <td><code>PANCHANG_CACHE_PREFIX=panchang_</code></td>
               </tr>
             </tbody>
           </table>
@@ -830,14 +880,22 @@ $effective = $pradosha['effective_trayodashi_window']; // Overlap with T13</code
 
             <h4 style="margin-top: 1.5rem;">6. Karmakala Windows in getDayDetails()</h4>
             <p>The following dedicated Karmakala outputs are available:</p>
-            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>$karmakala = $details['Karmakala_Windows'];
-$daylight   = $details['Daylight_Fivefold_Division']; // Pratah, Sangava, etc.
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>$badTimes   = $details['Rahu_Kaal_Gulika_Yamaganda'];
+$abhijit    = $details['Abhijit_Muhurta'];
+$praharas   = $details['Prahara_Full_Day'];
+$daylight   = $details['Daylight_Fivefold_Division']; // Pratah, Sangava, Madhyahna, Aparahna, Sayahna
+$brahma     = $details['Brahma_Muhurta'];
+$dur        = $details['Dur_Muhurta_Full_Day'];
 $nishita    = $details['Nishita_Muhurta'];            // Night midpoint
 $vijaya     = $details['Vijaya_Muhurta'];             // 11th of 15 day muhurtas
 $godhuli    = $details['Godhuli_Muhurta'];            // Evening twilight
 $sandhya    = $details['Sandhya'];                    // Pratah, Madhyahna, Sayahna
 $gowri      = $details['Gowri_Panchangam'];           // Tamil 8-part division
-$kalaVela   = $details['Kala_Vela'];                  // Kala, Mrityu, etc.</code></pre>
+$kalaVela   = $details['Kala_Vela'];                  // Kala, Mrityu, etc.
+$karmakala  = $details['Karmakala_Windows'];
+$varjyam    = $details['Varjyam'];
+$amrita     = $details['Amrita_Kaal'];
+$pradosha   = $details['Pradosha_Kaal'];</code></pre>
           </div>
         </section>
         <section id="nakshatra" class="content-section">
@@ -1031,8 +1089,8 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
               <h4 class="method-name">getName()</h4>
               <p class="method-description">Get Sanskrit name</p>
               <div class="method-signature"><code>public function getName(): string</code></div>
-              <div class="method-returns"><strong>Returns:</strong><code>string</code>— Name (e.g., 'Pratipada',
-                'Purnima')</div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code>— Name (e.g., 'Shukla
+                Pratipada', 'Purnima')</div>
             </div>
             <div class="method">
               <h4 class="method-name">getPaksha()</h4>
@@ -1437,7 +1495,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 Tithi, Nakshatra, Yoga, Karana, Muhurta, Chogadiya, Hora, festival data, Bhadra windows, Dharma Sindhu
                 windows, expanded Hindu calendar metadata, and dedicated Karmakala outputs.</p>
               <div class="method-signature">
-                <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, array $options=[]): array</code>
+                <code>public function getDayDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta, array $options=[]): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
                 <code>$date</code>(CarbonImmutable) — Date to calculate<br>
@@ -1446,15 +1504,20 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>$tz</code>(string) — Timezone (e.g., 'Asia/Kolkata')<br>
                 <code>$elevation</code>(float, optional) — Elevation in meters (default: 0.0)<br>
                 <code>$calculationAt</code>(CarbonImmutable, optional) — Calculation timestamp override<br>
+                <code>$calendarType</code>(CalendarType|string, optional) — <code>amanta</code> or <code>purnimanta</code><br>
                 <code>$options</code>(array, optional) — Additional options
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Complete panchanga data
                 including keys such as <code>Tithi</code>, <code>Nakshatra</code>, <code>Yoga</code>,
-                <code>Karana</code>, <code>Vara</code>, <code>Hora</code>, <code>Chogadiya</code>, <code>Bhadra</code>,
-                <code>Dharma_Sindhu</code>, <code>Varjyam</code>, <code>Amrita_Kaal</code>, <code>Pradosha_Kaal</code>,
-                <code>Daylight_Fivefold_Division</code>, <code>Nishita_Muhurta</code>, <code>Vijaya_Muhurta</code>,
+                <code>Karana</code>, <code>Vara</code>, <code>Hora</code>, <code>Chogadiya</code>,
+                <code>Hora_Full_Day</code>, <code>Chogadiya_Full_Day</code>, <code>Muhurta_Full_Day</code>,
+                <code>Rahu_Kaal_Gulika_Yamaganda</code>, <code>Abhijit_Muhurta</code>, <code>Prahara_Full_Day</code>,
+                <code>Bhadra</code>, <code>Dharma_Sindhu</code>, <code>Varjyam</code>, <code>Amrita_Kaal</code>,
+                <code>Pradosha_Kaal</code>, <code>Daylight_Fivefold_Division</code>, <code>Brahma_Muhurta</code>,
+                <code>Dur_Muhurta_Full_Day</code>, <code>Nishita_Muhurta</code>, <code>Vijaya_Muhurta</code>,
                 <code>Godhuli_Muhurta</code>, <code>Sandhya</code>, <code>Gowri_Panchangam</code>,
-                <code>Kala_Vela</code>, <code>Karmakala_Windows</code>, and <code>Hindu_Calendar</code> with
+                <code>Kala_Vela</code>, <code>Karmakala_Windows</code>, <code>Lagna_Full_Day</code>, and
+                <code>Hindu_Calendar</code> with
                 <code>Month_Amanta</code>, <code>Month_Purnimanta</code>, <code>Is_Adhika</code>,
                 <code>Is_Kshaya</code>, <code>Amanta_Index</code>, and <code>Purnimanta_Index</code>.</div>
             </div>
@@ -1464,29 +1527,57 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
               <p class="method-description">Lightweight daily snapshot for festival resolution. Faster than
                 getDayDetails when you only need festival data.</p>
               <div class="method-signature">
-                <code>public function getFestivalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0): array</code>
+                <code>public function getFestivalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
                 <code>$date</code>(CarbonImmutable) — Date to calculate<br>
                 <code>$lat</code>(float) — Latitude<br>
                 <code>$lon</code>(float) — Longitude<br>
                 <code>$tz</code>(string) — Timezone<br>
-                <code>$elevation</code>(float, optional) — Elevation in meters
+                <code>$elevation</code>(float, optional) — Elevation in meters<br>
+                <code>$calculationAt</code>(CarbonImmutable, optional) — Calculation timestamp override<br>
+                <code>$calendarType</code>(CalendarType|string, optional) — <code>amanta</code> or <code>purnimanta</code>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Festival data and minimal
                 panchanga elements.</div>
             </div>
 
             <div class="method">
+              <h4 class="method-name">getFestivalYearCalendar()</h4>
+              <p class="method-description">Builds a complete Gregorian-year festival calendar using package-side
+                Panchang snapshots, relative <code>day_after</code> festival handling, and adjacent duplicate
+                consolidation. Use this for full-year festival JSON instead of reimplementing loops in consumer code.
+              </p>
+              <div class="method-signature">
+                <code>public function getFestivalYearCalendar(int $year, float $lat, float $lon, string $tz, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — <code>year</code>,
+                <code>festival_day_count</code>, <code>festival_entry_count</code>, <code>by_date</code>, and
+                <code>flat</code>.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getMonthCalendar()</h4>
+              <p class="method-description">Returns a date-indexed month grid summary for calendar UIs. Each day
+                includes core Panchang elements, Hindu calendar metadata, festivals, daily observances, and Sankranti
+                tagging.</p>
+              <div class="method-signature">
+                <code>public function getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Month calendar keyed by
+                <code>YYYY-MM-DD</code>.</div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getElectionalSnapshot()</h4>
-              <p class="method-description">Returns transit-only electional context for a day, including planet states
-                and mahadosha checks.</p>
+              <p class="method-description">Returns transit-only electional context for a day, including full day
+                details, transit moorthy, planetary states, and sunrise-context metadata.</p>
               <div class="method-signature">
                 <code>public function getElectionalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Snapshot with
-                <code>day_details</code>, <code>mahadoshas</code>, <code>planetary_states</code>, and sunrise-context
-                metadata.</div>
+                <code>day_details</code>, <code>transit_moorthy</code>, <code>planetary_states</code>, and
+                <code>sunrise_context</code>.</div>
             </div>
 
             <div class="method">
@@ -1514,7 +1605,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified festival catalog currently contains <code>163</code> definitions after merging true
+              <li>The verified festival catalog currently contains <code>191</code> definitions after merging true
                 alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
@@ -1547,12 +1638,12 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
 
             <div class="method">
               <h4 class="method-name">toJulianDayUtc()</h4>
-              <p class="method-description">Convert birth data array to high-precision Julian Day (UTC).</p>
+              <p class="method-description">Convert a date/time/location array to high-precision Julian Day (UTC).</p>
               <div class="method-signature">
                 <code>public function toJulianDayUtc(array $birth): float</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Associative array:
+                <code>$birth</code>(array) — Associative timestamp array:
                 <code>[year, month, day, hour, minute, second, timezone]</code>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>float</code> — Julian Day number (UT1)</div>
@@ -1560,15 +1651,31 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
 
             <div class="method">
               <h4 class="method-name">getPlanets()</h4>
-              <p class="method-description">Returns all planetary longitudes for a given birth details.</p>
+              <p class="method-description">Returns planetary longitudes for a given timestamp/location array.</p>
               <div class="method-signature">
                 <code>public function getPlanets(array $birth): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details with location and time.
+                <code>$birth</code>(array) — Timestamp details with location and time.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Map of planet names to
                 longitudinal degrees.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getPlanetaryStates()</h4>
+              <p class="method-description">Returns transit planet states with longitude, sign, speed, retrograde
+                status, combustion, and stationary flags.</p>
+              <div class="method-signature">
+                <code>public function getPlanetaryStates(array $birth, string $nodeMode='mean', float $stationTolerance=1.0e-6): array</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong><br>
+                <code>$birth</code>(array) — Timestamp details with location and time.<br>
+                <code>$nodeMode</code>(string, optional) — <code>mean</code> or <code>true</code> lunar node mode.<br>
+                <code>$stationTolerance</code>(float, optional) — Speed threshold for stationary detection.
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Planetary state rows keyed by
+                planet name.</div>
             </div>
 
             <div class="method">
@@ -1579,7 +1686,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>public function getAscendant(array $birth): float</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details.
+                <code>$birth</code>(array) — Timestamp details with location and time.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>float</code> — Ascendant longitude in degrees.
               </div>
@@ -1615,7 +1722,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>public function getSunriseSunset(array $birth): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details with lat/lon and date.
+                <code>$birth</code>(array) — Timestamp details with lat/lon and date.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> —
                 <code>[CarbonImmutable sunrise, CarbonImmutable sunset]</code></div>
@@ -1628,7 +1735,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>public function getMoonriseMoonset(array $birth): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details.
+                <code>$birth</code>(array) — Timestamp details with lat/lon and date.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> —
                 <code>[CarbonImmutable moonrise, CarbonImmutable moonset]</code></div>
@@ -1641,9 +1748,34 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>public function getTwilightTimes(array $birth): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details.
+                <code>$birth</code>(array) — Timestamp details with lat/lon and date.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Map of twilight phases.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getSolarTransits()</h4>
+              <p class="method-description">Calculate local solar transit/noon timing for a date and location.</p>
+              <div class="method-signature">
+                <code>public function getSolarTransits(array $birth): array</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong><br>
+                <code>$birth</code>(array) — Timestamp details with lat/lon and date.
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Solar transit timing payload.</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getBirthDatetime()</h4>
+              <p class="method-description">Build a Carbon timestamp from the package's standard timestamp/location
+                array shape.</p>
+              <div class="method-signature">
+                <code>public function getBirthDatetime(array $birth): CarbonImmutable</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong><br>
+                <code>$birth</code>(array) — Timestamp details with timezone.
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>CarbonImmutable</code> — Local timestamp.</div>
             </div>
 
             <div class="method">
@@ -1653,7 +1785,7 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <code>public function isDayBirth(array $birth): bool</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$birth</code>(array) — Birth details.
+                <code>$birth</code>(array) — Timestamp details with lat/lon and date.
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>bool</code> — True if daylight birth.</div>
             </div>
@@ -1741,7 +1873,7 @@ echo $tithi['name']; // "Dwadashi"
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
-                  <li><code>$birth</code>(array) — Birth details.</li>
+                  <li><code>$birth</code>(array) — Timestamp details with location and time.</li>
                   <li><code>$sunService</code>(SunService) — Helper for sunrise timing.</li>
                 </ul>
               </div>
@@ -2093,6 +2225,16 @@ echo $tithi['name']; // "Dwadashi"
               </div>
             </div>
             <div class="method">
+              <h4 class="method-name">calculateLagna()</h4>
+              <p class="method-description">Calculate the current sidereal Lagna/ascendant sign for one timestamp and
+                location.</p>
+              <div class="method-signature">
+                <code>public function calculateLagna(CarbonImmutable $current, CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEphFFI $sweph): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Current Lagna longitude,
+                sign index/name, degree in sign, and applied ayanamsa.</div>
+            </div>
+            <div class="method">
               <h4 class="method-name">calculateLagnaTable()</h4>
               <p class="method-description">Calculate full 12/13 Lagna (Ascendant) intervals for the day with exact sign
                 entry times.</p>
@@ -2356,6 +2498,19 @@ echo $tithi['name']; // "Dwadashi"
                 <td>Path to Swiss Ephemeris <code>.se1</code> files.</td>
               </tr>
               <tr>
+                <td><code>defaults.locale</code></td>
+                <td>string</td>
+                <td><code>'en'</code></td>
+                <td>Output localization. Supported values: <code>en</code>, <code>hi</code>, <code>gu</code>.</td>
+              </tr>
+              <tr>
+                <td><code>defaults.calendar_type</code></td>
+                <td>string</td>
+                <td><code>'amanta'</code></td>
+                <td>Preferred lunar month representation. Supported values: <code>amanta</code>,
+                  <code>purnimanta</code>.</td>
+              </tr>
+              <tr>
                 <td><code>defaults.measurement_system</code></td>
                 <td>string</td>
                 <td><code>'indian_metric'</code></td>
@@ -2486,7 +2641,8 @@ echo $tithi['name']; // "Dwadashi"
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — List of festival objects with
-                names, types, and metadata.</div>
+                localized display fields, aliases, calculation-basis metadata, resolver metadata, and
+                <code>rules_applied</code> decision context.</div>
               <div class="method-example"><strong>Example:</strong>
                 <pre><code class="language-php">$today = $panchang->getFestivalSnapshot(
     CarbonImmutable::parse('2026-03-24'),
@@ -2514,6 +2670,20 @@ foreach ($festivals as $festival) {
             </div>
 
             <div class="method">
+              <h4 class="method-name">buildFestivalPayload()</h4>
+              <p class="method-description">Build the canonical resolved festival object used by service and script
+                outputs. It preserves raw rule keys for integrations while adding localized companion labels for
+                human-facing JSON.</p>
+              <div class="method-signature">
+                <code>public function buildFestivalPayload(string $name, array $rules, ?array $resolved=null): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Festival payload with
+                <code>name</code>, <code>description</code>, <code>deity</code>, <code>regions</code>,
+                <code>aliases</code>, <code>calculation_basis</code>, optional <code>resolution</code>, and optional
+                <code>rules_applied</code>.</div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getDailyObservances()</h4>
               <p class="method-description">Return generic daily vrata/observance guidance from the current Panchang
                 snapshot.</p>
@@ -2524,10 +2694,16 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">getFestivalsForYear()</h4>
-              <p class="method-description">Return the canonical festival definition catalog grouped for yearly use.</p>
+              <p class="method-description">Intentionally disabled at this catalog layer. Year-wide festival output is
+                built by <code>PanchangService::getFestivalYearCalendar()</code>, which owns location-aware Panchang
+                orchestration.
+              </p>
               <div class="method-signature">
                 <code>public function getFestivalsForYear(int $year, string $pakshaSystem='Amanta'): array</code>
               </div>
+              <div class="method-returns"><strong>Throws:</strong><code>LogicException</code> — Use
+                <code>PanchangService::getFestivalYearCalendar()</code> for complete year output, or date-wise
+                resolution via <code>PanchangService::getFestivalSnapshot()</code>.</div>
             </div>
           </div>
         </section>
@@ -2549,7 +2725,10 @@ foreach ($festivals as $festival) {
           <pre><code class="language-bash">php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangServiceProvider" --tag="panchang-config"</code></pre>
           <p>This creates <code>config/panchang.php</code>:</p>
           <pre><code class="language-php">return [
-    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),    'defaults' => [
+    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
+    'defaults' => [
+        'locale' => env('PANCHANG_LOCALE', 'en'),
+        'calendar_type' => env('PANCHANG_CALENDAR_TYPE', 'amanta'),
         'measurement_system' => 'indian_metric',
         'date_time_format' => 'indian_12h',
         'time_notation' => '12h',
@@ -2621,9 +2800,13 @@ class PanchangController extends Controller
   'Hindu_Calendar' => [
     'Month_Amanta' => 'Chaitra',
     'Month_Purnimanta' => 'Chaitra',
+    'Is_Adhika' => false,
+    'Is_Kshaya' => false,
     'Amanta_Index' => 1,
     'Purnimanta_Index' => 1,
   ],
+  'Rahu_Kaal_Gulika_Yamaganda' => [...],
+  'Abhijit_Muhurta' => [...],
   'Hora_Full_Day' => [...],
   'Chogadiya_Full_Day' => [...],
   'Muhurta_Full_Day' => [...],
@@ -2651,10 +2834,62 @@ class PanchangController extends Controller
           <h3>getFestivalSnapshot() Return Structure</h3>
           <pre><code class="language-php">[
   'Festivals' => [
-    ['name' => 'Holika Dahan', 'type' => 'festival', 'priority' => 1],
+    [
+      'name' => 'Holika Dahan',
+      'description' => 'Holika bonfire ritual',
+      'deity' => 'Vishnu/Prahlada',
+      'fasting' => false,
+      'regions' => ['Pan-India'],
+      'aliases' => [],
+      'observance_note' => null,
+      'calculation_basis' => [
+        'type' => 'tithi',
+        'type_name' => 'tithi',
+        'basis' => 'tithi',
+        'basis_name' => 'tithi',
+        'tithi' => [...],
+        'paksha' => 'Shukla',
+        'paksha_name' => 'Shukla',
+        'month' => [
+          'calendar_type' => 'amanta',
+          'value' => 'Phalguna',
+          'name' => 'Phalguna',
+        ],
+        'karmakala_type' => 'pradosha',
+        'karmakala_type_name' => 'pradosha',
+      ],
+      'resolution' => [...],
+      'rules_applied' => [...],
+    ],
   ],
   'Tithi' => [...],
   'Nakshatra' => [...],
+]</code></pre>
+          <p>Festival metadata keeps canonical values for code and localized companion fields for display. The
+            <code>calculation_basis.month</code> block follows the active <code>calendar_type</code> only; it does not
+            emit both amanta and purnimanta months in the same localized output.</p>
+
+          <h3>getMonthCalendar() Return Structure</h3>
+          <pre><code class="language-php">[
+  '2026-04-01' => [
+    'date' => '2026-04-01',
+    'day' => 1,
+    'tithi' => [...],
+    'nakshatra' => [...],
+    'yoga' => [...],
+    'karana' => [...],
+    'vara' => [...],
+    'sun_sign' => [...],
+    'moon_sign' => [...],
+    'sunrise' => '06:43:00 AM',
+    'sunset' => '07:11:00 PM',
+    'moonrise' => '...',
+    'moonset' => '...',
+    'hindu_calendar' => [...],
+    'festivals' => [...],
+    'daily_observances' => [...],
+    'sankranti' => null,
+  ],
 ]</code></pre>
         </section>
 
@@ -2698,16 +2933,16 @@ $vaishnava = Panchang::getDayDetails(
     CarbonImmutable::parse('2026-09-07'),
     28.61, 77.20, 'Asia/Kolkata'
 )['Festivals'];</code></pre>
-          <h3>4. Birth Chart Basics</h3>
-          <pre><code class="language-php">// Get planetary positions for a birth date
-$birthData = [
+          <h3>4. Planetary Positions for a Timestamp</h3>
+          <pre><code class="language-php">// Get planetary positions and ascendant for a timestamp/location
+$timestampData = [
     'year' => 1990, 'month' => 5, 'day' => 15,
     'hour' => 14, 'minute' => 30, 'second' => 0,
     'tz' => 'Asia/Kolkata', 'lat' => 28.61, 'lon' => 77.20
 ];
 
-$planets = $astronomy->getPlanets($birthData);
-$ascendant = $astronomy->getAscendant($birthData);
+$planets = $astronomy->getPlanets($timestampData);
+$ascendant = $astronomy->getAscendant($timestampData);
 
 echo "Sun: " . $planets['Sun'] . "°\n";
 echo "Ascendant: " . $ascendant . "°";</code></pre>
@@ -2720,6 +2955,7 @@ $lagnas   = $details['Lagna_Full_Day'];     // Exact Sign entry times
 $horas    = $details['Hora_Full_Day'];       // 24 planetary rulers
 $praharas = $details['Prahara_Full_Day'];    // 8 canonical periods
 $muhurtas = $details['Muhurta_Full_Day'];    // 30 named Muhurtas
+$badTimes = $details['Rahu_Kaal_Gulika_Yamaganda']; // Rahu, Gulika, Yamaganda
 $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas
 $sandhya  = $details['Sandhya'];              // Pratah / Madhyahna / Sayahna
 $gowri    = $details['Gowri_Panchangam'];     // Day + night Gowri divisions
@@ -2738,9 +2974,39 @@ $bhadraActive = $evaluation['evaluation_results']['bhadra']['is_active'];
 $varjyamActive = $evaluation['evaluation_results']['varjyam']['is_active'];</code></pre>
 
           <h3>7. Raw JSON Exporter</h3>
-          <pre><code class="language-bash">php panchang_raw_output.php > output.json</code></pre>
+          <p>Use this when you want the complete all-in-one package output in a single JSON file:</p>
+          <pre><code class="language-bash">php scripts/panchang_raw_output.php > output.json</code></pre>
           <p>This writes <code>meta</code>, <code>festivals_2026</code>, <code>eclipses_2026_2032</code>,
             <code>todays_complete_details</code>, and <code>muhurta_evaluation</code> in one file.</p>
+          <p>Additional standalone exporters are available in <code>scripts/</code>:</p>
+          <pre><code class="language-bash">php scripts/panchang_today.php
+php scripts/panchang_month_output.php 2026 4 > month_2026_04.json
+php scripts/panchang_eclipses.php 2026 2032
+php scripts/panchang_festivals.php 2026</code></pre>
+          <p><code>panchang_today.php</code> writes <code>today_panchang.json</code> automatically and also prints JSON
+            to stdout. <code>panchang_month_output.php</code> prints JSON to stdout only, so choose the filename with
+            shell redirection. <code>panchang_eclipses.php</code> writes <code>eclipses_YYYY_YYYY.json</code>
+            automatically and also prints JSON to stdout. <code>panchang_festivals.php</code> writes
+            <code>festivals_YYYY.json</code> automatically and prints status lines; do not redirect its stdout as raw
+            JSON.</p>
+          <p>Use <code>PANCHANG_LOCALE=en|hi|gu</code> and
+            <code>PANCHANG_CALENDAR_TYPE=amanta|purnimanta</code> to generate localized/calendar-type variants. For a
+            dedicated output directory, move implicit-output files after generation and redirect stdout-only scripts
+            directly:</p>
+          <pre><code class="language-bash">cd scripts
+dir="output/amanta/gu"
+mkdir -p "$dir"
+
+PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_today.php > /tmp/today.log
+mv -f today_panchang.json "$dir/today.json"
+
+PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_festivals.php 2026 > /tmp/festivals.log
+mv -f festivals_2026.json "$dir/festivals_2026.json"
+
+PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_month_output.php 2026 4 > "$dir/month_2026_04.json"
+
+PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_eclipses.php 2026 2032 > /tmp/eclipses.log
+mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
         </section>
         <section id="accuracy" class="content-section">
           <h2>Accuracy & Date Range</h2>
@@ -3017,6 +3283,10 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
                   <td><code>PanchangService::getFestivalSnapshot()</code></td>
                 </tr>
                 <tr>
+                  <td>Build a month calendar grid</td>
+                  <td><code>PanchangService::getMonthCalendar()</code></td>
+                </tr>
+                <tr>
                   <td>Get transit-only muhurta evaluation for now</td>
                   <td><code>PanchangService::getDailyMuhurtaEvaluation()</code></td>
                 </tr>
@@ -3076,6 +3346,14 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
                 <tr>
                   <td>Get Samvatsara</td>
                   <td><code>PanchangaEngine::getSamvatsara()</code></td>
+                </tr>
+                <tr>
+                  <td>Use Hindi or Gujarati output</td>
+                  <td>Set <code>defaults.locale</code> or <code>PANCHANG_LOCALE</code></td>
+                </tr>
+                <tr>
+                  <td>Use Amanta or Purnimanta month names</td>
+                  <td>Pass <code>$calendarType</code> or set <code>PANCHANG_CALENDAR_TYPE</code></td>
                 </tr>
               </tbody>
             </table>
@@ -3146,6 +3424,3 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 </body>
 
 </html>
-
-
-

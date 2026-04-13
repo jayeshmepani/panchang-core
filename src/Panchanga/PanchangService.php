@@ -749,6 +749,76 @@ class PanchangService
     }
 
     /**
+     * Build a date-indexed festival calendar for a full Gregorian year.
+     *
+     * This is the package-level orchestration used by CLI/export scripts. It
+     * keeps relative-day festivals and adjacent duplicate consolidation out of
+     * consumer code.
+     *
+     * @return array{
+     *     year:int,
+     *     festival_day_count:int,
+     *     festival_entry_count:int,
+     *     by_date:array<string, array<int, array<string, mixed>>>,
+     *     flat:array<int, array{date:string, festival:array<string, mixed>}>
+     * }
+     */
+    public function getFestivalYearCalendar(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        $festivalsByDate = [];
+        $festivalFlat = [];
+
+        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
+        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+
+        for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
+            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+
+            if ($festivals === []) {
+                continue;
+            }
+
+            $dateKey = $date->toDateString();
+            $festivalsByDate[$dateKey] = $festivals;
+
+            foreach ($festivals as $festival) {
+                $festivalFlat[] = [
+                    'date' => $dateKey,
+                    'festival' => $festival,
+                ];
+            }
+        }
+
+        $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat);
+
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalsByDate = [];
+        foreach ($festivalFlat as $entry) {
+            $dateKey = (string) $entry['date'];
+            $festivalsByDate[$dateKey] ??= [];
+            $festivalsByDate[$dateKey][] = $entry['festival'];
+        }
+        ksort($festivalsByDate);
+
+        return [
+            'year' => $year,
+            'festival_day_count' => count($festivalsByDate),
+            'festival_entry_count' => count($festivalFlat),
+            'by_date' => $festivalsByDate,
+            'flat' => $festivalFlat,
+        ];
+    }
+
+    /**
      * Get a month-wise calendar summary of Panchang details.
      * Ideal for grid-based calendar views.
      *
@@ -970,6 +1040,181 @@ class PanchangService
             'evaluation_results' => $evaluationResults,
             'rejection_report' => $rejectionReport,
         ];
+    }
+
+    /**
+     * @param array<string, array<int, array<string, mixed>>> $festivalsByDate
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     */
+    private function appendRelativeDayFestivals(
+        int $year,
+        string $tz,
+        array &$festivalsByDate,
+        array &$festivalFlat
+    ): void {
+        foreach (FestivalService::FESTIVALS as $festName => $rules) {
+            if ((string) ($rules['type'] ?? '') !== 'day_after') {
+                continue;
+            }
+
+            $parentName = (string) ($rules['parent_festival'] ?? '');
+            $daysAfter = (int) ($rules['days_after'] ?? 1);
+            if ($parentName === '') {
+                continue;
+            }
+
+            $parentDisplayName = Localization::translate('Festival', $parentName);
+            foreach ($festivalsByDate as $observanceDate => $observedFestivals) {
+                foreach ($observedFestivals as $observedFestival) {
+                    $rawObservedName = (string) ($observedFestival['resolution']['festival_name'] ?? '');
+                    $displayObservedName = (string) ($observedFestival['name'] ?? '');
+                    if ($rawObservedName !== $parentName && $displayObservedName !== $parentDisplayName) {
+                        continue;
+                    }
+
+                    $relativeDate = CarbonImmutable::parse($observanceDate, $tz)->addDays($daysAfter);
+                    if ($relativeDate->year !== $year) {
+                        continue;
+                    }
+
+                    $relativeDateKey = $relativeDate->toDateString();
+                    $observanceNoteTemplate = Localization::translate('String', 'observance_note_day_after');
+                    $observanceNote = $observanceNoteTemplate !== 'observance_note_day_after'
+                        ? sprintf($observanceNoteTemplate, $daysAfter, $parentDisplayName)
+                        : 'Observed ' . $daysAfter . ' day(s) after ' . $parentDisplayName;
+
+                    $festival = $this->festivalService->buildFestivalPayload($festName, $rules, [
+                        'festival_name' => $festName,
+                        'standard_date' => $relativeDateKey,
+                        'observance_date' => $relativeDateKey,
+                        'observance_note' => $observanceNote,
+                        'decision' => [
+                            'winning_reason' => 'day_after_parent_festival',
+                            'parent_festival' => $parentName,
+                            'parent_observance_date' => $observanceDate,
+                            'days_after' => $daysAfter,
+                        ],
+                    ]);
+
+                    $festivalsByDate[$relativeDateKey] ??= [];
+                    $festivalsByDate[$relativeDateKey][] = $festival;
+                    $festivalFlat[] = [
+                        'date' => $relativeDateKey,
+                        'festival' => $festival,
+                    ];
+                }
+            }
+        }
+    }
+
+    /**
+     * For adjacent duplicate observances of the same festival, keep the
+     * strongest rule-engine decision.
+     *
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     *
+     * @return array<int, array{date:string, festival:array<string, mixed>}>
+     */
+    private function consolidateAdjacentFestivalsByWinningScore(array $festivalFlat, string $tz): array
+    {
+        $grouped = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            if ($name === '') {
+                continue;
+            }
+            $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
+        }
+
+        $remove = [];
+        foreach ($grouped as $items) {
+            usort($items, static fn (array $a, array $b): int => strcmp((string) $a['entry']['date'], (string) $b['entry']['date']));
+
+            $clusters = [];
+            $current = [];
+            $previousDate = null;
+
+            foreach ($items as $item) {
+                $date = CarbonImmutable::parse((string) $item['entry']['date'], $tz);
+                if ($previousDate === null || $previousDate->diffInDays($date) <= 1) {
+                    $current[] = $item;
+                } else {
+                    $clusters[] = $current;
+                    $current = [$item];
+                }
+                $previousDate = $date;
+            }
+            if ($current !== []) {
+                $clusters[] = $current;
+            }
+
+            foreach ($clusters as $cluster) {
+                if (count($cluster) <= 1) {
+                    continue;
+                }
+
+                $best = null;
+                foreach ($cluster as $candidate) {
+                    $festival = (array) $candidate['entry']['festival'];
+                    $rules = (array) ($festival['rules_applied'] ?? []);
+                    $score = (int) ($rules['winning_score'] ?? -1);
+                    $reason = (string) ($rules['winning_reason'] ?? '');
+                    $date = (string) $candidate['entry']['date'];
+
+                    if ($score < 0) {
+                        continue;
+                    }
+
+                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $date, $best)) {
+                        $best = [
+                            'idx' => $candidate['idx'],
+                            'score' => $score,
+                            'reason' => $reason,
+                            'date' => $date,
+                        ];
+                    }
+                }
+
+                if ($best === null) {
+                    continue;
+                }
+
+                foreach ($cluster as $candidate) {
+                    if ($candidate['idx'] !== $best['idx']) {
+                        $remove[$candidate['idx']] = true;
+                    }
+                }
+            }
+        }
+
+        if ($remove === []) {
+            return $festivalFlat;
+        }
+
+        $filtered = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            if (!isset($remove[$idx])) {
+                $filtered[] = $entry;
+            }
+        }
+
+        return $filtered;
+    }
+
+    /** @param array{score:int, reason:string, date:string} $best */
+    private function isStrongerFestivalDecision(int $score, string $reason, string $date, array $best): bool
+    {
+        $reasonRank = static fn (string $r): int => match ($r) {
+            'target_at_karmakala' => 2,
+            'target_during_observance' => 1,
+            default => 0,
+        };
+
+        return $score > $best['score']
+            || ($score === $best['score'] && $reasonRank($reason) > $reasonRank((string) $best['reason']))
+            || ($score === $best['score']
+                && $reasonRank($reason) === $reasonRank((string) $best['reason'])
+                && strcmp($date, (string) $best['date']) > 0);
     }
 
     private function evaluateCurrentBhadra(CarbonImmutable $at, array $bhadraPeriods): array

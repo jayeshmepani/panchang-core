@@ -9,7 +9,7 @@ use JayeshMepani\PanchangCore\Core\Localization;
 
 class FestivalRuleEngine
 {
-    private const NAKSHATRA_NUMBERS = [
+    private const array NAKSHATRA_NUMBERS = [
         'Ashwini' => 1,
         'Bharani' => 2,
         'Krittika' => 3,

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-13T12:06:50+05:30",
+        "generated_at": "2026-04-13T14:58:36+05:30",
         "muhurta_mode": "transit_only",
         "location": {
             "city": "Bhuj",
@@ -14,7 +14,7 @@
     },
     "todays_complete_details": {
         "title": "Today's Complete Details - Every single data point from the package",
-        "input_now": "2026-04-13T12:06:50+05:30",
+        "input_now": "2026-04-13T14:58:36+05:30",
         "date": "2026-04-13",
         "details": {
             "Display_Settings": {
@@ -79,7 +79,7 @@
             },
             "Tithi": {
                 "index": 25,
-                "name": "Sud Dashami",
+                "name": "Krishna Dashami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7624941582399837
@@ -142,7 +142,7 @@
             "Panchanga": {
                 "Tithi": {
                     "index": 25,
-                    "name": "Sud Dashami",
+                    "name": "Krishna Dashami",
                     "paksha": "Krishna",
                     "paksha_name": "Krishna Paksha (waning)",
                     "fraction_left": 0.7624941582399837
@@ -239,13 +239,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                26
+                            ],
+                            "names": [
+                                "Krishna Ekadashi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Varuthini Ekadashi",
+                        "required_tithi": 11,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461143.324611539,
+                        "target_tithi_end_jd": 2461144.318890633,
+                        "standard_date": "2026-04-13",
+                        "observance_date": "2026-04-13",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_during_observance",
+                            "winning_score": 300,
+                            "winning_reason_name": "target tithi during observance day"
+                        },
+                        "festival_name_localized": "Varuthini Ekadashi",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_during_observance",
-                        "winning_score": 300
+                        "winning_score": 300,
+                        "winning_reason_name": "target tithi during observance day"
                     }
                 }
             ],
@@ -2159,7 +2216,7 @@
         "date": "2026-04-13",
         "input_parameters": {
             "tithi_number": 26,
-            "tithi_name": "Sud Ekadashi",
+            "tithi_name": "Krishna Ekadashi",
             "tithi_number_base": 1,
             "vara_number": 1,
             "vara_name": "Monday",
@@ -2195,7 +2252,7 @@
             "panchaka_dosha": {
                 "source": "Muhurta Chintamani / Brihat Samhita",
                 "tithi": 26,
-                "tithi_name": "Sud Ekadashi",
+                "tithi_name": "Krishna Ekadashi",
                 "tithi_number_base": 1,
                 "vara": 3,
                 "vara_name": "Tuesday",
@@ -2218,7 +2275,7 @@
             "dagdha_tithi": {
                 "source": "Muhurta Chintamani",
                 "tithi_number": 26,
-                "tithi_name": "Sud Ekadashi",
+                "tithi_name": "Krishna Ekadashi",
                 "tithi_number_base": 1,
                 "moon_sign_idx": 10,
                 "moon_sign_index_base": 0,
@@ -2230,8 +2287,8 @@
                     29
                 ],
                 "dagdha_tithi_names_for_sign": [
-                    "Chaturthi",
-                    "Sud Chaturdashi"
+                    "Shukla Chaturthi",
+                    "Krishna Chaturdashi"
                 ],
                 "is_dagdha": false,
                 "has_dosha": false,
@@ -2246,13 +2303,13 @@
                 "vara_sequence_number": 2,
                 "vara_sequence_number_base": 1,
                 "tithi_number": 26,
-                "tithi_name": "Sud Ekadashi",
+                "tithi_name": "Krishna Ekadashi",
                 "tithi_number_base": 1,
                 "dagdha_tithis_for_vara": [
                     11
                 ],
                 "dagdha_tithi_names_for_vara": [
-                    "Ekadashi"
+                    "Shukla Ekadashi"
                 ],
                 "is_dagdha": false,
                 "has_dosha": false,
@@ -2312,7 +2369,7 @@
             "rikta_tithi": {
                 "source": "Muhurta Chintamani / Gargiya Jyotisha",
                 "tithi_number": 26,
-                "tithi_name": "Sud Ekadashi",
+                "tithi_name": "Krishna Ekadashi",
                 "tithi_number_base": 1,
                 "is_krishna_paksha": true,
                 "paksha_name": "Krishna Paksha (waning)",

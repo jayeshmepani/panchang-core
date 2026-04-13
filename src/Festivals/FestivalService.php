@@ -6,7 +6,11 @@ namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
+use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
 use LogicException;
 
@@ -2583,12 +2587,10 @@ class FestivalService
                         } elseif ($monthAmantaRule !== '') {
                             $monthMatches = ($monthAmantaRule === $amantaCleanNorm);
                         }
-                    } else {
-                        if ($monthAmantaRule !== '') {
-                            $monthMatches = ($monthAmantaRule === $amantaCleanNorm);
-                        } elseif ($monthPurnimantaRule !== '') {
-                            $monthMatches = ($monthPurnimantaRule === $purnimantaCleanNorm);
-                        }
+                    } elseif ($monthAmantaRule !== '') {
+                        $monthMatches = ($monthAmantaRule === $amantaCleanNorm);
+                    } elseif ($monthPurnimantaRule !== '') {
+                        $monthMatches = ($monthPurnimantaRule === $purnimantaCleanNorm);
                     }
                     if ($monthMatches) {
                         // Month matches during Adhika - allow this festival
@@ -2615,16 +2617,7 @@ class FestivalService
             if ($isClassical) {
                 $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString() && !isset($addedFestivalKeys[$name])) {
-                    $regions = $rules['regions'] ?? ['Pan-India'];
-                    $festivals[] = [
-                        'name' => Localization::translate('Festival', $name),
-                        'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
-                        'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
-                        'fasting' => $rules['fasting'] ?? false,
-                        'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
-                        'observance_note' => $resolved['observance_note'] ?? null,
-                        'rules_applied' => $resolved['decision'] ?? [],
-                    ];
+                    $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
                     $festivalMeta[] = [
                         'raw_name' => $name,
                         'adhika_only' => $adhikaOnly,
@@ -2636,16 +2629,7 @@ class FestivalService
                     // whose tithi decision was derived from yesterday->today.
                     $resolvedYesterday = $this->ruleEngine->resolveMajorFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails);
                     if ($resolvedYesterday !== null && $resolvedYesterday['observance_date'] === $date->toDateString()) {
-                        $regions = $rules['regions'] ?? ['Pan-India'];
-                        $festivals[] = [
-                            'name' => Localization::translate('Festival', $name),
-                            'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
-                            'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
-                            'fasting' => $rules['fasting'] ?? false,
-                            'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
-                            'observance_note' => $resolvedYesterday['observance_note'] ?? null,
-                            'rules_applied' => $resolvedYesterday['decision'] ?? [],
-                        ];
+                        $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedYesterday);
                         $festivalMeta[] = [
                             'raw_name' => $name,
                             'adhika_only' => $adhikaOnly,
@@ -2658,16 +2642,7 @@ class FestivalService
                 // Handle nakshatra-based festivals
                 $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString() && !isset($addedFestivalKeys[$name])) {
-                    $regions = $rules['regions'] ?? ['Pan-India'];
-                    $festivals[] = [
-                        'name' => Localization::translate('Festival', $name),
-                        'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
-                        'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
-                        'fasting' => $rules['fasting'] ?? false,
-                        'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
-                        'observance_note' => $resolved['observance_note'] ?? null,
-                        'rules_applied' => $resolved['decision'] ?? [],
-                    ];
+                    $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
                     $festivalMeta[] = [
                         'raw_name' => $name,
                         'adhika_only' => $adhikaOnly,
@@ -2677,16 +2652,7 @@ class FestivalService
                 } elseif ($yesterdayDetails !== null && !isset($addedFestivalKeys[$name])) {
                     $resolvedYesterday = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails);
                     if ($resolvedYesterday !== null && $resolvedYesterday['observance_date'] === $date->toDateString()) {
-                        $regions = $rules['regions'] ?? ['Pan-India'];
-                        $festivals[] = [
-                            'name' => Localization::translate('Festival', $name),
-                            'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
-                            'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
-                            'fasting' => $rules['fasting'] ?? false,
-                            'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
-                            'observance_note' => $resolvedYesterday['observance_note'] ?? null,
-                            'rules_applied' => $resolvedYesterday['decision'] ?? [],
-                        ];
+                        $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedYesterday);
                         $festivalMeta[] = [
                             'raw_name' => $name,
                             'adhika_only' => $adhikaOnly,
@@ -2696,14 +2662,7 @@ class FestivalService
                     }
                 }
             } elseif ($this->matchesFestivalRules($date, $rules, $tithiNum, $paksha, $todayDetails)) {
-                $regions = $rules['regions'] ?? ['Pan-India'];
-                $festivals[] = [
-                    'name' => Localization::translate('Festival', $name),
-                    'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
-                    'deity' => Localization::translate('Deity', $rules['deity'] ?? ''),
-                    'fasting' => $rules['fasting'] ?? false,
-                    'regions' => array_map(fn ($r) => Localization::translate('Region', $r), $regions),
-                ];
+                $festivals[] = $this->buildFestivalPayload($name, $rules);
                 $festivalMeta[] = [
                     'raw_name' => $name,
                     'adhika_only' => $adhikaOnly,
@@ -2744,11 +2703,46 @@ class FestivalService
         return $festivals;
     }
 
+    /**
+     * Build a complete, localized festival payload while preserving the
+     * calculation basis from the registry and resolver decision context.
+     */
+    public function buildFestivalPayload(string $name, array $rules, ?array $resolved = null): array
+    {
+        $regions = $rules['regions'] ?? ['Pan-India'];
+        $aliases = array_values(array_map(
+            static fn (string $alias): string => Localization::translate('Festival', $alias),
+            array_map('strval', (array) ($rules['aliases'] ?? []))
+        ));
+        $deity = $rules['deity'] ?? null;
+
+        $payload = [
+            'name' => Localization::translate('Festival', $name),
+            'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
+            'deity' => $deity === null ? null : Localization::translate('Deity', (string) $deity),
+            'fasting' => (bool) ($rules['fasting'] ?? false),
+            'regions' => array_map(static fn ($r): string => Localization::translate('Region', (string) $r), $regions),
+            'aliases' => $aliases,
+            'observance_note' => $resolved['observance_note'] ?? null,
+            'calculation_basis' => $this->buildCalculationBasis($rules, $resolved),
+        ];
+
+        $resolution = $this->buildResolutionMetadata($resolved);
+        if ($resolution !== []) {
+            $payload['resolution'] = $resolution;
+        }
+
+        if (isset($resolved['decision']) && is_array($resolved['decision'])) {
+            $payload['rules_applied'] = $this->localizeDecisionMetadata($resolved['decision']);
+        }
+
+        return $payload;
+    }
+
     public static function usesClassicalResolver(array $rules): bool
     {
         return (string) ($rules['resolver'] ?? '') === 'classical';
     }
-
     /** Daily Sanatan observances from tithi-based vrata prescriptions. */
     public function getDailyObservances(array $panchangDetails): array
     {
@@ -2786,6 +2780,318 @@ class FestivalService
     public function getFestivalsForYear(int $year, string $pakshaSystem = 'Amanta'): array
     {
         throw new LogicException('Year-wide festival calculation is intentionally disabled in FestivalService. Use date-wise calculation via PanchangService.');
+    }
+
+    private function buildCalculationBasis(array $rules, ?array $resolved = null): array
+    {
+        $type = (string) ($rules['type'] ?? 'tithi');
+        $basis = [
+            'type' => $type,
+            'type_name' => $this->localizedString($type),
+            'basis' => $this->inferFestivalBasis($rules),
+            'basis_name' => $this->localizedString($this->inferFestivalBasis($rules)),
+            'resolver' => $rules['resolver'] ?? null,
+            'tithi' => $this->formatTithiRule($rules['tithi'] ?? ($resolved['required_tithi'] ?? null), $rules['paksha'] ?? ($resolved['paksha'] ?? null)),
+            'paksha' => $rules['paksha'] ?? ($resolved['paksha'] ?? null),
+            'paksha_name' => $this->localizedPakshaName($rules['paksha'] ?? ($resolved['paksha'] ?? null)),
+            'month' => $this->formatMonthRule($rules),
+            'solar_rashi' => $this->formatRashiRule($rules['rashi'] ?? null),
+            'nakshatra' => $rules['nakshatra'] ?? ($resolved['required_nakshatra'] ?? null),
+            'nakshatra_only' => $rules['nakshatra_only'] ?? null,
+            'fixed_date' => $this->formatFixedDateRule($rules),
+            'weekday' => $this->formatWeekdayRule($rules['weekday'] ?? null),
+            'karmakala_type' => $rules['karmakala_type'] ?? ($resolved['karmakala_type'] ?? null),
+            'karmakala_type_name' => $this->localizedString($rules['karmakala_type'] ?? ($resolved['karmakala_type'] ?? null)),
+            'strict_karmakala' => $rules['strict_karmakala'] ?? null,
+            'vriddhi_preference' => $rules['vriddhi_preference'] ?? null,
+            'prefer_first_karmakala' => $rules['prefer_first_karmakala'] ?? null,
+            'prefer_nakshatra' => $rules['prefer_nakshatra'] ?? null,
+            'preferred_nakshatra' => $rules['nakshatra'] ?? null,
+            'adhika' => $this->formatAdhikaRule($rules),
+            'relative_day' => $this->formatRelativeDayRule($rules),
+        ];
+
+        return $this->filterEmptyMetadata($basis);
+    }
+
+    private function buildResolutionMetadata(?array $resolved): array
+    {
+        if ($resolved === null) {
+            return [];
+        }
+
+        $allowed = [
+            'festival_name',
+            'required_tithi',
+            'required_nakshatra',
+            'paksha',
+            'karmakala_type',
+            'tithi_at_karmakala_today',
+            'tithi_at_karmakala_tomorrow',
+            'tithi_at_sunrise_today',
+            'tithi_at_sunrise_tomorrow',
+            'is_tithi_vriddhi',
+            'is_tithi_kshaya',
+            'target_tithi_start_jd',
+            'target_tithi_end_jd',
+            'standard_date',
+            'observance_date',
+            'observance_note',
+            'decision',
+        ];
+
+        $out = [];
+        foreach ($allowed as $key) {
+            if (array_key_exists($key, $resolved)) {
+                $out[$key] = $resolved[$key];
+            }
+        }
+
+        if (isset($out['festival_name'])) {
+            $out['festival_name_localized'] = Localization::translate('Festival', (string) $out['festival_name']);
+        }
+        if (isset($out['paksha'])) {
+            $out['paksha_name'] = $this->localizedPakshaName($out['paksha']);
+        }
+        if (isset($out['karmakala_type'])) {
+            $out['karmakala_type_name'] = $this->localizedString($out['karmakala_type']);
+        }
+        if (isset($out['required_nakshatra'])) {
+            $out['required_nakshatra_name'] = $this->localizedNakshatraName((string) $out['required_nakshatra']);
+        }
+        if (isset($out['decision']) && is_array($out['decision'])) {
+            $out['decision'] = $this->localizeDecisionMetadata($out['decision']);
+        }
+
+        return $this->filterEmptyMetadata($out);
+    }
+
+    private function inferFestivalBasis(array $rules): string
+    {
+        if ((bool) ($rules['nakshatra_only'] ?? false)) {
+            return 'nakshatra';
+        }
+
+        return match ((string) ($rules['type'] ?? 'tithi')) {
+            'solar_sankranti', 'solar' => 'solar',
+            'fixed_date' => 'gregorian_fixed_date',
+            'weekday_in_month' => 'weekday_in_lunar_month',
+            'weekday_tithi' => 'weekday_and_tithi',
+            'day_after' => 'relative_day_after_parent_festival',
+            default => 'tithi',
+        };
+    }
+
+    private function formatTithiRule(mixed $ruleTithi, mixed $paksha): ?array
+    {
+        if ($ruleTithi === null || $ruleTithi === '') {
+            return null;
+        }
+
+        $numbers = array_values(array_map('intval', is_array($ruleTithi) ? $ruleTithi : [$ruleTithi]));
+        $pakshaName = is_string($paksha) && $paksha !== '' ? $paksha : null;
+        $absoluteNumbers = array_map(static function (int $number) use ($pakshaName): int {
+            if ($pakshaName === 'Krishna' && $number <= 15) {
+                return $number + 15;
+            }
+            return $number;
+        }, $numbers);
+
+        return $this->filterEmptyMetadata([
+            'numbers' => $numbers,
+            'paksha' => $pakshaName,
+            'paksha_name' => $this->localizedPakshaName($pakshaName),
+            'absolute_numbers' => $absoluteNumbers,
+            'names' => array_map([$this, 'safeTithiName'], $absoluteNumbers),
+        ]);
+    }
+
+    private function safeTithiName(int $absoluteNumber): ?string
+    {
+        if ($absoluteNumber < 1 || $absoluteNumber > 30) {
+            return null;
+        }
+
+        return Tithi::from($absoluteNumber)->getName();
+    }
+
+    private function formatMonthRule(array $rules): ?array
+    {
+        if (!isset($rules['month_amanta']) && !isset($rules['month_purnimanta'])) {
+            return null;
+        }
+
+        $calendarType = strtolower((string) config('panchang.defaults.calendar_type', 'amanta'));
+        $field = $calendarType === 'purnimanta' ? 'month_purnimanta' : 'month_amanta';
+        $fallbackField = $field === 'month_purnimanta' ? 'month_amanta' : 'month_purnimanta';
+        $month = $rules[$field] ?? $rules[$fallbackField] ?? null;
+
+        return $this->filterEmptyMetadata([
+            'calendar_type' => $calendarType === 'purnimanta' ? 'purnimanta' : 'amanta',
+            'value' => $month,
+            'name' => $this->localizedMonthName($month),
+        ]);
+    }
+
+    private function formatRashiRule(mixed $rashi): ?array
+    {
+        if ($rashi === null || $rashi === '') {
+            return null;
+        }
+
+        $index = (int) $rashi;
+        if ($index < 0 || $index > 11) {
+            return ['index' => $index];
+        }
+
+        $sign = Rasi::from($index);
+        return [
+            'index' => $index,
+            'number' => $index + 1,
+            'name' => $sign->getName(),
+            'english_name' => $sign->getEnglishName(),
+            'symbol' => $sign->getSymbol(),
+        ];
+    }
+
+    private function formatFixedDateRule(array $rules): ?array
+    {
+        if (!isset($rules['month'], $rules['day'])) {
+            return null;
+        }
+
+        return [
+            'month' => (int) $rules['month'],
+            'day' => (int) $rules['day'],
+        ];
+    }
+
+    private function formatWeekdayRule(mixed $weekday): ?array
+    {
+        if ($weekday === null || $weekday === '') {
+            return null;
+        }
+
+        $number = (int) $weekday;
+        if ($number < 0 || $number > 6) {
+            return ['number' => $number];
+        }
+
+        $vara = Vara::from($number);
+        return [
+            'number' => $number,
+            'name' => $vara->getName(),
+            'english_name' => $vara->getEnglishName(),
+        ];
+    }
+
+    private function formatAdhikaRule(array $rules): ?array
+    {
+        if (!array_key_exists('allow_adhika', $rules) && !array_key_exists('allows_adhika', $rules) && !array_key_exists('adhika_only', $rules)) {
+            return null;
+        }
+
+        return $this->filterEmptyMetadata([
+            'allow_adhika' => $rules['allow_adhika'] ?? null,
+            'allows_adhika' => $rules['allows_adhika'] ?? null,
+            'adhika_only' => $rules['adhika_only'] ?? null,
+        ]);
+    }
+
+    private function formatRelativeDayRule(array $rules): ?array
+    {
+        if (($rules['type'] ?? '') !== 'day_after') {
+            return null;
+        }
+
+        return $this->filterEmptyMetadata([
+            'parent_festival' => $rules['parent_festival'] ?? null,
+            'parent_festival_name' => isset($rules['parent_festival']) ? Localization::translate('Festival', (string) $rules['parent_festival']) : null,
+            'days_after' => isset($rules['days_after']) ? (int) $rules['days_after'] : null,
+        ]);
+    }
+
+    private function localizeDecisionMetadata(array $decision): array
+    {
+        if (isset($decision['winning_reason'])) {
+            $decision['winning_reason_name'] = $this->localizedString($decision['winning_reason']);
+        }
+        if (isset($decision['parent_festival'])) {
+            $decision['parent_festival_name'] = Localization::translate('Festival', (string) $decision['parent_festival']);
+        }
+        if (isset($decision['nakshatra_name'])) {
+            $decision['nakshatra_name_localized'] = $this->localizedNakshatraName((string) $decision['nakshatra_name']);
+        }
+        if (isset($decision['preferred_nakshatra'])) {
+            $decision['preferred_nakshatra_name'] = $this->localizedNakshatraName((string) $decision['preferred_nakshatra']);
+        }
+
+        return $decision;
+    }
+
+    private function localizedPakshaName(mixed $paksha): ?string
+    {
+        if (!is_string($paksha) || $paksha === '') {
+            return null;
+        }
+
+        return match ($paksha) {
+            'Shukla' => Paksha::Shukla->getName(),
+            'Krishna' => Paksha::Krishna->getName(),
+            default => Localization::translate('String', $paksha),
+        };
+    }
+
+    private function localizedMonthName(mixed $month): ?string
+    {
+        if (!is_string($month) || $month === '') {
+            return null;
+        }
+
+        $normalized = $this->normalizeMonthName($month);
+        foreach (self::MONTHS as $monthName => $number) {
+            if ($this->normalizeMonthName($monthName) === $normalized) {
+                return Masa::from(((int) $number) - 1)->getName();
+            }
+        }
+
+        return Localization::translate('Masa', $month);
+    }
+
+    private function localizedNakshatraName(string $nakshatra): string
+    {
+        foreach (Nakshatra::cases() as $case) {
+            if ($case->getName('en') === $nakshatra) {
+                return $case->getName();
+            }
+        }
+
+        return $nakshatra;
+    }
+
+    private function localizedString(mixed $value): ?string
+    {
+        if (!is_string($value) || $value === '') {
+            return null;
+        }
+
+        return Localization::translate('String', $value);
+    }
+
+    private function filterEmptyMetadata(array $data): array
+    {
+        $out = [];
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $value = $this->filterEmptyMetadata($value);
+            }
+            if ($value === null || $value === []) {
+                continue;
+            }
+            $out[$key] = $value;
+        }
+
+        return $out;
     }
 
     /**

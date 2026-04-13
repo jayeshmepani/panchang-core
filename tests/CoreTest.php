@@ -120,7 +120,7 @@ class CoreTest extends TestCase
         $this->assertCount(30, Tithi::cases());
 
         // Test names
-        $this->assertEquals('Pratipada', Tithi::ShuklaPratipada->getName());
+        $this->assertEquals('Shukla Pratipada', Tithi::ShuklaPratipada->getName());
         $this->assertEquals('Purnima', Tithi::Purnima->getName());
         $this->assertEquals('Amavasya', Tithi::Amavasya->getName());
 

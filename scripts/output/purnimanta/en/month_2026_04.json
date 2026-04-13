@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-13T06:01:13+00:00",
+        "generated_at": "2026-04-13T09:29:06+00:00",
         "year": 2026,
         "month": 4,
         "location": {
@@ -15,7 +15,7 @@
             "day": 1,
             "tithi": {
                 "index": 14,
-                "name": "Chaturdashi",
+                "name": "Shukla Chaturdashi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.015585430102416864
@@ -119,13 +119,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Purnima"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Hanuman Jayanti",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461131.5671938304,
+                        "target_tithi_end_jd": 2461132.591667503,
+                        "standard_date": "2026-04-02",
+                        "observance_date": "2026-04-02",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Hanuman Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -145,7 +202,7 @@
             "day": 3,
             "tithi": {
                 "index": 16,
-                "name": "Sud Pratipada",
+                "name": "Krishna Pratipada",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.07992472798669559
@@ -201,7 +258,7 @@
             "day": 4,
             "tithi": {
                 "index": 17,
-                "name": "Sud Dwitiya",
+                "name": "Krishna Dwitiya",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.13561085420097407
@@ -257,7 +314,7 @@
             "day": 5,
             "tithi": {
                 "index": 18,
-                "name": "Sud Tritiya",
+                "name": "Krishna Tritiya",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.20530124685876905
@@ -313,7 +370,7 @@
             "day": 6,
             "tithi": {
                 "index": 19,
-                "name": "Sud Chaturthi",
+                "name": "Krishna Chaturthi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.2866160270522258
@@ -369,7 +426,7 @@
             "day": 7,
             "tithi": {
                 "index": 20,
-                "name": "Sud Panchami",
+                "name": "Krishna Panchami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.3761641414994964
@@ -425,7 +482,7 @@
             "day": 8,
             "tithi": {
                 "index": 21,
-                "name": "Sud Shashthi",
+                "name": "Krishna Shashthi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.4695248747428641
@@ -481,7 +538,7 @@
             "day": 9,
             "tithi": {
                 "index": 22,
-                "name": "Sud Saptami",
+                "name": "Krishna Saptami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.5612525602379843
@@ -537,7 +594,7 @@
             "day": 10,
             "tithi": {
                 "index": 23,
-                "name": "Sud Ashtami",
+                "name": "Krishna Ashtami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.645166785799707
@@ -593,7 +650,7 @@
             "day": 11,
             "tithi": {
                 "index": 24,
-                "name": "Sud Navami",
+                "name": "Krishna Navami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7145204179235141
@@ -649,7 +706,7 @@
             "day": 12,
             "tithi": {
                 "index": 25,
-                "name": "Sud Dashami",
+                "name": "Krishna Dashami",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7624941582399837
@@ -705,7 +762,7 @@
             "day": 13,
             "tithi": {
                 "index": 26,
-                "name": "Sud Ekadashi",
+                "name": "Krishna Ekadashi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7826920609526317
@@ -753,13 +810,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                26
+                            ],
+                            "names": [
+                                "Krishna Ekadashi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Varuthini Ekadashi",
+                        "required_tithi": 11,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461143.324611539,
+                        "target_tithi_end_jd": 2461144.318890633,
+                        "standard_date": "2026-04-13",
+                        "observance_date": "2026-04-13",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Varuthini Ekadashi",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -779,7 +893,7 @@
             "day": 14,
             "tithi": {
                 "index": 27,
-                "name": "Sud Dwadashi",
+                "name": "Krishna Dwadashi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7698753914194422
@@ -822,11 +936,29 @@
                 {
                     "name": "Mesha Sankranti",
                     "description": "Solar New Year",
-                    "deity": "",
+                    "deity": null,
                     "fasting": false,
                     "regions": [
                         "Pan-India"
-                    ]
+                    ],
+                    "aliases": [
+                        "Baisakhi",
+                        "Puthandu"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
                 },
                 {
                     "name": "Vishu",
@@ -837,7 +969,22 @@
                         "Kerala",
                         "Tamil Nadu",
                         "Karnataka"
-                    ]
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -856,7 +1003,7 @@
             "day": 15,
             "tithi": {
                 "index": 28,
-                "name": "Sud Trayodashi",
+                "name": "Krishna Trayodashi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.7208301545387361
@@ -912,7 +1059,7 @@
             "day": 16,
             "tithi": {
                 "index": 29,
-                "name": "Sud Chaturdashi",
+                "name": "Krishna Chaturdashi",
                 "paksha": "Krishna",
                 "paksha_name": "Krishna Paksha (waning)",
                 "fraction_left": 0.6352113391295215
@@ -1024,7 +1171,7 @@
             "day": 18,
             "tithi": {
                 "index": 1,
-                "name": "Pratipada",
+                "name": "Shukla Pratipada",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.3718444066825972
@@ -1080,7 +1227,7 @@
             "day": 19,
             "tithi": {
                 "index": 2,
-                "name": "Dwitiya",
+                "name": "Shukla Dwitiya",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.2120430216783783
@@ -1136,7 +1283,7 @@
             "day": 20,
             "tithi": {
                 "index": 3,
-                "name": "Tritiya",
+                "name": "Shukla Tritiya",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.049459647022493614
@@ -1184,13 +1331,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Parashurama Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Parashurama Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 },
                 {
@@ -1201,13 +1405,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Akshaya Tritiya",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Akshaya Tritiya",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1227,7 +1488,7 @@
             "day": 21,
             "tithi": {
                 "index": 5,
-                "name": "Panchami",
+                "name": "Shukla Panchami",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.896117051446882
@@ -1275,13 +1536,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                5
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                5
+                            ],
+                            "names": [
+                                "Shukla Panchami"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Adi Shankaracharya Jayanti",
+                        "required_tithi": 5,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461151.448167814,
+                        "target_tithi_end_jd": 2461152.3266333435,
+                        "standard_date": "2026-04-21",
+                        "observance_date": "2026-04-21",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Adi Shankaracharya Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1301,7 +1619,7 @@
             "day": 22,
             "tithi": {
                 "index": 6,
-                "name": "Shashthi",
+                "name": "Shukla Shashthi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.7618702284518312
@@ -1357,7 +1675,7 @@
             "day": 23,
             "tithi": {
                 "index": 7,
-                "name": "Saptami",
+                "name": "Shukla Saptami",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.6531396058344587
@@ -1405,13 +1723,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                7
+                            ],
+                            "names": [
+                                "Shukla Saptami"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Ganga Saptami",
+                        "required_tithi": 7,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461153.2222663676,
+                        "target_tithi_end_jd": 2461154.138673486,
+                        "standard_date": "2026-04-23",
+                        "observance_date": "2026-04-23",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Ganga Saptami",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1431,7 +1806,7 @@
             "day": 24,
             "tithi": {
                 "index": 8,
-                "name": "Ashtami",
+                "name": "Shukla Ashtami",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.5727844521275809
@@ -1487,7 +1862,7 @@
             "day": 25,
             "tithi": {
                 "index": 9,
-                "name": "Navami",
+                "name": "Shukla Navami",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.520625757919241
@@ -1535,13 +1910,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "Shukla Navami"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Sita Navami",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461155.0779541032,
+                        "target_tithi_end_jd": 2461156.0406675553,
+                        "standard_date": "2026-04-25",
+                        "observance_date": "2026-04-25",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Sita Navami",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1561,7 +1993,7 @@
             "day": 26,
             "tithi": {
                 "index": 10,
-                "name": "Dashami",
+                "name": "Shukla Dashami",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.4945084513625808
@@ -1617,7 +2049,7 @@
             "day": 27,
             "tithi": {
                 "index": 11,
-                "name": "Ekadashi",
+                "name": "Shukla Ekadashi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.491232677204394
@@ -1665,13 +2097,70 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "Shukla Ekadashi"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Mohini Ekadashi",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461157.0260200147,
+                        "target_tithi_end_jd": 2461158.032261678,
+                        "standard_date": "2026-04-27",
+                        "observance_date": "2026-04-27",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Mohini Ekadashi",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1691,7 +2180,7 @@
             "day": 28,
             "tithi": {
                 "index": 12,
-                "name": "Dwadashi",
+                "name": "Shukla Dwadashi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.5073736364387809
@@ -1747,7 +2236,7 @@
             "day": 29,
             "tithi": {
                 "index": 13,
-                "name": "Trayodashi",
+                "name": "Shukla Trayodashi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.5398883980099451
@@ -1795,13 +2284,72 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 14 falls on 2026-04-30 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-29.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                14
+                            ],
+                            "names": [
+                                "Shukla Chaturdashi"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Narasimha Jayanti",
+                        "required_tithi": 14,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461160.0986926174,
+                        "target_tithi_end_jd": 2461161.1549203275,
+                        "standard_date": "2026-04-30",
+                        "observance_date": "2026-04-29",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 14 falls on 2026-04-30 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-29.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Narasimha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -1821,7 +2369,7 @@
             "day": 30,
             "tithi": {
                 "index": 14,
-                "name": "Chaturdashi",
+                "name": "Shukla Chaturdashi",
                 "paksha": "Shukla",
                 "paksha_name": "Shukla Paksha (waxing)",
                 "fraction_left": 0.5862761898938278
@@ -1869,13 +2417,71 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [],
                     "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                14
+                            ],
+                            "names": [
+                                "Shukla Chaturdashi"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Narasimha Jayanti",
+                        "required_tithi": 14,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461160.0986926174,
+                        "target_tithi_end_jd": 2461161.1549203275,
+                        "standard_date": "2026-04-30",
+                        "observance_date": "2026-04-30",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "winning_reason": "target_at_sunrise",
+                            "winning_score": 700,
+                            "winning_reason_name": "target tithi at sunrise"
+                        },
+                        "festival_name_localized": "Narasimha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
                         "preferred_nakshatra": null,
                         "winning_reason": "target_at_sunrise",
-                        "winning_score": 700
+                        "winning_score": 700,
+                        "winning_reason_name": "target tithi at sunrise"
                     }
                 }
             ],

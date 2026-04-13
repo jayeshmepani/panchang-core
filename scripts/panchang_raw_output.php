@@ -112,6 +112,7 @@ $longitude = 69.668339;
 $elevation = 0.0;
 $city = 'Bhuj';
 $country = 'IN';
+$calendarType = config('panchang.defaults.calendar_type', 'amanta');
 
 $sweph = new SwissEphFFI;
 $ruleEngine = new FestivalRuleEngine;
@@ -129,31 +130,15 @@ $panchangService = new PanchangService(
 
 $eclipseService = new EclipseService($sweph);
 
-$festivalsByDate = [];
-$festivalFlat = [];
 $festivalYear = 2026;
-$festivalStart = CarbonImmutable::create($festivalYear, 1, 1, 0, 0, 0, $timezone);
-$festivalEnd = CarbonImmutable::create($festivalYear, 12, 31, 0, 0, 0, $timezone);
-
-for ($date = $festivalStart; $date->lessThanOrEqualTo($festivalEnd); $date = $date->addDay()) {
-    $todaySnapshot = $panchangService->getFestivalSnapshot($date, $latitude, $longitude, $timezone, $elevation);
-    $tomorrowSnapshot = $panchangService->getFestivalSnapshot($date->addDay(), $latitude, $longitude, $timezone, $elevation);
-    $festivals = $festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
-
-    if ($festivals === []) {
-        continue;
-    }
-
-    $dateKey = $date->toDateString();
-    $festivalsByDate[$dateKey] = $festivals;
-
-    foreach ($festivals as $festival) {
-        $festivalFlat[] = [
-            'date' => $dateKey,
-            'festival' => $festival,
-        ];
-    }
-}
+$festivalCalendar = $panchangService->getFestivalYearCalendar(
+    year: $festivalYear,
+    lat: $latitude,
+    lon: $longitude,
+    tz: $timezone,
+    elevation: $elevation,
+    calendarType: $calendarType,
+);
 
 $eclipsesByYear = [];
 $eclipsesFlat = [];
@@ -215,11 +200,7 @@ $output = [
     ],
     'festivals_2026' => [
         'title' => 'Festivals 2026 - All festivals for the entire year',
-        'year' => $festivalYear,
-        'festival_day_count' => count($festivalsByDate),
-        'festival_entry_count' => count($festivalFlat),
-        'by_date' => $festivalsByDate,
-        'flat' => $festivalFlat,
+        ...$festivalCalendar,
     ],
     'eclipses_2026_2032' => [
         'title' => 'Eclipses 2026-2032 - All eclipses for 7 years',
