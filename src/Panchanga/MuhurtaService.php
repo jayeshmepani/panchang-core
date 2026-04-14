@@ -19,7 +19,7 @@ use SwissEph\FFI\SwissEphFFI;
 
 class MuhurtaService
 {
-    private array $weekdayPlanetOrder = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
+    private const array WEEKDAY_PLANET_ORDER = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
     public function calculateHora(
         CarbonImmutable $sunrise,
@@ -446,7 +446,7 @@ class MuhurtaService
         $dayPortions = [];
         for ($i = 0; $i < 8; $i++) {
             $start = $this->addFloatSeconds($sunrise, $i * $dayDuration);
-            $planet = $i < 7 ? $this->weekdayPlanetOrder[($varaIdx + $i) % 7] : null;
+            $planet = $i < 7 ? self::WEEKDAY_PLANET_ORDER[($varaIdx + $i) % 7] : null;
             $dayPortions[] = $this->buildTimedRow($start, $dayDuration, [
                 'division' => $i + 1,
                 'planetary_lord' => $planet ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,
@@ -458,7 +458,7 @@ class MuhurtaService
         $nightPortions = [];
         for ($i = 0; $i < 8; $i++) {
             $start = $this->addFloatSeconds($sunset, $i * $nightDuration);
-            $planet = $i < 7 ? $this->weekdayPlanetOrder[($varaIdx + 4 + $i) % 7] : null;
+            $planet = $i < 7 ? self::WEEKDAY_PLANET_ORDER[($varaIdx + 4 + $i) % 7] : null;
             $nightPortions[] = $this->buildTimedRow($start, $nightDuration, [
                 'division' => $i + 1,
                 'planetary_lord' => $planet ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,

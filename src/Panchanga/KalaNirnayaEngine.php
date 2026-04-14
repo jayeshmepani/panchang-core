@@ -115,8 +115,6 @@ class KalaNirnayaEngine
     ];
     public function __construct(public float $latitude, public float $longitude)
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
     }
 
     /**

@@ -316,6 +316,25 @@ class FestivalRuleEngine
             }
         }
 
+        $allowedSunSigns = isset($rule['sun_sign']) ? [(int) $rule['sun_sign']] : array_map('intval', (array) ($rule['allowed_sun_signs'] ?? []));
+        if ($allowedSunSigns !== []) {
+            $sunSignToday = $today['Sun_Sign_Index'] ?? null;
+            $sunSignTomorrow = $tomorrow['Sun_Sign_Index'] ?? null;
+            $sunTodayMatch = is_int($sunSignToday) && in_array($sunSignToday, $allowedSunSigns, true);
+            $sunTomorrowMatch = is_int($sunSignTomorrow) && in_array($sunSignTomorrow, $allowedSunSigns, true);
+
+            if ($nakshatraTodayMatch && !$sunTodayMatch) {
+                $nakshatraTodayMatch = false;
+            }
+            if ($nakshatraTomorrowMatch && !$sunTomorrowMatch) {
+                $nakshatraTomorrowMatch = false;
+            }
+
+            if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
+                return null;
+            }
+        }
+
         // Check if purnima is also required (e.g., Thai Poosam = Pushya + Purnima)
         $requiresPurnima = (bool) ($rule['requires_purnima'] ?? false);
         if ($requiresPurnima) {

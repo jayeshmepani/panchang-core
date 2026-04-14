@@ -6,113 +6,33 @@ declare(strict_types=1);
 /**
  * Generate festivals JSON for a given year.
  *
- * Usage: php panchang_festivals.php [year]
+ * Usage: php scripts/panchang_festivals.php [year]
  * Default: current year
  * Output: festivals_{year}.json
  *
  * This data is static — run once per year.
  */
-$baseDir = is_file(__DIR__ . '/vendor/autoload.php') ? __DIR__ : dirname(__DIR__);
+
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
+
+$baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
 
-use Illuminate\Config\Repository;
-use Illuminate\Container\Container;
-use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
-use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Core\Localization;
-use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\FestivalService;
-use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
-use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
-use JayeshMepani\PanchangCore\Panchanga\PanchangService;
-use SwissEph\FFI\SwissEphFFI;
+CliBootstrap::init($baseDir);
 
-if (!function_exists('env')) {
-    function env(string $key, mixed $default = null): mixed
-    {
-        $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
-        if ($value === false) {
-            return $default;
-        }
-        if (is_string($value)) {
-            $trimmed = trim($value);
-            $lower = strtolower($trimmed);
-            if ($lower === 'true' || $lower === '(true)') { return true; }
-            if ($lower === 'false' || $lower === '(false)') { return false; }
-            if ($lower === 'null' || $lower === '(null)') { return null; }
-            if ($lower === 'empty' || $lower === '(empty)') { return ''; }
-            return $trimmed;
-        }
-        return $value;
-    }
-}
-
-$configStore = ['panchang' => require $baseDir . '/config/panchang.php'];
-if (class_exists(Container::class) && class_exists(Repository::class)) {
-    $container = new Container;
-    $container->instance('config', new Repository($configStore));
-    Container::setInstance($container);
-}
-
-// Get calendar type from config
-$calendarType = config('panchang.defaults.calendar_type', 'purnimanta');
-
-if (!function_exists('config')) {
-    function config(array|string|null $key = null, mixed $default = null): mixed
-    {
-        global $configStore;
-        if ($key === null) { return $configStore; }
-        if (is_array($key)) {
-            foreach ($key as $path => $value) {
-                $segments = explode('.', (string) $path);
-                $ref = &$configStore;
-                foreach ($segments as $segment) {
-                    if (!is_array($ref)) { $ref = []; }
-                    if (!array_key_exists($segment, $ref) || !is_array($ref[$segment])) {
-                        $ref[$segment] = $ref[$segment] ?? [];
-                    }
-                    $ref = &$ref[$segment];
-                }
-                $ref = $value;
-                unset($ref);
-            }
-            return true;
-        }
-        $segments = explode('.', $key);
-        $value = $configStore;
-        foreach ($segments as $segment) {
-            if (!is_array($value) || !array_key_exists($segment, $value)) { return $default; }
-            $value = $value[$segment];
-        }
-        return $value;
-    }
-}
-
-// CLI argument: year
 $festivalYear = isset($argv[1]) ? (int) $argv[1] : (int) date('Y');
 $timezone = 'Asia/Kolkata';
 $latitude = 23.2472446;
 $longitude = 69.668339;
 $elevation = 0.0;
+$calendarType = config('panchang.defaults.calendar_type', 'amanta');
 
-$sweph = new SwissEphFFI;
-$ruleEngine = new FestivalRuleEngine;
-$festivalService = new FestivalService($ruleEngine);
-
-$panchangService = new PanchangService(
-    $sweph,
-    new SunService($sweph),
-    new AstronomyService($sweph),
-    new PanchangaEngine,
-    new MuhurtaService,
-    $festivalService,
-    new BhadraEngine,
-);
+$panchangService = CliBootstrap::makePanchangService();
+$outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 
 echo "Building festivals for {$festivalYear}..." . PHP_EOL;
 
-$festivalCalendar = $panchangService->getFestivalYearCalendar(
+$result = $outputGen->generateFestivals(
     year: $festivalYear,
     lat: $latitude,
     lon: $longitude,
@@ -126,6 +46,7 @@ $output = [
         'generated_at' => date('c'),
         'type' => 'festivals',
         'year' => $festivalYear,
+        'calendar_type' => $calendarType,
         'location' => [
             'city' => 'Bhuj',
             'country' => 'IN',
@@ -135,13 +56,7 @@ $output = [
             'elevation' => $elevation,
         ],
     ],
-    'festivals' => [
-        'title' => sprintf(
-            Localization::translate('String', 'Festivals %d - All festivals for the entire year'),
-            $festivalYear
-        ),
-        ...$festivalCalendar,
-    ],
+    ...$result,
 ];
 
 $json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -153,4 +68,5 @@ if ($json === false) {
 $filename = "festivals_{$festivalYear}.json";
 file_put_contents($filename, $json . PHP_EOL);
 
-echo "Written {$filename} — " . $festivalCalendar['festival_day_count'] . ' festival days, ' . $festivalCalendar['festival_entry_count'] . ' entries.' . PHP_EOL;
+$festData = $result['festivals'];
+echo "Written {$filename} — {$festData['festival_day_count']} festival days, {$festData['festival_entry_count']} entries." . PHP_EOL;

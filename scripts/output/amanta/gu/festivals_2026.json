@@ -1,8 +1,9 @@
 {
     "meta": {
-        "generated_at": "2026-04-13T09:28:02+00:00",
+        "generated_at": "2026-04-14T12:00:02+00:00",
         "type": "festivals",
         "year": 2026,
+        "calendar_type": "amanta",
         "location": {
             "city": "Bhuj",
             "country": "IN",
@@ -15,8 +16,9 @@
     "festivals": {
         "title": "ઉત્સવો 2026 - સમગ્ર વર્ષના બધા ઉત્સવો",
         "year": 2026,
-        "festival_day_count": 148,
-        "festival_entry_count": 199,
+        "calendar_type": "amanta",
+        "festival_day_count": 150,
+        "festival_entry_count": 197,
         "by_date": {
             "2026-01-03": [
                 {
@@ -2377,51 +2379,6 @@
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
-                },
-                {
-                    "name": "હોળી",
-                    "description": "રંગોનો તહેવાર",
-                    "deity": "કૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "હોલિકા દહન",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "હોલિકા દહન"
-                        },
-                        "festival_name_localized": "હોળી"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "હોલિકા દહન"
-                    }
                 }
             ],
             "2026-03-04": [
@@ -2508,7 +2465,7 @@
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [],
-                    "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
+                    "observance_note": "Observed 1 day(s) after હોલિકા દહન",
                     "calculation_basis": {
                         "type": "day_after",
                         "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
@@ -2524,12 +2481,13 @@
                         "festival_name": "Holi",
                         "standard_date": "2026-03-04",
                         "observance_date": "2026-03-04",
-                        "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
+                        "observance_note": "Observed 1 day(s) after હોલિકા દહન",
                         "decision": {
                             "winning_reason": "day_after_parent_festival",
                             "parent_festival": "Holika Dahan",
                             "parent_observance_date": "2026-03-03",
                             "days_after": 1,
+                            "winning_score": 1000,
                             "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
                             "parent_festival_name": "હોલિકા દહન"
                         },
@@ -2540,6 +2498,7 @@
                         "parent_festival": "Holika Dahan",
                         "parent_observance_date": "2026-03-03",
                         "days_after": 1,
+                        "winning_score": 1000,
                         "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
                         "parent_festival_name": "હોલિકા દહન"
                     }
@@ -5529,7 +5488,7 @@
                     }
                 }
             ],
-            "2026-05-27": [
+            "2026-05-26": [
                 {
                     "name": "પદ્મિની એકાદશી",
                     "description": "વિશેષ એકાદશી જે માત્ર અધિક માસ દરમિયાન આવે છે",
@@ -5573,15 +5532,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -7091,7 +7050,7 @@
                     }
                 }
             ],
-            "2026-07-23": [
+            "2026-07-22": [
                 {
                     "name": "અષાઢ ગુપ્ત નવરાત્રિ દિવસ 9",
                     "description": "અષાઢ ગુપ્ત નવરાત્રિ દિવસ 9. તાંત્રિક મહાવિદ્યા: માં માતંગી. નવ વારાહી: વૈષ્ણવી વારાહી. માનક નવદુર્ગા: માં સિદ્ધિદાત્રી.",
@@ -7137,15 +7096,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -9940,81 +9899,6 @@
             ],
             "2026-09-23": [
                 {
-                    "name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                    "description": "કાકડભીટ ખાતે કચ્છનો સૌથી મોટો મેળો; 72 યક્ષોનું સન્માન જેમણે સ્થાનિક લોકોની રક્ષા કરી હતી; ભાદરવા સુદ 12-14",
-                    "deity": "72 યક્ષ",
-                    "fasting": false,
-                    "regions": [
-                        "કચ્છ",
-                        "ગુજરાત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "સુદ બારસ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_localized": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "વામન જયંતિ",
                     "description": "વામન અવતારનો જન્મ",
                     "deity": "વામન",
@@ -10086,102 +9970,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "ઓણમ (તિરુવોણમ)",
-                    "description": "કેરળનો લણણીનો તહેવાર; મલયાલમ મહિના ચિંગમ (ઓગસ્ટ-સપ્ટેમ્બર) માં તિરુવોણમ નક્ષત્ર (શ્રવણ); રાજા મહાબલીની વાર્ષિક મુલાકાતનું પ્રતીક છે",
-                    "deity": "વિષ્ણુ/મહાબલી",
-                    "fasting": false,
-                    "regions": [
-                        "કેરળ",
-                        "તમિલનાડુ",
-                        "કર્ણાટક"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "nakshatra",
-                        "basis_name": "નક્ષત્ર",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "નક્ષત્ર મેળ",
-                            "nakshatra_name_localized": "શ્રવણ"
-                        },
-                        "festival_name_localized": "ઓણમ (તિરુવોણમ)",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "required_nakshatra_name": "શ્રવણ"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "નક્ષત્ર મેળ",
-                        "nakshatra_name_localized": "શ્રવણ"
-                    }
-                }
-            ],
-            "2026-09-24": [
-                {
-                    "name": "મોટા યક્ષનો મેળો દિવસ 2",
-                    "description": "કાકડભીટના મોટા યક્ષ મેળાનો બીજો દિવસ (ભાદરવા સુદ 13)",
-                    "deity": "72 યક્ષ",
-                    "fasting": false,
-                    "regions": [
-                        "કચ્છ",
-                        "ગુજરાત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 1 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 1 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                        },
-                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
                     }
                 }
             ],
@@ -10258,52 +10046,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "મોટા યક્ષનો મેળો દિવસ 3",
-                    "description": "કાકડભીટના મોટા યક્ષ મેળાનો ત્રીજો દિવસ (ભાદરવા સુદ 14)",
-                    "deity": "72 યક્ષ",
-                    "fasting": false,
-                    "regions": [
-                        "કચ્છ",
-                        "ગુજરાત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 2 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                            "days_after": 2
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
-                        "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 2 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 2,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                        },
-                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 3"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 2,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
                     }
                 }
             ],
@@ -10532,6 +10274,181 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-10-07": [
+                {
+                    "name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                    "description": "કાકડભીટ ખાતે કચ્છનો સૌથી મોટો મેળો; 72 યક્ષોનું સન્માન જેમણે સ્થાનિક લોકોની રક્ષા કરી હતી; ભાદરવા વદ 12-14",
+                    "deity": "72 યક્ષ",
+                    "fasting": false,
+                    "regions": [
+                        "કચ્છ",
+                        "ગુજરાત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "વદ બારસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_localized": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-10-08": [
+                {
+                    "name": "મોટા યક્ષનો મેળો દિવસ 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 યક્ષ",
+                    "fasting": false,
+                    "regions": [
+                        "કચ્છ",
+                        "ગુજરાત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
+                        },
+                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
+                    }
+                }
+            ],
+            "2026-10-09": [
+                {
+                    "name": "મોટા યક્ષનો મેળો દિવસ 3",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
+                    "deity": "72 યક્ષ",
+                    "fasting": false,
+                    "regions": [
+                        "કચ્છ",
+                        "ગુજરાત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 2 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                            "days_after": 2
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 3",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
+                        "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 2 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 2,
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
+                        },
+                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 2,
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
                     }
                 }
             ],
@@ -16475,6 +16392,56 @@
                 }
             },
             {
+                "date": "2026-03-04",
+                "festival": {
+                    "name": "હોળી",
+                    "description": "રંગોનો તહેવાર",
+                    "deity": "કૃષ્ણ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after હોલિકા દહન",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "Holika Dahan",
+                            "parent_festival_name": "હોલિકા દહન",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Holi",
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "observance_note": "Observed 1 day(s) after હોલિકા દહન",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Holika Dahan",
+                            "parent_observance_date": "2026-03-03",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_name": "હોલિકા દહન"
+                        },
+                        "festival_name_localized": "હોળી"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Holika Dahan",
+                        "parent_observance_date": "2026-03-03",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_name": "હોલિકા દહન"
+                    }
+                }
+            },
+            {
                 "date": "2026-03-11",
                 "festival": {
                     "name": "શીતળા અષ્ટમી (બસોડા)",
@@ -19525,7 +19492,7 @@
                 }
             },
             {
-                "date": "2026-05-27",
+                "date": "2026-05-26",
                 "festival": {
                     "name": "પદ્મિની એકાદશી",
                     "description": "વિશેષ એકાદશી જે માત્ર અધિક માસ દરમિયાન આવે છે",
@@ -19569,15 +19536,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -21117,7 +21084,7 @@
                 }
             },
             {
-                "date": "2026-07-23",
+                "date": "2026-07-22",
                 "festival": {
                     "name": "અષાઢ ગુપ્ત નવરાત્રિ દિવસ 9",
                     "description": "અષાઢ ગુપ્ત નવરાત્રિ દિવસ 9. તાંત્રિક મહાવિદ્યા: માં માતંગી. નવ વારાહી: વૈષ્ણવી વારાહી. માનક નવદુર્ગા: માં સિદ્ધિદાત્રી.",
@@ -21163,15 +21130,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -24036,84 +24003,6 @@
             {
                 "date": "2026-09-23",
                 "festival": {
-                    "name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                    "description": "કાકડભીટ ખાતે કચ્છનો સૌથી મોટો મેળો; 72 યક્ષોનું સન્માન જેમણે સ્થાનિક લોકોની રક્ષા કરી હતી; ભાદરવા સુદ 12-14",
-                    "deity": "72 યક્ષ",
-                    "fasting": false,
-                    "regions": [
-                        "કચ્છ",
-                        "ગુજરાત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "સુદ બારસ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_localized": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
                     "name": "વામન જયંતિ",
                     "description": "વામન અવતારનો જન્મ",
                     "deity": "વામન",
@@ -24185,57 +24074,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
-                    "name": "ઓણમ (તિરુવોણમ)",
-                    "description": "કેરળનો લણણીનો તહેવાર; મલયાલમ મહિના ચિંગમ (ઓગસ્ટ-સપ્ટેમ્બર) માં તિરુવોણમ નક્ષત્ર (શ્રવણ); રાજા મહાબલીની વાર્ષિક મુલાકાતનું પ્રતીક છે",
-                    "deity": "વિષ્ણુ/મહાબલી",
-                    "fasting": false,
-                    "regions": [
-                        "કેરળ",
-                        "તમિલનાડુ",
-                        "કર્ણાટક"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "nakshatra",
-                        "basis_name": "નક્ષત્ર",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "નક્ષત્ર મેળ",
-                            "nakshatra_name_localized": "શ્રવણ"
-                        },
-                        "festival_name_localized": "ઓણમ (તિરુવોણમ)",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "required_nakshatra_name": "શ્રવણ"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "નક્ષત્ર મેળ",
-                        "nakshatra_name_localized": "શ્રવણ"
                     }
                 }
             },
@@ -24544,6 +24382,135 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-07",
+                "festival": {
+                    "name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                    "description": "કાકડભીટ ખાતે કચ્છનો સૌથી મોટો મેળો; 72 યક્ષોનું સન્માન જેમણે સ્થાનિક લોકોની રક્ષા કરી હતી; ભાદરવા વદ 12-14",
+                    "deity": "72 યક્ષ",
+                    "fasting": false,
+                    "regions": [
+                        "કચ્છ",
+                        "ગુજરાત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "વદ બારસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_localized": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-08",
+                "festival": {
+                    "name": "મોટા યક્ષનો મેળો દિવસ 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 યક્ષ",
+                    "fasting": false,
+                    "regions": [
+                        "કચ્છ",
+                        "ગુજરાત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after મોટા યક્ષનો મેળો (જખ બહોતેરા)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
+                        },
+                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
                     }
                 }
             },
@@ -28060,59 +28027,10 @@
                 }
             },
             {
-                "date": "2026-09-24",
-                "festival": {
-                    "name": "મોટા યક્ષનો મેળો દિવસ 2",
-                    "description": "કાકડભીટના મોટા યક્ષ મેળાનો બીજો દિવસ (ભાદરવા સુદ 13)",
-                    "deity": "72 યક્ષ",
-                    "fasting": false,
-                    "regions": [
-                        "કચ્છ",
-                        "ગુજરાત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 1 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 1 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                        },
-                        "festival_name_localized": "મોટા યક્ષનો મેળો દિવસ 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-25",
+                "date": "2026-10-09",
                 "festival": {
                     "name": "મોટા યક્ષનો મેળો દિવસ 3",
-                    "description": "કાકડભીટના મોટા યક્ષ મેળાનો ત્રીજો દિવસ (ભાદરવા સુદ 14)",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
                     "deity": "72 યક્ષ",
                     "fasting": false,
                     "regions": [
@@ -28134,13 +28052,13 @@
                     },
                     "resolution": {
                         "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
                         "observance_note": "મોટા યક્ષનો મેળો (જખ બહોતેરા) પછી 2 દિવસે ઉજવાય છે",
                         "decision": {
                             "winning_reason": "day_after_parent_festival",
                             "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
+                            "parent_observance_date": "2026-10-07",
                             "days_after": 2,
                             "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
                             "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
@@ -28150,106 +28068,10 @@
                     "rules_applied": {
                         "winning_reason": "day_after_parent_festival",
                         "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
+                        "parent_observance_date": "2026-10-07",
                         "days_after": 2,
                         "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
                         "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-03",
-                "festival": {
-                    "name": "હોળી",
-                    "description": "રંગોનો તહેવાર",
-                    "deity": "કૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "હોલિકા દહન",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "હોલિકા દહન"
-                        },
-                        "festival_name_localized": "હોળી"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "હોલિકા દહન"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-04",
-                "festival": {
-                    "name": "હોળી",
-                    "description": "રંગોનો તહેવાર",
-                    "deity": "કૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "હોલિકા દહન",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-04",
-                        "observance_date": "2026-03-04",
-                        "observance_note": "હોલિકા દહન પછી 1 દિવસે ઉજવાય છે",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-03",
-                            "days_after": 1,
-                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                            "parent_festival_name": "હોલિકા દહન"
-                        },
-                        "festival_name_localized": "હોળી"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-03",
-                        "days_after": 1,
-                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
-                        "parent_festival_name": "હોલિકા દહન"
                     }
                 }
             }

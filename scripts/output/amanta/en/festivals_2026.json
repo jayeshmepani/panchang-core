@@ -1,8 +1,9 @@
 {
     "meta": {
-        "generated_at": "2026-04-13T09:27:30+00:00",
+        "generated_at": "2026-04-14T11:59:24+00:00",
         "type": "festivals",
         "year": 2026,
+        "calendar_type": "amanta",
         "location": {
             "city": "Bhuj",
             "country": "IN",
@@ -15,8 +16,9 @@
     "festivals": {
         "title": "Festivals 2026 - All festivals for the entire year",
         "year": 2026,
-        "festival_day_count": 148,
-        "festival_entry_count": 199,
+        "calendar_type": "amanta",
+        "festival_day_count": 150,
+        "festival_entry_count": 197,
         "by_date": {
             "2026-01-03": [
                 {
@@ -2377,51 +2379,6 @@
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
                     }
-                },
-                {
-                    "name": "Holi",
-                    "description": "Festival of colors",
-                    "deity": "Krishna",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 1 day(s) after Holika Dahan",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "Holika Dahan",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "Observed 1 day(s) after Holika Dahan",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Holika Dahan"
-                        },
-                        "festival_name_localized": "Holi"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Holika Dahan"
-                    }
                 }
             ],
             "2026-03-04": [
@@ -2530,6 +2487,7 @@
                             "parent_festival": "Holika Dahan",
                             "parent_observance_date": "2026-03-03",
                             "days_after": 1,
+                            "winning_score": 1000,
                             "winning_reason_name": "day after parent festival",
                             "parent_festival_name": "Holika Dahan"
                         },
@@ -2540,6 +2498,7 @@
                         "parent_festival": "Holika Dahan",
                         "parent_observance_date": "2026-03-03",
                         "days_after": 1,
+                        "winning_score": 1000,
                         "winning_reason_name": "day after parent festival",
                         "parent_festival_name": "Holika Dahan"
                     }
@@ -5529,7 +5488,7 @@
                     }
                 }
             ],
-            "2026-05-27": [
+            "2026-05-26": [
                 {
                     "name": "Padmini Ekadashi",
                     "description": "Special Ekadashi occurring ONLY during Adhik Maas",
@@ -5573,15 +5532,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -7091,7 +7050,7 @@
                     }
                 }
             ],
-            "2026-07-23": [
+            "2026-07-22": [
                 {
                     "name": "Ashadha Gupt Navaratri Day 9",
                     "description": "Ashadha Gupta Navaratri Day 9. Tantric Mahavidya: Maa Matangi. Nava Varahi: Vaishnavi Varahi. Standard Navadurga: Maa Siddhidatri.",
@@ -7137,15 +7096,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -9940,81 +9899,6 @@
             ],
             "2026-09-23": [
                 {
-                    "name": "Mota Yaksh Fair (Jakh Bahotera)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Sud 12-14",
-                    "deity": "72 Yakshas",
-                    "fasting": false,
-                    "regions": [
-                        "Kutch",
-                        "Gujarat"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "Shukla Dwadashi"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_localized": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Vamana Jayanti",
                     "description": "Birth of Vamana Avatar",
                     "deity": "Vamana",
@@ -10086,102 +9970,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Onam (Thiruvonam)",
-                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
-                    "deity": "Vishnu/Mahabali",
-                    "fasting": false,
-                    "regions": [
-                        "Kerala",
-                        "Tamil Nadu",
-                        "Karnataka"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "nakshatra",
-                        "basis_name": "nakshatra",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "madhyahna",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "nakshatra match",
-                            "nakshatra_name_localized": "Shravana"
-                        },
-                        "festival_name_localized": "Onam (Thiruvonam)",
-                        "karmakala_type_name": "madhyahna",
-                        "required_nakshatra_name": "Shravana"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "nakshatra match",
-                        "nakshatra_name_localized": "Shravana"
-                    }
-                }
-            ],
-            "2026-09-24": [
-                {
-                    "name": "Mota Yaksh Fair Day 2",
-                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 13)",
-                    "deity": "72 Yakshas",
-                    "fasting": false,
-                    "regions": [
-                        "Kutch",
-                        "Gujarat"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
-                        },
-                        "festival_name_localized": "Mota Yaksh Fair Day 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
                     }
                 }
             ],
@@ -10258,52 +10046,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Mota Yaksh Fair Day 3",
-                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 14)",
-                    "deity": "72 Yakshas",
-                    "fasting": false,
-                    "regions": [
-                        "Kutch",
-                        "Gujarat"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 2 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "days_after": 2
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
-                        "observance_note": "Observed 2 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 2,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
-                        },
-                        "festival_name_localized": "Mota Yaksh Fair Day 3"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 2,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
                     }
                 }
             ],
@@ -10532,6 +10274,181 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-10-07": [
+                {
+                    "name": "Mota Yaksh Fair (Jakh Bahotera)",
+                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
+                    "deity": "72 Yakshas",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Gujarat"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "Krishna Dwadashi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-10-08": [
+                {
+                    "name": "Mota Yaksh Fair Day 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 Yakshas",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Gujarat"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
+                        },
+                        "festival_name_localized": "Mota Yaksh Fair Day 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
+                    }
+                }
+            ],
+            "2026-10-09": [
+                {
+                    "name": "Mota Yaksh Fair Day 3",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
+                    "deity": "72 Yakshas",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Gujarat"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 2 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "days_after": 2
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 3",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
+                        "observance_note": "Observed 2 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 2,
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
+                        },
+                        "festival_name_localized": "Mota Yaksh Fair Day 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 2,
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
                     }
                 }
             ],
@@ -16475,6 +16392,56 @@
                 }
             },
             {
+                "date": "2026-03-04",
+                "festival": {
+                    "name": "Holi",
+                    "description": "Festival of colors",
+                    "deity": "Krishna",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after Holika Dahan",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Holika Dahan",
+                            "parent_festival_name": "Holika Dahan",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Holi",
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "observance_note": "Observed 1 day(s) after Holika Dahan",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Holika Dahan",
+                            "parent_observance_date": "2026-03-03",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_name": "Holika Dahan"
+                        },
+                        "festival_name_localized": "Holi"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Holika Dahan",
+                        "parent_observance_date": "2026-03-03",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_name": "Holika Dahan"
+                    }
+                }
+            },
+            {
                 "date": "2026-03-11",
                 "festival": {
                     "name": "Sheetala Ashtami (Basoda)",
@@ -19525,7 +19492,7 @@
                 }
             },
             {
-                "date": "2026-05-27",
+                "date": "2026-05-26",
                 "festival": {
                     "name": "Padmini Ekadashi",
                     "description": "Special Ekadashi occurring ONLY during Adhik Maas",
@@ -19569,15 +19536,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -21117,7 +21084,7 @@
                 }
             },
             {
-                "date": "2026-07-23",
+                "date": "2026-07-22",
                 "festival": {
                     "name": "Ashadha Gupt Navaratri Day 9",
                     "description": "Ashadha Gupta Navaratri Day 9. Tantric Mahavidya: Maa Matangi. Nava Varahi: Vaishnavi Varahi. Standard Navadurga: Maa Siddhidatri.",
@@ -21163,15 +21130,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -24036,84 +24003,6 @@
             {
                 "date": "2026-09-23",
                 "festival": {
-                    "name": "Mota Yaksh Fair (Jakh Bahotera)",
-                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Sud 12-14",
-                    "deity": "72 Yakshas",
-                    "fasting": false,
-                    "regions": [
-                        "Kutch",
-                        "Gujarat"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "Shukla Dwadashi"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_localized": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
                     "name": "Vamana Jayanti",
                     "description": "Birth of Vamana Avatar",
                     "deity": "Vamana",
@@ -24185,57 +24074,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
-                    "name": "Onam (Thiruvonam)",
-                    "description": "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
-                    "deity": "Vishnu/Mahabali",
-                    "fasting": false,
-                    "regions": [
-                        "Kerala",
-                        "Tamil Nadu",
-                        "Karnataka"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "nakshatra",
-                        "basis_name": "nakshatra",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "madhyahna",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "nakshatra match",
-                            "nakshatra_name_localized": "Shravana"
-                        },
-                        "festival_name_localized": "Onam (Thiruvonam)",
-                        "karmakala_type_name": "madhyahna",
-                        "required_nakshatra_name": "Shravana"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "nakshatra match",
-                        "nakshatra_name_localized": "Shravana"
                     }
                 }
             },
@@ -24544,6 +24382,135 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-07",
+                "festival": {
+                    "name": "Mota Yaksh Fair (Jakh Bahotera)",
+                    "description": "Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14",
+                    "deity": "72 Yakshas",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Gujarat"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "Krishna Dwadashi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_localized": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-08",
+                "festival": {
+                    "name": "Mota Yaksh Fair Day 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 Yakshas",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Gujarat"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
+                        },
+                        "festival_name_localized": "Mota Yaksh Fair Day 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
                     }
                 }
             },
@@ -28060,59 +28027,10 @@
                 }
             },
             {
-                "date": "2026-09-24",
-                "festival": {
-                    "name": "Mota Yaksh Fair Day 2",
-                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 13)",
-                    "deity": "72 Yakshas",
-                    "fasting": false,
-                    "regions": [
-                        "Kutch",
-                        "Gujarat"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "Observed 1 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
-                        },
-                        "festival_name_localized": "Mota Yaksh Fair Day 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-25",
+                "date": "2026-10-09",
                 "festival": {
                     "name": "Mota Yaksh Fair Day 3",
-                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 14)",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
                     "deity": "72 Yakshas",
                     "fasting": false,
                     "regions": [
@@ -28134,13 +28052,13 @@
                     },
                     "resolution": {
                         "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
                         "observance_note": "Observed 2 day(s) after Mota Yaksh Fair (Jakh Bahotera)",
                         "decision": {
                             "winning_reason": "day_after_parent_festival",
                             "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
+                            "parent_observance_date": "2026-10-07",
                             "days_after": 2,
                             "winning_reason_name": "day after parent festival",
                             "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
@@ -28150,106 +28068,10 @@
                     "rules_applied": {
                         "winning_reason": "day_after_parent_festival",
                         "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
+                        "parent_observance_date": "2026-10-07",
                         "days_after": 2,
                         "winning_reason_name": "day after parent festival",
                         "parent_festival_name": "Mota Yaksh Fair (Jakh Bahotera)"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-03",
-                "festival": {
-                    "name": "Holi",
-                    "description": "Festival of colors",
-                    "deity": "Krishna",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 1 day(s) after Holika Dahan",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "Holika Dahan",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "Observed 1 day(s) after Holika Dahan",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Holika Dahan"
-                        },
-                        "festival_name_localized": "Holi"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Holika Dahan"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-04",
-                "festival": {
-                    "name": "Holi",
-                    "description": "Festival of colors",
-                    "deity": "Krishna",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Observed 1 day(s) after Holika Dahan",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "day after parent festival",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "relative day after parent festival",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "Holika Dahan",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-04",
-                        "observance_date": "2026-03-04",
-                        "observance_note": "Observed 1 day(s) after Holika Dahan",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-03",
-                            "days_after": 1,
-                            "winning_reason_name": "day after parent festival",
-                            "parent_festival_name": "Holika Dahan"
-                        },
-                        "festival_name_localized": "Holi"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-03",
-                        "days_after": 1,
-                        "winning_reason_name": "day after parent festival",
-                        "parent_festival_name": "Holika Dahan"
                     }
                 }
             }

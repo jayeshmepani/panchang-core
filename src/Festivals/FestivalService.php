@@ -379,11 +379,11 @@ class FestivalService
         [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Shukla',
+            'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Sud 12-14',
+            'description' => 'Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14',
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
         ],
@@ -392,7 +392,7 @@ class FestivalService
             'type' => 'day_after',
             'parent_festival' => 'Mota Yaksh Fair (Jakh Bahotera)',
             'days_after' => 1,
-            'description' => 'Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 13)',
+            'description' => 'Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)',
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
         ],
@@ -401,7 +401,7 @@ class FestivalService
             'type' => 'day_after',
             'parent_festival' => 'Mota Yaksh Fair (Jakh Bahotera)',
             'days_after' => 2,
-            'description' => 'Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Sud 14)',
+            'description' => 'Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)',
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
         ],
@@ -568,7 +568,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 1,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Ashvina Sharad Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.',
             'deity' => 'Durga/Shailaputri',
             'karmakala_type' => 'madhyahna',
@@ -585,7 +585,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 2,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic)',
             'deity' => 'Durga/Brahmacharini',
             'karmakala_type' => 'sunrise',
@@ -599,7 +599,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 3,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)',
             'deity' => 'Durga/Chandraghanta',
             'karmakala_type' => 'sunrise',
@@ -613,7 +613,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 4,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)',
             'deity' => 'Durga/Kushmanda',
             'karmakala_type' => 'sunrise',
@@ -1522,7 +1522,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Thanksgiving festival for farmers and bulls',
             'deity' => 'Shiva',
             'regions' => ['Maharashtra'],
@@ -1534,7 +1534,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Amavasya dedicated to Goddess Kushotpatini',
             'deity' => 'Kushotpatini',
         ],
@@ -1545,7 +1545,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 11,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Fasting for Aja Ekadashi',
             'deity' => 'Vishnu',
             'fasting' => true,
@@ -1558,7 +1558,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 5,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'aliases' => ['Goga Panchami (Nag Panchami - Gujarat)'],
             'description' => 'Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities',
             'deity' => 'Goga Ji / Goga Bapa',
@@ -1581,7 +1581,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 3,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Kajari Teej festival',
             'deity' => 'Parvati/Shiva',
         ],
@@ -1592,7 +1592,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 4,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Worship of cows and calves (Bahula Chaturthi)',
             'deity' => 'Krishna/Cows',
         ],
@@ -1603,7 +1603,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 6,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Gujarati Randhan Chhath - cooking all food one day in advance, offering cold food to Sheetala Mata',
             'deity' => 'Sheetala Mata',
             'regions' => ['Gujarat'],
@@ -1615,7 +1615,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 6,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Birth celebration of Lord Balarama, worship of Haladhara (plough bearer)',
             'deity' => 'Balarama',
         ],
@@ -1626,7 +1626,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 7,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'aliases' => ['Sheetala Saptami'],
             'description' => 'Sheetala Mata observance, known in Gujarat as Sheetala Satam, marked by cold-food offerings and prayers for health',
             'deity' => 'Sheetala Mata',
@@ -1639,7 +1639,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 8,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Birth celebration of Lord Krishna',
             'deity' => 'Krishna',
             'fasting' => true,
@@ -1654,7 +1654,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 3,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'aliases' => ['Kevada Trij'],
             'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
@@ -1666,7 +1666,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 3,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Appearance day of Lord Varaha (Boar Avatar)',
             'deity' => 'Vishnu/Varaha',
         ],
@@ -1677,7 +1677,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 4,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Birth anniversary of Lord Ganesha',
             'deity' => 'Ganesha',
             'karmakala_type' => 'madhyahna',
@@ -1690,7 +1690,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 5,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Worship of the Saptarishis',
             'deity' => 'Saptarishis',
             'karmakala_type' => 'madhyahna',
@@ -1702,7 +1702,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 8,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Birth anniversary of Radha Rani',
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
@@ -1714,7 +1714,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 11,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'aliases' => ['Jal Jhilani Ekadashi'],
             'description' => 'Lord Vishnu changes sides / Swaminarayan Jal Jhilani Utsav',
             'deity' => 'Vishnu',
@@ -1750,7 +1750,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 12,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Birth of Vamana Avatar',
             'deity' => 'Vamana',
         ],
@@ -1761,7 +1761,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 14,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Worship of Lord Ananta; Ganesh Visarjan',
             'deity' => 'Vishnu/Ganesha',
             'karmakala_type' => 'sunrise',
@@ -1773,7 +1773,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 15,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Beginning of the fortnight of ancestors',
             'deity' => 'Pitrus',
         ],
@@ -2276,6 +2276,7 @@ class FestivalService
             'nakshatra_only' => true,
             'nakshatra' => 'Shravana',
             'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
+            'sun_sign' => 4,
             'description' => 'Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali\'s annual visit',
             'deity' => 'Vishnu/Mahabali',
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
@@ -2542,7 +2543,9 @@ class FestivalService
         CarbonImmutable $date,
         array $todayDetails,
         array $tomorrowDetails,
-        ?array $yesterdayDetails = null
+        ?array $yesterdayDetails = null,
+        ?callable $fetchHistoricalSnapshot = null,
+        bool $includeExtraWinners = false
     ): array
     {
         $festivals = [];
@@ -2700,6 +2703,22 @@ class FestivalService
             }
         }
 
+        // Resolve day_after festivals (e.g. Holi after Holika Dahan)
+        // These require checking if the parent festival was observed on a previous date
+        $dayAfterFestivals = $this->resolveDayAfterFestivals(
+            $date,
+            $todayDetails,
+            $tomorrowDetails,
+            $yesterdayDetails,
+            $fetchHistoricalSnapshot,
+            $addedFestivalKeys
+        );
+        foreach ($dayAfterFestivals as $item) {
+            $festivals[] = $item['festival'];
+            $festivalMeta[] = $item['meta'];
+            $addedFestivalKeys[] = $item['key'];
+        }
+
         return $festivals;
     }
 
@@ -2780,6 +2799,121 @@ class FestivalService
     public function getFestivalsForYear(int $year, string $pakshaSystem = 'Amanta'): array
     {
         throw new LogicException('Year-wide festival calculation is intentionally disabled in FestivalService. Use date-wise calculation via PanchangService.');
+    }
+
+    /**
+     * Resolve day_after festivals by checking if the parent festival was observed
+     * on previous dates (today, yesterday, or up to 3 days back).
+     *
+     * Returns array of ['festival' => ..., 'meta' => ..., 'key' => ...] entries.
+     */
+    private function resolveDayAfterFestivals(
+        CarbonImmutable $date,
+        array $todayDetails,
+        array $tomorrowDetails,
+        ?array $yesterdayDetails,
+        ?callable $fetchHistoricalSnapshot,
+        array $addedFestivalKeys
+    ): array {
+        $results = [];
+
+        foreach (self::FESTIVALS as $name => $rules) {
+            if ((string) ($rules['type'] ?? '') !== 'day_after') {
+                continue;
+            }
+
+            $parentName = (string) ($rules['parent_festival'] ?? '');
+            $daysAfter = (int) ($rules['days_after'] ?? 1);
+
+            if ($parentName === '') {
+                continue;
+            }
+
+            $parentDate = $date->subDays($daysAfter);
+            $parentFound = false;
+
+            // Case 1: daysAfter === 1, use yesterdayDetails directly
+            if ($daysAfter === 1 && $yesterdayDetails !== null) {
+                $parentFound = $this->checkDayAfterParent($parentName, $yesterdayDetails);
+            }
+            // Case 2: daysAfter > 1, fetch historical snapshot via callback
+            elseif ($daysAfter > 1 && $fetchHistoricalSnapshot !== null) {
+                $historicalSnapshot = $fetchHistoricalSnapshot($parentDate);
+                if ($historicalSnapshot !== null) {
+                    $parentFound = $this->checkDayAfterParent($parentName, $historicalSnapshot);
+                }
+            }
+
+            if (!$parentFound) {
+                continue;
+            }
+
+            $key = 'day_after:' . $name . ':' . $date->toDateString();
+            if (in_array($key, $addedFestivalKeys, true)) {
+                continue;
+            }
+
+            $resolved = [
+                'festival_name' => $name,
+                'standard_date' => $date->toDateString(),
+                'observance_date' => $date->toDateString(),
+                'observance_note' => 'Observed ' . $daysAfter . ' day(s) after ' . Localization::translate('Festival', $parentName),
+                'decision' => [
+                    'winning_reason' => 'day_after_parent_festival',
+                    'parent_festival' => $parentName,
+                    'parent_observance_date' => $parentDate->toDateString(),
+                    'days_after' => $daysAfter,
+                    'winning_score' => 1000,
+                ],
+            ];
+
+            $festival = $this->buildFestivalPayload($name, $rules, $resolved);
+            $results[] = [
+                'festival' => $festival,
+                'meta' => ['winning_score' => 1000, 'is_day_after' => true],
+                'key' => $key,
+            ];
+        }
+
+        return $results;
+    }
+
+    /**
+     * Check if a parent festival would be resolved on a given snapshot.
+     * Returns true if the parent's rules match the snapshot's panchang, false otherwise.
+     */
+    private function checkDayAfterParent(string $parentName, array $snapshot): bool
+    {
+        $parentRules = self::FESTIVALS[$parentName] ?? null;
+        if ($parentRules === null) {
+            return false;
+        }
+
+        $tithi = $snapshot['Tithi'] ?? null;
+        if ($tithi === null) {
+            return false;
+        }
+
+        $absoluteTithi = (int) ($tithi['index'] ?? 0);
+        $paksha = $tithi['paksha'] ?? 'Shukla';
+        // Convert absolute tithi to paksha-relative (1-15)
+        $relativeTithi = $absoluteTithi > 15 ? $absoluteTithi - 15 : $absoluteTithi;
+
+        // Determine which tithi number to use for matching
+        // If parent rule specifies a paksha, use relative tithi; otherwise use absolute
+        $rulePaksha = $parentRules['paksha'] ?? null;
+        $tithiForMatching = $rulePaksha !== null ? $relativeTithi : $absoluteTithi;
+
+        // For day_after festivals with daysAfter=1, we check if the parent
+        // rules match yesterday's snapshot. We use a minimal date check
+        // since the actual date matching is done by tithi/paksha/month.
+        return $this->matchesFestivalRules(
+            CarbonImmutable::now('UTC'),
+            $parentRules,
+            $tithiForMatching,
+            $paksha,
+            $snapshot,
+        );
     }
 
     private function buildCalculationBasis(array $rules, ?array $resolved = null): array

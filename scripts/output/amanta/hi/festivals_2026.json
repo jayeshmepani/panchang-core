@@ -1,8 +1,9 @@
 {
     "meta": {
-        "generated_at": "2026-04-13T09:28:34+00:00",
+        "generated_at": "2026-04-14T12:00:41+00:00",
         "type": "festivals",
         "year": 2026,
+        "calendar_type": "amanta",
         "location": {
             "city": "Bhuj",
             "country": "IN",
@@ -15,8 +16,9 @@
     "festivals": {
         "title": "उत्सव 2026 - पूरे वर्ष के सभी उत्सव",
         "year": 2026,
-        "festival_day_count": 148,
-        "festival_entry_count": 199,
+        "calendar_type": "amanta",
+        "festival_day_count": 150,
+        "festival_entry_count": 197,
         "by_date": {
             "2026-01-03": [
                 {
@@ -2377,51 +2379,6 @@
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
-                },
-                {
-                    "name": "होली",
-                    "description": "रंगों का त्योहार",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "होलिका दहन",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "होलिका दहन"
-                        },
-                        "festival_name_localized": "होली"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "होलिका दहन"
-                    }
                 }
             ],
             "2026-03-04": [
@@ -2508,7 +2465,7 @@
                         "संपूर्ण भारत"
                     ],
                     "aliases": [],
-                    "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
+                    "observance_note": "Observed 1 day(s) after होलिका दहन",
                     "calculation_basis": {
                         "type": "day_after",
                         "type_name": "मूल उत्सव के बाद का दिन",
@@ -2524,12 +2481,13 @@
                         "festival_name": "Holi",
                         "standard_date": "2026-03-04",
                         "observance_date": "2026-03-04",
-                        "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
+                        "observance_note": "Observed 1 day(s) after होलिका दहन",
                         "decision": {
                             "winning_reason": "day_after_parent_festival",
                             "parent_festival": "Holika Dahan",
                             "parent_observance_date": "2026-03-03",
                             "days_after": 1,
+                            "winning_score": 1000,
                             "winning_reason_name": "मूल उत्सव के बाद का दिन",
                             "parent_festival_name": "होलिका दहन"
                         },
@@ -2540,6 +2498,7 @@
                         "parent_festival": "Holika Dahan",
                         "parent_observance_date": "2026-03-03",
                         "days_after": 1,
+                        "winning_score": 1000,
                         "winning_reason_name": "मूल उत्सव के बाद का दिन",
                         "parent_festival_name": "होलिका दहन"
                     }
@@ -5529,7 +5488,7 @@
                     }
                 }
             ],
-            "2026-05-27": [
+            "2026-05-26": [
                 {
                     "name": "पद्मिनी एकादशी",
                     "description": "विशेष एकादशी जो केवल अधिक मास के दौरान आती है",
@@ -5573,15 +5532,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -7091,7 +7050,7 @@
                     }
                 }
             ],
-            "2026-07-23": [
+            "2026-07-22": [
                 {
                     "name": "आषाढ़ गुप्त नवरात्रि दिन 9",
                     "description": "आषाढ़ गुप्त नवरात्रि दिन 9. तांत्रिक महाविद्या: माँ मातंगी. नव वाराही: वैष्णवी वाराही. मानक नवदुर्गा: माँ सिद्धिदात्री.",
@@ -7137,15 +7096,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -9940,81 +9899,6 @@
             ],
             "2026-09-23": [
                 {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "ककड़भिट में कच्छ का सबसे बड़ा मेला; 72 यक्षों का सम्मान जिन्होंने स्थानीय लोगों की रक्षा की; भादरवा सुद 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "शुक्ल द्वादशी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_localized": "मोटा यक्ष मेला (जख बहोतेरा)",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "वामन जयंती",
                     "description": "वामन अवतार का जन्म",
                     "deity": "वामन",
@@ -10086,102 +9970,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "ओणम (तिरुवोणम)",
-                    "description": "केरल का फसल उत्सव; मलयालम महीने चिंगम (अगस्त-सितंबर) में तिरुवोणम नक्षत्र (श्रवण); यह राजा महाबली की वार्षिक यात्रा का प्रतीक है",
-                    "deity": "विष्णु/महाबली",
-                    "fasting": false,
-                    "regions": [
-                        "केरल",
-                        "तमिलनाडु",
-                        "कर्नाटक"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "nakshatra",
-                        "basis_name": "नक्षत्र",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
-                            "nakshatra_name_localized": "श्रवण"
-                        },
-                        "festival_name_localized": "ओणम (तिरुवोणम)",
-                        "karmakala_type_name": "मध्याह्न",
-                        "required_nakshatra_name": "श्रवण"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
-                        "nakshatra_name_localized": "श्रवण"
-                    }
-                }
-            ],
-            "2026-09-24": [
-                {
-                    "name": "मोटा यक्ष मेला दिन 2",
-                    "description": "ककड़भिट के मोटा यक्ष मेले का दूसरा दिन (भादरवा सुद 13)",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "aliases": [],
-                    "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 1 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 1 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
-                        },
-                        "festival_name_localized": "मोटा यक्ष मेला दिन 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
                     }
                 }
             ],
@@ -10258,52 +10046,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "मोटा यक्ष मेला दिन 3",
-                    "description": "ककड़भिट के मोटा यक्ष मेले का तीसरा दिन (भादरवा सुद 14)",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "aliases": [],
-                    "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 2 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                            "days_after": 2
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
-                        "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 2 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 2,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
-                        },
-                        "festival_name_localized": "मोटा यक्ष मेला दिन 3"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 2,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
                     }
                 }
             ],
@@ -10532,6 +10274,181 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
+            "2026-10-07": [
+                {
+                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                    "description": "ककड़भिट में कच्छ का सबसे बड़ा मेला; 72 यक्षों का सम्मान जिन्होंने स्थानीय लोगों की रक्षा की; भादरवा वद 12-14",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "कृष्ण द्वादशी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_localized": "मोटा यक्ष मेला (जख बहोतेरा)",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
+            "2026-10-08": [
+                {
+                    "name": "मोटा यक्ष मेला दिन 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
+                        },
+                        "festival_name_localized": "मोटा यक्ष मेला दिन 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
+                    }
+                }
+            ],
+            "2026-10-09": [
+                {
+                    "name": "मोटा यक्ष मेला दिन 3",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "aliases": [],
+                    "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 2 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                            "days_after": 2
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 3",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
+                        "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 2 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 2,
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
+                        },
+                        "festival_name_localized": "मोटा यक्ष मेला दिन 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 2,
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
                     }
                 }
             ],
@@ -16475,6 +16392,56 @@
                 }
             },
             {
+                "date": "2026-03-04",
+                "festival": {
+                    "name": "होली",
+                    "description": "रंगों का त्योहार",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after होलिका दहन",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "Holika Dahan",
+                            "parent_festival_name": "होलिका दहन",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Holi",
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "observance_note": "Observed 1 day(s) after होलिका दहन",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Holika Dahan",
+                            "parent_observance_date": "2026-03-03",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_name": "होलिका दहन"
+                        },
+                        "festival_name_localized": "होली"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Holika Dahan",
+                        "parent_observance_date": "2026-03-03",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_name": "होलिका दहन"
+                    }
+                }
+            },
+            {
                 "date": "2026-03-11",
                 "festival": {
                     "name": "शीतला अष्टमी (बसोड़ा)",
@@ -19525,7 +19492,7 @@
                 }
             },
             {
-                "date": "2026-05-27",
+                "date": "2026-05-26",
                 "festival": {
                     "name": "पद्मिनी एकादशी",
                     "description": "विशेष एकादशी जो केवल अधिक मास के दौरान आती है",
@@ -19569,15 +19536,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461186.4871043526,
                         "target_tithi_end_jd": 2461187.5363108255,
-                        "standard_date": "2026-05-27",
-                        "observance_date": "2026-05-27",
+                        "standard_date": "2026-05-26",
+                        "observance_date": "2026-05-26",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -21117,7 +21084,7 @@
                 }
             },
             {
-                "date": "2026-07-23",
+                "date": "2026-07-22",
                 "festival": {
                     "name": "आषाढ़ गुप्त नवरात्रि दिन 9",
                     "description": "आषाढ़ गुप्त नवरात्रि दिन 9. तांत्रिक महाविद्या: माँ मातंगी. नव वाराही: वैष्णवी वाराही. मानक नवदुर्गा: माँ सिद्धिदात्री.",
@@ -21163,15 +21130,15 @@
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
                         "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461243.491084177,
                         "target_tithi_end_jd": 2461244.5651527317,
-                        "standard_date": "2026-07-23",
-                        "observance_date": "2026-07-23",
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -24036,84 +24003,6 @@
             {
                 "date": "2026-09-23",
                 "festival": {
-                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                    "description": "ककड़भिट में कच्छ का सबसे बड़ा मेला; 72 यक्षों का सम्मान जिन्होंने स्थानीय लोगों की रक्षा की; भादरवा सुद 12-14",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "शुक्ल द्वादशी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461306.1762659717,
-                        "target_tithi_end_jd": 2461307.2229331536,
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_localized": "मोटा यक्ष मेला (जख बहोतेरा)",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
                     "name": "वामन जयंती",
                     "description": "वामन अवतार का जन्म",
                     "deity": "वामन",
@@ -24185,57 +24074,6 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-23",
-                "festival": {
-                    "name": "ओणम (तिरुवोणम)",
-                    "description": "केरल का फसल उत्सव; मलयालम महीने चिंगम (अगस्त-सितंबर) में तिरुवोणम नक्षत्र (श्रवण); यह राजा महाबली की वार्षिक यात्रा का प्रतीक है",
-                    "deity": "विष्णु/महाबली",
-                    "fasting": false,
-                    "regions": [
-                        "केरल",
-                        "तमिलनाडु",
-                        "कर्नाटक"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "nakshatra",
-                        "basis_name": "नक्षत्र",
-                        "nakshatra": "Shravana",
-                        "nakshatra_only": true,
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "preferred_nakshatra": "Shravana"
-                    },
-                    "resolution": {
-                        "festival_name": "Onam (Thiruvonam)",
-                        "required_nakshatra": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "standard_date": "2026-09-23",
-                        "observance_date": "2026-09-23",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Shravana",
-                            "winning_reason": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
-                            "nakshatra_name_localized": "श्रवण"
-                        },
-                        "festival_name_localized": "ओणम (तिरुवोणम)",
-                        "karmakala_type_name": "मध्याह्न",
-                        "required_nakshatra_name": "श्रवण"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Shravana",
-                        "winning_reason": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
-                        "nakshatra_name_localized": "श्रवण"
                     }
                 }
             },
@@ -24544,6 +24382,135 @@
                         "winning_reason": "target_at_karmakala",
                         "winning_score": 1000,
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-07",
+                "festival": {
+                    "name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                    "description": "ककड़भिट में कच्छ का सबसे बड़ा मेला; 72 यक्षों का सम्मान जिन्होंने स्थानीय लोगों की रक्षा की; भादरवा वद 12-14",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                27
+                            ],
+                            "names": [
+                                "कृष्ण द्वादशी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "required_tithi": 12,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461320.295146211,
+                        "target_tithi_end_jd": 2461321.241013513,
+                        "standard_date": "2026-10-07",
+                        "observance_date": "2026-10-07",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "winning_reason": "target_at_karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_localized": "मोटा यक्ष मेला (जख बहोतेरा)",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target_at_karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-08",
+                "festival": {
+                    "name": "मोटा यक्ष मेला दिन 2",
+                    "description": "Second day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 13)",
+                    "deity": "72 यक्ष",
+                    "fasting": false,
+                    "regions": [
+                        "कच्छ",
+                        "गुजरात"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
+                            "days_after": 1
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Mota Yaksh Fair Day 2",
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "observance_note": "Observed 1 day(s) after मोटा यक्ष मेला (जख बहोतेरा)",
+                        "decision": {
+                            "winning_reason": "day_after_parent_festival",
+                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                            "parent_observance_date": "2026-10-07",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
+                        },
+                        "festival_name_localized": "मोटा यक्ष मेला दिन 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day_after_parent_festival",
+                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
+                        "parent_observance_date": "2026-10-07",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
                     }
                 }
             },
@@ -28060,59 +28027,10 @@
                 }
             },
             {
-                "date": "2026-09-24",
-                "festival": {
-                    "name": "मोटा यक्ष मेला दिन 2",
-                    "description": "ककड़भिट के मोटा यक्ष मेले का दूसरा दिन (भादरवा सुद 13)",
-                    "deity": "72 यक्ष",
-                    "fasting": false,
-                    "regions": [
-                        "कच्छ",
-                        "गुजरात"
-                    ],
-                    "aliases": [],
-                    "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 1 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Mota Yaksh Fair Day 2",
-                        "standard_date": "2026-09-24",
-                        "observance_date": "2026-09-24",
-                        "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 1 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
-                            "days_after": 1,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
-                        },
-                        "festival_name_localized": "मोटा यक्ष मेला दिन 2"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
-                        "days_after": 1,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-25",
+                "date": "2026-10-09",
                 "festival": {
                     "name": "मोटा यक्ष मेला दिन 3",
-                    "description": "ककड़भिट के मोटा यक्ष मेले का तीसरा दिन (भादरवा सुद 14)",
+                    "description": "Third day of Mota Yaksh Fair at Kakadbhit (Bhadarva Vad 14)",
                     "deity": "72 यक्ष",
                     "fasting": false,
                     "regions": [
@@ -28134,13 +28052,13 @@
                     },
                     "resolution": {
                         "festival_name": "Mota Yaksh Fair Day 3",
-                        "standard_date": "2026-09-25",
-                        "observance_date": "2026-09-25",
+                        "standard_date": "2026-10-09",
+                        "observance_date": "2026-10-09",
                         "observance_note": "मोटा यक्ष मेला (जख बहोतेरा) के 2 दिन बाद मनाया गया",
                         "decision": {
                             "winning_reason": "day_after_parent_festival",
                             "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                            "parent_observance_date": "2026-09-23",
+                            "parent_observance_date": "2026-10-07",
                             "days_after": 2,
                             "winning_reason_name": "मूल उत्सव के बाद का दिन",
                             "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
@@ -28150,106 +28068,10 @@
                     "rules_applied": {
                         "winning_reason": "day_after_parent_festival",
                         "parent_festival": "Mota Yaksh Fair (Jakh Bahotera)",
-                        "parent_observance_date": "2026-09-23",
+                        "parent_observance_date": "2026-10-07",
                         "days_after": 2,
                         "winning_reason_name": "मूल उत्सव के बाद का दिन",
                         "parent_festival_name": "मोटा यक्ष मेला (जख बहोतेरा)"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-03",
-                "festival": {
-                    "name": "होली",
-                    "description": "रंगों का त्योहार",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "होलिका दहन",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-02",
-                            "days_after": 1,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "होलिका दहन"
-                        },
-                        "festival_name_localized": "होली"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-02",
-                        "days_after": 1,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "होलिका दहन"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-04",
-                "festival": {
-                    "name": "होली",
-                    "description": "रंगों का त्योहार",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                    "calculation_basis": {
-                        "type": "day_after",
-                        "type_name": "मूल उत्सव के बाद का दिन",
-                        "basis": "relative_day_after_parent_festival",
-                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
-                        "relative_day": {
-                            "parent_festival": "Holika Dahan",
-                            "parent_festival_name": "होलिका दहन",
-                            "days_after": 1
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Holi",
-                        "standard_date": "2026-03-04",
-                        "observance_date": "2026-03-04",
-                        "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
-                        "decision": {
-                            "winning_reason": "day_after_parent_festival",
-                            "parent_festival": "Holika Dahan",
-                            "parent_observance_date": "2026-03-03",
-                            "days_after": 1,
-                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                            "parent_festival_name": "होलिका दहन"
-                        },
-                        "festival_name_localized": "होली"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "day_after_parent_festival",
-                        "parent_festival": "Holika Dahan",
-                        "parent_observance_date": "2026-03-03",
-                        "days_after": 1,
-                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
-                        "parent_festival_name": "होलिका दहन"
                     }
                 }
             }

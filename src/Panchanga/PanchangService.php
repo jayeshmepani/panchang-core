@@ -42,7 +42,7 @@ class PanchangService
         private readonly FestivalService $festivalService,
         private readonly BhadraEngine $bhadraEngine,
     ) {
-        $envEphePath = getenv('PANCHANG_EPHE_PATH');
+        $envEphePath = ($_ENV['PANCHANG_EPHE_PATH'] ?? false);
         $envEphePath = is_string($envEphePath) ? $envEphePath : '';
         $configEphePath = function_exists('config') ? config('panchang.ephe_path', $envEphePath) : $envEphePath;
         $ephePath = self::$ephePath !== '' ? self::$ephePath : (is_string($configEphePath) ? $configEphePath : '');
@@ -713,7 +713,9 @@ class PanchangService
             'Yoga' => $yoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
             'Sun_Sign' => Rasi::from(AstroCore::getSign($sunLon))->getName(),
+            'Sun_Sign_Index' => AstroCore::getSign($sunLon),
             'Moon_Sign' => Rasi::from(AstroCore::getSign($moonLon))->getName(),
+            'Moon_Sign_Index' => AstroCore::getSign($moonLon),
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
@@ -781,7 +783,8 @@ class PanchangService
         for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
             $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
             $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
 
             if ($festivals === []) {
                 continue;
@@ -847,7 +850,7 @@ class PanchangService
         $daysInMonth = $start->daysInMonth;
 
         $snapshots = [];
-        for ($i = 0; $i <= $daysInMonth; $i++) {
+        for ($i = -1; $i <= $daysInMonth; $i++) {
             $date = $start->addDays($i);
             $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
         }
@@ -855,10 +858,11 @@ class PanchangService
         $calendar = [];
         for ($i = 0; $i < $daysInMonth; $i++) {
             $date = $start->addDays($i);
+            $yesterdaySnapshot = $snapshots[$i - 1];
             $todaySnapshot = $snapshots[$i];
             $tomorrowSnapshot = $snapshots[$i + 1];
 
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
             $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
             $sankranti = null;
@@ -1160,17 +1164,19 @@ class PanchangService
                     $score = (int) ($rules['winning_score'] ?? -1);
                     $reason = (string) ($rules['winning_reason'] ?? '');
                     $date = (string) $candidate['entry']['date'];
+                    $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? $festival['resolution']['decision']['vriddhi_preference'] ?? '');
 
                     if ($score < 0) {
                         continue;
                     }
 
-                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $date, $best)) {
+                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $date, $vriddhiPreference, $best)) {
                         $best = [
                             'idx' => $candidate['idx'],
                             'score' => $score,
                             'reason' => $reason,
                             'date' => $date,
+                            'vriddhi_preference' => $vriddhiPreference,
                         ];
                     }
                 }
@@ -1201,8 +1207,8 @@ class PanchangService
         return $filtered;
     }
 
-    /** @param array{score:int, reason:string, date:string} $best */
-    private function isStrongerFestivalDecision(int $score, string $reason, string $date, array $best): bool
+    /** @param array{score:int, reason:string, date:string, vriddhi_preference:string} $best */
+    private function isStrongerFestivalDecision(int $score, string $reason, string $date, string $vriddhiPreference, array $best): bool
     {
         $reasonRank = static fn (string $r): int => match ($r) {
             'target_at_karmakala' => 2,
@@ -1210,10 +1216,26 @@ class PanchangService
             default => 0,
         };
 
+        $sameScore = $score === $best['score'];
+        $sameReason = $reasonRank($reason) === $reasonRank((string) $best['reason']);
+        $sameVriddhiPreference = $vriddhiPreference !== ''
+            && $vriddhiPreference === (string) $best['vriddhi_preference'];
+
+        if ($sameScore && $sameReason && $sameVriddhiPreference) {
+            if ($vriddhiPreference === 'first') {
+                return strcmp($date, (string) $best['date']) < 0;
+            }
+
+            if ($vriddhiPreference === 'last') {
+                return strcmp($date, (string) $best['date']) > 0;
+            }
+        }
+
         return $score > $best['score']
             || ($score === $best['score'] && $reasonRank($reason) > $reasonRank((string) $best['reason']))
             || ($score === $best['score']
                 && $reasonRank($reason) === $reasonRank((string) $best['reason'])
+                && $vriddhiPreference === ''
                 && strcmp($date, (string) $best['date']) > 0);
     }
 

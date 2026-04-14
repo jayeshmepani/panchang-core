@@ -14,8 +14,8 @@ trait ConfiguresEphemeris
     {
         $ephePath = self::$ephePath !== '' ? self::$ephePath
             : (function_exists('config')
-                ? config('panchang.ephe_path', getenv('PANCHANG_EPHE_PATH') !== false ? getenv('PANCHANG_EPHE_PATH') : '')
-                : (getenv('PANCHANG_EPHE_PATH') !== false ? getenv('PANCHANG_EPHE_PATH') : ''));
+                ? config('panchang.ephe_path', ($_ENV['PANCHANG_EPHE_PATH'] ?? false) !== false ? ($_ENV['PANCHANG_EPHE_PATH'] ?? false) : '')
+                : (($_ENV['PANCHANG_EPHE_PATH'] ?? false) !== false ? ($_ENV['PANCHANG_EPHE_PATH'] ?? false) : ''));
 
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $sweph->swe_set_ephe_path($ephePath);
