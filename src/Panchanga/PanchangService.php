@@ -30,6 +30,11 @@ use Throwable;
  */
 class PanchangService
 {
+    /** @var array<int, string> */
+    private const YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
+        'Ganga Dussehra',
+    ];
+
     private static string $ephePath = '';
     private array $monthCache = [];
 
@@ -340,6 +345,7 @@ class PanchangService
 
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
         $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+        $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
         // Build fivefold lookup by English name (lowercase) since translated names may differ
@@ -676,7 +682,9 @@ class PanchangService
         $yoga = $this->panchanga->calculateYoga($sunLon, $moonLon);
         [$karanaName, $karanaIdx] = $this->panchanga->getKarana($sunLon, $moonLon);
         [$nakName, $nakPada, $nakLord] = $this->panchanga->getNakshatraInfo($moonLon);
-        $vara = $this->panchanga->calculateVara($birthBase, $this->sunService);
+        // Use sunrise timestamp for snapshot weekday to avoid pre-sunrise rollback
+        // from 00:00 civil time into previous day's vara.
+        $vara = $this->panchanga->calculateVara($sunriseBirth, $this->sunService);
 
         $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
 
@@ -790,10 +798,10 @@ class PanchangService
                 continue;
             }
 
-            $dateKey = $date->toDateString();
-            $festivalsByDate[$dateKey] = $festivals;
-
             foreach ($festivals as $festival) {
+                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
+                $festivalsByDate[$dateKey] ??= [];
+                $festivalsByDate[$dateKey][] = $festival;
                 $festivalFlat[] = [
                     'date' => $dateKey,
                     'festival' => $festival,
@@ -804,6 +812,7 @@ class PanchangService
         $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat);
 
         $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
         $festivalsByDate = [];
         foreach ($festivalFlat as $entry) {
             $dateKey = (string) $entry['date'];
@@ -863,6 +872,7 @@ class PanchangService
             $tomorrowSnapshot = $snapshots[$i + 1];
 
             $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
+            $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
             $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
             $sankranti = null;
@@ -1207,6 +1217,84 @@ class PanchangService
         return $filtered;
     }
 
+    /**
+     * Keep a single best observance per year for configured festival names.
+     * Useful for Adhika/Nija duplicate resolutions when observances are not adjacent dates.
+     *
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     *
+     * @return array<int, array{date:string, festival:array<string, mixed>}>
+     */
+    private function consolidateYearlySingleObservanceFestivals(array $festivalFlat): array
+    {
+        if ($festivalFlat === []) {
+            return $festivalFlat;
+        }
+
+        $targets = array_flip(self::YEARLY_SINGLE_OBSERVANCE_FESTIVALS);
+        $grouped = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            if ($name === '' || !isset($targets[$name])) {
+                continue;
+            }
+            $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
+        }
+
+        $remove = [];
+        foreach ($grouped as $items) {
+            if (count($items) <= 1) {
+                continue;
+            }
+
+            $best = null;
+            foreach ($items as $candidate) {
+                $festival = (array) $candidate['entry']['festival'];
+                $rules = (array) ($festival['rules_applied'] ?? []);
+                $score = (int) ($rules['winning_score'] ?? -1);
+                $reason = (string) ($rules['winning_reason'] ?? '');
+                $date = (string) $candidate['entry']['date'];
+
+                $reasonRank = match ($reason) {
+                    'target_at_karmakala' => 2,
+                    'target_during_observance' => 1,
+                    default => 0,
+                };
+
+                if ($best === null
+                    || $score > $best['score']
+                    || ($score === $best['score'] && $reasonRank > $best['reason_rank'])
+                    || ($score === $best['score'] && $reasonRank === $best['reason_rank'] && strcmp($date, $best['date']) < 0)) {
+                    $best = [
+                        'idx' => $candidate['idx'],
+                        'score' => $score,
+                        'reason_rank' => $reasonRank,
+                        'date' => $date,
+                    ];
+                }
+            }
+
+            foreach ($items as $candidate) {
+                if ($candidate['idx'] !== $best['idx']) {
+                    $remove[$candidate['idx']] = true;
+                }
+            }
+        }
+
+        if ($remove === []) {
+            return $festivalFlat;
+        }
+
+        $filtered = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            if (!isset($remove[$idx])) {
+                $filtered[] = $entry;
+            }
+        }
+
+        return $filtered;
+    }
+
     /** @param array{score:int, reason:string, date:string, vriddhi_preference:string} $best */
     private function isStrongerFestivalDecision(int $score, string $reason, string $date, string $vriddhiPreference, array $best): bool
     {
@@ -1239,6 +1327,29 @@ class PanchangService
                 && strcmp($date, (string) $best['date']) > 0);
     }
 
+    /** @param array<string, mixed> $festival */
+    private function festivalObservanceDate(array $festival, string $fallbackDate): string
+    {
+        $observanceDate = (string) ($festival['resolution']['observance_date'] ?? '');
+        if ($observanceDate !== '') {
+            return $observanceDate;
+        }
+
+        return $fallbackDate;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $festivals
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function retainFestivalsForDate(array $festivals, string $dateKey): array
+    {
+        return array_values(array_filter(
+            $festivals,
+            fn (array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
+        ));
+    }
     private function evaluateCurrentBhadra(CarbonImmutable $at, array $bhadraPeriods): array
     {
         $active = null;

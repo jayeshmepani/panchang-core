@@ -75,6 +75,7 @@ class FestivalRuleEngine
 
         $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
         $vriddhiPreference = (string) ($rule['vriddhi_preference'] ?? ($karmakalaType === 'sunrise' ? 'first' : 'last'));
+        $kshayaPreference = (string) ($rule['kshaya_preference'] ?? 'first');
         $strictKarmakala = (bool) ($rule['strict_karmakala'] ?? ($karmakalaType !== 'sunrise'));
         $preferFirstKarmakala = (bool) ($rule['prefer_first_karmakala'] ?? false);
         $preferNakshatra = (bool) ($rule['prefer_nakshatra'] ?? false);
@@ -88,37 +89,45 @@ class FestivalRuleEngine
             $this->buildCandidate($date, $today, $targetInterval, $karmakalaType, 0, $rule),
             $this->buildCandidate($date->addDay(), $tomorrow, $targetInterval, $karmakalaType, 1, $rule),
         ];
-        $eligible = array_values(array_filter($candidates, static fn (array $candidate): bool => $candidate['target_during_observance']));
+        $forceEkadashiKshayaNextDay = $kshaya && $kshayaPreference === 'last';
 
-        if ($eligible === []) {
-            return null;
-        }
+        if ($forceEkadashiKshayaNextDay) {
+            $winner = $candidates[1];
+            $winner['reason'] = 'kshaya_next_day';
+            $winner['score'] = max((int) ($winner['score'] ?? 0), 1100);
+        } else {
+            $eligible = array_values(array_filter($candidates, static fn (array $candidate): bool => $candidate['target_during_observance']));
 
-        $filtered = $eligible;
-        if ($strictKarmakala) {
-            $atKarmakala = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['target_at_karmakala']));
-            if ($atKarmakala !== []) {
-                $filtered = $atKarmakala;
+            if ($eligible === []) {
+                return null;
             }
-        }
 
-        $matchingWeekday = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['weekday_matches']));
-        if ($matchingWeekday !== []) {
-            $filtered = $matchingWeekday;
-        }
-
-        if ($preferNakshatra) {
-            $matchingNakshatra = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['nakshatra_matches']));
-            if ($matchingNakshatra !== []) {
-                $filtered = $matchingNakshatra;
+            $filtered = $eligible;
+            if ($strictKarmakala) {
+                $atKarmakala = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['target_at_karmakala']));
+                if ($atKarmakala !== []) {
+                    $filtered = $atKarmakala;
+                }
             }
-        }
 
-        usort(
-            $filtered,
-            fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $vriddhiPreference, $preferFirstKarmakala)
-        );
-        $winner = $filtered[0];
+            $matchingWeekday = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['weekday_matches']));
+            if ($matchingWeekday !== []) {
+                $filtered = $matchingWeekday;
+            }
+
+            if ($preferNakshatra) {
+                $matchingNakshatra = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['nakshatra_matches']));
+                if ($matchingNakshatra !== []) {
+                    $filtered = $matchingNakshatra;
+                }
+            }
+
+            usort(
+                $filtered,
+                fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala)
+            );
+            $winner = $filtered[0];
+        }
 
         $observanceNote = null;
         $todayStr = $date->toDateString();
@@ -172,6 +181,7 @@ class FestivalRuleEngine
             'decision' => [
                 'strict_karmakala' => $strictKarmakala,
                 'vriddhi_preference' => $vriddhiPreference,
+                'kshaya_preference' => $kshayaPreference,
                 'preferred_nakshatra' => $rule['nakshatra'] ?? null,
                 'winning_reason' => $winner['reason'],
                 'winning_score' => $winner['score'],
@@ -484,7 +494,9 @@ class FestivalRuleEngine
         array $left,
         array $right,
         bool $vriddhi,
+        bool $kshaya,
         string $vriddhiPreference,
+        string $kshayaPreference,
         bool $preferFirstKarmakala = false
     ): int
     {
@@ -498,6 +510,14 @@ class FestivalRuleEngine
 
         if ($vriddhi) {
             if ($vriddhiPreference === 'last') {
+                return $right['day_offset'] <=> $left['day_offset'];
+            }
+
+            return $left['day_offset'] <=> $right['day_offset'];
+        }
+
+        if ($kshaya) {
+            if ($kshayaPreference === 'last') {
                 return $right['day_offset'] <=> $left['day_offset'];
             }
 

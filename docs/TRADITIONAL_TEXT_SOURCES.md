@@ -14,6 +14,11 @@ It is **not** a manuscript-critical proof document, and it does **not** claim th
 
 To keep this document stable, it uses **file/function-level references** instead of fragile line-number tables.
 
+This document covers **traditional source attributions**.  
+Some package components are architectural helpers and are intentionally **not** tied to traditional texts:
+- `OutputGeneratorService` (output assembly wrapper around package services)
+- `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
+
 ---
 
 ## Confidence Tiers
@@ -92,6 +97,17 @@ These are present in the codebase but are **not** represented as fully verified 
 | `ElectionalEvaluator.php` | `calculateVarjyam()` legacy Visha Ghati helper | **Legacy heuristic:** Prefer KP System-based calculation |
 
 **Where the package has a more authoritative live-timed alternative, that alternative should be preferred over these helpers.**
+
+---
+
+## Non-Text Architectural Helpers (Out of Scope for Source Attribution)
+
+These components are implementation utilities and should not be interpreted as traditional-rule sources:
+
+| File | Functions | Notes |
+|------|-----------|-------|
+| `OutputGeneratorService.php` | `generateFestivals()`<br>`generateEclipses()`<br>`generateTodayPanchang()`<br>`generateAll()` | Output composition layer around `PanchangService` / `EclipseService` |
+| `CliBootstrap.php` | `init()`<br>`makePanchangService()`<br>`makeEclipseService()`<br>`makeOutputGenerator()` | Standalone bootstrapping utility for scripts |
 
 ---
 

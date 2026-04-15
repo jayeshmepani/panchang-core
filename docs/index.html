@@ -45,7 +45,7 @@
 <header>
     <h1>🙏 Panchang Core</h1>
     <p>v4.0.0 — Authentic Vedic Panchanga Calculation Engine</p>
-    <p>Swiss Ephemeris precision · Amanta &amp; Purnimanta · 3 Languages · 180+ Festivals</p>
+    <p>Swiss Ephemeris precision · Amanta &amp; Purnimanta · 3 Languages · 193 Festivals</p>
 </header>
 
 <nav>
@@ -77,7 +77,7 @@
         <li><strong>Swiss Ephemeris</strong> via FFI for astronomical precision</li>
         <li><strong>Amanta &amp; Purnimanta</strong> calendar systems with <code>CalendarType</code> enum</li>
         <li><strong>Adhika / Kshaya Maas</strong> detection (leap &amp; deleted months)</li>
-        <li><strong>180+ Festivals</strong> with classical tithi resolution and vriddhi (multi-day) handling</li>
+        <li><strong>193 Festivals</strong> with classical tithi resolution and vriddhi (multi-day) handling</li>
         <li><strong>3 Languages</strong>: English, Hindi, Gujarati — via <code>Localization::translate()</code></li>
         <li><strong>Eclipse prediction</strong>: Solar &amp; Lunar eclipses with visibility calculations</li>
         <li><strong>Muhurta evaluation</strong>: Electional astrology with transit-only mode</li>
@@ -125,7 +125,7 @@
     <ul>
         <li>✅ PHPStan: 0 errors</li>
         <li>✅ Pint: 49 files pass</li>
-        <li>✅ PHPUnit: 15 tests, 90 assertions</li>
+        <li>✅ PHPUnit: 16 tests, 93 assertions</li>
     </ul>
 </section>
 
@@ -166,8 +166,70 @@ $service = CliBootstrap::makePanchangService();</code></pre>
         <tr><td><code>getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType)</code></td><td>Lightweight snapshot for festival resolution</td></tr>
         <tr><td><code>getMonthCalendar($year, $month, $lat, $lon, $tz, $elevation, $options, $calculationAt, $calendarType)</code></td><td>Full month calendar grid</td></tr>
         <tr><td><code>getDailyMuhurtaEvaluation($date, $lat, $lon, $tz, $currentAt, $elevation, $options)</code></td><td>Electional muhurta evaluation (transit-only)</td></tr>
-        <tr><td><code>getFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $options, $calculationAt, $calendarType)</code></td><td>Year-wide festival calendar</td></tr>
+        <tr><td><code>getFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType)</code></td><td>Year-wide festival calendar</td></tr>
     </table>
+    <pre><code>// PanchangService exact signatures
+getDayDetails(
+    CarbonImmutable $date,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    ?CarbonImmutable $calculationAt = null,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+    array $options = [],
+): array
+
+getFestivalSnapshot(
+    CarbonImmutable $date,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    ?CarbonImmutable $calculationAt = null,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+getFestivalYearCalendar(
+    int $year,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    ?CarbonImmutable $calculationAt = null,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+getMonthCalendar(
+    int $year,
+    int $month,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    array $options = [],
+    ?CarbonImmutable $calculationAt = null,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+getElectionalSnapshot(
+    CarbonImmutable $date,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    array $options = [],
+): array
+
+getDailyMuhurtaEvaluation(
+    CarbonImmutable $date,
+    float $lat,
+    float $lon,
+    string $tz,
+    ?CarbonImmutable $currentAt = null,
+    float $elevation = 0.0,
+    array $options = [],
+): array</code></pre>
 
     <h3>OutputGeneratorService</h3>
     <table>
@@ -181,9 +243,9 @@ $service = CliBootstrap::makePanchangService();</code></pre>
     <h3>FestivalService</h3>
     <table>
         <tr><th>Method</th><th>Description</th></tr>
-        <tr><td><code>resolveFestivalsForDate($date, $todayDetails, $tomorrowDetails)</code></td><td>Resolve festivals for a specific date using real panchang data</td></tr>
-        <tr><td><code>getDailyObservances($panchangDetails)</code></td><td>Get daily Sanatan observances from tithi-based vrata prescriptions</td></tr>
-        <tr><td><code>usesClassicalResolver($rules)</code></td><td>Check if festival rules use classical resolution</td></tr>
+        <tr><td><code>resolveFestivalsForDate($date, $todayDetails, $tomorrowDetails, $yesterdayDetails = null, $fetchHistoricalSnapshot = null)</code></td><td>Resolve festivals for a specific date using rule engine + snapshot context</td></tr>
+        <tr><td><code>buildFestivalPayload($name, $rules, $resolved = null)</code></td><td>Build enriched localized festival payload (display + calculation metadata)</td></tr>
+        <tr><td><code>getDailyObservances($panchangDetails)</code></td><td>Get daily observances from tithi-based vrata prescriptions</td></tr>
     </table>
 
     <h3>EclipseService</h3>
@@ -191,6 +253,50 @@ $service = CliBootstrap::makePanchangService();</code></pre>
         <tr><th>Method</th><th>Description</th></tr>
         <tr><td><code>getEclipsesForYear($year, $lat, $lon, $tz)</code></td><td>All solar and lunar eclipses visible from a location for a year</td></tr>
     </table>
+
+    <h3>Helper Signatures (Exact)</h3>
+    <pre><code>// OutputGeneratorService
+generateFestivals(
+    int $year,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+generateEclipses(
+    int $startYear,
+    int $endYear,
+    float $lat,
+    float $lon,
+    string $tz,
+): array
+
+generateTodayPanchang(
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+generateAll(
+    int $festivalYear,
+    int $eclipseStartYear,
+    int $eclipseEndYear,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+// CliBootstrap
+CliBootstrap::init(string $baseDir): void
+CliBootstrap::makePanchangService(): PanchangService
+CliBootstrap::makeEclipseService(): EclipseService
+CliBootstrap::makeOutputGenerator(PanchangService $panchang): OutputGeneratorService</code></pre>
 </section>
 
 <!-- ===================== CALENDAR TYPE ===================== -->
@@ -253,7 +359,7 @@ $details = $service->getDayDetails(
 <section id="festivals">
     <h2>Festivals</h2>
 
-    <p>The package includes <strong>180+ festivals</strong> with classical tithi resolution:</p>
+    <p>The package includes <strong>193 festivals</strong> with classical tithi resolution:</p>
 
     <h3>Festival Types</h3>
     <ul>
@@ -267,7 +373,7 @@ $details = $service->getDayDetails(
     </ul>
 
     <h3>Adhika Maas Handling</h3>
-    <p>During Adhika (leap) months, festivals are resolved if their month name matches. Festivals that explicitly require a non-Adhika month are skipped.</p>
+    <p>For tithi festivals, default behavior is Nija-only unless a rule explicitly allows Adhika or marks Adhika-only. Rule metadata supports <code>allow_adhika</code>, <code>allows_adhika</code>, and <code>adhika_only</code>.</p>
 
     <h3>Vriddhi (Multi-Day) Handling</h3>
     <p>When a tithi spans multiple sunrises, the festival can appear on multiple dates. The <code>rules_applied</code> field in output shows which date won and why.</p>
@@ -323,19 +429,16 @@ $details = $service->getDayDetails(
 <!-- ===================== CLI ===================== -->
 <section id="cli">
     <h2>CLI Scripts</h2>
-    <p>Standalone scripts for generating JSON output files. All scripts are thin wrappers around the <code>OutputGeneratorService</code>.</p>
+    <p>Standalone scripts for generating JSON output files. Festival/today/raw scripts use <code>OutputGeneratorService</code>, while eclipses/month scripts call package services directly.</p>
 
     <table>
-        <tr><th>Script</th><th>Usage</th><th>Output</th></tr>
-        <tr><td><code>panchang_festivals.php</code></td><td><code>php scripts/panchang_festivals.php [year]</code></td><td><code>festivals_{year}.json</code></td></tr>
-        <tr><td><code>panchang_eclipses.php</code></td><td><code>php scripts/panchang_eclipses.php [start] [end]</code></td><td><code>eclipses_{start}_{end}.json</code></td></tr>
-        <tr><td><code>panchang_today.php</code></td><td><code>php scripts/panchang_today.php</code></td><td><code>today_panchang.json</code></td></tr>
-        <tr><td><code>panchang_raw_output.php</code></td><td><code>php scripts/panchang_raw_output.php > output.json</code></td><td>stdout (all-in-one)</td></tr>
+        <tr><th>Script</th><th>Usage</th><th>Output Behavior</th></tr>
+        <tr><td><code>panchang_festivals.php</code></td><td><code>php scripts/panchang_festivals.php [year]</code></td><td>Writes <code>festivals_{year}.json</code>; prints status text</td></tr>
+        <tr><td><code>panchang_eclipses.php</code></td><td><code>php scripts/panchang_eclipses.php [start] [end]</code></td><td>Writes <code>eclipses_{start}_{end}.json</code>; prints status text</td></tr>
+        <tr><td><code>panchang_today.php</code></td><td><code>php scripts/panchang_today.php</code></td><td>Writes <code>today_panchang.json</code>; prints status text</td></tr>
+        <tr><td><code>panchang_month_output.php</code></td><td><code>php scripts/panchang_month_output.php 2026 4 > month_2026_04.json</code></td><td>Emits JSON to stdout only</td></tr>
+        <tr><td><code>panchang_raw_output.php</code></td><td><code>php scripts/panchang_raw_output.php > output.json</code></td><td>Emits combined JSON to stdout only</td></tr>
     </table>
-
-    <h3>Validation Script</h3>
-    <pre><code>php scripts/validate_output.php 2026
-# Generates and validates all output files for both calendar types and all locales</code></pre>
 </section>
 
 <!-- ===================== STRUCTURE ===================== -->
@@ -375,7 +478,7 @@ $details = $service->getDayDetails(
 │   ├── OutputGeneratorService.php 🆕  # Output array building
 │   ├── PanchangaEngine.php            # Core panchanga engine
 │   ├── PanchangService.php            # Main service API
-│   └── PanchangServiceProvider.php    # Laravel service provider
+├── PanchangServiceProvider.php        # Laravel service provider
 ├── Traits/
 │   └── CliBootstrap.php        🆕     # CLI bootstrap helper
 └── Facades/
@@ -391,8 +494,8 @@ $details = $service->getDayDetails(
     <pre><code>{
     "meta": { "type": "festivals", "year": 2026, "calendar_type": "amanta", ... },
     "festivals": {
-        "festival_day_count": 153,
-        "festival_entry_count": 201,
+        "festival_day_count": 145,
+        "festival_entry_count": 194,
         "by_date": { "2026-01-14": [ { "name": "...", "description": "...", ... } ] },
         "flat": [ { "date": "...", "festival": { ... } } ]
     }
@@ -418,7 +521,7 @@ $details = $service->getDayDetails(
 
 <footer>
     <p>Panchang Core v4.0.0 · Licensed under AGPL-3.0 · <a href="https://github.com/jayeshmepani/panchang-core">GitHub</a></p>
-    <p>Quality: PHPStan ✅ · Pint ✅ · PHPUnit ✅ (15 tests, 90 assertions)</p>
+    <p>Quality: PHPStan ✅ · Pint ✅ · PHPUnit ✅ (16 tests, 93 assertions)</p>
 </footer>
 
 </div>

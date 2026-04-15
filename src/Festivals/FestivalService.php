@@ -382,7 +382,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Largest fair in Kutch at Kakadbhit; honors 72 Yakshas who protected locals; Bhadarva Vad 12-14',
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
@@ -568,7 +568,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 1,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Ashvina Sharad Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.',
             'deity' => 'Durga/Shailaputri',
             'karmakala_type' => 'madhyahna',
@@ -585,7 +585,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 2,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Ashvina Sharad Navaratri - Worship of Brahmacharini (The Ascetic)',
             'deity' => 'Durga/Brahmacharini',
             'karmakala_type' => 'sunrise',
@@ -599,7 +599,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 3,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Ashvina Sharad Navaratri - Worship of Chandraghanta (Bearer of the Moon-Bell)',
             'deity' => 'Durga/Chandraghanta',
             'karmakala_type' => 'sunrise',
@@ -613,7 +613,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 4,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Ashvina Sharad Navaratri - Worship of Kushmanda (Creator of the Cosmic Egg)',
             'deity' => 'Durga/Kushmanda',
             'karmakala_type' => 'sunrise',
@@ -830,6 +830,7 @@ class FestivalService
             'description' => 'Ashadha Gupta Navaratri Day 9. Tantric Mahavidya: Maa Matangi. Nava Varahi: Vaishnavi Varahi. Standard Navadurga: Maa Siddhidatri.',
             'deity' => 'Matangi / Siddhidatri / Vaishnavi Varahi',
             'karmakala_type' => 'sunrise',
+            'vriddhi_preference' => 'last',
             'navratri_type' => 'ashadha_gupta',
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
@@ -1146,6 +1147,7 @@ class FestivalService
             'month_purnimanta' => 'Vaishakha',
             'description' => 'Birth of Lord Parashurama',
             'deity' => 'Parashurama',
+            'karmakala_type' => 'madhyahna',
         ],
         'Akshaya Tritiya' =>
         [
@@ -1157,7 +1159,7 @@ class FestivalService
             'month_purnimanta' => 'Vaishakha',
             'description' => 'Most auspicious for new beginnings',
             'deity' => 'Vishnu/Lakshmi',
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'madhyahna',
         ],
         'Adi Shankaracharya Jayanti' =>
         [
@@ -1321,6 +1323,7 @@ class FestivalService
             'description' => 'Descent of Mother Ganga to Earth',
             'deity' => 'Ganga',
             'karmakala_type' => 'sunrise',
+            'allows_adhika' => true,
         ],
         'Nirjala Ekadashi' =>
         [
@@ -1359,6 +1362,7 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
+            'kshaya_preference' => 'last',
         ],
         'Jagannath Rath Yatra' =>
         [
@@ -1545,7 +1549,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 11,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Fasting for Aja Ekadashi',
             'deity' => 'Vishnu',
             'fasting' => true,
@@ -1558,7 +1562,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 5,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'aliases' => ['Goga Panchami (Nag Panchami - Gujarat)'],
             'description' => 'Gujarati Nag Panchami honoring Goga Ji / Goga Maharaj and serpent deities',
             'deity' => 'Goga Ji / Goga Bapa',
@@ -1603,7 +1607,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 6,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Gujarati Randhan Chhath - cooking all food one day in advance, offering cold food to Sheetala Mata',
             'deity' => 'Sheetala Mata',
             'regions' => ['Gujarat'],
@@ -1654,7 +1658,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 3,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'aliases' => ['Kevada Trij'],
             'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
@@ -1677,7 +1681,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 4,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Birth anniversary of Lord Ganesha',
             'deity' => 'Ganesha',
             'karmakala_type' => 'madhyahna',
@@ -1702,7 +1706,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 8,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Birth anniversary of Radha Rani',
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
@@ -1714,9 +1718,23 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 11,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'aliases' => ['Jal Jhilani Ekadashi'],
             'description' => 'Lord Vishnu changes sides / Swaminarayan Jal Jhilani Utsav',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Parivartini Ekadashi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Parsva Ekadashi', 'Jal Jhilani Ekadashi', 'Vamana Ekadashi'],
+            'description' => 'Parivartini (Parsva) Ekadashi when Lord Vishnu turns side during Chaturmas',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -1761,7 +1779,7 @@ class FestivalService
             'paksha' => 'Shukla',
             'tithi' => 14,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Worship of Lord Ananta; Ganesh Visarjan',
             'deity' => 'Vishnu/Ganesha',
             'karmakala_type' => 'sunrise',
@@ -1770,8 +1788,8 @@ class FestivalService
         [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
+            'paksha' => 'Krishna',
+            'tithi' => 1,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Ashvina',
             'description' => 'Beginning of the fortnight of ancestors',
@@ -2101,6 +2119,7 @@ class FestivalService
             'deity' => 'Vishnu/Swaminarayan',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
+            'kshaya_preference' => 'last',
         ],
         'Tulsi Vivah' =>
         [
@@ -2208,6 +2227,20 @@ class FestivalService
             'aliases' => ['Mokshada Ekadashi'],
             'description' => 'Celebration of Bhagavad Gita / Gateway to Heaven',
             'deity' => 'Krishna',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Mokshada Ekadashi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'aliases' => ['Geeta Jayanti'],
+            'description' => 'Fasting for Mokshada Ekadashi / Geeta Jayanti',
+            'deity' => 'Krishna/Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
@@ -2502,6 +2535,7 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
             'adhika_only' => true,
+            'vriddhi_preference' => 'last',
         ],
         'Parama Ekadashi' => [
             'type' => 'tithi',
@@ -2564,48 +2598,20 @@ class FestivalService
             $calendar = $todayDetails['Hindu_Calendar'] ?? [];
             $isAdhika = (bool) ($calendar['Is_Adhika'] ?? false);
             $isKshaya = (bool) ($calendar['Is_Kshaya'] ?? false);
+            $type = (string) ($rules['type'] ?? 'tithi');
 
-            // Adhik Maas filtering logic
-            $adhikaAllowed = (bool) ($rules['allow_adhika'] ?? false);
+            // Adhika/Nija filtering logic for lunar (tithi) observances.
+            // Default behavior is Nija-only unless explicitly marked otherwise.
+            $adhikaAllowed = (bool) (($rules['allow_adhika'] ?? false) || ($rules['allows_adhika'] ?? false));
             $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
 
-            // During Adhika months, only skip festivals that explicitly require
-            // a non-Adhika month. Most festivals should still resolve if their
-            // month name matches (ignoring the Adhika suffix).
-            if ($isAdhika && !$adhikaAllowed && !$adhikaOnly) {
-                // Check if this festival has a month requirement that matches
-                // current calendar mode when stripping Adhika suffixes.
-                $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? config('panchang.defaults.calendar_type', 'amanta')));
-                $amantaCleanNorm = $this->normalizeMonthName(str_replace(' (Adhika)', '', (string) ($calendar['Month_Amanta_En'] ?? '')));
-                $dynamicPurnimanta = $this->getDynamicPurnimantaName($rules, $calendar);
-                $purnimantaCleanNorm = $this->normalizeMonthName(str_replace(' (Adhika)', '', $dynamicPurnimanta));
-                $monthAmantaRule = $this->normalizeMonthName((string) ($rules['month_amanta'] ?? ''));
-                $monthPurnimantaRule = $this->normalizeMonthName((string) ($rules['month_purnimanta'] ?? ''));
-                $hasMonthRule = ($monthAmantaRule !== '' || $monthPurnimantaRule !== '');
-                if ($hasMonthRule) {
-                    $monthMatches = false;
-                    if ($calendarType === 'purnimanta') {
-                        if ($monthPurnimantaRule !== '') {
-                            $monthMatches = ($monthPurnimantaRule === $purnimantaCleanNorm);
-                        } elseif ($monthAmantaRule !== '') {
-                            $monthMatches = ($monthAmantaRule === $amantaCleanNorm);
-                        }
-                    } elseif ($monthAmantaRule !== '') {
-                        $monthMatches = ($monthAmantaRule === $amantaCleanNorm);
-                    } elseif ($monthPurnimantaRule !== '') {
-                        $monthMatches = ($monthPurnimantaRule === $purnimantaCleanNorm);
-                    }
-                    if ($monthMatches) {
-                        // Month matches during Adhika - allow this festival
-                        // (it belongs to this month, just happens to fall during Adhika)
-                    } else {
-                        continue; // Month doesn't match, skip
-                    }
+            if ($type === 'tithi') {
+                if ($isAdhika && !$adhikaAllowed && !$adhikaOnly) {
+                    continue; // regular tithi observances suppressed in Adhika month
                 }
-                // If no month requirement, allow the festival during Adhika
-            } elseif ($adhikaOnly && !$isAdhika) {
-                continue;
-                // Skip Adhik-only festivals during normal months
+                if (!$isAdhika && $adhikaOnly) {
+                    continue; // Adhika-only festival cannot occur in Nija month
+                }
             }
 
             $isClassical = self::usesClassicalResolver($rules);
@@ -2857,7 +2863,11 @@ class FestivalService
                 'festival_name' => $name,
                 'standard_date' => $date->toDateString(),
                 'observance_date' => $date->toDateString(),
-                'observance_note' => 'Observed ' . $daysAfter . ' day(s) after ' . Localization::translate('Festival', $parentName),
+                'observance_note' => sprintf(
+                    Localization::translate('String', 'observance_note_day_after'),
+                    $daysAfter,
+                    Localization::translate('Festival', $parentName)
+                ),
                 'decision' => [
                     'winning_reason' => 'day_after_parent_festival',
                     'parent_festival' => $parentName,
@@ -2919,6 +2929,9 @@ class FestivalService
     private function buildCalculationBasis(array $rules, ?array $resolved = null): array
     {
         $type = (string) ($rules['type'] ?? 'tithi');
+        $nakshatraRaw = $rules['nakshatra'] ?? ($resolved['required_nakshatra'] ?? null);
+        $parentFestivalRaw = $rules['parent_festival'] ?? null;
+
         $basis = [
             'type' => $type,
             'type_name' => $this->localizedString($type),
@@ -2930,7 +2943,8 @@ class FestivalService
             'paksha_name' => $this->localizedPakshaName($rules['paksha'] ?? ($resolved['paksha'] ?? null)),
             'month' => $this->formatMonthRule($rules),
             'solar_rashi' => $this->formatRashiRule($rules['rashi'] ?? null),
-            'nakshatra' => $rules['nakshatra'] ?? ($resolved['required_nakshatra'] ?? null),
+            'nakshatra' => is_string($nakshatraRaw) && $nakshatraRaw !== '' ? $this->localizedNakshatraName($nakshatraRaw) : $nakshatraRaw,
+            'nakshatra_key' => $nakshatraRaw,
             'nakshatra_only' => $rules['nakshatra_only'] ?? null,
             'fixed_date' => $this->formatFixedDateRule($rules),
             'weekday' => $this->formatWeekdayRule($rules['weekday'] ?? null),
@@ -2940,9 +2954,12 @@ class FestivalService
             'vriddhi_preference' => $rules['vriddhi_preference'] ?? null,
             'prefer_first_karmakala' => $rules['prefer_first_karmakala'] ?? null,
             'prefer_nakshatra' => $rules['prefer_nakshatra'] ?? null,
-            'preferred_nakshatra' => $rules['nakshatra'] ?? null,
+            'preferred_nakshatra' => is_string($nakshatraRaw) && $nakshatraRaw !== '' ? $this->localizedNakshatraName($nakshatraRaw) : null,
+            'preferred_nakshatra_key' => $rules['nakshatra'] ?? null,
             'adhika' => $this->formatAdhikaRule($rules),
             'relative_day' => $this->formatRelativeDayRule($rules),
+            'parent_festival' => is_string($parentFestivalRaw) && $parentFestivalRaw !== '' ? Localization::translate('Festival', $parentFestivalRaw) : null,
+            'parent_festival_key' => $parentFestivalRaw,
         ];
 
         return $this->filterEmptyMetadata($basis);
@@ -2982,7 +2999,9 @@ class FestivalService
         }
 
         if (isset($out['festival_name'])) {
-            $out['festival_name_localized'] = Localization::translate('Festival', (string) $out['festival_name']);
+            $out['festival_name_key'] = (string) $out['festival_name'];
+            $out['festival_name'] = Localization::translate('Festival', (string) $out['festival_name']);
+            $out['festival_name_localized'] = $out['festival_name'];
         }
         if (isset($out['paksha'])) {
             $out['paksha_name'] = $this->localizedPakshaName($out['paksha']);
@@ -2991,7 +3010,10 @@ class FestivalService
             $out['karmakala_type_name'] = $this->localizedString($out['karmakala_type']);
         }
         if (isset($out['required_nakshatra'])) {
-            $out['required_nakshatra_name'] = $this->localizedNakshatraName((string) $out['required_nakshatra']);
+            $rawNakshatra = (string) $out['required_nakshatra'];
+            $out['required_nakshatra_key'] = $rawNakshatra;
+            $out['required_nakshatra'] = $this->localizedNakshatraName($rawNakshatra);
+            $out['required_nakshatra_name'] = $out['required_nakshatra'];
         }
         if (isset($out['decision']) && is_array($out['decision'])) {
             $out['decision'] = $this->localizeDecisionMetadata($out['decision']);
@@ -3062,7 +3084,8 @@ class FestivalService
 
         return $this->filterEmptyMetadata([
             'calendar_type' => $calendarType === 'purnimanta' ? 'purnimanta' : 'amanta',
-            'value' => $month,
+            'value' => $this->localizedMonthName($month),
+            'value_key' => $month,
             'name' => $this->localizedMonthName($month),
         ]);
     }
@@ -3139,7 +3162,8 @@ class FestivalService
         }
 
         return $this->filterEmptyMetadata([
-            'parent_festival' => $rules['parent_festival'] ?? null,
+            'parent_festival' => isset($rules['parent_festival']) ? Localization::translate('Festival', (string) $rules['parent_festival']) : null,
+            'parent_festival_key' => $rules['parent_festival'] ?? null,
             'parent_festival_name' => isset($rules['parent_festival']) ? Localization::translate('Festival', (string) $rules['parent_festival']) : null,
             'days_after' => isset($rules['days_after']) ? (int) $rules['days_after'] : null,
         ]);
@@ -3148,16 +3172,28 @@ class FestivalService
     private function localizeDecisionMetadata(array $decision): array
     {
         if (isset($decision['winning_reason'])) {
-            $decision['winning_reason_name'] = $this->localizedString($decision['winning_reason']);
+            $reasonRaw = (string) $decision['winning_reason'];
+            $decision['winning_reason_key'] = $reasonRaw;
+            $decision['winning_reason'] = $this->localizedString($reasonRaw);
+            $decision['winning_reason_name'] = $decision['winning_reason'];
         }
         if (isset($decision['parent_festival'])) {
-            $decision['parent_festival_name'] = Localization::translate('Festival', (string) $decision['parent_festival']);
+            $parentRaw = (string) $decision['parent_festival'];
+            $decision['parent_festival_key'] = $parentRaw;
+            $decision['parent_festival'] = Localization::translate('Festival', $parentRaw);
+            $decision['parent_festival_name'] = $decision['parent_festival'];
         }
         if (isset($decision['nakshatra_name'])) {
-            $decision['nakshatra_name_localized'] = $this->localizedNakshatraName((string) $decision['nakshatra_name']);
+            $nakshatraRaw = (string) $decision['nakshatra_name'];
+            $decision['nakshatra_name_key'] = $nakshatraRaw;
+            $decision['nakshatra_name'] = $this->localizedNakshatraName($nakshatraRaw);
+            $decision['nakshatra_name_localized'] = $decision['nakshatra_name'];
         }
         if (isset($decision['preferred_nakshatra'])) {
-            $decision['preferred_nakshatra_name'] = $this->localizedNakshatraName((string) $decision['preferred_nakshatra']);
+            $preferredRaw = (string) $decision['preferred_nakshatra'];
+            $decision['preferred_nakshatra_key'] = $preferredRaw;
+            $decision['preferred_nakshatra'] = $this->localizedNakshatraName($preferredRaw);
+            $decision['preferred_nakshatra_name'] = $decision['preferred_nakshatra'];
         }
 
         return $decision;
@@ -3250,7 +3286,7 @@ class FestivalService
         if ($type === 'tithi') {
             $isAdhika = (bool) ($panchangDetails['Hindu_Calendar']['Is_Adhika'] ?? false);
             $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
-            $allowsAdhika = (bool) ($rules['allows_adhika'] ?? false);
+            $allowsAdhika = (bool) (($rules['allows_adhika'] ?? false) || ($rules['allow_adhika'] ?? false));
 
             if ($isAdhika && !$adhikaOnly && !$allowsAdhika) {
                 return false; // Regular lunar festivals are blocked in Adhika Masa

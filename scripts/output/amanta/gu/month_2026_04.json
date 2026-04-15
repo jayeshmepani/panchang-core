@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-14T11:51:54+00:00",
+        "generated_at": "2026-04-15T14:32:07+00:00",
         "year": 2026,
         "month": 4,
         "calendar_type": "amanta",
@@ -35,8 +35,8 @@
                 "index": 28
             },
             "vara": {
-                "index": 2,
-                "name": "મંગળવાર"
+                "index": 3,
+                "name": "બુધવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "કન્યા",
@@ -91,8 +91,8 @@
                 "index": 30
             },
             "vara": {
-                "index": 3,
-                "name": "બુધવાર"
+                "index": 4,
+                "name": "ગુરૂવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "કન્યા",
@@ -145,14 +145,15 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Chaitra",
+                            "value": "ચૈત્ર",
+                            "value_key": "Chaitra",
                             "name": "ચૈત્ર"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Hanuman Jayanti",
+                        "festival_name": "હનૂમાન જયંતિ",
                         "required_tithi": 15,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -169,10 +170,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Hanuman Jayanti",
                         "festival_name_localized": "હનૂમાન જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -180,9 +184,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -222,8 +228,8 @@
                 "index": 32
             },
             "vara": {
-                "index": 4,
-                "name": "ગુરૂવાર"
+                "index": 5,
+                "name": "શુક્રવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "તુલા",
@@ -278,8 +284,8 @@
                 "index": 34
             },
             "vara": {
-                "index": 5,
-                "name": "શુક્રવાર"
+                "index": 6,
+                "name": "શનિવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "તુલા",
@@ -334,8 +340,8 @@
                 "index": 36
             },
             "vara": {
-                "index": 6,
-                "name": "શનિવાર"
+                "index": 0,
+                "name": "રવિવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "તુલા",
@@ -390,8 +396,8 @@
                 "index": 38
             },
             "vara": {
-                "index": 0,
-                "name": "રવિવાર"
+                "index": 1,
+                "name": "સોમવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "વૃશ્ચિક",
@@ -446,8 +452,8 @@
                 "index": 40
             },
             "vara": {
-                "index": 1,
-                "name": "સોમવાર"
+                "index": 2,
+                "name": "મંગળવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "વૃશ્ચિક",
@@ -502,8 +508,8 @@
                 "index": 42
             },
             "vara": {
-                "index": 2,
-                "name": "મંગળવાર"
+                "index": 3,
+                "name": "બુધવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "ધનુ",
@@ -558,8 +564,8 @@
                 "index": 43
             },
             "vara": {
-                "index": 3,
-                "name": "બુધવાર"
+                "index": 4,
+                "name": "ગુરૂવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "ધનુ",
@@ -614,8 +620,8 @@
                 "index": 45
             },
             "vara": {
-                "index": 4,
-                "name": "ગુરૂવાર"
+                "index": 5,
+                "name": "શુક્રવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "ધનુ",
@@ -670,8 +676,8 @@
                 "index": 47
             },
             "vara": {
-                "index": 5,
-                "name": "શુક્રવાર"
+                "index": 6,
+                "name": "શનિવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "મકર",
@@ -726,8 +732,8 @@
                 "index": 49
             },
             "vara": {
-                "index": 6,
-                "name": "શનિવાર"
+                "index": 0,
+                "name": "રવિવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "મકર",
@@ -782,8 +788,8 @@
                 "index": 51
             },
             "vara": {
-                "index": 0,
-                "name": "રવિવાર"
+                "index": 1,
+                "name": "સોમવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "કુંભ",
@@ -836,14 +842,15 @@
                         "paksha_name": "કૃષ્ણ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Chaitra",
+                            "value": "ચૈત્ર",
+                            "value_key": "Chaitra",
                             "name": "ચૈત્ર"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Varuthini Ekadashi",
+                        "festival_name": "વરુથિની એકાદશી",
                         "required_tithi": 11,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -860,10 +867,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Varuthini Ekadashi",
                         "festival_name_localized": "વરુથિની એકાદશી",
                         "paksha_name": "કૃષ્ણ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -871,9 +881,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -913,8 +925,8 @@
                 "index": 53
             },
             "vara": {
-                "index": 1,
-                "name": "સોમવાર"
+                "index": 2,
+                "name": "મંગળવાર"
             },
             "sun_sign": "મીન",
             "moon_sign": "કુંભ",
@@ -943,8 +955,8 @@
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
-                        "Baisakhi",
-                        "Puthandu"
+                        "બૈસાખી",
+                        "પુથાંડુ"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -1023,8 +1035,8 @@
                 "index": 55
             },
             "vara": {
-                "index": 2,
-                "name": "મંગળવાર"
+                "index": 3,
+                "name": "બુધવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કુંભ",
@@ -1079,8 +1091,8 @@
                 "index": 57
             },
             "vara": {
-                "index": 3,
-                "name": "બુધવાર"
+                "index": 4,
+                "name": "ગુરૂવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મીન",
@@ -1135,8 +1147,8 @@
                 "index": 59
             },
             "vara": {
-                "index": 4,
-                "name": "ગુરૂવાર"
+                "index": 5,
+                "name": "શુક્રવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મીન",
@@ -1191,8 +1203,8 @@
                 "index": 2
             },
             "vara": {
-                "index": 5,
-                "name": "શુક્રવાર"
+                "index": 6,
+                "name": "શનિવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મેષ",
@@ -1247,8 +1259,8 @@
                 "index": 4
             },
             "vara": {
-                "index": 6,
-                "name": "શનિવાર"
+                "index": 0,
+                "name": "રવિવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મેષ",
@@ -1267,7 +1279,170 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "પરશુરામ જયંતિ",
+                    "description": "ભગવાન પરશુરામનો જન્મ",
+                    "deity": "પરશુરામ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-04-20 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-19 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
+                            "name": "વૈશાખ"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "resolution": {
+                        "festival_name": "પરશુરામ જયંતિ",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-04-20 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-19 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Parashurama Jayanti",
+                        "festival_name_localized": "પરશુરામ જયંતિ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "અખા ત્રીજ (અક્ષય તૃતીયા)",
+                    "description": "નવી શરૂઆત માટે સૌથી શુભ દિવસ",
+                    "deity": "વિષ્ણુ/લક્ષ્મી",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-04-20 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-19 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
+                            "name": "વૈશાખ"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "resolution": {
+                        "festival_name": "અખા ત્રીજ (અક્ષય તૃતીયા)",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-04-20 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-19 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Akshaya Tritiya",
+                        "festival_name_localized": "અખા ત્રીજ (અક્ષય તૃતીયા)",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "દ્વિતિયા વ્રત",
@@ -1303,8 +1478,8 @@
                 "index": 6
             },
             "vara": {
-                "index": 0,
-                "name": "રવિવાર"
+                "index": 1,
+                "name": "સોમવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "વૃષભ",
@@ -1357,18 +1532,19 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
                     },
                     "resolution": {
-                        "festival_name": "Parashurama Jayanti",
+                        "festival_name": "પરશુરામ જયંતિ",
                         "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -1379,23 +1555,28 @@
                         "standard_date": "2026-04-20",
                         "observance_date": "2026-04-20",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                         },
+                        "festival_name_key": "Parashurama Jayanti",
                         "festival_name_localized": "પરશુરામ જયંતિ",
                         "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type_name": "મધ્યાહ્ન"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                     }
                 },
                 {
@@ -1431,18 +1612,19 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
                     },
                     "resolution": {
-                        "festival_name": "Akshaya Tritiya",
+                        "festival_name": "અખા ત્રીજ (અક્ષય તૃતીયા)",
                         "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -1453,23 +1635,28 @@
                         "standard_date": "2026-04-20",
                         "observance_date": "2026-04-20",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                         },
+                        "festival_name_key": "Akshaya Tritiya",
                         "festival_name_localized": "અખા ત્રીજ (અક્ષય તૃતીયા)",
                         "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type_name": "મધ્યાહ્ન"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                     }
                 }
             ],
@@ -1508,8 +1695,8 @@
                 "index": 9
             },
             "vara": {
-                "index": 1,
-                "name": "સોમવાર"
+                "index": 2,
+                "name": "મંગળવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "વૃષભ",
@@ -1562,14 +1749,15 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Adi Shankaracharya Jayanti",
+                        "festival_name": "આદિ શંકરાચાર્ય જયંતિ",
                         "required_tithi": 5,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -1586,10 +1774,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Adi Shankaracharya Jayanti",
                         "festival_name_localized": "આદિ શંકરાચાર્ય જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -1597,9 +1788,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -1639,8 +1832,8 @@
                 "index": 11
             },
             "vara": {
-                "index": 2,
-                "name": "મંગળવાર"
+                "index": 3,
+                "name": "બુધવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મિથુન",
@@ -1695,8 +1888,8 @@
                 "index": 13
             },
             "vara": {
-                "index": 3,
-                "name": "બુધવાર"
+                "index": 4,
+                "name": "ગુરૂવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "મિથુન",
@@ -1749,14 +1942,15 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Ganga Saptami",
+                        "festival_name": "ગંગા સપ્તમી",
                         "required_tithi": 7,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -1773,10 +1967,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Ganga Saptami",
                         "festival_name_localized": "ગંગા સપ્તમી",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -1784,9 +1981,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -1826,8 +2025,8 @@
                 "index": 15
             },
             "vara": {
-                "index": 4,
-                "name": "ગુરૂવાર"
+                "index": 5,
+                "name": "શુક્રવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કર્ક",
@@ -1882,8 +2081,8 @@
                 "index": 17
             },
             "vara": {
-                "index": 5,
-                "name": "શુક્રવાર"
+                "index": 6,
+                "name": "શનિવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કર્ક",
@@ -1936,14 +2135,15 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Sita Navami",
+                        "festival_name": "સીતા નવમી",
                         "required_tithi": 9,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -1960,10 +2160,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Sita Navami",
                         "festival_name_localized": "સીતા નવમી",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -1971,9 +2174,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -2013,8 +2218,8 @@
                 "index": 20
             },
             "vara": {
-                "index": 6,
-                "name": "શનિવાર"
+                "index": 0,
+                "name": "રવિવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "સિંહ",
@@ -2069,8 +2274,8 @@
                 "index": 22
             },
             "vara": {
-                "index": 0,
-                "name": "રવિવાર"
+                "index": 1,
+                "name": "સોમવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "સિંહ",
@@ -2123,14 +2328,15 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
                     "resolution": {
-                        "festival_name": "Mohini Ekadashi",
+                        "festival_name": "મોહિની એકાદશી",
                         "required_tithi": 11,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -2147,10 +2353,13 @@
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Mohini Ekadashi",
                         "festival_name_localized": "મોહિની એકાદશી",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
@@ -2158,9 +2367,11 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -2200,8 +2411,8 @@
                 "index": 23
             },
             "vara": {
-                "index": 1,
-                "name": "સોમવાર"
+                "index": 2,
+                "name": "મંગળવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કન્યા",
@@ -2256,8 +2467,8 @@
                 "index": 25
             },
             "vara": {
-                "index": 2,
-                "name": "મંગળવાર"
+                "index": 3,
+                "name": "બુધવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કન્યા",
@@ -2310,7 +2521,8 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "pradosha",
@@ -2318,7 +2530,7 @@
                         "strict_karmakala": true
                     },
                     "resolution": {
-                        "festival_name": "Narasimha Jayanti",
+                        "festival_name": "નૃસિંહ જયંતિ",
                         "required_tithi": 14,
                         "paksha": "Shukla",
                         "karmakala_type": "pradosha",
@@ -2336,10 +2548,13 @@
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
-                            "winning_reason": "target_at_karmakala",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+                        "festival_name_key": "Narasimha Jayanti",
                         "festival_name_localized": "નૃસિંહ જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "પ્રદોષ"
@@ -2347,9 +2562,11 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_karmakala",
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
@@ -2389,8 +2606,8 @@
                 "index": 27
             },
             "vara": {
-                "index": 3,
-                "name": "બુધવાર"
+                "index": 4,
+                "name": "ગુરૂવાર"
             },
             "sun_sign": "મેષ",
             "moon_sign": "કન્યા",
@@ -2443,7 +2660,8 @@
                         "paksha_name": "શુક્લ",
                         "month": {
                             "calendar_type": "amanta",
-                            "value": "Vaishakha",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
                             "name": "વૈશાખ"
                         },
                         "karmakala_type": "pradosha",
@@ -2451,7 +2669,7 @@
                         "strict_karmakala": true
                     },
                     "resolution": {
-                        "festival_name": "Narasimha Jayanti",
+                        "festival_name": "નૃસિંહ જયંતિ",
                         "required_tithi": 14,
                         "paksha": "Shukla",
                         "karmakala_type": "pradosha",
@@ -2468,10 +2686,13 @@
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
-                            "winning_reason": "target_at_sunrise",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
                             "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
                             "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                         },
+                        "festival_name_key": "Narasimha Jayanti",
                         "festival_name_localized": "નૃસિંહ જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "પ્રદોષ"
@@ -2479,9 +2700,11 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target_at_sunrise",
+                        "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
                         "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
                         "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                     }
                 }

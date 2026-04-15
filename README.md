@@ -7,7 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** for PHP 8.3+.
 
-This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 191 festival definitions with tradition/region profiles.
+This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 193 festival definitions with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
@@ -15,13 +15,13 @@ Key characteristics:
 - ✅ Uses **Swiss Ephemeris FFI** for maximum astronomical precision
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Uses **IEEE 754 double precision** throughout the calculation pipeline
-- ✅ Supports **191 festival definitions** with tradition/region resolution
+- ✅ Supports **193 festival definitions** with tradition/region resolution
 - ✅ Works **standalone** (no Laravel required)
 
 ## Features
 
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
-- **191 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, regional observances, etc.
+- **193 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, regional observances, etc.
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Dur Muhūrta
 - **Time Determination**: Chogadiya, Hora, Prahara, Lagna table, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
@@ -127,6 +127,57 @@ $calendar = Panchang::getMonthCalendar(
     lon: 69.668339,
     tz: 'Asia/Kolkata'
 );
+```
+
+### Package Helpers (Exact APIs)
+
+`OutputGeneratorService` (for programmatic JSON payload assembly):
+
+```php
+generateFestivals(
+    int $year,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+generateEclipses(
+    int $startYear,
+    int $endYear,
+    float $lat,
+    float $lon,
+    string $tz,
+): array
+
+generateTodayPanchang(
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+
+generateAll(
+    int $festivalYear,
+    int $eclipseStartYear,
+    int $eclipseEndYear,
+    float $lat,
+    float $lon,
+    string $tz,
+    float $elevation = 0.0,
+    CalendarType|string $calendarType = CalendarType::Amanta,
+): array
+```
+
+`CliBootstrap` (for standalone script bootstrap and service wiring):
+
+```php
+CliBootstrap::init(string $baseDir): void
+CliBootstrap::makePanchangService(): PanchangService
+CliBootstrap::makeEclipseService(): EclipseService
+CliBootstrap::makeOutputGenerator(PanchangService $panchang): OutputGeneratorService
 ```
 
 ## Classical Texts & Sources
@@ -360,14 +411,14 @@ php scripts/panchang_festivals.php 2026
 ```
 
 Notes:
-- `panchang_today.php` writes `today_panchang.json` automatically and also prints the same JSON to stdout. It does not accept a custom output filename.
+- `panchang_today.php` writes `today_panchang.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
 - `panchang_month_output.php` prints JSON to stdout only; choose the output filename with shell redirection, e.g. `> month_2026_04.json`.
-- `panchang_eclipses.php` writes `eclipses_YYYY_YYYY.json` automatically and also prints the same JSON to stdout. It does not accept a custom output filename.
-- `panchang_festivals.php` writes `festivals_YYYY.json` automatically and prints status lines; do not redirect its stdout as if it were raw JSON.
+- `panchang_eclipses.php` writes `eclipses_YYYY_YYYY.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
+- `panchang_festivals.php` writes `festivals_YYYY.json` automatically and prints status lines only; do not redirect its stdout as if it were raw JSON.
 - `panchang_raw_output.php` prints the complete all-in-one JSON to stdout only; choose the output filename with shell redirection, e.g. `> output.json`.
 - Use `PANCHANG_LOCALE=en|hi|gu` and `PANCHANG_CALENDAR_TYPE=amanta|purnimanta` to generate localized/calendar-type variants.
 
-To generate into a dedicated directory, redirect stdout-based scripts directly and move implicit-output scripts after generation:
+To generate into a dedicated directory, redirect only stdout-based scripts and move implicit-output files after generation:
 
 ```bash
 cd scripts
@@ -397,9 +448,9 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"
 ### Festival Catalog Notes
 
 - The canonical source of truth is `FestivalService::FESTIVALS`.
-- The current verified catalog contains `191` festival definitions after merging true alias/variant duplicates.
+- The current verified catalog contains `193` festival definitions (`FestivalService::FESTIVALS`).
 - Festivals that legitimately share the same tithi or civil date remain separate entries when they represent different observances.
-- Use `PanchangService::getFestivalYearCalendar()` for complete year-wide festival output. It performs package-side date iteration, relative `day_after` festival handling, and adjacent duplicate consolidation.
+- Use `PanchangService::getFestivalYearCalendar()` for complete year-wide festival output. It performs package-side date iteration, relative `day_after` festival handling, adjacent duplicate consolidation, and yearly single-observance consolidation for configured exceptions.
 - `FestivalService::getFestivalsForYear()` is intentionally disabled; `FestivalService` owns the catalog/rule payloads, while `PanchangService` owns location-aware Panchang orchestration.
 
 ### Standalone Configuration
@@ -413,7 +464,7 @@ PanchangService::configure(
 );
 ```
 
-## Supported Festival Definitions (191)
+## Supported Festival Definitions (193)
 
 ### Solar-Based (Saṅkrānti)
 - Makara Saṅkrānti (solar ingress-based; civil date can vary by year/location)
@@ -470,7 +521,7 @@ composer test
 | **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta | ✅ Complete |
 | **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra | ✅ Complete |
 | **Karmakala** | Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal | ✅ Complete |
-| **Festivals** | 191 festival definitions | ✅ Complete |
+| **Festivals** | 193 festival definitions | ✅ Complete |
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Full System Requirements
