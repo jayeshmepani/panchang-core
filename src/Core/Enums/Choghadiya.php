@@ -61,7 +61,7 @@ enum Choghadiya: int
             0 => [self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg],  // Sunday
             1 => [self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit],   // Monday
             2 => [self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog],     // Tuesday
-            3 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],    // Wednesday
+            3 => [self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh],    // Wednesday
             4 => [self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh],   // Thursday
             5 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],    // Friday
             6 => [self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal],    // Saturday
@@ -113,13 +113,13 @@ enum Choghadiya: int
     public static function getNightSequence(Vara $vara): array
     {
         $sequences = [
-            0 => [self::Shubh, self::Amrit, self::Chal, self::Labh, self::Udveg, self::Shubh, self::Amrit, self::Chal],
-            1 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],
-            2 => [self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal],
-            3 => [self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg],
-            4 => [self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit],
-            5 => [self::Rog, self::Udveg, self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog],
-            6 => [self::Chal, self::Labh, self::Amrit, self::Kaal, self::Shubh, self::Rog, self::Udveg, self::Chal],
+            0 => [self::Shubh, self::Amrit, self::Chal, self::Rog, self::Kaal, self::Labh, self::Udveg, self::Shubh],   // Sunday
+            1 => [self::Chal, self::Rog, self::Kaal, self::Labh, self::Udveg, self::Shubh, self::Amrit, self::Chal],    // Monday
+            2 => [self::Kaal, self::Labh, self::Udveg, self::Shubh, self::Amrit, self::Chal, self::Rog, self::Kaal],    // Tuesday
+            3 => [self::Udveg, self::Shubh, self::Amrit, self::Chal, self::Rog, self::Kaal, self::Labh, self::Udveg],   // Wednesday
+            4 => [self::Amrit, self::Chal, self::Rog, self::Kaal, self::Labh, self::Udveg, self::Shubh, self::Amrit],   // Thursday
+            5 => [self::Rog, self::Kaal, self::Labh, self::Udveg, self::Shubh, self::Amrit, self::Chal, self::Rog],     // Friday
+            6 => [self::Labh, self::Udveg, self::Shubh, self::Amrit, self::Chal, self::Rog, self::Kaal, self::Labh],    // Saturday
         ];
 
         return $sequences[$vara->value];
