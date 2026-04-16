@@ -42,7 +42,67 @@ composer require jayeshmepani/panchang-core
 - **PHP 8.3+** (uses typed constants, readonly classes, enums)
 - **Swiss Ephemeris FFI** (`jayeshmepani/swiss-ephemeris-ffi`)
 - **Carbon** (`nesbot/carbon`)
-- **FFI Extension** (for Swiss Ephemeris)
+- **FFI Extension** (See [FFI Setup](#ffi-setup))
+- **Swiss Ephemeris Data Files** (See [Ephemeris Files](#ephemeris-files))
+
+## ⚙️ FFI & System Setup
+
+The core engine relies on the PHP FFI (Foreign Function Interface) extension to communicate with the Swiss Ephemeris C library. This has been a **foundational architectural requirement** since the first version of the library to ensure maximum astronomical precision.
+
+### 1. Install/Enable FFI Extension
+
+#### Linux (Ubuntu/Debian)
+```bash
+# Install PHP FFI
+sudo apt install php8.3-ffi
+
+# Or for PHP 8.4
+sudo apt install php8.4-ffi
+```
+
+#### Linux (CentOS/RHEL/Fedora)
+```bash
+sudo dnf install php-ffi
+# or
+sudo yum install php-ffi
+```
+
+#### macOS
+```bash
+# PHP from Homebrew includes FFI by default
+brew install php@8.3
+```
+
+#### Windows
+FFI is included with PHP 8.3+ for Windows. You just need to enable it in your `php.ini`.
+
+### 2. Enable in `php.ini`
+The FFI extension must be explicitly enabled. Add or uncomment the following in your `php.ini`:
+
+```ini
+extension=ffi
+ffi.enable=1
+```
+
+> [!NOTE]
+> `ffi.enable=1` is required for CLI usage. For web server usage (FPM/Apache), you may need to set `ffi.enable=preload` for better security and performance.
+
+### 3. Verify Installation
+```bash
+php -r "echo extension_loaded('ffi') ? 'FFI loaded\n' : 'FFI not loaded\n';"
+php -r "echo ini_get('ffi.enable') ? 'FFI enabled\n' : 'FFI not enabled\n';"
+```
+
+## 📂 Ephemeris Files
+
+The package requires `.se1` data files for high-precision astronomical calculations. 
+
+- **Download**: You can download the verified ephemeris files from [Swiss-Ephemeris-PHP Releases](https://github.com/jayeshmepani/Swiss-Ephemeris-PHP/releases/tag/ephe-files).
+- **Setup**: Place these files in a directory (e.g., `/path/to/ephe`) and configure the path in your `.env` or `config/panchang.php`:
+
+```bash
+PANCHANG_EPHE_PATH=/absolute/path/to/ephe
+```
 
 ## Usage
 
@@ -525,6 +585,7 @@ composer test
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Full System Requirements
+
 
 ### Core Requirements
 

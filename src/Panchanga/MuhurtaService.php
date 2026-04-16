@@ -532,6 +532,15 @@ class MuhurtaService
         ];
     }
 
+    /**
+     * Identify specific inauspicious Muhurtas from the daily 30-period table.
+     *
+     * @param CarbonImmutable $sunrise
+     * @param CarbonImmutable $sunset
+     * @param CarbonImmutable $nextSunrise
+     * @param int $varaIdx Weekday index (0-6)
+     * @return array List of Dur-Muhurta periods
+     */
     public function calculateDurMuhurta(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
