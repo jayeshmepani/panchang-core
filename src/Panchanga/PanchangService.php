@@ -858,6 +858,19 @@ class PanchangService
         $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
         $daysInMonth = $start->daysInMonth;
 
+        // Use the same year-level festival orchestration/consolidation pipeline
+        // that powers scripts/panchang_festivals.php so month view never diverges.
+        $yearFestivalCalendar = $this->getFestivalYearCalendar(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: $calculationAt,
+            calendarType: $calendarType,
+        );
+        $festivalsByDate = (array) ($yearFestivalCalendar['by_date'] ?? []);
+
         $snapshots = [];
         for ($i = -1; $i <= $daysInMonth; $i++) {
             $date = $start->addDays($i);
@@ -867,12 +880,10 @@ class PanchangService
         $calendar = [];
         for ($i = 0; $i < $daysInMonth; $i++) {
             $date = $start->addDays($i);
-            $yesterdaySnapshot = $snapshots[$i - 1];
             $todaySnapshot = $snapshots[$i];
-            $tomorrowSnapshot = $snapshots[$i + 1];
 
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
-            $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
+            $dateKey = $date->toDateString();
+            $festivals = (array) ($festivalsByDate[$dateKey] ?? []);
             $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
             $sankranti = null;

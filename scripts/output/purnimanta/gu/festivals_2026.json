@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-15T14:34:03+00:00",
+        "generated_at": "2026-04-16T06:33:51+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -8676,6 +8676,88 @@
                     }
                 }
             ],
+            "2026-08-31": [
+                {
+                    "name": "કજરી ત્રીજ",
+                    "description": "કજરી ત્રીજ ઉત્સવ",
+                    "deity": "પાર્વતી/શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                18
+                            ],
+                            "names": [
+                                "વદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "કજરી ત્રીજ",
+                        "required_tithi": 3,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461282.671961476,
+                        "target_tithi_end_jd": 2461283.640037153,
+                        "standard_date": "2026-08-31",
+                        "observance_date": "2026-08-31",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kajari Teej",
+                        "festival_name_localized": "કજરી ત્રીજ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "2026-09-01": [
                 {
                     "name": "ગોગા પાંચમ",
@@ -8758,6 +8840,86 @@
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
                     }
+                },
+                {
+                    "name": "બોળ ચોથ",
+                    "description": "ગાયો અને વાછરડાઓની પૂજા (બહુલા ચતુર્થી)",
+                    "deity": "કૃષ્ણ/ગાયો",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "વદ ચોથ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બોળ ચોથ",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-09-01",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "બોળ ચોથ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
                 }
             ],
             "2026-09-02": [
@@ -8839,6 +9001,254 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                    "description": "ભગવાન બલરામનો જન્મોત્સવ; હલધર (હળ ધારણ કરનાર) ની પૂજા",
+                    "deity": "બલરામ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                21
+                            ],
+                            "names": [
+                                "વદ છઠ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                        "required_tithi": 6,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461285.529917606,
+                        "target_tithi_end_jd": 2461286.4559585685,
+                        "standard_date": "2026-09-02",
+                        "observance_date": "2026-09-02",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Balarama Jayanti (Hala Shashthi)",
+                        "festival_name_localized": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-09-03": [
+                {
+                    "name": "શીતળા સાતમ",
+                    "description": "શીતળા માતાનું પર્વ, જે ગુજરાતમાં શીતળા સાતમ તરીકે ઓળખાય છે, આરોગ્ય માટેની પ્રાર્થના અને ટાઢું ભોજન આરોગવાથી ઉજવાય છે",
+                    "deity": "શીતળા માતા",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શીતળા સપ્તમી"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                22
+                            ],
+                            "names": [
+                                "વદ સાતમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "શીતળા સાતમ",
+                        "required_tithi": 7,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461286.4559585685,
+                        "target_tithi_end_jd": 2461287.3721646657,
+                        "standard_date": "2026-09-03",
+                        "observance_date": "2026-09-03",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Sheetala Satam",
+                        "festival_name_localized": "શીતળા સાતમ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-09-04": [
+                {
+                    "name": "કૃષ્ણ જન્માષ્ટમી",
+                    "description": "ભગવાન કૃષ્ણનો જન્મોત્સવ",
+                    "deity": "કૃષ્ણ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "નિશીથ",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last"
+                    },
+                    "resolution": {
+                        "festival_name": "કૃષ્ણ જન્માષ્ટમી",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721646657,
+                        "target_tithi_end_jd": 2461288.280605573,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
+                        },
+                        "festival_name_key": "Krishna Janmashtami",
+                        "festival_name_localized": "કૃષ્ણ જન્માષ્ટમી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
                     }
                 }
             ],
@@ -8924,6 +9334,168 @@
                     }
                 }
             ],
+            "2026-09-11": [
+                {
+                    "name": "પોળા",
+                    "description": "ખેડૂતો અને બળદો માટે આભાર માનતો તહેવાર",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "મહારાષ્ટ્ર"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "પોળા",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.710992572,
+                        "target_tithi_end_jd": 2461294.643762191,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-11",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Pola",
+                        "festival_name_localized": "પોળા",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "કુશોત્પાટિની અમાસ",
+                    "description": "દેવી કુશોત્પાટિનીને સમર્પિત અમાસ",
+                    "deity": "કુશોત્પાટિની",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "કુશોત્પાટિની અમાસ",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.710992572,
+                        "target_tithi_end_jd": 2461294.643762191,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-11",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kushotpatini Amavasya",
+                        "festival_name_localized": "કુશોત્પાટિની અમાસ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "2026-09-14": [
                 {
                     "name": "હરતાલિકા ત્રીજ",
@@ -8993,6 +9565,86 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "હરતાલિકા ત્રીજ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "વરાહ જયંતિ",
+                    "description": "ભગવાન વરાહનો પ્રાગટ્ય દિવસ",
+                    "deity": "વિષ્ણુ/વરાહ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વરાહ જયંતિ",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-14",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "વરાહ જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
@@ -9164,6 +9816,87 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "ઋષિ પંચમી",
+                    "description": "સપ્તર્ષિઓની પૂજા",
+                    "deity": "સપ્તર્ષિ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 5 સૂર્યોદયે 2026-09-16 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-15 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                5
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                5
+                            ],
+                            "names": [
+                                "સુદ પાંચમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "resolution": {
+                        "festival_name": "ઋષિ પંચમી",
+                        "required_tithi": 5,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461298.593562887,
+                        "target_tithi_end_jd": 2461299.645763551,
+                        "standard_date": "2026-09-16",
+                        "observance_date": "2026-09-15",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 5 સૂર્યોદયે 2026-09-16 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-15 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Rishi Panchami",
+                        "festival_name_localized": "ઋષિ પંચમી",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -9694,6 +10427,88 @@
                     }
                 }
             ],
+            "2026-09-23": [
+                {
+                    "name": "વામન જયંતિ",
+                    "description": "વામન અવતારનો જન્મ",
+                    "deity": "વામન",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                12
+                            ],
+                            "names": [
+                                "સુદ બારસ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વામન જયંતિ",
+                        "required_tithi": 12,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461306.1762659717,
+                        "target_tithi_end_jd": 2461307.2229331536,
+                        "standard_date": "2026-09-23",
+                        "observance_date": "2026-09-23",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Vamana Jayanti",
+                        "festival_name_localized": "વામન જયંતિ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "2026-09-25": [
                 {
                     "name": "અનંત ચતુર્દશી",
@@ -9849,418 +10664,6 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            ],
-            "2026-09-29": [
-                {
-                    "name": "કજરી ત્રીજ",
-                    "description": "કજરી ત્રીજ ઉત્સવ",
-                    "deity": "પાર્વતી/શિવ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                18
-                            ],
-                            "names": [
-                                "વદ ત્રીજ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "કજરી ત્રીજ",
-                        "required_tithi": 3,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461312.072294552,
-                        "target_tithi_end_jd": 2461312.986619668,
-                        "standard_date": "2026-09-29",
-                        "observance_date": "2026-09-29",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Kajari Teej",
-                        "festival_name_localized": "કજરી ત્રીજ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            ],
-            "2026-09-30": [
-                {
-                    "name": "બોળ ચોથ",
-                    "description": "ગાયો અને વાછરડાઓની પૂજા (બહુલા ચતુર્થી)",
-                    "deity": "કૃષ્ણ/ગાયો",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "વદ ચોથ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "બોળ ચોથ",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461312.986619668,
-                        "target_tithi_end_jd": 2461313.892959547,
-                        "standard_date": "2026-09-30",
-                        "observance_date": "2026-09-30",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "બોળ ચોથ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            ],
-            "2026-10-02": [
-                {
-                    "name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                    "description": "ભગવાન બલરામનો જન્મોત્સવ; હલધર (હળ ધારણ કરનાર) ની પૂજા",
-                    "deity": "બલરામ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                6
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                21
-                            ],
-                            "names": [
-                                "વદ છઠ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                        "required_tithi": 6,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461314.79565667,
-                        "target_tithi_end_jd": 2461315.698435613,
-                        "standard_date": "2026-10-02",
-                        "observance_date": "2026-10-02",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Balarama Jayanti (Hala Shashthi)",
-                        "festival_name_localized": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            ],
-            "2026-10-03": [
-                {
-                    "name": "શીતળા સાતમ",
-                    "description": "શીતળા માતાનું પર્વ, જે ગુજરાતમાં શીતળા સાતમ તરીકે ઓળખાય છે, આરોગ્ય માટેની પ્રાર્થના અને ટાઢું ભોજન આરોગવાથી ઉજવાય છે",
-                    "deity": "શીતળા માતા",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "શીતળા સપ્તમી"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                7
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                22
-                            ],
-                            "names": [
-                                "વદ સાતમ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "શીતળા સાતમ",
-                        "required_tithi": 7,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461315.698435613,
-                        "target_tithi_end_jd": 2461316.6042813677,
-                        "standard_date": "2026-10-03",
-                        "observance_date": "2026-10-03",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Sheetala Satam",
-                        "festival_name_localized": "શીતળા સાતમ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "કૃષ્ણ જન્માષ્ટમી",
-                    "description": "ભગવાન કૃષ્ણનો જન્મોત્સવ",
-                    "deity": "કૃષ્ણ",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "વદ આઠમ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "nishitha",
-                        "karmakala_type_name": "નિશીથ",
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last"
-                    },
-                    "resolution": {
-                        "festival_name": "કૃષ્ણ જન્માષ્ટમી",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "nishitha",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461316.6042813677,
-                        "target_tithi_end_jd": 2461317.5154361986,
-                        "standard_date": "2026-10-03",
-                        "observance_date": "2026-10-03",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Krishna Janmashtami",
-                        "festival_name_localized": "કૃષ્ણ જન્માષ્ટમી",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "નિશીથ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -10633,166 +11036,6 @@
             ],
             "2026-10-10": [
                 {
-                    "name": "પોળા",
-                    "description": "ખેડૂતો અને બળદો માટે આભાર માનતો તહેવાર",
-                    "deity": "શિવ",
-                    "fasting": false,
-                    "regions": [
-                        "મહારાષ્ટ્ર"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "પોળા",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461323.171052495,
-                        "target_tithi_end_jd": 2461324.159802587,
-                        "standard_date": "2026-10-10",
-                        "observance_date": "2026-10-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Pola",
-                        "festival_name_localized": "પોળા",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "કુશોત્પાટિની અમાસ",
-                    "description": "દેવી કુશોત્પાટિનીને સમર્પિત અમાસ",
-                    "deity": "કુશોત્પાટિની",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "કુશોત્પાટિની અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461323.171052495,
-                        "target_tithi_end_jd": 2461324.159802587,
-                        "standard_date": "2026-10-10",
-                        "observance_date": "2026-10-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Kushotpatini Amavasya",
-                        "festival_name_localized": "કુશોત્પાટિની અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "મહાલય અમાસ",
                     "description": "પિતૃ પક્ષનો અંતિમ દિવસ (સર્વપિતૃ અમાસ)",
                     "deity": "પિતૃ",
@@ -11118,86 +11361,6 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
-                },
-                {
-                    "name": "વરાહ જયંતિ",
-                    "description": "ભગવાન વરાહનો પ્રાગટ્ય દિવસ",
-                    "deity": "વિષ્ણુ/વરાહ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "સુદ ત્રીજ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "વરાહ જયંતિ",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461326.1970793577,
-                        "target_tithi_end_jd": 2461327.248798591,
-                        "standard_date": "2026-10-13",
-                        "observance_date": "2026-10-13",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "વરાહ જયંતિ",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
                 }
             ],
             "2026-10-14": [
@@ -11355,86 +11518,6 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "ઋષિ પંચમી",
-                    "description": "સપ્તર્ષિઓની પૂજા",
-                    "deity": "સપ્તર્ષિ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                5
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                5
-                            ],
-                            "names": [
-                                "સુદ પાંચમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "resolution": {
-                        "festival_name": "ઋષિ પંચમી",
-                        "required_tithi": 5,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461328.3221127717,
-                        "target_tithi_end_jd": 2461329.413671471,
-                        "standard_date": "2026-10-15",
-                        "observance_date": "2026-10-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Rishi Panchami",
-                        "festival_name_localized": "ઋષિ પંચમી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -12037,88 +12120,6 @@
                         },
                         "festival_name_key": "Papankusha Ekadashi",
                         "festival_name_localized": "પાપાંકુશા એકાદશી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            ],
-            "2026-10-23": [
-                {
-                    "name": "વામન જયંતિ",
-                    "description": "વામન અવતારનો જન્મ",
-                    "deity": "વામન",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "સુદ બારસ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "વામન જયંતિ",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461335.887915477,
-                        "target_tithi_end_jd": 2461336.879468295,
-                        "standard_date": "2026-10-23",
-                        "observance_date": "2026-10-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Vamana Jayanti",
-                        "festival_name_localized": "વામન જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
@@ -23663,6 +23664,89 @@
                 }
             },
             {
+                "date": "2026-08-31",
+                "festival": {
+                    "name": "કજરી ત્રીજ",
+                    "description": "કજરી ત્રીજ ઉત્સવ",
+                    "deity": "પાર્વતી/શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                18
+                            ],
+                            "names": [
+                                "વદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "કજરી ત્રીજ",
+                        "required_tithi": 3,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461282.671961476,
+                        "target_tithi_end_jd": 2461283.640037153,
+                        "standard_date": "2026-08-31",
+                        "observance_date": "2026-08-31",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kajari Teej",
+                        "festival_name_localized": "કજરી ત્રીજ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-01",
                 "festival": {
                     "name": "ગોગા પાંચમ",
@@ -23744,6 +23828,89 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-01",
+                "festival": {
+                    "name": "બોળ ચોથ",
+                    "description": "ગાયો અને વાછરડાઓની પૂજા (બહુલા ચતુર્થી)",
+                    "deity": "કૃષ્ણ/ગાયો",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "વદ ચોથ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બોળ ચોથ",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-09-01",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "બોળ ચોથ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
             },
@@ -23831,6 +23998,259 @@
                 }
             },
             {
+                "date": "2026-09-02",
+                "festival": {
+                    "name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                    "description": "ભગવાન બલરામનો જન્મોત્સવ; હલધર (હળ ધારણ કરનાર) ની પૂજા",
+                    "deity": "બલરામ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                21
+                            ],
+                            "names": [
+                                "વદ છઠ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                        "required_tithi": 6,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461285.529917606,
+                        "target_tithi_end_jd": 2461286.4559585685,
+                        "standard_date": "2026-09-02",
+                        "observance_date": "2026-09-02",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Balarama Jayanti (Hala Shashthi)",
+                        "festival_name_localized": "બલરામ જયંતિ (હલ ષષ્ઠી)",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-03",
+                "festival": {
+                    "name": "શીતળા સાતમ",
+                    "description": "શીતળા માતાનું પર્વ, જે ગુજરાતમાં શીતળા સાતમ તરીકે ઓળખાય છે, આરોગ્ય માટેની પ્રાર્થના અને ટાઢું ભોજન આરોગવાથી ઉજવાય છે",
+                    "deity": "શીતળા માતા",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શીતળા સપ્તમી"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                22
+                            ],
+                            "names": [
+                                "વદ સાતમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "શીતળા સાતમ",
+                        "required_tithi": 7,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461286.4559585685,
+                        "target_tithi_end_jd": 2461287.3721646657,
+                        "standard_date": "2026-09-03",
+                        "observance_date": "2026-09-03",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Sheetala Satam",
+                        "festival_name_localized": "શીતળા સાતમ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-04",
+                "festival": {
+                    "name": "કૃષ્ણ જન્માષ્ટમી",
+                    "description": "ભગવાન કૃષ્ણનો જન્મોત્સવ",
+                    "deity": "કૃષ્ણ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "નિશીથ",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last"
+                    },
+                    "resolution": {
+                        "festival_name": "કૃષ્ણ જન્માષ્ટમી",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721646657,
+                        "target_tithi_end_jd": 2461288.280605573,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
+                        },
+                        "festival_name_key": "Krishna Janmashtami",
+                        "festival_name_localized": "કૃષ્ણ જન્માષ્ટમી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ સૂર્યોદયે",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "લક્ષિત તિથિ સૂર્યોદયે"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-07",
                 "festival": {
                     "name": "અજા એકાદશી",
@@ -23898,6 +24318,172 @@
                         },
                         "festival_name_key": "Aja Ekadashi",
                         "festival_name_localized": "અજા એકાદશી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-11",
+                "festival": {
+                    "name": "પોળા",
+                    "description": "ખેડૂતો અને બળદો માટે આભાર માનતો તહેવાર",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "મહારાષ્ટ્ર"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "પોળા",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.710992572,
+                        "target_tithi_end_jd": 2461294.643762191,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-11",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Pola",
+                        "festival_name_localized": "પોળા",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-11",
+                "festival": {
+                    "name": "કુશોત્પાટિની અમાસ",
+                    "description": "દેવી કુશોત્પાટિનીને સમર્પિત અમાસ",
+                    "deity": "કુશોત્પાટિની",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "કુશોત્પાટિની અમાસ",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.710992572,
+                        "target_tithi_end_jd": 2461294.643762191,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-11",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kushotpatini Amavasya",
+                        "festival_name_localized": "કુશોત્પાટિની અમાસ",
                         "paksha_name": "કૃષ્ણ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
@@ -23983,6 +24569,89 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "હરતાલિકા ત્રીજ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-14",
+                "festival": {
+                    "name": "વરાહ જયંતિ",
+                    "description": "ભગવાન વરાહનો પ્રાગટ્ય દિવસ",
+                    "deity": "વિષ્ણુ/વરાહ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વરાહ જયંતિ",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-14",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "વરાહ જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
@@ -24158,6 +24827,90 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-15",
+                "festival": {
+                    "name": "ઋષિ પંચમી",
+                    "description": "સપ્તર્ષિઓની પૂજા",
+                    "deity": "સપ્તર્ષિ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 5 સૂર્યોદયે 2026-09-16 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-15 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                5
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                5
+                            ],
+                            "names": [
+                                "સુદ પાંચમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "resolution": {
+                        "festival_name": "ઋષિ પંચમી",
+                        "required_tithi": 5,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461298.593562887,
+                        "target_tithi_end_jd": 2461299.645763551,
+                        "standard_date": "2026-09-16",
+                        "observance_date": "2026-09-15",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 5 સૂર્યોદયે 2026-09-16 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-15 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Rishi Panchami",
+                        "festival_name_localized": "ઋષિ પંચમી",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -24702,6 +25455,89 @@
                 }
             },
             {
+                "date": "2026-09-23",
+                "festival": {
+                    "name": "વામન જયંતિ",
+                    "description": "વામન અવતારનો જન્મ",
+                    "deity": "વામન",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                12
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                12
+                            ],
+                            "names": [
+                                "સુદ બારસ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વામન જયંતિ",
+                        "required_tithi": 12,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461306.1762659717,
+                        "target_tithi_end_jd": 2461307.2229331536,
+                        "standard_date": "2026-09-23",
+                        "observance_date": "2026-09-23",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Vamana Jayanti",
+                        "festival_name_localized": "વામન જયંતિ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-25",
                 "festival": {
                     "name": "અનંત ચતુર્દશી",
@@ -24858,425 +25694,6 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-29",
-                "festival": {
-                    "name": "કજરી ત્રીજ",
-                    "description": "કજરી ત્રીજ ઉત્સવ",
-                    "deity": "પાર્વતી/શિવ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                18
-                            ],
-                            "names": [
-                                "વદ ત્રીજ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "કજરી ત્રીજ",
-                        "required_tithi": 3,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461312.072294552,
-                        "target_tithi_end_jd": 2461312.986619668,
-                        "standard_date": "2026-09-29",
-                        "observance_date": "2026-09-29",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Kajari Teej",
-                        "festival_name_localized": "કજરી ત્રીજ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-30",
-                "festival": {
-                    "name": "બોળ ચોથ",
-                    "description": "ગાયો અને વાછરડાઓની પૂજા (બહુલા ચતુર્થી)",
-                    "deity": "કૃષ્ણ/ગાયો",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "વદ ચોથ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "બોળ ચોથ",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461312.986619668,
-                        "target_tithi_end_jd": 2461313.892959547,
-                        "standard_date": "2026-09-30",
-                        "observance_date": "2026-09-30",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "બોળ ચોથ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-02",
-                "festival": {
-                    "name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                    "description": "ભગવાન બલરામનો જન્મોત્સવ; હલધર (હળ ધારણ કરનાર) ની પૂજા",
-                    "deity": "બલરામ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                6
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                21
-                            ],
-                            "names": [
-                                "વદ છઠ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                        "required_tithi": 6,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461314.79565667,
-                        "target_tithi_end_jd": 2461315.698435613,
-                        "standard_date": "2026-10-02",
-                        "observance_date": "2026-10-02",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Balarama Jayanti (Hala Shashthi)",
-                        "festival_name_localized": "બલરામ જયંતિ (હલ ષષ્ઠી)",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-03",
-                "festival": {
-                    "name": "શીતળા સાતમ",
-                    "description": "શીતળા માતાનું પર્વ, જે ગુજરાતમાં શીતળા સાતમ તરીકે ઓળખાય છે, આરોગ્ય માટેની પ્રાર્થના અને ટાઢું ભોજન આરોગવાથી ઉજવાય છે",
-                    "deity": "શીતળા માતા",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "શીતળા સપ્તમી"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                7
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                22
-                            ],
-                            "names": [
-                                "વદ સાતમ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "શીતળા સાતમ",
-                        "required_tithi": 7,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461315.698435613,
-                        "target_tithi_end_jd": 2461316.6042813677,
-                        "standard_date": "2026-10-03",
-                        "observance_date": "2026-10-03",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Sheetala Satam",
-                        "festival_name_localized": "શીતળા સાતમ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-03",
-                "festival": {
-                    "name": "કૃષ્ણ જન્માષ્ટમી",
-                    "description": "ભગવાન કૃષ્ણનો જન્મોત્સવ",
-                    "deity": "કૃષ્ણ",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "વદ આઠમ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "nishitha",
-                        "karmakala_type_name": "નિશીથ",
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last"
-                    },
-                    "resolution": {
-                        "festival_name": "કૃષ્ણ જન્માષ્ટમી",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "nishitha",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461316.6042813677,
-                        "target_tithi_end_jd": 2461317.5154361986,
-                        "standard_date": "2026-10-03",
-                        "observance_date": "2026-10-03",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Krishna Janmashtami",
-                        "festival_name_localized": "કૃષ્ણ જન્માષ્ટમી",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "નિશીથ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -25592,172 +26009,6 @@
                         "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
                         "parent_festival_key": "Mota Yaksh Fair (Jakh Bahotera)",
                         "parent_festival_name": "મોટા યક્ષનો મેળો (જખ બહોતેરા)"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-10",
-                "festival": {
-                    "name": "પોળા",
-                    "description": "ખેડૂતો અને બળદો માટે આભાર માનતો તહેવાર",
-                    "deity": "શિવ",
-                    "fasting": false,
-                    "regions": [
-                        "મહારાષ્ટ્ર"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "પોળા",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461323.171052495,
-                        "target_tithi_end_jd": 2461324.159802587,
-                        "standard_date": "2026-10-10",
-                        "observance_date": "2026-10-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Pola",
-                        "festival_name_localized": "પોળા",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-10",
-                "festival": {
-                    "name": "કુશોત્પાટિની અમાસ",
-                    "description": "દેવી કુશોત્પાટિનીને સમર્પિત અમાસ",
-                    "deity": "કુશોત્પાટિની",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "કુશોત્પાટિની અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461323.171052495,
-                        "target_tithi_end_jd": 2461324.159802587,
-                        "standard_date": "2026-10-10",
-                        "observance_date": "2026-10-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Kushotpatini Amavasya",
-                        "festival_name_localized": "કુશોત્પાટિની અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
             },
@@ -26095,89 +26346,6 @@
                 }
             },
             {
-                "date": "2026-10-13",
-                "festival": {
-                    "name": "વરાહ જયંતિ",
-                    "description": "ભગવાન વરાહનો પ્રાગટ્ય દિવસ",
-                    "deity": "વિષ્ણુ/વરાહ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "સુદ ત્રીજ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "વરાહ જયંતિ",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461326.1970793577,
-                        "target_tithi_end_jd": 2461327.248798591,
-                        "standard_date": "2026-10-13",
-                        "observance_date": "2026-10-13",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "વરાહ જયંતિ",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
                 "date": "2026-10-14",
                 "festival": {
                     "name": "આસો શરદ નવરાત્રિ દિવસ 4 (કૂષ્માંડા પૂજા)",
@@ -26334,89 +26502,6 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-15",
-                "festival": {
-                    "name": "ઋષિ પંચમી",
-                    "description": "સપ્તર્ષિઓની પૂજા",
-                    "deity": "સપ્તર્ષિ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                5
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                5
-                            ],
-                            "names": [
-                                "સુદ પાંચમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "resolution": {
-                        "festival_name": "ઋષિ પંચમી",
-                        "required_tithi": 5,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461328.3221127717,
-                        "target_tithi_end_jd": 2461329.413671471,
-                        "standard_date": "2026-10-15",
-                        "observance_date": "2026-10-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Rishi Panchami",
-                        "festival_name_localized": "ઋષિ પંચમી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -27031,89 +27116,6 @@
                         },
                         "festival_name_key": "Papankusha Ekadashi",
                         "festival_name_localized": "પાપાંકુશા એકાદશી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-23",
-                "festival": {
-                    "name": "વામન જયંતિ",
-                    "description": "વામન અવતારનો જન્મ",
-                    "deity": "વામન",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                12
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                12
-                            ],
-                            "names": [
-                                "સુદ બારસ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "આસો",
-                            "value_key": "Ashvina",
-                            "name": "આસો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "વામન જયંતિ",
-                        "required_tithi": 12,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461335.887915477,
-                        "target_tithi_end_jd": 2461336.879468295,
-                        "standard_date": "2026-10-23",
-                        "observance_date": "2026-10-23",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Vamana Jayanti",
-                        "festival_name_localized": "વામન જયંતિ",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },
