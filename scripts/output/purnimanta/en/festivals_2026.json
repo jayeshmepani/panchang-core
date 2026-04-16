@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:29:21+00:00",
+        "generated_at": "2026-04-16T07:34:34+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -17,8 +17,8 @@
         "title": "Festivals 2026 - All festivals for the entire year",
         "year": 2026,
         "calendar_type": "purnimanta",
-        "festival_day_count": 147,
-        "festival_entry_count": 194,
+        "festival_day_count": 149,
+        "festival_entry_count": 195,
         "by_date": {
             "2026-01-03": [
                 {
@@ -8671,6 +8671,88 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Bol Choth",
+                    "description": "Worship of cows and calves (Bahula Chaturthi)",
+                    "deity": "Krishna/Cows",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Krishna Chaturthi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Bol Choth",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "Bol Choth",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-09-01": [
@@ -8754,86 +8836,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
-                    }
-                },
-                {
-                    "name": "Bol Choth",
-                    "description": "Worship of cows and calves (Bahula Chaturthi)",
-                    "deity": "Krishna/Cows",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "Krishna Chaturthi"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Bol Choth",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "Bol Choth",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -9411,6 +9413,90 @@
                     }
                 }
             ],
+            "2026-09-13": [
+                {
+                    "name": "Varaha Jayanti",
+                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
+                    "deity": "Vishnu/Varaha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Varaha Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "Varaha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-09-14": [
                 {
                     "name": "Hartalika Teej",
@@ -9480,86 +9566,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "Hartalika Teej",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Varaha Jayanti",
-                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
-                    "deity": "Vishnu/Varaha",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "Shukla Tritiya"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Varaha Jayanti",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "Varaha Jayanti",
                         "paksha_name": "Shukla Paksha (waxing)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -10497,6 +10503,88 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-09-26": [
+                {
+                    "name": "Purnima Shraddha",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Purnima"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "resolution": {
+                        "festival_name": "Purnima Shraddha",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "Purnima Shraddha",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
@@ -23576,6 +23664,91 @@
                 }
             },
             {
+                "date": "2026-08-31",
+                "festival": {
+                    "name": "Bol Choth",
+                    "description": "Worship of cows and calves (Bahula Chaturthi)",
+                    "deity": "Krishna/Cows",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Krishna Chaturthi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Bol Choth",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "Bol Choth",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-01",
                 "festival": {
                     "name": "Goga Pancham",
@@ -23657,89 +23830,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-01",
-                "festival": {
-                    "name": "Bol Choth",
-                    "description": "Worship of cows and calves (Bahula Chaturthi)",
-                    "deity": "Krishna/Cows",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "Krishna Chaturthi"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Bol Choth",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "Bol Choth",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -24329,6 +24419,91 @@
                 }
             },
             {
+                "date": "2026-09-13",
+                "festival": {
+                    "name": "Varaha Jayanti",
+                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
+                    "deity": "Vishnu/Varaha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Varaha Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "Varaha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-14",
                 "festival": {
                     "name": "Hartalika Teej",
@@ -24398,89 +24573,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "Hartalika Teej",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-14",
-                "festival": {
-                    "name": "Varaha Jayanti",
-                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
-                    "deity": "Vishnu/Varaha",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "Shukla Tritiya"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Varaha Jayanti",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "Varaha Jayanti",
                         "paksha_name": "Shukla Paksha (waxing)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -25440,6 +25532,89 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-26",
+                "festival": {
+                    "name": "Purnima Shraddha",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Purnima"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "resolution": {
+                        "festival_name": "Purnima Shraddha",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "Purnima Shraddha",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",

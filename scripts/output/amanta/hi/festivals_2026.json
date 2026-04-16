@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:24:54+00:00",
+        "generated_at": "2026-04-16T07:31:35+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -17,8 +17,8 @@
         "title": "उत्सव 2026 - पूरे वर्ष के सभी उत्सव",
         "year": 2026,
         "calendar_type": "amanta",
-        "festival_day_count": 146,
-        "festival_entry_count": 195,
+        "festival_day_count": 148,
+        "festival_entry_count": 196,
         "by_date": {
             "2026-01-03": [
                 {
@@ -8724,6 +8724,88 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "बोल चौथ",
+                    "description": "गायों और बछड़ों की पूजा (बहुला चतुर्थी)",
+                    "deity": "कृष्ण/गाएं",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 4 सूर्योदय पर 2026-09-01 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-08-31 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "कृष्ण चतुर्थी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "श्रावण",
+                            "value_key": "Shravana",
+                            "name": "श्रावण"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "प्रदोष",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "बोल चौथ",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 4 सूर्योदय पर 2026-09-01 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-08-31 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "बोल चौथ",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "प्रदोष"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
                 }
             ],
             "2026-09-01": [
@@ -8807,86 +8889,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "लक्षित तिथि पालन दिवस में"
-                    }
-                },
-                {
-                    "name": "बोल चौथ",
-                    "description": "गायों और बछड़ों की पूजा (बहुला चतुर्थी)",
-                    "deity": "कृष्ण/गाएं",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "कृष्ण चतुर्थी"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "श्रावण",
-                            "value_key": "Shravana",
-                            "name": "श्रावण"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "बोल चौथ",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "बोल चौथ",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -9492,6 +9494,90 @@
                     }
                 }
             ],
+            "2026-09-13": [
+                {
+                    "name": "वराह जयंती",
+                    "description": "भगवान वराह का प्राकट्य दिवस",
+                    "deity": "विष्णु/वराह",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "शुक्ल तृतीया"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "वराह जयंती",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "वराह जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "2026-09-14": [
                 {
                     "name": "हरतालिका तीज",
@@ -9561,86 +9647,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "हरतालिका तीज",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "वराह जयंती",
-                    "description": "भगवान वराह का प्राकट्य दिवस",
-                    "deity": "विष्णु/वराह",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "शुक्ल तृतीया"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "वराह जयंती",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "वराह जयंती",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -10578,6 +10584,88 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
+            "2026-09-26": [
+                {
+                    "name": "पूर्णिमा श्राद्ध",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "resolution": {
+                        "festival_name": "पूर्णिमा श्राद्ध",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "पूर्णिमा श्राद्ध",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
@@ -23712,6 +23800,91 @@
                 }
             },
             {
+                "date": "2026-08-31",
+                "festival": {
+                    "name": "बोल चौथ",
+                    "description": "गायों और बछड़ों की पूजा (बहुला चतुर्थी)",
+                    "deity": "कृष्ण/गाएं",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 4 सूर्योदय पर 2026-09-01 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-08-31 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "कृष्ण चतुर्थी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "श्रावण",
+                            "value_key": "Shravana",
+                            "name": "श्रावण"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "प्रदोष",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "बोल चौथ",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 4 सूर्योदय पर 2026-09-01 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-08-31 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "बोल चौथ",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "प्रदोष"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-01",
                 "festival": {
                     "name": "गोगा पंचम",
@@ -23793,89 +23966,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "लक्षित तिथि पालन दिवस में"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-01",
-                "festival": {
-                    "name": "बोल चौथ",
-                    "description": "गायों और बछड़ों की पूजा (बहुला चतुर्थी)",
-                    "deity": "कृष्ण/गाएं",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "कृष्ण चतुर्थी"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "श्रावण",
-                            "value_key": "Shravana",
-                            "name": "श्रावण"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "बोल चौथ",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "बोल चौथ",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             },
@@ -24496,6 +24586,91 @@
                 }
             },
             {
+                "date": "2026-09-13",
+                "festival": {
+                    "name": "वराह जयंती",
+                    "description": "भगवान वराह का प्राकट्य दिवस",
+                    "deity": "विष्णु/वराह",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "शुक्ल तृतीया"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "वराह जयंती",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "वराह जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-14",
                 "festival": {
                     "name": "हरतालिका तीज",
@@ -24565,89 +24740,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "हरतालिका तीज",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-14",
-                "festival": {
-                    "name": "वराह जयंती",
-                    "description": "भगवान वराह का प्राकट्य दिवस",
-                    "deity": "विष्णु/वराह",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "शुक्ल तृतीया"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "वराह जयंती",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "वराह जयंती",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -25607,6 +25699,89 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-26",
+                "festival": {
+                    "name": "पूर्णिमा श्राद्ध",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "resolution": {
+                        "festival_name": "पूर्णिमा श्राद्ध",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "पूर्णिमा श्राद्ध",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",

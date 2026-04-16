@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:24:11+00:00",
+        "generated_at": "2026-04-16T07:30:49+00:00",
         "type": "combined_output",
         "calendar_type": "amanta",
         "location": {
@@ -16,8 +16,8 @@
         "title": "Festivals 2026 - All festivals for the entire year",
         "year": 2026,
         "calendar_type": "amanta",
-        "festival_day_count": 145,
-        "festival_entry_count": 194,
+        "festival_day_count": 147,
+        "festival_entry_count": 195,
         "by_date": {
             "2026-01-03": [
                 {
@@ -8638,6 +8638,88 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Bol Choth",
+                    "description": "Worship of cows and calves (Bahula Chaturthi)",
+                    "deity": "Krishna/Cows",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Krishna Chaturthi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Bol Choth",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "Bol Choth",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-09-01": [
@@ -8721,86 +8803,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
-                    }
-                },
-                {
-                    "name": "Bol Choth",
-                    "description": "Worship of cows and calves (Bahula Chaturthi)",
-                    "deity": "Krishna/Cows",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "Krishna Chaturthi"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Shravana",
-                            "value_key": "Shravana",
-                            "name": "Shravana"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Bol Choth",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "Bol Choth",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -9406,6 +9408,90 @@
                     }
                 }
             ],
+            "2026-09-13": [
+                {
+                    "name": "Varaha Jayanti",
+                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
+                    "deity": "Vishnu/Varaha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Varaha Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "Varaha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-09-14": [
                 {
                     "name": "Hartalika Teej",
@@ -9475,86 +9561,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "Hartalika Teej",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Varaha Jayanti",
-                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
-                    "deity": "Vishnu/Varaha",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "Shukla Tritiya"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Varaha Jayanti",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "Varaha Jayanti",
                         "paksha_name": "Shukla Paksha (waxing)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -10492,6 +10498,88 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-09-26": [
+                {
+                    "name": "Purnima Shraddha",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Purnima"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "resolution": {
+                        "festival_name": "Purnima Shraddha",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "Purnima Shraddha",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
@@ -23540,6 +23628,91 @@
                 }
             },
             {
+                "date": "2026-08-31",
+                "festival": {
+                    "name": "Bol Choth",
+                    "description": "Worship of cows and calves (Bahula Chaturthi)",
+                    "deity": "Krishna/Cows",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Krishna Chaturthi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Bol Choth",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461283.640037153,
+                        "target_tithi_end_jd": 2461284.59197954,
+                        "standard_date": "2026-09-01",
+                        "observance_date": "2026-08-31",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 4 falls on 2026-09-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-08-31.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Bol Choth",
+                        "festival_name_localized": "Bol Choth",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-01",
                 "festival": {
                     "name": "Goga Pancham",
@@ -23621,89 +23794,6 @@
                         "winning_score": 300,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-01",
-                "festival": {
-                    "name": "Bol Choth",
-                    "description": "Worship of cows and calves (Bahula Chaturthi)",
-                    "deity": "Krishna/Cows",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "Krishna Chaturthi"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Shravana",
-                            "value_key": "Shravana",
-                            "name": "Shravana"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Bol Choth",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461283.640037153,
-                        "target_tithi_end_jd": 2461284.59197954,
-                        "standard_date": "2026-09-01",
-                        "observance_date": "2026-09-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Bol Choth",
-                        "festival_name_localized": "Bol Choth",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -24324,6 +24414,91 @@
                 }
             },
             {
+                "date": "2026-09-13",
+                "festival": {
+                    "name": "Varaha Jayanti",
+                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
+                    "deity": "Vishnu/Varaha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Varaha Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461296.568704117,
+                        "target_tithi_end_jd": 2461297.567691829,
+                        "standard_date": "2026-09-14",
+                        "observance_date": "2026-09-13",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring aparahna presence, it is celebrated on 2026-09-13.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Varaha Jayanti",
+                        "festival_name_localized": "Varaha Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
                 "date": "2026-09-14",
                 "festival": {
                     "name": "Hartalika Teej",
@@ -24393,89 +24568,6 @@
                         },
                         "festival_name_key": "Hartalika Teej",
                         "festival_name_localized": "Hartalika Teej",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-14",
-                "festival": {
-                    "name": "Varaha Jayanti",
-                    "description": "Appearance day of Lord Varaha (Boar Avatar)",
-                    "deity": "Vishnu/Varaha",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                3
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                3
-                            ],
-                            "names": [
-                                "Shukla Tritiya"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Varaha Jayanti",
-                        "required_tithi": 3,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461296.568704117,
-                        "target_tithi_end_jd": 2461297.567691829,
-                        "standard_date": "2026-09-14",
-                        "observance_date": "2026-09-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Varaha Jayanti",
-                        "festival_name_localized": "Varaha Jayanti",
                         "paksha_name": "Shukla Paksha (waxing)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -25435,6 +25527,89 @@
                     "rules_applied": {
                         "strict_karmakala": false,
                         "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-09-26",
+                "festival": {
+                    "name": "Purnima Shraddha",
+                    "description": "Shraddha rituals for those who passed away on Purnima Tithi; start of the ancestor worship period",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Purnima"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "resolution": {
+                        "festival_name": "Purnima Shraddha",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461309.234234146,
+                        "target_tithi_end_jd": 2461310.2007073546,
+                        "standard_date": "2026-09-26",
+                        "observance_date": "2026-09-26",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Purnima Shraddha",
+                        "festival_name_localized": "Purnima Shraddha",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "aparahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
@@ -33173,7 +33348,7 @@
     },
     "todays_complete_details": {
         "title": "Today's Complete Details - Every single data point from the package",
-        "input_now": "2026-04-16T11:54:11+05:30",
+        "input_now": "2026-04-16T13:00:48+05:30",
         "date": "2026-04-16",
         "details": {
             "Display_Settings": {
@@ -33263,7 +33438,7 @@
             "Is_Vishti_Karana": true,
             "Sunrise": "06:30:03 AM",
             "Sunset": "07:12:33 PM",
-            "Ishtkaal": "13:30:17",
+            "Ishtkaal": "16:16:50",
             "sun_sunrise_lon": 1.8350740268693744,
             "moon_sunrise_lon": 342.21253795731513,
             "sunrise_hm": [
@@ -33272,9 +33447,9 @@
             ],
             "sunrise_dt": "16/04/2026 06:30:03 AM",
             "Ayanamsa": "LAHIRI (Chitra Paksha)",
-            "Ayanamsa_Degree": 24.22433034042581,
-            "Ayanamsa_At": "16/04/2026 11:54:11 AM",
-            "Ayanamsa_JD": 2461146.7667939817,
+            "Ayanamsa_Degree": 24.224332109890668,
+            "Ayanamsa_At": "16/04/2026 01:00:48 PM",
+            "Ayanamsa_JD": 2461146.8130555553,
             "Day_Types": {
                 "civil_day_start": "16/04/2026 12:00:00 AM",
                 "civil_day_end": "17/04/2026 12:00:00 AM",
@@ -33351,7 +33526,7 @@
                     "timestamp": 1776343227,
                     "display_iso": "16/04/2026 06:10:27 PM"
                 },
-                "Ishtkaal": "13:30:17",
+                "Ishtkaal": "16:16:50",
                 "sun_sunrise_lon": 1.8350740268693744,
                 "moon_sunrise_lon": 342.21253795731513,
                 "sunrise_hm": [
@@ -33364,7 +33539,7 @@
                 "nakshatra_end_dt": "16/04/2026 01:59:01 PM",
                 "yoga_end_dt": "16/04/2026 10:37:33 AM",
                 "karana_end_dt": "16/04/2026 09:26:07 AM",
-                "Ishtkaal_iso": "16/04/2026 01:30:17 PM"
+                "Ishtkaal_iso": "16/04/2026 04:16:50 PM"
             },
             "Hindu_Calendar": {
                 "Ayana": "Uttarayana",
@@ -33400,23 +33575,23 @@
                 }
             ],
             "Panchaka_Rahita": {
-                "sum": 63,
-                "remainder": 0,
-                "panchaka_name": "Nish-Panchaka",
-                "is_auspicious": true
+                "sum": 64,
+                "remainder": 1,
+                "panchaka_name": "Mrityu Panchaka",
+                "is_auspicious": false
             },
             "Hora": {
-                "hora_number": 6,
+                "hora_number": 7,
                 "is_day_hora": true,
-                "ruler": "Moon",
+                "ruler": "Saturn",
                 "hora_duration_seconds": 3812.5,
                 "hora_duration_minutes": "1h 3m 32.5s"
             },
             "Chogadiya": {
                 "mode": "Day",
-                "division": 4,
-                "name": "Chal",
-                "is_auspicious": false,
+                "division": 5,
+                "name": "Labh",
+                "is_auspicious": true,
                 "division_duration_minutes": "1h 35m 18.75s"
             },
             "Chogadiya_Duration": {
@@ -35146,12 +35321,12 @@
                 "sunset_iso": "16/04/2026 07:12:33 PM"
             },
             "Lagna": {
-                "lagna_longitude_nirayana": 84.42732137717017,
-                "lagna_longitude_sayana": 108.65165171759598,
-                "sign_index": 2,
-                "sign_name": "Mithuna",
-                "degree_in_sign": 24.427321377170173,
-                "ayanamsa_applied": 24.22433034042581
+                "lagna_longitude_nirayana": 99.02408694307994,
+                "lagna_longitude_sayana": 123.2484190529706,
+                "sign_index": 3,
+                "sign_name": "Karka",
+                "degree_in_sign": 9.024086943079936,
+                "ayanamsa_applied": 24.224332109890668
             },
             "Lagna_Full_Day": [
                 {
@@ -35161,10 +35336,10 @@
                     "start": "06:30:03 AM",
                     "start_iso": "16/04/2026 06:30:03 AM",
                     "start_jd": 2461146.541701389,
-                    "end_jd": 2461146.609724407,
+                    "end_jd": 2461146.6097244113,
                     "end": "08:08:00 AM",
                     "end_iso": "16/04/2026 08:08:00 AM",
-                    "duration_minutes": 97.95314602553844,
+                    "duration_minutes": 97.95315206050873,
                     "is_day_lagna": true
                 },
                 {
@@ -35173,11 +35348,11 @@
                     "sign_index": 1,
                     "start": "08:08:00 AM",
                     "start_iso": "16/04/2026 08:08:00 AM",
-                    "start_jd": 2461146.609724407,
-                    "end_jd": 2461146.6917459276,
+                    "start_jd": 2461146.6097244113,
+                    "end_jd": 2461146.6917459327,
                     "end": "10:06:06 AM",
                     "end_iso": "16/04/2026 10:06:06 AM",
-                    "duration_minutes": 118.11098948121071,
+                    "duration_minutes": 118.11099082231522,
                     "is_day_lagna": true
                 },
                 {
@@ -35186,11 +35361,11 @@
                     "sign_index": 2,
                     "start": "10:06:06 AM",
                     "start_iso": "16/04/2026 10:06:06 AM",
-                    "start_jd": 2461146.6917459276,
-                    "end_jd": 2461146.7844256368,
+                    "start_jd": 2461146.6917459327,
+                    "end_jd": 2461146.7844256423,
                     "end": "12:19:34 PM",
                     "end_iso": "16/04/2026 12:19:34 PM",
-                    "duration_minutes": 133.4587812423706,
+                    "duration_minutes": 133.45878191292286,
                     "is_day_lagna": true
                 },
                 {
@@ -35199,8 +35374,8 @@
                     "sign_index": 3,
                     "start": "12:19:34 PM",
                     "start_iso": "16/04/2026 12:19:34 PM",
-                    "start_jd": 2461146.7844256368,
-                    "end_jd": 2461146.8789949478,
+                    "start_jd": 2461146.7844256423,
+                    "end_jd": 2461146.8789949534,
                     "end": "02:35:45 PM",
                     "end_iso": "16/04/2026 02:35:45 PM",
                     "duration_minutes": 136.17980785667896,
@@ -35212,8 +35387,8 @@
                     "sign_index": 4,
                     "start": "02:35:45 PM",
                     "start_iso": "16/04/2026 02:35:45 PM",
-                    "start_jd": 2461146.8789949478,
-                    "end_jd": 2461146.970623744,
+                    "start_jd": 2461146.8789949534,
+                    "end_jd": 2461146.97062375,
                     "end": "04:47:41 PM",
                     "end_iso": "16/04/2026 04:47:41 PM",
                     "duration_minutes": 131.94546684622765,
@@ -35225,11 +35400,11 @@
                     "sign_index": 5,
                     "start": "04:47:41 PM",
                     "start_iso": "16/04/2026 04:47:41 PM",
-                    "start_jd": 2461146.970623744,
-                    "end_jd": 2461147.0614695833,
+                    "start_jd": 2461146.97062375,
+                    "end_jd": 2461147.0614695884,
                     "end": "06:58:30 PM",
                     "end_iso": "16/04/2026 06:58:30 PM",
-                    "duration_minutes": 130.8180083334446,
+                    "duration_minutes": 130.81800766289234,
                     "is_day_lagna": true
                 },
                 {
@@ -35238,11 +35413,11 @@
                     "sign_index": 6,
                     "start": "06:58:30 PM",
                     "start_iso": "16/04/2026 06:58:30 PM",
-                    "start_jd": 2461147.0614695833,
-                    "end_jd": 2461147.155020847,
+                    "start_jd": 2461147.0614695884,
+                    "end_jd": 2461147.1550208526,
                     "end": "09:13:13 PM",
                     "end_iso": "16/04/2026 09:13:13 PM",
-                    "duration_minutes": 134.71381969749928,
+                    "duration_minutes": 134.71382036805153,
                     "is_day_lagna": true
                 },
                 {
@@ -35251,11 +35426,11 @@
                     "sign_index": 7,
                     "start": "09:13:13 PM",
                     "start_iso": "16/04/2026 09:13:13 PM",
-                    "start_jd": 2461147.155020847,
-                    "end_jd": 2461147.24948444,
+                    "start_jd": 2461147.1550208526,
+                    "end_jd": 2461147.249484445,
                     "end": "11:29:15 PM",
                     "end_iso": "16/04/2026 11:29:15 PM",
-                    "duration_minutes": 136.0275737196207,
+                    "duration_minutes": 136.02757304906845,
                     "is_day_lagna": false
                 },
                 {
@@ -35264,11 +35439,11 @@
                     "sign_index": 8,
                     "start": "11:29:15 PM",
                     "start_iso": "16/04/2026 11:29:15 PM",
-                    "start_jd": 2461147.24948444,
-                    "end_jd": 2461147.3363908823,
+                    "start_jd": 2461147.249484445,
+                    "end_jd": 2461147.336390887,
                     "end": "01:34:24 AM",
                     "end_iso": "17/04/2026 01:34:24 AM",
-                    "duration_minutes": 125.14527708292007,
+                    "duration_minutes": 125.14527641236782,
                     "is_day_lagna": false
                 },
                 {
@@ -35277,11 +35452,11 @@
                     "sign_index": 9,
                     "start": "01:34:24 AM",
                     "start_iso": "17/04/2026 01:34:24 AM",
-                    "start_jd": 2461147.3363908823,
-                    "end_jd": 2461147.410291018,
+                    "start_jd": 2461147.336390887,
+                    "end_jd": 2461147.410291022,
                     "end": "03:20:49 AM",
                     "end_iso": "17/04/2026 03:20:49 AM",
-                    "duration_minutes": 106.4161954075098,
+                    "duration_minutes": 106.41619473695755,
                     "is_day_lagna": false
                 },
                 {
@@ -35290,11 +35465,11 @@
                     "sign_index": 10,
                     "start": "03:20:49 AM",
                     "start_iso": "17/04/2026 03:20:49 AM",
-                    "start_jd": 2461147.410291018,
-                    "end_jd": 2461147.474721676,
+                    "start_jd": 2461147.410291022,
+                    "end_jd": 2461147.47472168,
                     "end": "04:53:35 AM",
                     "end_iso": "17/04/2026 04:53:35 AM",
-                    "duration_minutes": 92.78014786541462,
+                    "duration_minutes": 92.78014719486237,
                     "is_day_lagna": false
                 },
                 {
@@ -35303,11 +35478,11 @@
                     "sign_index": 11,
                     "start": "04:53:35 AM",
                     "start_iso": "17/04/2026 04:53:35 AM",
-                    "start_jd": 2461147.474721676,
+                    "start_jd": 2461147.47472168,
                     "end_jd": 2461147.541701389,
                     "end": "06:30:03 AM",
                     "end_iso": "17/04/2026 06:30:03 AM",
-                    "duration_minutes": 96.45078644156456,
+                    "duration_minutes": 96.45078107714653,
                     "is_day_lagna": false
                 }
             ],
@@ -35353,7 +35528,7 @@
             "Dharma_Sindhu": [],
             "Sunrise_iso": "16/04/2026 06:30:03 AM",
             "Sunset_iso": "16/04/2026 07:12:33 PM",
-            "Ishtkaal_iso": "17/04/2026 01:30:17 PM"
+            "Ishtkaal_iso": "17/04/2026 04:16:50 PM"
         }
     },
     "muhurta_evaluation": {
@@ -35363,7 +35538,7 @@
             "Evaluation is derived only from current Panchang and transit state for the configured location/time."
         ],
         "title": "Complete Muhurta Evaluation - Centralized package output",
-        "input_now": "16/04/2026 11:54:11 AM",
+        "input_now": "16/04/2026 01:00:48 PM",
         "date": "2026-04-16",
         "input_parameters": {
             "tithi_number": 29,
@@ -35377,8 +35552,8 @@
             "nakshatra_number": 26,
             "nakshatra_name": "Uttara Bhadrapada",
             "nakshatra_number_base": 1,
-            "lagna_number": 3,
-            "lagna_name": "Mithuna",
+            "lagna_number": 4,
+            "lagna_name": "Karka",
             "lagna_number_base": 1,
             "moon_sign_idx": 11,
             "moon_sign_name": "Meena",
@@ -35395,9 +35570,9 @@
             "next_sunrise": "06:30:03 AM",
             "next_sunrise_iso": "17/04/2026 06:30:03 AM",
             "next_sunrise_decimal_hours": 30.500833333333333,
-            "current_time": "11:54:11 AM",
-            "current_time_iso": "16/04/2026 11:54:11 AM",
-            "current_time_decimal_hours": 11.903055555555556
+            "current_time": "01:00:48 PM",
+            "current_time_iso": "16/04/2026 01:00:48 PM",
+            "current_time_decimal_hours": 13.013333333333334
         },
         "evaluation_results": {
             "panchaka_dosha": {
@@ -35411,17 +35586,17 @@
                 "nakshatra": 26,
                 "nakshatra_name": "Uttara Bhadrapada",
                 "nakshatra_number_base": 1,
-                "lagna": 3,
-                "lagna_name": "Mithuna",
+                "lagna": 4,
+                "lagna_name": "Karka",
                 "lagna_number_base": 1,
-                "sum": 64,
-                "remainder": 1,
-                "panchaka_name": "Mrityu",
-                "panchaka_english": "Death",
-                "severity": "critical",
+                "sum": 65,
+                "remainder": 2,
+                "panchaka_name": "Agni",
+                "panchaka_english": "Fire",
+                "severity": "high",
                 "has_dosha": true,
                 "is_panchaka_rahita": false,
-                "description": "Mrityu - Inauspicious"
+                "description": "Agni - Inauspicious"
             },
             "dagdha_tithi": {
                 "source": "Muhurta Chintamani",
@@ -35521,15 +35696,15 @@
                 "sunset": 19.20916666666667,
                 "vara_number": 4,
                 "vara_name": "Thursday",
-                "current_time": 11.903055555555556,
+                "current_time": 13.013333333333334,
                 "abhijit_start": 12.43138888888889,
                 "abhijit_end": 13.278611111111111,
                 "abhijit_duration_minutes": 50.83333333333334,
                 "muhurta_number": "8th of 15 (Abhijit)",
-                "is_in_abhijit": false,
+                "is_in_abhijit": true,
                 "is_wednesday": false,
-                "has_cancellation_power": false,
-                "cancellation_note": "Not in Abhijit Muhurta",
+                "has_cancellation_power": true,
+                "cancellation_note": "Abhijit Muhurta - High Dosha Cancellation Power",
                 "cancellable_doshas": {
                     "rikta_tithi": true,
                     "nakshatra_dosha": true,
@@ -35539,7 +35714,7 @@
                     "varjyam": false,
                     "grahan": false
                 },
-                "description": "Not in Abhijit Muhurta"
+                "description": "Abhijit Muhurta - High Dosha Cancellation Power"
             }
         },
         "rejection_report": {
@@ -35553,9 +35728,9 @@
             "high_severity_rejections": [
                 {
                     "dosha_name": "panchaka_dosha",
-                    "severity": "critical",
+                    "severity": "high",
                     "source": "Rule engine",
-                    "description": "Mrityu - Inauspicious",
+                    "description": "Agni - Inauspicious",
                     "cancellation_possible": false,
                     "cancellation_method": null
                 }
@@ -35565,9 +35740,9 @@
             "detailed_rejections": [
                 {
                     "dosha_name": "panchaka_dosha",
-                    "severity": "critical",
+                    "severity": "high",
                     "source": "Rule engine",
-                    "description": "Mrityu - Inauspicious",
+                    "description": "Agni - Inauspicious",
                     "cancellation_possible": false,
                     "cancellation_method": null
                 }
