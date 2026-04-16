@@ -551,17 +551,6 @@ class FestivalService
             'deity' => 'Buddha/Local Deities',
             'regions' => ['Ladakh', 'Sikkim', 'Arunachal Pradesh', 'Himalayan regions'],
         ],
-        'Sankashti Chaturthi' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 4,
-            'description' => 'Monthly Sankashti fast dedicated to Lord Ganesha',
-            'deity' => 'Ganesha',
-            'regions' => ['Pan-India'],
-            'karmakala_type' => 'sunrise',
-        ],
         'Lakshmi Puja (Deepavali)' =>
         [
             'type' => 'tithi',
