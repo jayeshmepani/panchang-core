@@ -42,7 +42,7 @@ composer require jayeshmepani/panchang-core
 - **PHP 8.3+** (uses typed constants, readonly classes, enums)
 - **Swiss Ephemeris FFI** (`jayeshmepani/swiss-ephemeris-ffi`)
 - **Carbon** (`nesbot/carbon`)
-- **[FFI Extension](#ffi--system-setup)**
+- **[FFI Extension](#%EF%B8%8F-ffi--system-setup)**
 - **[Swiss Ephemeris Data Files](#-ephemeris-files)**
 
 ## ⚙️ FFI & System Setup
