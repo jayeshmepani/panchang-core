@@ -287,6 +287,386 @@ class FestivalService
             'deity' => 'Krishna/Vishnu',
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
         ],
+        'Pohela Boishakh' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'aliases' => ['Pahela Baishakh'],
+            'description' => 'Bengali Solar New Year observed in Bengal tradition',
+            'deity' => 'Surya',
+            'regions' => ['West Bengal', 'Bangladesh', 'Bengali'],
+        ],
+        'Pahela Baishakh' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Alternate naming tradition of Bengali Solar New Year',
+            'deity' => 'Surya',
+            'regions' => ['West Bengal', 'Bangladesh', 'Bengali'],
+        ],
+        'Pana Sankranti' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'aliases' => ['Maha Vishuba Sankranti'],
+            'description' => 'Odia Solar New Year celebrated with pana offerings',
+            'deity' => 'Surya',
+            'regions' => ['Odisha'],
+        ],
+        'Maha Vishuba Sankranti' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Traditional Odia naming for Solar New Year Sankranti',
+            'deity' => 'Surya',
+            'regions' => ['Odisha'],
+        ],
+        'Mesha Vishu' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Mesha transition observance used in regional calendars',
+            'deity' => 'Surya',
+            'regions' => ['Pan-India'],
+        ],
+        'Jur Sital' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 4,
+            'day' => 15,
+            'description' => 'Maithili New Year observance with cooling and water rituals',
+            'deity' => 'Surya',
+            'regions' => ['Mithila', 'Bihar', 'Nepal'],
+        ],
+        'Bohag Bihu' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Assamese New Year festival cluster of Rongali Bihu',
+            'deity' => 'Surya',
+            'regions' => ['Assam'],
+        ],
+        'Magh Bihu (Bhogali Bihu)' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'aliases' => ['Bhogali Bihu'],
+            'description' => 'Assam harvest festival around Makara transition',
+            'deity' => 'Agni/Surya',
+            'regions' => ['Assam'],
+        ],
+        'Kati Bihu (Kongali Bihu)' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 6,
+            'aliases' => ['Kongali Bihu'],
+            'description' => 'Assam agrarian observance during Kati season',
+            'deity' => 'Lakshmi',
+            'regions' => ['Assam'],
+        ],
+        'Sajaibu Cheiraoba' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Manipuri New Year observance aligned with lunar new-year cycle',
+            'deity' => 'Govinda',
+            'regions' => ['Manipur'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Ganga Sagar Mela' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'description' => 'Pilgrimage fair at Gangasagar during Makara Sankranti',
+            'deity' => 'Ganga',
+            'regions' => ['West Bengal'],
+        ],
+        'Karadayan Nombu' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 3,
+            'day' => 14,
+            'description' => 'Tamil vrata observed by married women for family welfare',
+            'deity' => 'Parvati/Shiva',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Aadi Perukku' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 8,
+            'day' => 3,
+            'description' => 'Tamil river and water prosperity festival in Aadi month',
+            'deity' => 'Kaveri/Parvati',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Panguni Uthiram' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Tamil sacred marriage observance linked to Panguni full moon',
+            'deity' => 'Murugan/Parvati/Shiva',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Raja Parba Day 1' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 2,
+            'description' => 'Beginning of Odisha Raja Parba seasonal observance',
+            'deity' => 'Bhudevi',
+            'regions' => ['Odisha'],
+        ],
+        'Raja Parba Day 2' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Raja Parba Day 1',
+            'days_after' => 1,
+            'description' => 'Second day of Odisha Raja Parba',
+            'deity' => 'Bhudevi',
+            'regions' => ['Odisha'],
+        ],
+        'Raja Parba Day 3' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Raja Parba Day 1',
+            'days_after' => 2,
+            'description' => 'Third day of Odisha Raja Parba',
+            'deity' => 'Bhudevi',
+            'regions' => ['Odisha'],
+        ],
+        'Nuakhai' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Odisha harvest thanksgiving for new rice crop',
+            'deity' => 'Samaleswari',
+            'regions' => ['Odisha', 'Chhattisgarh'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Karam Puja' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Karam Devta worship for prosperity and agricultural wellbeing',
+            'deity' => 'Karam Devta',
+            'regions' => ['Jharkhand', 'Bihar', 'Odisha', 'Chhattisgarh'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Maha Saptami (Durga Puja)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Durga Puja Maha Saptami observance',
+            'deity' => 'Durga',
+            'regions' => ['Bengal', 'Odisha', 'Assam'],
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
+        ],
+        'Kojagari Lakshmi Puja' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Lakshmi worship on Sharad Purnima night (Kojagari)',
+            'deity' => 'Lakshmi',
+            'regions' => ['Bengal', 'Odisha', 'Assam'],
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Bathukamma (Saddula)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Telangana floral festival culmination day (Saddula Bathukamma)',
+            'deity' => 'Durga',
+            'regions' => ['Telangana'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bonalu (Ashadha Sunday)' =>
+        [
+            'type' => 'weekday_in_month',
+            'weekday' => 0,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Sunday Bonalu observance in Ashadha month',
+            'deity' => 'Durga',
+            'regions' => ['Telangana'],
+        ],
+        'Yaoshang' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Manipuri spring festival beginning on Phalguna Purnima',
+            'deity' => 'Krishna',
+            'regions' => ['Manipur'],
+        ],
+        'Chapchar Kut' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 3,
+            'day' => 1,
+            'description' => 'Mizo spring festival celebrated after forest clearing season',
+            'deity' => 'Community Deities',
+            'regions' => ['Mizoram'],
+        ],
+        'Losar' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 2,
+            'day' => 28,
+            'description' => 'Himalayan new year observance in Tibetan Buddhist traditions',
+            'deity' => 'Buddha/Local Deities',
+            'regions' => ['Ladakh', 'Sikkim', 'Arunachal Pradesh', 'Himalayan regions'],
+        ],
+        'Sankashti Chaturthi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'description' => 'Monthly Sankashti fast dedicated to Lord Ganesha',
+            'deity' => 'Ganesha',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Lakshmi Puja (Deepavali)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Deepavali night Lakshmi Puja in Pradosha window',
+            'deity' => 'Lakshmi',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Bhai Tika' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Brother-sister ritual of tika and blessings (Nepal tradition)',
+            'deity' => 'Yama/Yamuna',
+            'regions' => ['Nepal', 'Himalayan regions'],
+            'karmakala_type' => 'aparahna',
+        ],
+        'Nabanna Utsav' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 11,
+            'day' => 15,
+            'description' => 'Bengal new-rice thanksgiving harvest observance',
+            'deity' => 'Lakshmi',
+            'regions' => ['West Bengal'],
+        ],
+        'Rongali Bihu Day 1' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'First day of Rongali/Bohag Bihu in Assam; dedicated to cattle worship and agrarian renewal',
+            'deity' => 'Gau Mata/Surya',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 1', 'Goru Bihu'],
+        ],
+        'Rongali Bihu Day 2' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 1,
+            'description' => 'Second day of Rongali/Bohag Bihu; Assamese New Year observance with family blessings and new clothes',
+            'deity' => 'Household Deities',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 2', 'Manuh Bihu'],
+        ],
+        'Rongali Bihu Day 3' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 2,
+            'description' => 'Third day of Rongali/Bohag Bihu; worship of household and village deities',
+            'deity' => 'Gosain/Household Deities',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 3', 'Gosai Bihu'],
+        ],
+        'Rongali Bihu Day 4' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 3,
+            'description' => 'Fourth day of Rongali/Bohag Bihu; visiting relatives and strengthening family ties',
+            'deity' => 'Family Ancestors',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 4', 'Kutum Bihu'],
+        ],
+        'Rongali Bihu Day 5' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 4,
+            'description' => 'Fifth day of Rongali/Bohag Bihu; day of affection, music, dance, and social bonding',
+            'deity' => 'Kamadeva',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 5', 'Senehi Bihu'],
+        ],
+        'Rongali Bihu Day 6' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 5,
+            'description' => 'Sixth day of Rongali/Bohag Bihu; fairs, cultural performances, and community gatherings',
+            'deity' => 'Cultural Deities',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 6', 'Mela Bihu'],
+        ],
+        'Rongali Bihu Day 7' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Rongali Bihu Day 1',
+            'days_after' => 6,
+            'description' => 'Seventh and closing day of Rongali/Bohag Bihu',
+            'deity' => 'Cultural Traditions',
+            'regions' => ['Assam'],
+            'aliases' => ['Bohag Bihu Day 7', 'Chera Bihu'],
+        ],
 
         'Shastriji Maharaj Jayanti' =>
         [

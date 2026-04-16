@@ -1118,6 +1118,7 @@ class PanchangService
                             'parent_festival' => $parentName,
                             'parent_observance_date' => $observanceDate,
                             'days_after' => $daysAfter,
+                            'winning_score' => 1000,
                         ],
                     ]);
 
