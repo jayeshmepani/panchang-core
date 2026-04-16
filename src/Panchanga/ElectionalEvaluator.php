@@ -332,7 +332,7 @@ final class ElectionalEvaluator
             }
         }
 
-        $overallVerdict = count($rejections) > 0 ? 'rejected_but_can_try_remedies' : 'accepted';
+        $overallVerdict = $rejections !== [] ? 'rejected_but_can_try_remedies' : 'accepted';
 
         return [
             'source' => Localization::translate('Source', 'Transit-only evaluation'),
@@ -340,7 +340,7 @@ final class ElectionalEvaluator
             'confidence_level' => 'low',
             'rejection_count' => count($rejections),
             'warning_count' => 0,
-            'acceptance_count' => count($rejections) === 0 ? 1 : 0,
+            'acceptance_count' => $rejections === [] ? 1 : 0,
             'critical_rejections' => [],
             'high_severity_rejections' => $highSeverity,
             'medium_severity_warnings' => [],

@@ -31,7 +31,7 @@ use Throwable;
 class PanchangService
 {
     /** @var array<int, string> */
-    private const YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
+    private const array YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
         'Ganga Dussehra',
     ];
 
@@ -869,7 +869,7 @@ class PanchangService
             calculationAt: $calculationAt,
             calendarType: $calendarType,
         );
-        $festivalsByDate = (array) ($yearFestivalCalendar['by_date'] ?? []);
+        $festivalsByDate = $yearFestivalCalendar['by_date'];
 
         $snapshots = [];
         for ($i = -1; $i <= $daysInMonth; $i++) {
@@ -1161,7 +1161,7 @@ class PanchangService
 
             foreach ($items as $item) {
                 $date = CarbonImmutable::parse((string) $item['entry']['date'], $tz);
-                if ($previousDate === null || $previousDate->diffInDays($date) <= 1) {
+                if (!$previousDate instanceof CarbonImmutable || $previousDate->diffInDays($date) <= 1) {
                     $current[] = $item;
                 } else {
                     $clusters[] = $current;

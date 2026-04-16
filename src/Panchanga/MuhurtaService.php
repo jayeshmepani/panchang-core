@@ -245,7 +245,7 @@ class MuhurtaService
         $names = ['Pratah', 'Sangava', 'Madhyahna', 'Aparahna', 'Sayahna'];
 
         $rows = [];
-        foreach ($names as $index => $name) {
+        foreach (array_keys($names) as $index) {
             $start = $this->addFloatSeconds($sunrise, $index * $duration);
             $rows[] = $this->buildTimedRow($start, $duration, [
                 'name' => Localization::translate('Fivefold', $index),
