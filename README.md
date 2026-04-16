@@ -43,7 +43,7 @@ composer require jayeshmepani/panchang-core
 - **Swiss Ephemeris FFI** (`jayeshmepani/swiss-ephemeris-ffi`)
 - **Carbon** (`nesbot/carbon`)
 - **[FFI Extension](#ffi--system-setup)**
-- **[Swiss Ephemeris Data Files](#ephemeris-files)**
+- **[Swiss Ephemeris Data Files](#-ephemeris-files)**
 
 ## ⚙️ FFI & System Setup
 
