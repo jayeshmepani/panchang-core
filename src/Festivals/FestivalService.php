@@ -587,6 +587,651 @@ class FestivalService
             'deity' => 'Lakshmi',
             'regions' => ['West Bengal'],
         ],
+        'Somvati Amavasya' =>
+        [
+            'type' => 'weekday_tithi',
+            'resolver' => 'classical',
+            'weekday' => 1,
+            'tithi' => 30,
+            'description' => 'Amavasya falling on Monday, observed for Shiva-Parvati blessings',
+            'deity' => 'Shiva',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Masik Shivaratri' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'description' => 'Monthly Shivaratri observed on Krishna Chaturdashi',
+            'deity' => 'Shiva',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Pradosh Vrat' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'tithi' => [13, 28],
+            'description' => 'Fortnightly Pradosh vrata observed in Pradosha Kaal',
+            'deity' => 'Shiva',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Sankashti Chaturthi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'description' => 'Monthly Sankashti fast dedicated to Lord Ganesha',
+            'deity' => 'Ganesha',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vinayaka Chaturthi (Monthly)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'aliases' => ['Masik Vinayaka Chaturthi'],
+            'description' => 'Monthly Vinayaka Chaturthi observed on Shukla Chaturthi',
+            'deity' => 'Ganesha',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Skanda Sashti (Monthly)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'description' => 'Monthly Skanda Sashti observed on Shukla Shashthi',
+            'deity' => 'Kartikeya / Skanda',
+            'regions' => ['South India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kalashtami' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'description' => 'Monthly Kalashtami dedicated to Kala Bhairava',
+            'deity' => 'Kalabhairav',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Bhogi' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 13,
+            'description' => 'Bhogi bonfire marks purification before Pongal',
+            'deity' => 'Agni',
+            'regions' => ['Tamil Nadu', 'Andhra Pradesh', 'Telangana', 'Karnataka'],
+        ],
+        'Thai Pongal' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'description' => 'Harvest thanksgiving festival of Tamil tradition',
+            'deity' => 'Surya',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Mattu Pongal' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 15,
+            'description' => 'Pongal day dedicated to worship of cattle',
+            'deity' => 'Kamadhenu/Krishna',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Kaanum Pongal' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 16,
+            'description' => 'Social celebration and family visits after Pongal',
+            'deity' => 'Surya',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Aadi Amavasai' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'tithi' => 30,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Ancestor rites performed on Aadi Amavasya',
+            'deity' => 'Pitrus',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Aadi Pooram' =>
+        [
+            'type' => 'nakshatra',
+            'nakshatra_only' => true,
+            'nakshatra' => 'Purva Phalguni',
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Aadi month Pooram nakshatra festival of Andal',
+            'deity' => 'Devi',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Maha Magham' =>
+        [
+            'type' => 'tithi_nakshatra',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'nakshatra' => 'Magha',
+            'description' => 'Sacred bath festival when Magha Purnima aligns with Magha nakshatra',
+            'deity' => 'Shiva',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Chithirai Thiruvizha' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 4,
+            'day' => 20,
+            'description' => 'Madurai Chithirai festival tradition observance',
+            'deity' => 'Vishnu/Shiva',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Arudra Darshan' =>
+        [
+            'type' => 'nakshatra',
+            'nakshatra_only' => true,
+            'nakshatra' => 'Ardra',
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Arudra nakshatra worship of Nataraja',
+            'deity' => 'Shiva',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Vaikasi Visakam' =>
+        [
+            'type' => 'nakshatra',
+            'nakshatra_only' => true,
+            'nakshatra' => 'Vishakha',
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Vaikasi Visakam associated with Lord Murugan',
+            'deity' => 'Murugan',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Puthandu' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 0,
+            'description' => 'Tamil Solar New Year (Puthandu)',
+            'deity' => 'Surya',
+            'regions' => ['Tamil Nadu'],
+        ],
+        'Kanuma' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 16,
+            'description' => 'Third day of Sankranti festival in Telugu households',
+            'deity' => 'Kamadhenu/Krishna',
+            'regions' => ['Andhra Pradesh', 'Telangana'],
+        ],
+        'Mukkanuma' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 17,
+            'description' => 'Fourth day of Sankranti festivities in Telugu regions',
+            'deity' => 'Kamadhenu/Krishna',
+            'regions' => ['Andhra Pradesh', 'Telangana'],
+        ],
+        'Basava Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Jagajyoti Basaveshwara',
+            'deity' => 'Shiva',
+            'regions' => ['Karnataka'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Thiruvathira' =>
+        [
+            'type' => 'nakshatra',
+            'nakshatra_only' => true,
+            'nakshatra' => 'Ardra',
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Kerala women’s Thiruvathira observance',
+            'deity' => 'Shiva',
+            'regions' => ['Kerala'],
+        ],
+        'Mandala Kalam' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 7,
+            'description' => 'Beginning of Mandala season in Kerala temples',
+            'deity' => 'Shiva',
+            'regions' => ['Kerala'],
+        ],
+        'Makaravilakku' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'description' => 'Sabarimala Makaravilakku observance',
+            'deity' => 'Shiva',
+            'regions' => ['Kerala'],
+        ],
+        'Attukal Pongala' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 2,
+            'day' => 25,
+            'description' => 'Attukal Pongala offering festival in Kerala',
+            'deity' => 'Devi',
+            'regions' => ['Kerala'],
+        ],
+        'Narali Purnima' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Coconut offering festival by coastal communities',
+            'deity' => 'Varuna/Indra',
+            'regions' => ['Maharashtra', 'Goa', 'Konkan'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Gauri Avahan' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Arrival day of Gauri in Ganesh festival period',
+            'deity' => 'Gauri/Parvati',
+            'regions' => ['Maharashtra'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Gauri Visarjan' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Immersion day of Gauri in Ganesh festival period',
+            'deity' => 'Gauri/Parvati',
+            'regions' => ['Maharashtra'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kojagiri Purnima' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Sharad Purnima'],
+            'description' => 'Regional Kojagiri full moon observance',
+            'deity' => 'Lakshmi',
+            'regions' => ['Maharashtra', 'Konkan'],
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Jagannath Snana Yatra' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Ceremonial bathing festival of Lord Jagannath',
+            'deity' => 'Jagannath',
+            'regions' => ['Odisha'],
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
+        ],
+        'Kumar Purnima' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Kumar Purnima observance in Odisha tradition',
+            'deity' => 'Kartikeya / Skanda',
+            'regions' => ['Odisha'],
+            'karmakala_type' => 'nishitha',
+        ],
+        'Khudurukuni Osha' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Khudurukuni Osha vrata observed in Odisha',
+            'deity' => 'Devi',
+            'regions' => ['Odisha'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Manabasa Gurubar' =>
+        [
+            'type' => 'weekday_in_month',
+            'weekday' => 4,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Lakshmi worship on Thursdays of Margashirsha month',
+            'deity' => 'Lakshmi',
+            'regions' => ['Odisha'],
+        ],
+        'Sitalsasthi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Divine marriage festival of Shiva and Parvati',
+            'deity' => 'Shiva',
+            'regions' => ['Odisha'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Ali-Aye-Ligang' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 2,
+            'day' => 15,
+            'description' => 'Mising community sowing festival in Assam',
+            'deity' => 'Surya',
+            'regions' => ['Assam'],
+        ],
+        'Wangala' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 11,
+            'day' => 10,
+            'description' => 'Harvest festival of Garo community',
+            'deity' => 'Surya',
+            'regions' => ['Meghalaya'],
+        ],
+        'Losoong' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 12,
+            'day' => 18,
+            'description' => 'Sikkim harvest and new year seasonal observance',
+            'deity' => 'Devi',
+            'regions' => ['Sikkim'],
+        ],
+        'Bhogali Bihu Uruka' =>
+        [
+            'type' => 'fixed_date',
+            'month' => 1,
+            'day' => 13,
+            'description' => 'Community feast eve before Magh Bihu',
+            'deity' => 'Agni',
+            'regions' => ['Assam'],
+        ],
+        'Jivitputrika Vrat (Jitiya)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Jitiya'],
+            'description' => 'Mothers observe fast for wellbeing of children',
+            'deity' => 'Devi',
+            'regions' => ['Bihar', 'Jharkhand', 'Uttar Pradesh', 'Nepal'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Gai Jatra' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 1,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Nepal remembrance procession festival',
+            'deity' => 'Yama/Yamuna',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Indra Jatra' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Indra Jatra celebration in Kathmandu valley',
+            'deity' => 'Varuna/Indra',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ghode Jatra' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Horse procession festival in Nepal tradition',
+            'deity' => 'Kalabhairav',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Maghe Sankranti' =>
+        [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'description' => 'Nepal Maghe Sankranti observance',
+            'deity' => 'Surya',
+            'regions' => ['Nepal'],
+        ],
+        'Tihar (Nepal)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 13,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Beginning of Nepal Tihar multi-day festival cycle',
+            'deity' => 'Lakshmi',
+            'regions' => ['Nepal'],
+            'aliases' => ['Deepawali (Nepal Tihar)'],
+            'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Mha Puja' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Tihar (Nepal)',
+            'days_after' => 3,
+            'description' => 'Newar self-purification and prosperity ritual during Tihar',
+            'deity' => 'Lakshmi',
+            'regions' => ['Nepal'],
+            'aliases' => ['Mhapuja'],
+        ],
+        'Mahavir Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 13,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Bhagwan Mahavira',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain', 'Pan-India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Paryushan Parva Starts' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Start of Paryushan Parva in Jain tradition',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Samvatsari' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 5,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Samvatsari day of introspection and forgiveness',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ayambil Oli Start' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Start of Ayambil Oli (Navpad Oli) in Jain tradition',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+            'aliases' => ['Navpad Oli Start'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Ayambil Oli End' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Completion of Ayambil Oli (Navpad Oli) on Purnima',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+            'aliases' => ['Navpad Oli End'],
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+        ],
+        'Kshamavani' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Samvatsari',
+            'days_after' => 1,
+            'description' => 'Kshamavani day for seeking universal forgiveness',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+        ],
+        'Jain Nirvana Divas' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'tithi' => 30,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Nirvana day of Bhagwan Mahavira on Deepavali Amavasya',
+            'deity' => 'Mahavira',
+            'regions' => ['Jain'],
+            'aliases' => ['Mahavira Nirvana Divas'],
+            'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Gaura Purnima' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Appearance day of Sri Chaitanya Mahaprabhu',
+            'deity' => 'Krishna',
+            'regions' => ['Gaudiya', 'Vaishnava'],
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Nityananda Trayodashi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 13,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Appearance day of Sri Nityananda Prabhu',
+            'deity' => 'Krishna',
+            'regions' => ['Gaudiya', 'Vaishnava'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Jhulan Yatra Start' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Beginning of Jhulan Yatra swing festival',
+            'deity' => 'Krishna',
+            'regions' => ['Gaudiya', 'Vaishnava'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Jhulan Yatra End' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Conclusion of Jhulan Yatra on Shravana Purnima',
+            'deity' => 'Krishna',
+            'regions' => ['Gaudiya', 'Vaishnava'],
+            'karmakala_type' => 'sunrise',
+        ],
         'Rongali Bihu Day 1' =>
         [
             'type' => 'solar_sankranti',
@@ -946,6 +1591,48 @@ class FestivalService
             'night_prohibited' => true,
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
+        ],
+        'Dashain Start (Ghatasthapana)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Beginning of Dashain in Nepal with Ghatasthapana ritual',
+            'deity' => 'Durga',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
+        ],
+        'Maha Ashtami (Dashain)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Major Dashain worship day dedicated to Goddess Durga',
+            'deity' => 'Durga',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
+        ],
+        'Vijaya Dashami (Dashain)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Dashain tika and jamara blessings on Vijaya Dashami',
+            'deity' => 'Durga',
+            'regions' => ['Nepal'],
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
         ],
         'Ashvina Sharad Navaratri Day 2 (Brahmacharini Puja)' =>
         [
@@ -1745,6 +2432,15 @@ class FestivalService
             'deity' => 'Jagannath',
             'karmakala_type' => 'sunrise',
         ],
+        'Bahuda Yatra' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Jagannath Rath Yatra',
+            'days_after' => 8,
+            'description' => 'Return chariot journey of Jagannath, Balabhadra, and Subhadra to main temple',
+            'deity' => 'Jagannath',
+            'regions' => ['Odisha', 'Pan-India'],
+        ],
         'Devshayani Ekadashi' =>
         [
             'type' => 'tithi',
@@ -1947,6 +2643,18 @@ class FestivalService
             'deity' => 'Shiva',
             'fasting' => true,
         ],
+        'Mangala Gauri Vrat' =>
+        [
+            'type' => 'weekday_in_month',
+            'weekday' => 2,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Tuesday vrat in Shravana dedicated to Goddess Gauri for marital bliss',
+            'deity' => 'Gauri / Parvati',
+            'regions' => ['Maharashtra', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
+            'fasting' => true,
+            'karmakala_type' => 'madhyahna',
+        ],
         'Kajari Teej' =>
         [
             'type' => 'tithi',
@@ -2021,6 +2729,16 @@ class FestivalService
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
             'vriddhi_preference' => 'last',
+        ],
+        'Nandotsav' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Krishna Janmashtami',
+            'days_after' => 1,
+            'description' => 'Celebration of Krishna birth joy in Nanda\'s household',
+            'deity' => 'Krishna',
+            'regions' => ['Pan-India', 'Vaishnava'],
+            'aliases' => ['Nand Mahotsav'],
         ],
         'Hartalika Teej' =>
         [
@@ -2303,6 +3021,7 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Karwa Chauth', 'Karak Chaturthi'],
             'description' => 'Married women fast for husband long life',
             'deity' => 'Parvati/Shiva',
             'fasting' => true,
@@ -2447,6 +3166,37 @@ class FestivalService
             'fasting' => true,
             'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
             'karmakala_type' => 'aparahna',
+        ],
+        'Chhath Puja Day 1 (Nahay Khay)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Chhath Puja (Sandhya Arghya)',
+            'days_after' => -2,
+            'description' => 'First day of Chhath Puja (Nahay Khay) with ritual purification and satvik meal',
+            'deity' => 'Surya/Chhathi Maiya',
+            'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
+        ],
+        'Chhath Puja Day 2 (Kharna)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Chhath Puja (Sandhya Arghya)',
+            'days_after' => -1,
+            'description' => 'Second day of Chhath Puja (Kharna) with day-long fast ending after sunset offerings',
+            'deity' => 'Surya/Chhathi Maiya',
+            'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
+            'fasting' => true,
+        ],
+        'Chhath Puja Day 4 (Usha Arghya)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Chhath Puja (Sandhya Arghya)',
+            'days_after' => 1,
+            'description' => 'Final day of Chhath Puja with sunrise arghya and fast completion',
+            'deity' => 'Surya/Chhathi Maiya',
+            'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
         ],
         'Jalaram Jayanti' =>
         [
@@ -2693,11 +3443,127 @@ class FestivalService
         [
             'nakshatra_only' => true,
             'nakshatra' => 'Shravana',
-            'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
+            'allowed_months_amanta' => ['Shravana'],
             'sun_sign' => 4,
             'description' => 'Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali\'s annual visit',
             'deity' => 'Vishnu/Mahabali',
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Atham (Onam Day 1)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -9,
+            'aliases' => ['Onam Day 1', 'Atham'],
+            'description' => 'First day of Onam (Atham), marking the start of ten-day festivities',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Chithira (Onam Day 2)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -8,
+            'aliases' => ['Onam Day 2', 'Chithira'],
+            'description' => 'Second day of Onam (Chithira) with home-cleaning and pookalam expansion',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Chodhi (Onam Day 3)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -7,
+            'aliases' => ['Onam Day 3', 'Chodi'],
+            'description' => 'Third day of Onam (Chodhi) associated with Onakkodi shopping and gift exchange',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Vishakam (Onam Day 4)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -6,
+            'aliases' => ['Onam Day 4', 'Vishakam'],
+            'description' => 'Fourth day of Onam (Vishakam), when Sadya preparations intensify',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Anizham (Onam Day 5)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -5,
+            'aliases' => ['Onam Day 5', 'Anizham'],
+            'description' => 'Fifth day of Onam (Anizham), linked with Vallamkali boat-race tradition',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Thriketta (Onam Day 6)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -4,
+            'aliases' => ['Onam Day 6', 'Thriketa'],
+            'description' => 'Sixth day of Onam (Thriketta) marked by family and temple visits',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Moolam (Onam Day 7)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -3,
+            'aliases' => ['Onam Day 7', 'Moolam'],
+            'description' => 'Seventh day of Onam (Moolam) with local celebrations and cultural performances',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Pooradam (Onam Day 8)' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Onam (Thiruvonam)',
+            'days_after' => -2,
+            'aliases' => ['Onam Day 8', 'Pooradam'],
+            'description' => 'Eighth day of Onam (Pooradam), including Onathappan installation in pookalam',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+        ],
+        'Uthradam' =>
+        [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Uttara Ashadha',
+            'allowed_months_amanta' => ['Shravana'],
+            'sun_sign' => 4,
+            'aliases' => ['Uthradom', 'First Onam'],
+            'description' => 'Onam eve day (Uthradam) marked by market preparations and family gatherings',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Avittom' =>
+        [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Dhanishta',
+            'allowed_months_amanta' => ['Shravana'],
+            'sun_sign' => 4,
+            'aliases' => ['Third Onam'],
+            'description' => 'Post-Onam day (Avittom) with continuation of festivities and rituals',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Chathayam' =>
+        [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Shatabhisha',
+            'allowed_months_amanta' => ['Shravana'],
+            'sun_sign' => 4,
+            'aliases' => ['Chatayam', 'Fourth Onam'],
+            'description' => 'Final Onam day (Chathayam) with temple and community celebrations',
+            'deity' => 'Vishnu/Mahabali',
+            'regions' => ['Kerala'],
             'karmakala_type' => 'madhyahna',
         ],
         'Gunatitanand Swami Diksha Day' =>
@@ -3214,7 +4080,7 @@ class FestivalService
             }
 
             $parentName = (string) ($rules['parent_festival'] ?? '');
-            $daysAfter = (int) ($rules['days_after'] ?? 1);
+            $daysAfter = (int) ($rules['days_after'] ?? ($rules['offset_days'] ?? 1));
 
             if ($parentName === '') {
                 continue;
@@ -3227,8 +4093,12 @@ class FestivalService
             if ($daysAfter === 1 && $yesterdayDetails !== null) {
                 $parentFound = $this->checkDayAfterParent($parentName, $yesterdayDetails);
             }
+            // Case 2: daysAfter === -1, use tomorrowDetails directly
+            elseif ($daysAfter === -1 && $tomorrowDetails !== null) {
+                $parentFound = $this->checkDayAfterParent($parentName, $tomorrowDetails);
+            }
             // Case 2: daysAfter > 1, fetch historical snapshot via callback
-            elseif ($daysAfter > 1 && $fetchHistoricalSnapshot !== null) {
+            elseif (abs($daysAfter) > 1 && $fetchHistoricalSnapshot !== null) {
                 $historicalSnapshot = $fetchHistoricalSnapshot($parentDate);
                 if ($historicalSnapshot !== null) {
                     $parentFound = $this->checkDayAfterParent($parentName, $historicalSnapshot);
@@ -3244,20 +4114,21 @@ class FestivalService
                 continue;
             }
 
+            $templateKey = $daysAfter >= 0 ? 'observance_note_day_after' : 'observance_note_day_before';
             $resolved = [
                 'festival_name' => $name,
                 'standard_date' => $date->toDateString(),
                 'observance_date' => $date->toDateString(),
                 'observance_note' => sprintf(
-                    Localization::translate('String', 'observance_note_day_after'),
-                    $daysAfter,
+                    Localization::translate('String', $templateKey),
+                    abs($daysAfter),
                     Localization::translate('Festival', $parentName)
                 ),
                 'decision' => [
-                    'winning_reason' => 'day_after_parent_festival',
+                    'winning_reason' => $daysAfter >= 0 ? 'day_after_parent_festival' : 'day_before_parent_festival',
                     'parent_festival' => $parentName,
                     'parent_observance_date' => $parentDate->toDateString(),
-                    'days_after' => $daysAfter,
+                    'days_offset' => $daysAfter,
                     'winning_score' => 1000,
                 ],
             ];

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:27:50+00:00",
+        "generated_at": "2026-04-17T06:55:13+00:00",
         "year": 2026,
         "month": 4,
         "calendar_type": "amanta",
@@ -416,7 +416,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "સંકષ્ટી ચતુર્થી",
+                    "description": "ભગવાન ગણેશને સમર્પિત માસિક સંકષ્ટી વ્રત",
+                    "deity": "ગણેશ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "વદ ચોથ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "સંકષ્ટી ચતુર્થી",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461135.7710348126,
+                        "target_tithi_end_jd": 2461136.8618675107,
+                        "standard_date": "2026-04-06",
+                        "observance_date": "2026-04-06",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Sankashti Chaturthi",
+                        "festival_name_localized": "સંકષ્ટી ચતુર્થી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ચતુર્થી વ્રત",
@@ -584,7 +659,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "કાલાષ્ટમી",
+                    "description": "કાલ ભૈરવને સમર્પિત માસિક કાલાષ્ટમી",
+                    "deity": "કાલભૈરવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 8 સૂર્યોદયે 2026-04-10 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-09 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "નિશીથ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "કાલાષ્ટમી",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-09",
+                        "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 8 સૂર્યોદયે 2026-04-10 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-09 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kalashtami",
+                        "festival_name_localized": "કાલાષ્ટમી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "સપ્તમી વ્રત",
@@ -640,7 +792,88 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "ઘોડે જાત્રા",
+                    "description": "નેપાળી પરંપરાનો ઘોડા શોભાયાત્રા ઉત્સવ",
+                    "deity": "કાલભૈરવ",
+                    "fasting": false,
+                    "regions": [
+                        "નેપાળ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "ચૈત્ર",
+                            "value_key": "Chaitra",
+                            "name": "ચૈત્ર"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "ઘોડે જાત્રા",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-10",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Ghode Jatra",
+                        "festival_name_localized": "ઘોડે જાત્રા",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "અષ્ટમી વ્રત",
@@ -998,6 +1231,209 @@
                             "symbol": "♈"
                         }
                     }
+                },
+                {
+                    "name": "પોહેલા બોઇશાખ",
+                    "description": "બંગાળ પરંપરામાં ઉજવાતું બંગાળી સૌર નવું વર્ષ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [
+                        "પહેલા બૈશાખ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "પહેલા બૈશાખ",
+                    "description": "બંગાળી સૌર નવું વર્ષનું વિકલ્પ નામકરણ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "પણા સંક્રાંતિ",
+                    "description": "પણા અર્પણ સાથે ઉજવાતું ઓડિયા સૌર નવું વર્ષ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [
+                        "મહા વિશુબ સંક્રાંતિ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "મહા વિશુબ સંક્રાંતિ",
+                    "description": "સૌર નવું વર્ષ સંક્રાંતિ માટેનું પરંપરાગત ઓડિયા નામ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "મેષ વિશુ",
+                    "description": "પ્રાદેશિક પંચાંગોમાં વપરાતું મેષ સંક્રમણ અવલોકન",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "બોહાગ બિહુ",
+                    "description": "રંગાલી બિહુનો આસામી નવું વર્ષ તહેવાર સમૂહ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "પુથાંડુ",
+                    "description": "તમિલ સૌર નવવર્ષ (પુથાંડુ)",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "તમિલનાડુ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "રંગાલી બિહુ દિવસ 1",
+                    "description": "અસમમાં રંગાલી/બોહાગ બિહુનો પ્રથમ દિવસ; ગૌપૂજા અને કૃષિ નવઆરંભને સમર્પિત",
+                    "deity": "ગૌમાતા/સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 1",
+                        "ગોરુ બિહુ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -1055,7 +1491,165 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "જુર સીતલ",
+                    "description": "શીતળતા અને જળ વિધિઓ સાથેનું મૈથિલી નવું વર્ષ અવલોકન",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Mithila",
+                        "બિહાર",
+                        "નેપાળ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 15
+                        }
+                    }
+                },
+                {
+                    "name": "માસિક શિવરાત્રી",
+                    "description": "કૃષ્ણ ચતુર્દશીની માસિક શિવરાત્રી",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 14 સૂર્યોદયે 2026-04-16 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-15 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                29
+                            ],
+                            "names": [
+                                "વદ ચૌદશ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "નિશીથ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "માસિક શિવરાત્રી",
+                        "required_tithi": 14,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461146.2095004637,
+                        "target_tithi_end_jd": 2461147.1124194954,
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 14 સૂર્યોદયે 2026-04-16 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-15 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Masik Shivaratri",
+                        "festival_name_localized": "માસિક શિવરાત્રી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રંગાલી બિહુ દિવસ 2",
+                    "description": "રંગાલી/બોહાગ બિહુનો બીજો દિવસ; આસામી નવવર્ષ, પરિવારના આશીર્વાદ અને નવા વસ્ત્રો સાથે",
+                    "deity": "ગૃહ દેવતાઓ",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 2",
+                        "માનુહ બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 1 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 1
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 2",
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 1 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 2",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ત્રયોદશી વ્રત",
@@ -1111,7 +1705,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "રંગાલી બિહુ દિવસ 3",
+                    "description": "રંગાલી/બોહાગ બિહુનો ત્રીજો દિવસ; ઘર અને ગામના દેવતાઓની પૂજા",
+                    "deity": "ગોસાઈ/ગૃહ દેવતાઓ",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 3",
+                        "ગોસાઈ બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 2 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 2
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 3",
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-16",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 2 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 2,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 3",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 2,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ચતુર્દશી વ્રત",
@@ -1167,7 +1820,217 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "સોમવતી અમાસ",
+                    "description": "સોમવારે આવતી અમાસ; શિવ-પાર્વતી કૃપા માટેનું વ્રત",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday_tithi",
+                        "type_name": "વાર અને તિથિ",
+                        "basis": "weekday_and_tithi",
+                        "basis_name": "વાર અને તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                30
+                            ],
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "સોમવતી અમાસ",
+                        "required_tithi": 30,
+                        "paksha": "",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.1124194954,
+                        "target_tithi_end_jd": 2461147.994316308,
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Somvati Amavasya",
+                        "festival_name_localized": "સોમવતી અમાસ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "પ્રદોષ વ્રત",
+                    "description": "દર પક્ષે પ્રદોષ કાળમાં પાલન થતું પ્રદોષ વ્રત",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક  તિથિ 1 સૂર્યોદયે 2026-04-18 પર આવે છે, પરંતુ પ્રદોષ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-17 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13,
+                                28
+                            ],
+                            "absolute_numbers": [
+                                13,
+                                28
+                            ],
+                            "names": [
+                                "સુદ તેરસ",
+                                "વદ તેરસ"
+                            ]
+                        },
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "પ્રદોષ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "પ્રદોષ વ્રત",
+                        "required_tithi": 1,
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.994316308,
+                        "target_tithi_end_jd": 2461148.8618511586,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "અપવાદ: માનક  તિથિ 1 સૂર્યોદયે 2026-04-18 પર આવે છે, પરંતુ પ્રદોષ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-17 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "પ્રદોષ વ્રત",
+                        "karmakala_type_name": "પ્રદોષ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રંગાલી બિહુ દિવસ 4",
+                    "description": "રંગાલી/બોહાગ બિહુનો ચોથો દિવસ; સગાંઓની મુલાકાત અને કુટુંબિક બંધનો મજબૂત કરવાનું",
+                    "deity": "કુટુંબના પૂર્વજો",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 4",
+                        "કુટુમ બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 3 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 3
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 4",
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 3 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 3,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 4",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 4"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 3,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "પૂર્ણિમા / અમાવસ્યા વ્રત",
@@ -1223,7 +2086,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "રંગાલી બિહુ દિવસ 5",
+                    "description": "રંગાલી/બોહાગ બિહુનો પાંચમો દિવસ; સ્નેહ, સંગીત, નૃત્ય અને સામાજિક જોડાણનો દિવસ",
+                    "deity": "કામદેવ",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 5",
+                        "સેનેહી બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 4 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 4
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 5",
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 4 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 4,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 5",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 5"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 4,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "પ્રતિપદા વ્રત",
@@ -1441,6 +2363,64 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "રંગાલી બિહુ દિવસ 6",
+                    "description": "રંગાલી/બોહાગ બિહુનો છઠ્ઠો દિવસ; મેળા, સાંસ્કૃતિક કાર્યક્રમો અને સામૂહિક મેળાવડા",
+                    "deity": "સાંસ્કૃતિક દેવતાઓ",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 6",
+                        "મેલા બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 5 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 5
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 6",
+                        "standard_date": "2026-04-19",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 5 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 5,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 6",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 6"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 5,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
                 }
             ],
             "daily_observances": [
@@ -1498,7 +2478,243 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "વિનાયક ચતુર્થી (માસિક)",
+                    "description": "શુક્લ ચતુર્થીની માસિક વિનાયક ચતુર્થી",
+                    "deity": "ગણેશ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "માસિક વિનાયક ચતુર્થી"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                4
+                            ],
+                            "names": [
+                                "સુદ ચોથ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વિનાયક ચતુર્થી (માસિક)",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461150.5819550147,
+                        "target_tithi_end_jd": 2461151.448167814,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
+                            "winning_score": 300,
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi (Monthly)",
+                        "festival_name_localized": "વિનાયક ચતુર્થી (માસિક)",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
+                        "winning_score": 300,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
+                    }
+                },
+                {
+                    "name": "ચિથિરાઇ તિરુવિઝ્હા",
+                    "description": "મદુરાઈની ચિથિરાઇ ઉત્સવ પરંપરાનું પાલન",
+                    "deity": "વિષ્ણુ/શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "તમિલનાડુ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 20
+                        }
+                    }
+                },
+                {
+                    "name": "બસવ જયંતિ",
+                    "description": "જગજ્યોતિ બસવેશ્વરની જયંતિ",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "કર્ણાટક"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
+                            "name": "વૈશાખ"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બસવ જયંતિ",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Basava Jayanti",
+                        "festival_name_localized": "બસવ જયંતિ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રંગાલી બિહુ દિવસ 7",
+                    "description": "રંગાલી/બોહાગ બિહુનો સાતમો અને સમાપન દિવસ",
+                    "deity": "સાંસ્કૃતિક પરંપરાઓ",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "બોહાગ બિહુ દિવસ 7",
+                        "ચેરા બિહુ"
+                    ],
+                    "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 6 દિવસે ઉજવાય છે",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "મૂળ ઉત્સવ પછીનો સંબંધિત દિવસ",
+                        "relative_day": {
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1",
+                            "days_after": 6
+                        },
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "રંગાલી બિહુ દિવસ 7",
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "observance_note": "રંગાલી બિહુ દિવસ 1 પછી 6 દિવસે ઉજવાય છે",
+                        "decision": {
+                            "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 6,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 7",
+                        "festival_name_localized": "રંગાલી બિહુ દિવસ 7"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival": "રંગાલી બિહુ દિવસ 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 6,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "મૂળ ઉત્સવ પછીનો દિવસ",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "રંગાલી બિહુ દિવસ 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "તૃતિયા વ્રત",
@@ -1691,7 +2907,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "સ્કંદ ષષ્ઠી (માસિક)",
+                    "description": "શુક્લ ષષ્ઠીની માસિક સ્કંદ ષષ્ઠી",
+                    "deity": "કાર્તિકેય / સ્કંદ",
+                    "fasting": false,
+                    "regions": [
+                        "South India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "સુદ છઠ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "સ્કંદ ષષ્ઠી (માસિક)",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461152.3266333435,
+                        "target_tithi_end_jd": 2461153.2222663676,
+                        "standard_date": "2026-04-22",
+                        "observance_date": "2026-04-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Skanda Sashti (Monthly)",
+                        "festival_name_localized": "સ્કંદ ષષ્ઠી (માસિક)",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ષષ્ઠી વ્રત",
