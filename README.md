@@ -7,11 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** for PHP 8.3+.
 
-<<<<<<< HEAD
 This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 237 festival definitions with tradition/region profiles.
-=======
-This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 230 festival definitions with tradition/region profiles.
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 
 ## 🎯 Unique Value Proposition
 
@@ -19,21 +15,13 @@ Key characteristics:
 - ✅ Uses **Swiss Ephemeris FFI** for maximum astronomical precision
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Uses **IEEE 754 double precision** throughout the calculation pipeline
-<<<<<<< HEAD
 - ✅ Supports **237 festival definitions** with tradition/region resolution
-=======
-- ✅ Supports **230 festival definitions** with tradition/region resolution
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 - ✅ Works **standalone** (no Laravel required)
 
 ## Features
 
 - **Complete Panchanga**: Tithi, Vara, Nakṣatra, Yoga, Karaṇa with precise fractions
-<<<<<<< HEAD
 - **237 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, regional observances, etc.
-=======
-- **230 festival definitions**: Holikā Dahan, Rāma Navamī, Kṛṣṇa Janmāṣṭamī, Dīpāvalī, Navaratri, Ekādaśī, Swaminarayan Jayantis, regional observances, etc.
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 - **Festival Families**: Multi-day celebrations (Holi, Diwali, Navaratri) with proper orchestration
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Dur Muhūrta
 - **Time Determination**: Chogadiya, Hora, Prahara, Lagna table, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
@@ -520,11 +508,7 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"
 ### Festival Catalog Notes
 
 - The canonical source of truth is `FestivalService::FESTIVALS`.
-<<<<<<< HEAD
 - The current verified catalog contains `237` festival definitions (`FestivalService::FESTIVALS`).
-=======
-- The current verified catalog contains `230` festival definitions (`FestivalService::FESTIVALS`).
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 - Festivals that legitimately share the same tithi or civil date remain separate entries when they represent different observances.
 - Use `PanchangService::getFestivalYearCalendar()` for complete year-wide festival output. It performs package-side date iteration, relative `day_after` festival handling, adjacent duplicate consolidation, and yearly single-observance consolidation for configured exceptions.
 - `FestivalService::getFestivalsForYear()` is intentionally disabled; `FestivalService` owns the catalog/rule payloads, while `PanchangService` owns location-aware Panchang orchestration.
@@ -540,11 +524,7 @@ PanchangService::configure(
 );
 ```
 
-<<<<<<< HEAD
 ## Supported Festival Definitions (237)
-=======
-## Supported Festival Definitions (230)
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 
 ### Solar-Based (Saṅkrānti)
 - Makara Saṅkrānti (solar ingress-based; civil date can vary by year/location)
@@ -601,11 +581,7 @@ composer test
 | **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta | ✅ Complete |
 | **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra | ✅ Complete |
 | **Karmakala** | Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal | ✅ Complete |
-<<<<<<< HEAD
 | **Festivals** | 237 festival definitions | ✅ Complete |
-=======
-| **Festivals** | 230 festival definitions | ✅ Complete |
->>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
 | **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
 
 ## Full System Requirements
