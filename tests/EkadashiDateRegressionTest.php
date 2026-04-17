@@ -28,13 +28,13 @@ class EkadashiDateRegressionTest extends TestCase
 
         $datesByFestival = [];
         foreach ($festivals['flat'] as $entry) {
-            $festival = (array) $entry['festival'];
+            $festival = $entry['festival'];
             $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
             if ($name === '') {
                 continue;
             }
 
-            $date = (string) $entry['date'];
+            $date = $entry['date'];
             if ($date === '') {
                 continue;
             }

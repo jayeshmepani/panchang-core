@@ -449,7 +449,7 @@ class MuhurtaService
             $planet = $i < 7 ? self::WEEKDAY_PLANET_ORDER[($varaIdx + $i) % 7] : null;
             $dayPortions[] = $this->buildTimedRow($start, $dayDuration, [
                 'division' => $i + 1,
-                'planetary_lord' => $planet ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,
+                'planetary_lord' => $planet !== null ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,
                 'is_optional_eighth_portion' => $i === 7,
                 'planetary_lord_en' => $planet,
             ]);
@@ -461,7 +461,7 @@ class MuhurtaService
             $planet = $i < 7 ? self::WEEKDAY_PLANET_ORDER[($varaIdx + 4 + $i) % 7] : null;
             $nightPortions[] = $this->buildTimedRow($start, $nightDuration, [
                 'division' => $i + 1,
-                'planetary_lord' => $planet ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,
+                'planetary_lord' => $planet !== null ? VimshottariDasha::from($this->getPlanetIndex($planet))->getName() : null,
                 'is_optional_eighth_portion' => $i === 7,
                 'planetary_lord_en' => $planet,
             ]);
@@ -535,10 +535,8 @@ class MuhurtaService
     /**
      * Identify specific inauspicious Muhurtas from the daily 30-period table.
      *
-     * @param CarbonImmutable $sunrise
-     * @param CarbonImmutable $sunset
-     * @param CarbonImmutable $nextSunrise
      * @param int $varaIdx Weekday index (0-6)
+     *
      * @return array List of Dur-Muhurta periods
      */
     public function calculateDurMuhurta(

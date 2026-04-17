@@ -58,7 +58,18 @@ class FestivalRuleEngine
             return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
         }
 
-        $paksha = (string) ($rule['paksha'] ?? '');
+        $rulePaksha = $rule['paksha'] ?? 'Shukla';
+        $currentPaksha = (string) ($today['Tithi']['paksha'] ?? 'Shukla');
+
+        // Handle 'Both' paksha (bi-monthly recurring festivals like Pradosh Vrat) or arrays
+        if ($rulePaksha === 'Both') {
+            $paksha = $currentPaksha;
+        } elseif (is_array($rulePaksha)) {
+            $paksha = in_array($currentPaksha, $rulePaksha, true) ? $currentPaksha : (string) ($rulePaksha[0] ?? 'Shukla');
+        } else {
+            $paksha = (string) $rulePaksha;
+        }
+
         $requiredTithi = (int) ($rule['tithi'] ?? 0);
         if ($requiredTithi <= 0) {
             return null;

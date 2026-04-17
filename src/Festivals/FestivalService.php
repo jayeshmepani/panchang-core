@@ -130,7 +130,7 @@ class FestivalService
         [
             'type' => 'solar_sankranti',
             'rashi' => 0,
-            'aliases' => ['Baisakhi', 'Puthandu'],
+            'aliases' => ['Baisakhi', 'Puthandu', 'Mesha Vishu'],
             'description' => 'Solar New Year',
             'regions' =>
             [
@@ -229,6 +229,15 @@ class FestivalService
             ],
             'deity' => 'Surya',
         ],
+        'Mattu Pongal' =>
+        [
+            'type' => 'day_after',
+            'parent_festival' => 'Makara Sankranti (Pongal)',
+            'days_after' => 1,
+            'description' => 'Day of Pongal dedicated to the worship and thanksgiving of cattle',
+            'deity' => 'Nandi/Cattle',
+            'regions' => ['Tamil Nadu'],
+        ],
         'Kumbha Sankranti' =>
         [
             'type' => 'solar_sankranti',
@@ -292,15 +301,7 @@ class FestivalService
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'aliases' => ['Pahela Baishakh'],
-            'description' => 'Bengali Solar New Year observed in Bengal tradition',
-            'deity' => 'Surya',
-            'regions' => ['West Bengal', 'Bangladesh', 'Bengali'],
-        ],
-        'Pahela Baishakh' =>
-        [
-            'type' => 'solar_sankranti',
-            'rashi' => 0,
-            'description' => 'Alternate naming tradition of Bengali Solar New Year',
+            'description' => 'Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year',
             'deity' => 'Surya',
             'regions' => ['West Bengal', 'Bangladesh', 'Bengali'],
         ],
@@ -309,26 +310,11 @@ class FestivalService
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'aliases' => ['Maha Vishuba Sankranti'],
-            'description' => 'Odia Solar New Year celebrated with pana offerings',
+            'description' => 'Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti',
             'deity' => 'Surya',
             'regions' => ['Odisha'],
         ],
-        'Maha Vishuba Sankranti' =>
-        [
-            'type' => 'solar_sankranti',
-            'rashi' => 0,
-            'description' => 'Traditional Odia naming for Solar New Year Sankranti',
-            'deity' => 'Surya',
-            'regions' => ['Odisha'],
-        ],
-        'Mesha Vishu' =>
-        [
-            'type' => 'solar_sankranti',
-            'rashi' => 0,
-            'description' => 'Mesha transition observance used in regional calendars',
-            'deity' => 'Surya',
-            'regions' => ['Pan-India'],
-        ],
+
         'Jur Sital' =>
         [
             'type' => 'fixed_date',
@@ -337,14 +323,6 @@ class FestivalService
             'description' => 'Maithili New Year observance with cooling and water rituals',
             'deity' => 'Surya',
             'regions' => ['Mithila', 'Bihar', 'Nepal'],
-        ],
-        'Bohag Bihu' =>
-        [
-            'type' => 'solar_sankranti',
-            'rashi' => 0,
-            'description' => 'Assamese New Year festival cluster of Rongali Bihu',
-            'deity' => 'Surya',
-            'regions' => ['Assam'],
         ],
         'Magh Bihu (Bhogali Bihu)' =>
         [
@@ -562,12 +540,49 @@ class FestivalService
             'regions' => ['Pan-India'],
             'karmakala_type' => 'sunrise',
         ],
-        'Lakshmi Puja (Deepavali)' =>
+        'Vinayaka Chaturthi' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'description' => 'Monthly fast dedicated to Lord Ganesha during the waxing moon',
+            'deity' => 'Ganesha',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'madhyahna',
+        ],
+        'Pradosh Vrat' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'description' => 'Bi-monthly evening fasting dedicated to Lord Shiva and Parvati',
+            'deity' => 'Shiva/Parvati',
+            'regions' => ['Pan-India'],
+            'fasting' => true,
+            'karmakala_type' => 'pradosha',
+            'strict_karmakala' => true,
+        ],
+        'Masik Shivaratri' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 14,
+            'description' => 'Monthly night fasting dedicated to Lord Shiva',
+            'deity' => 'Shiva',
+            'regions' => ['Pan-India'],
+            'fasting' => true,
+            'karmakala_type' => 'nishitha',
+            'strict_karmakala' => true,
+        ],
+        'Lakshmi Puja (Deepavali)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
             'description' => 'Deepavali night Lakshmi Puja in Pradosha window',
@@ -576,19 +591,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Bhai Tika' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 2,
-            'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Kartika',
-            'description' => 'Brother-sister ritual of tika and blessings (Nepal tradition)',
-            'deity' => 'Yama/Yamuna',
-            'regions' => ['Nepal', 'Himalayan regions'],
-            'karmakala_type' => 'aparahna',
-        ],
+
         'Nabanna Utsav' =>
         [
             'type' => 'fixed_date',
@@ -605,7 +608,7 @@ class FestivalService
             'description' => 'First day of Rongali/Bohag Bihu in Assam; dedicated to cattle worship and agrarian renewal',
             'deity' => 'Gau Mata/Surya',
             'regions' => ['Assam'],
-            'aliases' => ['Bohag Bihu Day 1', 'Goru Bihu'],
+            'aliases' => ['Bohag Bihu', 'Bohag Bihu Day 1', 'Goru Bihu'],
         ],
         'Rongali Bihu Day 2' =>
         [
@@ -1492,6 +1495,19 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
+        'Mahavir Jayanti' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 13,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Lord Mahavira, 24th Tirthankara; National Holiday',
+            'deity' => 'Mahavira',
+            'regions' => ['Pan-India'],
+            'karmakala_type' => 'sunrise',
+        ],
         'Hanuman Jayanti' =>
         [
             'type' => 'tithi',
@@ -1659,7 +1675,7 @@ class FestivalService
             'description' => 'Birth of Lord Shani',
             'deity' => 'Shani',
         ],
-        'Savitri Amavasya' =>
+        'Vat Savitri Vrat' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -1667,8 +1683,9 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Jyeshtha',
-            'description' => 'Savitri Vrat',
-            'deity' => 'Savitri',
+            'description' => 'North Indian Vat Savitri observed on Amavasya',
+            'deity' => 'Savitri/Brahma',
+            'regions' => ['Uttar Pradesh', 'Bihar', 'Madhya Pradesh', 'North India'],
         ],
         'Jamai Shashti' =>
         [
@@ -1756,6 +1773,19 @@ class FestivalService
             'deity' => 'Jagannath',
             'karmakala_type' => 'sunrise',
         ],
+        'Bahuda Yatra' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Return journey of Lord Jagannath\'s chariots to the main temple',
+            'deity' => 'Jagannath',
+            'regions' => ['Odisha'],
+            'karmakala_type' => 'sunrise',
+        ],
         'Devshayani Ekadashi' =>
         [
             'type' => 'tithi',
@@ -1815,6 +1845,19 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
+        ],
+        'Aadi Amavasya (Karkidaka Vavu)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Highly auspicious day for ancestor worship (Tarpanam) in South India',
+            'deity' => 'Pitrus',
+            'regions' => ['Tamil Nadu', 'Kerala'],
+            'karmakala_type' => 'aparahna',
         ],
         'Hariyali Teej' =>
         [
@@ -1894,7 +1937,8 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Shravana',
-            'description' => 'Brother-sister bond festival; tie Rakhi during auspicious Purnima window',
+            'aliases' => ['Narali Purnima'],
+            'description' => 'Brother-sister bond festival; also celebrated as Narali Purnima in Maharashtra',
             'deity' => 'Vishnu/Indra',
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
@@ -2045,6 +2089,18 @@ class FestivalService
             'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
         ],
+        'Gowri Habba (Swarna Gauri Vrata)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Major Karnataka festival honoring Goddess Gauri, observed a day before Ganesh Chaturthi',
+            'deity' => 'Gauri',
+            'regions' => ['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'],
+        ],
         'Varaha Jayanti' =>
         [
             'type' => 'tithi',
@@ -2095,19 +2151,18 @@ class FestivalService
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
         ],
-        'Parsva Ekadashi' =>
+        'Jivitputrika Vrat (Jitiya)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 11,
+            'paksha' => 'Krishna',
+            'tithi' => 8,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
-            'aliases' => ['Jal Jhilani Ekadashi'],
-            'description' => 'Lord Vishnu changes sides / Swaminarayan Jal Jhilani Utsav',
-            'deity' => 'Vishnu',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Rigorous fasting by mothers for the long life of their children',
+            'deity' => 'Jimutavahana',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'regions' => ['Bihar', 'Jharkhand', 'Uttar Pradesh', 'Nepal'],
         ],
         'Parivartini Ekadashi' =>
         [
@@ -2118,7 +2173,7 @@ class FestivalService
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
             'aliases' => ['Parsva Ekadashi', 'Jal Jhilani Ekadashi', 'Vamana Ekadashi'],
-            'description' => 'Parivartini (Parsva) Ekadashi when Lord Vishnu turns side during Chaturmas',
+            'description' => 'Parivartini (Parsva) Ekadashi when Lord Vishnu turns side during Chaturmas; also known as Jal Jhilani Utsav (Swaminarayan)',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -2133,6 +2188,20 @@ class FestivalService
             'month_purnimanta' => 'Ashvina',
             'description' => 'Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)',
             'deity' => 'Swaminarayan',
+        ],
+        'Goga Navami' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 9,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Gugga Naumi'],
+            'description' => 'North Indian festival dedicated to snake god Goga Ji',
+            'deity' => 'Goga Ji',
+            'regions' => ['Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttar Pradesh'],
+            'karmakala_type' => 'sunrise',
         ],
         'Mahant Swami Maharaj Parshadi Diksha Din (Official Jayanti)' =>
         [
@@ -2244,6 +2313,20 @@ class FestivalService
             'fallback_support' => 'vijaya_muhurta',
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
+        ],
+        'Ayudha Puja (Saraswati Puja)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Worship of instruments, tools, and Goddess Saraswati during Navaratri',
+            'deity' => 'Saraswati',
+            'regions' => ['Karnataka', 'Tamil Nadu', 'Kerala', 'Andhra Pradesh', 'Telangana'],
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
         ],
         'Papankusha Ekadashi' =>
         [
@@ -2417,8 +2500,10 @@ class FestivalService
             'tithi' => 2,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'Brother-sister relationship celebration',
+            'aliases' => ['Bhai Tika', 'Bhau Beej', 'Yama Dwitiya'],
+            'description' => 'Brother-sister relationship celebration (known as Bhai Tika in Nepal)',
             'deity' => 'Yama/Yamuna',
+            'regions' => ['Pan-India', 'Nepal'],
             'karmakala_type' => 'aparahna',
         ],
         'Labh Pancham' =>
@@ -2491,6 +2576,20 @@ class FestivalService
             'month_purnimanta' => 'Kartika',
             'description' => 'Worship of Goddess Jagaddhatri in Bengal',
             'deity' => 'Jagaddhatri',
+        ],
+        'Subrahmanya Shashti (Champa Shashthi)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'aliases' => ['Champa Shashthi'],
+            'description' => 'Important festival dedicated to Lord Subrahmanya (Karthikeya) and Shiva',
+            'deity' => 'Subrahmanya / Shiva (Khandoba)',
+            'regions' => ['Karnataka', 'Andhra Pradesh', 'Maharashtra'],
+            'karmakala_type' => 'sunrise',
         ],
         'Pramukh Swami Maharaj Jayanti' =>
         [
@@ -2566,6 +2665,19 @@ class FestivalService
             'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
             'karmakala_type' => 'pradosha',
         ],
+        'Guru Nanak Jayanti (Kartika Purnima)' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Birth anniversary of the first Sikh Guru; major pan-India observance',
+            'deity' => 'Guru Nanak',
+            'regions' => ['Pan-India', 'Punjab'],
+            'karmakala_type' => 'sunrise',
+        ],
         'Utpanna Ekadashi' =>
         [
             'type' => 'tithi',
@@ -2612,7 +2724,7 @@ class FestivalService
             'description' => 'Wedding anniversary of Rama and Sita',
             'deity' => 'Rama/Sita',
         ],
-        'Geeta Jayanti' =>
+        'Mokshada Ekadashi (Geeta Jayanti)' =>
         [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2620,22 +2732,8 @@ class FestivalService
             'tithi' => 11,
             'month_amanta' => 'Margashirsha',
             'month_purnimanta' => 'Margashirsha',
-            'aliases' => ['Mokshada Ekadashi'],
-            'description' => 'Celebration of Bhagavad Gita / Gateway to Heaven',
-            'deity' => 'Krishna',
-            'fasting' => true,
-            'karmakala_type' => 'sunrise',
-        ],
-        'Mokshada Ekadashi' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 11,
-            'month_amanta' => 'Margashirsha',
-            'month_purnimanta' => 'Margashirsha',
-            'aliases' => ['Geeta Jayanti'],
-            'description' => 'Fasting for Mokshada Ekadashi / Geeta Jayanti',
+            'aliases' => ['Geeta Jayanti', 'Mokshada Ekadashi'],
+            'description' => 'Fasting for Mokshada Ekadashi and celebration of Bhagavad Gita (Geeta Jayanti); known as the Gateway to Heaven',
             'deity' => 'Krishna/Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
@@ -2807,18 +2905,7 @@ class FestivalService
             'description' => 'Kumbh Mela bathing day / Tamil holy bathing day',
             'deity' => 'Ganga/Shiva',
         ],
-        'Pushpadolotsav (Dhuleti)' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 1,
-            'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Chaitra',
-            'description' => 'Festival of colors (Dhuleti/Pushpadolotsav)',
-            'deity' => 'Krishna/Swaminarayan',
-            'karmakala_type' => 'sunrise',
-        ],
+
         'Vijaya Ekadashi' =>
         [
             'type' => 'tithi',
@@ -2901,8 +2988,23 @@ class FestivalService
             'type' => 'day_after',
             'parent_festival' => 'Holika Dahan',
             'days_after' => 1,
+            'aliases' => ['Dhuleti', 'Pushpadolotsav'],
             'description' => 'Festival of colors',
             'deity' => 'Krishna',
+        ],
+        'Gaura Purnima' =>
+        [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Chaitanya Mahaprabhu Jayanti'],
+            'description' => 'Appearance day of Sri Chaitanya Mahaprabhu; massive Vaishnava festival',
+            'deity' => 'Chaitanya Mahaprabhu',
+            'regions' => ['West Bengal', 'Odisha', 'Pan-India (ISKCON)'],
+            'karmakala_type' => 'pradosha',
         ],
         'Varalakshmi Vratam' =>
         [
@@ -2965,9 +3067,16 @@ class FestivalService
     ) {
     }
 
+    public static function getFestivalCount(): int
+    {
+        return count(self::FESTIVALS);
+    }
+
     /**
      * Get festivals for a specific date using actual panchang data
      * This is the PRIMARY method - uses real tithi from PanchangService.
+     *
+     * @return array<int, array<string, mixed>>
      */
     public function resolveFestivalsForDate(
         CarbonImmutable $date,
@@ -2998,7 +3107,7 @@ class FestivalService
 
             // Adhika/Nija filtering logic for lunar (tithi) observances.
             // Default behavior is Nija-only unless explicitly marked otherwise.
-            $adhikaAllowed = (bool) (($rules['allow_adhika'] ?? false) || ($rules['allows_adhika'] ?? false));
+            $adhikaAllowed = ($rules['allow_adhika'] ?? false) || ($rules['allows_adhika'] ?? false);
             $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
 
             if ($type === 'tithi') {
@@ -3127,6 +3236,8 @@ class FestivalService
     /**
      * Build a complete, localized festival payload while preserving the
      * calculation basis from the registry and resolver decision context.
+     *
+     * @return array<string, mixed>
      */
     public function buildFestivalPayload(string $name, array $rules, ?array $resolved = null): array
     {
@@ -3164,6 +3275,7 @@ class FestivalService
     {
         return (string) ($rules['resolver'] ?? '') === 'classical';
     }
+
     /** Daily Sanatan observances from tithi-based vrata prescriptions. */
     public function getDailyObservances(array $panchangDetails): array
     {
@@ -3617,7 +3729,7 @@ class FestivalService
         $normalized = $this->normalizeMonthName($month);
         foreach (self::MONTHS as $monthName => $number) {
             if ($this->normalizeMonthName($monthName) === $normalized) {
-                return Masa::from(((int) $number) - 1)->getName();
+                return Masa::from($number - 1)->getName();
             }
         }
 
@@ -3682,7 +3794,7 @@ class FestivalService
         if ($type === 'tithi') {
             $isAdhika = (bool) ($panchangDetails['Hindu_Calendar']['Is_Adhika'] ?? false);
             $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
-            $allowsAdhika = (bool) (($rules['allows_adhika'] ?? false) || ($rules['allow_adhika'] ?? false));
+            $allowsAdhika = ($rules['allows_adhika'] ?? false) || ($rules['allow_adhika'] ?? false);
 
             if ($isAdhika && !$adhikaOnly && !$allowsAdhika) {
                 return false; // Regular lunar festivals are blocked in Adhika Masa
@@ -3702,7 +3814,8 @@ class FestivalService
 
         // Check paksha match
         if (isset($rules['paksha'])) {
-            $rulePakshas = is_array($rules['paksha']) ? $rules['paksha'] : [$rules['paksha']];
+            $rulePaksha = $rules['paksha'];
+            $rulePakshas = $rulePaksha === 'Both' ? ['Shukla', 'Krishna'] : (is_array($rulePaksha) ? $rulePaksha : [$rulePaksha]);
             if (!in_array($paksha, $rulePakshas, true)) {
                 return false;
             }

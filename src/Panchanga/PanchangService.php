@@ -782,7 +782,9 @@ class PanchangService
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta
     ): array {
+        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
         $festivalsByDate = [];
+        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
         $festivalFlat = [];
 
         $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
@@ -815,7 +817,7 @@ class PanchangService
         $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
         $festivalsByDate = [];
         foreach ($festivalFlat as $entry) {
-            $dateKey = (string) $entry['date'];
+            $dateKey = $entry['date'];
             $festivalsByDate[$dateKey] ??= [];
             $festivalsByDate[$dateKey][] = $entry['festival'];
         }
@@ -883,7 +885,7 @@ class PanchangService
             $todaySnapshot = $snapshots[$i];
 
             $dateKey = $date->toDateString();
-            $festivals = (array) ($festivalsByDate[$dateKey] ?? []);
+            $festivals = $festivalsByDate[$dateKey] ?? [];
             $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
 
             $sankranti = null;
@@ -1154,14 +1156,14 @@ class PanchangService
 
         $remove = [];
         foreach ($grouped as $items) {
-            usort($items, static fn (array $a, array $b): int => strcmp((string) $a['entry']['date'], (string) $b['entry']['date']));
+            usort($items, static fn (array $a, array $b): int => strcmp($a['entry']['date'], $b['entry']['date']));
 
             $clusters = [];
             $current = [];
             $previousDate = null;
 
             foreach ($items as $item) {
-                $date = CarbonImmutable::parse((string) $item['entry']['date'], $tz);
+                $date = CarbonImmutable::parse($item['entry']['date'], $tz);
                 if (!$previousDate instanceof CarbonImmutable || $previousDate->diffInDays($date) <= 1) {
                     $current[] = $item;
                 } else {
@@ -1170,9 +1172,7 @@ class PanchangService
                 }
                 $previousDate = $date;
             }
-            if ($current !== []) {
-                $clusters[] = $current;
-            }
+            $clusters[] = $current;
 
             foreach ($clusters as $cluster) {
                 if (count($cluster) <= 1) {
@@ -1181,11 +1181,11 @@ class PanchangService
 
                 $best = null;
                 foreach ($cluster as $candidate) {
-                    $festival = (array) $candidate['entry']['festival'];
+                    $festival = $candidate['entry']['festival'];
                     $rules = (array) ($festival['rules_applied'] ?? []);
                     $score = (int) ($rules['winning_score'] ?? -1);
                     $reason = (string) ($rules['winning_reason'] ?? '');
-                    $date = (string) $candidate['entry']['date'];
+                    $date = $candidate['entry']['date'];
                     $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? $festival['resolution']['decision']['vriddhi_preference'] ?? '');
 
                     if ($score < 0) {
@@ -1261,11 +1261,11 @@ class PanchangService
 
             $best = null;
             foreach ($items as $candidate) {
-                $festival = (array) $candidate['entry']['festival'];
+                $festival = $candidate['entry']['festival'];
                 $rules = (array) ($festival['rules_applied'] ?? []);
                 $score = (int) ($rules['winning_score'] ?? -1);
                 $reason = (string) ($rules['winning_reason'] ?? '');
-                $date = (string) $candidate['entry']['date'];
+                $date = $candidate['entry']['date'];
 
                 $reasonRank = match ($reason) {
                     'target_at_karmakala' => 2,
@@ -1317,26 +1317,26 @@ class PanchangService
         };
 
         $sameScore = $score === $best['score'];
-        $sameReason = $reasonRank($reason) === $reasonRank((string) $best['reason']);
+        $sameReason = $reasonRank($reason) === $reasonRank($best['reason']);
         $sameVriddhiPreference = $vriddhiPreference !== ''
-            && $vriddhiPreference === (string) $best['vriddhi_preference'];
+            && $vriddhiPreference === $best['vriddhi_preference'];
 
         if ($sameScore && $sameReason && $sameVriddhiPreference) {
             if ($vriddhiPreference === 'first') {
-                return strcmp($date, (string) $best['date']) < 0;
+                return strcmp($date, $best['date']) < 0;
             }
 
             if ($vriddhiPreference === 'last') {
-                return strcmp($date, (string) $best['date']) > 0;
+                return strcmp($date, $best['date']) > 0;
             }
         }
 
         return $score > $best['score']
-            || ($score === $best['score'] && $reasonRank($reason) > $reasonRank((string) $best['reason']))
+            || ($score === $best['score'] && $reasonRank($reason) > $reasonRank($best['reason']))
             || ($score === $best['score']
-                && $reasonRank($reason) === $reasonRank((string) $best['reason'])
+                && $reasonRank($reason) === $reasonRank($best['reason'])
                 && $vriddhiPreference === ''
-                && strcmp($date, (string) $best['date']) > 0);
+                && strcmp($date, $best['date']) > 0);
     }
 
     /** @param array<string, mixed> $festival */

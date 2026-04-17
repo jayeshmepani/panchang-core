@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:25:36+00:00",
+        "generated_at": "2026-04-17T15:15:28+00:00",
         "year": 2026,
         "month": 4,
         "calendar_type": "amanta",
@@ -416,7 +416,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "संकष्टी चतुर्थी",
+                    "description": "भगवान गणेश को समर्पित मासिक संकष्टी व्रत",
+                    "deity": "गणेश",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "कृष्ण चतुर्थी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "संकष्टी चतुर्थी",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461135.7710348126,
+                        "target_tithi_end_jd": 2461136.8618675107,
+                        "standard_date": "2026-04-06",
+                        "observance_date": "2026-04-06",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Sankashti Chaturthi",
+                        "festival_name_localized": "संकष्टी चतुर्थी",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "चतुर्थी व्रत",
@@ -956,7 +1031,8 @@
                     ],
                     "aliases": [
                         "बैसाखी",
-                        "पुथांडु"
+                        "पुथांडु",
+                        "मेष विशु"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -984,6 +1060,88 @@
                         "कर्नाटक"
                     ],
                     "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "पोइला बोइशाख",
+                    "description": "Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "पश्चिम बंगाल",
+                        "बांग्लादेश",
+                        "बंगाली"
+                    ],
+                    "aliases": [
+                        "पहेला बैसाख"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "पना संक्रांति",
+                    "description": "Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "ओडिशा"
+                    ],
+                    "aliases": [
+                        "महा विषुब संक्रांति"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "रोंगाली बिहू दिन 1",
+                    "description": "असम में रोंगाली/बोहाग बिहू का पहला दिन; गो-पूजा और कृषि नवआरंभ को समर्पित",
+                    "deity": "गौ माता/सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू",
+                        "बोहाग बिहू दिन 1",
+                        "गोरु बिहू"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "solar_sankranti",
@@ -1055,7 +1213,240 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "जूर शीतल",
+                    "description": "शीतलता और जल अनुष्ठानों के साथ मैथिली नव वर्ष उत्सव",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "मिथिला",
+                        "बिहार",
+                        "नेपाल"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "निश्चित ग्रेगोरियन तिथि",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "निश्चित ग्रेगोरियन तिथि",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 15
+                        }
+                    }
+                },
+                {
+                    "name": "प्रदोष व्रत",
+                    "description": "भगवान शिव और पार्वती को समर्पित द्वैमासिक संध्याकालीन व्रत",
+                    "deity": "शिव/पार्वती",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "दोनों",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "शुक्ल त्रयोदशी"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "दोनों",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "प्रदोष",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "प्रदोष व्रत",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461145.2797691748,
+                        "target_tithi_end_jd": 2461146.2095004637,
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "प्रदोष व्रत",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "प्रदोष"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "मासिक शिवरात्रि",
+                    "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 14 सूर्योदय पर 2026-04-16 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-04-15 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                29
+                            ],
+                            "names": [
+                                "कृष्ण चतुर्दशी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "निशीथ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "मासिक शिवरात्रि",
+                        "required_tithi": 14,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461146.2095004637,
+                        "target_tithi_end_jd": 2461147.1124194954,
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 14 सूर्योदय पर 2026-04-16 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-04-15 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Masik Shivaratri",
+                        "festival_name_localized": "मासिक शिवरात्रि",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "निशीथ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "रोंगाली बिहू दिन 2",
+                    "description": "रोंगाली/बोहाग बिहू का दूसरा दिन; असमिया नववर्ष, परिवार के आशीर्वाद और नए वस्त्रों के साथ",
+                    "deity": "गृह देवताएं",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 2",
+                        "मानुह बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 1 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 1
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 2",
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 1 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 2",
+                        "festival_name_localized": "रोंगाली बिहू दिन 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "त्रयोदशी व्रत",
@@ -1111,7 +1502,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "रोंगाली बिहू दिन 3",
+                    "description": "रोंगाली/बोहाग बिहू का तीसरा दिन; गृह एवं ग्राम देवताओं की पूजा",
+                    "deity": "गोसाईं/गृह देवताएं",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 3",
+                        "गोसाई बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 2 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 2
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 3",
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-16",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 2 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 2,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 3",
+                        "festival_name_localized": "रोंगाली बिहू दिन 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 2,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "चतुर्दशी व्रत",
@@ -1167,7 +1617,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "रोंगाली बिहू दिन 4",
+                    "description": "रोंगाली/बोहाग बिहू का चौथा दिन; रिश्तेदारों से मिलना और पारिवारिक संबंध मजबूत करना",
+                    "deity": "कुल पूर्वज",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 4",
+                        "कुटुम बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 3 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 3
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 4",
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 3 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 3,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 4",
+                        "festival_name_localized": "रोंगाली बिहू दिन 4"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 3,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "पूर्णिमा / अमावस्या व्रत",
@@ -1223,7 +1732,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "रोंगाली बिहू दिन 5",
+                    "description": "रोंगाली/बोहाग बिहू का पांचवां दिन; स्नेह, संगीत, नृत्य और सामाजिक मेलजोल का दिन",
+                    "deity": "कामदेव",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 5",
+                        "सेनेही बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 4 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 4
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 5",
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 4 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 4,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 5",
+                        "festival_name_localized": "रोंगाली बिहू दिन 5"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 4,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "प्रतिपदा व्रत",
@@ -1441,6 +2009,64 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "रोंगाली बिहू दिन 6",
+                    "description": "रोंगाली/बोहाग बिहू का छठा दिन; मेले, सांस्कृतिक प्रस्तुतियां और सामुदायिक आयोजन",
+                    "deity": "सांस्कृतिक देवताएं",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 6",
+                        "मेला बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 5 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 5
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 6",
+                        "standard_date": "2026-04-19",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 5 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 5,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 6",
+                        "festival_name_localized": "रोंगाली बिहू दिन 6"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 5,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
                 }
             ],
             "daily_observances": [
@@ -1498,7 +2124,140 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "विनायक चतुर्थी",
+                    "description": "शुक्ल पक्ष के दौरान भगवान गणेश को समर्पित मासिक व्रत",
+                    "deity": "गणेश",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                4
+                            ],
+                            "names": [
+                                "शुक्ल चतुर्थी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "resolution": {
+                        "festival_name": "विनायक चतुर्थी",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461150.5819550147,
+                        "target_tithi_end_jd": 2461151.448167814,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi",
+                        "festival_name_localized": "विनायक चतुर्थी",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "रोंगाली बिहू दिन 7",
+                    "description": "रोंगाली/बोहाग बिहू का सातवां और समापन दिवस",
+                    "deity": "सांस्कृतिक परंपराएं",
+                    "fasting": false,
+                    "regions": [
+                        "असम"
+                    ],
+                    "aliases": [
+                        "बोहाग बिहू दिन 7",
+                        "चेरा बिहू"
+                    ],
+                    "observance_note": "रोंगाली बिहू दिन 1 के 6 दिन बाद मनाया गया",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "मूल उत्सव के बाद का दिन",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "मूल उत्सव के बाद सापेक्ष दिन",
+                        "relative_day": {
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1",
+                            "days_after": 6
+                        },
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "रोंगाली बिहू दिन 7",
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "observance_note": "रोंगाली बिहू दिन 1 के 6 दिन बाद मनाया गया",
+                        "decision": {
+                            "winning_reason": "मूल उत्सव के बाद का दिन",
+                            "parent_festival": "रोंगाली बिहू दिन 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 6,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "रोंगाली बिहू दिन 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 7",
+                        "festival_name_localized": "रोंगाली बिहू दिन 7"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "मूल उत्सव के बाद का दिन",
+                        "parent_festival": "रोंगाली बिहू दिन 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 6,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "मूल उत्सव के बाद का दिन",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "रोंगाली बिहू दिन 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "तृतीया व्रत",
@@ -2270,7 +3029,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "प्रदोष व्रत",
+                    "description": "भगवान शिव और पार्वती को समर्पित द्वैमासिक संध्याकालीन व्रत",
+                    "deity": "शिव/पार्वती",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 13 सूर्योदय पर 2026-04-29 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-04-28 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "दोनों",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "शुक्ल त्रयोदशी"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "दोनों",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "प्रदोष",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "प्रदोष व्रत",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461159.057202289,
+                        "target_tithi_end_jd": 2461160.0986926174,
+                        "standard_date": "2026-04-29",
+                        "observance_date": "2026-04-28",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 13 सूर्योदय पर 2026-04-29 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-04-28 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "प्रदोष व्रत",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "प्रदोष"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "द्वादशी व्रत",

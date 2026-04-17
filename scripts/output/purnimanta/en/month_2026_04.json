@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-04-16T06:30:08+00:00",
+        "generated_at": "2026-04-17T15:25:14+00:00",
         "year": 2026,
         "month": 4,
         "calendar_type": "purnimanta",
@@ -416,7 +416,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Sankashti Chaturthi",
+                    "description": "Monthly Sankashti fast dedicated to Lord Ganesha",
+                    "deity": "Ganesha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Krishna Chaturthi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Sankashti Chaturthi",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461135.7710348126,
+                        "target_tithi_end_jd": 2461136.8618675107,
+                        "standard_date": "2026-04-06",
+                        "observance_date": "2026-04-06",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Sankashti Chaturthi",
+                        "festival_name_localized": "Sankashti Chaturthi",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Chaturthi Vrata",
@@ -956,7 +1031,8 @@
                     ],
                     "aliases": [
                         "Baisakhi",
-                        "Puthandu"
+                        "Puthandu",
+                        "Mesha Vishu"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -984,6 +1060,88 @@
                         "Karnataka"
                     ],
                     "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Pohela Boishakh",
+                    "description": "Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [
+                        "Pahela Baishakh"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Pana Sankranti",
+                    "description": "Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [
+                        "Maha Vishuba Sankranti"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Rongali Bihu Day 1",
+                    "description": "First day of Rongali/Bohag Bihu in Assam; dedicated to cattle worship and agrarian renewal",
+                    "deity": "Gau Mata/Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu",
+                        "Bohag Bihu Day 1",
+                        "Goru Bihu"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "solar_sankranti",
@@ -1055,7 +1213,240 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Jur Sital",
+                    "description": "Maithili New Year observance with cooling and water rituals",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Mithila",
+                        "Bihar",
+                        "Nepal"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "fixed date",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "Gregorian fixed date",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 15
+                        }
+                    }
+                },
+                {
+                    "name": "Pradosh Vrat",
+                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
+                    "deity": "Shiva/Parvati",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461145.2797691748,
+                        "target_tithi_end_jd": 2461146.2095004637,
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Masik Shivaratri",
+                    "description": "Monthly night fasting dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 14 falls on 2026-04-16 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-15.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                29
+                            ],
+                            "names": [
+                                "Krishna Chaturdashi"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "nishitha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Shivaratri",
+                        "required_tithi": 14,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461146.2095004637,
+                        "target_tithi_end_jd": 2461147.1124194954,
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 14 falls on 2026-04-16 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-15.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Shivaratri",
+                        "festival_name_localized": "Masik Shivaratri",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Rongali Bihu Day 2",
+                    "description": "Second day of Rongali/Bohag Bihu; Assamese New Year observance with family blessings and new clothes",
+                    "deity": "Household Deities",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 2",
+                        "Manuh Bihu"
+                    ],
+                    "observance_note": "Observed 1 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 1
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 2",
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "observance_note": "Observed 1 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 1,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 2",
+                        "festival_name_localized": "Rongali Bihu Day 2"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 1,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Trayodashi Vrata",
@@ -1111,7 +1502,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Rongali Bihu Day 3",
+                    "description": "Third day of Rongali/Bohag Bihu; worship of household and village deities",
+                    "deity": "Gosain/Household Deities",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 3",
+                        "Gosai Bihu"
+                    ],
+                    "observance_note": "Observed 2 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 2
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 3",
+                        "standard_date": "2026-04-16",
+                        "observance_date": "2026-04-16",
+                        "observance_note": "Observed 2 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 2,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 3",
+                        "festival_name_localized": "Rongali Bihu Day 3"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 2,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Chaturdashi Vrata",
@@ -1167,7 +1617,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Rongali Bihu Day 4",
+                    "description": "Fourth day of Rongali/Bohag Bihu; visiting relatives and strengthening family ties",
+                    "deity": "Family Ancestors",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 4",
+                        "Kutum Bihu"
+                    ],
+                    "observance_note": "Observed 3 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 3
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 4",
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "Observed 3 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 3,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 4",
+                        "festival_name_localized": "Rongali Bihu Day 4"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 3,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Purnima / Amavasya Vrata",
@@ -1223,7 +1732,66 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Rongali Bihu Day 5",
+                    "description": "Fifth day of Rongali/Bohag Bihu; day of affection, music, dance, and social bonding",
+                    "deity": "Kamadeva",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 5",
+                        "Senehi Bihu"
+                    ],
+                    "observance_note": "Observed 4 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 4
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 5",
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "observance_note": "Observed 4 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 4,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 5",
+                        "festival_name_localized": "Rongali Bihu Day 5"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 4,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Pratipada Vrata",
@@ -1441,6 +2009,64 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Rongali Bihu Day 6",
+                    "description": "Sixth day of Rongali/Bohag Bihu; fairs, cultural performances, and community gatherings",
+                    "deity": "Cultural Deities",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 6",
+                        "Mela Bihu"
+                    ],
+                    "observance_note": "Observed 5 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 5
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 6",
+                        "standard_date": "2026-04-19",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "Observed 5 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 5,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 6",
+                        "festival_name_localized": "Rongali Bihu Day 6"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 5,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
                 }
             ],
             "daily_observances": [
@@ -1498,7 +2124,140 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Vinayaka Chaturthi",
+                    "description": "Monthly fast dedicated to Lord Ganesha during the waxing moon",
+                    "deity": "Ganesha",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                4
+                            ],
+                            "names": [
+                                "Shukla Chaturthi"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "madhyahna"
+                    },
+                    "resolution": {
+                        "festival_name": "Vinayaka Chaturthi",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461150.5819550147,
+                        "target_tithi_end_jd": 2461151.448167814,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi",
+                        "festival_name_localized": "Vinayaka Chaturthi",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "madhyahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Rongali Bihu Day 7",
+                    "description": "Seventh and closing day of Rongali/Bohag Bihu",
+                    "deity": "Cultural Traditions",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [
+                        "Bohag Bihu Day 7",
+                        "Chera Bihu"
+                    ],
+                    "observance_note": "Observed 6 day(s) after Rongali Bihu Day 1",
+                    "calculation_basis": {
+                        "type": "day_after",
+                        "type_name": "day after parent festival",
+                        "basis": "relative_day_after_parent_festival",
+                        "basis_name": "relative day after parent festival",
+                        "relative_day": {
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1",
+                            "days_after": 6
+                        },
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_festival_key": "Rongali Bihu Day 1"
+                    },
+                    "resolution": {
+                        "festival_name": "Rongali Bihu Day 7",
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "observance_note": "Observed 6 day(s) after Rongali Bihu Day 1",
+                        "decision": {
+                            "winning_reason": "day after parent festival",
+                            "parent_festival": "Rongali Bihu Day 1",
+                            "parent_observance_date": "2026-04-14",
+                            "days_after": 6,
+                            "winning_score": 1000,
+                            "winning_reason_key": "day_after_parent_festival",
+                            "winning_reason_name": "day after parent festival",
+                            "parent_festival_key": "Rongali Bihu Day 1",
+                            "parent_festival_name": "Rongali Bihu Day 1"
+                        },
+                        "festival_name_key": "Rongali Bihu Day 7",
+                        "festival_name_localized": "Rongali Bihu Day 7"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "day after parent festival",
+                        "parent_festival": "Rongali Bihu Day 1",
+                        "parent_observance_date": "2026-04-14",
+                        "days_after": 6,
+                        "winning_score": 1000,
+                        "winning_reason_key": "day_after_parent_festival",
+                        "winning_reason_name": "day after parent festival",
+                        "parent_festival_key": "Rongali Bihu Day 1",
+                        "parent_festival_name": "Rongali Bihu Day 1"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Tritiya Vrata",
@@ -2270,7 +3029,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Pradosh Vrat",
+                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
+                    "deity": "Shiva/Parvati",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-04-29 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-28.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461159.057202289,
+                        "target_tithi_end_jd": 2461160.0986926174,
+                        "standard_date": "2026-04-29",
+                        "observance_date": "2026-04-28",
+                        "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-04-29 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-28.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Dwadashi Vrata",

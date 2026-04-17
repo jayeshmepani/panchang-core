@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
 
 /**
  * Output Generator Service.
@@ -66,6 +67,7 @@ class OutputGeneratorService
                 'calendar_type' => $calendarType->value,
                 'festival_day_count' => $festivalCalendar['festival_day_count'],
                 'festival_entry_count' => $festivalCalendar['festival_entry_count'],
+                'total_festivals' => FestivalService::getFestivalCount(),
                 'by_date' => $festivalCalendar['by_date'],
                 'flat' => $festivalCalendar['flat'],
             ],
