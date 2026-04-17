@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 191 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, and Swiss Ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 230 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, and Swiss Ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -355,6 +355,14 @@
                   <rect x="3" y="14" width="7" height="7" rx="1" />
                   <rect x="14" y="14" width="7" height="7" rx="1" />
                 </svg>Constants</a></li>
+            <li><a href="#api-complete" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M4 19.5V4.5A2.5 2.5 0 0 1 6.5 2h11A2.5 2.5 0 0 1 20 4.5v15" />
+                  <path d="M8 7h8" />
+                  <path d="M8 11h8" />
+                  <path d="M8 15h5" />
+                </svg>Complete API</a></li>
             <li><a href="#return-structures" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   aria-hidden="true">
@@ -475,7 +483,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>191 Festival Definitions</h3>
+              <h3>230 Festival Definitions</h3>
               <p>Comprehensive library of festival definitions covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -1882,7 +1890,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 231+ Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 230 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2003,7 +2011,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified festival catalog currently contains <code>231</code> definitions after merging true
+              <li>The verified festival catalog currently contains <code>230</code> definitions after merging true
                 alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
@@ -3891,6 +3899,635 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
                 target="_blank" rel="noopener">full license text</a>.</p>
           </div>
         </section>
+
+        <section id="api-complete" class="content-section">
+          <h2>Complete Public API Surface (Live from src)</h2>
+          <p>This section is a direct reflection snapshot of all public methods and public constants currently declared in <code>src/</code>.</p>
+          <p>Use this as the definitive signature reference when integrating the package.</p>
+          <pre><code class="language-text">## JayeshMepani\PanchangCore\Astronomy\AstronomyService
+- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- configure(string $ephePath = ""): void
+- getAscendant(array $birth): float
+- getAyanamsa(float $jd): float
+- getPlanetaryStates(array $birth, string $nodeMode = "mean", float $stationTolerance = 1.0E-6): array
+- getPlanets(array $birth): array
+- setAyanamsa(float $jd): void
+- toJulianDayUtc(array $birth): float
+
+## JayeshMepani\PanchangCore\Astronomy\EclipseService
+- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- configure(string $ephePath = ""): void
+- getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array
+
+## JayeshMepani\PanchangCore\Astronomy\SunService
+- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- configure(string $ephePath = ""): void
+- getBirthDatetime(array $birth): Carbon\CarbonImmutable
+- getIntervalAndStart(array $birth): array
+- getMoonriseMoonset(array $birth): array
+- getSolarTransits(array $birth): array
+- getSunriseSunset(array $birth): array
+- getTwilightTimes(array $birth): array
+- isDayBirth(array $birth): bool
+- jdToCarbonPublic(float $jd, string $timezone): Carbon\CarbonImmutable
+
+## JayeshMepani\PanchangCore\Core\AstroCore
+- countSigns(int $targetSign, int $startSign, bool $forward = true): int
+- formatAngle(float $angle): string|float
+- formatCoordinate(float $coordinate): string|float
+- formatDateTime(Carbon\CarbonImmutable $time): string
+- formatDuration(float $minutes): string|float
+- formatTime(Carbon\CarbonImmutable $time): string
+- getAngularDistance(float $a, float $b): float
+- getConfig(string $key, mixed $default = null): mixed
+- getHouseNumFromLagna(int $signIdx, int $ascSignIdx): int
+- getSign(float $lon): int
+- getSignLon(float $lon): float
+- getTimeDiffMinutesPrecise(DateTimeInterface $target, DateTimeInterface $reference): float
+- normalize(float $x): float
+- toDms(float $deg): string
+
+## JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants
+const SECONDS_PER_DAY
+const MINUTES_PER_DAY
+const SECONDS_PER_HOUR
+const MINUTES_PER_HOUR
+const SECONDS_PER_MINUTE
+const GHATIKA_IN_MINUTES
+const GHATIKA_PER_DAY
+const PALA_IN_SECONDS
+const MUHURTA_IN_MINUTES
+const MUHURTA_PER_DAY
+const ARUNODAYA_MINUTES
+const ARUNODAYA_PER_DAY
+const PRADOSHA_MINUTES
+const PRADOSHA_PER_DAY
+const BRAHMA_MUHURTA_MINUTES
+const BRAHMA_MUHURTA_OFFSET_MINUTES
+const DEGREES_PER_SIGN
+const DEGREES_PER_NAKSHATRA
+const DEGREES_PER_TITHI
+const TITHIS_PER_PAKSHA
+const NAKSHATRAS_TOTAL
+const SIGNS_TOTAL
+const CIRCLE_DEGREES
+const JD_EPSILON
+const BINARY_SEARCH_ITERATIONS
+const DEGREE_EPSILON
+const JUPITER_CYCLE_YEARS
+const KALI_ERA_OFFSET
+const VIKRAMA_ERA_OFFSET
+const SHAKA_ERA_OFFSET
+const BHADRA_TITHIS
+const EKADASHI_TITHI
+const CHATURDASHI_TITHI
+const PURNIMA_TITHI
+const SCORE_TITHI_AT_KARMAKALA
+const SCORE_TITHI_AT_SUNRISE
+const SCORE_TITHI_DURING_DAY
+const SCORE_TITHI_DURING_NIGHT
+const SCORE_WEEKDAY_MATCH
+const SCORE_NAKSHATRA_MATCH
+const SCORE_VRIDDHI_FIRST_DAY
+const SCORE_KSHAYA_PENALTY
+
+## JayeshMepani\PanchangCore\Core\Enums\CalendarType
+const Amanta
+const Purnimanta
+- cases(): array
+- from(string|int $value): static
+- getLocalizedName(string $locale = null): string
+- isAmanta(): bool
+- isPurnimanta(): bool
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Choghadiya
+const Udveg
+const Chal
+const Labh
+const Amrit
+const Kaal
+const Shubh
+const Rog
+- cases(): array
+- from(string|int $value): static
+- fromTime(float $jdSunrise, float $jdSunset, float $jdCurrent, JayeshMepani\PanchangCore\Core\Enums\Vara $vara): self
+- getDaySequence(JayeshMepani\PanchangCore\Core\Enums\Vara $vara): array
+- getName(string $locale = null): string
+- getNature(): string
+- getNightSequence(JayeshMepani\PanchangCore\Core\Enums\Vara $vara): array
+- isAuspicious(): bool
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Hora
+const Sun
+const Venus
+const Mercury
+const Moon
+const Saturn
+const Jupiter
+const Mars
+- cases(): array
+- from(string|int $value): static
+- getName(string $locale = null): string
+- getSequence(JayeshMepani\PanchangCore\Core\Enums\Vara $vara): array
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Karana
+const Bava
+const Balava
+const Kaulava
+const Taitila
+const Gara
+const Vanija
+const Vishti
+const Shakuni
+const Chatushpada
+const Naga
+const Kintughna
+- cases(): array
+- from(string|int $value): static
+- fromTithi(int $tithiIndex, float $fraction): self
+- getFromLongitudes(float $sunLon, float $moonLon): array
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Masa
+const Chaitra
+const Vaishakha
+const Jyeshtha
+const Ashadha
+const Shravana
+const Bhadrapada
+const Ashvina
+const Kartika
+const Margashirsha
+const Pausha
+const Magha
+const Phalguna
+- cases(): array
+- from(string|int $value): static
+- fromAmantaIndex(int $index): self
+- fromIndex(int $index): self
+- fromSunLongitude(float $sunLon): self
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Muhurta
+const Rudra
+const Sarpa
+const Mitra
+const Pitri
+const Vasu
+const Vara
+const Vishvedeva
+const Vidhi
+const Brahma
+const Indra
+const Indragni
+const Daitya
+const Varuna
+const Aryaman
+const Bhaga
+const Ishvara
+const Ajapada
+const Ahirbudhnya
+const Pushya
+const Nasatya
+const Yama
+const Vahni
+const Dhala
+const Shashi
+const Aditya
+const Guru
+const Acyuta
+const Arka
+const Tvashta
+const Vayu
+- cases(): array
+- from(string|int $value): static
+- getDaySequence(): array
+- getName(string $locale = null): string
+- getNightSequence(): array
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Nakshatra
+const Ashwini
+const Bharani
+const Krittika
+const Rohini
+const Mrigashira
+const Ardra
+const Punarvasu
+const Pushya
+const Ashlesha
+const Magha
+const PurvaPhalguni
+const UttaraPhalguni
+const Hasta
+const Chitra
+const Swati
+const Vishakha
+const Anuradha
+const Jyeshtha
+const Mula
+const PurvaAshadha
+const UttaraAshadha
+const Shravana
+const Dhanishta
+const Shatabhisha
+const PurvaBhadrapada
+const UttaraBhadrapada
+const Revati
+- cases(): array
+- from(string|int $value): static
+- fromLongitude(float $longitude): self
+- getDeity(): string
+- getLongitudeRange(): array
+- getName(string $locale = null): string
+- getPada(float $longitude): int
+- getRulingPlanet(): string
+- getSymbol(): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Paksha
+const Shukla
+const Krishna
+- cases(): array
+- containsTithi(int $tithiIndex): bool
+- from(string|int $value): static
+- getDescription(): string
+- getName(string $locale = null): string
+- getRawName(): string
+- getTithiRange(): array
+- isKrishna(): bool
+- isShukla(): bool
+- normalizeTithi(int $tithiIndex): int
+- opposite(): self
+- toAbsoluteTithi(int $normalizedTithi): int
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Rasi
+const Mesha
+const Vrishabha
+const Mithuna
+const Karka
+const Simha
+const Kanya
+const Tula
+const Vrischika
+const Dhanu
+const Makara
+const Kumbha
+const Meena
+- cases(): array
+- from(string|int $value): static
+- fromLongitude(float $longitude): self
+- getElement(): string
+- getEnglishName(): string
+- getLongitudeRange(): array
+- getName(string $locale = null): string
+- getRulingPlanet(): string
+- getSymbol(): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Ritu
+const Vasanta
+const Grishma
+const Varsha
+const Sharad
+const Hemanta
+const Shishira
+- cases(): array
+- from(string|int $value): static
+- fromMonth(int $monthIndex): self
+- fromSunLongitude(float $sunLon): self
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Samvatsara
+const Prabhava
+const Vibhava
+const Shukla
+const Pramoda
+const Prajapati
+const Angirasa
+const Srimukha
+const Bhava
+const Yuva
+const Dhata
+const Ishvara
+const Bahudhanya
+const Pramathi
+const Vikrama
+const Vrisha
+const Chitrabhanu
+const Svabhanu
+const Tarana
+const Parthiva
+const Vyaya
+const Sarvajit
+const Sarvadhari
+const Virodhi
+const Vikriti
+const Khara
+const Nandana
+const Vijaya
+const Jaya
+const Manmatha
+const Durmukhi
+const Hevilambi
+const Vilambi
+const Vikari
+const Sharvari
+const Plava
+const Shubhakritu
+const Shobhakritu
+const Krodhi
+const Vishvavasu
+const Parabhava
+const Plavanga
+const Kilaka
+const Saumya
+const Sadharana
+const Virodhikritu
+const Paritapi
+const Pramadi
+const Ananda
+const Rakshasa
+const Nala
+const Pingala
+const Kalayukti
+const Siddharthi
+const Raudri
+const Durmati
+const Dundubhi
+const Rudhirodgari
+const Raktakshi
+const Krodhana
+const Akshaya
+- cases(): array
+- from(string|int $value): static
+- fromGregorianYear(int $gregorianYear): self
+- fromYear(int $year): self
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Tithi
+const ShuklaPratipada
+const ShuklaDwitiya
+const ShuklaTritiya
+const ShuklaChaturthi
+const ShuklaPanchami
+const ShuklaShashthi
+const ShuklaSaptami
+const ShuklaAshtami
+const ShuklaNavami
+const ShuklaDashami
+const ShuklaEkadashi
+const ShuklaDwadashi
+const ShuklaTrayodashi
+const ShuklaChaturdashi
+const Purnima
+const KrishnaPratipada
+const KrishnaDwitiya
+const KrishnaTritiya
+const KrishnaChaturthi
+const KrishnaPanchami
+const KrishnaShashthi
+const KrishnaSaptami
+const KrishnaAshtami
+const KrishnaNavami
+const KrishnaDashami
+const KrishnaEkadashi
+const KrishnaDwadashi
+const KrishnaTrayodashi
+const KrishnaChaturdashi
+const Amavasya
+- cases(): array
+- from(string|int $value): static
+- fromLongitudes(float $sunLon, float $moonLon): self
+- getFractionRemaining(float $sunLon, float $moonLon): float
+- getName(string $locale = null): string
+- getNormalizedIndex(): int
+- getPaksha(): JayeshMepani\PanchangCore\Core\Enums\Paksha
+- isChaturdashi(): bool
+- isEkadashi(): bool
+- isPurnimaOrAmavasya(): bool
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Vara
+const Sunday
+const Monday
+const Tuesday
+const Wednesday
+const Thursday
+const Friday
+const Saturday
+- cases(): array
+- from(string|int $value): static
+- fromDayOfWeek(int $dayOfWeek): self
+- fromJulianDay(float $jd): self
+- getEnglishName(): string
+- getName(string $locale = null): string
+- getRulingPlanet(): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\VimshottariDasha
+const Sun
+const Moon
+const Mars
+const Rahu
+const Jupiter
+const Saturn
+const Mercury
+const Ketu
+const Venus
+- cases(): array
+- from(string|int $value): static
+- fromNakshatra(JayeshMepani\PanchangCore\Core\Enums\Nakshatra $nakshatra): self
+- getDashaYears(): int
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Enums\Yoga
+const Vishkumbha
+const Priti
+const Ayushman
+const Saubhagya
+const Shobhana
+const Atiganda
+const Sukarma
+const Dhriti
+const Shula
+const Ganda
+const Vriddhi
+const Dhruva
+const Vyaghata
+const Harshana
+const Vajra
+const Siddhi
+const Vyatipata
+const Variyana
+const Parigha
+const Shiva
+const Siddha
+const Sadhya
+const Shubha
+const Shukla
+const Brahma
+const Indra
+const Vaidhriti
+- cases(): array
+- from(string|int $value): static
+- fromLongitudes(float $sunLon, float $moonLon): self
+- getFractionRemaining(float $sunLon, float $moonLon): float
+- getName(string $locale = null): string
+- tryFrom(string|int $value): static
+
+## JayeshMepani\PanchangCore\Core\Localization
+- translate(string $type, string|int $key, string $locale = null): string
+
+## JayeshMepani\PanchangCore\Facades\Panchang
+
+## JayeshMepani\PanchangCore\Festivals\FestivalFamilyOrchestrator
+const FESTIVAL_FAMILIES
+const EXCEPTION_LOGIC
+- resolveFestivalFamily(string $familyName, array $baseDate, array $panchangData, string $tradition = null, string $region = null): array
+
+## JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine
+- annotateMonthAnomalies(array $dateToDetails): array
+- resolveMajorFestival(string $festivalName, array $rule, Carbon\CarbonImmutable $date, array $today, array $tomorrow): array
+- resolveNakshatraBasedFestival(string $festivalName, array $rule, Carbon\CarbonImmutable $date, array $today, array $tomorrow): array
+
+## JayeshMepani\PanchangCore\Festivals\FestivalService
+const TITHI_VRATAS
+const FESTIVALS
+const MONTHS
+- __construct(JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine $ruleEngine): void
+- buildFestivalPayload(string $name, array $rules, array $resolved = null): array
+- getDailyObservances(array $panchangDetails): array
+- getFestivalsForYear(int $year, string $pakshaSystem = "Amanta"): array
+- resolveFestivalsForDate(Carbon\CarbonImmutable $date, array $todayDetails, array $tomorrowDetails, array $yesterdayDetails = null, callable $fetchHistoricalSnapshot = null, bool $includeExtraWinners = false): array
+- usesClassicalResolver(array $rules): bool
+
+## JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine
+- calculateBhadra(float $sunriseJd, float $vishtiStartJd, float $vishtiEndJd, int $moonRasiIndex, int $tithiIndex, string $paksha): array
+
+## JayeshMepani\PanchangCore\PanchangServiceProvider
+- boot(): void
+- register(): void
+
+## JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator
+- calculateAbhijitCancellation(float $sunrise, float $sunset, int $varaNumber, float $currentTime): array
+- calculateAmritaKaal(int $varaNumber, float $sunrise, float $sunset, float $nextSunrise, float $currentTime): array
+- calculateBhadra(int $moonSignIdx): array
+- calculateDagdhaTithi(int $tithiNumber, int $moonSignIdx): array
+- calculateDagdhaYoga(int $varaNumber, int $tithiNumber): array
+- calculatePanchakaDosha(int $tithiNumber, int $varaNumber, int $nakshatraNumber, int $lagnaNumber): array
+- calculateRiktaTithi(int $tithiNumber, bool $isKrishnaPaksha): array
+- calculateTransitMoorthy(string $nakshatraName): array
+- calculateVarjyam(int $nakshatraNumber, float $nakshatraStartTime, float $nakshatraDurationMinutes): array
+- generateRejectionReport(array $evaluationResults): array
+
+## JayeshMepani\PanchangCore\Panchanga\ElectionalRuleBook
+const UNIVERSAL_BAD_TITHIS
+const UNIVERSAL_BAD_CHOGADIYA
+const UNIVERSAL_GOOD_CHOGADIYA
+const UNIVERSAL_GOOD_HORAS
+const UNIVERSAL_BAD_YOGAS
+const UNIVERSAL_GOOD_KARANAS
+const UNIVERSAL_BAD_KARANAS
+const COMBUSTION_ORBS
+const COMBUSTION_ORBS_RETRO
+const VARA_TITHI_YOGAS
+
+## JayeshMepani\PanchangCore\Panchanga\KalaNirnayaEngine
+const GHATI_IN_MINUTES
+const PALA_IN_SECONDS
+const GHATIKA_PER_DAY
+const ARUNODAYA_GHATIKAS
+const ARUNODAYA_MINUTES
+const SANKRANTI_PUNYA_KAAL
+const TITHI_NAMES
+const FESTIVAL_RULES
+- __construct(float $latitude, float $longitude): void
+- calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd): array
+- configure(string $ephePath = ""): void
+- determineEkadashi(float $ekadashiStartJd, float $ekadashiEndJd, float $dashamiEndJd, float $dvadashiStartJd, float $sunriseJd, float $nextSunriseJd, string $tradition = "Vaishnava"): array
+- determineViddhaTithi(int $tithiNumber, float $tithiStartJd, float $tithiEndJd, float $sunriseDay1Jd, float $sunriseDay2Jd, float $prevTithiEndJd): array
+- generateKalaNirnayaReport(int $tithiNumber, float $tithiStartJd, float $tithiEndJd, float $prevTithiEndJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array
+- resolveFestivalDate(string $festivalName, float $tithiStartJd, float $tithiEndJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array
+
+## JayeshMepani\PanchangCore\Panchanga\MuhurtaService
+- calculateAbhijitMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
+- calculateAmritaKaal(Carbon\CarbonImmutable $sunrise, array $varjyam): array
+- calculateBadTimes(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, int $varaIdx): array
+- calculateBrahmaMuhurta(Carbon\CarbonImmutable $sunrise): array
+- calculateChogadiya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $current, int $varaIdx): array
+- calculateChogadiyaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
+- calculateDaylightFivefoldDivision(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
+- calculateDurMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
+- calculateGodhuliMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculateGowriPanchangam(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
+- calculateHora(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $current, int $varaIdx): array
+- calculateHoraTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
+- calculateKalaVela(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
+- calculateLagna(Carbon\CarbonImmutable $current, Carbon\CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEph\FFI\SwissEphFFI $sweph): array
+- calculateLagnaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEph\FFI\SwissEphFFI $sweph): array
+- calculateMuhurtaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, int $tithiNum): array
+- calculatePrahara(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $solarNoon): array
+- calculateVarjyam(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd): array
+- calculateVijayaMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
+
+## JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService
+- __construct(JayeshMepani\PanchangCore\Panchanga\PanchangService $panchangService, JayeshMepani\PanchangCore\Astronomy\EclipseService $eclipseService): void
+- generateAll(int $festivalYear, int $eclipseStartYear, int $eclipseEndYear, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateEclipses(int $startYear, int $endYear, float $lat, float $lon, string $tz): array
+- generateFestivals(int $year, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateTodayPanchang(float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+
+## JayeshMepani\PanchangCore\Panchanga\PanchangService
+- __construct(SwissEph\FFI\SwissEphFFI $sweph, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine): void
+- configure(string $ephePath = ""): void
+- getDailyMuhurtaEvaluation(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $currentAt = null, float $elevation = 0, array $options = []): array
+- getDayDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getElectionalSnapshot(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, array $options = []): array
+- getFestivalSnapshot(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- getFestivalYearCalendar(int $year, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation = 0, array $options = [], Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+
+## JayeshMepani\PanchangCore\Panchanga\PanchangaEngine
+- calculateKundaLagna(float $ascLon): array
+- calculatePanchakaRahita(int $tithiNum, int $varaNum, int $nakNum, int $lagnaNum): array
+- calculateTithi(float $sunLon, float $moonLon): array
+- calculateVara(array $birth, JayeshMepani\PanchangCore\Astronomy\SunService $sunService): array
+- calculateYoga(float $sunLon, float $moonLon): array
+- getAyana(float $sunLon): string
+- getGujaratiSamvat(int $vikramSamvat, int $monthIndex): int
+- getHinduMonth(float $sunLon, float $moonLon, string $paksha = "Shukla"): array
+- getKaliSamvat(int $vikramSamvat): int
+- getKarana(float $sunLon, float $moonLon): array
+- getNakshatraInfo(float $longitude): array
+- getPanchanga(float $sunLon, float $moonLon, array $birth, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy): array
+- getRitu(float $sunLon): string
+- getSamvat(int $year, int $month): array
+- getSamvatsara(int $vikramSamvat): string
+- getSamvatsaraNorth(int $vikramSamvat): string
+- isVishtiKarana(float $sunLon, float $moonLon): bool
+
+## JayeshMepani\PanchangCore\Traits\CliBootstrap
+- init(string $baseDir): void
+- makeEclipseService(): JayeshMepani\PanchangCore\Astronomy\EclipseService
+- makeOutputGenerator(JayeshMepani\PanchangCore\Panchanga\PanchangService $panchang): JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService
+- makePanchangService(): JayeshMepani\PanchangCore\Panchanga\PanchangService
+
+</code></pre>
+        </section>
+
         <section id="quick-reference" class="content-section">
           <h2>Quick Reference</h2>
           <div class="info-box">

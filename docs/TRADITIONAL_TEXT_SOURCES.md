@@ -20,7 +20,7 @@ Some package components are architectural helpers and are intentionally **not** 
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
 Current package state (v4.x baseline):
-- Festival catalog: `FestivalService::FESTIVALS` currently contains **231** top-level entries.
+- Festival catalog: `FestivalService::FESTIVALS` currently contains **230** top-level entries.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
 
