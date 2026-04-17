@@ -1,6 +1,10 @@
 {
     "meta": {
+<<<<<<< HEAD
         "generated_at": "2026-04-17T15:08:15+00:00",
+=======
+        "generated_at": "2026-04-17T06:52:43+00:00",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         "type": "today_panchang",
         "calendar_type": "amanta",
         "location": {
@@ -14,7 +18,11 @@
     },
     "today": {
         "title": "Today's Complete Details - Every single data point from the package",
+<<<<<<< HEAD
         "input_now": "2026-04-17T20:38:14+05:30",
+=======
+        "input_now": "2026-04-17T12:22:42+05:30",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         "date": "2026-04-17",
         "details": {
             "Display_Settings": {
@@ -104,7 +112,11 @@
             "Is_Vishti_Karana": false,
             "Sunrise": "06:29:11 AM",
             "Sunset": "07:12:57 PM",
+<<<<<<< HEAD
             "Ishtkaal": "35:22:35",
+=======
+            "Ishtkaal": "14:43:45",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "sun_sunrise_lon": 2.813403035583348,
             "moon_sunrise_lon": 356.6161529074451,
             "sunrise_hm": [
@@ -113,9 +125,15 @@
             ],
             "sunrise_dt": "17/04/2026 06:29:11 AM",
             "Ayanamsa": "LAHIRI (Chitra Paksha)",
+<<<<<<< HEAD
             "Ayanamsa_Degree": 24.22438250931492,
             "Ayanamsa_At": "17/04/2026 08:38:14 PM",
             "Ayanamsa_JD": 2461148.130717593,
+=======
+            "Ayanamsa_Degree": 24.224369347010622,
+            "Ayanamsa_At": "17/04/2026 12:22:42 PM",
+            "Ayanamsa_JD": 2461147.786597222,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "Day_Types": {
                 "civil_day_start": "17/04/2026 12:00:00 AM",
                 "civil_day_end": "18/04/2026 12:00:00 AM",
@@ -192,7 +210,11 @@
                     "timestamp": 1776433451,
                     "display_iso": "17/04/2026 07:14:11 PM"
                 },
+<<<<<<< HEAD
                 "Ishtkaal": "35:22:35",
+=======
+                "Ishtkaal": "14:43:45",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "sun_sunrise_lon": 2.813403035583348,
                 "moon_sunrise_lon": 356.6161529074451,
                 "sunrise_hm": [
@@ -205,7 +227,11 @@
                 "nakshatra_end_dt": "17/04/2026 12:02:27 PM",
                 "yoga_end_dt": "17/04/2026 07:21:56 AM",
                 "karana_end_dt": "17/04/2026 06:50:02 AM",
+<<<<<<< HEAD
                 "Ishtkaal_iso": "17/04/2026 11:22:35 AM"
+=======
+                "Ishtkaal_iso": "17/04/2026 02:43:45 PM"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             },
             "Hindu_Calendar": {
                 "Ayana": "Uttarayana",
@@ -230,7 +256,159 @@
                 "Sun_Sign": "Mesha",
                 "Moon_Sign": "Meena"
             },
-            "Festivals": [],
+            "Festivals": [
+                {
+                    "name": "Somvati Amavasya",
+                    "description": "Amavasya falling on Monday, observed for Shiva-Parvati blessings",
+                    "deity": "Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday_tithi",
+                        "type_name": "weekday and tithi",
+                        "basis": "weekday_and_tithi",
+                        "basis_name": "weekday and tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                30
+                            ],
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "Amavasya"
+                            ]
+                        },
+                        "paksha": "",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Somvati Amavasya",
+                        "required_tithi": 30,
+                        "paksha": "",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.1124194954,
+                        "target_tithi_end_jd": 2461147.994316308,
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Somvati Amavasya",
+                        "festival_name_localized": "Somvati Amavasya",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Pradosh Vrat",
+                    "description": "Fortnightly Pradosh vrata observed in Pradosha Kaal",
+                    "deity": "Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard  tithi 1 falls on 2026-04-18 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-17.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13,
+                                28
+                            ],
+                            "absolute_numbers": [
+                                13,
+                                28
+                            ],
+                            "names": [
+                                "Shukla Trayodashi",
+                                "Krishna Trayodashi"
+                            ]
+                        },
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 1,
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.994316308,
+                        "target_tithi_end_jd": 2461148.8618511586,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "Exception: Standard  tithi 1 falls on 2026-04-18 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-17.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "Daily_Observances": [
                 {
                     "name": "Purnima / Amavasya Vrata",
@@ -241,6 +419,7 @@
                 }
             ],
             "Panchaka_Rahita": {
+<<<<<<< HEAD
                 "sum": 70,
                 "remainder": 7,
                 "panchaka_name": "Roga Panchaka",
@@ -259,6 +438,26 @@
                 "name": "Kaal",
                 "is_auspicious": false,
                 "division_duration_minutes": "1h 24m 25.25s"
+=======
+                "sum": 67,
+                "remainder": 4,
+                "panchaka_name": "Raja Panchaka",
+                "is_auspicious": false
+            },
+            "Hora": {
+                "hora_number": 6,
+                "is_day_hora": true,
+                "ruler": "Mars",
+                "hora_duration_seconds": 3818.8333333333335,
+                "hora_duration_minutes": "1h 3m 38.833333333333s"
+            },
+            "Chogadiya": {
+                "mode": "Day",
+                "division": 4,
+                "name": "Kaal",
+                "is_auspicious": false,
+                "division_duration_minutes": "1h 35m 28.25s"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             },
             "Chogadiya_Duration": {
                 "day_each_seconds": 5728.25,
@@ -1899,12 +2098,21 @@
                 "sunset_iso": "17/04/2026 07:12:57 PM"
             },
             "Lagna": {
+<<<<<<< HEAD
                 "lagna_longitude_nirayana": 203.17100449038028,
                 "lagna_longitude_sayana": 227.3953869996952,
                 "sign_index": 6,
                 "sign_name": "Tula",
                 "degree_in_sign": 23.171004490380284,
                 "ayanamsa_applied": 24.22438250931492
+=======
+                "lagna_longitude_nirayana": 91.54573416978059,
+                "lagna_longitude_sayana": 115.77010351679121,
+                "sign_index": 3,
+                "sign_name": "Karka",
+                "degree_in_sign": 1.5457341697805873,
+                "ayanamsa_applied": 24.224369347010622
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             },
             "Lagna_Full_Day": [
                 {
@@ -1914,10 +2122,17 @@
                     "start": "06:29:11 AM",
                     "start_iso": "17/04/2026 06:29:11 AM",
                     "start_jd": 2461147.541099537,
+<<<<<<< HEAD
                     "end_jd": 2461147.6069942093,
                     "end": "08:04:04 AM",
                     "end_iso": "17/04/2026 08:04:04 AM",
                     "duration_minutes": 94.88832794129848,
+=======
+                    "end_jd": 2461147.6069941763,
+                    "end": "08:04:04 AM",
+                    "end_iso": "17/04/2026 08:04:04 AM",
+                    "duration_minutes": 94.88828033208847,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -1926,11 +2141,19 @@
                     "sign_index": 1,
                     "start": "08:04:04 AM",
                     "start_iso": "17/04/2026 08:04:04 AM",
+<<<<<<< HEAD
                     "start_jd": 2461147.6069942093,
                     "end_jd": 2461147.6890157503,
                     "end": "10:02:10 AM",
                     "end_iso": "17/04/2026 10:02:10 AM",
                     "duration_minutes": 118.11101898550987,
+=======
+                    "start_jd": 2461147.6069941763,
+                    "end_jd": 2461147.689015711,
+                    "end": "10:02:10 AM",
+                    "end_iso": "17/04/2026 10:02:10 AM",
+                    "duration_minutes": 118.11101026833057,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -1939,11 +2162,19 @@
                     "sign_index": 2,
                     "start": "10:02:10 AM",
                     "start_iso": "17/04/2026 10:02:10 AM",
+<<<<<<< HEAD
                     "start_jd": 2461147.6890157503,
                     "end_jd": 2461147.7816954562,
                     "end": "12:15:38 PM",
                     "end_iso": "17/04/2026 12:15:38 PM",
                     "duration_minutes": 133.45877654850483,
+=======
+                    "start_jd": 2461147.689015711,
+                    "end_jd": 2461147.781695415,
+                    "end": "12:15:38 PM",
+                    "end_iso": "17/04/2026 12:15:38 PM",
+                    "duration_minutes": 133.45877319574356,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -1952,11 +2183,19 @@
                     "sign_index": 3,
                     "start": "12:15:38 PM",
                     "start_iso": "17/04/2026 12:15:38 PM",
+<<<<<<< HEAD
                     "start_jd": 2461147.7816954562,
                     "end_jd": 2461147.876264751,
                     "end": "02:31:49 PM",
                     "end_iso": "17/04/2026 02:31:49 PM",
                     "duration_minutes": 136.17978438735008,
+=======
+                    "start_jd": 2461147.781695415,
+                    "end_jd": 2461147.8762647104,
+                    "end": "02:31:49 PM",
+                    "end_iso": "17/04/2026 02:31:49 PM",
+                    "duration_minutes": 136.1797857284546,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -1965,17 +2204,26 @@
                     "sign_index": 4,
                     "start": "02:31:49 PM",
                     "start_iso": "17/04/2026 02:31:49 PM",
+<<<<<<< HEAD
                     "start_jd": 2461147.876264751,
                     "end_jd": 2461147.967893537,
                     "end": "04:43:46 PM",
                     "end_iso": "17/04/2026 04:43:46 PM",
                     "duration_minutes": 131.94545209407806,
+=======
+                    "start_jd": 2461147.8762647104,
+                    "end_jd": 2461147.9678934976,
+                    "end": "04:43:45 PM",
+                    "end_iso": "17/04/2026 04:43:45 PM",
+                    "duration_minutes": 131.94545343518257,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
                     "lagna_number": 6,
                     "sign_name": "Kanya",
                     "sign_index": 5,
+<<<<<<< HEAD
                     "start": "04:43:46 PM",
                     "start_iso": "17/04/2026 04:43:46 PM",
                     "start_jd": 2461147.967893537,
@@ -1983,6 +2231,15 @@
                     "end": "06:54:35 PM",
                     "end_iso": "17/04/2026 06:54:35 PM",
                     "duration_minutes": 130.81800565123558,
+=======
+                    "start": "04:43:45 PM",
+                    "start_iso": "17/04/2026 04:43:45 PM",
+                    "start_jd": 2461147.9678934976,
+                    "end_jd": 2461148.058739334,
+                    "end": "06:54:35 PM",
+                    "end_iso": "17/04/2026 06:54:35 PM",
+                    "duration_minutes": 130.81800431013107,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -1991,11 +2248,19 @@
                     "sign_index": 6,
                     "start": "06:54:35 PM",
                     "start_iso": "17/04/2026 06:54:35 PM",
+<<<<<<< HEAD
                     "start_jd": 2461148.0587393744,
                     "end_jd": 2461148.152290632,
                     "end": "09:09:17 PM",
                     "end_iso": "17/04/2026 09:09:17 PM",
                     "duration_minutes": 134.71381098031998,
+=======
+                    "start_jd": 2461148.058739334,
+                    "end_jd": 2461148.15229059,
+                    "end": "09:09:17 PM",
+                    "end_iso": "17/04/2026 09:09:17 PM",
+                    "duration_minutes": 134.71380896866322,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": true
                 },
                 {
@@ -2004,11 +2269,19 @@
                     "sign_index": 7,
                     "start": "09:09:17 PM",
                     "start_iso": "17/04/2026 09:09:17 PM",
+<<<<<<< HEAD
                     "start_jd": 2461148.152290632,
                     "end_jd": 2461148.2467541997,
                     "end": "11:25:19 PM",
                     "end_iso": "17/04/2026 11:25:19 PM",
                     "duration_minutes": 136.027537509799,
+=======
+                    "start_jd": 2461148.15229059,
+                    "end_jd": 2461148.246754159,
+                    "end": "11:25:19 PM",
+                    "end_iso": "17/04/2026 11:25:19 PM",
+                    "duration_minutes": 136.02753952145576,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": false
                 },
                 {
@@ -2017,11 +2290,19 @@
                     "sign_index": 8,
                     "start": "11:25:19 PM",
                     "start_iso": "17/04/2026 11:25:19 PM",
+<<<<<<< HEAD
                     "start_jd": 2461148.2467541997,
                     "end_jd": 2461148.333660609,
                     "end": "01:30:28 AM",
                     "end_iso": "18/04/2026 01:30:28 AM",
                     "duration_minutes": 125.14522947371006,
+=======
+                    "start_jd": 2461148.246754159,
+                    "end_jd": 2461148.3336605737,
+                    "end": "01:30:28 AM",
+                    "end_iso": "18/04/2026 01:30:28 AM",
+                    "duration_minutes": 125.14523684978485,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": false
                 },
                 {
@@ -2030,11 +2311,19 @@
                     "sign_index": 9,
                     "start": "01:30:28 AM",
                     "start_iso": "18/04/2026 01:30:28 AM",
+<<<<<<< HEAD
                     "start_jd": 2461148.333660609,
                     "end_jd": 2461148.407560729,
                     "end": "03:16:53 AM",
                     "end_iso": "18/04/2026 03:16:53 AM",
                     "duration_minutes": 106.41617260873318,
+=======
+                    "start_jd": 2461148.3336605737,
+                    "end_jd": 2461148.4075606987,
+                    "end": "03:16:53 AM",
+                    "end_iso": "18/04/2026 03:16:53 AM",
+                    "duration_minutes": 106.41617998480797,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": false
                 },
                 {
@@ -2043,11 +2332,19 @@
                     "sign_index": 10,
                     "start": "03:16:53 AM",
                     "start_iso": "18/04/2026 03:16:53 AM",
+<<<<<<< HEAD
                     "start_jd": 2461148.407560729,
                     "end_jd": 2461148.4719913946,
                     "end": "04:49:40 AM",
                     "end_iso": "18/04/2026 04:49:40 AM",
                     "duration_minutes": 92.78015859425068,
+=======
+                    "start_jd": 2461148.4075606987,
+                    "end_jd": 2461148.4719913676,
+                    "end": "04:49:40 AM",
+                    "end_iso": "18/04/2026 04:49:40 AM",
+                    "duration_minutes": 92.78016328811646,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": false
                 },
                 {
@@ -2056,11 +2353,19 @@
                     "sign_index": 11,
                     "start": "04:49:40 AM",
                     "start_iso": "18/04/2026 04:49:40 AM",
+<<<<<<< HEAD
                     "start_jd": 2461148.4719913946,
                     "end_jd": 2461148.541099537,
                     "end": "06:29:11 AM",
                     "end_iso": "18/04/2026 06:29:11 AM",
                     "duration_minutes": 99.51572522521019,
+=======
+                    "start_jd": 2461148.4719913676,
+                    "end_jd": 2461148.541099537,
+                    "end": "06:29:11 AM",
+                    "end_iso": "18/04/2026 06:29:11 AM",
+                    "duration_minutes": 99.5157641172409,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "is_day_lagna": false
                 }
             ],
@@ -2068,7 +2373,11 @@
             "Dharma_Sindhu": [],
             "Sunrise_iso": "17/04/2026 06:29:11 AM",
             "Sunset_iso": "17/04/2026 07:12:57 PM",
+<<<<<<< HEAD
             "Ishtkaal_iso": "18/04/2026 11:22:35 AM"
+=======
+            "Ishtkaal_iso": "18/04/2026 02:43:45 PM"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         }
     },
     "muhurta_evaluation": {
@@ -2078,11 +2387,19 @@
             "Evaluation is derived only from current Panchang and transit state for the configured location/time."
         ],
         "title": "Complete Muhurta Evaluation - Centralized package output",
+<<<<<<< HEAD
         "input_now": "17/04/2026 08:38:14 PM",
         "date": "2026-04-17",
         "input_parameters": {
             "tithi_number": 1,
             "tithi_name": "Shukla Pratipada",
+=======
+        "input_now": "17/04/2026 12:22:42 PM",
+        "date": "2026-04-17",
+        "input_parameters": {
+            "tithi_number": 30,
+            "tithi_name": "Amavasya",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "tithi_number_base": 1,
             "vara_number": 5,
             "vara_name": "Friday",
@@ -2092,15 +2409,24 @@
             "nakshatra_number": 1,
             "nakshatra_name": "Ashwini",
             "nakshatra_number_base": 1,
+<<<<<<< HEAD
             "lagna_number": 7,
             "lagna_name": "Tula",
+=======
+            "lagna_number": 4,
+            "lagna_name": "Karka",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "lagna_number_base": 1,
             "moon_sign_idx": 0,
             "moon_sign_name": "Mesha",
             "moon_sign_index_base": 0,
             "moon_sign_number": 1,
             "moon_sign_number_base": 1,
+<<<<<<< HEAD
             "is_krishna_paksha": false,
+=======
+            "is_krishna_paksha": true,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "sunrise": "06:29:11 AM",
             "sunrise_iso": "17/04/2026 06:29:11 AM",
             "sunrise_decimal_hours": 6.4863888888888885,
@@ -2110,15 +2436,26 @@
             "next_sunrise": "06:29:11 AM",
             "next_sunrise_iso": "18/04/2026 06:29:11 AM",
             "next_sunrise_decimal_hours": 30.48638888888889,
+<<<<<<< HEAD
             "current_time": "08:38:14 PM",
             "current_time_iso": "17/04/2026 08:38:14 PM",
             "current_time_decimal_hours": 20.63722222222222
+=======
+            "current_time": "12:22:42 PM",
+            "current_time_iso": "17/04/2026 12:22:42 PM",
+            "current_time_decimal_hours": 12.378333333333334
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         },
         "evaluation_results": {
             "panchaka_dosha": {
                 "source": "Muhurta Chintamani / Brihat Samhita",
+<<<<<<< HEAD
                 "tithi": 1,
                 "tithi_name": "Shukla Pratipada",
+=======
+                "tithi": 30,
+                "tithi_name": "Amavasya",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "tithi_number_base": 1,
                 "vara": 7,
                 "vara_name": "Saturday",
@@ -2126,6 +2463,7 @@
                 "nakshatra": 1,
                 "nakshatra_name": "Ashwini",
                 "nakshatra_number_base": 1,
+<<<<<<< HEAD
                 "lagna": 7,
                 "lagna_name": "Tula",
                 "lagna_number_base": 1,
@@ -2142,6 +2480,24 @@
                 "source": "Muhurta Chintamani",
                 "tithi_number": 1,
                 "tithi_name": "Shukla Pratipada",
+=======
+                "lagna": 4,
+                "lagna_name": "Karka",
+                "lagna_number_base": 1,
+                "sum": 42,
+                "remainder": 6,
+                "panchaka_name": "Chora",
+                "panchaka_english": "Thief",
+                "severity": "high",
+                "has_dosha": true,
+                "is_panchaka_rahita": false,
+                "description": "Chora - Inauspicious"
+            },
+            "dagdha_tithi": {
+                "source": "Muhurta Chintamani",
+                "tithi_number": 30,
+                "tithi_name": "Amavasya",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "tithi_number_base": 1,
                 "moon_sign_idx": 0,
                 "moon_sign_index_base": 0,
@@ -2170,8 +2526,13 @@
                 "vara_index_base": 0,
                 "vara_sequence_number": 6,
                 "vara_sequence_number_base": 1,
+<<<<<<< HEAD
                 "tithi_number": 1,
                 "tithi_name": "Shukla Pratipada",
+=======
+                "tithi_number": 30,
+                "tithi_name": "Amavasya",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "tithi_number_base": 1,
                 "dagdha_tithis_for_vara": [
                     8
@@ -2196,8 +2557,13 @@
             },
             "rikta_tithi": {
                 "source": "Muhurta Chintamani / Gargiya Jyotisha",
+<<<<<<< HEAD
                 "tithi_number": 1,
                 "tithi_name": "Shukla Pratipada",
+=======
+                "tithi_number": 30,
+                "tithi_name": "Amavasya",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "tithi_number_base": 1,
                 "is_krishna_paksha": false,
                 "paksha_name": "Shukla Paksha (waxing)",
@@ -2234,7 +2600,11 @@
                 "sunset": 19.215833333333332,
                 "vara_number": 5,
                 "vara_name": "Friday",
+<<<<<<< HEAD
                 "current_time": 20.63722222222222,
+=======
+                "current_time": 12.378333333333334,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                 "abhijit_start": 12.426796296296295,
                 "abhijit_end": 13.275425925925925,
                 "abhijit_duration_minutes": 50.91777777777777,
@@ -2263,10 +2633,35 @@
             "warning_count": 0,
             "acceptance_count": 1,
             "critical_rejections": [],
+<<<<<<< HEAD
             "high_severity_rejections": [],
             "medium_severity_warnings": [],
             "low_severity_acceptances": [],
             "detailed_rejections": [],
+=======
+            "high_severity_rejections": [
+                {
+                    "dosha_name": "panchaka_dosha",
+                    "severity": "high",
+                    "source": "Rule engine",
+                    "description": "Chora - Inauspicious",
+                    "cancellation_possible": false,
+                    "cancellation_method": null
+                }
+            ],
+            "medium_severity_warnings": [],
+            "low_severity_acceptances": [],
+            "detailed_rejections": [
+                {
+                    "dosha_name": "panchaka_dosha",
+                    "severity": "high",
+                    "source": "Rule engine",
+                    "description": "Chora - Inauspicious",
+                    "cancellation_possible": false,
+                    "cancellation_method": null
+                }
+            ],
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
             "detailed_warnings": [],
             "detailed_acceptances": [],
             "remedies_available": false,

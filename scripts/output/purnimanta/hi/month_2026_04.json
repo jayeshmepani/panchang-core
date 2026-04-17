@@ -1,6 +1,10 @@
 {
     "meta": {
+<<<<<<< HEAD
         "generated_at": "2026-04-17T15:29:27+00:00",
+=======
+        "generated_at": "2026-04-17T06:56:55+00:00",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         "year": 2026,
         "month": 4,
         "calendar_type": "purnimanta",
@@ -360,7 +364,68 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "वैकासी विसाकम",
+                    "description": "भगवान मुरुगन से जुड़ा वैकासी विसाकम उत्सव",
+                    "deity": "मुरुगन",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "nakshatra",
+                        "type_name": "नक्षत्र",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "वैशाख",
+                            "value_key": "Vaishakha",
+                            "name": "वैशाख"
+                        },
+                        "nakshatra": "विशाखा",
+                        "nakshatra_key": "Vishakha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "preferred_nakshatra": "विशाखा",
+                        "preferred_nakshatra_key": "Vishakha"
+                    },
+                    "resolution": {
+                        "festival_name": "वैकासी विसाकम",
+                        "required_nakshatra": "विशाखा",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-04-05",
+                        "observance_date": "2026-04-05",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "विशाखा",
+                            "winning_reason": "नक्षत्र मेल",
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "नक्षत्र मेल",
+                            "nakshatra_name_key": "Vishakha",
+                            "nakshatra_name_localized": "विशाखा"
+                        },
+                        "festival_name_key": "Vaikasi Visakam",
+                        "festival_name_localized": "वैकासी विसाकम",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Vishakha",
+                        "required_nakshatra_name": "विशाखा"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "विशाखा",
+                        "winning_reason": "नक्षत्र मेल",
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "नक्षत्र मेल",
+                        "nakshatra_name_key": "Vishakha",
+                        "nakshatra_name_localized": "विशाखा"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "तृतीया व्रत",
@@ -659,7 +724,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "कालाष्टमी",
+                    "description": "काल भैरव को समर्पित मासिक कालाष्टमी",
+                    "deity": "कालभैरव",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 8 सूर्योदय पर 2026-04-10 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-04-09 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "निशीथ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "कालाष्टमी",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-09",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 8 सूर्योदय पर 2026-04-10 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-04-09 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Kalashtami",
+                        "festival_name_localized": "कालाष्टमी",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "निशीथ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "सप्तमी व्रत",
@@ -1077,6 +1219,7 @@
                 },
                 {
                     "name": "पोइला बोइशाख",
+<<<<<<< HEAD
                     "description": "Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year",
                     "deity": "सूर्य",
                     "fasting": false,
@@ -1084,6 +1227,15 @@
                         "पश्चिम बंगाल",
                         "बांग्लादेश",
                         "बंगाली"
+=======
+                    "description": "बंगाल परंपरा में मनाया जाने वाला बंगाली सौर नव वर्ष",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "पहेला बैसाख"
@@ -1104,12 +1256,47 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "पना संक्रांति",
                     "description": "Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti",
                     "deity": "सूर्य",
                     "fasting": false,
                     "regions": [
                         "ओडिशा"
+=======
+                    "name": "पहेला बैसाख",
+                    "description": "बंगाली सौर नव वर्ष का वैकल्पिक नामकरण",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "पना संक्रांति",
+                    "description": "पना अर्पण के साथ मनाया जाने वाला ओड़िया सौर नव वर्ष",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "महा विषुब संक्रांति"
@@ -1130,15 +1317,120 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+=======
+                    "name": "महा विषुब संक्रांति",
+                    "description": "सौर नव वर्ष संक्रांति के लिए पारंपरिक ओड़िया नाम",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "मेष विशु",
+                    "description": "क्षेत्रीय पंचांगों में प्रयुक्त मेष संक्रमण उत्सव",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "बोहाग बिहू",
+                    "description": "रंगाली बिहू का असमिया नव वर्ष उत्सव समूह",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "पुथांडु",
+                    "description": "तमिल सौर नववर्ष (पुत्थांडु)",
+                    "deity": "सूर्य",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "सौर संक्रांति",
+                        "basis": "solar",
+                        "basis_name": "सौर",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "मेष",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "रोंगाली बिहू दिन 1",
                     "description": "असम में रोंगाली/बोहाग बिहू का पहला दिन; गो-पूजा और कृषि नवआरंभ को समर्पित",
                     "deity": "गौ माता/सूर्य",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
                     ],
                     "aliases": [
                         "बोहाग बिहू",
+=======
+                        "Assam"
+                    ],
+                    "aliases": [
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "बोहाग बिहू दिन 1",
                         "गोरु बिहू"
                     ],
@@ -1220,7 +1512,11 @@
                     "deity": "सूर्य",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "मिथिला",
+=======
+                        "Mithila",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "बिहार",
                         "नेपाल"
                     ],
@@ -1238,6 +1534,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "प्रदोष व्रत",
                     "description": "भगवान शिव और पार्वती को समर्पित द्वैमासिक संध्याकालीन व्रत",
                     "deity": "शिव/पार्वती",
@@ -1317,6 +1614,12 @@
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
+=======
+                    "name": "मासिक शिवरात्रि",
+                    "description": "कृष्ण चतुर्दशी की मासिक शिवरात्रि",
+                    "deity": "शिव",
+                    "fasting": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "regions": [
                         "संपूर्ण भारत"
                     ],
@@ -1394,7 +1697,11 @@
                     "deity": "गृह देवताएं",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 2",
@@ -1509,7 +1816,11 @@
                     "deity": "गोसाईं/गृह देवताएं",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 3",
@@ -1619,12 +1930,170 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
+=======
+                    "name": "सोमवती अमावस्या",
+                    "description": "सोमवार को पड़ने वाली अमावस्या; शिव-पार्वती कृपा हेतु व्रत",
+                    "deity": "शिव",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday_tithi",
+                        "type_name": "वार और तिथि",
+                        "basis": "weekday_and_tithi",
+                        "basis_name": "वार और तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                30
+                            ],
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "अमावस्या"
+                            ]
+                        },
+                        "paksha": "",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "सोमवती अमावस्या",
+                        "required_tithi": 30,
+                        "paksha": "",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.1124194954,
+                        "target_tithi_end_jd": 2461147.994316308,
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Somvati Amavasya",
+                        "festival_name_localized": "सोमवती अमावस्या",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "प्रदोष व्रत",
+                    "description": "प्रत्येक पक्ष का प्रदोष व्रत; प्रदोष काल में पालन",
+                    "deity": "शिव",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक  तिथि 1 सूर्योदय पर 2026-04-18 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-04-17 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13,
+                                28
+                            ],
+                            "absolute_numbers": [
+                                13,
+                                28
+                            ],
+                            "names": [
+                                "शुक्ल त्रयोदशी",
+                                "कृष्ण त्रयोदशी"
+                            ]
+                        },
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "प्रदोष",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "प्रदोष व्रत",
+                        "required_tithi": 1,
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.994316308,
+                        "target_tithi_end_jd": 2461148.8618511586,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "अपवाद: मानक  तिथि 1 सूर्योदय पर 2026-04-18 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-04-17 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "प्रदोष व्रत",
+                        "karmakala_type_name": "प्रदोष"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "रोंगाली बिहू दिन 4",
                     "description": "रोंगाली/बोहाग बिहू का चौथा दिन; रिश्तेदारों से मिलना और पारिवारिक संबंध मजबूत करना",
                     "deity": "कुल पूर्वज",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 4",
@@ -1739,7 +2208,11 @@
                     "deity": "कामदेव",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 5",
@@ -2016,7 +2489,11 @@
                     "deity": "सांस्कृतिक देवताएं",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 6",
@@ -2126,14 +2603,25 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
                     "name": "विनायक चतुर्थी",
                     "description": "शुक्ल पक्ष के दौरान भगवान गणेश को समर्पित मासिक व्रत",
+=======
+                    "name": "विनायक चतुर्थी (मासिक)",
+                    "description": "शुक्ल चतुर्थी की मासिक विनायक चतुर्थी",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "deity": "गणेश",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
+<<<<<<< HEAD
                     "aliases": [],
+=======
+                    "aliases": [
+                        "मासिक विनायक चतुर्थी"
+                    ],
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -2156,6 +2644,7 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
+<<<<<<< HEAD
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न"
                     },
@@ -2165,6 +2654,17 @@
                         "paksha": "Shukla",
                         "karmakala_type": "madhyahna",
                         "tithi_at_karmakala_today": true,
+=======
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "विनायक चतुर्थी (मासिक)",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2175,14 +2675,121 @@
                         "standard_date": "2026-04-20",
                         "observance_date": "2026-04-20",
                         "decision": {
+<<<<<<< HEAD
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
+=======
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि पालन दिवस में",
+                            "winning_score": 300,
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "लक्षित तिथि पालन दिवस में"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi (Monthly)",
+                        "festival_name_localized": "विनायक चतुर्थी (मासिक)",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि पालन दिवस में",
+                        "winning_score": 300,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "लक्षित तिथि पालन दिवस में"
+                    }
+                },
+                {
+                    "name": "चितिरै तिरुविझा",
+                    "description": "मदुरै की चितिरै उत्सव परंपरा का पालन",
+                    "deity": "विष्णु/शिव",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "निश्चित ग्रेगोरियन तिथि",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "निश्चित ग्रेगोरियन तिथि",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 20
+                        }
+                    }
+                },
+                {
+                    "name": "बसव जयंती",
+                    "description": "जगज्योति बसवेश्वर की जयंती",
+                    "deity": "शिव",
+                    "fasting": false,
+                    "regions": [
+                        "कर्नाटक"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "शुक्ल तृतीया"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "वैशाख",
+                            "value_key": "Vaishakha",
+                            "name": "वैशाख"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "बसव जयंती",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
                             "winning_score": 1000,
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                         },
+<<<<<<< HEAD
                         "festival_name_key": "Vinayaka Chaturthi",
                         "festival_name_localized": "विनायक चतुर्थी",
                         "paksha_name": "शुक्ल",
@@ -2191,6 +2798,16 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
+=======
+                        "festival_name_key": "Basava Jayanti",
+                        "festival_name_localized": "बसव जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
@@ -2205,7 +2822,11 @@
                     "deity": "सांस्कृतिक परंपराएं",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "असम"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "बोहाग बिहू दिन 7",
@@ -2450,7 +3071,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "स्कंद षष्ठी (मासिक)",
+                    "description": "शुक्ल षष्ठी की मासिक स्कंद षष्ठी",
+                    "deity": "कार्तिकेय / स्कंद",
+                    "fasting": false,
+                    "regions": [
+                        "South India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "शुक्ल षष्ठी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "स्कंद षष्ठी (मासिक)",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461152.3266333435,
+                        "target_tithi_end_jd": 2461153.2222663676,
+                        "standard_date": "2026-04-22",
+                        "observance_date": "2026-04-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Skanda Sashti (Monthly)",
+                        "festival_name_localized": "स्कंद षष्ठी (मासिक)",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "षष्ठी व्रत",

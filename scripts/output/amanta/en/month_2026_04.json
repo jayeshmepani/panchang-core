@@ -1,6 +1,10 @@
 {
     "meta": {
+<<<<<<< HEAD
         "generated_at": "2026-04-17T15:11:06+00:00",
+=======
+        "generated_at": "2026-04-17T06:53:32+00:00",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         "year": 2026,
         "month": 4,
         "calendar_type": "amanta",
@@ -659,7 +663,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Kalashtami",
+                    "description": "Monthly Kalashtami dedicated to Kala Bhairava",
+                    "deity": "Kalabhairav",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 8 falls on 2026-04-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-09.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Krishna Ashtami"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "nishitha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Kalashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-09",
+                        "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 8 falls on 2026-04-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-09.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Kalashtami",
+                        "festival_name_localized": "Kalashtami",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Saptami Vrata",
@@ -715,7 +796,88 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Ghode Jatra",
+                    "description": "Horse procession festival in Nepal tradition",
+                    "deity": "Kalabhairav",
+                    "fasting": false,
+                    "regions": [
+                        "Nepal"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Krishna Paksha (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Krishna Ashtami"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Ghode Jatra",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-10",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Ghode Jatra",
+                        "festival_name_localized": "Ghode Jatra",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Ashtami Vrata",
@@ -1077,7 +1239,11 @@
                 },
                 {
                     "name": "Pohela Boishakh",
+<<<<<<< HEAD
                     "description": "Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year",
+=======
+                    "description": "Bengali Solar New Year observed in Bengal tradition",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "deity": "Surya",
                     "fasting": false,
                     "regions": [
@@ -1104,8 +1270,39 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "Pana Sankranti",
                     "description": "Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti",
+=======
+                    "name": "Pahela Baishakh",
+                    "description": "Alternate naming tradition of Bengali Solar New Year",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Pana Sankranti",
+                    "description": "Odia Solar New Year celebrated with pana offerings",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "deity": "Surya",
                     "fasting": false,
                     "regions": [
@@ -1130,6 +1327,105 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+=======
+                    "name": "Maha Vishuba Sankranti",
+                    "description": "Traditional Odia naming for Solar New Year Sankranti",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Mesha Vishu",
+                    "description": "Mesha transition observance used in regional calendars",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Bohag Bihu",
+                    "description": "Assamese New Year festival cluster of Rongali Bihu",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "Puthandu",
+                    "description": "Tamil Solar New Year (Puthandu)",
+                    "deity": "Surya",
+                    "fasting": false,
+                    "regions": [
+                        "Tamil Nadu"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "solar sankranti",
+                        "basis": "solar",
+                        "basis_name": "solar",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "Mesha",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "Rongali Bihu Day 1",
                     "description": "First day of Rongali/Bohag Bihu in Assam; dedicated to cattle worship and agrarian renewal",
                     "deity": "Gau Mata/Surya",
@@ -1138,7 +1434,10 @@
                         "Assam"
                     ],
                     "aliases": [
+<<<<<<< HEAD
                         "Bohag Bihu",
+=======
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "Bohag Bihu Day 1",
                         "Goru Bihu"
                     ],
@@ -1238,6 +1537,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "Pradosh Vrat",
                     "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
                     "deity": "Shiva/Parvati",
@@ -1317,6 +1617,12 @@
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
                     "fasting": true,
+=======
+                    "name": "Masik Shivaratri",
+                    "description": "Monthly Shivaratri observed on Krishna Chaturdashi",
+                    "deity": "Shiva",
+                    "fasting": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "regions": [
                         "Pan-India"
                     ],
@@ -1619,6 +1925,160 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
+=======
+                    "name": "Somvati Amavasya",
+                    "description": "Amavasya falling on Monday, observed for Shiva-Parvati blessings",
+                    "deity": "Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday_tithi",
+                        "type_name": "weekday and tithi",
+                        "basis": "weekday_and_tithi",
+                        "basis_name": "weekday and tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                30
+                            ],
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "Amavasya"
+                            ]
+                        },
+                        "paksha": "",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Somvati Amavasya",
+                        "required_tithi": 30,
+                        "paksha": "",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.1124194954,
+                        "target_tithi_end_jd": 2461147.994316308,
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Somvati Amavasya",
+                        "festival_name_localized": "Somvati Amavasya",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Pradosh Vrat",
+                    "description": "Fortnightly Pradosh vrata observed in Pradosha Kaal",
+                    "deity": "Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard  tithi 1 falls on 2026-04-18 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-17.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13,
+                                28
+                            ],
+                            "absolute_numbers": [
+                                13,
+                                28
+                            ],
+                            "names": [
+                                "Shukla Trayodashi",
+                                "Krishna Trayodashi"
+                            ]
+                        },
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 1,
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.994316308,
+                        "target_tithi_end_jd": 2461148.8618511586,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "Exception: Standard  tithi 1 falls on 2026-04-18 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-17.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "Rongali Bihu Day 4",
                     "description": "Fourth day of Rongali/Bohag Bihu; visiting relatives and strengthening family ties",
                     "deity": "Family Ancestors",
@@ -2126,14 +2586,25 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
                     "name": "Vinayaka Chaturthi",
                     "description": "Monthly fast dedicated to Lord Ganesha during the waxing moon",
+=======
+                    "name": "Vinayaka Chaturthi (Monthly)",
+                    "description": "Monthly Vinayaka Chaturthi observed on Shukla Chaturthi",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "deity": "Ganesha",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
+<<<<<<< HEAD
                     "aliases": [],
+=======
+                    "aliases": [
+                        "Masik Vinayaka Chaturthi"
+                    ],
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -2156,6 +2627,7 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "Shukla Paksha (waxing)",
+<<<<<<< HEAD
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "madhyahna"
                     },
@@ -2165,6 +2637,17 @@
                         "paksha": "Shukla",
                         "karmakala_type": "madhyahna",
                         "tithi_at_karmakala_today": true,
+=======
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Vinayaka Chaturthi (Monthly)",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2175,14 +2658,121 @@
                         "standard_date": "2026-04-20",
                         "observance_date": "2026-04-20",
                         "decision": {
+<<<<<<< HEAD
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
+=======
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi during observance day",
+                            "winning_score": 300,
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "target tithi during observance day"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi (Monthly)",
+                        "festival_name_localized": "Vinayaka Chaturthi (Monthly)",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi during observance day",
+                        "winning_score": 300,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "target tithi during observance day"
+                    }
+                },
+                {
+                    "name": "Chithirai Thiruvizha",
+                    "description": "Madurai Chithirai festival tradition observance",
+                    "deity": "Vishnu/Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Tamil Nadu"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "fixed date",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "Gregorian fixed date",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 20
+                        }
+                    }
+                },
+                {
+                    "name": "Basava Jayanti",
+                    "description": "Birth anniversary of Jagajyoti Basaveshwara",
+                    "deity": "Shiva",
+                    "fasting": false,
+                    "regions": [
+                        "Karnataka"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Shukla Tritiya"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Vaishakha",
+                            "value_key": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Basava Jayanti",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
                             "winning_score": 1000,
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
+<<<<<<< HEAD
                         "festival_name_key": "Vinayaka Chaturthi",
                         "festival_name_localized": "Vinayaka Chaturthi",
                         "paksha_name": "Shukla Paksha (waxing)",
@@ -2191,6 +2781,16 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
+=======
+                        "festival_name_key": "Basava Jayanti",
+                        "festival_name_localized": "Basava Jayanti",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
@@ -2450,7 +3050,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Skanda Sashti (Monthly)",
+                    "description": "Monthly Skanda Sashti observed on Shukla Shashthi",
+                    "deity": "Kartikeya / Skanda",
+                    "fasting": false,
+                    "regions": [
+                        "South India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Shukla Paksha (waxing)",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "Shukla Shashthi"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Skanda Sashti (Monthly)",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461152.3266333435,
+                        "target_tithi_end_jd": 2461153.2222663676,
+                        "standard_date": "2026-04-22",
+                        "observance_date": "2026-04-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Skanda Sashti (Monthly)",
+                        "festival_name_localized": "Skanda Sashti (Monthly)",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Shashthi Vrata",

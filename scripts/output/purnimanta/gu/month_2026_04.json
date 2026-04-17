@@ -1,6 +1,10 @@
 {
     "meta": {
+<<<<<<< HEAD
         "generated_at": "2026-04-17T15:33:44+00:00",
+=======
+        "generated_at": "2026-04-17T06:57:44+00:00",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
         "year": 2026,
         "month": 4,
         "calendar_type": "purnimanta",
@@ -360,7 +364,68 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "વૈકાસી વિશ્વાકમ",
+                    "description": "ભગવાન મુરુગન સાથે જોડાયેલ વૈકાસી વિશ્વાકમ",
+                    "deity": "મુરુગન",
+                    "fasting": false,
+                    "regions": [
+                        "તમિલનાડુ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "nakshatra",
+                        "type_name": "નક્ષત્ર",
+                        "basis": "nakshatra",
+                        "basis_name": "નક્ષત્ર",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
+                            "name": "વૈશાખ"
+                        },
+                        "nakshatra": "વિશાખા",
+                        "nakshatra_key": "Vishakha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "preferred_nakshatra": "વિશાખા",
+                        "preferred_nakshatra_key": "Vishakha"
+                    },
+                    "resolution": {
+                        "festival_name": "વૈકાસી વિશ્વાકમ",
+                        "required_nakshatra": "વિશાખા",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-04-05",
+                        "observance_date": "2026-04-05",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "વિશાખા",
+                            "winning_reason": "નક્ષત્ર મેળ",
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "નક્ષત્ર મેળ",
+                            "nakshatra_name_key": "Vishakha",
+                            "nakshatra_name_localized": "વિશાખા"
+                        },
+                        "festival_name_key": "Vaikasi Visakam",
+                        "festival_name_localized": "વૈકાસી વિશ્વાકમ",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "required_nakshatra_key": "Vishakha",
+                        "required_nakshatra_name": "વિશાખા"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "વિશાખા",
+                        "winning_reason": "નક્ષત્ર મેળ",
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "નક્ષત્ર મેળ",
+                        "nakshatra_name_key": "Vishakha",
+                        "nakshatra_name_localized": "વિશાખા"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "તૃતિયા વ્રત",
@@ -659,7 +724,84 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "કાલાષ્ટમી",
+                    "description": "કાલ ભૈરવને સમર્પિત માસિક કાલાષ્ટમી",
+                    "deity": "કાલભૈરવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 8 સૂર્યોદયે 2026-04-10 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-09 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "નિશીથ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "કાલાષ્ટમી",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.159825787,
+                        "target_tithi_end_jd": 2461141.2403417574,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-09",
+                        "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 8 સૂર્યોદયે 2026-04-10 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-09 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Kalashtami",
+                        "festival_name_localized": "કાલાષ્ટમી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "સપ્તમી વ્રત",
@@ -1077,6 +1219,7 @@
                 },
                 {
                     "name": "પોહેલા બોઇશાખ",
+<<<<<<< HEAD
                     "description": "Bengali Solar New Year observed in Bengal tradition; alternate naming tradition of Bengali Solar New Year",
                     "deity": "સૂર્ય",
                     "fasting": false,
@@ -1084,6 +1227,15 @@
                         "પશ્ચિમ બંગાળ",
                         "બાંગ્લાદેશ",
                         "બંગાળી"
+=======
+                    "description": "બંગાળ પરંપરામાં ઉજવાતું બંગાળી સૌર નવું વર્ષ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "પહેલા બૈશાખ"
@@ -1104,12 +1256,47 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "પણા સંક્રાંતિ",
                     "description": "Odia Solar New Year celebrated with pana offerings; traditional naming for Solar New Year Sankranti",
                     "deity": "સૂર્ય",
                     "fasting": false,
                     "regions": [
                         "ઓડિશા"
+=======
+                    "name": "પહેલા બૈશાખ",
+                    "description": "બંગાળી સૌર નવું વર્ષનું વિકલ્પ નામકરણ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "West Bengal",
+                        "Bangladesh",
+                        "Bengali"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "પણા સંક્રાંતિ",
+                    "description": "પણા અર્પણ સાથે ઉજવાતું ઓડિયા સૌર નવું વર્ષ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "મહા વિશુબ સંક્રાંતિ"
@@ -1130,15 +1317,120 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+=======
+                    "name": "મહા વિશુબ સંક્રાંતિ",
+                    "description": "સૌર નવું વર્ષ સંક્રાંતિ માટેનું પરંપરાગત ઓડિયા નામ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Odisha"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "મેષ વિશુ",
+                    "description": "પ્રાદેશિક પંચાંગોમાં વપરાતું મેષ સંક્રમણ અવલોકન",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "બોહાગ બિહુ",
+                    "description": "રંગાલી બિહુનો આસામી નવું વર્ષ તહેવાર સમૂહ",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "Assam"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+                    "name": "પુથાંડુ",
+                    "description": "તમિલ સૌર નવવર્ષ (પુથાંડુ)",
+                    "deity": "સૂર્ય",
+                    "fasting": false,
+                    "regions": [
+                        "તમિલનાડુ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_sankranti",
+                        "type_name": "સૌર સંક્રાંતિ",
+                        "basis": "solar",
+                        "basis_name": "સૌર",
+                        "solar_rashi": {
+                            "index": 0,
+                            "number": 1,
+                            "name": "મેષ",
+                            "english_name": "Aries",
+                            "symbol": "♈"
+                        }
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "રંગાલી બિહુ દિવસ 1",
                     "description": "અસમમાં રંગાલી/બોહાગ બિહુનો પ્રથમ દિવસ; ગૌપૂજા અને કૃષિ નવઆરંભને સમર્પિત",
                     "deity": "ગૌમાતા/સૂર્ય",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
                     ],
                     "aliases": [
                         "બોહાગ બિહુ",
+=======
+                        "Assam"
+                    ],
+                    "aliases": [
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "બોહાગ બિહુ દિવસ 1",
                         "ગોરુ બિહુ"
                     ],
@@ -1220,7 +1512,11 @@
                     "deity": "સૂર્ય",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "મિથિલા",
+=======
+                        "Mithila",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "બિહાર",
                         "નેપાળ"
                     ],
@@ -1238,6 +1534,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "name": "પ્રદોષ વ્રત",
                     "description": "ભગવાન શિવ અને પાર્વતીને સમર્પિત દ્વિમાસિક સંધ્યાકાલીન વ્રત",
                     "deity": "શિવ/પાર્વતી",
@@ -1317,6 +1614,12 @@
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
+=======
+                    "name": "માસિક શિવરાત્રી",
+                    "description": "કૃષ્ણ ચતુર્દશીની માસિક શિવરાત્રી",
+                    "deity": "શિવ",
+                    "fasting": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
@@ -1394,7 +1697,11 @@
                     "deity": "ગૃહ દેવતાઓ",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 2",
@@ -1509,7 +1816,11 @@
                     "deity": "ગોસાઈ/ગૃહ દેવતાઓ",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 3",
@@ -1619,12 +1930,170 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
+=======
+                    "name": "સોમવતી અમાસ",
+                    "description": "સોમવારે આવતી અમાસ; શિવ-પાર્વતી કૃપા માટેનું વ્રત",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday_tithi",
+                        "type_name": "વાર અને તિથિ",
+                        "basis": "weekday_and_tithi",
+                        "basis_name": "વાર અને તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                30
+                            ],
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "સોમવતી અમાસ",
+                        "required_tithi": 30,
+                        "paksha": "",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.1124194954,
+                        "target_tithi_end_jd": 2461147.994316308,
+                        "standard_date": "2026-04-17",
+                        "observance_date": "2026-04-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Somvati Amavasya",
+                        "festival_name_localized": "સોમવતી અમાસ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "પ્રદોષ વ્રત",
+                    "description": "દર પક્ષે પ્રદોષ કાળમાં પાલન થતું પ્રદોષ વ્રત",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક  તિથિ 1 સૂર્યોદયે 2026-04-18 પર આવે છે, પરંતુ પ્રદોષ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-17 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13,
+                                28
+                            ],
+                            "absolute_numbers": [
+                                13,
+                                28
+                            ],
+                            "names": [
+                                "સુદ તેરસ",
+                                "વદ તેરસ"
+                            ]
+                        },
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "પ્રદોષ",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "પ્રદોષ વ્રત",
+                        "required_tithi": 1,
+                        "paksha": "",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.994316308,
+                        "target_tithi_end_jd": 2461148.8618511586,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-17",
+                        "observance_note": "અપવાદ: માનક  તિથિ 1 સૂર્યોદયે 2026-04-18 પર આવે છે, પરંતુ પ્રદોષ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-04-17 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "પ્રદોષ વ્રત",
+                        "karmakala_type_name": "પ્રદોષ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "name": "રંગાલી બિહુ દિવસ 4",
                     "description": "રંગાલી/બોહાગ બિહુનો ચોથો દિવસ; સગાંઓની મુલાકાત અને કુટુંબિક બંધનો મજબૂત કરવાનું",
                     "deity": "કુટુંબના પૂર્વજો",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 4",
@@ -1739,7 +2208,11 @@
                     "deity": "કામદેવ",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 5",
@@ -2016,7 +2489,11 @@
                     "deity": "સાંસ્કૃતિક દેવતાઓ",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 6",
@@ -2126,14 +2603,25 @@
             },
             "festivals": [
                 {
+<<<<<<< HEAD
                     "name": "વિનાયક ચતુર્થી",
                     "description": "શુક્લ પક્ષ દરમિયાન ભગવાન ગણેશને સમર્પિત માસિક વ્રત",
+=======
+                    "name": "વિનાયક ચતુર્થી (માસિક)",
+                    "description": "શુક્લ ચતુર્થીની માસિક વિનાયક ચતુર્થી",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "deity": "ગણેશ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+<<<<<<< HEAD
                     "aliases": [],
+=======
+                    "aliases": [
+                        "માસિક વિનાયક ચતુર્થી"
+                    ],
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -2156,6 +2644,7 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "શુક્લ",
+<<<<<<< HEAD
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "મધ્યાહ્ન"
                     },
@@ -2165,6 +2654,17 @@
                         "paksha": "Shukla",
                         "karmakala_type": "madhyahna",
                         "tithi_at_karmakala_today": true,
+=======
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "વિનાયક ચતુર્થી (માસિક)",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": false,
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2175,14 +2675,121 @@
                         "standard_date": "2026-04-20",
                         "observance_date": "2026-04-20",
                         "decision": {
+<<<<<<< HEAD
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
+=======
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
+                            "winning_score": 300,
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
+                        },
+                        "festival_name_key": "Vinayaka Chaturthi (Monthly)",
+                        "festival_name_localized": "વિનાયક ચતુર્થી (માસિક)",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
+                        "winning_score": 300,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
+                    }
+                },
+                {
+                    "name": "ચિથિરાઇ તિરુવિઝ્હા",
+                    "description": "મદુરાઈની ચિથિરાઇ ઉત્સવ પરંપરાનું પાલન",
+                    "deity": "વિષ્ણુ/શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "તમિલનાડુ"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "fixed_date",
+                        "type_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "basis": "gregorian_fixed_date",
+                        "basis_name": "નિશ્ચિત ગ્રેગોરિયન તારીખ",
+                        "fixed_date": {
+                            "month": 4,
+                            "day": 20
+                        }
+                    }
+                },
+                {
+                    "name": "બસવ જયંતિ",
+                    "description": "જગજ્યોતિ બસવેશ્વરની જયંતિ",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "કર્ણાટક"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "સુદ ત્રીજ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "વૈશાખ",
+                            "value_key": "Vaishakha",
+                            "name": "વૈશાખ"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "બસવ જયંતિ",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7220609626,
+                        "target_tithi_end_jd": 2461150.5819550147,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-20",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                             "kshaya_preference": "first",
                             "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
+<<<<<<< HEAD
                         "festival_name_key": "Vinayaka Chaturthi",
                         "festival_name_localized": "વિનાયક ચતુર્થી",
                         "paksha_name": "શુક્લ",
@@ -2191,6 +2798,16 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
+=======
+                        "festival_name_key": "Basava Jayanti",
+                        "festival_name_localized": "બસવ જયંતિ",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
@@ -2205,7 +2822,11 @@
                     "deity": "સાંસ્કૃતિક પરંપરાઓ",
                     "fasting": false,
                     "regions": [
+<<<<<<< HEAD
                         "આસામ"
+=======
+                        "Assam"
+>>>>>>> 091638d60451fbd8a00189eb3269daf598c8704b
                     ],
                     "aliases": [
                         "બોહાગ બિહુ દિવસ 7",
@@ -2450,7 +3071,82 @@
                 "Purnimanta_Index": 1,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "સ્કંદ ષષ્ઠી (માસિક)",
+                    "description": "શુક્લ ષષ્ઠીની માસિક સ્કંદ ષષ્ઠી",
+                    "deity": "કાર્તિકેય / સ્કંદ",
+                    "fasting": false,
+                    "regions": [
+                        "South India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "સુદ છઠ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "resolution": {
+                        "festival_name": "સ્કંદ ષષ્ઠી (માસિક)",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461152.3266333435,
+                        "target_tithi_end_jd": 2461153.2222663676,
+                        "standard_date": "2026-04-22",
+                        "observance_date": "2026-04-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Skanda Sashti (Monthly)",
+                        "festival_name_localized": "સ્કંદ ષષ્ઠી (માસિક)",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ષષ્ઠી વ્રત",
