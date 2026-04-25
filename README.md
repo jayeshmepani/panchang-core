@@ -12,6 +12,7 @@ This package provides high-precision calculations for Vedic Panchanga elements (
 ## 🎯 Unique Value Proposition
 
 Key characteristics:
+
 - ✅ Uses **Swiss Ephemeris FFI** for maximum astronomical precision
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Uses **IEEE 754 double precision** throughout the calculation pipeline
@@ -52,6 +53,7 @@ The core engine relies on the PHP FFI (Foreign Function Interface) extension to 
 ### 1. Install/Enable FFI Extension
 
 #### Linux (Ubuntu/Debian)
+
 ```bash
 # Install PHP FFI
 sudo apt install php8.3-ffi
@@ -61,6 +63,7 @@ sudo apt install php8.4-ffi
 ```
 
 #### Linux (CentOS/RHEL/Fedora)
+
 ```bash
 sudo dnf install php-ffi
 # or
@@ -68,15 +71,18 @@ sudo yum install php-ffi
 ```
 
 #### macOS
+
 ```bash
 # PHP from Homebrew includes FFI by default
 brew install php@8.3
 ```
 
 #### Windows
+
 FFI is included with PHP 8.3+ for Windows. You just need to enable it in your `php.ini`.
 
 ### 2. Enable in `php.ini`
+
 The FFI extension must be explicitly enabled. Add or uncomment the following in your `php.ini`:
 
 ```ini
@@ -88,6 +94,7 @@ ffi.enable=1
 > `ffi.enable=1` is required for CLI usage. For web server usage (FPM/Apache), you may need to set `ffi.enable=preload` for better security and performance.
 
 ### 3. Verify Installation
+
 ```bash
 php -r "echo extension_loaded('ffi') ? 'FFI loaded\n' : 'FFI not loaded\n';"
 php -r "echo ini_get('ffi.enable') ? 'FFI enabled\n' : 'FFI not enabled\n';"
@@ -95,7 +102,7 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled\n' : 'FFI not enabled\n';"
 
 ## 📂 Ephemeris Files
 
-The package requires `.se1` data files for high-precision astronomical calculations. 
+The package requires `.se1` data files for high-precision astronomical calculations.
 
 - **Download**: You can download the verified ephemeris files from [Swiss-Ephemeris-PHP Releases](https://github.com/jayeshmepani/Swiss-Ephemeris-PHP/releases/tag/ephe-files).
 - **Setup**: Place these files in a directory (e.g., `/path/to/ephe`) and configure the path in your `.env` or `config/panchang.php`:
@@ -245,6 +252,7 @@ CliBootstrap::makeOutputGenerator(PanchangService $panchang): OutputGeneratorSer
 This package implements algorithms from **authentic Sanskrit texts** with verified formulas.
 
 **Important:** This is a **source-integrity map**, not a manuscript-critical proof. The codebase mixes:
+
 - Direct Panchang/Jyotisha conventions (widely standard)
 - Package rule mappings attributed to traditional literature
 - Regional or published almanac conventions
@@ -257,52 +265,52 @@ For complete details, see [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TE
 
 #### Tier 1: Direct or Standard Panchang Conventions
 
-| Source | Implementation |
-|--------|---------------|
-| **Sūrya Siddhānta 1.29** | Tithi calculation (30 lunar days, 12° each) |
-| **Sūrya Siddhānta 8.1** | Nakṣatra calculation (27 lunar mansions, 13°20' each) |
-| **Sūrya Siddhānta 3.1-3** | Yoga calculation (27 combinations, 13°20' Sun-Moon sum) |
-| **Muhūrta Chintāmaṇi Chapter 2** | Karana calculation (11 half lunar days, 6° each) |
-| **Sūrya Siddhānta 1.10-1.11** | Muhūrta, Ghaṭikā, Pala time units |
+| Source                           | Implementation                                          |
+| -------------------------------- | ------------------------------------------------------- |
+| **Sūrya Siddhānta 1.29**         | Tithi calculation (30 lunar days, 12° each)             |
+| **Sūrya Siddhānta 8.1**          | Nakṣatra calculation (27 lunar mansions, 13°20' each)   |
+| **Sūrya Siddhānta 3.1-3**        | Yoga calculation (27 combinations, 13°20' Sun-Moon sum) |
+| **Muhūrta Chintāmaṇi Chapter 2** | Karana calculation (11 half lunar days, 6° each)        |
+| **Sūrya Siddhānta 1.10-1.11**    | Muhūrta, Ghaṭikā, Pala time units                       |
 
 #### Tier 2: Package Rule Mappings
 
-| Source | Implementation |
-|--------|---------------|
-| **Muhūrta Chintāmaṇi** | Universal bad tithis, Vara-Tithi Yogas |
-| **Bṛhat Saṃhitā** | Muhurta rules, Samvatsara, Ritu |
-| **Māyamata** | Vāstu muhurta guidance |
-| **Vaikhānasa Āgama** | Āgama-based muhurta guidance |
-| **Aśvalāyana Gṛhya Sūtra** | Gṛhya-sūtra muhurta guidance |
-| **Muhūrta Mārtaṇḍa** | Advanced muhurta calculations |
-| **Gargiya Jyotisha** | Rikta Tithi dosha |
+| Source                     | Implementation                         |
+| -------------------------- | -------------------------------------- |
+| **Muhūrta Chintāmaṇi**     | Universal bad tithis, Vara-Tithi Yogas |
+| **Bṛhat Saṃhitā**          | Muhurta rules, Samvatsara, Ritu        |
+| **Māyamata**               | Vāstu muhurta guidance                 |
+| **Vaikhānasa Āgama**       | Āgama-based muhurta guidance           |
+| **Aśvalāyana Gṛhya Sūtra** | Gṛhya-sūtra muhurta guidance           |
+| **Muhūrta Mārtaṇḍa**       | Advanced muhurta calculations          |
+| **Gargiya Jyotisha**       | Rikta Tithi dosha                      |
 
 #### Tier 3: Festival-Resolution Logic
 
-| Source | Implementation |
-|--------|---------------|
-| **Nirṇaya Sindhu** | Festival timing, Bhadra rules |
+| Source                 | Implementation                        |
+| ---------------------- | ------------------------------------- |
+| **Nirṇaya Sindhu**     | Festival timing, Bhadra rules         |
 | **Muhūrta Chintāmaṇi** | Aruṇodaya, Pradoṣa, Ekadashi handling |
-| **Hari Bhakti Vilāsa** | Vaishnava Ekadashi rules |
+| **Hari Bhakti Vilāsa** | Vaishnava Ekadashi rules              |
 
 #### Tier 4: Published Panchang Conventions
 
-| Source | Implementation |
-|--------|---------------|
+| Source                           | Implementation                               |
+| -------------------------------- | -------------------------------------------- |
 | **Tamil Gowri/Pambu Panchangam** | Gowri Panchangam (8-part day/night division) |
-| **Sarāvalī** | Kala Vela rules (Rahu, Gulika, Yamaghantaka) |
-| **Aṣṭāṅga Hṛdaya** | Brahma Muhurta timing |
-| **Charaka Saṃhitā** | Muhurta concepts |
-| **Manusmṛti** | Brahma Muhurta for Vedic study |
-| **Sandhyāvandanam Tradition** | Sandhya windows (living tradition) |
+| **Sarāvalī**                     | Kala Vela rules (Rahu, Gulika, Yamaghantaka) |
+| **Aṣṭāṅga Hṛdaya**               | Brahma Muhurta timing                        |
+| **Charaka Saṃhitā**              | Muhurta concepts                             |
+| **Manusmṛti**                    | Brahma Muhurta for Vedic study               |
+| **Sandhyāvandanam Tradition**    | Sandhya windows (living tradition)           |
 
 #### Tier 5: Modern Systems
 
-| Source | Implementation |
-|--------|---------------|
-| **Swiss Ephemeris** | Planetary longitudes, Ayanāṃśa, Vara |
-| **KP System** | Varjyam (Visha Ghati) calculation |
-| **Ernst Wilhelm's Classical Muhurta** | Bhadra subdivisions |
+| Source                                | Implementation                       |
+| ------------------------------------- | ------------------------------------ |
+| **Swiss Ephemeris**                   | Planetary longitudes, Ayanāṃśa, Vara |
+| **KP System**                         | Varjyam (Visha Ghati) calculation    |
+| **Ernst Wilhelm's Classical Muhurta** | Bhadra subdivisions                  |
 
 ### What This Does NOT Claim
 
@@ -323,24 +331,28 @@ All calculations use:
 
 The core engine utilizes the Swiss Ephemeris (SwissEph) for maximum astronomical precision.
 
-| Mode | Date Range | Precision | Requirement |
-| :--- | :--- | :--- | :--- |
-| **High Precision** | 13,201 BCE to 17,191 CE | 0.001 arcsec | `.se1` Data Files |
-| **Standard (Moshier)** | 3,000 BCE to 3,000 CE | 0.1 arcsec | Built-in (Automatic) |
+| Mode                   | Date Range              | Precision    | Requirement          |
+| :--------------------- | :---------------------- | :----------- | :------------------- |
+| **High Precision**     | 13,201 BCE to 17,191 CE | 0.001 arcsec | `.se1` Data Files    |
+| **Standard (Moshier)** | 3,000 BCE to 3,000 CE   | 0.1 arcsec   | Built-in (Automatic) |
 
 ### Precision Details
+
 - **Planetary/Solar**: 0.001 arcsec with DE431 files.
 - **Lunar**: 3 arcsec (Moshier) / 0.001 arcsec (DE431).
 - **Asteroids**: Main asteroids covered 5401 BCE to 5399 CE.
 
 ### Data File Structure (`.se1`)
+
 Ephemeris data is split into 600-year files:
+
 - **CE (AD) Dates**: Files prefixed with `sepl_` or `semo_` (e.g., `sepl_18.se1` for 1800-2400 CE).
 - **BCE (BC) Dates**: Files prefixed with `seplm` or `semom`.
 - **Asteroids**: Files prefixed with `se00` or `se0j`.
 
 ## 🪐 Ayanamsa Authority
-For any authentic Hindu Panchanga (Tithi, Vara, Nakshatra, Yoga, Karana), **Lahiri (Chitra Paksha)** is the absolute mandatory legal and religious standard in India. 
+
+For any authentic Hindu Panchanga (Tithi, Vara, Nakshatra, Yoga, Karana), **Lahiri (Chitra Paksha)** is the absolute mandatory legal and religious standard in India.
 
 The `panchang-core` engine is **permanently locked to Lahiri** to ensure 100% calculation integrity. Support for alternative Ayanamsas (Raman, KP, Fagan) has been intentionally removed to prevent "wrong" dates for festivals and Nakshatras.
 
@@ -349,11 +361,13 @@ The `panchang-core` engine is **permanently locked to Lahiri** to ensure 100% ca
 ### Laravel Configuration
 
 Publish the config file:
+
 ```bash
 php artisan vendor:publish --provider="JayeshMepani\PanchangCore\PanchangServiceProvider" --tag="panchang-config"
 ```
 
 Edit `config/panchang.php`:
+
 ```php
 return [
     'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
@@ -447,6 +461,7 @@ php scripts/panchang_raw_output.php > output.json
 ```
 
 This exporter writes five top-level sections in one JSON file:
+
 - `meta`: generation timestamp, location, timezone, and config source
 - `festivals_2026`: all festival entries for the full year
 - `eclipses_2026_2032`: all eclipse entries for 7 years
@@ -454,6 +469,7 @@ This exporter writes five top-level sections in one JSON file:
 - `muhurta_evaluation`: transit-only `getDailyMuhurtaEvaluation()` payload
 
 Notes:
+
 - `todays_complete_details` is intentionally date-sensitive and changes based on the day the script is run.
 - `muhurta_evaluation` is transit-only; no natal/person-specific inputs are used.
 - Empty arrays such as `Bhadra: []` or `Dharma_Sindhu: []` are valid outputs when no matching window exists for that Panchang day.
@@ -471,6 +487,7 @@ php scripts/panchang_festivals.php 2026
 ```
 
 Notes:
+
 - `panchang_today.php` writes `today_panchang.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
 - `panchang_month_output.php` prints JSON to stdout only; choose the output filename with shell redirection, e.g. `> month_2026_04.json`.
 - `panchang_eclipses.php` writes `eclipses_YYYY_YYYY.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
@@ -527,10 +544,12 @@ PanchangService::configure(
 ## Supported Festival Definitions (237)
 
 ### Solar-Based (Saṅkrānti)
+
 - Makara Saṅkrānti (solar ingress-based; civil date can vary by year/location)
 - Viṣṇu Pūjā (Sep 17)
 
 ### Tithi-Based (Major)
+
 - Vasanta Pañcamī (Māgha Śukla Pañcamī)
 - Mahā Śivarātri (Māgha Kṛṣṇa Chaturdaśī)
 - Holikā Dahan (Phālguna Śukla Pūrṇimā)
@@ -540,11 +559,13 @@ PanchangService::configure(
 - Dīpāvalī (Kārttika Kṛṣṇa Amāvāsyā)
 
 ### Recurring
+
 - Ekādaśī (twice monthly)
 - Pradoṣa (twice monthly)
 - Saṅkrānti (monthly)
 
 ### Festival Families (Multi-Day)
+
 - **Holi**: Holikā Dahan → Dhuleti
 - **Diwali**: Dhanteras → Naraka Chaturdaśī → Lakṣmī Pūjā → Govardhan Pūjā → Bhai Dūj
 - **Janmāṣṭamī**: Smarta (Aṣṭamī at sunrise) vs Vaishnava (Aṣṭamī + Niśīta + Rohiṇī)
@@ -575,17 +596,16 @@ composer test
 
 ## 📊 Calculation Coverage
 
-| Category | Elements | Status |
-|----------|----------|--------|
-| **Panchanga** | Tithi, Vara, Nakṣatra, Yoga, Karaṇa | ✅ Complete |
-| **Muhūrta** | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta | ✅ Complete |
-| **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra | ✅ Complete |
-| **Karmakala** | Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal | ✅ Complete |
-| **Festivals** | 237 festival definitions | ✅ Complete |
-| **Traditions** | Smarta, Vaishnava, regional | ✅ Complete |
+| Category         | Elements                                                                                                                                                        | Status      |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **Panchanga**    | Tithi, Vara, Nakṣatra, Yoga, Karaṇa                                                                                                                             | ✅ Complete |
+| **Muhūrta**      | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta                                                                                                   | ✅ Complete |
+| **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra                                                                                                           | ✅ Complete |
+| **Karmakala**    | Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal | ✅ Complete |
+| **Festivals**    | 237 festival definitions                                                                                                                                        | ✅ Complete |
+| **Traditions**   | Smarta, Vaishnava, regional                                                                                                                                     | ✅ Complete |
 
 ## Full System Requirements
-
 
 ### Core Requirements
 
@@ -595,7 +615,7 @@ composer test
 
 ### Dependencies
 
-- **jayeshmepani/swiss-ephemeris-ffi** ^1.0 - Swiss Ephemeris PHP FFI wrapper
+- **jayeshmepani/swiss-ephemeris-ffi** ^v1.1.0 - Swiss Ephemeris PHP FFI wrapper
 - **nesbot/carbon** ^3.0 - Date/time library
 
 ## 📚 Documentation
@@ -622,10 +642,12 @@ If you find this package helpful, consider sponsoring the development:
 
 ## 📄 License
 
-This repository is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. 
+This repository is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
 ### Swiss Ephemeris Licensing
+
 This core engine utilizes the **Swiss Ephemeris**, which has a dual-licensing model:
+
 1.  **Open Source**: Licensed under **GNU AGPLv3**. If you use this package in an open-source project, you must also use AGPLv3.
 2.  **Commercial**: If you wish to use this package in a closed-source or commercial application, you **MUST** purchase a commercial license from [Astrodienst AG](https://www.astro.com/swisseph/swephprg.htm#licence).
 

@@ -337,7 +337,7 @@ class FestivalRuleEngine
             }
         }
 
-        $allowedSunSigns = isset($rule['sun_sign']) ? [(int) $rule['sun_sign']] : array_map('intval', (array) ($rule['allowed_sun_signs'] ?? []));
+        $allowedSunSigns = isset($rule['sun_sign']) ? [(int) $rule['sun_sign']] : array_map(intval(...), (array) ($rule['allowed_sun_signs'] ?? []));
         if ($allowedSunSigns !== []) {
             $sunSignToday = $today['Sun_Sign_Index'] ?? null;
             $sunSignTomorrow = $tomorrow['Sun_Sign_Index'] ?? null;

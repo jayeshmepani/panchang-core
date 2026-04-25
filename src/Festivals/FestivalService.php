@@ -3244,7 +3244,7 @@ class FestivalService
         $regions = $rules['regions'] ?? ['Pan-India'];
         $aliases = array_values(array_map(
             static fn (string $alias): string => Localization::translate('Festival', $alias),
-            array_map('strval', (array) ($rules['aliases'] ?? []))
+            array_map(strval(...), (array) ($rules['aliases'] ?? []))
         ));
         $deity = $rules['deity'] ?? null;
 
@@ -3299,7 +3299,7 @@ class FestivalService
                 'deity' => Localization::translate('Deity', $rule['deity']),
                 'benefit' => Localization::translate('Benefit', $benefit),
                 'paksha' => $paksha,
-                'paksha_name' => constant(Paksha::class . '::' . $paksha)->getName(),
+                'paksha_name' => Paksha::{$paksha}->getName(),
             ];
         }
 
@@ -3552,7 +3552,7 @@ class FestivalService
             return null;
         }
 
-        $numbers = array_values(array_map('intval', is_array($ruleTithi) ? $ruleTithi : [$ruleTithi]));
+        $numbers = array_values(array_map(intval(...), is_array($ruleTithi) ? $ruleTithi : [$ruleTithi]));
         $pakshaName = is_string($paksha) && $paksha !== '' ? $paksha : null;
         $absoluteNumbers = array_map(static function (int $number) use ($pakshaName): int {
             if ($pakshaName === 'Krishna' && $number <= 15) {
@@ -3566,7 +3566,7 @@ class FestivalService
             'paksha' => $pakshaName,
             'paksha_name' => $this->localizedPakshaName($pakshaName),
             'absolute_numbers' => $absoluteNumbers,
-            'names' => array_map([$this, 'safeTithiName'], $absoluteNumbers),
+            'names' => array_map($this->safeTithiName(...), $absoluteNumbers),
         ]);
     }
 
