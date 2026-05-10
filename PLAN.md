@@ -2,7 +2,7 @@
 
 This document records the current architectural refactoring plan for reducing the large service classes without changing public output semantics.
 
-The primary goal is not to redesign the package. The goal is to preserve the existing calculation behavior, JSON structure, precision, localization, and tests while moving focused rule systems into smaller auditable classes.
+The primary goal is not to redesign the package. The goal is to preserve the existing calculation behavior, JSON structure, precision, localization, scripts, tests, and generated outputs while moving focused rule systems into smaller auditable classes.
 
 ## Current Monolithic Files
 
@@ -84,12 +84,15 @@ This class currently mixes these responsibilities:
 ## Refactoring Principles
 
 - Preserve all public array keys unless a versioned breaking change is explicitly planned.
-- Preserve raw numeric precision. Do not introduce rounding, normalization, or higher-level interpretation during extraction.
+- No public API change unless separately approved and versioned.
+- Preserve raw numeric precision. Do not introduce rounding, normalization, tolerance bands, or higher-level interpretation during extraction.
+- Every algorithm, formula, and rule table must move losslessly. Only intentional structural changes for reorganization/refactoring/restructuring are allowed.
 - Move code mechanically first, then improve internals only after behavior is locked by tests.
 - Keep `PanchangService` as the public orchestrator until a deliberate public API redesign is planned.
 - Prefer a few domain calculators first. Avoid creating one tiny class per yoga until the extracted domain proves stable.
 - Every extracted calculator must have regression coverage before or during extraction.
 - Generated JSON changes must be intentional and reviewed separately from structural refactors.
+- If a refactor changes data dependencies used by scripts or generators, update the relevant scripts in the same change set.
 
 ## Phase 1: Extract Astronomical Math And Intervals
 
@@ -297,3 +300,4 @@ vendor/bin/phpunit
 ```
 
 For changes that affect exported JSON, also regenerate and inspect the relevant files under `scripts/output`.
+For changes that affect CLI generation or release packaging, update the scripts under `scripts/` so they continue to produce identical outputs from the new file layout.
