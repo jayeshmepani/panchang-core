@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Localization;
@@ -249,6 +250,7 @@ class EclipseService
                 $out[$k] = null;
                 continue;
             }
+
             $out[$k] = [
                 'jd' => $v,
                 'time' => AstroCore::formatDateTime($this->jdToCarbon((float) $v, $tz)),
@@ -306,7 +308,7 @@ class EclipseService
     /** @phpstan-ignore return.unusedType */
     private function newGeoPos(float $lat, float $lon): object
     {
-        /** @var \FFI\CData $geo */
+        /** @var CData $geo */
         $geo = $this->sweph->getFFI()->new('double[3]');
         $geo[0] = $lon;
         $geo[1] = $lat;

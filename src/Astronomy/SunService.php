@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use SwissEph\FFI\SwissEphFFI;
 
@@ -30,15 +31,9 @@ class SunService
     /** Get sunrise and sunset as timezone-aware Carbon instances. */
     public function getSunriseSunset(array $birth): array
     {
-        $jd = $this->sweph->swe_julday(
-            (int) $birth['year'],
-            (int) $birth['month'],
-            (int) $birth['day'],
-            0.0,
-            SwissEphFFI::SE_GREG_CAL
-        );
+        $jd = $this->localDateStartJulianDay($birth);
 
-        /** @var \FFI\CData $geopos */
+        /** @var CData $geopos */
         $geopos = $this->sweph->getFFI()->new('double[3]');
         $geopos[0] = (float) $birth['longitude'];
         $geopos[1] = (float) $birth['latitude'];
@@ -53,15 +48,23 @@ class SunService
 
     public function getMoonriseMoonset(array $birth): array
     {
-        $jd = $this->sweph->swe_julday(
-            $birth['year'], $birth['month'], $birth['day'],
-            0.0,
-            SwissEphFFI::SE_GREG_CAL
-        );
+        $dayStart = $this->localDateStart($birth);
+        $dayEnd = $dayStart->addDay();
+        $jd = $this->toJulianDay($dayStart);
 
         $geopos = $this->newGeoPos($birth);
         $moonrise = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_MOON, SwissEphFFI::SE_CALC_RISE, $birth['timezone']);
-        $moonset = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_MOON, SwissEphFFI::SE_CALC_SET, $birth['timezone']);
+        if ($moonrise->greaterThanOrEqualTo($dayEnd)) {
+            return [null, null];
+        }
+
+        $moonset = $this->runRiseTransit(
+            $this->toJulianDay($moonrise->addSecond()),
+            $geopos,
+            SwissEphFFI::SE_MOON,
+            SwissEphFFI::SE_CALC_SET,
+            $birth['timezone']
+        );
 
         return [$moonrise, $moonset];
     }
@@ -82,11 +85,7 @@ class SunService
 
     public function getSolarTransits(array $birth): array
     {
-        $jd = $this->sweph->swe_julday(
-            $birth['year'], $birth['month'], $birth['day'],
-            0.0,
-            SwissEphFFI::SE_GREG_CAL
-        );
+        $jd = $this->localDateStartJulianDay($birth);
         $geopos = $this->newGeoPos($birth);
 
         $solarNoon = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_MTRANSIT, $birth['timezone']);
@@ -160,17 +159,48 @@ class SunService
 
     private function getRiseSetWithFlag(array $birth, int $twilightFlag): array
     {
-        $jd = $this->sweph->swe_julday(
-            $birth['year'], $birth['month'], $birth['day'],
-            0.0,
-            SwissEphFFI::SE_GREG_CAL
-        );
+        $jd = $this->localDateStartJulianDay($birth);
         $geopos = $this->newGeoPos($birth);
 
         $rise = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_RISE | $twilightFlag, $birth['timezone']);
         $set = $this->runRiseTransit($jd, $geopos, SwissEphFFI::SE_SUN, SwissEphFFI::SE_CALC_SET | $twilightFlag, $birth['timezone']);
 
         return ['dawn' => $rise, 'dusk' => $set];
+    }
+
+    private function localDateStartJulianDay(array $birth): float
+    {
+        return $this->toJulianDay($this->localDateStart($birth));
+    }
+
+    private function localDateStart(array $birth): CarbonImmutable
+    {
+        return CarbonImmutable::create(
+            (int) $birth['year'],
+            (int) $birth['month'],
+            (int) $birth['day'],
+            0,
+            0,
+            0,
+            (string) $birth['timezone']
+        );
+    }
+
+    private function toJulianDay(CarbonImmutable $time): float
+    {
+        $utc = $time->setTimezone('UTC');
+
+        $hourDecimal = (int) $utc->format('H')
+            + ((int) $utc->format('i')) / 60.0
+            + (((int) $utc->format('s')) + ((int) $utc->format('u') / 1_000_000)) / 3600.0;
+
+        return $this->sweph->swe_julday(
+            $utc->year,
+            $utc->month,
+            $utc->day,
+            $hourDecimal,
+            SwissEphFFI::SE_GREG_CAL
+        );
     }
 
     private function runRiseTransit(float $jd, object $geopos, int $body, int $eventFlag, string $timezone): CarbonImmutable
@@ -197,7 +227,7 @@ class SunService
     /** @phpstan-ignore return.unusedType */
     private function newGeoPos(array $birth): object
     {
-        /** @var \FFI\CData $geopos */
+        /** @var CData $geopos */
         $geopos = $this->sweph->getFFI()->new('double[3]');
         $geopos[0] = (float) $birth['longitude'];
         $geopos[1] = (float) $birth['latitude'];

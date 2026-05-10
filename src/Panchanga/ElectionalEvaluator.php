@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
-use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
@@ -316,6 +315,7 @@ final class ElectionalEvaluator
 
         foreach ($evaluationResults as $factor => $result) {
             if (!is_array($result)) { continue; }
+
             if (isset($result['has_dosha']) && $result['has_dosha'] === true) {
                 $rejection = [
                     'dosha_name' => $factor,

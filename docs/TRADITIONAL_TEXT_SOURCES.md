@@ -66,6 +66,9 @@ These components implement festival and observance resolution where the package 
 | `KalaNirnayaEngine.php` | Festival `karmakala_type` handling:<br>- `madhyahna`<br>- `nishitha`<br>- `pradosha`<br>- `aparahna`<br>- `sunrise`<br>Vaishnava Ekadashi handling | **Traditional convention:** Nirṇaya Sindhu, Muhūrta Chintāmaṇi, Hari Bhakti Vilāsa |
 | `BhadraEngine.php` | Bhadra/Vishti subdivision helpers | **Package attribution:** Muhūrta Chintāmaṇi, Nirṇaya Sindhu, Ernst Wilhelm's Classical Muhurta |
 | `PanchangService.php` | Timed Bhadra windows<br>Timed Varjyam windows<br>Timed Amrita Kaal window<br>Timed Pradosha window<br>Daily Karmakala output assembly | **Published Panchang convention:** Swiss Ephemeris-based live calculation |
+| `PanchangService.php` | `Special_Yogas` output:<br>- Sarvartha Siddhi<br>- Amrit Siddhi<br>- Ravi Yoga<br>- Ravi Pushya<br>- Guru Pushya<br>- Dwipushkar<br>- Tripushkar<br>- Ganda Mula<br>- Vinchhudo<br>- Aadal<br>- Vidaal<br>- Jwalamukhi | **Package attribution:** Muhurta Chintamani, Muhurta Martanda, regional published Panchang tables |
+| `PanchangService.php` | `Anandadi_Yoga`<br>`Amritadi_Yoga`<br>`Panchak`<br>`Maitreya_Yoga`<br>`Gajachchhaya_Yoga` | **Package attribution:** Muhurta Chintamani, Muhurta Martanda, Sripati/Jyotisha Ratnamala tradition, and published Panchang convention |
+| `PanchangService.php` | `Disha_Shool`<br>`Nakshatra_Shool`<br>`Rahu_Vaasa`<br>`Chandra_Vaasa`<br>`Shiva_Vaasa`<br>`Agni_Vaasa`<br>`Yogini_Vaasa` | **Package attribution:** Muhurta Chintamani and published Panchang/Nivas-Shool convention |
 
 ---
 
@@ -86,6 +89,8 @@ These features are useful and intentionally included, but they are best describe
 - `Varjyam`, `Amrita_Kaal`, and `Pradosha_Kaal` in `PanchangService` are live-timed Panchang-day outputs and should be preferred over legacy scalar helpers when available
 - `Lagna_Full_Day` is a calculated ascendant-sign timing table for the day; it is not a natal/person-specific reading
 - Festival output metadata intentionally separates canonical rule values from localized companion labels. For example, `calculation_basis.month.value` remains the machine-stable Sanskrit month key for the configured calendar type, while `calculation_basis.month.name` is localized for the active locale
+- Special-yoga and vaasa outputs are package rule mappings used for general panchang and muhurta screening. They are not natal/person-specific interpretations
+- Month calendar moonrise/moonset output is date-qualified because a lunar visibility interval can begin on one civil date and end after midnight on the next civil date
 
 ---
 

@@ -32,6 +32,7 @@ final readonly class AstroCore
         if ($val < 0) {
             $val += 360.0;
         }
+
         return $val;
     }
 
@@ -49,6 +50,7 @@ final readonly class AstroCore
         if ($diff > 180.0) {
             $diff = 360.0 - $diff;
         }
+
         return $diff;
     }
 
@@ -77,6 +79,7 @@ final readonly class AstroCore
         if ($val < 0) {
             $val += 30.0;
         }
+
         return $val;
     }
 
@@ -125,6 +128,7 @@ final readonly class AstroCore
         if ($diffSeconds < 0) {
             $diffSeconds += 86400.0;
         }
+
         return $diffSeconds / 60.0;
     }
 
@@ -153,6 +157,7 @@ final readonly class AstroCore
                 return $default;
             }
         }
+
         return $default;
     }
 
@@ -219,6 +224,7 @@ final readonly class AstroCore
             if ($hours > 0) {
                 return sprintf('%dh %dm %ss', $hours, $mins, $secs);
             }
+
             return sprintf('%dm %ss', $mins, $secs);
         }
 

@@ -729,7 +729,7 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Saurashtra\'s famous matchmaking fair at Trinetreshwar Mahadev Temple; Bhadarva Sud 4-6',
+            'description' => "Saurashtra's famous matchmaking fair at Trinetreshwar Mahadev Temple; Bhadarva Sud 4-6",
             'deity' => 'Shiva',
             'regions' => ['Saurashtra', 'Gujarat'],
         ],
@@ -1781,7 +1781,7 @@ class FestivalService
             'tithi' => 10,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Return journey of Lord Jagannath\'s chariots to the main temple',
+            'description' => "Return journey of Lord Jagannath's chariots to the main temple",
             'deity' => 'Jagannath',
             'regions' => ['Odisha'],
             'karmakala_type' => 'sunrise',
@@ -2647,7 +2647,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'description' => 'Festival of Varanasi celebrating Shiva\'s victory over Tripurasura; ghats illuminated with lamps',
+            'description' => "Festival of Varanasi celebrating Shiva's victory over Tripurasura; ghats illuminated with lamps",
             'deity' => 'Shiva',
             'regions' => ['Varanasi', 'Uttar Pradesh'],
             'karmakala_type' => 'pradosha',
@@ -2804,7 +2804,7 @@ class FestivalService
             'nakshatra' => 'Shravana',
             'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
             'sun_sign' => 4,
-            'description' => 'Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali\'s annual visit',
+            'description' => "Kerala harvest festival; Thiruvonam nakshatra (Shravana) in Malayalam month Chingam (Aug-Sep); marks King Mahabali's annual visit",
             'deity' => 'Vishnu/Mahabali',
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
             'karmakala_type' => 'madhyahna',
@@ -3062,6 +3062,7 @@ class FestivalService
         'Magha' => 11,
         'Phalguna' => 12,
     ];
+
     public function __construct(
         private readonly FestivalRuleEngine $ruleEngine
     ) {
@@ -3114,6 +3115,7 @@ class FestivalService
                 if ($isAdhika && !$adhikaAllowed && !$adhikaOnly) {
                     continue; // regular tithi observances suppressed in Adhika month
                 }
+
                 if (!$isAdhika && $adhikaOnly) {
                     continue; // Adhika-only festival cannot occur in Nija month
                 }
@@ -3209,6 +3211,7 @@ class FestivalService
                         $filteredMeta[] = $meta;
                     }
                 }
+
                 $festivals = $filteredFestivals;
                 $festivalMeta = $filteredMeta;
             }
@@ -3294,6 +3297,7 @@ class FestivalService
             if ($idx === 15) {
                 $benefit = $paksha === 'Shukla' ? $rule['purnima_benefit'] : $rule['amavasya_benefit'];
             }
+
             $out[] = [
                 'name' => Localization::translate('Vrata', $rule['vrata']),
                 'deity' => Localization::translate('Deity', $rule['deity']),
@@ -3511,18 +3515,22 @@ class FestivalService
             $out['festival_name'] = Localization::translate('Festival', (string) $out['festival_name']);
             $out['festival_name_localized'] = $out['festival_name'];
         }
+
         if (isset($out['paksha'])) {
             $out['paksha_name'] = $this->localizedPakshaName($out['paksha']);
         }
+
         if (isset($out['karmakala_type'])) {
             $out['karmakala_type_name'] = $this->localizedString($out['karmakala_type']);
         }
+
         if (isset($out['required_nakshatra'])) {
             $rawNakshatra = (string) $out['required_nakshatra'];
             $out['required_nakshatra_key'] = $rawNakshatra;
             $out['required_nakshatra'] = $this->localizedNakshatraName($rawNakshatra);
             $out['required_nakshatra_name'] = $out['required_nakshatra'];
         }
+
         if (isset($out['decision']) && is_array($out['decision'])) {
             $out['decision'] = $this->localizeDecisionMetadata($out['decision']);
         }
@@ -3558,6 +3566,7 @@ class FestivalService
             if ($pakshaName === 'Krishna' && $number <= 15) {
                 return $number + 15;
             }
+
             return $number;
         }, $numbers);
 
@@ -3685,18 +3694,21 @@ class FestivalService
             $decision['winning_reason'] = $this->localizedString($reasonRaw);
             $decision['winning_reason_name'] = $decision['winning_reason'];
         }
+
         if (isset($decision['parent_festival'])) {
             $parentRaw = (string) $decision['parent_festival'];
             $decision['parent_festival_key'] = $parentRaw;
             $decision['parent_festival'] = Localization::translate('Festival', $parentRaw);
             $decision['parent_festival_name'] = $decision['parent_festival'];
         }
+
         if (isset($decision['nakshatra_name'])) {
             $nakshatraRaw = (string) $decision['nakshatra_name'];
             $decision['nakshatra_name_key'] = $nakshatraRaw;
             $decision['nakshatra_name'] = $this->localizedNakshatraName($nakshatraRaw);
             $decision['nakshatra_name_localized'] = $decision['nakshatra_name'];
         }
+
         if (isset($decision['preferred_nakshatra'])) {
             $preferredRaw = (string) $decision['preferred_nakshatra'];
             $decision['preferred_nakshatra_key'] = $preferredRaw;
@@ -3763,9 +3775,11 @@ class FestivalService
             if (is_array($value)) {
                 $value = $this->filterEmptyMetadata($value);
             }
+
             if ($value === null || $value === []) {
                 continue;
             }
+
             $out[$key] = $value;
         }
 
@@ -3799,6 +3813,7 @@ class FestivalService
             if ($isAdhika && !$adhikaOnly && !$allowsAdhika) {
                 return false; // Regular lunar festivals are blocked in Adhika Masa
             }
+
             if (!$isAdhika && $adhikaOnly) {
                 return false; // Adhika-only lunar festivals shouldn't appear in Nija Masa
             }
@@ -3909,9 +3924,11 @@ class FestivalService
             if ($rulePurnimanta !== '') {
                 return $rulePurnimanta === $purnimanta;
             }
+
             if ($ruleAmanta !== '') {
                 return $ruleAmanta === $amanta;
             }
+
             return true;
         }
 
@@ -3919,6 +3936,7 @@ class FestivalService
         if ($ruleAmanta !== '') {
             return $ruleAmanta === $amanta;
         }
+
         if ($rulePurnimanta !== '') {
             return $rulePurnimanta === $purnimanta;
         }
@@ -3947,6 +3965,7 @@ class FestivalService
                 if ((bool) ($calendar['Is_Adhika'] ?? false) && $rulePaksha === 'Shukla') {
                     $purnimantaDynamic .= ' (Adhika)';
                 }
+
                 return $purnimantaDynamic;
             }
         }

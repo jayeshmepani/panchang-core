@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Generate monthly calendar grid JSON.
  *
  * Usage: php scripts/panchang_month_output.php [year] [month]
- * Default: current year/month
+ * Default: current month
  * Output: stdout (redirect to file)
  *
  * Example: php scripts/panchang_month_output.php 2026 4 > month_2026_04.json
@@ -27,8 +27,8 @@ $longitude = 69.668339;
 $elevation = 0.0;
 $calendarType = config('panchang.defaults.calendar_type', 'purnimanta');
 
-$year = isset($argv[1]) ? (int) $argv[1] : (int) date('Y');
-$month = isset($argv[2]) ? (int) $argv[2] : (int) date('m');
+$year = isset($argv[1]) ? (int) $argv[1] : (int) CarbonImmutable::now($timezone)->format('Y');
+$month = isset($argv[2]) ? (int) $argv[2] : (int) CarbonImmutable::now($timezone)->format('m');
 
 $fixedRefDate = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $timezone);
 

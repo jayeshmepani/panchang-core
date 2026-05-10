@@ -46,6 +46,7 @@ class MuhurtaService
         }
 
         if ($horaIdx >= 12) { $horaIdx = 11; }
+
         $currentHora = $seq[($baseOffset + $horaIdx) % 24];
 
         return [
@@ -155,6 +156,7 @@ class MuhurtaService
             } else {
                 $start = $this->addFloatSeconds($sunset, ($i - 12) * $duration);
             }
+
             $rows[] = $this->buildTimedRow($start, $duration, [
                 'hora_number' => $i + 1,
                 'is_day_hora' => $isDayHora,
@@ -429,8 +431,8 @@ class MuhurtaService
             'source' => Localization::translate('Source', 'Published Gowri/Pambu table convention'),
             'day' => $dayRows,
             'night' => $nightRows,
-            'auspicious_labels' => array_map(fn ($l) => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
-            'inauspicious_labels' => array_map(fn ($l) => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
+            'auspicious_labels' => array_map(fn (string $l): string => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
+            'inauspicious_labels' => array_map(fn (string $l): string => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
         ];
     }
 
@@ -499,6 +501,7 @@ class MuhurtaService
                 'name' => Localization::translate('Prahara', $dayNames[$i]),
             ]);
         }
+
         for ($i = 0; $i < 4; $i++) {
             $start = $this->addFloatSeconds($sunset, $i * $nightDuration);
             $praharas[] = $this->buildTimedRow($start, $nightDuration, [
@@ -507,6 +510,7 @@ class MuhurtaService
                 'name' => Localization::translate('Prahara', $nightNames[$i]),
             ]);
         }
+
         return $praharas;
     }
 
@@ -570,6 +574,7 @@ class MuhurtaService
                 $durMuhurtas[] = $row;
             }
         }
+
         return $durMuhurtas;
     }
 
@@ -618,6 +623,7 @@ class MuhurtaService
         if (!isset($varjyam['varjyam_end']) || !isset($varjyam['duration_seconds_raw'])) {
             return ['is_available' => false];
         }
+
         $vEndStr = preg_replace('/[^0-9:]/', '', (string) $varjyam['varjyam_end']);
         $vEnd = CarbonImmutable::createFromFormat('H:i:s', $vEndStr)->setDate($sunrise->year, $sunrise->month, $sunrise->day);
         $aDur = (float) $varjyam['duration_seconds_raw'];
@@ -714,6 +720,7 @@ class MuhurtaService
                         $diff = AstroCore::normalize($midAsc - $targetAngle);
                         if ($diff < 180.0) { $high = $mid; } else { $low = $mid; }
                     }
+
                     $transitionJd = $high;
                 } else {
                     $transitionJd = $jdStart; // Day starts at sunrise
@@ -753,6 +760,7 @@ class MuhurtaService
         $matches = [];
         foreach (array_merge($dayPortions, $nightPortions) as $portion) {
             if (($portion['planetary_lord_en'] ?? null) !== $planet) { continue; }
+
             $matches[] = [
                 'division' => $portion['division'],
                 'start' => $portion['start'],
@@ -761,6 +769,7 @@ class MuhurtaService
                 'end_iso' => $portion['end_iso'],
             ];
         }
+
         return $matches;
     }
 

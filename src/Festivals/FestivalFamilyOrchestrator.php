@@ -175,6 +175,7 @@ class FestivalFamilyOrchestrator
             'logic' => 'fixed_sequence',
         ],
     ];
+
     /**
      * Resolve complete festival family with celebration logic.
      *
@@ -311,6 +312,7 @@ class FestivalFamilyOrchestrator
             if ($event['event_name'] === 'Holika Dahan') {
                 $holikaIndex = $i;
             }
+
             if ($event['event_name'] === 'Holi (Dhuleti)') {
                 $holiIndex = $i;
             }

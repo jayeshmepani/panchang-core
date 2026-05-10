@@ -134,7 +134,7 @@ class AstronomyService
         $xx = $this->sweph->getFFI()->new('double[6]');
         $serr = $this->sweph->getFFI()->new('char[256]');
 
-        $sunLongitude = null;
+        $sunLongitude = 0.0;
         $states = [];
 
         foreach ($planets as $name => $pid) {
@@ -152,7 +152,7 @@ class AstronomyService
                 default => $speed < 0.0,
             };
 
-            $separation = $sunLongitude === null ? 0.0 : $this->minimalAngularSeparation($longitude, $sunLongitude);
+            $separation = $this->minimalAngularSeparation($longitude, $sunLongitude);
             $orb = null;
             if ($name !== 'Sun') {
                 $orb = $isRetrograde && isset(ElectionalRuleBook::COMBUSTION_ORBS_RETRO[$name])
@@ -177,18 +177,16 @@ class AstronomyService
             ];
         }
 
-        if (isset($states['Rahu'])) {
-            $ketuLongitude = AstroCore::normalize($states['Rahu']['lon'] + 180.0);
-            $states['Ketu'] = [
-                'lon' => $ketuLongitude,
-                'speed_deg_per_day' => -($states['Rahu']['speed_deg_per_day']),
-                'is_retrograde' => $states['Rahu']['is_retrograde'],
-                'is_stationary' => $states['Rahu']['is_stationary'],
-                'is_combust' => false,
-                'separation_from_sun' => $sunLongitude === null ? 0.0 : $this->minimalAngularSeparation($ketuLongitude, $sunLongitude),
-                'orb_used' => null,
-            ];
-        }
+        $ketuLongitude = AstroCore::normalize($states['Rahu']['lon'] + 180.0);
+        $states['Ketu'] = [
+            'lon' => $ketuLongitude,
+            'speed_deg_per_day' => -($states['Rahu']['speed_deg_per_day']),
+            'is_retrograde' => $states['Rahu']['is_retrograde'],
+            'is_stationary' => $states['Rahu']['is_stationary'],
+            'is_combust' => false,
+            'separation_from_sun' => $this->minimalAngularSeparation($ketuLongitude, $sunLongitude),
+            'orb_used' => null,
+        ];
 
         return $states;
     }

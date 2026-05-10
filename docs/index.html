@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 237 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, and Swiss Ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 237 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and Swiss Ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -494,6 +494,23 @@
                   <polyline points="12 6 12 12 16 14" />
                 </svg>Muhūrta</h3>
               <p>Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Varjyam, Pradosha</p>
+            </div>
+            <div class="feature-card">
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2l2.8 6.4 7 .6-5.3 4.6 1.6 6.9L12 16.9l-6.1 3.6 1.6-6.9L2.2 9l7-.6z" />
+                </svg>Special Yogas</h3>
+              <p>Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Pushya variants, Dwipushkar, Tripushkar, Ganda Mula, Aadal, Vidaal, and Jwalamukhi.</p>
+            </div>
+            <div class="feature-card">
+              <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2v20" />
+                  <path d="M2 12h20" />
+                  <path d="M5 5l14 14" />
+                  <path d="M19 5L5 19" />
+                </svg>Disha & Vaasa</h3>
+              <p>Disha Shool, Shiva Vaasa, Agni Vaasa, and Yogini Vaasa for general panchang and electional screening.</p>
             </div>
             <div class="feature-card">
               <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -1076,6 +1093,23 @@ $karmakala  = $details['Karmakala_Windows'];
 $varjyam    = $details['Varjyam'];
 $amrita     = $details['Amrita_Kaal'];
 $pradosha   = $details['Pradosha_Kaal'];</code></pre>
+
+            <h4 style="margin-top: 1.5rem;">7. Special Yoga and Vaasa Outputs</h4>
+            <p>Festival snapshots expose general panchang/electional signals without requiring consumers to rebuild the rule tables:</p>
+            <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>$specialYogas = $snapshot['Special_Yogas'];
+$anandadi     = $snapshot['Anandadi_Yoga'];
+$amritadi     = $snapshot['Amritadi_Yoga'];
+$panchak      = $snapshot['Panchak'];
+$maitreya     = $snapshot['Maitreya_Yoga'];
+$gajachchhaya = $snapshot['Gajachchhaya_Yoga'];
+$nakShool     = $snapshot['Nakshatra_Shool'];
+$dishaShool   = $snapshot['Disha_Shool'];
+$rahuVaasa    = $snapshot['Rahu_Vaasa'];
+$chandraVaasa = $snapshot['Chandra_Vaasa'];
+$shivaVaasa   = $snapshot['Shiva_Vaasa'];
+$agniVaasa    = $snapshot['Agni_Vaasa'];
+$yoginiVaasa  = $snapshot['Yogini_Vaasa'];
+$ekadashi     = $snapshot['Ekadashi_Observance'];</code></pre>
           </div>
         </section>
         <section id="nakshatra" class="content-section">
@@ -2977,7 +3011,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               </tr>
               <tr>
                 <td><code>panchang_month_output.php [year] [month]</code></td>
-                <td>Exports monthly panchang data</td>
+                <td>Exports monthly panchang data; defaults to current month when no year/month is passed</td>
                 <td>Prints to stdout</td>
               </tr>
               <tr>
@@ -3415,12 +3449,27 @@ class PanchangController extends Controller
     'sunset' => '07:11:00 PM',
     'moonrise' => '...',
     'moonset' => '...',
+    'moonrise_date' => '2026-04-01',
+    'moonset_date' => '2026-04-02',
+    'moonrise_iso' => '01/04/2026 06:26:00 PM',
+    'moonset_iso' => '02/04/2026 06:05:00 AM',
+    'moonset_day_relation' => 'next_day',
+    'moon_visibility' => [
+      'starts_at' => '...',
+      'starts_on' => '2026-04-01',
+      'starts_iso' => '...',
+      'ends_at' => '...',
+      'ends_on' => '2026-04-02',
+      'ends_iso' => '...',
+      'ends_day_relation' => 'next_day',
+    ],
     'hindu_calendar' => [...],
     'festivals' => [...],
     'daily_observances' => [...],
     'sankranti' => null,
   ],
 ]</code></pre>
+          <p><strong>Moon visibility note:</strong> month output preserves compact <code>moonrise</code> and <code>moonset</code> display fields, but also includes date-qualified fields because a moonset can occur after midnight on the next civil date.</p>
         </section>
 
         <section id="examples" class="content-section">

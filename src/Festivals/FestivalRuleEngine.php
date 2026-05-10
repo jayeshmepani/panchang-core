@@ -151,25 +151,25 @@ class FestivalRuleEngine
             $standardDate = $tomorrowStr;
             $observanceNote = Localization::translate('String', 'observance_note_sunrise_shift_today') !== 'observance_note_sunrise_shift_today'
                 ? sprintf(Localization::translate('String', 'observance_note_sunrise_shift_today'), $localizedPaksha, $requiredTithi, $tomorrowStr, $localizedKarmakala, $todayStr)
-                : "Exception: Standard {$localizedPaksha} Tithi {$requiredTithi} falls on {$tomorrowStr} at sunrise, but due to tradition/ritual requiring {$localizedKarmakala} presence, it is celebrated on {$todayStr}.";
+                : sprintf('Exception: Standard %s Tithi %d falls on %s at sunrise, but due to tradition/ritual requiring %s presence, it is celebrated on %s.', $localizedPaksha, $requiredTithi, $tomorrowStr, $localizedKarmakala, $todayStr);
         } elseif ($winner['day_offset'] === 1 && $tithiAtSunriseToday && !$tithiAtSunriseTomorrow) {
             $standardDate = $todayStr;
             $observanceNote = Localization::translate('String', 'observance_note_sunrise_shift_tomorrow') !== 'observance_note_sunrise_shift_tomorrow'
                 ? sprintf(Localization::translate('String', 'observance_note_sunrise_shift_tomorrow'), $localizedPaksha, $requiredTithi, $todayStr, $localizedKarmakala, $tomorrowStr)
-                : "Exception: Standard {$localizedPaksha} Tithi {$requiredTithi} falls on {$todayStr} at sunrise, but due to tradition/ritual requiring {$localizedKarmakala} presence, observance shifts to {$tomorrowStr}.";
+                : sprintf('Exception: Standard %s Tithi %d falls on %s at sunrise, but due to tradition/ritual requiring %s presence, observance shifts to %s.', $localizedPaksha, $requiredTithi, $todayStr, $localizedKarmakala, $tomorrowStr);
         } elseif ($kshaya) {
             $standardDate = $todayStr; // Kshaya tithi generally aligns with the day it starts
             if ($winner['date'] !== $standardDate) {
                 $observanceNote = Localization::translate('String', 'observance_note_kshaya') !== 'observance_note_kshaya'
                     ? sprintf(Localization::translate('String', 'observance_note_kshaya'), $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala)
-                    : "Exception: {$localizedPaksha} Tithi {$requiredTithi} is a Kshaya Tithi (skips sunrise). Observance shifts to {$winner['date']} due to {$localizedKarmakala} rules.";
+                    : sprintf('Exception: %s Tithi %d is a Kshaya Tithi (skips sunrise). Observance shifts to %s due to %s rules.', $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala);
             }
         } elseif ($vriddhi) {
             $standardDate = $todayStr; // Vriddhi default first day
             if ($winner['date'] !== $standardDate) {
                 $observanceNote = Localization::translate('String', 'observance_note_vriddhi') !== 'observance_note_vriddhi'
                     ? sprintf(Localization::translate('String', 'observance_note_vriddhi'), $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala)
-                    : "Exception: {$localizedPaksha} Tithi {$requiredTithi} is a Vriddhi Tithi (spans two sunrises). Observance shifts to {$winner['date']} due to {$localizedKarmakala} rules.";
+                    : sprintf('Exception: %s Tithi %d is a Vriddhi Tithi (spans two sunrises). Observance shifts to %s due to %s rules.', $localizedPaksha, $requiredTithi, $winner['date'], $localizedKarmakala);
             }
         }
 
@@ -289,6 +289,7 @@ class FestivalRuleEngine
         if ($requiredNakshatra === '') {
             return null;
         }
+
         $requiredNakshatraNumber = $this->resolveNakshatraNumber($requiredNakshatra);
 
         $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
@@ -319,7 +320,7 @@ class FestivalRuleEngine
             $monthTomorrow = (string) ($calendarTomorrow['Month_Amanta_En'] ?? $calendarTomorrow['Month_Amanta'] ?? '');
             $monthTodayNorm = $this->normalizeMonthName($monthToday);
             $monthTomorrowNorm = $this->normalizeMonthName($monthTomorrow);
-            $allowedMonthsNorm = array_map(fn ($m) => $this->normalizeMonthName((string) $m), $allowedMonths);
+            $allowedMonthsNorm = array_map(fn ($m): string => $this->normalizeMonthName((string) $m), $allowedMonths);
             $monthTodayMatch = in_array($monthTodayNorm, $allowedMonthsNorm, true);
             $monthTomorrowMatch = in_array($monthTomorrowNorm, $allowedMonthsNorm, true);
 
@@ -327,6 +328,7 @@ class FestivalRuleEngine
             if ($nakshatraTodayMatch && !$monthTodayMatch) {
                 $nakshatraTodayMatch = false;
             }
+
             if ($nakshatraTomorrowMatch && !$monthTomorrowMatch) {
                 $nakshatraTomorrowMatch = false;
             }
@@ -347,6 +349,7 @@ class FestivalRuleEngine
             if ($nakshatraTodayMatch && !$sunTodayMatch) {
                 $nakshatraTodayMatch = false;
             }
+
             if ($nakshatraTomorrowMatch && !$sunTomorrowMatch) {
                 $nakshatraTomorrowMatch = false;
             }
@@ -373,9 +376,11 @@ class FestivalRuleEngine
             if ($nakshatraTodayMatch && $isPurnimaToday) {
                 return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
             }
+
             if ($nakshatraTomorrowMatch && $isPurnimaTomorrow) {
                 return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
             }
+
             return null;
         }
 

@@ -16,10 +16,13 @@ namespace JayeshMepani\PanchangCore\Panchanga;
 class KalaNirnayaEngine
 {
     public const GHATI_IN_MINUTES = 24.0;
+
     public const PALA_IN_SECONDS = 24.0;
+
     public const GHATIKA_PER_DAY = 60.0;
 
     public const ARUNODAYA_GHATIKAS = 4.0;
+
     public const ARUNODAYA_MINUTES = 96.0;
 
     public const SANKRANTI_PUNYA_KAAL = [
@@ -113,6 +116,7 @@ class KalaNirnayaEngine
             'priority' => 'tithi_at_karmakala',
         ],
     ];
+
     public function __construct(public float $latitude, public float $longitude)
     {
     }
@@ -222,7 +226,7 @@ class KalaNirnayaEngine
     public function calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd): array
     {
         if (!isset(self::SANKRANTI_PUNYA_KAAL[$sankrantiName])) {
-            return ['error' => "Unknown Sankranti: {$sankrantiName}"];
+            return ['error' => 'Unknown Sankranti: ' . $sankrantiName];
         }
 
         $config = self::SANKRANTI_PUNYA_KAAL[$sankrantiName];
@@ -272,7 +276,7 @@ class KalaNirnayaEngine
         float $nextSunriseJd
     ): array {
         if (!isset(self::FESTIVAL_RULES[$festivalName])) {
-            return ['error' => "Unknown festival: {$festivalName}"];
+            return ['error' => 'Unknown festival: ' . $festivalName];
         }
 
         $rules = self::FESTIVAL_RULES[$festivalName];
@@ -331,7 +335,8 @@ class KalaNirnayaEngine
 
         $ekadashiSmarta = null;
         $ekadashiVaishnava = null;
-        if ($tithiNumber === 11) {
+        $phaseTithiNumber = (($tithiNumber - 1) % 15) + 1;
+        if ($phaseTithiNumber === 11) {
             $dashamiEndJd = $prevTithiEndJd;
             $dvadashiStartJd = $tithiEndJd;
 

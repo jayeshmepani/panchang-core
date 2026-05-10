@@ -17,6 +17,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
+use RuntimeException;
 use SwissEph\FFI\SwissEphFFI;
 use Throwable;
 
@@ -35,7 +36,246 @@ class PanchangService
         'Ganga Dussehra',
     ];
 
+    private const array SARVARTHA_SIDDHI_RULES = [
+        0 => [3, 7, 11, 12, 20, 25],
+        1 => [3, 4, 7, 16, 21],
+        2 => [0, 2, 8, 12, 25],
+        3 => [2, 3, 4, 12, 16, 24, 25],
+        4 => [6, 7, 16, 26],
+        5 => [0, 6, 16, 21, 26],
+        6 => [3, 14, 21],
+    ];
+
+    private const array AMRIT_SIDDHI_RULES = [
+        0 => [12],
+        1 => [4],
+        2 => [0],
+        3 => [16],
+        4 => [7],
+        5 => [26],
+        6 => [3],
+    ];
+
+    /** @var list<int> */
+    private const array DWI_PUSHKARA_NAKSHATRAS = [4, 13, 22];
+
+    /** @var list<int> */
+    private const array TRI_PUSHKARA_NAKSHATRAS = [2, 6, 10, 15, 20, 24];
+
+    /** @var list<int> */
+    private const array PUSHKARA_TITHIS = [2, 7, 12];
+
+    /** @var list<int> */
+    private const array PUSHKARA_WEEKDAYS = [0, 2, 6];
+
+    /** @var list<int> */
+    private const array RAVI_YOGA_DISTANCES = [4, 6, 9, 10, 13, 20];
+
+    /** @var list<int> */
+    private const array AADAL_COUNTS = [2, 7, 9, 14, 16, 21, 23, 28];
+
+    /** @var list<int> */
+    private const array VIDAAL_COUNTS = [3, 6, 10, 13, 17, 20, 24, 27];
+
+    private const array JWALAMUKHI_RULES = [
+        1 => [18], // Pratipada + Moola
+        5 => [1],  // Panchami + Bharani
+        8 => [2],  // Ashtami + Krittika
+        9 => [3],  // Navami + Rohini
+        10 => [8], // Dashami + Ashlesha
+    ];
+
+    /** @var list<int> */
+    private const array ABHIJIT_ORDER = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 21, 22, 23, 24, 25, 26];
+
+    /** @var list<string> */
+    private const array ANANDADI_YOGA_NAMES = [
+        'Ananda',
+        'Kaladanda',
+        'Dhumra',
+        'Dhata/Prajapati',
+        'Saumya',
+        'Dhvanksha',
+        'Dhvaja',
+        'Srivatsa',
+        'Vajra',
+        'Mudgara',
+        'Chhatra',
+        'Mitra',
+        'Manasa',
+        'Padma',
+        'Lumbaka',
+        'Utpata',
+        'Mrityu',
+        'Kana',
+        'Siddhi',
+        'Shubha',
+        'Amrita',
+        'Mushala',
+        'Gada',
+        'Matanga',
+        'Rakshasa',
+        'Chara',
+        'Sthira',
+        'Vardhamana',
+    ];
+
+    /** @var list<string> */
+    private const array ANANDADI_YOGA_EFFECTS = [
+        'Siddhi',
+        'Mrityu',
+        'Asukha',
+        'Saubhagya',
+        'Bahu Sukha',
+        'Dhanakshaya',
+        'Saubhagya',
+        'Saukhyasampatti',
+        'Loss / Kshaya',
+        'Lakshmikshaya',
+        'Rajasanmana',
+        'Pushti',
+        'Saubhagya',
+        'Dhanagama',
+        'Dhanakshaya',
+        'Prananasha',
+        'Mrityu',
+        'Klesha',
+        'Karyasiddhi',
+        'Kalyana',
+        'Rajasanmana',
+        'Dhanakshaya',
+        'Bhaya',
+        'Kulavriddhi',
+        'Mahakashta',
+        'Karyasiddhi',
+        'Griharambha',
+        'Vivaha',
+    ];
+
+    /** @var array<int, int> */
+    private const array ANANDADI_WEEKDAY_START_28_INDEX = [
+        0 => 0,  // Sunday: Ashwini
+        1 => 4,  // Monday: Mrigashira
+        2 => 8,  // Tuesday: Ashlesha
+        3 => 12, // Wednesday: Hasta
+        4 => 16, // Thursday: Anuradha
+        5 => 20, // Friday: Uttara Ashadha
+        6 => 24, // Saturday: Shatabhisha
+    ];
+
+    /** @var array<int, array<int, string>> */
+    private const array AMRITADI_YOGA_TABLE = [
+        0 => ['Siddha', 'Siddha', 'Siddha', 'Marana', 'Amrita', 'Amrita', 'Siddha'],
+        1 => ['Prabalarishta', 'Siddha', 'Siddha', 'Siddha', 'Siddha', 'Siddha', 'Siddha'],
+        2 => ['Siddha', 'Marana', 'Siddha', 'Amrita', 'Marana', 'Siddha', 'Siddha'],
+        3 => ['Siddha', 'Amrita', 'Amrita', 'Siddha', 'Marana', 'Marana', 'Amrita'],
+        4 => ['Siddha', 'Siddha', 'Siddha', 'Siddha', 'Marana', 'Siddha', 'Siddha'],
+        5 => ['Siddha', 'Siddha', 'Marana', 'Siddha', 'Marana', 'Siddha', 'Siddha'],
+        6 => ['Siddha', 'Amrita', 'Siddha', 'Siddha', 'Amrita', 'Siddha', 'Siddha'],
+        7 => ['Siddha', 'Siddha', 'Siddha', 'Siddha', 'Siddha', 'Marana', 'Siddha'],
+        8 => ['Siddha', 'Siddha', 'Siddha', 'Siddha', 'Siddha', 'Marana', 'Marana'],
+        9 => ['Marana', 'Marana', 'Siddha', 'Siddha', 'Amrita', 'Marana', 'Amrita'],
+        10 => ['Siddha', 'Siddha', 'Siddha', 'Amrita', 'Siddha', 'Siddha', 'Siddha'],
+        11 => ['Amrita', 'Siddha', 'Amrita', 'Amrita', 'Marana', 'Siddha', 'Marana'],
+        12 => ['Siddha', 'Siddha', 'Siddha', 'Marana', 'Siddha', 'Amrita', 'Marana'],
+        13 => ['Siddha', 'Prabalarishta', 'Siddha', 'Siddha', 'Siddha', 'Siddha', 'Marana'],
+        14 => ['Siddha', 'Amrita', 'Siddha', 'Siddha', 'Amrita', 'Siddha', 'Siddha'],
+        15 => ['Marana', 'Marana', 'Marana', 'Siddha', 'Amrita', 'Siddha', 'Siddha'],
+        16 => ['Marana', 'Siddha', 'Siddha', 'Amrita', 'Siddha', 'Siddha', 'Siddha'],
+        17 => ['Marana', 'Siddha', 'Marana', 'Siddha', 'Prabalarishta', 'Marana', 'Siddha'],
+        18 => ['Amrita', 'Siddha', 'Amrita', 'Marana', 'Siddha', 'Amrita', 'Siddha'],
+        19 => ['Siddha', 'Marana', 'Siddha', 'Amrita', 'Siddha', 'Prabalarishta', 'Siddha'],
+        20 => ['Amrita', 'Marana', 'Prabalarishta', 'Amrita', 'Siddha', 'Siddha', 'Siddha'],
+        21 => ['Amrita', 'Amrita', 'Siddha', 'Siddha', 'Siddha', 'Marana', 'Siddha'],
+        22 => ['Marana', 'Siddha', 'Siddha', 'Prabalarishta', 'Siddha', 'Siddha', 'Siddha'],
+        23 => ['Siddha', 'Siddha', 'Marana', 'Siddha', 'Marana', 'Siddha', 'Amrita'],
+        24 => ['Siddha', 'Siddha', 'Marana', 'Amrita', 'Siddha', 'Siddha', 'Marana'],
+        25 => ['Amrita', 'Siddha', 'Amrita', 'Siddha', 'Siddha', 'Siddha', 'Siddha'],
+        26 => ['Amrita', 'Siddha', 'Siddha', 'Marana', 'Siddha', 'Siddha', 'Prabalarishta'],
+    ];
+
+    /** @var array<int, string> */
+    private const array CHANDRA_VAASA_PADA_ABODES = [
+        1 => 'Deva',
+        2 => 'Nara',
+        3 => 'Pashava',
+        4 => 'Rakshasa',
+    ];
+
+    /** @var array<int, string> */
+    private const array CHANDRA_VAASA_PADA_QUALITY = [
+        1 => 'Auspicious',
+        2 => 'Neutral',
+        3 => 'Mixed',
+        4 => 'Inauspicious',
+    ];
+
+    /** @var array<string, list<int>> */
+    private const array NAKSHATRA_SHOOL_DIRECTIONS = [
+        'East' => [18, 21, 17],
+        'West' => [3, 7],
+        'North' => [12, 11],
+        'South' => [24, 0, 5, 22],
+    ];
+
+    private const array SHIVA_VAASA_METHOD1 = [
+        1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7,
+        8 => 1, 9 => 2, 10 => 3, 11 => 4, 12 => 5, 13 => 6, 14 => 7,
+        15 => 1, 16 => 1, 17 => 2, 18 => 3, 19 => 4, 20 => 5, 21 => 6, 22 => 7,
+        23 => 1, 24 => 2, 25 => 3, 26 => 4, 27 => 5, 28 => 6, 29 => 7, 30 => 2,
+    ];
+
+    private const array SHIVA_VAASA_METHOD2 = [
+        0 => 1, 1 => 5, 2 => 2, 3 => 6, 4 => 3, 5 => 7, 6 => 4,
+    ];
+
+    private const array SHIVA_VAASA_LABELS = [
+        1 => 'In Cemetery',
+        2 => 'With Gowri',
+        3 => 'In Assembly',
+        4 => 'At Work / Play',
+        5 => 'At Kailash',
+        6 => 'Mounted on Vrishabha (Nandi)',
+        7 => 'At Dinner / Meditation',
+    ];
+
+    private const array SHIVA_VAASA_EFFECTS = [
+        1 => 'Death / severe inauspiciousness',
+        2 => 'Happiness and wealth',
+        3 => 'Grief',
+        4 => 'Difficulty',
+        5 => 'Happiness',
+        6 => 'Success',
+        7 => 'Trouble / peeda',
+    ];
+
+    private const array AGNI_VAASA_LABELS = [
+        1 => 'Prithvi (Earth)',
+        2 => 'Akaasha (Space)',
+        3 => 'Paathaala (Nadir)',
+    ];
+
+    private const array AGNI_VAASA_EFFECTS = [
+        1 => 'Bestows comfort',
+        2 => 'Life threatening / highly adverse',
+        3 => 'Destroys wealth',
+    ];
+
+    private const array YOGINI_VAASA_MAP = [0, 3, 7, 5, 1, 2, 5, 6, 0, 3, 7, 5, 1, 2, 5, 0, 3, 7, 5, 1, 2, 5, 6, 0, 3, 7, 5, 1, 2, 6];
+
+    private const array DIRECTION_LABELS = [
+        0 => 'East',
+        1 => 'South',
+        2 => 'West',
+        3 => 'North',
+        4 => 'South-West',
+        5 => 'North-West',
+        6 => 'North-East',
+        7 => 'South-East',
+    ];
+
     private static string $ephePath = '';
+
     private array $monthCache = [];
 
     public function __construct(
@@ -49,6 +289,7 @@ class PanchangService
     ) {
         $envEphePath = ($_ENV['PANCHANG_EPHE_PATH'] ?? false);
         $envEphePath = is_string($envEphePath) ? $envEphePath : '';
+
         $configEphePath = function_exists('config') ? config('panchang.ephe_path', $envEphePath) : $envEphePath;
         $ephePath = self::$ephePath !== '' ? self::$ephePath : (is_string($configEphePath) ? $configEphePath : '');
         if ($ephePath !== '' && file_exists($ephePath)) {
@@ -82,6 +323,7 @@ class PanchangService
                 default => CalendarType::Amanta,
             };
         }
+
         $birthBase = [
             'year' => $date->year,
             'month' => $date->month,
@@ -222,13 +464,13 @@ class PanchangService
         $tithiNum = (int) $tithi['index'];
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
         $tithiEndAngle = $tithiNum * 12.0;
-        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd) => $this->getMoonSunAngle($jd));
-        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
+        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
 
         $nakEndAngle = ($nakIdx + 1) * (360.0 / 27.0);
-        $nakEndJd = $this->findAngleCrossing($jdSunrise, $nakEndAngle, 1, fn (float $jd) => $this->getMoonLongitude($jd));
+        $nakEndJd = $this->findAngleCrossing($jdSunrise, $nakEndAngle, 1, fn (float $jd): float => $this->getMoonLongitude($jd));
         $nakStartAngle = $nakIdx * (360.0 / 27.0);
-        $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn (float $jd) => $this->getMoonLongitude($jd));
+        $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn (float $jd): float => $this->getMoonLongitude($jd));
 
         // Varjyam (Tyajyam) can occur once or twice between sunrise and next sunrise.
         $varjyamWindows = $this->calculateVarjyamWindows($relSunrise, $sunset, $nextSunrise, $jdSunrise, $jdNextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
@@ -251,10 +493,10 @@ class PanchangService
 
         $yogaIdx = (int) $yoga['index'];
         $yogaEndAngle = $yogaIdx * (360.0 / 27.0);
-        $yogaEndJd = $this->findAngleCrossing($jdSunrise, $yogaEndAngle, 1, fn (float $jd) => $this->getSunMoonSum($jd));
+        $yogaEndJd = $this->findAngleCrossing($jdSunrise, $yogaEndAngle, 1, fn (float $jd): float => $this->getSunMoonSum($jd));
 
         $karanaEndAngle = $karanaIdx * 6.0;
-        $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
+        $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
 
         $kalaEngine = new KalaNirnayaEngine($lat, $lon);
         $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
@@ -292,7 +534,7 @@ class PanchangService
             $nextSign = ($civilStartSign + 1) % 12;
             $targetAngle = $nextSign * 30.0;
             // Search from civil start to find exact Sankranti moment
-            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn (float $jd) => $this->getSunLongitude($jd));
+            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn (float $jd): float => $this->getSunLongitude($jd));
             if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                 $sankrantiName = $sankrantiNameMap[$nextSign];
                 $sankrantiRashi = $nextSign;
@@ -346,7 +588,44 @@ class PanchangService
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
         $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
+
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
+        $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
+        $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
+        $amritadiYoga = $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
+        $panchak = $this->calculatePanchak($jdSunrise, $jdNextSunrise, $tz);
+        $maitreyaYoga = $this->calculateMaitreyaYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $lagnaTable, $tz);
+        $gajachchhayaYoga = $this->calculateGajachchhayaYoga($jdSunrise, $jdNextSunrise, $hinduMonth, $tz);
+        $nakshatraShool = $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz);
+        $dishaShool = $this->calculateDishaShool((int) $vara['index']);
+        $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
+        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz);
+        $shivaVaasa = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
+        $agniVaasa = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
+        $yoginiVaasa = $this->calculateYoginiVaasa($tithiNum);
+        $transitionSignals = $this->buildTransitionSignals(
+            $jdSunrise,
+            $jdNextSunrise,
+            $sunLon,
+            $moonLon,
+            $tithiNum,
+            $nakIdx,
+            $yogaIdx,
+            $karanaIdx,
+            $tz,
+            $sankrantiRashi
+        );
+        $ekadashiObservance = $this->buildEkadashiObservance(
+            $tithiNum,
+            $tithiStartJd,
+            $tithiEndJd,
+            $jdSunrise,
+            $jdSunset,
+            $jdNextSunrise,
+            $tz,
+            $lat,
+            $lon
+        );
 
         // Build fivefold lookup by English name (lowercase) since translated names may differ
         $englishNames = ['pratah', 'sangava', 'madhyahna', 'aparahna', 'sayahna'];
@@ -356,6 +635,7 @@ class PanchangService
                 $daylightFivefoldByName[$englishNames[$index]] = $division;
             }
         }
+
         $karmakalaWindows = [
             'sunrise' => [
                 'label' => Localization::translate('String', 'Sunrise'),
@@ -509,16 +789,16 @@ class PanchangService
                     'timestamp' => $sunset->getTimestamp(),
                 ],
                 'Moonrise' => [
-                    'jd' => $this->toJulianDayFromCarbon($moonrise, $tz),
-                    'iso' => AstroCore::formatDateTime($moonrise),
-                    'display' => AstroCore::formatTime($moonrise),
-                    'timestamp' => $moonrise->getTimestamp(),
+                    'jd' => $moonrise instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonrise, $tz) : null,
+                    'iso' => $moonrise instanceof CarbonImmutable ? AstroCore::formatDateTime($moonrise) : null,
+                    'display' => $moonrise instanceof CarbonImmutable ? AstroCore::formatTime($moonrise) : null,
+                    'timestamp' => $moonrise instanceof CarbonImmutable ? $moonrise->getTimestamp() : null,
                 ],
                 'Moonset' => [
-                    'jd' => $this->toJulianDayFromCarbon($moonset, $tz),
-                    'iso' => AstroCore::formatDateTime($moonset),
-                    'display' => AstroCore::formatTime($moonset),
-                    'timestamp' => $moonset->getTimestamp(),
+                    'jd' => $moonset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonset, $tz) : null,
+                    'iso' => $moonset instanceof CarbonImmutable ? AstroCore::formatDateTime($moonset) : null,
+                    'display' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
+                    'timestamp' => $moonset instanceof CarbonImmutable ? $moonset->getTimestamp() : null,
                 ],
                 'Ishtkaal' => $isth,
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
@@ -556,6 +836,21 @@ class PanchangService
             ],
             'Festivals' => $festivals,
             'Daily_Observances' => $dailyObservances,
+            'Special_Yogas' => $specialYogas,
+            'Anandadi_Yoga' => $anandadiYoga,
+            'Amritadi_Yoga' => $amritadiYoga,
+            'Panchak' => $panchak,
+            'Maitreya_Yoga' => $maitreyaYoga,
+            'Gajachchhaya_Yoga' => $gajachchhayaYoga,
+            'Nakshatra_Shool' => $nakshatraShool,
+            'Disha_Shool' => $dishaShool,
+            'Rahu_Vaasa' => $rahuVaasa,
+            'Chandra_Vaasa' => $chandraVaasa,
+            'Shiva_Vaasa' => $shivaVaasa,
+            'Agni_Vaasa' => $agniVaasa,
+            'Yogini_Vaasa' => $yoginiVaasa,
+            'Ekadashi_Observance' => $ekadashiObservance,
+            'Transitions' => $transitionSignals,
             'Panchaka_Rahita' => $panchaka,
             'Hora' => $hora,
             'Chogadiya' => $chogadiya,
@@ -607,7 +902,11 @@ class PanchangService
 
             'Dharma_Sindhu' => array_filter([
                 'Punya_Kaal' => $punyaKaal,
-            ], static fn ($v) => $v !== null),
+                'Ekadashi_Observance' => $ekadashiObservance,
+                'Shiva_Vaasa' => $shivaVaasa,
+                'Agni_Vaasa' => $agniVaasa,
+                'Yogini_Vaasa' => $yoginiVaasa,
+            ], static fn (?array $v): bool => $v !== null),
         ];
 
         return $this->annotateTimeOnlyFieldsWithDateTime($payload, $relSunrise, $tz);
@@ -633,6 +932,7 @@ class PanchangService
                 default => CalendarType::Amanta,
             };
         }
+
         $birthBase = [
             'year' => $date->year,
             'month' => $date->month,
@@ -691,8 +991,8 @@ class PanchangService
         $tithiNum = (int) ($tithi['index'] ?? 0);
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
         $tithiEndAngle = $tithiNum * 12.0;
-        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd) => $this->getMoonSunAngle($jd));
-        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd) => $this->getMoonSunAngle($jd));
+        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
         $prevTithiEndJd = $tithiStartJd;
 
         // Sankranti date should map to the civil date on which ingress occurs.
@@ -709,6 +1009,41 @@ class PanchangService
         if ($currentSign !== $nextSunriseSign) {
             $sankrantiRashi = ($currentSign + 1) % 12;
         }
+
+        $lagnaTable = $this->muhurta->calculateLagnaTable(
+            $sunrise,
+            $sunset,
+            $nextSunrise,
+            $sunLon,
+            $ayanamsaDeg,
+            $lat,
+            $lon,
+            $this->sweph
+        );
+        $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
+        $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
+        $amritadiYoga = $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
+        $panchak = $this->calculatePanchak($jdSunrise, $jdNextSunrise, $tz);
+        $maitreyaYoga = $this->calculateMaitreyaYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $lagnaTable, $tz);
+        $gajachchhayaYoga = $this->calculateGajachchhayaYoga($jdSunrise, $jdNextSunrise, $hinduMonth, $tz);
+        $nakshatraShool = $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz);
+        $dishaShool = $this->calculateDishaShool((int) $vara['index']);
+        $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
+        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz);
+        $shivaVaasa = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
+        $agniVaasa = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
+        $yoginiVaasa = $this->calculateYoginiVaasa($tithiNum);
+        $ekadashiObservance = $this->buildEkadashiObservance(
+            $tithiNum,
+            $tithiStartJd,
+            $tithiEndJd,
+            $jdSunrise,
+            $jdSunset,
+            $jdNextSunrise,
+            $tz,
+            $lat,
+            $lon
+        );
 
         return [
             'Tithi' => $tithi,
@@ -737,8 +1072,27 @@ class PanchangService
             ],
             'Sunrise' => AstroCore::formatTime($sunrise),
             'Sunset' => AstroCore::formatTime($sunset),
-            'Moonrise' => AstroCore::formatTime($moonrise),
-            'Moonset' => AstroCore::formatTime($moonset),
+            'Moonrise' => $moonrise instanceof CarbonImmutable ? AstroCore::formatTime($moonrise) : null,
+            'Moonset' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
+            'Moonrise_Date' => $moonrise instanceof CarbonImmutable ? $moonrise->toDateString() : null,
+            'Moonset_Date' => $moonset instanceof CarbonImmutable ? $moonset->toDateString() : null,
+            'Moonrise_ISO' => $moonrise instanceof CarbonImmutable ? AstroCore::formatDateTime($moonrise) : null,
+            'Moonset_ISO' => $moonset instanceof CarbonImmutable ? AstroCore::formatDateTime($moonset) : null,
+            'Moonset_Day_Relation' => $this->moonsetDayRelation($date, $moonset),
+            'Special_Yogas' => $specialYogas,
+            'Anandadi_Yoga' => $anandadiYoga,
+            'Amritadi_Yoga' => $amritadiYoga,
+            'Panchak' => $panchak,
+            'Maitreya_Yoga' => $maitreyaYoga,
+            'Gajachchhaya_Yoga' => $gajachchhayaYoga,
+            'Nakshatra_Shool' => $nakshatraShool,
+            'Disha_Shool' => $dishaShool,
+            'Rahu_Vaasa' => $rahuVaasa,
+            'Chandra_Vaasa' => $chandraVaasa,
+            'Shiva_Vaasa' => $shivaVaasa,
+            'Agni_Vaasa' => $agniVaasa,
+            'Yogini_Vaasa' => $yoginiVaasa,
+            'Ekadashi_Observance' => $ekadashiObservance,
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
                 'sunset_jd' => $jdSunset,
@@ -815,12 +1169,14 @@ class PanchangService
 
         $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
         $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
+
         $festivalsByDate = [];
         foreach ($festivalFlat as $entry) {
             $dateKey = $entry['date'];
             $festivalsByDate[$dateKey] ??= [];
             $festivalsByDate[$dateKey][] = $entry['festival'];
         }
+
         ksort($festivalsByDate);
 
         return [
@@ -908,6 +1264,20 @@ class PanchangService
                 'sunset' => $todaySnapshot['Sunset'],
                 'moonrise' => $todaySnapshot['Moonrise'],
                 'moonset' => $todaySnapshot['Moonset'],
+                'moonrise_date' => $todaySnapshot['Moonrise_Date'],
+                'moonset_date' => $todaySnapshot['Moonset_Date'],
+                'moonrise_iso' => $todaySnapshot['Moonrise_ISO'],
+                'moonset_iso' => $todaySnapshot['Moonset_ISO'],
+                'moonset_day_relation' => $todaySnapshot['Moonset_Day_Relation'],
+                'moon_visibility' => [
+                    'starts_at' => $todaySnapshot['Moonrise'],
+                    'starts_on' => $todaySnapshot['Moonrise_Date'],
+                    'starts_iso' => $todaySnapshot['Moonrise_ISO'],
+                    'ends_at' => $todaySnapshot['Moonset'],
+                    'ends_on' => $todaySnapshot['Moonset_Date'],
+                    'ends_iso' => $todaySnapshot['Moonset_ISO'],
+                    'ends_day_relation' => $todaySnapshot['Moonset_Day_Relation'],
+                ],
                 'hindu_calendar' => $todaySnapshot['Hindu_Calendar'],
                 'festivals' => $festivals,
                 'daily_observances' => $dailyObservances,
@@ -1069,6 +1439,15 @@ class PanchangService
         ];
     }
 
+    private function moonsetDayRelation(CarbonImmutable $date, ?CarbonImmutable $moonset): ?string
+    {
+        if (!$moonset instanceof CarbonImmutable) {
+            return null;
+        }
+
+        return $moonset->isSameDay($date) ? 'same_day' : 'next_day';
+    }
+
     /**
      * @param array<string, array<int, array<string, mixed>>> $festivalsByDate
      * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
@@ -1151,6 +1530,7 @@ class PanchangService
             if ($name === '') {
                 continue;
             }
+
             $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
         }
 
@@ -1170,8 +1550,10 @@ class PanchangService
                     $clusters[] = $current;
                     $current = [$item];
                 }
+
                 $previousDate = $date;
             }
+
             $clusters[] = $current;
 
             foreach ($clusters as $cluster) {
@@ -1250,6 +1632,7 @@ class PanchangService
             if ($name === '' || !isset($targets[$name])) {
                 continue;
             }
+
             $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
         }
 
@@ -1362,6 +1745,7 @@ class PanchangService
             fn (array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
         ));
     }
+
     private function evaluateCurrentBhadra(CarbonImmutable $at, array $bhadraPeriods): array
     {
         $active = null;
@@ -1388,6 +1772,7 @@ class PanchangService
                     break;
                 }
             }
+
             break;
         }
 
@@ -1562,8 +1947,8 @@ class PanchangService
                 $vStartAngle = ($karanaNum - 1) * 6.0;
                 $vEndAngle = $karanaNum * 6.0;
 
-                $vStartJd = $this->findAngleCrossing($currentJd, $vStartAngle, -1, fn ($jd) => $this->getMoonSunAngle($jd));
-                $vEndJd = $this->findAngleCrossing($currentJd, $vEndAngle, 1, fn ($jd) => $this->getMoonSunAngle($jd));
+                $vStartJd = $this->findAngleCrossing($currentJd, $vStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+                $vEndJd = $this->findAngleCrossing($currentJd, $vEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
 
                 // Constrain to the day
                 $actualStart = max($jdStart, $vStartJd);
@@ -1585,7 +1970,7 @@ class PanchangService
             } else {
                 // Find next Karana crossing
                 $nextKaranaAngle = ceil(($angle + 0.0001) / 6.0) * 6.0;
-                $nextKaranaJd = $this->findAngleCrossing($currentJd, $nextKaranaAngle, 1, fn ($jd) => $this->getMoonSunAngle($jd));
+                $nextKaranaJd = $this->findAngleCrossing($currentJd, $nextKaranaAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
                 $currentJd = $nextKaranaJd + 0.001;
             }
         }
@@ -1624,6 +2009,7 @@ class PanchangService
                             $lastResolvedDt = CarbonImmutable::parse($value, $tz);
                         } catch (Throwable) {}
                     }
+
                     continue;
                 }
 
@@ -1632,6 +2018,7 @@ class PanchangService
                     try {
                         $lastResolvedDt = CarbonImmutable::parse((string)$node[$isoKey], $tz);
                     } catch (Throwable) {}
+
                     continue;
                 }
 
@@ -1828,6 +2215,7 @@ class PanchangService
             if ($nextCursor <= $cursor) {
                 break;
             }
+
             $cursor = $nextCursor;
         }
 
@@ -1873,6 +2261,1308 @@ class PanchangService
                 ? Localization::translate('String', 'Trayodashi overlaps Pradosha Kaal; this is Pradosh-observance eligible.')
                 : Localization::translate('String', 'No Trayodashi overlap in Pradosha Kaal for this day.'),
         ];
+    }
+
+    private function calculateSpecialYogas(
+        CarbonImmutable $date,
+        float $jdStart,
+        float $jdEnd,
+        int $sunriseTithi,
+        int $weekdayIndex,
+        string $tz
+    ): array {
+        $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+        $tithiIntervals = $this->collectTithiIntervals($jdStart, $jdEnd);
+        $sunNakshatraIntervals = $this->collectSunNakshatraIntervals($jdStart, $jdEnd);
+
+        $payload = [
+            'sarvartha_siddhi' => $this->buildSpecialYogaPayload(
+                'Sarvartha Siddhi Yoga',
+                'weekday_nakshatra',
+                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::SARVARTHA_SIDDHI_RULES, $tz)
+            ),
+            'amrit_siddhi' => $this->buildSpecialYogaPayload(
+                'Amrit Siddhi Yoga',
+                'weekday_nakshatra',
+                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::AMRIT_SIDDHI_RULES, $tz)
+            ),
+            'ravi_pushya' => $this->buildSpecialYogaPayload(
+                'Ravi Pushya Yoga',
+                'weekday_nakshatra',
+                $weekdayIndex === 0 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : []
+            ),
+            'guru_pushya' => $this->buildSpecialYogaPayload(
+                'Guru Pushya Yoga',
+                'weekday_nakshatra',
+                $weekdayIndex === 4 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : []
+            ),
+            'dwipushkar' => $this->buildSpecialYogaPayload(
+                'Dwipushkar Yoga',
+                'weekday_tithi_nakshatra',
+                $this->matchPushkaraWindows(
+                    $tithiIntervals,
+                    $nakshatraIntervals,
+                    $weekdayIndex,
+                    self::PUSHKARA_TITHIS,
+                    self::DWI_PUSHKARA_NAKSHATRAS,
+                    $tz
+                )
+            ),
+            'tripushkar' => $this->buildSpecialYogaPayload(
+                'Tripushkar Yoga',
+                'weekday_tithi_nakshatra',
+                $this->matchPushkaraWindows(
+                    $tithiIntervals,
+                    $nakshatraIntervals,
+                    $weekdayIndex,
+                    self::PUSHKARA_TITHIS,
+                    self::TRI_PUSHKARA_NAKSHATRAS,
+                    $tz
+                )
+            ),
+            'ganda_mula' => $this->buildSpecialYogaPayload(
+                'Ganda Mula',
+                'nakshatra',
+                $this->filterNakshatraWindows($nakshatraIntervals, [0, 8, 9, 17, 18, 26], $tz)
+            ),
+            'vinchhudo' => $this->buildSpecialYogaPayload(
+                'Vinchhudo',
+                'moon_sign',
+                $this->collectMoonSignWindows($jdStart, $jdEnd, 7, $tz)
+            ),
+            'ravi_yoga' => $this->buildSpecialYogaPayload(
+                'Ravi Yoga',
+                'sun_moon_nakshatra_distance',
+                $this->matchRaviYogaWindows($nakshatraIntervals, $sunNakshatraIntervals, $tz)
+            ),
+            'aadal' => $this->buildSpecialYogaPayload(
+                'Aadal Yoga',
+                'sun_moon_nakshatra_count_with_abhijit',
+                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::AADAL_COUNTS, $tz, 'Aadal')
+            ),
+            'vidaal' => $this->buildSpecialYogaPayload(
+                'Vidaal Yoga',
+                'sun_moon_nakshatra_count_with_abhijit',
+                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::VIDAAL_COUNTS, $tz, 'Vidaal')
+            ),
+            'jwalamukhi' => $this->buildSpecialYogaPayload(
+                'Jwalamukhi Yoga',
+                'tithi_nakshatra',
+                $this->matchJwalamukhiWindows($tithiIntervals, $nakshatraIntervals, $tz)
+            ),
+        ];
+
+        $payload['summary'] = [
+            'active_yoga_keys' => array_keys(array_filter(
+                $payload,
+                static fn (array $node): bool => (($node['is_present'] ?? false) === true)
+            )),
+            'sunrise_tithi' => Tithi::from($sunriseTithi)->getName(),
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'date' => $date->toDateString(),
+        ];
+
+        return $payload;
+    }
+
+    private function calculateAnandadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    {
+        $windows = [];
+        $startIndex = self::ANANDADI_WEEKDAY_START_28_INDEX[$weekdayIndex] ?? 0;
+
+        foreach ($this->collectNakshatra28Intervals($jdStart, $jdEnd) as $interval) {
+            $yogaIndex = ((int) $interval['order_index'] - $startIndex + 28) % 28;
+            $name = self::ANANDADI_YOGA_NAMES[$yogaIndex];
+            $effect = self::ANANDADI_YOGA_EFFECTS[$yogaIndex];
+
+            $windows[] = [
+                'index' => $yogaIndex + 1,
+                'name' => Localization::translate('String', $name),
+                'name_key' => $name,
+                'effect' => Localization::translate('String', $effect),
+                'effect_key' => $effect,
+                'nakshatra' => $interval['name'],
+                'nakshatra_order_index' => $interval['order_index'],
+                'start_jd' => $interval['start_jd'],
+                'end_jd' => $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['end_jd'], $tz)),
+            ];
+        }
+
+        return [
+            'rule_system' => 'sripati_jyotisha_ratnamala_28_nakshatra',
+            'is_complete_system' => true,
+            'system_size' => 28,
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'weekday_index' => $weekdayIndex,
+            'weekday_start_nakshatra' => $this->nakshatra28Name($startIndex),
+            'current' => $windows[0] ?? null,
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    private function calculateAmritadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    {
+        $windows = [];
+
+        foreach ($this->collectNakshatraIntervals($jdStart, $jdEnd) as $interval) {
+            $classification = self::AMRITADI_YOGA_TABLE[(int) $interval['index']][$weekdayIndex] ?? 'Siddha';
+            $windows[] = [
+                'classification' => Localization::translate('String', $classification),
+                'classification_key' => $classification,
+                'is_auspicious' => in_array($classification, ['Amrita', 'Siddha'], true),
+                'nakshatra' => $interval['name'],
+                'nakshatra_index' => $interval['index'],
+                'weekday' => Vara::from($weekdayIndex)->getName(),
+                'start_jd' => $interval['start_jd'],
+                'end_jd' => $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['end_jd'], $tz)),
+            ];
+        }
+
+        return [
+            'rule_system' => 'amritadi_yoga_27_nakshatra_7_weekday',
+            'is_complete_system' => true,
+            'system_size' => 189,
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'weekday_index' => $weekdayIndex,
+            'current' => $windows[0] ?? null,
+            'window_count' => count($windows),
+            'windows' => $windows,
+            'classifications' => ['Amrita', 'Siddha', 'Marana', 'Prabalarishta'],
+        ];
+    }
+
+    private function calculatePanchak(float $jdStart, float $jdEnd, string $tz): array
+    {
+        $windows = $this->collectMoonLongitudeRangeWindows($jdStart, $jdEnd, 300.0, 360.0, $tz);
+
+        foreach ($windows as &$window) {
+            $window['range'] = 'Dhanishta Pada 3 through Revati';
+            $window['range_key'] = 'dhanishta_pada_3_to_revati';
+        }
+        unset($window);
+
+        return [
+            'rule_system' => 'moon_dhanishta_pada_3_to_revati',
+            'is_complete_system' => true,
+            'moon_longitude_start' => 300.0,
+            'moon_longitude_end' => 360.0,
+            'is_present' => $windows !== [],
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    private function calculateMaitreyaYoga(
+        float $jdStart,
+        float $jdEnd,
+        int $weekdayIndex,
+        array $lagnaTable,
+        string $tz
+    ): array {
+        $windows = [];
+        $rules = [
+            [
+                'weekday_index' => 2,
+                'nakshatra_index' => 0,
+                'lagna_sign_index' => 0,
+                'combination' => 'Tuesday + Ashwini + Mesha Lagna',
+            ],
+            [
+                'weekday_index' => 2,
+                'nakshatra_index' => 16,
+                'lagna_sign_index' => 7,
+                'combination' => 'Tuesday + Anuradha + Vrischika Lagna',
+            ],
+        ];
+
+        if ($weekdayIndex !== 2) {
+            return [
+                'rule_system' => 'weekday_nakshatra_lagna_debt_repayment',
+                'is_complete_system' => true,
+                'is_present' => false,
+                'window_count' => 0,
+                'windows' => [],
+                'rules' => $rules,
+            ];
+        }
+
+        $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+        foreach ($rules as $rule) {
+            foreach ($nakshatraIntervals as $nakshatraInterval) {
+                if ($nakshatraInterval['index'] !== $rule['nakshatra_index']) {
+                    continue;
+                }
+
+                foreach ($lagnaTable as $lagnaWindow) {
+                    if (($lagnaWindow['sign_index'] ?? null) !== $rule['lagna_sign_index']) {
+                        continue;
+                    }
+
+                    $startJd = max((float) $nakshatraInterval['start_jd'], (float) $lagnaWindow['start_jd']);
+                    $endJd = min((float) $nakshatraInterval['end_jd'], (float) $lagnaWindow['end_jd']);
+                    if ($startJd >= $endJd) {
+                        continue;
+                    }
+
+                    $windows[] = [
+                        'combination' => $rule['combination'],
+                        'weekday' => Vara::from($weekdayIndex)->getName(),
+                        'nakshatra' => $nakshatraInterval['name'],
+                        'lagna' => Rasi::from($rule['lagna_sign_index'])->getName(),
+                        'start_jd' => $startJd,
+                        'end_jd' => $endJd,
+                        'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                        'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    ];
+                }
+            }
+        }
+
+        return [
+            'rule_system' => 'weekday_nakshatra_lagna_debt_repayment',
+            'is_complete_system' => true,
+            'is_present' => $windows !== [],
+            'window_count' => count($windows),
+            'windows' => $windows,
+            'rules' => $rules,
+        ];
+    }
+
+    private function calculateGajachchhayaYoga(float $jdStart, float $jdEnd, array $hinduMonth, string $tz): array
+    {
+        $variants = [
+            'trayodashi_hasta_magha' => [
+                'rule_system' => 'trayodashi_tithi_sun_hasta_moon_magha',
+                'description' => 'Trayodashi tithi with Sun in Hasta and Moon in Magha',
+                'requires_bhadrapada_pitru_paksha' => false,
+                'tithi_phases' => [13],
+                'require_krishna_paksha' => false,
+            ],
+            'amavasya_hasta_magha' => [
+                'rule_system' => 'amavasya_tithi_sun_hasta_moon_magha',
+                'description' => 'Amavasya tithi with Sun in Hasta and Moon in Magha',
+                'requires_bhadrapada_pitru_paksha' => false,
+                'tithi_phases' => [15],
+                'require_krishna_paksha' => true,
+            ],
+            'pitru_paksha_bhadrapada_krishna_trayodashi' => [
+                'rule_system' => 'bhadrapada_krishna_trayodashi_sun_hasta_moon_magha',
+                'description' => 'Bhadrapada Krishna Trayodashi / Pitru Paksha with Sun in Hasta and Moon in Magha',
+                'requires_bhadrapada_pitru_paksha' => true,
+                'tithi_phases' => [13],
+                'require_krishna_paksha' => true,
+            ],
+        ];
+
+        $tithiIntervals = $this->collectTithiIntervals($jdStart, $jdEnd);
+        $moonNakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+        $sunNakshatraIntervals = $this->collectSunNakshatraIntervals($jdStart, $jdEnd);
+        $monthContext = [
+            'amanta' => (string) ($hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? ''),
+            'purnimanta' => (string) ($hinduMonth['Month_Purnimanta_En'] ?? $hinduMonth['Month_Purnimanta'] ?? ''),
+        ];
+
+        $variantPayload = [];
+        foreach ($variants as $key => $variant) {
+            $monthQualified = !$variant['requires_bhadrapada_pitru_paksha']
+                || $monthContext['amanta'] === 'Bhadrapada'
+                || $monthContext['purnimanta'] === 'Bhadrapada';
+
+            $windows = $monthQualified
+                ? $this->matchGajachchhayaWindows(
+                    $tithiIntervals,
+                    $moonNakshatraIntervals,
+                    $sunNakshatraIntervals,
+                    $variant['tithi_phases'],
+                    $variant['require_krishna_paksha'],
+                    $tz
+                )
+                : [];
+
+            $variantPayload[$key] = [
+                'rule_system' => $variant['rule_system'],
+                'description' => $variant['description'],
+                'requires_bhadrapada_pitru_paksha' => $variant['requires_bhadrapada_pitru_paksha'],
+                'month_qualified' => $monthQualified,
+                'is_present' => $windows !== [],
+                'window_count' => count($windows),
+                'windows' => $windows,
+            ];
+        }
+
+        return [
+            'is_complete_known_variant_set' => true,
+            'variant_count' => count($variantPayload),
+            'month_context' => $monthContext,
+            'is_present' => $this->anyVariantPresent($variantPayload),
+            'variants' => $variantPayload,
+        ];
+    }
+
+    private function anyVariantPresent(array $variants): bool
+    {
+        foreach ($variants as $variant) {
+            if (($variant['is_present'] ?? false) === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param list<int> $targetTithiPhases
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function matchGajachchhayaWindows(
+        array $tithiIntervals,
+        array $moonNakshatraIntervals,
+        array $sunNakshatraIntervals,
+        array $targetTithiPhases,
+        bool $requireKrishnaPaksha,
+        string $tz
+    ): array {
+        $windows = [];
+
+        foreach ($tithiIntervals as $tithiInterval) {
+            $phaseIndex = (int) $tithiInterval['phase_index'];
+            $tithiIndex = (int) $tithiInterval['index'];
+            if (!in_array($phaseIndex, $targetTithiPhases, true)) {
+                continue;
+            }
+
+            $isKrishna = $tithiIndex > 15;
+            if ($requireKrishnaPaksha && !$isKrishna) {
+                continue;
+            }
+
+            foreach ($moonNakshatraIntervals as $moonInterval) {
+                if ((int) $moonInterval['index'] !== 9) {
+                    continue;
+                }
+
+                foreach ($sunNakshatraIntervals as $sunInterval) {
+                    if ((int) $sunInterval['index'] !== 12) {
+                        continue;
+                    }
+
+                    $startJd = max((float) $tithiInterval['start_jd'], (float) $moonInterval['start_jd'], (float) $sunInterval['start_jd']);
+                    $endJd = min((float) $tithiInterval['end_jd'], (float) $moonInterval['end_jd'], (float) $sunInterval['end_jd']);
+                    if ($startJd >= $endJd) {
+                        continue;
+                    }
+
+                    $windows[] = [
+                        'start_jd' => $startJd,
+                        'end_jd' => $endJd,
+                        'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                        'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                        'tithi' => $tithiInterval['name'],
+                        'paksha' => $isKrishna ? 'Krishna' : 'Shukla',
+                        'moon_nakshatra' => $moonInterval['name'],
+                        'sun_nakshatra' => $sunInterval['name'],
+                    ];
+                }
+            }
+        }
+
+        return $windows;
+    }
+
+    private function calculateNakshatraShool(float $jdStart, float $jdEnd, string $tz): array
+    {
+        $windows = [];
+        $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+
+        foreach ($nakshatraIntervals as $interval) {
+            $direction = $this->nakshatraShoolDirection((int) $interval['index']);
+            if ($direction === null) {
+                continue;
+            }
+
+            $windows[] = [
+                'direction' => Localization::translate('String', $direction),
+                'direction_key' => $direction,
+                'nakshatra' => $interval['name'],
+                'start_jd' => $interval['start_jd'],
+                'end_jd' => $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
+            ];
+        }
+
+        return [
+            'rule_system' => 'simple_travel_nakshatra_direction_table',
+            'source_family' => 'popular_travel_muhurta_panchang_table',
+            'is_complete_system' => true,
+            'is_present' => $windows !== [],
+            'current' => $windows[0] ?? null,
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    private function nakshatraShoolDirection(int $nakshatraIndex): ?string
+    {
+        foreach (self::NAKSHATRA_SHOOL_DIRECTIONS as $direction => $nakshatras) {
+            if (in_array($nakshatraIndex, $nakshatras, true)) {
+                return $direction;
+            }
+        }
+
+        return null;
+    }
+
+    private function calculateDishaShool(int $weekdayIndex): array
+    {
+        $directionMap = [
+            0 => 'West',
+            1 => 'East',
+            2 => 'North',
+            3 => 'North',
+            4 => 'South',
+            5 => 'West',
+            6 => 'East',
+        ];
+        $direction = $directionMap[$weekdayIndex] ?? 'None';
+        $hasDishaShool = $direction !== 'None';
+
+        return [
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'direction_to_avoid' => Localization::translate('String', $direction),
+            'direction_to_avoid_key' => $direction,
+            'has_disha_shool' => $hasDishaShool,
+            'is_safe_for_all_directions' => !$hasDishaShool,
+            'guidance' => $hasDishaShool
+                ? Localization::translate('String', 'Avoid travel in the indicated direction if possible.')
+                : Localization::translate('String', 'No Disha Shool for this weekday.'),
+            'remedies' => $hasDishaShool ? [
+                Localization::translate('String', 'Consume or carry jaggery, curd, or barley before travel.'),
+                Localization::translate('String', 'Begin travel in an auspicious muhurta if direction cannot be changed.'),
+                Localization::translate('String', 'Offer prayer to Ganesha or Ishta Devata before departure.'),
+            ] : [],
+        ];
+    }
+
+    private function calculateRahuVaasa(int $weekdayIndex): array
+    {
+        $directionMap = [
+            0 => 'South-West',
+            1 => 'East',
+            2 => 'North',
+            3 => 'North-West',
+            4 => 'South-East',
+            5 => 'West',
+            6 => 'East',
+        ];
+        $direction = $directionMap[$weekdayIndex] ?? 'None';
+
+        return [
+            'rule_system' => 'weekday_rahu_direction_7_day',
+            'is_complete_system' => true,
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'direction' => Localization::translate('String', $direction),
+            'direction_key' => $direction,
+            'guidance' => Localization::translate('String', 'Rahu is considered to reside in the indicated direction for this weekday.'),
+        ];
+    }
+
+    private function calculateChandraVaasa(float $jdStart, float $jdEnd, string $tz): array
+    {
+        $windows = [];
+        $padaIntervals = $this->collectNakshatraPadaIntervals($jdStart, $jdEnd);
+
+        foreach ($padaIntervals as $interval) {
+            $pada = (int) $interval['pada'];
+            $abode = self::CHANDRA_VAASA_PADA_ABODES[$pada];
+            $quality = self::CHANDRA_VAASA_PADA_QUALITY[$pada];
+
+            $windows[] = [
+                'abode' => Localization::translate('String', $abode),
+                'abode_key' => $abode,
+                'quality' => Localization::translate('String', $quality),
+                'quality_key' => $quality,
+                'nakshatra' => $interval['nakshatra'],
+                'nakshatra_index' => $interval['nakshatra_index'],
+                'pada' => $pada,
+                'start_jd' => $interval['start_jd'],
+                'end_jd' => $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
+            ];
+        }
+
+        return [
+            'rule_system' => 'nakshatra_pada_abode_4_part',
+            'source_family' => 'modern_nivas_shool_panchang_style',
+            'is_complete_system' => true,
+            'current' => $windows[0] ?? null,
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    private function calculateShivaVaasa(int $tithiNumber, float $tithiEndJd, string $tz): array
+    {
+        $method1Index = self::SHIVA_VAASA_METHOD1[$tithiNumber] ?? 1;
+        $method2Index = self::SHIVA_VAASA_METHOD2[($tithiNumber * 2 + 5) % 7] ?? 1;
+
+        return [
+            'tithi_number' => $tithiNumber,
+            'tithi_name' => Tithi::from($tithiNumber)->getName(),
+            'valid_until' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($tithiEndJd, $tz)),
+            'valid_until_jd' => $tithiEndJd,
+            'method_1' => [
+                'index' => $method1Index,
+                'state' => Localization::translate('String', self::SHIVA_VAASA_LABELS[$method1Index]),
+                'state_key' => self::SHIVA_VAASA_LABELS[$method1Index],
+                'effect' => Localization::translate('String', self::SHIVA_VAASA_EFFECTS[$method1Index]),
+                'effect_key' => self::SHIVA_VAASA_EFFECTS[$method1Index],
+            ],
+            'method_2' => [
+                'index' => $method2Index,
+                'state' => Localization::translate('String', self::SHIVA_VAASA_LABELS[$method2Index]),
+                'state_key' => self::SHIVA_VAASA_LABELS[$method2Index],
+                'effect' => Localization::translate('String', self::SHIVA_VAASA_EFFECTS[$method2Index]),
+                'effect_key' => self::SHIVA_VAASA_EFFECTS[$method2Index],
+            ],
+        ];
+    }
+
+    private function calculateAgniVaasa(int $tithiNumber, int $weekdayIndex, float $tithiEndJd, string $tz): array
+    {
+        $index = [1, 2, 3, 1][($tithiNumber + 1 + ($weekdayIndex + 1)) % 4];
+
+        return [
+            'tithi_number' => $tithiNumber,
+            'tithi_name' => Tithi::from($tithiNumber)->getName(),
+            'weekday' => Vara::from($weekdayIndex)->getName(),
+            'index' => $index,
+            'state' => Localization::translate('String', self::AGNI_VAASA_LABELS[$index]),
+            'state_key' => self::AGNI_VAASA_LABELS[$index],
+            'effect' => Localization::translate('String', self::AGNI_VAASA_EFFECTS[$index]),
+            'effect_key' => self::AGNI_VAASA_EFFECTS[$index],
+            'valid_until' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($tithiEndJd, $tz)),
+            'valid_until_jd' => $tithiEndJd,
+        ];
+    }
+
+    private function calculateYoginiVaasa(int $tithiNumber): array
+    {
+        $directionIndex = self::YOGINI_VAASA_MAP[$tithiNumber - 1] ?? 0;
+
+        return [
+            'tithi_number' => $tithiNumber,
+            'tithi_name' => Tithi::from($tithiNumber)->getName(),
+            'direction_index' => $directionIndex,
+            'direction' => Localization::translate('String', self::DIRECTION_LABELS[$directionIndex]),
+            'direction_key' => self::DIRECTION_LABELS[$directionIndex],
+        ];
+    }
+
+    private function buildTransitionSignals(
+        float $jdStart,
+        float $jdEnd,
+        float $sunLongitude,
+        float $moonLongitude,
+        int $tithiNumber,
+        int $nakshatraIndex,
+        int $yogaIndex,
+        int $karanaIndex,
+        string $tz,
+        ?int $sankrantiRashi
+    ): array {
+        $tithiIntervals = $this->collectTithiIntervals($jdStart, $jdEnd);
+        $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+
+        return [
+            'tithi' => [
+                'current' => Tithi::from($tithiNumber)->getName(),
+                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $tithiIntervals),
+            ],
+            'nakshatra' => [
+                'current' => Nakshatra::from($nakshatraIndex % 27)->getName(),
+                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $nakshatraIntervals),
+            ],
+            'yoga' => [
+                'current' => Localization::translate('Yoga', max(0, $yogaIndex - 1)),
+            ],
+            'karana' => [
+                'current' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($karanaIndex)),
+            ],
+            'moon_sign' => [
+                'current' => Rasi::from(AstroCore::getSign($moonLongitude))->getName(),
+                'transitions' => $this->collectMoonSignTransitions($jdStart, $jdEnd, $tz),
+            ],
+            'sun_sign' => [
+                'current' => Rasi::from(AstroCore::getSign($sunLongitude))->getName(),
+                'sankranti_today' => $sankrantiRashi !== null,
+                'next_sign' => $sankrantiRashi !== null ? Rasi::from($sankrantiRashi)->getName() : null,
+            ],
+        ];
+    }
+
+    private function buildEkadashiObservance(
+        int $tithiNumber,
+        float $tithiStartJd,
+        float $tithiEndJd,
+        float $sunriseJd,
+        float $sunsetJd,
+        float $nextSunriseJd,
+        string $tz,
+        float $lat,
+        float $lon
+    ): ?array {
+        $phaseTithi = (($tithiNumber - 1) % 15) + 1;
+        if (!in_array($phaseTithi, [11, 12], true)) {
+            return null;
+        }
+
+        $kalaEngine = new KalaNirnayaEngine($lat, $lon);
+        $report = $kalaEngine->generateKalaNirnayaReport(
+            $tithiNumber,
+            $tithiStartJd,
+            $tithiEndJd,
+            $tithiStartJd,
+            $sunriseJd,
+            $sunsetJd,
+            $nextSunriseJd
+        );
+
+        $payload = [
+            'phase_tithi_number' => $phaseTithi,
+            'phase_tithi_name' => Localization::translate('String', $phaseTithi === 11 ? 'Ekadashi' : 'Dwadashi'),
+            'phase_tithi_name_key' => $phaseTithi === 11 ? 'Ekadashi' : 'Dwadashi',
+            'viddha_tithi_analysis' => $report['viddha_tithi_analysis'] ?? null,
+            'ekadashi_smarta' => $report['ekadashi_smarta'] ?? null,
+            'ekadashi_vaishnava' => $report['ekadashi_vaishnava'] ?? null,
+        ];
+
+        if ($phaseTithi === 11) {
+            $dvadashiEndAngle = ($tithiNumber + 1) * 12.0;
+            $dvadashiEndJd = $this->findAngleCrossing(
+                $tithiEndJd + 0.000001,
+                $dvadashiEndAngle,
+                1,
+                fn (float $jd): float => $this->getMoonSunAngle($jd)
+            );
+            $payload['parana'] = $this->buildParanaPayload($tithiEndJd, $dvadashiEndJd, $nextSunriseJd, $tz, true);
+        } else {
+            $payload['parana'] = $this->buildParanaPayload($tithiStartJd, $tithiEndJd, $sunriseJd, $tz, false);
+        }
+
+        $payload = $this->localizeEkadashiObservancePayload($payload);
+
+        return $payload;
+    }
+
+    private function buildParanaPayload(
+        float $dvadashiStartJd,
+        float $dvadashiEndJd,
+        float $sunriseJd,
+        string $tz,
+        bool $startsTomorrow
+    ): array {
+        $hariVasaraEndJd = $dvadashiStartJd + (($dvadashiEndJd - $dvadashiStartJd) / 4.0);
+        $paranaStartJd = max($sunriseJd, $hariVasaraEndJd);
+        $available = $paranaStartJd < $dvadashiEndJd;
+
+        return [
+            'hari_vasara_start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($dvadashiStartJd, $tz)),
+            'hari_vasara_end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($hariVasaraEndJd, $tz)),
+            'hari_vasara_start_jd' => $dvadashiStartJd,
+            'hari_vasara_end_jd' => $hariVasaraEndJd,
+            'parana_day' => Localization::translate('String', $startsTomorrow ? 'Next Day' : 'Today'),
+            'parana_day_key' => $startsTomorrow ? 'next_day' : 'today',
+            'parana_available' => $available,
+            'parana_start' => $available ? AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($paranaStartJd, $tz)) : null,
+            'parana_end' => $available ? AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($dvadashiEndJd, $tz)) : null,
+            'parana_start_jd' => $available ? $paranaStartJd : null,
+            'parana_end_jd' => $available ? $dvadashiEndJd : null,
+        ];
+    }
+
+    private function localizeEkadashiObservancePayload(array $payload): array
+    {
+        if (isset($payload['viddha_tithi_analysis']) && is_array($payload['viddha_tithi_analysis'])) {
+            $payload['viddha_tithi_analysis']['status_label'] = Localization::translate(
+                'String',
+                (string) ($payload['viddha_tithi_analysis']['status'] ?? '')
+            );
+            $payload['viddha_tithi_analysis']['tithi_name_label'] = Localization::translate(
+                'String',
+                (string) ($payload['viddha_tithi_analysis']['tithi_name'] ?? '')
+            );
+        }
+
+        foreach (['ekadashi_smarta', 'ekadashi_vaishnava'] as $key) {
+            if (!isset($payload[$key]) || !is_array($payload[$key])) {
+                continue;
+            }
+
+            $payload[$key]['tradition_label'] = Localization::translate('String', (string) ($payload[$key]['tradition'] ?? ''));
+            $payload[$key]['status_label'] = Localization::translate('String', (string) ($payload[$key]['status'] ?? ''));
+            $payload[$key]['fasting_day_label'] = Localization::translate('String', (string) ($payload[$key]['fasting_day'] ?? ''));
+        }
+
+        return $payload;
+    }
+
+    private function collectNakshatraIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
+            $moonLongitude = $this->getMoonLongitude($cursor + 0.000001);
+            $nakshatraIndex = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+            $targetAngle = ($nakshatraIndex + 1) * (360.0 / 27.0);
+            $endJd = $this->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+
+            $intervals[] = [
+                'index' => $nakshatraIndex,
+                'name' => Nakshatra::from($nakshatraIndex)->getName(),
+                'start_jd' => $cursor,
+                'end_jd' => min($endJd, $jdEnd),
+            ];
+
+            $cursor = min($endJd, $jdEnd) + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    private function collectNakshatra28Intervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 5 && $cursor < $jdEnd; $guard++) {
+            $moonLongitude = $this->getMoonLongitude($cursor + 0.000001);
+            $orderIndex = $this->nakshatra28IndexFromLongitude($moonLongitude);
+            $targetAngle = $this->nextNakshatra28BoundaryAfter($moonLongitude);
+            $endJd = $this->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+            $segmentEnd = min($endJd, $jdEnd);
+
+            if ($segmentEnd <= $cursor) {
+                break;
+            }
+
+            $intervals[] = [
+                'order_index' => $orderIndex,
+                'name' => $this->nakshatra28Name($orderIndex),
+                'start_jd' => $cursor,
+                'end_jd' => $segmentEnd,
+            ];
+
+            $cursor = $segmentEnd + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    private function collectNakshatraPadaIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 12 && $cursor < $jdEnd; $guard++) {
+            $moonLongitude = AstroCore::normalize($this->getMoonLongitude($cursor + 0.000001));
+            $nakshatraIndex = (int) floor($moonLongitude / 13.333333333333334);
+            $nakshatraStart = $nakshatraIndex * 13.333333333333334;
+            $pada = (int) floor(($moonLongitude - $nakshatraStart) / 3.3333333333333335) + 1;
+            $pada = max(1, min(4, $pada));
+            $targetAngle = $nakshatraStart + ($pada * 3.3333333333333335);
+            if ($targetAngle >= 360.0) {
+                $targetAngle = 360.0;
+            }
+
+            $endJd = $this->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+            $segmentEnd = min($endJd, $jdEnd);
+
+            if ($segmentEnd <= $cursor) {
+                break;
+            }
+
+            $intervals[] = [
+                'nakshatra_index' => $nakshatraIndex,
+                'nakshatra' => Nakshatra::from($nakshatraIndex)->getName(),
+                'pada' => $pada,
+                'start_jd' => $cursor,
+                'end_jd' => $segmentEnd,
+            ];
+
+            $cursor = $segmentEnd + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    private function nakshatra28IndexFromLongitude(float $longitude): int
+    {
+        $normalized = AstroCore::normalize($longitude);
+        $boundaries = $this->nakshatra28Boundaries();
+
+        for ($i = 0; $i < 28; $i++) {
+            $start = $boundaries[$i];
+            $end = $boundaries[$i + 1];
+            if ($normalized >= $start && $normalized < $end) {
+                return $i;
+            }
+        }
+
+        return 27;
+    }
+
+    private function nextNakshatra28BoundaryAfter(float $longitude): float
+    {
+        $normalized = AstroCore::normalize($longitude);
+        foreach ($this->nakshatra28Boundaries() as $boundary) {
+            if ($boundary > $normalized + 1e-9) {
+                return $boundary;
+            }
+        }
+
+        return 360.0;
+    }
+
+    /** @return list<float> */
+    private function nakshatra28Boundaries(): array
+    {
+        return [
+            0.0,
+            13.333333333333334,
+            26.666666666666668,
+            40.0,
+            53.333333333333336,
+            66.66666666666667,
+            80.0,
+            93.33333333333334,
+            106.66666666666667,
+            120.0,
+            133.33333333333334,
+            146.66666666666669,
+            160.0,
+            173.33333333333334,
+            186.66666666666669,
+            200.0,
+            213.33333333333334,
+            226.66666666666669,
+            240.0,
+            253.33333333333334,
+            266.6666666666667,
+            276.6666666666667,
+            280.8888888888889,
+            293.33333333333337,
+            306.6666666666667,
+            320.0,
+            333.33333333333337,
+            346.6666666666667,
+            360.0,
+        ];
+    }
+
+    private function nakshatra28Name(int $orderIndex): string
+    {
+        return match ($orderIndex) {
+            21 => 'Abhijit',
+            22 => Nakshatra::Shravana->getName(),
+            23 => Nakshatra::Dhanishta->getName(),
+            24 => Nakshatra::Shatabhisha->getName(),
+            25 => Nakshatra::PurvaBhadrapada->getName(),
+            26 => Nakshatra::UttaraBhadrapada->getName(),
+            27 => Nakshatra::Revati->getName(),
+            default => Nakshatra::from($orderIndex)->getName(),
+        };
+    }
+
+    private function collectTithiIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
+            $interval = $this->getTithiIntervalAtJd($cursor + 0.000001);
+            $index = $interval['index'];
+            $intervals[] = [
+                'index' => $index,
+                'phase_index' => (($index - 1) % 15) + 1,
+                'name' => Tithi::from($index)->getName(),
+                'start_jd' => max($interval['start_jd'], $cursor),
+                'end_jd' => min($interval['end_jd'], $jdEnd),
+            ];
+
+            $cursor = min($interval['end_jd'], $jdEnd) + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    private function collectSunNakshatraIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 2 && $cursor < $jdEnd; $guard++) {
+            $sunLongitude = $this->getSunLongitude($cursor + 0.000001);
+            $nakshatraIndex = ((int) floor($sunLongitude / (360.0 / 27.0))) % 27;
+            $targetAngle = ($nakshatraIndex + 1) * (360.0 / 27.0);
+            $endJd = $this->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getSunLongitude($jd)
+            );
+
+            $intervals[] = [
+                'index' => $nakshatraIndex,
+                'name' => Nakshatra::from($nakshatraIndex)->getName(),
+                'start_jd' => $cursor,
+                'end_jd' => min($endJd, $jdEnd),
+            ];
+
+            $cursor = min($endJd, $jdEnd) + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    private function matchWeekdayNakshatraWindows(array $nakshatraIntervals, int $weekdayIndex, array $rules, string $tz): array
+    {
+        return $this->filterNakshatraWindows($nakshatraIntervals, $rules[$weekdayIndex] ?? [], $tz);
+    }
+
+    private function filterNakshatraWindows(array $nakshatraIntervals, array $targetIndexes, string $tz): array
+    {
+        $windows = [];
+        foreach ($nakshatraIntervals as $interval) {
+            if (!in_array($interval['index'], $targetIndexes, true)) {
+                continue;
+            }
+
+            $windows[] = [
+                'start_jd' => $interval['start_jd'],
+                'end_jd' => $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($interval['end_jd'], $tz)),
+                'nakshatra' => $interval['name'],
+            ];
+        }
+
+        return $windows;
+    }
+
+    private function matchPushkaraWindows(
+        array $tithiIntervals,
+        array $nakshatraIntervals,
+        int $weekdayIndex,
+        array $targetTithis,
+        array $targetNakshatras,
+        string $tz
+    ): array {
+        if (!in_array($weekdayIndex, self::PUSHKARA_WEEKDAYS, true)) {
+            return [];
+        }
+
+        $windows = [];
+        foreach ($tithiIntervals as $tithiInterval) {
+            if (!in_array($tithiInterval['phase_index'], $targetTithis, true)) {
+                continue;
+            }
+
+            foreach ($nakshatraIntervals as $nakshatraInterval) {
+                if (!in_array($nakshatraInterval['index'], $targetNakshatras, true)) {
+                    continue;
+                }
+
+                $startJd = max($tithiInterval['start_jd'], $nakshatraInterval['start_jd']);
+                $endJd = min($tithiInterval['end_jd'], $nakshatraInterval['end_jd']);
+                if ($startJd >= $endJd) {
+                    continue;
+                }
+
+                $windows[] = [
+                    'start_jd' => $startJd,
+                    'end_jd' => $endJd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    'tithi' => $tithiInterval['name'],
+                    'nakshatra' => $nakshatraInterval['name'],
+                ];
+            }
+        }
+
+        return $windows;
+    }
+
+    private function matchRaviYogaWindows(array $moonNakshatraIntervals, array $sunNakshatraIntervals, string $tz): array
+    {
+        $windows = [];
+        foreach ($moonNakshatraIntervals as $moonInterval) {
+            foreach ($sunNakshatraIntervals as $sunInterval) {
+                $startJd = max($moonInterval['start_jd'], $sunInterval['start_jd']);
+                $endJd = min($moonInterval['end_jd'], $sunInterval['end_jd']);
+                if ($startJd >= $endJd) {
+                    continue;
+                }
+
+                $distance = (($moonInterval['index'] - $sunInterval['index'] + 27) % 27) + 1;
+                if (!in_array($distance, self::RAVI_YOGA_DISTANCES, true)) {
+                    continue;
+                }
+
+                $windows[] = [
+                    'start_jd' => $startJd,
+                    'end_jd' => $endJd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    'nakshatra' => $moonInterval['name'],
+                    'sun_nakshatra' => $sunInterval['name'],
+                    'distance_from_sun_nakshatra' => $distance,
+                ];
+            }
+        }
+
+        return $windows;
+    }
+
+    private function matchAadalVidaalWindows(
+        array $moonNakshatraIntervals,
+        array $sunNakshatraIntervals,
+        array $targetCounts,
+        string $tz,
+        string $label
+    ): array {
+        $windows = [];
+        foreach ($moonNakshatraIntervals as $moonInterval) {
+            foreach ($sunNakshatraIntervals as $sunInterval) {
+                $startJd = max($moonInterval['start_jd'], $sunInterval['start_jd']);
+                $endJd = min($moonInterval['end_jd'], $sunInterval['end_jd']);
+                if ($startJd >= $endJd) {
+                    continue;
+                }
+
+                $count = $this->countNakshatrasWithAbhijit($sunInterval['index'], $moonInterval['index']);
+                if (!in_array($count, $targetCounts, true)) {
+                    continue;
+                }
+
+                $windows[] = [
+                    'start_jd' => $startJd,
+                    'end_jd' => $endJd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    'nakshatra' => $moonInterval['name'],
+                    'sun_nakshatra' => $sunInterval['name'],
+                    'count_with_abhijit' => $count,
+                    'classification' => $label,
+                ];
+            }
+        }
+
+        return $windows;
+    }
+
+    private function matchJwalamukhiWindows(array $tithiIntervals, array $nakshatraIntervals, string $tz): array
+    {
+        $windows = [];
+        foreach ($tithiIntervals as $tithiInterval) {
+            $targetNakshatras = self::JWALAMUKHI_RULES[(int) $tithiInterval['phase_index']] ?? null;
+            if ($targetNakshatras === null) {
+                continue;
+            }
+
+            foreach ($nakshatraIntervals as $nakshatraInterval) {
+                if (!in_array($nakshatraInterval['index'], $targetNakshatras, true)) {
+                    continue;
+                }
+
+                $startJd = max($tithiInterval['start_jd'], $nakshatraInterval['start_jd']);
+                $endJd = min($tithiInterval['end_jd'], $nakshatraInterval['end_jd']);
+                if ($startJd >= $endJd) {
+                    continue;
+                }
+
+                $windows[] = [
+                    'start_jd' => $startJd,
+                    'end_jd' => $endJd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    'tithi' => $tithiInterval['name'],
+                    'nakshatra' => $nakshatraInterval['name'],
+                ];
+            }
+        }
+
+        return $windows;
+    }
+
+    private function buildSpecialYogaPayload(string $name, string $basis, array $windows): array
+    {
+        return [
+            'name' => Localization::translate('String', $name),
+            'name_key' => $name,
+            'basis' => $basis,
+            'is_present' => $windows !== [],
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    private function collectMoonSignTransitions(float $jdStart, float $jdEnd, string $tz): array
+    {
+        $currentMoonSign = AstroCore::getSign($this->getMoonLongitude($jdStart + 0.000001));
+        $targetAngle = ($currentMoonSign + 1) * 30.0;
+        $transitionJd = $this->findAngleCrossing(
+            $jdStart,
+            $targetAngle,
+            1,
+            fn (float $jd): float => $this->getMoonLongitude($jd)
+        );
+
+        if ($transitionJd >= $jdEnd) {
+            return [];
+        }
+
+        return [[
+            'from' => Rasi::from($currentMoonSign)->getName(),
+            'to' => Rasi::from(($currentMoonSign + 1) % 12)->getName(),
+            'at_jd' => $transitionJd,
+            'at_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($transitionJd, $tz)),
+        ]];
+    }
+
+    private function collectMoonSignWindows(float $jdStart, float $jdEnd, int $targetSignIndex, string $tz): array
+    {
+        $windows = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 3 && $cursor < $jdEnd; $guard++) {
+            $moonLongitude = $this->getMoonLongitude($cursor + 0.000001);
+            $signIndex = AstroCore::getSign($moonLongitude);
+            $targetAngle = (($signIndex + 1) % 12) * 30.0;
+            $endJd = $this->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+
+            $segmentEnd = min($endJd, $jdEnd);
+            if ($signIndex === $targetSignIndex && $segmentEnd > $cursor) {
+                $windows[] = [
+                    'start_jd' => $cursor,
+                    'end_jd' => $segmentEnd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($cursor, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($segmentEnd, $tz)),
+                    'moon_sign' => Rasi::from($signIndex)->getName(),
+                ];
+            }
+
+            $cursor = $segmentEnd + 0.000001;
+        }
+
+        return $windows;
+    }
+
+    private function collectMoonLongitudeRangeWindows(
+        float $jdStart,
+        float $jdEnd,
+        float $rangeStart,
+        float $rangeEnd,
+        string $tz
+    ): array {
+        $windows = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
+            $moonLongitude = AstroCore::normalize($this->getMoonLongitude($cursor + 0.000001));
+
+            if ($moonLongitude >= $rangeStart && $moonLongitude < $rangeEnd) {
+                $endJd = $this->findAngleCrossing(
+                    $cursor,
+                    $rangeEnd,
+                    1,
+                    fn (float $jd): float => $this->getMoonLongitude($jd)
+                );
+                $segmentEnd = min($endJd, $jdEnd);
+                $windows[] = [
+                    'start_jd' => $cursor,
+                    'end_jd' => $segmentEnd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($cursor, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($segmentEnd, $tz)),
+                ];
+                $cursor = $segmentEnd + 0.000001;
+
+                continue;
+            }
+
+            $target = $moonLongitude < $rangeStart ? $rangeStart : 360.0;
+            $nextJd = $this->findAngleCrossing(
+                $cursor,
+                $target,
+                1,
+                fn (float $jd): float => $this->getMoonLongitude($jd)
+            );
+            if ($nextJd <= $cursor || $nextJd >= $jdEnd) {
+                break;
+            }
+
+            $cursor = $nextJd + 0.000001;
+        }
+
+        return $windows;
+    }
+
+    private function formatTransitionWindow(array $interval, string $type, string $tz): array
+    {
+        return [
+            'name' => (string) ($interval['name'] ?? ''),
+            'type' => $type,
+            'start_jd' => $interval['start_jd'],
+            'end_jd' => $interval['end_jd'],
+            'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
+            'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
+        ];
+    }
+
+    private function normalizeKaranaLocalizationIndex(int $karanaIndex): int
+    {
+        return match ($karanaIndex) {
+            1 => 0,
+            2 => 1,
+            3 => 2,
+            4 => 3,
+            5 => 4,
+            6 => 5,
+            7 => 6,
+            57 => 7,
+            58 => 8,
+            59 => 9,
+            60 => 10,
+            default => 0,
+        };
     }
 
     /**
@@ -1923,9 +3613,11 @@ class PanchangService
             if ($f0 === 0.0) {
                 return $jd1;
             }
+
             if ($f0 === 0.0 || (abs($f1 - $f0) < 180.0 && (($f0 < 0 && $f1 > 0) || ($f0 > 0 && $f1 < 0)))) {
                 break;
             }
+
             $jd1 = $jd2;
             $f0 = $f1;
         }
@@ -1941,6 +3633,7 @@ class PanchangService
             if ($fMid === 0.0) {
                 return $mid;
             }
+
             if (($fLow < 0 && $fMid > 0) || ($fLow > 0 && $fMid < 0)) {
                 $high = $mid;
                 $fHigh = $fMid;
@@ -1959,7 +3652,28 @@ class PanchangService
         if ($diff > 180.0) {
             $diff -= 360.0;
         }
+
         return $diff;
+    }
+
+    private function countNakshatrasWithAbhijit(int $sunNakshatraIndex, int $moonNakshatraIndex): int
+    {
+        $startIndex = array_search($sunNakshatraIndex, self::ABHIJIT_ORDER, true);
+        $endIndex = array_search($moonNakshatraIndex, self::ABHIJIT_ORDER, true);
+        if ($startIndex === false || $endIndex === false) {
+            throw new RuntimeException('Invalid nakshatra index for Abhijit count.');
+        }
+
+        if ($startIndex <= $endIndex) {
+            $count = ($endIndex - $startIndex + 1) % count(self::ABHIJIT_ORDER);
+            if ($count === 0) {
+                return count(self::ABHIJIT_ORDER);
+            }
+
+            return $count;
+        }
+
+        return count(self::ABHIJIT_ORDER) - $startIndex + $endIndex + 1;
     }
 
     private function getSunMoonLongitudes(array $birth): array
@@ -2048,10 +3762,10 @@ class PanchangService
     private function getTrueHinduMonth(float $jd): array
     {
         // Find the Amavasya that STARTS the current lunar month (most recent new moon)
-        $startAmavasya = $this->findAngleCrossing($jd, 0.0, -1, fn (float $t) => $this->getMoonSunAngle($t));
+        $startAmavasya = $this->findAngleCrossing($jd, 0.0, -1, fn (float $t): float => $this->getMoonSunAngle($t));
         // Find the Amavasya that ENDS the current lunar month (next new moon)
         // Start from slightly after the start Amavasya to ensure we find the NEXT one
-        $endAmavasya = $this->findAngleCrossing($startAmavasya + 1.0, 0.0, 1, fn (float $t) => $this->getMoonSunAngle($t));
+        $endAmavasya = $this->findAngleCrossing($startAmavasya + 1.0, 0.0, 1, fn (float $t): float => $this->getMoonSunAngle($t));
 
         // Sun's sidereal longitude at both Amavasyas
         $sunAtStart = $this->getSunLongitude($startAmavasya);

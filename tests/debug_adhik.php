@@ -35,7 +35,7 @@ $refl = new ReflectionClass($panchangService);
 $method = $refl->getMethod('getTrueHinduMonth');
 $res = $method->invoke($panchangService, $jd);
 
-echo "Date JD: $jd" . PHP_EOL;
+echo 'Date JD: ' . $jd . PHP_EOL;
 print_r($res);
 
 // Debug the boundaries
@@ -48,12 +48,12 @@ $angleFn = function (float $t) use ($panchangService, $refl) {
 $prev = $pAm->invoke($panchangService, $jd, 0.0, -1, $angleFn);
 $next = $pAm->invoke($panchangService, $jd, 0.0, 1, $angleFn);
 
-echo "Prev Amavasya JD: $prev" . PHP_EOL;
-echo "Next Amavasya JD: $next" . PHP_EOL;
+echo 'Prev Amavasya JD: ' . $prev . PHP_EOL;
+echo 'Next Amavasya JD: ' . $next . PHP_EOL;
 
 $getSun = $refl->getMethod('getSunLongitude');
 $s0 = $getSun->invoke($panchangService, $prev);
 $s1 = $getSun->invoke($panchangService, $next);
 
-echo "Sun at Prev: $s0 (Sign: " . floor($s0 / 30) . ')' . PHP_EOL;
-echo "Sun at Next: $s1 (Sign: " . floor($s1 / 30) . ')' . PHP_EOL;
+echo sprintf('Sun at Prev: %s (Sign: ', $s0) . floor($s0 / 30) . ')' . PHP_EOL;
+echo sprintf('Sun at Next: %s (Sign: ', $s1) . floor($s1 / 30) . ')' . PHP_EOL;

@@ -226,6 +226,7 @@ class PanchangaEngine
 
         $sec = $dt->diffInSeconds($relSunrise, false);
         $sec = abs($sec);
+
         $gh = (int) floor($sec / 1440.0);
         $pl = (int) floor(fmod($sec, 1440.0) / 24.0);
         $vp = (int) floor(fmod(fmod($sec, 1440.0), 24.0) / 0.4);

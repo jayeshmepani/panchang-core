@@ -36,7 +36,7 @@ class PanchangServiceProvider extends ServiceProvider
         $this->app->singleton(AstroCore::class);
 
         // Swiss Ephemeris FFI
-        $this->app->singleton(SwissEphFFI::class, function ($app) {
+        $this->app->singleton(SwissEphFFI::class, function ($app): SwissEphFFI {
             $sweph = new SwissEphFFI;
 
             // Configure ephemeris path from config
@@ -52,11 +52,11 @@ class PanchangServiceProvider extends ServiceProvider
         });
 
         // Astronomy layer
-        $this->app->singleton(AstronomyService::class, fn ($app) => new AstronomyService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(AstronomyService::class, fn ($app): AstronomyService => new AstronomyService($app->make(SwissEphFFI::class)));
 
-        $this->app->singleton(SunService::class, fn ($app) => new SunService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(SunService::class, fn ($app): SunService => new SunService($app->make(SwissEphFFI::class)));
 
-        $this->app->singleton(EclipseService::class, fn ($app) => new EclipseService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(EclipseService::class, fn ($app): EclipseService => new EclipseService($app->make(SwissEphFFI::class)));
 
         // Panchanga layer
         $this->app->singleton(PanchangaEngine::class);
@@ -67,12 +67,12 @@ class PanchangServiceProvider extends ServiceProvider
 
         $this->app->singleton(FestivalFamilyOrchestrator::class);
 
-        $this->app->singleton(FestivalService::class, fn ($app) => new FestivalService(
+        $this->app->singleton(FestivalService::class, fn ($app): FestivalService => new FestivalService(
             $app->make(FestivalRuleEngine::class)
         ));
 
         // Main Panchang service
-        $this->app->singleton(PanchangService::class, fn ($app) => new PanchangService(
+        $this->app->singleton(PanchangService::class, fn ($app): PanchangService => new PanchangService(
             $app->make(SwissEphFFI::class),
             $app->make(SunService::class),
             $app->make(AstronomyService::class),

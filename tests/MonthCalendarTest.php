@@ -11,7 +11,7 @@ use Override;
 
 class MonthCalendarTest extends TestCase
 {
-    public function test_month_calendar_retrieval()
+    public function test_month_calendar_retrieval(): void
     {
         $lat = 23.247;
         $lon = 69.668;
@@ -54,8 +54,10 @@ class MonthCalendarTest extends TestCase
                 }
             }
         }
+
         $this->assertTrue($foundHanumanJayanti, 'Hanuman Jayanti should be in April 2026');
     }
+
     #[Override]
     protected function getPackageProviders($app)
     {

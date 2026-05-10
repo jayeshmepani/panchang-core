@@ -21,6 +21,7 @@ use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use Override;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class PanchangaTest extends TestCase
@@ -119,7 +120,7 @@ class PanchangaTest extends TestCase
         $sunrise = CarbonImmutable::create(2026, 4, 6, 6, 0, 0, 'Asia/Kolkata');
         $birthDt = CarbonImmutable::create(2026, 4, 6, 7, 0, 0, 'Asia/Kolkata');
 
-        /** @var \PHPUnit\Framework\MockObject\MockObject&SunService $sunService */
+        /** @var MockObject&SunService $sunService */
         $sunService = $this->createMock(SunService::class);
         $sunService->method('getSunriseSunset')->willReturn([$sunrise, $sunrise->addHours(12)]);
         $sunService->method('getBirthDatetime')->willReturn($birthDt);

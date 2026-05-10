@@ -143,6 +143,7 @@ final class CliBootstrap
         if (!class_exists(Container::class)) {
             return;
         }
+
         if (!class_exists(Repository::class)) {
             return;
         }

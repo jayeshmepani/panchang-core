@@ -7,7 +7,7 @@
 
 **Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** for PHP 8.3+.
 
-This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, and 237 festival definitions with tradition/region profiles.
+This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, special yogas, classical vaasa/direction checks, and 237 festival definitions with tradition/region profiles.
 
 ## 🎯 Unique Value Proposition
 
@@ -27,6 +27,8 @@ Key characteristics:
 - **Muhūrta Calculations**: Abhijit, Brahma Muhūrta, Rahu Kāla, Gulika, Yamaganda, Dur Muhūrta
 - **Time Determination**: Chogadiya, Hora, Prahara, Lagna table, Bhadra/Vishti Karana detection with classical Mukha/Puchha subdivision
 - **Karmakala Outputs**: Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya blocks, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal
+- **Special Yoga Outputs**: Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Pushya variants, Dwipushkar, Tripushkar, Ganda Mula, Vinchhudo, Aadal, Vidaal, and Jwalamukhi
+- **Classical Direction/Vaasa Checks**: Disha Shool, Nakshatra Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, Yogini Vaasa
 - **Localization**: English, Hindi, and Gujarati output via `PANCHANG_LOCALE` / `locale`
 - **Calendar Type Support**: Amanta and Purnimanta month representation via `PANCHANG_CALENDAR_TYPE` / `calendar_type`
 - **Tradition Profiles**: Smarta, Vaishnava, North, South, Bengal, Maharashtra, Tamil
@@ -399,6 +401,7 @@ return [
 
 - All time-like fields now include date-qualified companions as `*_iso` (example: `varjyam_start_iso`).
 - Panchang day context is `sunrise -> next sunrise`; times earlier than sunrise are dated to the next civil date.
+- Month calendar moon visibility is reported as the visibility interval that starts on the civil date. If the Moon sets after midnight, `moonset` can look earlier than `moonrise`, so the month output also exposes `moonrise_date`, `moonset_date`, `moonrise_iso`, `moonset_iso`, `moonset_day_relation`, and a grouped `moon_visibility` block.
 - `Varjyam` supports multiple windows per day (`window_count`, `windows[]`) and keeps top-level compatibility keys.
 - `Pradosha_Kaal` is computed from night-fraction plus Trayodashi overlap and returns both base window and effective overlap window.
 - `getDayDetails()` now includes dedicated Karmakala outputs:
@@ -418,6 +421,21 @@ return [
   - `Varjyam`
   - `Amrita_Kaal`
   - `Pradosha_Kaal`
+- `getFestivalSnapshot()` also exposes:
+  - `Special_Yogas`
+  - `Anandadi_Yoga`
+  - `Amritadi_Yoga`
+  - `Panchak`
+  - `Maitreya_Yoga`
+  - `Gajachchhaya_Yoga`
+  - `Nakshatra_Shool`
+  - `Disha_Shool`
+  - `Rahu_Vaasa`
+  - `Chandra_Vaasa`
+  - `Shiva_Vaasa`
+  - `Agni_Vaasa`
+  - `Yogini_Vaasa`
+  - `Ekadashi_Observance`
 
 ### Hindu Calendar Output
 
@@ -489,7 +507,7 @@ php scripts/panchang_festivals.php 2026
 Notes:
 
 - `panchang_today.php` writes `today_panchang.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
-- `panchang_month_output.php` prints JSON to stdout only; choose the output filename with shell redirection, e.g. `> month_2026_04.json`.
+- `panchang_month_output.php` prints JSON to stdout only; choose the output filename with shell redirection, e.g. `> month_2026_04.json`. Without arguments it generates the current month; with arguments it accepts `[year] [month]`.
 - `panchang_eclipses.php` writes `eclipses_YYYY_YYYY.json` automatically and prints status text only. It does not emit raw JSON to stdout and does not accept a custom output filename.
 - `panchang_festivals.php` writes `festivals_YYYY.json` automatically and prints status lines only; do not redirect its stdout as if it were raw JSON.
 - `panchang_raw_output.php` prints the complete all-in-one JSON to stdout only; choose the output filename with shell redirection, e.g. `> output.json`.
@@ -602,6 +620,8 @@ composer test
 | **Muhūrta**      | 30 Muhūrtas (15 day + 15 night), Abhijit, Brahma, Dur Muhūrta                                                                                                   | ✅ Complete |
 | **Kāla Nirṇaya** | Chogadiya, Hora, Rahu Kāla, Gulika, Yamaganda, Bhadra                                                                                                           | ✅ Complete |
 | **Karmakala**    | Rahu Kāla/Gulika/Yamaganda, daylight fivefold division, Prahara, Sandhya, Nishita, Vijaya, Godhuli, Gowri Panchangam, Kala Vela, Pradosha, Varjyam, Amrita Kaal | ✅ Complete |
+| **Special Yogas** | Sarvartha Siddhi, Amrit Siddhi, Ravi Yoga, Pushya variants, Dwipushkar, Tripushkar, Ganda Mula, Vinchhudo, Aadal, Vidaal, Jwalamukhi | ✅ Complete |
+| **Vaasa/Direction** | Disha Shool, Nakshatra Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, Yogini Vaasa | ✅ Complete |
 | **Festivals**    | 237 festival definitions                                                                                                                                        | ✅ Complete |
 | **Traditions**   | Smarta, Vaishnava, regional                                                                                                                                     | ✅ Complete |
 
