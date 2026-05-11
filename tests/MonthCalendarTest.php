@@ -58,6 +58,45 @@ class MonthCalendarTest extends TestCase
         $this->assertTrue($foundHanumanJayanti, 'Hanuman Jayanti should be in April 2026');
     }
 
+    public function test_purnimanta_day_details_match_month_calendar_festivals(): void
+    {
+        $lat = 23.2472446;
+        $lon = 69.668339;
+        $tz = 'Asia/Kolkata';
+        $year = 2026;
+        $month = 4;
+
+        config(['panchang.defaults.locale' => 'en']);
+
+        $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz, 0.0, [], null, 'purnimanta');
+
+        foreach ($calendar as $date => $day) {
+            $details = Panchang::getDayDetails(
+                \Carbon\CarbonImmutable::parse($date, $tz),
+                $lat,
+                $lon,
+                $tz,
+                0.0,
+                null,
+                'purnimanta'
+            );
+
+            $monthFestivals = array_map(
+                static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+                $day['festivals'] ?? []
+            );
+            $detailFestivals = array_map(
+                static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+                $details['Festivals'] ?? []
+            );
+
+            sort($monthFestivals);
+            sort($detailFestivals);
+
+            $this->assertSame($monthFestivals, $detailFestivals, $date . ' should resolve the same festivals in month and day-detail views for purnimanta.');
+        }
+    }
+
     #[Override]
     protected function getPackageProviders($app)
     {

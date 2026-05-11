@@ -401,7 +401,7 @@ class PanchangService
             ],
         ];
 
-        $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation);
+        $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation, null, $calendarType);
         $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
 
