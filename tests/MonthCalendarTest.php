@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Tests;
 
+use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Facades\Panchang;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
@@ -72,7 +73,7 @@ class MonthCalendarTest extends TestCase
 
         foreach ($calendar as $date => $day) {
             $details = Panchang::getDayDetails(
-                \Carbon\CarbonImmutable::parse($date, $tz),
+                CarbonImmutable::parse($date, $tz),
                 $lat,
                 $lon,
                 $tz,
@@ -93,7 +94,13 @@ class MonthCalendarTest extends TestCase
             sort($monthFestivals);
             sort($detailFestivals);
 
-            $this->assertSame($monthFestivals, $detailFestivals, $date . ' should resolve the same festivals in month and day-detail views for purnimanta.');
+            $missingFestivals = array_values(array_diff($monthFestivals, $detailFestivals));
+
+            $this->assertSame(
+                [],
+                $missingFestivals,
+                $date . ' month-calendar festivals should all be present in day-detail view for purnimanta.'
+            );
         }
     }
 

@@ -510,7 +510,7 @@
                   <path d="M5 5l14 14" />
                   <path d="M19 5L5 19" />
                 </svg>Disha & Vaasa</h3>
-              <p>Disha Shool, Shiva Vaasa, Agni Vaasa, and Yogini Vaasa for general panchang and electional screening.</p>
+              <p>Disha Shool, Nakshatra Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, and Yogini Vaasa for general panchang and electional screening.</p>
             </div>
             <div class="feature-card">
               <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -1871,6 +1871,14 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
             <h3>Public Methods</h3>
 
             <div class="method">
+              <h4 class="method-name">configure()</h4>
+              <p class="method-description">Configure the Swiss Ephemeris path for standalone usage.</p>
+              <div class="method-signature">
+                <code>public function configure(string $ephePath = ""): void</code>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getDayDetails()</h4>
               <p class="method-description">Returns exhaustive Panchanga and Muhurta details for a given date and location.</p>
               <div class="method-signature">
@@ -1895,6 +1903,22 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
             </div>
 
             <div class="method">
+              <h4 class="method-name">getMonthCalendar()</h4>
+              <p class="method-description">Build a month-wise calendar summary with canonical festival orchestration, moon visibility fields, and compact daily Panchang snapshots.</p>
+              <div class="method-signature">
+                <code>public function getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getElectionalSnapshot()</h4>
+              <p class="method-description">Return electional-analysis inputs built from day details, planetary states, sunrise context, and transit moorthy helpers.</p>
+              <div class="method-signature">
+                <code>public function getElectionalSnapshot(CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[]): array</code>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getDailyMuhurtaEvaluation()</h4>
               <p class="method-description">Checks current time against all doshas (Bhadra, Varjyam, Rahu Kaal, etc.) and returns a rejection report.</p>
               <div class="method-signature">
@@ -1908,7 +1932,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 237+ Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 237 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2919,7 +2943,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
           <p class="lead">Complete reference of keys returned by the <code>getDayDetails()</code> "God Object".</p>
           
           <div class="info-box">
-            <p><strong>v4.0.0 Breaking Change:</strong> Sunrise, Sunset, Moonrise, and Moonset are now <strong>objects</strong>. To get the formatted string as in v3.x, use the <code>.display</code> property.</p>
+            <p><strong>v4.0.0 Breaking Change:</strong> Inside the nested <code>Panchanga</code> block, Sunrise, Sunset, Moonrise, and Moonset are now <strong>objects</strong>. Top-level convenience fields such as <code>Sunrise</code> and <code>Moonrise</code> still expose formatted strings.</p>
           </div>
 
           <div class="schema-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
@@ -3376,6 +3400,21 @@ class PanchangController extends Controller
   'Dharma_Sindhu' => [...],
   'Festivals' => [...],
   'Daily_Observances' => [...],
+  'Special_Yogas' => [...],
+  'Anandadi_Yoga' => [...],
+  'Amritadi_Yoga' => [...],
+  'Panchak' => [...],
+  'Maitreya_Yoga' => [...],
+  'Gajachchhaya_Yoga' => [...],
+  'Nakshatra_Shool' => [...],
+  'Disha_Shool' => [...],
+  'Rahu_Vaasa' => [...],
+  'Chandra_Vaasa' => [...],
+  'Shiva_Vaasa' => [...],
+  'Agni_Vaasa' => [...],
+  'Yogini_Vaasa' => [...],
+  'Ekadashi_Observance' => [...],
+  'Transitions' => [...],
   'Resolution_Context' => [...],
 ]</code></pre>
 
@@ -3411,7 +3450,34 @@ class PanchangController extends Controller
     ],
   ],
   'Tithi' => [...],
+  'Vara' => [...],
   'Nakshatra' => [...],
+  'Yoga' => [...],
+  'Karana' => [...],
+  'Sunrise' => '06:14:00 AM',
+  'Sunset' => '06:52:00 PM',
+  'Moonrise' => '10:12:35 PM',
+  'Moonset' => '09:00:37 AM',
+  'Moonrise_Date' => '2026-04-05',
+  'Moonset_Date' => '2026-04-06',
+  'Moonrise_ISO' => '05/04/2026 10:12:35 PM',
+  'Moonset_ISO' => '06/04/2026 09:00:37 AM',
+  'Moonset_Day_Relation' => 'next_day',
+  'Special_Yogas' => [...],
+  'Anandadi_Yoga' => [...],
+  'Amritadi_Yoga' => [...],
+  'Panchak' => [...],
+  'Maitreya_Yoga' => [...],
+  'Gajachchhaya_Yoga' => [...],
+  'Nakshatra_Shool' => [...],
+  'Disha_Shool' => [...],
+  'Rahu_Vaasa' => [...],
+  'Chandra_Vaasa' => [...],
+  'Shiva_Vaasa' => [...],
+  'Agni_Vaasa' => [...],
+  'Yogini_Vaasa' => [...],
+  'Ekadashi_Observance' => [...],
+  'Resolution_Context' => [...],
 ]</code></pre>
           <p>Festival metadata keeps canonical values for code and localized companion fields for display. The
             <code>calculation_basis.month</code> block follows the active <code>calendar_type</code> only; it does not
@@ -3897,15 +3963,15 @@ $details['Panchanga']['Sunrise']['timestamp'];  // Unix timestamp</code></pre>
             <li><code>Karana::isVishti()</code> - removed</li>
           </ul>
 
-          <h3>6. PHP 8.2+ Requirement</h3>
-          <p>This version uses <code>$_ENV</code> instead of the deprecated <code>getenv()</code> function. PHP 8.2+ is required.</p>
+          <h3>6. PHP 8.3+ Requirement</h3>
+          <p>This package targets PHP 8.3+ and the current Composer platform config is pinned accordingly.</p>
 
           <h3>7. Calendar Type Parameter</h3>
-          <p>Methods like <code>getDayDetails()</code> now require the <code>calendarType</code> parameter:</p>
+          <p>Methods like <code>getDayDetails()</code> support an optional <code>calendarType</code> parameter. If omitted, the default remains <code>CalendarType::Amanta</code>:</p>
           <pre><code class="language-php">// v3.x
 $details = $panchang->getDayDetails($date, $lat, $lon, $tz);
 
-// v4.0.0 - required parameter
+// Explicit enum
 $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, CalendarType::Amanta);
 
 // Or use string
@@ -4493,6 +4559,7 @@ const FESTIVAL_RULES
 - resolveFestivalDate(string $festivalName, float $tithiStartJd, float $tithiEndJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array
 
 ## JayeshMepani\PanchangCore\Panchanga\MuhurtaService
+- __construct(JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator $horaCalculator, JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator $chogadiyaCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\DailyPeriodsCalculator $dailyPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator $gowriPanchangamCalculator, JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator $lagnaTableCalculator): void
 - calculateAbhijitMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
 - calculateAmritaKaal(Carbon\CarbonImmutable $sunrise, array $varjyam): array
 - calculateBadTimes(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, int $varaIdx): array
@@ -4524,7 +4591,7 @@ const FESTIVAL_RULES
 - generateTodayPanchang(float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 
 ## JayeshMepani\PanchangCore\Panchanga\PanchangService
-- __construct(SwissEph\FFI\SwissEphFFI $sweph, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine): void
+- __construct(SwissEph\FFI\SwissEphFFI $sweph, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine, mixed $unusedTransitEngine = null, mixed $unusedIntervalTracker = null, JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator|null $vaasaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator|null $shoolaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator|null $specialYogaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator|null $panchakCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator|null $bhadraCalculator = null, mixed $unusedVarjyamWindowCalculator = null, JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator|null $ekadashiParanaCalculator = null, mixed ...$unusedExtractedCalculators): void
 - configure(string $ephePath = ""): void
 - getDailyMuhurtaEvaluation(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $currentAt = null, float $elevation = 0, array $options = []): array
 - getDayDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array

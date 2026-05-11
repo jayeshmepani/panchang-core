@@ -1,6 +1,6 @@
-# Release Notes Draft: `4.1.1` -> `HEAD`
+# Release Notes Draft: `4.1.1` -> `5.0.0`
 
-This document summarizes the actual code and package changes between tag `4.1.1` and the current latest commit.
+This document summarizes the actual code and package changes between tag `4.1.1` and the planned `5.0.0` release state at the current latest commit.
 
 It is based on source comparison, test additions, script changes, and generated output changes, not commit-message summaries.
 

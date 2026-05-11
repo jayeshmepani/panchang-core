@@ -402,7 +402,22 @@ class PanchangService
         ];
 
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation, null, $calendarType);
-        $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot);
+        $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, null, $calendarType);
+        $festivals = $this->festivalService->resolveFestivalsForDate(
+            $date,
+            $todaySnapshot,
+            $tomorrowSnapshot,
+            $yesterdaySnapshot,
+            fn (CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot(
+                $historicalDate,
+                $lat,
+                $lon,
+                $tz,
+                $elevation,
+                null,
+                $calendarType
+            )
+        );
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
 
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);

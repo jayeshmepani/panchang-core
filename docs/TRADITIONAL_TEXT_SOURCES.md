@@ -66,9 +66,16 @@ These components implement festival and observance resolution where the package 
 | `KalaNirnayaEngine.php` | Festival `karmakala_type` handling:<br>- `madhyahna`<br>- `nishitha`<br>- `pradosha`<br>- `aparahna`<br>- `sunrise`<br>Vaishnava Ekadashi handling | **Traditional convention:** Nirṇaya Sindhu, Muhūrta Chintāmaṇi, Hari Bhakti Vilāsa |
 | `BhadraEngine.php` | Bhadra/Vishti subdivision helpers | **Package attribution:** Muhūrta Chintāmaṇi, Nirṇaya Sindhu, Ernst Wilhelm's Classical Muhurta |
 | `PanchangService.php` | Timed Bhadra windows<br>Timed Varjyam windows<br>Timed Amrita Kaal window<br>Timed Pradosha window<br>Daily Karmakala output assembly | **Published Panchang convention:** Swiss Ephemeris-based live calculation |
-| `PanchangService.php` | `Special_Yogas` output:<br>- Sarvartha Siddhi<br>- Amrit Siddhi<br>- Ravi Yoga<br>- Ravi Pushya<br>- Guru Pushya<br>- Dwipushkar<br>- Tripushkar<br>- Ganda Mula<br>- Vinchhudo<br>- Aadal<br>- Vidaal<br>- Jwalamukhi | **Package attribution:** Muhurta Chintamani, Muhurta Martanda, regional published Panchang tables |
-| `PanchangService.php` | `Anandadi_Yoga`<br>`Amritadi_Yoga`<br>`Panchak`<br>`Maitreya_Yoga`<br>`Gajachchhaya_Yoga` | **Package attribution:** Muhurta Chintamani, Muhurta Martanda, Sripati/Jyotisha Ratnamala tradition, and published Panchang convention |
-| `PanchangService.php` | `Disha_Shool`<br>`Nakshatra_Shool`<br>`Rahu_Vaasa`<br>`Chandra_Vaasa`<br>`Shiva_Vaasa`<br>`Agni_Vaasa`<br>`Yogini_Vaasa` | **Package attribution:** Muhurta Chintamani and published Panchang/Nivas-Shool convention |
+| `SpecialYogaCalculator.php` | `calculateSpecialYogas()`<br>Structured outputs for:<br>- Sarvartha Siddhi<br>- Amrit Siddhi<br>- Ravi Yoga<br>- Ravi Pushya<br>- Guru Pushya<br>- Dwipushkar<br>- Tripushkar<br>- Ganda Mula<br>- Vinchhudo<br>- Aadal<br>- Vidaal<br>- Jwalamukhi | **Package attribution:** Muhurta Chintamani, Muhurta Martanda, and regional/published Panchang tables. These are encoded as package rule mappings, not source-critical primary-text proofs for every table cell. |
+| `SpecialYogaCalculator.php` | `calculateAnandadiYoga()` | **Package attribution:** Sripati/Jyotisha Ratnamala 28-nakshatra tradition, including the package's Abhijit-inclusive counting model (`rule_system = sripati_jyotisha_ratnamala_28_nakshatra`) |
+| `SpecialYogaCalculator.php` | `calculateAmritadiYoga()` | **Package attribution:** Classical Amritadi weekday-nakshatra table as used in published Panchang literature (`rule_system = amritadi_yoga_27_nakshatra_7_weekday`) |
+| `SpecialYogaCalculator.php` | `calculateMaitreyaYoga()` | **Package attribution:** Published muhurta/panchang combinational rule for debt-repayment muhurta using weekday + nakshatra + lagna overlap (`rule_system = weekday_nakshatra_lagna_debt_repayment`) |
+| `SpecialYogaCalculator.php` | `calculateGajachchhayaYoga()` | **Package attribution:** Muhurta/Panchang tradition for Gajachchhaya variants using Tithi + Sun-nakshatra + Moon-nakshatra conditions; implemented as a package-known variant set, not as a claim of one single universal classical formula |
+| `PanchakCalculator.php` | `calculatePanchak()` | **Published Panchang convention:** Moon in Dhanishtha pada 3 through Revati (`rule_system = moon_dhanishta_pada_3_to_revati`) |
+| `ShoolaCalculator.php` | `calculateDishaShool()` | **Published Panchang convention:** common weekday-direction travel table used in general muhurta/almanac practice |
+| `ShoolaCalculator.php` | `calculateNakshatraShool()` | **Published Panchang convention:** travel-direction table keyed by nakshatra (`source_family = popular_travel_muhurta_panchang_table`) |
+| `VaasaCalculator.php` | `calculateRahuVaasa()`<br>`calculateChandraVaasa()`<br>`calculateShivaVaasa()`<br>`calculateAgniVaasa()`<br>`calculateYoginiVaasa()` | **Package attribution:** Muhurta Chintamani plus published Panchang/Nivas-Shool style tables. `Chandra_Vaasa` is explicitly exposed as a `modern_nivas_shool_panchang_style` family in code, while Shiva/Agni/Yogini/Rahu Vaasa are package rule mappings derived from almanac-style tables rather than manuscript-critical primary-text extraction. |
+| `EkadashiParanaCalculator.php` | `buildEkadashiObservance()`<br>`buildParanaPayload()` | **Traditional convention:** Nirṇaya Sindhu / Hari Bhakti Vilāsa style Ekadashi-parana handling via the package's Kala Nirnaya workflow |
 
 ---
 
@@ -79,7 +86,7 @@ These features are useful and intentionally included, but they are best describe
 | File | Functions | Source Attribution |
 |------|-----------|-------------------|
 | `MuhurtaService.php` | `calculateHora()`<br>`calculateHoraTable()`<br>`calculateChogadiya()`<br>`calculateChogadiyaTable()`<br>`calculateBadTimes()`<br>`calculateDaylightFivefoldDivision()`<br>`calculateNishitaMuhurta()`<br>`calculateVijayaMuhurta()`<br>`calculateGodhuliMuhurta()`<br>`calculateSandhya()`<br>`calculateGowriPanchangam()`<br>`calculateKalaVela()`<br>`calculatePrahara()`<br>`calculateBrahmaMuhurta()`<br>`calculateDurMuhurta()`<br>`calculateVarjyam()`<br>`calculateAmritaKaal()`<br>`calculatePradoshaKaal()`<br>`calculateLagnaTable()` | **Published Panchang convention:** Varies by tradition and regional practice |
-| `PanchangService.php` | Daily output blocks:<br>- `Hora`<br>- `Chogadiya`<br>- `Hora_Full_Day`<br>- `Chogadiya_Full_Day`<br>- `Muhurta_Full_Day`<br>- `Rahu_Kaal_Gulika_Yamaganda`<br>- `Abhijit_Muhurta`<br>- `Prahara_Full_Day`<br>- `Daylight_Fivefold_Division`<br>- `Brahma_Muhurta`<br>- `Dur_Muhurta_Full_Day`<br>- `Nishita_Muhurta`<br>- `Vijaya_Muhurta`<br>- `Godhuli_Muhurta`<br>- `Sandhya`<br>- `Gowri_Panchangam`<br>- `Kala_Vela`<br>- `Karmakala_Windows`<br>- `Varjyam`<br>- `Amrita_Kaal`<br>- `Pradosha_Kaal`<br>- `Lagna_Full_Day` | **Published Panchang convention:** Implementation follows published almanac patterns |
+| `MuhurtaService.php` + extracted calculators | Daily output blocks:<br>- `Hora`<br>- `Chogadiya`<br>- `Hora_Full_Day`<br>- `Chogadiya_Full_Day`<br>- `Muhurta_Full_Day`<br>- `Rahu_Kaal_Gulika_Yamaganda`<br>- `Abhijit_Muhurta`<br>- `Prahara_Full_Day`<br>- `Daylight_Fivefold_Division`<br>- `Brahma_Muhurta`<br>- `Dur_Muhurta_Full_Day`<br>- `Nishita_Muhurta`<br>- `Vijaya_Muhurta`<br>- `Godhuli_Muhurta`<br>- `Sandhya`<br>- `Gowri_Panchangam`<br>- `Kala_Vela`<br>- `Karmakala_Windows`<br>- `Varjyam`<br>- `Amrita_Kaal`<br>- `Pradosha_Kaal`<br>- `Lagna_Full_Day` | **Published Panchang convention:** Implementation follows published almanac patterns across `DailyPeriodsCalculator`, `InauspiciousPeriodsCalculator`, `HoraCalculator`, `ChogadiyaCalculator`, `GowriPanchangamCalculator`, and `LagnaTableCalculator` |
 
 **Notes:**
 - `Gowri_Panchangam` is implemented as a Gowri-style 8-part day/night table based on the package's chosen published-table convention (Tamil Gowri/Pambu Panchangam)
@@ -147,31 +154,34 @@ This list is descriptive. Inclusion here means the package references or attribu
 12. Nārada Saṃhitā
 13. Sarāvalī
 14. Gargiya Jyotisha
+15. Jyotisha Ratnamala / Sripati tradition
 
 ### Puranic Texts
-15. Śrīmad Bhāgavata Purāṇa
+16. Śrīmad Bhāgavata Purāṇa
 
 ### Regional/Almanac Conventions
-16. Tamil Gowri Panchangam
-17. Pambu Panchangam
+17. Tamil Gowri Panchangam
+18. Pambu Panchangam
+19. Popular travel-muhurta Panchang tables
+20. Nivas-Shool / Vaasa style published Panchang tables
 
 ### Vāstu Texts
-18. Māyamata
+21. Māyamata
 
 ### Āgama Texts
-19. Vaikhānasa Āgama
+22. Vaikhānasa Āgama
 
 ### Gṛhya Sūtra Texts
-20. Aśvalāyana Gṛhya Sūtra
+23. Aśvalāyana Gṛhya Sūtra
 
 ### Vaishnava Texts
-21. Hari Bhakti Vilāsa
+24. Hari Bhakti Vilāsa
 
 ### Modern Systems
-22. KP System (Krishnamurti Paddhati)
+25. KP System (Krishnamurti Paddhati)
 
 ### Living Traditions
-23. Sandhyāvandanam Tradition
+26. Sandhyāvandanam Tradition
 
 ---
 
