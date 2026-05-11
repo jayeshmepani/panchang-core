@@ -121,29 +121,14 @@ PANCHANG_EPHE_PATH=/absolute/path/to/ephe
 <?php
 require 'vendor/autoload.php';
 
-use JayeshMepani\PanchangCore\Panchanga\PanchangService;
-use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
-use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
-use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
-use JayeshMepani\PanchangCore\Festivals\FestivalService;
-use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use SwissEph\FFI\SwissEphFFI;
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 use Carbon\CarbonImmutable;
 
-// Initialize services
-$sweph = new SwissEphFFI();
-$ruleEngine = new FestivalRuleEngine();
-$panchang = new PanchangService(
-    $sweph,
-    new SunService($sweph),
-    new AstronomyService($sweph),
-    new PanchangaEngine(),
-    new MuhurtaService(),
-    new FestivalService($ruleEngine),
-    new BhadraEngine()
-);
+// Initialize standalone environment (loads config & sets up DI)
+CliBootstrap::init(__DIR__);
+
+// Create fully wired PanchangService
+$panchang = CliBootstrap::makePanchangService();
 
 // Calculate panchanga for a specific date/location
 $date = CarbonImmutable::parse('2026-03-24');

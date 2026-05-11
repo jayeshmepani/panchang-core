@@ -1,0 +1,638 @@
+<?php
+
+declare(strict_types=1);
+
+namespace JayeshMepani\PanchangCore\Panchanga\Traits;
+
+use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
+use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Vara;
+use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
+use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
+
+trait PanchangCalendarApiTrait
+{
+    public function getFestivalYearCalendar(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
+        $festivalsByDate = [];
+        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
+        $festivalFlat = [];
+
+        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
+        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+
+        for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
+            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
+
+            if ($festivals === []) {
+                continue;
+            }
+
+            foreach ($festivals as $festival) {
+                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
+                $festivalsByDate[$dateKey] ??= [];
+                $festivalsByDate[$dateKey][] = $festival;
+                $festivalFlat[] = [
+                    'date' => $dateKey,
+                    'festival' => $festival,
+                ];
+            }
+        }
+
+        $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat);
+
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
+
+        $festivalsByDate = [];
+        foreach ($festivalFlat as $entry) {
+            $dateKey = $entry['date'];
+            $festivalsByDate[$dateKey] ??= [];
+            $festivalsByDate[$dateKey][] = $entry['festival'];
+        }
+
+        ksort($festivalsByDate);
+
+        return [
+            'year' => $year,
+            'festival_day_count' => count($festivalsByDate),
+            'festival_entry_count' => count($festivalFlat),
+            'by_date' => $festivalsByDate,
+            'flat' => $festivalFlat,
+        ];
+    }
+
+    /**
+     * Get a month-wise calendar summary of Panchang details.
+     * Ideal for grid-based calendar views.
+     *
+     * @return array<string, array<string, mixed>> Indexed by YYYY-MM-DD
+     */
+    public function getMonthCalendar(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        // Normalize calendar_type from string to enum
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
+        $daysInMonth = $start->daysInMonth;
+
+        // Use the same year-level festival orchestration/consolidation pipeline
+        // that powers scripts/panchang_festivals.php so month view never diverges.
+        $yearFestivalCalendar = $this->getFestivalYearCalendar(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: $calculationAt,
+            calendarType: $calendarType,
+        );
+        $festivalsByDate = $yearFestivalCalendar['by_date'];
+
+        $snapshots = [];
+        for ($i = -1; $i <= $daysInMonth; $i++) {
+            $date = $start->addDays($i);
+            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+        }
+
+        $calendar = [];
+        for ($i = 0; $i < $daysInMonth; $i++) {
+            $date = $start->addDays($i);
+            $todaySnapshot = $snapshots[$i];
+
+            $dateKey = $date->toDateString();
+            $festivals = $festivalsByDate[$dateKey] ?? [];
+            $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
+
+            $sankranti = null;
+            if ($todaySnapshot['Resolution_Context']['sankranti_rashi'] !== null) {
+                $rashiIdx = $todaySnapshot['Resolution_Context']['sankranti_rashi'];
+                $sankranti = Rasi::from($rashiIdx)->getName() . ' ' . Localization::translate('Common', 'Sankranti');
+            }
+
+            $calendar[$date->toDateString()] = [
+                'date' => $date->toDateString(),
+                'day' => (int) $date->format('d'),
+                'tithi' => $todaySnapshot['Tithi'],
+                'nakshatra' => $todaySnapshot['Nakshatra'],
+                'yoga' => $todaySnapshot['Yoga'],
+                'karana' => $todaySnapshot['Karana'],
+                'vara' => $todaySnapshot['Vara'],
+                'sun_sign' => $todaySnapshot['Sun_Sign'],
+                'moon_sign' => $todaySnapshot['Moon_Sign'],
+                'sunrise' => $todaySnapshot['Sunrise'],
+                'sunset' => $todaySnapshot['Sunset'],
+                'moonrise' => $todaySnapshot['Moonrise'],
+                'moonset' => $todaySnapshot['Moonset'],
+                'moonrise_date' => $todaySnapshot['Moonrise_Date'],
+                'moonset_date' => $todaySnapshot['Moonset_Date'],
+                'moonrise_iso' => $todaySnapshot['Moonrise_ISO'],
+                'moonset_iso' => $todaySnapshot['Moonset_ISO'],
+                'moonset_day_relation' => $todaySnapshot['Moonset_Day_Relation'],
+                'moon_visibility' => [
+                    'starts_at' => $todaySnapshot['Moonrise'],
+                    'starts_on' => $todaySnapshot['Moonrise_Date'],
+                    'starts_iso' => $todaySnapshot['Moonrise_ISO'],
+                    'ends_at' => $todaySnapshot['Moonset'],
+                    'ends_on' => $todaySnapshot['Moonset_Date'],
+                    'ends_iso' => $todaySnapshot['Moonset_ISO'],
+                    'ends_day_relation' => $todaySnapshot['Moonset_Day_Relation'],
+                ],
+                'hindu_calendar' => $todaySnapshot['Hindu_Calendar'],
+                'festivals' => $festivals,
+                'daily_observances' => $dailyObservances,
+                'sankranti' => $sankranti,
+            ];
+        }
+
+        return $calendar;
+    }
+
+    public function getElectionalSnapshot(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, null, CalendarType::Amanta, $options);
+        $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
+        [$sunset] = [$this->resolveTimeStringToDateTime((string) $dayDetails['Sunset'], $sunrise, $tz)];
+
+        $sunriseBirth = $this->buildBirthArray($sunrise, $lat, $lon, $tz, $elevation);
+        $sunMoon = $this->getSunMoonLongitudes($sunriseBirth);
+        $moonLongitude = (float) $sunMoon['Moon'];
+        $nakIndex = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
+        $moonSign = (int) floor($moonLongitude / 30.0);
+        $ascLongitude = $this->astronomy->getAscendant($sunriseBirth);
+        $planetaryStates = $this->astronomy->getPlanetaryStates($sunriseBirth);
+        $planets = [];
+        foreach ($planetaryStates as $planet => $state) {
+            if (isset($state['lon'])) {
+                $planets[$planet] = (float) $state['lon'];
+            }
+        }
+
+        return [
+            'day_details' => $dayDetails,
+            'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy((string) ($dayDetails['Nakshatra']['name'] ?? '')),
+            'planetary_states' => $planetaryStates,
+            'sunrise_context' => [
+                'sunrise_iso' => AstroCore::formatDateTime($sunrise),
+                'sunset_iso' => $sunset instanceof CarbonImmutable ? AstroCore::formatDateTime($sunset) : null,
+                'nakshatra_index' => $nakIndex,
+                'moon_sign_index' => $moonSign,
+                'lagna_sign' => Rasi::from(AstroCore::getSign($ascLongitude))->getName(),
+                'lagna_degree_in_sign' => fmod(AstroCore::normalize($ascLongitude), 30.0),
+            ],
+        ];
+    }
+
+    /**
+     * Compute complete daily Muhurta evaluation package from canonical day details.
+     * This centralizes ElectionalEvaluator input extraction so consumer scripts stay thin.
+     */
+    public function getDailyMuhurtaEvaluation(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        ?CarbonImmutable $currentAt = null,
+        float $elevation = 0.0,
+        array $options = []
+    ): array {
+        $at = $currentAt instanceof CarbonImmutable ? $currentAt->setTimezone($tz) : CarbonImmutable::now($tz);
+        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, $at, CalendarType::Amanta, $options);
+        $sunriseDt = $this->parseDisplayDateTime((string) ($dayDetails['sunrise_dt'] ?? ''), $tz);
+        $currentBirth = $this->buildBirthArray($at, $lat, $lon, $tz, $elevation);
+        $sunMoon = $this->getSunMoonLongitudes($currentBirth);
+        $moonLongitude = (float) ($sunMoon['Moon'] ?? 0.0);
+        $moonSignIdx = ((int) floor($moonLongitude / 30.0)) % 12;
+        $nakshatraIdxCurrent = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+        $currentTithi = $this->panchanga->calculateTithi((float) ($sunMoon['Sun'] ?? 0.0), $moonLongitude);
+        $currentAscLongitude = $this->astronomy->getAscendant($currentBirth);
+
+        $tithiNumber = max(1, (int) ($currentTithi['index'] ?? ($dayDetails['Tithi']['index'] ?? 1)));
+        $varaNumber = ((int) ($this->panchanga->calculateVara($currentBirth, $this->sunService)['index'] ?? ($dayDetails['Vara']['index'] ?? 0))) % 7;
+        $nakshatraNumber = max(1, $nakshatraIdxCurrent + 1);
+        $lagnaNumber = (AstroCore::getSign($currentAscLongitude) % 12) + 1;
+        $isKrishnaPaksha = strcasecmp((string) ($currentTithi['paksha'] ?? ($dayDetails['Tithi']['paksha'] ?? '')), 'Krishna') === 0;
+        $tithiEnum = Tithi::from($tithiNumber);
+        $varaEnum = Vara::from($varaNumber);
+        $nakshatraEnum = Nakshatra::from($nakshatraNumber - 1);
+        $lagnaEnum = Rasi::from($lagnaNumber - 1);
+        $moonSignEnum = Rasi::from($moonSignIdx);
+
+        $sunsetDt = $this->resolveTimeStringToDateTime((string) ($dayDetails['Sunset'] ?? ''), $sunriseDt, $tz) ?? $sunriseDt;
+        $nextSunriseIso = (string) (($dayDetails['Resolution_Context']['next_sunrise_iso'] ?? $dayDetails['next_sunrise_iso'] ?? ''));
+        $nextSunriseDt = $nextSunriseIso !== ''
+            ? $this->parseDisplayDateTime($nextSunriseIso, $tz)
+            : $sunriseDt->addDay();
+        $midnight = $sunriseDt->startOfDay();
+
+        $sunrise = $this->toDecimalHoursFromBase($sunriseDt, $midnight);
+        $sunset = $this->toDecimalHoursFromBase($sunsetDt, $midnight);
+        $nextSunrise = $this->toDecimalHoursFromBase($nextSunriseDt, $midnight);
+        $currentTime = $this->toDecimalHoursFromBase($at, $midnight);
+
+        $evaluationResults = [
+            'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber + 1, $nakshatraNumber, $lagnaNumber),
+            'dagdha_tithi' => ElectionalEvaluator::calculateDagdhaTithi($tithiNumber, $moonSignIdx),
+            'dagdha_yoga' => ElectionalEvaluator::calculateDagdhaYoga($varaNumber, $tithiNumber),
+            'bhadra' => $this->evaluateCurrentBhadra($at, (array) ($dayDetails['Bhadra'] ?? [])),
+            'rikta_tithi' => ElectionalEvaluator::calculateRiktaTithi($tithiNumber, $isKrishnaPaksha),
+            'varjyam' => $this->evaluateCurrentVarjyam($at, (array) ($dayDetails['Varjyam'] ?? []), $tz),
+            'amrita_kaal' => $this->evaluateCurrentNamedWindow(
+                $at,
+                (array) ($dayDetails['Amrita_Kaal'] ?? []),
+                'amrita_kaal_start',
+                'amrita_kaal_end',
+                Localization::translate('String', 'Amrita Kaal'),
+                Localization::translate('Source', 'Classical Panchanga Calculation Texts')
+            ),
+            'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
+        ];
+
+        $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults);
+
+        return [
+            'title' => Localization::translate('String', 'Complete Muhurta Evaluation - Centralized package output'),
+            'input_now' => AstroCore::formatDateTime($at),
+            'date' => $date->toDateString(),
+            'input_parameters' => [
+                'tithi_number' => $tithiNumber,
+                'tithi_name' => $tithiEnum->getName(),
+                'tithi_number_base' => 1,
+                'vara_number' => $varaNumber,
+                'vara_name' => $varaEnum->getName(),
+                'vara_index_base' => 0,
+                'vara_sequence_number' => $varaNumber + 1,
+                'vara_sequence_number_base' => 1,
+                'nakshatra_number' => $nakshatraNumber,
+                'nakshatra_name' => $nakshatraEnum->getName(),
+                'nakshatra_number_base' => 1,
+                'lagna_number' => $lagnaNumber,
+                'lagna_name' => $lagnaEnum->getName(),
+                'lagna_number_base' => 1,
+                'moon_sign_idx' => $moonSignIdx,
+                'moon_sign_name' => $moonSignEnum->getName(),
+                'moon_sign_index_base' => 0,
+                'moon_sign_number' => $moonSignIdx + 1,
+                'moon_sign_number_base' => 1,
+                'is_krishna_paksha' => $isKrishnaPaksha,
+                'sunrise' => AstroCore::formatTime($sunriseDt),
+                'sunrise_iso' => AstroCore::formatDateTime($sunriseDt),
+                'sunrise_decimal_hours' => $sunrise,
+                'sunset' => AstroCore::formatTime($sunsetDt),
+                'sunset_iso' => AstroCore::formatDateTime($sunsetDt),
+                'sunset_decimal_hours' => $sunset,
+                'next_sunrise' => AstroCore::formatTime($nextSunriseDt),
+                'next_sunrise_iso' => AstroCore::formatDateTime($nextSunriseDt),
+                'next_sunrise_decimal_hours' => $nextSunrise,
+                'current_time' => AstroCore::formatTime($at),
+                'current_time_iso' => AstroCore::formatDateTime($at),
+                'current_time_decimal_hours' => $currentTime,
+            ],
+            'evaluation_results' => $evaluationResults,
+            'rejection_report' => $rejectionReport,
+        ];
+    }
+
+    private function moonsetDayRelation(CarbonImmutable $date, ?CarbonImmutable $moonset): ?string
+    {
+        if (!$moonset instanceof CarbonImmutable) {
+            return null;
+        }
+
+        return $moonset->isSameDay($date) ? 'same_day' : 'next_day';
+    }
+
+    /**
+     * @param array<string, array<int, array<string, mixed>>> $festivalsByDate
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     */
+    private function appendRelativeDayFestivals(
+        int $year,
+        string $tz,
+        array &$festivalsByDate,
+        array &$festivalFlat
+    ): void {
+        foreach (FestivalService::FESTIVALS as $festName => $rules) {
+            if ((string) ($rules['type'] ?? '') !== 'day_after') {
+                continue;
+            }
+
+            $parentName = (string) ($rules['parent_festival'] ?? '');
+            $daysAfter = (int) ($rules['days_after'] ?? 1);
+            if ($parentName === '') {
+                continue;
+            }
+
+            $parentDisplayName = Localization::translate('Festival', $parentName);
+            foreach ($festivalsByDate as $observanceDate => $observedFestivals) {
+                foreach ($observedFestivals as $observedFestival) {
+                    $rawObservedName = (string) ($observedFestival['resolution']['festival_name'] ?? '');
+                    $displayObservedName = (string) ($observedFestival['name'] ?? '');
+                    if ($rawObservedName !== $parentName && $displayObservedName !== $parentDisplayName) {
+                        continue;
+                    }
+
+                    $relativeDate = CarbonImmutable::parse($observanceDate, $tz)->addDays($daysAfter);
+                    if ($relativeDate->year !== $year) {
+                        continue;
+                    }
+
+                    $relativeDateKey = $relativeDate->toDateString();
+                    $observanceNoteTemplate = Localization::translate('String', 'observance_note_day_after');
+                    $observanceNote = $observanceNoteTemplate !== 'observance_note_day_after'
+                        ? sprintf($observanceNoteTemplate, $daysAfter, $parentDisplayName)
+                        : 'Observed ' . $daysAfter . ' day(s) after ' . $parentDisplayName;
+
+                    $festival = $this->festivalService->buildFestivalPayload($festName, $rules, [
+                        'festival_name' => $festName,
+                        'standard_date' => $relativeDateKey,
+                        'observance_date' => $relativeDateKey,
+                        'observance_note' => $observanceNote,
+                        'decision' => [
+                            'winning_reason' => 'day_after_parent_festival',
+                            'parent_festival' => $parentName,
+                            'parent_observance_date' => $observanceDate,
+                            'days_after' => $daysAfter,
+                            'winning_score' => 1000,
+                        ],
+                    ]);
+
+                    $festivalsByDate[$relativeDateKey] ??= [];
+                    $festivalsByDate[$relativeDateKey][] = $festival;
+                    $festivalFlat[] = [
+                        'date' => $relativeDateKey,
+                        'festival' => $festival,
+                    ];
+                }
+            }
+        }
+    }
+
+    /**
+     * For adjacent duplicate observances of the same festival, keep the
+     * strongest rule-engine decision.
+     *
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     *
+     * @return array<int, array{date:string, festival:array<string, mixed>}>
+     */
+    private function consolidateAdjacentFestivalsByWinningScore(array $festivalFlat, string $tz): array
+    {
+        $grouped = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            if ($name === '') {
+                continue;
+            }
+
+            $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
+        }
+
+        $remove = [];
+        foreach ($grouped as $items) {
+            usort($items, static fn (array $a, array $b): int => strcmp($a['entry']['date'], $b['entry']['date']));
+
+            $clusters = [];
+            $current = [];
+            $previousDate = null;
+
+            foreach ($items as $item) {
+                $date = CarbonImmutable::parse($item['entry']['date'], $tz);
+                if (!$previousDate instanceof CarbonImmutable || $previousDate->diffInDays($date) <= 1) {
+                    $current[] = $item;
+                } else {
+                    $clusters[] = $current;
+                    $current = [$item];
+                }
+
+                $previousDate = $date;
+            }
+
+            $clusters[] = $current;
+
+            foreach ($clusters as $cluster) {
+                if (count($cluster) <= 1) {
+                    continue;
+                }
+
+                $best = null;
+                foreach ($cluster as $candidate) {
+                    $festival = $candidate['entry']['festival'];
+                    $rules = (array) ($festival['rules_applied'] ?? []);
+                    $score = (int) ($rules['winning_score'] ?? -1);
+                    $reason = (string) ($rules['winning_reason'] ?? '');
+                    $date = $candidate['entry']['date'];
+                    $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? $festival['resolution']['decision']['vriddhi_preference'] ?? '');
+
+                    if ($score < 0) {
+                        continue;
+                    }
+
+                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $date, $vriddhiPreference, $best)) {
+                        $best = [
+                            'idx' => $candidate['idx'],
+                            'score' => $score,
+                            'reason' => $reason,
+                            'date' => $date,
+                            'vriddhi_preference' => $vriddhiPreference,
+                        ];
+                    }
+                }
+
+                if ($best === null) {
+                    continue;
+                }
+
+                foreach ($cluster as $candidate) {
+                    if ($candidate['idx'] !== $best['idx']) {
+                        $remove[$candidate['idx']] = true;
+                    }
+                }
+            }
+        }
+
+        if ($remove === []) {
+            return $festivalFlat;
+        }
+
+        $filtered = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            if (!isset($remove[$idx])) {
+                $filtered[] = $entry;
+            }
+        }
+
+        return $filtered;
+    }
+
+    /**
+     * Keep a single best observance per year for configured festival names.
+     * Useful for Adhika/Nija duplicate resolutions when observances are not adjacent dates.
+     *
+     * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
+     *
+     * @return array<int, array{date:string, festival:array<string, mixed>}>
+     */
+    private function consolidateYearlySingleObservanceFestivals(array $festivalFlat): array
+    {
+        if ($festivalFlat === []) {
+            return $festivalFlat;
+        }
+
+        $targets = array_flip(self::YEARLY_SINGLE_OBSERVANCE_FESTIVALS);
+        $grouped = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            if ($name === '' || !isset($targets[$name])) {
+                continue;
+            }
+
+            $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
+        }
+
+        $remove = [];
+        foreach ($grouped as $items) {
+            if (count($items) <= 1) {
+                continue;
+            }
+
+            $best = null;
+            foreach ($items as $candidate) {
+                $festival = $candidate['entry']['festival'];
+                $rules = (array) ($festival['rules_applied'] ?? []);
+                $score = (int) ($rules['winning_score'] ?? -1);
+                $reason = (string) ($rules['winning_reason'] ?? '');
+                $date = $candidate['entry']['date'];
+
+                $reasonRank = match ($reason) {
+                    'target_at_karmakala' => 2,
+                    'target_during_observance' => 1,
+                    default => 0,
+                };
+
+                if ($best === null
+                    || $score > $best['score']
+                    || ($score === $best['score'] && $reasonRank > $best['reason_rank'])
+                    || ($score === $best['score'] && $reasonRank === $best['reason_rank'] && strcmp($date, $best['date']) < 0)) {
+                    $best = [
+                        'idx' => $candidate['idx'],
+                        'score' => $score,
+                        'reason_rank' => $reasonRank,
+                        'date' => $date,
+                    ];
+                }
+            }
+
+            foreach ($items as $candidate) {
+                if ($candidate['idx'] !== $best['idx']) {
+                    $remove[$candidate['idx']] = true;
+                }
+            }
+        }
+
+        if ($remove === []) {
+            return $festivalFlat;
+        }
+
+        $filtered = [];
+        foreach ($festivalFlat as $idx => $entry) {
+            if (!isset($remove[$idx])) {
+                $filtered[] = $entry;
+            }
+        }
+
+        return $filtered;
+    }
+
+    /** @param array{score:int, reason:string, date:string, vriddhi_preference:string} $best */
+    private function isStrongerFestivalDecision(int $score, string $reason, string $date, string $vriddhiPreference, array $best): bool
+    {
+        $reasonRank = static fn (string $r): int => match ($r) {
+            'target_at_karmakala' => 2,
+            'target_during_observance' => 1,
+            default => 0,
+        };
+
+        $sameScore = $score === $best['score'];
+        $sameReason = $reasonRank($reason) === $reasonRank($best['reason']);
+        $sameVriddhiPreference = $vriddhiPreference !== ''
+            && $vriddhiPreference === $best['vriddhi_preference'];
+
+        if ($sameScore && $sameReason && $sameVriddhiPreference) {
+            if ($vriddhiPreference === 'first') {
+                return strcmp($date, $best['date']) < 0;
+            }
+
+            if ($vriddhiPreference === 'last') {
+                return strcmp($date, $best['date']) > 0;
+            }
+        }
+
+        return $score > $best['score']
+            || ($score === $best['score'] && $reasonRank($reason) > $reasonRank($best['reason']))
+            || ($score === $best['score']
+                && $reasonRank($reason) === $reasonRank($best['reason'])
+                && $vriddhiPreference === ''
+                && strcmp($date, $best['date']) > 0);
+    }
+
+    /** @param array<string, mixed> $festival */
+    private function festivalObservanceDate(array $festival, string $fallbackDate): string
+    {
+        $observanceDate = (string) ($festival['resolution']['observance_date'] ?? '');
+        if ($observanceDate !== '') {
+            return $observanceDate;
+        }
+
+        return $fallbackDate;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $festivals
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function retainFestivalsForDate(array $festivals, string $dateKey): array
+    {
+        return array_values(array_filter(
+            $festivals,
+            fn (array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
+        ));
+    }
+}

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator('src'));
 $counts = [];
 foreach ($files as $file) {

@@ -4,28 +4,10 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
-use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\FestivalService;
-use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
-use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
-use JayeshMepani\PanchangCore\Panchanga\PanchangService;
-use SwissEph\FFI\SwissEphFFI;
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
-$sweph = new SwissEphFFI;
-$ruleEngine = new FestivalRuleEngine;
-$festivalService = new FestivalService($ruleEngine);
-$panchangService = new PanchangService(
-    $sweph,
-    new SunService($sweph),
-    new AstronomyService($sweph),
-    new PanchangaEngine,
-    new MuhurtaService,
-    $festivalService,
-    new BhadraEngine,
-);
+CliBootstrap::init(dirname(__DIR__));
+$panchangService = CliBootstrap::makePanchangService();
 
 // Check Jan 29, 2026 noon JD
 $jd = 2461070.5;
@@ -38,22 +20,19 @@ $res = $method->invoke($panchangService, $jd);
 echo 'Date JD: ' . $jd . PHP_EOL;
 print_r($res);
 
-// Debug the boundaries
-$pAm = $refl->getMethod('findAngleCrossing');
-$angleFn = function (float $t) use ($panchangService, $refl) {
-    $m = $refl->getMethod('getMoonSunAngle');
-    return $m->invoke($panchangService, $t);
-};
+$transitEngine = $refl->getProperty('transitEngine')->getValue($panchangService);
+$transitEngineRefl = new ReflectionClass($transitEngine);
+$pAm = $transitEngineRefl->getMethod('findAngleCrossing');
+$angleFn = fn (float $t): float => $transitEngine->getMoonSunAngle($t);
 
-$prev = $pAm->invoke($panchangService, $jd, 0.0, -1, $angleFn);
-$next = $pAm->invoke($panchangService, $jd, 0.0, 1, $angleFn);
+$prev = $pAm->invoke($transitEngine, $jd, 0.0, -1, $angleFn);
+$next = $pAm->invoke($transitEngine, $jd, 0.0, 1, $angleFn);
 
 echo 'Prev Amavasya JD: ' . $prev . PHP_EOL;
 echo 'Next Amavasya JD: ' . $next . PHP_EOL;
 
-$getSun = $refl->getMethod('getSunLongitude');
-$s0 = $getSun->invoke($panchangService, $prev);
-$s1 = $getSun->invoke($panchangService, $next);
+$s0 = $transitEngine->getSunLongitude($prev);
+$s1 = $transitEngine->getSunLongitude($next);
 
 echo sprintf('Sun at Prev: %s (Sign: ', $s0) . floor($s0 / 30) . ')' . PHP_EOL;
 echo sprintf('Sun at Next: %s (Sign: ', $s1) . floor($s1 / 30) . ')' . PHP_EOL;

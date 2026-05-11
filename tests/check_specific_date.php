@@ -8,15 +8,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 use Carbon\CarbonImmutable;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
-use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
-use JayeshMepani\PanchangCore\Astronomy\SunService;
-use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
-use JayeshMepani\PanchangCore\Festivals\FestivalService;
-use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
-use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
-use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
-use JayeshMepani\PanchangCore\Panchanga\PanchangService;
-use SwissEph\FFI\SwissEphFFI;
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $configStore = [
     'panchang' => [
@@ -58,19 +50,8 @@ $latitude = 23.2472446;
 $longitude = 69.668339;
 $elevation = 0.0;
 
-$sweph = new SwissEphFFI;
-$ruleEngine = new FestivalRuleEngine;
-$festivalService = new FestivalService($ruleEngine);
-
-$panchangService = new PanchangService(
-    $sweph,
-    new SunService($sweph),
-    new AstronomyService($sweph),
-    new PanchangaEngine,
-    new MuhurtaService,
-    $festivalService,
-    new BhadraEngine,
-);
+CliBootstrap::init(dirname(__DIR__));
+$panchangService = CliBootstrap::makePanchangService();
 
 $date = CarbonImmutable::create(2026, 1, 19, 0, 0, 0, $timezone);
 $details = $panchangService->getDayDetails($date, $latitude, $longitude, $timezone, $elevation);

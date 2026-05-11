@@ -301,3 +301,33 @@ vendor/bin/phpunit
 
 For changes that affect exported JSON, also regenerate and inspect the relevant files under `scripts/output`.
 For changes that affect CLI generation or release packaging, update the scripts under `scripts/` so they continue to produce identical outputs from the new file layout.
+
+## Documentation Update Rule
+
+If any refactor, reorganization, or restructuring changes anything visible to users or maintainers, update the corresponding documentation in the same change set. Treat the HTML docs and markdown docs as part of the public contract, not as optional commentary.
+
+This includes:
+
+- markdown files such as `README.md`, `PACKAGE_COVERAGE.md`, `docs/TRADITIONAL_TEXT_SOURCES.md`, and any other package notes or reference files
+- HTML documentation such as `docs/index.html`
+- usage snippets, method examples, constructor examples, parameter examples, and return-shape examples
+- public API descriptions, output payload explanations, feature coverage tables, and generated output references
+- any script documentation or generator instructions that become stale after the code move
+
+The HTML documentation is especially important because it shows end-user usage patterns. If the refactor changes any of the following, the HTML doc must be updated:
+
+- class names
+- constructor arguments
+- method names
+- parameter order or parameter types
+- return structure
+- example usage flow
+- any snippet that references moved code
+
+If the refactor is only an internal move and all of the above remain identical, the snippets do not need to change.
+
+The rule is simple:
+
+- if the public API, output shape, coverage list, or example usage changes, update the docs immediately
+- if the refactor is internal only and every visible contract remains identical, doc updates are optional
+- if in doubt, prefer updating the docs rather than leaving stale instructions behind

@@ -8,14 +8,29 @@ use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
+use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
+use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
+use JayeshMepani\PanchangCore\Muhurta\Classical\DailyPeriodsCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Doshas\VarjyamWindowCalculator;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
 use JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
+use JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use SwissEph\FFI\SwissEphFFI;
 
 /**
@@ -51,17 +66,40 @@ final class CliBootstrap
     public static function makePanchangService(): PanchangService
     {
         $sweph = new SwissEphFFI;
+        $sunService = new SunService($sweph);
+        $transitEngine = new TransitEngine($sweph);
+        $intervalTracker = new IntervalTracker($transitEngine, $sunService);
+        $bhadraEngine = new BhadraEngine;
+
+        $muhurtaService = new MuhurtaService(
+            new HoraCalculator,
+            new ChogadiyaCalculator,
+            new DailyPeriodsCalculator,
+            new InauspiciousPeriodsCalculator,
+            new GowriPanchangamCalculator,
+            new LagnaTableCalculator
+        );
+
         $ruleEngine = new FestivalRuleEngine;
         $festivalService = new FestivalService($ruleEngine);
 
         return new PanchangService(
             $sweph,
-            new SunService($sweph),
+            $sunService,
             new AstronomyService($sweph),
             new PanchangaEngine,
-            new MuhurtaService,
+            $muhurtaService,
             $festivalService,
-            new BhadraEngine,
+            $bhadraEngine,
+            $transitEngine,
+            $intervalTracker,
+            new VaasaCalculator($sunService),
+            new ShoolaCalculator($sunService),
+            new SpecialYogaCalculator($sunService, $intervalTracker),
+            new PanchakCalculator($intervalTracker),
+            new BhadraCalculator($transitEngine, $bhadraEngine),
+            new VarjyamWindowCalculator($transitEngine),
+            new EkadashiParanaCalculator($transitEngine, $sunService)
         );
     }
 
