@@ -186,7 +186,7 @@ final readonly class ClassicalTimeConstants
      * Binary search iterations for JD refinement.
      *
      * 80 iterations gives precision of ~1e-24 JD
-     * (theoretical limit, practical limit is Swiss Ephemeris accuracy)
+     * (theoretical limit, practical limit is native ephemeris/model accuracy)
      */
     public const int BINARY_SEARCH_ITERATIONS = 80;
 

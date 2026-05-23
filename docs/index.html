@@ -14,9 +14,9 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 237 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and Swiss Ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 237 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
-    content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, swiss ephemeris, laravel package, php astrology, hindu festivals">
+    content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://jayeshmepani.github.io/panchang-core/">
@@ -24,7 +24,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Panchang Core — Vedic Panchanga API Documentation">
   <meta property="og:description"
-    content="Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision. Complete API documentation for Tithi, Nakshatra, Yoga, Karana, and festival calculations.">
+    content="Authentic Vedic Panchanga calculation engine with JME native ephemeris precision. Complete API documentation for Tithi, Nakshatra, Yoga, Karana, and festival calculations.">
   <meta property="og:url" content="https://jayeshmepani.github.io/panchang-core/">
   <meta property="og:image" content="https://jayeshmepani.github.io/panchang-core/social-preview.png">
   <meta property="og:image:alt" content="Panchang Core documentation preview">
@@ -39,7 +39,7 @@
         "name": "Panchang Core",
         "codeRepository": "https://github.com/jayeshmepani/panchang-core",
         "url": "https://jayeshmepani.github.io/panchang-core/",
-        "description": "Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision for PHP and Laravel.",
+        "description": "Authentic Vedic Panchanga calculation engine with JME native ephemeris precision for PHP and Laravel.",
         "runtimePlatform": "PHP 8.3+",
         "license": "https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE",
         "author": {
@@ -464,12 +464,12 @@
         <h1 class="sr-only">Panchang Core — Advanced Vedic Astrology Engine for PHP</h1>
         <section id="introduction" class="content-section">
           <h2>Introduction</h2>
-          <p class="lead">Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision.</p>
+          <p class="lead">Authentic Vedic Panchanga calculation engine with JME native ephemeris precision.</p>
           <div class="info-box">
             <h3>Overview</h3>
             <p>Panchang Core is a comprehensive PHP package for calculating Vedic Panchanga elements, Muhūrtas,
               Karmakala
-              windows, and Hindu festivals with high astronomical precision. Built on Swiss Ephemeris FFI, it provides
+              windows, and Hindu festivals with high astronomical precision. Built on JME native ephemeris FFI, it provides
               a reusable calculation engine for authentic Vedic astrology applications.</p>
           </div>
           <div class="features-grid">
@@ -694,7 +694,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Swiss Ephemeris</strong></td>
+                  <td><strong>JME native ephemeris</strong></td>
                   <td>Planetary longitudes, Ayanāṃśa, Vara</td>
                 </tr>
                 <tr>
@@ -723,7 +723,7 @@
 
         <section id="system-setup" class="content-section">
           <h2>System Setup</h2>
-          <p class="lead">Configuring PHP FFI and Swiss Ephemeris data files.</p>
+          <p class="lead">Configuring PHP FFI and JME native ephemeris data files.</p>
           
           <div class="info-box" style="border-left-color: var(--color-warning);">
             <h3 style="color: var(--color-warning);">FFI Requirement</h3>
@@ -784,9 +784,9 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled' : 'FFI not enabled';"</code><
             <h3>Requirements</h3>
             <ul class="requirement-list">
               <li><strong>PHP 8.3+</strong>— uses typed constants, readonly classes, enums</li>
-              <li><strong>Swiss Ephemeris FFI</strong>— jayeshmepani/swiss-ephemeris-ffi</li>
+              <li><strong>JME native ephemeris FFI</strong>— jayeshmepani/jpl-moshier-ephemeris-ffi</li>
               <li><strong>Carbon</strong>— nesbot/carbon</li>
-              <li><strong>FFI Extension</strong>— required for Swiss Ephemeris</li>
+              <li><strong>FFI Extension</strong>— required for JME native ephemeris</li>
             </ul>
           </div>
         </section>
@@ -1872,7 +1872,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
 
             <div class="method">
               <h4 class="method-name">configure()</h4>
-              <p class="method-description">Configure the Swiss Ephemeris path for standalone usage.</p>
+              <p class="method-description">Configure the JME native ephemeris path for standalone usage.</p>
               <div class="method-signature">
                 <code>public function configure(string $ephePath = ""): void</code>
               </div>
@@ -2067,7 +2067,7 @@ foreach ($festivals as $festival) {
           <h2>AstronomyService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Astronomy\AstronomyService</code></p>
           <div class="enum-info">
-            <p>High-precision astronomical engine powered by Swiss Ephemeris FFI.</p>
+            <p>High-precision astronomical engine powered by JME native ephemeris FFI.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2623,7 +2623,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <p class="method-description">Calculate the current sidereal Lagna/ascendant sign for one timestamp and
                 location.</p>
               <div class="method-signature">
-                <code>public function calculateLagna(CarbonImmutable $current, CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEphFFI $sweph): array</code>
+                <code>public function calculateLagna(CarbonImmutable $current, CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, JmeEphFFI $jme): array</code>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Current Lagna longitude,
                 sign index/name, degree in sign, and applied ayanamsa.</div>
@@ -2633,7 +2633,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <p class="method-description">Calculate full 12/13 Lagna (Ascendant) intervals for the day with exact sign
                 entry times.</p>
               <div class="method-signature">
-                <code>public function calculateLagnaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, float $sunriseSunLon, float $ayanamsa, float $lat, float $lon, SwissEphFFI $sweph): array</code>
+                <code>public function calculateLagnaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, float $sunriseSunLon, float $ayanamsa, float $lat, float $lon, JmeEphFFI $jme): array</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
@@ -3071,7 +3071,7 @@ php panchang_month_output.php 2026 4 > month_2026_04.json</code></pre>
                 <td><code>ephe_path</code></td>
                 <td>string</td>
                 <td><code>__DIR__ . '/../ephe'</code></td>
-                <td>Path to Swiss Ephemeris <code>.se1</code> files.</td>
+                <td>Path to JME native ephemeris <code>.se1</code> files.</td>
               </tr>
               <tr>
                 <td><code>defaults.locale</code></td>
@@ -3639,7 +3639,7 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
         </section>
         <section id="accuracy" class="content-section">
           <h2>Accuracy & Date Range</h2>
-          <p class="lead">Technical specifications of the Swiss Ephemeris astronomical engine.</p>
+          <p class="lead">Technical specifications of the JME native ephemeris astronomical engine.</p>
 
           <div class="grid-container"
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
@@ -3707,7 +3707,7 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
             <tbody>
               <tr>
                 <td><code>RuntimeException</code></td>
-                <td>Swiss Ephemeris file not found</td>
+                <td>JME native ephemeris file not found</td>
                 <td>Set correct ephe_path in config</td>
               </tr>
               <tr>
@@ -3838,7 +3838,7 @@ if ($count === 0) {
               <dl class="qa-pair">
                 <dt class="sr-only">Answer</dt>
                 <dd>
-                  <p>We use Swiss Ephemeris which provides accuracy to within 1 arcsecond for planetary positions. All
+                  <p>We use JME native ephemeris which provides accuracy to within 1 arcsecond for planetary positions. All
                     calculations use IEEE 754 double precision with no intermediate rounding.</p>
                 </dd>
               </dl>
@@ -3848,7 +3848,7 @@ if ($count === 0) {
               <dl class="qa-pair">
                 <dt class="sr-only">Answer</dt>
                 <dd>
-                  <p>Yes! Swiss Ephemeris supports dates from 3000 BCE to 3000 CE. Just pass any valid CarbonImmutable
+                  <p>Yes! JME native ephemeris supports dates from 3000 BCE to 3000 CE. Just pass any valid CarbonImmutable
                     date.</p>
                 </dd>
               </dl>
@@ -3984,14 +3984,14 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
             <h3>AGPL-3.0 License</h3>
             <p>This project is licensed under the <strong>GNU Affero General Public License v3.0 (AGPL-3.0)</strong>.
             </p>
-            <p>The core engine utilize the <strong>Swiss Ephemeris</strong> for precision calculations, which follows a
+            <p>The core engine utilize the <strong>JME native ephemeris</strong> for precision calculations, which follows a
               dual-licensing model:</p>
             <ul>
               <li><strong>Open Source</strong>: Licensed under <strong>GNU AGPLv3</strong>. If you use this package in a
                 free/open-source project, your project must also be licensed under AGPLv3.</li>
               <li><strong>Commercial</strong>: If you wish to use this package in a closed-source or commercial
                 application, you <strong>MUST</strong> purchase a commercial license from <a
-                  href="https://www.astro.com/swisseph/swephprg.htm#licence" target="_blank" rel="noopener">Astrodienst
+                  href="https://www.astro.com/jme/swephprg.htm#licence" target="_blank" rel="noopener">Astrodienst
                   AG</a>.</li>
             </ul>
             <p>For more details, see the <a href="https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE"
@@ -4004,7 +4004,7 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
           <p>This section is a direct reflection snapshot of all public methods and public constants currently declared in <code>src/</code>.</p>
           <p>Use this as the definitive signature reference when integrating the package.</p>
           <pre><code class="language-text">## JayeshMepani\PanchangCore\Astronomy\AstronomyService
-- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- __construct(JmeEph\FFI\JmeEphFFI $jme): void
 - configure(string $ephePath = ""): void
 - getAscendant(array $birth): float
 - getAyanamsa(float $jd): float
@@ -4014,12 +4014,12 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
 - toJulianDayUtc(array $birth): float
 
 ## JayeshMepani\PanchangCore\Astronomy\EclipseService
-- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- __construct(JmeEph\FFI\JmeEphFFI $jme): void
 - configure(string $ephePath = ""): void
 - getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array
 
 ## JayeshMepani\PanchangCore\Astronomy\SunService
-- __construct(SwissEph\FFI\SwissEphFFI $sweph): void
+- __construct(JmeEph\FFI\JmeEphFFI $jme): void
 - configure(string $ephePath = ""): void
 - getBirthDatetime(array $birth): Carbon\CarbonImmutable
 - getIntervalAndStart(array $birth): array
@@ -4573,8 +4573,8 @@ const FESTIVAL_RULES
 - calculateHora(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $current, int $varaIdx): array
 - calculateHoraTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
 - calculateKalaVela(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
-- calculateLagna(Carbon\CarbonImmutable $current, Carbon\CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEph\FFI\SwissEphFFI $sweph): array
-- calculateLagnaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, SwissEph\FFI\SwissEphFFI $sweph): array
+- calculateLagna(Carbon\CarbonImmutable $current, Carbon\CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, JmeEph\FFI\JmeEphFFI $jme): array
+- calculateLagnaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, JmeEph\FFI\JmeEphFFI $jme): array
 - calculateMuhurtaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, int $tithiNum): array
@@ -4591,7 +4591,7 @@ const FESTIVAL_RULES
 - generateTodayPanchang(float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 
 ## JayeshMepani\PanchangCore\Panchanga\PanchangService
-- __construct(SwissEph\FFI\SwissEphFFI $sweph, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine, mixed $unusedTransitEngine = null, mixed $unusedIntervalTracker = null, JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator|null $vaasaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator|null $shoolaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator|null $specialYogaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator|null $panchakCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator|null $bhadraCalculator = null, mixed $unusedVarjyamWindowCalculator = null, JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator|null $ekadashiParanaCalculator = null, mixed ...$unusedExtractedCalculators): void
+- __construct(JmeEph\FFI\JmeEphFFI $jme, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine, mixed $unusedTransitEngine = null, mixed $unusedIntervalTracker = null, JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator|null $vaasaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator|null $shoolaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator|null $specialYogaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator|null $panchakCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator|null $bhadraCalculator = null, mixed $unusedVarjyamWindowCalculator = null, JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator|null $ekadashiParanaCalculator = null, mixed ...$unusedExtractedCalculators): void
 - configure(string $ephePath = ""): void
 - getDailyMuhurtaEvaluation(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $currentAt = null, float $elevation = 0, array $options = []): array
 - getDayDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array

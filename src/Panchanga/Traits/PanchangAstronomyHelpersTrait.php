@@ -6,7 +6,7 @@ namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 use Throwable;
 
 trait PanchangAstronomyHelpersTrait
@@ -26,22 +26,22 @@ trait PanchangAstronomyHelpersTrait
 
     private function getMoonSunAngle(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        $sun = $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
-        $moon = $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+        $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
         return AstroCore::normalize($moon - $sun);
     }
 
     private function getSunLongitude(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        return $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
     private function getMoonLongitude(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        return $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
     }
 
     private function findBhadraPeriods(float $jdStart, float $jdEnd, int $sunriseTithi, string $paksha): array
@@ -51,9 +51,9 @@ trait PanchangAstronomyHelpersTrait
 
     private function getSunMoonSum(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        $sun = $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
-        $moon = $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+        $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
         return AstroCore::normalize($sun + $moon);
     }
 

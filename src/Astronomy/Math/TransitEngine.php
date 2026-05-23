@@ -4,14 +4,29 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Astronomy\Math;
 
+use FFI\CData;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 
 /** Transit Engine - Handles astronomical crossing and low-level math. */
 class TransitEngine
 {
-    public function __construct(private readonly SwissEphFFI $sweph)
+    private const int BODY_LONGITUDE_CACHE_MAX = 20000;
+
+    private const int BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
+
+    private readonly CData $xxBuffer;
+
+    private readonly CData $serrBuffer;
+
+    /** @var array<string, float> */
+    private array $bodyLongitudeCache = [];
+
+    public function __construct(private readonly JmeEphFFI $jme)
     {
+        $ffi = $this->jme->getFFI();
+        $this->xxBuffer = $ffi->new('double[6]');
+        $this->serrBuffer = $ffi->new('char[256]');
     }
 
     public function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float
@@ -76,37 +91,52 @@ class TransitEngine
 
     public function calcBodyAtJd(float $jd, int $planet, int $flags): float
     {
-        $xx = $this->sweph->getFFI()->new('double[6]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
-        $this->sweph->swe_calc_ut($jd, $planet, $flags, $xx, $serr);
-        return AstroCore::normalize($xx[0]);
+        $cacheKey = sprintf('%.17g|%d|%d', $jd, $planet, $flags);
+        if (array_key_exists($cacheKey, $this->bodyLongitudeCache)) {
+            return $this->bodyLongitudeCache[$cacheKey];
+        }
+
+        $this->jme->jme_calc_ut($jd, $planet, $flags, $this->xxBuffer, $this->serrBuffer);
+        $value = AstroCore::normalize($this->xxBuffer[0]);
+        if (count($this->bodyLongitudeCache) >= self::BODY_LONGITUDE_CACHE_MAX) {
+            $this->bodyLongitudeCache = array_slice(
+                $this->bodyLongitudeCache,
+                -self::BODY_LONGITUDE_CACHE_TRIM_TO,
+                null,
+                true
+            );
+        }
+
+        $this->bodyLongitudeCache[$cacheKey] = $value;
+
+        return $value;
     }
 
     public function getMoonSunAngle(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        $sun = $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
-        $moon = $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+        $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
         return AstroCore::normalize($moon - $sun);
     }
 
     public function getSunLongitude(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        return $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
     public function getMoonLongitude(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        return $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
     }
 
     public function getSunMoonSum(float $jd): float
     {
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
-        $sun = $this->calcBodyAtJd($jd, SwissEphFFI::SE_SUN, $flags);
-        $moon = $this->calcBodyAtJd($jd, SwissEphFFI::SE_MOON, $flags);
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
+        $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+        $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
         return AstroCore::normalize($sun + $moon);
     }
 }

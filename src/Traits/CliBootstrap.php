@@ -31,7 +31,8 @@ use JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
-use SwissEph\FFI\SwissEphFFI;
+use JayeshMepani\PanchangCore\Support\DebugTrace;
+use JmeEph\FFI\JmeEphFFI;
 
 /**
  * CLI Bootstrap trait for standalone PHP scripts.
@@ -53,6 +54,7 @@ final class CliBootstrap
      */
     public static function init(string $baseDir): void
     {
+        DebugTrace::log('cli.init', 'bootstrapping CLI environment', ['base_dir' => $baseDir]);
         self::defineEnvHelper();
         self::defineConfigHelper($baseDir);
         self::setupContainer($baseDir);
@@ -65,9 +67,10 @@ final class CliBootstrap
      */
     public static function makePanchangService(): PanchangService
     {
-        $sweph = new SwissEphFFI;
-        $sunService = new SunService($sweph);
-        $transitEngine = new TransitEngine($sweph);
+        $jme = new JmeEphFFI;
+        self::configureJme($jme);
+        $sunService = new SunService($jme);
+        $transitEngine = new TransitEngine($jme);
         $intervalTracker = new IntervalTracker($transitEngine, $sunService);
         $bhadraEngine = new BhadraEngine;
 
@@ -84,9 +87,9 @@ final class CliBootstrap
         $festivalService = new FestivalService($ruleEngine);
 
         return new PanchangService(
-            $sweph,
+            $jme,
             $sunService,
-            new AstronomyService($sweph),
+            new AstronomyService($jme),
             new PanchangaEngine,
             $muhurtaService,
             $festivalService,
@@ -106,7 +109,9 @@ final class CliBootstrap
     /** Convenience: create an EclipseService. */
     public static function makeEclipseService(): EclipseService
     {
-        return new EclipseService(new SwissEphFFI);
+        $jme = new JmeEphFFI;
+        self::configureJme($jme);
+        return new EclipseService($jme);
     }
 
     /** Convenience: create an OutputGeneratorService. */
@@ -190,5 +195,28 @@ final class CliBootstrap
         $repo = new Repository(['panchang' => require $baseDir . '/config/panchang.php']);
         $container->instance('config', $repo);
         Container::setInstance($container);
+    }
+
+    private static function configureJme(JmeEphFFI $jme): void
+    {
+        $ephePath = config('panchang.ephe_path', $_ENV['PANCHANG_EPHE_PATH'] ?? '');
+        if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
+            $jme->jme_set_ephemeris_path($ephePath);
+        }
+
+        $jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
+        $engineMode = strtoupper((string) config('panchang.jme_settings.mode', 'auto'));
+        $nativeEngine = match ($engineMode) {
+            'JPL' => 'JPL',
+            'MOSHIER' => 'MOSHIER',
+            'VSOP_ELP_MEEUS', 'VSOP87', 'VSOP+ELP+MEEUS' => 'VSOP_ELP_MEEUS',
+            'ANALYTICAL' => 'ANALYTICAL',
+            default => 'AUTO',
+        };
+        $jme->jme_set_astro_models('ENGINE=' . $nativeEngine, 0);
+        DebugTrace::log('cli.jme', 'configured JME runtime', [
+            'engine' => $nativeEngine,
+            'ephe_path' => is_string($ephePath) ? $ephePath : '',
+        ]);
     }
 }

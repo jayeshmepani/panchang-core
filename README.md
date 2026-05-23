@@ -5,7 +5,7 @@
 [![PHP Version Require](https://img.shields.io/packagist/php-v/jayeshmepani/panchang-core?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
 
-**Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision** for PHP 8.3+.
+**Authentic Vedic Panchanga calculation engine powered by the JPL Moshier Ephemeris FFI wrapper** for PHP 8.3+.
 
 This package provides high-precision calculations for Vedic Panchanga elements (Tithi, Vara, Nakṣatra, Yoga, Karaṇa), Muhūrta, Chogadiya, Hora, Karmakala windows, special yogas, classical vaasa/direction checks, and 237 festival definitions with tradition/region profiles.
 
@@ -13,7 +13,7 @@ This package provides high-precision calculations for Vedic Panchanga elements (
 
 Key characteristics:
 
-- ✅ Uses **Swiss Ephemeris FFI** for maximum astronomical precision
+- ✅ Uses the **JPL Moshier Ephemeris FFI wrapper**
 - ✅ Implements **classical Indian algorithms** from authentic texts
 - ✅ Uses **IEEE 754 double precision** throughout the calculation pipeline
 - ✅ Supports **237 festival definitions** with tradition/region resolution
@@ -43,14 +43,14 @@ composer require jayeshmepani/panchang-core
 ### Requirements
 
 - **PHP 8.3+** (uses typed constants, readonly classes, enums)
-- **Swiss Ephemeris FFI** (`jayeshmepani/swiss-ephemeris-ffi`)
+- **JPL Moshier Ephemeris FFI** (`jayeshmepani/jpl-moshier-ephemeris-ffi`)
 - **Carbon** (`nesbot/carbon`)
 - **[FFI Extension](#%EF%B8%8F-ffi--system-setup)**
-- **[Swiss Ephemeris Data Files](#-ephemeris-files)**
+- **[Native Ephemeris Data Path](#-ephemeris-files)**
 
 ## ⚙️ FFI & System Setup
 
-The core engine relies on the PHP FFI (Foreign Function Interface) extension to communicate with the Swiss Ephemeris C library. This has been a **foundational architectural requirement** since the first version of the library to ensure maximum astronomical precision.
+The core engine relies on the PHP FFI (Foreign Function Interface) extension to communicate with the project-owned JME native library. This remains a foundational architectural requirement to preserve direct native calculations without a lossy PHP-side abstraction layer.
 
 ### 1. Install/Enable FFI Extension
 
@@ -104,10 +104,9 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled\n' : 'FFI not enabled\n';"
 
 ## 📂 Ephemeris Files
 
-The package requires `.se1` data files for high-precision astronomical calculations.
+The package can use external ephemeris/kernel data when your selected native engine mode requires it.
 
-- **Download**: You can download the verified ephemeris files from [Swiss-Ephemeris-PHP Releases](https://github.com/jayeshmepani/Swiss-Ephemeris-PHP/releases/tag/ephe-files).
-- **Setup**: Place these files in a directory (e.g., `/path/to/ephe`) and configure the path in your `.env` or `config/panchang.php`:
+- **Setup**: Place your ephemeris data in a directory (for example `/path/to/ephe`) and configure the path in your `.env` or `config/panchang.php`:
 
 ```bash
 PANCHANG_EPHE_PATH=/absolute/path/to/ephe
@@ -295,7 +294,7 @@ For complete details, see [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TE
 
 | Source                                | Implementation                       |
 | ------------------------------------- | ------------------------------------ |
-| **Swiss Ephemeris**                   | Planetary longitudes, Ayanāṃśa, Vara |
+| **JME Native Engine**                | Planetary longitudes, Ayanāṃśa, Vara |
 | **KP System**                         | Varjyam (Visha Ghati) calculation    |
 | **Ernst Wilhelm's Classical Muhurta** | Bhadra subdivisions                  |
 
@@ -314,28 +313,30 @@ All calculations use:
 - **No intermediate rounding** (lossless calculations)
 - **Binary search convergence** (80 iterations, 1e-24 JD precision)
 
-## 🛠️ Swiss Ephemeris Technical Specs
+## 🛠️ Native Engine Technical Specs
 
-The core engine utilizes the Swiss Ephemeris (SwissEph) for maximum astronomical precision.
+The core engine utilizes the project-owned JME native library through PHP FFI.
 
 | Mode                   | Date Range              | Precision    | Requirement          |
 | :--------------------- | :---------------------- | :----------- | :------------------- |
-| **High Precision**     | 13,201 BCE to 17,191 CE | 0.001 arcsec | `.se1` Data Files    |
-| **Standard (Moshier)** | 3,000 BCE to 3,000 CE   | 0.1 arcsec   | Built-in (Automatic) |
+| **JPL**                | Depends on loaded kernels | Kernel-backed | External kernel files |
+| **Moshier / VSOP / ELP / Meeus** | Wide analytical range | Model-dependent | Built into native library |
 
 ### Precision Details
 
-- **Planetary/Solar**: 0.001 arcsec with DE431 files.
-- **Lunar**: 3 arcsec (Moshier) / 0.001 arcsec (DE431).
-- **Asteroids**: Main asteroids covered 5401 BCE to 5399 CE.
+- Precision and range depend on the selected native engine and available kernel data.
+- `AUTO` mode lets the native layer choose between JPL and analytical backends.
+- `MOSHIER` and `VSOP_ELP_MEEUS` force analytical backends directly.
 
-### Data File Structure (`.se1`)
+### Engine Selection
 
-Ephemeris data is split into 600-year files:
+Use `PANCHANG_JME_MODE` to select the native engine:
 
-- **CE (AD) Dates**: Files prefixed with `sepl_` or `semo_` (e.g., `sepl_18.se1` for 1800-2400 CE).
-- **BCE (BC) Dates**: Files prefixed with `seplm` or `semom`.
-- **Asteroids**: Files prefixed with `se00` or `se0j`.
+- `auto`
+- `jpl`
+- `moshier`
+- `vsop_elp_meeus`
+- `analytical`
 
 ## 🪐 Ayanamsa Authority
 
@@ -616,16 +617,15 @@ composer test
 
 - **PHP**: 8.3 or higher
 - **Composer**: For package installation
-- **FFI Extension**: Required for Swiss Ephemeris FFI
+- **FFI Extension**: Required for the JME native FFI wrapper
 
 ### Dependencies
 
-- **jayeshmepani/swiss-ephemeris-ffi** ^v1.1.0 - Swiss Ephemeris PHP FFI wrapper
+- **jayeshmepani/jpl-moshier-ephemeris-ffi** - JME PHP FFI wrapper
 - **nesbot/carbon** ^3.0 - Date/time library
 
 ## 📚 Documentation
 
-- [Swiss Ephemeris Programmer's Documentation](https://www.astro.com/swisseph/swephprg.htm)
 - [Sūrya Siddhānta Translation](https://archive.org/details/suryasiddhantate00sury)
 - [Muhūrta Chintāmaṇi Translation](https://archive.org/details/muhurtachintama00vara)
 
@@ -649,19 +649,12 @@ If you find this package helpful, consider sponsoring the development:
 
 This repository is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-### Swiss Ephemeris Licensing
+### Native Library Note
 
-This core engine utilizes the **Swiss Ephemeris**, which has a dual-licensing model:
-
-1.  **Open Source**: Licensed under **GNU AGPLv3**. If you use this package in an open-source project, you must also use AGPLv3.
-2.  **Commercial**: If you wish to use this package in a closed-source or commercial application, you **MUST** purchase a commercial license from [Astrodienst AG](https://www.astro.com/swisseph/swephprg.htm#licence).
-
-See the [LICENSE](LICENSE) file for the full license text.
+This package now targets the project-owned JME native library through PHP FFI. Licensing and redistribution questions for that native layer should be handled based on the JME package and its bundled native assets.
 
 ## 🙏 Credits
 
-- **[Dieter Koch](https://www.astro.com/swisseph/)** - Swiss Ephemeris C Library Author
-- **[Astrodienst AG](https://www.astro.com/)** - Swiss Ephemeris Maintainers
 - **Classical Texts**: Sūrya Siddhānta, Muhūrta Chintāmaṇi, Nirṇaya Sindhu, Dharma Sindhu
 
 ---

@@ -15,7 +15,7 @@ use JayeshMepani\PanchangCore\Core\Localization;
  *
  * Core Rules:
  * 1. Bhadra = Vishti Karaṇa. Occurs 8 times per lunar month (4 per paksha).
- *    Actual boundaries are computed via Swiss Ephemeris in PanchangService::findBhadraPeriods().
+ *    Actual boundaries are computed via the native JME ephemeris layer in PanchangService::findBhadraPeriods().
  *
  * 2. Classical Subdivision (Ghatis from start of Bhadra):
  *    - Mukha (Mouth): First 5 Ghatis → Extremely Inauspicious

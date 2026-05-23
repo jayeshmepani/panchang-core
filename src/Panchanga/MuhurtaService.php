@@ -11,7 +11,7 @@ use JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 
 /** Muhurta Service - Orchestrator for various time-based astrological systems. */
 class MuhurtaService
@@ -187,9 +187,9 @@ class MuhurtaService
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        SwissEphFFI $sweph
+        JmeEphFFI $jme
     ): array {
-        return $this->lagnaTableCalculator->calculateLagna($current, $ayanamsaDeg, $lat, $lon, $sweph);
+        return $this->lagnaTableCalculator->calculateLagna($current, $ayanamsaDeg, $lat, $lon, $jme);
     }
 
     public function calculateLagnaTable(
@@ -200,8 +200,8 @@ class MuhurtaService
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        SwissEphFFI $sweph
+        JmeEphFFI $jme
     ): array {
-        return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $ayanamsaDeg, $lat, $lon, $sweph);
+        return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $ayanamsaDeg, $lat, $lon, $jme);
     }
 }

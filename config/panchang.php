@@ -5,10 +5,27 @@ declare(strict_types=1);
 return [
     /*
     |--------------------------------------------------------------------------
-    | Swiss Ephemeris Configuration
+    | Calculation Engine
     |--------------------------------------------------------------------------
     |
-    | Configure the Swiss Ephemeris library path and settings.
+    | Choose the astronomical engine to use for calculations.
+    | 'jme' -> Uses JPL Moshier Ephemeris via the package-native FFI wrapper.
+    |
+    */
+
+    'engine' => env('PANCHANG_ENGINE', 'jme'),
+
+    'jme_settings' => [
+        // 'auto', 'jpl', 'moshier', 'vsop_elp_meeus', 'analytical'
+        'mode' => env('PANCHANG_JME_MODE', 'moshier'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Native Ephemeris Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configure the native ephemeris data path and settings.
     |
     */
 

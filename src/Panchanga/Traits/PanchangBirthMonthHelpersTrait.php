@@ -8,7 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Localization;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 use Throwable;
 
 trait PanchangBirthMonthHelpersTrait
@@ -28,10 +28,10 @@ trait PanchangBirthMonthHelpersTrait
             $birth['timezone']
         );
 
-        $flags = SwissEphFFI::SEFLG_SWIEPH | SwissEphFFI::SEFLG_SIDEREAL;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
 
-        $sun = $this->calcBody($jd, SwissEphFFI::SE_SUN, $flags);
-        $moon = $this->calcBody($jd, SwissEphFFI::SE_MOON, $flags);
+        $sun = $this->calcBody($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+        $moon = $this->calcBody($jd, JmeEphFFI::JME_BODY_MOON, $flags);
 
         return [
             'Sun' => $sun,
@@ -41,12 +41,15 @@ trait PanchangBirthMonthHelpersTrait
 
     private function calcBody(float $jd, int $planet, int $flags): float
     {
-        $xx = $this->sweph->getFFI()->new('double[6]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
+        $cacheKey = sprintf('%.17g|%d|%d', $jd, $planet, $flags);
+        if (array_key_exists($cacheKey, $this->bodyLongitudeCache)) {
+            return $this->bodyLongitudeCache[$cacheKey];
+        }
 
-        $this->sweph->swe_calc_ut($jd, $planet, $flags, $xx, $serr);
+        $this->jme->jme_calc_ut($jd, $planet, $flags, $this->calcBodyBuffer, $this->calcBodyErrorBuffer);
+        $value = $this->normalize($this->calcBodyBuffer[0]);
 
-        return $this->normalize($xx[0]);
+        return $this->rememberBodyLongitude($jd, $planet, $flags, $value);
     }
 
     private function calculateIshtkaal(CarbonImmutable $sunrise, array $birth, string $tz): string

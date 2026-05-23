@@ -391,10 +391,15 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
     private function calcBodyAtJd(float $jd, int $planet, int $flags): float
     {
-        $xx = $this->sweph->getFFI()->new('double[6]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
-        $this->sweph->swe_calc_ut($jd, $planet, $flags, $xx, $serr);
-        return AstroCore::normalize($xx[0]);
+        $cacheKey = sprintf('%.17g|%d|%d', $jd, $planet, $flags);
+        if (array_key_exists($cacheKey, $this->bodyLongitudeCache)) {
+            return $this->bodyLongitudeCache[$cacheKey];
+        }
+
+        $this->jme->jme_calc_ut($jd, $planet, $flags, $this->calcBodyBuffer, $this->calcBodyErrorBuffer);
+        $value = AstroCore::normalize($this->calcBodyBuffer[0]);
+
+        return $this->rememberBodyLongitude($jd, $planet, $flags, $value);
     }
 
     private function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float

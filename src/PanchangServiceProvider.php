@@ -31,8 +31,8 @@ use JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
+use JmeEph\FFI\JmeEphFFI;
 use Override;
-use SwissEph\FFI\SwissEphFFI;
 
 /**
  * Panchang Core Service Provider.
@@ -50,30 +50,40 @@ class PanchangServiceProvider extends ServiceProvider
         // Core services (no dependencies)
         $this->app->singleton(AstroCore::class);
 
-        // Swiss Ephemeris FFI
-        $this->app->singleton(SwissEphFFI::class, function ($app): SwissEphFFI {
-            $sweph = new SwissEphFFI;
+        // JME FFI
+        $this->app->singleton(JmeEphFFI::class, function ($app): JmeEphFFI {
+            $jme = new JmeEphFFI;
 
             // Configure ephemeris path from config
             $ephePath = config('panchang.ephe_path');
             if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
-                $sweph->swe_set_ephe_path($ephePath);
+                $jme->jme_set_ephemeris_path($ephePath);
             }
 
             // For any authentic Hindu Panchanga, Lahiri is the only absolute standard.
-            $sweph->swe_set_sid_mode(SwissEphFFI::SE_SIDM_LAHIRI, 0.0, 0.0);
+            $jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
 
-            return $sweph;
+            $engineMode = strtoupper((string) config('panchang.jme_settings.mode', 'auto'));
+            $nativeEngine = match ($engineMode) {
+                'JPL' => 'JPL',
+                'MOSHIER' => 'MOSHIER',
+                'VSOP_ELP_MEEUS', 'VSOP87', 'VSOP+ELP+MEEUS' => 'VSOP_ELP_MEEUS',
+                'ANALYTICAL' => 'ANALYTICAL',
+                default => 'AUTO',
+            };
+            $jme->jme_set_astro_models('ENGINE=' . $nativeEngine, 0);
+
+            return $jme;
         });
 
         // Astronomy layer
-        $this->app->singleton(AstronomyService::class, fn ($app): AstronomyService => new AstronomyService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(AstronomyService::class, fn ($app): AstronomyService => new AstronomyService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(SunService::class, fn ($app): SunService => new SunService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(SunService::class, fn ($app): SunService => new SunService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(EclipseService::class, fn ($app): EclipseService => new EclipseService($app->make(SwissEphFFI::class)));
+        $this->app->singleton(EclipseService::class, fn ($app): EclipseService => new EclipseService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(TransitEngine::class, fn ($app): TransitEngine => new TransitEngine($app->make(SwissEphFFI::class)));
+        $this->app->singleton(TransitEngine::class, fn ($app): TransitEngine => new TransitEngine($app->make(JmeEphFFI::class)));
 
         $this->app->singleton(IntervalTracker::class, fn ($app): IntervalTracker => new IntervalTracker(
             $app->make(TransitEngine::class),
@@ -133,7 +143,7 @@ class PanchangServiceProvider extends ServiceProvider
 
         // Main Panchang service
         $this->app->singleton(PanchangService::class, fn ($app): PanchangService => new PanchangService(
-            $app->make(SwissEphFFI::class),
+            $app->make(JmeEphFFI::class),
             $app->make(SunService::class),
             $app->make(AstronomyService::class),
             $app->make(PanchangaEngine::class),

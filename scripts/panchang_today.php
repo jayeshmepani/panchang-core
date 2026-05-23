@@ -12,12 +12,14 @@ declare(strict_types=1);
  * This data changes daily — run whenever you need current data.
  */
 
+use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
 
 CliBootstrap::init($baseDir);
+DebugTrace::log('script.today', 'starting today panchang generation');
 
 $timezone = 'Asia/Kolkata';
 $latitude = 23.2472446;
@@ -29,6 +31,12 @@ $calendarType = config('panchang.defaults.calendar_type', 'amanta');
 
 $panchangService = CliBootstrap::makePanchangService();
 $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
+DebugTrace::log('script.today', 'services constructed', [
+    'calendar_type' => $calendarType,
+    'timezone' => $timezone,
+    'latitude' => $latitude,
+    'longitude' => $longitude,
+]);
 
 $result = $outputGen->generateTodayPanchang(
     lat: $latitude,
@@ -37,6 +45,7 @@ $result = $outputGen->generateTodayPanchang(
     elevation: $elevation,
     calendarType: $calendarType,
 );
+DebugTrace::log('script.today', 'generateTodayPanchang completed');
 
 $todayDate = $result['todays_complete_details']['date'] ?? 'unknown';
 
@@ -65,5 +74,6 @@ if ($json === false) {
 }
 
 file_put_contents('today_panchang.json', $json . PHP_EOL);
+DebugTrace::log('script.today', 'today_panchang.json written', ['date' => $todayDate]);
 
 echo "Written today_panchang.json — {$todayDate} for {$city}, {$country}." . PHP_EOL;

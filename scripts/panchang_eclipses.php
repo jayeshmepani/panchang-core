@@ -21,8 +21,8 @@ require $baseDir . '/vendor/autoload.php';
 
 CliBootstrap::init($baseDir);
 
-$startYear = isset($argv[1]) ? (int) $argv[1] : 2026;
-$endYear = isset($argv[2]) ? (int) $argv[2] : 2032;
+$startYear = isset($argv[1]) ? (int) $argv[1] : 2018;
+$endYear = isset($argv[2]) ? (int) $argv[2] : 2025;
 $timezone = 'Asia/Kolkata';
 $latitude = 23.2472446;
 $longitude = 69.668339;

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Astronomy\Concerns;
 
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 
 trait ConfiguresEphemeris
 {
     private static string $ephePath = '';
 
-    private function initializeEphemerisPath(SwissEphFFI $sweph): void
+    private function initializeEphemerisPath(JmeEphFFI $jme): void
     {
         $ephePath = self::$ephePath !== '' ? self::$ephePath
             : (function_exists('config')
@@ -18,7 +18,7 @@ trait ConfiguresEphemeris
                 : ($_ENV['PANCHANG_EPHE_PATH'] ?? ''));
 
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
-            $sweph->swe_set_ephe_path($ephePath);
+            $jme->jme_set_ephemeris_path($ephePath);
         }
     }
 

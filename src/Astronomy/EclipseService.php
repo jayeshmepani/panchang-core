@@ -9,15 +9,15 @@ use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Localization;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 
 class EclipseService
 {
     use ConfiguresEphemeris;
 
-    public function __construct(private SwissEphFFI $sweph)
+    public function __construct(private JmeEphFFI $jme)
     {
-        $this->initializeEphemerisPath($this->sweph);
+        $this->initializeEphemerisPath($this->jme);
     }
 
     /**
@@ -32,20 +32,26 @@ class EclipseService
 
     public function getEclipsesForYear(int $year, float $lat, float $lon, string $tz): array
     {
-        $start = $this->sweph->swe_julday($year, 1, 1, 0.0, SwissEphFFI::SE_GREG_CAL);
-        $end = $this->sweph->swe_julday($year + 1, 1, 1, 0.0, SwissEphFFI::SE_GREG_CAL);
+        $start = $this->jme->jme_julian_day($year, 1, 1, 0.0, JmeEphFFI::JME_CALENDAR_GREGORIAN);
+        $end = $this->jme->jme_julian_day($year + 1, 1, 1, 0.0, JmeEphFFI::JME_CALENDAR_GREGORIAN);
 
         $events = [];
         $seen = [];
         $cursor = $start - 1e-6;
+        $maxIterations = 2000;
+        $iteration = 0;
 
-        while ($cursor < $end) {
+        while ($cursor < $end && $iteration < $maxIterations) {
+            $iteration++;
             $nextLunar = $this->nextLunarEclipse($cursor, $lat, $lon, $tz);
             $nextSolar = $this->nextSolarEclipse($cursor, $lat, $lon, $tz);
 
             $candidates = array_values(array_filter([$nextLunar, $nextSolar], is_array(...)));
             if ($candidates === []) {
-                break;
+                // JME *_when functions can report "no eclipse near supplied date"
+                // for a given lunation. Advance cursor and continue scanning.
+                $cursor += 14.0;
+                continue;
             }
 
             usort($candidates, static fn (array $a, array $b): int => $a['jd'] <=> $b['jd']);
@@ -53,6 +59,12 @@ class EclipseService
 
             if (($pick['jd'] ?? $end + 1.0) >= $end) {
                 break;
+            }
+
+            if ((float) $pick['jd'] <= $cursor) {
+                // Defensive progression guard against non-advancing candidates.
+                $cursor += 0.5;
+                continue;
             }
 
             $hash = strtolower((string) $pick['type']) . ':' . number_format((float) $pick['jd'], 6, '.', '');
@@ -71,13 +83,13 @@ class EclipseService
 
     private function nextLunarEclipse(float $startJd, float $lat, float $lon, string $tz): ?array
     {
-        $tret = $this->sweph->getFFI()->new('double[10]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
+        $tret = $this->jme->getFFI()->new('double[10]');
+        $serr = $this->jme->getFFI()->new('char[256]');
 
-        $retFlag = $this->sweph->swe_lun_eclipse_when(
+        $retFlag = $this->jme->jme_lun_eclipse_when(
             $startJd,
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_ECL_ALLTYPES_LUNAR,
+            JmeEphFFI::JME_CALC_HIGH_PRECISION,
+            0,
             $tret,
             0,
             $serr
@@ -92,13 +104,13 @@ class EclipseService
 
     private function nextSolarEclipse(float $startJd, float $lat, float $lon, string $tz): ?array
     {
-        $tret = $this->sweph->getFFI()->new('double[10]');
-        $serr = $this->sweph->getFFI()->new('char[256]');
+        $tret = $this->jme->getFFI()->new('double[10]');
+        $serr = $this->jme->getFFI()->new('char[256]');
 
-        $retFlag = $this->sweph->swe_sol_eclipse_when_glob(
+        $retFlag = $this->jme->jme_sol_eclipse_when_glob(
             $startJd,
-            SwissEphFFI::SEFLG_SWIEPH,
-            SwissEphFFI::SE_ECL_ALLTYPES_SOLAR,
+            JmeEphFFI::JME_CALC_HIGH_PRECISION,
+            0,
             $tret,
             0,
             $serr
@@ -114,38 +126,44 @@ class EclipseService
     private function buildLunarEvent(float $jdMax, int $retFlag, float $lat, float $lon, string $tz): array
     {
         $geo = $this->newGeoPos($lat, $lon);
-        $serr = $this->sweph->getFFI()->new('char[256]');
+        $serr = $this->jme->getFFI()->new('char[256]');
 
-        $attr = $this->sweph->getFFI()->new('double[40]');
-        $retHow = $this->sweph->swe_lun_eclipse_how($jdMax, SwissEphFFI::SEFLG_SWIEPH, $geo, $attr, $serr);
+        $attr = $this->jme->getFFI()->new('double[40]');
+        $retHow = $this->jme->jme_lun_eclipse_how($jdMax, JmeEphFFI::JME_CALC_HIGH_PRECISION, $geo, $attr, $serr);
 
-        $tretLoc = $this->sweph->getFFI()->new('double[10]');
-        $attrLoc = $this->sweph->getFFI()->new('double[20]');
-        $retLoc = $this->sweph->swe_lun_eclipse_when_loc($jdMax - 1.0, SwissEphFFI::SEFLG_SWIEPH, $geo, $tretLoc, $attrLoc, 0, $serr);
+        $tretLoc = $this->jme->getFFI()->new('double[10]');
+        $attrLoc = $this->jme->getFFI()->new('double[20]');
+        $retLoc = $this->jme->jme_lun_eclipse_when_loc($jdMax - 1.0, JmeEphFFI::JME_CALC_HIGH_PRECISION, $geo, $tretLoc, $attrLoc, 0, $serr);
         $contactsFromSameEvent = $retLoc > 0 && $tretLoc[0] > 0 && abs((float) $tretLoc[0] - $jdMax) < 0.5;
+        $contacts = [
+            'penumbral_begin_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
+            'partial_begin_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
+            'total_begin_jd' => $contactsFromSameEvent && $tretLoc[6] > 0 ? (float) $tretLoc[6] : null,
+            'maximum_jd' => $jdMax,
+            'total_end_jd' => $contactsFromSameEvent && $tretLoc[7] > 0 ? (float) $tretLoc[7] : null,
+            'partial_end_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
+            'penumbral_end_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
+        ];
+
+        $hasLocalPartialWindow = $contacts['partial_begin_jd'] !== null
+            && $contacts['partial_end_jd'] !== null
+            && $contacts['partial_end_jd'] > $contacts['partial_begin_jd'];
+        $hasLocalTotalWindow = $contacts['total_begin_jd'] !== null
+            && $contacts['total_end_jd'] !== null
+            && $contacts['total_end_jd'] > $contacts['total_begin_jd'];
 
         $type = 'Penumbral';
-        if (($retFlag & SwissEphFFI::SE_ECL_TOTAL) !== 0) {
+        if ($hasLocalTotalWindow) {
             $type = 'Total';
-        } elseif (($retFlag & SwissEphFFI::SE_ECL_PARTIAL) !== 0) {
+        } elseif ($hasLocalPartialWindow) {
             $type = 'Partial';
         }
 
-        $contacts = [
-            'penumbral_begin_jd' => $contactsFromSameEvent && $tretLoc[6] > 0 ? (float) $tretLoc[6] : null,
-            'partial_begin_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
-            'total_begin_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
-            'maximum_jd' => $jdMax,
-            'total_end_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
-            'partial_end_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
-            'penumbral_end_jd' => $contactsFromSameEvent && $tretLoc[7] > 0 ? (float) $tretLoc[7] : null,
-        ];
-
         $dt = $this->jdToCarbon($jdMax, $tz);
 
-        $astroVisible = $retHow > 0 && (($retHow & SwissEphFFI::SE_ECL_VISIBLE) !== 0);
-        $hasRitualPhase = (($retFlag & SwissEphFFI::SE_ECL_PARTIAL) !== 0) || (($retFlag & SwissEphFFI::SE_ECL_TOTAL) !== 0);
-        $hasLocalContacts = $contacts['partial_begin_jd'] !== null && $contacts['partial_end_jd'] !== null;
+        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
+        $hasRitualPhase = $hasLocalPartialWindow || $hasLocalTotalWindow;
+        $hasLocalContacts = $hasLocalPartialWindow;
         $isVisible = $astroVisible && $contactsFromSameEvent && $hasRitualPhase && $hasLocalContacts;
         $sutakStartAnchor = $contacts['partial_begin_jd'];
         $sutakEndAnchor = $contacts['partial_end_jd'];
@@ -179,43 +197,50 @@ class EclipseService
     private function buildSolarEvent(float $jdMax, int $retFlag, float $lat, float $lon, string $tz): array
     {
         $geo = $this->newGeoPos($lat, $lon);
-        $serr = $this->sweph->getFFI()->new('char[256]');
+        $serr = $this->jme->getFFI()->new('char[256]');
 
-        $attr = $this->sweph->getFFI()->new('double[40]');
-        $retHow = $this->sweph->swe_sol_eclipse_how($jdMax, SwissEphFFI::SEFLG_SWIEPH, $geo, $attr, $serr);
+        $attr = $this->jme->getFFI()->new('double[40]');
+        $retHow = $this->jme->jme_sol_eclipse_how($jdMax, JmeEphFFI::JME_CALC_HIGH_PRECISION, $geo, $attr, $serr);
 
-        $tretLoc = $this->sweph->getFFI()->new('double[10]');
-        $attrLoc = $this->sweph->getFFI()->new('double[20]');
-        $retLoc = $this->sweph->swe_sol_eclipse_when_loc($jdMax - 1.0, SwissEphFFI::SEFLG_SWIEPH, $geo, $tretLoc, $attrLoc, 0, $serr);
+        $tretLoc = $this->jme->getFFI()->new('double[10]');
+        $attrLoc = $this->jme->getFFI()->new('double[20]');
+        $retLoc = $this->jme->jme_sol_eclipse_when_loc($jdMax - 1.0, JmeEphFFI::JME_CALC_HIGH_PRECISION, $geo, $tretLoc, $attrLoc, 0, $serr);
         $contactsFromSameEvent = $retLoc > 0 && $tretLoc[0] > 0 && abs((float) $tretLoc[0] - $jdMax) < 0.5;
 
+        $eventTypeCode = $contactsFromSameEvent ? $retLoc : $retFlag;
+
         $type = 'Partial';
-        if (($retFlag & SwissEphFFI::SE_ECL_TOTAL) !== 0) {
+        if ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_TOTAL) {
             $type = 'Total';
-        } elseif (($retFlag & SwissEphFFI::SE_ECL_ANNULAR) !== 0) {
+        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_ANNULAR) {
             $type = 'Annular';
-        } elseif (($retFlag & SwissEphFFI::SE_ECL_ANNULAR_TOTAL) !== 0) {
+        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_HYBRID) {
             $type = 'Annular-Total';
+        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_PARTIAL) {
+            $type = 'Partial';
         }
 
         $contacts = [
-            'first_contact_jd' => $contactsFromSameEvent && $tretLoc[1] > 0 ? (float) $tretLoc[1] : null,
-            'second_contact_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
+            'first_contact_jd' => $contactsFromSameEvent && $tretLoc[2] > 0 ? (float) $tretLoc[2] : null,
+            'second_contact_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
             'maximum_jd' => $jdMax,
-            'third_contact_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
-            'fourth_contact_jd' => $contactsFromSameEvent && $tretLoc[4] > 0 ? (float) $tretLoc[4] : null,
-            'sunrise_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
-            'sunset_jd' => $contactsFromSameEvent && $tretLoc[6] > 0 ? (float) $tretLoc[6] : null,
+            'third_contact_jd' => $contactsFromSameEvent && $tretLoc[5] > 0 ? (float) $tretLoc[5] : null,
+            'fourth_contact_jd' => $contactsFromSameEvent && $tretLoc[3] > 0 ? (float) $tretLoc[3] : null,
+            'sunrise_jd' => null,
+            'sunset_jd' => null,
         ];
 
         $dt = $this->jdToCarbon($jdMax, $tz);
 
-        $astroVisible = $retHow > 0 && (($retHow & SwissEphFFI::SE_ECL_VISIBLE) !== 0);
-        $hasLocalContacts = $contacts['first_contact_jd'] !== null && $contacts['fourth_contact_jd'] !== null;
-        $hasVisibleDiskMagnitude = (float) $attr[0] > 0.0;
-        $isVisible = $astroVisible && $contactsFromSameEvent && $hasLocalContacts && $hasVisibleDiskMagnitude;
-        $sutakStartAnchor = $contacts['first_contact_jd'];
-        $sutakEndAnchor = $contacts['fourth_contact_jd'];
+        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
+        $hasAnyVisibleContact = $contacts['first_contact_jd'] !== null
+            || $contacts['second_contact_jd'] !== null
+            || $contacts['third_contact_jd'] !== null
+            || $contacts['fourth_contact_jd'] !== null;
+        $hasVisibleDiskMagnitude = max((float) $attr[0], (float) $attrLoc[0]) > 0.0;
+        $isVisible = $astroVisible && $contactsFromSameEvent && $hasAnyVisibleContact && $hasVisibleDiskMagnitude;
+        $sutakStartAnchor = $contacts['first_contact_jd'] ?? $contacts['sunrise_jd'];
+        $sutakEndAnchor = $contacts['fourth_contact_jd'] ?? $contacts['sunset_jd'];
 
         return [
             'type' => Localization::translate('String', 'Solar'),
@@ -309,7 +334,7 @@ class EclipseService
     private function newGeoPos(float $lat, float $lon): object
     {
         /** @var CData $geo */
-        $geo = $this->sweph->getFFI()->new('double[3]');
+        $geo = $this->jme->getFFI()->new('double[3]');
         $geo[0] = $lon;
         $geo[1] = $lat;
         $geo[2] = 0.0;
@@ -318,14 +343,14 @@ class EclipseService
 
     private function jdToCarbon(float $jd, string $tz): CarbonImmutable
     {
-        $y = $this->sweph->getFFI()->new('int[1]');
-        $m = $this->sweph->getFFI()->new('int[1]');
-        $d = $this->sweph->getFFI()->new('int[1]');
-        $h = $this->sweph->getFFI()->new('int[1]');
-        $i = $this->sweph->getFFI()->new('int[1]');
-        $s = $this->sweph->getFFI()->new('double[1]');
+        $y = $this->jme->getFFI()->new('int[1]');
+        $m = $this->jme->getFFI()->new('int[1]');
+        $d = $this->jme->getFFI()->new('int[1]');
+        $h = $this->jme->getFFI()->new('int[1]');
+        $i = $this->jme->getFFI()->new('int[1]');
+        $s = $this->jme->getFFI()->new('double[1]');
 
-        $this->sweph->swe_jdut1_to_utc($jd, SwissEphFFI::SE_GREG_CAL, $y, $m, $d, $h, $i, $s);
+        $this->jme->jme_jd_to_utc($jd, JmeEphFFI::JME_CALENDAR_GREGORIAN, $y, $m, $d, $h, $i, $s);
 
         $sec = (int) floor($s[0]);
         $micros = (int) floor(($s[0] - $sec) * 1_000_000.0);

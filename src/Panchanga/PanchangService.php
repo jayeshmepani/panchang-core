@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use Carbon\CarbonImmutable;
+use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
 use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
@@ -26,7 +27,8 @@ use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangMuhurtaYogaDelegatesTrait
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangRuntimeEvaluationTrait;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
-use SwissEph\FFI\SwissEphFFI;
+use JayeshMepani\PanchangCore\Support\DebugTrace;
+use JmeEph\FFI\JmeEphFFI;
 
 /**
  * Panchang Service.
@@ -49,9 +51,23 @@ class PanchangService
         'Ganga Dussehra',
     ];
 
+    private const int BODY_LONGITUDE_CACHE_MAX = 20000;
+
+    private const int BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
+
     private static string $ephePath = '';
 
     private array $monthCache = [];
+
+    /** @var array<string, array<string, mixed>> */
+    private array $festivalSnapshotCache = [];
+
+    /** @var array<string, float> */
+    private array $bodyLongitudeCache = [];
+
+    private readonly CData $calcBodyBuffer;
+
+    private readonly CData $calcBodyErrorBuffer;
 
     private readonly VaasaCalculator $vaasaCalculator;
 
@@ -68,7 +84,7 @@ class PanchangService
     private readonly EkadashiParanaCalculator $ekadashiParanaCalculator;
 
     public function __construct(
-        private readonly SwissEphFFI $sweph,
+        private readonly JmeEphFFI $jme,
         private readonly SunService $sunService,
         private readonly AstronomyService $astronomy,
         private readonly PanchangaEngine $panchanga,
@@ -90,7 +106,7 @@ class PanchangService
 
         $transitEngine = $unusedTransitEngine instanceof TransitEngine
             ? $unusedTransitEngine
-            : new TransitEngine($this->sweph);
+            : new TransitEngine($this->jme);
         $intervalTracker = $unusedIntervalTracker instanceof IntervalTracker
             ? $unusedIntervalTracker
             : new IntervalTracker($transitEngine, $this->sunService);
@@ -102,6 +118,9 @@ class PanchangService
         $this->panchakCalculator = $panchakCalculator ?? new PanchakCalculator($intervalTracker);
         $this->bhadraCalculator = $bhadraCalculator ?? new BhadraCalculator($transitEngine, $this->bhadraEngine);
         $this->ekadashiParanaCalculator = $ekadashiParanaCalculator ?? new EkadashiParanaCalculator($transitEngine, $this->sunService);
+        $ffi = $this->jme->getFFI();
+        $this->calcBodyBuffer = $ffi->new('double[6]');
+        $this->calcBodyErrorBuffer = $ffi->new('char[256]');
 
         $envEphePath = ($_ENV['PANCHANG_EPHE_PATH'] ?? false);
         $envEphePath = is_string($envEphePath) ? $envEphePath : '';
@@ -109,11 +128,11 @@ class PanchangService
         $configEphePath = function_exists('config') ? config('panchang.ephe_path', $envEphePath) : $envEphePath;
         $ephePath = self::$ephePath !== '' ? self::$ephePath : (is_string($configEphePath) ? $configEphePath : '');
         if ($ephePath !== '' && file_exists($ephePath)) {
-            $this->sweph->swe_set_ephe_path($ephePath);
+            $this->jme->jme_set_ephemeris_path($ephePath);
         }
 
         // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
-        $this->sweph->swe_set_sid_mode(SwissEphFFI::SE_SIDM_LAHIRI, 0.0, 0.0);
+        $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
     }
 
     public static function configure(string $ephePath = ''): void
@@ -140,6 +159,14 @@ class PanchangService
             };
         }
 
+        DebugTrace::log('panchang.day', 'starting getDayDetails', [
+            'date' => $date->toDateString(),
+            'tz' => $tz,
+            'lat' => $lat,
+            'lon' => $lon,
+            'calendar_type' => $calendarType->value,
+        ]);
+
         $birthBase = [
             'year' => $date->year,
             'month' => $date->month,
@@ -154,6 +181,10 @@ class PanchangService
         ];
 
         [$sunrise, $sunset] = $this->sunService->getSunriseSunset($birthBase);
+        DebugTrace::log('panchang.day', 'sunrise/sunset resolved', [
+            'sunrise' => $sunrise->toIso8601String(),
+            'sunset' => $sunset->toIso8601String(),
+        ]);
 
         $calculationAt ??= $sunrise;
         $birthAt = $birthBase;
@@ -230,6 +261,9 @@ class PanchangService
             'elevation' => $elevation,
         ];
         [$nextSunrise] = $this->sunService->getSunriseSunset($nextBirth);
+        DebugTrace::log('panchang.day', 'next sunrise resolved', [
+            'next_sunrise' => $nextSunrise->toIso8601String(),
+        ]);
 
         $twilight = $this->sunService->getTwilightTimes($birthBase);
         $solarTransits = $this->sunService->getSolarTransits($birthBase);
@@ -246,6 +280,10 @@ class PanchangService
         $chogadiyaTable = $this->muhurta->calculateChogadiyaTable($relSunrise, $sunset, $nextSunrise, $vara['index']);
         $muhurtaTable = $this->muhurta->calculateMuhurtaTable($relSunrise, $sunset, $nextSunrise);
         $badTimes = $this->muhurta->calculateBadTimes($relSunrise, $sunset, $vara['index']);
+        DebugTrace::log('panchang.day', 'muhurta layer completed', [
+            'hora_ruler' => $hora['ruler'] ?? null,
+            'chogadiya_type' => $chogadiya['type'] ?? null,
+        ]);
 
         $abhijit = $this->muhurta->calculateAbhijitMuhurta($relSunrise, $sunset);
 
@@ -270,8 +308,14 @@ class PanchangService
             $ayanamsaDeg,
             $lat,
             $lon,
-            $this->sweph
+            $this->jme
         );
+        DebugTrace::log('panchang.day', 'lagna table completed', [
+            'lagna_rows' => count($lagnaTable),
+        ]);
+
+        $angleStageStart = hrtime(true);
+        DebugTrace::log('panchang.day', 'angle-crossing stage started');
 
         $jdSunrise = $this->toJulianDayFromCarbon($relSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
@@ -282,16 +326,27 @@ class PanchangService
         $tithiEndAngle = $tithiNum * 12.0;
         $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
         $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        DebugTrace::log('panchang.day', 'tithi crossings resolved', [
+            'tithi_start_jd' => $tithiStartJd,
+            'tithi_end_jd' => $tithiEndJd,
+        ]);
 
         $nakEndAngle = ($nakIdx + 1) * (360.0 / 27.0);
         $nakEndJd = $this->findAngleCrossing($jdSunrise, $nakEndAngle, 1, fn (float $jd): float => $this->getMoonLongitude($jd));
         $nakStartAngle = $nakIdx * (360.0 / 27.0);
         $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn (float $jd): float => $this->getMoonLongitude($jd));
+        DebugTrace::log('panchang.day', 'nakshatra crossings resolved', [
+            'nakshatra_start_jd' => $nakStartJd,
+            'nakshatra_end_jd' => $nakEndJd,
+        ]);
 
         // Varjyam (Tyajyam) can occur once or twice between sunrise and next sunrise.
         $varjyamWindows = $this->calculateVarjyamWindows($relSunrise, $sunset, $nextSunrise, $jdSunrise, $jdNextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
         $varjyam = $this->buildVarjyamPayload($varjyamWindows);
         $amritaKaal = $this->muhurta->calculateAmritaKaal($relSunrise, $varjyam);
+        DebugTrace::log('panchang.day', 'varjyam payload built', [
+            'window_count' => count($varjyamWindows),
+        ]);
 
         // Pradosha Kaal: first 1/5th of night, auspicious only when Trayodashi overlaps it.
         $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $nextSunrise, $jdSunset, $jdNextSunrise, $tz);
@@ -304,8 +359,12 @@ class PanchangService
             $ayanamsaDeg,
             $lat,
             $lon,
-            $this->sweph
+            $this->jme
         );
+        DebugTrace::log('panchang.day', 'instant lagna resolved', [
+            'sign_index' => $lagna['sign_index'] ?? null,
+            'degree_in_sign' => $lagna['degree_in_sign'] ?? null,
+        ]);
 
         $yogaIdx = (int) $yoga['index'];
         $yogaEndAngle = $yogaIdx * (360.0 / 27.0);
@@ -313,9 +372,21 @@ class PanchangService
 
         $karanaEndAngle = $karanaIdx * 6.0;
         $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        DebugTrace::log('panchang.day', 'yoga/karana crossings resolved', [
+            'yoga_end_jd' => $yogaEndJd,
+            'karana_end_jd' => $karanaEndJd,
+        ]);
 
         $kalaEngine = new KalaNirnayaEngine($lat, $lon);
         $hinduMonth = $this->getTrueHinduMonth($jdSunrise);
+        DebugTrace::log('panchang.day', 'core angle-crossing layer completed', [
+            'tithi_index' => $tithiNum,
+            'nakshatra_index' => $nakIdx,
+            'yoga_index' => $yogaIdx,
+            'karana_index' => $karanaIdx,
+            'month_amanta' => $hinduMonth['Month_Amanta_En'] ?? null,
+            'elapsed_s' => number_format((hrtime(true) - $angleStageStart) / 1_000_000_000, 6, '.', ''),
+        ]);
 
         $sankrantiNameMap = [
             0 => 'Mesha',
@@ -401,8 +472,12 @@ class PanchangService
             ],
         ];
 
+        $festivalSnapshotStart = hrtime(true);
+        DebugTrace::log('panchang.day', 'festival snapshot stage started');
         $tomorrowSnapshot = $this->getFestivalSnapshot($nextDay, $lat, $lon, $tz, $elevation, null, $calendarType);
+        DebugTrace::log('panchang.day', 'tomorrow snapshot built');
         $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, null, $calendarType);
+        DebugTrace::log('panchang.day', 'festival snapshots built');
         $festivals = $this->festivalService->resolveFestivalsForDate(
             $date,
             $todaySnapshot,
@@ -419,6 +494,10 @@ class PanchangService
             )
         );
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
+        DebugTrace::log('panchang.day', 'festival resolution completed', [
+            'festival_count' => count($festivals),
+            'snapshot_elapsed_s' => number_format((hrtime(true) - $festivalSnapshotStart) / 1_000_000_000, 6, '.', ''),
+        ]);
 
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
         $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
@@ -457,6 +536,7 @@ class PanchangService
             $lat,
             $lon
         );
+        DebugTrace::log('panchang.day', 'advanced observance layer completed');
 
         // Build fivefold lookup by English name (lowercase) since translated names may differ
         $englishNames = ['pratah', 'sangava', 'madhyahna', 'aparahna', 'sayahna'];
@@ -764,6 +844,19 @@ class PanchangService
             };
         }
 
+        $snapshotCacheKey = implode('|', [
+            $date->toDateString(),
+            sprintf('%.12F', $lat),
+            sprintf('%.12F', $lon),
+            $tz,
+            sprintf('%.6F', $elevation),
+            $calculationAt?->toIso8601String() ?? '',
+            $calendarType->value,
+        ]);
+        if (isset($this->festivalSnapshotCache[$snapshotCacheKey])) {
+            return $this->festivalSnapshotCache[$snapshotCacheKey];
+        }
+
         $birthBase = [
             'year' => $date->year,
             'month' => $date->month,
@@ -849,7 +942,7 @@ class PanchangService
             $ayanamsaDeg,
             $lat,
             $lon,
-            $this->sweph
+            $this->jme
         );
         $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
         $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
@@ -876,7 +969,7 @@ class PanchangService
             $lon
         );
 
-        return [
+        return $this->festivalSnapshotCache[$snapshotCacheKey] = [
             'Tithi' => $tithi,
             'Vara' => $vara,
             'Nakshatra' => [
@@ -941,6 +1034,23 @@ class PanchangService
             ],
             'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']),
         ];
+    }
+
+    private function rememberBodyLongitude(float $jd, int $planet, int $flags, float $value): float
+    {
+        if (count($this->bodyLongitudeCache) >= self::BODY_LONGITUDE_CACHE_MAX) {
+            $this->bodyLongitudeCache = array_slice(
+                $this->bodyLongitudeCache,
+                -self::BODY_LONGITUDE_CACHE_TRIM_TO,
+                null,
+                true
+            );
+        }
+
+        $cacheKey = sprintf('%.17g|%d|%d', $jd, $planet, $flags);
+        $this->bodyLongitudeCache[$cacheKey] = $value;
+
+        return $value;
     }
 
 }

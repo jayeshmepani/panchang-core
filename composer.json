@@ -1,8 +1,8 @@
 {
     "name": "jayeshmepani/panchang-core",
-    "description": "Authentic Vedic Panchanga calculation engine with Swiss Ephemeris precision",
+    "description": "Authentic Vedic Panchanga calculation engine powered by the JPL Moshier Ephemeris FFI wrapper",
     "type": "library",
-    "license": "AGPL-3.0-or-later",
+    "license": "MIT",
     "keywords": [
         "panchang",
         "vedic",
@@ -13,7 +13,7 @@
         "muhurta",
         "festival",
         "hindu calendar",
-        "swiss ephemeris"
+        "jpl moshier ephemeris"
     ],
     "authors": [
         {
@@ -23,8 +23,8 @@
     ],
     "require": {
         "php": ">=8.3",
-        "jayeshmepani/swiss-ephemeris-ffi": "^1.1",
-        "nesbot/carbon": "^3.0"
+        "nesbot/carbon": "^3.0",
+        "jayeshmepani/jpl-moshier-ephemeris-ffi": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.29",
@@ -78,7 +78,7 @@
             }
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "process-timeout": 900,
@@ -91,5 +91,14 @@
             "php-http/discovery": true,
             "phpstan/extension-installer": true
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../jpl-moshier-ephemeris-php",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }

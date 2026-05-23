@@ -8,7 +8,7 @@ use Carbon\CarbonImmutable;
 use DateTimeZone;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
-use SwissEph\FFI\SwissEphFFI;
+use JmeEph\FFI\JmeEphFFI;
 
 /** Lagna Table Calculator - Handles ascendant sign transitions. */
 class LagnaTableCalculator
@@ -18,12 +18,12 @@ class LagnaTableCalculator
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        SwissEphFFI $sweph
+        JmeEphFFI $jme
     ): array {
-        $jd = $this->carbonToJulianDayUtc($sweph, $current);
-        $cusp = $sweph->getFFI()->new('double[13]');
-        $ascmc = $sweph->getFFI()->new('double[10]');
-        $sweph->swe_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
+        $jd = $this->carbonToJulianDayUtc($jme, $current);
+        $cusp = $jme->getFFI()->new('double[13]');
+        $ascmc = $jme->getFFI()->new('double[10]');
+        $jme->jme_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
 
         $nirayanaLagna = AstroCore::normalize($ascmc[0] - $ayanamsaDeg);
         $sayanaLagna = AstroCore::normalize($ascmc[0]);
@@ -45,10 +45,10 @@ class LagnaTableCalculator
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        SwissEphFFI $sweph
+        JmeEphFFI $jme
     ): array {
-        $jdStart = $this->carbonToJulianDayUtc($sweph, $sunrise);
-        $jdSunset = $this->carbonToJulianDayUtc($sweph, $sunset);
+        $jdStart = $this->carbonToJulianDayUtc($jme, $sunrise);
+        $jdSunset = $this->carbonToJulianDayUtc($jme, $sunset);
         $jdEnd = $jdStart + 1.0; // One solar day (24 hours from sunrise)
 
         $lagnas = [];
@@ -58,7 +58,7 @@ class LagnaTableCalculator
 
         // Sampling phase - collect exactly 12 lagna sign transitions
         for ($jd = $jdStart; $jd <= $jdEnd + $step && $signsCollected < 12; $jd += $step) {
-            $asc = $this->getAscendantSiderealAtJd($sweph, $jd, $lat, $lon, $ayanamsaDeg);
+            $asc = $this->getAscendantSiderealAtJd($jme, $jd, $lat, $lon, $ayanamsaDeg);
             $signIdx = (int) floor($asc / 30.0) % 12;
 
             if ($signIdx !== $prevSign) {
@@ -70,7 +70,7 @@ class LagnaTableCalculator
                     $targetAngle = $signIdx * 30.0;
                     for ($iter = 0; $iter < 70; $iter++) {
                         $mid = ($low + $high) / 2.0;
-                        $midAsc = $this->getAscendantSiderealAtJd($sweph, $mid, $lat, $lon, $ayanamsaDeg);
+                        $midAsc = $this->getAscendantSiderealAtJd($jme, $mid, $lat, $lon, $ayanamsaDeg);
                         $diff = AstroCore::normalize($midAsc - $targetAngle);
                         if ($diff < 180.0) {
                             $high = $mid;
@@ -122,18 +122,18 @@ class LagnaTableCalculator
         return CarbonImmutable::createFromTimestamp($seconds, $tz)->addMicroseconds($microseconds);
     }
 
-    private function carbonToJulianDayUtc(SwissEphFFI $sweph, CarbonImmutable $dt): float
+    private function carbonToJulianDayUtc(JmeEphFFI $jme, CarbonImmutable $dt): float
     {
         $u = $dt->setTimezone('UTC');
 
-        return $sweph->swe_julday($u->year, $u->month, $u->day, $u->hour + $u->minute / 60.0 + $u->second / 3600.0, SwissEphFFI::SE_GREG_CAL);
+        return $jme->jme_julian_day($u->year, $u->month, $u->day, $u->hour + $u->minute / 60.0 + $u->second / 3600.0, JmeEphFFI::JME_CALENDAR_GREGORIAN);
     }
 
-    private function getAscendantSiderealAtJd(SwissEphFFI $sweph, float $jd, float $lat, float $lon, float $ayanamsa): float
+    private function getAscendantSiderealAtJd(JmeEphFFI $jme, float $jd, float $lat, float $lon, float $ayanamsa): float
     {
-        $cusp = $sweph->getFFI()->new('double[13]');
-        $ascmc = $sweph->getFFI()->new('double[10]');
-        $sweph->swe_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
+        $cusp = $jme->getFFI()->new('double[13]');
+        $ascmc = $jme->getFFI()->new('double[10]');
+        $jme->jme_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
 
         return AstroCore::normalize($ascmc[0] - $ayanamsa);
     }
