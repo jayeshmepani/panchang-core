@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jayeshmepani/panchang-core.svg?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![Total Downloads](https://img.shields.io/packagist/dt/jayeshmepani/panchang-core.svg?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/jayeshmepani/panchang-core?style=flat-square)](https://packagist.org/packages/jayeshmepani/panchang-core)
-[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 **Authentic Vedic Panchanga calculation engine powered by the JPL Moshier Ephemeris FFI wrapper** for PHP 8.3+.
 
@@ -43,7 +43,7 @@ composer require jayeshmepani/panchang-core
 ### Requirements
 
 - **PHP 8.3+** (uses typed constants, readonly classes, enums)
-- **JPL Moshier Ephemeris FFI** (`jayeshmepani/jpl-moshier-ephemeris-ffi`)
+- **JPL Moshier Ephemeris PHP FFI** (`jayeshmepani/jpl-moshier-ephemeris-php`)
 - **Carbon** (`nesbot/carbon`)
 - **[FFI Extension](#%EF%B8%8F-ffi--system-setup)**
 - **[Native Ephemeris Data Path](#-ephemeris-files)**
@@ -104,7 +104,7 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled\n' : 'FFI not enabled\n';"
 
 ## 📂 Ephemeris Files
 
-The package can use external ephemeris/kernel data when your selected native engine mode requires it.
+The package can use external JPL BSP kernel data when your selected native engine mode requires it.
 
 - **Setup**: Place your ephemeris data in a directory (for example `/path/to/ephe`) and configure the path in your `.env` or `config/panchang.php`:
 
@@ -336,7 +336,6 @@ Use `PANCHANG_JME_MODE` to select the native engine:
 - `jpl`
 - `moshier`
 - `vsop_elp_meeus`
-- `analytical`
 
 ## 🪐 Ayanamsa Authority
 
@@ -621,7 +620,7 @@ composer test
 
 ### Dependencies
 
-- **jayeshmepani/jpl-moshier-ephemeris-ffi** - JME PHP FFI wrapper
+- **jayeshmepani/jpl-moshier-ephemeris-php** - JME PHP FFI wrapper
 - **nesbot/carbon** ^3.0 - Date/time library
 
 ## 📚 Documentation
@@ -647,7 +646,7 @@ If you find this package helpful, consider sponsoring the development:
 
 ## 📄 License
 
-This repository is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+This repository is licensed under the **MIT License**.
 
 ### Native Library Note
 

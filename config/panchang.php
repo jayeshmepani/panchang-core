@@ -16,7 +16,7 @@ return [
     'engine' => env('PANCHANG_ENGINE', 'jme'),
 
     'jme_settings' => [
-        // 'auto', 'jpl', 'moshier', 'vsop_elp_meeus', 'analytical'
+        // 'auto', 'jpl', 'moshier', 'vsop_elp_meeus'
         'mode' => env('PANCHANG_JME_MODE', 'moshier'),
     ],
 

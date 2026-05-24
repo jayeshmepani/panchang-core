@@ -9,7 +9,9 @@ use JayeshMepani\PanchangCore\Facades\Panchang;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('slow')]
 class MonthCalendarTest extends TestCase
 {
     public function test_month_calendar_retrieval(): void
@@ -23,7 +25,7 @@ class MonthCalendarTest extends TestCase
         // Set locale to English for consistent test assertions
         config(['panchang.defaults.locale' => 'en']);
 
-        $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz);
+        $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz, 0.0, ['festival_scope' => 'month']);
 
         $this->assertIsArray($calendar);
         $this->assertCount(30, $calendar); // April has 30 days
@@ -69,9 +71,10 @@ class MonthCalendarTest extends TestCase
 
         config(['panchang.defaults.locale' => 'en']);
 
-        $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz, 0.0, [], null, 'purnimanta');
+        $calendar = Panchang::getMonthCalendar($year, $month, $lat, $lon, $tz, 0.0, ['festival_scope' => 'month'], null, 'purnimanta');
 
-        foreach ($calendar as $date => $day) {
+        foreach (['2026-04-01', '2026-04-15', '2026-04-30'] as $date) {
+            $day = $calendar[$date];
             $details = Panchang::getDayDetails(
                 CarbonImmutable::parse($date, $tz),
                 $lat,

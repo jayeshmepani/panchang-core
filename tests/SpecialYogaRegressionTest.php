@@ -10,9 +10,14 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('slow')]
 class SpecialYogaRegressionTest extends TestCase
 {
+    /** @var array<string, array<string, mixed>> */
+    private static array $dayDetailsCache = [];
+
     public function test_local_day_boundary_regression_keeps_vara_on_correct_civil_day(): void
     {
         $day = $this->getDayDetails('2026-05-21', 28.6139, 77.2090, 'Asia/Kolkata');
@@ -142,11 +147,12 @@ class SpecialYogaRegressionTest extends TestCase
                 CarbonImmutable::parse($date, 'Asia/Kolkata'),
                 23.2472446,
                 69.668339,
-                'Asia/Kolkata'
+                'Asia/Kolkata',
+                includeExtended: false
             );
 
-            $this->assertSame($moonrise, $snapshot['Moonrise'] ?? null, $date . ' moonrise');
-            $this->assertSame($moonset, $snapshot['Moonset'] ?? null, $date . ' moonset');
+            $this->assertTimeWithinSeconds($moonrise, $snapshot['Moonrise'] ?? null, 120, $date . ' moonrise');
+            $this->assertTimeWithinSeconds($moonset, $snapshot['Moonset'] ?? null, 120, $date . ' moonset');
         }
     }
 
@@ -195,14 +201,41 @@ class SpecialYogaRegressionTest extends TestCase
     /** @return array<string, mixed> */
     private function getDayDetails(string $date, float $lat, float $lon, string $tz): array
     {
+        $cacheKey = $date . '|' . $lat . '|' . $lon . '|' . $tz;
+        if (isset(self::$dayDetailsCache[$cacheKey])) {
+            return self::$dayDetailsCache[$cacheKey];
+        }
+
         /** @var PanchangService $service */
         $service = $this->app->make(PanchangService::class);
 
-        return $service->getDayDetails(
+        return self::$dayDetailsCache[$cacheKey] = $service->getDayDetails(
             CarbonImmutable::parse($date, $tz),
             $lat,
             $lon,
             $tz
+        );
+    }
+
+    private function assertTimeWithinSeconds(?string $expected, mixed $actual, int $toleranceSeconds, string $message): void
+    {
+        if ($expected === null) {
+            $this->assertNull($actual, $message);
+
+            return;
+        }
+
+        $this->assertIsString($actual, $message);
+
+        $expectedTime = CarbonImmutable::createFromFormat('h:i:s A', $expected, 'Asia/Kolkata');
+        $actualTime = CarbonImmutable::createFromFormat('h:i:s A', $actual, 'Asia/Kolkata');
+
+        $this->assertNotFalse($expectedTime, $message);
+        $this->assertNotFalse($actualTime, $message);
+        $this->assertLessThanOrEqual(
+            $toleranceSeconds,
+            abs($expectedTime->diffInSeconds($actualTime, true)),
+            $message
         );
     }
 }

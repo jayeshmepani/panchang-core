@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55b70e403dcdf2523839e06c4c699780",
+    "content-hash": "03173f33bbdf16f32020c40c74f0ff71",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -76,12 +76,18 @@
             "time": "2024-02-09T16:56:22+00:00"
         },
         {
-            "name": "jayeshmepani/jpl-moshier-ephemeris-ffi",
+            "name": "jayeshmepani/jpl-moshier-ephemeris-php",
             "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jayeshmepani/jpl-moshier-ephemeris-php.git",
+                "reference": "1649ddc9cc3edf40b7197f78b480bd8cf866085c"
+            },
             "dist": {
-                "type": "path",
-                "url": "../jpl-moshier-ephemeris-php",
-                "reference": "1b67c6c97dd935cca33437cbcdc4dd9c346b2c25"
+                "type": "zip",
+                "url": "https://api.github.com/repos/jayeshmepani/jpl-moshier-ephemeris-php/zipball/1649ddc9cc3edf40b7197f78b480bd8cf866085c",
+                "reference": "1649ddc9cc3edf40b7197f78b480bd8cf866085c",
+                "shasum": ""
             },
             "require": {
                 "ext-ffi": "*",
@@ -100,6 +106,7 @@
                 "phpunit/phpunit": "^11.0",
                 "rector/rector": "^2.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -142,7 +149,7 @@
                     "phpunit"
                 ],
                 "phpstan": [
-                    "phpstan analyse --memory-limit=2G"
+                    "phpstan analyse --memory-limit=2G --debug"
                 ],
                 "lint": [
                     "pint"
@@ -180,7 +187,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Complete 100% 1:1 PHP FFI Wrapper for the JPL Moshier Ephemeris C Library - Direct C function calls with zero abstraction for maximum astronomical precision",
+            "description": "PHP FFI wrapper for the JME native ephemeris library with direct jme_* API access and bundled runtime library support",
             "homepage": "https://github.com/jayeshmepani/jpl-moshier-ephemeris-php",
             "keywords": [
                 "astrology",
@@ -214,10 +221,7 @@
                     "url": "https://github.com/sponsors/jayeshmepani"
                 }
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2026-05-24T19:31:30+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -9285,7 +9289,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "jayeshmepani/jpl-moshier-ephemeris-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

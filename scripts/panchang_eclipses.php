@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Generate eclipses JSON for a range of years.
  *
  * Usage: php scripts/panchang_eclipses.php [start_year] [end_year]
- * Default: 2026-2032
+ * Default: 2018-2025
  * Output: eclipses_{start_year}_{end_year}.json
  *
  * This data is static — run once for a multi-year range.

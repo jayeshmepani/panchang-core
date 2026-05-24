@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore;
 
+use FFI;
 use Illuminate\Support\ServiceProvider;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
@@ -33,6 +34,7 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JmeEph\FFI\JmeEphFFI;
 use Override;
+use RuntimeException;
 
 /**
  * Panchang Core Service Provider.
@@ -67,10 +69,18 @@ class PanchangServiceProvider extends ServiceProvider
             $nativeEngine = match ($engineMode) {
                 'JPL' => 'JPL',
                 'MOSHIER' => 'MOSHIER',
-                'VSOP_ELP_MEEUS', 'VSOP87', 'VSOP+ELP+MEEUS' => 'VSOP_ELP_MEEUS',
-                'ANALYTICAL' => 'ANALYTICAL',
+                'VSOP_ELP_MEEUS' => 'VSOP_ELP_MEEUS',
                 default => 'AUTO',
             };
+            if (is_string($ephePath) && $ephePath !== '' && is_file($ephePath)) {
+                $error = $jme->getFFI()->new('char[256]');
+                $jme->__call('jme_set_jpl_file', [$ephePath]);
+                $openResult = $jme->__call('jme_jpl_open', [$ephePath, $error]);
+                if ($openResult !== JmeEphFFI::JME_OK && $nativeEngine === 'JPL') {
+                    throw new RuntimeException('jme_jpl_open failed: ' . FFI::string($error));
+                }
+            }
+
             $jme->jme_set_astro_models('ENGINE=' . $nativeEngine, 0);
 
             return $jme;

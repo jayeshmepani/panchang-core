@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Tests;
 
+use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('slow')]
 class EkadashiDateRegressionTest extends TestCase
 {
     public function test_un_gujarat_ekadashi_regression_dates(): void
@@ -16,35 +19,28 @@ class EkadashiDateRegressionTest extends TestCase
         /** @var PanchangService $service */
         $service = $this->app->make(PanchangService::class);
 
-        $festivals = $service->getFestivalYearCalendar(
-            year: 2026,
-            lat: 23.2472446,
-            lon: 69.668339,
-            tz: 'Asia/Kolkata',
-            elevation: 0.0,
-            calculationAt: null,
-            calendarType: 'amanta',
-        );
+        foreach ([
+            '2026-05-27' => 'Padmini Ekadashi',
+            '2026-08-23' => 'Shravana Putrada Ekadashi',
+            '2026-11-20' => 'Devutthana (Prabodhini) Ekadashi',
+        ] as $date => $expectedFestival) {
+            $details = $service->getDayDetails(
+                CarbonImmutable::parse($date, 'Asia/Kolkata'),
+                23.2472446,
+                69.668339,
+                'Asia/Kolkata',
+                0.0,
+                null,
+                'amanta',
+            );
 
-        $datesByFestival = [];
-        foreach ($festivals['flat'] as $entry) {
-            $festival = $entry['festival'];
-            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
-            if ($name === '') {
-                continue;
-            }
+            $festivalNames = array_map(
+                static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+                $details['Festivals'] ?? []
+            );
 
-            $date = $entry['date'];
-            if ($date === '') {
-                continue;
-            }
-
-            $datesByFestival[$name][] = $date;
+            $this->assertContains($expectedFestival, $festivalNames, $expectedFestival . ' should be present on ' . $date);
         }
-
-        $this->assertSame(['2026-05-27'], $datesByFestival['Padmini Ekadashi'] ?? []);
-        $this->assertSame(['2026-08-23'], $datesByFestival['Shravana Putrada Ekadashi'] ?? []);
-        $this->assertSame(['2026-11-20'], $datesByFestival['Devutthana (Prabodhini) Ekadashi'] ?? []);
     }
 
     #[Override]

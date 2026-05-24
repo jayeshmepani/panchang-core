@@ -24,8 +24,14 @@
     "require": {
         "php": ">=8.3",
         "nesbot/carbon": "^3.0",
-        "jayeshmepani/jpl-moshier-ephemeris-ffi": "*"
+        "jayeshmepani/jpl-moshier-ephemeris-php": "^1.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jayeshmepani/jpl-moshier-ephemeris-php"
+        }
+    ],
     "require-dev": {
         "laravel/pint": "^1.29",
         "mockery/mockery": "^1.6",
@@ -50,7 +56,9 @@
         }
     },
     "scripts": {
-        "test": "phpunit --do-not-fail-on-warning --do-not-fail-on-phpunit-warning --do-not-fail-on-incomplete --do-not-fail-on-deprecation --do-not-fail-on-phpunit-deprecation",
+        "test": "phpunit --exclude-group slow --do-not-fail-on-warning --do-not-fail-on-phpunit-warning --do-not-fail-on-incomplete --do-not-fail-on-deprecation --do-not-fail-on-phpunit-deprecation",
+        "test:slow": "phpunit --group slow --do-not-fail-on-warning --do-not-fail-on-phpunit-warning --do-not-fail-on-incomplete --do-not-fail-on-deprecation --do-not-fail-on-phpunit-deprecation",
+        "test:all": "phpunit --do-not-fail-on-warning --do-not-fail-on-phpunit-warning --do-not-fail-on-incomplete --do-not-fail-on-deprecation --do-not-fail-on-phpunit-deprecation",
         "rector": "vendor/bin/rector process",
         "lint": "pint",
         "lint:fix": "pint",
@@ -91,14 +99,5 @@
             "php-http/discovery": true,
             "phpstan/extension-installer": true
         }
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../jpl-moshier-ephemeris-php",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    }
 }

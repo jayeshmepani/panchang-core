@@ -52,9 +52,7 @@ function runPhpScript(string $label, string $command, string $workingDir): int
                     continue;
                 }
 
-                if ($stream === $pipes[1]) {
-                    echo $chunk;
-                } else {
+                if ($stream !== $pipes[1]) {
                     fwrite(STDERR, $chunk);
                 }
             }
@@ -129,7 +127,6 @@ function capturePhpScript(string $label, string $command, string $workingDir): a
 
                 if ($stream === $pipes[1]) {
                     $stdout .= $chunk;
-                    echo $chunk;
                 } else {
                     fwrite(STDERR, $chunk);
                 }
@@ -158,7 +155,7 @@ function capturePhpScript(string $label, string $command, string $workingDir): a
 }
 
 $calendarTypes = ['amanta', 'purnimanta'];
-$locales = ['en'];
+$locales = ['en', 'hi', 'gu'];
 $scriptsDir = __DIR__ . DIRECTORY_SEPARATOR . 'scripts';
 $outputBaseDir = $scriptsDir . DIRECTORY_SEPARATOR . 'output';
 
@@ -171,7 +168,6 @@ foreach ($calendarTypes as $type) {
     foreach ($locales as $lang) {
         $targetDir = $outputBaseDir . DIRECTORY_SEPARATOR . $type . DIRECTORY_SEPARATOR . $lang;
         echo "--- Generating for Calendar: $type, Locale: $lang ---\n";
-
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0777, true);
         }
@@ -232,6 +228,9 @@ foreach ($calendarTypes as $type) {
             throw new RuntimeException('panchang_month_output.php failed with exit code ' . $monthResult['exit_code']);
         }
         file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'month_2026_04.json', (string) $monthResult['stdout']);
+        $monthDecoded = json_decode((string) $monthResult['stdout'], true);
+        $monthDayCount = is_array($monthDecoded['calendar'] ?? null) ? count($monthDecoded['calendar']) : 0;
+        echo "Written month_2026_04.json — {$monthDayCount} calendar days.\n";
 
         // echo "Running panchang_raw_output.php...\n";
         // $rawOutput = shell_exec('php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'));

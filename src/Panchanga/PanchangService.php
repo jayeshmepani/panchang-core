@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use Carbon\CarbonImmutable;
+use FFI;
 use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
@@ -29,6 +30,7 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JmeEph\FFI\JmeEphFFI;
+use RuntimeException;
 
 /**
  * Panchang Service.
@@ -129,6 +131,16 @@ class PanchangService
         $ephePath = self::$ephePath !== '' ? self::$ephePath : (is_string($configEphePath) ? $configEphePath : '');
         if ($ephePath !== '' && file_exists($ephePath)) {
             $this->jme->jme_set_ephemeris_path($ephePath);
+        }
+
+        if (is_file($ephePath)) {
+            $error = $ffi->new('char[256]');
+            $engineMode = strtoupper((string) (function_exists('config') ? config('panchang.jme_settings.mode', 'auto') : 'auto'));
+            $this->jme->__call('jme_set_jpl_file', [$ephePath]);
+            $openResult = $this->jme->__call('jme_jpl_open', [$ephePath, $error]);
+            if ($openResult !== JmeEphFFI::JME_OK && $engineMode === 'JPL') {
+                throw new RuntimeException('jme_jpl_open failed: ' . FFI::string($error));
+            }
         }
 
         // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
@@ -834,7 +846,8 @@ class PanchangService
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
+        bool $includeExtended = true
     ): array {
         // Normalize calendar_type from string to enum
         if (is_string($calendarType)) {
@@ -852,6 +865,7 @@ class PanchangService
             sprintf('%.6F', $elevation),
             $calculationAt?->toIso8601String() ?? '',
             $calendarType->value,
+            $includeExtended ? 'extended' : 'basic',
         ]);
         if (isset($this->festivalSnapshotCache[$snapshotCacheKey])) {
             return $this->festivalSnapshotCache[$snapshotCacheKey];
@@ -934,23 +948,25 @@ class PanchangService
             $sankrantiRashi = ($currentSign + 1) % 12;
         }
 
-        $lagnaTable = $this->muhurta->calculateLagnaTable(
-            $sunrise,
-            $sunset,
-            $nextSunrise,
-            $sunLon,
-            $ayanamsaDeg,
-            $lat,
-            $lon,
-            $this->jme
-        );
-        $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
-        $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
-        $amritadiYoga = $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
-        $panchak = $this->calculatePanchak($jdSunrise, $jdNextSunrise, $tz);
-        $maitreyaYoga = $this->calculateMaitreyaYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $lagnaTable, $tz);
-        $gajachchhayaYoga = $this->calculateGajachchhayaYoga($jdSunrise, $jdNextSunrise, $hinduMonth, $tz);
-        $nakshatraShool = $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz);
+        $lagnaTable = $includeExtended
+            ? $this->muhurta->calculateLagnaTable(
+                $sunrise,
+                $sunset,
+                $nextSunrise,
+                $sunLon,
+                $ayanamsaDeg,
+                $lat,
+                $lon,
+                $this->jme
+            )
+            : [];
+        $specialYogas = $includeExtended ? $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz) : [];
+        $anandadiYoga = $includeExtended ? $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz) : [];
+        $amritadiYoga = $includeExtended ? $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz) : [];
+        $panchak = $includeExtended ? $this->calculatePanchak($jdSunrise, $jdNextSunrise, $tz) : [];
+        $maitreyaYoga = $includeExtended ? $this->calculateMaitreyaYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $lagnaTable, $tz) : [];
+        $gajachchhayaYoga = $includeExtended ? $this->calculateGajachchhayaYoga($jdSunrise, $jdNextSunrise, $hinduMonth, $tz) : [];
+        $nakshatraShool = $includeExtended ? $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz) : [];
         $dishaShool = $this->calculateDishaShool((int) $vara['index']);
         $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
         $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz);
@@ -1032,7 +1048,7 @@ class PanchangService
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
             ],
-            'Bhadra' => $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']),
+            'Bhadra' => $includeExtended ? $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']) : [],
         ];
     }
 

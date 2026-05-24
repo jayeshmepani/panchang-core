@@ -34,6 +34,8 @@ $fixedRefDate = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $timezone);
 
 $panchangService = CliBootstrap::makePanchangService();
 
+fwrite(STDERR, sprintf("Building month output for %04d-%02d...\n", $year, $month));
+
 $calendar = $panchangService->getMonthCalendar(
     year: $year,
     month: $month,

@@ -762,14 +762,14 @@ ffi.enable=1</code></pre>
           <pre><code class="language-bash">php -r "echo extension_loaded('ffi') ? 'FFI loaded' : 'FFI not loaded';"
 php -r "echo ini_get('ffi.enable') ? 'FFI enabled' : 'FFI not enabled';"</code></pre>
 
-          <h3 style="margin-top: 3rem;">📂 Ephemeris Data Files</h3>
-          <p>The calculation engine requires <code>.se1</code> data files. You can download the verified set from the official release page:</p>
+          <h3 style="margin-top: 3rem;">📂 JPL Kernel Files</h3>
+          <p>The default <code>moshier</code> mode works without external kernel files. For strict JPL mode, download a supported <code>.bsp</code> kernel from the native JME release page:</p>
           <div class="info-box" style="display: flex; align-items: center; justify-content: space-between; background: var(--color-primary-bg); border-color: var(--color-primary);">
             <div>
-              <h4 style="margin: 0; color: var(--color-primary);">Download Ephe Files</h4>
-              <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">Required for dates 3000 BCE – 3000 CE</p>
+              <h4 style="margin: 0; color: var(--color-primary);">Download JPL Kernels</h4>
+              <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">Use <code>de440s.bsp</code>, <code>de440.bsp</code>, or <code>de441.bsp</code> with <code>PANCHANG_JME_MODE=jpl</code>.</p>
             </div>
-            <a href="https://github.com/jayeshmepani/Swiss-Ephemeris-PHP/releases/tag/ephe-files" target="_blank" class="nav-link" style="background: var(--color-primary); color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Download Zip</a>
+            <a href="https://github.com/jayeshmepani/jpl-ephemeris/releases/tag/jpl-kernels" target="_blank" class="nav-link" style="background: var(--color-primary); color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Download Kernels</a>
           </div>
         </section>
 
@@ -784,7 +784,7 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled' : 'FFI not enabled';"</code><
             <h3>Requirements</h3>
             <ul class="requirement-list">
               <li><strong>PHP 8.3+</strong>— uses typed constants, readonly classes, enums</li>
-              <li><strong>JME native ephemeris FFI</strong>— jayeshmepani/jpl-moshier-ephemeris-ffi</li>
+              <li><strong>JME native ephemeris FFI</strong>— jayeshmepani/jpl-moshier-ephemeris-php</li>
               <li><strong>Carbon</strong>— nesbot/carbon</li>
               <li><strong>FFI Extension</strong>— required for JME native ephemeris</li>
             </ul>
@@ -3071,7 +3071,7 @@ php panchang_month_output.php 2026 4 > month_2026_04.json</code></pre>
                 <td><code>ephe_path</code></td>
                 <td>string</td>
                 <td><code>__DIR__ . '/../ephe'</code></td>
-                <td>Path to JME native ephemeris <code>.se1</code> files.</td>
+                <td>Path to a JPL <code>.bsp</code> kernel file or a directory containing JPL kernels. Required only for strict <code>jpl</code> mode.</td>
               </tr>
               <tr>
                 <td><code>defaults.locale</code></td>
@@ -3666,17 +3666,17 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
                   </tr>
                 </tbody>
               </table>
-              <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">*High Precision requires
-                <code>.se1</code> data files from Astro.com.</p>
+              <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">*Strict JPL mode requires
+                a compatible <code>.bsp</code> kernel file. Analytical modes are provided by the native JME runtime.</p>
             </div>
 
             <div class="info-box">
-              <h3>Ephemeris File Structure</h3>
-              <p>Files are split into 600-year periods:</p>
+              <h3>Kernel File Choices</h3>
+              <p>JPL mode can use one of the published JME kernel release assets:</p>
               <ul>
-                <li><code>sepl_*.se1</code>/<code>semo_*.se1</code> — Common Era (AD) Dates</li>
-                <li><code>seplm*.se1</code>/<code>semom*.se1</code> — Before Common Era (BC)</li>
-                <li><code>se00*.se1</code> — Asteroids (Range: 5401 BCE to 5399 CE)</li>
+                <li><code>de440s.bsp</code> — small kernel for lightweight installs</li>
+                <li><code>de440.bsp</code> — medium kernel recommended for normal JPL testing</li>
+                <li><code>de441.bsp</code> — large long-range kernel, published as split release assets</li>
               </ul>
             </div>
 
@@ -3754,8 +3754,9 @@ mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
                     <li><strong>Ayanamsa:</strong> Lahiri is fixed and cannot be changed in this package.</li>
                     <li><strong>Location:</strong> Ensure exact latitude/longitude.</li>
                     <li><strong>Tradition:</strong> Smarta vs Vaishnava have different rules.</li>
-                    <li><strong>Precision Mode:</strong> Ensure you have <code>.se1</code> ephemeris files installed for
-                      0.001" accuracy. Without them, the engine falls back to the Moshier model (0.1" precision).</li>
+                    <li><strong>Engine Mode:</strong> The default <code>moshier</code> mode is analytical and does not need
+                      external files. Strict <code>jpl</code> mode requires a compatible <code>.bsp</code> kernel configured
+                      through <code>PANCHANG_EPHE_PATH</code>.</li>
                     <li><strong>Panchang Day:</strong> Remember we use sunrise-to-sunrise days, not
                       midnight-to-midnight.</li>
                   </ul>
@@ -3981,19 +3982,10 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
         <section id="license" class="content-section">
           <h2>License</h2>
           <div class="info-box">
-            <h3>AGPL-3.0 License</h3>
-            <p>This project is licensed under the <strong>GNU Affero General Public License v3.0 (AGPL-3.0)</strong>.
-            </p>
-            <p>The core engine utilize the <strong>JME native ephemeris</strong> for precision calculations, which follows a
-              dual-licensing model:</p>
-            <ul>
-              <li><strong>Open Source</strong>: Licensed under <strong>GNU AGPLv3</strong>. If you use this package in a
-                free/open-source project, your project must also be licensed under AGPLv3.</li>
-              <li><strong>Commercial</strong>: If you wish to use this package in a closed-source or commercial
-                application, you <strong>MUST</strong> purchase a commercial license from <a
-                  href="https://www.astro.com/jme/swephprg.htm#licence" target="_blank" rel="noopener">Astrodienst
-                  AG</a>.</li>
-            </ul>
+            <h3>MIT License</h3>
+            <p>This project is licensed under the <strong>MIT License</strong>.</p>
+            <p>The core engine uses the project-owned <strong>JME native ephemeris</strong> through PHP FFI. JPL kernel
+              files are optional runtime data for strict JPL mode and are distributed separately from this package.</p>
             <p>For more details, see the <a href="https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE"
                 target="_blank" rel="noopener">full license text</a>.</p>
           </div>

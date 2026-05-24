@@ -1,35 +1,27 @@
-# Composer
+# Dependencies and tool caches
 /vendor/
+/.phpunit.cache/
+/.phpstan/
+/.phpunit.result.cache
 
-# Build artifacts
-/build/*.so
-/build/*.o
-/build/swisseph_src/
-/build/sweph.tar.gz
-/build/ephe/
+# Root-level generated script outputs
+/today_panchang.json
+/festivals_*.json
+/eclipses_2026_2032.json
+/eclipses_2018_2018.json
 
-# IDE
-/.idea/
-/.vscode/
-*.iml
+# Local benchmark scratch
+/scripts/output/benchmark/memory_footer.php
 
-# OS
-.DS_Store
-Thumbs.db
-
-# PHP
-.phpunit.result.cache
-.php-cs-fixer.cache
-.phpunit.cache/
-.phpstan.cache/
-/coverage/
-
-# Logs
+# Local/editor noise
+.idea/
+.vscode/
 *.log
+*.tmp
+*.bak
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
 
-# Misc
-/.venv
-/misc
-/node_modules
-
-.htmlhintrc

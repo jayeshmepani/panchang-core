@@ -35,9 +35,9 @@ trait PanchangCalendarApiTrait
         $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
 
         for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
-            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
-            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
-            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
 
             if ($festivals === []) {
@@ -106,23 +106,37 @@ trait PanchangCalendarApiTrait
         $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
         $daysInMonth = $start->daysInMonth;
 
-        // Use the same year-level festival orchestration/consolidation pipeline
-        // that powers scripts/panchang_festivals.php so month view never diverges.
-        $yearFestivalCalendar = $this->getFestivalYearCalendar(
-            year: $year,
-            lat: $lat,
-            lon: $lon,
-            tz: $tz,
-            elevation: $elevation,
-            calculationAt: $calculationAt,
-            calendarType: $calendarType,
-        );
-        $festivalsByDate = $yearFestivalCalendar['by_date'];
+        $festivalScope = (string) ($options['festival_scope'] ?? 'year');
+        if ($festivalScope === 'month') {
+            $festivalsByDate = $this->getFestivalCalendarForDateRange(
+                start: $start,
+                end: $start->addDays($daysInMonth - 1),
+                lat: $lat,
+                lon: $lon,
+                tz: $tz,
+                elevation: $elevation,
+                calculationAt: $calculationAt,
+                calendarType: $calendarType,
+            );
+        } else {
+            // Use the same year-level festival orchestration/consolidation pipeline
+            // that powers scripts/panchang_festivals.php so month view never diverges.
+            $yearFestivalCalendar = $this->getFestivalYearCalendar(
+                year: $year,
+                lat: $lat,
+                lon: $lon,
+                tz: $tz,
+                elevation: $elevation,
+                calculationAt: $calculationAt,
+                calendarType: $calendarType,
+            );
+            $festivalsByDate = $yearFestivalCalendar['by_date'];
+        }
 
         $snapshots = [];
         for ($i = -1; $i <= $daysInMonth; $i++) {
             $date = $start->addDays($i);
-            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType);
+            $snapshots[$i] = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
         }
 
         $calendar = [];
@@ -621,6 +635,63 @@ trait PanchangCalendarApiTrait
         }
 
         return $fallbackDate;
+    }
+
+    /** @return array<string, array<int, array<string, mixed>>> */
+    private function getFestivalCalendarForDateRange(
+        CarbonImmutable $start,
+        CarbonImmutable $end,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation,
+        ?CarbonImmutable $calculationAt,
+        CalendarType $calendarType
+    ): array {
+        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
+        $festivalsByDate = [];
+        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
+        $festivalFlat = [];
+
+        $rangeStart = $start->subDays(3);
+        $rangeEnd = $end->addDays(3);
+
+        for ($date = $rangeStart; $date->lessThanOrEqualTo($rangeEnd); $date = $date->addDay()) {
+            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
+
+            foreach ($festivals as $festival) {
+                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
+                $festivalsByDate[$dateKey] ??= [];
+                $festivalsByDate[$dateKey][] = $festival;
+                $festivalFlat[] = [
+                    'date' => $dateKey,
+                    'festival' => $festival,
+                ];
+            }
+        }
+
+        $this->appendRelativeDayFestivals($start->year, $tz, $festivalsByDate, $festivalFlat);
+
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
+
+        $filteredByDate = [];
+        foreach ($festivalFlat as $entry) {
+            $dateKey = $entry['date'];
+            if ($dateKey < $start->toDateString() || $dateKey > $end->toDateString()) {
+                continue;
+            }
+
+            $filteredByDate[$dateKey] ??= [];
+            $filteredByDate[$dateKey][] = $entry['festival'];
+        }
+
+        ksort($filteredByDate);
+
+        return $filteredByDate;
     }
 
     /**

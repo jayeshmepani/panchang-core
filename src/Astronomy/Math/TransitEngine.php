@@ -11,9 +11,9 @@ use JmeEph\FFI\JmeEphFFI;
 /** Transit Engine - Handles astronomical crossing and low-level math. */
 class TransitEngine
 {
-    private const int BODY_LONGITUDE_CACHE_MAX = 20000;
+    private const int DEFAULT_BODY_LONGITUDE_CACHE_MAX = 20000;
 
-    private const int BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
+    private const int DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
 
     private readonly CData $xxBuffer;
 
@@ -22,8 +22,11 @@ class TransitEngine
     /** @var array<string, float> */
     private array $bodyLongitudeCache = [];
 
-    public function __construct(private readonly JmeEphFFI $jme)
-    {
+    public function __construct(
+        private readonly JmeEphFFI $jme,
+        private readonly int $bodyLongitudeCacheMax = self::DEFAULT_BODY_LONGITUDE_CACHE_MAX,
+        private readonly int $bodyLongitudeCacheTrimTo = self::DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO,
+    ) {
         $ffi = $this->jme->getFFI();
         $this->xxBuffer = $ffi->new('double[6]');
         $this->serrBuffer = $ffi->new('char[256]');
@@ -98,10 +101,10 @@ class TransitEngine
 
         $this->jme->jme_calc_ut($jd, $planet, $flags, $this->xxBuffer, $this->serrBuffer);
         $value = AstroCore::normalize($this->xxBuffer[0]);
-        if (count($this->bodyLongitudeCache) >= self::BODY_LONGITUDE_CACHE_MAX) {
+        if (count($this->bodyLongitudeCache) >= $this->bodyLongitudeCacheMax) {
             $this->bodyLongitudeCache = array_slice(
                 $this->bodyLongitudeCache,
-                -self::BODY_LONGITUDE_CACHE_TRIM_TO,
+                -$this->bodyLongitudeCacheTrimTo,
                 null,
                 true
             );

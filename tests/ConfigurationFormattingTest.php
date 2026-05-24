@@ -9,7 +9,9 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
 use Override;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('slow')]
 class ConfigurationFormattingTest extends TestCase
 {
     public function testFormattingOutputsWithDifferentConfigurations(): void

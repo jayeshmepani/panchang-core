@@ -11,8 +11,10 @@ use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use JmeEph\FFI\JmeEphFFI;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use ReflectionClass;
 
+#[Group('slow')]
 class OptimizationRegressionTest extends TestCase
 {
     public function testRepeatedDayDetailsRemainIdentical(): void
@@ -45,9 +47,9 @@ class OptimizationRegressionTest extends TestCase
     {
         /** @var JmeEphFFI $jme */
         $jme = $this->app->make(JmeEphFFI::class);
-        $engine = new TransitEngine($jme);
+        $engine = new TransitEngine($jme, bodyLongitudeCacheMax: 20, bodyLongitudeCacheTrimTo: 10);
 
-        for ($i = 0; $i < 25050; $i++) {
+        for ($i = 0; $i < 21; $i++) {
             $jd = 2461183.0 + ($i / 100000.0);
             $engine->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL);
         }
@@ -56,8 +58,8 @@ class OptimizationRegressionTest extends TestCase
         /** @var array<string, float> $cache */
         $cache = $cacheProperty->getValue($engine);
 
-        $this->assertLessThanOrEqual(20000, count($cache));
-        $this->assertGreaterThanOrEqual(10000, count($cache));
+        $this->assertLessThanOrEqual(20, count($cache));
+        $this->assertGreaterThanOrEqual(10, count($cache));
     }
 
     protected function getPackageProviders($app): array

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Traits;
 
+use FFI;
 use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
@@ -33,6 +34,7 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JmeEph\FFI\JmeEphFFI;
+use RuntimeException;
 
 /**
  * CLI Bootstrap trait for standalone PHP scripts.
@@ -134,7 +136,7 @@ final class CliBootstrap
         // phpcs:disable
         eval('
         function env(string $key, mixed $default = null): mixed {
-            $value = $_ENV[$key] ?? $_SERVER[$key] ?? false;
+            $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
             if ($value === false) { return $default; }
             if (is_string($value)) {
                 $v = trim($value);
@@ -209,10 +211,18 @@ final class CliBootstrap
         $nativeEngine = match ($engineMode) {
             'JPL' => 'JPL',
             'MOSHIER' => 'MOSHIER',
-            'VSOP_ELP_MEEUS', 'VSOP87', 'VSOP+ELP+MEEUS' => 'VSOP_ELP_MEEUS',
-            'ANALYTICAL' => 'ANALYTICAL',
+            'VSOP_ELP_MEEUS' => 'VSOP_ELP_MEEUS',
             default => 'AUTO',
         };
+        if (is_string($ephePath) && $ephePath !== '' && is_file($ephePath)) {
+            $error = $jme->getFFI()->new('char[256]');
+            $jme->__call('jme_set_jpl_file', [$ephePath]);
+            $openResult = $jme->__call('jme_jpl_open', [$ephePath, $error]);
+            if ($openResult !== JmeEphFFI::JME_OK && $nativeEngine === 'JPL') {
+                throw new RuntimeException('jme_jpl_open failed: ' . FFI::string($error));
+            }
+        }
+
         $jme->jme_set_astro_models('ENGINE=' . $nativeEngine, 0);
         DebugTrace::log('cli.jme', 'configured JME runtime', [
             'engine' => $nativeEngine,
