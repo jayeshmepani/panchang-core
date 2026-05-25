@@ -28,6 +28,9 @@ class DailyPeriodsCalculator
             'solar_noon' => AstroCore::formatTime($solarNoon),
             'muhurta_duration_minutes' => AstroCore::formatDuration($muhurtaDuration / 60.0),
             'muhurta_number' => '8th of 15 (Abhijit)',
+            'abhijit_start_iso' => AstroCore::formatDateTime($abhijitStart),
+            'abhijit_end_iso' => AstroCore::formatDateTime($abhijitEnd),
+            'solar_noon_iso' => AstroCore::formatDateTime($solarNoon),
         ];
     }
 

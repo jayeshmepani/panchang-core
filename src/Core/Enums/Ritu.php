@@ -10,7 +10,9 @@ use JayeshMepani\PanchangCore\Core\Localization;
  * Ṛtu (Season) Enumeration.
  *
  * Represents the 6 seasons in the Hindu calendar.
- * Each ritu spans 60° of the zodiac (approx. 2 lunar months).
+ * Each ritu spans 60° of the zodiac.
+ * In the commonly published drik panchang convention, ṛtu changes are aligned
+ * with the Sun being 30° into each 60° block, so Vrishabha starts Grishma.
  */
 enum Ritu: int
 {
@@ -41,7 +43,7 @@ enum Ritu: int
             $normalized += 360.0;
         }
 
-        $index = (int) floor($normalized / 60.0);
+        $index = (int) floor(fmod($normalized + 30.0, 360.0) / 60.0);
         return self::from($index);
     }
 
@@ -54,6 +56,6 @@ enum Ritu: int
      */
     public static function fromMonth(int $monthIndex): self
     {
-        return self::from((int) floor(($monthIndex % 12) / 2.0));
+        return self::from((int) floor((($monthIndex + 1) % 12) / 2.0));
     }
 }

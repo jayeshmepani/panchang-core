@@ -93,8 +93,7 @@ class PanchangaEngine
 
     public function getRitu(float $sunLon): string
     {
-        $sIdx = (int) floor($sunLon / 30.0);
-        return Ritu::fromMonth($sIdx)->getName();
+        return Ritu::fromSunLongitude($sunLon)->getName();
     }
 
     public function getSamvat(int $year, int $month): array

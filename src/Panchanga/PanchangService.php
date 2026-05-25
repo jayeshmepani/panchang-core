@@ -230,6 +230,9 @@ class PanchangService
         $sunMoon = $this->getSunMoonLongitudes($sunriseBirth);
         $sunLon = $sunMoon['Sun'];
         $moonLon = $sunMoon['Moon'];
+        $currentSunMoon = $this->getSunMoonLongitudes($birthAt);
+        $currentSunLon = $currentSunMoon['Sun'];
+        $currentMoonLon = $currentSunMoon['Moon'];
 
         $ayanamsaBirth = $birthAt;
         $ayanamsaJd = $this->astronomy->toJulianDayUtc($ayanamsaBirth);
@@ -248,6 +251,8 @@ class PanchangService
         $ascSign = AstroCore::getSign($ascLon);
         $moonSign = AstroCore::getSign($moonLon);
         $sunSign = AstroCore::getSign($sunLon);
+        $currentMoonSign = AstroCore::getSign($currentMoonLon);
+        $currentSunSign = AstroCore::getSign($currentSunLon);
 
         $panchaka = $this->panchanga->calculatePanchakaRahita(
             (int) $tithi['index'],
@@ -655,6 +660,7 @@ class PanchangService
             'Sunrise' => AstroCore::formatTime($relSunrise),
             'Sunset' => AstroCore::formatTime($sunset),
             'Ishtkaal' => $isth,
+            'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
             'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
             'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
@@ -721,6 +727,7 @@ class PanchangService
                     'timestamp' => $moonset instanceof CarbonImmutable ? $moonset->getTimestamp() : null,
                 ],
                 'Ishtkaal' => $isth,
+                'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
                 'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
                 'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
@@ -751,8 +758,8 @@ class PanchangService
                 'Calendar_Type' => $calendarType->value,
             ],
             'Chart_Auxiliary' => [
-                'Sun_Sign' => Rasi::from($sunSign)->getName(),
-                'Moon_Sign' => Rasi::from($moonSign)->getName(),
+                'Sun_Sign' => Rasi::from($currentSunSign)->getName(),
+                'Moon_Sign' => Rasi::from($currentMoonSign)->getName(),
             ],
             'Festivals' => $festivals,
             'Daily_Observances' => $dailyObservances,
