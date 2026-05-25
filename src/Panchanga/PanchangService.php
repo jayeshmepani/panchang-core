@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use Carbon\CarbonImmutable;
-use FFI;
 use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
@@ -30,7 +29,6 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JmeEph\FFI\JmeEphFFI;
-use RuntimeException;
 
 /**
  * Panchang Service.
@@ -133,15 +131,14 @@ class PanchangService
             $this->jme->jme_set_ephemeris_path($ephePath);
         }
 
-        if (is_file($ephePath)) {
-            $error = $ffi->new('char[256]');
-            $engineMode = strtoupper((string) (function_exists('config') ? config('panchang.jme_settings.mode', 'auto') : 'auto'));
-            $this->jme->__call('jme_set_jpl_file', [$ephePath]);
-            $openResult = $this->jme->__call('jme_jpl_open', [$ephePath, $error]);
-            if ($openResult !== JmeEphFFI::JME_OK && $engineMode === 'JPL') {
-                throw new RuntimeException('jme_jpl_open failed: ' . FFI::string($error));
-            }
-        }
+        $engineMode = strtoupper((string) (function_exists('config') ? config('panchang.jme_settings.mode', 'auto') : 'auto'));
+        $nativeEngine = match ($engineMode) {
+            'JPL' => 'JPL',
+            'MOSHIER' => 'MOSHIER',
+            'VSOP_ELP_MEEUS', 'ANALYTICAL' => 'VSOP_ELP_MEEUS',
+            default => 'AUTO',
+        };
+        $this->jme->configureEngine($nativeEngine, $ephePath !== '' ? $ephePath : null);
 
         // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
         $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);

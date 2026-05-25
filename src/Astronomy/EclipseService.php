@@ -178,8 +178,11 @@ class EclipseService
 
         $hasRitualPhase = $hasLocalPartialWindow || $hasLocalTotalWindow;
         $hasLocalContacts = $visibilityStartJd !== null && $visibilityEndJd !== null && $visibilityEndJd > $visibilityStartJd;
-        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE || $hasRitualPhase;
-        $isVisible = $contactsFromSameEvent && $hasRitualPhase && $hasLocalContacts;
+        // Keep astronomical visibility strictly native. Do not infer it from
+        // ritual-phase presence, or the field stops reflecting the underlying
+        // local eclipse contract.
+        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts;
         $ritualVisibleStartJd = $this->maxJd($visibilityStartJd, $localContacts['partial_begin_jd']);
         $ritualVisibleEndJd = $this->minJd($visibilityEndJd, $localContacts['partial_end_jd']);
         if ($ritualVisibleStartJd === null || $ritualVisibleEndJd === null || $ritualVisibleEndJd <= $ritualVisibleStartJd) {
@@ -268,14 +271,16 @@ class EclipseService
         $dt = $this->jdToCarbon($localMaximumJd, $tz);
 
         $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
-        $hasAnyVisibleContact = $localContacts['first_contact_jd'] !== null
-            || $localContacts['second_contact_jd'] !== null
-            || $localContacts['third_contact_jd'] !== null
-            || $localContacts['fourth_contact_jd'] !== null;
         $hasVisibleDiskMagnitude = max((float) $attr[0], (float) $attrLoc[0]) > 0.0;
-        $isVisible = $astroVisible && $contactsFromSameEvent && $hasAnyVisibleContact && $hasVisibleDiskMagnitude;
+        // JME local solar search currently exposes local contact times but not
+        // separate rise/set truncation markers, so the visible window must be
+        // derived from ordered local outer contacts.
         $visibilityWindowStartJd = $localContacts['first_contact_jd'] ?? $localContacts['sunrise_jd'];
         $visibilityWindowEndJd = $localContacts['fourth_contact_jd'] ?? $localContacts['sunset_jd'];
+        $hasVisibleWindow = $visibilityWindowStartJd !== null
+            && $visibilityWindowEndJd !== null
+            && $visibilityWindowEndJd > $visibilityWindowStartJd;
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasVisibleDiskMagnitude && $hasVisibleWindow;
         $sutakStartAnchor = $visibilityWindowStartJd;
         $sutakEndAnchor = $visibilityWindowEndJd;
 

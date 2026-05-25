@@ -17,7 +17,7 @@ return [
 
     'jme_settings' => [
         // 'auto', 'jpl', 'moshier', 'vsop_elp_meeus'
-        'mode' => env('PANCHANG_JME_MODE', 'moshier'),
+        'mode' => env('PANCHANG_JME_MODE', 'jpl'),
     ],
 
     /*

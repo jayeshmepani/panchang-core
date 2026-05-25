@@ -175,8 +175,14 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
         $window = (array) ($event['visibility']['window'] ?? []);
         $sutak = (array) ($event['sutak'] ?? []);
         $contacts = (array) ($event['contacts'] ?? []);
+        $isVisible = (bool) ($event['visibility']['visible'] ?? false);
+        $astroVisible = (bool) ($event['visibility']['astronomical_visible'] ?? false);
 
-        if (($event['type'] ?? null) === 'Lunar' && ($event['visibility']['visible'] ?? false) === true) {
+        if ($isVisible) {
+            $this->assertTrue($astroVisible, $this->eventKey($event) . ' visible eclipse must also be astronomically visible');
+        }
+
+        if (($event['type'] ?? null) === 'Lunar' && $isVisible) {
             $partialEnd = $this->extractJd($contacts['partial_end_jd'] ?? null);
             $windowEnd = $window['end_jd'] ?? null;
 
@@ -186,7 +192,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             $this->assertEqualsWithDelta($windowEnd, $sutak['end_jd'] ?? null, 1e-6, $this->eventKey($event) . ' lunar sutak end should equal visibility window end');
         }
 
-        if (($event['type'] ?? null) === 'Solar' && ($event['visibility']['visible'] ?? false) === true) {
+        if (($event['type'] ?? null) === 'Solar' && $isVisible) {
             $contactMaximum = $contacts['maximum_jd']['time'] ?? null;
             $this->assertSame($event['datetime'] ?? null, $contactMaximum, $this->eventKey($event) . ' solar datetime should match contacts.maximum_jd');
             $this->assertEqualsWithDelta(
@@ -195,6 +201,11 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
                 1e-9,
                 $this->eventKey($event) . ' solar jd should match contacts.maximum_jd'
             );
+            $windowStart = $window['start_jd'] ?? null;
+            $windowEnd = $window['end_jd'] ?? null;
+            $this->assertIsFloat($windowStart, $this->eventKey($event) . ' solar visibility.window.start_jd');
+            $this->assertIsFloat($windowEnd, $this->eventKey($event) . ' solar visibility.window.end_jd');
+            $this->assertGreaterThan($windowStart, $windowEnd, $this->eventKey($event) . ' solar visibility window must be ordered');
         }
     }
 
