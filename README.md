@@ -126,7 +126,6 @@ Notes:
 - Full HTML documentation: [docs/index.html](docs/index.html)
 - Coverage matrix: [PACKAGE_COVERAGE.md](PACKAGE_COVERAGE.md)
 - Traditional source attribution: [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TEXT_SOURCES.md)
-- Architecture decisions: [docs/decisions](docs/decisions)
 
 ## Development
 
