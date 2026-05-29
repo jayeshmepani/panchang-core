@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T05:15:25+00:00",
+        "generated_at": "2026-05-29T12:49:12+00:00",
         "type": "eclipses",
         "from_year": 2026,
         "to_year": 2032,
@@ -14,12 +14,14 @@
         "title": "ग्रहण 2026-2032 - 7 वर्षों के सभी ग्रहण",
         "from_year": 2026,
         "to_year": 2032,
-        "total_eclipse_count": 32,
+        "total_eclipse_count": 33,
         "by_year": {
             "2026": [
                 {
                     "type": "सूर्य",
                     "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": null,
                     "date": "2026-02-17",
                     "datetime": "17/02/2026 05:42:24 PM",
                     "jd": 2461089.0086204344,
@@ -55,6 +57,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -81,29 +84,31 @@
                 },
                 {
                     "type": "चंद्र",
-                    "eclipse_type": "उपछाया",
+                    "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "उपछाया",
                     "date": "2026-03-03",
                     "datetime": "03/03/2026 05:04:14 PM",
-                    "jd": 2461102.9821146973,
+                    "jd": 2461102.982114697,
                     "magnitudes": {
-                        "umbral": 1.1532400933908373,
-                        "penumbral": 2.186298182561135
+                        "umbral": 1.1532400933932143,
+                        "penumbral": 2.1862981825587227
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461102.8644061144,
+                            "jd": 2461102.8644061135,
                             "time": "03/03/2026 02:14:44 PM"
                         },
                         "partial_begin_jd": {
-                            "jd": 2461102.9100476997,
+                            "jd": 2461102.9100476988,
                             "time": "03/03/2026 03:20:28 PM"
                         },
                         "total_begin_jd": {
-                            "jd": 2461102.961665674,
+                            "jd": 2461102.961665673,
                             "time": "03/03/2026 04:34:47 PM"
                         },
                         "maximum_jd": {
-                            "jd": 2461102.9821146973,
+                            "jd": 2461102.982114697,
                             "time": "03/03/2026 05:04:14 PM"
                         },
                         "total_end_jd": {
@@ -120,13 +125,14 @@
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 20341.972866654396,
-                        "partial_seconds": 12453.90155017376,
-                        "total_seconds": 3533.6480230093002
+                        "penumbral_seconds": 20341.972947120667,
+                        "partial_seconds": 12453.90163064003,
+                        "total_seconds": 3533.6481034755707
                     },
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": "उपछाया",
                         "retflag": 299,
                         "window": {
                             "start_jd": null,
@@ -160,9 +166,11 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": null,
                     "date": "2026-08-12",
                     "datetime": "12/08/2026 11:16:27 PM",
-                    "jd": 2461265.24060169,
+                    "jd": 2461265.240601616,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -180,7 +188,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2461265.24060169,
+                            "jd": 2461265.240601616,
                             "time": "12/08/2026 11:16:27 PM"
                         },
                         "third_contact_jd": null,
@@ -195,6 +203,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -221,17 +230,19 @@
                 },
                 {
                     "type": "चंद्र",
-                    "eclipse_type": "उपछाया",
+                    "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
                     "date": "2026-08-28",
                     "datetime": "28/08/2026 09:43:29 AM",
-                    "jd": 2461280.676035604,
+                    "jd": 2461280.6760356044,
                     "magnitudes": {
-                        "umbral": 0.9324411274059975,
-                        "penumbral": 1.9668945327843388
+                        "umbral": 0.9324411274081709,
+                        "penumbral": 1.966894532782135
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461280.558604826,
+                            "jd": 2461280.558604827,
                             "time": "28/08/2026 06:54:23 AM"
                         },
                         "partial_begin_jd": {
@@ -240,12 +251,12 @@
                         },
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2461280.676035604,
+                            "jd": 2461280.6760356044,
                             "time": "28/08/2026 09:43:29 AM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": {
-                            "jd": 2461280.7449689712,
+                            "jd": 2461280.744968972,
                             "time": "28/08/2026 11:22:45 AM"
                         },
                         "penumbral_end_jd": {
@@ -254,13 +265,14 @@
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 20290.303060412407,
-                        "partial_seconds": 11912.284049391747,
+                        "penumbral_seconds": 20290.302979946136,
+                        "partial_seconds": 11912.284129858017,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 297,
                         "window": {
                             "start_jd": null,
@@ -296,6 +308,8 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": null,
                     "date": "2027-02-06",
                     "datetime": "06/02/2027 09:30:15 PM",
                     "jd": 2461443.1668419973,
@@ -337,6 +351,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -364,28 +379,30 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": "उपछाया",
                     "date": "2027-02-21",
                     "datetime": "21/02/2027 04:43:20 AM",
-                    "jd": 2461457.4675964555,
+                    "jd": 2461457.4675964573,
                     "magnitudes": {
-                        "umbral": -0.054536624630911266,
-                        "penumbral": 0.9287277673167005
+                        "umbral": -0.054536624637522825,
+                        "penumbral": 0.9287277673234376
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461457.383782259,
+                            "jd": 2461457.383782261,
                             "time": "21/02/2027 02:42:38 AM"
                         },
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2461457.4675964555,
+                            "jd": 2461457.4675964573,
                             "time": "21/02/2027 04:43:20 AM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": null,
                         "penumbral_end_jd": {
-                            "jd": 2461457.5514182234,
+                            "jd": 2461457.5514182253,
                             "time": "21/02/2027 06:44:02 AM"
                         }
                     },
@@ -397,6 +414,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "उपछाया",
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -430,28 +448,30 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": "उपछाया",
                     "date": "2027-07-18",
                     "datetime": "18/07/2027 09:33:35 PM",
-                    "jd": 2461605.1691567563,
+                    "jd": 2461605.1691567544,
                     "magnitudes": {
-                        "umbral": -1.0637167251753255,
-                        "penumbral": 0.005262801354355356
+                        "umbral": -1.0637167251739195,
+                        "penumbral": 0.005262801352932537
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461605.161308079,
+                            "jd": 2461605.161308077,
                             "time": "18/07/2027 09:22:17 PM"
                         },
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2461605.1691567563,
+                            "jd": 2461605.1691567544,
                             "time": "18/07/2027 09:33:35 PM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": null,
                         "penumbral_end_jd": {
-                            "jd": 2461605.177005424,
+                            "jd": 2461605.1770054223,
                             "time": "18/07/2027 09:44:53 PM"
                         }
                     },
@@ -463,6 +483,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "उपछाया",
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -495,27 +516,29 @@
                 },
                 {
                     "type": "सूर्य",
-                    "eclipse_type": "आंशिक",
+                    "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "आंशिक",
                     "date": "2027-08-02",
                     "datetime": "02/08/2027 04:33:21 PM",
-                    "jd": 2461619.960661743,
+                    "jd": 2461619.9606617414,
                     "magnitudes": {
-                        "eclipse": 0.38451869538170935,
-                        "obscuration": 0.3423514686893728
+                        "eclipse": 0.3845186954431124,
+                        "obscuration": 0.3423514686883082
                     },
                     "contacts": {
                         "first_contact_jd": {
-                            "jd": 2461619.9236036376,
+                            "jd": 2461619.923603789,
                             "time": "02/08/2027 03:39:59 PM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2461619.960661743,
+                            "jd": 2461619.9606617414,
                             "time": "02/08/2027 04:33:21 PM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2461619.994927643,
+                            "jd": 2461619.994927641,
                             "time": "02/08/2027 05:22:41 PM"
                         },
                         "sunrise_jd": null,
@@ -523,45 +546,46 @@
                     },
                     "global_contacts": {
                         "first_contact_jd": {
-                            "jd": 2461619.8851458686,
+                            "jd": 2461619.8851458677,
                             "time": "02/08/2027 02:44:36 PM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2461619.9216033886,
+                            "jd": 2461619.921603387,
                             "time": "02/08/2027 03:37:06 PM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2461619.95806335,
+                            "jd": 2461619.958063348,
                             "time": "02/08/2027 04:29:36 PM"
                         },
                         "sunrise_jd": null,
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 6162.394054234028,
+                        "partial_seconds": 6162.380817532539,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "आंशिक",
                         "retflag": 308,
                         "window": {
-                            "start_jd": 2461619.9236036376,
+                            "start_jd": 2461619.923603789,
                             "start": "02/08/2027 03:39:59 PM",
-                            "end_jd": 2461619.994927643,
+                            "end_jd": 2461619.994927641,
                             "end": "02/08/2027 05:22:41 PM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2461619.3109916034,
-                        "end_jd": 2461619.994927643,
+                        "end_jd": 2461619.994927641,
                         "start": "02/08/2027 12:57:49 AM",
                         "end": "02/08/2027 05:22:41 PM",
                         "relaxed_start_jd": 2461619.673199016,
-                        "relaxed_end_jd": 2461619.994927643,
+                        "relaxed_end_jd": 2461619.994927641,
                         "relaxed_start": "02/08/2027 09:39:24 AM",
                         "relaxed_end": "02/08/2027 05:22:41 PM",
                         "duration_hours": 12
@@ -571,28 +595,30 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": null,
                     "date": "2027-08-17",
                     "datetime": "17/08/2027 12:44:27 PM",
-                    "jd": 2461634.8017030633,
+                    "jd": 2461634.8017030614,
                     "magnitudes": {
-                        "umbral": -0.5232230777655301,
-                        "penumbral": 0.547490418095465
+                        "umbral": -0.5232230777681162,
+                        "penumbral": 0.5474904180981016
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461634.7256398173,
+                            "jd": 2461634.7256398154,
                             "time": "17/08/2027 10:54:55 AM"
                         },
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2461634.8017030633,
+                            "jd": 2461634.8017030614,
                             "time": "17/08/2027 12:44:27 PM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": null,
                         "penumbral_end_jd": {
-                            "jd": 2461634.87776383,
+                            "jd": 2461634.8777638283,
                             "time": "17/08/2027 02:33:58 PM"
                         }
                     },
@@ -604,6 +630,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -638,7 +665,9 @@
             "2028": [
                 {
                     "type": "चंद्र",
-                    "eclipse_type": "उपछाया",
+                    "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
                     "date": "2028-01-12",
                     "datetime": "12/01/2028 09:43:33 AM",
                     "jd": 2461782.676086169,
@@ -678,6 +707,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 297,
                         "window": {
                             "start_jd": null,
@@ -711,6 +741,8 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": null,
                     "date": "2028-01-26",
                     "datetime": "26/01/2028 08:38:26 PM",
                     "jd": 2461797.1308655683,
@@ -752,6 +784,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -779,67 +812,70 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": "आंशिक",
                     "date": "2028-07-06",
                     "datetime": "06/07/2028 11:50:17 PM",
-                    "jd": 2461959.2640915615,
+                    "jd": 2461959.264091564,
                     "magnitudes": {
-                        "umbral": 0.39372849643992514,
-                        "penumbral": 1.430908838266588
+                        "umbral": 0.39372849642968927,
+                        "penumbral": 1.4309088382770259
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2461959.156038082,
+                            "jd": 2461959.156038085,
                             "time": "06/07/2028 09:14:41 PM"
                         },
                         "partial_begin_jd": {
-                            "jd": 2461959.2146647237,
+                            "jd": 2461959.2146647256,
                             "time": "06/07/2028 10:39:07 PM"
                         },
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2461959.2640915615,
+                            "jd": 2461959.264091564,
                             "time": "06/07/2028 11:50:17 PM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": {
-                            "jd": 2461959.3135217847,
+                            "jd": 2461959.3135217875,
                             "time": "07/07/2028 01:01:28 AM"
                         },
                         "penumbral_end_jd": {
-                            "jd": 2461959.37216112,
+                            "jd": 2461959.372161112,
                             "time": "07/07/2028 02:25:54 AM"
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 18673.030480742455,
-                        "partial_seconds": 8541.250070929527,
+                        "penumbral_seconds": 18673.02951514721,
+                        "partial_seconds": 8541.250151395798,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "आंशिक",
                         "retflag": 297,
                         "window": {
-                            "start_jd": 2461959.2146647265,
+                            "start_jd": 2461959.214664721,
                             "start": "06/07/2028 10:39:07 PM",
-                            "end_jd": 2461959.3135217875,
+                            "end_jd": 2461959.313521783,
                             "end": "07/07/2028 01:01:28 AM"
                         },
                         "penumbral_window": {
-                            "start_jd": 2461959.156038085,
+                            "start_jd": 2461959.1560380897,
                             "start": "06/07/2028 09:14:41 PM",
-                            "end_jd": 2461959.3721611127,
+                            "end_jd": 2461959.3721611174,
                             "end": "07/07/2028 02:25:54 AM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2461958.8098278027,
-                        "end_jd": 2461959.3135217875,
+                        "end_jd": 2461959.313521783,
                         "start": "06/07/2028 12:56:09 PM",
                         "end": "07/07/2028 01:01:28 AM",
                         "relaxed_start_jd": 2461959.091826436,
-                        "relaxed_end_jd": 2461959.3135217875,
+                        "relaxed_end_jd": 2461959.313521783,
                         "relaxed_start": "06/07/2028 07:42:13 PM",
                         "relaxed_end": "07/07/2028 01:01:28 AM",
                         "duration_hours": 9
@@ -849,9 +885,11 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": null,
                     "date": "2028-07-22",
                     "datetime": "22/07/2028 08:25:55 AM",
-                    "jd": 2461974.622168028,
+                    "jd": 2461974.6221680306,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -869,7 +907,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2461974.622168028,
+                            "jd": 2461974.6221680306,
                             "time": "22/07/2028 08:25:55 AM"
                         },
                         "third_contact_jd": null,
@@ -884,6 +922,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -911,60 +950,63 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "पूर्ण",
                     "date": "2028-12-31",
                     "datetime": "31/12/2028 10:22:36 PM",
-                    "jd": 2462137.203201244,
+                    "jd": 2462137.203201241,
                     "magnitudes": {
-                        "umbral": 1.2510290064356513,
-                        "penumbral": 2.2788656878020324
+                        "umbral": 1.2510290064186078,
+                        "penumbral": 2.2788656878194007
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2462137.0862782123,
+                            "jd": 2462137.086278218,
                             "time": "31/12/2028 07:34:14 PM"
                         },
                         "partial_begin_jd": {
-                            "jd": 2462137.1305195745,
+                            "jd": 2462137.13051958,
                             "time": "31/12/2028 08:37:56 PM"
                         },
                         "total_begin_jd": {
-                            "jd": 2462137.1781741465,
+                            "jd": 2462137.1781741427,
                             "time": "31/12/2028 09:46:34 PM"
                         },
                         "maximum_jd": {
-                            "jd": 2462137.203201244,
+                            "jd": 2462137.203201241,
                             "time": "31/12/2028 10:22:36 PM"
                         },
                         "total_end_jd": {
-                            "jd": 2462137.2282273117,
+                            "jd": 2462137.228227319,
                             "time": "31/12/2028 10:58:38 PM"
                         },
                         "partial_end_jd": {
-                            "jd": 2462137.275874217,
+                            "jd": 2462137.2758742142,
                             "time": "01/01/2029 12:07:15 AM"
                         },
                         "penumbral_end_jd": {
-                            "jd": 2462137.3201017976,
+                            "jd": 2462137.320101795,
                             "time": "01/01/2029 01:10:56 AM"
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 20202.357771992683,
-                        "partial_seconds": 12558.64111483097,
-                        "total_seconds": 4324.593481421471
+                        "penumbral_seconds": 20202.35704779625,
+                        "partial_seconds": 12558.640390634537,
+                        "total_seconds": 4324.594447016716
                     },
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "पूर्ण",
                         "retflag": 299,
                         "window": {
-                            "start_jd": 2462137.130519583,
+                            "start_jd": 2462137.1305195745,
                             "start": "31/12/2028 08:37:56 PM",
                             "end_jd": 2462137.275874217,
                             "end": "01/01/2029 12:07:15 AM"
                         },
                         "penumbral_window": {
-                            "start_jd": 2462137.0862782113,
+                            "start_jd": 2462137.0862782123,
                             "start": "31/12/2028 07:34:14 PM",
                             "end_jd": 2462137.3201017976,
                             "end": "01/01/2029 01:10:56 AM"
@@ -989,6 +1031,8 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
                     "date": "2029-01-14",
                     "datetime": "14/01/2029 10:43:16 PM",
                     "jd": 2462151.217554229,
@@ -1024,6 +1068,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -1051,6 +1096,8 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
                     "date": "2029-06-12",
                     "datetime": "12/06/2029 09:35:27 AM",
                     "jd": 2462299.670459806,
@@ -1086,146 +1133,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
-                        "retflag": -1,
-                        "window": {
-                            "start_jd": null,
-                            "start": null,
-                            "end_jd": null,
-                            "end": null
-                        }
-                    },
-                    "sutak": {
-                        "applicable": false,
-                        "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
-                        "reason_key": "eclipse_not_visible_at_location",
-                        "start_jd": null,
-                        "end_jd": null,
-                        "start": null,
-                        "end": null,
-                        "relaxed_start_jd": null,
-                        "relaxed_end_jd": null,
-                        "relaxed_start": null,
-                        "relaxed_end": null,
-                        "duration_hours": 0
-                    },
-                    "retflag": 308
-                },
-                {
-                    "type": "चंद्र",
-                    "eclipse_type": "उपछाया",
-                    "date": "2029-06-26",
-                    "datetime": "26/06/2029 08:52:40 AM",
-                    "jd": 2462313.6407489055,
-                    "magnitudes": {
-                        "umbral": 1.8464346110299246,
-                        "penumbral": 2.8293689071695924
-                    },
-                    "contacts": {
-                        "penumbral_begin_jd": {
-                            "jd": 2462313.5242390623,
-                            "time": "26/06/2029 06:04:54 AM"
-                        },
-                        "partial_begin_jd": {
-                            "jd": 2462313.56438383,
-                            "time": "26/06/2029 07:02:42 AM"
-                        },
-                        "total_begin_jd": {
-                            "jd": 2462313.6052265447,
-                            "time": "26/06/2029 08:01:31 AM"
-                        },
-                        "maximum_jd": {
-                            "jd": 2462313.6407489055,
-                            "time": "26/06/2029 08:52:40 AM"
-                        },
-                        "total_end_jd": {
-                            "jd": 2462313.6762731355,
-                            "time": "26/06/2029 09:43:49 AM"
-                        },
-                        "partial_end_jd": {
-                            "jd": 2462313.7171225166,
-                            "time": "26/06/2029 10:42:39 AM"
-                        },
-                        "penumbral_end_jd": {
-                            "jd": 2462313.7572785662,
-                            "time": "26/06/2029 11:40:28 AM"
-                        }
-                    },
-                    "durations": {
-                        "penumbral_seconds": 20134.61313843727,
-                        "partial_seconds": 13196.62252664566,
-                        "total_seconds": 6138.425445556641
-                    },
-                    "visibility": {
-                        "visible": false,
-                        "astronomical_visible": false,
-                        "retflag": 299,
-                        "window": {
-                            "start_jd": null,
-                            "start": null,
-                            "end_jd": null,
-                            "end": null
-                        },
-                        "penumbral_window": {
-                            "start_jd": null,
-                            "start": null,
-                            "end_jd": null,
-                            "end": null
-                        }
-                    },
-                    "sutak": {
-                        "applicable": false,
-                        "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
-                        "reason_key": "eclipse_not_visible_at_location",
-                        "start_jd": null,
-                        "end_jd": null,
-                        "start": null,
-                        "end": null,
-                        "relaxed_start_jd": null,
-                        "relaxed_end_jd": null,
-                        "relaxed_start": null,
-                        "relaxed_end": null,
-                        "duration_hours": 0
-                    },
-                    "retflag": 299
-                },
-                {
-                    "type": "सूर्य",
-                    "eclipse_type": "आंशिक",
-                    "date": "2029-07-11",
-                    "datetime": "11/07/2029 09:06:28 PM",
-                    "jd": 2462329.1503307875,
-                    "magnitudes": {
-                        "eclipse": 0,
-                        "obscuration": 0
-                    },
-                    "contacts": {
-                        "first_contact_jd": null,
-                        "second_contact_jd": null,
-                        "maximum_jd": null,
-                        "third_contact_jd": null,
-                        "fourth_contact_jd": null,
-                        "sunrise_jd": null,
-                        "sunset_jd": null
-                    },
-                    "global_contacts": {
-                        "first_contact_jd": null,
-                        "second_contact_jd": null,
-                        "maximum_jd": {
-                            "jd": 2462329.1503307875,
-                            "time": "11/07/2029 09:06:28 PM"
-                        },
-                        "third_contact_jd": null,
-                        "fourth_contact_jd": null,
-                        "sunrise_jd": null,
-                        "sunset_jd": null
-                    },
-                    "durations": {
-                        "partial_seconds": 0,
-                        "total_seconds": 0
-                    },
-                    "visibility": {
-                        "visible": false,
-                        "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -1253,40 +1161,253 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "पूर्ण",
-                    "date": "2029-12-21",
-                    "datetime": "21/12/2029 04:12:37 AM",
-                    "jd": 2462491.4462645208,
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": null,
+                    "date": "2029-06-26",
+                    "datetime": "26/06/2029 08:52:40 AM",
+                    "jd": 2462313.640748907,
                     "magnitudes": {
-                        "umbral": 1.119916645294004,
-                        "penumbral": 2.2031517047494207
+                        "umbral": 1.846434611023467,
+                        "penumbral": 2.829368907176946
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2462491.32180709,
+                            "jd": 2462313.524239064,
+                            "time": "26/06/2029 06:04:54 AM"
+                        },
+                        "partial_begin_jd": {
+                            "jd": 2462313.564383832,
+                            "time": "26/06/2029 07:02:42 AM"
+                        },
+                        "total_begin_jd": {
+                            "jd": 2462313.6052265465,
+                            "time": "26/06/2029 08:01:31 AM"
+                        },
+                        "maximum_jd": {
+                            "jd": 2462313.640748907,
+                            "time": "26/06/2029 08:52:40 AM"
+                        },
+                        "total_end_jd": {
+                            "jd": 2462313.6762731364,
+                            "time": "26/06/2029 09:43:49 AM"
+                        },
+                        "partial_end_jd": {
+                            "jd": 2462313.7171225175,
+                            "time": "26/06/2029 10:42:39 AM"
+                        },
+                        "penumbral_end_jd": {
+                            "jd": 2462313.757278567,
+                            "time": "26/06/2029 11:40:28 AM"
+                        }
+                    },
+                    "durations": {
+                        "penumbral_seconds": 20134.613057971,
+                        "partial_seconds": 13196.62244617939,
+                        "total_seconds": 6138.42536509037
+                    },
+                    "visibility": {
+                        "visible": false,
+                        "astronomical_visible": false,
+                        "local_eclipse_type": null,
+                        "retflag": 299,
+                        "window": {
+                            "start_jd": null,
+                            "start": null,
+                            "end_jd": null,
+                            "end": null
+                        },
+                        "penumbral_window": {
+                            "start_jd": null,
+                            "start": null,
+                            "end_jd": null,
+                            "end": null
+                        }
+                    },
+                    "sutak": {
+                        "applicable": false,
+                        "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                        "reason_key": "eclipse_not_visible_at_location",
+                        "start_jd": null,
+                        "end_jd": null,
+                        "start": null,
+                        "end": null,
+                        "relaxed_start_jd": null,
+                        "relaxed_end_jd": null,
+                        "relaxed_start": null,
+                        "relaxed_end": null,
+                        "duration_hours": 0
+                    },
+                    "retflag": 299
+                },
+                {
+                    "type": "सूर्य",
+                    "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
+                    "date": "2029-07-11",
+                    "datetime": "11/07/2029 09:06:28 PM",
+                    "jd": 2462329.15033076,
+                    "magnitudes": {
+                        "eclipse": 0,
+                        "obscuration": 0
+                    },
+                    "contacts": {
+                        "first_contact_jd": null,
+                        "second_contact_jd": null,
+                        "maximum_jd": null,
+                        "third_contact_jd": null,
+                        "fourth_contact_jd": null,
+                        "sunrise_jd": null,
+                        "sunset_jd": null
+                    },
+                    "global_contacts": {
+                        "first_contact_jd": null,
+                        "second_contact_jd": null,
+                        "maximum_jd": {
+                            "jd": 2462329.15033076,
+                            "time": "11/07/2029 09:06:28 PM"
+                        },
+                        "third_contact_jd": null,
+                        "fourth_contact_jd": null,
+                        "sunrise_jd": null,
+                        "sunset_jd": null
+                    },
+                    "durations": {
+                        "partial_seconds": 0,
+                        "total_seconds": 0
+                    },
+                    "visibility": {
+                        "visible": false,
+                        "astronomical_visible": false,
+                        "local_eclipse_type": null,
+                        "retflag": -1,
+                        "window": {
+                            "start_jd": null,
+                            "start": null,
+                            "end_jd": null,
+                            "end": null
+                        }
+                    },
+                    "sutak": {
+                        "applicable": false,
+                        "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                        "reason_key": "eclipse_not_visible_at_location",
+                        "start_jd": null,
+                        "end_jd": null,
+                        "start": null,
+                        "end": null,
+                        "relaxed_start_jd": null,
+                        "relaxed_end_jd": null,
+                        "relaxed_start": null,
+                        "relaxed_end": null,
+                        "duration_hours": 0
+                    },
+                    "retflag": 308
+                },
+                {
+                    "type": "सूर्य",
+                    "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
+                    "date": "2029-12-05",
+                    "datetime": "05/12/2029 08:33:17 PM",
+                    "jd": 2462476.1272871257,
+                    "magnitudes": {
+                        "eclipse": 0,
+                        "obscuration": 0
+                    },
+                    "contacts": {
+                        "first_contact_jd": null,
+                        "second_contact_jd": null,
+                        "maximum_jd": null,
+                        "third_contact_jd": null,
+                        "fourth_contact_jd": null,
+                        "sunrise_jd": null,
+                        "sunset_jd": null
+                    },
+                    "global_contacts": {
+                        "first_contact_jd": null,
+                        "second_contact_jd": null,
+                        "maximum_jd": {
+                            "jd": 2462476.1272871257,
+                            "time": "05/12/2029 08:33:17 PM"
+                        },
+                        "third_contact_jd": null,
+                        "fourth_contact_jd": null,
+                        "sunrise_jd": null,
+                        "sunset_jd": null
+                    },
+                    "durations": {
+                        "partial_seconds": 0,
+                        "total_seconds": 0
+                    },
+                    "visibility": {
+                        "visible": false,
+                        "astronomical_visible": false,
+                        "local_eclipse_type": null,
+                        "retflag": -1,
+                        "window": {
+                            "start_jd": null,
+                            "start": null,
+                            "end_jd": null,
+                            "end": null
+                        }
+                    },
+                    "sutak": {
+                        "applicable": false,
+                        "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                        "reason_key": "eclipse_not_visible_at_location",
+                        "start_jd": null,
+                        "end_jd": null,
+                        "start": null,
+                        "end": null,
+                        "relaxed_start_jd": null,
+                        "relaxed_end_jd": null,
+                        "relaxed_start": null,
+                        "relaxed_end": null,
+                        "duration_hours": 0
+                    },
+                    "retflag": 308
+                },
+                {
+                    "type": "चंद्र",
+                    "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "पूर्ण",
+                    "date": "2029-12-21",
+                    "datetime": "21/12/2029 04:12:37 AM",
+                    "jd": 2462491.4462645226,
+                    "magnitudes": {
+                        "umbral": 1.1199166453010174,
+                        "penumbral": 2.2031517047422127
+                    },
+                    "contacts": {
+                        "penumbral_begin_jd": {
+                            "jd": 2462491.321807092,
                             "time": "21/12/2029 01:13:24 AM"
                         },
                         "partial_begin_jd": {
-                            "jd": 2462491.372059595,
+                            "jd": 2462491.3720595967,
                             "time": "21/12/2029 02:25:45 AM"
                         },
                         "total_begin_jd": {
-                            "jd": 2462491.4274047194,
+                            "jd": 2462491.4274047213,
                             "time": "21/12/2029 03:45:27 AM"
                         },
                         "maximum_jd": {
-                            "jd": 2462491.4462645208,
+                            "jd": 2462491.4462645226,
                             "time": "21/12/2029 04:12:37 AM"
                         },
                         "total_end_jd": {
-                            "jd": 2462491.465123874,
+                            "jd": 2462491.465123876,
                             "time": "21/12/2029 04:39:46 AM"
                         },
                         "partial_end_jd": {
-                            "jd": 2462491.520462552,
+                            "jd": 2462491.520462554,
                             "time": "21/12/2029 05:59:27 AM"
                         },
                         "penumbral_end_jd": {
-                            "jd": 2462491.570702602,
+                            "jd": 2462491.570702604,
                             "time": "21/12/2029 07:11:48 AM"
                         }
                     },
@@ -1298,28 +1419,29 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "पूर्ण",
                         "retflag": 299,
                         "window": {
-                            "start_jd": 2462491.3720595986,
+                            "start_jd": 2462491.372059593,
                             "start": "21/12/2029 02:25:45 AM",
-                            "end_jd": 2462491.5204625567,
+                            "end_jd": 2462491.5204625605,
                             "end": "21/12/2029 05:59:27 AM"
                         },
                         "penumbral_window": {
-                            "start_jd": 2462491.3218070846,
+                            "start_jd": 2462491.3218070883,
                             "start": "21/12/2029 01:13:24 AM",
-                            "end_jd": 2462491.5707025966,
+                            "end_jd": 2462491.570702601,
                             "end": "21/12/2029 07:11:48 AM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2462490.916650293,
-                        "end_jd": 2462491.5204625567,
+                        "end_jd": 2462491.5204625605,
                         "start": "20/12/2029 03:29:58 PM",
                         "end": "21/12/2029 05:59:27 AM",
                         "relaxed_start_jd": 2462491.1667389846,
-                        "relaxed_end_jd": 2462491.5204625567,
+                        "relaxed_end_jd": 2462491.5204625605,
                         "relaxed_start": "20/12/2029 09:30:06 PM",
                         "relaxed_end": "21/12/2029 05:59:27 AM",
                         "duration_hours": 9
@@ -1330,7 +1452,9 @@
             "2030": [
                 {
                     "type": "सूर्य",
-                    "eclipse_type": "आंशिक",
+                    "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": "आंशिक",
                     "date": "2030-06-01",
                     "datetime": "01/06/2030 10:58:57 AM",
                     "jd": 2462653.728446573,
@@ -1381,6 +1505,7 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "आंशिक",
                         "retflag": 308,
                         "window": {
                             "start_jd": 2462653.6920342194,
@@ -1406,12 +1531,14 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": "आंशिक",
                     "date": "2030-06-16",
                     "datetime": "16/06/2030 12:03:47 AM",
-                    "jd": 2462668.2734627305,
+                    "jd": 2462668.273462731,
                     "magnitudes": {
-                        "umbral": 0.5049523114020045,
-                        "penumbral": 1.4503008523761989
+                        "umbral": 0.5049523114011153,
+                        "penumbral": 1.4503008523770917
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1424,49 +1551,50 @@
                         },
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2462668.2734627305,
+                            "jd": 2462668.273462731,
                             "time": "16/06/2030 12:03:47 AM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": {
-                            "jd": 2462668.323743497,
+                            "jd": 2462668.323743498,
                             "time": "16/06/2030 01:16:11 AM"
                         },
                         "penumbral_end_jd": {
-                            "jd": 2462668.370210753,
+                            "jd": 2462668.3702107538,
                             "time": "16/06/2030 02:23:06 AM"
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 16717.61087179184,
-                        "partial_seconds": 8688.3969694376,
+                        "penumbral_seconds": 16717.61095225811,
+                        "partial_seconds": 8688.39704990387,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "आंशिक",
                         "retflag": 297,
                         "window": {
                             "start_jd": 2462668.223183344,
                             "start": "15/06/2030 10:51:23 PM",
-                            "end_jd": 2462668.3237435035,
+                            "end_jd": 2462668.3237435045,
                             "end": "16/06/2030 01:16:11 AM"
                         },
                         "penumbral_window": {
                             "start_jd": 2462668.176719893,
                             "start": "15/06/2030 09:44:28 PM",
-                            "end_jd": 2462668.37021075,
+                            "end_jd": 2462668.370210751,
                             "end": "16/06/2030 02:23:06 AM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2462667.8068714123,
-                        "end_jd": 2462668.3237435035,
+                        "end_jd": 2462668.3237435045,
                         "start": "15/06/2030 12:51:53 PM",
                         "end": "16/06/2030 01:16:11 AM",
                         "relaxed_start_jd": 2462668.0898917485,
-                        "relaxed_end_jd": 2462668.3237435035,
+                        "relaxed_end_jd": 2462668.3237435045,
                         "relaxed_start": "15/06/2030 07:39:26 PM",
                         "relaxed_end": "16/06/2030 01:16:11 AM",
                         "duration_hours": 9
@@ -1476,9 +1604,11 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": null,
                     "date": "2030-11-25",
                     "datetime": "25/11/2030 12:20:52 PM",
-                    "jd": 2462830.785324868,
+                    "jd": 2462830.7853249004,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -1494,17 +1624,17 @@
                     },
                     "global_contacts": {
                         "first_contact_jd": {
-                            "jd": 2462830.7584675676,
+                            "jd": 2462830.7584676,
                             "time": "25/11/2030 11:42:11 AM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462830.785324868,
+                            "jd": 2462830.7853249004,
                             "time": "25/11/2030 12:20:52 PM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2462830.812177133,
+                            "jd": 2462830.8121771654,
                             "time": "25/11/2030 12:59:32 PM"
                         },
                         "sunrise_jd": null,
@@ -1517,6 +1647,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -1544,39 +1675,42 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": "उपछाया",
                     "date": "2030-12-10",
                     "datetime": "10/12/2030 03:58:16 AM",
-                    "jd": 2462845.436303882,
+                    "jd": 2462845.436303885,
                     "magnitudes": {
-                        "umbral": -0.16064474413409824,
-                        "penumbral": 0.9434572733462764
+                        "umbral": -0.1606447441356739,
+                        "penumbral": 0.9434572733478531
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2462845.3392011113,
+                            "jd": 2462845.339201114,
                             "time": "10/12/2030 01:38:26 AM"
                         },
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2462845.436303882,
+                            "jd": 2462845.436303885,
                             "time": "10/12/2030 03:58:16 AM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": null,
                         "penumbral_end_jd": {
-                            "jd": 2462845.5334083783,
+                            "jd": 2462845.533408382,
                             "time": "10/12/2030 06:18:06 AM"
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 16779.507860541344,
+                        "penumbral_seconds": 16779.507941007614,
                         "partial_seconds": 0,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "उपछाया",
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -1612,6 +1746,8 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": null,
                     "date": "2031-05-07",
                     "datetime": "07/05/2031 09:21:21 AM",
                     "jd": 2462993.6606682823,
@@ -1645,6 +1781,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -1677,7 +1814,9 @@
                 },
                 {
                     "type": "सूर्य",
-                    "eclipse_type": "आंशिक",
+                    "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": "आंशिक",
                     "date": "2031-05-21",
                     "datetime": "21/05/2031 12:50:43 PM",
                     "jd": 2463007.8060617177,
@@ -1705,17 +1844,17 @@
                     },
                     "global_contacts": {
                         "first_contact_jd": {
-                            "jd": 2463007.759792276,
+                            "jd": 2463007.7597922464,
                             "time": "21/05/2031 11:44:06 AM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463007.8024012237,
+                            "jd": 2463007.802401194,
                             "time": "21/05/2031 12:45:27 PM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2463007.845035348,
+                            "jd": 2463007.845035471,
                             "time": "21/05/2031 01:46:51 PM"
                         },
                         "sunrise_jd": null,
@@ -1728,6 +1867,7 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "आंशिक",
                         "retflag": 308,
                         "window": {
                             "start_jd": 2463007.73559602,
@@ -1753,12 +1893,14 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": null,
                     "date": "2031-06-05",
                     "datetime": "05/06/2031 05:14:36 PM",
-                    "jd": 2463022.9893138893,
+                    "jd": 2463022.989313889,
                     "magnitudes": {
-                        "umbral": -0.8177157954182134,
-                        "penumbral": 0.13094603293116694
+                        "umbral": -0.8177157954193571,
+                        "penumbral": 0.13094603293236518
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1768,24 +1910,25 @@
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2463022.9893138893,
+                            "jd": 2463022.989313889,
                             "time": "05/06/2031 05:14:36 PM"
                         },
                         "total_end_jd": null,
                         "partial_end_jd": null,
                         "penumbral_end_jd": {
-                            "jd": 2463023.022735267,
+                            "jd": 2463023.022735266,
                             "time": "05/06/2031 06:02:44 PM"
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 5775.280925631523,
+                        "penumbral_seconds": 5775.280845165253,
                         "partial_seconds": 0,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -1819,22 +1962,24 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "उपछाया",
+                    "global_eclipse_type": "उपछाया",
+                    "local_eclipse_type": null,
                     "date": "2031-10-30",
                     "datetime": "30/10/2031 01:15:56 PM",
-                    "jd": 2463169.8235758548,
+                    "jd": 2463169.8235758543,
                     "magnitudes": {
-                        "umbral": -0.31609691000890655,
-                        "penumbral": 0.7201326441191536
+                        "umbral": -0.31609691000643125,
+                        "penumbral": 0.7201326441166159
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2463169.7428563125,
+                            "jd": 2463169.7428563116,
                             "time": "30/10/2031 11:19:42 AM"
                         },
                         "partial_begin_jd": null,
                         "total_begin_jd": null,
                         "maximum_jd": {
-                            "jd": 2463169.8235758548,
+                            "jd": 2463169.8235758543,
                             "time": "30/10/2031 01:15:56 PM"
                         },
                         "total_end_jd": null,
@@ -1845,13 +1990,14 @@
                         }
                     },
                     "durations": {
-                        "penumbral_seconds": 13949.27046597004,
+                        "penumbral_seconds": 13949.27054643631,
                         "partial_seconds": 0,
                         "total_seconds": 0
                     },
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
                             "start_jd": null,
@@ -1884,10 +2030,12 @@
                 },
                 {
                     "type": "सूर्य",
-                    "eclipse_type": "वलयाकार-पूर्ण",
+                    "eclipse_type": "संकर",
+                    "global_eclipse_type": "संकर",
+                    "local_eclipse_type": null,
                     "date": "2031-11-15",
                     "datetime": "15/11/2031 02:36:47 AM",
-                    "jd": 2463185.3797182664,
+                    "jd": 2463185.3797182967,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -1903,17 +2051,17 @@
                     },
                     "global_contacts": {
                         "first_contact_jd": {
-                            "jd": 2463185.3459287453,
+                            "jd": 2463185.345928776,
                             "time": "15/11/2031 01:48:08 AM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463185.3797182664,
+                            "jd": 2463185.3797182967,
                             "time": "15/11/2031 02:36:47 AM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2463185.413483831,
+                            "jd": 2463185.413483861,
                             "time": "15/11/2031 03:25:25 AM"
                         },
                         "sunrise_jd": null,
@@ -1926,6 +2074,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -1955,6 +2104,8 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "पूर्ण",
                     "date": "2032-04-25",
                     "datetime": "25/04/2032 08:44:10 PM",
                     "jd": 2463348.134847014,
@@ -2000,6 +2151,7 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "पूर्ण",
                         "retflag": 299,
                         "window": {
                             "start_jd": 2463348.0722692944,
@@ -2031,9 +2183,11 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "वलयाकार",
+                    "global_eclipse_type": "वलयाकार",
+                    "local_eclipse_type": null,
                     "date": "2032-05-09",
                     "datetime": "09/05/2032 06:56:05 PM",
-                    "jd": 2463362.0597821698,
+                    "jd": 2463362.0597821265,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -2051,7 +2205,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463362.0597821698,
+                            "jd": 2463362.0597821265,
                             "time": "09/05/2032 06:56:05 PM"
                         },
                         "third_contact_jd": null,
@@ -2066,6 +2220,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -2093,73 +2248,76 @@
                 {
                     "type": "चंद्र",
                     "eclipse_type": "पूर्ण",
+                    "global_eclipse_type": "पूर्ण",
+                    "local_eclipse_type": "पूर्ण",
                     "date": "2032-10-19",
                     "datetime": "19/10/2032 12:32:54 AM",
-                    "jd": 2463524.293688125,
+                    "jd": 2463524.293688124,
                     "magnitudes": {
-                        "umbral": 1.1074297607509838,
-                        "penumbral": 2.087545025604019
+                        "umbral": 1.1074297607547825,
+                        "penumbral": 2.0875450256001518
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
-                            "jd": 2463524.1840118924,
+                            "jd": 2463524.1840118915,
                             "time": "18/10/2032 09:54:58 PM"
                         },
                         "partial_begin_jd": {
-                            "jd": 2463524.2254885044,
+                            "jd": 2463524.225488513,
                             "time": "18/10/2032 10:54:42 PM"
                         },
                         "total_begin_jd": {
-                            "jd": 2463524.276954416,
+                            "jd": 2463524.2769544153,
                             "time": "19/10/2032 12:08:48 AM"
                         },
                         "maximum_jd": {
-                            "jd": 2463524.293688125,
+                            "jd": 2463524.293688124,
                             "time": "19/10/2032 12:32:54 AM"
                         },
                         "total_end_jd": {
-                            "jd": 2463524.310422158,
+                            "jd": 2463524.310422157,
                             "time": "19/10/2032 12:57:00 AM"
                         },
                         "partial_end_jd": {
-                            "jd": 2463524.361893315,
+                            "jd": 2463524.361893314,
                             "time": "19/10/2032 02:11:07 AM"
                         },
                         "penumbral_end_jd": {
-                            "jd": 2463524.4033787875,
+                            "jd": 2463524.4033787865,
                             "time": "19/10/2032 03:10:51 AM"
                         }
                     },
                     "durations": {
                         "penumbral_seconds": 18953.29973101616,
-                        "partial_seconds": 11785.375624895096,
+                        "partial_seconds": 11785.374820232391,
                         "total_seconds": 2891.612881422043
                     },
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "local_eclipse_type": "पूर्ण",
                         "retflag": 299,
                         "window": {
-                            "start_jd": 2463524.2254885053,
+                            "start_jd": 2463524.2254885044,
                             "start": "18/10/2032 10:54:42 PM",
-                            "end_jd": 2463524.361893316,
+                            "end_jd": 2463524.361893315,
                             "end": "19/10/2032 02:11:07 AM"
                         },
                         "penumbral_window": {
-                            "start_jd": 2463524.1840118933,
+                            "start_jd": 2463524.1840118924,
                             "start": "18/10/2032 09:54:58 PM",
-                            "end_jd": 2463524.4033787884,
+                            "end_jd": 2463524.4033787875,
                             "end": "19/10/2032 03:10:51 AM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2463523.7960185986,
-                        "end_jd": 2463524.361893316,
+                        "end_jd": 2463524.361893315,
                         "start": "18/10/2032 12:36:16 PM",
                         "end": "19/10/2032 02:11:07 AM",
                         "relaxed_start_jd": 2463524.037178355,
-                        "relaxed_end_jd": 2463524.361893316,
+                        "relaxed_end_jd": 2463524.361893315,
                         "relaxed_start": "18/10/2032 06:23:32 PM",
                         "relaxed_end": "19/10/2032 02:11:07 AM",
                         "duration_hours": 9
@@ -2169,9 +2327,11 @@
                 {
                     "type": "सूर्य",
                     "eclipse_type": "आंशिक",
+                    "global_eclipse_type": "आंशिक",
+                    "local_eclipse_type": null,
                     "date": "2032-11-03",
                     "datetime": "03/11/2032 11:03:28 AM",
-                    "jd": 2463539.731581791,
+                    "jd": 2463539.731581821,
                     "magnitudes": {
                         "eclipse": 0,
                         "obscuration": 0
@@ -2189,7 +2349,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463539.731581791,
+                            "jd": 2463539.731581821,
                             "time": "03/11/2032 11:03:28 AM"
                         },
                         "third_contact_jd": null,
@@ -2204,6 +2364,7 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
                             "start_jd": null,
@@ -2234,6 +2395,8 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": null,
                 "date": "2026-02-17",
                 "datetime": "17/02/2026 05:42:24 PM",
                 "jd": 2461089.0086204344,
@@ -2269,6 +2432,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -2295,29 +2459,31 @@
             },
             {
                 "type": "चंद्र",
-                "eclipse_type": "उपछाया",
+                "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "उपछाया",
                 "date": "2026-03-03",
                 "datetime": "03/03/2026 05:04:14 PM",
-                "jd": 2461102.9821146973,
+                "jd": 2461102.982114697,
                 "magnitudes": {
-                    "umbral": 1.1532400933908373,
-                    "penumbral": 2.186298182561135
+                    "umbral": 1.1532400933932143,
+                    "penumbral": 2.1862981825587227
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461102.8644061144,
+                        "jd": 2461102.8644061135,
                         "time": "03/03/2026 02:14:44 PM"
                     },
                     "partial_begin_jd": {
-                        "jd": 2461102.9100476997,
+                        "jd": 2461102.9100476988,
                         "time": "03/03/2026 03:20:28 PM"
                     },
                     "total_begin_jd": {
-                        "jd": 2461102.961665674,
+                        "jd": 2461102.961665673,
                         "time": "03/03/2026 04:34:47 PM"
                     },
                     "maximum_jd": {
-                        "jd": 2461102.9821146973,
+                        "jd": 2461102.982114697,
                         "time": "03/03/2026 05:04:14 PM"
                     },
                     "total_end_jd": {
@@ -2334,13 +2500,14 @@
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 20341.972866654396,
-                    "partial_seconds": 12453.90155017376,
-                    "total_seconds": 3533.6480230093002
+                    "penumbral_seconds": 20341.972947120667,
+                    "partial_seconds": 12453.90163064003,
+                    "total_seconds": 3533.6481034755707
                 },
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": "उपछाया",
                     "retflag": 299,
                     "window": {
                         "start_jd": null,
@@ -2374,9 +2541,11 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": null,
                 "date": "2026-08-12",
                 "datetime": "12/08/2026 11:16:27 PM",
-                "jd": 2461265.24060169,
+                "jd": 2461265.240601616,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -2394,7 +2563,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2461265.24060169,
+                        "jd": 2461265.240601616,
                         "time": "12/08/2026 11:16:27 PM"
                     },
                     "third_contact_jd": null,
@@ -2409,6 +2578,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -2435,17 +2605,19 @@
             },
             {
                 "type": "चंद्र",
-                "eclipse_type": "उपछाया",
+                "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
                 "date": "2026-08-28",
                 "datetime": "28/08/2026 09:43:29 AM",
-                "jd": 2461280.676035604,
+                "jd": 2461280.6760356044,
                 "magnitudes": {
-                    "umbral": 0.9324411274059975,
-                    "penumbral": 1.9668945327843388
+                    "umbral": 0.9324411274081709,
+                    "penumbral": 1.966894532782135
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461280.558604826,
+                        "jd": 2461280.558604827,
                         "time": "28/08/2026 06:54:23 AM"
                     },
                     "partial_begin_jd": {
@@ -2454,12 +2626,12 @@
                     },
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2461280.676035604,
+                        "jd": 2461280.6760356044,
                         "time": "28/08/2026 09:43:29 AM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": {
-                        "jd": 2461280.7449689712,
+                        "jd": 2461280.744968972,
                         "time": "28/08/2026 11:22:45 AM"
                     },
                     "penumbral_end_jd": {
@@ -2468,13 +2640,14 @@
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 20290.303060412407,
-                    "partial_seconds": 11912.284049391747,
+                    "penumbral_seconds": 20290.302979946136,
+                    "partial_seconds": 11912.284129858017,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 297,
                     "window": {
                         "start_jd": null,
@@ -2508,6 +2681,8 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": null,
                 "date": "2027-02-06",
                 "datetime": "06/02/2027 09:30:15 PM",
                 "jd": 2461443.1668419973,
@@ -2549,6 +2724,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -2576,28 +2752,30 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": "उपछाया",
                 "date": "2027-02-21",
                 "datetime": "21/02/2027 04:43:20 AM",
-                "jd": 2461457.4675964555,
+                "jd": 2461457.4675964573,
                 "magnitudes": {
-                    "umbral": -0.054536624630911266,
-                    "penumbral": 0.9287277673167005
+                    "umbral": -0.054536624637522825,
+                    "penumbral": 0.9287277673234376
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461457.383782259,
+                        "jd": 2461457.383782261,
                         "time": "21/02/2027 02:42:38 AM"
                     },
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2461457.4675964555,
+                        "jd": 2461457.4675964573,
                         "time": "21/02/2027 04:43:20 AM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": null,
                     "penumbral_end_jd": {
-                        "jd": 2461457.5514182234,
+                        "jd": 2461457.5514182253,
                         "time": "21/02/2027 06:44:02 AM"
                     }
                 },
@@ -2609,6 +2787,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "उपछाया",
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -2642,28 +2821,30 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": "उपछाया",
                 "date": "2027-07-18",
                 "datetime": "18/07/2027 09:33:35 PM",
-                "jd": 2461605.1691567563,
+                "jd": 2461605.1691567544,
                 "magnitudes": {
-                    "umbral": -1.0637167251753255,
-                    "penumbral": 0.005262801354355356
+                    "umbral": -1.0637167251739195,
+                    "penumbral": 0.005262801352932537
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461605.161308079,
+                        "jd": 2461605.161308077,
                         "time": "18/07/2027 09:22:17 PM"
                     },
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2461605.1691567563,
+                        "jd": 2461605.1691567544,
                         "time": "18/07/2027 09:33:35 PM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": null,
                     "penumbral_end_jd": {
-                        "jd": 2461605.177005424,
+                        "jd": 2461605.1770054223,
                         "time": "18/07/2027 09:44:53 PM"
                     }
                 },
@@ -2675,6 +2856,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "उपछाया",
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -2707,27 +2889,29 @@
             },
             {
                 "type": "सूर्य",
-                "eclipse_type": "आंशिक",
+                "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "आंशिक",
                 "date": "2027-08-02",
                 "datetime": "02/08/2027 04:33:21 PM",
-                "jd": 2461619.960661743,
+                "jd": 2461619.9606617414,
                 "magnitudes": {
-                    "eclipse": 0.38451869538170935,
-                    "obscuration": 0.3423514686893728
+                    "eclipse": 0.3845186954431124,
+                    "obscuration": 0.3423514686883082
                 },
                 "contacts": {
                     "first_contact_jd": {
-                        "jd": 2461619.9236036376,
+                        "jd": 2461619.923603789,
                         "time": "02/08/2027 03:39:59 PM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2461619.960661743,
+                        "jd": 2461619.9606617414,
                         "time": "02/08/2027 04:33:21 PM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2461619.994927643,
+                        "jd": 2461619.994927641,
                         "time": "02/08/2027 05:22:41 PM"
                     },
                     "sunrise_jd": null,
@@ -2735,45 +2919,46 @@
                 },
                 "global_contacts": {
                     "first_contact_jd": {
-                        "jd": 2461619.8851458686,
+                        "jd": 2461619.8851458677,
                         "time": "02/08/2027 02:44:36 PM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2461619.9216033886,
+                        "jd": 2461619.921603387,
                         "time": "02/08/2027 03:37:06 PM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2461619.95806335,
+                        "jd": 2461619.958063348,
                         "time": "02/08/2027 04:29:36 PM"
                     },
                     "sunrise_jd": null,
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 6162.394054234028,
+                    "partial_seconds": 6162.380817532539,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "आंशिक",
                     "retflag": 308,
                     "window": {
-                        "start_jd": 2461619.9236036376,
+                        "start_jd": 2461619.923603789,
                         "start": "02/08/2027 03:39:59 PM",
-                        "end_jd": 2461619.994927643,
+                        "end_jd": 2461619.994927641,
                         "end": "02/08/2027 05:22:41 PM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2461619.3109916034,
-                    "end_jd": 2461619.994927643,
+                    "end_jd": 2461619.994927641,
                     "start": "02/08/2027 12:57:49 AM",
                     "end": "02/08/2027 05:22:41 PM",
                     "relaxed_start_jd": 2461619.673199016,
-                    "relaxed_end_jd": 2461619.994927643,
+                    "relaxed_end_jd": 2461619.994927641,
                     "relaxed_start": "02/08/2027 09:39:24 AM",
                     "relaxed_end": "02/08/2027 05:22:41 PM",
                     "duration_hours": 12
@@ -2783,28 +2968,30 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": null,
                 "date": "2027-08-17",
                 "datetime": "17/08/2027 12:44:27 PM",
-                "jd": 2461634.8017030633,
+                "jd": 2461634.8017030614,
                 "magnitudes": {
-                    "umbral": -0.5232230777655301,
-                    "penumbral": 0.547490418095465
+                    "umbral": -0.5232230777681162,
+                    "penumbral": 0.5474904180981016
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461634.7256398173,
+                        "jd": 2461634.7256398154,
                         "time": "17/08/2027 10:54:55 AM"
                     },
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2461634.8017030633,
+                        "jd": 2461634.8017030614,
                         "time": "17/08/2027 12:44:27 PM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": null,
                     "penumbral_end_jd": {
-                        "jd": 2461634.87776383,
+                        "jd": 2461634.8777638283,
                         "time": "17/08/2027 02:33:58 PM"
                     }
                 },
@@ -2816,6 +3003,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -2848,7 +3036,9 @@
             },
             {
                 "type": "चंद्र",
-                "eclipse_type": "उपछाया",
+                "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
                 "date": "2028-01-12",
                 "datetime": "12/01/2028 09:43:33 AM",
                 "jd": 2461782.676086169,
@@ -2888,6 +3078,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 297,
                     "window": {
                         "start_jd": null,
@@ -2921,6 +3112,8 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": null,
                 "date": "2028-01-26",
                 "datetime": "26/01/2028 08:38:26 PM",
                 "jd": 2461797.1308655683,
@@ -2962,6 +3155,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -2989,67 +3183,70 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": "आंशिक",
                 "date": "2028-07-06",
                 "datetime": "06/07/2028 11:50:17 PM",
-                "jd": 2461959.2640915615,
+                "jd": 2461959.264091564,
                 "magnitudes": {
-                    "umbral": 0.39372849643992514,
-                    "penumbral": 1.430908838266588
+                    "umbral": 0.39372849642968927,
+                    "penumbral": 1.4309088382770259
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2461959.156038082,
+                        "jd": 2461959.156038085,
                         "time": "06/07/2028 09:14:41 PM"
                     },
                     "partial_begin_jd": {
-                        "jd": 2461959.2146647237,
+                        "jd": 2461959.2146647256,
                         "time": "06/07/2028 10:39:07 PM"
                     },
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2461959.2640915615,
+                        "jd": 2461959.264091564,
                         "time": "06/07/2028 11:50:17 PM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": {
-                        "jd": 2461959.3135217847,
+                        "jd": 2461959.3135217875,
                         "time": "07/07/2028 01:01:28 AM"
                     },
                     "penumbral_end_jd": {
-                        "jd": 2461959.37216112,
+                        "jd": 2461959.372161112,
                         "time": "07/07/2028 02:25:54 AM"
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 18673.030480742455,
-                    "partial_seconds": 8541.250070929527,
+                    "penumbral_seconds": 18673.02951514721,
+                    "partial_seconds": 8541.250151395798,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "आंशिक",
                     "retflag": 297,
                     "window": {
-                        "start_jd": 2461959.2146647265,
+                        "start_jd": 2461959.214664721,
                         "start": "06/07/2028 10:39:07 PM",
-                        "end_jd": 2461959.3135217875,
+                        "end_jd": 2461959.313521783,
                         "end": "07/07/2028 01:01:28 AM"
                     },
                     "penumbral_window": {
-                        "start_jd": 2461959.156038085,
+                        "start_jd": 2461959.1560380897,
                         "start": "06/07/2028 09:14:41 PM",
-                        "end_jd": 2461959.3721611127,
+                        "end_jd": 2461959.3721611174,
                         "end": "07/07/2028 02:25:54 AM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2461958.8098278027,
-                    "end_jd": 2461959.3135217875,
+                    "end_jd": 2461959.313521783,
                     "start": "06/07/2028 12:56:09 PM",
                     "end": "07/07/2028 01:01:28 AM",
                     "relaxed_start_jd": 2461959.091826436,
-                    "relaxed_end_jd": 2461959.3135217875,
+                    "relaxed_end_jd": 2461959.313521783,
                     "relaxed_start": "06/07/2028 07:42:13 PM",
                     "relaxed_end": "07/07/2028 01:01:28 AM",
                     "duration_hours": 9
@@ -3059,9 +3256,11 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": null,
                 "date": "2028-07-22",
                 "datetime": "22/07/2028 08:25:55 AM",
-                "jd": 2461974.622168028,
+                "jd": 2461974.6221680306,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -3079,7 +3278,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2461974.622168028,
+                        "jd": 2461974.6221680306,
                         "time": "22/07/2028 08:25:55 AM"
                     },
                     "third_contact_jd": null,
@@ -3094,6 +3293,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -3121,60 +3321,63 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "पूर्ण",
                 "date": "2028-12-31",
                 "datetime": "31/12/2028 10:22:36 PM",
-                "jd": 2462137.203201244,
+                "jd": 2462137.203201241,
                 "magnitudes": {
-                    "umbral": 1.2510290064356513,
-                    "penumbral": 2.2788656878020324
+                    "umbral": 1.2510290064186078,
+                    "penumbral": 2.2788656878194007
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2462137.0862782123,
+                        "jd": 2462137.086278218,
                         "time": "31/12/2028 07:34:14 PM"
                     },
                     "partial_begin_jd": {
-                        "jd": 2462137.1305195745,
+                        "jd": 2462137.13051958,
                         "time": "31/12/2028 08:37:56 PM"
                     },
                     "total_begin_jd": {
-                        "jd": 2462137.1781741465,
+                        "jd": 2462137.1781741427,
                         "time": "31/12/2028 09:46:34 PM"
                     },
                     "maximum_jd": {
-                        "jd": 2462137.203201244,
+                        "jd": 2462137.203201241,
                         "time": "31/12/2028 10:22:36 PM"
                     },
                     "total_end_jd": {
-                        "jd": 2462137.2282273117,
+                        "jd": 2462137.228227319,
                         "time": "31/12/2028 10:58:38 PM"
                     },
                     "partial_end_jd": {
-                        "jd": 2462137.275874217,
+                        "jd": 2462137.2758742142,
                         "time": "01/01/2029 12:07:15 AM"
                     },
                     "penumbral_end_jd": {
-                        "jd": 2462137.3201017976,
+                        "jd": 2462137.320101795,
                         "time": "01/01/2029 01:10:56 AM"
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 20202.357771992683,
-                    "partial_seconds": 12558.64111483097,
-                    "total_seconds": 4324.593481421471
+                    "penumbral_seconds": 20202.35704779625,
+                    "partial_seconds": 12558.640390634537,
+                    "total_seconds": 4324.594447016716
                 },
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "पूर्ण",
                     "retflag": 299,
                     "window": {
-                        "start_jd": 2462137.130519583,
+                        "start_jd": 2462137.1305195745,
                         "start": "31/12/2028 08:37:56 PM",
                         "end_jd": 2462137.275874217,
                         "end": "01/01/2029 12:07:15 AM"
                     },
                     "penumbral_window": {
-                        "start_jd": 2462137.0862782113,
+                        "start_jd": 2462137.0862782123,
                         "start": "31/12/2028 07:34:14 PM",
                         "end_jd": 2462137.3201017976,
                         "end": "01/01/2029 01:10:56 AM"
@@ -3197,6 +3400,8 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
                 "date": "2029-01-14",
                 "datetime": "14/01/2029 10:43:16 PM",
                 "jd": 2462151.217554229,
@@ -3232,6 +3437,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -3259,6 +3465,8 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
                 "date": "2029-06-12",
                 "datetime": "12/06/2029 09:35:27 AM",
                 "jd": 2462299.670459806,
@@ -3294,146 +3502,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
-                    "retflag": -1,
-                    "window": {
-                        "start_jd": null,
-                        "start": null,
-                        "end_jd": null,
-                        "end": null
-                    }
-                },
-                "sutak": {
-                    "applicable": false,
-                    "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
-                    "reason_key": "eclipse_not_visible_at_location",
-                    "start_jd": null,
-                    "end_jd": null,
-                    "start": null,
-                    "end": null,
-                    "relaxed_start_jd": null,
-                    "relaxed_end_jd": null,
-                    "relaxed_start": null,
-                    "relaxed_end": null,
-                    "duration_hours": 0
-                },
-                "retflag": 308
-            },
-            {
-                "type": "चंद्र",
-                "eclipse_type": "उपछाया",
-                "date": "2029-06-26",
-                "datetime": "26/06/2029 08:52:40 AM",
-                "jd": 2462313.6407489055,
-                "magnitudes": {
-                    "umbral": 1.8464346110299246,
-                    "penumbral": 2.8293689071695924
-                },
-                "contacts": {
-                    "penumbral_begin_jd": {
-                        "jd": 2462313.5242390623,
-                        "time": "26/06/2029 06:04:54 AM"
-                    },
-                    "partial_begin_jd": {
-                        "jd": 2462313.56438383,
-                        "time": "26/06/2029 07:02:42 AM"
-                    },
-                    "total_begin_jd": {
-                        "jd": 2462313.6052265447,
-                        "time": "26/06/2029 08:01:31 AM"
-                    },
-                    "maximum_jd": {
-                        "jd": 2462313.6407489055,
-                        "time": "26/06/2029 08:52:40 AM"
-                    },
-                    "total_end_jd": {
-                        "jd": 2462313.6762731355,
-                        "time": "26/06/2029 09:43:49 AM"
-                    },
-                    "partial_end_jd": {
-                        "jd": 2462313.7171225166,
-                        "time": "26/06/2029 10:42:39 AM"
-                    },
-                    "penumbral_end_jd": {
-                        "jd": 2462313.7572785662,
-                        "time": "26/06/2029 11:40:28 AM"
-                    }
-                },
-                "durations": {
-                    "penumbral_seconds": 20134.61313843727,
-                    "partial_seconds": 13196.62252664566,
-                    "total_seconds": 6138.425445556641
-                },
-                "visibility": {
-                    "visible": false,
-                    "astronomical_visible": false,
-                    "retflag": 299,
-                    "window": {
-                        "start_jd": null,
-                        "start": null,
-                        "end_jd": null,
-                        "end": null
-                    },
-                    "penumbral_window": {
-                        "start_jd": null,
-                        "start": null,
-                        "end_jd": null,
-                        "end": null
-                    }
-                },
-                "sutak": {
-                    "applicable": false,
-                    "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
-                    "reason_key": "eclipse_not_visible_at_location",
-                    "start_jd": null,
-                    "end_jd": null,
-                    "start": null,
-                    "end": null,
-                    "relaxed_start_jd": null,
-                    "relaxed_end_jd": null,
-                    "relaxed_start": null,
-                    "relaxed_end": null,
-                    "duration_hours": 0
-                },
-                "retflag": 299
-            },
-            {
-                "type": "सूर्य",
-                "eclipse_type": "आंशिक",
-                "date": "2029-07-11",
-                "datetime": "11/07/2029 09:06:28 PM",
-                "jd": 2462329.1503307875,
-                "magnitudes": {
-                    "eclipse": 0,
-                    "obscuration": 0
-                },
-                "contacts": {
-                    "first_contact_jd": null,
-                    "second_contact_jd": null,
-                    "maximum_jd": null,
-                    "third_contact_jd": null,
-                    "fourth_contact_jd": null,
-                    "sunrise_jd": null,
-                    "sunset_jd": null
-                },
-                "global_contacts": {
-                    "first_contact_jd": null,
-                    "second_contact_jd": null,
-                    "maximum_jd": {
-                        "jd": 2462329.1503307875,
-                        "time": "11/07/2029 09:06:28 PM"
-                    },
-                    "third_contact_jd": null,
-                    "fourth_contact_jd": null,
-                    "sunrise_jd": null,
-                    "sunset_jd": null
-                },
-                "durations": {
-                    "partial_seconds": 0,
-                    "total_seconds": 0
-                },
-                "visibility": {
-                    "visible": false,
-                    "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -3461,40 +3530,253 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "पूर्ण",
-                "date": "2029-12-21",
-                "datetime": "21/12/2029 04:12:37 AM",
-                "jd": 2462491.4462645208,
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": null,
+                "date": "2029-06-26",
+                "datetime": "26/06/2029 08:52:40 AM",
+                "jd": 2462313.640748907,
                 "magnitudes": {
-                    "umbral": 1.119916645294004,
-                    "penumbral": 2.2031517047494207
+                    "umbral": 1.846434611023467,
+                    "penumbral": 2.829368907176946
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2462491.32180709,
+                        "jd": 2462313.524239064,
+                        "time": "26/06/2029 06:04:54 AM"
+                    },
+                    "partial_begin_jd": {
+                        "jd": 2462313.564383832,
+                        "time": "26/06/2029 07:02:42 AM"
+                    },
+                    "total_begin_jd": {
+                        "jd": 2462313.6052265465,
+                        "time": "26/06/2029 08:01:31 AM"
+                    },
+                    "maximum_jd": {
+                        "jd": 2462313.640748907,
+                        "time": "26/06/2029 08:52:40 AM"
+                    },
+                    "total_end_jd": {
+                        "jd": 2462313.6762731364,
+                        "time": "26/06/2029 09:43:49 AM"
+                    },
+                    "partial_end_jd": {
+                        "jd": 2462313.7171225175,
+                        "time": "26/06/2029 10:42:39 AM"
+                    },
+                    "penumbral_end_jd": {
+                        "jd": 2462313.757278567,
+                        "time": "26/06/2029 11:40:28 AM"
+                    }
+                },
+                "durations": {
+                    "penumbral_seconds": 20134.613057971,
+                    "partial_seconds": 13196.62244617939,
+                    "total_seconds": 6138.42536509037
+                },
+                "visibility": {
+                    "visible": false,
+                    "astronomical_visible": false,
+                    "local_eclipse_type": null,
+                    "retflag": 299,
+                    "window": {
+                        "start_jd": null,
+                        "start": null,
+                        "end_jd": null,
+                        "end": null
+                    },
+                    "penumbral_window": {
+                        "start_jd": null,
+                        "start": null,
+                        "end_jd": null,
+                        "end": null
+                    }
+                },
+                "sutak": {
+                    "applicable": false,
+                    "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                    "reason_key": "eclipse_not_visible_at_location",
+                    "start_jd": null,
+                    "end_jd": null,
+                    "start": null,
+                    "end": null,
+                    "relaxed_start_jd": null,
+                    "relaxed_end_jd": null,
+                    "relaxed_start": null,
+                    "relaxed_end": null,
+                    "duration_hours": 0
+                },
+                "retflag": 299
+            },
+            {
+                "type": "सूर्य",
+                "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
+                "date": "2029-07-11",
+                "datetime": "11/07/2029 09:06:28 PM",
+                "jd": 2462329.15033076,
+                "magnitudes": {
+                    "eclipse": 0,
+                    "obscuration": 0
+                },
+                "contacts": {
+                    "first_contact_jd": null,
+                    "second_contact_jd": null,
+                    "maximum_jd": null,
+                    "third_contact_jd": null,
+                    "fourth_contact_jd": null,
+                    "sunrise_jd": null,
+                    "sunset_jd": null
+                },
+                "global_contacts": {
+                    "first_contact_jd": null,
+                    "second_contact_jd": null,
+                    "maximum_jd": {
+                        "jd": 2462329.15033076,
+                        "time": "11/07/2029 09:06:28 PM"
+                    },
+                    "third_contact_jd": null,
+                    "fourth_contact_jd": null,
+                    "sunrise_jd": null,
+                    "sunset_jd": null
+                },
+                "durations": {
+                    "partial_seconds": 0,
+                    "total_seconds": 0
+                },
+                "visibility": {
+                    "visible": false,
+                    "astronomical_visible": false,
+                    "local_eclipse_type": null,
+                    "retflag": -1,
+                    "window": {
+                        "start_jd": null,
+                        "start": null,
+                        "end_jd": null,
+                        "end": null
+                    }
+                },
+                "sutak": {
+                    "applicable": false,
+                    "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                    "reason_key": "eclipse_not_visible_at_location",
+                    "start_jd": null,
+                    "end_jd": null,
+                    "start": null,
+                    "end": null,
+                    "relaxed_start_jd": null,
+                    "relaxed_end_jd": null,
+                    "relaxed_start": null,
+                    "relaxed_end": null,
+                    "duration_hours": 0
+                },
+                "retflag": 308
+            },
+            {
+                "type": "सूर्य",
+                "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
+                "date": "2029-12-05",
+                "datetime": "05/12/2029 08:33:17 PM",
+                "jd": 2462476.1272871257,
+                "magnitudes": {
+                    "eclipse": 0,
+                    "obscuration": 0
+                },
+                "contacts": {
+                    "first_contact_jd": null,
+                    "second_contact_jd": null,
+                    "maximum_jd": null,
+                    "third_contact_jd": null,
+                    "fourth_contact_jd": null,
+                    "sunrise_jd": null,
+                    "sunset_jd": null
+                },
+                "global_contacts": {
+                    "first_contact_jd": null,
+                    "second_contact_jd": null,
+                    "maximum_jd": {
+                        "jd": 2462476.1272871257,
+                        "time": "05/12/2029 08:33:17 PM"
+                    },
+                    "third_contact_jd": null,
+                    "fourth_contact_jd": null,
+                    "sunrise_jd": null,
+                    "sunset_jd": null
+                },
+                "durations": {
+                    "partial_seconds": 0,
+                    "total_seconds": 0
+                },
+                "visibility": {
+                    "visible": false,
+                    "astronomical_visible": false,
+                    "local_eclipse_type": null,
+                    "retflag": -1,
+                    "window": {
+                        "start_jd": null,
+                        "start": null,
+                        "end_jd": null,
+                        "end": null
+                    }
+                },
+                "sutak": {
+                    "applicable": false,
+                    "reason": "इस स्थान पर ग्रहण दृश्यमान नहीं",
+                    "reason_key": "eclipse_not_visible_at_location",
+                    "start_jd": null,
+                    "end_jd": null,
+                    "start": null,
+                    "end": null,
+                    "relaxed_start_jd": null,
+                    "relaxed_end_jd": null,
+                    "relaxed_start": null,
+                    "relaxed_end": null,
+                    "duration_hours": 0
+                },
+                "retflag": 308
+            },
+            {
+                "type": "चंद्र",
+                "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "पूर्ण",
+                "date": "2029-12-21",
+                "datetime": "21/12/2029 04:12:37 AM",
+                "jd": 2462491.4462645226,
+                "magnitudes": {
+                    "umbral": 1.1199166453010174,
+                    "penumbral": 2.2031517047422127
+                },
+                "contacts": {
+                    "penumbral_begin_jd": {
+                        "jd": 2462491.321807092,
                         "time": "21/12/2029 01:13:24 AM"
                     },
                     "partial_begin_jd": {
-                        "jd": 2462491.372059595,
+                        "jd": 2462491.3720595967,
                         "time": "21/12/2029 02:25:45 AM"
                     },
                     "total_begin_jd": {
-                        "jd": 2462491.4274047194,
+                        "jd": 2462491.4274047213,
                         "time": "21/12/2029 03:45:27 AM"
                     },
                     "maximum_jd": {
-                        "jd": 2462491.4462645208,
+                        "jd": 2462491.4462645226,
                         "time": "21/12/2029 04:12:37 AM"
                     },
                     "total_end_jd": {
-                        "jd": 2462491.465123874,
+                        "jd": 2462491.465123876,
                         "time": "21/12/2029 04:39:46 AM"
                     },
                     "partial_end_jd": {
-                        "jd": 2462491.520462552,
+                        "jd": 2462491.520462554,
                         "time": "21/12/2029 05:59:27 AM"
                     },
                     "penumbral_end_jd": {
-                        "jd": 2462491.570702602,
+                        "jd": 2462491.570702604,
                         "time": "21/12/2029 07:11:48 AM"
                     }
                 },
@@ -3506,28 +3788,29 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "पूर्ण",
                     "retflag": 299,
                     "window": {
-                        "start_jd": 2462491.3720595986,
+                        "start_jd": 2462491.372059593,
                         "start": "21/12/2029 02:25:45 AM",
-                        "end_jd": 2462491.5204625567,
+                        "end_jd": 2462491.5204625605,
                         "end": "21/12/2029 05:59:27 AM"
                     },
                     "penumbral_window": {
-                        "start_jd": 2462491.3218070846,
+                        "start_jd": 2462491.3218070883,
                         "start": "21/12/2029 01:13:24 AM",
-                        "end_jd": 2462491.5707025966,
+                        "end_jd": 2462491.570702601,
                         "end": "21/12/2029 07:11:48 AM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2462490.916650293,
-                    "end_jd": 2462491.5204625567,
+                    "end_jd": 2462491.5204625605,
                     "start": "20/12/2029 03:29:58 PM",
                     "end": "21/12/2029 05:59:27 AM",
                     "relaxed_start_jd": 2462491.1667389846,
-                    "relaxed_end_jd": 2462491.5204625567,
+                    "relaxed_end_jd": 2462491.5204625605,
                     "relaxed_start": "20/12/2029 09:30:06 PM",
                     "relaxed_end": "21/12/2029 05:59:27 AM",
                     "duration_hours": 9
@@ -3536,7 +3819,9 @@
             },
             {
                 "type": "सूर्य",
-                "eclipse_type": "आंशिक",
+                "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": "आंशिक",
                 "date": "2030-06-01",
                 "datetime": "01/06/2030 10:58:57 AM",
                 "jd": 2462653.728446573,
@@ -3587,6 +3872,7 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "आंशिक",
                     "retflag": 308,
                     "window": {
                         "start_jd": 2462653.6920342194,
@@ -3612,12 +3898,14 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": "आंशिक",
                 "date": "2030-06-16",
                 "datetime": "16/06/2030 12:03:47 AM",
-                "jd": 2462668.2734627305,
+                "jd": 2462668.273462731,
                 "magnitudes": {
-                    "umbral": 0.5049523114020045,
-                    "penumbral": 1.4503008523761989
+                    "umbral": 0.5049523114011153,
+                    "penumbral": 1.4503008523770917
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3630,49 +3918,50 @@
                     },
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2462668.2734627305,
+                        "jd": 2462668.273462731,
                         "time": "16/06/2030 12:03:47 AM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": {
-                        "jd": 2462668.323743497,
+                        "jd": 2462668.323743498,
                         "time": "16/06/2030 01:16:11 AM"
                     },
                     "penumbral_end_jd": {
-                        "jd": 2462668.370210753,
+                        "jd": 2462668.3702107538,
                         "time": "16/06/2030 02:23:06 AM"
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 16717.61087179184,
-                    "partial_seconds": 8688.3969694376,
+                    "penumbral_seconds": 16717.61095225811,
+                    "partial_seconds": 8688.39704990387,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "आंशिक",
                     "retflag": 297,
                     "window": {
                         "start_jd": 2462668.223183344,
                         "start": "15/06/2030 10:51:23 PM",
-                        "end_jd": 2462668.3237435035,
+                        "end_jd": 2462668.3237435045,
                         "end": "16/06/2030 01:16:11 AM"
                     },
                     "penumbral_window": {
                         "start_jd": 2462668.176719893,
                         "start": "15/06/2030 09:44:28 PM",
-                        "end_jd": 2462668.37021075,
+                        "end_jd": 2462668.370210751,
                         "end": "16/06/2030 02:23:06 AM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2462667.8068714123,
-                    "end_jd": 2462668.3237435035,
+                    "end_jd": 2462668.3237435045,
                     "start": "15/06/2030 12:51:53 PM",
                     "end": "16/06/2030 01:16:11 AM",
                     "relaxed_start_jd": 2462668.0898917485,
-                    "relaxed_end_jd": 2462668.3237435035,
+                    "relaxed_end_jd": 2462668.3237435045,
                     "relaxed_start": "15/06/2030 07:39:26 PM",
                     "relaxed_end": "16/06/2030 01:16:11 AM",
                     "duration_hours": 9
@@ -3682,9 +3971,11 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": null,
                 "date": "2030-11-25",
                 "datetime": "25/11/2030 12:20:52 PM",
-                "jd": 2462830.785324868,
+                "jd": 2462830.7853249004,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -3700,17 +3991,17 @@
                 },
                 "global_contacts": {
                     "first_contact_jd": {
-                        "jd": 2462830.7584675676,
+                        "jd": 2462830.7584676,
                         "time": "25/11/2030 11:42:11 AM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462830.785324868,
+                        "jd": 2462830.7853249004,
                         "time": "25/11/2030 12:20:52 PM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2462830.812177133,
+                        "jd": 2462830.8121771654,
                         "time": "25/11/2030 12:59:32 PM"
                     },
                     "sunrise_jd": null,
@@ -3723,6 +4014,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -3750,39 +4042,42 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": "उपछाया",
                 "date": "2030-12-10",
                 "datetime": "10/12/2030 03:58:16 AM",
-                "jd": 2462845.436303882,
+                "jd": 2462845.436303885,
                 "magnitudes": {
-                    "umbral": -0.16064474413409824,
-                    "penumbral": 0.9434572733462764
+                    "umbral": -0.1606447441356739,
+                    "penumbral": 0.9434572733478531
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2462845.3392011113,
+                        "jd": 2462845.339201114,
                         "time": "10/12/2030 01:38:26 AM"
                     },
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2462845.436303882,
+                        "jd": 2462845.436303885,
                         "time": "10/12/2030 03:58:16 AM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": null,
                     "penumbral_end_jd": {
-                        "jd": 2462845.5334083783,
+                        "jd": 2462845.533408382,
                         "time": "10/12/2030 06:18:06 AM"
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 16779.507860541344,
+                    "penumbral_seconds": 16779.507941007614,
                     "partial_seconds": 0,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "उपछाया",
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -3816,6 +4111,8 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": null,
                 "date": "2031-05-07",
                 "datetime": "07/05/2031 09:21:21 AM",
                 "jd": 2462993.6606682823,
@@ -3849,6 +4146,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -3881,7 +4179,9 @@
             },
             {
                 "type": "सूर्य",
-                "eclipse_type": "आंशिक",
+                "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": "आंशिक",
                 "date": "2031-05-21",
                 "datetime": "21/05/2031 12:50:43 PM",
                 "jd": 2463007.8060617177,
@@ -3909,17 +4209,17 @@
                 },
                 "global_contacts": {
                     "first_contact_jd": {
-                        "jd": 2463007.759792276,
+                        "jd": 2463007.7597922464,
                         "time": "21/05/2031 11:44:06 AM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463007.8024012237,
+                        "jd": 2463007.802401194,
                         "time": "21/05/2031 12:45:27 PM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2463007.845035348,
+                        "jd": 2463007.845035471,
                         "time": "21/05/2031 01:46:51 PM"
                     },
                     "sunrise_jd": null,
@@ -3932,6 +4232,7 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "आंशिक",
                     "retflag": 308,
                     "window": {
                         "start_jd": 2463007.73559602,
@@ -3957,12 +4258,14 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": null,
                 "date": "2031-06-05",
                 "datetime": "05/06/2031 05:14:36 PM",
-                "jd": 2463022.9893138893,
+                "jd": 2463022.989313889,
                 "magnitudes": {
-                    "umbral": -0.8177157954182134,
-                    "penumbral": 0.13094603293116694
+                    "umbral": -0.8177157954193571,
+                    "penumbral": 0.13094603293236518
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3972,24 +4275,25 @@
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2463022.9893138893,
+                        "jd": 2463022.989313889,
                         "time": "05/06/2031 05:14:36 PM"
                     },
                     "total_end_jd": null,
                     "partial_end_jd": null,
                     "penumbral_end_jd": {
-                        "jd": 2463023.022735267,
+                        "jd": 2463023.022735266,
                         "time": "05/06/2031 06:02:44 PM"
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 5775.280925631523,
+                    "penumbral_seconds": 5775.280845165253,
                     "partial_seconds": 0,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -4023,22 +4327,24 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "उपछाया",
+                "global_eclipse_type": "उपछाया",
+                "local_eclipse_type": null,
                 "date": "2031-10-30",
                 "datetime": "30/10/2031 01:15:56 PM",
-                "jd": 2463169.8235758548,
+                "jd": 2463169.8235758543,
                 "magnitudes": {
-                    "umbral": -0.31609691000890655,
-                    "penumbral": 0.7201326441191536
+                    "umbral": -0.31609691000643125,
+                    "penumbral": 0.7201326441166159
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2463169.7428563125,
+                        "jd": 2463169.7428563116,
                         "time": "30/10/2031 11:19:42 AM"
                     },
                     "partial_begin_jd": null,
                     "total_begin_jd": null,
                     "maximum_jd": {
-                        "jd": 2463169.8235758548,
+                        "jd": 2463169.8235758543,
                         "time": "30/10/2031 01:15:56 PM"
                     },
                     "total_end_jd": null,
@@ -4049,13 +4355,14 @@
                     }
                 },
                 "durations": {
-                    "penumbral_seconds": 13949.27046597004,
+                    "penumbral_seconds": 13949.27054643631,
                     "partial_seconds": 0,
                     "total_seconds": 0
                 },
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
                         "start_jd": null,
@@ -4088,10 +4395,12 @@
             },
             {
                 "type": "सूर्य",
-                "eclipse_type": "वलयाकार-पूर्ण",
+                "eclipse_type": "संकर",
+                "global_eclipse_type": "संकर",
+                "local_eclipse_type": null,
                 "date": "2031-11-15",
                 "datetime": "15/11/2031 02:36:47 AM",
-                "jd": 2463185.3797182664,
+                "jd": 2463185.3797182967,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -4107,17 +4416,17 @@
                 },
                 "global_contacts": {
                     "first_contact_jd": {
-                        "jd": 2463185.3459287453,
+                        "jd": 2463185.345928776,
                         "time": "15/11/2031 01:48:08 AM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463185.3797182664,
+                        "jd": 2463185.3797182967,
                         "time": "15/11/2031 02:36:47 AM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2463185.413483831,
+                        "jd": 2463185.413483861,
                         "time": "15/11/2031 03:25:25 AM"
                     },
                     "sunrise_jd": null,
@@ -4130,6 +4439,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -4157,6 +4467,8 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "पूर्ण",
                 "date": "2032-04-25",
                 "datetime": "25/04/2032 08:44:10 PM",
                 "jd": 2463348.134847014,
@@ -4202,6 +4514,7 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "पूर्ण",
                     "retflag": 299,
                     "window": {
                         "start_jd": 2463348.0722692944,
@@ -4233,9 +4546,11 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "वलयाकार",
+                "global_eclipse_type": "वलयाकार",
+                "local_eclipse_type": null,
                 "date": "2032-05-09",
                 "datetime": "09/05/2032 06:56:05 PM",
-                "jd": 2463362.0597821698,
+                "jd": 2463362.0597821265,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -4253,7 +4568,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463362.0597821698,
+                        "jd": 2463362.0597821265,
                         "time": "09/05/2032 06:56:05 PM"
                     },
                     "third_contact_jd": null,
@@ -4268,6 +4583,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,
@@ -4295,73 +4611,76 @@
             {
                 "type": "चंद्र",
                 "eclipse_type": "पूर्ण",
+                "global_eclipse_type": "पूर्ण",
+                "local_eclipse_type": "पूर्ण",
                 "date": "2032-10-19",
                 "datetime": "19/10/2032 12:32:54 AM",
-                "jd": 2463524.293688125,
+                "jd": 2463524.293688124,
                 "magnitudes": {
-                    "umbral": 1.1074297607509838,
-                    "penumbral": 2.087545025604019
+                    "umbral": 1.1074297607547825,
+                    "penumbral": 2.0875450256001518
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
-                        "jd": 2463524.1840118924,
+                        "jd": 2463524.1840118915,
                         "time": "18/10/2032 09:54:58 PM"
                     },
                     "partial_begin_jd": {
-                        "jd": 2463524.2254885044,
+                        "jd": 2463524.225488513,
                         "time": "18/10/2032 10:54:42 PM"
                     },
                     "total_begin_jd": {
-                        "jd": 2463524.276954416,
+                        "jd": 2463524.2769544153,
                         "time": "19/10/2032 12:08:48 AM"
                     },
                     "maximum_jd": {
-                        "jd": 2463524.293688125,
+                        "jd": 2463524.293688124,
                         "time": "19/10/2032 12:32:54 AM"
                     },
                     "total_end_jd": {
-                        "jd": 2463524.310422158,
+                        "jd": 2463524.310422157,
                         "time": "19/10/2032 12:57:00 AM"
                     },
                     "partial_end_jd": {
-                        "jd": 2463524.361893315,
+                        "jd": 2463524.361893314,
                         "time": "19/10/2032 02:11:07 AM"
                     },
                     "penumbral_end_jd": {
-                        "jd": 2463524.4033787875,
+                        "jd": 2463524.4033787865,
                         "time": "19/10/2032 03:10:51 AM"
                     }
                 },
                 "durations": {
                     "penumbral_seconds": 18953.29973101616,
-                    "partial_seconds": 11785.375624895096,
+                    "partial_seconds": 11785.374820232391,
                     "total_seconds": 2891.612881422043
                 },
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "local_eclipse_type": "पूर्ण",
                     "retflag": 299,
                     "window": {
-                        "start_jd": 2463524.2254885053,
+                        "start_jd": 2463524.2254885044,
                         "start": "18/10/2032 10:54:42 PM",
-                        "end_jd": 2463524.361893316,
+                        "end_jd": 2463524.361893315,
                         "end": "19/10/2032 02:11:07 AM"
                     },
                     "penumbral_window": {
-                        "start_jd": 2463524.1840118933,
+                        "start_jd": 2463524.1840118924,
                         "start": "18/10/2032 09:54:58 PM",
-                        "end_jd": 2463524.4033787884,
+                        "end_jd": 2463524.4033787875,
                         "end": "19/10/2032 03:10:51 AM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2463523.7960185986,
-                    "end_jd": 2463524.361893316,
+                    "end_jd": 2463524.361893315,
                     "start": "18/10/2032 12:36:16 PM",
                     "end": "19/10/2032 02:11:07 AM",
                     "relaxed_start_jd": 2463524.037178355,
-                    "relaxed_end_jd": 2463524.361893316,
+                    "relaxed_end_jd": 2463524.361893315,
                     "relaxed_start": "18/10/2032 06:23:32 PM",
                     "relaxed_end": "19/10/2032 02:11:07 AM",
                     "duration_hours": 9
@@ -4371,9 +4690,11 @@
             {
                 "type": "सूर्य",
                 "eclipse_type": "आंशिक",
+                "global_eclipse_type": "आंशिक",
+                "local_eclipse_type": null,
                 "date": "2032-11-03",
                 "datetime": "03/11/2032 11:03:28 AM",
-                "jd": 2463539.731581791,
+                "jd": 2463539.731581821,
                 "magnitudes": {
                     "eclipse": 0,
                     "obscuration": 0
@@ -4391,7 +4712,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463539.731581791,
+                        "jd": 2463539.731581821,
                         "time": "03/11/2032 11:03:28 AM"
                     },
                     "third_contact_jd": null,
@@ -4406,6 +4727,7 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
                         "start_jd": null,

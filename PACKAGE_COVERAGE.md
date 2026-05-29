@@ -642,6 +642,8 @@ The package covers:
 - solar eclipses
 - lunar eclipses
 - eclipse type classification
+- global eclipse type classification
+- local eclipse type classification for the configured location
 - date and datetime of maximum eclipse
 - Julian day of maximum eclipse
 - magnitude data
@@ -649,6 +651,8 @@ The package covers:
 - duration data
 
 For visible and non-visible eclipses alike, the payload still preserves the classification and event structure rather than collapsing them into a simple yes/no list.
+
+Solar eclipse payloads separate global catalog type from local visible type. For example, a globally total or annular eclipse can still be locally partial at the configured coordinates.
 
 ### Visibility Coverage
 

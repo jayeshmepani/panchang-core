@@ -122,7 +122,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             '%s|%s|%s',
             (string) ($event['date'] ?? ''),
             (string) ($event['type'] ?? ''),
-            (string) ($event['eclipse_type'] ?? '')
+            (string) (($event['visibility']['visible'] ?? false) ? ($event['local_eclipse_type'] ?? $event['eclipse_type'] ?? '') : ($event['eclipse_type'] ?? ''))
         );
     }
 

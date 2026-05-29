@@ -40,44 +40,40 @@ class EclipseService
 
         $events = [];
         $seen = [];
-        $cursor = $start - 1e-6;
-        $maxIterations = 2000;
-        $iteration = 0;
 
-        while ($cursor < $end && $iteration < $maxIterations) {
-            $iteration++;
-            $nextLunar = $this->nextLunarEclipse($cursor, $lat, $lon, $tz);
-            $nextSolar = $this->nextSolarEclipse($cursor, $lat, $lon, $tz);
+        foreach (['lunar', 'solar'] as $series) {
+            $cursor = $start - 1e-6;
+            $maxIterations = 2000;
+            $iteration = 0;
 
-            $candidates = array_values(array_filter([$nextLunar, $nextSolar], is_array(...)));
-            if ($candidates === []) {
-                // JME *_when functions can report "no eclipse near supplied date"
-                // for a given lunation. Advance in small calendar steps so the
-                // next search can enter the native eclipse search window.
-                $cursor += 1.0;
-                continue;
+            while ($cursor < $end && $iteration < $maxIterations) {
+                $iteration++;
+                $pick = $series === 'lunar'
+                    ? $this->nextLunarEclipse($cursor, $lat, $lon, $tz)
+                    : $this->nextSolarEclipse($cursor, $lat, $lon, $tz);
+
+                if (!is_array($pick)) {
+                    $cursor += 1.0;
+                    continue;
+                }
+
+                if (($pick['jd'] ?? $end + 1.0) >= $end) {
+                    break;
+                }
+
+                if ((float) $pick['jd'] <= $cursor) {
+                    $cursor += 1.0;
+                    continue;
+                }
+
+                $hash = strtolower((string) $pick['type']) . ':' . number_format((float) $pick['jd'], 6, '.', '');
+                if (!isset($seen[$hash])) {
+                    $events[] = $pick;
+                    $seen[$hash] = true;
+                }
+
+                $cursor = (float) $pick['jd'] + 0.01;
             }
-
-            usort($candidates, static fn (array $a, array $b): int => $a['jd'] <=> $b['jd']);
-            $pick = $candidates[0];
-
-            if (($pick['jd'] ?? $end + 1.0) >= $end) {
-                break;
-            }
-
-            if ((float) $pick['jd'] <= $cursor) {
-                // Defensive progression guard against non-advancing candidates.
-                $cursor += 0.5;
-                continue;
-            }
-
-            $hash = strtolower((string) $pick['type']) . ':' . number_format((float) $pick['jd'], 6, '.', '');
-            if (!isset($seen[$hash])) {
-                $events[] = $pick;
-                $seen[$hash] = true;
-            }
-
-            $cursor = (float) $pick['jd'] + 0.01;
         }
 
         usort($events, static fn (array $a, array $b): int => $a['jd'] <=> $b['jd']);
@@ -167,21 +163,22 @@ class EclipseService
             && $localContacts['total_end_jd'] !== null
             && $localContacts['total_end_jd'] > $localContacts['total_begin_jd'];
 
-        $type = 'Penumbral';
+        $globalType = $this->lunarTypeFromCode($retFlag);
+        $localType = null;
         if ($hasLocalTotalWindow) {
-            $type = 'Total';
+            $localType = 'Total';
         } elseif ($hasLocalPartialWindow) {
-            $type = 'Partial';
+            $localType = 'Partial';
+        } elseif ($contactsFromSameEvent && $visibilityStartJd !== null && $visibilityEndJd !== null) {
+            $localType = 'Penumbral';
         }
 
         $dt = $this->jdToCarbon($jdMax, $tz);
 
         $hasRitualPhase = $hasLocalPartialWindow || $hasLocalTotalWindow;
-        $hasLocalContacts = $visibilityStartJd !== null && $visibilityEndJd !== null && $visibilityEndJd > $visibilityStartJd;
-        // Keep astronomical visibility strictly native. Do not infer it from
-        // ritual-phase presence, or the field stops reflecting the underlying
-        // local eclipse contract.
-        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
+        $hasNativeVisibilityWindow = $visibilityStartJd !== null && $visibilityEndJd !== null && $visibilityEndJd > $visibilityStartJd;
+        $hasLocalContacts = $hasNativeVisibilityWindow || $hasRitualPhase;
+        $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE || $hasRitualPhase;
         $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts;
         $ritualVisibleStartJd = $this->maxJd($visibilityStartJd, $localContacts['partial_begin_jd']);
         $ritualVisibleEndJd = $this->minJd($visibilityEndJd, $localContacts['partial_end_jd']);
@@ -195,7 +192,9 @@ class EclipseService
 
         return [
             'type' => Localization::translate('String', 'Lunar'),
-            'eclipse_type' => Localization::translate('Eclipse', $type),
+            'eclipse_type' => Localization::translate('Eclipse', $globalType),
+            'global_eclipse_type' => Localization::translate('Eclipse', $globalType),
+            'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
             'jd' => $jdMax,
@@ -212,6 +211,7 @@ class EclipseService
             'visibility' => [
                 'visible' => $isVisible,
                 'astronomical_visible' => $astroVisible,
+                'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
                 'retflag' => $retHow,
                 'window' => $this->formatVisibilityWindow($isVisible ? $ritualVisibleStartJd : null, $isVisible ? $ritualVisibleEndJd : null, $tz),
                 'penumbral_window' => $this->formatVisibilityWindow($isVisible ? $visibilityStartJd : null, $isVisible ? $visibilityEndJd : null, $tz),
@@ -236,18 +236,8 @@ class EclipseService
         $localMaximumJd = $contactsFromSameEvent ? (float) $tretLoc[0] : $jdMax;
         $retHow = $this->jme->jme_sol_eclipse_how($localMaximumJd, JmeEphFFI::JME_CALC_HIGH_PRECISION, $geo, $attr, $serr);
 
-        $eventTypeCode = $contactsFromSameEvent ? $retLoc : $retFlag;
-
-        $type = 'Partial';
-        if ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_TOTAL) {
-            $type = 'Total';
-        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_ANNULAR) {
-            $type = 'Annular';
-        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_HYBRID) {
-            $type = 'Annular-Total';
-        } elseif ($eventTypeCode === JmeEphFFI::JME_ECLIPSE_SOLAR_PARTIAL) {
-            $type = 'Partial';
-        }
+        $globalType = $this->solarTypeFromCode($retFlag);
+        $localType = $contactsFromSameEvent ? $this->solarTypeFromCode($retLoc) : null;
 
         $globalContacts = [
             'first_contact_jd' => $globalTret[2] > 0 ? (float) $globalTret[2] : null,
@@ -286,7 +276,9 @@ class EclipseService
 
         return [
             'type' => Localization::translate('String', 'Solar'),
-            'eclipse_type' => Localization::translate('Eclipse', $type),
+            'eclipse_type' => Localization::translate('Eclipse', $globalType),
+            'global_eclipse_type' => Localization::translate('Eclipse', $globalType),
+            'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
             'date' => $dt->toDateString(),
             'datetime' => AstroCore::formatDateTime($dt),
             'jd' => $localMaximumJd,
@@ -303,6 +295,7 @@ class EclipseService
             'visibility' => [
                 'visible' => $isVisible,
                 'astronomical_visible' => $astroVisible,
+                'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
                 'retflag' => $retHow,
                 'window' => $this->formatVisibilityWindow(
                     $isVisible ? $visibilityWindowStartJd : null,
@@ -313,6 +306,29 @@ class EclipseService
             'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, 4, $lat, $lon, $tz, $isVisible),
             'retflag' => $retFlag,
         ];
+    }
+
+    private function lunarTypeFromCode(int $code): string
+    {
+        if ($code === JmeEphFFI::JME_ECLIPSE_LUNAR_TOTAL) {
+            return 'Total';
+        }
+
+        if ($code === JmeEphFFI::JME_ECLIPSE_LUNAR_PARTIAL) {
+            return 'Partial';
+        }
+
+        return 'Penumbral';
+    }
+
+    private function solarTypeFromCode(int $code): string
+    {
+        return match ($code) {
+            JmeEphFFI::JME_ECLIPSE_SOLAR_TOTAL => 'Total',
+            JmeEphFFI::JME_ECLIPSE_SOLAR_ANNULAR => 'Annular',
+            JmeEphFFI::JME_ECLIPSE_SOLAR_HYBRID => 'Hybrid',
+            default => 'Partial',
+        };
     }
 
     private function formatContactTimes(array $contacts, string $tz): array

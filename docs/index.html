@@ -2801,7 +2801,9 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — List of eclipse events with
-                times, type, and visibility.</div>
+                times, global type, local type, and visibility. <code>eclipse_type</code> and
+                <code>global_eclipse_type</code> describe the global catalog event; <code>local_eclipse_type</code>
+                describes the event at the requested coordinates when locally applicable.</div>
             </div>
           </div>
         </section>
@@ -3027,6 +3029,8 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
             </thead>
             <tbody>
               <tr><td><code>Chandra_Vaasa</code></td><td>Object</td><td>{rule_system: moon_rashi_direction_4_direction, moon_sign, direction, windows, nakshatra_pada_vaasa}</td></tr>
+              <tr><td><code>Current_Nakshatra_At_Input_Now</code></td><td>Object</td><td>{name, pada, lord}; runtime/current Nakshatra for the calculation instant</td></tr>
+              <tr><td><code>Nakshatra_At_Sunrise</code></td><td>Object</td><td>{name, pada, lord}; explicit sunrise Nakshatra</td></tr>
               <tr><td><code>Transitions</code></td><td>Object</td><td>{tithi, nakshatra, yoga, karana, moon_sign, sun_sign}; each current field is input-time based and includes current_at_sunrise where relevant</td></tr>
               <tr><td><code>Resolution_Context</code></td><td>Object</td><td>{date_iso, sunrise_iso, next_sunrise_iso, tithi_start_jd, tithi_end_jd, nakshatra_start_jd, nakshatra_end_jd, sankranti_rashi}</td></tr>
               <tr><td><code>Day_Types</code></td><td>Object</td><td>{civil_day_length_seconds, mean_solar_day_seconds, apparent_solar_day_seconds, apparent_solar_noon, solar_midnight}</td></tr>
@@ -4083,6 +4087,10 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <li><code>MuhurtaService::calculateNakshatraPeriodWindows()</code> is the public scoped API for independent <code>varjyam</code> and <code>amrita_kaal</code> Nakshatra windows.</li>
             <li><code>calculateAmritaKaal()</code> remains only as a legacy compatibility helper and no longer derives Amrita Kaal from Varjyam end time.</li>
             <li><code>Chandra_Vaasa</code> now uses Moon-rashi direction as the primary meaning and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
+            <li><code>Current_Nakshatra_At_Input_Now</code> and <code>Nakshatra_At_Sunrise</code> now make runtime versus sunrise Nakshatra semantics explicit.</li>
+            <li>Runtime Nakshatra-derived outputs, including Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa, now select the window active at the calculation instant.</li>
+            <li>Shiva Vaasa, Agni Vaasa, and Yogini Vaasa now use the input-time Tithi while preserving sunrise values under <code>at_sunrise</code>.</li>
+            <li>Eclipse output separates global catalog type from local visible type through <code>global_eclipse_type</code> and <code>local_eclipse_type</code>.</li>
             <li><code>Abhijit_Muhurta.solar_noon</code> is now <code>Abhijit_Muhurta.daylight_midpoint</code>; <code>Day_Types.solar_noon</code> is now <code>Day_Types.apparent_solar_noon</code>.</li>
           </ul>
 

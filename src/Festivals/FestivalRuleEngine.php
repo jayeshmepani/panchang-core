@@ -90,6 +90,7 @@ class FestivalRuleEngine
         $strictKarmakala = (bool) ($rule['strict_karmakala'] ?? ($karmakalaType !== 'sunrise'));
         $preferFirstKarmakala = (bool) ($rule['prefer_first_karmakala'] ?? false);
         $preferNakshatra = (bool) ($rule['prefer_nakshatra'] ?? false);
+        $requiredWeekday = $rule['weekday'] ?? null;
 
         $tithiAtSunriseToday = $this->isTargetAtPoint((float) $ctxToday['sunrise_jd'], $targetInterval);
         $tithiAtSunriseTomorrow = $this->isTargetAtPoint((float) $ctxTomorrow['sunrise_jd'], $targetInterval);
@@ -124,6 +125,9 @@ class FestivalRuleEngine
             $matchingWeekday = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['weekday_matches']));
             if ($matchingWeekday !== []) {
                 $filtered = $matchingWeekday;
+            } elseif ($requiredWeekday !== null) {
+                // If a specific weekday was required but not met by any eligible candidate, this festival does not occur
+                return null;
             }
 
             if ($preferNakshatra) {

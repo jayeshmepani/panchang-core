@@ -48,6 +48,27 @@ enum Yoga: int
         return Localization::translate('Yoga', $this->value, $locale);
     }
 
+    public static function fromAngle(float $angle): self
+    {
+        $normalized = fmod($angle, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        $index = (int) floor($normalized / 13.3333333333);
+        return self::from($index);
+    }
+
+    public static function getFractionRemainingAtAngle(float $angle): float
+    {
+        $normalized = fmod($angle, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        return 1.0 - (fmod($normalized, 13.3333333333) / 13.3333333333);
+    }
+
     /**
      * Get yoga from Sun-Moon longitude sum.
      *
@@ -58,13 +79,7 @@ enum Yoga: int
      */
     public static function fromLongitudes(float $sunLon, float $moonLon): self
     {
-        $sum = fmod($sunLon + $moonLon, 360.0);
-        if ($sum < 0) {
-            $sum += 360.0;
-        }
-
-        $index = (int) floor($sum / 13.3333333333);
-        return self::from($index);
+        return self::fromAngle($sunLon + $moonLon);
     }
 
     /**
@@ -77,11 +92,6 @@ enum Yoga: int
      */
     public static function getFractionRemaining(float $sunLon, float $moonLon): float
     {
-        $sum = fmod($sunLon + $moonLon, 360.0);
-        if ($sum < 0) {
-            $sum += 360.0;
-        }
-
-        return 1.0 - (fmod($sum, 13.3333333333) / 13.3333333333);
+        return self::getFractionRemainingAtAngle($sunLon + $moonLon);
     }
 }

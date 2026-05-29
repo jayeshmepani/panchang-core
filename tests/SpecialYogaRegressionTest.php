@@ -131,6 +131,39 @@ class SpecialYogaRegressionTest extends TestCase
         $this->assertSame('South-East', $day['Yogini_Vaasa']['direction'] ?? null);
     }
 
+    public function test_runtime_nakshatra_dependent_fields_follow_input_time(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $day = $service->getDayDetails(
+            CarbonImmutable::parse('2026-05-29', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            CarbonImmutable::parse('2026-05-29 10:44:41', 'Asia/Kolkata')
+        );
+
+        $this->assertSame('Swati', $day['Nakshatra_At_Sunrise']['name'] ?? null);
+        $this->assertSame('Vishakha', $day['Current_Nakshatra_At_Input_Now']['name'] ?? null);
+        $this->assertSame('Vishakha', $day['Transitions']['nakshatra']['current_at_input_now'] ?? null);
+
+        $this->assertSame('Matanga', $day['Anandadi_Yoga']['current']['name_key'] ?? null);
+        $this->assertSame('Vishakha', $day['Anandadi_Yoga']['current']['nakshatra'] ?? null);
+        $this->assertSame('Siddha', $day['Amritadi_Yoga']['current']['classification_key'] ?? null);
+        $this->assertSame('Vishakha', $day['Amritadi_Yoga']['current']['nakshatra'] ?? null);
+
+        $this->assertSame('Vishakha', $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['nakshatra'] ?? null);
+        $this->assertSame(1, $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['pada'] ?? null);
+        $this->assertSame('Deva', $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['abode_key'] ?? null);
+
+        $this->assertSame('Shukla Chaturdashi', $day['Shiva_Vaasa']['tithi_name'] ?? null);
+        $this->assertSame('Shukla Trayodashi', $day['Shiva_Vaasa']['at_sunrise']['tithi_name'] ?? null);
+        $this->assertSame('Shukla Chaturdashi', $day['Agni_Vaasa']['tithi_name'] ?? null);
+        $this->assertSame('Shukla Chaturdashi', $day['Yogini_Vaasa']['tithi_name'] ?? null);
+    }
+
     public function test_moonrise_moonset_are_reported_as_visibility_interval_for_civil_date(): void
     {
         $expected = [

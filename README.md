@@ -92,13 +92,15 @@ $festivals = $details['Festivals'];
 ## Important Output Semantics
 
 - `Tithi` and `Karana` are sunrise-based compatibility fields.
-- Use `Current_Tithi_At_Input_Now` and `Current_Karana_At_Input_Now` for runtime/current values.
-- Use `Tithi_At_Sunrise` and `Karana_At_Sunrise` when sunrise semantics are required explicitly.
+- Use `Current_Tithi_At_Input_Now`, `Current_Nakshatra_At_Input_Now`, `Current_Yoga_At_Input_Now`, and `Current_Karana_At_Input_Now` for runtime/current values.
+- Use `Tithi_At_Sunrise`, `Nakshatra_At_Sunrise`, and `Karana_At_Sunrise` when sunrise semantics are required explicitly.
 - `Brahma_Muhurta` uses the dynamic night-muhurta convention by default: previous sunset to sunrise divided into 15 night Muhurtas.
 - The fixed 48-minute Brahma Muhurta convention is preserved under `Brahma_Muhurta.fixed_48_minute_convention`.
 - `Amrita_Kaal` is calculated independently from nakshatra-specific Amrita ghati offsets, not from Varjyam.
 - `Lagna_Full_Day` includes partial intervals that overlap the sunrise-to-next-sunrise Panchang day.
 - `Chandra_Vaasa` uses Moon-rashi direction as the primary field and preserves the older nakshatra-pada Vaasa under `nakshatra_pada_vaasa`.
+- Nakshatra-derived current windows such as Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa are selected from the calculation time, not blindly from the first sunrise window.
+- Eclipse output separates global classification from local visibility classification with `global_eclipse_type` and `local_eclipse_type`.
 - `Day_Types.apparent_solar_noon` is the astronomical solar transit.
 - `Abhijit_Muhurta.daylight_midpoint` is the sunrise-to-sunset midpoint used for Abhijit calculation.
 

@@ -13,6 +13,41 @@ use PHPUnit\Framework\TestCase;
 #[Group('slow')]
 final class EclipseCrossLocationRegressionTest extends TestCase
 {
+    public function testBhujGlobalEclipseCatalogFor2026To2032MatchesNasaTypes(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+
+        $events = [];
+        for ($year = 2026; $year <= 2032; $year++) {
+            foreach ($service->getEclipsesForYear($year, 23.2472446, 69.668339, 'Asia/Kolkata') as $event) {
+                $events[(string) ($event['date'] ?? '') . '|' . (string) ($event['type'] ?? '')] = $event;
+            }
+        }
+
+        self::assertCount(33, $events);
+
+        foreach ([
+            '2026-03-03|Lunar' => 'Total',
+            '2026-08-28|Lunar' => 'Partial',
+            '2028-01-12|Lunar' => 'Partial',
+            '2029-06-26|Lunar' => 'Total',
+            '2029-12-05|Solar' => 'Partial',
+            '2027-08-02|Solar' => 'Total',
+            '2030-06-01|Solar' => 'Annular',
+            '2031-05-21|Solar' => 'Annular',
+            '2031-11-15|Solar' => 'Hybrid',
+        ] as $key => $expectedType) {
+            self::assertArrayHasKey($key, $events);
+            self::assertSame($expectedType, $events[$key]['global_eclipse_type'] ?? null, $key);
+            self::assertSame($expectedType, $events[$key]['eclipse_type'] ?? null, $key);
+        }
+
+        self::assertSame('Partial', $events['2027-08-02|Solar']['local_eclipse_type'] ?? null);
+        self::assertSame('Partial', $events['2030-06-01|Solar']['local_eclipse_type'] ?? null);
+        self::assertSame('Partial', $events['2031-05-21|Solar']['local_eclipse_type'] ?? null);
+    }
+
     #[DataProvider('locationCases')]
     public function testCrossLocationEdgeCasesRemainStable(
         string $label,
@@ -22,7 +57,8 @@ final class EclipseCrossLocationRegressionTest extends TestCase
         int $year,
         string $expectedDate,
         string $expectedType,
-        string $expectedEclipseType,
+        string $expectedLocalEclipseType,
+        string $expectedGlobalEclipseType,
         string $expectedMaximum,
         string $expectedStart,
         string $expectedEnd,
@@ -44,7 +80,8 @@ final class EclipseCrossLocationRegressionTest extends TestCase
 
         self::assertIsArray($match, $label . ' expected event missing');
         self::assertTrue((bool) ($match['visibility']['visible'] ?? false), $label . ' should be locally visible');
-        self::assertSame($expectedEclipseType, $match['eclipse_type'] ?? null, $label . ' eclipse type mismatch');
+        self::assertSame($expectedGlobalEclipseType, $match['global_eclipse_type'] ?? null, $label . ' global eclipse type mismatch');
+        self::assertSame($expectedLocalEclipseType, $match['local_eclipse_type'] ?? null, $label . ' local eclipse type mismatch');
 
         $this->assertTimeClose($match['datetime'] ?? null, $expectedMaximum, $tz, $maximumDeltaSeconds, $label . ' maximum');
         $this->assertTimeClose($match['visibility']['window']['start'] ?? null, $expectedStart, $tz, $startDeltaSeconds, $label . ' start');
@@ -63,6 +100,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
             '2021-05-26',
             'Lunar',
             'Total',
+            'Total',
             '26/05/2021 07:18:00 PM',
             '26/05/2021 07:04:00 PM',
             '26/05/2021 08:52:00 PM',
@@ -80,6 +118,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
             '2021-06-10',
             'Solar',
             'Partial',
+            'Annular',
             '10/06/2021 12:44:06 PM',
             '10/06/2021 11:31:57 AM',
             '10/06/2021 01:58:10 PM',
@@ -97,6 +136,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
             '2023-04-20',
             'Solar',
             'Total',
+            'Hybrid',
             '20/04/2023 11:31:44 AM',
             '20/04/2023 10:05:41 AM',
             '20/04/2023 01:04:10 PM',
@@ -114,6 +154,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
             '2023-10-14',
             'Solar',
             'Annular',
+            'Annular',
             '14/10/2023 10:38:09 AM',
             '14/10/2023 09:14:06 AM',
             '14/10/2023 12:10:41 PM',
@@ -130,6 +171,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
             2024,
             '2024-04-08',
             'Solar',
+            'Total',
             'Total',
             '08/04/2024 11:09:00 AM',
             '08/04/2024 09:51:00 AM',

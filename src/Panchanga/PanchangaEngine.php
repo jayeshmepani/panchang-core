@@ -33,11 +33,17 @@ class PanchangaEngine
 
     public function getKarana(float $sunLon, float $moonLon): array
     {
-        $tAngle = AstroCore::normalize($moonLon - $sunLon);
-        $num = min(60, (int) floor($tAngle / 6.0) + 1);
+        $angle = AstroCore::normalize($moonLon - $sunLon);
+        return $this->getKaranaAtAngle($angle);
+    }
 
-        $tithiIndex = (int) floor($tAngle / 12.0) + 1;
-        $fraction = fmod($tAngle, 12.0) / 12.0;
+    public function getKaranaAtAngle(float $angle): array
+    {
+        $angle = AstroCore::normalize($angle);
+        $num = min(60, (int) floor($angle / 6.0) + 1);
+
+        $tithiIndex = (int) floor($angle / 12.0) + 1;
+        $fraction = fmod($angle, 12.0) / 12.0;
         $karana = Karana::fromTithi($tithiIndex, $fraction);
 
         return [$karana->getName(), $num];
@@ -45,19 +51,29 @@ class PanchangaEngine
 
     public function calculateTithi(float $sunLon, float $moonLon): array
     {
-        $tithi = Tithi::fromLongitudes($sunLon, $moonLon);
+        return $this->calculateTithiAtAngle(AstroCore::normalize($moonLon - $sunLon));
+    }
+
+    public function calculateTithiAtAngle(float $angle): array
+    {
+        $tithi = Tithi::fromAngle($angle);
         return [
             'index' => $tithi->value,
             'name' => $tithi->getName(),
             'paksha' => $tithi->getPaksha()->getRawName(),
             'paksha_name' => $tithi->getPaksha()->getName(),
-            'fraction_left' => Tithi::getFractionRemaining($sunLon, $moonLon),
+            'fraction_left' => Tithi::getFractionRemainingAtAngle($angle),
         ];
     }
 
     public function calculateYoga(float $sunLon, float $moonLon): array
     {
-        $yoga = Yoga::fromLongitudes($sunLon, $moonLon);
+        return $this->calculateYogaAtAngle(AstroCore::normalize($sunLon + $moonLon));
+    }
+
+    public function calculateYogaAtAngle(float $angle): array
+    {
+        $yoga = Yoga::fromAngle($angle);
         return [
             'index' => $yoga->value + 1, // original code used 1-based index
             'name' => $yoga->getName(),

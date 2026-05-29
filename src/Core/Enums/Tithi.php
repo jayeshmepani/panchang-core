@@ -81,6 +81,27 @@ enum Tithi: int
         return in_array($this, [self::ShuklaChaturdashi, self::KrishnaChaturdashi], true);
     }
 
+    public static function fromAngle(float $angle): self
+    {
+        $normalized = fmod($angle, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        $index = (int) floor($normalized / 12.0) + 1;
+        return self::from($index);
+    }
+
+    public static function getFractionRemainingAtAngle(float $angle): float
+    {
+        $normalized = fmod($angle, 360.0);
+        if ($normalized < 0) {
+            $normalized += 360.0;
+        }
+
+        return 1.0 - (fmod($normalized, 12.0) / 12.0);
+    }
+
     /**
      * Get tithi from Sun-Moon longitude difference.
      *
@@ -91,13 +112,7 @@ enum Tithi: int
      */
     public static function fromLongitudes(float $sunLon, float $moonLon): self
     {
-        $diff = fmod($moonLon - $sunLon, 360.0);
-        if ($diff < 0) {
-            $diff += 360.0;
-        }
-
-        $index = (int) floor($diff / 12.0) + 1;
-        return self::from($index);
+        return self::fromAngle($moonLon - $sunLon);
     }
 
     /**
@@ -110,11 +125,6 @@ enum Tithi: int
      */
     public static function getFractionRemaining(float $sunLon, float $moonLon): float
     {
-        $diff = fmod($moonLon - $sunLon, 360.0);
-        if ($diff < 0) {
-            $diff += 360.0;
-        }
-
-        return 1.0 - (fmod($diff, 12.0) / 12.0);
+        return self::getFractionRemainingAtAngle($moonLon - $sunLon);
     }
 }

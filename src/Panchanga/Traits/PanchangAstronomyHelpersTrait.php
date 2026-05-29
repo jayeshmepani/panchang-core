@@ -161,4 +161,21 @@ trait PanchangAstronomyHelpersTrait
         return null;
     }
 
+    private function formatTransitionWindow(array $interval, string $type, string $tz): array
+    {
+        $name = (string) ($interval['name'] ?? '');
+        if ($type === 'pada') {
+            $name = ($interval['nakshatra'] ?? '') . ' Pada ' . ($interval['pada'] ?? '');
+        }
+
+        return [
+            'name' => $name,
+            'type' => $type,
+            'start_jd' => $interval['start_jd'],
+            'end_jd' => $interval['end_jd'],
+            'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
+            'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
+        ];
+    }
+
 }

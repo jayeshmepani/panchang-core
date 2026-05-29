@@ -47,7 +47,7 @@ class FestivalService
             'deity' => 'Ganesha',
             'benefit' => 'Removal of obstacles (Vighnaharta)',
             'shukla_name' => 'Vinayaka Chaturthi',
-            'krishna_name' => 'Sankashti Chaturthi',
+
             'gujarati_special' => 'Bol Choth (Shravan Krishna 4)',
         ],
         5 => [
@@ -119,6 +119,505 @@ class FestivalService
             'amavasya_benefit' => 'Ancestral peace and karmic balancing',
             'gujarati_special' => 'Kokila Vrat (Ashad Purnima)',
         ],
+        'Asha Dashami Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Fasting dedicated to Goddess Asha/Parvati for fulfillment of desires',
+            'deity' => 'Parvati',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kokila Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Dedicated to Goddess Sati/Parvati in the form of a cuckoo (Kokila)',
+            'deity' => 'Parvati',
+            'fasting' => true,
+            'regions' => ['Gujarat', 'Maharashtra'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Andal Jayanthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Purva Phalguni',
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Shravana',
+            'aliases' => ['Aadi Pooram'],
+            'description' => 'Birth anniversary of Andal (Aadi month, Pooram nakshatra)',
+            'deity' => 'Andal',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'sunrise',
+            'prefer_nakshatra' => true,
+        ],
+        'Durva Ganapati Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Worship of Lord Ganesha with Durva grass',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Malayalam New Year' => [
+            'type' => 'solar_sankranti',
+            'rashi' => 4,
+            'aliases' => ['Chingam 1'],
+            'description' => 'First day of the Malayalam calendar (Chingam month)',
+            'deity' => 'Vishnu',
+            'regions' => ['Kerala'],
+        ],
+        'Bahula Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of cows, associated with Lord Krishna',
+            'deity' => 'Krishna/Kamadhenu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Hala Shashthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 6,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Balarama Jayanti'],
+            'description' => 'Birth anniversary of Lord Balarama',
+            'deity' => 'Balarama',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kali Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth anniversary of Goddess Kali (Mahavidya)',
+            'deity' => 'Kali',
+            'karmakala_type' => 'midnight',
+        ],
+        'Vindhyavasini Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Appearance day of Goddess Vindhyavasini',
+            'deity' => 'Vindhyavasini (Durga)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Pithori Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of Goddess Durga (Pithori) by mothers for children',
+            'deity' => 'Durga',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vrishabhotsava' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of bulls (Nandi) on Shravana Amavasya',
+            'deity' => 'Nandi/Shiva',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Lalita Saptami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of Goddess Lalita/Gauri',
+            'deity' => 'Lalita (Gauri)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Durva Ashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Worship of Durva grass and Lord Ganesha',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Dashavatara Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Fasting dedicated to the ten avatars of Lord Vishnu',
+            'deity' => 'Vishnu (Dashavatara)',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhuvaneshvari Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth anniversary of Goddess Bhuvaneshvari (Mahavidya)',
+            'deity' => 'Bhuvaneshvari',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Shashthi Shraddha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 6,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Pitru Paksha Shraddha for those who died on Shashthi tithi',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Saptami Shraddha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 7,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Pitru Paksha Shraddha for those who died on Saptami tithi',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Ashtami Shraddha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Pitru Paksha Shraddha for those who died on Ashtami tithi',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Magha Shraddha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Magha',
+            'paksha' => 'Krishna',
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Auspicious Pitru Paksha Shraddha falling under Magha Nakshatra',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+            'prefer_nakshatra' => true,
+        ],
+        'Chaturdashi Shraddha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Pitru Paksha Shraddha for those who died an unnatural death',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Maharaja Agrasen Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of legendary King Agrasen',
+            'deity' => 'Agrasen',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kapardisha Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Dedicated to Kapardisha (Shiva)',
+            'deity' => 'Shiva',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Upang Lalita Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Fasting dedicated to Goddess Lalita during Navratri',
+            'deity' => 'Lalita (Durga)',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Aparajita Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Worship of Goddess Aparajita (invincible form) on Vijayadashami',
+            'deity' => 'Aparajita (Durga)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Madhvacharya Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of Sri Madhvacharya',
+            'deity' => 'Madhvacharya',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Padmanabha Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Dedicated to Lord Padmanabha (Vishnu)',
+            'deity' => 'Vishnu (Padmanabha)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Atla Tadde' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 3,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Traditional festival of Andhra Pradesh for married women (similar to Karwa Chauth)',
+            'deity' => 'Gauri',
+            'regions' => ['Andhra Pradesh'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Radha Kunda Snan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Auspicious holy dip at Radha Kunda on Ahoi Ashtami midnight',
+            'deity' => 'Radha/Krishna',
+            'regions' => ['Uttar Pradesh (Vrindavan)'],
+            'karmakala_type' => 'midnight',
+        ],
+        'Kamala Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Birth anniversary of Goddess Kamala (Mahavidya)',
+            'deity' => 'Kamala (Lakshmi)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kansa Vadh' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Commemoration of the slaying of King Kansa by Lord Krishna',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Guruvayur Ekadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 11,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Special Ekadashi observed at Guruvayur Temple',
+            'deity' => 'Guruvayurappan (Krishna)',
+            'regions' => ['Kerala'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vishweshwara Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 14,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Vaikuntha Chaturdashi fasting dedicated to Lord Shiva/Vishnu',
+            'deity' => 'Shiva/Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Manikarnika Snan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 14,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Holy dip at Manikarnika Ghat, Varanasi',
+            'deity' => 'Shiva',
+            'regions' => ['Uttar Pradesh (Varanasi)'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Pushkara Snana' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Auspicious holy dip during Kartika Purnima',
+            'deity' => 'Brahma/Vishnu/Shiva',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bala Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Birth anniversary of Goddess Bala Tripura Sundari',
+            'deity' => 'Bala Tripura Sundari',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krichchhra Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Rigorous fasting dedicated to Lord Ganesha',
+            'deity' => 'Ganesha',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhairavi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Birth anniversary of Goddess Bhairavi (Mahavidya)',
+            'deity' => 'Bhairavi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'First Shravan Somwar Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 1,
+            'nth' => 1,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'First Monday fasting in the month of Shravana',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Second Shravan Somwar Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 1,
+            'nth' => 2,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Second Monday fasting in the month of Shravana',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Third Shravan Somwar Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 1,
+            'nth' => 3,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Third Monday fasting in the month of Shravana',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Fourth Shravan Somwar Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 1,
+            'nth' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Fourth Monday fasting in the month of Shravana',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'First Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 1,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'First Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Second Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 2,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Second Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Third Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 3,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Third Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Fourth Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Fourth Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
     ];
 
     /**
@@ -137,8 +636,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Vrishabha Sankranti' =>
-        [
+        'Vrishabha Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 1,
             'description' => 'Sun enters Vrishabha',
@@ -147,8 +645,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Mithuna Sankranti' =>
-        [
+        'Mithuna Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 2,
             'description' => 'Sun enters Mithuna',
@@ -157,8 +654,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Karka Sankranti' =>
-        [
+        'Karka Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 3,
             'description' => 'Sun enters Karka',
@@ -167,8 +663,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Simha Sankranti' =>
-        [
+        'Simha Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 4,
             'description' => 'Sun enters Simha',
@@ -177,8 +672,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Kanya Sankranti (Vishwakarma Puja)' =>
-        [
+        'Kanya Sankranti (Vishwakarma Puja)' => [
             'type' => 'solar_sankranti',
             'rashi' => 5,
             'description' => 'Worship of divine architect Vishwakarma',
@@ -188,8 +682,7 @@ class FestivalService
             ],
             'deity' => 'Vishwakarma',
         ],
-        'Tula Sankranti' =>
-        [
+        'Tula Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 6,
             'description' => 'Sun enters Tula',
@@ -198,8 +691,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Vrischika Sankranti' =>
-        [
+        'Vrischika Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 7,
             'description' => 'Sun enters Vrischika',
@@ -208,8 +700,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Dhanu Sankranti' =>
-        [
+        'Dhanu Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 8,
             'description' => 'Sun enters Dhanu',
@@ -218,8 +709,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Makara Sankranti (Pongal)' =>
-        [
+        'Makara Sankranti (Pongal)' => [
             'type' => 'solar_sankranti',
             'rashi' => 9,
             'description' => 'Harvest festival, Sun enters Makara',
@@ -229,8 +719,7 @@ class FestivalService
             ],
             'deity' => 'Surya',
         ],
-        'Mattu Pongal' =>
-        [
+        'Mattu Pongal' => [
             'type' => 'day_after',
             'parent_festival' => 'Makara Sankranti (Pongal)',
             'days_after' => 1,
@@ -238,8 +727,7 @@ class FestivalService
             'deity' => 'Nandi/Cattle',
             'regions' => ['Tamil Nadu'],
         ],
-        'Kumbha Sankranti' =>
-        [
+        'Kumbha Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 10,
             'description' => 'Sun enters Kumbha',
@@ -248,8 +736,7 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Meena Sankranti' =>
-        [
+        'Meena Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 11,
             'description' => 'Sun enters Meena',
@@ -258,16 +745,14 @@ class FestivalService
                 0 => 'Pan-India',
             ],
         ],
-        'Vasi Uttarayan' =>
-        [
+        'Vasi Uttarayan' => [
             'type' => 'fixed_date',
             'month' => 1,
             'day' => 15,
             'description' => 'Second day of the kite festival in Gujarat',
             'regions' => ['Gujarat'],
         ],
-        'Lohri' =>
-        [
+        'Lohri' => [
             'type' => 'fixed_date',
             'month' => 1,
             'day' => 13,
@@ -276,8 +761,7 @@ class FestivalService
             'regions' => ['Punjab', 'Haryana', 'Delhi', 'North India'],
         ],
 
-        'Cheti Chand' =>
-        [
+        'Cheti Chand' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -288,16 +772,14 @@ class FestivalService
             'deity' => 'Jhulelal/Varuna',
             'regions' => ['Sindhi', 'Gujarat', 'Rajasthan'],
         ],
-        'Vishu' =>
-        [
+        'Vishu' => [
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'description' => 'Kerala Hindu New Year; first day of Medam month; Vishukkani arrangement',
             'deity' => 'Krishna/Vishnu',
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
         ],
-        'Pohela Boishakh' =>
-        [
+        'Pohela Boishakh' => [
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'aliases' => ['Pahela Baishakh'],
@@ -305,8 +787,7 @@ class FestivalService
             'deity' => 'Surya',
             'regions' => ['West Bengal', 'Bangladesh', 'Bengali'],
         ],
-        'Pana Sankranti' =>
-        [
+        'Pana Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'aliases' => ['Maha Vishuba Sankranti'],
@@ -315,8 +796,7 @@ class FestivalService
             'regions' => ['Odisha'],
         ],
 
-        'Jur Sital' =>
-        [
+        'Jur Sital' => [
             'type' => 'fixed_date',
             'month' => 4,
             'day' => 15,
@@ -324,17 +804,7 @@ class FestivalService
             'deity' => 'Surya',
             'regions' => ['Mithila', 'Bihar', 'Nepal'],
         ],
-        'Magh Bihu (Bhogali Bihu)' =>
-        [
-            'type' => 'solar_sankranti',
-            'rashi' => 9,
-            'aliases' => ['Bhogali Bihu'],
-            'description' => 'Assam harvest festival around Makara transition',
-            'deity' => 'Agni/Surya',
-            'regions' => ['Assam'],
-        ],
-        'Kati Bihu (Kongali Bihu)' =>
-        [
+        'Kati Bihu (Kongali Bihu)' => [
             'type' => 'solar_sankranti',
             'rashi' => 6,
             'aliases' => ['Kongali Bihu'],
@@ -342,8 +812,7 @@ class FestivalService
             'deity' => 'Lakshmi',
             'regions' => ['Assam'],
         ],
-        'Sajaibu Cheiraoba' =>
-        [
+        'Sajaibu Cheiraoba' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -356,16 +825,14 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
         ],
-        'Ganga Sagar Mela' =>
-        [
+        'Ganga Sagar Mela' => [
             'type' => 'solar_sankranti',
             'rashi' => 9,
             'description' => 'Pilgrimage fair at Gangasagar during Makara Sankranti',
             'deity' => 'Ganga',
             'regions' => ['West Bengal'],
         ],
-        'Karadayan Nombu' =>
-        [
+        'Karadayan Nombu' => [
             'type' => 'fixed_date',
             'month' => 3,
             'day' => 14,
@@ -373,8 +840,7 @@ class FestivalService
             'deity' => 'Parvati/Shiva',
             'regions' => ['Tamil Nadu'],
         ],
-        'Aadi Perukku' =>
-        [
+        'Aadi Perukku' => [
             'type' => 'fixed_date',
             'month' => 8,
             'day' => 3,
@@ -382,8 +848,7 @@ class FestivalService
             'deity' => 'Kaveri/Parvati',
             'regions' => ['Tamil Nadu'],
         ],
-        'Panguni Uthiram' =>
-        [
+        'Panguni Uthiram' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -395,16 +860,14 @@ class FestivalService
             'regions' => ['Tamil Nadu'],
             'karmakala_type' => 'madhyahna',
         ],
-        'Raja Parba Day 1' =>
-        [
+        'Raja Parba Day 1' => [
             'type' => 'solar_sankranti',
             'rashi' => 2,
             'description' => 'Beginning of Odisha Raja Parba seasonal observance',
             'deity' => 'Bhudevi',
             'regions' => ['Odisha'],
         ],
-        'Raja Parba Day 2' =>
-        [
+        'Raja Parba Day 2' => [
             'type' => 'day_after',
             'parent_festival' => 'Raja Parba Day 1',
             'days_after' => 1,
@@ -412,8 +875,7 @@ class FestivalService
             'deity' => 'Bhudevi',
             'regions' => ['Odisha'],
         ],
-        'Raja Parba Day 3' =>
-        [
+        'Raja Parba Day 3' => [
             'type' => 'day_after',
             'parent_festival' => 'Raja Parba Day 1',
             'days_after' => 2,
@@ -421,8 +883,7 @@ class FestivalService
             'deity' => 'Bhudevi',
             'regions' => ['Odisha'],
         ],
-        'Nuakhai' =>
-        [
+        'Nuakhai' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -435,8 +896,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
         ],
-        'Karam Puja' =>
-        [
+        'Karam Puja' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -448,8 +908,7 @@ class FestivalService
             'regions' => ['Jharkhand', 'Bihar', 'Odisha', 'Chhattisgarh'],
             'karmakala_type' => 'sunrise',
         ],
-        'Maha Saptami (Durga Puja)' =>
-        [
+        'Maha Saptami (Durga Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -462,22 +921,7 @@ class FestivalService
             'karmakala_type' => 'aparahna',
             'strict_karmakala' => true,
         ],
-        'Kojagari Lakshmi Puja' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
-            'description' => 'Lakshmi worship on Sharad Purnima night (Kojagari)',
-            'deity' => 'Lakshmi',
-            'regions' => ['Bengal', 'Odisha', 'Assam'],
-            'karmakala_type' => 'nishitha',
-            'strict_karmakala' => true,
-        ],
-        'Bathukamma (Saddula)' =>
-        [
+        'Bathukamma (Saddula)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -489,8 +933,7 @@ class FestivalService
             'regions' => ['Telangana'],
             'karmakala_type' => 'sunrise',
         ],
-        'Bonalu (Ashadha Sunday)' =>
-        [
+        'Bonalu (Ashadha Sunday)' => [
             'type' => 'weekday_in_month',
             'weekday' => 0,
             'month_amanta' => 'Ashadha',
@@ -499,8 +942,7 @@ class FestivalService
             'deity' => 'Durga',
             'regions' => ['Telangana'],
         ],
-        'Yaoshang' =>
-        [
+        'Yaoshang' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -511,8 +953,7 @@ class FestivalService
             'deity' => 'Krishna',
             'regions' => ['Manipur'],
         ],
-        'Chapchar Kut' =>
-        [
+        'Chapchar Kut' => [
             'type' => 'fixed_date',
             'month' => 3,
             'day' => 1,
@@ -520,8 +961,7 @@ class FestivalService
             'deity' => 'Community Deities',
             'regions' => ['Mizoram'],
         ],
-        'Losar' =>
-        [
+        'Losar' => [
             'type' => 'fixed_date',
             'month' => 2,
             'day' => 28,
@@ -529,19 +969,151 @@ class FestivalService
             'deity' => 'Buddha/Local Deities',
             'regions' => ['Ladakh', 'Sikkim', 'Arunachal Pradesh', 'Himalayan regions'],
         ],
-        'Sankashti Chaturthi' =>
-        [
+        'Lambodara Sankashti Chaturthi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 4,
-            'description' => 'Monthly Sankashti fast dedicated to Lord Ganesha',
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Magha',
+            'aliases' => ['Sankashti Chaturthi', 'Lambodara Sankashti'],
+            'description' => 'Sankashti Chaturthi of Pausha/Magha month',
             'deity' => 'Ganesha',
-            'regions' => ['Pan-India'],
             'karmakala_type' => 'sunrise',
         ],
-        'Vinayaka Chaturthi' =>
-        [
+        'Dwijapriya Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Sankashti Chaturthi', 'Dwijapriya Sankashti'],
+            'description' => 'Sankashti Chaturthi of Magha/Phalguna month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhalachandra Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Sankashti Chaturthi', 'Bhalachandra Sankashti'],
+            'description' => 'Sankashti Chaturthi of Phalguna/Chaitra month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vikata Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Sankashti Chaturthi', 'Vikata Sankashti'],
+            'description' => 'Sankashti Chaturthi of Chaitra/Vaishakha month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ekadanta Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Jyeshtha',
+            'aliases' => ['Sankashti Chaturthi', 'Ekadanta Sankashti'],
+            'description' => 'Sankashti Chaturthi of Vaishakha/Jyeshtha month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishnapingala Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Ashadha',
+            'aliases' => ['Sankashti Chaturthi', 'Krishnapingala Sankashti'],
+            'description' => 'Sankashti Chaturthi of Jyeshtha/Ashadha month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Gajanana Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Shravana',
+            'aliases' => ['Sankashti Chaturthi', 'Gajanana Sankashti'],
+            'description' => 'Sankashti Chaturthi of Ashadha/Shravana month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Heramba Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Sankashti Chaturthi', 'Heramba Sankashti'],
+            'description' => 'Sankashti Chaturthi of Shravana/Bhadrapada month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vakratunda Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Sankashti Chaturthi', 'Vakratunda Sankashti'],
+            'description' => 'Sankashti Chaturthi of Ashvina/Kartika month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ganadhipa Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Margashirsha',
+            'aliases' => ['Sankashti Chaturthi', 'Ganadhipa Sankashti'],
+            'description' => 'Sankashti Chaturthi of Kartika/Margashirsha month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Akhuratha Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Pausha',
+            'aliases' => ['Sankashti Chaturthi', 'Akhuratha Sankashti'],
+            'description' => 'Sankashti Chaturthi of Margashirsha/Pausha month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vibhuvana Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'allow_adhika' => true,
+            'adhika_only' => true,
+            'aliases' => ['Vibhuvana Sankashti', 'Sankashti Chaturthi'],
+            'description' => 'Sankashti Chaturthi falling during an Adhika Maas (intercalary month)',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vinayaka Chaturthi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -551,8 +1123,7 @@ class FestivalService
             'regions' => ['Pan-India'],
             'karmakala_type' => 'madhyahna',
         ],
-        'Pradosh Vrat' =>
-        [
+        'Pradosh Vrat' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Both',
@@ -564,8 +1135,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Masik Shivaratri' =>
-        [
+        'Masik Shivaratri' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -577,8 +1147,7 @@ class FestivalService
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
         ],
-        'Lakshmi Puja (Deepavali)' =>
-        [
+        'Lakshmi Puja (Deepavali)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -592,8 +1161,7 @@ class FestivalService
             'strict_karmakala' => true,
         ],
 
-        'Nabanna Utsav' =>
-        [
+        'Nabanna Utsav' => [
             'type' => 'fixed_date',
             'month' => 11,
             'day' => 15,
@@ -601,8 +1169,7 @@ class FestivalService
             'deity' => 'Lakshmi',
             'regions' => ['West Bengal'],
         ],
-        'Rongali Bihu Day 1' =>
-        [
+        'Rongali Bihu Day 1' => [
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'description' => 'First day of Rongali/Bohag Bihu in Assam; dedicated to cattle worship and agrarian renewal',
@@ -610,8 +1177,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu', 'Bohag Bihu Day 1', 'Goru Bihu'],
         ],
-        'Rongali Bihu Day 2' =>
-        [
+        'Rongali Bihu Day 2' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 1,
@@ -620,8 +1186,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu Day 2', 'Manuh Bihu'],
         ],
-        'Rongali Bihu Day 3' =>
-        [
+        'Rongali Bihu Day 3' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 2,
@@ -630,8 +1195,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu Day 3', 'Gosai Bihu'],
         ],
-        'Rongali Bihu Day 4' =>
-        [
+        'Rongali Bihu Day 4' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 3,
@@ -640,8 +1204,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu Day 4', 'Kutum Bihu'],
         ],
-        'Rongali Bihu Day 5' =>
-        [
+        'Rongali Bihu Day 5' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 4,
@@ -650,8 +1213,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu Day 5', 'Senehi Bihu'],
         ],
-        'Rongali Bihu Day 6' =>
-        [
+        'Rongali Bihu Day 6' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 5,
@@ -660,8 +1222,7 @@ class FestivalService
             'regions' => ['Assam'],
             'aliases' => ['Bohag Bihu Day 6', 'Mela Bihu'],
         ],
-        'Rongali Bihu Day 7' =>
-        [
+        'Rongali Bihu Day 7' => [
             'type' => 'day_after',
             'parent_festival' => 'Rongali Bihu Day 1',
             'days_after' => 6,
@@ -671,8 +1232,7 @@ class FestivalService
             'aliases' => ['Bohag Bihu Day 7', 'Chera Bihu'],
         ],
 
-        'Shastriji Maharaj Jayanti' =>
-        [
+        'Shastriji Maharaj Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -683,8 +1243,7 @@ class FestivalService
             'deity' => 'Swaminarayan',
         ],
 
-        'Pramukh Varni Din' =>
-        [
+        'Pramukh Varni Din' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -695,8 +1254,7 @@ class FestivalService
             'deity' => 'Swaminarayan',
         ],
 
-        'Ashadhi Bij' =>
-        [
+        'Ashadhi Bij' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -708,8 +1266,7 @@ class FestivalService
             'regions' => ['Kutch', 'Gujarat'],
         ],
 
-        'Ravechi Mata Fair' =>
-        [
+        'Ravechi Mata Fair' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -721,8 +1278,7 @@ class FestivalService
             'regions' => ['Kutch', 'Gujarat'],
         ],
 
-        'Tarnetar Fair' =>
-        [
+        'Tarnetar Fair' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -733,8 +1289,7 @@ class FestivalService
             'deity' => 'Shiva',
             'regions' => ['Saurashtra', 'Gujarat'],
         ],
-        'Tarnetar Fair Day 2' =>
-        [
+        'Tarnetar Fair Day 2' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -745,8 +1300,7 @@ class FestivalService
             'deity' => 'Shiva',
             'regions' => ['Saurashtra', 'Gujarat'],
         ],
-        'Tarnetar Fair Day 3' =>
-        [
+        'Tarnetar Fair Day 3' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -758,8 +1312,7 @@ class FestivalService
             'regions' => ['Saurashtra', 'Gujarat'],
         ],
 
-        'Mota Yaksh Fair (Jakh Bahotera)' =>
-        [
+        'Mota Yaksh Fair (Jakh Bahotera)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -770,8 +1323,7 @@ class FestivalService
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
         ],
-        'Mota Yaksh Fair Day 2' =>
-        [
+        'Mota Yaksh Fair Day 2' => [
             'type' => 'day_after',
             'parent_festival' => 'Mota Yaksh Fair (Jakh Bahotera)',
             'days_after' => 1,
@@ -779,8 +1331,7 @@ class FestivalService
             'deity' => '72 Yakshas',
             'regions' => ['Kutch', 'Gujarat'],
         ],
-        'Mota Yaksh Fair Day 3' =>
-        [
+        'Mota Yaksh Fair Day 3' => [
             'type' => 'day_after',
             'parent_festival' => 'Mota Yaksh Fair (Jakh Bahotera)',
             'days_after' => 2,
@@ -789,8 +1340,7 @@ class FestivalService
             'regions' => ['Kutch', 'Gujarat'],
         ],
 
-        'Dada Mekan Fair (Dhrang Mela)' =>
-        [
+        'Dada Mekan Fair (Dhrang Mela)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -802,8 +1352,7 @@ class FestivalService
             'regions' => ['Kutch', 'Gujarat'],
         ],
 
-        'Rang Panchami' =>
-        [
+        'Rang Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -815,8 +1364,7 @@ class FestivalService
             'regions' => ['Maharashtra', 'Madhya Pradesh', 'North India'],
         ],
 
-        'Chaitra (Vasant) Navaratri Day 1 (Shailaputri Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 1 (Shailaputri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -832,8 +1380,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 2 (Brahmacharini Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 2 (Brahmacharini Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -846,8 +1393,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 3 (Chandraghanta Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 3 (Chandraghanta Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -860,8 +1406,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 4 (Kushmanda Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 4 (Kushmanda Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -874,8 +1419,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 5 (Skandamata Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 5 (Skandamata Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -888,8 +1432,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 6 (Katyayani Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 6 (Katyayani Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -902,8 +1445,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 7 (Kalaratri Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 7 (Kalaratri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -916,8 +1458,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 8 (Mahagauri Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 8 (Mahagauri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -930,8 +1471,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Chaitra (Vasant) Navaratri Day 9 (Siddhidatri Puja)' =>
-        [
+        'Chaitra (Vasant) Navaratri Day 9 (Siddhidatri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -944,8 +1484,7 @@ class FestivalService
             'navratri_type' => 'chaitra',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 1 (Shailaputri Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 1 (Shailaputri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -961,8 +1500,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 2 (Brahmacharini Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 2 (Brahmacharini Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -975,8 +1513,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 3 (Chandraghanta Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 3 (Chandraghanta Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -989,8 +1526,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 4 (Kushmanda Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 4 (Kushmanda Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1003,8 +1539,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 5 (Skandamata Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 5 (Skandamata Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1017,8 +1552,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 6 (Katyayani Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 6 (Katyayani Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1031,8 +1565,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashvina Sharad Navaratri Day 7 (Kalaratri Puja)' =>
-        [
+        'Ashvina Sharad Navaratri Day 7 (Kalaratri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1047,8 +1580,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Durga Ashtami (Mahagauri Puja)' =>
-        [
+        'Durga Ashtami (Mahagauri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1063,8 +1595,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Maha Navami (Siddhidatri Puja)' =>
-        [
+        'Maha Navami (Siddhidatri Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1079,8 +1610,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ashadha Gupt Navaratri Day 1 (Ghatasthapana)' =>
-        [
+        'Ashadha Gupt Navaratri Day 1 (Ghatasthapana)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1097,8 +1627,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 2' =>
-        [
+        'Ashadha Gupt Navaratri Day 2' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1112,8 +1641,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 3' =>
-        [
+        'Ashadha Gupt Navaratri Day 3' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1127,8 +1655,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 4' =>
-        [
+        'Ashadha Gupt Navaratri Day 4' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1142,8 +1669,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 5' =>
-        [
+        'Ashadha Gupt Navaratri Day 5' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1157,8 +1683,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 6' =>
-        [
+        'Ashadha Gupt Navaratri Day 6' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1172,8 +1697,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 7' =>
-        [
+        'Ashadha Gupt Navaratri Day 7' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1187,8 +1711,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 8' =>
-        [
+        'Ashadha Gupt Navaratri Day 8' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1202,8 +1725,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Day 9' =>
-        [
+        'Ashadha Gupt Navaratri Day 9' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1218,8 +1740,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Ashadha Gupt Navaratri Parana (Dashami)' =>
-        [
+        'Ashadha Gupt Navaratri Parana (Dashami)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1232,8 +1753,7 @@ class FestivalService
             'navratri_type' => 'ashadha_gupta',
             'parana_rule' => 'navami_over_and_dashami_prevails',
         ],
-        'Magha Gupt Navaratri Day 1 (Ghatasthapana)' =>
-        [
+        'Magha Gupt Navaratri Day 1 (Ghatasthapana)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1250,8 +1770,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 2' =>
-        [
+        'Magha Gupt Navaratri Day 2' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1265,8 +1784,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 3' =>
-        [
+        'Magha Gupt Navaratri Day 3' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1280,8 +1798,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 4' =>
-        [
+        'Magha Gupt Navaratri Day 4' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1295,8 +1812,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 5' =>
-        [
+        'Magha Gupt Navaratri Day 5' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1310,8 +1826,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 6' =>
-        [
+        'Magha Gupt Navaratri Day 6' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1325,8 +1840,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 7' =>
-        [
+        'Magha Gupt Navaratri Day 7' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1340,8 +1854,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 8' =>
-        [
+        'Magha Gupt Navaratri Day 8' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1355,8 +1868,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Day 9' =>
-        [
+        'Magha Gupt Navaratri Day 9' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1370,8 +1882,7 @@ class FestivalService
             'worship_profile' => 'gupta_mahavidya_custom',
             'deity_schedule_source' => 'lineage_map_or_user_custom_map',
         ],
-        'Magha Gupt Navaratri Parana (Dashami)' =>
-        [
+        'Magha Gupt Navaratri Parana (Dashami)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1384,19 +1895,7 @@ class FestivalService
             'navratri_type' => 'magha_gupta',
             'parana_rule' => 'navami_over_and_dashami_prevails',
         ],
-        'Sheetala Ashtami (Basoda)' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 8,
-            'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Chaitra',
-            'description' => 'Worship of Goddess Sheetala for protection from diseases',
-            'deity' => 'Sheetala Mata',
-        ],
-        'Papmochani Ekadashi' =>
-        [
+        'Papmochani Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1408,8 +1907,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Ugadi' =>
-        [
+        'Ugadi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1421,8 +1919,7 @@ class FestivalService
             'deity' => 'Brahma',
             'karmakala_type' => 'sunrise',
         ],
-        'Gangaur' =>
-        [
+        'Gangaur' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1432,8 +1929,7 @@ class FestivalService
             'description' => 'Worship of Gauri',
             'deity' => 'Parvati',
         ],
-        'Yamuna Chhath' =>
-        [
+        'Yamuna Chhath' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1443,8 +1939,7 @@ class FestivalService
             'description' => 'Descent of Goddess Yamuna',
             'deity' => 'Yamuna',
         ],
-        'Chaiti Chhath' =>
-        [
+        'Chaiti Chhath' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1454,8 +1949,7 @@ class FestivalService
             'description' => 'Summer Chhath festival',
             'deity' => 'Surya',
         ],
-        'Rama Navami' =>
-        [
+        'Rama Navami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1468,8 +1962,7 @@ class FestivalService
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
         ],
-        'Swaminarayan Jayanti (Hari-Nom)' =>
-        [
+        'Swaminarayan Jayanti (Hari-Nom)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1482,8 +1975,7 @@ class FestivalService
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
         ],
-        'Kamada Ekadashi' =>
-        [
+        'Kamada Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1495,8 +1987,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Mahavir Jayanti' =>
-        [
+        'Mahavir Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1508,20 +1999,19 @@ class FestivalService
             'regions' => ['Pan-India'],
             'karmakala_type' => 'sunrise',
         ],
-        'Hanuman Jayanti' =>
-        [
+        'Hanuman Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Hanuman Janmotsava'],
             'description' => 'Birth celebration of Lord Hanuman',
             'deity' => 'Hanuman',
             'karmakala_type' => 'sunrise',
         ],
-        'Varuthini Ekadashi' =>
-        [
+        'Varuthini Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1533,8 +2023,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Parashurama Jayanti' =>
-        [
+        'Parashurama Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1545,8 +2034,7 @@ class FestivalService
             'deity' => 'Parashurama',
             'karmakala_type' => 'madhyahna',
         ],
-        'Akshaya Tritiya' =>
-        [
+        'Akshaya Tritiya' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1557,8 +2045,7 @@ class FestivalService
             'deity' => 'Vishnu/Lakshmi',
             'karmakala_type' => 'madhyahna',
         ],
-        'Adi Shankaracharya Jayanti' =>
-        [
+        'Adi Shankaracharya Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1568,8 +2055,7 @@ class FestivalService
             'description' => 'Birth anniversary of Adi Shankaracharya',
             'deity' => 'Shiva/Shankaracharya',
         ],
-        'Ganga Saptami' =>
-        [
+        'Ganga Saptami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1579,8 +2065,7 @@ class FestivalService
             'description' => 'Rebirth of River Ganga',
             'deity' => 'Ganga',
         ],
-        'Sita Navami' =>
-        [
+        'Sita Navami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1590,8 +2075,7 @@ class FestivalService
             'description' => 'Birth anniversary of Goddess Sita',
             'deity' => 'Sita',
         ],
-        'Mohini Ekadashi' =>
-        [
+        'Mohini Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1603,8 +2087,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Narasimha Jayanti' =>
-        [
+        'Narasimha Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1617,8 +2100,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Buddha Purnima' =>
-        [
+        'Buddha Purnima' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1629,8 +2111,7 @@ class FestivalService
             'deity' => 'Sugata Buddha/Kurma/Vishnu',
             'karmakala_type' => 'sunrise',
         ],
-        'Narsinh Mehta Janma Jayanti' =>
-        [
+        'Narsinh Mehta Janma Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1640,8 +2121,7 @@ class FestivalService
             'description' => 'Birth anniversary of Adi Kavi Narsinh Mehta',
             'deity' => 'Krishna/Narsinh Mehta',
         ],
-        'Apara Ekadashi' =>
-        [
+        'Apara Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1653,8 +2133,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Yogi Maharaj Jayanti' =>
-        [
+        'Yogi Maharaj Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1664,8 +2143,7 @@ class FestivalService
             'description' => 'Birth of Brahmaswarup Yogi Maharaj',
             'deity' => 'Swaminarayan',
         ],
-        'Shani Jayanti' =>
-        [
+        'Shani Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1675,8 +2153,7 @@ class FestivalService
             'description' => 'Birth of Lord Shani',
             'deity' => 'Shani',
         ],
-        'Vat Savitri Vrat' =>
-        [
+        'Vat Savitri Vrat' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1687,8 +2164,7 @@ class FestivalService
             'deity' => 'Savitri/Brahma',
             'regions' => ['Uttar Pradesh', 'Bihar', 'Madhya Pradesh', 'North India'],
         ],
-        'Jamai Shashti' =>
-        [
+        'Jamai Shashti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1698,8 +2174,7 @@ class FestivalService
             'description' => 'Bengali festival dedicated to son-in-laws',
             'deity' => 'Shashti',
         ],
-        'Mahesh Navami' =>
-        [
+        'Mahesh Navami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1709,8 +2184,7 @@ class FestivalService
             'description' => 'Worship of Lord Shiva by Maheshwari community',
             'deity' => 'Shiva',
         ],
-        'Ganga Dussehra' =>
-        [
+        'Ganga Dussehra' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1722,8 +2196,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'allows_adhika' => true,
         ],
-        'Nirjala Ekadashi' =>
-        [
+        'Nirjala Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1735,8 +2208,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Vat Purnima' =>
-        [
+        'Vat Purnima' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1747,8 +2219,7 @@ class FestivalService
             'deity' => 'Savitri/Brahma',
             'fasting' => true,
         ],
-        'Yogini Ekadashi' =>
-        [
+        'Yogini Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1761,8 +2232,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'kshaya_preference' => 'last',
         ],
-        'Jagannath Rath Yatra' =>
-        [
+        'Jagannath Rath Yatra' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1773,8 +2243,7 @@ class FestivalService
             'deity' => 'Jagannath',
             'karmakala_type' => 'sunrise',
         ],
-        'Bahuda Yatra' =>
-        [
+        'Bahuda Yatra' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1786,8 +2255,7 @@ class FestivalService
             'regions' => ['Odisha'],
             'karmakala_type' => 'sunrise',
         ],
-        'Devshayani Ekadashi' =>
-        [
+        'Devshayani Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1799,8 +2267,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Gauri Vrat (Molakat) Begins' =>
-        [
+        'Gauri Vrat (Molakat) Begins' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1810,8 +2277,7 @@ class FestivalService
             'description' => '5-day fast by young girls (without salt)',
             'deity' => 'Gauri/Parvati',
         ],
-        'Jaya Parvati Vrat Begins' =>
-        [
+        'Jaya Parvati Vrat Begins' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1821,20 +2287,884 @@ class FestivalService
             'description' => '5-day fast for marital bliss and good husband',
             'deity' => 'Jaya/Parvati',
         ],
-        'Guru Purnima' =>
-        [
+        'Pausha Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Pausha',
+            'aliases' => ['Pausha Purnima Vrat', 'Shakambhari Jayanti'],
+            'description' => 'Auspicious day for Shakambhari Jayanti and holy dip',
+            'deity' => 'Sun/Moon',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Maghi Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'aliases' => ['Magha Purnima', 'Magha Purnima Vrat', 'Guru Ravidas Jayanti', 'Lalita Jayanti'],
+            'description' => 'End of Magha snan, birth of Guru Ravidas',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Phalguna Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Phalguna Purnima Vrat', 'Holika Dahan', 'Dol Purnima', 'Chaitanya Mahaprabhu Jayanti', 'Lakshmi Jayanti', 'Vasanta Purnima', 'Gaura Purnima'],
+            'description' => 'Full moon of Phalguna month',
+            'deity' => 'Vishnu/Lakshmi',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chaitra Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Chaitra Purnima Vrat', 'Hanuman Jayanti'],
+            'description' => 'Birth of Lord Hanuman',
+            'deity' => 'Hanuman',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vaishakha Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Buddha Purnima', 'Kurma Jayanti', 'Chitra Pournami', 'Vaishakha Purnima Vrat'],
+            'description' => 'Birth of Buddha and Kurma Avatar',
+            'deity' => 'Vishnu/Buddha',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Jyeshtha Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'aliases' => ['Vat Purnima'],
+            'description' => 'Full moon of Jyeshtha month',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ashadha Purnima' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Ashadha',
-            'description' => 'Honoring spiritual teachers and Vyasa',
+            'aliases' => ['Ashadha Purnima Vrat', 'Guru Purnima', 'Vyasa Puja'],
+            'description' => 'Full moon of Ashadha month, honoring spiritual teachers',
             'deity' => 'Vyasa',
+            'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Kamika Ekadashi' =>
-        [
+        'Shravana Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'aliases' => ['Shravana Purnima Vrat', 'Raksha Bandhan', 'Narali Purnima', 'Hayagriva Jayanti', 'Gayatri Jayanti'],
+            'description' => 'Full moon of Shravana month',
+            'deity' => 'Vishnu/Gayatri',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhadrapada Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Bhadrapada Purnima Vrat'],
+            'description' => 'Beginning of Pitru Paksha for some traditions',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ashvina Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Ashwina Purnima', 'Ashwina Purnima Vrat', 'Kojagara Puja'],
+            'description' => 'Harvest festival and Lakshmi worship',
+            'deity' => 'Lakshmi',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kartika Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Kartika Purnima Vrat', 'Dev Deepavali', 'Tripuri Purnima'],
+            'description' => 'Full moon of Kartika month',
+            'deity' => 'Shiva/Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Margashirsha Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'aliases' => ['Margashirsha Purnima Vrat', 'Dattatreya Jayanti'],
+            'description' => 'Birth of Lord Dattatreya',
+            'deity' => 'Dattatreya',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Naga Panchami (Telugu)' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Worship of Nagas celebrated in Telugu and South Indian traditions',
+            'deity' => 'Naga Devatas',
+            'regions' => ['Andhra Pradesh', 'Telangana', 'Karnataka'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vivekananda Jayanti (Samvat)' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 7,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Birth anniversary of Swami Vivekananda according to the lunar calendar',
+            'deity' => 'Vivekananda',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Magha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Mauni Amavasya'],
+            'description' => 'Auspicious Amavasya in the month of Magha',
+            'deity' => 'Pitrus/Vishnu',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Chaitra Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Amavasya falling in the month of Chaitra',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Vaishakha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Amavasya falling in the month of Vaishakha',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Jyeshtha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Ashadha',
+            'aliases' => ['Shani Jayanti', 'Vat Savitri Vrat'],
+            'description' => 'Amavasya falling in the month of Jyeshtha; coincides with Shani Jayanti',
+            'deity' => 'Pitrus/Shani',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Ashadha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Shravana',
+            'aliases' => ['Deep Puja', 'Divaso'],
+            'description' => 'Amavasya falling in the month of Ashadha; observed as Deep Puja in some regions',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Shravana Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Hariyali Amavasya', 'Pithori Amavasya', 'Aadi Amavasai'],
+            'description' => 'Amavasya falling in the month of Shravana; celebrated as Hariyali Amavasya',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Bhadrapada Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Mahalaya Amavasya', 'Sarva Pitru Amavasya'],
+            'description' => 'Amavasya falling in the month of Bhadrapada; conclusion of Pitru Paksha',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Ashwina Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Diwali', 'Deepavali'],
+            'description' => 'Amavasya falling in the month of Ashvina; celebrated as Diwali',
+            'deity' => 'Lakshmi/Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Kartika Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Amavasya falling in the month of Kartika',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Margashirsha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Pausha',
+            'description' => 'Amavasya falling in the month of Margashirsha',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Adhik Masik Krishna Janmashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'description' => 'Monthly Janmashtami occurring in Adhika Maas',
+            'deity' => 'Krishna',
+            'adhika_only' => true,
+            'karmakala_type' => 'midnight',
+        ],
+        'Adhika Bhanu Saptami' => [
+            'type' => 'tithi',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'weekday' => 0,
+            'description' => 'Bhanu Saptami occurring in Adhika Maas',
+            'deity' => 'Surya',
+            'adhika_only' => true,
+        ],
+        'Adhika Chandra Darshana' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'description' => 'Chandra Darshana occurring in Adhika Maas',
+            'deity' => 'Chandra',
+            'adhika_only' => true,
+            'karmakala_type' => 'moonrise',
+        ],
+        'Adhika Darsha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'description' => 'Darsha Amavasya occurring in Adhika Maas',
+            'deity' => 'Pitrus',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Adhika Kalashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'description' => 'Kalashtami occurring in Adhika Maas',
+            'deity' => 'Bhairava',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Adhika Masik Durgashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'description' => 'Masik Durgashtami occurring in Adhika Maas',
+            'deity' => 'Durga',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Adhika Masik Shivaratri' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'description' => 'Masik Shivaratri occurring in Adhika Maas',
+            'deity' => 'Shiva',
+            'adhika_only' => true,
+            'karmakala_type' => 'midnight',
+        ],
+        'Adhika Purnima Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'description' => 'Purnima Vrat occurring in Adhika Maas',
+            'deity' => 'Vishnu',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Adhika Skanda Sashti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'description' => 'Skanda Sashti occurring in Adhika Maas',
+            'deity' => 'Skanda',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Jyeshtha Adhika Purnima' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Purnima occurring in Jyeshtha Adhika Maas',
+            'deity' => 'Vishnu',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Phalguna Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Amavasya falling in the month of Phalguna',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+        ],
+        'Adhika Ramalakshmana Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'description' => 'Ramalakshmana Dwadashi occurring in Adhika Maas',
+            'deity' => 'Rama/Lakshmana',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Adhika Krishna Ramalakshmana Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'description' => 'Krishna Ramalakshmana Dwadashi occurring in Adhika Maas',
+            'deity' => 'Rama/Lakshmana',
+            'adhika_only' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Akal Bodhon' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Untimely awakening of Goddess Durga (Sharad Navratri)',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'pradosha',
+        ],
+        'Bilva Nimantran' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Invitation to Goddess Durga via the Bilva tree',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'pradosha',
+        ],
+        'Kalparambha' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Ritual beginning of Durga Puja',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Navpatrika Puja' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Worship of nine leaves/plants representing Durga',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Sandhi Puja' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8, // Strictly occurs at junction of 8th and 9th tithi
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Most sacred window of Durga Puja at the junction of Ashtami and Navami',
+            'deity' => 'Durga (Chamunda)',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'sunrise', // Logic for Sandhi Puja is usually exact time, but tagging on Ashtami
+        ],
+        'Saraswati Avahan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Mula',
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Invocation of Goddess Saraswati during Sharad Navratri',
+            'deity' => 'Saraswati',
+            'karmakala_type' => 'sunrise',
+            'prefer_nakshatra' => true,
+        ],
+        'Saraswati Balidan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Purva Ashadha',
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Offering ritual for Goddess Saraswati',
+            'deity' => 'Saraswati',
+            'karmakala_type' => 'sunrise',
+            'prefer_nakshatra' => true,
+        ],
+        'Saraswati Visarjan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Shravana',
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Immersion of Goddess Saraswati',
+            'deity' => 'Saraswati',
+            'karmakala_type' => 'sunrise',
+            'prefer_nakshatra' => true,
+        ],
+        'Durga Balidan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Sacrificial offering to Goddess Durga',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Durga Visarjan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Immersion of Goddess Durga idols',
+            'deity' => 'Durga',
+            'regions' => ['Bengal'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Kurma Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Pausha',
+            'description' => 'Krishna Paksha appearance day of Kurma avatar',
+            'deity' => 'Vishnu (Kurma)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Bhishma Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Krishna Paksha day dedicated to Bhishma Pitamaha',
+            'deity' => 'Bhishma',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Narasimha Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Krishna Paksha appearance day of Narasimha avatar',
+            'deity' => 'Vishnu (Narasimha)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Vamana Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Krishna Paksha appearance day of Vamana avatar',
+            'deity' => 'Vishnu (Vamana)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Parashurama Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Krishna Paksha appearance day of Parashurama avatar',
+            'deity' => 'Vishnu (Parashurama)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Ramalakshmana Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Krishna Paksha appearance day of Rama and Lakshmana',
+            'deity' => 'Rama/Lakshmana',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Vasudeva Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Krishna Paksha appearance day of Vasudeva (Krishna)',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Damodara Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Krishna Paksha appearance day of Damodara (Krishna)',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Kalki Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Krishna Paksha appearance day of Kalki avatar',
+            'deity' => 'Vishnu (Kalki)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Padmanabha Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Krishna Paksha appearance day of Padmanabha (Vishnu)',
+            'deity' => 'Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Yogeshwara Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Krishna Paksha appearance day of Yogeshwara (Krishna)',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Krishna Matsya Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 12,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Krishna Paksha appearance day of Matsya avatar',
+            'deity' => 'Vishnu (Matsya)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Damodara Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Appearance day of Damodara (Krishna)',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chitragupta Puja' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Worship of Lord Chitragupta, the keeper of records',
+            'deity' => 'Chitragupta',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Dyuta Krida' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Traditional ritual gambling day during Diwali',
+            'deity' => 'Shiva/Parvati',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Labh Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Auspicious day for concluding Diwali holidays and restarting business',
+            'deity' => 'Ganesha/Lakshmi',
+            'regions' => ['Gujarat'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Labh Panchami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Saubhagya Panchami'],
+            'description' => 'Auspicious day for opening new accounts and business ventures',
+            'deity' => 'Lakshmi',
+            'regions' => ['Gujarat'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Matsya Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Matsya avatar of Lord Vishnu',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Varaha Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth anniversary of Varaha (Boar) avatar of Lord Vishnu',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kalki Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Birth anniversary of Kalki avatar of Lord Vishnu',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Dadhichi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth anniversary of Sage Dadhichi',
+            'deity' => 'Dadhichi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vishwakarma Jayanti' => [
+            'type' => 'solar',
+            'month' => 9,
+            'day' => 17,
+            'description' => 'Birth anniversary of Lord Vishwakarma, the divine architect',
+            'deity' => 'Vishwakarma',
+            'regions' => ['Pan-India'],
+        ],
+        'Valmiki Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of Sage Valmiki, author of Ramayana',
+            'deity' => 'Valmiki',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Meerabai Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Birth anniversary of devotee poetess Meerabai',
+            'deity' => 'Meerabai',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Narmada Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Celebration of River Narmada descent to Earth',
+            'deity' => 'Narmada',
+            'regions' => ['Madhya Pradesh'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhanu Saptami' => [
+            'type' => 'tithi',
+            'paksha' => 'Shukla',
+            'tithi' => 7,
+            'weekday' => 0, // Sunday
+            'description' => 'Auspicious Saptami falling on a Sunday dedicated to Lord Surya',
+            'deity' => 'Surya',
+            'fasting' => true,
+        ],
+        'Arudra Darshan' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Ardra',
+            'allowed_months_amanta' => ['Margashirsha', 'Pausha'],
+            'description' => 'Cosmic dance of Lord Shiva as Nataraja; celebrated during Margashirsha Ardra Nakshatra',
+            'deity' => 'Shiva (Nataraja)',
+            'regions' => ['Tamil Nadu', 'South India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Telugu Hanuman Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 10,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => '41-day Hanuman Deeksha conclusion; celebrated primarily in Andhra and Telangana',
+            'deity' => 'Hanuman',
+            'regions' => ['Andhra Pradesh', 'Telangana'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ramanuja Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'nakshatra' => 'Ardra',
+            'prefer_nakshatra' => true,
+            'description' => 'Birth anniversary of great philosopher and reformer Sri Ramanujacharya',
+            'deity' => 'Ramanuja',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Dayanand Saraswati Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 10,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Maharishi Dayanand Saraswati, founder of Arya Samaj',
+            'deity' => 'Dayanand Saraswati',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kamika Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1846,8 +3176,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Aadi Amavasya (Karkidaka Vavu)' =>
-        [
+        'Aadi Amavasya (Karkidaka Vavu)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1859,8 +3188,7 @@ class FestivalService
             'regions' => ['Tamil Nadu', 'Kerala'],
             'karmakala_type' => 'aparahna',
         ],
-        'Hariyali Teej' =>
-        [
+        'Hariyali Teej' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1870,8 +3198,7 @@ class FestivalService
             'description' => 'Monsoon festival welcoming the rain',
             'deity' => 'Parvati/Shiva',
         ],
-        'Nag Panchami' =>
-        [
+        'Nag Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1881,19 +3208,7 @@ class FestivalService
             'description' => 'Worship of serpent deities',
             'deity' => 'Nagas',
         ],
-        'Kalki Jayanti' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 6,
-            'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Shravana',
-            'description' => 'Birth of Kalki Avatar',
-            'deity' => 'Kalki',
-        ],
-        'Tulsidas Jayanti' =>
-        [
+        'Tulsidas Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1903,21 +3218,20 @@ class FestivalService
             'description' => 'Birth anniversary of Goswami Tulsidas',
             'deity' => 'Rama/Tulsidas',
         ],
-        'Shravana Putrada Ekadashi' =>
-        [
+        'Shravana Putrada Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 11,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Shravana',
+            'aliases' => ['Vaishnava Shravana Putrada Ekadashi'],
             'description' => 'Fasting to be blessed with a son',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Avani Avittam (Yajur Upakarma)' =>
-        [
+        'Avani Avittam (Yajur Upakarma)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1929,8 +3243,7 @@ class FestivalService
             'karmakala_type' => 'aparahna',
             'strict_karmakala' => true,
         ],
-        'Raksha Bandhan' =>
-        [
+        'Raksha Bandhan' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -1943,8 +3256,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
         ],
-        'Pola' =>
-        [
+        'Pola' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1955,8 +3267,7 @@ class FestivalService
             'deity' => 'Shiva',
             'regions' => ['Maharashtra'],
         ],
-        'Kushotpatini Amavasya' =>
-        [
+        'Kushotpatini Amavasya' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1966,8 +3277,7 @@ class FestivalService
             'description' => 'Amavasya dedicated to Goddess Kushotpatini',
             'deity' => 'Kushotpatini',
         ],
-        'Aja Ekadashi' =>
-        [
+        'Aja Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1979,8 +3289,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Goga Pancham' =>
-        [
+        'Goga Pancham' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -1992,8 +3301,7 @@ class FestivalService
             'deity' => 'Goga Ji / Goga Bapa',
             'regions' => ['Gujarat'],
         ],
-        'Shravana Somvar (Monday Fasting)' =>
-        [
+        'Shravana Somvar (Monday Fasting)' => [
             'type' => 'weekday_in_month',
             'weekday' => 1,
             'month_amanta' => 'Shravana',
@@ -2002,8 +3310,7 @@ class FestivalService
             'deity' => 'Shiva',
             'fasting' => true,
         ],
-        'Kajari Teej' =>
-        [
+        'Kajari Teej' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2013,8 +3320,7 @@ class FestivalService
             'description' => 'Kajari Teej festival',
             'deity' => 'Parvati/Shiva',
         ],
-        'Bol Choth' =>
-        [
+        'Bol Choth' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2026,8 +3332,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Randhan Chhath' =>
-        [
+        'Randhan Chhath' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2038,8 +3343,7 @@ class FestivalService
             'deity' => 'Sheetala Mata',
             'regions' => ['Gujarat'],
         ],
-        'Balarama Jayanti (Hala Shashthi)' =>
-        [
+        'Balarama Jayanti (Hala Shashthi)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2049,8 +3353,7 @@ class FestivalService
             'description' => 'Birth celebration of Lord Balarama, worship of Haladhara (plough bearer)',
             'deity' => 'Balarama',
         ],
-        'Sheetala Satam' =>
-        [
+        'Sheetala Satam' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2062,8 +3365,7 @@ class FestivalService
             'deity' => 'Sheetala Mata',
             'fasting' => true,
         ],
-        'Krishna Janmashtami' =>
-        [
+        'Krishna Janmashtami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2077,8 +3379,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'last',
         ],
-        'Hartalika Teej' =>
-        [
+        'Hartalika Teej' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2089,8 +3390,7 @@ class FestivalService
             'description' => 'Hartalika Teej, known in Gujarat as Kevada Trij, observed by women in honor of Parvati and Shiva',
             'deity' => 'Parvati/Shiva',
         ],
-        'Gowri Habba (Swarna Gauri Vrata)' =>
-        [
+        'Gowri Habba (Swarna Gauri Vrata)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2100,22 +3400,10 @@ class FestivalService
             'description' => 'Major Karnataka festival honoring Goddess Gauri, observed a day before Ganesh Chaturthi',
             'deity' => 'Gauri',
             'regions' => ['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'],
-        ],
-        'Varaha Jayanti' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 3,
-            'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Appearance day of Lord Varaha (Boar Avatar)',
-            'deity' => 'Vishnu/Varaha',
             'karmakala_type' => 'aparahna',
             'strict_karmakala' => true,
         ],
-        'Ganesh Chaturthi' =>
-        [
+        'Ganesh Chaturthi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2127,8 +3415,7 @@ class FestivalService
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
         ],
-        'Rishi Panchami' =>
-        [
+        'Rishi Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2139,8 +3426,7 @@ class FestivalService
             'deity' => 'Saptarishis',
             'karmakala_type' => 'madhyahna',
         ],
-        'Radha Ashtami' =>
-        [
+        'Radha Ashtami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2151,8 +3437,7 @@ class FestivalService
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
         ],
-        'Jivitputrika Vrat (Jitiya)' =>
-        [
+        'Jivitputrika Vrat (Jitiya)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2164,8 +3449,7 @@ class FestivalService
             'fasting' => true,
             'regions' => ['Bihar', 'Jharkhand', 'Uttar Pradesh', 'Nepal'],
         ],
-        'Parivartini Ekadashi' =>
-        [
+        'Parivartini Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2178,8 +3462,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Mahant Swami Maharaj Janma Jayanti' =>
-        [
+        'Mahant Swami Maharaj Janma Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2189,22 +3472,20 @@ class FestivalService
             'description' => 'Physical birth anniversary of Mahant Swami Maharaj (13 September 1933, Bhadarva Vad 9)',
             'deity' => 'Swaminarayan',
         ],
-        'Goga Navami' =>
-        [
+        'Goga Navami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 9,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'aliases' => ['Gugga Naumi'],
+            'aliases' => ['Gugga Naumi', 'Shri Goga Navami'],
             'description' => 'North Indian festival dedicated to snake god Goga Ji',
             'deity' => 'Goga Ji',
-            'regions' => ['Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttar Pradesh'],
+            'regions' => ['Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttar Pradesh', 'North India'],
             'karmakala_type' => 'sunrise',
         ],
-        'Mahant Swami Maharaj Parshadi Diksha Din (Official Jayanti)' =>
-        [
+        'Mahant Swami Maharaj Parshadi Diksha Din (Official Jayanti)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2214,8 +3495,7 @@ class FestivalService
             'description' => 'Official BAPS celebration of Mahant Swami Maharaj Jayanti on Parshadi Diksha Din (2 February 1957, Maha Vad 1)',
             'deity' => 'Swaminarayan',
         ],
-        'Vamana Jayanti' =>
-        [
+        'Vamana Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2225,8 +3505,7 @@ class FestivalService
             'description' => 'Birth of Vamana Avatar',
             'deity' => 'Vamana',
         ],
-        'Anant Chaturdashi' =>
-        [
+        'Anant Chaturdashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2237,8 +3516,7 @@ class FestivalService
             'deity' => 'Vishnu/Ganesha',
             'karmakala_type' => 'sunrise',
         ],
-        'Purnima Shraddha' =>
-        [
+        'Purnima Shraddha' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2249,8 +3527,7 @@ class FestivalService
             'deity' => 'Pitrus',
             'karmakala_type' => 'aparahna',
         ],
-        'Pitru Paksha Begins' =>
-        [
+        'Pitru Paksha Begins' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2260,8 +3537,7 @@ class FestivalService
             'description' => 'Beginning of the fortnight of ancestors',
             'deity' => 'Pitrus',
         ],
-        'Indira Ekadashi' =>
-        [
+        'Indira Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2273,20 +3549,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Mahalaya Amavasya' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 15,
-            'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
-            'description' => 'Final day of Pitru Paksha (Sarvapitri Amavasya)',
-            'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
-        ],
-        'Lalita Panchami' =>
-        [
+        'Lalita Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2296,8 +3559,7 @@ class FestivalService
             'description' => 'Worship of Goddess Lalita Tripurasundari during Navaratri',
             'deity' => 'Lalita',
         ],
-        'Dussehra' =>
-        [
+        'Dussehra' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2314,8 +3576,7 @@ class FestivalService
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
-        'Ayudha Puja (Saraswati Puja)' =>
-        [
+        'Ayudha Puja (Saraswati Puja)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2328,8 +3589,7 @@ class FestivalService
             'karmakala_type' => 'aparahna',
             'strict_karmakala' => true,
         ],
-        'Papankusha Ekadashi' =>
-        [
+        'Papankusha Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2341,21 +3601,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Sharad Purnima' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
-            'aliases' => ['Manekthari Punam'],
-            'description' => 'Sharad Purnima, known in Gujarat as Manekthari Punam',
-            'deity' => 'Lakshmi/Krishna',
-            'karmakala_type' => 'nishitha',
-        ],
-        'Gunatitanand Swami Jayanti' =>
-        [
+        'Gunatitanand Swami Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2365,19 +3611,7 @@ class FestivalService
             'description' => 'Birth anniversary of Gunatitanand Swami',
             'deity' => 'Swaminarayan',
         ],
-        'Valmiki Jayanti' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
-            'description' => 'Birth anniversary of Sage Valmiki',
-            'deity' => 'Valmiki',
-        ],
-        'Rama Ekadashi' =>
-        [
+        'Rama Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2389,8 +3623,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Karva Chauth' =>
-        [
+        'Karva Chauth' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2401,8 +3634,7 @@ class FestivalService
             'deity' => 'Parvati/Shiva',
             'fasting' => true,
         ],
-        'Ahoi Ashtami' =>
-        [
+        'Ahoi Ashtami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2414,20 +3646,31 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'pradosha',
         ],
-        'Vagh Baras (Govatsa Dwadashi)' =>
-        [
+        'Vagh Baras' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Govatsa Dwadashi', 'Vasu Baras', 'Bachha Baras'],
             'description' => 'Worship of cows and calves',
             'deity' => 'Krishna/Cows',
             'karmakala_type' => 'pradosha',
         ],
-        'Dhanteras' =>
-        [
+        'Kojagari Lakshmi Puja' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Sharad Purnima'],
+            'description' => 'Lakshmi worship on Sharad Purnima night (Kojagari)',
+            'deity' => 'Lakshmi',
+            'karmakala_type' => 'nishitha',
+        ],
+        'Dhanteras' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2439,8 +3682,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Kali Chaudas (Naraka Chaturdashi)' =>
-        [
+        'Kali Chaudas (Naraka Chaturdashi)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2452,8 +3694,7 @@ class FestivalService
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
         ],
-        'Kali Puja' =>
-        [
+        'Kali Puja' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2467,8 +3708,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'first',
         ],
-        'Govardhan Puja' =>
-        [
+        'Govardhan Puja' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2480,8 +3720,7 @@ class FestivalService
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
         ],
-        'Bestu Varas' =>
-        [
+        'Bestu Varas' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2492,8 +3731,7 @@ class FestivalService
             'deity' => 'Lakshmi/Ganesha',
             'regions' => ['Gujarat'],
         ],
-        'Bhai Dooj' =>
-        [
+        'Bhai Dooj' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2506,8 +3744,7 @@ class FestivalService
             'regions' => ['Pan-India', 'Nepal'],
             'karmakala_type' => 'aparahna',
         ],
-        'Labh Pancham' =>
-        [
+        'Labh Pancham' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2517,21 +3754,7 @@ class FestivalService
             'description' => 'Auspicious day for businesses in Gujarat',
             'deity' => 'Lakshmi/Ganesha',
         ],
-        'Skanda Shashti' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 6,
-            'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Kartika',
-            'description' => 'Six-day festival dedicated to Lord Murugan, celebrating his victory over demon Surapadman',
-            'deity' => 'Murugan/Skanda',
-            'fasting' => true,
-            'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
-        ],
-        'Chhath Puja (Sandhya Arghya)' =>
-        [
+        'Chhath Puja (Sandhya Arghya)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2544,8 +3767,7 @@ class FestivalService
             'regions' => ['Bihar', 'Jharkhand', 'Eastern UP', 'Nepal'],
             'karmakala_type' => 'aparahna',
         ],
-        'Jalaram Jayanti' =>
-        [
+        'Jalaram Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2555,8 +3777,7 @@ class FestivalService
             'description' => 'Birth anniversary of Saint Jalaram Bapa of Virpur',
             'deity' => 'Rama/Jalaram Bapa',
         ],
-        'Gopashtami' =>
-        [
+        'Gopashtami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2566,8 +3787,7 @@ class FestivalService
             'description' => 'Worship and celebration of cows',
             'deity' => 'Kamadhenu/Krishna',
         ],
-        'Jagaddhatri Puja' =>
-        [
+        'Jagaddhatri Puja' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2577,8 +3797,7 @@ class FestivalService
             'description' => 'Worship of Goddess Jagaddhatri in Bengal',
             'deity' => 'Jagaddhatri',
         ],
-        'Subrahmanya Shashti (Champa Shashthi)' =>
-        [
+        'Subrahmanya Shashti (Champa Shashthi)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2591,8 +3810,7 @@ class FestivalService
             'regions' => ['Karnataka', 'Andhra Pradesh', 'Maharashtra'],
             'karmakala_type' => 'sunrise',
         ],
-        'Pramukh Swami Maharaj Jayanti' =>
-        [
+        'Pramukh Swami Maharaj Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2602,22 +3820,21 @@ class FestivalService
             'description' => 'Birth anniversary of Pramukh Swami Maharaj (7 December 1921, Magshar Sud 8, VS 1978)',
             'deity' => 'Swaminarayan',
         ],
-        'Devutthana (Prabodhini) Ekadashi' =>
-        [
+        'Devutthana (Prabodhini) Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 11,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Gauna Devutthana Ekadashi', 'Vaishnava Devutthana Ekadashi', 'Devutthana Ekadashi'],
             'description' => 'Prabodhini Ekadashi / End of Chaturmas',
             'deity' => 'Vishnu/Swaminarayan',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'kshaya_preference' => 'last',
         ],
-        'Tulsi Vivah' =>
-        [
+        'Tulsi Vivah' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2627,8 +3844,7 @@ class FestivalService
             'description' => 'Ceremonial marriage of Tulsi to Vishnu',
             'deity' => 'Tulsi/Vishnu',
         ],
-        'Vaikuntha Chaturdashi' =>
-        [
+        'Vaikuntha Chaturdashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2639,8 +3855,7 @@ class FestivalService
             'deity' => 'Vishnu/Shiva',
             'karmakala_type' => 'nishitha',
         ],
-        'Dev Diwali (Tripurari Purnima)' =>
-        [
+        'Dev Diwali (Tripurari Purnima)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2652,8 +3867,7 @@ class FestivalService
             'regions' => ['Varanasi', 'Uttar Pradesh'],
             'karmakala_type' => 'pradosha',
         ],
-        'Karthigai Deepam' =>
-        [
+        'Karthigai Deepam' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2665,8 +3879,7 @@ class FestivalService
             'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
             'karmakala_type' => 'pradosha',
         ],
-        'Guru Nanak Jayanti (Kartika Purnima)' =>
-        [
+        'Guru Nanak Jayanti (Kartika Purnima)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2678,8 +3891,7 @@ class FestivalService
             'regions' => ['Pan-India', 'Punjab'],
             'karmakala_type' => 'sunrise',
         ],
-        'Utpanna Ekadashi' =>
-        [
+        'Utpanna Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2691,8 +3903,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Vachanamrut Jayanti' =>
-        [
+        'Vachanamrut Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2702,8 +3913,7 @@ class FestivalService
             'description' => 'Commemoration of the Vachanamrut',
             'deity' => 'Swaminarayan',
         ],
-        'Kalabhairav Jayanti' =>
-        [
+        'Kalabhairav Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2713,8 +3923,7 @@ class FestivalService
             'description' => 'Birth of Lord Kalabhairav (Shiva)',
             'deity' => 'Kalabhairav',
         ],
-        'Vivah Panchami' =>
-        [
+        'Vivah Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2724,8 +3933,7 @@ class FestivalService
             'description' => 'Wedding anniversary of Rama and Sita',
             'deity' => 'Rama/Sita',
         ],
-        'Mokshada Ekadashi (Geeta Jayanti)' =>
-        [
+        'Mokshada Ekadashi (Geeta Jayanti)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2738,8 +3946,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Dattatreya Jayanti' =>
-        [
+        'Dattatreya Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2750,8 +3957,7 @@ class FestivalService
             'deity' => 'Dattatreya/Annapurna',
             'karmakala_type' => 'pradosha',
         ],
-        'Saphala Ekadashi' =>
-        [
+        'Saphala Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2763,8 +3969,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Pausha Putrada Ekadashi' =>
-        [
+        'Pausha Putrada Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2776,8 +3981,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Shakambhari Purnima' =>
-        [
+        'Shakambhari Purnima' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2788,8 +3992,7 @@ class FestivalService
             'deity' => 'Shakambhari/Devi',
             'regions' => ['Rajasthan', 'Uttar Pradesh', 'Madhya Pradesh', 'Bihar'],
         ],
-        'Thai Poosam' =>
-        [
+        'Thai Poosam' => [
             'nakshatra_only' => true,
             'nakshatra' => 'Pushya',
             'requires_purnima' => true,
@@ -2798,8 +4001,7 @@ class FestivalService
             'deity' => 'Murugan',
             'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana', 'Sri Lanka', 'Malaysia', 'Singapore'],
         ],
-        'Onam (Thiruvonam)' =>
-        [
+        'Onam (Thiruvonam)' => [
             'nakshatra_only' => true,
             'nakshatra' => 'Shravana',
             'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
@@ -2809,8 +4011,7 @@ class FestivalService
             'regions' => ['Kerala', 'Tamil Nadu', 'Karnataka'],
             'karmakala_type' => 'madhyahna',
         ],
-        'Gunatitanand Swami Diksha Day' =>
-        [
+        'Gunatitanand Swami Diksha Day' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2820,8 +4021,7 @@ class FestivalService
             'description' => 'Diksha day of Gunatitanand Swami',
             'deity' => 'Swaminarayan',
         ],
-        'Shattila Ekadashi' =>
-        [
+        'Shattila Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2833,33 +4033,19 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Mauni Amavasya' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 15,
-            'month_amanta' => 'Pausha',
-            'month_purnimanta' => 'Magha',
-            'description' => 'Day of rigorous silence and holy bath',
-            'deity' => 'Vishnu',
-            'fasting' => true,
-        ],
-        'Vasant Panchami' =>
-        [
+        'Vasant Panchami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 5,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'aliases' => ['Shikshapatri Jayanti'],
-            'description' => 'Worship of Goddess Saraswati / Shikshapatri presentation',
+            'aliases' => ['Saraswati Jayanti', 'Saraswati Puja', 'Shree Panchami', 'Shikshapatri Jayanti'],
+            'description' => 'Worship of Goddess Saraswati and welcoming of spring; Shikshapatri presentation',
             'deity' => 'Saraswati',
             'karmakala_type' => 'sunrise',
         ],
-        'Ratha Saptami' =>
-        [
+        'Ratha Saptami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2869,8 +4055,7 @@ class FestivalService
             'description' => 'Surya Jayanti',
             'deity' => 'Surya',
         ],
-        'Bhishma Ashtami' =>
-        [
+        'Bhishma Ashtami' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2880,34 +4065,20 @@ class FestivalService
             'description' => 'Anniversary of Bhishma Pitamah departure',
             'deity' => 'Bhishma',
         ],
-        'Jaya Ekadashi' =>
-        [
+        'Jaya Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 11,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
+            'aliases' => ['Gauna Jaya Ekadashi', 'Vaishnava Jaya Ekadashi'],
             'description' => 'Fasting for Jaya Ekadashi',
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Maghi Purnima' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Magha',
-            'month_purnimanta' => 'Magha',
-            'aliases' => ['Masi Magam'],
-            'description' => 'Kumbh Mela bathing day / Tamil holy bathing day',
-            'deity' => 'Ganga/Shiva',
-        ],
-
-        'Vijaya Ekadashi' =>
-        [
+        'Vijaya Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
@@ -2919,14 +4090,14 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Maha Shivaratri' =>
-        [
+        'Maha Shivaratri' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 14,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Masik Shivaratri'],
             'description' => 'Great night of Lord Shiva',
             'deity' => 'Shiva',
             'fasting' => true,
@@ -2934,8 +4105,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'last',
         ],
-        'Phulera Dooj' =>
-        [
+        'Phulera Dooj' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2945,8 +4115,7 @@ class FestivalService
             'description' => 'Festival of flowers',
             'deity' => 'Krishna',
         ],
-        'Amalaki Ekadashi' =>
-        [
+        'Amalaki Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2958,8 +4127,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Holika Dahan' =>
-        [
+        'Holika Dahan' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2972,8 +4140,7 @@ class FestivalService
             'strict_karmakala' => true,
             'vriddhi_preference' => 'first',
         ],
-        'Bhagatji Maharaj Jayanti' =>
-        [
+        'Bhagatji Maharaj Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
@@ -2983,8 +4150,7 @@ class FestivalService
             'description' => 'Birth of Bhagatji Maharaj (Swaminarayan Sect)',
             'deity' => 'Swaminarayan',
         ],
-        'Holi' =>
-        [
+        'Holi' => [
             'type' => 'day_after',
             'parent_festival' => 'Holika Dahan',
             'days_after' => 1,
@@ -2992,22 +4158,7 @@ class FestivalService
             'description' => 'Festival of colors',
             'deity' => 'Krishna',
         ],
-        'Gaura Purnima' =>
-        [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
-            'aliases' => ['Chaitanya Mahaprabhu Jayanti'],
-            'description' => 'Appearance day of Sri Chaitanya Mahaprabhu; massive Vaishnava festival',
-            'deity' => 'Chaitanya Mahaprabhu',
-            'regions' => ['West Bengal', 'Odisha', 'Pan-India (ISKCON)'],
-            'karmakala_type' => 'pradosha',
-        ],
-        'Varalakshmi Vratam' =>
-        [
+        'Varalakshmi Vratam' => [
             'type' => 'weekday_tithi',
             'paksha' => 'Shukla',
             'tithi' =>
@@ -3044,6 +4195,994 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
             'adhika_only' => true,
+        ],
+        'Ravi Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 0,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Sunday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Soma Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 1,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Monday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Bhauma Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 2,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Tuesday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Budha Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 3,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Wednesday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Guru Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 4,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Thursday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Shukra Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 5,
+            'aliases' => ['Pradosh Vrat'],
+            'description' => 'Pradosh Vrat falling on a Friday',
+            'deity' => 'Shiva',
+            'fasting' => true,
+        ],
+        'Shani Pradosh Vrat' => [
+            'type' => 'tithi',
+            'paksha' => 'Both',
+            'tithi' => 13,
+            'weekday' => 6,
+            'aliases' => ['Shani Trayodashi'],
+            'description' => 'Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani',
+            'deity' => 'Shiva/Shani',
+            'fasting' => true,
+        ],
+        'Skanda Sashti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'description' => 'Dedicated to Lord Murugan (Skanda)',
+            'deity' => 'Skanda',
+            'regions' => ['Tamil Nadu', 'South India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vidyarambham' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Vidyarambham Day'],
+            'description' => 'Initiation into knowledge and education',
+            'deity' => 'Saraswati',
+            'regions' => ['Kerala', 'South India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Karwa Chauth' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Karak Chaturthi'],
+            'description' => 'Fasting by married women for the longevity of husbands',
+            'deity' => 'Gauri/Shiva',
+            'regions' => ['North India'],
+            'karmakala_type' => 'moonrise',
+        ],
+        'Yama Deepam' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 13,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Lighting lamps to please Lord Yama',
+            'deity' => 'Yama',
+            'karmakala_type' => 'pradosha',
+        ],
+        'Chopda Pujan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Sharda Puja', 'Deepavali Puja'],
+            'description' => 'Consecration of account books and Lakshmi worship',
+            'deity' => 'Lakshmi/Ganesha',
+            'regions' => ['Gujarat', 'Maharashtra'],
+            'karmakala_type' => 'pradosha',
+        ],
+        'Bali Pratipada' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Annakut', 'Govardhan Puja'],
+            'description' => 'Worship of King Bali and Govardhan Hill',
+            'deity' => 'Bali/Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Sata Yuga Diwas' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Akshaya Navami'],
+            'description' => 'Commemoration of the beginning of Satya Yuga',
+            'deity' => 'Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Treta Yuga Diwas' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Akshaya Tritiya'],
+            'description' => 'Commemoration of the beginning of Treta Yuga',
+            'deity' => 'Vishnu/Parashurama',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Dwapara Yuga Diwas' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Mauni Amavasya'],
+            'description' => 'Commemoration of the beginning of Dwapara Yuga',
+            'deity' => 'Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kali Yuga Diwas' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 13,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Commemoration of the beginning of Kali Yuga',
+            'deity' => 'Shiva/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vaivaswata Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Commemoration of the beginning of Vaivaswata Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Swayambhuva Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Commemoration of the beginning of Swayambhuva Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Brahma Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Pausha',
+            'description' => 'Commemoration of the beginning of Brahma Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Daksha Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Commemoration of the beginning of Daksha Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Indra Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Commemoration of the beginning of Indra Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Tamasa Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Commemoration of the beginning of Tamasa Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Uttama Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Commemoration of the beginning of Uttama Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Raivata Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Commemoration of the beginning of Raivata Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chakshusha Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Commemoration of the beginning of Chakshusha Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Swarochisha Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Commemoration of the beginning of Swarochisha Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Commemoration of the beginning of Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Rudra Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Commemoration of the beginning of Rudra Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Daiva Savarni Manvadi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Commemoration of the beginning of Daiva Savarni Manvantara',
+            'deity' => 'Brahma/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bhishma Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Dedicated to Bhishma Pitamaha of Mahabharata',
+            'deity' => 'Bhishma',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ranga Panchami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 5,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Festival of colors celebrated five days after Holi',
+            'deity' => 'Krishna',
+            'regions' => ['Maharashtra', 'Madhya Pradesh'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Sheetala Ashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Basoda', 'Sheetala Aatham'],
+            'description' => 'Worship of Goddess Sheetala; eating stale food (Basoda)',
+            'deity' => 'Sheetala Devi',
+            'regions' => ['Rajasthan', 'North India'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Matsya Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Appearance day of Matsya avatar',
+            'deity' => 'Vishnu (Matsya)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vamana Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Appearance day of Vamana avatar',
+            'deity' => 'Vishnu (Vamana)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Varaha Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'description' => 'Appearance day of Varaha avatar',
+            'deity' => 'Vishnu (Varaha)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kurma Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Pausha',
+            'description' => 'Appearance day of Kurma avatar',
+            'deity' => 'Vishnu (Kurma)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Narasimha Dwadashi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Appearance day of Narasimha avatar',
+            'deity' => 'Vishnu (Narasimha)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ramakrishna Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Birth anniversary of Sri Ramakrishna Paramahansa',
+            'deity' => 'Ramakrishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vallabhacharya Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 11,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Sri Vallabhacharya',
+            'deity' => 'Vallabhacharya',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vighnaraja Sankashti Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Sankashti Chaturthi', 'Vighnaraja Sankashti'],
+            'description' => 'Sankashti Chaturthi of Bhadrapada/Ashvina month',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ganesha Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Magha',
+            'month_purnimanta' => 'Magha',
+            'aliases' => ['Dhundhiraja Chaturthi', 'Varada Chaturthi', 'Tila Chaturthi', 'Gauriganesha Chaturthi', 'Vinayaka Chaturthi'],
+            'description' => 'Birth anniversary of Lord Ganesha',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Aniruddha Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Dedicated to Aniruddha, grandson of Lord Krishna',
+            'deity' => 'Aniruddha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Pradyumna Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Dedicated to Pradyumna, son of Lord Krishna',
+            'deity' => 'Pradyumna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Sankarshana Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Dedicated to Sankarshana (Balarama)',
+            'deity' => 'Sankarshana',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vasudeva Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Dedicated to Lord Vasudeva',
+            'deity' => 'Krishna',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Thrissur Pooram' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Purva Phalguni',
+            'allowed_months_amanta' => ['Chaitra', 'Vaishakha'],
+            'description' => 'Grand festival of Thrissur, Kerala; observed during Medam month Pooram Nakshatra',
+            'deity' => 'Shiva/Parvati',
+            'regions' => ['Kerala'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Attukal Pongal' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Bharani',
+            'allowed_months_amanta' => ['Magha', 'Phalguna'],
+            'description' => 'Large gathering of women for cooking offering to Attukal Amma',
+            'deity' => 'Attukal Amma (Durga)',
+            'regions' => ['Kerala'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Rigveda Upakarma' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Shravana',
+            'requires_purnima' => true,
+            'allowed_months_amanta' => ['Shravana', 'Bhadrapada'],
+            'description' => 'Annual ritual of changing the sacred thread for Rigvedis',
+            'deity' => 'Rishis/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Yajurveda Upakarma' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Annual ritual of changing the sacred thread for Yajurvedis',
+            'deity' => 'Rishis/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Samaveda Upakarma' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Hasta',
+            'allowed_months_amanta' => ['Bhadrapada'],
+            'description' => 'Annual ritual of changing the sacred thread for Samavedis',
+            'deity' => 'Rishis/Vishnu',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Gayatri Japam' => [
+            'type' => 'day_after',
+            'parent_festival' => 'Shravana Purnima',
+            'days_after' => 1,
+            'description' => 'Chanting of Gayatri Mantra following Upakarma',
+            'deity' => 'Gayatri',
+        ],
+        'Anvadhan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'description' => 'Fasting observed on Purnima/Amavasya; typically the day before Ishti',
+            'deity' => 'Agni',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ishti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 1,
+            'description' => 'Sacrificial rites performed on the day following Purnima/Amavasya',
+            'deity' => 'Agni',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kalashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'description' => 'Monthly fasting dedicated to Lord Bhairava',
+            'deity' => 'Bhairava (Shiva)',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Masik Durgashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'description' => 'Monthly fasting dedicated to Goddess Durga',
+            'deity' => 'Durga',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Masik Krishna Janmashtami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'description' => 'Monthly fasting marking the birth tithi of Lord Krishna',
+            'deity' => 'Krishna',
+            'fasting' => true,
+            'karmakala_type' => 'midnight', // Janmashtami karmakala
+        ],
+        'Chandra Darshana' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'description' => 'First sighting of the moon after Amavasya',
+            'deity' => 'Chandra',
+            'fasting' => true,
+            'karmakala_type' => 'moonrise',
+        ],
+        'Bhogi Pandigai' => [
+            'type' => 'day_after',
+            'parent_festival' => 'Makara Sankranti (Pongal)',
+            'days_after' => -1, // Day BEFORE Makar Sankranti
+            'description' => 'First day of Pongal, celebrated in honor of Lord Indra',
+            'deity' => 'Indra',
+            'regions' => ['Tamil Nadu', 'Andhra Pradesh', 'Telangana'],
+        ],
+        'Makaravilakku' => [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'description' => 'Annual festival held on Makara Sankranti in Sabarimala',
+            'deity' => 'Ayyappan',
+            'regions' => ['Kerala'],
+        ],
+        'Magh Bihu' => [
+            'type' => 'solar_sankranti',
+            'rashi' => 9,
+            'aliases' => ['Bhogali Bihu', 'Magh Bihu (Bhogali Bihu)'],
+            'description' => 'Harvest festival of Assam, coinciding with Makara Sankranti',
+            'deity' => 'Agni/Ancestors',
+            'regions' => ['Assam'],
+        ],
+        'Thai Amavasai' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Pausha',
+            'month_purnimanta' => 'Magha',
+            'aliases' => ['Darsha Amavasya'],
+            'description' => 'Auspicious Amavasya in Tamil month of Thai for ancestor worship',
+            'deity' => 'Pitrus',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'aparahna',
+        ],
+        'Darsha Amavasya' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'description' => 'No moon day fasting',
+            'deity' => 'Chandra/Pitrus',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Masik Karthigai' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Krittika',
+            'description' => 'Monthly Krittika Nakshatra fasting for Lord Murugan',
+            'deity' => 'Murugan',
+            'fasting' => true,
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Yashoda Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 6,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Birth anniversary of Mother Yashoda',
+            'deity' => 'Yashoda',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Shabari Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 7,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'description' => 'Birth anniversary of Shabari',
+            'deity' => 'Shabari',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Janaki Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Phalguna',
+            'month_purnimanta' => 'Phalguna',
+            'aliases' => ['Sita Ashtami'],
+            'description' => 'Birth anniversary of Goddess Sita (according to some regional calendars)',
+            'deity' => 'Sita',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Lakshmi Panchami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Worship of Goddess Lakshmi',
+            'deity' => 'Lakshmi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Tara Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Goddess Tara (Mahavidya)',
+            'deity' => 'Tara',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kubjika Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Goddess Kubjika',
+            'deity' => 'Kubjika (Durga)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Parashara Rishi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Sage Parashara',
+            'deity' => 'Parashara',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Matangi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 3,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Goddess Matangi (Mahavidya)',
+            'deity' => 'Matangi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Surdas Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of poet-saint Surdas',
+            'deity' => 'Surdas',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Bagalamukhi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Goddess Bagalamukhi (Mahavidya)',
+            'deity' => 'Bagalamukhi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Siddhilakshmi Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 9,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Goddess Siddhilakshmi',
+            'deity' => 'Lakshmi',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chhinnamasta Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 14,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Birth anniversary of Goddess Chhinnamasta (Mahavidya)',
+            'deity' => 'Chhinnamasta',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chandika Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 8,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Birth anniversary of Goddess Chandika',
+            'deity' => 'Chandika (Durga)',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Chitra Pournami' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'nakshatra' => 'Chitra',
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Full moon day associated with Chitra Nakshatra; worship of Chitragupta',
+            'deity' => 'Chitragupta',
+            'regions' => ['Tamil Nadu'],
+            'karmakala_type' => 'sunrise',
+            'prefer_nakshatra' => true,
+        ],
+        'Bhishma Panchak Ends' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Conclusion of Bhishma Panchak',
+            'deity' => 'Bhishma',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Maha Bharani' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'nakshatra' => 'Bharani',
+            'paksha' => 'Krishna',
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
+            'description' => 'Highly auspicious Bharani Nakshatra during Pitru Paksha',
+            'deity' => 'Pitrus',
+            'karmakala_type' => 'aparahna',
+            'prefer_nakshatra' => true,
+        ],
+        'Maha Sangada Hara Chathurti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Most auspicious Sankashti Chaturthi of the year',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Nag Pancham' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 5,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Traditional worship of Nagas',
+            'deity' => 'Naga Devatas',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Nagula Chavithi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Worship of Nagas in Andhra Pradesh',
+            'deity' => 'Naga Devatas',
+            'regions' => ['Andhra Pradesh', 'Telangana'],
+            'karmakala_type' => 'sunrise',
+        ],
+        'Siddhivinayaka Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Ganesh Chaturthi', 'Vinayaka Chaturthi'],
+            'description' => 'Siddhivinayaka form of Ganesha worship',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Varada Chaturthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 4,
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Dedicated to Lord Ganesha for fulfillment of desires',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Yama Panchaka Begins' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 13,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Start of the five-day Diwali celebration period',
+            'deity' => 'Yama',
+            'karmakala_type' => 'pradosha',
+        ],
+        'Mandala Pooja Begins' => [
+            'type' => 'solar',
+            'month' => 11,
+            'day' => 15,
+            'description' => 'Beginning of 41-day Mandala period at Sabarimala',
+            'deity' => 'Ayyappan',
+            'regions' => ['Kerala'],
+        ],
+        'Mandala Pooja' => [
+            'type' => 'solar',
+            'month' => 12,
+            'day' => 26,
+            'description' => 'Conclusion of 41-day Mandala period at Sabarimala',
+            'deity' => 'Ayyappan',
+            'regions' => ['Kerala'],
+        ],
+        'Hanuman Puja' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 14,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Worship of Lord Hanuman during Diwali period',
+            'deity' => 'Hanuman',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Ganesh Visarjan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 14,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Anant Chaturdashi', 'Vinayaka Chaturthi'],
+            'description' => 'Immersion of Ganesha idols',
+            'deity' => 'Ganesha',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Navratri Begins' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 1,
+            'description' => 'Start of the nine-day Navratri festival',
+            'deity' => 'Durga',
+            'karmakala_type' => 'sunrise',
+        ],
+        'Kedar Gauri Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
+            'description' => 'Vrata observed by married women during Diwali',
+            'deity' => 'Gauri/Shiva',
+            'regions' => ['South India'],
+            'karmakala_type' => 'pradosha',
         ],
     ];
 
@@ -3233,7 +5372,29 @@ class FestivalService
             $addedFestivalKeys[] = $item['key'];
         }
 
-        return $festivals;
+                // Post-processing: Deduplicate festivals on the same date based on aliases
+        $mergedFestivals = [];
+        $namesToRemove = [];
+        
+        // Find if any festival has another festival's name as an alias
+        foreach ($festivals as $fest) {
+            $name = $fest['name'] ?? '';
+            $aliases = $fest['aliases'] ?? [];
+            foreach ($festivals as $other) {
+                $otherName = $other['name'] ?? '';
+                if ($name !== $otherName && in_array($otherName, $aliases, true)) {
+                    $namesToRemove[$otherName] = true;
+                }
+            }
+        }
+        
+        foreach ($festivals as $fest) {
+            if (!isset($namesToRemove[$fest['name'] ?? ''])) {
+                $mergedFestivals[] = $fest;
+            }
+        }
+        
+        return $mergedFestivals;
     }
 
     /**
@@ -3822,7 +5983,22 @@ class FestivalService
         // Check tithi match
         if (isset($rules['tithi'])) {
             $ruleTithis = is_array($rules['tithi']) ? $rules['tithi'] : [$rules['tithi']];
-            if (!in_array($tithiNum, $ruleTithis, true)) {
+            $matchedTithi = false;
+            foreach ($ruleTithis as $rTithi) {
+                if ($tithiNum === $rTithi) {
+                    $matchedTithi = true;
+                    break;
+                }
+
+                // If paksha is Both, check Krishna equivalent
+                $rulePaksha = $rules['paksha'] ?? 'Shukla';
+                if ($rulePaksha === 'Both' && $tithiNum === ($rTithi + 15)) {
+                    $matchedTithi = true;
+                    break;
+                }
+            }
+
+            if (!$matchedTithi) {
                 return false;
             }
         }
@@ -3867,6 +6043,24 @@ class FestivalService
 
         // Check weekday_in_month (e.g., Shravan Somvar)
         if (($rules['type'] ?? '') === 'weekday_in_month' && isset($rules['weekday'])) {
+            $calendar = (array) ($panchangDetails['Hindu_Calendar'] ?? []);
+            if (!$this->monthRuleMatches($rules, $calendar)) {
+                return false;
+            }
+        }
+
+        // Check nth_weekday_in_month (e.g., First Shravan Somvar)
+        if (($rules['type'] ?? '') === 'nth_weekday_in_month' && isset($rules['weekday'], $rules['nth'])) {
+            if ($date->dayOfWeek !== $rules['weekday']) {
+                return false;
+            }
+
+            $nth = (int) $rules['nth'];
+            $currentNth = (int) ceil($date->day / 7);
+            if ($currentNth !== $nth) {
+                return false;
+            }
+
             $calendar = (array) ($panchangDetails['Hindu_Calendar'] ?? []);
             if (!$this->monthRuleMatches($rules, $calendar)) {
                 return false;

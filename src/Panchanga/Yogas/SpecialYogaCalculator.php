@@ -205,7 +205,7 @@ class SpecialYogaCalculator
         return $payload;
     }
 
-    public function calculateAnandadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    public function calculateAnandadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz, ?float $currentJd = null): array
     {
         $windows = [];
         $startIndex = self::ANANDADI_WEEKDAY_START_28_INDEX[$weekdayIndex] ?? 0;
@@ -237,13 +237,13 @@ class SpecialYogaCalculator
             'weekday' => Vara::from($weekdayIndex)->getName(),
             'weekday_index' => $weekdayIndex,
             'weekday_start_nakshatra' => $this->nakshatra28Name($startIndex),
-            'current' => $windows[0] ?? null,
+            'current' => $this->activeWindow($windows, $currentJd),
             'window_count' => count($windows),
             'windows' => $windows,
         ];
     }
 
-    public function calculateAmritadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    public function calculateAmritadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz, ?float $currentJd = null): array
     {
         $windows = [];
 
@@ -269,7 +269,7 @@ class SpecialYogaCalculator
             'system_size' => 189,
             'weekday' => Vara::from($weekdayIndex)->getName(),
             'weekday_index' => $weekdayIndex,
-            'current' => $windows[0] ?? null,
+            'current' => $this->activeWindow($windows, $currentJd),
             'window_count' => count($windows),
             'windows' => $windows,
             'classifications' => ['Amrita', 'Siddha', 'Marana', 'Prabalarishta'],
@@ -686,6 +686,28 @@ class SpecialYogaCalculator
             'window_count' => count($windows),
             'windows' => $windows,
         ];
+    }
+
+    /** @param array<int, array<string, mixed>> $windows */
+    private function activeWindow(array $windows, ?float $currentJd): ?array
+    {
+        if ($windows === []) {
+            return null;
+        }
+
+        if ($currentJd === null) {
+            return $windows[0];
+        }
+
+        foreach ($windows as $window) {
+            $startJd = (float) ($window['start_jd'] ?? 0.0);
+            $endJd = (float) ($window['end_jd'] ?? 0.0);
+            if ($currentJd >= $startJd && $currentJd < $endJd) {
+                return $window;
+            }
+        }
+
+        return $windows[0];
     }
 
     private function matchWeekdayNakshatraWindows(array $nakshatraIntervals, int $weekdayIndex, array $rules, string $tz): array

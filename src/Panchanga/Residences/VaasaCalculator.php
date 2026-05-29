@@ -148,7 +148,7 @@ class VaasaCalculator
         ];
     }
 
-    public function calculateChandraVaasa(array $padaIntervals, string $tz, ?float $moonLongitude = null): array
+    public function calculateChandraVaasa(array $padaIntervals, string $tz, ?float $moonLongitude = null, ?float $currentJd = null): array
     {
         $windows = [];
         foreach ($padaIntervals as $interval) {
@@ -185,13 +185,13 @@ class VaasaCalculator
             'moon_sign' => $moonSignIndex >= 0 && $moonSignIndex <= 11 ? Rasi::from($moonSignIndex)->getName() : null,
             'direction' => Localization::translate('String', $direction),
             'direction_key' => $direction,
-            'current' => $directionWindows[0] ?? null,
+            'current' => $this->activeWindow($directionWindows, $currentJd),
             'window_count' => count($directionWindows),
             'windows' => $directionWindows,
             'nakshatra_pada_vaasa' => [
                 'rule_system' => 'nakshatra_pada_abode_4_part',
                 'source_family' => 'modern_nivas_shool_panchang_style',
-                'current' => $windows[0] ?? null,
+                'current' => $this->activeWindow($windows, $currentJd),
                 'window_count' => count($windows),
                 'windows' => $windows,
             ],
@@ -247,6 +247,28 @@ class VaasaCalculator
         $absolutePadaIndex = $nakshatraIndex * 4 + ($pada - 1);
 
         return intdiv($absolutePadaIndex, 9) % 12;
+    }
+
+    /** @param array<int, array<string, mixed>> $windows */
+    private function activeWindow(array $windows, ?float $currentJd): ?array
+    {
+        if ($windows === []) {
+            return null;
+        }
+
+        if ($currentJd === null) {
+            return $windows[0];
+        }
+
+        foreach ($windows as $window) {
+            $startJd = (float) ($window['start_jd'] ?? 0.0);
+            $endJd = (float) ($window['end_jd'] ?? 0.0);
+            if ($currentJd >= $startJd && $currentJd < $endJd) {
+                return $window;
+            }
+        }
+
+        return $windows[0];
     }
 
     /**

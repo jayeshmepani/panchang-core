@@ -249,6 +249,7 @@ class PanchangService
         $currentYoga = $this->panchanga->calculateYoga($currentSunLon, $currentMoonLon);
         [$currentKaranaName, $currentKaranaIdx] = $this->panchanga->getKarana($currentSunLon, $currentMoonLon);
         $currentNakIdx = (int) floor(($currentMoonLon * 60.0) / 800.0);
+        [$currentNakName, $currentNakPada, $currentNakLord] = $this->panchanga->getNakshatraInfo($currentMoonLon);
         $vara = $this->panchanga->calculateVara($birthAt, $this->sunService);
 
         $isth = $this->calculateIshtkaal($relSunrise, $birthAt, $tz);
@@ -375,6 +376,7 @@ class PanchangService
         $jdSunrise = $this->toJulianDayFromCarbon($relSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
+        $jdCalculationAt = $this->toJulianDayFromCarbon($calculationAt, $tz);
 
         $tithiNum = (int) $tithi['index'];
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
@@ -428,6 +430,8 @@ class PanchangService
 
         $karanaEndAngle = $karanaIdx * 6.0;
         $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $currentTithiNum = (int) $currentTithi['index'];
+        $currentTithiEndJd = $this->findAngleCrossing($jdCalculationAt, $currentTithiNum * 12.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
         DebugTrace::log('panchang.day', 'yoga/karana crossings resolved', [
             'yoga_end_jd' => $yogaEndJd,
             'karana_end_jd' => $karanaEndJd,
@@ -557,18 +561,48 @@ class PanchangService
 
         $dailyObservances = $this->festivalService->getDailyObservances($todaySnapshot);
         $specialYogas = $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz);
-        $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
-        $amritadiYoga = $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz);
+        $anandadiYoga = $this->calculateAnandadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz, $jdCalculationAt);
+        $amritadiYoga = $this->calculateAmritadiYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $tz, $jdCalculationAt);
         $panchak = $this->calculatePanchak($jdSunrise, $jdNextSunrise, $tz);
         $maitreyaYoga = $this->calculateMaitreyaYoga($jdSunrise, $jdNextSunrise, (int) $vara['index'], $lagnaTable, $tz);
         $gajachchhayaYoga = $this->calculateGajachchhayaYoga($jdSunrise, $jdNextSunrise, $hinduMonth, $tz);
         $nakshatraShool = $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz);
         $dishaShool = $this->calculateDishaShool((int) $vara['index']);
         $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
-        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz, $moonLon);
-        $shivaVaasa = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
-        $agniVaasa = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
-        $yoginiVaasa = $this->calculateYoginiVaasa($tithiNum);
+        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz, $currentMoonLon, $jdCalculationAt);
+        $shivaVaasaAtSunrise = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
+        $agniVaasaAtSunrise = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
+        $yoginiVaasaAtSunrise = $this->calculateYoginiVaasa($tithiNum);
+        $shivaVaasa = [
+            ...$this->calculateShivaVaasa($currentTithiNum, $currentTithiEndJd, $tz),
+            'calculated_for' => 'input_now',
+            'input_now_iso' => AstroCore::formatDateTime($calculationAt),
+            'at_sunrise' => [
+                ...$shivaVaasaAtSunrise,
+                'calculated_for' => 'sunrise',
+                'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+            ],
+        ];
+        $agniVaasa = [
+            ...$this->calculateAgniVaasa($currentTithiNum, (int) $vara['index'], $currentTithiEndJd, $tz),
+            'calculated_for' => 'input_now',
+            'input_now_iso' => AstroCore::formatDateTime($calculationAt),
+            'at_sunrise' => [
+                ...$agniVaasaAtSunrise,
+                'calculated_for' => 'sunrise',
+                'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+            ],
+        ];
+        $yoginiVaasa = [
+            ...$this->calculateYoginiVaasa($currentTithiNum),
+            'calculated_for' => 'input_now',
+            'input_now_iso' => AstroCore::formatDateTime($calculationAt),
+            'at_sunrise' => [
+                ...$yoginiVaasaAtSunrise,
+                'calculated_for' => 'sunrise',
+                'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+            ],
+        ];
         $transitionSignals = $this->buildTransitionSignals(
             $jdSunrise,
             $jdNextSunrise,
@@ -580,10 +614,10 @@ class PanchangService
             (int) $currentTithi['index'],
             $nakIdx,
             $currentNakIdx,
-            $yogaIdx,
+            (int) $yoga['index'],
             (int) $currentYoga['index'],
-            $karanaIdx,
-            $currentKaranaIdx,
+            (int) $karanaIdx,
+            (int) $currentKaranaIdx,
             $tz,
             $sankrantiRashi
         );
@@ -704,6 +738,16 @@ class PanchangService
                 'pada' => $nakPada,
                 'lord' => $nakLord,
             ],
+            'Nakshatra_At_Sunrise' => [
+                'name' => $nakName,
+                'pada' => $nakPada,
+                'lord' => $nakLord,
+            ],
+            'Current_Nakshatra_At_Input_Now' => [
+                'name' => $currentNakName,
+                'pada' => $currentNakPada,
+                'lord' => $currentNakLord,
+            ],
             'Yoga' => $yoga,
             'Current_Yoga_At_Input_Now' => $currentYoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
@@ -754,6 +798,16 @@ class PanchangService
                     'name' => $nakName,
                     'pada' => $nakPada,
                     'lord' => $nakLord,
+                ],
+                'Nakshatra_At_Sunrise' => [
+                    'name' => $nakName,
+                    'pada' => $nakPada,
+                    'lord' => $nakLord,
+                ],
+                'Current_Nakshatra_At_Input_Now' => [
+                    'name' => $currentNakName,
+                    'pada' => $currentNakPada,
+                    'lord' => $currentNakLord,
                 ],
                 'Yoga' => $yoga,
                 'Current_Yoga_At_Input_Now' => $currentYoga,
@@ -1112,6 +1166,11 @@ class PanchangService
                 'sankranti_rashi' => $sankrantiRashi,
             ],
             'Bhadra' => $includeExtended ? $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']) : [],
+            'Tithi_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $this->intervalTracker->collectTithiIntervals($jdSunrise, $jdNextSunrise)),
+            'Nakshatra_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)),
+            'Nakshatra_Padas' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $this->intervalTracker->collectNakshatraPadaIntervals($jdSunrise, $jdNextSunrise)),
+            'Yoga_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)),
+            'Karana_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $this->intervalTracker->collectKaranaIntervals($jdSunrise, $jdNextSunrise)),
         ];
     }
 

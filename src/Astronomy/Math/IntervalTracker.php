@@ -6,9 +6,11 @@ namespace JayeshMepani\PanchangCore\Astronomy\Math;
 
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Enums\Karana;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Enums\Yoga;
 
 /** Interval Tracker - Collects astronomical windows for Tithi, Nakshatra, etc. */
 class IntervalTracker
@@ -31,11 +33,14 @@ class IntervalTracker
                 'index' => $index,
                 'phase_index' => (($index - 1) % 15) + 1,
                 'name' => Tithi::from($index)->getName(),
-                'start_jd' => max($interval['start_jd'], $cursor),
-                'end_jd' => min($interval['end_jd'], $jdEnd),
+                'start_jd' => max($interval['start_jd'], $cursor - 2.0), // Bound search to prevent infinite backtrack
+                'end_jd' => $interval['end_jd'],
             ];
 
-            $cursor = min($interval['end_jd'], $jdEnd) + 0.000001;
+            // Re-fetch start_jd without broad bounding once we have the interval context
+            $intervals[count($intervals) - 1]['start_jd'] = $interval['start_jd'];
+
+            $cursor = $interval['end_jd'] + 0.000001;
         }
 
         return $intervals;
@@ -72,7 +77,15 @@ class IntervalTracker
         for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
             $moonLongitude = $this->transitEngine->getMoonLongitude($cursor + 0.000001);
             $nakshatraIndex = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+            $startAngle = $nakshatraIndex * (360.0 / 27.0);
             $targetAngle = ($nakshatraIndex + 1) * (360.0 / 27.0);
+
+            $startJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $startAngle,
+                -1,
+                fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+            );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
@@ -83,11 +96,11 @@ class IntervalTracker
             $intervals[] = [
                 'index' => $nakshatraIndex,
                 'name' => Nakshatra::from($nakshatraIndex)->getName(),
-                'start_jd' => $cursor,
-                'end_jd' => min($endJd, $jdEnd),
+                'start_jd' => $startJd,
+                'end_jd' => $endJd,
             ];
 
-            $cursor = min($endJd, $jdEnd) + 0.000001;
+            if ($endJd <= $cursor) { $cursor += 0.1; } else { $cursor = $endJd + 0.000001; }
         }
 
         return $intervals;
@@ -138,32 +151,35 @@ class IntervalTracker
             $nakshatraStart = $nakshatraIndex * 13.333333333333334;
             $pada = (int) floor(($moonLongitude - $nakshatraStart) / 3.3333333333333335) + 1;
             $pada = max(1, min(4, $pada));
+
+            $startAngle = $nakshatraStart + (($pada - 1) * 3.3333333333333335);
             $targetAngle = $nakshatraStart + ($pada * 3.3333333333333335);
             if ($targetAngle >= 360.0) {
                 $targetAngle = 360.0;
             }
 
+            $startJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $startAngle,
+                -1,
+                fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+            );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
                 1,
                 fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
             );
-            $segmentEnd = min($endJd, $jdEnd);
-
-            if ($segmentEnd <= $cursor) {
-                break;
-            }
 
             $intervals[] = [
                 'nakshatra_index' => $nakshatraIndex,
                 'nakshatra' => Nakshatra::from($nakshatraIndex)->getName(),
                 'pada' => $pada,
-                'start_jd' => $cursor,
-                'end_jd' => $segmentEnd,
+                'start_jd' => $startJd,
+                'end_jd' => $endJd,
             ];
 
-            $cursor = $segmentEnd + 0.000001;
+            if ($endJd <= $cursor) { $cursor += 0.1; } else { $cursor = $endJd + 0.000001; }
         }
 
         return $intervals;
@@ -193,6 +209,84 @@ class IntervalTracker
             ];
 
             $cursor = min($endJd, $jdEnd) + 0.000001;
+        }
+
+        return $intervals;
+    }
+
+    public function collectYogaIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
+            $sum = AstroCore::normalize($this->transitEngine->getSunMoonSum($cursor + 0.000001));
+            $yogaIndex = (int) floor($sum / (360.0 / 27.0));
+            $startAngle = $yogaIndex * (360.0 / 27.0);
+            $targetAngle = ($yogaIndex + 1) * (360.0 / 27.0);
+
+            $startJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $startAngle,
+                -1,
+                fn (float $jd): float => $this->transitEngine->getSunMoonSum($jd)
+            );
+            $endJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->transitEngine->getSunMoonSum($jd)
+            );
+
+            $intervals[] = [
+                'index' => $yogaIndex + 1,
+                'name' => Yoga::from($yogaIndex)->getName(),
+                'start_jd' => $startJd,
+                'end_jd' => $endJd,
+            ];
+
+            if ($endJd <= $cursor) { $cursor += 0.1; } else { $cursor = $endJd + 0.000001; }
+        }
+
+        return $intervals;
+    }
+
+    public function collectKaranaIntervals(float $jdStart, float $jdEnd): array
+    {
+        $intervals = [];
+        $cursor = $jdStart;
+
+        for ($guard = 0; $guard < 6 && $cursor < $jdEnd; $guard++) {
+            $diff = AstroCore::normalize($this->transitEngine->getMoonSunAngle($cursor + 0.000001));
+            $karanaIndex = (int) floor($diff / 6.0);
+            $startAngle = $karanaIndex * 6.0;
+            $targetAngle = ($karanaIndex + 1) * 6.0;
+
+            $startJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $startAngle,
+                -1,
+                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            );
+            $endJd = $this->transitEngine->findAngleCrossing(
+                $cursor,
+                $targetAngle,
+                1,
+                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            );
+
+            $tithiIndex = (int) floor($diff / 12.0) + 1;
+            $fraction = fmod($diff, 12.0) / 12.0;
+            $karana = Karana::fromTithi($tithiIndex, $fraction);
+
+            $intervals[] = [
+                'index' => $karanaIndex + 1,
+                'name' => $karana->getName(),
+                'start_jd' => $startJd,
+                'end_jd' => $endJd,
+            ];
+
+            if ($endJd <= $cursor) { $cursor += 0.1; } else { $cursor = $endJd + 0.000001; }
         }
 
         return $intervals;

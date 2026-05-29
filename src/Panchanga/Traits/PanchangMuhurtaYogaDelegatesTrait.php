@@ -245,14 +245,14 @@ trait PanchangMuhurtaYogaDelegatesTrait
         return $this->specialYogaCalculator->calculateSpecialYogas($date, $jdStart, $jdEnd, $sunriseTithi, $weekdayIndex, $tz);
     }
 
-    private function calculateAnandadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    private function calculateAnandadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz, ?float $currentJd = null): array
     {
-        return $this->specialYogaCalculator->calculateAnandadiYoga($jdStart, $jdEnd, $weekdayIndex, $tz);
+        return $this->specialYogaCalculator->calculateAnandadiYoga($jdStart, $jdEnd, $weekdayIndex, $tz, $currentJd);
     }
 
-    private function calculateAmritadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz): array
+    private function calculateAmritadiYoga(float $jdStart, float $jdEnd, int $weekdayIndex, string $tz, ?float $currentJd = null): array
     {
-        return $this->specialYogaCalculator->calculateAmritadiYoga($jdStart, $jdEnd, $weekdayIndex, $tz);
+        return $this->specialYogaCalculator->calculateAmritadiYoga($jdStart, $jdEnd, $weekdayIndex, $tz, $currentJd);
     }
 
     private function calculatePanchak(float $jdStart, float $jdEnd, string $tz): array
@@ -293,12 +293,13 @@ trait PanchangMuhurtaYogaDelegatesTrait
         return $this->vaasaCalculator->calculateRahuVaasa($weekdayIndex);
     }
 
-    private function calculateChandraVaasa(float $jdStart, float $jdEnd, string $tz, ?float $moonLongitude = null): array
+    private function calculateChandraVaasa(float $jdStart, float $jdEnd, string $tz, ?float $moonLongitude = null, ?float $currentJd = null): array
     {
         return $this->vaasaCalculator->calculateChandraVaasa(
             $this->collectNakshatraPadaIntervals($jdStart, $jdEnd),
             $tz,
-            $moonLongitude
+            $moonLongitude,
+            $currentJd
         );
     }
 
@@ -337,6 +338,9 @@ trait PanchangMuhurtaYogaDelegatesTrait
     ): array {
         $tithiIntervals = $this->collectTithiIntervals($jdStart, $jdEnd);
         $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
+        $yogaIntervals = $this->collectYogaIntervals($jdStart, $jdEnd);
+        $karanaIntervals = $this->collectKaranaIntervals($jdStart, $jdEnd);
+        $padaIntervals = $this->collectNakshatraPadaIntervals($jdStart, $jdEnd);
 
         return [
             'tithi' => [
@@ -350,16 +354,19 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 'current_at_input_now' => Nakshatra::from($currentNakshatraIndex % 27)->getName(),
                 'current_at_sunrise' => Nakshatra::from($nakshatraIndex % 27)->getName(),
                 'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $nakshatraIntervals),
+                'padas' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $padaIntervals),
             ],
             'yoga' => [
                 'current' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
                 'current_at_input_now' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
                 'current_at_sunrise' => Localization::translate('Yoga', max(0, $yogaIndex - 1)),
+                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $yogaIntervals),
             ],
             'karana' => [
                 'current' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
                 'current_at_input_now' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
                 'current_at_sunrise' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($karanaIndex)),
+                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $karanaIntervals),
             ],
             'moon_sign' => [
                 'current' => Rasi::from(AstroCore::getSign($currentMoonLongitude))->getName(),
@@ -406,6 +413,16 @@ trait PanchangMuhurtaYogaDelegatesTrait
         return $this->intervalTracker->collectNakshatraIntervals($jdStart, $jdEnd);
     }
 
+    private function collectYogaIntervals(float $jdStart, float $jdEnd): array
+    {
+        return $this->intervalTracker->collectYogaIntervals($jdStart, $jdEnd);
+    }
+
+    private function collectKaranaIntervals(float $jdStart, float $jdEnd): array
+    {
+        return $this->intervalTracker->collectKaranaIntervals($jdStart, $jdEnd);
+    }
+
     private function collectNakshatraPadaIntervals(float $jdStart, float $jdEnd): array
     {
         return $this->intervalTracker->collectNakshatraPadaIntervals($jdStart, $jdEnd);
@@ -419,18 +436,6 @@ trait PanchangMuhurtaYogaDelegatesTrait
     private function collectMoonSignTransitions(float $jdStart, float $jdEnd, string $tz): array
     {
         return $this->intervalTracker->collectMoonSignTransitions($jdStart, $jdEnd, $tz);
-    }
-
-    private function formatTransitionWindow(array $interval, string $type, string $tz): array
-    {
-        return [
-            'name' => (string) ($interval['name'] ?? ''),
-            'type' => $type,
-            'start_jd' => $interval['start_jd'],
-            'end_jd' => $interval['end_jd'],
-            'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
-            'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
-        ];
     }
 
     private function normalizeKaranaLocalizationIndex(int $karanaIndex): int
