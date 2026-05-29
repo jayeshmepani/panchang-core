@@ -36,8 +36,7 @@
     font: inherit
   }
 
-  ul,
-  ol {
+  aside :is(ul, ol) {
     list-style: none
   }
 

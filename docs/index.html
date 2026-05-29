@@ -3980,17 +3980,10 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
-              <span class="release-tag">main</span>
-              <div class="release-body">
-                <div class="release-heading"><span class="release-title">Eclipse Overhaul, Transition Timelines, Festival Alias & Deduplication Engine</span><span class="release-meta">Latest (dev)</span></div>
-                <p class="release-note">Major updates including local vs global eclipse classification, full Panchanga transition windows, festival alias and deduplication engine, and synchronized localization.</p>
-              </div>
-            </li>
-            <li class="release-row">
               <span class="release-tag">7.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Panchang Output Contract Corrections and Muhurta Timing Accuracy</span><span class="release-meta">Major Release</span></div>
-                <p class="release-note">Updates public method signatures and output semantics for Brahma Muhurta, Lagna tables, Amrita Kaal, Varjyam, Chandra Vaasa, and current-versus-sunrise Panchanga fields.</p>
+                <div class="release-heading"><span class="release-title">Panchang Accuracy, Festival Expansion, and Output Improvements</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Major release focused on improving Panchang clarity, Muhurta accuracy, festival coverage, eclipse handling, and overall timing precision.</p>
               </div>
             </li>
             <li class="release-row">
@@ -4086,61 +4079,117 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
-          <h3>v7.x / main Evolution Notes</h3>
+          <h3>v7.0.0 Upgrade & Release Notes</h3>
+          <p class="lead">Major release focused on improving Panchang clarity, Muhurta accuracy, festival coverage, eclipse handling, and overall timing precision. Several areas now follow more precise Panchang conventions, and many outputs have clearer meanings and improved consistency.</p>
+
+          <div class="info-box is-danger">
+            <h4>Breaking Changes</h4>
+            <ul>
+              <li>Brahma Muhurta now follows the dynamic night-muhurta convention by default instead of only using a fixed 48-minute calculation.</li>
+              <li>Lagna daily output now covers the complete sunrise-to-next-sunrise Panchang day, including partial Lagna periods at the beginning or end of the day.</li>
+              <li>Amrita Kaal is now calculated independently using Nakshatra-based rules instead of being derived from Varjyam.</li>
+              <li>Chandra Vaasa now represents Moon-rashi directional Chandra Vaasa. Older Nakshatra-pada abode information is still available separately.</li>
+              <li>Solar-noon related fields were renamed to avoid confusion between astronomical solar noon and the daylight midpoint used for Abhijit Muhurta.</li>
+              <li>Sunrise-based Panchanga values and current-time Panchanga values are now separated more clearly.</li>
+              <li>Eclipse outputs now distinguish between global eclipse type and locally visible eclipse type.</li>
+              <li>Festival output handling is now alias-aware and avoids duplicate regional festival entries.</li>
+            </ul>
+          </div>
+
+          <h4>Added Features & Improvements</h4>
           <ul>
-            <li><strong>Eclipse System Overhaul</strong>:
+            <li><strong>Panchanga & Muhurta Improvements:</strong>
               <ul>
-                <li>Separated NASA/catalog classification (<code>global_eclipse_type</code>) from actual location-visible classification (<code>local_eclipse_type</code> and <code>visibility.local_eclipse_type</code>). For example, a globally total lunar eclipse may only be locally visible as partial.</li>
-                <li>Smarter visibility logic: Eclipses are considered visible if native astronomical visibility exists OR if ritual-visible partial/total phases exist locally.</li>
-                <li>Eclipse iteration algorithm now iterates solar and lunar streams independently and merges/sorts them chronologically, offering a cleaner architecture and fewer edge-case skips.</li>
-                <li>Expanded regression tests: Updated Bhuj visibility and cross-location eclipse regressions to validate coordinate-sensitive results and local visibility types.</li>
+                <li>Clear sunrise-versus-current Panchanga values for Tithi, Karana, and Yoga.</li>
+                <li>Dedicated current-time transition information so it is easier to identify what is active at the calculation time.</li>
+                <li>Dynamic Brahma Muhurta output while still preserving the traditional fixed 48-minute reference.</li>
+                <li>Independent Varjyam and Amrita Kaal windows with clearer and more accurate timing boundaries.</li>
+                <li>Improved Lagna day coverage with partial interval handling.</li>
+                <li>Clearer Panchaka Rahita output separating sunrise calculations from current-time calculations.</li>
+                <li>Richer Panchanga transition details for Tithi, Nakshatra, Nakshatra Pada, Yoga, and Karana.</li>
               </ul>
             </li>
-            <li><strong>Panchanga Interval & Transition Engine Expansion</strong>:
+            <li><strong>Eclipse Improvements:</strong>
               <ul>
-                <li>Added new interval collectors: <code>collectYogaIntervals()</code> and <code>collectKaranaIntervals()</code>, alongside more accurate Tithi interval logic.</li>
-                <li>Improved backtracking logic using bounded reverse-angle solving to avoid infinite loops and find real transition start times near boundary edges.</li>
-                <li>Enriched Panchanga snapshot payload: Now exposes full transition timelines (<code>Tithi_Windows</code>, <code>Nakshatra_Windows</code>, <code>Nakshatra_Padas</code>, <code>Yoga_Windows</code>, <code>Karana_Windows</code>) moving from a static "state at sunrise/current time" to a full transition timeline model.</li>
-                <li>Clarified semantics in docs and code between sunrise-based state and current/input-time state for Tithi, Nakshatra, Yoga, and Karana.</li>
+                <li>Added separate global and local eclipse classifications.</li>
+                <li>Improved location-aware eclipse visibility handling.</li>
+                <li>Improved eclipse visibility consistency across different locations.</li>
               </ul>
             </li>
-            <li><strong>Festival Engine Refactor</strong>:
+            <li><strong>Festival Expansion:</strong>
               <ul>
-                <li>Added an alias-aware festival system enabling festivals to define regional names, canonical deduplication, multi-language mapping, and cleaner APIs (e.g., <code>'aliases' =&gt; [...]</code>).</li>
-                <li>Major alias additions: Makara Sankranti now supports Uttarayan, Pongal, Khichdi, Til Sankranti, Ghughuti, Makar Puja, Maghi, Sakraat, etc. Vinayaka Chaturthi treats Ganesha Jayanti as an alias. Pradosh variants (Soma, Shani, Guru, Bhauma, etc.) are unified under the canonical <code>Pradosh Vrat</code>.</li>
-                <li>Added a deduplication engine to post-process festival lists: if a festival name appears in another's aliases, the duplicate entry is removed (resolving naming collisions and duplicate outputs). Mutually aliased items resolve by prioritizing the more specific variant.</li>
-                <li>Restructured festival data: Merged Shani Jayanti and Vat Savitri Vrat under Vaishakha Amavasya; deprecated/removed standalone entries for Hanuman Jayanti, Buddha Purnima, Ganesh Visarjan, etc., shifting toward canonical-event-centered modeling. The total festival count is updated to 399.</li>
-              </ul>
-            </li>
-            <li><strong>Localization System Expansion</strong>:
-              <ul>
-                <li>Added many new festivals (e.g., Baisakhi, Puthandu, Kevada Trij, Jal Jhilani Ekadashi, Vamana Ekadashi, Vijayadashami, Annakut, Shikshapatri Jayanti, Masi Magam).</li>
-                <li>Synchronized translation files across English, Hindi, and Gujarati (e.g., for regional aliases like Uttarayan, Maghi, Khichdi, Ghughuti, Thiruvadhirai, Arudra Darshanam).</li>
-                <li>Added lowercase karmakala translation keys (sunrise, sunset, moonrise, moonset, aparahna, madhyahna, pradosha, midnight) for normalized rule-engine tokenization.</li>
-                <li>Expanded Mahavidya worship descriptions for Magha Gupt Navaratri (Chhinnamasta, Dhumavati, Bagalamukhi, Matangi, Kamala).</li>
-              </ul>
-            </li>
-            <li><strong>Enum & Math Refactors</strong>:
-              <ul>
-                <li>Added reusable angular math helpers: <code>fromAngle()</code> and <code>getFractionRemainingAtAngle()</code> to <code>Tithi.php</code> and <code>Yoga.php</code> to reduce duplication and improve future calculation ease.</li>
+                <li>Expanded built-in festival coverage from <strong>237 festivals to 399 festivals</strong> with broader regional and traditional observance support.</li>
+                <li>Added support for many regional festival naming conventions and aliases.</li>
+                <li>Improved handling for regional observances such as Uttarayan, Pongal, Maghi, Til Sankranti, Khichdi, Ghughuti, Sakraat, Thiruvadhirai, Arudra Darshanam, and many more.</li>
+                <li>Improved handling for weekday-specific Pradosh observances.</li>
+                <li>Added smarter festival deduplication so aliases no longer appear as separate duplicate festivals.</li>
+                <li>Expanded festival translations and localization coverage.</li>
+                <li>Added additional Mahavidya worship descriptions for Magha Gupt Navaratri observances.</li>
               </ul>
             </li>
           </ul>
 
-          <h3>v7.0.0 Upgrade Notes</h3>
+          <h4>Fixed Issues</h4>
           <ul>
-            <li><code>MuhurtaService::calculateBrahmaMuhurta()</code> now requires <code>$previousSunset</code> and <code>$sunrise</code>. This supports the dynamic night-muhurta convention.</li>
-            <li><code>DailyPeriodsCalculator::calculateBrahmaMuhurta()</code> has the same signature change and now returns <code>fixed_48_minute_convention</code> as a nested compatibility payload.</li>
-            <li><code>LagnaTableCalculator::calculateLagnaTable()</code> and <code>MuhurtaService::calculateLagnaTable()</code> require <code>$nextSunrise</code> and return partial visible intervals for the Panchang day.</li>
-            <li><code>MuhurtaService::calculateNakshatraPeriodWindows()</code> is the public scoped API for independent <code>varjyam</code> and <code>amrita_kaal</code> Nakshatra windows.</li>
-            <li><code>calculateAmritaKaal()</code> remains only as a legacy compatibility helper and no longer derives Amrita Kaal from Varjyam end time.</li>
-            <li><code>Chandra_Vaasa</code> now uses Moon-rashi direction as the primary meaning and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
-            <li><code>Current_Nakshatra_At_Input_Now</code> and <code>Nakshatra_At_Sunrise</code> now make runtime versus sunrise Nakshatra semantics explicit.</li>
-            <li>Runtime Nakshatra-derived outputs, including Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa, now select the window active at the calculation instant.</li>
-            <li>Shiva Vaasa, Agni Vaasa, and Yogini Vaasa now use the input-time Tithi while preserving sunrise values under <code>at_sunrise</code>.</li>
-            <li>Eclipse output separates global catalog type from local visible type through <code>global_eclipse_type</code> and <code>local_eclipse_type</code>.</li>
-            <li><code>Abhijit_Muhurta.solar_noon</code> is now <code>Abhijit_Muhurta.daylight_midpoint</code>; <code>Day_Types.solar_noon</code> is now <code>Day_Types.apparent_solar_noon</code>.</li>
+            <li><strong>Panchanga & Muhurta:</strong>
+              <ul>
+                <li>Corrected Amrita Kaal timing behavior.</li>
+                <li>Corrected Varjyam and Amrita Kaal output windows.</li>
+                <li>Corrected Brahma Muhurta convention handling.</li>
+                <li>Corrected Friday Dur Muhurta mapping.</li>
+                <li>Corrected Friday Rahu Vaasa direction.</li>
+                <li>Corrected Chandra Vaasa meaning to match directional Panchang convention.</li>
+                <li>Corrected Panchaka Rahita current-time behavior.</li>
+                <li>Corrected generated month output defaults so current month handling behaves correctly when no month is provided.</li>
+              </ul>
+            </li>
+            <li><strong>Eclipse Handling:</strong>
+              <ul>
+                <li>Corrected local eclipse visibility behavior.</li>
+                <li>Improved local eclipse-type handling for location-specific outputs.</li>
+                <li>Improved eclipse ordering and visibility consistency.</li>
+              </ul>
+            </li>
+            <li><strong>Festival Handling:</strong>
+              <ul>
+                <li>Improved festival alias handling and canonical naming behavior.</li>
+                <li>Removed duplicate regional festival outputs caused by overlapping aliases.</li>
+                <li>Improved festival name preference logic so more specific naming conventions are preserved when mutual aliases exist.</li>
+                <li>Refined festival descriptions and deity associations.</li>
+                <li>Merged overlapping or deprecated festival representations into cleaner canonical festival entries.</li>
+              </ul>
+            </li>
           </ul>
+
+          <div class="info-box is-warning">
+            <h4>Migration & API Signature Changes</h4>
+            <p>Applications should treat this as a major output-structure update. Please review the following API signature changes and guidelines:</p>
+            <ul>
+              <li><code>MuhurtaService::calculateBrahmaMuhurta()</code> now requires <code>$previousSunset</code> and <code>$sunrise</code>. This supports the dynamic night-muhurta convention.</li>
+              <li><code>DailyPeriodsCalculator::calculateBrahmaMuhurta()</code> has the same signature change and now returns <code>fixed_48_minute_convention</code> as a nested compatibility payload.</li>
+              <li><code>LagnaTableCalculator::calculateLagnaTable()</code> and <code>MuhurtaService::calculateLagnaTable()</code> require <code>$nextSunrise</code> and return partial visible intervals for the Panchang day.</li>
+              <li><code>MuhurtaService::calculateNakshatraPeriodWindows()</code> is the public scoped API for independent <code>varjyam</code> and <code>amrita_kaal</code> Nakshatra windows.</li>
+              <li><code>calculateAmritaKaal()</code> remains only as a legacy compatibility helper and no longer derives Amrita Kaal from Varjyam end time.</li>
+              <li><code>Chandra_Vaasa</code> now uses Moon-rashi direction as the primary meaning and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
+              <li><code>Current_Nakshatra_At_Input_Now</code> and <code>Nakshatra_At_Sunrise</code> now make runtime versus sunrise Nakshatra semantics explicit.</li>
+              <li>Runtime Nakshatra-derived outputs, including Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa, now select the window active at the calculation instant.</li>
+              <li>Shiva Vaasa, Agni Vaasa, and Yogini Vaasa now use the input-time Tithi while preserving sunrise values under <code>at_sunrise</code>.</li>
+              <li>Eclipse output separates global catalog type from local visible type through <code>global_eclipse_type</code> and <code>local_eclipse_type</code>.</li>
+              <li><code>Abhijit_Muhurta.solar_noon</code> is now <code>Abhijit_Muhurta.daylight_midpoint</code>; <code>Day_Types.solar_noon</code> is now <code>Day_Types.apparent_solar_noon</code>.</li>
+              <li>If your app stores generated JSON or cached Panchang output, regenerate the data after upgrading so stored output matches the updated v7.0.0 structure.</li>
+            </ul>
+          </div>
+
+          <h4>Documentation</h4>
+          <ul>
+            <li>README is now shorter and focused on practical usage.</li>
+            <li>HTML documentation includes updated v7.0.0 release and upgrade notes.</li>
+            <li>API documentation has been refreshed for the updated output behavior.</li>
+            <li>Documentation now explains sunrise-versus-current Panchanga semantics more clearly.</li>
+            <li>Documentation now explains global-versus-local eclipse classification behavior.</li>
+          </ul>
+
+          <p><strong>Summary:</strong> This release provides clearer Panchanga timing behavior, more accurate Muhurta calculations, better eclipse visibility handling, broader regional festival support, cleaner festival naming and deduplication, richer transition and timing information, improved localization coverage, and more consistent and predictable outputs. The package now delivers a more complete and region-aware Panchanga experience while maintaining compatibility with traditional Panchang conventions.</p>
 
           <h3>v6.x Upgrade Notes</h3>
           <ul>
