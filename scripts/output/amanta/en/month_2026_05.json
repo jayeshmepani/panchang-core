@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T12:47:48+00:00",
+        "generated_at": "2026-05-29T16:55:32+00:00",
         "year": 2026,
         "month": 5,
         "calendar_type": "amanta",
@@ -192,86 +192,6 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
-                {
-                    "name": "Buddha Purnima",
-                    "description": "Vaishakha Purnima — Hindu observance of Sugata Buddha (9th avatar of Vishnu, distinct from Gautama Buddha of Buddhism) and Kurma Jayanti (birth of Lord Vishnu's tortoise avatar). The Hindu Buddha-avatar is described in Bhagavata Purana 1.3.24 and Agni Purana as appearing in Kikata/Gaya to delude demons from Vedic rituals (Bhagavata view) or to teach compassion and end animal sacrifice (Jayadeva's Gita Govinda view). Puri Shankaracharya Swami Nischalananda Saraswati and scholars recognize these as two different persons: the Puranic Sugata Buddha (Brahmin varna, upheld Vedas, ancient timeline) vs. Gautama Buddha (Kshatriya Shakya clan, Lumbini birth ~563 BCE, rejected Vedas). Also coincides with Kurma Jayanti and is the most auspicious day for Satyanarayan Puja. Regional variation: Odisha and Bengal traditions replace Buddha with Balarama as the 9th avatar in Dashavatara.",
-                    "deity": "Sugata Buddha/Kurma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Purnima"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Vaishakha",
-                            "value_key": "Vaishakha",
-                            "name": "Vaishakha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Buddha Purnima",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461161.1538652144,
-                        "target_tithi_end_jd": 2461162.2233444257,
-                        "standard_date": "2026-05-01",
-                        "observance_date": "2026-05-01",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Buddha Purnima",
-                        "festival_name_localized": "Buddha Purnima",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
                 {
                     "name": "Narsinh Mehta Janma Jayanti",
                     "description": "Birth anniversary of Adi Kavi Narsinh Mehta",
@@ -2449,7 +2369,7 @@
                         "paksha": "Krishna",
                         "paksha_name": "Krishna Paksha (waning)",
                         "karmakala_type": "midnight",
-                        "karmakala_type_name": "midnight"
+                        "karmakala_type_name": "Midnight"
                     },
                     "resolution": {
                         "festival_name": "Masik Krishna Janmashtami",
@@ -2478,7 +2398,7 @@
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "midnight"
+                        "karmakala_type_name": "Midnight"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -3439,7 +3359,15 @@
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Guru Pradosh Vrat",
+                        "Soma Pradosh Vrat",
+                        "Shani Pradosh Vrat",
+                        "Bhauma Pradosh Vrat",
+                        "Ravi Pradosh Vrat",
+                        "Budha Pradosh Vrat",
+                        "Shukra Pradosh Vrat"
+                    ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-05-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-05-14.",
                     "calculation_basis": {
                         "type": "tithi",
@@ -3983,7 +3911,9 @@
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -4214,177 +4144,17 @@
             },
             "festivals": [
                 {
-                    "name": "Shani Jayanti",
-                    "description": "Birth of Lord Shani",
-                    "deity": "Shani",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "Amavasya"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Vaishakha",
-                            "value_key": "Vaishakha",
-                            "name": "Vaishakha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Shani Jayanti",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461176.4871504763,
-                        "target_tithi_end_jd": 2461177.333990746,
-                        "standard_date": "2026-05-16",
-                        "observance_date": "2026-05-16",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Shani Jayanti",
-                        "festival_name_localized": "Shani Jayanti",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Vat Savitri Vrat",
-                    "description": "North Indian Vat Savitri observed on Amavasya",
-                    "deity": "Savitri/Brahma",
-                    "fasting": false,
-                    "regions": [
-                        "Uttar Pradesh",
-                        "Bihar",
-                        "Madhya Pradesh",
-                        "North India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Krishna Paksha (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "Amavasya"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Vaishakha",
-                            "value_key": "Vaishakha",
-                            "name": "Vaishakha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Vat Savitri Vrat",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461176.4871504763,
-                        "target_tithi_end_jd": 2461177.333990746,
-                        "standard_date": "2026-05-16",
-                        "observance_date": "2026-05-16",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Vat Savitri Vrat",
-                        "festival_name_localized": "Vat Savitri Vrat",
-                        "paksha_name": "Krishna Paksha (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Vaishakha Amavasya",
-                    "description": "Amavasya falling in the month of Vaishakha",
-                    "deity": "Pitrus",
+                    "description": "Amavasya falling in the month of Vaishakha; coincides with Shani Jayanti",
+                    "deity": "Pitrus/Shani",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shani Jayanti",
+                        "Vat Savitri Vrat"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -4763,7 +4533,7 @@
                         "paksha": "Shukla",
                         "paksha_name": "Shukla Paksha (waxing)",
                         "karmakala_type": "moonrise",
-                        "karmakala_type_name": "moonrise",
+                        "karmakala_type_name": "Moonrise",
                         "adhika": {
                             "adhika_only": true
                         }
@@ -4795,7 +4565,7 @@
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "Adhika Chandra Darshana",
                         "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "moonrise"
+                        "karmakala_type_name": "Moonrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,

@@ -19,7 +19,7 @@ Some package components are architectural helpers and are intentionally **not** 
 - `OutputGeneratorService` (output assembly wrapper around package services)
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
-Currently, the package implements **237** top-level festival definitions within `FestivalService::FESTIVALS`. Each entry maps to a specific timing rule (Tithi, Nakshatra, Yoga, etc.) with associated metadata.
+Currently, the package implements **399** top-level festival definitions within `FestivalService::FESTIVALS`. Each entry maps to a specific timing rule (Tithi, Nakshatra, Yoga, etc.) with associated metadata.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
 

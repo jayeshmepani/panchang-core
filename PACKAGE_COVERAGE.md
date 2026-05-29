@@ -93,6 +93,17 @@ The package covers:
 - vishti karana identification
 - bhadra-related logic where vishti/bhadra status matters for muhurta and rejection handling
 
+### Panchanga Transition Windows & Timeline Modeling
+
+Rather than only providing the Panchanga values active at sunrise or at a specific input time, the package calculates and exposes full transition timelines for each limb. This allows callers to map the exact start and end boundaries of each limb across the Panchang day:
+
+- **Tithi Windows**: Full start, end, and duration tracking for all overlapping Tithis (`Tithi_Windows`).
+- **Nakshatra Windows & Padas**: Complete boundary intervals (`Nakshatra_Windows`) and the active quarters/divisions (`Nakshatra_Padas`).
+- **Yoga Windows**: Consecutive Yoga transitions across the civil day (`Yoga_Windows`).
+- **Karana Windows**: Precision timelines for the half-Tithi periods (`Karana_Windows`).
+- **Yoga & Karana Interval Collectors**: Dynamic lists generated via `collectYogaIntervals()` and `collectKaranaIntervals()`.
+- **Bounded Backtracking**: Refined reverse-angle solving to locate boundary transitions with maximum mathematical precision, avoiding clamp resets or infinite loops.
+
 ## Astronomical Day Coverage
 
 The package covers the daily astronomical anchors required for panchanga, festival timing, and muhurta.
@@ -435,7 +446,7 @@ The package covers:
 - daily festival snapshots
 - month calendar festival embedding
 - daily observances in addition to named festivals
-- 237 packaged festival definitions
+- 399 packaged festival definitions
 - multi-rule observance resolution
 - location-aware and timezone-aware output
 
@@ -490,6 +501,15 @@ That explanation layer is especially useful when:
 - a strict karmakala rule changes the final observance date
 - a festival is shifted forward or backward by rule
 - a day inherits a related observance from a parent festival
+
+### Festival Alias & Deduplication Engine
+
+The festival resolution pipeline features a built-in alias and deduplication mechanism:
+
+- **Regional Aliases**: Major festivals support regional variants (e.g., Makara Sankranti maps to Uttarayan, Pongal, Khichdi, Til Sankranti, Maghi, Sakraat, etc.; Vinayaka Chaturthi maps to Ganesha Jayanti).
+- **Deduplication Logic**: A post-processing step automatically purges redundant entries if a festival's name appears within another festival's alias list.
+- **Specific vs. Generic Priority**: For mutually aliased festivals (e.g., a generic `Pradosh Vrat` vs a specific `Guru Pradosh Vrat`), the deduplication logic preserves the more specific weekday-based variant by evaluating alias array lengths.
+- **Canonical-Event-Centered Modeling**: Standalone historical festival definitions (such as Hanuman Jayanti, Buddha Purnima, Ganesh Visarjan) have been deprecated and restructured under their canonical parent events (e.g., Shani Jayanti and Vat Savitri Vrat are merged under Vaishakha Amavasya rules).
 
 ## Festival Families And Multi-Day Sequences
 
@@ -735,7 +755,7 @@ This dual style matters because the package often exposes both:
 
 If someone asks what this package covers, the shortest accurate answer is:
 
-It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine with 237 packaged definitions, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
+It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine with 399 packaged definitions, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
 
 If someone asks what kind of use cases it supports, the package is suitable for:
 

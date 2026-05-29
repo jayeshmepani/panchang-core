@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../ephe'),
+    'ephe_path' => env('PANCHANG_EPHE_PATH', __DIR__ . '/../data/'),
 
     /*
     |--------------------------------------------------------------------------

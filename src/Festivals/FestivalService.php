@@ -5327,7 +5327,15 @@ class FestivalService
             foreach ($festivals as $other) {
                 $otherName = $other['name'] ?? '';
                 if ($name !== $otherName && in_array($otherName, $aliases, true)) {
-                    $namesToRemove[$otherName] = true;
+                    // If they are mutual aliases, prefer to keep the one with fewer aliases (more specific)
+                    $otherAliases = $other['aliases'] ?? [];
+                    if (in_array($name, $otherAliases, true)) {
+                        if (count($aliases) < count($otherAliases)) {
+                            $namesToRemove[$otherName] = true;
+                        }
+                    } else {
+                        $namesToRemove[$otherName] = true;
+                    }
                 }
             }
         }

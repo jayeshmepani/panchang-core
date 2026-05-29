@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 237 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 399 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -483,7 +483,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>237 Festival Definitions</h3>
+              <h3>399 Festival Definitions</h3>
               <p>Comprehensive library of festival definitions covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -1942,7 +1942,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 237 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 399 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2063,7 +2063,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified festival catalog currently contains <code>237</code> definitions after merging true
+              <li>The verified festival catalog currently contains <code>399</code> definitions after merging true
                 alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
@@ -3980,9 +3980,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">main</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Eclipse Overhaul, Transition Timelines, Festival Alias & Deduplication Engine</span><span class="release-meta">Latest (dev)</span></div>
+                <p class="release-note">Major updates including local vs global eclipse classification, full Panchanga transition windows, festival alias and deduplication engine, and synchronized localization.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">7.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Panchang Output Contract Corrections and Muhurta Timing Accuracy</span><span class="release-meta">Next Major</span></div>
+                <div class="release-heading"><span class="release-title">Panchang Output Contract Corrections and Muhurta Timing Accuracy</span><span class="release-meta">Major Release</span></div>
                 <p class="release-note">Updates public method signatures and output semantics for Brahma Muhurta, Lagna tables, Amrita Kaal, Varjyam, Chandra Vaasa, and current-versus-sunrise Panchanga fields.</p>
               </div>
             </li>
@@ -4078,6 +4085,47 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v7.x / main Evolution Notes</h3>
+          <ul>
+            <li><strong>Eclipse System Overhaul</strong>:
+              <ul>
+                <li>Separated NASA/catalog classification (<code>global_eclipse_type</code>) from actual location-visible classification (<code>local_eclipse_type</code> and <code>visibility.local_eclipse_type</code>). For example, a globally total lunar eclipse may only be locally visible as partial.</li>
+                <li>Smarter visibility logic: Eclipses are considered visible if native astronomical visibility exists OR if ritual-visible partial/total phases exist locally.</li>
+                <li>Eclipse iteration algorithm now iterates solar and lunar streams independently and merges/sorts them chronologically, offering a cleaner architecture and fewer edge-case skips.</li>
+                <li>Expanded regression tests: Updated Bhuj visibility and cross-location eclipse regressions to validate coordinate-sensitive results and local visibility types.</li>
+              </ul>
+            </li>
+            <li><strong>Panchanga Interval & Transition Engine Expansion</strong>:
+              <ul>
+                <li>Added new interval collectors: <code>collectYogaIntervals()</code> and <code>collectKaranaIntervals()</code>, alongside more accurate Tithi interval logic.</li>
+                <li>Improved backtracking logic using bounded reverse-angle solving to avoid infinite loops and find real transition start times near boundary edges.</li>
+                <li>Enriched Panchanga snapshot payload: Now exposes full transition timelines (<code>Tithi_Windows</code>, <code>Nakshatra_Windows</code>, <code>Nakshatra_Padas</code>, <code>Yoga_Windows</code>, <code>Karana_Windows</code>) moving from a static "state at sunrise/current time" to a full transition timeline model.</li>
+                <li>Clarified semantics in docs and code between sunrise-based state and current/input-time state for Tithi, Nakshatra, Yoga, and Karana.</li>
+              </ul>
+            </li>
+            <li><strong>Festival Engine Refactor</strong>:
+              <ul>
+                <li>Added an alias-aware festival system enabling festivals to define regional names, canonical deduplication, multi-language mapping, and cleaner APIs (e.g., <code>'aliases' =&gt; [...]</code>).</li>
+                <li>Major alias additions: Makara Sankranti now supports Uttarayan, Pongal, Khichdi, Til Sankranti, Ghughuti, Makar Puja, Maghi, Sakraat, etc. Vinayaka Chaturthi treats Ganesha Jayanti as an alias. Pradosh variants (Soma, Shani, Guru, Bhauma, etc.) are unified under the canonical <code>Pradosh Vrat</code>.</li>
+                <li>Added a deduplication engine to post-process festival lists: if a festival name appears in another's aliases, the duplicate entry is removed (resolving naming collisions and duplicate outputs). Mutually aliased items resolve by prioritizing the more specific variant.</li>
+                <li>Restructured festival data: Merged Shani Jayanti and Vat Savitri Vrat under Vaishakha Amavasya; deprecated/removed standalone entries for Hanuman Jayanti, Buddha Purnima, Ganesh Visarjan, etc., shifting toward canonical-event-centered modeling. The total festival count is updated to 399.</li>
+              </ul>
+            </li>
+            <li><strong>Localization System Expansion</strong>:
+              <ul>
+                <li>Added many new festivals (e.g., Baisakhi, Puthandu, Kevada Trij, Jal Jhilani Ekadashi, Vamana Ekadashi, Vijayadashami, Annakut, Shikshapatri Jayanti, Masi Magam).</li>
+                <li>Synchronized translation files across English, Hindi, and Gujarati (e.g., for regional aliases like Uttarayan, Maghi, Khichdi, Ghughuti, Thiruvadhirai, Arudra Darshanam).</li>
+                <li>Added lowercase karmakala translation keys (sunrise, sunset, moonrise, moonset, aparahna, madhyahna, pradosha, midnight) for normalized rule-engine tokenization.</li>
+                <li>Expanded Mahavidya worship descriptions for Magha Gupt Navaratri (Chhinnamasta, Dhumavati, Bagalamukhi, Matangi, Kamala).</li>
+              </ul>
+            </li>
+            <li><strong>Enum & Math Refactors</strong>:
+              <ul>
+                <li>Added reusable angular math helpers: <code>fromAngle()</code> and <code>getFractionRemainingAtAngle()</code> to <code>Tithi.php</code> and <code>Yoga.php</code> to reduce duplication and improve future calculation ease.</li>
+              </ul>
+            </li>
+          </ul>
 
           <h3>v7.0.0 Upgrade Notes</h3>
           <ul>
