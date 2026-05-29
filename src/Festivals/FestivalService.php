@@ -712,9 +712,18 @@ class FestivalService
         'Makara Sankranti (Pongal)' => [
             'type' => 'solar_sankranti',
             'rashi' => 9,
+            'aliases' => [
+                'Uttarayan',          // Gujarat
+                'Pongal',             // Tamil Nadu
+                'Khichdi',            // North India / Uttar Pradesh
+                'Til Sankranti',      // Rajasthan / Maharashtra
+                'Ghughuti',           // Uttarakhand
+                'Makar Puja',         // Odisha / Bengal
+                'Maghi',              // Punjab
+                'Sakraat',            // Haryana
+            ],
             'description' => 'Harvest festival, Sun enters Makara',
-            'regions' =>
-            [
+            'regions' => [
                 0 => 'Pan-India',
             ],
             'deity' => 'Surya',
@@ -1118,6 +1127,7 @@ class FestivalService
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 4,
+            'aliases' => ['Ganesha Jayanti'],
             'description' => 'Monthly fast dedicated to Lord Ganesha during the waxing moon',
             'deity' => 'Ganesha',
             'regions' => ['Pan-India'],
@@ -1128,6 +1138,7 @@ class FestivalService
             'resolver' => 'classical',
             'paksha' => 'Both',
             'tithi' => 13,
+            'aliases' => ['Guru Pradosh Vrat', 'Soma Pradosh Vrat', 'Shani Pradosh Vrat', 'Bhauma Pradosh Vrat', 'Ravi Pradosh Vrat', 'Budha Pradosh Vrat', 'Shukra Pradosh Vrat'],
             'description' => 'Bi-monthly evening fasting dedicated to Lord Shiva and Parvati',
             'deity' => 'Shiva/Parvati',
             'regions' => ['Pan-India'],
@@ -1999,18 +2010,6 @@ class FestivalService
             'regions' => ['Pan-India'],
             'karmakala_type' => 'sunrise',
         ],
-        'Hanuman Jayanti' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Chaitra',
-            'aliases' => ['Hanuman Janmotsava'],
-            'description' => 'Birth celebration of Lord Hanuman',
-            'deity' => 'Hanuman',
-            'karmakala_type' => 'sunrise',
-        ],
         'Varuthini Ekadashi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2100,17 +2099,6 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
         ],
-        'Buddha Purnima' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Vaishakha',
-            'month_purnimanta' => 'Vaishakha',
-            'description' => 'Vaishakha Purnima — Hindu observance of Sugata Buddha (9th avatar of Vishnu, distinct from Gautama Buddha of Buddhism) and Kurma Jayanti (birth of Lord Vishnu\'s tortoise avatar). The Hindu Buddha-avatar is described in Bhagavata Purana 1.3.24 and Agni Purana as appearing in Kikata/Gaya to delude demons from Vedic rituals (Bhagavata view) or to teach compassion and end animal sacrifice (Jayadeva\'s Gita Govinda view). Puri Shankaracharya Swami Nischalananda Saraswati and scholars recognize these as two different persons: the Puranic Sugata Buddha (Brahmin varna, upheld Vedas, ancient timeline) vs. Gautama Buddha (Kshatriya Shakya clan, Lumbini birth ~563 BCE, rejected Vedas). Also coincides with Kurma Jayanti and is the most auspicious day for Satyanarayan Puja. Regional variation: Odisha and Bengal traditions replace Buddha with Balarama as the 9th avatar in Dashavatara.',
-            'deity' => 'Sugata Buddha/Kurma/Vishnu',
-            'karmakala_type' => 'sunrise',
-        ],
         'Narsinh Mehta Janma Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2142,27 +2130,6 @@ class FestivalService
             'month_purnimanta' => 'Jyeshtha',
             'description' => 'Birth of Brahmaswarup Yogi Maharaj',
             'deity' => 'Swaminarayan',
-        ],
-        'Shani Jayanti' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 15,
-            'month_amanta' => 'Vaishakha',
-            'month_purnimanta' => 'Jyeshtha',
-            'description' => 'Birth of Lord Shani',
-            'deity' => 'Shani',
-        ],
-        'Vat Savitri Vrat' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 15,
-            'month_amanta' => 'Vaishakha',
-            'month_purnimanta' => 'Jyeshtha',
-            'description' => 'North Indian Vat Savitri observed on Amavasya',
-            'deity' => 'Savitri/Brahma',
-            'regions' => ['Uttar Pradesh', 'Bihar', 'Madhya Pradesh', 'North India'],
         ],
         'Jamai Shashti' => [
             'type' => 'tithi',
@@ -2496,8 +2463,9 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Jyeshtha',
-            'description' => 'Amavasya falling in the month of Vaishakha',
-            'deity' => 'Pitrus',
+            'aliases' => ['Shani Jayanti', 'Vat Savitri Vrat'],
+            'description' => 'Amavasya falling in the month of Vaishakha; coincides with Shani Jayanti',
+            'deity' => 'Pitrus/Shani',
             'karmakala_type' => 'aparahna',
         ],
         'Jyeshtha Amavasya' => [
@@ -2507,9 +2475,8 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Jyeshtha',
             'month_purnimanta' => 'Ashadha',
-            'aliases' => ['Shani Jayanti', 'Vat Savitri Vrat'],
-            'description' => 'Amavasya falling in the month of Jyeshtha; coincides with Shani Jayanti',
-            'deity' => 'Pitrus/Shani',
+            'description' => 'Amavasya falling in the month of Jyeshtha',
+            'deity' => 'Pitrus',
             'karmakala_type' => 'aparahna',
         ],
         'Ashadha Amavasya' => [
@@ -3123,6 +3090,7 @@ class FestivalService
             'nakshatra_only' => true,
             'nakshatra' => 'Ardra',
             'allowed_months_amanta' => ['Margashirsha', 'Pausha'],
+            'aliases' => ['Thiruvadhirai', 'Arudra Darshanam', 'Ardra Utsav'],
             'description' => 'Cosmic dance of Lord Shiva as Nataraja; celebrated during Margashirsha Ardra Nakshatra',
             'deity' => 'Shiva (Nataraja)',
             'regions' => ['Tamil Nadu', 'South India'],
@@ -3241,19 +3209,6 @@ class FestivalService
             'description' => 'Yajur Upakarma (Avani Avittam): sacred thread renewal and Vedic recommitment',
             'deity' => 'Hayagriva',
             'karmakala_type' => 'aparahna',
-            'strict_karmakala' => true,
-        ],
-        'Raksha Bandhan' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Shravana',
-            'aliases' => ['Narali Purnima'],
-            'description' => 'Brother-sister bond festival; also celebrated as Narali Purnima in Maharashtra',
-            'deity' => 'Vishnu/Indra',
-            'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
         ],
         'Pola' => [
@@ -3512,6 +3467,7 @@ class FestivalService
             'tithi' => 14,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Ganesh Visarjan'],
             'description' => 'Worship of Lord Ananta; Ganesh Visarjan',
             'deity' => 'Vishnu/Ganesha',
             'karmakala_type' => 'sunrise',
@@ -4261,7 +4217,7 @@ class FestivalService
             'paksha' => 'Both',
             'tithi' => 13,
             'weekday' => 6,
-            'aliases' => ['Shani Trayodashi'],
+            'aliases' => ['Pradosh Vrat', 'Shani Trayodashi'],
             'description' => 'Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani',
             'deity' => 'Shiva/Shani',
             'fasting' => true,
@@ -5151,18 +5107,6 @@ class FestivalService
             'deity' => 'Hanuman',
             'karmakala_type' => 'sunrise',
         ],
-        'Ganesh Visarjan' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 14,
-            'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
-            'aliases' => ['Anant Chaturdashi', 'Vinayaka Chaturthi'],
-            'description' => 'Immersion of Ganesha idols',
-            'deity' => 'Ganesha',
-            'karmakala_type' => 'sunrise',
-        ],
         'Navratri Begins' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -5372,10 +5316,10 @@ class FestivalService
             $addedFestivalKeys[] = $item['key'];
         }
 
-                // Post-processing: Deduplicate festivals on the same date based on aliases
+        // Post-processing: Deduplicate festivals on the same date based on aliases
         $mergedFestivals = [];
         $namesToRemove = [];
-        
+
         // Find if any festival has another festival's name as an alias
         foreach ($festivals as $fest) {
             $name = $fest['name'] ?? '';
@@ -5387,13 +5331,13 @@ class FestivalService
                 }
             }
         }
-        
+
         foreach ($festivals as $fest) {
             if (!isset($namesToRemove[$fest['name'] ?? ''])) {
                 $mergedFestivals[] = $fest;
             }
         }
-        
+
         return $mergedFestivals;
     }
 
