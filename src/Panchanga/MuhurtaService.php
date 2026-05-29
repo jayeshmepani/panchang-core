@@ -145,9 +145,9 @@ class MuhurtaService
         return $this->dailyPeriodsCalculator->calculatePrahara($sunrise, $sunset, $nextSunrise);
     }
 
-    public function calculateBrahmaMuhurta(CarbonImmutable $sunrise): array
+    public function calculateBrahmaMuhurta(CarbonImmutable $previousSunset, CarbonImmutable $sunrise): array
     {
-        return $this->dailyPeriodsCalculator->calculateBrahmaMuhurta($sunrise);
+        return $this->dailyPeriodsCalculator->calculateBrahmaMuhurta($previousSunset, $sunrise);
     }
 
     public function calculateDurMuhurta(
@@ -173,6 +173,26 @@ class MuhurtaService
     public function calculateAmritaKaal(CarbonImmutable $sunrise, array $varjyam): array
     {
         return $this->inauspiciousPeriodsCalculator->calculateAmritaKaal($sunrise, $varjyam);
+    }
+
+    public function calculateNakshatraPeriodWindows(
+        string $type,
+        CarbonImmutable $timezoneReference,
+        int $nakshatraIndex,
+        float $nakshatraStartJd,
+        float $nakshatraEndJd,
+        float $scopeStartJd,
+        float $scopeEndJd
+    ): array {
+        return $this->inauspiciousPeriodsCalculator->calculateNakshatraPeriodWindows(
+            $type,
+            $nakshatraIndex,
+            $nakshatraStartJd,
+            $nakshatraEndJd,
+            $timezoneReference,
+            $scopeStartJd,
+            $scopeEndJd
+        );
     }
 
     public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array
@@ -202,6 +222,6 @@ class MuhurtaService
         float $lon,
         JmeEphFFI $jme
     ): array {
-        return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $ayanamsaDeg, $lat, $lon, $jme);
+        return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $nextSunrise, $ayanamsaDeg, $lat, $lon, $jme);
     }
 }

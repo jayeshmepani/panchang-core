@@ -258,6 +258,9 @@ Where relevant, the package also distinguishes between:
 - the base window itself
 - the effective usable window
 - whether the required tithi or condition actually overlaps the window
+- sunrise-based Panchanga state and input-time/current Panchanga state
+- dynamic night-muhurta Brahma Muhurta and the preserved fixed 48-minute convention
+- daylight-midpoint Abhijit output, named separately from apparent solar noon
 
 ### Additional Time Divisions
 
@@ -282,6 +285,7 @@ The package covers:
 - degree within the sign
 - ayanamsa applied to the lagna
 - full-day lagna table
+- partial lagna intervals that overlap the sunrise-to-next-sunrise Panchang day
 
 This means the package supports both instant lagna lookup and full-day lagna progression output.
 
@@ -376,6 +380,8 @@ The package covers:
 - multiple varjyam windows where applicable
 - amrita kaal availability
 - amrita kaal active/inactive status
+- independent Amrita ghati-offset calculation, not a derived "Varjyam end" shortcut
+- shared Nakshatra-period window payloads with ghati offset, duration, full window, visible window, and partial-window flags
 
 The presence of multi-window support matters because some days need more than a single simplified interval.
 
@@ -698,6 +704,7 @@ The package covers:
 - localized calendar labels
 - localized special-yoga labels and effects
 - localized disha/vaasa labels and effects
+- Moon-rashi directional Chandra Vaasa with the older nakshatra-pada Vaasa preserved separately
 - human-readable time and duration rendering
 
 The output is therefore usable in both:

@@ -95,10 +95,15 @@ trait PanchangRuntimeEvaluationTrait
         return [
             'source' => Localization::translate('Source', 'Varjyam (Tyajyam) window from Panchang day calculation'),
             'is_active' => $isActive,
+            'is_available' => $windows !== [],
+            'period_is_auspicious' => false,
+            'is_current_time_safe' => !$isActive,
+            'is_currently_blocking' => $isActive,
+            'has_dosha' => $isActive,
             'active_window' => $activeWindow,
             'window_count' => count($windows),
             'severity' => $isActive ? 'high' : 'none',
-            'is_auspicious' => !$isActive,
+            'is_auspicious' => false,
             'description' => $isActive ? Localization::translate('MuhurtaDesc', 'Varjyam active') : Localization::translate('MuhurtaDesc', 'Varjyam not active'),
         ];
     }
@@ -120,6 +125,8 @@ trait PanchangRuntimeEvaluationTrait
                 'label' => $label,
                 'is_active' => false,
                 'is_available' => false,
+                'period_is_auspicious' => true,
+                'is_currently_auspicious' => false,
                 'is_auspicious' => false,
                 'description' => $label . ' ' . Localization::translate('MuhurtaDesc', 'Named window not available'),
             ];
@@ -132,7 +139,9 @@ trait PanchangRuntimeEvaluationTrait
             'label' => $label,
             'is_active' => $isActive,
             'is_available' => true,
-            'is_auspicious' => $isActive,
+            'period_is_auspicious' => true,
+            'is_currently_auspicious' => $isActive,
+            'is_auspicious' => true,
             'window' => [
                 'start_iso' => AstroCore::formatDateTime($start),
                 'end_iso' => AstroCore::formatDateTime($end),

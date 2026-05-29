@@ -281,7 +281,7 @@ trait PanchangCalendarApiTrait
         $currentTime = $this->toDecimalHoursFromBase($at, $midnight);
 
         $evaluationResults = [
-            'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber + 1, $nakshatraNumber, $lagnaNumber),
+            'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber, $nakshatraNumber, $lagnaNumber),
             'dagdha_tithi' => ElectionalEvaluator::calculateDagdhaTithi($tithiNumber, $moonSignIdx),
             'dagdha_yoga' => ElectionalEvaluator::calculateDagdhaYoga($varaNumber, $tithiNumber),
             'bhadra' => $this->evaluateCurrentBhadra($at, (array) ($dayDetails['Bhadra'] ?? [])),

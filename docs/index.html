@@ -217,7 +217,7 @@
                   aria-hidden="true">
                   <polygon points="12 2 2 7 12 12 22 7 12 2" />
                   <polyline points="2 17 12 22 22 17" />
-                  <polyline points="2 12 17 22 12" />
+                  <polyline points="2 12 12 17 22 12" />
                 </svg>PanchangService</a></li>
             <li><a href="#festival-service" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -403,7 +403,7 @@
                   <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>Breaking Changes</a></li>
+                </svg>Release Notes</a></li>
             <li><a href="#license" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   aria-hidden="true">
@@ -664,8 +664,12 @@
                   <td>Kala Vela rules (Rahu, Gulika, Yamaghantaka)</td>
                 </tr>
                 <tr>
+                  <td><strong>Published Panchang convention</strong></td>
+                  <td>Dynamic night-muhurta Brahma Muhurta timing</td>
+                </tr>
+                <tr>
                   <td><strong>Aṣṭāṅga Hṛdaya</strong></td>
-                  <td>Brahma Muhurta timing</td>
+                  <td>Brahma Muhurta practice context</td>
                 </tr>
                 <tr>
                   <td><strong>Charaka Saṃhitā</strong></td>
@@ -817,7 +821,8 @@ $details = $panchang->getDayDetails(
     tz: 'Asia/Kolkata'
 );
 
-echo "Tithi: " . $details['Tithi']['name'] . "\n";
+echo "Sunrise Tithi: " . $details['Tithi_At_Sunrise']['name'] . "\n";
+echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name'] . "\n";
 echo "Nakshatra: " . $details['Nakshatra']['name'] . "\n";</code></pre>
           </div>
         </section>
@@ -863,7 +868,7 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz);
 
 echo "Ayanamsa Index: " . $details['Ayanamsa']; // "LAHIRI (Chitra Paksha)"
 echo "Ayanamsa Value: " . $details['Ayanamsa_Degree']; // e.g. 24.1234
-echo "Tithi: " . $details['Tithi']['name']; // Guaranteed Lahiri-aligned</code></pre>
+echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guaranteed Lahiri-aligned</code></pre>
             </div>
           </div>
         </section>
@@ -1030,12 +1035,17 @@ $windowCount = $details['Varjyam']['window_count']; // 0, 1, or 2
 
 // Access all windows
 foreach ($details['Varjyam']['windows'] as $window) {
-    echo $window['start'] . " - " . $window['end'];
+    echo $window['window_start_iso'] . " - " . $window['window_end_iso'];
+    echo $window['visible_start_iso'] . " - " . $window['visible_end_iso'];
 }
 
 // Top-level keys maintain backward compatibility
 $details['Varjyam']['varjyam_start']; // First window start
-$details['Varjyam']['varjyam_end'];   // First window end</code></pre>
+$details['Varjyam']['varjyam_end'];   // First window end
+
+// Amrita_Kaal uses the same window payload shape
+$details['Amrita_Kaal']['windows'][0]['window_start_iso'];
+$details['Amrita_Kaal']['windows'][0]['window_end_iso'];</code></pre>
 
             <h4 style="margin-top: 1.5rem;">4. Pradosha Kaal Calculation</h4>
             <p>Pradosha is computed from two factors:</p>
@@ -2608,14 +2618,18 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateBrahmaMuhurta()</h4>
-              <p class="method-description">Identify the pre-dawn auspicious period (Brahma Muhurta).</p>
+              <p class="method-description">Identify the pre-dawn auspicious period using the dynamic night-muhurta convention. The fixed 48-minute convention is preserved in the returned payload.</p>
               <div class="method-signature">
-                <code>public function calculateBrahmaMuhurta(CarbonImmutable $sunrise): array</code>
+                <code>public function calculateBrahmaMuhurta(CarbonImmutable $previousSunset, CarbonImmutable $sunrise): array</code>
               </div>
-              <div class="method-params"><strong>Parameters:</strong><br>
-                <code>$sunrise</code>(CarbonImmutable) — Sunrise time.
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$previousSunset</code>(CarbonImmutable) — Previous civil day's sunset.</li>
+                  <li><code>$sunrise</code>(CarbonImmutable) — Current day's sunrise.</li>
+                </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — <code>{start, end, name}</code>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> —
+                <code>{brahma_muhurta_start, brahma_muhurta_end, calculation_convention, fixed_48_minute_convention}</code>
               </div>
             </div>
             <div class="method">
@@ -2680,7 +2694,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateVarjyam()</h4>
-              <p class="method-description">Calculate one Varjyam (Tyajyam) window for a specific Nakshatra span.</p>
+              <p class="method-description">Compatibility helper for one Varjyam (Tyajyam) window for a specific Nakshatra span. For scoped day-level Varjyam and Amrita windows, prefer <code>calculateNakshatraPeriodWindows()</code>.</p>
               <div class="method-signature">
                 <code>public function calculateVarjyam(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $nakIdx, float $nakStartJd, float $nakEndJd): array</code>
               </div>
@@ -2696,8 +2710,27 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
             </div>
 
             <div class="method">
+              <h4 class="method-name">calculateNakshatraPeriodWindows()</h4>
+              <p class="method-description">Calculate scoped Nakshatra-based period windows using independent ghati offset tables for <code>varjyam</code> or <code>amrita_kaal</code>.</p>
+              <div class="method-signature">
+                <code>public function calculateNakshatraPeriodWindows(string $type, CarbonImmutable $timezoneReference, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd, float $scopeStartJd, float $scopeEndJd): array</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$type</code>(string) — <code>varjyam</code> or <code>amrita_kaal</code>.</li>
+                  <li><code>$timezoneReference</code>(CarbonImmutable) — Timezone source for formatted output.</li>
+                  <li><code>$nakshatraIndex</code>(int) — Zero-based Nakshatra index.</li>
+                  <li><code>$nakshatraStartJd, $nakshatraEndJd</code>(float) — Exact Nakshatra span.</li>
+                  <li><code>$scopeStartJd, $scopeEndJd</code>(float) — Panchang-day scope, usually sunrise to next sunrise.</li>
+                </ul>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> —
+                zero or more windows with <code>{type, offset_ghati, duration_ghati, window_start_jd, window_end_jd, visible_start_jd, visible_end_jd, is_partial_start, is_partial_end, is_auspicious}</code>.</div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">calculateAmritaKaal()</h4>
-              <p class="method-description">Calculate Amrita Kaal (auspicious period — opposite of Varjyam).</p>
+              <p class="method-description">Legacy compatibility helper. It no longer derives Amrita Kaal from Varjyam end time; day-level Amrita Kaal is calculated independently from nakshatra-specific Amrita ghati offsets.</p>
               <div class="method-signature">
                 <code>public function calculateAmritaKaal(CarbonImmutable $sunrise, array $varjyam): array</code>
               </div>
@@ -2708,7 +2741,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
                 </ul>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> —
-                <code>{amrita_kaal_start, amrita_kaal_end, duration_minutes}</code></div>
+                <code>{is_available: false, window_count: 0, windows: [], calculation_note}</code>. Use <code>calculateNakshatraPeriodWindows('amrita_kaal', ...)</code> for actual Amrita windows.</div>
             </div>
 
             <div class="method">
@@ -2950,10 +2983,12 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
             <div>
               <h3 style="color: var(--color-primary);">Core Panchang</h3>
               <ul class="requirement-list">
-                <li><code>Tithi</code> — {index, name, paksha, paksha_name, end, end_iso, fraction_remaining}</li>
+                <li><code>Tithi</code> — sunrise-based compatibility field; use <code>Tithi_At_Sunrise</code> for explicit sunrise semantics</li>
+                <li><code>Current_Tithi_At_Input_Now</code> — runtime/input-time tithi</li>
                 <li><code>Nakshatra</code> — {index, name, lord, pada, end, end_iso, fraction_remaining}</li>
-                <li><code>Yoga</code> — {index, name, end, end_iso}</li>
-                <li><code>Karana</code> — {index, name, number, end, end_iso}</li>
+                <li><code>Yoga</code> — sunrise-based yoga; <code>Current_Yoga_At_Input_Now</code> exposes runtime/input-time yoga</li>
+                <li><code>Karana</code> — sunrise-based compatibility field; use <code>Current_Karana_At_Input_Now</code> for runtime/input-time karana</li>
+                <li><code>Karana_At_Sunrise</code> — explicit sunrise Karana alias</li>
                 <li><code>Vara</code> — {index, name, lord}</li>
               </ul>
             </div>
@@ -2975,13 +3010,26 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <tr><th>Key</th><th>Type</th><th>Structure</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>Abhijit_Muhurta</code></td><td>Object</td><td>{start, end, duration}</td></tr>
-              <tr><td><code>Brahma_Muhurta</code></td><td>Object</td><td>{start, end, name}</td></tr>
+              <tr><td><code>Abhijit_Muhurta</code></td><td>Object</td><td>{abhijit_start, abhijit_end, daylight_midpoint, muhurta_duration_minutes}</td></tr>
+              <tr><td><code>Brahma_Muhurta</code></td><td>Object</td><td>{brahma_muhurta_start, brahma_muhurta_end, calculation_convention, fixed_48_minute_convention}</td></tr>
               <tr><td><code>Rahu_Kaal_Gulika_Yamaganda</code></td><td>Object</td><td>{rahu_kaal: {start, end}, gulika, yamaganda}</td></tr>
-              <tr><td><code>Varjyam</code></td><td>Object</td><td>{window_count, windows: [{start, end, start_iso, end_iso}]}</td></tr>
-              <tr><td><code>Amrita_Kaal</code></td><td>Object</td><td>{window_count, windows: [...]}</td></tr>
+              <tr><td><code>Varjyam</code></td><td>Object</td><td>{is_available, window_count, windows: [{varjyam_start, varjyam_end, window_start_jd, window_end_jd, visible_start_jd, visible_end_jd, offset_ghati, duration_ghati}]}</td></tr>
+              <tr><td><code>Amrita_Kaal</code></td><td>Object</td><td>{is_available, window_count, windows: [{amrita_kaal_start, amrita_kaal_end, window_start_jd, window_end_jd, visible_start_jd, visible_end_jd, offset_ghati, duration_ghati}]}</td></tr>
               <tr><td><code>Pradosha_Kaal</code></td><td>Object</td><td>{pradosha_window, effective_trayodashi_window}</td></tr>
               <tr><td><code>Bhadra</code></td><td>Array|null</td><td>[{name, start, end, mukha, madhya, puchha, lok, status}]</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Directional and Transition Outputs</h3>
+          <table class="data-table">
+            <thead>
+              <tr><th>Key</th><th>Type</th><th>Structure</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>Chandra_Vaasa</code></td><td>Object</td><td>{rule_system: moon_rashi_direction_4_direction, moon_sign, direction, windows, nakshatra_pada_vaasa}</td></tr>
+              <tr><td><code>Transitions</code></td><td>Object</td><td>{tithi, nakshatra, yoga, karana, moon_sign, sun_sign}; each current field is input-time based and includes current_at_sunrise where relevant</td></tr>
+              <tr><td><code>Resolution_Context</code></td><td>Object</td><td>{date_iso, sunrise_iso, next_sunrise_iso, tithi_start_jd, tithi_end_jd, nakshatra_start_jd, nakshatra_end_jd, sankranti_rashi}</td></tr>
+              <tr><td><code>Day_Types</code></td><td>Object</td><td>{civil_day_length_seconds, mean_solar_day_seconds, apparent_solar_day_seconds, apparent_solar_noon, solar_midnight}</td></tr>
             </tbody>
           </table>
         </section>
@@ -3043,7 +3091,7 @@ php panchang_festivals.php 2026</code></pre>
           <div class="code-block-wrapper">
             <div class="code-header"><span class="code-title">Generate Monthly Data</span></div>
             <pre><code class="language-bash">cd scripts
-php panchang_month_output.php 2026 4 > month_2026_04.json</code></pre>
+php panchang_month_output.php 2026 5 > month_2026_05.json</code></pre>
           </div>
           <h3>Localization and Calendar Types</h3>
           <p>Use environment variables to control output format:</p>
@@ -3205,7 +3253,7 @@ putenv('PANCHANG_LOCALE=gu');
 
 // The output of any service will now use Gujarati script
 $details = Panchang::getDayDetails($date, $lat, $lon, $tz);
-echo $details['Tithi']['name']; // "વદ તેરસ"
+echo $details['Current_Tithi_At_Input_Now']['name']; // "વદ તેરસ"
 </code></pre>
           <h3>Direct Localization Usage</h3>
           <p>Use the Localization class directly for custom translations:</p>
@@ -3233,9 +3281,9 @@ $tithiName = Localization::translate('Tithi', 15, 'gu'); // "પૂનમ"
           <p class="lead">Practical code snippets for specific needs.</p>
 
           <div class="method">
-            <h4 class="method-name">I only want today's Tithi name</h4>
+            <h4 class="method-name">I only want the current Tithi name</h4>
             <pre><code class="language-php">$details = Panchang::getDayDetails($date, $lat, $lon, $tz);
-echo "Today is: " . $details['Tithi']['name'];</code></pre>
+echo "Current Tithi is: " . $details['Current_Tithi_At_Input_Now']['name'];</code></pre>
           </div>
 
           <div class="method">
@@ -3332,7 +3380,7 @@ $details = Panchang::getDayDetails(
     tz: 'Asia/Kolkata'
 );
 
-echo $details['Tithi']['name'];    // "Dwadashi"
+echo $details['Tithi_At_Sunrise']['name'];    // "Dwadashi"
 echo $details['Nakshatra']['name']; // "Magha"</code></pre>
           <h3>Service Container</h3>
           <p>Or inject via constructor:</p>
@@ -3365,9 +3413,14 @@ class PanchangController extends Controller
   'Display_Settings' => [...],
   'Units' => [...],
   'Tithi' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
+  'Tithi_At_Sunrise' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
+  'Current_Tithi_At_Input_Now' => ['index' => 13, 'name' => 'Trayodashi', 'paksha' => 'Shukla'],
   'Nakshatra' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
   'Yoga' => ['index' => 9, 'name' => 'Shula'],
+  'Current_Yoga_At_Input_Now' => ['index' => 10, 'name' => 'Ganda'],
   'Karana' => ['index' => 23, 'name' => 'Bava'],
+  'Karana_At_Sunrise' => ['index' => 23, 'name' => 'Bava'],
+  'Current_Karana_At_Input_Now' => ['index' => 24, 'name' => 'Balava'],
   'Vara' => ['index' => 2, 'name' => 'Tuesday', 'lord' => 'Mars'],
   'Hindu_Calendar' => [
     'Month_Amanta' => 'Chaitra',
@@ -3378,12 +3431,30 @@ class PanchangController extends Controller
     'Purnimanta_Index' => 1,
   ],
   'Rahu_Kaal_Gulika_Yamaganda' => [...],
-  'Abhijit_Muhurta' => [...],
+  'Abhijit_Muhurta' => [
+    'abhijit_start' => '12:24:00 PM',
+    'abhijit_end' => '01:12:00 PM',
+    'daylight_midpoint' => '12:48:00 PM',
+  ],
+  'Brahma_Muhurta' => [
+    'calculation_convention' => 'dynamic_night_muhurta',
+    'fixed_48_minute_convention' => [...],
+  ],
   'Hora_Full_Day' => [...],
   'Chogadiya_Full_Day' => [...],
   'Muhurta_Full_Day' => [...],
   'Prahara_Full_Day' => [...],
-  'Lagna_Full_Day' => [...],
+  'Lagna_Full_Day' => [
+    [
+      'sign_name' => 'Vrishabha',
+      'start_iso' => '...',
+      'end_iso' => '...',
+      'visible_start_iso' => '...',
+      'visible_end_iso' => '...',
+      'is_partial_start' => true,
+      'is_partial_end' => false,
+    ],
+  ],
   'Dur_Muhurta_Full_Day' => [...],
   'Daylight_Fivefold_Division' => [...],
   'Nishita_Muhurta' => [...],
@@ -3393,8 +3464,20 @@ class PanchangController extends Controller
   'Gowri_Panchangam' => [...],
   'Kala_Vela' => [...],
   'Karmakala_Windows' => [...],
-  'Varjyam' => [...],
-  'Amrita_Kaal' => [...],
+  'Varjyam' => ['is_available' => true, 'window_count' => 1, 'windows' => [[
+    'type' => 'varjyam',
+    'offset_ghati' => 14,
+    'duration_ghati' => 4,
+    'visible_start_iso' => '...',
+    'visible_end_iso' => '...',
+  ]]],
+  'Amrita_Kaal' => ['is_available' => true, 'window_count' => 1, 'windows' => [[
+    'type' => 'amrita_kaal',
+    'offset_ghati' => 38,
+    'duration_ghati' => 4,
+    'visible_start_iso' => '...',
+    'visible_end_iso' => '...',
+  ]]],
   'Pradosha_Kaal' => [...],
   'Bhadra' => [...],
   'Dharma_Sindhu' => [...],
@@ -3409,7 +3492,11 @@ class PanchangController extends Controller
   'Nakshatra_Shool' => [...],
   'Disha_Shool' => [...],
   'Rahu_Vaasa' => [...],
-  'Chandra_Vaasa' => [...],
+  'Chandra_Vaasa' => [
+    'rule_system' => 'moon_rashi_direction_4_direction',
+    'direction_key' => 'West',
+    'nakshatra_pada_vaasa' => [...],
+  ],
   'Shiva_Vaasa' => [...],
   'Agni_Vaasa' => [...],
   'Yogini_Vaasa' => [...],
@@ -3535,7 +3622,7 @@ $today = Panchang::getDayDetails(
     tz: $userTz
 );
 
-echo "Tithi: " . $today['Tithi']['name'];
+echo "Current Tithi: " . $today['Current_Tithi_At_Input_Now']['name'];
 echo "Nakshatra: " . $today['Nakshatra']['name'];</code></pre>
 
           <h3>2. Festival Calendar</h3>
@@ -3580,10 +3667,15 @@ echo "Ascendant: " . $ascendant . "°";</code></pre>
           <pre><code class="language-php">// Get all advanced time divisions for a date
 $details = Panchang::getDayDetails($date, $lat, $lon, $tz);
 
+$currentTithi = $details['Current_Tithi_At_Input_Now']; // Runtime tithi
+$sunriseTithi = $details['Tithi_At_Sunrise'];           // Sunrise tithi
+$currentKarana = $details['Current_Karana_At_Input_Now'];
+$sunriseKarana = $details['Karana_At_Sunrise'];
 $lagnas   = $details['Lagna_Full_Day'];     // Exact Sign entry times
 $horas    = $details['Hora_Full_Day'];       // 24 planetary rulers
 $praharas = $details['Prahara_Full_Day'];    // 8 canonical periods
 $muhurtas = $details['Muhurta_Full_Day'];    // 30 named Muhurtas
+$brahma   = $details['Brahma_Muhurta'];      // Dynamic night-muhurta convention
 $badTimes = $details['Rahu_Kaal_Gulika_Yamaganda']; // Rahu, Gulika, Yamaganda
 $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas
 $sandhya  = $details['Sandhya'];              // Pratah / Madhyahna / Sayahna
@@ -3608,14 +3700,14 @@ $varjyamActive = $evaluation['evaluation_results']['varjyam']['is_active'];</cod
           <p>This writes <code>meta</code>, <code>festivals_2026</code>, <code>eclipses_2026_2032</code>,
             <code>todays_complete_details</code>, and <code>muhurta_evaluation</code> in one file.</p>
           <p>Additional standalone exporters are available in <code>scripts/</code>:</p>
-          <pre><code class="language-bash">php scripts/panchang_today.php
-php scripts/panchang_month_output.php 2026 4 > month_2026_04.json
+<pre><code class="language-bash">php scripts/panchang_today.php
+php scripts/panchang_month_output.php 2026 5 > month_2026_05.json
 php scripts/panchang_eclipses.php 2026 2032
 php scripts/panchang_festivals.php 2026</code></pre>
-          <p><code>panchang_today.php</code> writes <code>today_panchang.json</code> automatically and also prints JSON
-            to stdout. <code>panchang_month_output.php</code> prints JSON to stdout only, so choose the filename with
-            shell redirection. <code>panchang_eclipses.php</code> writes <code>eclipses_YYYY_YYYY.json</code>
-            automatically and also prints JSON to stdout. <code>panchang_festivals.php</code> writes
+          <p><code>panchang_today.php</code> writes <code>today_panchang.json</code> automatically and prints status text
+            only. <code>panchang_month_output.php</code> prints JSON to stdout only, so choose the filename with
+            shell redirection. Without arguments it generates the current month. <code>panchang_eclipses.php</code> writes <code>eclipses_YYYY_YYYY.json</code>
+            automatically and prints status text only. <code>panchang_festivals.php</code> writes
             <code>festivals_YYYY.json</code> automatically and prints status lines; do not redirect its stdout as raw
             JSON.</p>
           <p>Use <code>PANCHANG_LOCALE=en|hi|gu</code> and
@@ -3632,7 +3724,7 @@ mv -f today_panchang.json "$dir/today.json"
 PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_festivals.php 2026 > /tmp/festivals.log
 mv -f festivals_2026.json "$dir/festivals_2026.json"
 
-PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_month_output.php 2026 4 > "$dir/month_2026_04.json"
+PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_month_output.php 2026 5 > "$dir/month_2026_05.json"
 
 PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=gu php panchang_eclipses.php 2026 2032 > /tmp/eclipses.log
 mv -f eclipses_2026_2032.json "$dir/eclipses_2026_2032.json"</code></pre>
@@ -3800,7 +3892,8 @@ if ($count === 0) {
 } else {
     // Two windows - iterate windows array
     foreach ($details['Varjyam']['windows'] as $window) {
-        // Process each window
+        $start = $window['window_start_iso'];
+        $end = $window['window_end_iso'];
     }
 }</code></pre>
                 </dd>
@@ -3872,15 +3965,147 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           </div>
         </section>
         <section id="breaking-changes" class="content-section">
-          <h2>Breaking Changes in v4.0.0</h2>
-          <p class="lead">Important changes when upgrading from v3.x to v4.0.0.</p>
-          
-          <div class="info-box" style="border-left-color: var(--color-danger); background: rgba(239, 68, 68, 0.05);">
-            <h3 style="color: var(--color-danger);">Upgrade Notes</h3>
-            <p>This is a major release with several breaking changes. Please review the changes below before upgrading.</p>
+          <h2>Release and Upgrade Notes</h2>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the staged v7.0.0 API-contract release.</p>
+
+          <div class="info-box is-danger">
+            <h3>Upgrade Notes</h3>
+            <p>Review the version-specific notes below before upgrading. The v4.0.0 section remains the main historical breaking-change block, while v5.x and v6.x document newer output and ephemeris changes.</p>
           </div>
 
-          <h3>1. Default Configuration Changes</h3>
+          <h3>Published Releases</h3>
+          <ol class="release-list" aria-label="Published package releases">
+            <li class="release-row is-latest">
+              <span class="release-tag">7.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Panchang Output Contract Corrections and Muhurta Timing Accuracy</span><span class="release-meta">Next Major</span></div>
+                <p class="release-note">Updates public method signatures and output semantics for Brahma Muhurta, Lagna tables, Amrita Kaal, Varjyam, Chandra Vaasa, and current-versus-sunrise Panchanga fields.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">6.0.2</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Today Output Field Corrections</span></div>
+                <p class="release-note">Clarifies current-time versus sunrise-based output fields and corrects daily Panchang details after the v6 migration.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">6.0.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">JPL Fail-Fast and Eclipse Logic Refinements</span></div>
+                <p class="release-note">Hardens JME/JPL configuration handling and refines eclipse visibility logic.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">6.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">JME Native Ephemeris Migration</span></div>
+                <p class="release-note">Migrates the astronomical backend to the project-owned JME native ephemeris FFI path. Validate deployment FFI configuration before upgrading production environments.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">5.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Yoga, Shoola, Vaasa and Moon Visibility Expansion</span></div>
+                <p class="release-note">Expands day-level output with special yogas, direction checks, Vaasa signals, and moon visibility fields.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">4.1.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">PHP 8.3+ Syntax Modernization and Documentation Polish</span></div>
+                <p class="release-note">Modernizes syntax and documentation while keeping the v4 public model intact.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">4.1.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Festival Registry Refine and Minor Fixes</span></div>
+                <p class="release-note">Refines festival registry behavior and resolves smaller v4 follow-up issues.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">4.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Universal Panchanga: Architectural Maturity and Global Reach</span></div>
+                <p class="release-note">Major compatibility release. See the dedicated v4.0.0 compatibility notes below.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">3.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Lahiri-only, Sankranti Fix and Quality Hardening</span></div>
+                <p class="release-note">Standardizes the calculation model around Lahiri ayanamsa and tightens Sankranti behavior.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">2.0.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Purge of Activity-Based Muhurta Logic</span></div>
+                <p class="release-note">Removes activity-specific Muhurta assumptions in favor of calculation-first daily windows.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">2.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Expanded Karmakala Support, Transit-Only Muhurta Cleanup and Output Normalization</span></div>
+                <p class="release-note">Introduces wider Karmakala support and normalizes Muhurta output structures.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">1.2.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Festival Registry Refactor, True Hindu Month Resolution and Precision Output Cleanup</span></div>
+                <p class="release-note">Refactors festival rules and improves month-resolution precision.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">1.1.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Precision Calendar Fixes and Raw JSON Exporter</span></div>
+                <p class="release-note">Adds raw JSON export support and fixes precision calendar output details.</p>
+              </div>
+            </li>
+            <li class="release-row">
+              <span class="release-tag">1.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Initial Release</span></div>
+                <p class="release-note">Initial public Panchang Core package release.</p>
+              </div>
+            </li>
+          </ol>
+
+          <h3>v7.0.0 Upgrade Notes</h3>
+          <ul>
+            <li><code>MuhurtaService::calculateBrahmaMuhurta()</code> now requires <code>$previousSunset</code> and <code>$sunrise</code>. This supports the dynamic night-muhurta convention.</li>
+            <li><code>DailyPeriodsCalculator::calculateBrahmaMuhurta()</code> has the same signature change and now returns <code>fixed_48_minute_convention</code> as a nested compatibility payload.</li>
+            <li><code>LagnaTableCalculator::calculateLagnaTable()</code> and <code>MuhurtaService::calculateLagnaTable()</code> require <code>$nextSunrise</code> and return partial visible intervals for the Panchang day.</li>
+            <li><code>MuhurtaService::calculateNakshatraPeriodWindows()</code> is the public scoped API for independent <code>varjyam</code> and <code>amrita_kaal</code> Nakshatra windows.</li>
+            <li><code>calculateAmritaKaal()</code> remains only as a legacy compatibility helper and no longer derives Amrita Kaal from Varjyam end time.</li>
+            <li><code>Chandra_Vaasa</code> now uses Moon-rashi direction as the primary meaning and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
+            <li><code>Abhijit_Muhurta.solar_noon</code> is now <code>Abhijit_Muhurta.daylight_midpoint</code>; <code>Day_Types.solar_noon</code> is now <code>Day_Types.apparent_solar_noon</code>.</li>
+          </ul>
+
+          <h3>v6.x Upgrade Notes</h3>
+          <ul>
+            <li><code>Current_Tithi_At_Input_Now</code> and <code>Current_Karana_At_Input_Now</code> should be used when the app needs the value active at the requested calculation time.</li>
+            <li><code>Tithi</code> and <code>Karana</code> remain sunrise-based compatibility fields. Prefer <code>Tithi_At_Sunrise</code> and <code>Karana_At_Sunrise</code> when sunrise semantics must be explicit.</li>
+            <li><code>Brahma_Muhurta</code> now exposes the dynamic night-muhurta convention by default and preserves the fixed 48-minute convention under <code>fixed_48_minute_convention</code>.</li>
+            <li><code>Amrita_Kaal</code> is calculated independently from nakshatra-specific Amrita ghati offsets. It is not derived from Varjyam end time.</li>
+            <li><code>Day_Types.apparent_solar_noon</code> and <code>Abhijit_Muhurta.daylight_midpoint</code> intentionally name two different concepts.</li>
+          </ul>
+
+          <h3>v5.x Upgrade Notes</h3>
+          <ul>
+            <li>Day output includes expanded Vaasa, Shoola, moon visibility, and special yoga structures.</li>
+            <li>Consumers should avoid strict allowlists that reject new top-level output keys.</li>
+            <li>Mobile and static-site exports should use the generated JSON files as versioned payloads, because new fields are intentionally additive.</li>
+          </ul>
+
+          <h3>v4.0.0 Compatibility Notes</h3>
+          <p>These notes remain important when upgrading from v3.x or older integrations.</p>
+
+          <h4>1. Default Configuration Changes</h4>
           <table class="data-table">
             <thead>
               <tr>
@@ -3903,7 +4128,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </tbody>
           </table>
 
-          <h3>2. Method Signature Changes</h3>
+          <h4>2. Method Signature Changes</h4>
           <p>All enum <code>getName()</code> methods now accept an optional <code>$locale</code> parameter:</p>
           <pre><code class="language-php">// v3.x
 $name = Nakshatra::Ashwini->getName(); // "Ashwini"
@@ -3913,7 +4138,7 @@ $name = Nakshatra::Ashwini->getName();              // Uses configured locale
 $name = Nakshatra::Ashwini->getName('hi');         // "अश्विनी"
 $name = Nakshatra::Ashwini->getName('gu');         // "અશ્વિની"</code></pre>
 
-          <h3>3. Time Field Structure Changes</h3>
+          <h4>3. Time Field Structure Changes</h4>
           <p><code>Sunrise</code>, <code>Sunset</code>, <code>Moonrise</code>, and <code>Moonset</code> in the Panchanga output now return objects instead of strings:</p>
           <pre><code class="language-php">// v3.x (string)
 $details['Panchanga']['Sunrise']; // "06:14:00 AM"
@@ -3925,7 +4150,7 @@ $details['Panchanga']['Sunrise']['jd'];        // Julian Day
 $details['Panchanga']['Sunrise']['iso'];        // ISO timestamp
 $details['Panchanga']['Sunrise']['timestamp'];  // Unix timestamp</code></pre>
 
-          <h3>4. Enum Value Changes</h3>
+          <h4>4. Enum Value Changes</h4>
           <table class="data-table">
             <thead>
               <tr>
@@ -3953,7 +4178,7 @@ $details['Panchanga']['Sunrise']['timestamp'];  // Unix timestamp</code></pre>
             </tbody>
           </table>
 
-          <h3>5. Removed Methods</h3>
+          <h4>5. Removed Methods</h4>
           <p>The following methods have been removed:</p>
           <ul>
             <li><code>Masa::getEnglishApproximation()</code> - removed</li>
@@ -3964,10 +4189,10 @@ $details['Panchanga']['Sunrise']['timestamp'];  // Unix timestamp</code></pre>
             <li><code>Karana::isVishti()</code> - removed</li>
           </ul>
 
-          <h3>6. PHP 8.3+ Requirement</h3>
+          <h4>6. PHP 8.3+ Requirement</h4>
           <p>This package targets PHP 8.3+ and the current Composer platform config is pinned accordingly.</p>
 
-          <h3>7. Calendar Type Parameter</h3>
+          <h4>7. Calendar Type Parameter</h4>
           <p>Methods like <code>getDayDetails()</code> support an optional <code>calendarType</code> parameter. If omitted, the default remains <code>CalendarType::Amanta</code>:</p>
           <pre><code class="language-php">// v3.x
 $details = $panchang->getDayDetails($date, $lat, $lon, $tz);
@@ -4555,7 +4780,7 @@ const FESTIVAL_RULES
 - calculateAbhijitMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
 - calculateAmritaKaal(Carbon\CarbonImmutable $sunrise, array $varjyam): array
 - calculateBadTimes(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, int $varaIdx): array
-- calculateBrahmaMuhurta(Carbon\CarbonImmutable $sunrise): array
+- calculateBrahmaMuhurta(Carbon\CarbonImmutable $previousSunset, Carbon\CarbonImmutable $sunrise): array
 - calculateChogadiya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $current, int $varaIdx): array
 - calculateChogadiyaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx): array
 - calculateDaylightFivefoldDivision(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
@@ -4568,6 +4793,7 @@ const FESTIVAL_RULES
 - calculateLagna(Carbon\CarbonImmutable $current, Carbon\CarbonImmutable $sunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, JmeEph\FFI\JmeEphFFI $jme): array
 - calculateLagnaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, float $sunriseSunLongitude, float $ayanamsaDeg, float $lat, float $lon, JmeEph\FFI\JmeEphFFI $jme): array
 - calculateMuhurtaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculateNakshatraPeriodWindows(string $type, Carbon\CarbonImmutable $timezoneReference, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd, float $scopeStartJd, float $scopeEndJd): array
 - calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, int $tithiNum): array
 - calculatePrahara(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
@@ -4675,7 +4901,15 @@ const FESTIVAL_RULES
                 </tr>
                 <tr>
                   <td>Get Brahma Muhurta</td>
-                  <td><code>MuhurtaService::calculateBrahmaMuhurta()</code></td>
+                  <td><code>MuhurtaService::calculateBrahmaMuhurta($previousSunset, $sunrise)</code></td>
+                </tr>
+                <tr>
+                  <td>Get Varjyam or Amrita Kaal windows</td>
+                  <td><code>MuhurtaService::calculateNakshatraPeriodWindows()</code> or <code>PanchangService::getDayDetails()</code></td>
+                </tr>
+                <tr>
+                  <td>Get sunrise/current Tithi and Karana separately</td>
+                  <td><code>getDayDetails()</code> → <code>Tithi_At_Sunrise</code>, <code>Current_Tithi_At_Input_Now</code>, <code>Karana_At_Sunrise</code>, <code>Current_Karana_At_Input_Now</code></td>
                 </tr>
                 <tr>
                   <td>Get named daily Karmakala windows</td>
@@ -4763,7 +4997,12 @@ const FESTIVAL_RULES
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
-                </svg><strong>Aṣṭāṅga Hṛdaya</strong>→ Brahma Muhūrta timing</li>
+                </svg><strong>Published Panchang convention</strong>→ Dynamic night-muhurta Brahma Muhūrta timing</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Aṣṭāṅga Hṛdaya</strong>→ Brahma Muhūrta practice context</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />

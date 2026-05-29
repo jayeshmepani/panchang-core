@@ -6,9 +6,11 @@ namespace JayeshMepani\PanchangCore\Muhurta\Lagna;
 
 use Carbon\CarbonImmutable;
 use DateTimeZone;
+use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JmeEph\FFI\JmeEphFFI;
+use RuntimeException;
 
 /** Lagna Table Calculator - Handles ascendant sign transitions. */
 class LagnaTableCalculator
@@ -42,6 +44,7 @@ class LagnaTableCalculator
     public function calculateLagnaTable(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
         float $ayanamsaDeg,
         float $lat,
         float $lon,
@@ -49,65 +52,59 @@ class LagnaTableCalculator
     ): array {
         $jdStart = $this->carbonToJulianDayUtc($jme, $sunrise);
         $jdSunset = $this->carbonToJulianDayUtc($jme, $sunset);
-        $jdEnd = $jdStart + 1.0; // One solar day (24 hours from sunrise)
+        $jdEnd = $this->carbonToJulianDayUtc($jme, $nextSunrise);
 
-        $lagnas = [];
-        $step = 120.0 / 86400.0;
-        $prevSign = -1;
-        $signsCollected = 0;
-
-        // Sampling phase - collect exactly 12 lagna sign transitions
-        for ($jd = $jdStart; $jd <= $jdEnd + $step && $signsCollected < 12; $jd += $step) {
-            $asc = $this->getAscendantSiderealAtJd($jme, $jd, $lat, $lon, $ayanamsaDeg);
-            $signIdx = (int) floor($asc / 30.0) % 12;
-
-            if ($signIdx !== $prevSign) {
-                $transitionJd = $jd;
-                if ($prevSign !== -1) {
-                    // Refine transition using binary search
-                    $low = $jd - $step;
-                    $high = $jd;
-                    $targetAngle = $signIdx * 30.0;
-                    for ($iter = 0; $iter < 70; $iter++) {
-                        $mid = ($low + $high) / 2.0;
-                        $midAsc = $this->getAscendantSiderealAtJd($jme, $mid, $lat, $lon, $ayanamsaDeg);
-                        $diff = AstroCore::normalize($midAsc - $targetAngle);
-                        if ($diff < 180.0) {
-                            $high = $mid;
-                        } else {
-                            $low = $mid;
-                        }
-                    }
-
-                    $transitionJd = $high;
-                } else {
-                    $transitionJd = $jdStart; // Day starts at sunrise
-                }
-
-                $time = $this->jdToCarbon($transitionJd, $sunrise->getTimezone());
-                $lagnas[] = [
-                    'lagna_number' => $signIdx + 1,
-                    'sign_name' => Rasi::from($signIdx)->getName(),
-                    'sign_index' => $signIdx,
-                    'start' => AstroCore::formatTime($time),
-                    'start_iso' => AstroCore::formatDateTime($time),
-                    'start_jd' => $transitionJd,
-                ];
-                $prevSign = $signIdx;
-                $signsCollected++;
-            }
+        if ($jdEnd <= $jdStart) {
+            throw new InvalidArgumentException('Next sunrise must be after sunrise for Lagna table calculation.');
         }
 
-        // Finalize durations and end times
-        $count = count($lagnas);
-        for ($i = 0; $i < $count; $i++) {
-            $nextJd = ($i === $count - 1) ? ($jdStart + 1.0) : $lagnas[$i + 1]['start_jd'];
-            $lagnas[$i]['end_jd'] = $nextJd;
-            $endTime = $this->jdToCarbon($nextJd, $sunrise->getTimezone());
-            $lagnas[$i]['end'] = AstroCore::formatTime($endTime);
-            $lagnas[$i]['end_iso'] = AstroCore::formatDateTime($endTime);
-            $lagnas[$i]['duration_minutes'] = ($nextJd - $lagnas[$i]['start_jd']) * 1440.0;
-            $lagnas[$i]['is_day_lagna'] = $lagnas[$i]['start_jd'] < $jdSunset;
+        $timezone = $sunrise->getTimezone();
+        $epsilon = 1.0 / 86400.0;
+        $activeSign = $this->getSignIndexAtJd($jme, $jdStart, $lat, $lon, $ayanamsaDeg);
+        $intervalStartJd = $this->findPreviousLagnaTransition($jme, $jdStart, $activeSign, $lat, $lon, $ayanamsaDeg);
+        $lagnas = [];
+
+        for ($guard = 0; $guard < 16 && $intervalStartJd < $jdEnd; $guard++) {
+            [$intervalEndJd, $nextSign] = $this->findNextLagnaTransition($jme, $intervalStartJd + $epsilon, $activeSign, $lat, $lon, $ayanamsaDeg);
+
+            if ($intervalEndJd > $jdStart && $intervalStartJd < $jdEnd) {
+                $visibleStartJd = max($intervalStartJd, $jdStart);
+                $visibleEndJd = min($intervalEndJd, $jdEnd);
+                $startTime = $this->jdToCarbon($intervalStartJd, $timezone);
+                $endTime = $this->jdToCarbon($intervalEndJd, $timezone);
+                $visibleStartTime = $this->jdToCarbon($visibleStartJd, $timezone);
+                $visibleEndTime = $this->jdToCarbon($visibleEndJd, $timezone);
+
+                $lagnas[] = [
+                    'lagna_number' => $activeSign + 1,
+                    'sign_name' => Rasi::from($activeSign)->getName(),
+                    'sign_index' => $activeSign,
+                    'start' => AstroCore::formatTime($startTime),
+                    'start_iso' => AstroCore::formatDateTime($startTime),
+                    'start_jd' => $intervalStartJd,
+                    'end' => AstroCore::formatTime($endTime),
+                    'end_iso' => AstroCore::formatDateTime($endTime),
+                    'end_jd' => $intervalEndJd,
+                    'visible_start' => AstroCore::formatTime($visibleStartTime),
+                    'visible_start_iso' => AstroCore::formatDateTime($visibleStartTime),
+                    'visible_start_jd' => $visibleStartJd,
+                    'visible_end' => AstroCore::formatTime($visibleEndTime),
+                    'visible_end_iso' => AstroCore::formatDateTime($visibleEndTime),
+                    'visible_end_jd' => $visibleEndJd,
+                    'is_partial_start' => $intervalStartJd < $jdStart,
+                    'is_partial_end' => $intervalEndJd > $jdEnd,
+                    'duration_minutes' => ($intervalEndJd - $intervalStartJd) * 1440.0,
+                    'visible_duration_minutes' => ($visibleEndJd - $visibleStartJd) * 1440.0,
+                    'is_day_lagna' => $visibleStartJd < $jdSunset,
+                ];
+            }
+
+            if ($intervalEndJd <= $intervalStartJd) {
+                throw new RuntimeException('Invalid Lagna transition order.');
+            }
+
+            $intervalStartJd = $intervalEndJd;
+            $activeSign = $nextSign;
         }
 
         return $lagnas;
@@ -136,5 +133,88 @@ class LagnaTableCalculator
         $jme->jme_houses($jd, $lat, $lon, ord('P'), $cusp, $ascmc);
 
         return AstroCore::normalize($ascmc[0] - $ayanamsa);
+    }
+
+    private function getSignIndexAtJd(JmeEphFFI $jme, float $jd, float $lat, float $lon, float $ayanamsa): int
+    {
+        return (int) floor($this->getAscendantSiderealAtJd($jme, $jd, $lat, $lon, $ayanamsa) / 30.0) % 12;
+    }
+
+    private function findPreviousLagnaTransition(
+        JmeEphFFI $jme,
+        float $jd,
+        int $currentSign,
+        float $lat,
+        float $lon,
+        float $ayanamsa
+    ): float {
+        $step = 120.0 / 86400.0;
+        $high = $jd;
+        $low = $jd - $step;
+
+        for ($guard = 0; $guard < 720; $guard++) {
+            if ($this->getSignIndexAtJd($jme, $low, $lat, $lon, $ayanamsa) !== $currentSign) {
+                return $this->refineLagnaBoundary($jme, $low, $high, $currentSign, $lat, $lon, $ayanamsa);
+            }
+
+            $high = $low;
+            $low -= $step;
+        }
+
+        throw new RuntimeException('Previous Lagna transition not found.');
+    }
+
+    /** @return array{0: float, 1: int} */
+    private function findNextLagnaTransition(
+        JmeEphFFI $jme,
+        float $jd,
+        int $currentSign,
+        float $lat,
+        float $lon,
+        float $ayanamsa
+    ): array {
+        $step = 120.0 / 86400.0;
+        $low = $jd;
+        $high = $jd + $step;
+
+        for ($guard = 0; $guard < 720; $guard++) {
+            $nextSign = $this->getSignIndexAtJd($jme, $high, $lat, $lon, $ayanamsa);
+            if ($nextSign !== $currentSign) {
+                return [
+                    $this->refineLagnaBoundary($jme, $low, $high, $nextSign, $lat, $lon, $ayanamsa),
+                    $nextSign,
+                ];
+            }
+
+            $low = $high;
+            $high += $step;
+        }
+
+        throw new RuntimeException('Next Lagna transition not found.');
+    }
+
+    private function refineLagnaBoundary(
+        JmeEphFFI $jme,
+        float $low,
+        float $high,
+        int $targetSign,
+        float $lat,
+        float $lon,
+        float $ayanamsa
+    ): float {
+        $targetAngle = $targetSign * 30.0;
+
+        for ($iter = 0; $iter < 70; $iter++) {
+            $mid = ($low + $high) / 2.0;
+            $midAsc = $this->getAscendantSiderealAtJd($jme, $mid, $lat, $lon, $ayanamsa);
+            $diff = AstroCore::normalize($midAsc - $targetAngle);
+            if ($diff < 180.0) {
+                $high = $mid;
+            } else {
+                $low = $mid;
+            }
+        }
+
+        return $high;
     }
 }

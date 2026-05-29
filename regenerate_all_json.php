@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 // regenerate_all_json.php
-// This script regenerates all 30 JSON files for the Panchang Core project.
+// This script regenerates all JSON files for the Panchang Core project.
+// Usage: php regenerate_all_json.php [year] [month]
+// Default month output: current month.
 
 function runPhpScript(string $label, string $command, string $workingDir): int
 {
@@ -158,6 +160,15 @@ $calendarTypes = ['amanta', 'purnimanta'];
 $locales = ['en', 'hi', 'gu'];
 $scriptsDir = __DIR__ . DIRECTORY_SEPARATOR . 'scripts';
 $outputBaseDir = $scriptsDir . DIRECTORY_SEPARATOR . 'output';
+$now = new DateTimeImmutable('now', new DateTimeZone((string) (getenv('PANCHANG_TIMEZONE') ?: 'Asia/Kolkata')));
+$monthYear = isset($argv[1]) ? (int) $argv[1] : (int) $now->format('Y');
+$month = isset($argv[2]) ? (int) $argv[2] : (int) $now->format('n');
+
+if ($month < 1 || $month > 12) {
+    throw new InvalidArgumentException('Month must be between 1 and 12.');
+}
+
+$monthFile = sprintf('month_%04d_%02d.json', $monthYear, $month);
 
 // Ensure output base directory exists
 if (!is_dir($outputBaseDir)) {
@@ -221,16 +232,16 @@ foreach ($calendarTypes as $type) {
         echo "Running panchang_month_output.php...\n";
         $monthResult = capturePhpScript(
             'panchang_month_output.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_month_output.php') . ' 2026 4',
+            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_month_output.php') . ' ' . $monthYear . ' ' . $month,
             __DIR__
         );
         if ($monthResult['exit_code'] !== 0) {
             throw new RuntimeException('panchang_month_output.php failed with exit code ' . $monthResult['exit_code']);
         }
-        file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'month_2026_04.json', (string) $monthResult['stdout']);
+        file_put_contents($targetDir . DIRECTORY_SEPARATOR . $monthFile, (string) $monthResult['stdout']);
         $monthDecoded = json_decode((string) $monthResult['stdout'], true);
         $monthDayCount = is_array($monthDecoded['calendar'] ?? null) ? count($monthDecoded['calendar']) : 0;
-        echo "Written month_2026_04.json — {$monthDayCount} calendar days.\n";
+        echo "Written {$monthFile} — {$monthDayCount} calendar days.\n";
 
         // echo "Running panchang_raw_output.php...\n";
         // $rawOutput = shell_exec('php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'));

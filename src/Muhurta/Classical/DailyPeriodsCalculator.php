@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Muhurta\Classical;
 
 use Carbon\CarbonImmutable;
+use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Localization;
@@ -19,36 +20,60 @@ class DailyPeriodsCalculator
 
         $abhijitStart = $this->addFloatSeconds($sunrise, 7 * $muhurtaDuration);
         $abhijitEnd = $this->addFloatSeconds($abhijitStart, $muhurtaDuration);
-        $solarNoon = $this->addFloatSeconds($sunrise, $daySeconds / 2.0);
+        $daylightMidpoint = $this->addFloatSeconds($sunrise, $daySeconds / 2.0);
 
         return [
             'source' => Localization::translate('Source', 'Muhūrta Chintāmaṇi / Nārada Saṁhitā'),
             'abhijit_start' => AstroCore::formatTime($abhijitStart),
             'abhijit_end' => AstroCore::formatTime($abhijitEnd),
-            'solar_noon' => AstroCore::formatTime($solarNoon),
+            'daylight_midpoint' => AstroCore::formatTime($daylightMidpoint),
             'muhurta_duration_minutes' => AstroCore::formatDuration($muhurtaDuration / 60.0),
             'muhurta_number' => '8th of 15 (Abhijit)',
             'abhijit_start_iso' => AstroCore::formatDateTime($abhijitStart),
             'abhijit_end_iso' => AstroCore::formatDateTime($abhijitEnd),
-            'solar_noon_iso' => AstroCore::formatDateTime($solarNoon),
+            'daylight_midpoint_iso' => AstroCore::formatDateTime($daylightMidpoint),
         ];
     }
 
-    public function calculateBrahmaMuhurta(CarbonImmutable $sunrise): array
+    public function calculateBrahmaMuhurta(CarbonImmutable $previousSunset, CarbonImmutable $sunrise): array
     {
-        $muhurtaSeconds = 48.0 * 60.0;
-        $start = $sunrise->subSeconds((int) ($muhurtaSeconds * 2));
-        $end = $sunrise->subSeconds((int) $muhurtaSeconds);
+        $fixedMuhurtaSeconds = 48.0 * 60.0;
+        $fixedStart = $sunrise->subSeconds((int) ($fixedMuhurtaSeconds * 2));
+        $fixedEnd = $sunrise->subSeconds((int) $fixedMuhurtaSeconds);
+        $nightSeconds = $sunrise->getTimestamp() - $previousSunset->getTimestamp();
+
+        if ($nightSeconds <= 0) {
+            throw new InvalidArgumentException('Previous sunset must be before sunrise for Brahma Muhurta calculation.');
+        }
+
+        $nightMuhurtaSeconds = $nightSeconds / 15.0;
+        $start = $this->addFloatSeconds($sunrise, -2.0 * $nightMuhurtaSeconds);
+        $end = $this->addFloatSeconds($sunrise, -1.0 * $nightMuhurtaSeconds);
 
         return [
-            'source' => Localization::translate('Source', 'Ashtanga Hridaya Sutrasthana 2:1, Charaka Samhita, Manu Smriti 4.92'),
+            'source' => Localization::translate('Source', 'Night divided into 15 Muhurtas; Brahma Muhurta is the penultimate night Muhurta before sunrise'),
+            'calculation_convention' => 'dynamic_night_muhurta',
+            'calculation_convention_label' => Localization::translate('String', 'Dynamic night Muhurta convention'),
+            'previous_sunset_iso' => AstroCore::formatDateTime($previousSunset),
+            'sunrise_iso' => AstroCore::formatDateTime($sunrise),
             'brahma_muhurta_start' => AstroCore::formatTime($start),
             'brahma_muhurta_end' => AstroCore::formatTime($end),
-            'duration_minutes' => 48,
-            'duration_seconds' => 2880,
+            'duration_minutes' => $nightMuhurtaSeconds / 60.0,
+            'duration_seconds' => $nightMuhurtaSeconds,
+            'night_duration_seconds' => $nightSeconds,
             'significance' => Localization::translate('MuhurtaDesc', 'Brahma Muhurta significance'),
             'brahma_muhurta_start_iso' => AstroCore::formatDateTime($start),
             'brahma_muhurta_end_iso' => AstroCore::formatDateTime($end),
+            'fixed_48_minute_convention' => [
+                'calculation_convention' => 'fixed_48_minute_muhurta',
+                'calculation_convention_label' => Localization::translate('String', 'Fixed 48-minute Muhurta convention'),
+                'brahma_muhurta_start' => AstroCore::formatTime($fixedStart),
+                'brahma_muhurta_end' => AstroCore::formatTime($fixedEnd),
+                'duration_minutes' => 48,
+                'duration_seconds' => $fixedMuhurtaSeconds,
+                'brahma_muhurta_start_iso' => AstroCore::formatDateTime($fixedStart),
+                'brahma_muhurta_end_iso' => AstroCore::formatDateTime($fixedEnd),
+            ],
         ];
     }
 
@@ -96,7 +121,7 @@ class DailyPeriodsCalculator
             2 => ['day' => [1, 5], 'night' => []],
             3 => ['day' => [12], 'night' => []],
             4 => ['day' => [1, 2, 4, 11, 12, 15], 'night' => [1, 2, 6, 7]],
-            5 => ['day' => [9, 11], 'night' => []],
+            5 => ['day' => [4, 9], 'night' => []],
             6 => ['day' => [1], 'night' => []],
         ];
 

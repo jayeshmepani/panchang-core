@@ -120,9 +120,11 @@ class SpecialYogaRegressionTest extends TestCase
         $this->assertSame('weekday_rahu_direction_7_day', $day['Rahu_Vaasa']['rule_system'] ?? null);
         $this->assertTrue($day['Rahu_Vaasa']['is_complete_system'] ?? false);
         $this->assertSame('North-West', $day['Rahu_Vaasa']['direction'] ?? null);
-        $this->assertSame('nakshatra_pada_abode_4_part', $day['Chandra_Vaasa']['rule_system'] ?? null);
+        $this->assertSame('moon_rashi_direction_4_direction', $day['Chandra_Vaasa']['rule_system'] ?? null);
         $this->assertTrue($day['Chandra_Vaasa']['is_complete_system'] ?? false);
-        $this->assertContains($day['Chandra_Vaasa']['current']['abode_key'] ?? null, ['Deva', 'Nara', 'Pashava', 'Rakshasa']);
+        $this->assertContains($day['Chandra_Vaasa']['direction_key'] ?? null, ['East', 'South', 'West', 'North']);
+        $this->assertSame('nakshatra_pada_abode_4_part', $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['rule_system'] ?? null);
+        $this->assertContains($day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['abode_key'] ?? null, ['Deva', 'Nara', 'Pashava', 'Rakshasa']);
         $this->assertSame('At Work / Play', $day['Shiva_Vaasa']['method_1']['state'] ?? null);
         $this->assertSame('At Kailash', $day['Shiva_Vaasa']['method_2']['state'] ?? null);
         $this->assertSame('Prithvi (Earth)', $day['Agni_Vaasa']['state'] ?? null);

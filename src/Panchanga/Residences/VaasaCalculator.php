@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Panchanga\Residences;
 
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
@@ -72,6 +73,21 @@ class VaasaCalculator
         4 => 'Inauspicious',
     ];
 
+    private const array CHANDRA_VAASA_RASHI_DIRECTIONS = [
+        0 => 'East',
+        1 => 'South',
+        2 => 'West',
+        3 => 'North',
+        4 => 'East',
+        5 => 'South',
+        6 => 'West',
+        7 => 'North',
+        8 => 'East',
+        9 => 'South',
+        10 => 'West',
+        11 => 'North',
+    ];
+
     private const array DIRECTION_LABELS = [
         0 => 'East',
         1 => 'South',
@@ -132,7 +148,7 @@ class VaasaCalculator
         ];
     }
 
-    public function calculateChandraVaasa(array $padaIntervals, string $tz): array
+    public function calculateChandraVaasa(array $padaIntervals, string $tz, ?float $moonLongitude = null): array
     {
         $windows = [];
         foreach ($padaIntervals as $interval) {
@@ -155,13 +171,30 @@ class VaasaCalculator
             ];
         }
 
+        $directionWindows = $this->buildChandraVaasaDirectionWindows($padaIntervals, $tz);
+        $moonSignIndex = $moonLongitude !== null
+            ? AstroCore::getSign($moonLongitude)
+            : (int) ($directionWindows[0]['moon_sign_index'] ?? $this->inferMoonSignIndexFromPadaInterval($padaIntervals[0] ?? null));
+        $direction = self::CHANDRA_VAASA_RASHI_DIRECTIONS[$moonSignIndex] ?? 'None';
+
         return [
-            'rule_system' => 'nakshatra_pada_abode_4_part',
-            'source_family' => 'modern_nivas_shool_panchang_style',
+            'rule_system' => 'moon_rashi_direction_4_direction',
+            'source_family' => 'drik_nivas_shool_panchang_style',
             'is_complete_system' => true,
-            'current' => $windows[0] ?? null,
-            'window_count' => count($windows),
-            'windows' => $windows,
+            'moon_sign_index' => $moonSignIndex,
+            'moon_sign' => $moonSignIndex >= 0 && $moonSignIndex <= 11 ? Rasi::from($moonSignIndex)->getName() : null,
+            'direction' => Localization::translate('String', $direction),
+            'direction_key' => $direction,
+            'current' => $directionWindows[0] ?? null,
+            'window_count' => count($directionWindows),
+            'windows' => $directionWindows,
+            'nakshatra_pada_vaasa' => [
+                'rule_system' => 'nakshatra_pada_abode_4_part',
+                'source_family' => 'modern_nivas_shool_panchang_style',
+                'current' => $windows[0] ?? null,
+                'window_count' => count($windows),
+                'windows' => $windows,
+            ],
         ];
     }
 
@@ -173,7 +206,7 @@ class VaasaCalculator
             2 => 'North',
             3 => 'North-West',
             4 => 'South-East',
-            5 => 'West',
+            5 => 'South-East',
             6 => 'East',
         ];
         $direction = $directionMap[$weekdayIndex] ?? 'None';
@@ -201,5 +234,64 @@ class VaasaCalculator
             'direction' => Localization::translate('String', $direction),
             'direction_key' => $direction,
         ];
+    }
+
+    private function inferMoonSignIndexFromPadaInterval(?array $interval): int
+    {
+        if ($interval === null) {
+            return -1;
+        }
+
+        $nakshatraIndex = (int) ($interval['nakshatra_index'] ?? 0);
+        $pada = max(1, min(4, (int) ($interval['pada'] ?? 1)));
+        $absolutePadaIndex = $nakshatraIndex * 4 + ($pada - 1);
+
+        return intdiv($absolutePadaIndex, 9) % 12;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $padaIntervals
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildChandraVaasaDirectionWindows(array $padaIntervals, string $tz): array
+    {
+        $windows = [];
+
+        foreach ($padaIntervals as $interval) {
+            if (!isset($interval['start_jd'], $interval['end_jd'])) {
+                continue;
+            }
+
+            $moonSignIndex = $this->inferMoonSignIndexFromPadaInterval($interval);
+            if ($moonSignIndex < 0 || $moonSignIndex > 11) {
+                continue;
+            }
+
+            $direction = self::CHANDRA_VAASA_RASHI_DIRECTIONS[$moonSignIndex];
+            $lastIndex = count($windows) - 1;
+            if (
+                $lastIndex >= 0
+                && $windows[$lastIndex]['moon_sign_index'] === $moonSignIndex
+                && $windows[$lastIndex]['direction_key'] === $direction
+            ) {
+                $windows[$lastIndex]['end_jd'] = (float) $interval['end_jd'];
+                $windows[$lastIndex]['end'] = AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz));
+                continue;
+            }
+
+            $windows[] = [
+                'moon_sign_index' => $moonSignIndex,
+                'moon_sign' => Rasi::from($moonSignIndex)->getName(),
+                'direction' => Localization::translate('String', $direction),
+                'direction_key' => $direction,
+                'start_jd' => (float) $interval['start_jd'],
+                'end_jd' => (float) $interval['end_jd'],
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
+            ];
+        }
+
+        return $windows;
     }
 }

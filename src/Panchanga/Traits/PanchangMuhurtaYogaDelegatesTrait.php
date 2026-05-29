@@ -23,6 +23,45 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $nakStartJdAtSunrise,
         float $nakEndJdAtSunrise
     ): array {
+        return $this->calculateNakshatraPeriodWindowsForScope(
+            'varjyam',
+            $sunrise,
+            $jdSunrise,
+            $jdNextSunrise,
+            $nakIdxAtSunrise,
+            $nakStartJdAtSunrise,
+            $nakEndJdAtSunrise
+        );
+    }
+
+    private function calculateAmritaKaalWindows(
+        CarbonImmutable $sunrise,
+        float $jdSunrise,
+        float $jdNextSunrise,
+        int $nakIdxAtSunrise,
+        float $nakStartJdAtSunrise,
+        float $nakEndJdAtSunrise
+    ): array {
+        return $this->calculateNakshatraPeriodWindowsForScope(
+            'amrita_kaal',
+            $sunrise,
+            $jdSunrise,
+            $jdNextSunrise,
+            $nakIdxAtSunrise,
+            $nakStartJdAtSunrise,
+            $nakEndJdAtSunrise
+        );
+    }
+
+    private function calculateNakshatraPeriodWindowsForScope(
+        string $periodType,
+        CarbonImmutable $sunrise,
+        float $jdSunrise,
+        float $jdNextSunrise,
+        int $nakIdxAtSunrise,
+        float $nakStartJdAtSunrise,
+        float $nakEndJdAtSunrise
+    ): array {
         $windows = [];
         $nakshatraSpan = 360.0 / 27.0;
 
@@ -35,23 +74,16 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 break;
             }
 
-            $window = $this->muhurta->calculateVarjyam(
+            $periodWindows = $this->muhurta->calculateNakshatraPeriodWindows(
+                $periodType,
                 $sunrise,
-                $sunset,
-                $nextSunrise,
                 $currentNakIdx,
                 $currentNakStartJd,
-                $currentNakEndJd
+                $currentNakEndJd,
+                $jdSunrise,
+                $jdNextSunrise
             );
-
-            $windowStartJd = $window['nakshatra_start_jd'] + (($window['tyajya_ghati_start'] / 60.0) * ($window['nakshatra_end_jd'] - $window['nakshatra_start_jd']));
-            $windowEndJd = $windowStartJd + (($window['tyajya_ghati_end'] - $window['tyajya_ghati_start']) / 60.0) * ($window['nakshatra_end_jd'] - $window['nakshatra_start_jd']);
-
-            if ($windowEndJd > $jdSunrise && $windowStartJd < $jdNextSunrise) {
-                $window['window_start_jd'] = $windowStartJd;
-                $window['window_end_jd'] = $windowEndJd;
-                $windows[] = $window;
-            }
+            array_push($windows, ...$periodWindows);
 
             $currentNakIdx = ($currentNakIdx + 1) % 27;
             $currentNakStartJd = $currentNakEndJd;
@@ -78,6 +110,27 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
     /** Backward-compatible Varjyam payload with multi-window support. */
     private function buildVarjyamPayload(array $windows): array
+    {
+        if ($windows === []) {
+            return [
+                'is_available' => false,
+                'window_count' => 0,
+                'windows' => [],
+            ];
+        }
+
+        $primary = $windows[0];
+
+        return [
+            ...$primary,
+            'is_available' => true,
+            'window_count' => count($windows),
+            'windows' => $windows,
+        ];
+    }
+
+    /** Backward-compatible Amrita Kaal payload with multi-window support. */
+    private function buildAmritaKaalPayload(array $windows): array
     {
         if ($windows === []) {
             return [
@@ -240,11 +293,12 @@ trait PanchangMuhurtaYogaDelegatesTrait
         return $this->vaasaCalculator->calculateRahuVaasa($weekdayIndex);
     }
 
-    private function calculateChandraVaasa(float $jdStart, float $jdEnd, string $tz): array
+    private function calculateChandraVaasa(float $jdStart, float $jdEnd, string $tz, ?float $moonLongitude = null): array
     {
         return $this->vaasaCalculator->calculateChandraVaasa(
             $this->collectNakshatraPadaIntervals($jdStart, $jdEnd),
-            $tz
+            $tz,
+            $moonLongitude
         );
     }
 
@@ -268,10 +322,16 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdEnd,
         float $sunLongitude,
         float $moonLongitude,
+        float $currentSunLongitude,
+        float $currentMoonLongitude,
         int $tithiNumber,
+        int $currentTithiNumber,
         int $nakshatraIndex,
+        int $currentNakshatraIndex,
         int $yogaIndex,
+        int $currentYogaIndex,
         int $karanaIndex,
+        int $currentKaranaIndex,
         string $tz,
         ?int $sankrantiRashi
     ): array {
@@ -280,25 +340,37 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
         return [
             'tithi' => [
-                'current' => Tithi::from($tithiNumber)->getName(),
+                'current' => Tithi::from($currentTithiNumber)->getName(),
+                'current_at_input_now' => Tithi::from($currentTithiNumber)->getName(),
+                'current_at_sunrise' => Tithi::from($tithiNumber)->getName(),
                 'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $tithiIntervals),
             ],
             'nakshatra' => [
-                'current' => Nakshatra::from($nakshatraIndex % 27)->getName(),
+                'current' => Nakshatra::from($currentNakshatraIndex % 27)->getName(),
+                'current_at_input_now' => Nakshatra::from($currentNakshatraIndex % 27)->getName(),
+                'current_at_sunrise' => Nakshatra::from($nakshatraIndex % 27)->getName(),
                 'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $nakshatraIntervals),
             ],
             'yoga' => [
-                'current' => Localization::translate('Yoga', max(0, $yogaIndex - 1)),
+                'current' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
+                'current_at_input_now' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
+                'current_at_sunrise' => Localization::translate('Yoga', max(0, $yogaIndex - 1)),
             ],
             'karana' => [
-                'current' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($karanaIndex)),
+                'current' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
+                'current_at_input_now' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
+                'current_at_sunrise' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($karanaIndex)),
             ],
             'moon_sign' => [
-                'current' => Rasi::from(AstroCore::getSign($moonLongitude))->getName(),
+                'current' => Rasi::from(AstroCore::getSign($currentMoonLongitude))->getName(),
+                'current_at_input_now' => Rasi::from(AstroCore::getSign($currentMoonLongitude))->getName(),
+                'current_at_sunrise' => Rasi::from(AstroCore::getSign($moonLongitude))->getName(),
                 'transitions' => $this->collectMoonSignTransitions($jdStart, $jdEnd, $tz),
             ],
             'sun_sign' => [
-                'current' => Rasi::from(AstroCore::getSign($sunLongitude))->getName(),
+                'current' => Rasi::from(AstroCore::getSign($currentSunLongitude))->getName(),
+                'current_at_input_now' => Rasi::from(AstroCore::getSign($currentSunLongitude))->getName(),
+                'current_at_sunrise' => Rasi::from(AstroCore::getSign($sunLongitude))->getName(),
                 'sankranti_today' => $sankrantiRashi !== null,
                 'next_sign' => $sankrantiRashi !== null ? Rasi::from($sankrantiRashi)->getName() : null,
             ],
@@ -363,18 +435,18 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
     private function normalizeKaranaLocalizationIndex(int $karanaIndex): int
     {
+        if ($karanaIndex === 1) {
+            return 10;
+        }
+
+        if ($karanaIndex >= 2 && $karanaIndex <= 57) {
+            return ($karanaIndex - 2) % 7;
+        }
+
         return match ($karanaIndex) {
-            1 => 0,
-            2 => 1,
-            3 => 2,
-            4 => 3,
-            5 => 4,
-            6 => 5,
-            7 => 6,
-            57 => 7,
-            58 => 8,
-            59 => 9,
-            60 => 10,
+            58 => 7,
+            59 => 8,
+            60 => 9,
             default => 0,
         };
     }

@@ -12,7 +12,9 @@ use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
+use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
@@ -243,6 +245,10 @@ class PanchangService
         [$karanaName, $karanaIdx] = $this->panchanga->getKarana($sunLon, $moonLon);
         [$nakName, $nakPada, $nakLord] = $this->panchanga->getNakshatraInfo($moonLon);
         $nakIdx = (int) floor(($moonLon * 60.0) / 800.0);
+        $currentTithi = $this->panchanga->calculateTithi($currentSunLon, $currentMoonLon);
+        $currentYoga = $this->panchanga->calculateYoga($currentSunLon, $currentMoonLon);
+        [$currentKaranaName, $currentKaranaIdx] = $this->panchanga->getKarana($currentSunLon, $currentMoonLon);
+        $currentNakIdx = (int) floor(($currentMoonLon * 60.0) / 800.0);
         $vara = $this->panchanga->calculateVara($birthAt, $this->sunService);
 
         $isth = $this->calculateIshtkaal($relSunrise, $birthAt, $tz);
@@ -254,14 +260,49 @@ class PanchangService
         $currentMoonSign = AstroCore::getSign($currentMoonLon);
         $currentSunSign = AstroCore::getSign($currentSunLon);
 
-        $panchaka = $this->panchanga->calculatePanchakaRahita(
+        $panchakaAtSunrise = $this->panchanga->calculatePanchakaRahita(
             (int) $tithi['index'],
             (int) $vara['index'] + 1,
             $nakIdx + 1,
             $ascSign + 1
         );
+        $panchakaRuntime = ElectionalEvaluator::calculatePanchakaDosha(
+            (int) $currentTithi['index'],
+            (int) $vara['index'],
+            $currentNakIdx + 1,
+            $ascSign + 1
+        );
+        $panchaka = [
+            ...$panchakaRuntime,
+            'is_auspicious' => !$panchakaRuntime['has_dosha'],
+            'calculated_for' => 'input_now',
+            'input_now_iso' => AstroCore::formatDateTime($calculationAt),
+            'at_sunrise' => [
+                ...$panchakaAtSunrise,
+                'calculated_for' => 'sunrise',
+                'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+                'tithi' => (int) $tithi['index'],
+                'tithi_name' => Tithi::from((int) $tithi['index'])->getName(),
+                'nakshatra' => $nakIdx + 1,
+                'nakshatra_name' => Nakshatra::from($nakIdx % 27)->getName(),
+            ],
+        ];
 
         $nextDay = $date->addDay();
+        $previousDay = $date->subDay();
+        $previousBirth = [
+            'year' => $previousDay->year,
+            'month' => $previousDay->month,
+            'day' => $previousDay->day,
+            'hour' => 0,
+            'minute' => 0,
+            'second' => 0,
+            'timezone' => $tz,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'elevation' => $elevation,
+        ];
+        [, $previousSunset] = $this->sunService->getSunriseSunset($previousBirth);
         $nextBirth = [
             'year' => $nextDay->year,
             'month' => $nextDay->month,
@@ -303,7 +344,7 @@ class PanchangService
 
         // New calculations: Prahara, Brahma Muhurta, Dur Muhurta
         $praharaTable = $this->muhurta->calculatePrahara($relSunrise, $sunset, $nextSunrise);
-        $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($nextSunrise);
+        $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($previousSunset, $relSunrise);
         $durMuhurtaTable = $this->muhurta->calculateDurMuhurta($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
         $daylightFivefold = $this->muhurta->calculateDaylightFivefoldDivision($relSunrise, $sunset);
         $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
@@ -357,7 +398,8 @@ class PanchangService
         // Varjyam (Tyajyam) can occur once or twice between sunrise and next sunrise.
         $varjyamWindows = $this->calculateVarjyamWindows($relSunrise, $sunset, $nextSunrise, $jdSunrise, $jdNextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
         $varjyam = $this->buildVarjyamPayload($varjyamWindows);
-        $amritaKaal = $this->muhurta->calculateAmritaKaal($relSunrise, $varjyam);
+        $amritaKaalWindows = $this->calculateAmritaKaalWindows($relSunrise, $jdSunrise, $jdNextSunrise, $nakIdx, $nakStartJd, $nakEndJd);
+        $amritaKaal = $this->buildAmritaKaalPayload($amritaKaalWindows);
         DebugTrace::log('panchang.day', 'varjyam payload built', [
             'window_count' => count($varjyamWindows),
         ]);
@@ -523,7 +565,7 @@ class PanchangService
         $nakshatraShool = $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz);
         $dishaShool = $this->calculateDishaShool((int) $vara['index']);
         $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
-        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz);
+        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz, $moonLon);
         $shivaVaasa = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
         $agniVaasa = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
         $yoginiVaasa = $this->calculateYoginiVaasa($tithiNum);
@@ -532,10 +574,16 @@ class PanchangService
             $jdNextSunrise,
             $sunLon,
             $moonLon,
+            $currentSunLon,
+            $currentMoonLon,
             $tithiNum,
+            (int) $currentTithi['index'],
             $nakIdx,
+            $currentNakIdx,
             $yogaIdx,
+            (int) $currentYoga['index'],
             $karanaIdx,
+            $currentKaranaIdx,
             $tz,
             $sankrantiRashi
         );
@@ -648,6 +696,8 @@ class PanchangService
                 'Lagna.ayanamsa_applied' => 'degree',
             ],
             'Tithi' => $tithi,
+            'Tithi_At_Sunrise' => $tithi,
+            'Current_Tithi_At_Input_Now' => $currentTithi,
             'Vara' => $vara,
             'Nakshatra' => [
                 'name' => $nakName,
@@ -655,7 +705,10 @@ class PanchangService
                 'lord' => $nakLord,
             ],
             'Yoga' => $yoga,
+            'Current_Yoga_At_Input_Now' => $currentYoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
+            'Karana_At_Sunrise' => ['name' => $karanaName, 'index' => $karanaIdx],
+            'Current_Karana_At_Input_Now' => ['name' => $currentKaranaName, 'index' => $currentKaranaIdx],
             'Is_Vishti_Karana' => $this->panchanga->isVishtiKarana($sunLon, $moonLon),
             'Sunrise' => AstroCore::formatTime($relSunrise),
             'Sunset' => AstroCore::formatTime($sunset),
@@ -675,7 +728,7 @@ class PanchangService
                 'civil_day_length_seconds' => $civilDaySeconds,
                 'mean_solar_day_seconds' => 86400.0,
                 'apparent_solar_day_seconds' => $apparentSolarDaySeconds,
-                'solar_noon' => AstroCore::formatDateTime($solarTransits['solar_noon']),
+                'apparent_solar_noon' => AstroCore::formatDateTime($solarTransits['solar_noon']),
                 'solar_midnight' => AstroCore::formatDateTime($solarTransits['solar_midnight']),
             ],
             'Twilight' => [
@@ -694,6 +747,8 @@ class PanchangService
             ],
             'Panchanga' => [
                 'Tithi' => $tithi,
+                'Tithi_At_Sunrise' => $tithi,
+                'Current_Tithi_At_Input_Now' => $currentTithi,
                 'Vara' => $vara,
                 'Nakshatra' => [
                     'name' => $nakName,
@@ -701,7 +756,10 @@ class PanchangService
                     'lord' => $nakLord,
                 ],
                 'Yoga' => $yoga,
+                'Current_Yoga_At_Input_Now' => $currentYoga,
                 'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
+                'Karana_At_Sunrise' => ['name' => $karanaName, 'index' => $karanaIdx],
+                'Current_Karana_At_Input_Now' => ['name' => $currentKaranaName, 'index' => $currentKaranaIdx],
                 'Sunrise' => [
                     'jd' => $jdSunrise,
                     'iso' => AstroCore::formatDateTime($relSunrise),
@@ -757,6 +815,7 @@ class PanchangService
                 'Purnimanta_Index' => $hinduMonth['Purnimanta_Index'],
                 'Calendar_Type' => $calendarType->value,
             ],
+            'Resolution_Context' => $todaySnapshot['Resolution_Context'],
             'Chart_Auxiliary' => [
                 'Sun_Sign' => Rasi::from($currentSunSign)->getName(),
                 'Moon_Sign' => Rasi::from($currentMoonSign)->getName(),
@@ -973,7 +1032,7 @@ class PanchangService
         $nakshatraShool = $includeExtended ? $this->calculateNakshatraShool($jdSunrise, $jdNextSunrise, $tz) : [];
         $dishaShool = $this->calculateDishaShool((int) $vara['index']);
         $rahuVaasa = $this->calculateRahuVaasa((int) $vara['index']);
-        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz);
+        $chandraVaasa = $this->calculateChandraVaasa($jdSunrise, $jdNextSunrise, $tz, $moonLon);
         $shivaVaasa = $this->calculateShivaVaasa($tithiNum, $tithiEndJd, $tz);
         $agniVaasa = $this->calculateAgniVaasa($tithiNum, (int) $vara['index'], $tithiEndJd, $tz);
         $yoginiVaasa = $this->calculateYoginiVaasa($tithiNum);
