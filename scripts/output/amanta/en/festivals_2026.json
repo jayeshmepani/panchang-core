@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T16:55:20+00:00",
+        "generated_at": "2026-05-30T04:24:20+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -17,9 +17,9 @@
         "title": "Festivals 2026 - All festivals for the entire year",
         "year": 2026,
         "calendar_type": "amanta",
-        "festival_day_count": 258,
-        "festival_entry_count": 542,
-        "total_festivals": 399,
+        "festival_day_count": 256,
+        "festival_entry_count": 528,
+        "total_festivals": 391,
         "by_date": {
             "2026-01-01": [
                 {
@@ -39,6 +39,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -54,11 +55,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461041.345344268,
+                        "target_tithi_end_jd": 2461042.2024431536,
+                        "standard_date": "2026-01-01",
+                        "observance_date": "2026-01-01",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -73,7 +111,8 @@
                     ],
                     "aliases": [
                         "Pausha Purnima Vrat",
-                        "Shakambhari Jayanti"
+                        "Shakambhari Jayanti",
+                        "Shakambhari Purnima"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -203,89 +242,6 @@
                         "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Ardra",
                         "nakshatra_name_localized": "Ardra"
-                    }
-                },
-                {
-                    "name": "Shakambhari Purnima",
-                    "description": "Culmination of Shakambhari Navaratri; worship of Goddess Shakambhari who nourished the world with vegetables and fruits",
-                    "deity": "Shakambhari/Devi",
-                    "fasting": false,
-                    "regions": [
-                        "Rajasthan",
-                        "Uttar Pradesh",
-                        "Madhya Pradesh",
-                        "Bihar"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Purnima"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Pausha",
-                            "value_key": "Pausha",
-                            "name": "Pausha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Shakambhari Purnima",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461043.0574338958,
-                        "target_tithi_end_jd": 2461043.9177826326,
-                        "standard_date": "2026-01-03",
-                        "observance_date": "2026-01-03",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Shakambhari Purnima",
-                        "festival_name_localized": "Shakambhari Purnima",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 },
                 {
@@ -1269,6 +1225,83 @@
             ],
             "2026-01-16": [
                 {
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461056.1158239003,
+                        "target_tithi_end_jd": 2461057.2028062968,
+                        "standard_date": "2026-01-16",
+                        "observance_date": "2026-01-16",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -1342,45 +1375,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Shukra Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Friday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 5,
-                            "name": "Friday",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             ],
@@ -3299,21 +3293,15 @@
             ],
             "2026-01-30": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-01-31 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-01-30.",
                     "calculation_basis": {
@@ -3540,48 +3528,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            ],
-            "2026-01-31": [
-                {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             ],
@@ -4308,21 +4254,16 @@
             ],
             "2026-02-14": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shani Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
+                    "deity": "Shiva/Shani",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat",
+                        "Shani Trayodashi"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-02-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-02-14.",
                     "calculation_basis": {
@@ -4556,45 +4497,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
                     }
                 }
             ],
@@ -5844,21 +5746,16 @@
                     }
                 },
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shani Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
+                    "deity": "Shiva/Shani",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat",
+                        "Shani Trayodashi"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-03-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-02-28.",
                     "calculation_basis": {
@@ -6027,45 +5924,6 @@
                         "fixed_date": {
                             "month": 3,
                             "day": 1
-                        }
-                    }
-                },
-                {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
                         }
                     }
                 }
@@ -7634,21 +7492,15 @@
             ],
             "2026-03-16": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-03-17 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-03-16.",
                     "calculation_basis": {
@@ -7873,45 +7725,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
                     }
                 }
             ],
@@ -10460,21 +10273,15 @@
             ],
             "2026-03-30": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-03-31 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-03-30.",
                     "calculation_basis": {
@@ -10623,45 +10430,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
                     }
                 },
                 {
@@ -11844,6 +11612,83 @@
                     }
                 },
                 {
+                    "name": "Budha Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Wednesday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461145.279608284,
+                        "target_tithi_end_jd": 2461146.2093802392,
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -11917,45 +11762,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 },
                 {
@@ -13956,21 +13762,15 @@
             ],
             "2026-04-28": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Bhauma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Tuesday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-04-29 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-28.",
                     "calculation_basis": {
@@ -14121,45 +13921,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             ],
@@ -14964,21 +14725,15 @@
             ],
             "2026-05-14": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Guru Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Thursday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-05-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-05-14.",
                     "calculation_basis": {
@@ -15306,45 +15061,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Shukra Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Friday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 5,
-                            "name": "Friday",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             ],
@@ -17717,6 +17433,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -17732,11 +17449,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461218.202321765,
+                        "target_tithi_end_jd": 2461219.3002656987,
+                        "standard_date": "2026-06-27",
+                        "observance_date": "2026-06-27",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -18428,6 +18182,83 @@
             ],
             "2026-07-12": [
                 {
+                    "name": "Ravi Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Sunday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461233.357336374,
+                        "target_tithi_end_jd": 2461234.208544054,
+                        "standard_date": "2026-07-12",
+                        "observance_date": "2026-07-12",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at sunrise",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "target tithi at sunrise"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at sunrise",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "target tithi at sunrise"
+                    }
+                },
+                {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -18501,45 +18332,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
                     }
                 }
             ],
@@ -20537,21 +20329,15 @@
                     }
                 },
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Ravi Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Sunday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-07-26.",
                     "calculation_basis": {
@@ -20700,45 +20486,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Soma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Monday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 1,
-                            "name": "Monday",
-                            "english_name": "Monday"
-                        }
                     }
                 }
             ],
@@ -21592,21 +21339,15 @@
             ],
             "2026-08-10": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -23123,6 +22864,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -23138,11 +22880,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461277.534685362,
+                        "target_tithi_end_jd": 2461278.6028849967,
+                        "standard_date": "2026-08-25",
+                        "observance_date": "2026-08-25",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -23201,45 +22980,6 @@
                         "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Shravana",
                         "nakshatra_name_localized": "Shravana"
-                    }
-                },
-                {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             ],
@@ -24925,21 +24665,15 @@
             ],
             "2026-09-08": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Bhauma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Tuesday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-09-09 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-09-08.",
                     "calculation_basis": {
@@ -25164,45 +24898,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             ],
@@ -27583,6 +27278,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -27598,11 +27294,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461307.2219665684,
+                        "target_tithi_end_jd": 2461308.241331784,
+                        "standard_date": "2026-09-24",
+                        "observance_date": "2026-09-24",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -28811,6 +28544,83 @@
             ],
             "2026-10-08": [
                 {
+                    "name": "Guru Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Thursday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461321.240859016,
+                        "target_tithi_end_jd": 2461322.1988327596,
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -28884,45 +28694,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Guru Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Thursday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
                     }
                 },
                 {
@@ -31764,21 +31535,15 @@
             ],
             "2026-10-23": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-10-24 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-10-23.",
                     "calculation_basis": {
@@ -31845,48 +31610,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            ],
-            "2026-10-24": [
-                {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             ],
@@ -33156,21 +32879,15 @@
             ],
             "2026-11-06": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-11-07 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-11-06.",
                     "calculation_basis": {
@@ -33721,46 +33438,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             ],
@@ -36197,6 +35874,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -36212,11 +35890,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461366.4762195228,
+                        "target_tithi_end_jd": 2461367.3793976093,
+                        "standard_date": "2026-11-22",
+                        "observance_date": "2026-11-22",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -37495,6 +37210,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -37510,11 +37226,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461380.307097993,
+                        "target_tithi_end_jd": 2461381.3697225684,
+                        "standard_date": "2026-12-06",
+                        "observance_date": "2026-12-06",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -38655,21 +38408,15 @@
             ],
             "2026-12-21": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-12-22 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-12-21.",
                     "calculation_basis": {
@@ -38820,45 +38567,6 @@
                 }
             ],
             "2026-12-22": [
-                {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
-                    }
-                },
                 {
                     "name": "Masik Karthigai",
                     "description": "Monthly Krittika Nakshatra fasting for Lord Murugan",
@@ -39487,6 +39195,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -39502,11 +39211,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461041.345344268,
+                        "target_tithi_end_jd": 2461042.2024431536,
+                        "standard_date": "2026-01-01",
+                        "observance_date": "2026-01-01",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -39522,7 +39268,8 @@
                     ],
                     "aliases": [
                         "Pausha Purnima Vrat",
-                        "Shakambhari Jayanti"
+                        "Shakambhari Jayanti",
+                        "Shakambhari Purnima"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -39655,92 +39402,6 @@
                         "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Ardra",
                         "nakshatra_name_localized": "Ardra"
-                    }
-                }
-            },
-            {
-                "date": "2026-01-03",
-                "festival": {
-                    "name": "Shakambhari Purnima",
-                    "description": "Culmination of Shakambhari Navaratri; worship of Goddess Shakambhari who nourished the world with vegetables and fruits",
-                    "deity": "Shakambhari/Devi",
-                    "fasting": false,
-                    "regions": [
-                        "Rajasthan",
-                        "Uttar Pradesh",
-                        "Madhya Pradesh",
-                        "Bihar"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Shukla Paksha (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Purnima"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Pausha",
-                            "value_key": "Pausha",
-                            "name": "Pausha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Shakambhari Purnima",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461043.0574338958,
-                        "target_tithi_end_jd": 2461043.9177826326,
-                        "standard_date": "2026-01-03",
-                        "observance_date": "2026-01-03",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Shakambhari Purnima",
-                        "festival_name_localized": "Shakambhari Purnima",
-                        "paksha_name": "Shukla Paksha (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -40702,6 +40363,86 @@
             {
                 "date": "2026-01-16",
                 "festival": {
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461056.1158239003,
+                        "target_tithi_end_jd": 2461057.2028062968,
+                        "standard_date": "2026-01-16",
+                        "observance_date": "2026-01-16",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-01-16",
+                "festival": {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -40775,48 +40516,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-01-16",
-                "festival": {
-                    "name": "Shukra Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Friday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 5,
-                            "name": "Friday",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             },
@@ -42787,21 +42486,15 @@
             {
                 "date": "2026-01-30",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-01-31 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-01-30.",
                     "calculation_basis": {
@@ -43034,49 +42727,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-01-31",
-                "festival": {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             },
@@ -43822,21 +43472,16 @@
             {
                 "date": "2026-02-14",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shani Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
+                    "deity": "Shiva/Shani",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat",
+                        "Shani Trayodashi"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-02-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-02-14.",
                     "calculation_basis": {
@@ -44074,48 +43719,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-02-15",
-                "festival": {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
                     }
                 }
             },
@@ -45399,21 +45002,16 @@
             {
                 "date": "2026-02-28",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shani Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
+                    "deity": "Shiva/Shani",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat",
+                        "Shani Trayodashi"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-03-01 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-02-28.",
                     "calculation_basis": {
@@ -45586,48 +45184,6 @@
                         "fixed_date": {
                             "month": 3,
                             "day": 1
-                        }
-                    }
-                }
-            },
-            {
-                "date": "2026-03-01",
-                "festival": {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
                         }
                     }
                 }
@@ -47238,21 +46794,15 @@
             {
                 "date": "2026-03-16",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-03-17 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-03-16.",
                     "calculation_basis": {
@@ -47481,48 +47031,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-17",
-                "festival": {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
                     }
                 }
             },
@@ -50146,21 +49654,15 @@
             {
                 "date": "2026-03-30",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-03-31 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-03-30.",
                     "calculation_basis": {
@@ -50310,48 +49812,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-03-31",
-                "festival": {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
                     }
                 }
             },
@@ -51580,6 +51040,86 @@
             {
                 "date": "2026-04-15",
                 "festival": {
+                    "name": "Budha Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Wednesday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461145.279608284,
+                        "target_tithi_end_jd": 2461146.2093802392,
+                        "standard_date": "2026-04-15",
+                        "observance_date": "2026-04-15",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-04-15",
+                "festival": {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -51653,48 +51193,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-04-15",
-                "festival": {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             },
@@ -53450,21 +52948,15 @@
             {
                 "date": "2026-04-28",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Bhauma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Tuesday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-04-29 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-28.",
                     "calculation_basis": {
@@ -53616,48 +53108,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-04-29",
-                "festival": {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             },
@@ -54479,21 +53929,15 @@
             {
                 "date": "2026-05-14",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Guru Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Thursday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-05-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-05-14.",
                     "calculation_basis": {
@@ -54831,48 +54275,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-05-15",
-                "festival": {
-                    "name": "Shukra Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Friday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 5,
-                            "name": "Friday",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             },
@@ -57240,6 +56642,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -57255,11 +56658,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461218.202321765,
+                        "target_tithi_end_jd": 2461219.3002656987,
+                        "standard_date": "2026-06-27",
+                        "observance_date": "2026-06-27",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -57969,6 +57409,86 @@
             {
                 "date": "2026-07-12",
                 "festival": {
+                    "name": "Ravi Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Sunday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461233.357336374,
+                        "target_tithi_end_jd": 2461234.208544054,
+                        "standard_date": "2026-07-12",
+                        "observance_date": "2026-07-12",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at sunrise",
+                            "winning_score": 700,
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "target tithi at sunrise"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at sunrise",
+                        "winning_score": 700,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "target tithi at sunrise"
+                    }
+                }
+            },
+            {
+                "date": "2026-07-12",
+                "festival": {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -58042,48 +57562,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-07-12",
-                "festival": {
-                    "name": "Ravi Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Sunday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
                     }
                 }
             },
@@ -60141,21 +59619,15 @@
             {
                 "date": "2026-07-26",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Ravi Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Sunday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-07-26.",
                     "calculation_basis": {
@@ -60305,48 +59777,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-07-27",
-                "festival": {
-                    "name": "Soma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Monday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 1,
-                            "name": "Monday",
-                            "english_name": "Monday"
-                        }
                     }
                 }
             },
@@ -61226,21 +60656,15 @@
             {
                 "date": "2026-08-10",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -62796,6 +62220,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -62811,11 +62236,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461277.534685362,
+                        "target_tithi_end_jd": 2461278.6028849967,
+                        "standard_date": "2026-08-25",
+                        "observance_date": "2026-08-25",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -62875,48 +62337,6 @@
                         "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Shravana",
                         "nakshatra_name_localized": "Shravana"
-                    }
-                }
-            },
-            {
-                "date": "2026-08-26",
-                "festival": {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             },
@@ -64652,21 +64072,15 @@
             {
                 "date": "2026-09-08",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Bhauma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Tuesday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-09-09 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-09-08.",
                     "calculation_basis": {
@@ -64895,48 +64309,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-09-09",
-                "festival": {
-                    "name": "Budha Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Wednesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 3,
-                            "name": "Wednesday",
-                            "english_name": "Wednesday"
-                        }
                     }
                 }
             },
@@ -67389,6 +66761,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -67404,11 +66777,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461307.2219665684,
+                        "target_tithi_end_jd": 2461308.241331784,
+                        "standard_date": "2026-09-24",
+                        "observance_date": "2026-09-24",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -68647,6 +68057,86 @@
             {
                 "date": "2026-10-08",
                 "festival": {
+                    "name": "Guru Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Thursday",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pradosh Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Both",
+                            "paksha_name": "Both",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Shukla Trayodashi"
+                            ]
+                        },
+                        "paksha": "Both",
+                        "paksha_name": "Both",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461321.240859016,
+                        "target_tithi_end_jd": 2461322.1988327596,
+                        "standard_date": "2026-10-08",
+                        "observance_date": "2026-10-08",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            },
+            {
+                "date": "2026-10-08",
+                "festival": {
                     "name": "Masik Shivaratri",
                     "description": "Monthly night fasting dedicated to Lord Shiva",
                     "deity": "Shiva",
@@ -68720,48 +68210,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-08",
-                "festival": {
-                    "name": "Guru Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Thursday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
                     }
                 }
             },
@@ -71631,21 +71079,15 @@
             {
                 "date": "2026-10-23",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-10-24 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-10-23.",
                     "calculation_basis": {
@@ -71712,49 +71154,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-10-24",
-                "festival": {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             },
@@ -73057,21 +72456,15 @@
             {
                 "date": "2026-11-06",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Shukra Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Friday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-11-07 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-11-06.",
                     "calculation_basis": {
@@ -73638,49 +73031,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-11-07",
-                "festival": {
-                    "name": "Shani Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani",
-                    "deity": "Shiva/Shani",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat",
-                        "Shani Trayodashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 6,
-                            "name": "Saturday",
-                            "english_name": "Saturday"
-                        }
                     }
                 }
             },
@@ -76190,6 +75540,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -76205,11 +75556,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461366.4762195228,
+                        "target_tithi_end_jd": 2461367.3793976093,
+                        "standard_date": "2026-11-22",
+                        "observance_date": "2026-11-22",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Shukla Paksha (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -77523,6 +76911,7 @@
                         "type_name": "tithi",
                         "basis": "tithi",
                         "basis_name": "tithi",
+                        "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 13
@@ -77538,11 +76927,48 @@
                         },
                         "paksha": "Both",
                         "paksha_name": "Both",
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Pradosh Vrat",
+                        "required_tithi": 13,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461380.307097993,
+                        "target_tithi_end_jd": 2461381.3697225684,
+                        "standard_date": "2026-12-06",
+                        "observance_date": "2026-12-06",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pradosh Vrat",
+                        "festival_name_localized": "Pradosh Vrat",
+                        "paksha_name": "Krishna Paksha (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             },
@@ -78709,21 +78135,15 @@
             {
                 "date": "2026-12-21",
                 "festival": {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Soma Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Monday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Shukla Paksha (waxing) tithi 13 falls on 2026-12-22 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-12-21.",
                     "calculation_basis": {
@@ -78873,48 +78293,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                }
-            },
-            {
-                "date": "2026-12-22",
-                "festival": {
-                    "name": "Bhauma Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Tuesday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 2,
-                            "name": "Tuesday",
-                            "english_name": "Tuesday"
-                        }
                     }
                 }
             },

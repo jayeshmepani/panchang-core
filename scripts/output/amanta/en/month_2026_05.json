@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T16:55:32+00:00",
+        "generated_at": "2026-05-30T04:24:30+00:00",
         "year": 2026,
         "month": 5,
         "calendar_type": "amanta",
@@ -3352,21 +3352,15 @@
             },
             "festivals": [
                 {
-                    "name": "Pradosh Vrat",
-                    "description": "Bi-monthly evening fasting dedicated to Lord Shiva and Parvati",
-                    "deity": "Shiva/Parvati",
+                    "name": "Guru Pradosh Vrat",
+                    "description": "Pradosh Vrat falling on a Thursday",
+                    "deity": "Shiva",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Guru Pradosh Vrat",
-                        "Soma Pradosh Vrat",
-                        "Shani Pradosh Vrat",
-                        "Bhauma Pradosh Vrat",
-                        "Ravi Pradosh Vrat",
-                        "Budha Pradosh Vrat",
-                        "Shukra Pradosh Vrat"
+                        "Pradosh Vrat"
                     ],
                     "observance_note": "Exception: Standard Krishna Paksha (waning) tithi 13 falls on 2026-05-15 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-05-14.",
                     "calculation_basis": {
@@ -3901,45 +3895,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Shukra Pradosh Vrat",
-                    "description": "Pradosh Vrat falling on a Friday",
-                    "deity": "Shiva",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pradosh Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "Both",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "Shukla Trayodashi"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "Both",
-                        "weekday": {
-                            "number": 5,
-                            "name": "Friday",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             ],

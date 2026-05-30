@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T16:57:13+00:00",
+        "generated_at": "2026-05-30T04:25:57+00:00",
         "year": 2026,
         "month": 5,
         "calendar_type": "purnimanta",
@@ -2798,7 +2798,7 @@
             "festivals": [
                 {
                     "name": "हनुमान जयंती (तेलुगु)",
-                    "description": "41 दिवसीय हनुमान दीक्षा समापन; मुख्य रूप से आंध्र और तेलंगाना में मनाया जाता है",
+                    "description": "४१ दिवसीय हनुमान दीक्षा समापन; मुख्य रूप से आंध्र और तेलंगाना में मनाया जाता है",
                     "deity": "हनुमान",
                     "fasting": false,
                     "regions": [
@@ -3352,21 +3352,15 @@
             },
             "festivals": [
                 {
-                    "name": "प्रदोष व्रत",
-                    "description": "भगवान शिव और पार्वती को समर्पित द्वैमासिक संध्याकालीन व्रत",
-                    "deity": "शिव/पार्वती",
+                    "name": "गुरु प्रदोष व्रत",
+                    "description": "गुरुवार को पड़ने वाला प्रदोष व्रत",
+                    "deity": "शिव",
                     "fasting": true,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "aliases": [
-                        "गुरु प्रदोष व्रत",
-                        "सोम प्रदोष व्रत",
-                        "शनि प्रदोष व्रत",
-                        "भौम प्रदोष व्रत",
-                        "रवि प्रदोष व्रत",
-                        "बुध प्रदोष व्रत",
-                        "शुक्र प्रदोष व्रत"
+                        "प्रदोष व्रत"
                     ],
                     "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 13 सूर्योदय पर 2026-05-15 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-05-14 को मनाई जाती है।",
                     "calculation_basis": {
@@ -3901,45 +3895,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "शुक्र प्रदोष व्रत",
-                    "description": "शुक्रवार को पड़ने वाला प्रदोष व्रत",
-                    "deity": "शिव",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [
-                        "प्रदोष व्रत"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "दोनों",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "शुक्ल त्रयोदशी"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "दोनों",
-                        "weekday": {
-                            "number": 5,
-                            "name": "शुक्रवार",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             ],

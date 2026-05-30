@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-29T16:57:51+00:00",
+        "generated_at": "2026-05-30T04:26:20+00:00",
         "year": 2026,
         "month": 5,
         "calendar_type": "purnimanta",
@@ -3352,21 +3352,15 @@
             },
             "festivals": [
                 {
-                    "name": "પ્રદોષ વ્રત",
-                    "description": "ભગવાન શિવ અને પાર્વતીને સમર્પિત દ્વિમાસિક સંધ્યાકાલીન વ્રત",
-                    "deity": "શિવ/પાર્વતી",
+                    "name": "ગુરૂ પ્રદોષ વ્રત",
+                    "description": "ગુરૂવારે આવતું પ્રદોષ વ્રત",
+                    "deity": "શિવ",
                     "fasting": true,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
-                        "ગુરૂ પ્રદોષ વ્રત",
-                        "સોમ પ્રદોષ વ્રત",
-                        "શનિ પ્રદોષ વ્રત",
-                        "ભૌમ પ્રદોષ વ્રત",
-                        "રવિ પ્રદોષ વ્રત",
-                        "બુધ પ્રદોષ વ્રત",
-                        "શુક્ર પ્રદોષ વ્રત"
+                        "પ્રદોષ વ્રત"
                     ],
                     "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 13 સૂર્યોદયે 2026-05-15 પર આવે છે, પરંતુ પ્રદોષ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-05-14 પર ઉજવાય છે.",
                     "calculation_basis": {
@@ -3901,45 +3895,6 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "શુક્ર પ્રદોષ વ્રત",
-                    "description": "શુક્રવારે આવતું પ્રદોષ વ્રત",
-                    "deity": "શિવ",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "પ્રદોષ વ્રત"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "tithi": {
-                            "numbers": [
-                                13
-                            ],
-                            "paksha": "Both",
-                            "paksha_name": "બંને",
-                            "absolute_numbers": [
-                                13
-                            ],
-                            "names": [
-                                "સુદ તેરસ"
-                            ]
-                        },
-                        "paksha": "Both",
-                        "paksha_name": "બંને",
-                        "weekday": {
-                            "number": 5,
-                            "name": "શુક્રવાર",
-                            "english_name": "Friday"
-                        }
                     }
                 }
             ],

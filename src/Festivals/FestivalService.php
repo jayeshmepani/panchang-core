@@ -1138,7 +1138,6 @@ class FestivalService
             'resolver' => 'classical',
             'paksha' => 'Both',
             'tithi' => 13,
-            'aliases' => ['Guru Pradosh Vrat', 'Soma Pradosh Vrat', 'Shani Pradosh Vrat', 'Bhauma Pradosh Vrat', 'Ravi Pradosh Vrat', 'Budha Pradosh Vrat', 'Shukra Pradosh Vrat'],
             'description' => 'Bi-monthly evening fasting dedicated to Lord Shiva and Parvati',
             'deity' => 'Shiva/Parvati',
             'regions' => ['Pan-India'],
@@ -2261,7 +2260,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Pausha',
             'month_purnimanta' => 'Pausha',
-            'aliases' => ['Pausha Purnima Vrat', 'Shakambhari Jayanti'],
+            'aliases' => ['Pausha Purnima Vrat', 'Shakambhari Jayanti', 'Shakambhari Purnima'],
             'description' => 'Auspicious day for Shakambhari Jayanti and holy dip',
             'deity' => 'Sun/Moon',
             'fasting' => true,
@@ -3937,17 +3936,7 @@ class FestivalService
             'fasting' => true,
             'karmakala_type' => 'sunrise',
         ],
-        'Shakambhari Purnima' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'month_amanta' => 'Pausha',
-            'month_purnimanta' => 'Pausha',
-            'description' => 'Culmination of Shakambhari Navaratri; worship of Goddess Shakambhari who nourished the world with vegetables and fruits',
-            'deity' => 'Shakambhari/Devi',
-            'regions' => ['Rajasthan', 'Uttar Pradesh', 'Madhya Pradesh', 'Bihar'],
-        ],
+
         'Thai Poosam' => [
             'nakshatra_only' => true,
             'nakshatra' => 'Pushya',
@@ -4152,76 +4141,7 @@ class FestivalService
             'fasting' => true,
             'adhika_only' => true,
         ],
-        'Ravi Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 0,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Sunday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Soma Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 1,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Monday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Bhauma Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 2,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Tuesday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Budha Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 3,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Wednesday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Guru Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 4,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Thursday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Shukra Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 5,
-            'aliases' => ['Pradosh Vrat'],
-            'description' => 'Pradosh Vrat falling on a Friday',
-            'deity' => 'Shiva',
-            'fasting' => true,
-        ],
-        'Shani Pradosh Vrat' => [
-            'type' => 'tithi',
-            'paksha' => 'Both',
-            'tithi' => 13,
-            'weekday' => 6,
-            'aliases' => ['Pradosh Vrat', 'Shani Trayodashi'],
-            'description' => 'Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani',
-            'deity' => 'Shiva/Shani',
-            'fasting' => true,
-        ],
+
         'Skanda Sashti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -5357,6 +5277,39 @@ class FestivalService
      */
     public function buildFestivalPayload(string $name, array $rules, ?array $resolved = null): array
     {
+        if ($name === 'Pradosh Vrat' && isset($resolved['observance_date'])) {
+            $dateObj = CarbonImmutable::parse($resolved['observance_date']);
+            $dayOfWeek = $dateObj->dayOfWeek; // 0 for Sunday, 6 for Saturday
+
+            $names = [
+                0 => 'Ravi Pradosh Vrat',
+                1 => 'Soma Pradosh Vrat',
+                2 => 'Bhauma Pradosh Vrat',
+                3 => 'Budha Pradosh Vrat',
+                4 => 'Guru Pradosh Vrat',
+                5 => 'Shukra Pradosh Vrat',
+                6 => 'Shani Pradosh Vrat',
+            ];
+
+            $descriptions = [
+                0 => 'Pradosh Vrat falling on a Sunday',
+                1 => 'Pradosh Vrat falling on a Monday',
+                2 => 'Pradosh Vrat falling on a Tuesday',
+                3 => 'Pradosh Vrat falling on a Wednesday',
+                4 => 'Pradosh Vrat falling on a Thursday',
+                5 => 'Pradosh Vrat falling on a Friday',
+                6 => 'Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani',
+            ];
+
+            $name = $names[$dayOfWeek] ?? 'Pradosh Vrat';
+            $rules['description'] = $descriptions[$dayOfWeek] ?? ($rules['description'] ?? '');
+            $rules['deity'] = ($dayOfWeek === 6) ? 'Shiva/Shani' : 'Shiva';
+            $rules['aliases'] = ['Pradosh Vrat'];
+            if ($dayOfWeek === 6) {
+                $rules['aliases'][] = 'Shani Trayodashi';
+            }
+        }
+
         $regions = $rules['regions'] ?? ['Pan-India'];
         $aliases = array_values(array_map(
             static fn (string $alias): string => Localization::translate('Festival', $alias),
