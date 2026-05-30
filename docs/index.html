@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 399 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 391 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -483,7 +483,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>399 Festival Definitions</h3>
+              <h3>391 Festival Definitions</h3>
               <p>Comprehensive library of festival definitions covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -1942,7 +1942,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 399 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 391 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2063,7 +2063,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified festival catalog currently contains <code>399</code> definitions after merging true
+              <li>The verified festival catalog currently contains <code>391</code> definitions after merging true
                 alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
@@ -3980,9 +3980,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">7.0.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Regional Localization and Festival calculation improvements</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">A backward-compatible update modifying 2 core PHP files to consolidate festival definitions (such as Shakambhari Purnima and Pradosh Vrat) and standardise Hindi/Gujarati translation formatting.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">7.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Panchang Accuracy, Festival Expansion, and Output Improvements</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Panchang Accuracy, Festival Expansion, and Output Improvements</span></div>
                 <p class="release-note">Major release focused on improving Panchang clarity, Muhurta accuracy, festival coverage, eclipse handling, and overall timing precision.</p>
               </div>
             </li>
@@ -4079,6 +4086,33 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v7.0.1 Upgrade & Release Notes</h3>
+          <p class="lead">A backward-compatible update modifying 2 core PHP files (<code>Localization.php</code> and <code>FestivalService.php</code>) to refine regional translation formatting and consolidate festival calculation rules.</p>
+
+          <div class="info-box" style="border-inline-start-color: var(--color-success); background: rgba(34, 197, 94, 0.05);">
+            <h4 style="color: var(--color-success); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes</h4>
+            <p><strong>None.</strong> v7.0.1 is fully backward-compatible and serves as a direct drop-in replacement for v7.0.0. No calculation rules or API signatures were changed.</p>
+          </div>
+
+          <h4>Core Updates</h4>
+          <ul>
+            <li><strong>Localization Formatting (<code>Localization.php</code>):</strong>
+              <ul>
+                <li>Standardised Hindi standard names, descriptions, deities, and sources to use native Devanagri numerals (<code>१, २, ३...</code>) while keeping dynamic format parameters intact.</li>
+                <li>Standardised Gujarati translation names and descriptions to use native Gujarati numerals (<code>૧, ૨, ૩...</code>).</li>
+                <li>Added missing Hindi (<code>पोंगल</code>) and Gujarati (<code>પોંગલ</code>) translations for Pongal.</li>
+                <li>Ensured clean, unique translation key registration across all supported locales.</li>
+              </ul>
+            </li>
+            <li><strong>Festival Calculations (<code>FestivalService.php</code>):</strong>
+              <ul>
+                <li>Consolidated <code>Shakambhari Purnima</code> under <code>Pausha Purnima</code>.</li>
+                <li>Refactored <code>Pradosh Vrat</code> to resolve dynamically based on the weekday (e.g., calculating names like <em>Shani Pradosh Vrat</em>, weekday-specific descriptions, and deities dynamically) instead of hardcoding multiple redundant entries.</li>
+                <li>De-duplicated the total packaged festival definitions count from <code>399</code> to exactly <code>391</code>.</li>
+              </ul>
+            </li>
+          </ul>
+
           <h3>v7.0.0 Upgrade & Release Notes</h3>
           <p class="lead">Major release focused on improving Panchang clarity, Muhurta accuracy, festival coverage, eclipse handling, and overall timing precision. Several areas now follow more precise Panchang conventions, and many outputs have clearer meanings and improved consistency.</p>
 
@@ -4118,7 +4152,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
             <li><strong>Festival Expansion:</strong>
               <ul>
-                <li>Expanded built-in festival coverage from <strong>237 festivals to 399 festivals</strong> with broader regional and traditional observance support.</li>
+                <li>Expanded built-in festival coverage from <strong>237 festivals to 391 festivals</strong> with broader regional and traditional observance support.</li>
                 <li>Added support for many regional festival naming conventions and aliases.</li>
                 <li>Improved handling for regional observances such as Uttarayan, Pongal, Maghi, Til Sankranti, Khichdi, Ghughuti, Sakraat, Thiruvadhirai, Arudra Darshanam, and many more.</li>
                 <li>Improved handling for weekday-specific Pradosh observances.</li>
