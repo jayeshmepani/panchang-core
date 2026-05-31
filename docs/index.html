@@ -3970,7 +3970,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the staged v7.0.0 API-contract release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v7.0.2 patch release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
@@ -3980,9 +3980,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">7.0.2</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Brahma Muhurta Calculation Fix</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Fixes a before-sunrise Brahma Muhurta calculation issue that could stop daily Panchang JSON generation.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">7.0.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Regional Localization and Festival calculation improvements</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Regional Localization and Festival calculation improvements</span></div>
                 <p class="release-note">A backward-compatible update modifying 2 core PHP files to consolidate festival definitions (such as Shakambhari Purnima and Pradosh Vrat) and standardise Hindi/Gujarati translation formatting.</p>
               </div>
             </li>
@@ -4085,6 +4092,20 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v7.0.2 Upgrade & Release Notes</h3>
+          <p class="lead">A backward-compatible patch release that fixes a Brahma Muhurta calculation issue during daily Panchang generation.</p>
+
+          <div class="info-box" style="border-inline-start-color: var(--color-success); background: rgba(34, 197, 94, 0.05);">
+            <h4 style="color: var(--color-success); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes</h4>
+            <p><strong>None.</strong> v7.0.2 is a patch release and can be used as a direct replacement for v7.0.1.</p>
+          </div>
+
+          <h4>Fixes</h4>
+          <ul>
+            <li>Fixed a Brahma Muhurta calculation issue that could cause daily Panchang generation to fail before sunrise.</li>
+            <li>The previous sunset is now matched to the actual sunrise being used, preventing invalid night-duration calculations during JSON regeneration.</li>
+          </ul>
 
           <h3>v7.0.1 Upgrade & Release Notes</h3>
           <p class="lead">A backward-compatible update modifying 2 core PHP files (<code>Localization.php</code> and <code>FestivalService.php</code>) to refine regional translation formatting and consolidate festival calculation rules.</p>
