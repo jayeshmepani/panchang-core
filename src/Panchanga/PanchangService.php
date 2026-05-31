@@ -290,11 +290,13 @@ class PanchangService
         ];
 
         $nextDay = $date->addDay();
-        $previousDay = $date->subDay();
+        // Ensure previous sunset is calculated relative to the sunrise actually used
+        // (which may be the previous day's sunrise when calculation time is before sunrise).
+        $previousForSunset = $relSunrise->subDay();
         $previousBirth = [
-            'year' => $previousDay->year,
-            'month' => $previousDay->month,
-            'day' => $previousDay->day,
+            'year' => $previousForSunset->year,
+            'month' => $previousForSunset->month,
+            'day' => $previousForSunset->day,
             'hour' => 0,
             'minute' => 0,
             'second' => 0,
