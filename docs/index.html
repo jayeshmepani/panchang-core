@@ -1124,9 +1124,9 @@ $ekadashi     = $snapshot['Ekadashi_Observance'];</code></pre>
 $nakshatra = Nakshatra::fromLongitude(125.3); // Magha
 
 echo $nakshatra->getName();          // "Magha"
-echo $nakshatra->getDeity();         // "Pitṛs"
-echo $nakshatra->getRulingPlanet(); // "Sun"
-echo $nakshatra->getSymbol();       // "Royal Throne"
+echo $nakshatra->getDeity();         // "Pitris"
+echo $nakshatra->getRulingPlanet();  // "Ketu"
+echo $nakshatra->getSymbol();        // "Royal Throne"
 
 // Get pada (quarter)
 $pada = Nakshatra::getPada(125.3);    // 2
@@ -1240,17 +1240,21 @@ echo $range['start'] . "° - " . $range['end'] . "°\n"; // 0° - 13.333°</code
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                 <rect x="8" y="2" width="8" height="4" rx="1" />
               </svg>Quick Usage</h3>
-            <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+            <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Paksha;
+use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 
 // Get tithi by index (1-30)
-$tithi = Tithi::from(12); // Shukla Dwadashi
+$tithi = Tithi::from(12); // enum case: ShuklaDwadashi
 
-echo $tithi->getName();            // "Dwadashi"
+echo $tithi->getName();            // "Twelfth Lunar Day of Bright Half"
+echo $tithi->getName('hi');        // "शुक्ल द्वादशी"
+echo $tithi->getName('gu');        // "સુદ બારસ"
 echo $tithi->getPaksha()->name;    // "Shukla"
+echo $tithi->getPaksha()->getName(); // "Bright Half (waxing)"
 
 // Check paksha
 if ($tithi->getPaksha() === Paksha::Shukla) {
-    echo "Waxing moon phase\n";
+    echo "Waxing moon phase\n";    // Waxing moon phase
 }
 
 // Get normalized index (1-15 for both pakshas)
@@ -1295,10 +1299,9 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
             <h3>Methods</h3>
             <div class="method">
               <h4 class="method-name">getName()</h4>
-              <p class="method-description">Get Sanskrit name</p>
+              <p class="method-description">Get localized tithi name</p>
               <div class="method-signature"><code>public function getName(): string</code></div>
-              <div class="method-returns"><strong>Returns:</strong><code>string</code>— Name (e.g., 'Shukla
-                Pratipada', 'Purnima')</div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code>— Name (e.g., 'First Lunar Day of Bright Half', 'Full Moon')</div>
             </div>
             <div class="method">
               <h4 class="method-name">getPaksha()</h4>
@@ -1376,8 +1379,10 @@ echo $tithi->getNormalizedIndex(); // 12</code></pre>
                 <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 
 $paksha = Paksha::Shukla;
-echo $paksha->getName();        // "Shukla Paksha" (using configured locale)
-echo $paksha->getName('hi');    // "शुक्ल पक्ष"</code></pre>
+echo $paksha->getName();        // "Bright Half (waxing)"
+echo $paksha->getName('hi');    // "शुक्ल"
+echo $paksha->getName('gu');    // "શુક્લ"
+echo $paksha->getDescription(); // "Waxing moon fortnight (bright half)"</code></pre>
               </div>
             </div>
             <div class="method">
@@ -1432,6 +1437,23 @@ echo Paksha::Krishna->getRawName(); // "Krishna"</code></pre>
           <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Yoga</code></p>
           <div class="enum-info">
             <p>Represents the 27 yogas. Each yoga is completed when the Sun-Moon longitude sum advances by 13°20'.</p>
+          </div>
+          <div class="info-box">
+            <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" />
+              </svg>Quick Usage</h3>
+            <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Yoga;
+
+$yoga = Yoga::fromLongitudes(10.0, 20.0); // Ayushman
+
+echo $yoga->getName();                    // "Ayushman"
+echo $yoga->getName('hi');                // "आयुष्मान"
+echo $yoga->getName('gu');                // "આયુષ્માન"
+
+$remaining = Yoga::getFractionRemaining(10.0, 20.0);
+echo round($remaining, 2);                // 0.75</code></pre>
           </div>
           <div class="enum-cases">
             <h3>Cases</h3>
@@ -1506,6 +1528,24 @@ echo Paksha::Krishna->getRawName(); // "Krishna"</code></pre>
           <div class="enum-info">
             <p>Represents the 11 karanas (half lunar days). Each tithi is divided into two karanas. <strong>Index values: 0-10</strong> (normalized in v4.0 from 1-11).</p>
           </div>
+          <div class="info-box">
+            <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" />
+              </svg>Quick Usage</h3>
+            <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Karana;
+
+$karana = Karana::fromTithi(12, 0.25); // Bava
+
+echo $karana->getName();               // "Bava"
+echo $karana->getName('hi');           // "बव"
+echo $karana->getName('gu');           // "બવ"
+
+[$name, $index] = Karana::getFromLongitudes(10.0, 80.0);
+echo $name;                            // "Taitila"
+echo $index;                           // 12</code></pre>
+          </div>
           <div class="enum-cases">
             <h3>Cases</h3>
             <div class="case-grid">
@@ -1562,6 +1602,21 @@ echo Paksha::Krishna->getRawName(); // "Krishna"</code></pre>
           <p class="enum-type">Enum: <code>JayeshMepani\PanchangCore\Core\Enums\Vara</code></p>
           <div class="enum-info">
             <p>Represents the 7 weekdays, each ruled by a planet.</p>
+          </div>
+          <div class="info-box">
+            <h3><svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" />
+              </svg>Quick Usage</h3>
+            <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Enums\Vara;
+
+$vara = Vara::fromDayOfWeek(2); // Tuesday
+
+echo $vara->getName();          // "Tuesday"
+echo $vara->getName('hi');      // "मंगलवार"
+echo $vara->getName('gu');      // "મંગળવાર"
+echo $vara->getRulingPlanet();  // "Maṅgala (Mars)"</code></pre>
           </div>
           <div class="enum-cases">
             <h3>Cases</h3>
@@ -1897,6 +1952,84 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
             </div>
 
             <div class="method">
+              <h4 class="method-name">getSelectedDetails()</h4>
+              <p class="method-description">Calculate only requested day-detail sections instead of building the full <code>getDayDetails()</code> payload in memory. Returned section values are parity-tested against the original full output.</p>
+              <div class="method-signature">
+                <code>public function getSelectedDetails(CarbonImmutable $date, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta, array $options=[]): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable daily sections:</strong>
+                <ul>
+                  <li><code>Basic_Details</code>, <code>Panchanga</code>, <code>Special_Yogas</code>, <code>Anandadi_Yoga</code>, <code>Amritadi_Yoga</code>, <code>Panchak</code></li>
+                  <li><code>Maitreya_Yoga</code>, <code>Gajachchhaya_Yoga</code>, <code>Nakshatra_Shool</code>, <code>Disha_Shool</code></li>
+                  <li><code>Rahu_Vaasa</code>, <code>Chandra_Vaasa</code>, <code>Shiva_Vaasa</code>, <code>Agni_Vaasa</code>, <code>Yogini_Vaasa</code></li>
+                  <li><code>Panchaka_Rahita</code>, <code>Hora_Full_Day</code>, <code>Chogadiya_Full_Day</code>, <code>Muhurta_Full_Day</code>, <code>Lagna_Full_Day</code></li>
+                  <li><code>Rahu_Kaal_Gulika_Yamaganda</code>, <code>Abhijit_Muhurta</code>, <code>Prahara_Full_Day</code>, <code>Daylight_Fivefold_Division</code></li>
+                  <li><code>Brahma_Muhurta</code>, <code>Dur_Muhurta_Full_Day</code>, <code>Nishita_Muhurta</code>, <code>Vijaya_Muhurta</code>, <code>Godhuli_Muhurta</code></li>
+                  <li><code>Sandhya</code>, <code>Gowri_Panchangam</code>, <code>Kala_Vela</code>, <code>Karmakala_Windows</code>, <code>Varjyam</code>, <code>Amrita_Kaal</code></li>
+                  <li><code>Pradosha_Kaal</code>, <code>Bhadra</code>, <code>Dharma_Sindhu</code></li>
+                </ul>
+              </div>
+              <div class="method-example"><strong>Example:</strong>
+                <pre><code class="language-php">$selected = $panchang->getSelectedDetails(
+    $date,
+    $lat,
+    $lon,
+    $tz,
+    ['Panchanga', 'Muhurta_Full_Day', 'Dharma_Sindhu'],
+    calculationAt: CarbonImmutable::now($tz)
+);
+
+$tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></pre>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">Daily convenience selective APIs</h4>
+              <p class="method-description">Shortcuts for common selected sections. These use the same selective calculation path as <code>getSelectedDetails()</code>.</p>
+              <div class="method-signature">
+                <code>getBasicDetails(...): array</code><br>
+                <code>getPanchanga(...): array</code><br>
+                <code>getSpecialYogas(...): array</code><br>
+                <code>getMuhurtaFullDay(...): array</code><br>
+                <code>getAbhijitMuhurta(...): array</code><br>
+                <code>getVarjyam(...): array</code><br>
+                <code>getDharmaSindhu(...): array</code><br>
+                <code>getSection(CarbonImmutable $date, float $lat, float $lon, string $tz, string $section, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta, array $options=[]): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">Panchanga limb selective APIs</h4>
+              <p class="method-description">Return one Panchanga limb or current-time limb without returning unrelated sections.</p>
+              <div class="method-signature">
+                <code>getTithi(...): array</code><br>
+                <code>getCurrentTithi(...): array</code><br>
+                <code>getNakshatra(...): array</code><br>
+                <code>getCurrentNakshatra(...): array</code><br>
+                <code>getYoga(...): array</code><br>
+                <code>getCurrentYoga(...): array</code><br>
+                <code>getKarana(...): array</code><br>
+                <code>getCurrentKarana(...): array</code><br>
+                <code>getVara(...): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getFields()</h4>
+              <p class="method-description">Return selected dot-path fields while calculating only the required source sections.</p>
+              <div class="method-signature">
+                <code>public function getFields(CarbonImmutable $date, float $lat, float $lon, string $tz, array $fields, float $elevation=0.0, ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta, array $options=[]): array</code>
+              </div>
+              <div class="method-example"><strong>Example:</strong>
+                <pre><code class="language-php">$fields = $panchang->getFields($date, $lat, $lon, $tz, [
+    'Panchanga.Current_Tithi_At_Input_Now.name',
+    'Abhijit_Muhurta.abhijit_start',
+    'Sunrise',
+]);</code></pre>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getFestivalSnapshot()</h4>
               <p class="method-description">A lightweight version of <code>getDayDetails()</code> containing only the data required for festival resolution.</p>
               <div class="method-signature">
@@ -1917,6 +2050,27 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
               <p class="method-description">Build a month-wise calendar summary with canonical festival orchestration, moon visibility fields, and compact daily Panchang snapshots.</p>
               <div class="method-signature">
                 <code>public function getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getMonthFields()</h4>
+              <p class="method-description">Build a month calendar with only requested logical field groups. Festival resolution is skipped unless the <code>festivals</code> group is requested.</p>
+              <div class="method-signature">
+                <code>public function getMonthFields(int $year, int $month, float $lat, float $lon, string $tz, array $fields, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-params"><strong>Month field groups:</strong>
+                <ul>
+                  <li><code>tithi</code> returns <code>tithi</code>, <code>tithi_display</code>, <code>tithi_windows</code></li>
+                  <li><code>nakshatra</code> returns <code>nakshatra</code>, <code>nakshatra_windows</code>, <code>nakshatra_padas</code></li>
+                  <li><code>yoga</code> returns <code>yoga</code>, <code>yoga_windows</code></li>
+                  <li><code>karana</code> returns <code>karana</code>, <code>karana_windows</code></li>
+                  <li><code>vara</code> returns <code>vara</code></li>
+                  <li><code>sun</code> returns <code>sun_sign</code>, <code>sunrise</code>, <code>sunset</code></li>
+                  <li><code>moon</code> returns <code>moon_sign</code>, <code>moon_phase</code>, moonrise/moonset fields, and <code>moon_visibility</code></li>
+                  <li><code>hindu_calendar</code> returns <code>hindu_calendar</code></li>
+                  <li><code>festivals</code> returns <code>festivals</code>, <code>daily_observances</code>, <code>sankranti</code></li>
+                </ul>
               </div>
             </div>
 
@@ -2014,6 +2168,20 @@ foreach ($festivals as $festival) {
             </div>
 
             <div class="method">
+              <h4 class="method-name">generateTodaySelected()</h4>
+              <p class="method-description">Generate only selected today-output branches. The <code>details</code> branch accepts the same daily section names as <code>getSelectedDetails()</code>.</p>
+              <div class="method-signature">
+                <code>public function generateTodaySelected(float $lat, float $lon, string $tz, array $sections, array $detailSections=['Basic_Details'], float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable sections:</strong>
+                <ul>
+                  <li><code>details</code>, <code>today</code>, or <code>todays_complete_details</code> returns the selected daily details branch.</li>
+                  <li><code>muhurta</code>, <code>muhurta_evaluation</code>, or <code>evaluation</code> returns the current muhurta evaluation branch.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">generateFestivals()</h4>
               <p class="method-description">Generates a massive year-long JSON-ready array of every festival defined in the package.</p>
               <div class="method-signature">
@@ -2022,10 +2190,81 @@ foreach ($festivals as $festival) {
             </div>
 
             <div class="method">
+              <h4 class="method-name">generateFestivalsSelected()</h4>
+              <p class="method-description">Generate selected festival output branches from the canonical yearly festival calendar.</p>
+              <div class="method-signature">
+                <code>public function generateFestivalsSelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable sections:</strong>
+                <ul>
+                  <li><code>by_date</code> aliases: <code>date</code>, <code>dates</code></li>
+                  <li><code>flat</code></li>
+                  <li><code>festival_day_count</code> alias: <code>day_count</code></li>
+                  <li><code>festival_entry_count</code> alias: <code>entry_count</code></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">generateFestivalByDate() / generateFestivalFlat()</h4>
+              <p class="method-description">Convenience wrappers around <code>generateFestivalsSelected()</code> for a single festival branch.</p>
+              <div class="method-signature">
+                <code>public function generateFestivalByDate(int $year, float $lat, float $lon, string $tz, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code><br>
+                <code>public function generateFestivalFlat(int $year, float $lat, float $lon, string $tz, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">generateEclipses()</h4>
               <p class="method-description">Generates a list of all solar and lunar eclipses for a range of years.</p>
               <div class="method-signature">
                 <code>public function generateEclipses(int $startYear, int $endYear, float $lat, float $lon, string $tz): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">generateEclipsesSelected()</h4>
+              <p class="method-description">Generate selected eclipse output branches for a year range.</p>
+              <div class="method-signature">
+                <code>public function generateEclipsesSelected(int $startYear, int $endYear, float $lat, float $lon, string $tz, array $sections): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable sections:</strong>
+                <ul>
+                  <li><code>by_year</code> aliases: <code>year</code>, <code>years</code></li>
+                  <li><code>flat</code></li>
+                  <li><code>total_eclipse_count</code> alias: <code>count</code></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">generateEclipseByYear() / generateEclipseFlat()</h4>
+              <p class="method-description">Convenience wrappers around <code>generateEclipsesSelected()</code> for a single eclipse branch.</p>
+              <div class="method-signature">
+                <code>public function generateEclipseByYear(int $startYear, int $endYear, float $lat, float $lon, string $tz): array</code><br>
+                <code>public function generateEclipseFlat(int $startYear, int $endYear, float $lat, float $lon, string $tz): array</code>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">generateMonthSelected()</h4>
+              <p class="method-description">Generate selected month-output branches. The <code>calendar</code> branch uses <code>getMonthFields()</code> to return only requested month groups.</p>
+              <div class="method-signature">
+                <code>public function generateMonthSelected(int $year, int $month, float $lat, float $lon, string $tz, array $sections, array $calendarFields, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable sections:</strong>
+                <ul>
+                  <li><code>meta</code> alias: <code>metadata</code></li>
+                  <li><code>calendar</code> aliases: <code>month</code>, <code>fields</code></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">generateMonthCalendarFields()</h4>
+              <p class="method-description">Convenience wrapper for returning only the selected month calendar field groups.</p>
+              <div class="method-signature">
+                <code>public function generateMonthCalendarFields(int $year, int $month, float $lat, float $lon, string $tz, array $calendarFields, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
               </div>
             </div>
 
@@ -2163,7 +2402,7 @@ foreach ($festivals as $festival) {
               <div class="method-example"><strong>Example:</strong>
                 <pre><code class="language-php">
 $tithi = $engine->calculateTithi(350.5, 125.3);
-echo $tithi['name']; // "Dwadashi"
+echo $tithi['name']; // "Twelfth Lunar Day of Bright Half"
                 </code></pre>
               </div>
             </div>
@@ -3266,7 +3505,7 @@ echo $details['Current_Tithi_At_Input_Now']['name']; // "વદ તેરસ"
           <pre><code class="language-php">use JayeshMepani\PanchangCore\Core\Localization;
 
 // Get translated Nakshatra name
-$nakshatraName = Localization::translate('Nakshatra', 'Ashwini', 'hi'); // "अश्विनी"
+$nakshatraName = Localization::translate('Nakshatra', 0, 'hi'); // "अश्विनी"
 
 // Get translated Tithi
 $tithiName = Localization::translate('Tithi', 15, 'gu'); // "પૂનમ"
@@ -3284,12 +3523,75 @@ $tithiName = Localization::translate('Tithi', 15, 'gu'); // "પૂનમ"
 
         <section id="usage-patterns" class="content-section">
           <h2>Usage Patterns (How do I...?)</h2>
-          <p class="lead">Practical code snippets for specific needs.</p>
+          <p class="lead">Practical code snippets for specific needs. Prefer selective APIs when you do not need the full daily, monthly, festival, or eclipse payload.</p>
 
           <div class="method">
             <h4 class="method-name">I only want the current Tithi name</h4>
-            <pre><code class="language-php">$details = Panchang::getDayDetails($date, $lat, $lon, $tz);
-echo "Current Tithi is: " . $details['Current_Tithi_At_Input_Now']['name'];</code></pre>
+            <pre><code class="language-php">$tithi = Panchang::getCurrentTithi(
+    date: $date,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    calculationAt: CarbonImmutable::now($tz)
+);
+
+echo "Current Tithi is: " . $tithi['name'];
+// Example output: Current Tithi is: Twelfth Lunar Day of Bright Half</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want a few exact fields</h4>
+            <pre><code class="language-php">$fields = Panchang::getFields($date, $lat, $lon, $tz, [
+    'Panchanga.Current_Tithi_At_Input_Now.name',
+    'Panchanga.Current_Nakshatra_At_Input_Now.name',
+    'Abhijit_Muhurta.abhijit_start',
+    'Abhijit_Muhurta.abhijit_end',
+]);
+
+echo $fields['Panchanga']['Current_Tithi_At_Input_Now']['name'];
+// Example output: Twelfth Lunar Day of Bright Half
+
+echo $fields['Abhijit_Muhurta']['abhijit_start'];
+// Example output: 12:23:28 PM</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want the five Panchanga limbs</h4>
+            <pre><code class="language-php">$panchanga = Panchang::getPanchanga(
+    date: $date,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    calculationAt: CarbonImmutable::now($tz)
+);
+
+$tithi = $panchanga['Current_Tithi_At_Input_Now'];
+$nakshatra = $panchanga['Current_Nakshatra_At_Input_Now'];
+$yoga = $panchanga['Current_Yoga_At_Input_Now'];
+$karana = $panchanga['Current_Karana_At_Input_Now'];
+$vara = $panchanga['Vara'];
+
+echo $tithi['name'];     // Example output: "Twelfth Lunar Day of Bright Half"
+echo $nakshatra['name']; // Example output: "Magha"
+echo $yoga['name'];      // Example output: "Ayushman"
+echo $karana['name'];    // Example output: "Bava"
+echo $vara['name'];      // Example output: "Tuesday"</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want selected daily sections</h4>
+            <pre><code class="language-php">$selected = Panchang::getSelectedDetails($date, $lat, $lon, $tz, [
+    'Panchanga',
+    'Muhurta_Full_Day',
+    'Abhijit_Muhurta',
+    'Dharma_Sindhu',
+], calculationAt: CarbonImmutable::now($tz));
+
+$muhurtas = $selected['Muhurta_Full_Day'];
+$dharmaSindhu = $selected['Dharma_Sindhu'];
+
+echo count($muhurtas); // Example output: 30
+echo $selected['Abhijit_Muhurta']['abhijit_start']; // Example output: "12:23:28 PM"</code></pre>
           </div>
 
           <div class="method">
@@ -3297,14 +3599,107 @@ echo "Current Tithi is: " . $details['Current_Tithi_At_Input_Now']['name'];</cod
             <pre><code class="language-php">$eval = Panchang::getDailyMuhurtaEvaluation($date, $lat, $lon, $tz, CarbonImmutable::now());
 if ($eval['evaluation_results']['bhadra']['is_active']) {
     echo "Bhadra is active!";
-}</code></pre>
+}
+
+echo $eval['evaluation_results']['bhadra']['is_active'] ? 'yes' : 'no';
+// Example output: no</code></pre>
           </div>
 
           <div class="method">
             <h4 class="method-name">I want to get the start and end time of a specific Nakshatra</h4>
+            <pre><code class="language-php">$details = Panchang::getSelectedDetails($date, $lat, $lon, $tz, ['Panchanga']);
+
+echo "Starts: " . $details['Panchanga']['Nakshatra']['start_iso'];
+// Example output: Starts: 23/05/2026 07:28:11 AM
+
+echo "Ends: " . $details['Panchanga']['Nakshatra']['end_iso'];
+// Example output: Ends: 24/05/2026 05:48:42 AM</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want Tithi cells for a month calendar</h4>
+            <pre><code class="language-php">$calendar = Panchang::getMonthFields(
+    year: 2026,
+    month: 6,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    fields: ['tithi']
+);
+
+$firstDay = $calendar['2026-06-01'];
+echo $firstDay['tithi_display']['display'];
+// Example output: 16
+
+print_r(array_keys($firstDay));
+// Example output: ['date', 'day', 'tithi', 'tithi_display', 'tithi_windows']</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I want month calendar cells with festivals, but not every month field</h4>
+            <pre><code class="language-php">$calendar = Panchang::getMonthFields(
+    year: 2026,
+    month: 6,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    fields: ['tithi', 'nakshatra', 'festivals'],
+    options: ['festival_scope' => 'month']
+);
+
+$festivals = $calendar['2026-06-01']['festivals'];
+// Example output: []
+
+print_r(array_keys($calendar['2026-06-01']));
+// Example output: ['date', 'day', 'tithi', 'tithi_display', 'tithi_windows', 'nakshatra', 'nakshatra_windows', 'nakshatra_padas', 'festivals', 'daily_observances', 'sankranti']</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want festival flat output for a year</h4>
+            <pre><code class="language-php">$generator = app(\JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService::class);
+
+$flat = $generator->generateFestivalFlat(
+    year: 2026,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz
+);
+
+foreach ($flat['flat'] as $entry) {
+    echo $entry['date'] . ': ' . $entry['festival']['name'] . PHP_EOL;
+    // Example output: 2026-01-14: Makara Sankranti
+}</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I only want eclipse flat output for a year range</h4>
+            <pre><code class="language-php">$generator = app(\JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService::class);
+
+$eclipses = $generator->generateEclipseFlat(
+    startYear: 2026,
+    endYear: 2032,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz
+);
+
+$count = count($eclipses['flat']);
+echo $count;
+// Example output: 18</code></pre>
+          </div>
+
+          <div class="method">
+            <h4 class="method-name">I want the full payload only when I really need everything</h4>
             <pre><code class="language-php">$details = Panchang::getDayDetails($date, $lat, $lon, $tz);
-echo "Starts: " . $details['Nakshatra']['start_iso'];
-echo "Ends: " . $details['Nakshatra']['end_iso'];</code></pre>
+
+$allMuhurtas = $details['Muhurta_Full_Day'];
+$allLagnas = $details['Lagna_Full_Day'];
+$allDailySections = $details;
+
+echo count($allMuhurtas); // Example output: 30
+echo count($allLagnas);   // Example output: 13
+echo $details['Panchanga']['Current_Tithi_At_Input_Now']['name'];
+// Example output: Twelfth Lunar Day of Bright Half</code></pre>
           </div>
         </section>
 
@@ -3386,8 +3781,8 @@ $details = Panchang::getDayDetails(
     tz: 'Asia/Kolkata'
 );
 
-echo $details['Tithi_At_Sunrise']['name'];    // "Dwadashi"
-echo $details['Nakshatra']['name']; // "Magha"</code></pre>
+echo $details['Tithi_At_Sunrise']['name']; // "Twelfth Lunar Day of Bright Half"
+echo $details['Nakshatra']['name'];        // "Magha"</code></pre>
           <h3>Service Container</h3>
           <p>Or inject via constructor:</p>
           <pre><code class="language-php">use JayeshMepani\PanchangCore\Panchanga\PanchangService;
@@ -3418,11 +3813,11 @@ class PanchangController extends Controller
           <pre><code class="language-php">[
   'Display_Settings' => [...],
   'Units' => [...],
-  'Tithi' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
-  'Tithi_At_Sunrise' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
-  'Current_Tithi_At_Input_Now' => ['index' => 13, 'name' => 'Trayodashi', 'paksha' => 'Shukla'],
-  'Nakshatra' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
-  'Nakshatra_At_Sunrise' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
+  'Tithi' => ['index' => 12, 'name' => 'Twelfth Lunar Day of Bright Half', 'paksha' => 'Shukla'],
+  'Tithi_At_Sunrise' => ['index' => 12, 'name' => 'Twelfth Lunar Day of Bright Half', 'paksha' => 'Shukla'],
+  'Current_Tithi_At_Input_Now' => ['index' => 13, 'name' => 'Thirteenth Lunar Day of Bright Half', 'paksha' => 'Shukla'],
+  'Nakshatra' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Ketu'],
+  'Nakshatra_At_Sunrise' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Ketu'],
   'Current_Nakshatra_At_Input_Now' => ['index' => 11, 'name' => 'Purva Phalguni', 'pada' => 1, 'lord' => 'Venus'],
   'Yoga' => ['index' => 9, 'name' => 'Shula'],
   'Current_Yoga_At_Input_Now' => ['index' => 10, 'name' => 'Ganda'],
@@ -4016,7 +4411,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.0.0 major release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.1.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
@@ -4026,9 +4421,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">8.1.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Selective APIs and Modular Output Generation</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Backward-compatible feature release adding selective daily, month, today, festival, and eclipse APIs so consumers can calculate and return only the branches they need.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">8.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Moon Phase, Kshaya Tithi, and Calendar Output Refresh</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Moon Phase, Kshaya Tithi, and Calendar Output Refresh</span></div>
                 <p class="release-note">Major release focused on clearer calendar output, richer month-view data, better English-facing labels, and first-class moon phase information for daily and monthly Panchang use.</p>
               </div>
             </li>
@@ -4145,6 +4547,42 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v8.1.0 Upgrade & Release Notes</h3>
+          <p class="lead">Backward-compatible feature release focused on selective APIs and modular output generation.</p>
+
+          <div class="info-box" style="border-inline-start-color: var(--color-success); background: rgba(34, 197, 94, 0.05);">
+            <h4 style="color: var(--color-success); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes</h4>
+            <p><strong>None.</strong> v8.1.0 is a minor feature release. Existing v8.0.0 calls such as <code>getDayDetails()</code>, <code>getMonthCalendar()</code>, <code>generateTodayPanchang()</code>, <code>generateFestivals()</code>, and <code>generateEclipses()</code> continue to work.</p>
+          </div>
+
+          <h4>Added Selective APIs</h4>
+          <ul>
+            <li><strong>Daily selective details:</strong> Added <code>getSelectedDetails()</code> to calculate only requested day-detail sections instead of building the full <code>getDayDetails()</code> payload.</li>
+            <li><strong>Daily convenience methods:</strong> Added <code>getBasicDetails()</code>, <code>getPanchanga()</code>, <code>getSpecialYogas()</code>, <code>getMuhurtaFullDay()</code>, <code>getAbhijitMuhurta()</code>, <code>getVarjyam()</code>, <code>getDharmaSindhu()</code>, and <code>getSection()</code>.</li>
+            <li><strong>Panchanga limb methods:</strong> Added <code>getTithi()</code>, <code>getCurrentTithi()</code>, <code>getNakshatra()</code>, <code>getCurrentNakshatra()</code>, <code>getYoga()</code>, <code>getCurrentYoga()</code>, <code>getKarana()</code>, <code>getCurrentKarana()</code>, and <code>getVara()</code>.</li>
+            <li><strong>Dot-path field picker:</strong> Added <code>getFields()</code> for returning only specific nested values such as <code>Panchanga.Current_Tithi_At_Input_Now.name</code>.</li>
+            <li><strong>Month field groups:</strong> Added <code>getMonthFields()</code> with selectable groups for <code>tithi</code>, <code>nakshatra</code>, <code>yoga</code>, <code>karana</code>, <code>vara</code>, <code>sun</code>, <code>moon</code>, <code>hindu_calendar</code>, and <code>festivals</code>.</li>
+            <li><strong>Today output branches:</strong> Added <code>generateTodaySelected()</code> for selecting <code>todays_complete_details</code> and/or <code>muhurta_evaluation</code>.</li>
+            <li><strong>Festival output branches:</strong> Added <code>generateFestivalsSelected()</code>, <code>generateFestivalByDate()</code>, and <code>generateFestivalFlat()</code>.</li>
+            <li><strong>Eclipse output branches:</strong> Added <code>generateEclipsesSelected()</code>, <code>generateEclipseByYear()</code>, and <code>generateEclipseFlat()</code>.</li>
+            <li><strong>Month output branches:</strong> Added <code>generateMonthSelected()</code> and <code>generateMonthCalendarFields()</code>.</li>
+          </ul>
+
+          <h4>Behavior and Parity</h4>
+          <ul>
+            <li>Selective daily sections are designed to avoid calculating unrelated heavy branches while still running shared base dependencies when required.</li>
+            <li>Selective values were tested against the original full outputs for exact equality, including JSON-equivalent structure and values.</li>
+            <li>Month selected output preserves the same canonical field order as <code>getMonthCalendar()</code> when all groups are requested.</li>
+            <li>Festival resolution is skipped in month field generation unless the <code>festivals</code> group is requested.</li>
+          </ul>
+
+          <h4>Documentation</h4>
+          <ul>
+            <li>Added selective API reference entries for all new service and output-generator methods.</li>
+            <li>Updated usage patterns to prefer selective APIs for small reads and added sample output comments.</li>
+            <li>Updated examples to match current localized English/Hindi/Gujarati display strings from <code>Localization.php</code>.</li>
+          </ul>
 
           <h3>v8.0.0 Upgrade & Release Notes</h3>
           <p class="lead">Major release focused on clearer calendar output, richer month-view data, better English-facing labels, and first-class moon phase information for daily and monthly Panchang use.</p>
@@ -5075,19 +5513,48 @@ const FESTIVAL_RULES
 ## JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService
 - __construct(JayeshMepani\PanchangCore\Panchanga\PanchangService $panchangService, JayeshMepani\PanchangCore\Astronomy\EclipseService $eclipseService): void
 - generateAll(int $festivalYear, int $eclipseStartYear, int $eclipseEndYear, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateEclipseByYear(int $startYear, int $endYear, float $lat, float $lon, string $tz): array
+- generateEclipseFlat(int $startYear, int $endYear, float $lat, float $lon, string $tz): array
 - generateEclipses(int $startYear, int $endYear, float $lat, float $lon, string $tz): array
+- generateEclipsesSelected(int $startYear, int $endYear, float $lat, float $lon, string $tz, array $sections): array
+- generateFestivalByDate(int $year, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateFestivalFlat(int $year, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 - generateFestivals(int $year, float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateFestivalsSelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateMonthCalendarFields(int $year, int $month, float $lat, float $lon, string $tz, array $calendarFields, float $elevation = 0, array $options = [], Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateMonthSelected(int $year, int $month, float $lat, float $lon, string $tz, array $sections, array $calendarFields, float $elevation = 0, array $options = [], Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 - generateTodayPanchang(float $lat, float $lon, string $tz, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- generateTodaySelected(float $lat, float $lon, string $tz, array $sections, array $detailSections = ["Basic_Details"], float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 
 ## JayeshMepani\PanchangCore\Panchanga\PanchangService
 - __construct(JmeEph\FFI\JmeEphFFI $jme, JayeshMepani\PanchangCore\Astronomy\SunService $sunService, JayeshMepani\PanchangCore\Astronomy\AstronomyService $astronomy, JayeshMepani\PanchangCore\Panchanga\PanchangaEngine $panchanga, JayeshMepani\PanchangCore\Panchanga\MuhurtaService $muhurta, JayeshMepani\PanchangCore\Festivals\FestivalService $festivalService, JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine $bhadraEngine, mixed $unusedTransitEngine = null, mixed $unusedIntervalTracker = null, JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator|null $vaasaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator|null $shoolaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator|null $specialYogaCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator|null $panchakCalculator = null, JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator|null $bhadraCalculator = null, mixed $unusedVarjyamWindowCalculator = null, JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator|null $ekadashiParanaCalculator = null, mixed ...$unusedExtractedCalculators): void
 - configure(string $ephePath = ""): void
+- getAbhijitMuhurta(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getBasicDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getCurrentKarana(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $calculationAt = null, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getCurrentNakshatra(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $calculationAt = null, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getCurrentTithi(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $calculationAt = null, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getCurrentYoga(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $calculationAt = null, float $elevation = 0, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
 - getDailyMuhurtaEvaluation(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, Carbon\CarbonImmutable $currentAt = null, float $elevation = 0, array $options = []): array
 - getDayDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getDharmaSindhu(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
 - getElectionalSnapshot(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, array $options = []): array
 - getFestivalSnapshot(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 - getFestivalYearCalendar(int $year, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- getFields(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, array $fields, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getKarana(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getMonthFields(int $year, int $month, float $lat, float $lon, string $tz, array $fields, float $elevation = 0, array $options = [], Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
 - getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation = 0, array $options = [], Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta): array
+- getMuhurtaFullDay(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getNakshatra(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getPanchanga(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getSection(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, string $section, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getSelectedDetails(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, array $sections, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getSpecialYogas(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getTithi(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getVara(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getVarjyam(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
+- getYoga(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation = 0, Carbon\CarbonImmutable $calculationAt = null, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType = JayeshMepani\PanchangCore\Core\Enums\CalendarType::Amanta, array $options = []): array
 
 ## JayeshMepani\PanchangCore\Panchanga\PanchangaEngine
 - calculateKundaLagna(float $ascLon): array

@@ -25,6 +25,7 @@ use JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Doshas\VarjyamWindowCalculator;
 use JayeshMepani\PanchangCore\Panchanga\MuhurtaService;
+use JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator;
@@ -163,6 +164,11 @@ class PanchangServiceProvider extends ServiceProvider
             $app->make(BhadraCalculator::class),
             $app->make(VarjyamWindowCalculator::class),
             $app->make(EkadashiParanaCalculator::class)
+        ));
+
+        $this->app->singleton(OutputGeneratorService::class, fn ($app): OutputGeneratorService => new OutputGeneratorService(
+            $app->make(PanchangService::class),
+            $app->make(EclipseService::class)
         ));
 
         $this->app->singleton(BhadraEngine::class);

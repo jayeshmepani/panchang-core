@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
+use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
@@ -201,6 +202,99 @@ trait PanchangCalendarApiTrait
         return $calendar;
     }
 
+    /**
+     * Get selected month-calendar component groups per date.
+     *
+     * Examples:
+     * - tithi => tithi, tithi_display, tithi_windows
+     * - nakshatra => nakshatra, nakshatra_windows, nakshatra_padas
+     * - festivals => festivals, daily_observances, sankranti
+     *
+     * @param array<int, string> $fields
+     *
+     * @return array<string, array<string, mixed>> Indexed by YYYY-MM-DD
+     */
+    public function getMonthFields(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $fields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $groups = [];
+        foreach ($fields as $field) {
+            $group = $this->normalizeMonthFieldGroup($field);
+            $this->assertKnownMonthFieldGroup($group);
+            $groups[$group] = true;
+        }
+
+        if ($groups === []) {
+            return [];
+        }
+
+        $start = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $tz);
+        $daysInMonth = $start->daysInMonth;
+        $needsFestivals = isset($groups['festivals']);
+        $festivalsByDate = [];
+
+        if ($needsFestivals) {
+            $festivalScope = (string) ($options['festival_scope'] ?? 'year');
+            if ($festivalScope === 'month') {
+                $festivalsByDate = $this->getFestivalCalendarForDateRange(
+                    start: $start,
+                    end: $start->addDays($daysInMonth - 1),
+                    lat: $lat,
+                    lon: $lon,
+                    tz: $tz,
+                    elevation: $elevation,
+                    calculationAt: $calculationAt,
+                    calendarType: $calendarType,
+                );
+            } else {
+                $yearFestivalCalendar = $this->getFestivalYearCalendar(
+                    year: $year,
+                    lat: $lat,
+                    lon: $lon,
+                    tz: $tz,
+                    elevation: $elevation,
+                    calculationAt: $calculationAt,
+                    calendarType: $calendarType,
+                );
+                $festivalsByDate = $yearFestivalCalendar['by_date'];
+            }
+        }
+
+        $calendar = [];
+        for ($i = 0; $i < $daysInMonth; $i++) {
+            $date = $start->addDays($i);
+            $dateKey = $date->toDateString();
+            $snapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+
+            $day = [
+                'date' => $dateKey,
+                'day' => (int) $date->format('d'),
+            ];
+
+            $day += $this->buildSelectedMonthCalendarFields($groups, $snapshot, $festivalsByDate[$dateKey] ?? []);
+
+            $calendar[$dateKey] = $day;
+        }
+
+        return $calendar;
+    }
+
     public function getElectionalSnapshot(
         CarbonImmutable $date,
         float $lat,
@@ -209,7 +303,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         array $options = []
     ): array {
-        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, null, CalendarType::Amanta, $options);
+        $dayDetails = $this->getSelectedDetails($date, $lat, $lon, $tz, ['Basic_Details'], $elevation, null, CalendarType::Amanta, $options)['Basic_Details'];
         $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
         [$sunset] = [$this->resolveTimeStringToDateTime((string) $dayDetails['Sunset'], $sunrise, $tz)];
 
@@ -256,7 +350,23 @@ trait PanchangCalendarApiTrait
         array $options = []
     ): array {
         $at = $currentAt instanceof CarbonImmutable ? $currentAt->setTimezone($tz) : CarbonImmutable::now($tz);
-        $dayDetails = $this->getDayDetails($date, $lat, $lon, $tz, $elevation, $at, CalendarType::Amanta, $options);
+        $selectedDetails = $this->getSelectedDetails(
+            $date,
+            $lat,
+            $lon,
+            $tz,
+            ['Basic_Details', 'Bhadra', 'Varjyam', 'Amrita_Kaal'],
+            $elevation,
+            $at,
+            CalendarType::Amanta,
+            $options
+        );
+        $dayDetails = [
+            ...$selectedDetails['Basic_Details'],
+            'Bhadra' => $selectedDetails['Bhadra'],
+            'Varjyam' => $selectedDetails['Varjyam'],
+            'Amrita_Kaal' => $selectedDetails['Amrita_Kaal'],
+        ];
         $sunriseDt = $this->parseDisplayDateTime((string) ($dayDetails['sunrise_dt'] ?? ''), $tz);
         $currentBirth = $this->buildBirthArray($at, $lat, $lon, $tz, $elevation);
         $sunMoon = $this->getSunMoonLongitudes($currentBirth);
@@ -422,6 +532,129 @@ trait PanchangCalendarApiTrait
             'has_kshaya_tithi' => $kshayaTithi !== null,
             'kshaya_tithi' => $kshayaTithi,
         ];
+    }
+
+    /**
+     * @param array<string, bool> $groups
+     * @param array<string, mixed> $snapshot
+     * @param array<int, array<string, mixed>> $festivals
+     *
+     * @return array<string, mixed>
+     */
+    private function buildSelectedMonthCalendarFields(array $groups, array $snapshot, array $festivals): array
+    {
+        $fields = [];
+
+        if (isset($groups['tithi'])) {
+            $fields['tithi'] = $snapshot['Tithi'];
+            $fields['tithi_display'] = $this->buildMonthCalendarTithiDisplay($snapshot);
+            $fields['tithi_windows'] = $snapshot['Tithi_Windows'] ?? [];
+        }
+
+        if (isset($groups['nakshatra'])) {
+            $fields['nakshatra'] = $snapshot['Nakshatra'];
+            $fields['nakshatra_windows'] = $snapshot['Nakshatra_Windows'] ?? [];
+            $fields['nakshatra_padas'] = $snapshot['Nakshatra_Padas'] ?? [];
+        }
+
+        if (isset($groups['yoga'])) {
+            $fields['yoga'] = $snapshot['Yoga'];
+            $fields['yoga_windows'] = $snapshot['Yoga_Windows'] ?? [];
+        }
+
+        if (isset($groups['karana'])) {
+            $fields['karana'] = $snapshot['Karana'];
+            $fields['karana_windows'] = $snapshot['Karana_Windows'] ?? [];
+        }
+
+        if (isset($groups['vara'])) {
+            $fields['vara'] = $snapshot['Vara'];
+        }
+
+        if (isset($groups['sun'])) {
+            $fields['sun_sign'] = $snapshot['Sun_Sign'];
+        }
+
+        if (isset($groups['moon'])) {
+            $fields['moon_sign'] = $snapshot['Moon_Sign'];
+            $fields['moon_phase'] = $snapshot['Moon_Phase'] ?? null;
+        }
+
+        if (isset($groups['sun'])) {
+            $fields['sunrise'] = $snapshot['Sunrise'];
+            $fields['sunset'] = $snapshot['Sunset'];
+        }
+
+        if (isset($groups['moon'])) {
+            $fields['moonrise'] = $snapshot['Moonrise'];
+            $fields['moonset'] = $snapshot['Moonset'];
+            $fields['moonrise_date'] = $snapshot['Moonrise_Date'];
+            $fields['moonset_date'] = $snapshot['Moonset_Date'];
+            $fields['moonrise_iso'] = $snapshot['Moonrise_ISO'];
+            $fields['moonset_iso'] = $snapshot['Moonset_ISO'];
+            $fields['moonset_day_relation'] = $snapshot['Moonset_Day_Relation'];
+            $fields['moon_visibility'] = [
+                'starts_at' => $snapshot['Moonrise'],
+                'starts_on' => $snapshot['Moonrise_Date'],
+                'starts_iso' => $snapshot['Moonrise_ISO'],
+                'ends_at' => $snapshot['Moonset'],
+                'ends_on' => $snapshot['Moonset_Date'],
+                'ends_iso' => $snapshot['Moonset_ISO'],
+                'ends_day_relation' => $snapshot['Moonset_Day_Relation'],
+            ];
+        }
+
+        if (isset($groups['hindu_calendar'])) {
+            $fields['hindu_calendar'] = $snapshot['Hindu_Calendar'];
+        }
+
+        if (isset($groups['festivals'])) {
+            $sankranti = null;
+            if ($snapshot['Resolution_Context']['sankranti_rashi'] !== null) {
+                $rashiIdx = $snapshot['Resolution_Context']['sankranti_rashi'];
+                $sankranti = Rasi::from($rashiIdx)->getName() . ' ' . Localization::translate('Common', 'Sankranti');
+            }
+
+            $fields['festivals'] = $festivals;
+            $fields['daily_observances'] = $this->festivalService->getDailyObservances($snapshot);
+            $fields['sankranti'] = $sankranti;
+        }
+
+        return $fields;
+    }
+
+    private function normalizeMonthFieldGroup(string $field): string
+    {
+        $key = strtolower(str_replace([' ', '-'], '_', trim($field)));
+
+        return match ($key) {
+            'tithi', 'tithi_display', 'tithi_windows' => 'tithi',
+            'nakshatra', 'nakshatra_windows', 'nakshatra_padas' => 'nakshatra',
+            'yoga', 'yoga_windows' => 'yoga',
+            'karana', 'karana_windows' => 'karana',
+            'vara', 'weekday' => 'vara',
+            'sun', 'solar', 'sunrise', 'sunset', 'sun_sign' => 'sun',
+            'moon', 'lunar', 'moonrise', 'moonset', 'moon_sign', 'moon_phase', 'moon_visibility' => 'moon',
+            'calendar', 'hindu_calendar', 'month' => 'hindu_calendar',
+            'festival', 'festivals', 'daily_observances', 'sankranti' => 'festivals',
+            default => $field,
+        };
+    }
+
+    private function assertKnownMonthFieldGroup(string $group): void
+    {
+        match ($group) {
+            'tithi',
+            'nakshatra',
+            'yoga',
+            'karana',
+            'vara',
+            'sun',
+            'moon',
+            'hindu_calendar',
+            'festivals' => true,
+            default => throw new InvalidArgumentException('Unknown month field group: ' . $group),
+        };
     }
 
     private function moonsetDayRelation(CarbonImmutable $date, ?CarbonImmutable $moonset): ?string

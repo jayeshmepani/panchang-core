@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use Carbon\CarbonImmutable;
+use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Localization;
@@ -27,6 +28,76 @@ class OutputGeneratorService
         private readonly PanchangService $panchangService,
         private readonly EclipseService $eclipseService,
     ) {
+    }
+
+    /**
+     * Generate only selected festival output branches.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateFestivalsSelected(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $festivalCalendar = $this->panchangService->getFestivalYearCalendar(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        $result = [];
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeFestivalSection($section);
+            $result[$normalized] = match ($normalized) {
+                'by_date' => $festivalCalendar['by_date'],
+                'flat' => $festivalCalendar['flat'],
+                'festival_day_count' => $festivalCalendar['festival_day_count'],
+                'festival_entry_count' => $festivalCalendar['festival_entry_count'],
+                default => throw new InvalidArgumentException('Unknown festival output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
+    public function generateFestivalByDate(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateFestivalsSelected($year, $lat, $lon, $tz, ['by_date'], $elevation, $calendarType);
+    }
+
+    public function generateFestivalFlat(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateFestivalsSelected($year, $lat, $lon, $tz, ['flat'], $elevation, $calendarType);
     }
 
     /**
@@ -75,6 +146,67 @@ class OutputGeneratorService
     }
 
     /**
+     * Generate only selected eclipse output branches.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateEclipsesSelected(
+        int $startYear,
+        int $endYear,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+    ): array {
+        $eclipsesByYear = [];
+        $eclipsesFlat = [];
+
+        for ($year = $startYear; $year <= $endYear; $year++) {
+            $events = $this->eclipseService->getEclipsesForYear($year, $lat, $lon, $tz);
+            $eclipsesByYear[(string) $year] = $events;
+
+            foreach ($events as $event) {
+                $eclipsesFlat[] = $event;
+            }
+        }
+
+        $result = [];
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeEclipseSection($section);
+            $result[$normalized] = match ($normalized) {
+                'by_year' => $eclipsesByYear,
+                'flat' => $eclipsesFlat,
+                'total_eclipse_count' => count($eclipsesFlat),
+                default => throw new InvalidArgumentException('Unknown eclipse output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
+    public function generateEclipseByYear(
+        int $startYear,
+        int $endYear,
+        float $lat,
+        float $lon,
+        string $tz,
+    ): array {
+        return $this->generateEclipsesSelected($startYear, $endYear, $lat, $lon, $tz, ['by_year']);
+    }
+
+    public function generateEclipseFlat(
+        int $startYear,
+        int $endYear,
+        float $lat,
+        float $lon,
+        string $tz,
+    ): array {
+        return $this->generateEclipsesSelected($startYear, $endYear, $lat, $lon, $tz, ['flat']);
+    }
+
+    /**
      * Generate eclipses output array for a year range.
      *
      * @return array{eclipses: array<string, mixed>}
@@ -113,6 +245,160 @@ class OutputGeneratorService
                 'flat' => $eclipsesFlat,
             ],
         ];
+    }
+
+    /**
+     * Generate only selected month output branches.
+     *
+     * @param array<int, string> $sections
+     * @param array<int, string> $calendarFields
+     *
+     * @return array<string, mixed>
+     */
+    public function generateMonthSelected(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        array $calendarFields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $result = [];
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeMonthSection($section);
+            $result[$normalized] = match ($normalized) {
+                'meta' => $this->buildMonthOutputMeta($year, $month, $lat, $lon, $tz, $calendarType),
+                'calendar' => $this->panchangService->getMonthFields(
+                    year: $year,
+                    month: $month,
+                    lat: $lat,
+                    lon: $lon,
+                    tz: $tz,
+                    fields: $calendarFields,
+                    elevation: $elevation,
+                    options: $options,
+                    calculationAt: $calculationAt,
+                    calendarType: $calendarType,
+                ),
+                default => throw new InvalidArgumentException('Unknown month output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<int, string> $calendarFields
+     *
+     * @return array{calendar: array<string, array<string, mixed>>}
+     */
+    public function generateMonthCalendarFields(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $calendarFields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateMonthSelected(
+            $year,
+            $month,
+            $lat,
+            $lon,
+            $tz,
+            ['calendar'],
+            $calendarFields,
+            $elevation,
+            $options,
+            $calculationAt,
+            $calendarType
+        );
+    }
+
+    /**
+     * Generate only selected today output branches.
+     *
+     * @param array<int, string> $sections
+     * @param array<int, string> $detailSections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateTodaySelected(
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        array $detailSections = ['Basic_Details'],
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $now = CarbonImmutable::now($tz);
+        $todayDate = $now->startOfDay();
+        $result = [];
+
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeTodaySection($section);
+            $result[$normalized] = match ($normalized) {
+                'todays_complete_details' => [
+                    'title' => Localization::translate('String', "Today's Complete Details - Every single data point from the package"),
+                    'input_now' => $now->toIso8601String(),
+                    'date' => $todayDate->toDateString(),
+                    'details' => $this->panchangService->getSelectedDetails(
+                        date: $todayDate,
+                        lat: $lat,
+                        lon: $lon,
+                        tz: $tz,
+                        sections: $detailSections,
+                        elevation: $elevation,
+                        calculationAt: $now,
+                        calendarType: $calendarType,
+                    ),
+                ],
+                'muhurta_evaluation' => array_merge(
+                    [
+                        'scope' => 'transit_only',
+                        'notes' => [
+                            'No natal or person-specific inputs are used.',
+                            'Evaluation is derived only from current Panchang and transit state for the configured location/time.',
+                        ],
+                    ],
+                    $this->panchangService->getDailyMuhurtaEvaluation(
+                        date: $todayDate,
+                        lat: $lat,
+                        lon: $lon,
+                        tz: $tz,
+                        currentAt: $now,
+                        elevation: $elevation,
+                    )
+                ),
+                default => throw new InvalidArgumentException('Unknown today output section: ' . $section),
+            };
+        }
+
+        return $result;
     }
 
     /**
@@ -229,5 +515,73 @@ class OutputGeneratorService
         $output['muhurta_evaluation'] = $todayOutput['muhurta_evaluation'];
 
         return $output;
+    }
+
+    private function normalizeFestivalSection(string $section): string
+    {
+        $key = strtolower(trim($section));
+
+        return match ($key) {
+            'by_date', 'date', 'dates' => 'by_date',
+            'flat' => 'flat',
+            'festival_day_count', 'day_count' => 'festival_day_count',
+            'festival_entry_count', 'entry_count' => 'festival_entry_count',
+            default => $section,
+        };
+    }
+
+    private function normalizeEclipseSection(string $section): string
+    {
+        $key = strtolower(trim($section));
+
+        return match ($key) {
+            'by_year', 'year', 'years' => 'by_year',
+            'flat' => 'flat',
+            'total_eclipse_count', 'count' => 'total_eclipse_count',
+            default => $section,
+        };
+    }
+
+    private function normalizeTodaySection(string $section): string
+    {
+        $key = strtolower(trim($section));
+
+        return match ($key) {
+            'today', 'details', 'todays_complete_details' => 'todays_complete_details',
+            'muhurta', 'muhurta_evaluation', 'evaluation' => 'muhurta_evaluation',
+            default => $section,
+        };
+    }
+
+    private function normalizeMonthSection(string $section): string
+    {
+        $key = strtolower(trim($section));
+
+        return match ($key) {
+            'meta', 'metadata' => 'meta',
+            'calendar', 'month', 'fields' => 'calendar',
+            default => $section,
+        };
+    }
+
+    private function buildMonthOutputMeta(
+        int $year,
+        int $month,
+        float $lat,
+        float $lon,
+        string $tz,
+        CalendarType $calendarType
+    ): array {
+        return [
+            'generated_at' => date('c'),
+            'year' => $year,
+            'month' => $month,
+            'calendar_type' => $calendarType->value,
+            'location' => [
+                'latitude' => $lat,
+                'longitude' => $lon,
+                'timezone' => $tz,
+            ],
+        ];
     }
 }

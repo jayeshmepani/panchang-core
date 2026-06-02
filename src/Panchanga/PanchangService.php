@@ -27,6 +27,7 @@ use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangBirthMonthHelpersTrait;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangCalendarApiTrait;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangMuhurtaYogaDelegatesTrait;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangRuntimeEvaluationTrait;
+use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangSelectiveApiTrait;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
@@ -47,6 +48,7 @@ class PanchangService
     use PanchangCalendarApiTrait;
     use PanchangMuhurtaYogaDelegatesTrait;
     use PanchangRuntimeEvaluationTrait;
+    use PanchangSelectiveApiTrait;
 
     /** @var array<int, string> */
     private const array YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
