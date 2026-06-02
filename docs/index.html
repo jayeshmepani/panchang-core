@@ -4016,7 +4016,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v7.0.2 patch release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.0.0 major release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
@@ -4026,9 +4026,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">8.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Moon Phase, Kshaya Tithi, and Calendar Output Refresh</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Major release focused on clearer calendar output, richer month-view data, better English-facing labels, and first-class moon phase information for daily and monthly Panchang use.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">7.0.2</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Brahma Muhurta Calculation Fix</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Brahma Muhurta Calculation Fix</span></div>
                 <p class="release-note">Fixes a before-sunrise Brahma Muhurta calculation issue that could stop daily Panchang JSON generation.</p>
               </div>
             </li>
@@ -4138,6 +4145,59 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v8.0.0 Upgrade & Release Notes</h3>
+          <p class="lead">Major release focused on clearer calendar output, richer month-view data, better English-facing labels, and first-class moon phase information for daily and monthly Panchang use.</p>
+
+          <div class="info-box is-danger">
+            <h4>Breaking Changes</h4>
+            <ul>
+              <li>English output now uses more natural translated labels where clear English equivalents exist, so some existing display values changed from transliterated forms to standard English forms.</li>
+              <li>Month calendar output is now richer and more explicit, which means apps that assumed the older simpler month-data shape should review their display logic.</li>
+              <li>Special Tithi situations in month view now have explicit structured output instead of needing to be inferred externally.</li>
+            </ul>
+          </div>
+
+          <h4>Added Features & Improvements</h4>
+          <ul>
+            <li><strong>Moon Phase Output:</strong>
+              <ul>
+                <li>Added moon phase information to daily Panchang and month calendar output.</li>
+                <li>Moon phase output now includes visual phase name, visibility guidance, illumination range, illumination percentage, and lunar age.</li>
+                <li>Moon phase is now treated as its own first-class output instead of being left for client apps to infer.</li>
+              </ul>
+            </li>
+            <li><strong>Month Calendar Improvements:</strong>
+              <ul>
+                <li>Added compact Tithi display support for month cells.</li>
+                <li>Added explicit metadata for skipped or compressed Tithi cases.</li>
+                <li>Added richer timing information for intra-day Nakshatra, Yoga, Karana, and related transitions so calendar UIs can show day-level changes more accurately.</li>
+              </ul>
+            </li>
+            <li><strong>English Output Refresh:</strong>
+              <ul>
+                <li>Improved English-facing labels so user-facing output feels more natural in apps and websites.</li>
+                <li>Kept traditional Panchang terms where transliteration remains the clearer and more accurate choice.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h4>Fixed Issues</h4>
+          <ul>
+            <li>Corrected compact month-calendar Tithi display for skipped-Tithi cases such as <code>30/1</code>.</li>
+            <li>Corrected English label consistency across generated outputs.</li>
+            <li>Corrected related generated output paths so the refreshed labels and richer calendar fields appear consistently.</li>
+          </ul>
+
+          <div class="info-box is-warning">
+            <h4>Upgrade Notes</h4>
+            <ul>
+              <li>Regenerate stored JSON after upgrading so month and daily output reflect the richer v8.0.0 structure.</li>
+              <li>If your app depends on exact English output text, review user-facing labels and display expectations.</li>
+              <li>If your app renders month cells, prefer the dedicated compact Tithi display and special-Tithi metadata instead of deriving those cases manually.</li>
+              <li>If your app shows lunar phase visually, use the dedicated moon-phase output instead of inferring it from Tithi.</li>
+            </ul>
+          </div>
 
           <h3>v7.0.2 Upgrade & Release Notes</h3>
           <p class="lead">A backward-compatible patch release that fixes a Brahma Muhurta calculation issue during daily Panchang generation.</p>
