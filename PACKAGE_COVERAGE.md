@@ -41,6 +41,8 @@ The package covers the five foundational panchanga limbs in a full operational w
 The package covers:
 
 - current tithi
+- explicit sunrise tithi
+- explicit current/input-time tithi
 - tithi number and tithi name
 - paksha attached to the tithi
 - normalized and absolute tithi context
@@ -66,6 +68,8 @@ The package covers:
 The package covers:
 
 - current nakshatra
+- explicit sunrise nakshatra
+- explicit current/input-time nakshatra
 - nakshatra number and name
 - nakshatra pada
 - nakshatra lord
@@ -79,6 +83,7 @@ The package covers:
 The package covers:
 
 - current yoga
+- explicit current/input-time yoga
 - yoga number and yoga name
 - yoga end time
 - yoga participation in muhurta and electional screening
@@ -88,6 +93,8 @@ The package covers:
 The package covers:
 
 - current karana
+- explicit sunrise karana
+- explicit current/input-time karana
 - karana number and karana name
 - karana end time
 - vishti karana identification
@@ -131,6 +138,29 @@ The package covers:
 - moonrise
 - moonset
 - moon sign at the evaluated day context
+- visual moon phase at sunrise
+- visual moon phase at the evaluated current moment
+- lunar age for visual moon-phase output
+
+### Moon Phase Coverage
+
+The package separately covers the visual phase of the Moon, rather than forcing clients to infer it from Tithi.
+
+This includes:
+
+- new moon
+- waxing crescent
+- first quarter
+- waxing gibbous
+- full moon
+- waning gibbous
+- last quarter
+- waning crescent
+- visibility-oriented descriptions for each phase
+- illumination range and illumination percentage
+- synodic age
+
+This is important because Tithi and visual moon phase are related but not identical concepts. The package now exposes visual phase as its own first-class output for day and month rendering.
 
 ### Twilight Coverage
 
@@ -614,17 +644,32 @@ The package covers month calendar output with:
 
 - one entry per day
 - daily panchanga summary
+- compact Tithi display for calendar cells
+- kshaya/skip-Tithi metadata where relevant
+- tithi transition windows
+- nakshatra transition windows
+- nakshatra pada transition windows
+- yoga transition windows
+- karana transition windows
 - sunrise and sunset
 - moonrise and moonset
 - moonrise and moonset event dates
 - moonrise and moonset date-time strings
 - explicit moonset same-day/next-day relation
 - grouped moon visibility interval metadata
+- month-level visual moon phase output
 - festival list for the date
 - daily observances
 - sankranti markers where relevant
 
 This makes the package usable for calendar-grid style applications where the consumer wants one compact structured entry per date.
+
+The month-calendar output is not limited to a simple sunrise snapshot. It now also supports richer day-cell rendering where a client needs to show:
+
+- a compact Tithi label such as `30/1`
+- whether a skipped Tithi occurred on that date
+- which Nakshatra, Yoga, or Karana changed during the day
+- what visual moon phase should be shown in the calendar cell
 
 The moon visibility metadata is intentionally date-qualified. Some lunar visibility intervals start on one civil date and end after midnight on the next civil date, so a time-only `moonset` value can be visually earlier than `moonrise`. The month output therefore carries both compact display fields and explicit date-aware fields.
 
@@ -725,6 +770,7 @@ The package covers:
 - localized festival names
 - localized month names
 - localized paksha names
+- natural English-facing labels where a true English equivalent exists
 - localized calendar labels
 - localized special-yoga labels and effects
 - localized disha/vaasa labels and effects
@@ -761,6 +807,8 @@ If someone asks what kind of use cases it supports, the package is suitable for:
 
 - daily panchang applications
 - calendar and almanac generation
+- mobile and web month-calendar rendering with compact day-cell metadata
+- lunar phase display for widgets, calendars, and daily cards
 - vrata and festival date lookup
 - muhurta display and filtering
 - regional and tradition-aware observance presentation
