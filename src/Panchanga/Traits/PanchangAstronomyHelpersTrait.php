@@ -171,6 +171,8 @@ trait PanchangAstronomyHelpersTrait
         return [
             'name' => $name,
             'type' => $type,
+            'index' => $interval['index'] ?? null,
+            'phase_index' => $interval['phase_index'] ?? null,
             'start_jd' => $interval['start_jd'],
             'end_jd' => $interval['end_jd'],
             'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['start_jd'], $tz)),

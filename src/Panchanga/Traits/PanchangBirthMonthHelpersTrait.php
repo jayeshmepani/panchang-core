@@ -140,10 +140,10 @@ trait PanchangBirthMonthHelpersTrait
         $amantaNameEn = Masa::from($amantaIdx)->getName('en');
         if ($isAdhika) {
             $amantaName .= $adhikaStr;
-            $amantaNameEn .= ' (Adhika)';
+            $amantaNameEn .= $adhikaStr;
         } elseif ($isKshaya) {
             $amantaName .= $kshayaStr;
-            $amantaNameEn .= ' (Kshaya)';
+            $amantaNameEn .= $kshayaStr;
         }
 
         // Purnimanta month: Amanta month during Shukla Paksha, (Amanta+1) during Krishna Paksha
@@ -156,7 +156,7 @@ trait PanchangBirthMonthHelpersTrait
         // Purnimanta gets Adhika suffix when we're in Shukla Paksha of an Adhika month
         if ($isAdhika && $paksha === 'Shukla') {
             $purnimantaName .= $adhikaStr;
-            $purnimantaNameEn .= ' (Adhika)';
+            $purnimantaNameEn .= $adhikaStr;
         }
 
         $data = [

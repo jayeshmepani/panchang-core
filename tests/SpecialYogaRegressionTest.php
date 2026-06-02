@@ -39,7 +39,7 @@ class SpecialYogaRegressionTest extends TestCase
             'ravi_yoga_window' => ['2026-04-25', 'ravi_yoga', 'Ashlesha'],
             'aadal_window' => ['2026-04-22', 'aadal', 'Punarvasu'],
             'vidaal_window' => ['2026-04-22', 'vidaal', 'Ardra'],
-            'vinchhudo_window' => ['2026-05-03', 'vinchhudo', 'Vrischika'],
+            'vinchhudo_window' => ['2026-05-03', 'vinchhudo', 'Scorpio'],
         ];
     }
 
@@ -86,7 +86,7 @@ class SpecialYogaRegressionTest extends TestCase
     {
         $day = $this->getDayDetails('2026-01-14', 23.2472446, 69.668339, 'Asia/Kolkata');
 
-        $this->assertSame('Krishna Ekadashi', $day['Tithi']['name'] ?? null);
+        $this->assertSame('Eleventh Lunar Day of Dark Half', $day['Tithi']['name'] ?? null);
         $observance = $day['Dharma_Sindhu']['Ekadashi_Observance'] ?? null;
         $this->assertIsArray($observance);
         $this->assertSame($observance, $day['Ekadashi_Observance'] ?? null);
@@ -158,10 +158,10 @@ class SpecialYogaRegressionTest extends TestCase
         $this->assertSame(1, $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['pada'] ?? null);
         $this->assertSame('Deva', $day['Chandra_Vaasa']['nakshatra_pada_vaasa']['current']['abode_key'] ?? null);
 
-        $this->assertSame('Shukla Chaturdashi', $day['Shiva_Vaasa']['tithi_name'] ?? null);
-        $this->assertSame('Shukla Trayodashi', $day['Shiva_Vaasa']['at_sunrise']['tithi_name'] ?? null);
-        $this->assertSame('Shukla Chaturdashi', $day['Agni_Vaasa']['tithi_name'] ?? null);
-        $this->assertSame('Shukla Chaturdashi', $day['Yogini_Vaasa']['tithi_name'] ?? null);
+        $this->assertSame('Fourteenth Lunar Day of Bright Half', $day['Shiva_Vaasa']['tithi_name'] ?? null);
+        $this->assertSame('Thirteenth Lunar Day of Bright Half', $day['Shiva_Vaasa']['at_sunrise']['tithi_name'] ?? null);
+        $this->assertSame('Fourteenth Lunar Day of Bright Half', $day['Agni_Vaasa']['tithi_name'] ?? null);
+        $this->assertSame('Fourteenth Lunar Day of Bright Half', $day['Yogini_Vaasa']['tithi_name'] ?? null);
     }
 
     public function test_moonrise_moonset_are_reported_as_visibility_interval_for_civil_date(): void

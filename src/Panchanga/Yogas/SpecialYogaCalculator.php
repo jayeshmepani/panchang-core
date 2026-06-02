@@ -284,20 +284,28 @@ class SpecialYogaCalculator
         string $tz
     ): array {
         $windows = [];
-        $rules = [
+        $rawRules = [
             [
                 'weekday_index' => 2,
                 'nakshatra_index' => 0,
                 'lagna_sign_index' => 0,
-                'combination' => 'Tuesday + Ashwini + Mesha Lagna',
             ],
             [
                 'weekday_index' => 2,
                 'nakshatra_index' => 16,
                 'lagna_sign_index' => 7,
-                'combination' => 'Tuesday + Anuradha + Vrischika Lagna',
             ],
         ];
+
+        $rules = array_map(function (array $rule): array {
+            $rule['combination'] = sprintf(
+                '%s + %s + %s Lagna',
+                Vara::from($rule['weekday_index'])->getName(),
+                Localization::translate('Nakshatra', $rule['nakshatra_index'], config('panchang.defaults.locale', 'en')),
+                Rasi::from($rule['lagna_sign_index'])->getName()
+            );
+            return $rule;
+        }, $rawRules);
 
         if ($weekdayIndex !== 2) {
             return [

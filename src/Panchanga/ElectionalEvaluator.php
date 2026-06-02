@@ -214,7 +214,9 @@ final class ElectionalEvaluator
         $isRikta = in_array($tithiNumber, $riktaTithis, true);
         $hasDosha = $isRikta;
 
-        $pakshaName = $isKrishnaPaksha ? 'Krishna Paksha (waning)' : 'Shukla Paksha (waxing)';
+        $pakshaName = $isKrishnaPaksha
+            ? Localization::translate('String', 'Krishna Paksha (waning)')
+            : Localization::translate('String', 'Shukla Paksha (waxing)');
 
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani / Gargiya Jyotisha'),
@@ -222,7 +224,7 @@ final class ElectionalEvaluator
             'tithi_name' => Tithi::from(self::normalizeTithiNumber($tithiNumber))->getName(),
             'tithi_number_base' => 1,
             'is_krishna_paksha' => $isKrishnaPaksha,
-            'paksha_name' => Localization::translate('String', $pakshaName),
+            'paksha_name' => $pakshaName,
             'is_rikta' => $isRikta,
             'is_special_avoid' => false,
             'has_dosha' => $hasDosha,

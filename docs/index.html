@@ -1074,13 +1074,13 @@ $effective = $pradosha['effective_trayodashi_window']; // Overlap with T13</code
             <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>$badTimes   = $details['Rahu_Kaal_Gulika_Yamaganda'];
 $abhijit    = $details['Abhijit_Muhurta'];
 $praharas   = $details['Prahara_Full_Day'];
-$daylight   = $details['Daylight_Fivefold_Division']; // Pratah, Sangava, Madhyahna, Aparahna, Sayahna
+$daylight   = $details['Daylight_Fivefold_Division']; // Morning, Forenoon, Midday, Afternoon, Evening
 $brahma     = $details['Brahma_Muhurta'];
 $dur        = $details['Dur_Muhurta_Full_Day'];
 $nishita    = $details['Nishita_Muhurta'];            // Night midpoint
 $vijaya     = $details['Vijaya_Muhurta'];             // 11th of 15 day muhurtas
 $godhuli    = $details['Godhuli_Muhurta'];            // Evening twilight
-$sandhya    = $details['Sandhya'];                    // Pratah, Madhyahna, Sayahna
+$sandhya    = $details['Sandhya'];                    // Morning, Noon, Evening
 $gowri      = $details['Gowri_Panchangam'];           // Tamil 8-part division
 $kalaVela   = $details['Kala_Vela'];                  // Kala, Mrityu, etc.
 $karmakala  = $details['Karmakala_Windows'];
@@ -2126,7 +2126,7 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">getDaylightFivefoldDivision()</h4>
-              <p class="method-description">Divides the day into Pratah, Sangava, Madhyahna, Aparahna, and Sayahna windows.</p>
+              <p class="method-description">Divides the day into morning, forenoon, midday, afternoon, and evening windows.</p>
               <div class="method-signature"><code>public function getDaylightFivefoldDivision(CarbonImmutable $sunrise, CarbonImmutable $sunset): array</code></div>
             </div>
 
@@ -2527,8 +2527,8 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateDaylightFivefoldDivision()</h4>
-              <p class="method-description">Calculate the canonical five daylight divisions: Pratah, Sangava, Madhyahna,
-                Aparahna, and Sayahna.</p>
+              <p class="method-description">Calculate the canonical five daylight divisions: morning, forenoon, midday,
+                afternoon, and evening.</p>
               <div class="method-signature">
                 <code>public function calculateDaylightFivefoldDivision(CarbonImmutable $sunrise, CarbonImmutable $sunset): array</code>
               </div>
@@ -2560,7 +2560,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateSandhya()</h4>
-              <p class="method-description">Calculate Pratah, Madhyahna, and Sayahna Sandhya windows.</p>
+              <p class="method-description">Calculate morning, noon, and evening Sandhya windows.</p>
               <div class="method-signature">
                 <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $solarNoon): array</code>
               </div>
@@ -3030,6 +3030,8 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
             <tbody>
               <tr><td><code>Chandra_Vaasa</code></td><td>Object</td><td>{rule_system: moon_rashi_direction_4_direction, moon_sign, direction, windows, nakshatra_pada_vaasa}</td></tr>
               <tr><td><code>Current_Nakshatra_At_Input_Now</code></td><td>Object</td><td>{name, pada, lord}; runtime/current Nakshatra for the calculation instant</td></tr>
+              <tr><td><code>Moon_Phase_At_Sunrise</code></td><td>Object</td><td>{key, name, visibility_key, visibility, illumination_band, illumination_fraction, illumination_percent, phase_angle_degrees, synodic_age_days}</td></tr>
+              <tr><td><code>Current_Moon_Phase_At_Input_Now</code></td><td>Object</td><td>{key, name, visibility_key, visibility, illumination_band, illumination_fraction, illumination_percent, phase_angle_degrees, synodic_age_days}</td></tr>
               <tr><td><code>Nakshatra_At_Sunrise</code></td><td>Object</td><td>{name, pada, lord}; explicit sunrise Nakshatra</td></tr>
               <tr><td><code>Transitions</code></td><td>Object</td><td>{tithi, nakshatra, yoga, karana, moon_sign, sun_sign}; each current field is input-time based and includes current_at_sunrise where relevant</td></tr>
               <tr><td><code>Resolution_Context</code></td><td>Object</td><td>{date_iso, sunrise_iso, next_sunrise_iso, tithi_start_jd, tithi_end_jd, nakshatra_start_jd, nakshatra_end_jd, sankranti_rashi}</td></tr>
@@ -3420,6 +3422,8 @@ class PanchangController extends Controller
   'Tithi_At_Sunrise' => ['index' => 12, 'name' => 'Dwadashi', 'paksha' => 'Shukla'],
   'Current_Tithi_At_Input_Now' => ['index' => 13, 'name' => 'Trayodashi', 'paksha' => 'Shukla'],
   'Nakshatra' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
+  'Nakshatra_At_Sunrise' => ['index' => 10, 'name' => 'Magha', 'pada' => 2, 'lord' => 'Sun'],
+  'Current_Nakshatra_At_Input_Now' => ['index' => 11, 'name' => 'Purva Phalguni', 'pada' => 1, 'lord' => 'Venus'],
   'Yoga' => ['index' => 9, 'name' => 'Shula'],
   'Current_Yoga_At_Input_Now' => ['index' => 10, 'name' => 'Ganda'],
   'Karana' => ['index' => 23, 'name' => 'Bava'],
@@ -3433,6 +3437,22 @@ class PanchangController extends Controller
     'Is_Kshaya' => false,
     'Amanta_Index' => 1,
     'Purnimanta_Index' => 1,
+  ],
+  'Moon_Phase_At_Sunrise' => [
+    'key' => 'waxing_gibbous',
+    'name' => 'Waxing Gibbous',
+    'visibility' => 'Late afternoon and most of night',
+    'illumination_fraction' => 0.73,
+    'phase_angle_degrees' => 117.4,
+    'synodic_age_days' => 9.62,
+  ],
+  'Current_Moon_Phase_At_Input_Now' => [
+    'key' => 'waxing_gibbous',
+    'name' => 'Waxing Gibbous',
+    'visibility' => 'Late afternoon and most of night',
+    'illumination_fraction' => 0.76,
+    'phase_angle_degrees' => 121.1,
+    'synodic_age_days' => 9.93,
   ],
   'Rahu_Kaal_Gulika_Yamaganda' => [...],
   'Abhijit_Muhurta' => [
@@ -3450,7 +3470,7 @@ class PanchangController extends Controller
   'Prahara_Full_Day' => [...],
   'Lagna_Full_Day' => [
     [
-      'sign_name' => 'Vrishabha',
+      'sign_name' => 'Taurus',
       'start_iso' => '...',
       'end_iso' => '...',
       'visible_start_iso' => '...',
@@ -3580,12 +3600,36 @@ class PanchangController extends Controller
     'date' => '2026-04-01',
     'day' => 1,
     'tithi' => [...],
+    'tithi_display' => [
+      'display' => '14',
+      'indexes' => [14],
+      'phase_indexes' => [14],
+      'names' => ['Fourteenth Lunar Day of Bright Half'],
+      'has_multiple_tithis' => false,
+      'has_kshaya_tithi' => false,
+      'kshaya_tithi' => null,
+    ],
+    'tithi_windows' => [...],
     'nakshatra' => [...],
+    'nakshatra_windows' => [...],
+    'nakshatra_padas' => [...],
     'yoga' => [...],
+    'yoga_windows' => [...],
     'karana' => [...],
+    'karana_windows' => [...],
     'vara' => [...],
     'sun_sign' => [...],
     'moon_sign' => [...],
+    'moon_phase' => [
+      'key' => 'waxing_gibbous',
+      'name' => 'Waxing Gibbous',
+      'visibility' => 'Late afternoon and most of night',
+      'illumination_band' => '51%-99%',
+      'illumination_fraction' => 0.73,
+      'illumination_percent' => 73.0,
+      'phase_angle_degrees' => 117.4,
+      'synodic_age_days' => 9.62,
+    ],
     'sunrise' => '06:43:00 AM',
     'sunset' => '07:11:00 PM',
     'moonrise' => '...',
@@ -3610,7 +3654,9 @@ class PanchangController extends Controller
     'sankranti' => null,
   ],
 ]</code></pre>
+          <p><strong>Month calendar note:</strong> <code>tithi</code> remains the sunrise-based day label for compatibility, while <code>tithi_display</code> is the calendar-cell helper for UI use. On kshaya/skip days it can expose compact values such as <code>30/1</code> together with structured <code>kshaya_tithi</code> metadata.</p>
           <p><strong>Moon visibility note:</strong> month output preserves compact <code>moonrise</code> and <code>moonset</code> display fields, but also includes date-qualified fields because a moonset can occur after midnight on the next civil date.</p>
+          <p><strong>Moon phase note:</strong> <code>moon_phase</code> is a visual phase classification derived from exact Sun-Moon elongation and illuminated fraction. It is intentionally separate from Tithi.</p>
         </section>
 
         <section id="examples" class="content-section">
@@ -3682,7 +3728,7 @@ $muhurtas = $details['Muhurta_Full_Day'];    // 30 named Muhurtas
 $brahma   = $details['Brahma_Muhurta'];      // Dynamic night-muhurta convention
 $badTimes = $details['Rahu_Kaal_Gulika_Yamaganda']; // Rahu, Gulika, Yamaganda
 $durs     = $details['Dur_Muhurta_Full_Day']; // Inauspicious Muhurtas
-$sandhya  = $details['Sandhya'];              // Pratah / Madhyahna / Sayahna
+$sandhya  = $details['Sandhya'];              // Morning / Noon / Evening
 $gowri    = $details['Gowri_Panchangam'];     // Day + night Gowri divisions
 $karmakala = $details['Karmakala_Windows'];   // Named daily windows</code></pre>
 
@@ -4227,6 +4273,9 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><code>calculateAmritaKaal()</code> remains only as a legacy compatibility helper and no longer derives Amrita Kaal from Varjyam end time.</li>
               <li><code>Chandra_Vaasa</code> now uses Moon-rashi direction as the primary meaning and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
               <li><code>Current_Nakshatra_At_Input_Now</code> and <code>Nakshatra_At_Sunrise</code> now make runtime versus sunrise Nakshatra semantics explicit.</li>
+              <li><code>Moon_Phase_At_Sunrise</code>, <code>Current_Moon_Phase_At_Input_Now</code>, and month-level <code>moon_phase</code> are new additive payloads that represent visual lunar phase, not Tithi.</li>
+              <li>Month calendar output now includes <code>tithi_display</code>, <code>tithi_windows</code>, <code>nakshatra_windows</code>, <code>nakshatra_padas</code>, <code>yoga_windows</code>, and <code>karana_windows</code> for richer calendar cells and timing-aware UIs.</li>
+              <li>On kshaya/skip days, <code>tithi_display</code> exposes compact multi-value labels such as <code>30/1</code> and structured <code>kshaya_tithi</code> metadata instead of forcing consumers to derive skipped Tithis manually.</li>
               <li>Runtime Nakshatra-derived outputs, including Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa, now select the window active at the calculation instant.</li>
               <li>Shiva Vaasa, Agni Vaasa, and Yogini Vaasa now use the input-time Tithi while preserving sunrise values under <code>at_sunrise</code>.</li>
               <li>Eclipse output separates global catalog type from local visible type through <code>global_eclipse_type</code> and <code>local_eclipse_type</code>.</li>
@@ -4250,6 +4299,8 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <ul>
             <li><code>Current_Tithi_At_Input_Now</code> and <code>Current_Karana_At_Input_Now</code> should be used when the app needs the value active at the requested calculation time.</li>
             <li><code>Tithi</code> and <code>Karana</code> remain sunrise-based compatibility fields. Prefer <code>Tithi_At_Sunrise</code> and <code>Karana_At_Sunrise</code> when sunrise semantics must be explicit.</li>
+            <li><code>Moon_Phase_At_Sunrise</code>, <code>Current_Moon_Phase_At_Input_Now</code>, and month-level <code>moon_phase</code> use exact Sun-Moon elongation and illuminated fraction. They are visual moon-phase outputs, not festival-resolution fields.</li>
+            <li><code>tithi_display</code> is the month-cell helper for UI rendering. Use it when a date can legitimately display a compact double-Tithi form such as <code>30/1</code>.</li>
             <li><code>Brahma_Muhurta</code> now exposes the dynamic night-muhurta convention by default and preserves the fixed 48-minute convention under <code>fixed_48_minute_convention</code>.</li>
             <li><code>Amrita_Kaal</code> is calculated independently from nakshatra-specific Amrita ghati offsets. It is not derived from Varjyam end time.</li>
             <li><code>Day_Types.apparent_solar_noon</code> and <code>Abhijit_Muhurta.daylight_midpoint</code> intentionally name two different concepts.</li>

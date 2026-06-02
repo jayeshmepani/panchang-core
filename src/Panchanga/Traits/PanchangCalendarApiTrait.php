@@ -154,10 +154,13 @@ trait PanchangCalendarApiTrait
                 $sankranti = Rasi::from($rashiIdx)->getName() . ' ' . Localization::translate('Common', 'Sankranti');
             }
 
+            $tithiDisplay = $this->buildMonthCalendarTithiDisplay($todaySnapshot);
+
             $calendar[$date->toDateString()] = [
                 'date' => $date->toDateString(),
                 'day' => (int) $date->format('d'),
                 'tithi' => $todaySnapshot['Tithi'],
+                'tithi_display' => $tithiDisplay,
                 'tithi_windows' => $todaySnapshot['Tithi_Windows'] ?? [],
                 'nakshatra' => $todaySnapshot['Nakshatra'],
                 'nakshatra_windows' => $todaySnapshot['Nakshatra_Windows'] ?? [],
@@ -169,6 +172,7 @@ trait PanchangCalendarApiTrait
                 'vara' => $todaySnapshot['Vara'],
                 'sun_sign' => $todaySnapshot['Sun_Sign'],
                 'moon_sign' => $todaySnapshot['Moon_Sign'],
+                'moon_phase' => $todaySnapshot['Moon_Phase'] ?? null,
                 'sunrise' => $todaySnapshot['Sunrise'],
                 'sunset' => $todaySnapshot['Sunset'],
                 'moonrise' => $todaySnapshot['Moonrise'],
@@ -345,6 +349,78 @@ trait PanchangCalendarApiTrait
             ],
             'evaluation_results' => $evaluationResults,
             'rejection_report' => $rejectionReport,
+        ];
+    }
+
+    /**
+     * Build a calendar-cell-oriented Tithi summary.
+     *
+     * The sunrise tithi remains in `tithi`. This helper adds:
+     * - compact display like `30/1`
+     * - explicit multiple-tithi metadata
+     * - explicit kshaya-tithi metadata when a tithi begins and ends between two sunrises
+     *
+     * @param array<string, mixed> $todaySnapshot
+     *
+     * @return array<string, mixed>
+     */
+    private function buildMonthCalendarTithiDisplay(array $todaySnapshot): array
+    {
+        $sunriseTithi = $todaySnapshot['Tithi'] ?? [];
+        $windows = $todaySnapshot['Tithi_Windows'] ?? [];
+        $sunriseJd = (float) ($todaySnapshot['Resolution_Context']['sunrise_jd'] ?? 0.0);
+        $nextSunriseJd = (float) ($todaySnapshot['Resolution_Context']['next_sunrise_jd'] ?? 0.0);
+
+        $sunriseIndex = (int) ($sunriseTithi['index'] ?? 0);
+        $indexes = [$sunriseIndex];
+        $phaseIndexes = [(($sunriseIndex - 1) % 15) + 1];
+        $names = [(string) ($sunriseTithi['name'] ?? '')];
+        $kshayaTithi = null;
+
+        foreach ($windows as $window) {
+            $windowIndex = (int) ($window['index'] ?? 0);
+            if ($windowIndex === 0 || $windowIndex === $sunriseIndex) {
+                continue;
+            }
+
+            $windowStartJd = (float) ($window['start_jd'] ?? 0.0);
+            $windowEndJd = (float) ($window['end_jd'] ?? 0.0);
+            if ($windowStartJd <= $sunriseJd) {
+                continue;
+            }
+
+            if ($windowEndJd < $nextSunriseJd) {
+                $paksha = $windowIndex > 15 ? 'Krishna' : 'Shukla';
+                $indexes[] = $windowIndex;
+                $phaseIndexes[] = (int) (($window['phase_index'] ?? ((($windowIndex - 1) % 15) + 1)));
+                $names[] = (string) ($window['name'] ?? '');
+                $kshayaTithi = [
+                    'index' => $windowIndex,
+                    'phase_index' => (int) (($window['phase_index'] ?? ((($windowIndex - 1) % 15) + 1))),
+                    'name' => (string) ($window['name'] ?? ''),
+                    'paksha' => $paksha,
+                    'paksha_name' => Localization::translate(
+                        'String',
+                        $paksha === 'Shukla' ? 'Shukla Paksha (waxing)' : 'Krishna Paksha (waning)'
+                    ),
+                    'start_jd' => $windowStartJd,
+                    'end_jd' => $windowEndJd,
+                    'start_iso' => $window['start_iso'] ?? null,
+                    'end_iso' => $window['end_iso'] ?? null,
+                ];
+            }
+        }
+
+        $displayParts = array_map(static fn (int $index): string => (string) $index, $indexes);
+
+        return [
+            'display' => implode('/', $displayParts),
+            'indexes' => $indexes,
+            'phase_indexes' => $phaseIndexes,
+            'names' => $names,
+            'has_multiple_tithis' => count($indexes) > 1,
+            'has_kshaya_tithi' => $kshayaTithi !== null,
+            'kshaya_tithi' => $kshayaTithi,
         ];
     }
 

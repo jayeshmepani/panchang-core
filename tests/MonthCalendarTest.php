@@ -47,18 +47,43 @@ class MonthCalendarTest extends TestCase
         // Let's just check if data is populated
         $this->assertNotEmpty($firstDay['tithi']['name']);
 
-        // Check for Hanuman Jayanti (usually Chaitra Purnima)
-        // 2026-04-01 is Chaitra Shukla Chaturdashi/Purnima
-        $foundHanumanJayanti = false;
+        // Check for a known April festival from the current rule set.
+        $foundChaitraPurnima = false;
         foreach ($calendar as $day) {
             foreach ($day['festivals'] as $fest) {
-                if (str_contains((string) $fest['name'], 'Hanuman Jayanti')) {
-                    $foundHanumanJayanti = true;
+                if ((string) $fest['name'] === 'Chaitra Purnima') {
+                    $foundChaitraPurnima = true;
                 }
             }
         }
 
-        $this->assertTrue($foundHanumanJayanti, 'Hanuman Jayanti should be in April 2026');
+        $this->assertTrue($foundChaitraPurnima, 'Chaitra Purnima should be present in April 2026');
+    }
+
+    public function test_month_calendar_exposes_double_tithi_and_kshaya_tithi_metadata(): void
+    {
+        config(['panchang.defaults.locale' => 'en']);
+
+        $calendar = Panchang::getMonthCalendar(
+            2026,
+            6,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            ['festival_scope' => 'month']
+        );
+
+        $day = $calendar['2026-06-15'];
+
+        $this->assertSame('30/1', $day['tithi_display']['display'] ?? null);
+        $this->assertSame([30, 1], $day['tithi_display']['indexes'] ?? null);
+        $this->assertTrue((bool) ($day['tithi_display']['has_multiple_tithis'] ?? false));
+        $this->assertTrue((bool) ($day['tithi_display']['has_kshaya_tithi'] ?? false));
+        $this->assertSame(1, $day['tithi_display']['kshaya_tithi']['index'] ?? null);
+        $this->assertSame('First Lunar Day of Bright Half', $day['tithi_display']['kshaya_tithi']['name'] ?? null);
+        $this->assertSame('Shukla', $day['tithi_display']['kshaya_tithi']['paksha'] ?? null);
+        $this->assertSame('Bright Half (waxing)', $day['tithi_display']['kshaya_tithi']['paksha_name'] ?? null);
     }
 
     public function test_purnimanta_day_details_match_month_calendar_festivals(): void

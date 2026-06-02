@@ -260,6 +260,8 @@ class PanchangService
         $sunSign = AstroCore::getSign($sunLon);
         $currentMoonSign = AstroCore::getSign($currentMoonLon);
         $currentSunSign = AstroCore::getSign($currentSunLon);
+        $moonPhaseAtSunrise = $this->buildMoonPhase($sunLon, $moonLon);
+        $currentMoonPhase = $this->buildMoonPhase($currentSunLon, $currentMoonLon);
 
         $panchakaAtSunrise = $this->panchanga->calculatePanchakaRahita(
             (int) $tithi['index'],
@@ -488,6 +490,7 @@ class PanchangService
                 $sankrantiName = $sankrantiNameMap[$nextSign];
                 $sankrantiRashi = $nextSign;
                 $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset);
+                $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
             }
         }
 
@@ -876,6 +879,8 @@ class PanchangService
                 'Sun_Sign' => Rasi::from($currentSunSign)->getName(),
                 'Moon_Sign' => Rasi::from($currentMoonSign)->getName(),
             ],
+            'Moon_Phase_At_Sunrise' => $moonPhaseAtSunrise,
+            'Current_Moon_Phase_At_Input_Now' => $currentMoonPhase,
             'Festivals' => $festivals,
             'Daily_Observances' => $dailyObservances,
             'Special_Yogas' => $specialYogas,
@@ -1118,6 +1123,7 @@ class PanchangService
             'Sun_Sign_Index' => AstroCore::getSign($sunLon),
             'Moon_Sign' => Rasi::from(AstroCore::getSign($moonLon))->getName(),
             'Moon_Sign_Index' => AstroCore::getSign($moonLon),
+            'Moon_Phase' => $this->buildMoonPhase($sunLon, $moonLon),
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
@@ -1173,6 +1179,69 @@ class PanchangService
             'Nakshatra_Padas' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $this->intervalTracker->collectNakshatraPadaIntervals($jdSunrise, $jdNextSunrise)),
             'Yoga_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)),
             'Karana_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $this->intervalTracker->collectKaranaIntervals($jdSunrise, $jdNextSunrise)),
+        ];
+    }
+
+    /**
+     * Classify the Moon into the common 8 visual phase buckets.
+     *
+     * This is distinct from Tithi: it is based on the instantaneous Sun-Moon
+     * elongation and resulting illuminated fraction.
+     *
+     * @return array<string, float|int|string>
+     */
+    private function buildMoonPhase(float $sunLongitude, float $moonLongitude): array
+    {
+        $synodicMonthDays = 29.530588861;
+        $phaseAngle = fmod(($moonLongitude - $sunLongitude) + 360.0, 360.0);
+        $illuminationFraction = (1.0 - cos(deg2rad($phaseAngle))) / 2.0;
+        $illuminationPercent = $illuminationFraction * 100.0;
+        $synodicAgeDays = ($phaseAngle / 360.0) * $synodicMonthDays;
+
+        $phaseKey = 'new_moon';
+        $visibilityKey = 'invisible_except_eclipse';
+        $illuminationBand = '0%';
+
+        if ($phaseAngle >= 22.5 && $phaseAngle < 67.5) {
+            $phaseKey = 'waxing_crescent';
+            $visibilityKey = 'late_morning_to_post_dusk';
+            $illuminationBand = '1%-49%';
+        } elseif ($phaseAngle >= 67.5 && $phaseAngle < 112.5) {
+            $phaseKey = 'first_quarter';
+            $visibilityKey = 'afternoon_and_early_night';
+            $illuminationBand = '50%';
+        } elseif ($phaseAngle >= 112.5 && $phaseAngle < 157.5) {
+            $phaseKey = 'waxing_gibbous';
+            $visibilityKey = 'late_afternoon_and_most_of_night';
+            $illuminationBand = '51%-99%';
+        } elseif ($phaseAngle >= 157.5 && $phaseAngle < 202.5) {
+            $phaseKey = 'full_moon';
+            $visibilityKey = 'sunset_to_sunrise';
+            $illuminationBand = '100%';
+        } elseif ($phaseAngle >= 202.5 && $phaseAngle < 247.5) {
+            $phaseKey = 'waning_gibbous';
+            $visibilityKey = 'most_of_night_and_early_morning';
+            $illuminationBand = '99%-51%';
+        } elseif ($phaseAngle >= 247.5 && $phaseAngle < 292.5) {
+            $phaseKey = 'last_quarter';
+            $visibilityKey = 'late_night_and_morning';
+            $illuminationBand = '50%';
+        } elseif ($phaseAngle >= 292.5 && $phaseAngle < 337.5) {
+            $phaseKey = 'waning_crescent';
+            $visibilityKey = 'pre_dawn_to_early_afternoon';
+            $illuminationBand = '49%-1%';
+        }
+
+        return [
+            'key' => $phaseKey,
+            'name' => Localization::translate('MoonPhase', $phaseKey),
+            'visibility_key' => $visibilityKey,
+            'visibility' => Localization::translate('MoonPhaseVisibility', $visibilityKey),
+            'illumination_band' => $illuminationBand,
+            'illumination_fraction' => $illuminationFraction,
+            'illumination_percent' => $illuminationPercent,
+            'phase_angle_degrees' => $phaseAngle,
+            'synodic_age_days' => $synodicAgeDays,
         ];
     }
 

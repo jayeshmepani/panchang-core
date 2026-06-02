@@ -120,9 +120,9 @@ class CoreTest extends TestCase
         $this->assertCount(30, Tithi::cases());
 
         // Test names
-        $this->assertEquals('Shukla Pratipada', Tithi::ShuklaPratipada->getName());
-        $this->assertEquals('Purnima', Tithi::Purnima->getName());
-        $this->assertEquals('Amavasya', Tithi::Amavasya->getName());
+        $this->assertEquals('First Lunar Day of Bright Half', Tithi::ShuklaPratipada->getName());
+        $this->assertEquals('Full Moon', Tithi::Purnima->getName());
+        $this->assertEquals('New Moon', Tithi::Amavasya->getName());
 
         // Test paksha
         $this->assertEquals(Paksha::Shukla, Tithi::ShuklaPratipada->getPaksha());

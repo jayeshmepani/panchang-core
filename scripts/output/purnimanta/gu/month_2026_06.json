@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-05-31T19:07:58+00:00",
+        "generated_at": "2026-06-02T12:46:08+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "purnimanta",
@@ -21,10 +21,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.3989526796409256
             },
+            "tithi_display": {
+                "display": "16",
+                "indexes": [
+                    16
+                ],
+                "phase_indexes": [
+                    1
+                ],
+                "names": [
+                    "વદ એકમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ એકમ",
                     "type": "tithi",
+                    "index": 16,
+                    "phase_index": 1,
                     "start_jd": 2461191.863628136,
                     "end_jd": 2461192.962560839,
                     "start_iso": "31/05/2026 02:13:37 PM",
@@ -33,6 +50,8 @@
                 {
                     "name": "વદ બીજ",
                     "type": "tithi",
+                    "index": 17,
+                    "phase_index": 2,
                     "start_jd": 2461192.962560839,
                     "end_jd": 2461194.0625797724,
                     "start_iso": "01/06/2026 04:36:05 PM",
@@ -48,6 +67,8 @@
                 {
                     "name": "જ્યેષ્ઠા",
                     "type": "nakshatra",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461191.945175127,
                     "end_jd": 2461193.067897738,
                     "start_iso": "31/05/2026 04:11:03 PM",
@@ -56,6 +77,8 @@
                 {
                     "name": "મૂળ",
                     "type": "nakshatra",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461193.067897738,
                     "end_jd": 2461194.191384387,
                     "start_iso": "01/06/2026 07:07:46 PM",
@@ -66,6 +89,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461192.506243095,
                     "end_jd": 2461192.7870199922,
                     "start_iso": "01/06/2026 05:38:59 AM",
@@ -74,6 +99,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461192.7870199922,
                     "end_jd": 2461193.067897738,
                     "start_iso": "01/06/2026 12:23:18 PM",
@@ -82,6 +109,8 @@
                 {
                     "name": "મૂળ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461193.067897738,
                     "end_jd": 2461193.348827469,
                     "start_iso": "01/06/2026 07:07:46 PM",
@@ -90,6 +119,8 @@
                 {
                     "name": "મૂળ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461193.348827469,
                     "end_jd": 2461193.6297568018,
                     "start_iso": "02/06/2026 01:52:18 AM",
@@ -104,6 +135,8 @@
                 {
                     "name": "સિદ્ધ",
                     "type": "yoga",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461191.4960307283,
                     "end_jd": 2461192.533822016,
                     "start_iso": "31/05/2026 05:24:17 AM",
@@ -112,6 +145,8 @@
                 {
                     "name": "સાધ્ય",
                     "type": "yoga",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461192.533822016,
                     "end_jd": 2461193.5734115774,
                     "start_iso": "01/06/2026 06:18:42 AM",
@@ -126,6 +161,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 32,
+                    "phase_index": null,
                     "start_jd": 2461192.412761962,
                     "end_jd": 2461192.962560839,
                     "start_iso": "01/06/2026 03:24:22 AM",
@@ -134,6 +171,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 33,
+                    "phase_index": null,
                     "start_jd": 2461192.962560839,
                     "end_jd": 2461193.512644355,
                     "start_iso": "01/06/2026 04:36:05 PM",
@@ -142,6 +181,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 34,
+                    "phase_index": null,
                     "start_jd": 2461193.512644355,
                     "end_jd": 2461194.0625797724,
                     "start_iso": "02/06/2026 05:48:12 AM",
@@ -154,6 +195,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "વૃશ્ચિક",
+            "moon_phase": {
+                "key": "full_moon",
+                "name": "પૂનમ",
+                "visibility_key": "sunset_to_sunrise",
+                "visibility": "સૂર્યાસ્તથી સૂર્યોદય સુધી",
+                "illumination_band": "100%",
+                "illumination_fraction": 0.9960435927846873,
+                "illumination_percent": 99.60435927846873,
+                "phase_angle_degrees": 187.21256784430886,
+                "synodic_age_days": 15.35693714061765
+            },
             "sunrise": "06:04:19 AM",
             "sunset": "07:34:10 PM",
             "moonrise": "08:40:29 PM",
@@ -174,7 +226,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -205,10 +257,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.48991604327958294
             },
+            "tithi_display": {
+                "display": "17",
+                "indexes": [
+                    17
+                ],
+                "phase_indexes": [
+                    2
+                ],
+                "names": [
+                    "વદ બીજ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ બીજ",
                     "type": "tithi",
+                    "index": 17,
+                    "phase_index": 2,
                     "start_jd": 2461192.962560839,
                     "end_jd": 2461194.0625797724,
                     "start_iso": "01/06/2026 04:36:05 PM",
@@ -217,6 +286,8 @@
                 {
                     "name": "વદ ત્રીજ",
                     "type": "tithi",
+                    "index": 18,
+                    "phase_index": 3,
                     "start_jd": 2461194.0625797724,
                     "end_jd": 2461195.159936862,
                     "start_iso": "02/06/2026 07:00:06 PM",
@@ -232,6 +303,8 @@
                 {
                     "name": "મૂળ",
                     "type": "nakshatra",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461193.067897738,
                     "end_jd": 2461194.191384387,
                     "start_iso": "01/06/2026 07:07:46 PM",
@@ -240,6 +313,8 @@
                 {
                     "name": "પૂર્વાષાઢા",
                     "type": "nakshatra",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461194.191384387,
                     "end_jd": 2461195.311849052,
                     "start_iso": "02/06/2026 10:05:35 PM",
@@ -250,6 +325,8 @@
                 {
                     "name": "મૂળ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461193.348827469,
                     "end_jd": 2461193.6297568018,
                     "start_iso": "02/06/2026 01:52:18 AM",
@@ -258,6 +335,8 @@
                 {
                     "name": "મૂળ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461193.6297568018,
                     "end_jd": 2461193.9106293553,
                     "start_iso": "02/06/2026 08:36:50 AM",
@@ -266,6 +345,8 @@
                 {
                     "name": "મૂળ Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461193.9106293553,
                     "end_jd": 2461194.191384387,
                     "start_iso": "02/06/2026 03:21:18 PM",
@@ -274,6 +355,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461194.191384387,
                     "end_jd": 2461194.4719565166,
                     "start_iso": "02/06/2026 10:05:35 PM",
@@ -282,6 +365,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461194.4719565166,
                     "end_jd": 2461194.7522755414,
                     "start_iso": "03/06/2026 04:49:37 AM",
@@ -296,6 +381,8 @@
                 {
                     "name": "સાધ્ય",
                     "type": "yoga",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461192.533822016,
                     "end_jd": 2461193.5734115774,
                     "start_iso": "01/06/2026 06:18:42 AM",
@@ -304,6 +391,8 @@
                 {
                     "name": "શુભ",
                     "type": "yoga",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461193.5734115774,
                     "end_jd": 2461194.612393802,
                     "start_iso": "02/06/2026 07:15:42 AM",
@@ -318,6 +407,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 34,
+                    "phase_index": null,
                     "start_jd": 2461193.512644355,
                     "end_jd": 2461194.0625797724,
                     "start_iso": "02/06/2026 05:48:12 AM",
@@ -326,6 +417,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 35,
+                    "phase_index": null,
                     "start_jd": 2461194.0625797724,
                     "end_jd": 2461194.6118683685,
                     "start_iso": "02/06/2026 07:00:06 PM",
@@ -338,6 +431,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "ધનુ",
+            "moon_phase": {
+                "key": "full_moon",
+                "name": "પૂનમ",
+                "visibility_key": "sunset_to_sunrise",
+                "visibility": "સૂર્યાસ્તથી સૂર્યોદય સુધી",
+                "illumination_band": "100%",
+                "illumination_fraction": 0.9752008791596274,
+                "illumination_percent": 97.52008791596273,
+                "phase_angle_degrees": 198.12100748064495,
+                "synodic_age_days": 16.251750046216753
+            },
             "sunrise": "06:04:11 AM",
             "sunset": "07:34:36 PM",
             "moonrise": "09:30:22 PM",
@@ -358,7 +462,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -389,10 +493,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.5803455473340005
             },
+            "tithi_display": {
+                "display": "18",
+                "indexes": [
+                    18
+                ],
+                "phase_indexes": [
+                    3
+                ],
+                "names": [
+                    "વદ ત્રીજ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ ત્રીજ",
                     "type": "tithi",
+                    "index": 18,
+                    "phase_index": 3,
                     "start_jd": 2461194.0625797724,
                     "end_jd": 2461195.159936862,
                     "start_iso": "02/06/2026 07:00:06 PM",
@@ -401,6 +522,8 @@
                 {
                     "name": "વદ ચોથ",
                     "type": "tithi",
+                    "index": 19,
+                    "phase_index": 4,
                     "start_jd": 2461195.159936862,
                     "end_jd": 2461196.249746209,
                     "start_iso": "03/06/2026 09:20:18 PM",
@@ -416,6 +539,8 @@
                 {
                     "name": "પૂર્વાષાઢા",
                     "type": "nakshatra",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461194.191384387,
                     "end_jd": 2461195.311849052,
                     "start_iso": "02/06/2026 10:05:35 PM",
@@ -424,6 +549,8 @@
                 {
                     "name": "ઉત્તરાષાઢા",
                     "type": "nakshatra",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461195.311849052,
                     "end_jd": 2461196.42434193,
                     "start_iso": "04/06/2026 12:59:03 AM",
@@ -434,6 +561,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461194.4719565166,
                     "end_jd": 2461194.7522755414,
                     "start_iso": "03/06/2026 04:49:37 AM",
@@ -442,6 +571,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461194.7522755414,
                     "end_jd": 2461195.032266369,
                     "start_iso": "03/06/2026 11:33:16 AM",
@@ -450,6 +581,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461195.032266369,
                     "end_jd": 2461195.311849052,
                     "start_iso": "03/06/2026 06:16:27 PM",
@@ -458,6 +591,8 @@
                 {
                     "name": "ઉત્તરાષાઢા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461195.311849052,
                     "end_jd": 2461195.590938949,
                     "start_iso": "04/06/2026 12:59:03 AM",
@@ -472,6 +607,8 @@
                 {
                     "name": "શુભ",
                     "type": "yoga",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461193.5734115774,
                     "end_jd": 2461194.612393802,
                     "start_iso": "02/06/2026 07:15:42 AM",
@@ -480,6 +617,8 @@
                 {
                     "name": "શુક્લ",
                     "type": "yoga",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461194.612393802,
                     "end_jd": 2461195.6476514256,
                     "start_iso": "03/06/2026 08:11:50 AM",
@@ -494,6 +633,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 35,
+                    "phase_index": null,
                     "start_jd": 2461194.0625797724,
                     "end_jd": 2461194.6118683685,
                     "start_iso": "02/06/2026 07:00:06 PM",
@@ -502,6 +643,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 36,
+                    "phase_index": null,
                     "start_jd": 2461194.6118683685,
                     "end_jd": 2461195.159936862,
                     "start_iso": "03/06/2026 08:11:05 AM",
@@ -510,6 +653,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 37,
+                    "phase_index": null,
                     "start_jd": 2461195.159936862,
                     "end_jd": 2461195.7061359603,
                     "start_iso": "03/06/2026 09:20:18 PM",
@@ -522,6 +667,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "ધનુ",
+            "moon_phase": {
+                "key": "waning_gibbous",
+                "name": "કૃષ્ણ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "most_of_night_and_early_morning",
+                "visibility": "મોટાભાગની રાત અને વહેલી સવાર",
+                "illumination_band": "99%-51%",
+                "illumination_fraction": 0.9371580806197833,
+                "illumination_percent": 93.71580806197834,
+                "phase_angle_degrees": 209.035853431992,
+                "synodic_age_days": 17.14708845807892
+            },
             "sunrise": "06:04:05 AM",
             "sunset": "07:35:01 PM",
             "moonrise": "10:16:11 PM",
@@ -542,7 +698,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -573,10 +729,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.667316364481439
             },
+            "tithi_display": {
+                "display": "19",
+                "indexes": [
+                    19
+                ],
+                "phase_indexes": [
+                    4
+                ],
+                "names": [
+                    "વદ ચોથ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ ચોથ",
                     "type": "tithi",
+                    "index": 19,
+                    "phase_index": 4,
                     "start_jd": 2461195.159936862,
                     "end_jd": 2461196.249746209,
                     "start_iso": "03/06/2026 09:20:18 PM",
@@ -585,6 +758,8 @@
                 {
                     "name": "વદ પાંચમ",
                     "type": "tithi",
+                    "index": 20,
+                    "phase_index": 5,
                     "start_jd": 2461196.249746209,
                     "end_jd": 2461197.326059988,
                     "start_iso": "04/06/2026 11:29:38 PM",
@@ -600,6 +775,8 @@
                 {
                     "name": "ઉત્તરાષાઢા",
                     "type": "nakshatra",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461195.311849052,
                     "end_jd": 2461196.42434193,
                     "start_iso": "04/06/2026 12:59:03 AM",
@@ -608,6 +785,8 @@
                 {
                     "name": "શ્રવણ",
                     "type": "nakshatra",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461196.42434193,
                     "end_jd": 2461197.522862102,
                     "start_iso": "05/06/2026 03:41:03 AM",
@@ -618,6 +797,8 @@
                 {
                     "name": "ઉત્તરાષાઢા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461195.311849052,
                     "end_jd": 2461195.590938949,
                     "start_iso": "04/06/2026 12:59:03 AM",
@@ -626,6 +807,8 @@
                 {
                     "name": "ઉત્તરાષાઢા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461195.590938949,
                     "end_jd": 2461195.8694470096,
                     "start_iso": "04/06/2026 07:40:57 AM",
@@ -634,6 +817,8 @@
                 {
                     "name": "ઉત્તરાષાઢા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461195.8694470096,
                     "end_jd": 2461196.147280178,
                     "start_iso": "04/06/2026 02:22:00 PM",
@@ -642,6 +827,8 @@
                 {
                     "name": "ઉત્તરાષાઢા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461196.147280178,
                     "end_jd": 2461196.42434193,
                     "start_iso": "04/06/2026 09:02:05 PM",
@@ -650,6 +837,8 @@
                 {
                     "name": "શ્રવણ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461196.42434193,
                     "end_jd": 2461196.7005329207,
                     "start_iso": "05/06/2026 03:41:03 AM",
@@ -664,6 +853,8 @@
                 {
                     "name": "શુક્લ",
                     "type": "yoga",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461194.612393802,
                     "end_jd": 2461195.6476514256,
                     "start_iso": "03/06/2026 08:11:50 AM",
@@ -672,6 +863,8 @@
                 {
                     "name": "બ્રહ્મ",
                     "type": "yoga",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461195.6476514256,
                     "end_jd": 2461196.675248252,
                     "start_iso": "04/06/2026 09:02:37 AM",
@@ -686,6 +879,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 37,
+                    "phase_index": null,
                     "start_jd": 2461195.159936862,
                     "end_jd": 2461195.7061359603,
                     "start_iso": "03/06/2026 09:20:18 PM",
@@ -694,6 +889,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 38,
+                    "phase_index": null,
                     "start_jd": 2461195.7061359603,
                     "end_jd": 2461196.249746209,
                     "start_iso": "04/06/2026 10:26:50 AM",
@@ -702,6 +899,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 39,
+                    "phase_index": null,
                     "start_jd": 2461196.249746209,
                     "end_jd": 2461196.7899915148,
                     "start_iso": "04/06/2026 11:29:38 PM",
@@ -714,6 +913,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "ધનુ",
+            "moon_phase": {
+                "key": "waning_gibbous",
+                "name": "કૃષ્ણ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "most_of_night_and_early_morning",
+                "visibility": "મોટાભાગની રાત અને વહેલી સવાર",
+                "illumination_band": "99%-51%",
+                "illumination_fraction": 0.8830659508372335,
+                "illumination_percent": 88.30659508372335,
+                "phase_angle_degrees": 219.9922036262227,
+                "synodic_age_days": 18.045831438642708
+            },
             "sunrise": "06:04:00 AM",
             "sunset": "07:35:26 PM",
             "moonrise": "10:57:43 PM",
@@ -734,7 +944,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -847,10 +1057,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.7470152404445685
             },
+            "tithi_display": {
+                "display": "20",
+                "indexes": [
+                    20
+                ],
+                "phase_indexes": [
+                    5
+                ],
+                "names": [
+                    "વદ પાંચમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ પાંચમ",
                     "type": "tithi",
+                    "index": 20,
+                    "phase_index": 5,
                     "start_jd": 2461196.249746209,
                     "end_jd": 2461197.326059988,
                     "start_iso": "04/06/2026 11:29:38 PM",
@@ -859,6 +1086,8 @@
                 {
                     "name": "વદ છઠ",
                     "type": "tithi",
+                    "index": 21,
+                    "phase_index": 6,
                     "start_jd": 2461197.326059988,
                     "end_jd": 2461198.3824061463,
                     "start_iso": "06/06/2026 01:19:31 AM",
@@ -874,6 +1103,8 @@
                 {
                     "name": "શ્રવણ",
                     "type": "nakshatra",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461196.42434193,
                     "end_jd": 2461197.522862102,
                     "start_iso": "05/06/2026 03:41:03 AM",
@@ -882,6 +1113,8 @@
                 {
                     "name": "ધનિષ્ઠા",
                     "type": "nakshatra",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461197.522862102,
                     "end_jd": 2461198.6009407407,
                     "start_iso": "06/06/2026 06:02:55 AM",
@@ -892,6 +1125,8 @@
                 {
                     "name": "શ્રવણ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461196.42434193,
                     "end_jd": 2461196.7005329207,
                     "start_iso": "05/06/2026 03:41:03 AM",
@@ -900,6 +1135,8 @@
                 {
                     "name": "શ્રવણ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461196.7005329207,
                     "end_jd": 2461196.975751736,
                     "start_iso": "05/06/2026 10:18:46 AM",
@@ -908,6 +1145,8 @@
                 {
                     "name": "શ્રવણ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461196.975751736,
                     "end_jd": 2461197.24989576,
                     "start_iso": "05/06/2026 04:55:04 PM",
@@ -916,6 +1155,8 @@
                 {
                     "name": "શ્રવણ Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461197.24989576,
                     "end_jd": 2461197.522862102,
                     "start_iso": "05/06/2026 11:29:50 PM",
@@ -924,6 +1165,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461197.522862102,
                     "end_jd": 2461197.7945486074,
                     "start_iso": "06/06/2026 06:02:55 AM",
@@ -938,6 +1181,8 @@
                 {
                     "name": "બ્રહ્મ",
                     "type": "yoga",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461195.6476514256,
                     "end_jd": 2461196.675248252,
                     "start_iso": "04/06/2026 09:02:37 AM",
@@ -946,6 +1191,8 @@
                 {
                     "name": "ઇન્દ્ર",
                     "type": "yoga",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461196.675248252,
                     "end_jd": 2461197.6905852575,
                     "start_iso": "05/06/2026 09:42:21 AM",
@@ -960,6 +1207,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 39,
+                    "phase_index": null,
                     "start_jd": 2461196.249746209,
                     "end_jd": 2461196.7899915148,
                     "start_iso": "04/06/2026 11:29:38 PM",
@@ -968,6 +1217,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 40,
+                    "phase_index": null,
                     "start_jd": 2461196.7899915148,
                     "end_jd": 2461197.326059988,
                     "start_iso": "05/06/2026 12:27:35 PM",
@@ -976,6 +1227,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 41,
+                    "phase_index": null,
                     "start_jd": 2461197.326059988,
                     "end_jd": 2461197.8571309447,
                     "start_iso": "06/06/2026 01:19:31 AM",
@@ -988,6 +1241,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મકર",
+            "moon_phase": {
+                "key": "waning_gibbous",
+                "name": "કૃષ્ણ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "most_of_night_and_early_morning",
+                "visibility": "મોટાભાગની રાત અને વહેલી સવાર",
+                "illumination_band": "99%-51%",
+                "illumination_fraction": 0.8144172267604582,
+                "illumination_percent": 81.44172267604583,
+                "phase_angle_degrees": 231.03581711466518,
+                "synodic_age_days": 18.95173257605101
+            },
             "sunrise": "06:03:56 AM",
             "sunset": "07:35:50 PM",
             "moonrise": "11:35:25 PM",
@@ -1008,7 +1272,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -1039,10 +1303,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.8146727331356326
             },
+            "tithi_display": {
+                "display": "21",
+                "indexes": [
+                    21
+                ],
+                "phase_indexes": [
+                    6
+                ],
+                "names": [
+                    "વદ છઠ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ છઠ",
                     "type": "tithi",
+                    "index": 21,
+                    "phase_index": 6,
                     "start_jd": 2461197.326059988,
                     "end_jd": 2461198.3824061463,
                     "start_iso": "06/06/2026 01:19:31 AM",
@@ -1051,6 +1332,8 @@
                 {
                     "name": "વદ સાતમ",
                     "type": "tithi",
+                    "index": 22,
+                    "phase_index": 7,
                     "start_jd": 2461198.3824061463,
                     "end_jd": 2461199.4126856495,
                     "start_iso": "07/06/2026 02:40:39 AM",
@@ -1066,6 +1349,8 @@
                 {
                     "name": "ધનિષ્ઠા",
                     "type": "nakshatra",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461197.522862102,
                     "end_jd": 2461198.6009407407,
                     "start_iso": "06/06/2026 06:02:55 AM",
@@ -1076,6 +1361,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461197.522862102,
                     "end_jd": 2461197.7945486074,
                     "start_iso": "06/06/2026 06:02:55 AM",
@@ -1084,6 +1371,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461197.7945486074,
                     "end_jd": 2461198.064854903,
                     "start_iso": "06/06/2026 12:34:08 PM",
@@ -1092,6 +1381,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461198.064854903,
                     "end_jd": 2461198.333683475,
                     "start_iso": "06/06/2026 07:03:23 PM",
@@ -1100,6 +1391,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461198.333683475,
                     "end_jd": 2461198.6009407407,
                     "start_iso": "07/06/2026 01:30:30 AM",
@@ -1114,6 +1407,8 @@
                 {
                     "name": "ઇન્દ્ર",
                     "type": "yoga",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461196.675248252,
                     "end_jd": 2461197.6905852575,
                     "start_iso": "05/06/2026 09:42:21 AM",
@@ -1122,6 +1417,8 @@
                 {
                     "name": "વૈધૃતિ",
                     "type": "yoga",
+                    "index": 27,
+                    "phase_index": null,
                     "start_jd": 2461197.6905852575,
                     "end_jd": 2461198.6888230266,
                     "start_iso": "06/06/2026 10:04:26 AM",
@@ -1136,6 +1433,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 41,
+                    "phase_index": null,
                     "start_jd": 2461197.326059988,
                     "end_jd": 2461197.8571309447,
                     "start_iso": "06/06/2026 01:19:31 AM",
@@ -1144,6 +1443,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 42,
+                    "phase_index": null,
                     "start_jd": 2461197.8571309447,
                     "end_jd": 2461198.3824061463,
                     "start_iso": "06/06/2026 02:04:16 PM",
@@ -1152,6 +1453,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 43,
+                    "phase_index": null,
                     "start_jd": 2461198.3824061463,
                     "end_jd": 2461198.9011428114,
                     "start_iso": "07/06/2026 02:40:39 AM",
@@ -1164,6 +1467,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મકર",
+            "moon_phase": {
+                "key": "waning_gibbous",
+                "name": "કૃષ્ણ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "most_of_night_and_early_morning",
+                "visibility": "મોટાભાગની રાત અને વહેલી સવાર",
+                "illumination_band": "99%-51%",
+                "illumination_fraction": 0.7330085955908565,
+                "illumination_percent": 73.30085955908565,
+                "phase_angle_degrees": 242.22392720237235,
+                "synodic_age_days": 19.869486684750143
+            },
             "sunrise": "06:03:53 AM",
             "sunset": "07:36:14 PM",
             "moonrise": null,
@@ -1184,7 +1498,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -1215,10 +1529,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.8646460324444712
             },
+            "tithi_display": {
+                "display": "22",
+                "indexes": [
+                    22
+                ],
+                "phase_indexes": [
+                    7
+                ],
+                "names": [
+                    "વદ સાતમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ સાતમ",
                     "type": "tithi",
+                    "index": 22,
+                    "phase_index": 7,
                     "start_jd": 2461198.3824061463,
                     "end_jd": 2461199.4126856495,
                     "start_iso": "07/06/2026 02:40:39 AM",
@@ -1227,6 +1558,8 @@
                 {
                     "name": "વદ આઠમ",
                     "type": "tithi",
+                    "index": 23,
+                    "phase_index": 8,
                     "start_jd": 2461199.4126856495,
                     "end_jd": 2461200.4121710453,
                     "start_iso": "08/06/2026 03:24:16 AM",
@@ -1242,6 +1575,8 @@
                 {
                     "name": "ધનિષ્ઠા",
                     "type": "nakshatra",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461197.522862102,
                     "end_jd": 2461198.6009407407,
                     "start_iso": "06/06/2026 06:02:55 AM",
@@ -1250,6 +1585,8 @@
                 {
                     "name": "શતભિષા",
                     "type": "nakshatra",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461198.6009407407,
                     "end_jd": 2461199.6525805118,
                     "start_iso": "07/06/2026 07:55:21 AM",
@@ -1260,6 +1597,8 @@
                 {
                     "name": "ધનિષ્ઠા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461198.333683475,
                     "end_jd": 2461198.6009407407,
                     "start_iso": "07/06/2026 01:30:30 AM",
@@ -1268,6 +1607,8 @@
                 {
                     "name": "શતભિષા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461198.6009407407,
                     "end_jd": 2461198.8665381074,
                     "start_iso": "07/06/2026 07:55:21 AM",
@@ -1276,6 +1617,8 @@
                 {
                     "name": "શતભિષા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461198.8665381074,
                     "end_jd": 2461199.1303929826,
                     "start_iso": "07/06/2026 02:17:48 PM",
@@ -1284,6 +1627,8 @@
                 {
                     "name": "શતભિષા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461199.1303929826,
                     "end_jd": 2461199.3924297243,
                     "start_iso": "07/06/2026 08:37:45 PM",
@@ -1292,6 +1637,8 @@
                 {
                     "name": "શતભિષા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461199.3924297243,
                     "end_jd": 2461199.6525805118,
                     "start_iso": "08/06/2026 02:55:05 AM",
@@ -1306,6 +1653,8 @@
                 {
                     "name": "વૈધૃતિ",
                     "type": "yoga",
+                    "index": 27,
+                    "phase_index": null,
                     "start_jd": 2461197.6905852575,
                     "end_jd": 2461198.6888230266,
                     "start_iso": "06/06/2026 10:04:26 AM",
@@ -1314,6 +1663,8 @@
                 {
                     "name": "વિષ્કુંભ",
                     "type": "yoga",
+                    "index": 1,
+                    "phase_index": null,
                     "start_jd": 2461198.6888230266,
                     "end_jd": 2461199.665495922,
                     "start_iso": "07/06/2026 10:01:54 AM",
@@ -1328,6 +1679,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 43,
+                    "phase_index": null,
                     "start_jd": 2461198.3824061463,
                     "end_jd": 2461198.9011428114,
                     "start_iso": "07/06/2026 02:40:39 AM",
@@ -1336,6 +1689,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 44,
+                    "phase_index": null,
                     "start_jd": 2461198.9011428114,
                     "end_jd": 2461199.4126856495,
                     "start_iso": "07/06/2026 03:07:38 PM",
@@ -1344,6 +1699,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 45,
+                    "phase_index": null,
                     "start_jd": 2461199.4126856495,
                     "end_jd": 2461199.9164953027,
                     "start_iso": "08/06/2026 03:24:16 AM",
@@ -1356,6 +1713,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "કુંભ",
+            "moon_phase": {
+                "key": "last_quarter",
+                "name": "અંતિમ અર્ધચંદ્ર",
+                "visibility_key": "late_night_and_morning",
+                "visibility": "મોડી રાત અને સવાર",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.6409677246408553,
+                "illumination_percent": 64.09677246408553,
+                "phase_angle_degrees": 253.62424761066632,
+                "synodic_age_days": 20.804648281586246
+            },
             "sunrise": "06:03:51 AM",
             "sunset": "07:36:37 PM",
             "moonrise": "12:10:11 AM",
@@ -1376,7 +1744,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -1436,10 +1804,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.8906882799010182
             },
+            "tithi_display": {
+                "display": "23",
+                "indexes": [
+                    23
+                ],
+                "phase_indexes": [
+                    8
+                ],
+                "names": [
+                    "વદ આઠમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ આઠમ",
                     "type": "tithi",
+                    "index": 23,
+                    "phase_index": 8,
                     "start_jd": 2461199.4126856495,
                     "end_jd": 2461200.4121710453,
                     "start_iso": "08/06/2026 03:24:16 AM",
@@ -1448,6 +1833,8 @@
                 {
                     "name": "વદ નોમ",
                     "type": "tithi",
+                    "index": 24,
+                    "phase_index": 9,
                     "start_jd": 2461200.4121710453,
                     "end_jd": 2461201.3782967683,
                     "start_iso": "09/06/2026 03:23:31 AM",
@@ -1463,6 +1850,8 @@
                 {
                     "name": "શતભિષા",
                     "type": "nakshatra",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461198.6009407407,
                     "end_jd": 2461199.6525805118,
                     "start_iso": "07/06/2026 07:55:21 AM",
@@ -1471,6 +1860,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા",
                     "type": "nakshatra",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461199.6525805118,
                     "end_jd": 2461200.673281556,
                     "start_iso": "08/06/2026 09:09:42 AM",
@@ -1481,6 +1872,8 @@
                 {
                     "name": "શતભિષા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461199.3924297243,
                     "end_jd": 2461199.6525805118,
                     "start_iso": "08/06/2026 02:55:05 AM",
@@ -1489,6 +1882,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461199.6525805118,
                     "end_jd": 2461199.91078612,
                     "start_iso": "08/06/2026 09:09:42 AM",
@@ -1497,6 +1892,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461199.91078612,
                     "end_jd": 2461200.166996575,
                     "start_iso": "08/06/2026 03:21:31 PM",
@@ -1505,6 +1902,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461200.166996575,
                     "end_jd": 2461200.421171706,
                     "start_iso": "08/06/2026 09:30:28 PM",
@@ -1513,6 +1912,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461200.421171706,
                     "end_jd": 2461200.673281556,
                     "start_iso": "09/06/2026 03:36:29 AM",
@@ -1527,6 +1928,8 @@
                 {
                     "name": "વિષ્કુંભ",
                     "type": "yoga",
+                    "index": 1,
+                    "phase_index": null,
                     "start_jd": 2461198.6888230266,
                     "end_jd": 2461199.665495922,
                     "start_iso": "07/06/2026 10:01:54 AM",
@@ -1535,6 +1938,8 @@
                 {
                     "name": "પ્રીતિ",
                     "type": "yoga",
+                    "index": 2,
+                    "phase_index": null,
                     "start_jd": 2461199.665495922,
                     "end_jd": 2461200.6171710053,
                     "start_iso": "08/06/2026 09:28:18 AM",
@@ -1549,6 +1954,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 45,
+                    "phase_index": null,
                     "start_jd": 2461199.4126856495,
                     "end_jd": 2461199.9164953027,
                     "start_iso": "08/06/2026 03:24:16 AM",
@@ -1557,6 +1964,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 46,
+                    "phase_index": null,
                     "start_jd": 2461199.9164953027,
                     "end_jd": 2461200.4121710453,
                     "start_iso": "08/06/2026 03:29:45 PM",
@@ -1565,6 +1974,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 47,
+                    "phase_index": null,
                     "start_jd": 2461200.4121710453,
                     "end_jd": 2461200.8994663507,
                     "start_iso": "09/06/2026 03:23:31 AM",
@@ -1577,6 +1988,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "કુંભ",
+            "moon_phase": {
+                "key": "last_quarter",
+                "name": "અંતિમ અર્ધચંદ્ર",
+                "visibility_key": "late_night_and_morning",
+                "visibility": "મોડી રાત અને સવાર",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.5408671415544071,
+                "illumination_percent": 54.08671415544071,
+                "phase_angle_degrees": 265.3117406411877,
+                "synodic_age_days": 21.763366480197718
+            },
             "sunrise": "06:03:51 AM",
             "sunset": "07:37:00 PM",
             "moonrise": "12:43:11 AM",
@@ -1597,7 +2019,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -1783,10 +2205,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.8865214786620754
             },
+            "tithi_display": {
+                "display": "24",
+                "indexes": [
+                    24
+                ],
+                "phase_indexes": [
+                    9
+                ],
+                "names": [
+                    "વદ નોમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ નોમ",
                     "type": "tithi",
+                    "index": 24,
+                    "phase_index": 9,
                     "start_jd": 2461200.4121710453,
                     "end_jd": 2461201.3782967683,
                     "start_iso": "09/06/2026 03:23:31 AM",
@@ -1795,6 +2234,8 @@
                 {
                     "name": "વદ દશમ",
                     "type": "tithi",
+                    "index": 25,
+                    "phase_index": 10,
                     "start_jd": 2461201.3782967683,
                     "end_jd": 2461202.311032067,
                     "start_iso": "10/06/2026 02:34:44 AM",
@@ -1810,6 +2251,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા",
                     "type": "nakshatra",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461199.6525805118,
                     "end_jd": 2461200.673281556,
                     "start_iso": "08/06/2026 09:09:42 AM",
@@ -1818,6 +2261,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા",
                     "type": "nakshatra",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461200.673281556,
                     "end_jd": 2461201.6608396675,
                     "start_iso": "09/06/2026 09:39:31 AM",
@@ -1828,6 +2273,8 @@
                 {
                     "name": "પૂર્વ ભાદ્રપદા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461200.421171706,
                     "end_jd": 2461200.673281556,
                     "start_iso": "09/06/2026 03:36:29 AM",
@@ -1836,6 +2283,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461200.673281556,
                     "end_jd": 2461200.923306685,
                     "start_iso": "09/06/2026 09:39:31 AM",
@@ -1844,6 +2293,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461200.923306685,
                     "end_jd": 2461201.1712383274,
                     "start_iso": "09/06/2026 03:39:33 PM",
@@ -1852,6 +2303,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461201.1712383274,
                     "end_jd": 2461201.4170784475,
                     "start_iso": "09/06/2026 09:36:34 PM",
@@ -1860,6 +2313,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461201.4170784475,
                     "end_jd": 2461201.6608396675,
                     "start_iso": "10/06/2026 03:30:35 AM",
@@ -1874,6 +2329,8 @@
                 {
                     "name": "પ્રીતિ",
                     "type": "yoga",
+                    "index": 2,
+                    "phase_index": null,
                     "start_jd": 2461199.665495922,
                     "end_jd": 2461200.6171710053,
                     "start_iso": "08/06/2026 09:28:18 AM",
@@ -1882,6 +2339,8 @@
                 {
                     "name": "આયુષ્માન",
                     "type": "yoga",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461200.6171710053,
                     "end_jd": 2461201.5419842815,
                     "start_iso": "09/06/2026 08:18:43 AM",
@@ -1896,6 +2355,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 47,
+                    "phase_index": null,
                     "start_jd": 2461200.4121710453,
                     "end_jd": 2461200.8994663507,
                     "start_iso": "09/06/2026 03:23:31 AM",
@@ -1904,6 +2365,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 48,
+                    "phase_index": null,
                     "start_jd": 2461200.8994663507,
                     "end_jd": 2461201.3782967683,
                     "start_iso": "09/06/2026 03:05:13 PM",
@@ -1912,6 +2375,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 49,
+                    "phase_index": null,
                     "start_jd": 2461201.3782967683,
                     "end_jd": 2461201.848740426,
                     "start_iso": "10/06/2026 02:34:44 AM",
@@ -1924,6 +2389,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મીન",
+            "moon_phase": {
+                "key": "last_quarter",
+                "name": "અંતિમ અર્ધચંદ્ર",
+                "visibility_key": "late_night_and_morning",
+                "visibility": "મોડી રાત અને સવાર",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.4359332971600586,
+                "illumination_percent": 43.593329716005854,
+                "phase_angle_degrees": 277.3617422560551,
+                "synodic_age_days": 22.751821045372814
+            },
             "sunrise": "06:03:51 AM",
             "sunset": "07:37:23 PM",
             "moonrise": "01:15:42 AM",
@@ -1944,7 +2420,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -1975,10 +2451,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.8465817042106352
             },
+            "tithi_display": {
+                "display": "25",
+                "indexes": [
+                    25
+                ],
+                "phase_indexes": [
+                    10
+                ],
+                "names": [
+                    "વદ દશમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ દશમ",
                     "type": "tithi",
+                    "index": 25,
+                    "phase_index": 10,
                     "start_jd": 2461201.3782967683,
                     "end_jd": 2461202.311032067,
                     "start_iso": "10/06/2026 02:34:44 AM",
@@ -1987,6 +2480,8 @@
                 {
                     "name": "વદ અગિયારસ",
                     "type": "tithi",
+                    "index": 26,
+                    "phase_index": 11,
                     "start_jd": 2461202.311032067,
                     "end_jd": 2461203.2128116786,
                     "start_iso": "11/06/2026 12:57:53 AM",
@@ -2002,6 +2497,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા",
                     "type": "nakshatra",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461200.673281556,
                     "end_jd": 2461201.6608396675,
                     "start_iso": "09/06/2026 09:39:31 AM",
@@ -2010,6 +2507,8 @@
                 {
                     "name": "રેવતી",
                     "type": "nakshatra",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461201.6608396675,
                     "end_jd": 2461202.615708962,
                     "start_iso": "10/06/2026 09:21:36 AM",
@@ -2020,6 +2519,8 @@
                 {
                     "name": "ઉત્તર ભાદ્રપદા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461201.4170784475,
                     "end_jd": 2461201.6608396675,
                     "start_iso": "10/06/2026 03:30:35 AM",
@@ -2028,6 +2529,8 @@
                 {
                     "name": "રેવતી Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461201.6608396675,
                     "end_jd": 2461201.902545098,
                     "start_iso": "10/06/2026 09:21:36 AM",
@@ -2036,6 +2539,8 @@
                 {
                     "name": "રેવતી Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461201.902545098,
                     "end_jd": 2461202.1422280744,
                     "start_iso": "10/06/2026 03:09:39 PM",
@@ -2044,6 +2549,8 @@
                 {
                     "name": "રેવતી Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461202.1422280744,
                     "end_jd": 2461202.3799318057,
                     "start_iso": "10/06/2026 08:54:48 PM",
@@ -2052,6 +2559,8 @@
                 {
                     "name": "રેવતી Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461202.3799318057,
                     "end_jd": 2461202.615708962,
                     "start_iso": "11/06/2026 02:37:06 AM",
@@ -2066,6 +2575,8 @@
                 {
                     "name": "આયુષ્માન",
                     "type": "yoga",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461200.6171710053,
                     "end_jd": 2461201.5419842815,
                     "start_iso": "09/06/2026 08:18:43 AM",
@@ -2074,6 +2585,8 @@
                 {
                     "name": "સૌભાગ્ય",
                     "type": "yoga",
+                    "index": 4,
+                    "phase_index": null,
                     "start_jd": 2461201.5419842815,
                     "end_jd": 2461202.4399334462,
                     "start_iso": "10/06/2026 06:30:27 AM",
@@ -2082,6 +2595,8 @@
                 {
                     "name": "શોભન",
                     "type": "yoga",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461202.4399334462,
                     "end_jd": 2461203.3128945148,
                     "start_iso": "11/06/2026 04:03:30 AM",
@@ -2096,6 +2611,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 49,
+                    "phase_index": null,
                     "start_jd": 2461201.3782967683,
                     "end_jd": 2461201.848740426,
                     "start_iso": "10/06/2026 02:34:44 AM",
@@ -2104,6 +2621,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 50,
+                    "phase_index": null,
                     "start_jd": 2461201.848740426,
                     "end_jd": 2461202.311032067,
                     "start_iso": "10/06/2026 01:52:11 PM",
@@ -2112,6 +2631,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 51,
+                    "phase_index": null,
                     "start_jd": 2461202.311032067,
                     "end_jd": 2461202.765552032,
                     "start_iso": "11/06/2026 12:57:53 AM",
@@ -2124,6 +2645,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મીન",
+            "moon_phase": {
+                "key": "last_quarter",
+                "name": "અંતિમ અર્ધચંદ્ર",
+                "visibility_key": "late_night_and_morning",
+                "visibility": "મોડી રાત અને સવાર",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.33029428271628825,
+                "illumination_percent": 33.029428271628824,
+                "phase_angle_degrees": 289.8410195494723,
+                "synodic_age_days": 23.77548884269036
+            },
             "sunrise": "06:03:53 AM",
             "sunset": "07:37:44 PM",
             "moonrise": "01:49:10 AM",
@@ -2144,7 +2676,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -2175,10 +2707,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.7672334246289362
             },
+            "tithi_display": {
+                "display": "26",
+                "indexes": [
+                    26
+                ],
+                "phase_indexes": [
+                    11
+                ],
+                "names": [
+                    "વદ અગિયારસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ અગિયારસ",
                     "type": "tithi",
+                    "index": 26,
+                    "phase_index": 11,
                     "start_jd": 2461202.311032067,
                     "end_jd": 2461203.2128116786,
                     "start_iso": "11/06/2026 12:57:53 AM",
@@ -2187,6 +2736,8 @@
                 {
                     "name": "વદ બારસ",
                     "type": "tithi",
+                    "index": 27,
+                    "phase_index": 12,
                     "start_jd": 2461203.2128116786,
                     "end_jd": 2461204.088150099,
                     "start_iso": "11/06/2026 10:36:26 PM",
@@ -2202,6 +2753,8 @@
                 {
                     "name": "રેવતી",
                     "type": "nakshatra",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461201.6608396675,
                     "end_jd": 2461202.615708962,
                     "start_iso": "10/06/2026 09:21:36 AM",
@@ -2210,6 +2763,8 @@
                 {
                     "name": "અશ્વિની",
                     "type": "nakshatra",
+                    "index": 0,
+                    "phase_index": null,
                     "start_jd": 2461202.615708962,
                     "end_jd": 2461203.5409086766,
                     "start_iso": "11/06/2026 08:16:37 AM",
@@ -2220,6 +2775,8 @@
                 {
                     "name": "રેવતી Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461202.3799318057,
                     "end_jd": 2461202.615708962,
                     "start_iso": "11/06/2026 02:37:06 AM",
@@ -2228,6 +2785,8 @@
                 {
                     "name": "અશ્વિની Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461202.615708962,
                     "end_jd": 2461202.849621201,
                     "start_iso": "11/06/2026 08:16:37 AM",
@@ -2236,6 +2795,8 @@
                 {
                     "name": "અશ્વિની Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461202.849621201,
                     "end_jd": 2461203.081738646,
                     "start_iso": "11/06/2026 01:53:27 PM",
@@ -2244,6 +2805,8 @@
                 {
                     "name": "અશ્વિની Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.081738646,
                     "end_jd": 2461203.3121393416,
                     "start_iso": "11/06/2026 07:27:42 PM",
@@ -2252,6 +2815,8 @@
                 {
                     "name": "અશ્વિની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.3121393416,
                     "end_jd": 2461203.5409086766,
                     "start_iso": "12/06/2026 12:59:28 AM",
@@ -2266,6 +2831,8 @@
                 {
                     "name": "શોભન",
                     "type": "yoga",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461202.4399334462,
                     "end_jd": 2461203.3128945148,
                     "start_iso": "11/06/2026 04:03:30 AM",
@@ -2274,6 +2841,8 @@
                 {
                     "name": "અતિગંડ",
                     "type": "yoga",
+                    "index": 6,
+                    "phase_index": null,
                     "start_jd": 2461203.3128945148,
                     "end_jd": 2461204.1644120263,
                     "start_iso": "12/06/2026 01:00:34 AM",
@@ -2288,6 +2857,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 51,
+                    "phase_index": null,
                     "start_jd": 2461202.311032067,
                     "end_jd": 2461202.765552032,
                     "start_iso": "11/06/2026 12:57:53 AM",
@@ -2296,6 +2867,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 52,
+                    "phase_index": null,
                     "start_jd": 2461202.765552032,
                     "end_jd": 2461203.2128116786,
                     "start_iso": "11/06/2026 11:52:23 AM",
@@ -2304,6 +2877,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 53,
+                    "phase_index": null,
                     "start_jd": 2461203.2128116786,
                     "end_jd": 2461203.6534367735,
                     "start_iso": "11/06/2026 10:36:26 PM",
@@ -2316,6 +2891,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મીન",
+            "moon_phase": {
+                "key": "waning_crescent",
+                "name": "કૃષ્ણ ચંદ્રકલા",
+                "visibility_key": "pre_dawn_to_early_afternoon",
+                "visibility": "ભોર પહેલાંથી બપોરના પ્રારંભ સુધી",
+                "illumination_band": "49%-1%",
+                "illumination_fraction": 0.22919578502924953,
+                "illumination_percent": 22.919578502924953,
+                "phase_angle_degrees": 302.79319890445277,
+                "synodic_age_days": 24.837948518762193
+            },
             "sunrise": "06:03:56 AM",
             "sunset": "07:38:06 PM",
             "moonrise": "02:25:11 AM",
@@ -2336,7 +2922,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -2445,10 +3031,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.6480709953981005
             },
+            "tithi_display": {
+                "display": "27",
+                "indexes": [
+                    27
+                ],
+                "phase_indexes": [
+                    12
+                ],
+                "names": [
+                    "વદ બારસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ બારસ",
                     "type": "tithi",
+                    "index": 27,
+                    "phase_index": 12,
                     "start_jd": 2461203.2128116786,
                     "end_jd": 2461204.088150099,
                     "start_iso": "11/06/2026 10:36:26 PM",
@@ -2457,6 +3060,8 @@
                 {
                     "name": "વદ તેરસ",
                     "type": "tithi",
+                    "index": 28,
+                    "phase_index": 13,
                     "start_jd": 2461204.088150099,
                     "end_jd": 2461204.9431155873,
                     "start_iso": "12/06/2026 07:36:56 PM",
@@ -2472,6 +3077,8 @@
                 {
                     "name": "અશ્વિની",
                     "type": "nakshatra",
+                    "index": 0,
+                    "phase_index": null,
                     "start_jd": 2461202.615708962,
                     "end_jd": 2461203.5409086766,
                     "start_iso": "11/06/2026 08:16:37 AM",
@@ -2480,6 +3087,8 @@
                 {
                     "name": "ભરણી",
                     "type": "nakshatra",
+                    "index": 1,
+                    "phase_index": null,
                     "start_jd": 2461203.5409086766,
                     "end_jd": 2461204.4416044373,
                     "start_iso": "12/06/2026 06:28:54 AM",
@@ -2488,6 +3097,8 @@
                 {
                     "name": "કૃત્તિકા",
                     "type": "nakshatra",
+                    "index": 2,
+                    "phase_index": null,
                     "start_jd": 2461204.4416044373,
                     "end_jd": 2461205.324542529,
                     "start_iso": "13/06/2026 04:05:54 AM",
@@ -2498,6 +3109,8 @@
                 {
                     "name": "અશ્વિની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.3121393416,
                     "end_jd": 2461203.5409086766,
                     "start_iso": "12/06/2026 12:59:28 AM",
@@ -2506,6 +3119,8 @@
                 {
                     "name": "ભરણી Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.5409086766,
                     "end_jd": 2461203.7681388,
                     "start_iso": "12/06/2026 06:28:54 AM",
@@ -2514,6 +3129,8 @@
                 {
                     "name": "ભરણી Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.7681388,
                     "end_jd": 2461203.993928031,
                     "start_iso": "12/06/2026 11:56:07 AM",
@@ -2522,6 +3139,8 @@
                 {
                     "name": "ભરણી Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461203.993928031,
                     "end_jd": 2461204.2183802733,
                     "start_iso": "12/06/2026 05:21:15 PM",
@@ -2530,6 +3149,8 @@
                 {
                     "name": "ભરણી Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461204.2183802733,
                     "end_jd": 2461204.4416044373,
                     "start_iso": "12/06/2026 10:44:28 PM",
@@ -2538,6 +3159,8 @@
                 {
                     "name": "કૃત્તિકા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461204.4416044373,
                     "end_jd": 2461204.6637138734,
                     "start_iso": "13/06/2026 04:05:54 AM",
@@ -2552,6 +3175,8 @@
                 {
                     "name": "અતિગંડ",
                     "type": "yoga",
+                    "index": 6,
+                    "phase_index": null,
                     "start_jd": 2461203.3128945148,
                     "end_jd": 2461204.1644120263,
                     "start_iso": "12/06/2026 01:00:34 AM",
@@ -2560,6 +3185,8 @@
                 {
                     "name": "સુકર્મા",
                     "type": "yoga",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461204.1644120263,
                     "end_jd": 2461204.9993538847,
                     "start_iso": "12/06/2026 09:26:45 PM",
@@ -2574,6 +3201,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 53,
+                    "phase_index": null,
                     "start_jd": 2461203.2128116786,
                     "end_jd": 2461203.6534367735,
                     "start_iso": "11/06/2026 10:36:26 PM",
@@ -2582,6 +3211,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 54,
+                    "phase_index": null,
                     "start_jd": 2461203.6534367735,
                     "end_jd": 2461204.088150099,
                     "start_iso": "12/06/2026 09:10:56 AM",
@@ -2590,6 +3221,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 55,
+                    "phase_index": null,
                     "start_jd": 2461204.088150099,
                     "end_jd": 2461204.517754293,
                     "start_iso": "12/06/2026 07:36:56 PM",
@@ -2598,6 +3231,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 56,
+                    "phase_index": null,
                     "start_jd": 2461204.517754293,
                     "end_jd": 2461204.9431155873,
                     "start_iso": "13/06/2026 05:55:33 AM",
@@ -2610,6 +3245,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મેષ",
+            "moon_phase": {
+                "key": "waning_crescent",
+                "name": "કૃષ્ણ ચંદ્રકલા",
+                "visibility_key": "pre_dawn_to_early_afternoon",
+                "visibility": "ભોર પહેલાંથી બપોરના પ્રારંભ સુધી",
+                "illumination_band": "49%-1%",
+                "illumination_fraction": 0.13898009910137182,
+                "illumination_percent": 13.898009910137182,
+                "phase_angle_degrees": 316.2231480552228,
+                "synodic_age_days": 25.939599370971987
+            },
             "sunrise": "06:03:59 AM",
             "sunset": "07:38:26 PM",
             "moonrise": "03:05:39 AM",
@@ -2630,7 +3276,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -2739,10 +3385,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.49309261453418196
             },
+            "tithi_display": {
+                "display": "28",
+                "indexes": [
+                    28
+                ],
+                "phase_indexes": [
+                    13
+                ],
+                "names": [
+                    "વદ તેરસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ તેરસ",
                     "type": "tithi",
+                    "index": 28,
+                    "phase_index": 13,
                     "start_jd": 2461204.088150099,
                     "end_jd": 2461204.9431155873,
                     "start_iso": "12/06/2026 07:36:56 PM",
@@ -2751,6 +3414,8 @@
                 {
                     "name": "વદ ચૌદશ",
                     "type": "tithi",
+                    "index": 29,
+                    "phase_index": 14,
                     "start_jd": 2461204.9431155873,
                     "end_jd": 2461205.7848037826,
                     "start_iso": "13/06/2026 04:08:05 PM",
@@ -2766,6 +3431,8 @@
                 {
                     "name": "કૃત્તિકા",
                     "type": "nakshatra",
+                    "index": 2,
+                    "phase_index": null,
                     "start_jd": 2461204.4416044373,
                     "end_jd": 2461205.324542529,
                     "start_iso": "13/06/2026 04:05:54 AM",
@@ -2774,6 +3441,8 @@
                 {
                     "name": "રોહિણી",
                     "type": "nakshatra",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461205.324542529,
                     "end_jd": 2461206.197476196,
                     "start_iso": "14/06/2026 01:17:20 AM",
@@ -2784,6 +3453,8 @@
                 {
                     "name": "કૃત્તિકા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461204.4416044373,
                     "end_jd": 2461204.6637138734,
                     "start_iso": "13/06/2026 04:05:54 AM",
@@ -2792,6 +3463,8 @@
                 {
                     "name": "કૃત્તિકા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461204.6637138734,
                     "end_jd": 2461204.8848258248,
                     "start_iso": "13/06/2026 09:25:44 AM",
@@ -2800,6 +3473,8 @@
                 {
                     "name": "કૃત્તિકા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461204.8848258248,
                     "end_jd": 2461205.105060893,
                     "start_iso": "13/06/2026 02:44:08 PM",
@@ -2808,6 +3483,8 @@
                 {
                     "name": "કૃત્તિકા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.105060893,
                     "end_jd": 2461205.324542529,
                     "start_iso": "13/06/2026 08:01:17 PM",
@@ -2816,6 +3493,8 @@
                 {
                     "name": "રોહિણી Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.324542529,
                     "end_jd": 2461205.5433965335,
                     "start_iso": "14/06/2026 01:17:20 AM",
@@ -2830,6 +3509,8 @@
                 {
                     "name": "સુકર્મા",
                     "type": "yoga",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461204.1644120263,
                     "end_jd": 2461204.9993538847,
                     "start_iso": "12/06/2026 09:26:45 PM",
@@ -2838,6 +3519,8 @@
                 {
                     "name": "ધૃતિ",
                     "type": "yoga",
+                    "index": 8,
+                    "phase_index": null,
                     "start_jd": 2461204.9993538847,
                     "end_jd": 2461205.823517951,
                     "start_iso": "13/06/2026 05:29:04 PM",
@@ -2852,6 +3535,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 56,
+                    "phase_index": null,
                     "start_jd": 2461204.517754293,
                     "end_jd": 2461204.9431155873,
                     "start_iso": "13/06/2026 05:55:33 AM",
@@ -2860,6 +3545,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 57,
+                    "phase_index": null,
                     "start_jd": 2461204.9431155873,
                     "end_jd": 2461205.3651488125,
                     "start_iso": "13/06/2026 04:08:05 PM",
@@ -2868,6 +3555,8 @@
                 {
                     "name": "શકુનિ",
                     "type": "karana",
+                    "index": 58,
+                    "phase_index": null,
                     "start_jd": 2461205.3651488125,
                     "end_jd": 2461205.7848037826,
                     "start_iso": "14/06/2026 02:15:48 AM",
@@ -2880,6 +3569,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "મેષ",
+            "moon_phase": {
+                "key": "waning_crescent",
+                "name": "કૃષ્ણ ચંદ્રકલા",
+                "visibility_key": "pre_dawn_to_early_afternoon",
+                "visibility": "ભોર પહેલાંથી બપોરના પ્રારંભ સુધી",
+                "illumination_band": "49%-1%",
+                "illumination_fraction": 0.06662608149871674,
+                "illumination_percent": 6.662608149871674,
+                "phase_angle_degrees": 330.0828886255898,
+                "synodic_age_days": 27.07650576125985
+            },
             "sunrise": "06:04:04 AM",
             "sunset": "07:38:46 PM",
             "moonrise": "03:52:37 AM",
@@ -2900,7 +3600,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -2931,10 +3631,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.3113322410298546
             },
+            "tithi_display": {
+                "display": "29",
+                "indexes": [
+                    29
+                ],
+                "phase_indexes": [
+                    14
+                ],
+                "names": [
+                    "વદ ચૌદશ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ ચૌદશ",
                     "type": "tithi",
+                    "index": 29,
+                    "phase_index": 14,
                     "start_jd": 2461204.9431155873,
                     "end_jd": 2461205.7848037826,
                     "start_iso": "13/06/2026 04:08:05 PM",
@@ -2943,6 +3660,8 @@
                 {
                     "name": "અમાસ",
                     "type": "tithi",
+                    "index": 30,
+                    "phase_index": 15,
                     "start_jd": 2461205.7848037826,
                     "end_jd": 2461206.6208802294,
                     "start_iso": "14/06/2026 12:20:07 PM",
@@ -2958,6 +3677,8 @@
                 {
                     "name": "રોહિણી",
                     "type": "nakshatra",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461205.324542529,
                     "end_jd": 2461206.197476196,
                     "start_iso": "14/06/2026 01:17:20 AM",
@@ -2966,6 +3687,8 @@
                 {
                     "name": "મૃગશિરા",
                     "type": "nakshatra",
+                    "index": 4,
+                    "phase_index": null,
                     "start_jd": 2461206.197476196,
                     "end_jd": 2461207.068649126,
                     "start_iso": "14/06/2026 10:14:21 PM",
@@ -2976,6 +3699,8 @@
                 {
                     "name": "રોહિણી Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.324542529,
                     "end_jd": 2461205.5433965335,
                     "start_iso": "14/06/2026 01:17:20 AM",
@@ -2984,6 +3709,8 @@
                 {
                     "name": "રોહિણી Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.5433965335,
                     "end_jd": 2461205.7617505873,
                     "start_iso": "14/06/2026 06:32:29 AM",
@@ -2992,6 +3719,8 @@
                 {
                     "name": "રોહિણી Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.7617505873,
                     "end_jd": 2461205.9797337856,
                     "start_iso": "14/06/2026 11:46:55 AM",
@@ -3000,6 +3729,8 @@
                 {
                     "name": "રોહિણી Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461205.9797337856,
                     "end_jd": 2461206.197476196,
                     "start_iso": "14/06/2026 05:00:48 PM",
@@ -3008,6 +3739,8 @@
                 {
                     "name": "મૃગશિરા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461206.197476196,
                     "end_jd": 2461206.415108419,
                     "start_iso": "14/06/2026 10:14:21 PM",
@@ -3016,6 +3749,8 @@
                 {
                     "name": "મૃગશિરા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461206.415108419,
                     "end_jd": 2461206.6327611683,
                     "start_iso": "15/06/2026 03:27:45 AM",
@@ -3030,6 +3765,8 @@
                 {
                     "name": "ધૃતિ",
                     "type": "yoga",
+                    "index": 8,
+                    "phase_index": null,
                     "start_jd": 2461204.9993538847,
                     "end_jd": 2461205.823517951,
                     "start_iso": "13/06/2026 05:29:04 PM",
@@ -3038,6 +3775,8 @@
                 {
                     "name": "શૂલ",
                     "type": "yoga",
+                    "index": 9,
+                    "phase_index": null,
                     "start_jd": 2461205.823517951,
                     "end_jd": 2461206.6432463853,
                     "start_iso": "14/06/2026 01:15:51 PM",
@@ -3052,6 +3791,8 @@
                 {
                     "name": "શકુનિ",
                     "type": "karana",
+                    "index": 58,
+                    "phase_index": null,
                     "start_jd": 2461205.3651488125,
                     "end_jd": 2461205.7848037826,
                     "start_iso": "14/06/2026 02:15:48 AM",
@@ -3060,6 +3801,8 @@
                 {
                     "name": "ચતુષ્પદ",
                     "type": "karana",
+                    "index": 59,
+                    "phase_index": null,
                     "start_jd": 2461205.7848037826,
                     "end_jd": 2461206.2030529715,
                     "start_iso": "14/06/2026 12:20:07 PM",
@@ -3068,6 +3811,8 @@
                 {
                     "name": "નાગ",
                     "type": "karana",
+                    "index": 60,
+                    "phase_index": null,
                     "start_jd": 2461206.2030529715,
                     "end_jd": 2461206.6208802294,
                     "start_iso": "14/06/2026 10:22:23 PM",
@@ -3080,6 +3825,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "વૃષભ",
+            "moon_phase": {
+                "key": "new_moon",
+                "name": "અમાસ",
+                "visibility_key": "invisible_except_eclipse",
+                "visibility": "સૂર્યની નજીક હોવાથી અદૃશ્ય, ફક્ત સૂર્યગ્રહણ દરમિયાન દેખાય",
+                "illumination_band": "0%",
+                "illumination_fraction": 0.018739202410338163,
+                "illumination_percent": 1.8739202410338163,
+                "phase_angle_degrees": 344.26401310764174,
+                "synodic_age_days": 28.239775085332454
+            },
             "sunrise": "06:04:10 AM",
             "sunset": "07:39:05 PM",
             "moonrise": "04:47:46 AM",
@@ -3100,7 +3856,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -3237,10 +3993,40 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.11614628579996145
             },
+            "tithi_display": {
+                "display": "30/1",
+                "indexes": [
+                    30,
+                    1
+                ],
+                "phase_indexes": [
+                    15,
+                    1
+                ],
+                "names": [
+                    "અમાસ",
+                    "સુદ એકમ"
+                ],
+                "has_multiple_tithis": true,
+                "has_kshaya_tithi": true,
+                "kshaya_tithi": {
+                    "index": 1,
+                    "phase_index": 1,
+                    "name": "સુદ એકમ",
+                    "paksha": "Shukla",
+                    "paksha_name": "શુક્લ પક્ષ",
+                    "start_jd": 2461206.6208802294,
+                    "end_jd": 2461207.4591981247,
+                    "start_iso": "15/06/2026 08:24:04 AM",
+                    "end_iso": "16/06/2026 04:31:14 AM"
+                }
+            },
             "tithi_windows": [
                 {
                     "name": "અમાસ",
                     "type": "tithi",
+                    "index": 30,
+                    "phase_index": 15,
                     "start_jd": 2461205.7848037826,
                     "end_jd": 2461206.6208802294,
                     "start_iso": "14/06/2026 12:20:07 PM",
@@ -3249,6 +4035,8 @@
                 {
                     "name": "સુદ એકમ",
                     "type": "tithi",
+                    "index": 1,
+                    "phase_index": 1,
                     "start_jd": 2461206.6208802294,
                     "end_jd": 2461207.4591981247,
                     "start_iso": "15/06/2026 08:24:04 AM",
@@ -3257,6 +4045,8 @@
                 {
                     "name": "સુદ બીજ",
                     "type": "tithi",
+                    "index": 2,
+                    "phase_index": 2,
                     "start_jd": 2461207.4591981247,
                     "end_jd": 2461208.307458926,
                     "start_iso": "16/06/2026 04:31:14 AM",
@@ -3272,6 +4062,8 @@
                 {
                     "name": "મૃગશિરા",
                     "type": "nakshatra",
+                    "index": 4,
+                    "phase_index": null,
                     "start_jd": 2461206.197476196,
                     "end_jd": 2461207.068649126,
                     "start_iso": "14/06/2026 10:14:21 PM",
@@ -3280,6 +4072,8 @@
                 {
                     "name": "આર્દ્રા",
                     "type": "nakshatra",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461207.068649126,
                     "end_jd": 2461207.946336803,
                     "start_iso": "15/06/2026 07:08:51 PM",
@@ -3290,6 +4084,8 @@
                 {
                     "name": "મૃગશિરા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461206.415108419,
                     "end_jd": 2461206.6327611683,
                     "start_iso": "15/06/2026 03:27:45 AM",
@@ -3298,6 +4094,8 @@
                 {
                     "name": "મૃગશિરા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461206.6327611683,
                     "end_jd": 2461206.850564846,
                     "start_iso": "15/06/2026 08:41:10 AM",
@@ -3306,6 +4104,8 @@
                 {
                     "name": "મૃગશિરા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461206.850564846,
                     "end_jd": 2461207.068649126,
                     "start_iso": "15/06/2026 01:54:48 PM",
@@ -3314,6 +4114,8 @@
                 {
                     "name": "આર્દ્રા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.068649126,
                     "end_jd": 2461207.2871425394,
                     "start_iso": "15/06/2026 07:08:51 PM",
@@ -3322,6 +4124,8 @@
                 {
                     "name": "આર્દ્રા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.2871425394,
                     "end_jd": 2461207.506172049,
                     "start_iso": "16/06/2026 12:23:29 AM",
@@ -3330,6 +4134,8 @@
                 {
                     "name": "આર્દ્રા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.506172049,
                     "end_jd": 2461207.725862623,
                     "start_iso": "16/06/2026 05:38:53 AM",
@@ -3344,6 +4150,8 @@
                 {
                     "name": "શૂલ",
                     "type": "yoga",
+                    "index": 9,
+                    "phase_index": null,
                     "start_jd": 2461205.823517951,
                     "end_jd": 2461206.6432463853,
                     "start_iso": "14/06/2026 01:15:51 PM",
@@ -3352,6 +4160,8 @@
                 {
                     "name": "ગંડ",
                     "type": "yoga",
+                    "index": 10,
+                    "phase_index": null,
                     "start_jd": 2461206.6432463853,
                     "end_jd": 2461207.465067598,
                     "start_iso": "15/06/2026 08:56:16 AM",
@@ -3360,6 +4170,8 @@
                 {
                     "name": "વૃદ્ધિ",
                     "type": "yoga",
+                    "index": 11,
+                    "phase_index": null,
                     "start_jd": 2461207.465067598,
                     "end_jd": 2461208.2953592176,
                     "start_iso": "16/06/2026 04:39:41 AM",
@@ -3374,6 +4186,8 @@
                 {
                     "name": "નાગ",
                     "type": "karana",
+                    "index": 60,
+                    "phase_index": null,
                     "start_jd": 2461206.2030529715,
                     "end_jd": 2461206.6208802294,
                     "start_iso": "14/06/2026 10:22:23 PM",
@@ -3382,6 +4196,8 @@
                 {
                     "name": "કિંસ્તુઘ્ન",
                     "type": "karana",
+                    "index": 1,
+                    "phase_index": null,
                     "start_jd": 2461206.6208802294,
                     "end_jd": 2461207.039270211,
                     "start_iso": "15/06/2026 08:24:04 AM",
@@ -3390,6 +4206,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 2,
+                    "phase_index": null,
                     "start_jd": 2461207.039270211,
                     "end_jd": 2461207.4591981247,
                     "start_iso": "15/06/2026 06:26:32 PM",
@@ -3398,6 +4216,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461207.4591981247,
                     "end_jd": 2461207.881619402,
                     "start_iso": "16/06/2026 04:31:14 AM",
@@ -3410,6 +4230,17 @@
             },
             "sun_sign": "વૃષભ",
             "moon_sign": "વૃષભ",
+            "moon_phase": {
+                "key": "new_moon",
+                "name": "અમાસ",
+                "visibility_key": "invisible_except_eclipse",
+                "visibility": "સૂર્યની નજીક હોવાથી અદૃશ્ય, ફક્ત સૂર્યગ્રહણ દરમિયાન દેખાય",
+                "illumination_band": "0%",
+                "illumination_fraction": 0.00014792666718732583,
+                "illumination_percent": 0.014792666718732583,
+                "phase_angle_degrees": 358.60624457040046,
+                "synodic_age_days": 29.416259920543638
+            },
             "sunrise": "06:04:17 AM",
             "sunset": "07:39:24 PM",
             "moonrise": "05:51:19 AM",
@@ -3430,7 +4261,7 @@
             },
             "hindu_calendar": {
                 "Month_Amanta": "જેઠ (અધિક)",
-                "Month_Amanta_En": "Jyeshtha (Adhika)",
+                "Month_Amanta_En": "Jyeshtha (અધિક)",
                 "Month_Purnimanta": "અષાઢ",
                 "Month_Purnimanta_En": "Ashadha",
                 "Is_Adhika": true,
@@ -3664,10 +4495,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.9231952147684694
             },
+            "tithi_display": {
+                "display": "2",
+                "indexes": [
+                    2
+                ],
+                "phase_indexes": [
+                    2
+                ],
+                "names": [
+                    "સુદ બીજ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ બીજ",
                     "type": "tithi",
+                    "index": 2,
+                    "phase_index": 2,
                     "start_jd": 2461207.4591981247,
                     "end_jd": 2461208.307458926,
                     "start_iso": "16/06/2026 04:31:14 AM",
@@ -3676,6 +4524,8 @@
                 {
                     "name": "સુદ ત્રીજ",
                     "type": "tithi",
+                    "index": 3,
+                    "phase_index": 3,
                     "start_jd": 2461208.307458926,
                     "end_jd": 2461209.172869402,
                     "start_iso": "17/06/2026 12:52:44 AM",
@@ -3691,6 +4541,8 @@
                 {
                     "name": "આર્દ્રા",
                     "type": "nakshatra",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461207.068649126,
                     "end_jd": 2461207.946336803,
                     "start_iso": "15/06/2026 07:08:51 PM",
@@ -3699,6 +4551,8 @@
                 {
                     "name": "પુનર્વસુ",
                     "type": "nakshatra",
+                    "index": 6,
+                    "phase_index": null,
                     "start_jd": 2461207.946336803,
                     "end_jd": 2461208.838410127,
                     "start_iso": "16/06/2026 04:12:43 PM",
@@ -3709,6 +4563,8 @@
                 {
                     "name": "આર્દ્રા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.506172049,
                     "end_jd": 2461207.725862623,
                     "start_iso": "16/06/2026 05:38:53 AM",
@@ -3717,6 +4573,8 @@
                 {
                     "name": "આર્દ્રા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.725862623,
                     "end_jd": 2461207.946336803,
                     "start_iso": "16/06/2026 10:55:14 AM",
@@ -3725,6 +4583,8 @@
                 {
                     "name": "પુનર્વસુ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461207.946336803,
                     "end_jd": 2461208.167714256,
                     "start_iso": "16/06/2026 04:12:43 PM",
@@ -3733,6 +4593,8 @@
                 {
                     "name": "પુનર્વસુ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461208.167714256,
                     "end_jd": 2461208.390111316,
                     "start_iso": "16/06/2026 09:31:30 PM",
@@ -3741,6 +4603,8 @@
                 {
                     "name": "પુનર્વસુ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461208.390111316,
                     "end_jd": 2461208.6136405207,
                     "start_iso": "17/06/2026 02:51:45 AM",
@@ -3755,6 +4619,8 @@
                 {
                     "name": "વૃદ્ધિ",
                     "type": "yoga",
+                    "index": 11,
+                    "phase_index": null,
                     "start_jd": 2461207.465067598,
                     "end_jd": 2461208.2953592176,
                     "start_iso": "16/06/2026 04:39:41 AM",
@@ -3763,6 +4629,8 @@
                 {
                     "name": "ધ્રુવ",
                     "type": "yoga",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461208.2953592176,
                     "end_jd": 2461209.1400143746,
                     "start_iso": "17/06/2026 12:35:19 AM",
@@ -3777,6 +4645,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 3,
+                    "phase_index": null,
                     "start_jd": 2461207.4591981247,
                     "end_jd": 2461207.881619402,
                     "start_iso": "16/06/2026 04:31:14 AM",
@@ -3785,6 +4655,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 4,
+                    "phase_index": null,
                     "start_jd": 2461207.881619402,
                     "end_jd": 2461208.307458926,
                     "start_iso": "16/06/2026 02:39:31 PM",
@@ -3793,6 +4665,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461208.307458926,
                     "end_jd": 2461208.7375995023,
                     "start_iso": "17/06/2026 12:52:44 AM",
@@ -3805,6 +4679,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "મિથુન",
+            "moon_phase": {
+                "key": "new_moon",
+                "name": "અમાસ",
+                "visibility_key": "invisible_except_eclipse",
+                "visibility": "સૂર્યની નજીક હોવાથી અદૃશ્ય, ફક્ત સૂર્યગ્રહણ દરમિયાન દેખાય",
+                "illumination_band": "0%",
+                "illumination_fraction": 0.012661631249543392,
+                "illumination_percent": 1.2661631249543392,
+                "phase_angle_degrees": 12.921657422778367,
+                "synodic_age_days": 1.0599559798743243
+            },
             "sunrise": "06:04:25 AM",
             "sunset": "07:39:41 PM",
             "moonrise": "07:00:50 AM",
@@ -3912,10 +4797,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.7475980444129651
             },
+            "tithi_display": {
+                "display": "3",
+                "indexes": [
+                    3
+                ],
+                "phase_indexes": [
+                    3
+                ],
+                "names": [
+                    "સુદ ત્રીજ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ ત્રીજ",
                     "type": "tithi",
+                    "index": 3,
+                    "phase_index": 3,
                     "start_jd": 2461208.307458926,
                     "end_jd": 2461209.172869402,
                     "start_iso": "17/06/2026 12:52:44 AM",
@@ -3924,6 +4826,8 @@
                 {
                     "name": "સુદ ચોથ",
                     "type": "tithi",
+                    "index": 4,
+                    "phase_index": 4,
                     "start_jd": 2461209.172869402,
                     "end_jd": 2461210.061755932,
                     "start_iso": "17/06/2026 09:38:55 PM",
@@ -3939,6 +4843,8 @@
                 {
                     "name": "પુનર્વસુ",
                     "type": "nakshatra",
+                    "index": 6,
+                    "phase_index": null,
                     "start_jd": 2461207.946336803,
                     "end_jd": 2461208.838410127,
                     "start_iso": "16/06/2026 04:12:43 PM",
@@ -3947,6 +4853,8 @@
                 {
                     "name": "પુષ્ય",
                     "type": "nakshatra",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461208.838410127,
                     "end_jd": 2461209.7518802322,
                     "start_iso": "17/06/2026 01:37:18 PM",
@@ -3957,6 +4865,8 @@
                 {
                     "name": "પુનર્વસુ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461208.390111316,
                     "end_jd": 2461208.6136405207,
                     "start_iso": "17/06/2026 02:51:45 AM",
@@ -3965,6 +4875,8 @@
                 {
                     "name": "પુનર્વસુ Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461208.6136405207,
                     "end_jd": 2461208.838410127,
                     "start_iso": "17/06/2026 08:13:38 AM",
@@ -3973,6 +4885,8 @@
                 {
                     "name": "પુષ્ય Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461208.838410127,
                     "end_jd": 2461209.0645236205,
                     "start_iso": "17/06/2026 01:37:18 PM",
@@ -3981,6 +4895,8 @@
                 {
                     "name": "પુષ્ય Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.0645236205,
                     "end_jd": 2461209.2920792205,
                     "start_iso": "17/06/2026 07:02:54 PM",
@@ -3989,6 +4905,8 @@
                 {
                     "name": "પુષ્ય Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.2920792205,
                     "end_jd": 2461209.52116937,
                     "start_iso": "18/06/2026 12:30:35 AM",
@@ -3997,6 +4915,8 @@
                 {
                     "name": "પુષ્ય Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.52116937,
                     "end_jd": 2461209.7518802322,
                     "start_iso": "18/06/2026 06:00:29 AM",
@@ -4011,6 +4931,8 @@
                 {
                     "name": "ધ્રુવ",
                     "type": "yoga",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461208.2953592176,
                     "end_jd": 2461209.1400143746,
                     "start_iso": "17/06/2026 12:35:19 AM",
@@ -4019,6 +4941,8 @@
                 {
                     "name": "વ્યાઘાત",
                     "type": "yoga",
+                    "index": 13,
+                    "phase_index": null,
                     "start_jd": 2461209.1400143746,
                     "end_jd": 2461210.004098652,
                     "start_iso": "17/06/2026 08:51:37 PM",
@@ -4033,6 +4957,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 5,
+                    "phase_index": null,
                     "start_jd": 2461208.307458926,
                     "end_jd": 2461208.7375995023,
                     "start_iso": "17/06/2026 12:52:44 AM",
@@ -4041,6 +4967,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 6,
+                    "phase_index": null,
                     "start_jd": 2461208.7375995023,
                     "end_jd": 2461209.172869402,
                     "start_iso": "17/06/2026 11:12:08 AM",
@@ -4049,6 +4977,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461209.172869402,
                     "end_jd": 2461209.6140288934,
                     "start_iso": "17/06/2026 09:38:55 PM",
@@ -4061,6 +4991,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "મિથુન",
+            "moon_phase": {
+                "key": "waxing_crescent",
+                "name": "શુક્લ ચંદ્રકલા",
+                "visibility_key": "late_morning_to_post_dusk",
+                "visibility": "મોડી સવારથી સાંજ બાદ સુધી",
+                "illumination_band": "1%-49%",
+                "illumination_fraction": 0.0546109875031775,
+                "illumination_percent": 5.46109875031775,
+                "phase_angle_degrees": 27.02882346704439,
+                "synodic_age_days": 2.217158536671768
+            },
             "sunrise": "06:04:34 AM",
             "sunset": "07:39:58 PM",
             "moonrise": "08:11:55 AM",
@@ -4168,10 +5109,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.6013222801441174
             },
+            "tithi_display": {
+                "display": "4",
+                "indexes": [
+                    4
+                ],
+                "phase_indexes": [
+                    4
+                ],
+                "names": [
+                    "સુદ ચોથ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ ચોથ",
                     "type": "tithi",
+                    "index": 4,
+                    "phase_index": 4,
                     "start_jd": 2461209.172869402,
                     "end_jd": 2461210.061755932,
                     "start_iso": "17/06/2026 09:38:55 PM",
@@ -4180,6 +5138,8 @@
                 {
                     "name": "સુદ પાંચમ",
                     "type": "tithi",
+                    "index": 5,
+                    "phase_index": 5,
                     "start_jd": 2461210.061755932,
                     "end_jd": 2461210.9791241568,
                     "start_iso": "18/06/2026 06:58:55 PM",
@@ -4195,6 +5155,8 @@
                 {
                     "name": "પુષ્ય",
                     "type": "nakshatra",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461208.838410127,
                     "end_jd": 2461209.7518802322,
                     "start_iso": "17/06/2026 01:37:18 PM",
@@ -4203,6 +5165,8 @@
                 {
                     "name": "આશ્લેષા",
                     "type": "nakshatra",
+                    "index": 8,
+                    "phase_index": null,
                     "start_jd": 2461209.7518802322,
                     "end_jd": 2461210.692406427,
                     "start_iso": "18/06/2026 11:32:42 AM",
@@ -4213,6 +5177,8 @@
                 {
                     "name": "પુષ્ય Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.52116937,
                     "end_jd": 2461209.7518802322,
                     "start_iso": "18/06/2026 06:00:29 AM",
@@ -4221,6 +5187,8 @@
                 {
                     "name": "આશ્લેષા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.7518802322,
                     "end_jd": 2461209.9842911856,
                     "start_iso": "18/06/2026 11:32:42 AM",
@@ -4229,6 +5197,8 @@
                 {
                     "name": "આશ્લેષા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461209.9842911856,
                     "end_jd": 2461210.218474336,
                     "start_iso": "18/06/2026 05:07:22 PM",
@@ -4237,6 +5207,8 @@
                 {
                     "name": "આશ્લેષા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461210.218474336,
                     "end_jd": 2461210.454494033,
                     "start_iso": "18/06/2026 10:44:36 PM",
@@ -4245,6 +5217,8 @@
                 {
                     "name": "આશ્લેષા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461210.454494033,
                     "end_jd": 2461210.692406427,
                     "start_iso": "19/06/2026 04:24:28 AM",
@@ -4259,6 +5233,8 @@
                 {
                     "name": "વ્યાઘાત",
                     "type": "yoga",
+                    "index": 13,
+                    "phase_index": null,
                     "start_jd": 2461209.1400143746,
                     "end_jd": 2461210.004098652,
                     "start_iso": "17/06/2026 08:51:37 PM",
@@ -4267,6 +5243,8 @@
                 {
                     "name": "હર્ષણ",
                     "type": "yoga",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461210.004098652,
                     "end_jd": 2461210.891504233,
                     "start_iso": "18/06/2026 05:35:54 PM",
@@ -4281,6 +5259,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 7,
+                    "phase_index": null,
                     "start_jd": 2461209.172869402,
                     "end_jd": 2461209.6140288934,
                     "start_iso": "17/06/2026 09:38:55 PM",
@@ -4289,6 +5269,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 8,
+                    "phase_index": null,
                     "start_jd": 2461209.6140288934,
                     "end_jd": 2461210.061755932,
                     "start_iso": "18/06/2026 08:14:12 AM",
@@ -4297,6 +5279,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 9,
+                    "phase_index": null,
                     "start_jd": 2461210.061755932,
                     "end_jd": 2461210.5166313443,
                     "start_iso": "18/06/2026 06:58:55 PM",
@@ -4305,6 +5289,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 10,
+                    "phase_index": null,
                     "start_jd": 2461210.5166313443,
                     "end_jd": 2461210.9791241568,
                     "start_iso": "19/06/2026 05:53:56 AM",
@@ -4317,6 +5303,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "કર્ક",
+            "moon_phase": {
+                "key": "waxing_crescent",
+                "name": "શુક્લ ચંદ્રકલા",
+                "visibility_key": "late_morning_to_post_dusk",
+                "visibility": "મોડી સવારથી સાંજ બાદ સુધી",
+                "illumination_band": "1%-49%",
+                "illumination_fraction": 0.12141200828812598,
+                "illumination_percent": 12.141200828812599,
+                "phase_angle_degrees": 40.78413263827059,
+                "synodic_age_days": 3.345498480536833
+            },
             "sunrise": "06:04:44 AM",
             "sunset": "07:40:14 PM",
             "moonrise": "09:20:30 AM",
@@ -4685,10 +5682,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.4917101468351527
             },
+            "tithi_display": {
+                "display": "5",
+                "indexes": [
+                    5
+                ],
+                "phase_indexes": [
+                    5
+                ],
+                "names": [
+                    "સુદ પાંચમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ પાંચમ",
                     "type": "tithi",
+                    "index": 5,
+                    "phase_index": 5,
                     "start_jd": 2461210.061755932,
                     "end_jd": 2461210.9791241568,
                     "start_iso": "18/06/2026 06:58:55 PM",
@@ -4697,6 +5711,8 @@
                 {
                     "name": "સુદ છઠ",
                     "type": "tithi",
+                    "index": 6,
+                    "phase_index": 6,
                     "start_jd": 2461210.9791241568,
                     "end_jd": 2461211.9281990007,
                     "start_iso": "19/06/2026 04:59:56 PM",
@@ -4712,6 +5728,8 @@
                 {
                     "name": "આશ્લેષા",
                     "type": "nakshatra",
+                    "index": 8,
+                    "phase_index": null,
                     "start_jd": 2461209.7518802322,
                     "end_jd": 2461210.692406427,
                     "start_iso": "18/06/2026 11:32:42 AM",
@@ -4720,6 +5738,8 @@
                 {
                     "name": "મઘા",
                     "type": "nakshatra",
+                    "index": 9,
+                    "phase_index": null,
                     "start_jd": 2461210.692406427,
                     "end_jd": 2461211.6637968896,
                     "start_iso": "19/06/2026 10:07:03 AM",
@@ -4730,6 +5750,8 @@
                 {
                     "name": "આશ્લેષા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461210.454494033,
                     "end_jd": 2461210.692406427,
                     "start_iso": "19/06/2026 04:24:28 AM",
@@ -4738,6 +5760,8 @@
                 {
                     "name": "મઘા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461210.692406427,
                     "end_jd": 2461210.9322590493,
                     "start_iso": "19/06/2026 10:07:03 AM",
@@ -4746,6 +5770,8 @@
                 {
                     "name": "મઘા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461210.9322590493,
                     "end_jd": 2461211.1740904385,
                     "start_iso": "19/06/2026 03:52:27 PM",
@@ -4754,6 +5780,8 @@
                 {
                     "name": "મઘા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461211.1740904385,
                     "end_jd": 2461211.417929829,
                     "start_iso": "19/06/2026 09:40:41 PM",
@@ -4762,6 +5790,8 @@
                 {
                     "name": "મઘા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461211.417929829,
                     "end_jd": 2461211.6637968896,
                     "start_iso": "20/06/2026 03:31:49 AM",
@@ -4776,6 +5806,8 @@
                 {
                     "name": "હર્ષણ",
                     "type": "yoga",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461210.004098652,
                     "end_jd": 2461210.891504233,
                     "start_iso": "18/06/2026 05:35:54 PM",
@@ -4784,6 +5816,8 @@
                 {
                     "name": "વજ્ર",
                     "type": "yoga",
+                    "index": 15,
+                    "phase_index": null,
                     "start_jd": 2461210.891504233,
                     "end_jd": 2461211.804636414,
                     "start_iso": "19/06/2026 02:53:45 PM",
@@ -4798,6 +5832,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 10,
+                    "phase_index": null,
                     "start_jd": 2461210.5166313443,
                     "end_jd": 2461210.9791241568,
                     "start_iso": "19/06/2026 05:53:56 AM",
@@ -4806,6 +5842,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 11,
+                    "phase_index": null,
                     "start_jd": 2461210.9791241568,
                     "end_jd": 2461211.4495778996,
                     "start_iso": "19/06/2026 04:59:56 PM",
@@ -4814,6 +5852,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461211.4495778996,
                     "end_jd": 2461211.9281990007,
                     "start_iso": "20/06/2026 04:17:23 AM",
@@ -4826,6 +5866,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "કર્ક",
+            "moon_phase": {
+                "key": "waxing_crescent",
+                "name": "શુક્લ ચંદ્રકલા",
+                "visibility_key": "late_morning_to_post_dusk",
+                "visibility": "મોડી સવારથી સાંજ બાદ સુધી",
+                "illumination_band": "1%-49%",
+                "illumination_fraction": 0.20681013333626042,
+                "illumination_percent": 20.68101333362604,
+                "phase_angle_degrees": 54.09947823797819,
+                "synodic_age_days": 4.43774847066764
+            },
             "sunrise": "06:04:54 AM",
             "sunset": "07:40:29 PM",
             "moonrise": "10:24:35 AM",
@@ -4877,10 +5928,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.42129259865064717
             },
+            "tithi_display": {
+                "display": "6",
+                "indexes": [
+                    6
+                ],
+                "phase_indexes": [
+                    6
+                ],
+                "names": [
+                    "સુદ છઠ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ છઠ",
                     "type": "tithi",
+                    "index": 6,
+                    "phase_index": 6,
                     "start_jd": 2461210.9791241568,
                     "end_jd": 2461211.9281990007,
                     "start_iso": "19/06/2026 04:59:56 PM",
@@ -4889,6 +5957,8 @@
                 {
                     "name": "સુદ સાતમ",
                     "type": "tithi",
+                    "index": 7,
+                    "phase_index": 7,
                     "start_jd": 2461211.9281990007,
                     "end_jd": 2461212.9100380857,
                     "start_iso": "20/06/2026 03:46:36 PM",
@@ -4904,6 +5974,8 @@
                 {
                     "name": "મઘા",
                     "type": "nakshatra",
+                    "index": 9,
+                    "phase_index": null,
                     "start_jd": 2461210.692406427,
                     "end_jd": 2461211.6637968896,
                     "start_iso": "19/06/2026 10:07:03 AM",
@@ -4912,6 +5984,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની",
                     "type": "nakshatra",
+                    "index": 10,
+                    "phase_index": null,
                     "start_jd": 2461211.6637968896,
                     "end_jd": 2461212.66759282,
                     "start_iso": "20/06/2026 09:25:52 AM",
@@ -4922,6 +5996,8 @@
                 {
                     "name": "મઘા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461211.417929829,
                     "end_jd": 2461211.6637968896,
                     "start_iso": "20/06/2026 03:31:49 AM",
@@ -4930,6 +6006,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461211.6637968896,
                     "end_jd": 2461211.911701545,
                     "start_iso": "20/06/2026 09:25:52 AM",
@@ -4938,6 +6016,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461211.911701545,
                     "end_jd": 2461212.161643884,
                     "start_iso": "20/06/2026 03:22:51 PM",
@@ -4946,6 +6026,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461212.161643884,
                     "end_jd": 2461212.4136141464,
                     "start_iso": "20/06/2026 09:22:46 PM",
@@ -4954,6 +6036,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461212.4136141464,
                     "end_jd": 2461212.66759282,
                     "start_iso": "21/06/2026 03:25:36 AM",
@@ -4968,6 +6052,8 @@
                 {
                     "name": "વજ્ર",
                     "type": "yoga",
+                    "index": 15,
+                    "phase_index": null,
                     "start_jd": 2461210.891504233,
                     "end_jd": 2461211.804636414,
                     "start_iso": "19/06/2026 02:53:45 PM",
@@ -4976,6 +6062,8 @@
                 {
                     "name": "સિદ્ધિ",
                     "type": "yoga",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461211.804636414,
                     "end_jd": 2461212.7441958124,
                     "start_iso": "20/06/2026 12:48:40 PM",
@@ -4990,6 +6078,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461211.4495778996,
                     "end_jd": 2461211.9281990007,
                     "start_iso": "20/06/2026 04:17:23 AM",
@@ -4998,6 +6088,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 13,
+                    "phase_index": null,
                     "start_jd": 2461211.9281990007,
                     "end_jd": 2461212.415048466,
                     "start_iso": "20/06/2026 03:46:36 PM",
@@ -5006,6 +6098,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461212.415048466,
                     "end_jd": 2461212.9100380857,
                     "start_iso": "21/06/2026 03:27:40 AM",
@@ -5018,6 +6112,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "સિંહ",
+            "moon_phase": {
+                "key": "waxing_crescent",
+                "name": "શુક્લ ચંદ્રકલા",
+                "visibility_key": "late_morning_to_post_dusk",
+                "visibility": "મોડી સવારથી સાંજ બાદ સુધી",
+                "illumination_band": "1%-49%",
+                "illumination_fraction": 0.30418861060583013,
+                "illumination_percent": 30.418861060583012,
+                "phase_angle_degrees": 66.94448881619223,
+                "synodic_age_days": 5.491417154835515
+            },
             "sunrise": "06:05:06 AM",
             "sunset": "07:40:43 PM",
             "moonrise": "11:24:08 AM",
@@ -5225,10 +6330,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.3887212857412964
             },
+            "tithi_display": {
+                "display": "7",
+                "indexes": [
+                    7
+                ],
+                "phase_indexes": [
+                    7
+                ],
+                "names": [
+                    "સુદ સાતમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ સાતમ",
                     "type": "tithi",
+                    "index": 7,
+                    "phase_index": 7,
                     "start_jd": 2461211.9281990007,
                     "end_jd": 2461212.9100380857,
                     "start_iso": "20/06/2026 03:46:36 PM",
@@ -5237,6 +6359,8 @@
                 {
                     "name": "સુદ આઠમ",
                     "type": "tithi",
+                    "index": 8,
+                    "phase_index": 8,
                     "start_jd": 2461212.9100380857,
                     "end_jd": 2461213.9233556725,
                     "start_iso": "21/06/2026 03:20:27 PM",
@@ -5252,6 +6376,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની",
                     "type": "nakshatra",
+                    "index": 10,
+                    "phase_index": null,
                     "start_jd": 2461211.6637968896,
                     "end_jd": 2461212.66759282,
                     "start_iso": "20/06/2026 09:25:52 AM",
@@ -5260,6 +6386,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની",
                     "type": "nakshatra",
+                    "index": 11,
+                    "phase_index": null,
                     "start_jd": 2461212.66759282,
                     "end_jd": 2461213.702873772,
                     "start_iso": "21/06/2026 09:31:20 AM",
@@ -5270,6 +6398,8 @@
                 {
                     "name": "પૂર્વ ફાલ્ગુની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461212.4136141464,
                     "end_jd": 2461212.66759282,
                     "start_iso": "21/06/2026 03:25:36 AM",
@@ -5278,6 +6408,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461212.66759282,
                     "end_jd": 2461212.9235508293,
                     "start_iso": "21/06/2026 09:31:20 AM",
@@ -5286,6 +6418,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461212.9235508293,
                     "end_jd": 2461213.1814498417,
                     "start_iso": "21/06/2026 03:39:54 PM",
@@ -5294,6 +6428,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461213.1814498417,
                     "end_jd": 2461213.441242669,
                     "start_iso": "21/06/2026 09:51:17 PM",
@@ -5302,6 +6438,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461213.441242669,
                     "end_jd": 2461213.702873772,
                     "start_iso": "22/06/2026 04:05:23 AM",
@@ -5316,6 +6454,8 @@
                 {
                     "name": "સિદ્ધિ",
                     "type": "yoga",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461211.804636414,
                     "end_jd": 2461212.7441958124,
                     "start_iso": "20/06/2026 12:48:40 PM",
@@ -5324,6 +6464,8 @@
                 {
                     "name": "વ્યતિપાત",
                     "type": "yoga",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461212.7441958124,
                     "end_jd": 2461213.709131281,
                     "start_iso": "21/06/2026 11:21:38 AM",
@@ -5338,6 +6480,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461212.415048466,
                     "end_jd": 2461212.9100380857,
                     "start_iso": "21/06/2026 03:27:40 AM",
@@ -5346,6 +6490,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 15,
+                    "phase_index": null,
                     "start_jd": 2461212.9100380857,
                     "end_jd": 2461213.4129321957,
                     "start_iso": "21/06/2026 03:20:27 PM",
@@ -5354,6 +6500,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461213.4129321957,
                     "end_jd": 2461213.9233556725,
                     "start_iso": "22/06/2026 03:24:37 AM",
@@ -5366,6 +6514,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "સિંહ",
+            "moon_phase": {
+                "key": "first_quarter",
+                "name": "પ્રથમ અર્ધચંદ્ર",
+                "visibility_key": "afternoon_and_early_night",
+                "visibility": "બપોરથી રાત્રિના આરંભ સુધી",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.4074697866190705,
+                "illumination_percent": 40.74697866190705,
+                "phase_angle_degrees": 79.33534457110443,
+                "synodic_age_days": 6.507831785208481
+            },
             "sunrise": "06:05:18 AM",
             "sunset": "07:40:57 PM",
             "moonrise": "12:20:09 PM",
@@ -5455,10 +6614,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.389920382272957
             },
+            "tithi_display": {
+                "display": "8",
+                "indexes": [
+                    8
+                ],
+                "phase_indexes": [
+                    8
+                ],
+                "names": [
+                    "સુદ આઠમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ આઠમ",
                     "type": "tithi",
+                    "index": 8,
+                    "phase_index": 8,
                     "start_jd": 2461212.9100380857,
                     "end_jd": 2461213.9233556725,
                     "start_iso": "21/06/2026 03:20:27 PM",
@@ -5467,6 +6643,8 @@
                 {
                     "name": "સુદ નોમ",
                     "type": "tithi",
+                    "index": 9,
+                    "phase_index": 9,
                     "start_jd": 2461213.9233556725,
                     "end_jd": 2461214.9646849763,
                     "start_iso": "22/06/2026 03:39:37 PM",
@@ -5482,6 +6660,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની",
                     "type": "nakshatra",
+                    "index": 11,
+                    "phase_index": null,
                     "start_jd": 2461212.66759282,
                     "end_jd": 2461213.702873772,
                     "start_iso": "21/06/2026 09:31:20 AM",
@@ -5490,6 +6670,8 @@
                 {
                     "name": "હસ્ત",
                     "type": "nakshatra",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461213.702873772,
                     "end_jd": 2461214.7664142074,
                     "start_iso": "22/06/2026 10:22:08 AM",
@@ -5500,6 +6682,8 @@
                 {
                     "name": "ઉત્તર ફાલ્ગુની Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461213.441242669,
                     "end_jd": 2461213.702873772,
                     "start_iso": "22/06/2026 04:05:23 AM",
@@ -5508,6 +6692,8 @@
                 {
                     "name": "હસ્ત Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461213.702873772,
                     "end_jd": 2461213.966279869,
                     "start_iso": "22/06/2026 10:22:08 AM",
@@ -5516,6 +6702,8 @@
                 {
                     "name": "હસ્ત Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461213.966279869,
                     "end_jd": 2461214.2313906243,
                     "start_iso": "22/06/2026 04:41:26 PM",
@@ -5524,6 +6712,8 @@
                 {
                     "name": "હસ્ત Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461214.2313906243,
                     "end_jd": 2461214.4981294256,
                     "start_iso": "22/06/2026 11:03:12 PM",
@@ -5532,6 +6722,8 @@
                 {
                     "name": "હસ્ત Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461214.4981294256,
                     "end_jd": 2461214.7664142074,
                     "start_iso": "23/06/2026 05:27:18 AM",
@@ -5546,6 +6738,8 @@
                 {
                     "name": "વ્યતિપાત",
                     "type": "yoga",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461212.7441958124,
                     "end_jd": 2461213.709131281,
                     "start_iso": "21/06/2026 11:21:38 AM",
@@ -5554,6 +6748,8 @@
                 {
                     "name": "વરીયાન",
                     "type": "yoga",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461213.709131281,
                     "end_jd": 2461214.696818022,
                     "start_iso": "22/06/2026 10:31:08 AM",
@@ -5568,6 +6764,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461213.4129321957,
                     "end_jd": 2461213.9233556725,
                     "start_iso": "22/06/2026 03:24:37 AM",
@@ -5576,6 +6774,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461213.9233556725,
                     "end_jd": 2461214.4408083055,
                     "start_iso": "22/06/2026 03:39:37 PM",
@@ -5584,6 +6784,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461214.4408083055,
                     "end_jd": 2461214.9646849763,
                     "start_iso": "23/06/2026 04:04:45 AM",
@@ -5596,6 +6798,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "કન્યા",
+            "moon_phase": {
+                "key": "first_quarter",
+                "name": "પ્રથમ અર્ધચંદ્ર",
+                "visibility_key": "afternoon_and_early_night",
+                "visibility": "બપોરથી રાત્રિના આરંભ સુધી",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.5115264894285371,
+                "illumination_percent": 51.15264894285371,
+                "phase_angle_degrees": 91.32095541272452,
+                "synodic_age_days": 7.491004413019111
+            },
             "sunrise": "06:05:32 AM",
             "sunset": "07:41:09 PM",
             "moonrise": "01:13:58 PM",
@@ -5722,10 +6935,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.41940197167391935
             },
+            "tithi_display": {
+                "display": "9",
+                "indexes": [
+                    9
+                ],
+                "phase_indexes": [
+                    9
+                ],
+                "names": [
+                    "સુદ નોમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ નોમ",
                     "type": "tithi",
+                    "index": 9,
+                    "phase_index": 9,
                     "start_jd": 2461213.9233556725,
                     "end_jd": 2461214.9646849763,
                     "start_iso": "22/06/2026 03:39:37 PM",
@@ -5734,6 +6964,8 @@
                 {
                     "name": "સુદ દશમ",
                     "type": "tithi",
+                    "index": 10,
+                    "phase_index": 10,
                     "start_jd": 2461214.9646849763,
                     "end_jd": 2461216.0289170034,
                     "start_iso": "23/06/2026 04:39:08 PM",
@@ -5749,6 +6981,8 @@
                 {
                     "name": "હસ્ત",
                     "type": "nakshatra",
+                    "index": 12,
+                    "phase_index": null,
                     "start_jd": 2461213.702873772,
                     "end_jd": 2461214.7664142074,
                     "start_iso": "22/06/2026 10:22:08 AM",
@@ -5757,6 +6991,8 @@
                 {
                     "name": "ચિત્રા",
                     "type": "nakshatra",
+                    "index": 13,
+                    "phase_index": null,
                     "start_jd": 2461214.7664142074,
                     "end_jd": 2461215.8532314403,
                     "start_iso": "23/06/2026 11:53:38 AM",
@@ -5767,6 +7003,8 @@
                 {
                     "name": "હસ્ત Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461214.4981294256,
                     "end_jd": 2461214.7664142074,
                     "start_iso": "23/06/2026 05:27:18 AM",
@@ -5775,6 +7013,8 @@
                 {
                     "name": "ચિત્રા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461214.7664142074,
                     "end_jd": 2461215.0361583456,
                     "start_iso": "23/06/2026 11:53:38 AM",
@@ -5783,6 +7023,8 @@
                 {
                     "name": "ચિત્રા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461215.0361583456,
                     "end_jd": 2461215.3072715625,
                     "start_iso": "23/06/2026 06:22:04 PM",
@@ -5791,6 +7033,8 @@
                 {
                     "name": "ચિત્રા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461215.3072715625,
                     "end_jd": 2461215.57966086,
                     "start_iso": "24/06/2026 12:52:28 AM",
@@ -5805,6 +7049,8 @@
                 {
                     "name": "વરીયાન",
                     "type": "yoga",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461213.709131281,
                     "end_jd": 2461214.696818022,
                     "start_iso": "22/06/2026 10:31:08 AM",
@@ -5813,6 +7059,8 @@
                 {
                     "name": "પરીઘ",
                     "type": "yoga",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461214.696818022,
                     "end_jd": 2461215.703458773,
                     "start_iso": "23/06/2026 10:13:25 AM",
@@ -5827,6 +7075,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461214.4408083055,
                     "end_jd": 2461214.9646849763,
                     "start_iso": "23/06/2026 04:04:45 AM",
@@ -5835,6 +7085,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461214.9646849763,
                     "end_jd": 2461215.494300456,
                     "start_iso": "23/06/2026 04:39:08 PM",
@@ -5843,6 +7095,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461215.494300456,
                     "end_jd": 2461216.0289170034,
                     "start_iso": "24/06/2026 05:21:47 AM",
@@ -5855,6 +7109,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "કન્યા",
+            "moon_phase": {
+                "key": "first_quarter",
+                "name": "પ્રથમ અર્ધચંદ્ર",
+                "visibility_key": "afternoon_and_early_night",
+                "visibility": "બપોરથી રાત્રિના આરંભ સુધી",
+                "illumination_band": "50%",
+                "illumination_fraction": 0.6121964097105486,
+                "illumination_percent": 61.21964097105486,
+                "phase_angle_degrees": 102.96717633991295,
+                "synodic_age_days": 8.446337085200156
+            },
             "sunrise": "06:05:46 AM",
             "sunset": "07:41:21 PM",
             "moonrise": "02:06:52 PM",
@@ -5987,10 +7252,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.47116795145418655
             },
+            "tithi_display": {
+                "display": "10",
+                "indexes": [
+                    10
+                ],
+                "phase_indexes": [
+                    10
+                ],
+                "names": [
+                    "સુદ દશમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ દશમ",
                     "type": "tithi",
+                    "index": 10,
+                    "phase_index": 10,
                     "start_jd": 2461214.9646849763,
                     "end_jd": 2461216.0289170034,
                     "start_iso": "23/06/2026 04:39:08 PM",
@@ -5999,6 +7281,8 @@
                 {
                     "name": "સુદ અગિયારસ",
                     "type": "tithi",
+                    "index": 11,
+                    "phase_index": 11,
                     "start_jd": 2461216.0289170034,
                     "end_jd": 2461217.11010761,
                     "start_iso": "24/06/2026 06:11:38 PM",
@@ -6014,6 +7298,8 @@
                 {
                     "name": "ચિત્રા",
                     "type": "nakshatra",
+                    "index": 13,
+                    "phase_index": null,
                     "start_jd": 2461214.7664142074,
                     "end_jd": 2461215.8532314403,
                     "start_iso": "23/06/2026 11:53:38 AM",
@@ -6022,6 +7308,8 @@
                 {
                     "name": "સ્વાતિ",
                     "type": "nakshatra",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461215.8532314403,
                     "end_jd": 2461216.95741669,
                     "start_iso": "24/06/2026 01:58:39 PM",
@@ -6032,6 +7320,8 @@
                 {
                     "name": "ચિત્રા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461215.3072715625,
                     "end_jd": 2461215.57966086,
                     "start_iso": "24/06/2026 12:52:28 AM",
@@ -6040,6 +7330,8 @@
                 {
                     "name": "ચિત્રા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461215.57966086,
                     "end_jd": 2461215.8532314403,
                     "start_iso": "24/06/2026 07:24:42 AM",
@@ -6048,6 +7340,8 @@
                 {
                     "name": "સ્વાતિ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461215.8532314403,
                     "end_jd": 2461216.1278876048,
                     "start_iso": "24/06/2026 01:58:39 PM",
@@ -6056,6 +7350,8 @@
                 {
                     "name": "સ્વાતિ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461216.1278876048,
                     "end_jd": 2461216.4035336114,
                     "start_iso": "24/06/2026 08:34:09 PM",
@@ -6064,6 +7360,8 @@
                 {
                     "name": "સ્વાતિ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461216.4035336114,
                     "end_jd": 2461216.680074473,
                     "start_iso": "25/06/2026 03:11:05 AM",
@@ -6078,6 +7376,8 @@
                 {
                     "name": "પરીઘ",
                     "type": "yoga",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461214.696818022,
                     "end_jd": 2461215.703458773,
                     "start_iso": "23/06/2026 10:13:25 AM",
@@ -6086,6 +7386,8 @@
                 {
                     "name": "શિવ",
                     "type": "yoga",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461215.703458773,
                     "end_jd": 2461216.7246323368,
                     "start_iso": "24/06/2026 10:22:58 AM",
@@ -6100,6 +7402,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461215.494300456,
                     "end_jd": 2461216.0289170034,
                     "start_iso": "24/06/2026 05:21:47 AM",
@@ -6108,6 +7412,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461216.0289170034,
                     "end_jd": 2461216.5677726045,
                     "start_iso": "24/06/2026 06:11:38 PM",
@@ -6120,6 +7426,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "તુલા",
+            "moon_phase": {
+                "key": "waxing_gibbous",
+                "name": "શુક્લ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "late_afternoon_and_most_of_night",
+                "visibility": "મોડી બપોરથી મોટાભાગની રાત સુધી",
+                "illumination_band": "51%-99%",
+                "illumination_fraction": 0.7061228510964266,
+                "illumination_percent": 70.61228510964266,
+                "phase_angle_degrees": 114.34598458254976,
+                "synodic_age_days": 9.379734051704228
+            },
             "sunrise": "06:06:00 AM",
             "sunset": "07:41:31 PM",
             "moonrise": "02:59:51 PM",
@@ -6255,10 +7572,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.5393902881422292
             },
+            "tithi_display": {
+                "display": "11",
+                "indexes": [
+                    11
+                ],
+                "phase_indexes": [
+                    11
+                ],
+                "names": [
+                    "સુદ અગિયારસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ અગિયારસ",
                     "type": "tithi",
+                    "index": 11,
+                    "phase_index": 11,
                     "start_jd": 2461216.0289170034,
                     "end_jd": 2461217.11010761,
                     "start_iso": "24/06/2026 06:11:38 PM",
@@ -6267,6 +7601,8 @@
                 {
                     "name": "સુદ બારસ",
                     "type": "tithi",
+                    "index": 12,
+                    "phase_index": 12,
                     "start_jd": 2461217.11010761,
                     "end_jd": 2461218.202321765,
                     "start_iso": "25/06/2026 08:08:33 PM",
@@ -6282,6 +7618,8 @@
                 {
                     "name": "સ્વાતિ",
                     "type": "nakshatra",
+                    "index": 14,
+                    "phase_index": null,
                     "start_jd": 2461215.8532314403,
                     "end_jd": 2461216.95741669,
                     "start_iso": "24/06/2026 01:58:39 PM",
@@ -6290,6 +7628,8 @@
                 {
                     "name": "વિશાખા",
                     "type": "nakshatra",
+                    "index": 15,
+                    "phase_index": null,
                     "start_jd": 2461216.95741669,
                     "end_jd": 2461218.073014496,
                     "start_iso": "25/06/2026 04:28:40 PM",
@@ -6300,6 +7640,8 @@
                 {
                     "name": "સ્વાતિ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461216.4035336114,
                     "end_jd": 2461216.680074473,
                     "start_iso": "25/06/2026 03:11:05 AM",
@@ -6308,6 +7650,8 @@
                 {
                     "name": "સ્વાતિ Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461216.680074473,
                     "end_jd": 2461216.95741669,
                     "start_iso": "25/06/2026 09:49:18 AM",
@@ -6316,6 +7660,8 @@
                 {
                     "name": "વિશાખા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461216.95741669,
                     "end_jd": 2461217.2354688905,
                     "start_iso": "25/06/2026 04:28:40 PM",
@@ -6324,6 +7670,8 @@
                 {
                     "name": "વિશાખા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461217.2354688905,
                     "end_jd": 2461217.5141423848,
                     "start_iso": "25/06/2026 11:09:04 PM",
@@ -6332,6 +7680,8 @@
                 {
                     "name": "વિશાખા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461217.5141423848,
                     "end_jd": 2461217.793351614,
                     "start_iso": "26/06/2026 05:50:21 AM",
@@ -6346,6 +7696,8 @@
                 {
                     "name": "શિવ",
                     "type": "yoga",
+                    "index": 20,
+                    "phase_index": null,
                     "start_jd": 2461215.703458773,
                     "end_jd": 2461216.7246323368,
                     "start_iso": "24/06/2026 10:22:58 AM",
@@ -6354,6 +7706,8 @@
                 {
                     "name": "સિદ્ધ",
                     "type": "yoga",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461216.7246323368,
                     "end_jd": 2461217.755858998,
                     "start_iso": "25/06/2026 10:53:28 AM",
@@ -6368,6 +7722,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461216.0289170034,
                     "end_jd": 2461216.5677726045,
                     "start_iso": "24/06/2026 06:11:38 PM",
@@ -6376,6 +7732,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461216.5677726045,
                     "end_jd": 2461217.11010761,
                     "start_iso": "25/06/2026 07:07:35 AM",
@@ -6384,6 +7742,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461217.11010761,
                     "end_jd": 2461217.6551877204,
                     "start_iso": "25/06/2026 08:08:33 PM",
@@ -6396,6 +7756,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "તુલા",
+            "moon_phase": {
+                "key": "waxing_gibbous",
+                "name": "શુક્લ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "late_afternoon_and_most_of_night",
+                "visibility": "મોડી બપોરથી મોટાભાગની રાત સુધી",
+                "illumination_band": "51%-99%",
+                "illumination_fraction": 0.7905455151731677,
+                "illumination_percent": 79.05455151731677,
+                "phase_angle_degrees": 125.52731654229325,
+                "synodic_age_days": 10.29693215454185
+            },
             "sunrise": "06:06:16 AM",
             "sunset": "07:41:41 PM",
             "moonrise": "03:53:32 PM",
@@ -6528,10 +7899,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.6188873142656277
             },
+            "tithi_display": {
+                "display": "12",
+                "indexes": [
+                    12
+                ],
+                "phase_indexes": [
+                    12
+                ],
+                "names": [
+                    "સુદ બારસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ બારસ",
                     "type": "tithi",
+                    "index": 12,
+                    "phase_index": 12,
                     "start_jd": 2461217.11010761,
                     "end_jd": 2461218.202321765,
                     "start_iso": "25/06/2026 08:08:33 PM",
@@ -6540,6 +7928,8 @@
                 {
                     "name": "સુદ તેરસ",
                     "type": "tithi",
+                    "index": 13,
+                    "phase_index": 13,
                     "start_jd": 2461218.202321765,
                     "end_jd": 2461219.3002656987,
                     "start_iso": "26/06/2026 10:21:20 PM",
@@ -6555,6 +7945,8 @@
                 {
                     "name": "વિશાખા",
                     "type": "nakshatra",
+                    "index": 15,
+                    "phase_index": null,
                     "start_jd": 2461216.95741669,
                     "end_jd": 2461218.073014496,
                     "start_iso": "25/06/2026 04:28:40 PM",
@@ -6563,6 +7955,8 @@
                 {
                     "name": "અનુરાધા",
                     "type": "nakshatra",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461218.073014496,
                     "end_jd": 2461219.1946931593,
                     "start_iso": "26/06/2026 07:15:08 PM",
@@ -6573,6 +7967,8 @@
                 {
                     "name": "વિશાખા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461217.5141423848,
                     "end_jd": 2461217.793351614,
                     "start_iso": "26/06/2026 05:50:21 AM",
@@ -6581,6 +7977,8 @@
                 {
                     "name": "વિશાખા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461217.793351614,
                     "end_jd": 2461218.073014496,
                     "start_iso": "26/06/2026 12:32:25 PM",
@@ -6589,6 +7987,8 @@
                 {
                     "name": "અનુરાધા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461218.073014496,
                     "end_jd": 2461218.3530526664,
                     "start_iso": "26/06/2026 07:15:08 PM",
@@ -6597,6 +7997,8 @@
                 {
                     "name": "અનુરાધા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461218.3530526664,
                     "end_jd": 2461218.633391614,
                     "start_iso": "27/06/2026 01:58:23 AM",
@@ -6611,6 +8013,8 @@
                 {
                     "name": "સિદ્ધ",
                     "type": "yoga",
+                    "index": 21,
+                    "phase_index": null,
                     "start_jd": 2461216.7246323368,
                     "end_jd": 2461217.755858998,
                     "start_iso": "25/06/2026 10:53:28 AM",
@@ -6619,6 +8023,8 @@
                 {
                     "name": "સાધ્ય",
                     "type": "yoga",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461217.755858998,
                     "end_jd": 2461218.793046519,
                     "start_iso": "26/06/2026 11:38:26 AM",
@@ -6633,6 +8039,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461217.11010761,
                     "end_jd": 2461217.6551877204,
                     "start_iso": "25/06/2026 08:08:33 PM",
@@ -6641,6 +8049,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461217.6551877204,
                     "end_jd": 2461218.202321765,
                     "start_iso": "26/06/2026 09:13:28 AM",
@@ -6649,6 +8059,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461218.202321765,
                     "end_jd": 2461218.7508732947,
                     "start_iso": "26/06/2026 10:21:20 PM",
@@ -6661,6 +8073,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "તુલા",
+            "moon_phase": {
+                "key": "waxing_gibbous",
+                "name": "શુક્લ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "late_afternoon_and_most_of_night",
+                "visibility": "મોડી બપોરથી મોટાભાગની રાત સુધી",
+                "illumination_band": "51%-99%",
+                "illumination_fraction": 0.8631275169724626,
+                "illumination_percent": 86.31275169724626,
+                "phase_angle_degrees": 136.5733522288125,
+                "synodic_age_days": 11.203031983437777
+            },
             "sunrise": "06:06:32 AM",
             "sunset": "07:41:49 PM",
             "moonrise": "04:48:00 PM",
@@ -6712,10 +8135,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.7052326972008274
             },
+            "tithi_display": {
+                "display": "13",
+                "indexes": [
+                    13
+                ],
+                "phase_indexes": [
+                    13
+                ],
+                "names": [
+                    "સુદ તેરસ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ તેરસ",
                     "type": "tithi",
+                    "index": 13,
+                    "phase_index": 13,
                     "start_jd": 2461218.202321765,
                     "end_jd": 2461219.3002656987,
                     "start_iso": "26/06/2026 10:21:20 PM",
@@ -6724,6 +8164,8 @@
                 {
                     "name": "સુદ ચૌદશ",
                     "type": "tithi",
+                    "index": 14,
+                    "phase_index": 14,
                     "start_jd": 2461219.3002656987,
                     "end_jd": 2461220.399554354,
                     "start_iso": "28/06/2026 12:42:22 AM",
@@ -6739,6 +8181,8 @@
                 {
                     "name": "અનુરાધા",
                     "type": "nakshatra",
+                    "index": 16,
+                    "phase_index": null,
                     "start_jd": 2461218.073014496,
                     "end_jd": 2461219.1946931593,
                     "start_iso": "26/06/2026 07:15:08 PM",
@@ -6747,6 +8191,8 @@
                 {
                     "name": "જ્યેષ્ઠા",
                     "type": "nakshatra",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461219.1946931593,
                     "end_jd": 2461220.3180434573,
                     "start_iso": "27/06/2026 10:10:21 PM",
@@ -6757,6 +8203,8 @@
                 {
                     "name": "અનુરાધા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461218.3530526664,
                     "end_jd": 2461218.633391614,
                     "start_iso": "27/06/2026 01:58:23 AM",
@@ -6765,6 +8213,8 @@
                 {
                     "name": "અનુરાધા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461218.633391614,
                     "end_jd": 2461218.913960713,
                     "start_iso": "27/06/2026 08:42:05 AM",
@@ -6773,6 +8223,8 @@
                 {
                     "name": "અનુરાધા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461218.913960713,
                     "end_jd": 2461219.1946931593,
                     "start_iso": "27/06/2026 03:26:06 PM",
@@ -6781,6 +8233,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461219.1946931593,
                     "end_jd": 2461219.4755258197,
                     "start_iso": "27/06/2026 10:10:21 PM",
@@ -6789,6 +8243,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461219.4755258197,
                     "end_jd": 2461219.756398999,
                     "start_iso": "28/06/2026 04:54:45 AM",
@@ -6803,6 +8259,8 @@
                 {
                     "name": "સાધ્ય",
                     "type": "yoga",
+                    "index": 22,
+                    "phase_index": null,
                     "start_jd": 2461217.755858998,
                     "end_jd": 2461218.793046519,
                     "start_iso": "26/06/2026 11:38:26 AM",
@@ -6811,6 +8269,8 @@
                 {
                     "name": "શુભ",
                     "type": "yoga",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461218.793046519,
                     "end_jd": 2461219.832725608,
                     "start_iso": "27/06/2026 12:31:59 PM",
@@ -6825,6 +8285,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461218.202321765,
                     "end_jd": 2461218.7508732947,
                     "start_iso": "26/06/2026 10:21:20 PM",
@@ -6833,6 +8295,8 @@
                 {
                     "name": "તૈતિલ",
                     "type": "karana",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461218.7508732947,
                     "end_jd": 2461219.3002656987,
                     "start_iso": "27/06/2026 11:31:15 AM",
@@ -6841,6 +8305,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 27,
+                    "phase_index": null,
                     "start_jd": 2461219.3002656987,
                     "end_jd": 2461219.84998117,
                     "start_iso": "28/06/2026 12:42:22 AM",
@@ -6853,6 +8319,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "વૃશ્ચિક",
+            "moon_phase": {
+                "key": "waxing_gibbous",
+                "name": "શુક્લ પક્ષનો લગભગ પૂર્ણ ચંદ્ર",
+                "visibility_key": "late_afternoon_and_most_of_night",
+                "visibility": "મોડી બપોરથી મોટાભાગની રાત સુધી",
+                "illumination_band": "51%-99%",
+                "illumination_fraction": 0.9218700940076564,
+                "illumination_percent": 92.18700940076565,
+                "phase_angle_degrees": 147.53720763359007,
+                "synodic_age_days": 12.102390612020942
+            },
             "sunrise": "06:06:50 AM",
             "sunset": "07:41:56 PM",
             "moonrise": "05:42:36 PM",
@@ -6983,10 +8460,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.7948745238322251
             },
+            "tithi_display": {
+                "display": "14",
+                "indexes": [
+                    14
+                ],
+                "phase_indexes": [
+                    14
+                ],
+                "names": [
+                    "સુદ ચૌદશ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "સુદ ચૌદશ",
                     "type": "tithi",
+                    "index": 14,
+                    "phase_index": 14,
                     "start_jd": 2461219.3002656987,
                     "end_jd": 2461220.399554354,
                     "start_iso": "28/06/2026 12:42:22 AM",
@@ -6995,6 +8489,8 @@
                 {
                     "name": "પૂનમ",
                     "type": "tithi",
+                    "index": 15,
+                    "phase_index": 15,
                     "start_jd": 2461220.399554354,
                     "end_jd": 2461221.496604641,
                     "start_iso": "29/06/2026 03:05:21 AM",
@@ -7010,6 +8506,8 @@
                 {
                     "name": "જ્યેષ્ઠા",
                     "type": "nakshatra",
+                    "index": 17,
+                    "phase_index": null,
                     "start_jd": 2461219.1946931593,
                     "end_jd": 2461220.3180434573,
                     "start_iso": "27/06/2026 10:10:21 PM",
@@ -7018,6 +8516,8 @@
                 {
                     "name": "મૂળ",
                     "type": "nakshatra",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461220.3180434573,
                     "end_jd": 2461221.4394892165,
                     "start_iso": "29/06/2026 01:07:58 AM",
@@ -7028,6 +8528,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461219.4755258197,
                     "end_jd": 2461219.756398999,
                     "start_iso": "28/06/2026 04:54:45 AM",
@@ -7036,6 +8538,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461219.756398999,
                     "end_jd": 2461220.0372561393,
                     "start_iso": "28/06/2026 11:39:12 AM",
@@ -7044,6 +8548,8 @@
                 {
                     "name": "જ્યેષ્ઠા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461220.0372561393,
                     "end_jd": 2461220.3180434573,
                     "start_iso": "28/06/2026 06:23:38 PM",
@@ -7052,6 +8558,8 @@
                 {
                     "name": "મૂળ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461220.3180434573,
                     "end_jd": 2461220.5987095386,
                     "start_iso": "29/06/2026 01:07:58 AM",
@@ -7066,6 +8574,8 @@
                 {
                     "name": "શુભ",
                     "type": "yoga",
+                    "index": 23,
+                    "phase_index": null,
                     "start_jd": 2461218.793046519,
                     "end_jd": 2461219.832725608,
                     "start_iso": "27/06/2026 12:31:59 PM",
@@ -7074,6 +8584,8 @@
                 {
                     "name": "શુક્લ",
                     "type": "yoga",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461219.832725608,
                     "end_jd": 2461220.8720548516,
                     "start_iso": "28/06/2026 01:29:07 PM",
@@ -7088,6 +8600,8 @@
                 {
                     "name": "ગર",
                     "type": "karana",
+                    "index": 27,
+                    "phase_index": null,
                     "start_jd": 2461219.3002656987,
                     "end_jd": 2461219.84998117,
                     "start_iso": "28/06/2026 12:42:22 AM",
@@ -7096,6 +8610,8 @@
                 {
                     "name": "વણિજ",
                     "type": "karana",
+                    "index": 28,
+                    "phase_index": null,
                     "start_jd": 2461219.84998117,
                     "end_jd": 2461220.399554354,
                     "start_iso": "28/06/2026 01:53:58 PM",
@@ -7104,6 +8620,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 29,
+                    "phase_index": null,
                     "start_jd": 2461220.399554354,
                     "end_jd": 2461220.9485617867,
                     "start_iso": "29/06/2026 03:05:21 AM",
@@ -7116,6 +8634,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "વૃશ્ચિક",
+            "moon_phase": {
+                "key": "full_moon",
+                "name": "પૂનમ",
+                "visibility_key": "sunset_to_sunrise",
+                "visibility": "સૂર્યાસ્તથી સૂર્યોદય સુધી",
+                "illumination_band": "100%",
+                "illumination_fraction": 0.96508556170885,
+                "illumination_percent": 96.508556170885,
+                "phase_angle_degrees": 158.46150571401336,
+                "synodic_age_days": 12.998504376487583
+            },
             "sunrise": "06:07:07 AM",
             "sunset": "07:42:03 PM",
             "moonrise": "06:36:09 PM",
@@ -7167,10 +8696,27 @@
                 "paksha_name": "શુક્લ",
                 "fraction_left": 0.8849048536570052
             },
+            "tithi_display": {
+                "display": "15",
+                "indexes": [
+                    15
+                ],
+                "phase_indexes": [
+                    15
+                ],
+                "names": [
+                    "પૂનમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "પૂનમ",
                     "type": "tithi",
+                    "index": 15,
+                    "phase_index": 15,
                     "start_jd": 2461220.399554354,
                     "end_jd": 2461221.496604641,
                     "start_iso": "29/06/2026 03:05:21 AM",
@@ -7179,6 +8725,8 @@
                 {
                     "name": "વદ એકમ",
                     "type": "tithi",
+                    "index": 16,
+                    "phase_index": 1,
                     "start_jd": 2461221.496604641,
                     "end_jd": 2461222.5882844348,
                     "start_iso": "30/06/2026 05:25:06 AM",
@@ -7194,6 +8742,8 @@
                 {
                     "name": "મૂળ",
                     "type": "nakshatra",
+                    "index": 18,
+                    "phase_index": null,
                     "start_jd": 2461220.3180434573,
                     "end_jd": 2461221.4394892165,
                     "start_iso": "29/06/2026 01:07:58 AM",
@@ -7202,6 +8752,8 @@
                 {
                     "name": "પૂર્વાષાઢા",
                     "type": "nakshatra",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461221.4394892165,
                     "end_jd": 2461222.555929005,
                     "start_iso": "30/06/2026 04:02:51 AM",
@@ -7212,6 +8764,8 @@
                 {
                     "name": "મૂળ Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461220.3180434573,
                     "end_jd": 2461220.5987095386,
                     "start_iso": "29/06/2026 01:07:58 AM",
@@ -7220,6 +8774,8 @@
                 {
                     "name": "મૂળ Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461220.5987095386,
                     "end_jd": 2461220.879204859,
                     "start_iso": "29/06/2026 07:52:08 AM",
@@ -7228,6 +8784,8 @@
                 {
                     "name": "મૂળ Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461220.879204859,
                     "end_jd": 2461221.1594810653,
                     "start_iso": "29/06/2026 02:36:03 PM",
@@ -7236,6 +8794,8 @@
                 {
                     "name": "મૂળ Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461221.1594810653,
                     "end_jd": 2461221.4394892165,
                     "start_iso": "29/06/2026 09:19:39 PM",
@@ -7244,6 +8804,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461221.4394892165,
                     "end_jd": 2461221.7191830687,
                     "start_iso": "30/06/2026 04:02:51 AM",
@@ -7258,6 +8820,8 @@
                 {
                     "name": "શુક્લ",
                     "type": "yoga",
+                    "index": 24,
+                    "phase_index": null,
                     "start_jd": 2461219.832725608,
                     "end_jd": 2461220.8720548516,
                     "start_iso": "28/06/2026 01:29:07 PM",
@@ -7266,6 +8830,8 @@
                 {
                     "name": "બ્રહ્મ",
                     "type": "yoga",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461220.8720548516,
                     "end_jd": 2461221.908632227,
                     "start_iso": "29/06/2026 02:25:45 PM",
@@ -7280,6 +8846,8 @@
                 {
                     "name": "વિષ્ટિ",
                     "type": "karana",
+                    "index": 29,
+                    "phase_index": null,
                     "start_jd": 2461220.399554354,
                     "end_jd": 2461220.9485617867,
                     "start_iso": "29/06/2026 03:05:21 AM",
@@ -7288,6 +8856,8 @@
                 {
                     "name": "બવ",
                     "type": "karana",
+                    "index": 30,
+                    "phase_index": null,
                     "start_jd": 2461220.9485617867,
                     "end_jd": 2461221.496604641,
                     "start_iso": "29/06/2026 04:15:55 PM",
@@ -7296,6 +8866,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 31,
+                    "phase_index": null,
                     "start_jd": 2461221.496604641,
                     "end_jd": 2461222.0433048466,
                     "start_iso": "30/06/2026 05:25:06 AM",
@@ -7308,6 +8880,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "ધનુ",
+            "moon_phase": {
+                "key": "full_moon",
+                "name": "પૂનમ",
+                "visibility_key": "sunset_to_sunrise",
+                "visibility": "સૂર્યાસ્તથી સૂર્યોદય સુધી",
+                "illumination_band": "100%",
+                "illumination_fraction": 0.9914373752235324,
+                "illumination_percent": 99.14373752235323,
+                "phase_angle_degrees": 169.381141756116,
+                "synodic_age_days": 13.894235716685058
+            },
             "sunrise": "06:07:26 AM",
             "sunset": "07:42:08 PM",
             "moonrise": "07:27:08 PM",
@@ -7516,10 +9099,27 @@
                 "paksha_name": "કૃષ્ણ",
                 "fraction_left": 0.9729530014530804
             },
+            "tithi_display": {
+                "display": "16",
+                "indexes": [
+                    16
+                ],
+                "phase_indexes": [
+                    1
+                ],
+                "names": [
+                    "વદ એકમ"
+                ],
+                "has_multiple_tithis": false,
+                "has_kshaya_tithi": false,
+                "kshaya_tithi": null
+            },
             "tithi_windows": [
                 {
                     "name": "વદ એકમ",
                     "type": "tithi",
+                    "index": 16,
+                    "phase_index": 1,
                     "start_jd": 2461221.496604641,
                     "end_jd": 2461222.5882844348,
                     "start_iso": "30/06/2026 05:25:06 AM",
@@ -7535,6 +9135,8 @@
                 {
                     "name": "પૂર્વાષાઢા",
                     "type": "nakshatra",
+                    "index": 19,
+                    "phase_index": null,
                     "start_jd": 2461221.4394892165,
                     "end_jd": 2461222.555929005,
                     "start_iso": "30/06/2026 04:02:51 AM",
@@ -7545,6 +9147,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 1",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461221.4394892165,
                     "end_jd": 2461221.7191830687,
                     "start_iso": "30/06/2026 04:02:51 AM",
@@ -7553,6 +9157,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 2",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461221.7191830687,
                     "end_jd": 2461221.998520567,
                     "start_iso": "30/06/2026 10:45:37 AM",
@@ -7561,6 +9167,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 3",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461221.998520567,
                     "end_jd": 2461222.2774523403,
                     "start_iso": "30/06/2026 05:27:52 PM",
@@ -7569,6 +9177,8 @@
                 {
                     "name": "પૂર્વાષાઢા Pada 4",
                     "type": "pada",
+                    "index": null,
+                    "phase_index": null,
                     "start_jd": 2461222.2774523403,
                     "end_jd": 2461222.555929005,
                     "start_iso": "01/07/2026 12:09:31 AM",
@@ -7583,6 +9193,8 @@
                 {
                     "name": "બ્રહ્મ",
                     "type": "yoga",
+                    "index": 25,
+                    "phase_index": null,
                     "start_jd": 2461220.8720548516,
                     "end_jd": 2461221.908632227,
                     "start_iso": "29/06/2026 02:25:45 PM",
@@ -7591,6 +9203,8 @@
                 {
                     "name": "ઇન્દ્ર",
                     "type": "yoga",
+                    "index": 26,
+                    "phase_index": null,
                     "start_jd": 2461221.908632227,
                     "end_jd": 2461222.9402372306,
                     "start_iso": "30/06/2026 03:18:25 PM",
@@ -7605,6 +9219,8 @@
                 {
                     "name": "બાલવ",
                     "type": "karana",
+                    "index": 31,
+                    "phase_index": null,
                     "start_jd": 2461221.496604641,
                     "end_jd": 2461222.0433048466,
                     "start_iso": "30/06/2026 05:25:06 AM",
@@ -7613,6 +9229,8 @@
                 {
                     "name": "કૌલવ",
                     "type": "karana",
+                    "index": 32,
+                    "phase_index": null,
                     "start_jd": 2461222.0433048466,
                     "end_jd": 2461222.5882844348,
                     "start_iso": "30/06/2026 06:32:21 PM",
@@ -7625,6 +9243,17 @@
             },
             "sun_sign": "મિથુન",
             "moon_sign": "ધનુ",
+            "moon_phase": {
+                "key": "full_moon",
+                "name": "પૂનમ",
+                "visibility_key": "sunset_to_sunrise",
+                "visibility": "સૂર્યાસ્તથી સૂર્યોદય સુધી",
+                "illumination_band": "100%",
+                "illumination_fraction": 0.9999919777862403,
+                "illumination_percent": 99.99919777862402,
+                "phase_angle_degrees": 180.32456398256306,
+                "synodic_age_days": 14.791918223633772
+            },
             "sunrise": "06:07:45 AM",
             "sunset": "07:42:12 PM",
             "moonrise": "08:14:21 PM",

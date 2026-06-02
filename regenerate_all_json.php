@@ -243,9 +243,16 @@ foreach ($calendarTypes as $type) {
         $monthDayCount = is_array($monthDecoded['calendar'] ?? null) ? count($monthDecoded['calendar']) : 0;
         echo "Written {$monthFile} — {$monthDayCount} calendar days.\n";
 
-        // echo "Running panchang_raw_output.php...\n";
-        // $rawOutput = shell_exec('php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'));
-        // file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'raw_output_2026_2032.json', $rawOutput);
+        echo "Running panchang_raw_output.php...\n";
+        $rawResult = capturePhpScript(
+            'panchang_raw_output.php',
+            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'),
+            __DIR__
+        );
+        if ($rawResult['exit_code'] !== 0) {
+            throw new RuntimeException('panchang_raw_output.php failed with exit code ' . $rawResult['exit_code']);
+        }
+        file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'raw_output_2026_2032.json', (string) $rawResult['stdout']);
     }
 }
 
