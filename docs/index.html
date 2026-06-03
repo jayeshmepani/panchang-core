@@ -4411,19 +4411,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.1.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.2.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. The v4.0.0 section remains the main historical breaking-change block, while v5.x and v6.x document newer output and ephemeris changes.</p>
+            <p>Review the version-specific notes below before upgrading. The v4.0.0 section remains the main historical breaking-change block, while v5.x through v8.x document newer output, precision, and ephemeris changes.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">8.2.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">High-Precision Eclipse Obscuration and JPL Mapping Refinements</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Significant improvement to eclipse accuracy. This version introduces a new geometric engine for area-based obscuration, corrects JME/JPL data structure mappings for solar and lunar diameters, and adds specific support for annular eclipse phases.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">8.1.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Selective APIs and Modular Output Generation</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Selective APIs and Modular Output Generation</span></div>
                 <p class="release-note">Backward-compatible feature release adding selective daily, month, today, festival, and eclipse APIs so consumers can calculate and return only the branches they need.</p>
               </div>
             </li>
@@ -4547,6 +4554,23 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v8.2.0 Upgrade & Release Notes</h3>
+          <p class="lead">High-precision update focused on eclipse obscuration accuracy and JME/JPL data structure alignment.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes (Data Format)</h4>
+            <p><strong>Eclipse Obscuration:</strong> The <code>obscuration</code> value in the <code>magnitudes</code> object of eclipse outputs has changed. It now correctly represents the <strong>area coverage</strong> (fraction of the Sun's disk covered by the Moon) calculated via a geometric intersection engine. Previously, this field incorrectly returned the center-to-center angular separation.</p>
+          </div>
+
+          <h4>Eclipse Precision Improvements</h4>
+          <ul>
+            <li><strong>New Geometric Engine:</strong> Implemented <code>calculateSolarObscuration()</code> using the standard geometric formula for the intersection of two circles to provide authentic area-based coverage metrics.</li>
+            <li><strong>JME/JPL Data Mapping:</strong> Corrected the interpretation of the JME <code>attr[]</code> array. Sun and Moon diameters are now correctly converted from arcseconds to degrees before calculating the overlap.</li>
+            <li><strong>Annular Eclipse Support:</strong> Added specific handling for annular phases where the Moon is entirely within the Sun's disk, ensuring area coverage reflects the ratio of the Moon's disk area to the Sun's disk area.</li>
+            <li><strong>DE440 Validation:</strong> Verified contact times and magnitudes against NASA and PIB benchmarks for high-precision DE440/JPL mode configurations.</li>
+            <li><strong>Numerical Stability:</strong> Added guards for trigonometric domain limits to prevent <code>NaN</code> results during extreme partial eclipse phases.</li>
+          </ul>
 
           <h3>v8.1.0 Upgrade & Release Notes</h3>
           <p class="lead">Backward-compatible feature release focused on selective APIs and modular output generation.</p>

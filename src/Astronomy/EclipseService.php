@@ -274,6 +274,15 @@ class EclipseService
         $sutakStartAnchor = $visibilityWindowStartJd;
         $sutakEndAnchor = $visibilityWindowEndJd;
 
+        $sep = (float) $attr[2];
+
+        // attr[3] and attr[4] are assumed apparent diameters in arcseconds.
+        // /3600 converts arcseconds to degrees, /2 converts diameter to radius.
+        $sunR = (float) $attr[3] / 7200.0;
+        $moonR = (float) $attr[4] / 7200.0;
+
+        $obscuration = $this->calculateSolarObscuration($sep, $sunR, $moonR);
+
         return [
             'type' => Localization::translate('String', 'Solar'),
             'eclipse_type' => Localization::translate('Eclipse', $globalType),
@@ -284,7 +293,7 @@ class EclipseService
             'jd' => $localMaximumJd,
             'magnitudes' => [
                 'eclipse' => (float) $attr[0],
-                'obscuration' => (float) $attr[2],
+                'obscuration' => $obscuration,
             ],
             'contacts' => $this->formatContactTimes($localContacts, $tz),
             'global_contacts' => $this->formatContactTimes($globalContacts, $tz),
@@ -578,5 +587,51 @@ class EclipseService
         return CarbonImmutable::create((int) $y[0], (int) $m[0], (int) $d[0], (int) $h[0], (int) $i[0], $sec, 'UTC')
             ->addMicroseconds($micros)
             ->setTimezone($tz);
+    }
+
+    private function calculateSolarObscuration(float $sep, float $sunR, float $moonR): float
+    {
+        if ($sunR <= 0.0 || $moonR <= 0.0) {
+            return 0.0;
+        }
+
+        // No overlap
+        if ($sep >= ($sunR + $moonR)) {
+            return 0.0;
+        }
+
+        // One disc fully inside the other
+        if ($sep <= abs($sunR - $moonR)) {
+            // Moon fully covers Sun or more: total/annular-central case.
+            if ($moonR >= $sunR) {
+                return 1.0;
+            }
+
+            // Moon is fully inside Sun disc: annular-style visible dark area.
+            return min(1.0, ($moonR * $moonR) / ($sunR * $sunR));
+        }
+
+        // Partial overlap area of two circles
+        $x1 = (($sep * $sep) + ($sunR * $sunR) - ($moonR * $moonR)) / (2.0 * $sep * $sunR);
+        $x2 = (($sep * $sep) + ($moonR * $moonR) - ($sunR * $sunR)) / (2.0 * $sep * $moonR);
+
+        // Prevent acos domain errors from tiny floating point noise.
+        $x1 = max(-1.0, min(1.0, $x1));
+        $x2 = max(-1.0, min(1.0, $x2));
+
+        $part1 = $sunR * $sunR * acos($x1);
+        $part2 = $moonR * $moonR * acos($x2);
+
+        $radicand = (-$sep + $sunR + $moonR) *
+                    ($sep + $sunR - $moonR) *
+                    ($sep - $sunR + $moonR) *
+                    ($sep + $sunR + $moonR);
+
+        $part3 = 0.5 * sqrt(max(0.0, $radicand));
+
+        $overlapArea = $part1 + $part2 - $part3;
+        $sunArea = M_PI * $sunR * $sunR;
+
+        return max(0.0, min(1.0, $overlapArea / $sunArea));
     }
 }
