@@ -63,19 +63,7 @@ class OutputGeneratorService
             calendarType: $calendarType,
         );
 
-        $result = [];
-        foreach ($sections as $section) {
-            $normalized = $this->normalizeFestivalSection($section);
-            $result[$normalized] = match ($normalized) {
-                'by_date' => $festivalCalendar['by_date'],
-                'flat' => $festivalCalendar['flat'],
-                'festival_day_count' => $festivalCalendar['festival_day_count'],
-                'festival_entry_count' => $festivalCalendar['festival_entry_count'],
-                default => throw new InvalidArgumentException('Unknown festival output section: ' . $section),
-            };
-        }
-
-        return $result;
+        return $this->selectFestivalCalendarSections($festivalCalendar, $sections);
     }
 
     public function generateFestivalByDate(
@@ -98,6 +86,122 @@ class OutputGeneratorService
         CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         return $this->generateFestivalsSelected($year, $lat, $lon, $tz, ['flat'], $elevation, $calendarType);
+    }
+
+    /**
+     * Generate only selected non-vrat festival output branches.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateFestivalsOnlySelected(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $festivalCalendar = $this->panchangService->getFestivalYearCalendarOnlyFestivals(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return $this->selectFestivalCalendarSections($festivalCalendar, $sections);
+    }
+
+    /**
+     * Generate only selected vrat output branches.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateVratsSelected(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $vratCalendar = $this->panchangService->getVratYearCalendar(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return $this->selectFestivalCalendarSections($vratCalendar, $sections);
+    }
+
+    public function generateFestivalOnlyByDate(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateFestivalsOnlySelected($year, $lat, $lon, $tz, ['by_date'], $elevation, $calendarType);
+    }
+
+    public function generateFestivalOnlyFlat(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateFestivalsOnlySelected($year, $lat, $lon, $tz, ['flat'], $elevation, $calendarType);
+    }
+
+    public function generateVratByDate(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateVratsSelected($year, $lat, $lon, $tz, ['by_date'], $elevation, $calendarType);
+    }
+
+    public function generateVratFlat(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateVratsSelected($year, $lat, $lon, $tz, ['flat'], $elevation, $calendarType);
     }
 
     /**
@@ -141,6 +245,140 @@ class OutputGeneratorService
                 'total_festivals' => FestivalService::getFestivalCount(),
                 'by_date' => $festivalCalendar['by_date'],
                 'flat' => $festivalCalendar['flat'],
+            ],
+        ];
+    }
+
+    /**
+     * Generate non-vrat festival output array for a given year.
+     *
+     * @return array{festivals: array<string, mixed>}
+     */
+    public function generateFestivalsOnly(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $festivalCalendar = $this->panchangService->getFestivalYearCalendarOnlyFestivals(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return [
+            'festivals' => [
+                'title' => sprintf(Localization::translate('String', 'Festivals %d - Named festivals excluding vrat observances'), $year),
+                'year' => $year,
+                'calendar_type' => $calendarType->value,
+                'festival_day_count' => $festivalCalendar['festival_day_count'],
+                'festival_entry_count' => $festivalCalendar['festival_entry_count'],
+                'total_festivals' => $festivalCalendar['festival_entry_count'],
+                'by_date' => $festivalCalendar['by_date'],
+                'flat' => $festivalCalendar['flat'],
+            ],
+        ];
+    }
+
+    /**
+     * Generate vrat-only output array for a given year.
+     *
+     * @return array{vrats: array<string, mixed>}
+     */
+    public function generateVrats(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $vratCalendar = $this->panchangService->getVratYearCalendar(
+            year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return [
+            'vrats' => [
+                'title' => sprintf(Localization::translate('String', 'Vrats %d - All vrat observances for the entire year'), $year),
+                'year' => $year,
+                'calendar_type' => $calendarType->value,
+                'vrat_day_count' => $vratCalendar['festival_day_count'],
+                'vrat_entry_count' => $vratCalendar['festival_entry_count'],
+                'total_vrats' => $vratCalendar['festival_entry_count'],
+                'by_date' => $vratCalendar['by_date'],
+                'flat' => $vratCalendar['flat'],
+            ],
+        ];
+    }
+
+    /**
+     * Generate compact vrat-only output with weekday-recurring vrats extracted out of by-date storage.
+     *
+     * @return array{vrats: array<string, mixed>}
+     */
+    public function generateVratsByDateCompact(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $vratCalendar = $this->generateVratsSelected(
+            $year,
+            $lat,
+            $lon,
+            $tz,
+            ['by_date', 'festival_day_count', 'festival_entry_count'],
+            $elevation,
+            $calendarType,
+        );
+
+        $compacted = $this->extractRecurringWeekdayVrats($vratCalendar['by_date']);
+
+        return [
+            'vrats' => [
+                'title' => sprintf(Localization::translate('String', 'Vrats %d - All vrat observances for the entire year'), $year),
+                'year' => $year,
+                'calendar_type' => $calendarType->value,
+                'vrat_day_count' => $compacted['dated_day_count'],
+                'vrat_entry_count' => $compacted['dated_entry_count'],
+                'total_vrats' => $vratCalendar['festival_entry_count'],
+                'recurring_weekday_vrats' => $compacted['recurring_weekday_vrats'],
+                'by_date' => $compacted['by_date'],
             ],
         ];
     }
@@ -491,10 +729,23 @@ class OutputGeneratorService
         $output = [];
 
         // Festivals
-        $festivalOutput = $this->generateFestivals($festivalYear, $lat, $lon, $tz, $elevation, $calendarType);
+        $festivalOutput = $this->generateFestivalsSelected(
+            $festivalYear,
+            $lat,
+            $lon,
+            $tz,
+            ['by_date', 'festival_day_count', 'festival_entry_count'],
+            $elevation,
+            $calendarType,
+        );
         $output['festivals_' . $festivalYear] = [
             'title' => sprintf(Localization::translate('String', 'Festivals %d - All festivals for the entire year'), $festivalYear),
-            ...$festivalOutput['festivals'],
+            'year' => $festivalYear,
+            'calendar_type' => $calendarType->value,
+            'festival_day_count' => $festivalOutput['festival_day_count'],
+            'festival_entry_count' => $festivalOutput['festival_entry_count'],
+            'total_festivals' => FestivalService::getFestivalCount(),
+            'by_date' => $festivalOutput['by_date'],
         ];
 
         // Eclipses
@@ -528,6 +779,82 @@ class OutputGeneratorService
             'festival_entry_count', 'entry_count' => 'festival_entry_count',
             default => $section,
         };
+    }
+
+    /**
+     * @param array{year:int,festival_day_count:int,festival_entry_count:int,by_date:array<string, array<int, array<string, mixed>>>,flat:array<int, array{date:string,festival:array<string,mixed>}>} $festivalCalendar
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    private function selectFestivalCalendarSections(array $festivalCalendar, array $sections): array
+    {
+        $result = [];
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeFestivalSection($section);
+            $result[$normalized] = match ($normalized) {
+                'by_date' => $festivalCalendar['by_date'],
+                'flat' => $festivalCalendar['flat'],
+                'festival_day_count' => $festivalCalendar['festival_day_count'],
+                'festival_entry_count' => $festivalCalendar['festival_entry_count'],
+                default => throw new InvalidArgumentException('Unknown festival output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<string, array<int, array<string, mixed>>> $byDate
+     *
+     * @return array{recurring_weekday_vrats: array<int, array<string, mixed>>, by_date: array<string, array<int, array<string, mixed>>>, dated_day_count: int, dated_entry_count: int}
+     */
+    private function extractRecurringWeekdayVrats(array $byDate): array
+    {
+        $recurringWeekdayVrats = [];
+        $datedEntryCount = 0;
+
+        foreach ($byDate as $date => $entries) {
+            $datedEntries = [];
+
+            foreach ($entries as $index => $entry) {
+                $basis = $entry['calculation_basis'] ?? null;
+
+                if (is_array($basis) && ($basis['type'] ?? null) === 'weekday') {
+                    $key = (string) ($entry['name'] ?? ('weekday_' . $index));
+                    $recurringWeekdayVrats[$key] ??= $entry;
+                    continue;
+                }
+
+                $datedEntries[] = $entry;
+            }
+
+            if ($datedEntries === []) {
+                unset($byDate[$date]);
+                continue;
+            }
+
+            $byDate[$date] = $datedEntries;
+            $datedEntryCount += count($datedEntries);
+        }
+
+        uasort($recurringWeekdayVrats, static function (array $left, array $right): int {
+            $leftWeekday = (int) ($left['calculation_basis']['weekday']['number'] ?? PHP_INT_MAX);
+            $rightWeekday = (int) ($right['calculation_basis']['weekday']['number'] ?? PHP_INT_MAX);
+
+            if ($leftWeekday !== $rightWeekday) {
+                return $leftWeekday <=> $rightWeekday;
+            }
+
+            return strcmp((string) ($left['name'] ?? ''), (string) ($right['name'] ?? ''));
+        });
+
+        return [
+            'recurring_weekday_vrats' => array_values($recurringWeekdayVrats),
+            'by_date' => $byDate,
+            'dated_day_count' => count($byDate),
+            'dated_entry_count' => $datedEntryCount,
+        ];
     }
 
     private function normalizeEclipseSection(string $section): string

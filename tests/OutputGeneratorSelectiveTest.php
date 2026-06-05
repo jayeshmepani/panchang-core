@@ -38,6 +38,107 @@ class OutputGeneratorSelectiveTest extends TestCase
         );
     }
 
+    public function testFestivalAndVratSelectiveOutputsAreBuiltAsSeparateContracts(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $all = $service->generateFestivals(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $festivalsOnly = $service->generateFestivalsOnly(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $vratsOnly = $service->generateVrats(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+
+        $allFlat = $all['festivals']['flat'];
+        $festivalFlat = $festivalsOnly['festivals']['flat'];
+        $vratFlat = $vratsOnly['vrats']['flat'];
+
+        $this->assertNotEmpty($festivalFlat);
+        $this->assertNotEmpty($vratFlat);
+
+        foreach ($festivalFlat as $entry) {
+            $this->assertFalse((bool) ($entry['festival']['fasting'] ?? false));
+        }
+
+        foreach ($vratFlat as $entry) {
+            $this->assertTrue((bool) ($entry['festival']['fasting'] ?? false));
+        }
+
+        $combinedKeys = [];
+        foreach (array_merge($festivalFlat, $vratFlat) as $entry) {
+            $key = $entry['date'] . '|' . $entry['festival']['name'];
+            $this->assertArrayNotHasKey($key, $combinedKeys);
+            $combinedKeys[$key] = true;
+        }
+
+        foreach ($allFlat as $entry) {
+            $this->assertArrayHasKey($entry['date'] . '|' . $entry['festival']['name'], $combinedKeys);
+        }
+    }
+
+    public function testFestivalAndVratSelectedBranchesMatchTheirDedicatedOutputs(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $festivalSelected = $service->generateFestivalsOnlySelected(2026, 23.2472446, 69.668339, 'Asia/Kolkata', ['by_date', 'flat']);
+        $festivalOnly = $service->generateFestivalsOnly(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $vratSelected = $service->generateVratsSelected(2026, 23.2472446, 69.668339, 'Asia/Kolkata', ['by_date', 'flat']);
+        $vratsOnly = $service->generateVrats(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+
+        $this->assertSame(
+            json_encode($festivalOnly['festivals']['by_date'], JSON_THROW_ON_ERROR),
+            json_encode($festivalSelected['by_date'], JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode($festivalOnly['festivals']['flat'], JSON_THROW_ON_ERROR),
+            json_encode($festivalSelected['flat'], JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode($vratsOnly['vrats']['by_date'], JSON_THROW_ON_ERROR),
+            json_encode($vratSelected['by_date'], JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode($vratsOnly['vrats']['flat'], JSON_THROW_ON_ERROR),
+            json_encode($vratSelected['flat'], JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode(['by_date' => $festivalOnly['festivals']['by_date']], JSON_THROW_ON_ERROR),
+            json_encode($service->generateFestivalOnlyByDate(2026, 23.2472446, 69.668339, 'Asia/Kolkata'), JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode(['flat' => $festivalOnly['festivals']['flat']], JSON_THROW_ON_ERROR),
+            json_encode($service->generateFestivalOnlyFlat(2026, 23.2472446, 69.668339, 'Asia/Kolkata'), JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode(['by_date' => $vratsOnly['vrats']['by_date']], JSON_THROW_ON_ERROR),
+            json_encode($service->generateVratByDate(2026, 23.2472446, 69.668339, 'Asia/Kolkata'), JSON_THROW_ON_ERROR)
+        );
+        $this->assertSame(
+            json_encode(['flat' => $vratsOnly['vrats']['flat']], JSON_THROW_ON_ERROR),
+            json_encode($service->generateVratFlat(2026, 23.2472446, 69.668339, 'Asia/Kolkata'), JSON_THROW_ON_ERROR)
+        );
+    }
+
+    public function testCompactVratOutputExtractsRecurringWeekdayVratsFromByDatePayload(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $compact = $service->generateVratsByDateCompact(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+
+        $this->assertArrayHasKey('recurring_weekday_vrats', $compact['vrats']);
+        $this->assertNotEmpty($compact['vrats']['recurring_weekday_vrats']);
+
+        foreach ($compact['vrats']['recurring_weekday_vrats'] as $entry) {
+            $this->assertSame('weekday', $entry['calculation_basis']['type'] ?? null);
+        }
+
+        foreach ($compact['vrats']['by_date'] as $entries) {
+            foreach ($entries as $entry) {
+                $this->assertNotSame('weekday', $entry['calculation_basis']['type'] ?? null);
+            }
+        }
+    }
+
     public function testEclipseSelectiveOutputsMatchFullGeneratorBranches(): void
     {
         /** @var OutputGeneratorService $service */

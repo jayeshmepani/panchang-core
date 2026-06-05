@@ -216,6 +216,32 @@ foreach ($calendarTypes as $type) {
             rename('festivals_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'festivals_2026.json');
         }
 
+        echo "Running panchang_festivals.php for festival-only output...\n";
+        $exitCode = runPhpScript(
+            'panchang_festivals.php festivals',
+            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 festivals',
+            __DIR__
+        );
+        if ($exitCode !== 0) {
+            throw new RuntimeException("panchang_festivals.php festivals failed with exit code {$exitCode}");
+        }
+        if (file_exists('festivals_only_2026.json')) {
+            rename('festivals_only_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'festivals_only_2026.json');
+        }
+
+        echo "Running panchang_festivals.php for vrat-only output...\n";
+        $exitCode = runPhpScript(
+            'panchang_festivals.php vrats',
+            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 vrats',
+            __DIR__
+        );
+        if ($exitCode !== 0) {
+            throw new RuntimeException("panchang_festivals.php vrats failed with exit code {$exitCode}");
+        }
+        if (file_exists('vrats_2026.json')) {
+            rename('vrats_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'vrats_2026.json');
+        }
+
         echo "Running panchang_eclipses.php...\n";
         $exitCode = runPhpScript(
             'panchang_eclipses.php',

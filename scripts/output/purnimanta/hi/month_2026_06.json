@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-05T07:36:08+00:00",
+        "generated_at": "2026-06-05T10:59:08+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "purnimanta",
@@ -235,7 +235,33 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "सोमवार व्रत",
+                    "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सोमवार व्रत",
+                        "देवता वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "प्रतिपदा व्रत",
@@ -471,7 +497,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "मंगलवार व्रत",
+                    "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
+                    "deity": "हनुमान",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मंगलवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 2,
+                            "name": "मंगलवार",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "द्वितीया व्रत",
@@ -707,7 +758,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "बुधवार व्रत",
+                    "description": "भगवान विष्णु और बुध को समर्पित साप्ताहिक बुधवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बुधवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 3,
+                            "name": "बुधवार",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "तृतीया व्रत",
@@ -1034,6 +1110,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "गुरुवार व्रत",
+                    "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बृहस्पतिवार व्रत",
+                        "गुरुवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 4,
+                            "name": "गुरुवार",
+                            "english_name": "Thursday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -1281,7 +1382,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "शुक्रवार व्रत",
+                    "description": "देवी लक्ष्मी और शुक्र को समर्पित साप्ताहिक शुक्रवार व्रत",
+                    "deity": "लक्ष्मी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शुक्रवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 5,
+                            "name": "शुक्रवार",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "पंचमी व्रत",
@@ -1507,7 +1633,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "शनिवार व्रत",
+                    "description": "भगवान शनि को समर्पित साप्ताहिक शनिवार व्रत",
+                    "deity": "शनि",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शनिवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 6,
+                            "name": "शनिवार",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "षष्ठी व्रत",
@@ -1775,6 +1926,31 @@
                             "value_key": "Ashadha",
                             "name": "आषाढ़"
                         },
+                        "weekday": {
+                            "number": 0,
+                            "name": "रविवार",
+                            "english_name": "Sunday"
+                        }
+                    }
+                },
+                {
+                    "name": "रविवार व्रत",
+                    "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "रविवार व्रत",
+                        "नवग्रह वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
                         "weekday": {
                             "number": 0,
                             "name": "रविवार",
@@ -2182,6 +2358,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "सोमवार व्रत",
+                    "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सोमवार व्रत",
+                        "देवता वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -2429,7 +2630,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "मंगलवार व्रत",
+                    "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
+                    "deity": "हनुमान",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मंगलवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 2,
+                            "name": "मंगलवार",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "नवमी व्रत",
@@ -2685,7 +2911,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "बुधवार व्रत",
+                    "description": "भगवान विष्णु और बुध को समर्पित साप्ताहिक बुधवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बुधवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 3,
+                            "name": "बुधवार",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "दशमी व्रत",
@@ -2932,6 +3183,31 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "गुरुवार व्रत",
+                    "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बृहस्पतिवार व्रत",
+                        "गुरुवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 4,
+                            "name": "गुरुवार",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
                 {
                     "name": "परमा एकादशी",
                     "description": "विशेष एकादशी जो केवल अधिक मास के कृष्ण पक्ष में आती है",
@@ -3362,6 +3638,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "शुक्रवार व्रत",
+                    "description": "देवी लक्ष्मी और शुक्र को समर्पित साप्ताहिक शुक्रवार व्रत",
+                    "deity": "लक्ष्मी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शुक्रवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 5,
+                            "name": "शुक्रवार",
+                            "english_name": "Friday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -3609,7 +3909,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "शनिवार व्रत",
+                    "description": "भगवान शनि को समर्पित साप्ताहिक शनिवार व्रत",
+                    "deity": "शनि",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शनिवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 6,
+                            "name": "शनिवार",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "त्रयोदशी व्रत",
@@ -3969,6 +4294,31 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "रविवार व्रत",
+                    "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "रविवार व्रत",
+                        "नवग्रह वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 0,
+                            "name": "रविवार",
+                            "english_name": "Sunday"
+                        }
                     }
                 }
             ],
@@ -4472,6 +4822,67 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "सोमवार व्रत",
+                    "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सोमवार व्रत",
+                        "देवता वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
+                {
+                    "name": "पुरुषोत्तम मास समापन",
+                    "description": "भगवान विष्णु को समर्पित अधिक मास अर्थात पुरुषोत्तम मास का समापन",
+                    "deity": "विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_adhika_month_boundary",
+                        "type_name": "व्युत्पन्न अधिक मास सीमा",
+                        "basis": "derived_observance",
+                        "basis_name": "व्युत्पन्न पालन"
+                    },
+                    "resolution": {
+                        "festival_name": "पुरुषोत्तम मास समापन",
+                        "standard_date": "2026-06-15",
+                        "observance_date": "2026-06-15",
+                        "decision": {
+                            "winning_reason": "अधिक मास आज समाप्त होता है",
+                            "winning_score": 1000,
+                            "winning_reason_key": "adhika_month_end",
+                            "winning_reason_name": "अधिक मास आज समाप्त होता है"
+                        },
+                        "festival_name_key": "Purushottam Maas Ends",
+                        "festival_name_localized": "पुरुषोत्तम मास समापन"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "अधिक मास आज समाप्त होता है",
+                        "winning_score": 1000,
+                        "winning_reason_key": "adhika_month_end",
+                        "winning_reason_name": "अधिक मास आज समाप्त होता है"
+                    }
                 }
             ],
             "daily_observances": [
@@ -4720,6 +5131,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "मंगलवार व्रत",
+                    "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
+                    "deity": "हनुमान",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मंगलवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 2,
+                            "name": "मंगलवार",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "रज पर्व दिन २",
                     "description": "ओडिशा रज पर्व का दूसरा दिन",
@@ -5032,6 +5467,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "बुधवार व्रत",
+                    "description": "भगवान विष्णु और बुध को समर्पित साप्ताहिक बुधवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बुधवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 3,
+                            "name": "बुधवार",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                },
                 {
                     "name": "रज पर्व दिन ३",
                     "description": "ओडिशा रज पर्व का तीसरा दिन",
@@ -5501,6 +5960,31 @@
                     }
                 },
                 {
+                    "name": "गुरुवार व्रत",
+                    "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बृहस्पतिवार व्रत",
+                        "गुरुवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 4,
+                            "name": "गुरुवार",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
                     "name": "प्रद्युम्न चतुर्थी",
                     "description": "भगवान कृष्ण के पुत्र प्रद्युम्न को समर्पित",
                     "deity": "प्रद्युम्न",
@@ -5906,7 +6390,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "शुक्रवार व्रत",
+                    "description": "देवी लक्ष्मी और शुक्र को समर्पित साप्ताहिक शुक्रवार व्रत",
+                    "deity": "लक्ष्मी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शुक्रवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 5,
+                            "name": "शुक्रवार",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "पंचमी व्रत",
@@ -6231,6 +6740,30 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "शनिवार व्रत",
+                    "description": "भगवान शनि को समर्पित साप्ताहिक शनिवार व्रत",
+                    "deity": "शनि",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शनिवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 6,
+                            "name": "शनिवार",
+                            "english_name": "Saturday"
+                        }
                     }
                 },
                 {
@@ -6591,6 +7124,31 @@
                             "english_name": "Sunday"
                         }
                     }
+                },
+                {
+                    "name": "रविवार व्रत",
+                    "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "रविवार व्रत",
+                        "नवग्रह वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 0,
+                            "name": "रविवार",
+                            "english_name": "Sunday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -6839,6 +7397,31 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "सोमवार व्रत",
+                    "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सोमवार व्रत",
+                        "देवता वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
                 {
                     "name": "मासिक दुर्गाष्टमी",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
@@ -7229,6 +7812,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "मंगलवार व्रत",
+                    "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
+                    "deity": "हनुमान",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मंगलवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 2,
+                            "name": "मंगलवार",
+                            "english_name": "Tuesday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -7548,6 +8155,30 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "बुधवार व्रत",
+                    "description": "भगवान विष्णु और बुध को समर्पित साप्ताहिक बुधवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बुधवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 3,
+                            "name": "बुधवार",
+                            "english_name": "Wednesday"
+                        }
                     }
                 }
             ],
@@ -7876,6 +8507,69 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "गुरुवार व्रत",
+                    "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "बृहस्पतिवार व्रत",
+                        "गुरुवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 4,
+                            "name": "गुरुवार",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
+                    "name": "इस्कॉन एकादशी",
+                    "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैष्णव एकादशी"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_vaishnava_ekadashi",
+                        "type_name": "व्युत्पन्न वैष्णव पालन",
+                        "basis": "derived_observance",
+                        "basis_name": "व्युत्पन्न पालन"
+                    },
+                    "resolution": {
+                        "festival_name": "इस्कॉन एकादशी",
+                        "standard_date": "2026-06-25",
+                        "observance_date": "2026-06-25",
+                        "decision": {
+                            "winning_reason": "आज के लिए निर्धारित वैष्णव एकादशी",
+                            "winning_score": 1000,
+                            "winning_reason_key": "vaishnava_ekadashi_today",
+                            "winning_reason_name": "आज के लिए निर्धारित वैष्णव एकादशी"
+                        },
+                        "festival_name_key": "ISKCON Ekadashi",
+                        "festival_name_localized": "इस्कॉन एकादशी"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "आज के लिए निर्धारित वैष्णव एकादशी",
+                        "winning_score": 1000,
+                        "winning_reason_key": "vaishnava_ekadashi_today",
+                        "winning_reason_name": "आज के लिए निर्धारित वैष्णव एकादशी"
+                    }
                 }
             ],
             "daily_observances": [
@@ -8113,7 +8807,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "शुक्रवार व्रत",
+                    "description": "देवी लक्ष्मी और शुक्र को समर्पित साप्ताहिक शुक्रवार व्रत",
+                    "deity": "लक्ष्मी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शुक्रवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 5,
+                            "name": "शुक्रवार",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "द्वादशी व्रत",
@@ -8437,6 +9156,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "शनिवार व्रत",
+                    "description": "भगवान शनि को समर्पित साप्ताहिक शनिवार व्रत",
+                    "deity": "शनि",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "शनिवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 6,
+                            "name": "शनिवार",
+                            "english_name": "Saturday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -8674,7 +9417,33 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "रविवार व्रत",
+                    "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "रविवार व्रत",
+                        "नवग्रह वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 0,
+                            "name": "रविवार",
+                            "english_name": "Sunday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "चतुर्दशी व्रत",
@@ -8922,6 +9691,84 @@
             },
             "festivals": [
                 {
+                    "name": "श्री सत्यनारायण व्रत",
+                    "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
+                    "deity": "विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "सूर्यास्त",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "श्री सत्यनारायण व्रत",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunset",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461220.399554354,
+                        "target_tithi_end_jd": 2461221.496604641,
+                        "standard_date": "2026-06-29",
+                        "observance_date": "2026-06-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Shri Satyanarayana Vrat",
+                        "festival_name_localized": "श्री सत्यनारायण व्रत",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "ज्येष्ठ पूर्णिमा",
                     "description": "ज्येष्ठ मास की पूर्णिमा",
                     "deity": "विष्णु",
@@ -8960,14 +9807,15 @@
                             "value_key": "Jyeshtha",
                             "name": "ज्येष्ठ"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "सूर्यास्त",
+                        "strict_karmakala": true
                     },
                     "resolution": {
                         "festival_name": "ज्येष्ठ पूर्णिमा",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": true,
@@ -8979,8 +9827,8 @@
                         "standard_date": "2026-06-29",
                         "observance_date": "2026-06-29",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
                             "winning_score": 1000,
@@ -8990,17 +9838,42 @@
                         "festival_name_key": "Jyeshtha Purnima",
                         "festival_name_localized": "ज्येष्ठ पूर्णिमा",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्यास्त"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "सोमवार व्रत",
+                    "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
+                    "deity": "शिव",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सोमवार व्रत",
+                        "देवता वार उपवास"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 1,
+                            "name": "सोमवार",
+                            "english_name": "Monday"
+                        }
                     }
                 },
                 {
@@ -9284,6 +10157,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "मंगलवार व्रत",
+                    "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
+                    "deity": "हनुमान",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मंगलवार व्रत"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "वार आवृत्ति",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "वार आवृत्ति",
+                        "weekday": {
+                            "number": 2,
+                            "name": "मंगलवार",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "इष्टि",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",

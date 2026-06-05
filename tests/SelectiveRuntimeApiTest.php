@@ -45,6 +45,35 @@ class SelectiveRuntimeApiTest extends TestCase
         $this->assertArrayNotHasKey('Muhurta_Full_Day', $snapshot['day_details']);
     }
 
+    public function testFestivalAndVratYearCalendarsAreResolvedSeparately(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $all = $service->getFestivalYearCalendar(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $festivalsOnly = $service->getFestivalYearCalendarOnlyFestivals(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $vratsOnly = $service->getVratYearCalendar(2026, 23.2472446, 69.668339, 'Asia/Kolkata');
+
+        foreach ($festivalsOnly['flat'] as $entry) {
+            $this->assertFalse((bool) ($entry['festival']['fasting'] ?? false));
+        }
+
+        foreach ($vratsOnly['flat'] as $entry) {
+            $this->assertTrue((bool) ($entry['festival']['fasting'] ?? false));
+        }
+
+        $combinedKeys = [];
+        foreach (array_merge($festivalsOnly['flat'], $vratsOnly['flat']) as $entry) {
+            $key = $entry['date'] . '|' . $entry['festival']['name'];
+            $this->assertArrayNotHasKey($key, $combinedKeys);
+            $combinedKeys[$key] = true;
+        }
+
+        foreach ($all['flat'] as $entry) {
+            $this->assertArrayHasKey($entry['date'] . '|' . $entry['festival']['name'], $combinedKeys);
+        }
+    }
+
     protected function getPackageProviders($app): array
     {
         return [PanchangServiceProvider::class];

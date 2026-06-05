@@ -17,6 +17,7 @@ At a high level, the package covers:
 - vrata and observance logic
 - eclipse calendars and eclipse observance support
 - localization-ready structured output
+- compact yearly festival and vrata JSON generation in by-date form
 
 It supports both:
 
@@ -31,6 +32,15 @@ It also separates multiple usage styles that are often mixed together in smaller
 - yearly festival aggregation
 - multi-year eclipse aggregation
 - transit-only muhurta judgement
+
+For yearly observance exports, the package supports:
+
+- combined yearly observance output
+- festival-only yearly output
+- vrat-only yearly output
+- selective runtime access to both `by_date` and flat forms
+- compact CLI-generated yearly JSON in `by_date` form
+- compact vrat JSON that extracts repeated weekday vrats into a shared recurring block
 
 ## Daily Panchanga Coverage
 
@@ -486,6 +496,12 @@ The package output also tracks yearly scale information such as:
 - number of calendar days carrying at least one festival
 - number of festival entries when a day contains more than one observance
 
+The package also supports separate yearly output paths for:
+
+- combined festival + vrat observance output
+- festival-only output
+- vrat-only output
+
 ### Festival Resolution Dimensions
 
 The package covers festival resolution across:
@@ -518,6 +534,44 @@ Festival payloads cover:
 - aliases
 - observance notes
 - calculation basis
+
+### Vrat Coverage Highlights
+
+The package covers a broad recurring-vrata surface, not only one-off named festivals.
+
+This includes:
+
+- monthly Ekadashi observances
+- Vaishnava / ISKCON Ekadashi observance surfacing
+- Mahadwadashi surfacing when Vaishnava fasting shifts to Dwadashi
+- monthly Pradosh Vrat observances
+- monthly Sankashti Chaturthi observances
+- monthly Vinayaka Chaturthi observances
+- monthly Purnima Vrat observances
+- monthly Amavasya observances
+- monthly Masik Shivaratri observances
+- monthly Masik Krishna Janmashtami observances
+- monthly Kalashtami observances
+- monthly Durgashtami observances
+- monthly Chandra Darshana observances
+- Rohini Vrat
+- Shri Satyanarayana Vrat
+- Varalakshmi Vratam
+- Jivitputrika Vrat
+- Ashoka Ashtami Vrat
+- Asha Dashami Vrat
+- Durva Ashtami Vrat
+- Skanda Sashti observances
+- Shravana Somwar observances
+- Mangala Gauri observances
+- weekday vrata families for Sunday through Saturday
+
+The package also covers longer observance periods and special vrata contexts such as:
+
+- Purushottam Maas begin/end observances
+- Chaturmasa begin/end observances
+- Adhika Maas-only vrata handling
+- Vaishnava fast-day shifting and derived observances
 - resolution metadata
 - winning reason
 - winning score

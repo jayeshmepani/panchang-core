@@ -618,6 +618,62 @@ class FestivalService
             'deity' => 'Gauri',
             'fasting' => true,
         ],
+        'Ravivar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 0,
+            'description' => 'Weekly Sunday fast dedicated to Lord Surya',
+            'deity' => 'Sun',
+            'fasting' => true,
+            'aliases' => ['Sunday Vrat', 'Navagraha Weekday Fasting'],
+        ],
+        'Somwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 1,
+            'description' => 'Weekly Monday fast dedicated to Lord Shiva',
+            'deity' => 'Shiva',
+            'fasting' => true,
+            'aliases' => ['Monday Vrat', 'Deities Weekdays Fasting'],
+        ],
+        'Mangalwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 2,
+            'description' => 'Weekly Tuesday fast dedicated to Hanuman and Mangala',
+            'deity' => 'Hanuman',
+            'fasting' => true,
+            'aliases' => ['Tuesday Vrat'],
+        ],
+        'Budhwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 3,
+            'description' => 'Weekly Wednesday fast dedicated to Lord Vishnu and Budha',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'aliases' => ['Wednesday Vrat'],
+        ],
+        'Guruvar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 4,
+            'description' => 'Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'aliases' => ['Brihaspativar Vrat', 'Thursday Vrat'],
+        ],
+        'Shukravar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 5,
+            'description' => 'Weekly Friday fast dedicated to Goddess Lakshmi and Shukra',
+            'deity' => 'Lakshmi',
+            'fasting' => true,
+            'aliases' => ['Friday Vrat'],
+        ],
+        'Shanivar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 6,
+            'description' => 'Weekly Saturday fast dedicated to Lord Shani',
+            'deity' => 'Shani',
+            'fasting' => true,
+            'aliases' => ['Saturday Vrat'],
+        ],
     ];
 
     /**
@@ -2253,6 +2309,19 @@ class FestivalService
             'description' => '5-day fast for marital bliss and good husband',
             'deity' => 'Jaya/Parvati',
         ],
+        'Shri Satyanarayana Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'description' => 'Satyanarayana Puja and fasting on the full moon evening',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'allow_adhika' => true,
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
+        ],
         'Pausha Purnima' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2264,7 +2333,9 @@ class FestivalService
             'description' => 'Auspicious day for Shakambhari Jayanti and holy dip',
             'deity' => 'Sun/Moon',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Maghi Purnima' => [
             'type' => 'tithi',
@@ -2277,7 +2348,9 @@ class FestivalService
             'description' => 'End of Magha snan, birth of Guru Ravidas',
             'deity' => 'Vishnu',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Phalguna Purnima' => [
             'type' => 'tithi',
@@ -2290,7 +2363,9 @@ class FestivalService
             'description' => 'Full moon of Phalguna month',
             'deity' => 'Vishnu/Lakshmi',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Chaitra Purnima' => [
             'type' => 'tithi',
@@ -2303,7 +2378,9 @@ class FestivalService
             'description' => 'Birth of Lord Hanuman',
             'deity' => 'Hanuman',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Vaishakha Purnima' => [
             'type' => 'tithi',
@@ -2316,7 +2393,9 @@ class FestivalService
             'description' => 'Birth of Buddha and Kurma Avatar',
             'deity' => 'Vishnu/Buddha',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Jyeshtha Purnima' => [
             'type' => 'tithi',
@@ -2329,7 +2408,9 @@ class FestivalService
             'description' => 'Full moon of Jyeshtha month',
             'deity' => 'Vishnu',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Ashadha Purnima' => [
             'type' => 'tithi',
@@ -2342,7 +2423,23 @@ class FestivalService
             'description' => 'Full moon of Ashadha month, honoring spiritual teachers',
             'deity' => 'Vyasa',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
+        ],
+        'Chaturmasa Begins' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'aliases' => ['Devashayana Kala Begins'],
+            'description' => 'Beginning of Chaturmasa, traditionally observed after evening worship on Ashadha Shukla Dwadashi',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
         ],
         'Shravana Purnima' => [
             'type' => 'tithi',
@@ -2355,7 +2452,9 @@ class FestivalService
             'description' => 'Full moon of Shravana month',
             'deity' => 'Vishnu/Gayatri',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Bhadrapada Purnima' => [
             'type' => 'tithi',
@@ -2368,7 +2467,9 @@ class FestivalService
             'description' => 'Beginning of Pitru Paksha for some traditions',
             'deity' => 'Vishnu',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Ashvina Purnima' => [
             'type' => 'tithi',
@@ -2381,7 +2482,9 @@ class FestivalService
             'description' => 'Harvest festival and Lakshmi worship',
             'deity' => 'Lakshmi',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Kartika Purnima' => [
             'type' => 'tithi',
@@ -2394,7 +2497,23 @@ class FestivalService
             'description' => 'Full moon of Kartika month',
             'deity' => 'Shiva/Vishnu',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
+        ],
+        'Chaturmasa Ends' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 12,
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Devashayana Kala Ends'],
+            'description' => 'Conclusion of Chaturmasa on Kartika Shukla Dwadashi',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
         ],
         'Margashirsha Purnima' => [
             'type' => 'tithi',
@@ -2407,7 +2526,9 @@ class FestivalService
             'description' => 'Birth of Lord Dattatreya',
             'deity' => 'Dattatreya',
             'fasting' => true,
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Naga Panchami (Telugu)' => [
             'type' => 'tithi',
@@ -2625,7 +2746,10 @@ class FestivalService
             'description' => 'Purnima Vrat occurring in Adhika Maas',
             'deity' => 'Vishnu',
             'adhika_only' => true,
-            'karmakala_type' => 'sunrise',
+            'fasting' => true,
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Adhika Skanda Sashti' => [
             'type' => 'tithi',
@@ -3120,6 +3244,14 @@ class FestivalService
             'deity' => 'Ramanuja',
             'karmakala_type' => 'sunrise',
         ],
+        'Rohini Vrat' => [
+            'nakshatra_only' => true,
+            'nakshatra' => 'Rohini',
+            'description' => 'Fasting observed on the day when Rohini Nakshatra prevails after sunrise',
+            'deity' => 'Rohini',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
         'Dayanand Saraswati Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -3263,6 +3395,102 @@ class FestivalService
             'description' => 'Auspicious Monday of Shravana month dedicated to Lord Shiva',
             'deity' => 'Shiva',
             'fasting' => true,
+        ],
+        'First Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 1,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'First Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Second Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 2,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Second Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Third Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 3,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Third Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Fourth Mangala Gauri Vrat' => [
+            'type' => 'nth_weekday_in_month',
+            'weekday' => 2,
+            'nth' => 4,
+            'month_amanta' => 'Shravana',
+            'month_purnimanta' => 'Shravana',
+            'description' => 'Fourth Tuesday fasting in the month of Shravana dedicated to Goddess Gauri',
+            'deity' => 'Gauri',
+            'fasting' => true,
+        ],
+        'Ravivar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 0,
+            'description' => 'Weekly Sunday fast dedicated to Lord Surya',
+            'deity' => 'Sun',
+            'fasting' => true,
+            'aliases' => ['Sunday Vrat', 'Navagraha Weekday Fasting'],
+        ],
+        'Somwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 1,
+            'description' => 'Weekly Monday fast dedicated to Lord Shiva',
+            'deity' => 'Shiva',
+            'fasting' => true,
+            'aliases' => ['Monday Vrat', 'Deities Weekdays Fasting'],
+        ],
+        'Mangalwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 2,
+            'description' => 'Weekly Tuesday fast dedicated to Hanuman and Mangala',
+            'deity' => 'Hanuman',
+            'fasting' => true,
+            'aliases' => ['Tuesday Vrat'],
+        ],
+        'Budhwar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 3,
+            'description' => 'Weekly Wednesday fast dedicated to Lord Vishnu and Budha',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'aliases' => ['Wednesday Vrat'],
+        ],
+        'Guruvar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 4,
+            'description' => 'Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu',
+            'deity' => 'Vishnu',
+            'fasting' => true,
+            'aliases' => ['Brihaspativar Vrat', 'Thursday Vrat'],
+        ],
+        'Shukravar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 5,
+            'description' => 'Weekly Friday fast dedicated to Goddess Lakshmi and Shukra',
+            'deity' => 'Lakshmi',
+            'fasting' => true,
+            'aliases' => ['Friday Vrat'],
+        ],
+        'Shanivar Vrat' => [
+            'type' => 'weekday',
+            'weekday' => 6,
+            'description' => 'Weekly Saturday fast dedicated to Lord Shani',
+            'deity' => 'Shani',
+            'fasting' => true,
+            'aliases' => ['Saturday Vrat'],
         ],
         'Kajari Teej' => [
             'type' => 'tithi',
@@ -4796,6 +5024,18 @@ class FestivalService
             'deity' => 'Lakshmi',
             'karmakala_type' => 'sunrise',
         ],
+        'Ashoka Ashtami Vrat' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 8,
+            'month_amanta' => 'Chaitra',
+            'month_purnimanta' => 'Chaitra',
+            'description' => 'Fasting and worship on Chaitra Shukla Ashtami, associated with Goddess Durga and Ashoka blossoms',
+            'deity' => 'Durga',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+        ],
         'Tara Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -5088,7 +5328,8 @@ class FestivalService
         array $tomorrowDetails,
         ?array $yesterdayDetails = null,
         ?callable $fetchHistoricalSnapshot = null,
-        bool $includeExtraWinners = false
+        bool $includeExtraWinners = false,
+        string $selection = 'all'
     ): array
     {
         $festivals = [];
@@ -5104,6 +5345,10 @@ class FestivalService
         $paksha = $tithi['paksha'] ?? 'Shukla';
 
         foreach (self::FESTIVALS as $name => $rules) {
+            if (!$this->shouldIncludeFestivalRules($rules, $selection)) {
+                continue;
+            }
+
             $calendar = $todayDetails['Hindu_Calendar'] ?? [];
             $isAdhika = (bool) ($calendar['Is_Adhika'] ?? false);
             $isKshaya = (bool) ($calendar['Is_Kshaya'] ?? false);
@@ -5191,12 +5436,23 @@ class FestivalService
             }
         }
 
+        $this->appendDerivedVaishnavaObservances(
+            $date,
+            $todayDetails,
+            $tomorrowDetails,
+            $yesterdayDetails,
+            $festivals,
+            $festivalMeta,
+            $addedFestivalKeys,
+            $selection
+        );
+
         // During Adhika Maas, if special Adhika Ekadashi(s) are present on a date,
         // suppress regular Ekadashi labels for that same date to avoid double tagging.
         if ((bool) (($todayDetails['Hindu_Calendar']['Is_Adhika'] ?? false)) && $festivals !== []) {
             $hasAdhikaOnlyEkadashi = false;
             foreach ($festivalMeta as $meta) {
-                if ($meta['is_ekadashi'] && $meta['adhika_only']) {
+                if ((bool) ($meta['is_ekadashi'] ?? false) && (bool) ($meta['adhika_only'] ?? false)) {
                     $hasAdhikaOnlyEkadashi = true;
                     break;
                 }
@@ -5207,8 +5463,8 @@ class FestivalService
                 $filteredMeta = [];
                 foreach ($festivals as $idx => $festival) {
                     $meta = $festivalMeta[$idx] ?? ['is_ekadashi' => false, 'adhika_only' => false];
-                    $isEkadashi = $meta['is_ekadashi'];
-                    $isAdhikaOnly = $meta['adhika_only'];
+                    $isEkadashi = (bool) ($meta['is_ekadashi'] ?? false);
+                    $isAdhikaOnly = (bool) ($meta['adhika_only'] ?? false);
                     if (!$isEkadashi || $isAdhikaOnly) {
                         $filteredFestivals[] = $festival;
                         $filteredMeta[] = $meta;
@@ -5228,7 +5484,8 @@ class FestivalService
             $tomorrowDetails,
             $yesterdayDetails,
             $fetchHistoricalSnapshot,
-            $addedFestivalKeys
+            $addedFestivalKeys,
+            $selection
         );
         foreach ($dayAfterFestivals as $item) {
             $festivals[] = $item['festival'];
@@ -5397,12 +5654,17 @@ class FestivalService
         array $tomorrowDetails,
         ?array $yesterdayDetails,
         ?callable $fetchHistoricalSnapshot,
-        array $addedFestivalKeys
+        array $addedFestivalKeys,
+        string $selection = 'all'
     ): array {
         $results = [];
 
         foreach (self::FESTIVALS as $name => $rules) {
             if ((string) ($rules['type'] ?? '') !== 'day_after') {
+                continue;
+            }
+
+            if (!$this->shouldIncludeFestivalRules($rules, $selection)) {
                 continue;
             }
 
@@ -5464,6 +5726,19 @@ class FestivalService
         }
 
         return $results;
+    }
+
+    private function shouldIncludeFestivalRules(array $rules, string $selection): bool
+    {
+        $normalized = strtolower($selection);
+        $isVrat = (bool) ($rules['fasting'] ?? false);
+
+        return match ($normalized) {
+            'all' => true,
+            'vrats' => $isVrat,
+            'festivals' => !$isVrat,
+            default => throw new LogicException('Unknown festival selection: ' . $selection),
+        };
     }
 
     /**
@@ -5613,8 +5888,10 @@ class FestivalService
         return match ((string) ($rules['type'] ?? 'tithi')) {
             'solar_sankranti', 'solar' => 'solar',
             'fixed_date' => 'gregorian_fixed_date',
+            'weekday' => 'weekday_recurrence',
             'weekday_in_month' => 'weekday_in_lunar_month',
             'weekday_tithi' => 'weekday_and_tithi',
+            'derived_vaishnava_ekadashi', 'derived_mahadvadashi', 'derived_adhika_month_boundary' => 'derived_observance',
             'day_after' => 'relative_day_after_parent_festival',
             default => 'tithi',
         };
@@ -5850,6 +6127,152 @@ class FestivalService
         }
 
         return $out;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $festivals
+     * @param array<int, array<string, mixed>> $festivalMeta
+     * @param array<string, bool> $addedFestivalKeys
+     */
+    private function appendDerivedVaishnavaObservances(
+        CarbonImmutable $date,
+        array $todayDetails,
+        array $tomorrowDetails,
+        ?array $yesterdayDetails,
+        array &$festivals,
+        array &$festivalMeta,
+        array &$addedFestivalKeys,
+        string $selection = 'all'
+    ): void {
+        $todayVaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
+        $yesterdayVaishnava = is_array($yesterdayDetails)
+            ? (array) (($yesterdayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []))
+            : [];
+
+        if (($todayVaishnava['fasting_day'] ?? null) === 'Today') {
+            $rules = [
+                'type' => 'derived_vaishnava_ekadashi',
+                'description' => 'Vaishnava / ISKCON Ekadashi fasting day resolved from sunrise and Arunodaya rules',
+                'deity' => 'Vishnu',
+                'fasting' => true,
+                'aliases' => ['Vaishnava Ekadashi'],
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'ISKCON Ekadashi',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'vaishnava_ekadashi_today',
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        if (($yesterdayVaishnava['fasting_day'] ?? null) === 'Tomorrow_Mahadvadashi') {
+            $status = (string) ($yesterdayVaishnava['status'] ?? 'Mahadvadashi');
+            $rules = [
+                'type' => 'derived_mahadvadashi',
+                'description' => 'Mahadwadashi fasting day derived from Vaishnava Ekadashi observance rules when fast shifts to Dwadashi',
+                'deity' => 'Vishnu',
+                'fasting' => true,
+                'aliases' => ['Vaishnava Mahadwadashi'],
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Mahadwadashi',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: $status,
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        $isAdhikaToday = (bool) (($todayDetails['Hindu_Calendar']['Is_Adhika'] ?? false));
+        $isAdhikaYesterday = is_array($yesterdayDetails)
+            ? (bool) (($yesterdayDetails['Hindu_Calendar']['Is_Adhika'] ?? false))
+            : false;
+        $isAdhikaTomorrow = (bool) (($tomorrowDetails['Hindu_Calendar']['Is_Adhika'] ?? false));
+
+        if ($isAdhikaToday && !$isAdhikaYesterday) {
+            $rules = [
+                'type' => 'derived_adhika_month_boundary',
+                'description' => 'Beginning of Purushottam Maas, the intercalary lunar month dedicated to Lord Vishnu',
+                'deity' => 'Vishnu',
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Purushottam Maas Begins',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'adhika_month_begin',
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        if ($isAdhikaToday && !$isAdhikaTomorrow) {
+            $rules = [
+                'type' => 'derived_adhika_month_boundary',
+                'description' => 'Conclusion of Purushottam Maas, the intercalary lunar month dedicated to Lord Vishnu',
+                'deity' => 'Vishnu',
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Purushottam Maas Ends',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'adhika_month_end',
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $festivals
+     * @param array<int, array<string, mixed>> $festivalMeta
+     * @param array<string, bool> $addedFestivalKeys
+     */
+    private function appendDerivedFestival(
+        string $name,
+        array $rules,
+        string $observanceDate,
+        string $reason,
+        array &$festivals,
+        array &$festivalMeta,
+        array &$addedFestivalKeys
+    ): void {
+        if (isset($addedFestivalKeys[$name])) {
+            return;
+        }
+
+        $resolved = [
+            'festival_name' => $name,
+            'standard_date' => $observanceDate,
+            'observance_date' => $observanceDate,
+            'observance_note' => null,
+            'decision' => [
+                'winning_reason' => $reason,
+                'winning_score' => 1000,
+            ],
+        ];
+
+        $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
+        $festivalMeta[] = [
+            'raw_name' => $name,
+            'adhika_only' => false,
+            'is_ekadashi' => str_contains($name, 'Ekadashi'),
+        ];
+        $addedFestivalKeys[$name] = true;
     }
 
     /**

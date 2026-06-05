@@ -505,6 +505,17 @@ class PanchangService
         $samvatsaraNorth = $this->panchanga->getSamvatsaraNorth($vikram);
 
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
+        $snapshotEkadashiObservance = $this->buildEkadashiObservance(
+            $tithiNum,
+            $tithiStartJd,
+            $tithiEndJd,
+            $jdSunrise,
+            $jdSunset,
+            $jdNextSunrise,
+            $tz,
+            $lat,
+            $lon
+        );
 
         $todaySnapshot = [
             'Tithi' => $tithi,
@@ -537,6 +548,7 @@ class PanchangService
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
             ],
+            'Ekadashi_Observance' => $snapshotEkadashiObservance,
         ];
 
         $festivalSnapshotStart = hrtime(true);

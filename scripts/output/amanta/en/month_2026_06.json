@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-05T07:33:14+00:00",
+        "generated_at": "2026-06-05T10:55:34+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "amanta",
@@ -235,7 +235,33 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Somwar Vrat",
+                    "description": "Weekly Monday fast dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Monday Vrat",
+                        "Deities Weekdays Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Pratipada Vrata",
@@ -471,7 +497,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Mangalwar Vrat",
+                    "description": "Weekly Tuesday fast dedicated to Hanuman and Mangala",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Tuesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 2,
+                            "name": "Tuesday",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Dwitiya Vrata",
@@ -707,7 +758,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Budhwar Vrat",
+                    "description": "Weekly Wednesday fast dedicated to Lord Vishnu and Budha",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Wednesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 3,
+                            "name": "Wednesday",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Tritiya Vrata",
@@ -1034,6 +1110,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Guruvar Vrat",
+                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Brihaspativar Vrat",
+                        "Thursday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 4,
+                            "name": "Thursday",
+                            "english_name": "Thursday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -1281,7 +1382,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Shukravar Vrat",
+                    "description": "Weekly Friday fast dedicated to Goddess Lakshmi and Shukra",
+                    "deity": "Lakshmi",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Friday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 5,
+                            "name": "Friday",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Panchami Vrata",
@@ -1507,7 +1633,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Shanivar Vrat",
+                    "description": "Weekly Saturday fast dedicated to Lord Shani",
+                    "deity": "Shani",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Saturday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 6,
+                            "name": "Saturday",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Shashthi Vrata",
@@ -1753,7 +1904,33 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Ravivar Vrat",
+                    "description": "Weekly Sunday fast dedicated to Lord Surya",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Sunday Vrat",
+                        "Navagraha Weekday Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 0,
+                            "name": "Sunday",
+                            "english_name": "Sunday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Saptami Vrata",
@@ -2153,6 +2330,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Somwar Vrat",
+                    "description": "Weekly Monday fast dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Monday Vrat",
+                        "Deities Weekdays Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -2400,7 +2602,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Mangalwar Vrat",
+                    "description": "Weekly Tuesday fast dedicated to Hanuman and Mangala",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Tuesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 2,
+                            "name": "Tuesday",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Navami Vrata",
@@ -2656,7 +2883,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Budhwar Vrat",
+                    "description": "Weekly Wednesday fast dedicated to Lord Vishnu and Budha",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Wednesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 3,
+                            "name": "Wednesday",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Dashami Vrata",
@@ -2903,6 +3155,31 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Guruvar Vrat",
+                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Brihaspativar Vrat",
+                        "Thursday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 4,
+                            "name": "Thursday",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
                 {
                     "name": "Parama Ekadashi",
                     "description": "Special Ekadashi occurring only during the intercalary month's Dark Half",
@@ -3333,6 +3610,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Shukravar Vrat",
+                    "description": "Weekly Friday fast dedicated to Goddess Lakshmi and Shukra",
+                    "deity": "Lakshmi",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Friday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 5,
+                            "name": "Friday",
+                            "english_name": "Friday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -3580,7 +3881,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Shanivar Vrat",
+                    "description": "Weekly Saturday fast dedicated to Lord Shani",
+                    "deity": "Shani",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Saturday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 6,
+                            "name": "Saturday",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Trayodashi Vrata",
@@ -3912,6 +4238,31 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Ravivar Vrat",
+                    "description": "Weekly Sunday fast dedicated to Lord Surya",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Sunday Vrat",
+                        "Navagraha Weekday Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 0,
+                            "name": "Sunday",
+                            "english_name": "Sunday"
+                        }
                     }
                 }
             ],
@@ -4415,6 +4766,67 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Somwar Vrat",
+                    "description": "Weekly Monday fast dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Monday Vrat",
+                        "Deities Weekdays Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
+                {
+                    "name": "Purushottam Maas Ends",
+                    "description": "Conclusion of the intercalary lunar month dedicated to Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_adhika_month_boundary",
+                        "type_name": "derived intercalary month boundary",
+                        "basis": "derived_observance",
+                        "basis_name": "derived observance"
+                    },
+                    "resolution": {
+                        "festival_name": "Purushottam Maas Ends",
+                        "standard_date": "2026-06-15",
+                        "observance_date": "2026-06-15",
+                        "decision": {
+                            "winning_reason": "intercalary month ends today",
+                            "winning_score": 1000,
+                            "winning_reason_key": "adhika_month_end",
+                            "winning_reason_name": "intercalary month ends today"
+                        },
+                        "festival_name_key": "Purushottam Maas Ends",
+                        "festival_name_localized": "Purushottam Maas Ends"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "intercalary month ends today",
+                        "winning_score": 1000,
+                        "winning_reason_key": "adhika_month_end",
+                        "winning_reason_name": "intercalary month ends today"
+                    }
                 }
             ],
             "daily_observances": [
@@ -4663,6 +5075,30 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Mangalwar Vrat",
+                    "description": "Weekly Tuesday fast dedicated to Hanuman and Mangala",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Tuesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 2,
+                            "name": "Tuesday",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "Raja Parba Day 2",
                     "description": "Second day of Odisha Raja Parba",
@@ -4975,6 +5411,30 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Budhwar Vrat",
+                    "description": "Weekly Wednesday fast dedicated to Lord Vishnu and Budha",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Wednesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 3,
+                            "name": "Wednesday",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                },
                 {
                     "name": "Raja Parba Day 3",
                     "description": "Third day of Odisha Raja Parba",
@@ -5444,6 +5904,31 @@
                     }
                 },
                 {
+                    "name": "Guruvar Vrat",
+                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Brihaspativar Vrat",
+                        "Thursday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 4,
+                            "name": "Thursday",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
                     "name": "Pradyumna Chaturthi",
                     "description": "Dedicated to Pradyumna, son of Lord Krishna",
                     "deity": "Pradyumna",
@@ -5849,7 +6334,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Shukravar Vrat",
+                    "description": "Weekly Friday fast dedicated to Goddess Lakshmi and Shukra",
+                    "deity": "Lakshmi",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Friday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 5,
+                            "name": "Friday",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Panchami Vrata",
@@ -6174,6 +6684,30 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Shanivar Vrat",
+                    "description": "Weekly Saturday fast dedicated to Lord Shani",
+                    "deity": "Shani",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Saturday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 6,
+                            "name": "Saturday",
+                            "english_name": "Saturday"
+                        }
                     }
                 },
                 {
@@ -6534,6 +7068,31 @@
                             "english_name": "Sunday"
                         }
                     }
+                },
+                {
+                    "name": "Ravivar Vrat",
+                    "description": "Weekly Sunday fast dedicated to Lord Surya",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Sunday Vrat",
+                        "Navagraha Weekday Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 0,
+                            "name": "Sunday",
+                            "english_name": "Sunday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -6782,6 +7341,31 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Somwar Vrat",
+                    "description": "Weekly Monday fast dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Monday Vrat",
+                        "Deities Weekdays Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
                 {
                     "name": "Masik Durgashtami",
                     "description": "Monthly fasting dedicated to Goddess Durga",
@@ -7172,6 +7756,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Mangalwar Vrat",
+                    "description": "Weekly Tuesday fast dedicated to Hanuman and Mangala",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Tuesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 2,
+                            "name": "Tuesday",
+                            "english_name": "Tuesday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -7409,7 +8017,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Budhwar Vrat",
+                    "description": "Weekly Wednesday fast dedicated to Lord Vishnu and Budha",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Wednesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 3,
+                            "name": "Wednesday",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Dashami Vrata",
@@ -7735,6 +8368,69 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Guruvar Vrat",
+                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Brihaspativar Vrat",
+                        "Thursday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 4,
+                            "name": "Thursday",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
+                    "name": "ISKCON Ekadashi",
+                    "description": "Vaishnava / ISKCON Ekadashi fasting day resolved from sunrise and Arunodaya rules",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaishnava Ekadashi"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_vaishnava_ekadashi",
+                        "type_name": "derived Vaishnava observance",
+                        "basis": "derived_observance",
+                        "basis_name": "derived observance"
+                    },
+                    "resolution": {
+                        "festival_name": "ISKCON Ekadashi",
+                        "standard_date": "2026-06-25",
+                        "observance_date": "2026-06-25",
+                        "decision": {
+                            "winning_reason": "Vaishnava Ekadashi resolved for today",
+                            "winning_score": 1000,
+                            "winning_reason_key": "vaishnava_ekadashi_today",
+                            "winning_reason_name": "Vaishnava Ekadashi resolved for today"
+                        },
+                        "festival_name_key": "ISKCON Ekadashi",
+                        "festival_name_localized": "ISKCON Ekadashi"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "Vaishnava Ekadashi resolved for today",
+                        "winning_score": 1000,
+                        "winning_reason_key": "vaishnava_ekadashi_today",
+                        "winning_reason_name": "Vaishnava Ekadashi resolved for today"
+                    }
                 }
             ],
             "daily_observances": [
@@ -7972,7 +8668,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Shukravar Vrat",
+                    "description": "Weekly Friday fast dedicated to Goddess Lakshmi and Shukra",
+                    "deity": "Lakshmi",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Friday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 5,
+                            "name": "Friday",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Dwadashi Vrata",
@@ -8296,6 +9017,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Shanivar Vrat",
+                    "description": "Weekly Saturday fast dedicated to Lord Shani",
+                    "deity": "Shani",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Saturday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 6,
+                            "name": "Saturday",
+                            "english_name": "Saturday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -8533,7 +9278,33 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "amanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "Ravivar Vrat",
+                    "description": "Weekly Sunday fast dedicated to Lord Surya",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Sunday Vrat",
+                        "Navagraha Weekday Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 0,
+                            "name": "Sunday",
+                            "english_name": "Sunday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "Chaturdashi Vrata",
@@ -8781,6 +9552,84 @@
             },
             "festivals": [
                 {
+                    "name": "Shri Satyanarayana Vrat",
+                    "description": "Satyanarayana Puja and fasting on the full moon evening",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "Sunset",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Shri Satyanarayana Vrat",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunset",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461220.399554354,
+                        "target_tithi_end_jd": 2461221.496604641,
+                        "standard_date": "2026-06-29",
+                        "observance_date": "2026-06-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Shri Satyanarayana Vrat",
+                        "festival_name_localized": "Shri Satyanarayana Vrat",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Sunset"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Jyeshtha Purnima",
                     "description": "Full moon of Jyeshtha month",
                     "deity": "Vishnu",
@@ -8819,14 +9668,15 @@
                             "value_key": "Jyeshtha",
                             "name": "Jyeshtha"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "Sunset",
+                        "strict_karmakala": true
                     },
                     "resolution": {
                         "festival_name": "Jyeshtha Purnima",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": true,
@@ -8838,8 +9688,8 @@
                         "standard_date": "2026-06-29",
                         "observance_date": "2026-06-29",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
                             "winning_score": 1000,
@@ -8849,17 +9699,42 @@
                         "festival_name_key": "Jyeshtha Purnima",
                         "festival_name_localized": "Jyeshtha Purnima",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunset"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Somwar Vrat",
+                    "description": "Weekly Monday fast dedicated to Lord Shiva",
+                    "deity": "Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Monday Vrat",
+                        "Deities Weekdays Fasting"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 1,
+                            "name": "Monday",
+                            "english_name": "Monday"
+                        }
                     }
                 },
                 {
@@ -9143,6 +10018,30 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Mangalwar Vrat",
+                    "description": "Weekly Tuesday fast dedicated to Hanuman and Mangala",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Tuesday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "weekday recurrence",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 2,
+                            "name": "Tuesday",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "Ishti",
                     "description": "Sacrificial rites performed on the day following Purnima/Amavasya",

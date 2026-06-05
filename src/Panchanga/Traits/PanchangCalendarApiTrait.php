@@ -27,56 +27,31 @@ trait PanchangCalendarApiTrait
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta
     ): array {
-        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
-        $festivalsByDate = [];
-        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
-        $festivalFlat = [];
+        return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all');
+    }
 
-        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
-        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+    public function getFestivalYearCalendarOnlyFestivals(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'festivals');
+    }
 
-        for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
-            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
-
-            if ($festivals === []) {
-                continue;
-            }
-
-            foreach ($festivals as $festival) {
-                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
-                $festivalsByDate[$dateKey] ??= [];
-                $festivalsByDate[$dateKey][] = $festival;
-                $festivalFlat[] = [
-                    'date' => $dateKey,
-                    'festival' => $festival,
-                ];
-            }
-        }
-
-        $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat);
-
-        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
-        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
-
-        $festivalsByDate = [];
-        foreach ($festivalFlat as $entry) {
-            $dateKey = $entry['date'];
-            $festivalsByDate[$dateKey] ??= [];
-            $festivalsByDate[$dateKey][] = $entry['festival'];
-        }
-
-        ksort($festivalsByDate);
-
-        return [
-            'year' => $year,
-            'festival_day_count' => count($festivalsByDate),
-            'festival_entry_count' => count($festivalFlat),
-            'by_date' => $festivalsByDate,
-            'flat' => $festivalFlat,
-        ];
+    public function getVratYearCalendar(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'vrats');
     }
 
     /**
@@ -462,6 +437,75 @@ trait PanchangCalendarApiTrait
         ];
     }
 
+    private function buildFestivalYearCalendar(
+        int $year,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+        string $selection = 'all'
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
+        $festivalsByDate = [];
+        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
+        $festivalFlat = [];
+
+        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
+        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+
+        for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
+            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, null, false, $selection);
+
+            if ($festivals === []) {
+                continue;
+            }
+
+            foreach ($festivals as $festival) {
+                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
+                $festivalsByDate[$dateKey] ??= [];
+                $festivalsByDate[$dateKey][] = $festival;
+                $festivalFlat[] = [
+                    'date' => $dateKey,
+                    'festival' => $festival,
+                ];
+            }
+        }
+
+        $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat, $selection);
+
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
+
+        $festivalsByDate = [];
+        foreach ($festivalFlat as $entry) {
+            $dateKey = $entry['date'];
+            $festivalsByDate[$dateKey] ??= [];
+            $festivalsByDate[$dateKey][] = $entry['festival'];
+        }
+
+        ksort($festivalsByDate);
+
+        return [
+            'year' => $year,
+            'festival_day_count' => count($festivalsByDate),
+            'festival_entry_count' => count($festivalFlat),
+            'by_date' => $festivalsByDate,
+            'flat' => $festivalFlat,
+        ];
+    }
+
     /**
      * Build a calendar-cell-oriented Tithi summary.
      *
@@ -674,10 +718,16 @@ trait PanchangCalendarApiTrait
         int $year,
         string $tz,
         array &$festivalsByDate,
-        array &$festivalFlat
+        array &$festivalFlat,
+        string $selection = 'all'
     ): void {
         foreach (FestivalService::FESTIVALS as $festName => $rules) {
             if ((string) ($rules['type'] ?? '') !== 'day_after') {
+                continue;
+            }
+
+            $isVrat = (bool) ($rules['fasting'] ?? false);
+            if (($selection === 'vrats' && !$isVrat) || ($selection === 'festivals' && $isVrat)) {
                 continue;
             }
 

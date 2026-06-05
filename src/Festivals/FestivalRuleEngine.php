@@ -122,6 +122,14 @@ class FestivalRuleEngine
                 }
             }
 
+            $forbiddenPrevTithiKarmakala = $rule['forbid_previous_tithi_at'] ?? null;
+            if (is_string($forbiddenPrevTithiKarmakala) && $forbiddenPrevTithiKarmakala !== '') {
+                $withoutForbiddenCarry = array_values(array_filter($filtered, static fn (array $candidate): bool => !$candidate['prev_tithi_at_forbidden_karmakala']));
+                if ($withoutForbiddenCarry !== []) {
+                    $filtered = $withoutForbiddenCarry;
+                }
+            }
+
             $matchingWeekday = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['weekday_matches']));
             if ($matchingWeekday !== []) {
                 $filtered = $matchingWeekday;
@@ -470,6 +478,11 @@ class FestivalRuleEngine
         $targetAtKarmakala = $this->isTargetAtPoint($karmakalaJd, $targetInterval);
         $targetAtSunrise = $this->isTargetAtPoint($sunriseJd, $targetInterval);
         $targetDuringObservance = $targetInterval['start_jd'] < $nextSunriseJd && $targetInterval['end_jd'] > $sunriseJd;
+        $forbiddenPrevTithiAt = $rule['forbid_previous_tithi_at'] ?? null;
+        $forbiddenPrevTithiJd = is_string($forbiddenPrevTithiAt) && $forbiddenPrevTithiAt !== ''
+            ? $this->karmakalaJd($forbiddenPrevTithiAt, $ctx)
+            : null;
+        $prevTithiAtForbiddenPoint = is_float($forbiddenPrevTithiJd) && $prevTithiEndJd > $forbiddenPrevTithiJd;
 
         $score = 0;
         $reason = 'target_during_observance';
@@ -505,6 +518,7 @@ class FestivalRuleEngine
             'weekday_matches' => $requiredWeekday === null || (int) $requiredWeekday === $date->dayOfWeek,
             'nakshatra_matches' => $requiredNakshatra !== '' && strcasecmp($requiredNakshatra, $nakshatraName) === 0,
             'prev_tithi_at_karmakala' => $prevTithiEndJd > $karmakalaJd,
+            'prev_tithi_at_forbidden_karmakala' => $prevTithiAtForbiddenPoint,
             'score' => $score,
             'reason' => $reason,
         ];
@@ -568,6 +582,7 @@ class FestivalRuleEngine
         $dayDuration = $sunset - $sunrise;
 
         return match ($type) {
+            'sunset' => $sunset,
             'madhyahna' => $sunrise + ($dayDuration / 2.0),
             'aparahna' => $sunrise + ($dayDuration * 3.0 / 4.0),
             'nishitha' => $sunset + (($nextSunrise - $sunset) / 2.0),

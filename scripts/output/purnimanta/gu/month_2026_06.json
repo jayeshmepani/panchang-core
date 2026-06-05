@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-05T07:36:49+00:00",
+        "generated_at": "2026-06-05T11:00:07+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "purnimanta",
@@ -235,7 +235,33 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "સોમવાર વ્રત",
+                    "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
+                    "deity": "શિવ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "સોમવાર વ્રત",
+                        "દેવતા વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "પ્રતિપદા વ્રત",
@@ -471,7 +497,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "મંગળવાર વ્રત",
+                    "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
+                    "deity": "હનુમાન",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "મંગળવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 2,
+                            "name": "મંગળવાર",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "દ્વિતિયા વ્રત",
@@ -707,7 +758,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "બુધવાર વ્રત",
+                    "description": "ભગવાન વિષ્ણુ અને બુધને સમર્પિત સાપ્તાહિક બુધવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બુધવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 3,
+                            "name": "બુધવાર",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "તૃતિયા વ્રત",
@@ -1034,6 +1110,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "ગુરુવાર વ્રત",
+                    "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બૃહસ્પતિવાર વ્રત",
+                        "ગુરુવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 4,
+                            "name": "ગુરૂવાર",
+                            "english_name": "Thursday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -1281,7 +1382,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "શુક્રવાર વ્રત",
+                    "description": "દેવી લક્ષ્મી અને શુક્રને સમર્પિત સાપ્તાહિક શુક્રવાર વ્રત",
+                    "deity": "લક્ષ્મી",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શુક્રવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 5,
+                            "name": "શુક્રવાર",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "પંચમી વ્રત",
@@ -1507,7 +1633,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "શનિવાર વ્રત",
+                    "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
+                    "deity": "શનિ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શનિવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 6,
+                            "name": "શનિવાર",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ષષ્ઠી વ્રત",
@@ -1775,6 +1926,31 @@
                             "value_key": "Ashadha",
                             "name": "અષાઢ"
                         },
+                        "weekday": {
+                            "number": 0,
+                            "name": "રવિવાર",
+                            "english_name": "Sunday"
+                        }
+                    }
+                },
+                {
+                    "name": "રવિવાર વ્રત",
+                    "description": "ભગવાન સૂર્યને સમર્પિત સાપ્તાહિક રવિવાર વ્રત",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "રવિવાર વ્રત",
+                        "નવગ્રહ વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
                         "weekday": {
                             "number": 0,
                             "name": "રવિવાર",
@@ -2182,6 +2358,31 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "સોમવાર વ્રત",
+                    "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
+                    "deity": "શિવ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "સોમવાર વ્રત",
+                        "દેવતા વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -2429,7 +2630,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "મંગળવાર વ્રત",
+                    "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
+                    "deity": "હનુમાન",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "મંગળવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 2,
+                            "name": "મંગળવાર",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "નવમી વ્રત",
@@ -2685,7 +2911,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "બુધવાર વ્રત",
+                    "description": "ભગવાન વિષ્ણુ અને બુધને સમર્પિત સાપ્તાહિક બુધવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બુધવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 3,
+                            "name": "બુધવાર",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "દશમી વ્રત",
@@ -2932,6 +3183,31 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "ગુરુવાર વ્રત",
+                    "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બૃહસ્પતિવાર વ્રત",
+                        "ગુરુવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 4,
+                            "name": "ગુરૂવાર",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
                 {
                     "name": "પરમા એકાદશી",
                     "description": "વિશેષ એકાદશી જે માત્ર અધિક માસના કૃષ્ણ પક્ષમાં આવે છે",
@@ -3362,6 +3638,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "શુક્રવાર વ્રત",
+                    "description": "દેવી લક્ષ્મી અને શુક્રને સમર્પિત સાપ્તાહિક શુક્રવાર વ્રત",
+                    "deity": "લક્ષ્મી",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શુક્રવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 5,
+                            "name": "શુક્રવાર",
+                            "english_name": "Friday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -3609,7 +3909,32 @@
                 "Purnimanta_Index": 3,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "શનિવાર વ્રત",
+                    "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
+                    "deity": "શનિ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શનિવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 6,
+                            "name": "શનિવાર",
+                            "english_name": "Saturday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ત્રયોદશી વ્રત",
@@ -3969,6 +4294,31 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રવિવાર વ્રત",
+                    "description": "ભગવાન સૂર્યને સમર્પિત સાપ્તાહિક રવિવાર વ્રત",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "રવિવાર વ્રત",
+                        "નવગ્રહ વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 0,
+                            "name": "રવિવાર",
+                            "english_name": "Sunday"
+                        }
                     }
                 }
             ],
@@ -4472,6 +4822,67 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "સોમવાર વ્રત",
+                    "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
+                    "deity": "શિવ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "સોમવાર વ્રત",
+                        "દેવતા વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
+                {
+                    "name": "પુરુષોત્તમ માસ સમાપન",
+                    "description": "ભગવાન વિષ્ણુને સમર્પિત અધિક માસ એટલે પુરુષોત્તમ માસનો સમાપન",
+                    "deity": "વિષ્ણુ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_adhika_month_boundary",
+                        "type_name": "ઉત્પન્ન અધિક માસ સીમા",
+                        "basis": "derived_observance",
+                        "basis_name": "ઉત્પન્ન પાલન"
+                    },
+                    "resolution": {
+                        "festival_name": "પુરુષોત્તમ માસ સમાપન",
+                        "standard_date": "2026-06-15",
+                        "observance_date": "2026-06-15",
+                        "decision": {
+                            "winning_reason": "અધિક માસ આજે પૂર્ણ થાય છે",
+                            "winning_score": 1000,
+                            "winning_reason_key": "adhika_month_end",
+                            "winning_reason_name": "અધિક માસ આજે પૂર્ણ થાય છે"
+                        },
+                        "festival_name_key": "Purushottam Maas Ends",
+                        "festival_name_localized": "પુરુષોત્તમ માસ સમાપન"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "અધિક માસ આજે પૂર્ણ થાય છે",
+                        "winning_score": 1000,
+                        "winning_reason_key": "adhika_month_end",
+                        "winning_reason_name": "અધિક માસ આજે પૂર્ણ થાય છે"
+                    }
                 }
             ],
             "daily_observances": [
@@ -4720,6 +5131,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "મંગળવાર વ્રત",
+                    "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
+                    "deity": "હનુમાન",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "મંગળવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 2,
+                            "name": "મંગળવાર",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "રજા પર્બ દિવસ ૨",
                     "description": "ઓડિશા રજા પર્બનો બીજો દિવસ",
@@ -5032,6 +5467,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "બુધવાર વ્રત",
+                    "description": "ભગવાન વિષ્ણુ અને બુધને સમર્પિત સાપ્તાહિક બુધવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બુધવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 3,
+                            "name": "બુધવાર",
+                            "english_name": "Wednesday"
+                        }
+                    }
+                },
                 {
                     "name": "રજા પર્બ દિવસ ૩",
                     "description": "ઓડિશા રજા પર્બનો ત્રીજો દિવસ",
@@ -5501,6 +5960,31 @@
                     }
                 },
                 {
+                    "name": "ગુરુવાર વ્રત",
+                    "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બૃહસ્પતિવાર વ્રત",
+                        "ગુરુવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 4,
+                            "name": "ગુરૂવાર",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
                     "name": "પ્રદ્યુમ્ન ચતુર્થી",
                     "description": "ભગવાન કૃષ્ણના પુત્ર પ્રદ્યુમ્નને સમર્પિત",
                     "deity": "પ્રદ્યુમ્ન",
@@ -5906,7 +6390,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "શુક્રવાર વ્રત",
+                    "description": "દેવી લક્ષ્મી અને શુક્રને સમર્પિત સાપ્તાહિક શુક્રવાર વ્રત",
+                    "deity": "લક્ષ્મી",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શુક્રવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 5,
+                            "name": "શુક્રવાર",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "પંચમી વ્રત",
@@ -6231,6 +6740,30 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "શનિવાર વ્રત",
+                    "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
+                    "deity": "શનિ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શનિવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 6,
+                            "name": "શનિવાર",
+                            "english_name": "Saturday"
+                        }
                     }
                 },
                 {
@@ -6591,6 +7124,31 @@
                             "english_name": "Sunday"
                         }
                     }
+                },
+                {
+                    "name": "રવિવાર વ્રત",
+                    "description": "ભગવાન સૂર્યને સમર્પિત સાપ્તાહિક રવિવાર વ્રત",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "રવિવાર વ્રત",
+                        "નવગ્રહ વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 0,
+                            "name": "રવિવાર",
+                            "english_name": "Sunday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -6839,6 +7397,31 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "સોમવાર વ્રત",
+                    "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
+                    "deity": "શિવ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "સોમવાર વ્રત",
+                        "દેવતા વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        }
+                    }
+                },
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
@@ -7229,6 +7812,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "મંગળવાર વ્રત",
+                    "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
+                    "deity": "હનુમાન",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "મંગળવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 2,
+                            "name": "મંગળવાર",
+                            "english_name": "Tuesday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -7548,6 +8155,30 @@
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "બુધવાર વ્રત",
+                    "description": "ભગવાન વિષ્ણુ અને બુધને સમર્પિત સાપ્તાહિક બુધવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બુધવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 3,
+                            "name": "બુધવાર",
+                            "english_name": "Wednesday"
+                        }
                     }
                 }
             ],
@@ -7876,6 +8507,69 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "ગુરુવાર વ્રત",
+                    "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "બૃહસ્પતિવાર વ્રત",
+                        "ગુરુવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 4,
+                            "name": "ગુરૂવાર",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
+                    "name": "ઇસ્કોન એકાદશી",
+                    "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "વૈષ્ણવ એકાદશી"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_vaishnava_ekadashi",
+                        "type_name": "ઉત્પન્ન વૈષ્ણવ પાલન",
+                        "basis": "derived_observance",
+                        "basis_name": "ઉત્પન્ન પાલન"
+                    },
+                    "resolution": {
+                        "festival_name": "ઇસ્કોન એકાદશી",
+                        "standard_date": "2026-06-25",
+                        "observance_date": "2026-06-25",
+                        "decision": {
+                            "winning_reason": "આજ માટે નિર્ધારિત વૈષ્ણવ એકાદશી",
+                            "winning_score": 1000,
+                            "winning_reason_key": "vaishnava_ekadashi_today",
+                            "winning_reason_name": "આજ માટે નિર્ધારિત વૈષ્ણવ એકાદશી"
+                        },
+                        "festival_name_key": "ISKCON Ekadashi",
+                        "festival_name_localized": "ઇસ્કોન એકાદશી"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "આજ માટે નિર્ધારિત વૈષ્ણવ એકાદશી",
+                        "winning_score": 1000,
+                        "winning_reason_key": "vaishnava_ekadashi_today",
+                        "winning_reason_name": "આજ માટે નિર્ધારિત વૈષ્ણવ એકાદશી"
+                    }
                 }
             ],
             "daily_observances": [
@@ -8113,7 +8807,32 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "શુક્રવાર વ્રત",
+                    "description": "દેવી લક્ષ્મી અને શુક્રને સમર્પિત સાપ્તાહિક શુક્રવાર વ્રત",
+                    "deity": "લક્ષ્મી",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શુક્રવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 5,
+                            "name": "શુક્રવાર",
+                            "english_name": "Friday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "દ્વાદશી વ્રત",
@@ -8437,6 +9156,30 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
+                },
+                {
+                    "name": "શનિવાર વ્રત",
+                    "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
+                    "deity": "શનિ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "શનિવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 6,
+                            "name": "શનિવાર",
+                            "english_name": "Saturday"
+                        }
+                    }
                 }
             ],
             "daily_observances": [
@@ -8674,7 +9417,33 @@
                 "Purnimanta_Index": 2,
                 "Calendar_Type": "purnimanta"
             },
-            "festivals": [],
+            "festivals": [
+                {
+                    "name": "રવિવાર વ્રત",
+                    "description": "ભગવાન સૂર્યને સમર્પિત સાપ્તાહિક રવિવાર વ્રત",
+                    "deity": "Sun",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "રવિવાર વ્રત",
+                        "નવગ્રહ વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 0,
+                            "name": "રવિવાર",
+                            "english_name": "Sunday"
+                        }
+                    }
+                }
+            ],
             "daily_observances": [
                 {
                     "name": "ચતુર્દશી વ્રત",
@@ -8922,6 +9691,84 @@
             },
             "festivals": [
                 {
+                    "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
+                    "deity": "વિષ્ણુ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "પૂનમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "સૂર્યાસ્ત",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "શ્રી સત્યનારાયણ વ્રત",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunset",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461220.399554354,
+                        "target_tithi_end_jd": 2461221.496604641,
+                        "standard_date": "2026-06-29",
+                        "observance_date": "2026-06-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Shri Satyanarayana Vrat",
+                        "festival_name_localized": "શ્રી સત્યનારાયણ વ્રત",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યાસ્ત"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
                     "name": "જેઠ પૂનમ",
                     "description": "જેઠ માસની પૂનમ",
                     "deity": "વિષ્ણુ",
@@ -8960,14 +9807,15 @@
                             "value_key": "Jyeshtha",
                             "name": "જેઠ"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "સૂર્યાસ્ત",
+                        "strict_karmakala": true
                     },
                     "resolution": {
                         "festival_name": "જેઠ પૂનમ",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
                         "tithi_at_sunrise_today": true,
@@ -8979,8 +9827,8 @@
                         "standard_date": "2026-06-29",
                         "observance_date": "2026-06-29",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                             "winning_score": 1000,
@@ -8990,17 +9838,42 @@
                         "festival_name_key": "Jyeshtha Purnima",
                         "festival_name_localized": "જેઠ પૂનમ",
                         "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type_name": "સૂર્યાસ્ત"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
                         "winning_score": 1000,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "સોમવાર વ્રત",
+                    "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
+                    "deity": "શિવ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "સોમવાર વ્રત",
+                        "દેવતા વાર ઉપવાસ"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 1,
+                            "name": "સોમવાર",
+                            "english_name": "Monday"
+                        }
                     }
                 },
                 {
@@ -9284,6 +10157,30 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
+                {
+                    "name": "મંગળવાર વ્રત",
+                    "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
+                    "deity": "હનુમાન",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "મંગળવાર વ્રત"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "વાર આવર્તન",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "વાર આવર્તન",
+                        "weekday": {
+                            "number": 2,
+                            "name": "મંગળવાર",
+                            "english_name": "Tuesday"
+                        }
+                    }
+                },
                 {
                     "name": "ઈષ્ટિ",
                     "description": "પૂનમ/અમાસ પછીના દિવસે કરવામાં આવતી યજ્ઞ વિધિ",
