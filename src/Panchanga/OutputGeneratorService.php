@@ -77,6 +77,48 @@ class OutputGeneratorService
         return $this->generateFestivalsSelected($year, $lat, $lon, $tz, ['by_date'], $elevation, $calendarType);
     }
 
+    /**
+     * Generate only selected festival output branches for an exact month range.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateFestivalsRangeSelected(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $festivalCalendar = $this->panchangService->getFestivalRangeCalendar(
+            fromYear: $fromYear,
+            fromMonth: $fromMonth,
+            toYear: $toYear,
+            toMonth: $toMonth,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return $this->selectFestivalCalendarSections($festivalCalendar, $sections);
+    }
+
     public function generateFestivalFlat(
         int $year,
         float $lat,
@@ -125,6 +167,48 @@ class OutputGeneratorService
     }
 
     /**
+     * Generate only selected non-vrat festival output branches for an exact month range.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateFestivalsOnlyRangeSelected(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $festivalCalendar = $this->panchangService->getFestivalRangeCalendarOnlyFestivals(
+            fromYear: $fromYear,
+            fromMonth: $fromMonth,
+            toYear: $toYear,
+            toMonth: $toMonth,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return $this->selectFestivalCalendarSections($festivalCalendar, $sections);
+    }
+
+    /**
      * Generate only selected vrat output branches.
      *
      * @param array<int, string> $sections
@@ -149,6 +233,48 @@ class OutputGeneratorService
 
         $vratCalendar = $this->panchangService->getVratYearCalendar(
             year: $year,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            elevation: $elevation,
+            calculationAt: null,
+            calendarType: $calendarType,
+        );
+
+        return $this->selectFestivalCalendarSections($vratCalendar, $sections);
+    }
+
+    /**
+     * Generate only selected vrat output branches for an exact month range.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateVratsRangeSelected(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        $vratCalendar = $this->panchangService->getVratRangeCalendar(
+            fromYear: $fromYear,
+            fromMonth: $fromMonth,
+            toYear: $toYear,
+            toMonth: $toMonth,
             lat: $lat,
             lon: $lon,
             tz: $tz,
@@ -424,6 +550,51 @@ class OutputGeneratorService
         return $result;
     }
 
+    /**
+     * Generate only selected eclipse output branches for an exact month range.
+     *
+     * @param array<int, string> $sections
+     *
+     * @return array<string, mixed>
+     */
+    public function generateEclipsesRangeSelected(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+    ): array {
+        [$start, $endExclusive] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+        $events = $this->eclipseService->getEclipsesForDateRange($start, $endExclusive, $lat, $lon, $tz);
+
+        $eclipsesByYear = [];
+        foreach ($events as $event) {
+            $year = substr((string) ($event['date'] ?? ''), 0, 4);
+            if ($year === '') {
+                continue;
+            }
+
+            $eclipsesByYear[$year] ??= [];
+            $eclipsesByYear[$year][] = $event;
+        }
+
+        $result = [];
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeEclipseSection($section);
+            $result[$normalized] = match ($normalized) {
+                'by_year' => $eclipsesByYear,
+                'flat' => $events,
+                'total_eclipse_count' => count($events),
+                default => throw new InvalidArgumentException('Unknown eclipse output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
     public function generateEclipseByYear(
         int $startYear,
         int $endYear,
@@ -561,6 +732,100 @@ class OutputGeneratorService
             $lon,
             $tz,
             ['calendar'],
+            $calendarFields,
+            $elevation,
+            $options,
+            $calculationAt,
+            $calendarType
+        );
+    }
+
+    /**
+     * Generate selected month output branches for an exact month range.
+     *
+     * @param array<int, string> $sections
+     * @param array<int, string> $calendarFields
+     *
+     * @return array<string, mixed>
+     */
+    public function generateMonthRangeSelected(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $sections,
+        array $calendarFields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        [$start, $endInclusive] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz, true);
+        $result = [];
+
+        foreach ($sections as $section) {
+            $normalized = $this->normalizeMonthRangeSection($section);
+            $result[$normalized] = match ($normalized) {
+                'meta' => $this->buildMonthRangeOutputMeta($start, $endInclusive, $lat, $lon, $tz, $calendarType),
+                'months' => $this->panchangService->getMonthRangeFields(
+                    fromYear: $fromYear,
+                    fromMonth: $fromMonth,
+                    toYear: $toYear,
+                    toMonth: $toMonth,
+                    lat: $lat,
+                    lon: $lon,
+                    tz: $tz,
+                    fields: $calendarFields,
+                    elevation: $elevation,
+                    options: $options,
+                    calculationAt: $calculationAt,
+                    calendarType: $calendarType,
+                ),
+                default => throw new InvalidArgumentException('Unknown month range output section: ' . $section),
+            };
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<int, string> $calendarFields
+     *
+     * @return array{months: array<string, array<string, array<string, mixed>>>}
+     */
+    public function generateMonthRangeCalendarFields(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $calendarFields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+    ): array {
+        return $this->generateMonthRangeSelected(
+            $fromYear,
+            $fromMonth,
+            $toYear,
+            $toMonth,
+            $lat,
+            $lon,
+            $tz,
+            ['months'],
             $calendarFields,
             $elevation,
             $options,
@@ -891,6 +1156,17 @@ class OutputGeneratorService
         };
     }
 
+    private function normalizeMonthRangeSection(string $section): string
+    {
+        $key = strtolower(trim($section));
+
+        return match ($key) {
+            'meta', 'metadata' => 'meta',
+            'months', 'calendar', 'range', 'fields' => 'months',
+            default => $section,
+        };
+    }
+
     private function buildMonthOutputMeta(
         int $year,
         int $month,
@@ -903,6 +1179,49 @@ class OutputGeneratorService
             'generated_at' => date('c'),
             'year' => $year,
             'month' => $month,
+            'calendar_type' => $calendarType->value,
+            'location' => [
+                'latitude' => $lat,
+                'longitude' => $lon,
+                'timezone' => $tz,
+            ],
+        ];
+    }
+
+    /** @return array{0: CarbonImmutable, 1: CarbonImmutable} */
+    private function resolveMonthRangeBounds(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        string $tz,
+        bool $endInclusive = false
+    ): array {
+        $start = CarbonImmutable::create($fromYear, $fromMonth, 1, 0, 0, 0, $tz)->startOfDay();
+        $endBase = CarbonImmutable::create($toYear, $toMonth, 1, 0, 0, 0, $tz);
+        $end = $endInclusive ? $endBase->endOfMonth()->startOfDay() : $endBase->addMonth()->startOfDay();
+
+        if ($end->lessThan($start) || (!$endInclusive && $end->equalTo($start))) {
+            throw new InvalidArgumentException('Month range end must be greater than or equal to start.');
+        }
+
+        return [$start, $end];
+    }
+
+    private function buildMonthRangeOutputMeta(
+        CarbonImmutable $start,
+        CarbonImmutable $endInclusive,
+        float $lat,
+        float $lon,
+        string $tz,
+        CalendarType $calendarType
+    ): array {
+        return [
+            'generated_at' => date('c'),
+            'from_year' => $start->year,
+            'from_month' => $start->month,
+            'to_year' => $endInclusive->year,
+            'to_month' => $endInclusive->month,
             'calendar_type' => $calendarType->value,
             'location' => [
                 'latitude' => $lat,

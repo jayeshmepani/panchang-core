@@ -18,6 +18,57 @@ use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
 
 trait PanchangCalendarApiTrait
 {
+    public function getFestivalRangeCalendar(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+
+        return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all');
+    }
+
+    public function getFestivalRangeCalendarOnlyFestivals(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+
+        return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'festivals');
+    }
+
+    public function getVratRangeCalendar(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+
+        return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'vrats');
+    }
+
     public function getFestivalYearCalendar(
         int $year,
         float $lat,
@@ -52,6 +103,78 @@ trait PanchangCalendarApiTrait
         CalendarType|string $calendarType = CalendarType::Amanta
     ): array {
         return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'vrats');
+    }
+
+    /** @return array<string, array<string, array<string, mixed>>> Indexed by YYYY-MM then YYYY-MM-DD */
+    public function getMonthRangeFields(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $fields,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+        $months = [];
+
+        for ($cursor = $start->startOfMonth(); $cursor->lessThanOrEqualTo($end); $cursor = $cursor->addMonth()) {
+            $monthKey = $cursor->format('Y-m');
+            $months[$monthKey] = $this->getMonthFields(
+                $cursor->year,
+                $cursor->month,
+                $lat,
+                $lon,
+                $tz,
+                $fields,
+                $elevation,
+                $options,
+                $calculationAt,
+                $calendarType
+            );
+        }
+
+        return $months;
+    }
+
+    /** @return array<string, array<string, array<string, mixed>>> Indexed by YYYY-MM then YYYY-MM-DD */
+    public function getMonthRangeCalendar(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        array $options = [],
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+        $months = [];
+
+        for ($cursor = $start->startOfMonth(); $cursor->lessThanOrEqualTo($end); $cursor = $cursor->addMonth()) {
+            $monthKey = $cursor->format('Y-m');
+            $months[$monthKey] = $this->getMonthCalendar(
+                $cursor->year,
+                $cursor->month,
+                $lat,
+                $lon,
+                $tz,
+                $elevation,
+                $options,
+                $calculationAt,
+                $calendarType
+            );
+        }
+
+        return $months;
     }
 
     /**
@@ -454,23 +577,47 @@ trait PanchangCalendarApiTrait
             };
         }
 
+        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
+        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+
+        return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, $selection);
+    }
+
+    private function buildFestivalRangeCalendar(
+        CarbonImmutable $start,
+        CarbonImmutable $end,
+        float $lat,
+        float $lon,
+        string $tz,
+        float $elevation = 0.0,
+        ?CarbonImmutable $calculationAt = null,
+        CalendarType|string $calendarType = CalendarType::Amanta,
+        string $selection = 'all'
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        if ($end->lessThan($start)) {
+            throw new InvalidArgumentException('Festival range end must be greater than or equal to start.');
+        }
+
         /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
         $festivalsByDate = [];
         /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
         $festivalFlat = [];
 
-        $start = CarbonImmutable::create($year, 1, 1, 0, 0, 0, $tz);
-        $end = CarbonImmutable::create($year, 12, 31, 0, 0, 0, $tz);
+        $rangeStart = $start->subDays(3);
+        $rangeEnd = $end->addDays(3);
 
-        for ($date = $start; $date->lessThanOrEqualTo($end); $date = $date->addDay()) {
+        for ($date = $rangeStart; $date->lessThanOrEqualTo($rangeEnd); $date = $date->addDay()) {
             $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, null, false, $selection);
-
-            if ($festivals === []) {
-                continue;
-            }
 
             foreach ($festivals as $festival) {
                 $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
@@ -483,26 +630,39 @@ trait PanchangCalendarApiTrait
             }
         }
 
-        $this->appendRelativeDayFestivals($year, $tz, $festivalsByDate, $festivalFlat, $selection);
+        $this->appendRelativeDayFestivals($start, $end, $tz, $festivalsByDate, $festivalFlat, $selection);
 
         $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
         $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
 
-        $festivalsByDate = [];
+        $filteredByDate = [];
+        $filteredFlat = [];
+        $startKey = $start->toDateString();
+        $endKey = $end->toDateString();
+
         foreach ($festivalFlat as $entry) {
             $dateKey = $entry['date'];
-            $festivalsByDate[$dateKey] ??= [];
-            $festivalsByDate[$dateKey][] = $entry['festival'];
+            if ($dateKey < $startKey || $dateKey > $endKey) {
+                continue;
+            }
+
+            $filteredByDate[$dateKey] ??= [];
+            $filteredByDate[$dateKey][] = $entry['festival'];
+            $filteredFlat[] = $entry;
         }
 
-        ksort($festivalsByDate);
+        ksort($filteredByDate);
 
         return [
-            'year' => $year,
-            'festival_day_count' => count($festivalsByDate),
-            'festival_entry_count' => count($festivalFlat),
-            'by_date' => $festivalsByDate,
-            'flat' => $festivalFlat,
+            'year' => $start->year === $end->year ? $start->year : null,
+            'from_year' => $start->year,
+            'from_month' => $start->month,
+            'to_year' => $end->year,
+            'to_month' => $end->month,
+            'festival_day_count' => count($filteredByDate),
+            'festival_entry_count' => count($filteredFlat),
+            'by_date' => $filteredByDate,
+            'flat' => $filteredFlat,
         ];
     }
 
@@ -715,7 +875,8 @@ trait PanchangCalendarApiTrait
      * @param array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat
      */
     private function appendRelativeDayFestivals(
-        int $year,
+        CarbonImmutable $start,
+        CarbonImmutable $end,
         string $tz,
         array &$festivalsByDate,
         array &$festivalFlat,
@@ -747,7 +908,7 @@ trait PanchangCalendarApiTrait
                     }
 
                     $relativeDate = CarbonImmutable::parse($observanceDate, $tz)->addDays($daysAfter);
-                    if ($relativeDate->year !== $year) {
+                    if ($relativeDate->lessThan($start) || $relativeDate->greaterThan($end)) {
                         continue;
                     }
 
@@ -901,7 +1062,8 @@ trait PanchangCalendarApiTrait
                 continue;
             }
 
-            $grouped[$name][] = ['idx' => $idx, 'entry' => $entry];
+            $groupKey = $name . '|' . substr($entry['date'], 0, 4);
+            $grouped[$groupKey][] = ['idx' => $idx, 'entry' => $entry];
         }
 
         $remove = [];
@@ -1012,50 +1174,25 @@ trait PanchangCalendarApiTrait
         ?CarbonImmutable $calculationAt,
         CalendarType $calendarType
     ): array {
-        /** @var array<string, array<int, array<string, mixed>>> $festivalsByDate */
-        $festivalsByDate = [];
-        /** @var array<int, array{date:string, festival:array<string, mixed>}> $festivalFlat */
-        $festivalFlat = [];
+        return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all')['by_date'];
+    }
 
-        $rangeStart = $start->subDays(3);
-        $rangeEnd = $end->addDays(3);
+    /** @return array{0: CarbonImmutable, 1: CarbonImmutable} */
+    private function resolveMonthRangeBounds(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        string $tz
+    ): array {
+        $start = CarbonImmutable::create($fromYear, $fromMonth, 1, 0, 0, 0, $tz)->startOfDay();
+        $end = CarbonImmutable::create($toYear, $toMonth, 1, 0, 0, 0, $tz)->endOfMonth()->startOfDay();
 
-        for ($date = $rangeStart; $date->lessThanOrEqualTo($rangeEnd); $date = $date->addDay()) {
-            $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot);
-
-            foreach ($festivals as $festival) {
-                $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
-                $festivalsByDate[$dateKey] ??= [];
-                $festivalsByDate[$dateKey][] = $festival;
-                $festivalFlat[] = [
-                    'date' => $dateKey,
-                    'festival' => $festival,
-                ];
-            }
+        if ($end->lessThan($start)) {
+            throw new InvalidArgumentException('Month range end must be greater than or equal to start.');
         }
 
-        $this->appendRelativeDayFestivals($start->year, $tz, $festivalsByDate, $festivalFlat);
-
-        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
-        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
-
-        $filteredByDate = [];
-        foreach ($festivalFlat as $entry) {
-            $dateKey = $entry['date'];
-            if ($dateKey < $start->toDateString() || $dateKey > $end->toDateString()) {
-                continue;
-            }
-
-            $filteredByDate[$dateKey] ??= [];
-            $filteredByDate[$dateKey][] = $entry['festival'];
-        }
-
-        ksort($filteredByDate);
-
-        return $filteredByDate;
+        return [$start, $end];
     }
 
     /**

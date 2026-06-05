@@ -38,6 +38,38 @@ class EclipseService
         $start = $this->jme->jme_julian_day($year, 1, 1, 0.0, JmeEphFFI::JME_CALENDAR_GREGORIAN);
         $end = $this->jme->jme_julian_day($year + 1, 1, 1, 0.0, JmeEphFFI::JME_CALENDAR_GREGORIAN);
 
+        return $this->getEclipsesForJdRange($start, $end, $lat, $lon, $tz);
+    }
+
+    public function getEclipsesForDateRange(CarbonImmutable $start, CarbonImmutable $endExclusive, float $lat, float $lon, string $tz): array
+    {
+        $startUtc = $start->setTimezone('UTC');
+        $endUtc = $endExclusive->setTimezone('UTC');
+
+        $startJd = $this->jme->jme_julian_day(
+            $startUtc->year,
+            $startUtc->month,
+            $startUtc->day,
+            ((int) $startUtc->format('H')) + ((int) $startUtc->format('i')) / 60.0 + (((int) $startUtc->format('s')) + ((int) $startUtc->format('u') / 1_000_000)) / 3600.0,
+            JmeEphFFI::JME_CALENDAR_GREGORIAN
+        );
+        $endJd = $this->jme->jme_julian_day(
+            $endUtc->year,
+            $endUtc->month,
+            $endUtc->day,
+            ((int) $endUtc->format('H')) + ((int) $endUtc->format('i')) / 60.0 + (((int) $endUtc->format('s')) + ((int) $endUtc->format('u') / 1_000_000)) / 3600.0,
+            JmeEphFFI::JME_CALENDAR_GREGORIAN
+        );
+
+        return $this->getEclipsesForJdRange($startJd, $endJd, $lat, $lon, $tz);
+    }
+
+    private function getEclipsesForJdRange(float $start, float $end, float $lat, float $lon, string $tz): array
+    {
+        if ($end <= $start) {
+            return [];
+        }
+
         $events = [];
         $seen = [];
 

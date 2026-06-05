@@ -165,6 +165,59 @@ class OutputGeneratorSelectiveTest extends TestCase
         );
     }
 
+    public function testFestivalRangeSelectedReturnsOnlyRequestedMonthWindow(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $selected = $service->generateFestivalsRangeSelected(
+            2026,
+            10,
+            2028,
+            8,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            ['by_date', 'flat']
+        );
+
+        $this->assertNotEmpty($selected['by_date']);
+        $this->assertSame('2026-10-01', array_key_first($selected['by_date']));
+        $this->assertLessThanOrEqual('2028-08-31', (string) array_key_last($selected['by_date']));
+
+        foreach ($selected['flat'] as $entry) {
+            $this->assertGreaterThanOrEqual('2026-10-01', $entry['date']);
+            $this->assertLessThanOrEqual('2028-08-31', $entry['date']);
+        }
+    }
+
+    public function testEclipseRangeSelectedReturnsOnlyRequestedMonthWindow(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $selected = $service->generateEclipsesRangeSelected(
+            2026,
+            10,
+            2028,
+            8,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            ['by_year', 'flat']
+        );
+
+        foreach ($selected['flat'] as $entry) {
+            $this->assertGreaterThanOrEqual('2026-10-01', $entry['date']);
+            $this->assertLessThan('2028-09-01', $entry['date']);
+        }
+
+        foreach (array_keys($selected['by_year']) as $year) {
+            $this->assertGreaterThanOrEqual(2026, (int) $year);
+            $this->assertLessThanOrEqual(2028, (int) $year);
+        }
+    }
+
     public function testTodaySelectedCanReturnOnlyRequestedBranches(): void
     {
         /** @var OutputGeneratorService $service */
@@ -289,6 +342,33 @@ class OutputGeneratorSelectiveTest extends TestCase
         $this->assertSame(4, $selected['meta']['month']);
         $this->assertArrayHasKey('moon_visibility', $selected['calendar']['2026-04-01']);
         $this->assertArrayNotHasKey('tithi', $selected['calendar']['2026-04-01']);
+    }
+
+    public function testMonthRangeSelectedReturnsOnlyRequestedMonths(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $selected = $service->generateMonthRangeSelected(
+            2026,
+            10,
+            2027,
+            2,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            ['meta', 'months'],
+            ['tithi'],
+            0.0,
+            ['festival_scope' => 'month']
+        );
+
+        $this->assertSame(['meta', 'months'], array_keys($selected));
+        $this->assertSame(['2026-10', '2026-11', '2026-12', '2027-01', '2027-02'], array_keys($selected['months']));
+        $this->assertSame(2026, $selected['meta']['from_year']);
+        $this->assertSame(10, $selected['meta']['from_month']);
+        $this->assertSame(2027, $selected['meta']['to_year']);
+        $this->assertSame(2, $selected['meta']['to_month']);
     }
 
     public function testMonthSelectedOutputAllCalendarFieldsMatchFullMonthCalendar(): void

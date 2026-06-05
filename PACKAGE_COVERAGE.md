@@ -727,6 +727,8 @@ The month-calendar output is not limited to a simple sunrise snapshot. It now al
 
 The moon visibility metadata is intentionally date-qualified. Some lunar visibility intervals start on one civil date and end after midnight on the next civil date, so a time-only `moonset` value can be visually earlier than `moonrise`. The month output therefore carries both compact display fields and explicit date-aware fields.
 
+The package also supports exact month-range selective month output. A consumer can request a range such as October 2026 through August 2028 and the package will iterate only those months instead of generating extra months outside the requested window.
+
 ### Year Festival Output
 
 The package covers:
@@ -739,9 +741,13 @@ The package covers:
 
 This is designed for users who need a ready-to-consume festival calendar rather than manually looping through each day and resolving observances themselves.
 
+The package now also supports exact month-range selective festival and vrat output. That means a consumer can request a bounded window such as October 2026 through August 2028 and calculate only that requested span instead of computing whole surrounding years and slicing afterward.
+
 ### Raw Long-Range Output
 
 The package also covers long-range raw output generation for batch inspection and dataset-style use.
+
+For eclipse data, the package supports both year-range generation and exact month-range selective generation. The month-range path uses direct date-range eclipse searches so the result window is bounded to the requested span instead of being built from full-year output and filtered later.
 
 That makes it suitable not only for end-user display but also for:
 
