@@ -4411,7 +4411,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.2.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.2.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
@@ -4421,9 +4421,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">8.2.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Localization Corrections and Output Cleanup</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release focused on user-facing localization corrections, generated output cleanup, and documentation sync across daily, month, and raw Panchang outputs.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">8.2.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">High-Precision Eclipse Obscuration and JPL Mapping Refinements</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">High-Precision Eclipse Obscuration and JPL Mapping Refinements</span></div>
                 <p class="release-note">Significant improvement to eclipse accuracy. This version introduces a new geometric engine for area-based obscuration, corrects JME/JPL data structure mappings for solar and lunar diameters, and adds specific support for annular eclipse phases.</p>
               </div>
             </li>
@@ -4554,6 +4561,22 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v8.2.1 Upgrade & Release Notes</h3>
+          <p class="lead">Patch release focused on localized label corrections, generated output cleanup, and documentation alignment.</p>
+
+          <div class="info-box" style="border-inline-start-color: var(--color-success); background: rgba(34, 197, 94, 0.05);">
+            <h4 style="color: var(--color-success); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes</h4>
+            <p><strong>None.</strong> v8.2.1 does not introduce new API structures or schema changes. It is a corrective release for user-facing localization quality and output consistency.</p>
+          </div>
+
+          <h4>Localization and Output Corrections</h4>
+          <ul>
+            <li><strong>User-facing labels:</strong> Corrected localized display labels in generated output so month and daily calendar data read naturally in supported languages.</li>
+            <li><strong>Composed labels:</strong> Corrected generated Nakshatra Pada labels in localized month output so runtime-composed names match the selected locale cleanly.</li>
+            <li><strong>Output consistency:</strong> Refreshed generated JSON so corrected localized labels appear consistently across daily, month, festival, eclipse, and raw output files.</li>
+            <li><strong>Documentation sync:</strong> Updated release notes and related documentation to match the current output behavior.</li>
+          </ul>
 
           <h3>v8.2.0 Upgrade & Release Notes</h3>
           <p class="lead">High-precision update focused on eclipse obscuration accuracy and JME/JPL data structure alignment.</p>

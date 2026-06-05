@@ -983,6 +983,8 @@ class PanchangService
             };
         }
 
+        $locale = AstroCore::getConfig('panchang.defaults.locale', 'en');
+
         $snapshotCacheKey = implode('|', [
             $date->toDateString(),
             sprintf('%.12F', $lat),
@@ -992,6 +994,7 @@ class PanchangService
             $calculationAt?->toIso8601String() ?? '',
             $calendarType->value,
             $includeExtended ? 'extended' : 'basic',
+            $locale,
         ]);
         if (isset($this->festivalSnapshotCache[$snapshotCacheKey])) {
             return $this->festivalSnapshotCache[$snapshotCacheKey];

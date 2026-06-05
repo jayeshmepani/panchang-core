@@ -86,6 +86,21 @@ class MonthCalendarTest extends TestCase
         $this->assertSame('Bright Half (waxing)', $day['tithi_display']['kshaya_tithi']['paksha_name'] ?? null);
     }
 
+    public function test_nakshatra_pada_names_are_fully_localized_in_hindi_and_gujarati(): void
+    {
+        $lat = 23.2472446;
+        $lon = 69.668339;
+        $tz = 'Asia/Kolkata';
+
+        config(['panchang.defaults.locale' => 'hi']);
+        $hiCalendar = Panchang::getMonthCalendar(2026, 6, $lat, $lon, $tz, 0.0, ['festival_scope' => 'month']);
+        $this->assertSame('ज्येष्ठा पद ३', $hiCalendar['2026-06-01']['nakshatra_padas'][0]['name'] ?? null);
+
+        config(['panchang.defaults.locale' => 'gu']);
+        $guCalendar = Panchang::getMonthCalendar(2026, 6, $lat, $lon, $tz, 0.0, ['festival_scope' => 'month']);
+        $this->assertSame('જ્યેષ્ઠા પદ ૩', $guCalendar['2026-06-01']['nakshatra_padas'][0]['name'] ?? null);
+    }
+
     public function test_purnimanta_day_details_match_month_calendar_festivals(): void
     {
         $lat = 23.2472446;

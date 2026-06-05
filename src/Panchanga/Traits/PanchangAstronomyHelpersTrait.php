@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Localization;
 use JmeEph\FFI\JmeEphFFI;
 use Throwable;
 
@@ -165,7 +166,13 @@ trait PanchangAstronomyHelpersTrait
     {
         $name = (string) ($interval['name'] ?? '');
         if ($type === 'pada') {
-            $name = ($interval['nakshatra'] ?? '') . ' Pada ' . ($interval['pada'] ?? '');
+            $locale = AstroCore::getConfig('panchang.defaults.locale', 'en');
+            $name = sprintf(
+                '%s %s %s',
+                (string) ($interval['nakshatra'] ?? ''),
+                Localization::translate('String', 'Pada', $locale),
+                Localization::localizeNumber((int) ($interval['pada'] ?? 0), $locale)
+            );
         }
 
         return [

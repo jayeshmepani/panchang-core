@@ -21,6 +21,7 @@ use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
+use JayeshMepani\PanchangCore\Core\Localization;
 use PHPUnit\Framework\TestCase;
 
 class CoreTest extends TestCase
@@ -132,6 +133,13 @@ class CoreTest extends TestCase
         $this->assertTrue(Tithi::ShuklaEkadashi->isEkadashi());
         $this->assertTrue(Tithi::Purnima->isPurnimaOrAmavasya());
         $this->assertTrue(Tithi::Amavasya->isPurnimaOrAmavasya());
+    }
+
+    public function testLocalizationHelpersCoverLocaleDigitsAndGujaratiFestivalFix(): void
+    {
+        $this->assertSame('૩', Localization::localizeNumber(3, 'gu'));
+        $this->assertSame('३', Localization::localizeNumber(3, 'hi'));
+        $this->assertSame('આડી પેરુક્કુ', Localization::translate('Festival', 'Aadi Perukku', 'gu'));
     }
 
 }

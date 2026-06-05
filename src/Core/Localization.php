@@ -1586,7 +1586,7 @@ class Localization
                 'Sajaibu Cheiraoba' => 'સજૈબુ ચૈરાઓબા',
                 'Ganga Sagar Mela' => 'ગંગા સાગર મેળો',
                 'Karadayan Nombu' => 'કરડાયન નોમ્બુ',
-                'Aadi Perukku' => 'આડી પેરuક્કુ',
+                'Aadi Perukku' => 'આડી પેરુક્કુ',
                 'Panguni Uthiram' => 'પંગુની ઉત્થિરમ',
                 'Raja Parba Day 1' => 'રજા પર્બ દિવસ ૧',
                 'Raja Parba Day 2' => 'રજા પર્બ દિવસ ૨',
@@ -5227,6 +5227,7 @@ class Localization
         'String' => [
             'en' => [
                 'Day' => 'Day',
+                'Pada' => 'Pada',
                 'Night' => 'Night',
                 'Rahu Kaal' => 'Rahu Kaal',
                 'Gulika' => 'Gulika',
@@ -5434,6 +5435,7 @@ class Localization
             ],
             'hi' => [
                 'Day' => 'दिन',
+                'Pada' => 'पद',
                 'Night' => 'रात्रि',
                 'Rahu Kaal' => 'राहु काल',
                 'Gulika' => 'गुलिका',
@@ -5641,6 +5643,7 @@ class Localization
             ],
             'gu' => [
                 'Day' => 'દિવસ',
+                'Pada' => 'પદ',
                 'Night' => 'રાત્રિ',
                 'Rahu Kaal' => 'રાહુ કાળ',
                 'Gulika' => 'ગુલિકા',
@@ -5865,5 +5868,17 @@ class Localization
         }
 
         return self::$translations[$type][$locale][$key] ?? (string) $key;
+    }
+
+    public static function localizeNumber(int|string $value, ?string $locale = null): string
+    {
+        $locale ??= AstroCore::getConfig('panchang.defaults.locale', 'en');
+        $digits = match ($locale) {
+            'hi' => ['0' => '०', '1' => '१', '2' => '२', '3' => '३', '4' => '४', '5' => '५', '6' => '६', '7' => '७', '8' => '८', '9' => '९'],
+            'gu' => ['0' => '૦', '1' => '૧', '2' => '૨', '3' => '૩', '4' => '૪', '5' => '૫', '6' => '૬', '7' => '૭', '8' => '૮', '9' => '૯'],
+            default => [],
+        };
+
+        return $digits === [] ? (string) $value : strtr((string) $value, $digits);
     }
 }
