@@ -18,6 +18,17 @@ class SunService
 
     private const int RISE_TRANS_FLAGS = JmeEphFFI::JME_CALC_TRUE_POSITION;
 
+    /**
+     * Panchanga sunrise follows the visible upper limb with standard refraction.
+     * In the JME rise-set API, upper limb is the default when no disc-center,
+     * disc-bottom, no-refraction, or Hindu-rising flag is supplied.
+     */
+    private const int PANCHANGA_VISIBLE_UPPER_LIMB_FLAGS = 0;
+
+    private const float STANDARD_ATMOSPHERIC_PRESSURE_HPA = 1013.25;
+
+    private const float STANDARD_ATMOSPHERIC_TEMPERATURE_C = 15.0;
+
     /** @var array<string, array{0: CarbonImmutable, 1: CarbonImmutable}> */
     private array $sunriseSunsetCache = [];
 
@@ -62,8 +73,20 @@ class SunService
         $geopos[2] = (float) ($birth['elevation'] ?? 0.0);
 
         $tz = $birth['timezone'];
-        $sunrise = $this->runRiseTransit($jd, $geopos, JmeEphFFI::JME_BODY_SUN, JmeEphFFI::JME_RISE_RISE, $tz);
-        $sunset = $this->runRiseTransit($jd, $geopos, JmeEphFFI::JME_BODY_SUN, JmeEphFFI::JME_RISE_SET, $tz);
+        $sunrise = $this->runRiseTransit(
+            $jd,
+            $geopos,
+            JmeEphFFI::JME_BODY_SUN,
+            JmeEphFFI::JME_RISE_RISE | self::PANCHANGA_VISIBLE_UPPER_LIMB_FLAGS,
+            $tz
+        );
+        $sunset = $this->runRiseTransit(
+            $jd,
+            $geopos,
+            JmeEphFFI::JME_BODY_SUN,
+            JmeEphFFI::JME_RISE_SET | self::PANCHANGA_VISIBLE_UPPER_LIMB_FLAGS,
+            $tz
+        );
         DebugTrace::log('sun.sunrise_sunset', 'completed rise/set calculation', [
             'sunrise' => $sunrise->toIso8601String(),
             'sunset' => $sunset->toIso8601String(),
@@ -250,8 +273,8 @@ class SunService
             self::RISE_TRANS_FLAGS,
             $eventFlag,
             $geopos,
-            1013.25,
-            15.0,
+            self::STANDARD_ATMOSPHERIC_PRESSURE_HPA,
+            self::STANDARD_ATMOSPHERIC_TEMPERATURE_C,
             $tret,
             $serr
         );

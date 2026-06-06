@@ -25,6 +25,14 @@ class KalaNirnayaEngine
 
     public const ARUNODAYA_MINUTES = 96.0;
 
+    public const ARUNODAYA_MIN_GHATIKAS = 4.0;
+
+    public const ARUNODAYA_MAX_GHATIKAS = 5.0;
+
+    public const DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE = 55.0;
+
+    public const DASHAMI_VEDHA_THRESHOLD_MINUTES_FROM_PREVIOUS_SUNRISE = 1320.0;
+
     public const SANKRANTI_PUNYA_KAAL = [
         'Makara' => ['before' => 16, 'after' => 16, 'type' => 'Maha_Punya_Kaal'],
         'Karka' => ['before' => 16, 'after' => 16, 'type' => 'Maha_Punya_Kaal'],
@@ -173,9 +181,16 @@ class KalaNirnayaEngine
         float $dvadashiStartJd,
         float $sunriseJd,
         float $nextSunriseJd,
-        string $tradition = 'Vaishnava'
+        string $tradition = 'Vaishnava',
+        ?float $previousSunriseJd = null,
+        float $arunodayaGhatikas = self::ARUNODAYA_GHATIKAS
     ): array {
-        $arunodayaJd = $sunriseJd - (self::ARUNODAYA_MINUTES / 1440.0);
+        $arunodayaGhatikas = max(self::ARUNODAYA_MIN_GHATIKAS, min(self::ARUNODAYA_MAX_GHATIKAS, $arunodayaGhatikas));
+        $arunodayaMinutes = $arunodayaGhatikas * self::GHATI_IN_MINUTES;
+        $arunodayaJd = $sunriseJd - ($arunodayaMinutes / 1440.0);
+        $dashamiVedhaThresholdJd = $previousSunriseJd !== null
+            ? $previousSunriseJd + (self::DASHAMI_VEDHA_THRESHOLD_MINUTES_FROM_PREVIOUS_SUNRISE / 1440.0)
+            : $sunriseJd - ((self::GHATIKA_PER_DAY - self::DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE) * self::GHATI_IN_MINUTES / 1440.0);
 
         $result = [
             'tradition' => $tradition,
@@ -184,38 +199,72 @@ class KalaNirnayaEngine
             'dashami_end_jd' => $dashamiEndJd,
             'sunrise_jd' => $sunriseJd,
             'arunodaya_jd' => $arunodayaJd,
+            'arunodaya_ghatikas' => $arunodayaGhatikas,
+            'arunodaya_minutes' => $arunodayaMinutes,
+            'dashami_vedha_threshold_jd' => $dashamiVedhaThresholdJd,
+            'dashami_vedha_threshold_ghatikas_from_previous_sunrise' => self::DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE,
             'status' => '',
             'fasting_day' => '',
         ];
 
         $ekadashiAtSunrise = ($ekadashiStartJd <= $sunriseJd) && ($ekadashiEndJd > $sunriseJd);
         $ekadashiAtNextSunrise = ($ekadashiStartJd <= $nextSunriseJd) && ($ekadashiEndJd > $nextSunriseJd);
+        $dashamiAtSunrise = $dashamiEndJd > $sunriseJd;
+        $dashamiAtArunodaya = $dashamiEndJd > $arunodayaJd;
+        $ekadashiVriddhi = $ekadashiAtSunrise && $ekadashiAtNextSunrise;
+        $ekadashiKshaya = !$ekadashiAtSunrise && !$ekadashiAtNextSunrise;
+
+        $result['ekadashi_at_sunrise'] = $ekadashiAtSunrise;
+        $result['ekadashi_at_next_sunrise'] = $ekadashiAtNextSunrise;
+        $result['dashami_at_sunrise'] = $dashamiAtSunrise;
+        $result['dashami_at_arunodaya'] = $dashamiAtArunodaya;
+        $result['is_ekadashi_vriddhi'] = $ekadashiVriddhi;
+        $result['is_ekadashi_kshaya'] = $ekadashiKshaya;
 
         if ($tradition === 'Vaishnava') {
-            $dashamiAtArunodaya = $dashamiEndJd > $arunodayaJd;
-            if ($ekadashiAtSunrise && !$dashamiAtArunodaya) {
-                $result['status'] = 'Shuddha_Ekadashi';
+            $dashamiPiercesNirnayVedha = $dashamiEndJd > $dashamiVedhaThresholdJd;
+            $result['dashami_pierces_nirnay_vedha'] = $dashamiPiercesNirnayVedha;
+            if ($ekadashiVriddhi && !$dashamiPiercesNirnayVedha) {
+                $result['status'] = 'Vriddhi_Ekadashi';
+                $result['case_key'] = 'vaishnava_vriddhi_clean_first_day';
                 $result['fasting_day'] = 'Today';
-            } elseif ($dashamiAtArunodaya) {
+            } elseif ($ekadashiAtSunrise && !$dashamiPiercesNirnayVedha) {
+                $result['status'] = 'Shuddha_Ekadashi';
+                $result['case_key'] = 'vaishnava_shuddha_clean';
+                $result['fasting_day'] = 'Today';
+            } elseif ($dashamiPiercesNirnayVedha) {
                 $result['status'] = 'Viddha_Ekadashi';
+                $result['case_key'] = 'vaishnava_dashami_55_ghati_vedha';
                 $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
             } elseif ($ekadashiAtNextSunrise) {
                 $result['status'] = 'Ekadashi_Next_Day';
+                $result['case_key'] = 'vaishnava_ekadashi_next_sunrise';
                 $result['fasting_day'] = 'Tomorrow';
+            } elseif ($ekadashiKshaya) {
+                $result['status'] = 'Kshaya_Ekadashi';
+                $result['case_key'] = 'vaishnava_kshaya_mahadvadashi';
+                $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
             } else {
                 $result['status'] = 'Unmillani_Mahadvadashi';
+                $result['case_key'] = 'vaishnava_unmillani_mahadvadashi';
                 $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
             }
         } elseif ($tradition === 'Smarta') {
-            $dashamiAtSunrise = $dashamiEndJd > $sunriseJd;
-            if ($ekadashiAtSunrise && !$dashamiAtSunrise) {
+            if ($ekadashiVriddhi && !$dashamiAtSunrise) {
+                $result['status'] = 'Vriddhi_Ekadashi';
+                $result['case_key'] = 'smarta_vriddhi_first_day';
+                $result['fasting_day'] = 'Today';
+            } elseif ($ekadashiAtSunrise && !$dashamiAtSunrise) {
                 $result['status'] = 'Shuddha_Ekadashi';
+                $result['case_key'] = $dashamiAtArunodaya ? 'smarta_shuddha_arunodaya_dashami_tolerated' : 'smarta_shuddha_clean';
                 $result['fasting_day'] = 'Today';
             } elseif ($ekadashiAtSunrise) {
                 $result['status'] = 'Viddha_Ekadashi';
-                $result['fasting_day'] = 'Today_With_Vedha';
+                $result['case_key'] = 'smarta_dashami_at_sunrise_rejected';
+                $result['fasting_day'] = 'Tomorrow';
             } else {
                 $result['status'] = 'Ekadashi_Next_Day';
+                $result['case_key'] = $ekadashiKshaya ? 'smarta_kshaya_next_day' : 'smarta_ekadashi_next_sunrise';
                 $result['fasting_day'] = 'Tomorrow';
             }
         }
@@ -322,7 +371,8 @@ class KalaNirnayaEngine
         float $prevTithiEndJd,
         float $sunriseJd,
         float $sunsetJd,
-        float $nextSunriseJd
+        float $nextSunriseJd,
+        ?float $previousSunriseJd = null
     ): array {
         $viddha = $this->determineViddhaTithi(
             $tithiNumber,
@@ -347,7 +397,8 @@ class KalaNirnayaEngine
                 $dvadashiStartJd,
                 $sunriseJd,
                 $nextSunriseJd,
-                'Smarta'
+                'Smarta',
+                $previousSunriseJd
             );
 
             $ekadashiVaishnava = $this->determineEkadashi(
@@ -357,7 +408,8 @@ class KalaNirnayaEngine
                 $dvadashiStartJd,
                 $sunriseJd,
                 $nextSunriseJd,
-                'Vaishnava'
+                'Vaishnava',
+                $previousSunriseJd
             );
         }
 

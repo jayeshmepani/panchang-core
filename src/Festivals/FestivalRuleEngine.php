@@ -89,6 +89,7 @@ class FestivalRuleEngine
         $kshayaPreference = (string) ($rule['kshaya_preference'] ?? 'first');
         $strictKarmakala = (bool) ($rule['strict_karmakala'] ?? ($karmakalaType !== 'sunrise'));
         $preferFirstKarmakala = (bool) ($rule['prefer_first_karmakala'] ?? false);
+        $preferGrowthBeforeScore = (bool) ($rule['prefer_growth_before_score'] ?? false);
         $preferNakshatra = (bool) ($rule['prefer_nakshatra'] ?? false);
         $requiredWeekday = $rule['weekday'] ?? null;
 
@@ -101,9 +102,17 @@ class FestivalRuleEngine
             $this->buildCandidate($date, $today, $targetInterval, $karmakalaType, 0, $rule),
             $this->buildCandidate($date->addDay(), $tomorrow, $targetInterval, $karmakalaType, 1, $rule),
         ];
+        $specialWinner = $this->resolveSpecialFestivalCandidate($rule, $candidates, $today, $targetInterval);
+        $exclusiveTruthTable = $this->usesExclusiveTruthTable($rule);
+        if ($specialWinner === null && $exclusiveTruthTable) {
+            return null;
+        }
+
         $forceEkadashiKshayaNextDay = $kshaya && $kshayaPreference === 'last';
 
-        if ($forceEkadashiKshayaNextDay) {
+        if ($specialWinner !== null) {
+            $winner = $specialWinner;
+        } elseif ($forceEkadashiKshayaNextDay) {
             $winner = $candidates[1];
             $winner['reason'] = 'kshaya_next_day';
             $winner['score'] = max((int) ($winner['score'] ?? 0), 1100);
@@ -117,6 +126,10 @@ class FestivalRuleEngine
             $filtered = $eligible;
             if ($strictKarmakala) {
                 $atKarmakala = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['target_at_karmakala']));
+                if ($atKarmakala === [] && (bool) ($rule['require_karmakala_match'] ?? false)) {
+                    return null;
+                }
+
                 if ($atKarmakala !== []) {
                     $filtered = $atKarmakala;
                 }
@@ -145,9 +158,14 @@ class FestivalRuleEngine
                 }
             }
 
+            $filtered = array_values(array_filter($filtered, static fn (array $candidate): bool => !$candidate['rule_rejected']));
+            if ($filtered === []) {
+                return null;
+            }
+
             usort(
                 $filtered,
-                fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala)
+                fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala, $preferGrowthBeforeScore)
             );
             $winner = $filtered[0];
         }
@@ -192,6 +210,8 @@ class FestivalRuleEngine
             'karmakala_type' => $karmakalaType,
             'tithi_at_karmakala_today' => $candidates[0]['target_at_karmakala'],
             'tithi_at_karmakala_tomorrow' => $candidates[1]['target_at_karmakala'],
+            'tithi_coverage_seconds_today' => $candidates[0]['target_window_overlap_seconds'],
+            'tithi_coverage_seconds_tomorrow' => $candidates[1]['target_window_overlap_seconds'],
             'tithi_at_sunrise_today' => $tithiAtSunriseToday,
             'tithi_at_sunrise_tomorrow' => $tithiAtSunriseTomorrow,
             'is_tithi_vriddhi' => $vriddhi,
@@ -203,11 +223,16 @@ class FestivalRuleEngine
             'observance_note' => $observanceNote,
             'decision' => [
                 'strict_karmakala' => $strictKarmakala,
+                'require_karmakala_match' => $rule['require_karmakala_match'] ?? null,
                 'vriddhi_preference' => $vriddhiPreference,
                 'kshaya_preference' => $kshayaPreference,
                 'preferred_nakshatra' => $rule['nakshatra'] ?? null,
                 'winning_reason' => $winner['reason'],
                 'winning_score' => $winner['score'],
+                'winning_window_overlap_seconds' => $winner['target_window_overlap_seconds'],
+                'winning_window_coverage_ratio' => $winner['target_window_coverage_ratio'],
+                'bhadra_decision' => $winner['bhadra_decision'],
+                'rule_rejection_reason' => $winner['rule_rejection_reason'],
             ],
         ];
     }
@@ -307,6 +332,8 @@ class FestivalRuleEngine
         $karmakalaType = (string) ($rule['karmakala_type'] ?? 'sunrise');
         $todayNakshatraNumber = $this->resolveSnapshotNakshatraNumber((array) ($today['Nakshatra'] ?? []));
         $tomorrowNakshatraNumber = $this->resolveSnapshotNakshatraNumber((array) ($tomorrow['Nakshatra'] ?? []));
+        $todayNakshatraWindow = $this->nakshatraWindowOverlapSeconds($today, $requiredNakshatra, $karmakalaType);
+        $tomorrowNakshatraWindow = $this->nakshatraWindowOverlapSeconds($tomorrow, $requiredNakshatra, $karmakalaType);
 
         if ($requiredNakshatraNumber !== null && $todayNakshatraNumber !== null && $tomorrowNakshatraNumber !== null) {
             $nakshatraTodayMatch = $todayNakshatraNumber === $requiredNakshatraNumber;
@@ -317,6 +344,9 @@ class FestivalRuleEngine
             $nakshatraTodayMatch = strcasecmp($requiredNakshatra, $nakshatraToday) === 0;
             $nakshatraTomorrowMatch = strcasecmp($requiredNakshatra, $nakshatraTomorrow) === 0;
         }
+
+        $nakshatraTodayMatch = $nakshatraTodayMatch || $todayNakshatraWindow > 0.0;
+        $nakshatraTomorrowMatch = $nakshatraTomorrowMatch || $tomorrowNakshatraWindow > 0.0;
 
         // If nakshatra doesn't match today or tomorrow, skip
         if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
@@ -386,11 +416,11 @@ class FestivalRuleEngine
 
             // Both nakshatra AND purnima must match
             if ($nakshatraTodayMatch && $isPurnimaToday) {
-                return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
+                return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match', $todayNakshatraWindow);
             }
 
             if ($nakshatraTomorrowMatch && $isPurnimaTomorrow) {
-                return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match');
+                return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_and_purnima_match', $tomorrowNakshatraWindow);
             }
 
             return null;
@@ -398,11 +428,27 @@ class FestivalRuleEngine
 
         // Simple nakshatra-only match (at least one match is guaranteed here due to early returns above)
         if ($nakshatraTodayMatch) {
-            return $this->buildNakshatraResult($festivalName, $rule, $date, $karmakalaType, $requiredNakshatra, 'nakshatra_match');
+            return $this->buildNakshatraResult(
+                $festivalName,
+                $rule,
+                $date,
+                $karmakalaType,
+                $requiredNakshatra,
+                $todayNakshatraWindow > 0.0 ? 'nakshatra_overlaps_karmakala_window' : 'nakshatra_match',
+                $todayNakshatraWindow
+            );
         }
 
         // $nakshatraTomorrowMatch must be true at this point
-        return $this->buildNakshatraResult($festivalName, $rule, $date->addDay(), $karmakalaType, $requiredNakshatra, 'nakshatra_match');
+        return $this->buildNakshatraResult(
+            $festivalName,
+            $rule,
+            $date->addDay(),
+            $karmakalaType,
+            $requiredNakshatra,
+            $tomorrowNakshatraWindow > 0.0 ? 'nakshatra_overlaps_karmakala_window' : 'nakshatra_match',
+            $tomorrowNakshatraWindow
+        );
     }
 
     /** Build nakshatra-based festival result. */
@@ -412,7 +458,8 @@ class FestivalRuleEngine
         CarbonImmutable $observanceDate,
         string $karmakalaType,
         string $nakshatraName,
-        string $reason
+        string $reason,
+        float $nakshatraWindowOverlapSeconds = 0.0
     ): array {
         return [
             'festival_name' => $festivalName,
@@ -425,8 +472,40 @@ class FestivalRuleEngine
                 'nakshatra_based' => true,
                 'nakshatra_name' => $nakshatraName,
                 'winning_reason' => $reason,
+                'winning_nakshatra_window_overlap_seconds' => $nakshatraWindowOverlapSeconds,
             ],
         ];
+    }
+
+    private function nakshatraWindowOverlapSeconds(array $details, string $requiredNakshatra, string $karmakalaType): float
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        if ($ctx === []) {
+            return 0.0;
+        }
+
+        $window = $this->karmakalaWindowJd($karmakalaType, $ctx);
+        $maxOverlap = 0.0;
+        foreach ((array) ($details['Nakshatra_Windows'] ?? []) as $interval) {
+            if (!is_array($interval)) {
+                continue;
+            }
+
+            $name = (string) ($interval['name'] ?? $interval['nakshatra'] ?? '');
+            if ($name === '' || strcasecmp($name, $requiredNakshatra) !== 0) {
+                continue;
+            }
+
+            $start = $this->extractJd($interval['start_jd'] ?? ($interval['start']['jd'] ?? null));
+            $end = $this->extractJd($interval['end_jd'] ?? ($interval['end']['jd'] ?? null));
+            if ($start === null || $end === null || $end <= $start) {
+                continue;
+            }
+
+            $maxOverlap = max($maxOverlap, $this->intervalOverlapSeconds(['start_jd' => $start, 'end_jd' => $end], $window));
+        }
+
+        return $maxOverlap;
     }
 
     private function deriveTargetInterval(int $targetAbs, int $todayAbs, int $tomorrowAbs, array $ctxToday, array $ctxTomorrow): ?array
@@ -468,6 +547,7 @@ class FestivalRuleEngine
     ): array {
         $ctx = (array) ($details['Resolution_Context'] ?? []);
         $karmakalaJd = $this->karmakalaJd($karmakalaType, $ctx);
+        $karmakalaWindow = $this->karmakalaWindowJd($karmakalaType, $ctx);
         $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
         $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
         $prevTithiEndJd = (float) ($ctx['prev_tithi_end_jd'] ?? 0.0);
@@ -475,8 +555,12 @@ class FestivalRuleEngine
         $requiredNakshatra = (string) ($rule['nakshatra'] ?? '');
         $requiredWeekday = $rule['weekday'] ?? null;
 
-        $targetAtKarmakala = $this->isTargetAtPoint($karmakalaJd, $targetInterval);
+        $targetWindowOverlapSeconds = $this->intervalOverlapSeconds($targetInterval, $karmakalaWindow);
         $targetAtSunrise = $this->isTargetAtPoint($sunriseJd, $targetInterval);
+        $targetAtKarmakalaPoint = (bool) ($rule['require_sunrise_vyapini'] ?? false)
+            ? $targetAtSunrise
+            : $this->isTargetAtPoint($karmakalaJd, $targetInterval);
+        $targetAtKarmakala = $targetAtKarmakalaPoint || ($targetWindowOverlapSeconds > 0.0 && !(bool) ($rule['require_sunrise_vyapini'] ?? false));
         $targetDuringObservance = $targetInterval['start_jd'] < $nextSunriseJd && $targetInterval['end_jd'] > $sunriseJd;
         $forbiddenPrevTithiAt = $rule['forbid_previous_tithi_at'] ?? null;
         $forbiddenPrevTithiJd = is_string($forbiddenPrevTithiAt) && $forbiddenPrevTithiAt !== ''
@@ -490,6 +574,7 @@ class FestivalRuleEngine
         if ($targetAtKarmakala) {
             $score += 1000;
             $reason = 'target_at_karmakala';
+            $score += min(240, (int) floor($targetWindowOverlapSeconds / 60.0));
         } elseif ($targetAtSunrise) {
             $score += 700;
             $reason = 'target_at_sunrise';
@@ -497,12 +582,49 @@ class FestivalRuleEngine
             $score += 300;
         }
 
+        if ((bool) ($rule['prefer_growth_before_score'] ?? false)) {
+            if (($rule['vriddhi_preference'] ?? null) === 'last') {
+                $score += $dayOffset * 500;
+            } elseif (($rule['vriddhi_preference'] ?? null) === 'first') {
+                $score -= $dayOffset * 500;
+            }
+        }
+
+        $karmakalaWindowDurationSeconds = max(0.0, ($karmakalaWindow['end_jd'] - $karmakalaWindow['start_jd']) * 86400.0);
+        $targetWindowCoverageRatio = $karmakalaWindowDurationSeconds > 0.0
+            ? min(1.0, $targetWindowOverlapSeconds / $karmakalaWindowDurationSeconds)
+            : 0.0;
+        if ((bool) ($rule['prefer_full_karmakala_coverage'] ?? false) && $targetWindowCoverageRatio >= 0.999) {
+            $score += 300;
+            $reason = 'target_covers_full_karmakala';
+        }
+
+        $bhadraDecision = $this->bhadraDecision($details, $karmakalaWindow, $rule);
+        if ($bhadraDecision['rejected']) {
+            $score -= 10_000;
+        } elseif ($bhadraDecision['preferred']) {
+            $score += 180;
+            $reason = 'bhadra_puchha_or_clear_pradosha';
+        }
+
         if ($requiredWeekday !== null && (int) $requiredWeekday === $date->dayOfWeek) {
             $score += 150;
         }
 
+        $preferWeekdays = array_map(intval(...), (array) ($rule['prefer_weekdays'] ?? []));
+        $preferredWeekdayMatches = $preferWeekdays !== [] && in_array($date->dayOfWeek, $preferWeekdays, true);
+        if ($preferredWeekdayMatches) {
+            $score += 100;
+        }
+
         if ($requiredNakshatra !== '' && strcasecmp($requiredNakshatra, $nakshatraName) === 0) {
             $score += 125;
+        }
+
+        $ruleRejectionReason = $this->ruleRejectionReason($date, $details, $rule)
+            ?? ($bhadraDecision['rejected'] ? $bhadraDecision['reason'] : null);
+        if ($ruleRejectionReason !== null) {
+            $score -= 10_000;
         }
 
         if ($prevTithiEndJd > $karmakalaJd) {
@@ -516,9 +638,20 @@ class FestivalRuleEngine
             'target_at_sunrise' => $targetAtSunrise,
             'target_during_observance' => $targetDuringObservance,
             'weekday_matches' => $requiredWeekday === null || (int) $requiredWeekday === $date->dayOfWeek,
+            'preferred_weekday_matches' => $preferredWeekdayMatches,
             'nakshatra_matches' => $requiredNakshatra !== '' && strcasecmp($requiredNakshatra, $nakshatraName) === 0,
             'prev_tithi_at_karmakala' => $prevTithiEndJd > $karmakalaJd,
             'prev_tithi_at_forbidden_karmakala' => $prevTithiAtForbiddenPoint,
+            'target_window_start_jd' => $karmakalaWindow['start_jd'],
+            'target_window_end_jd' => $karmakalaWindow['end_jd'],
+            'target_interval_start_jd' => $targetInterval['start_jd'],
+            'target_interval_end_jd' => $targetInterval['end_jd'],
+            'target_window_overlap_seconds' => $targetWindowOverlapSeconds,
+            'target_window_duration_seconds' => $karmakalaWindowDurationSeconds,
+            'target_window_coverage_ratio' => $targetWindowCoverageRatio,
+            'bhadra_decision' => $bhadraDecision,
+            'rule_rejected' => $ruleRejectionReason !== null,
+            'rule_rejection_reason' => $ruleRejectionReason,
             'score' => $score,
             'reason' => $reason,
         ];
@@ -531,9 +664,17 @@ class FestivalRuleEngine
         bool $kshaya,
         string $vriddhiPreference,
         string $kshayaPreference,
-        bool $preferFirstKarmakala = false
+        bool $preferFirstKarmakala = false,
+        bool $preferGrowthBeforeScore = false
     ): int
     {
+        if ($preferGrowthBeforeScore) {
+            $growthDecision = $this->compareGrowthPreference($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference);
+            if ($growthDecision !== 0) {
+                return $growthDecision;
+            }
+        }
+
         if ($left['score'] !== $right['score']) {
             return $right['score'] <=> $left['score'];
         }
@@ -569,26 +710,468 @@ class FestivalRuleEngine
         return $left['day_offset'] <=> $right['day_offset'];
     }
 
+    private function compareGrowthPreference(
+        array $left,
+        array $right,
+        bool $vriddhi,
+        bool $kshaya,
+        string $vriddhiPreference,
+        string $kshayaPreference
+    ): int {
+        if ($vriddhi) {
+            if ($vriddhiPreference === 'last') {
+                return $right['day_offset'] <=> $left['day_offset'];
+            }
+
+            return $left['day_offset'] <=> $right['day_offset'];
+        }
+
+        if ($kshaya) {
+            if ($kshayaPreference === 'last') {
+                return $right['day_offset'] <=> $left['day_offset'];
+            }
+
+            return $left['day_offset'] <=> $right['day_offset'];
+        }
+
+        return 0;
+    }
+
+    private function resolveSpecialFestivalCandidate(
+        array $rule,
+        array $candidates,
+        array $today,
+        array $targetInterval
+    ): ?array {
+        if ((bool) ($rule['holika_lunar_eclipse_exception'] ?? false)) {
+            return $this->resolveHolikaLunarEclipseException($candidates, $today);
+        }
+
+        if ((bool) ($rule['janmashtami_truth_table'] ?? false)) {
+            return $this->resolveJanmashtamiTruthTable($candidates, $today, $targetInterval);
+        }
+
+        if ((bool) ($rule['vijayadashami_truth_table'] ?? false)) {
+            return $this->resolveVijayadashamiTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['govatsa_truth_table'] ?? false)) {
+            return $this->resolveGovatsaTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['mahashivaratri_truth_table'] ?? false)) {
+            return $this->resolveMahashivaratriTruthTable($candidates);
+        }
+
+        return null;
+    }
+
+    private function usesExclusiveTruthTable(array $rule): bool
+    {
+        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table'] as $flag) {
+            if ((bool) ($rule[$flag] ?? false)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function resolveHolikaLunarEclipseException(array $candidates, array $today): ?array
+    {
+        if (!$this->lunarEclipseOnDay($today)) {
+            return null;
+        }
+
+        if ($candidates[1]['target_at_karmakala'] && !$candidates[1]['rule_rejected']) {
+            return $this->markSpecialWinner($candidates[1], 'holika_lunar_eclipse_shift_to_second_pradosha');
+        }
+
+        if ($candidates[0]['target_during_observance'] && !$candidates[0]['rule_rejected']) {
+            return $this->markSpecialWinner($candidates[0], 'holika_lunar_eclipse_perform_on_first_night');
+        }
+
+        return null;
+    }
+
+    private function resolveJanmashtamiTruthTable(array $candidates, array $today, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+        $jayantiDay1 = $day1['target_at_karmakala'] && $day1['nakshatra_matches'] && $day1['preferred_weekday_matches'];
+        $jayantiDay2 = $day2['target_at_karmakala'] && $day2['nakshatra_matches'] && $day2['preferred_weekday_matches'];
+
+        if ($jayantiDay1) {
+            return $this->markSpecialWinner($day1, 'janmashtami_jayanti_yoga_day1');
+        }
+
+        if ($jayantiDay2) {
+            return $this->markSpecialWinner($day2, 'janmashtami_jayanti_yoga_day2');
+        }
+
+        if ($this->previousTithiActiveAtPoint($today, $targetInterval, 'sunset')) {
+            return $this->markSpecialWinner($day2, 'janmashtami_saptami_viddha_choose_day2');
+        }
+
+        if ($day1['nakshatra_matches'] && !$day2['nakshatra_matches']) {
+            return $this->markSpecialWinner($day1, 'janmashtami_shuddha_rohini_day1');
+        }
+
+        if (!$day1['nakshatra_matches'] && $day2['nakshatra_matches']) {
+            return $this->markSpecialWinner($day2, 'janmashtami_shuddha_rohini_day2');
+        }
+
+        if ($day1['nakshatra_matches']) {
+            return $this->markSpecialWinner($day2, 'janmashtami_rohini_both_days_choose_day2');
+        }
+
+        if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'janmashtami_nishitha_only_day1');
+        }
+
+        if ($day2['target_during_observance']) {
+            return $this->markSpecialWinner($day2, $day2['target_at_karmakala'] ? 'janmashtami_nishitha_day2_or_both' : 'janmashtami_no_rohini_default_day2');
+        }
+
+        return $day1['target_during_observance']
+            ? $this->markSpecialWinner($day1, 'janmashtami_no_rohini_fallback_day1')
+            : null;
+    }
+
+    private function resolveVijayadashamiTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+        if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'vijayadashami_vijaya_kaal_only_day1');
+        }
+
+        if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day2, 'vijayadashami_vijaya_kaal_only_day2');
+        }
+
+        if ($day1['target_at_karmakala']) {
+            if ($day1['nakshatra_matches']) {
+                return $this->markSpecialWinner($day1, 'vijayadashami_both_vijaya_kaal_shravana_day1');
+            }
+
+            if ($day2['nakshatra_matches']) {
+                return $this->markSpecialWinner($day2, 'vijayadashami_both_vijaya_kaal_shravana_day2');
+            }
+
+            return $this->markSpecialWinner($day1, 'vijayadashami_both_vijaya_kaal_table_day1');
+        }
+
+        if ($day1['target_during_observance'] && $day1['target_interval_end_jd'] <= $day1['target_window_start_jd']) {
+            return null;
+        }
+
+        if ($day1['target_during_observance'] && $day1['nakshatra_matches']) {
+            return $this->markSpecialWinner($day1, 'vijayadashami_kshaya_shravana_day1');
+        }
+
+        if ($day2['target_during_observance'] && $day2['nakshatra_matches']) {
+            return $this->markSpecialWinner($day2, 'vijayadashami_kshaya_shravana_day2');
+        }
+
+        if ($day2['target_during_observance']) {
+            return $this->markSpecialWinner($day2, 'vijayadashami_kshaya_default_day2');
+        }
+
+        return $day1['target_during_observance']
+            ? $this->markSpecialWinner($day1, 'vijayadashami_kshaya_fallback_day1')
+            : null;
+    }
+
+    private function resolveGovatsaTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+        if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'govatsa_pradosha_only_day1');
+        }
+
+        if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day2, 'govatsa_pradosha_only_day2');
+        }
+
+        if ($day1['target_at_karmakala']) {
+            return $this->markSpecialWinner($day2, 'govatsa_equal_pradosha_choose_day2');
+        }
+
+        return null;
+    }
+
+    private function resolveMahashivaratriTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+        if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'mahashivaratri_nishitha_only_day1');
+        }
+
+        if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_nishitha_only_day2');
+        }
+
+        $day1Full = $day1['target_window_coverage_ratio'] >= 0.999;
+        $day2Full = $day2['target_window_coverage_ratio'] >= 0.999;
+        $day1Partial = $day1['target_window_coverage_ratio'] >= 0.5;
+        $day2Partial = $day2['target_window_coverage_ratio'] >= 0.5;
+        $day1Ekadesha = $day1['target_window_overlap_seconds'] > 0.0;
+        $day2Ekadesha = $day2['target_window_overlap_seconds'] > 0.0;
+
+        if ($day1Full && $day2Full) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_both_full_nishitha_choose_day2');
+        }
+
+        if ($day1Full && $day2Ekadesha) {
+            return $this->markSpecialWinner($day1, 'mahashivaratri_day1_full_over_day2_ekadesha');
+        }
+
+        if ($day1Ekadesha && $day2Full) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_full_over_day1_ekadesha');
+        }
+
+        if ($day2Ekadesha) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_more_than_one_yama_or_ekadesha');
+        }
+
+        if ($day1Partial && $day2Partial) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_both_partial_choose_day2');
+        }
+
+        return null;
+    }
+
+    private function markSpecialWinner(array $candidate, string $reason): array
+    {
+        $candidate['reason'] = $reason;
+        $candidate['score'] = max((int) ($candidate['score'] ?? 0), 20_000);
+
+        return $candidate;
+    }
+
     private function isTargetAtPoint(float $jd, array $targetInterval): bool
     {
         return $targetInterval['start_jd'] <= $jd && $targetInterval['end_jd'] > $jd;
     }
 
+    private function previousTithiActiveAtPoint(array $details, array $targetInterval, string $pointType): bool
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        if ($ctx === []) {
+            return false;
+        }
+
+        $pointJd = $this->karmakalaPointJd($pointType, $ctx);
+
+        return $targetInterval['start_jd'] > $pointJd;
+    }
+
+    private function karmakalaPointJd(string $type, array $ctx): float
+    {
+        return match ($type) {
+            'sunrise' => (float) $ctx['sunrise_jd'],
+            'sunset' => (float) $ctx['sunset_jd'],
+            default => $this->karmakalaJd($type, $ctx),
+        };
+    }
+
     private function karmakalaJd(string $type, array $ctx): float
+    {
+        $window = $this->karmakalaWindowJd($type, $ctx);
+
+        return ($window['start_jd'] + $window['end_jd']) / 2.0;
+    }
+
+    /** @return array{start_jd:float, end_jd:float} */
+    private function karmakalaWindowJd(string $type, array $ctx): array
     {
         $sunrise = (float) $ctx['sunrise_jd'];
         $sunset = (float) $ctx['sunset_jd'];
         $nextSunrise = (float) $ctx['next_sunrise_jd'];
         $dayDuration = $sunset - $sunrise;
+        $nightDuration = $nextSunrise - $sunset;
+        $ghati = 24.0 / 1440.0;
 
         return match ($type) {
-            'sunset' => $sunset,
-            'madhyahna' => $sunrise + ($dayDuration / 2.0),
-            'aparahna' => $sunrise + ($dayDuration * 3.0 / 4.0),
-            'nishitha' => $sunset + (($nextSunrise - $sunset) / 2.0),
-            'pradosha' => $sunset + (3.0 / 24.0),
-            default => $sunrise,
+            'arunodaya' => ['start_jd' => $sunrise - (4.0 * $ghati), 'end_jd' => $sunrise],
+            'sangava' => ['start_jd' => $sunrise + ($dayDuration / 5.0), 'end_jd' => $sunrise + ($dayDuration * 2.0 / 5.0)],
+            'madhyahna' => ['start_jd' => $sunrise + ($dayDuration * 2.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 3.0 / 5.0)],
+            'aparahna' => ['start_jd' => $sunrise + ($dayDuration * 3.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 4.0 / 5.0)],
+            'vijaya_kaal' => ['start_jd' => $sunrise + ($dayDuration * 4.0 / 5.0), 'end_jd' => $sunset + ($nightDuration / 10.0)],
+            'sayankala', 'sunset' => ['start_jd' => $sunset, 'end_jd' => $sunset + ($nightDuration / 5.0)],
+            'nishitha' => [
+                'start_jd' => $sunset + ($nightDuration / 2.0) - $ghati,
+                'end_jd' => $sunset + ($nightDuration / 2.0) + $ghati,
+            ],
+            'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (6.0 * $ghati)],
+            default => ['start_jd' => $sunrise, 'end_jd' => $sunrise + min($dayDuration / 5.0, 1.0 / 24.0)],
         };
+    }
+
+    /** @param array{start_jd:float, end_jd:float} $targetInterval @param array{start_jd:float, end_jd:float} $window */
+    private function intervalOverlapSeconds(array $targetInterval, array $window): float
+    {
+        $start = max($targetInterval['start_jd'], $window['start_jd']);
+        $end = min($targetInterval['end_jd'], $window['end_jd']);
+
+        return max(0.0, ($end - $start) * 86400.0);
+    }
+
+    private function ruleRejectionReason(CarbonImmutable $date, array $details, array $rule): ?string
+    {
+        $rejectWeekdayNakshatra = (array) ($rule['reject_weekday_nakshatra'] ?? []);
+        if ($rejectWeekdayNakshatra !== []) {
+            $weekday = $rejectWeekdayNakshatra['weekday'] ?? null;
+            $nakshatra = (string) ($rejectWeekdayNakshatra['nakshatra'] ?? '');
+            $currentNakshatra = (string) ($details['Nakshatra']['name'] ?? '');
+            if ($weekday !== null && (int) $weekday === $date->dayOfWeek && strcasecmp($nakshatra, $currentNakshatra) === 0) {
+                return 'rejected_by_weekday_nakshatra_exception';
+            }
+        }
+
+        $chandradarshanMode = (string) ($rule['chandradarshan_nishedh_mode'] ?? 'strict');
+        if ((bool) ($rule['chandradarshan_nishedh'] ?? false) && $chandradarshanMode === 'strict' && $this->moonVisibleAfterSunset($details)) {
+            return 'rejected_by_chandradarshan_nishedh';
+        }
+
+        return null;
+    }
+
+    /** @param array{start_jd:float, end_jd:float} $karmakalaWindow */
+    private function bhadraDecision(array $details, array $karmakalaWindow, array $rule): array
+    {
+        if (!(bool) ($rule['avoid_bhadra_mukha'] ?? false)) {
+            return [
+                'applicable' => false,
+                'rejected' => false,
+                'preferred' => false,
+                'reason' => null,
+            ];
+        }
+
+        $bhadraPeriods = array_values(array_filter((array) ($details['Bhadra'] ?? []), is_array(...)));
+        if ($bhadraPeriods === []) {
+            return [
+                'applicable' => true,
+                'rejected' => false,
+                'preferred' => true,
+                'reason' => 'no_bhadra_in_window',
+            ];
+        }
+
+        $puchhaOverlap = false;
+        foreach ($bhadraPeriods as $period) {
+            $parts = (array) ($period['parts'] ?? []);
+            foreach (['mukha', 'madhya'] as $blockedPart) {
+                $part = (array) ($parts[$blockedPart] ?? []);
+                if ($this->bhadraPartOverlapsWindow($part, $period, $karmakalaWindow)) {
+                    return [
+                        'applicable' => true,
+                        'rejected' => true,
+                        'preferred' => false,
+                        'reason' => 'rejected_by_bhadra_' . $blockedPart,
+                    ];
+                }
+            }
+
+            $puchha = (array) ($parts['puchha'] ?? []);
+            if ($this->bhadraPartOverlapsWindow($puchha, $period, $karmakalaWindow)) {
+                $puchhaOverlap = true;
+            }
+        }
+
+        return [
+            'applicable' => true,
+            'rejected' => false,
+            'preferred' => $puchhaOverlap,
+            'reason' => $puchhaOverlap ? 'preferred_bhadra_puchha' : 'bhadra_clear_for_karmakala',
+        ];
+    }
+
+    /** @param array{start_jd:float, end_jd:float} $karmakalaWindow */
+    private function bhadraPartOverlapsWindow(array $part, array $period, array $karmakalaWindow): bool
+    {
+        $periodStart = (float) ($period['start_jd'] ?? 0.0);
+        $partStart = $this->extractBhadraPartBoundary($part['start_jd'] ?? null, $part['start_time'] ?? null, $periodStart);
+        $partEnd = $this->extractBhadraPartBoundary($part['end_jd'] ?? null, $part['end_time'] ?? null, $periodStart);
+        if ($partStart === null || $partEnd === null || $partEnd <= $partStart) {
+            return false;
+        }
+
+        return min($partEnd, $karmakalaWindow['end_jd']) > max($partStart, $karmakalaWindow['start_jd']);
+    }
+
+    private function extractBhadraPartBoundary(mixed $jd, mixed $relativeTime, float $periodStartJd): ?float
+    {
+        if (is_numeric($jd)) {
+            return (float) $jd;
+        }
+
+        if (!is_string($relativeTime) || !preg_match('/^-?\d{2}:\d{2}:\d{2}$/', $relativeTime)) {
+            return null;
+        }
+
+        [$hours, $minutes, $seconds] = array_map(intval(...), explode(':', ltrim($relativeTime, '-')));
+        $sign = str_starts_with($relativeTime, '-') ? -1.0 : 1.0;
+
+        return $periodStartJd + ($sign * (($hours * 3600) + ($minutes * 60) + $seconds) / 86400.0);
+    }
+
+    private function moonVisibleAfterSunset(array $details): bool
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
+        if ($sunsetJd <= 0.0 || $nextSunriseJd <= $sunsetJd) {
+            return false;
+        }
+
+        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? null));
+        $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
+        if ($moonriseJd === null) {
+            return false;
+        }
+
+        return $moonriseJd < $nextSunriseJd && ($moonsetJd === null || $moonsetJd > $sunsetJd);
+    }
+
+    private function lunarEclipseOnDay(array $details): bool
+    {
+        if ((bool) ($details['Lunar_Eclipse'] ?? $details['lunar_eclipse'] ?? false)) {
+            return true;
+        }
+
+        foreach (['Eclipse', 'Eclipses', 'eclipse', 'eclipses'] as $key) {
+            foreach (array_values((array) ($details[$key] ?? [])) as $event) {
+                if (!is_array($event)) {
+                    continue;
+                }
+
+                $type = strtolower((string) ($event['type'] ?? $event['grahan_type'] ?? $event['eclipse_type'] ?? ''));
+                $visible = (bool) ($event['visible'] ?? $event['meets_ritual_minimum'] ?? $event['sutak'] ?? true);
+                if (str_contains($type, 'lunar') && $visible) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function extractJd(mixed $value): ?float
+    {
+        if (is_array($value)) {
+            $value = $value['jd'] ?? null;
+        }
+
+        if (!is_numeric($value)) {
+            return null;
+        }
+
+        return (float) $value;
     }
 
     /** Normalize month name for comparison (strips diacritics, non-alpha, lowercases). */

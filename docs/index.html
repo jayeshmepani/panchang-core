@@ -133,6 +133,13 @@
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   <path d="M2 12h20" />
                 </svg>Ayanamsa Authority</a></li>
+            <li><a href="#engine-conventions" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M4 5h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 19h16" />
+                </svg>Engine Conventions</a></li>
             <li><a href="#configuration" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   aria-hidden="true">
@@ -573,6 +580,14 @@
                   <td><strong>Sūrya Siddhānta 1.10-1.11</strong></td>
                   <td>Muhūrta, Ghaṭikā, Pala time units</td>
                 </tr>
+                <tr>
+                  <td><strong>Brahmagupta / Khaṇḍakhādyaka tradition</strong></td>
+                  <td>Eclipse ritual magnitude thresholds used by Nirnay-rule handling</td>
+                </tr>
+                <tr>
+                  <td><strong>Classical astronomy and Panchanga calculation texts</strong></td>
+                  <td>Generic source-family labels used in Panchanga calculation metadata</td>
+                </tr>
               </tbody>
             </table>
 
@@ -590,6 +605,10 @@
                 <tr>
                   <td><strong>Muhūrta Chintāmaṇi</strong></td>
                   <td>Universal bad tithis, Vara-Tithi Yogas</td>
+                </tr>
+                <tr>
+                  <td><strong>Dharma Sindhu / Dharma_Sindhu</strong></td>
+                  <td>Punya Kala, Sankranti, and Dharma-Sindhu output section attribution</td>
                 </tr>
                 <tr>
                   <td><strong>Bṛhat Saṃhitā</strong></td>
@@ -614,6 +633,10 @@
                 <tr>
                   <td><strong>Gargiya Jyotisha</strong></td>
                   <td>Rikta Tithi dosha</td>
+                </tr>
+                <tr>
+                  <td><strong>Classical Choghadiya / Yoga texts</strong></td>
+                  <td>Source-family labels for encoded electional tables</td>
                 </tr>
               </tbody>
             </table>
@@ -641,6 +664,14 @@
                   <td><strong>Hari Bhakti Vilāsa</strong></td>
                   <td>Vaishnava Ekadashi rules</td>
                 </tr>
+                <tr>
+                  <td><strong>Satsangi Jeevan / Swaminarayan tradition</strong></td>
+                  <td>Vaishnava Ekadashi Dashami-vedha and parana nakshatra-pada restrictions</td>
+                </tr>
+                <tr>
+                  <td><strong>Śrīmad Bhāgavata Purāṇa, Agni Purāṇa, Gīta Govinda</strong></td>
+                  <td>Festival-description sources for Vaishakha Purnima and Sugata Buddha/Kurma Jayanti notes</td>
+                </tr>
               </tbody>
             </table>
 
@@ -658,6 +689,14 @@
                 <tr>
                   <td><strong>Tamil Gowri/Pambu Panchangam</strong></td>
                   <td>Gowri Panchangam (8-part day/night division)</td>
+                </tr>
+                <tr>
+                  <td><strong>Popular travel-muhurta and Nivas-Shool Panchang tables</strong></td>
+                  <td>Disha Shool, Nakshatra Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, and Yogini Vaasa</td>
+                </tr>
+                <tr>
+                  <td><strong>Drik / modern Nivas-Shool Panchang style</strong></td>
+                  <td>Source-family metadata for Vaasa-style published almanac rules</td>
                 </tr>
                 <tr>
                   <td><strong>Sarāvalī</strong></td>
@@ -682,6 +721,10 @@
                 <tr>
                   <td><strong>Sandhyāvandanam Tradition</strong></td>
                   <td>Sandhya windows (living tradition)</td>
+                </tr>
+                <tr>
+                  <td><strong>Smarta, Vaishnava, ISKCON/Gaudiya, regional traditions</strong></td>
+                  <td>Festival family variants and regional observance notes</td>
                 </tr>
               </tbody>
             </table>
@@ -708,6 +751,10 @@
                 <tr>
                   <td><strong>Ernst Wilhelm's Classical Muhurta</strong></td>
                   <td>Bhadra subdivisions</td>
+                </tr>
+                <tr>
+                  <td><strong>Puri Shankaracharya Swami Nischalananda Saraswati</strong></td>
+                  <td>Living-authority citation in Vaishakha Purnima explanatory text</td>
                 </tr>
               </tbody>
             </table>
@@ -871,6 +918,94 @@ echo "Ayanamsa Value: " . $details['Ayanamsa_Degree']; // e.g. 24.1234
 echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guaranteed Lahiri-aligned</code></pre>
             </div>
           </div>
+        </section>
+
+        <section id="engine-conventions" class="content-section">
+          <h2>Engine Conventions</h2>
+          <p class="lead">Current calculation settings used by the package for Panchanga, sunrise, moonrise, eclipses,
+            and Nirnay rules.</p>
+          <div class="info-box">
+            <h3>Audit Note</h3>
+            <p>These are implementation conventions, not a claim that every Hindu almanac school uses the same choices.
+              The detailed source and rule map is maintained in <a href="TRADITIONAL_TEXT_SOURCES.md"
+                style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a>.</p>
+          </div>
+          <table class="data-table">
+            <caption class="sr-only">Current engine convention matrix</caption>
+            <thead>
+              <tr>
+                <th scope="col">Area</th>
+                <th scope="col">Current Setting</th>
+                <th scope="col">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Engine mode</strong></td>
+                <td><code>PANCHANG_JME_MODE=jpl</code> by default</td>
+                <td>JME native ephemeris through FFI; supported modes are <code>auto</code>, <code>jpl</code>,
+                  <code>moshier</code>, and <code>vsop_elp_meeus</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Ayanamsa</strong></td>
+                <td><code>JME_SIDEREAL_LAHIRI</code></td>
+                <td>Lahiri/Chitra Paksha is hardcoded for Panchanga calculations. Dynamic True Citra is not used for
+                  the five limbs.</td>
+              </tr>
+              <tr>
+                <td><strong>Panchanga Moon</strong></td>
+                <td>Geocentric sidereal Moon</td>
+                <td>Tithi, Nakshatra, Yoga, Karana, Moon sign, and transition searches use geocentric high-precision
+                  sidereal longitudes, without a topocentric flag.</td>
+              </tr>
+              <tr>
+                <td><strong>Moonrise/moonset</strong></td>
+                <td>Topocentric visibility interval</td>
+                <td>Rise/set is computed for the observer location. The month API reports moonset only when the
+                  visibility interval begins with a moonrise inside that civil date.</td>
+              </tr>
+              <tr>
+                <td><strong>Sunrise/sunset</strong></td>
+                <td>Visible upper limb with standard refraction</td>
+                <td>The engine does not pass disc-center, disc-bottom, no-refraction, or Hindu-rising flags for
+                  Panchanga sunrise/sunset.</td>
+              </tr>
+              <tr>
+                <td><strong>Atmosphere</strong></td>
+                <td><code>1013.25 hPa</code>, <code>15 C</code></td>
+                <td>Standard pressure and temperature are supplied to JME rise/transit calculations; refraction remains
+                  enabled.</td>
+              </tr>
+              <tr>
+                <td><strong>Panchang day</strong></td>
+                <td>Sunrise to next sunrise</td>
+                <td>Daily observances and sunrise-state limbs are resolved against the local Panchang day, not only
+                  midnight-to-midnight civil time.</td>
+              </tr>
+              <tr>
+                <td><strong>Ekadashi Nirnay</strong></td>
+                <td>55 ghaṭikā Dashami-vedha; Hari Vasara is first quarter of Dvadashi</td>
+                <td>Parana windows exclude Anuradha P1, Shravana P2-3, and Revati P4, and may extend past civil
+                  midnight.</td>
+              </tr>
+              <tr>
+                <td><strong>Eclipse visibility</strong></td>
+                <td>Local visibility plus ritual magnitude threshold</td>
+                <td>Lunar ritual minimum is <code>1/16</code>; solar ritual minimum is <code>1/12</code>. Sutak applies
+                  only when the eclipse is ritually visible at the location.</td>
+              </tr>
+              <tr>
+                <td><strong>Eclipse sutak</strong></td>
+                <td>Lunar 3 prahar, Solar 4 prahar</td>
+                <td>Prahar boundaries are variable: day length divided by 4 and night length divided by 4.</td>
+              </tr>
+              <tr>
+                <td><strong>Month system</strong></td>
+                <td><code>amanta</code> default; <code>purnimanta</code> supported</td>
+                <td>This controls month-name representation. It does not change the underlying limb arithmetic.</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <section id="configuration" class="content-section">
@@ -4444,19 +4579,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v8.4.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.0.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. The v4.0.0 section remains the main historical breaking-change block, while v5.x through v8.x document newer output, precision, and ephemeris changes.</p>
+            <p>Review the version-specific notes below before upgrading. v9.0.0 is a major generated-output and rule-resolution release; v4.0.0 remains the main historical API breaking-change block, while v5.x through v8.x document newer output, precision, and ephemeris changes.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Verified Nirnay Rules, Panchang Conventions, and Localized Output Contract</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Major release aligning festival, vrat, eclipse, sunrise, moonrise, Ekadashi-parana, and generated JSON behavior with verified engine conventions and localized user-facing output.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">8.4.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Exact Month-Range Selective APIs</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Exact Month-Range Selective APIs</span></div>
                 <p class="release-note">Minor release adding true exact month-range selective generation for month calendars, festivals, vrats, and eclipses so consumers can request only the bounded span they need.</p>
               </div>
             </li>
@@ -4608,6 +4750,65 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v9.0.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Major release focused on verified Hindu Panchang conventions, Nirnay-rule festival decisions, eclipse ritual thresholds, Ekadashi parana restrictions, localized generated output, and regenerated 2026-2032 JSON artifacts.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes (Generated Output and Rule Decisions)</h4>
+            <ul>
+              <li><strong>Generated JSON changed across all supported locale/calendar artifacts:</strong> Regenerate and rebaseline any stored <code>amanta</code>/<code>purnimanta</code> output for English, Hindi, and Gujarati. Festival, vrat, eclipse, month, today, and raw yearly files have changed.</li>
+              <li><strong>Festival and vrat observance dates can shift:</strong> Rules now use stricter karmakala overlap, sunrise, Bhadra, Nakshatra, and truth-table decisions for items such as Pausha Purnima Vrat, Janmashtami, Mahashivaratri, Vijayadashami, Govatsa Dwadashi, Holika Dahan, Naraka Chaturdashi Abhyanga Snan, Govardhan Puja, Mahavir Jayanti, Samaveda Upakarma, and Phuldolotsava.</li>
+              <li><strong>Vrat and festival labels are more explicit:</strong> Some observances are now separated or clarified by purpose, such as labeled Purnima vrat days versus Purnima festival days, location-sensitive Deepotsav items, and sect-specific Swaminarayan/BAPS Phuldolotsava metadata.</li>
+              <li><strong>Eclipse ritual fields are stricter:</strong> <code>visible</code>, <code>sutak.applicable</code>, and ritual windows now require local visibility plus the configured ritual magnitude minimum. Lunar eclipses use the <code>1/16</code> umbral threshold and solar eclipses use the <code>1/12</code> threshold.</li>
+              <li><strong>Nested decision metadata now localizes display values:</strong> Raw rule codes are preserved under <code>*_key</code> fields where needed, while user-facing fields such as <code>reason</code>, <code>winning_reason</code>, aliases, labels, and descriptions are localized.</li>
+              <li><strong>Hindi and Gujarati generated outputs no longer preserve English display aliases by default:</strong> Clients that matched display strings such as <code>Kali Chaudas</code>, <code>Abhyanga Snan</code>, <code>Paush Purnima Vrat</code>, or <code>Phuldol</code> should match canonical keys or English reference fields instead.</li>
+            </ul>
+          </div>
+
+          <h4>Verified Engine Conventions</h4>
+          <ul>
+            <li><strong>Ayanamsa:</strong> Panchanga limb calculations continue to use Lahiri / Chitra Paksha via <code>JME_SIDEREAL_LAHIRI</code>; the package does not switch Panchanga limbs to dynamic True Citra.</li>
+            <li><strong>Sunrise and sunset:</strong> Rise/set calculations use visible upper limb with standard atmospheric refraction, standard pressure, and standard temperature.</li>
+            <li><strong>Panchanga Moon:</strong> Tithi, Nakshatra, Yoga, Karana, moon sign, and transition searches use geocentric sidereal Sun/Moon longitudes. Moonrise/moonset remains topocentric for the observer location.</li>
+            <li><strong>Moonrise/moonset daily semantics:</strong> The civil-day moon visibility interval starts only from a moonrise inside that civil date. If no moonrise occurs inside the date, both moonrise and moonset are returned as <code>null</code> for that daily output.</li>
+            <li><strong>Panchang day boundary:</strong> Daily Panchang decisions continue to use sunrise-to-next-sunrise boundaries, with runtime/current-at-input fields exposed separately where applicable.</li>
+            <li><strong>Prahar and Brahma Muhurta:</strong> Prahars are variable day/night quarters, and Brahma Muhurta follows the dynamic night-muhurta convention.</li>
+          </ul>
+
+          <h4>Nirnay and Festival Rule Improvements</h4>
+          <ul>
+            <li><strong>Vaishnava Ekadashi:</strong> Dashami-vedha handling uses the 55-ghatika threshold from the previous sunrise for Nirnay-style Vaishnava decisions.</li>
+            <li><strong>Hari Vasara and Parana:</strong> Parana starts after the first quarter of Dwadashi and now exposes restricted and allowed windows. Gujarati/Nirnay month-paksha restrictions block Ashadha Shukla Anuradha pada 1, Bhadrapada Shukla Shravana padas 2-3, and Kartika Shukla Revati pada 4.</li>
+            <li><strong>Festival karmakala engine:</strong> Pradosha, Nishitha, Madhyahna, Aparahna, Sangava, Arunodaya, and Vijaya Kaal decisions use window overlap and coverage metadata instead of only single-point matching.</li>
+            <li><strong>Holika Dahan:</strong> Bhadra Mukha/Madhya rejection, Bhadra Puchha preference, lunar-eclipse exception logic, and Purnima-in-Pradosha requirements are implemented in the decision engine.</li>
+            <li><strong>Major truth tables:</strong> Janmashtami, Mahashivaratri, Vijayadashami, and Govatsa Dwadashi now use dedicated decision branches with tie-breakers and fallback handling encoded in the engine.</li>
+            <li><strong>Deepotsav sequence:</strong> Vagh Baras, Dhanteras, Naraka Chaturdashi Abhyanga Snan, Kali Chaudas, Diwali/Kali Puja, Govardhan/Annakut, and Bhai Beej expose sequence metadata; location-sensitive observances are marked accordingly.</li>
+            <li><strong>Specific corrected observances:</strong> Pausha Purnima Vrat uses the labeled sunrise-based vrat day, Mahavir Jayanti uses Chaitra Shukla Trayodashi at sunrise, Samavedi Shravani consolidates to the best annual Hasta/Aparahna observance, and Phuldolotsava is marked as a Swaminarayan/BAPS sect-specific tithi observance.</li>
+          </ul>
+
+          <h4>Eclipse and Ritual Visibility Updates</h4>
+          <ul>
+            <li><strong>Ritual minimums:</strong> Lunar ritual minimum is umbral magnitude <code>&gt;= 0.0625</code>; solar ritual minimum is local/eclipse disk magnitude <code>&gt;= 0.083333...</code>.</li>
+            <li><strong>Sutak gating:</strong> Sutak is not applicable when the eclipse is not ritually visible at the configured location.</li>
+            <li><strong>Dynamic sutak windows:</strong> Lunar sutak uses a 3-prahar lookback and solar sutak uses a 4-prahar lookback, anchored to local variable prahar divisions.</li>
+            <li><strong>Ritual classification:</strong> Eclipse output includes local visibility classification, Grast Uday/Grast Ast status, telescope-only status, and post-eclipse bath/fresh-food guidance where applicable.</li>
+          </ul>
+
+          <h4>Localization and Documentation</h4>
+          <ul>
+            <li><strong>Hindi/Gujarati output cleanup:</strong> User-facing generated JSON was scanned for cross-language leakage. English output is clean of Hindi/Gujarati display text, Hindi output is clean of English/Gujarati display text, and Gujarati output is clean of English/Hindi display text for audited user-facing fields.</li>
+            <li><strong>Localized aliases and decision reasons:</strong> Added missing display translations for Deepotsav aliases, Purnima vrat aliases, Phuldol labels, deity composites, festival descriptions, karmakala names, and rule-decision reasons.</li>
+            <li><strong>Traditional source docs:</strong> The traditional-source documentation now includes the current engine convention matrix, verified Nirnay decisions promoted to code, and the expanded traditional/source-family reference list.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>Do not compare v9 generated yearly JSON against v8 by expecting identical dates or identical localized strings. Rebaseline festival, vrat, eclipse, and daily output snapshots after upgrading.</li>
+            <li>Use canonical IDs, keys, or <code>*_key</code> fields for application logic. Treat localized display fields as presentation text that can change when translations are corrected.</li>
+            <li>Review any client logic that assumes <code>visible</code>, <code>sutak.applicable</code>, or <code>meets_ritual_minimum</code> can be interpreted independently. In v9 ritual eclipse handling is intentionally gated by local visibility and magnitude threshold.</li>
+            <li>Review any UI copy or tests that assume civil-day moonset appears without a same-day moonrise. The daily output intentionally returns a visibility interval beginning with a moonrise inside the date.</li>
+          </ul>
 
           <h3>v8.4.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Minor release focused on exact month-range selective generation across month calendars, festivals, vrats, and eclipses.</p>
@@ -5834,7 +6035,8 @@ const FESTIVAL_RULES
           </div>
           <div class="info-box">
             <h3>Classical Text References</h3>
-            <p>All calculations reference authentic Sanskrit texts and traditions. See <a
+            <p>The package references a mix of traditional texts, source families, living traditions, published almanac
+              conventions, and modern calculation systems. See <a
                 href="TRADITIONAL_TEXT_SOURCES.md"
                 style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a> for complete
               source-integrity map with confidence tiers.</p>
@@ -5889,6 +6091,31 @@ const FESTIVAL_RULES
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg><strong>Hari Bhakti Vilāsa</strong>→ Vaishnava Ekadashi rules</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Satsangi Jeevan / Swaminarayan tradition</strong>→ Nirnay Ekadashi and parana restrictions</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Brahmagupta / Khaṇḍakhādyaka tradition</strong>→ Eclipse ritual magnitude thresholds</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Dharma Sindhu / Dharma_Sindhu</strong>→ Sankranti and Punya Kala output attribution</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Popular travel-muhurta, Drik/Nivas-Shool, Gowri/Pambu conventions</strong>→ Published Panchang table systems</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Smarta, Vaishnava, ISKCON/Gaudiya, regional traditions</strong>→ Festival variants and observance notes</li>
             </ul>
           </div>
         </section>

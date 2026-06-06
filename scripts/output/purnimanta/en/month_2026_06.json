@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-05T10:58:15+00:00",
+        "generated_at": "2026-06-06T20:32:07+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "purnimanta",
@@ -1078,6 +1078,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -1091,7 +1093,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -1102,11 +1111,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -2249,6 +2268,8 @@
                         "karmakala_type": "midnight",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -2262,7 +2283,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -2273,11 +2301,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -2326,6 +2364,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -2339,7 +2379,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -2350,11 +2397,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -3252,6 +3309,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -3265,7 +3324,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -3276,11 +3342,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -3606,6 +3682,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -3619,7 +3697,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -3630,11 +3715,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -4263,6 +4358,8 @@
                         "karmakala_type": "midnight",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -4276,7 +4373,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -4287,11 +4391,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -4713,6 +4827,8 @@
                         "karmakala_type": "moonrise",
                         "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -4727,6 +4843,13 @@
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi during observance day",
                             "winning_score": 300,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_during_observance",
                             "winning_reason_name": "target tithi during observance day"
                         },
@@ -4737,11 +4860,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi during observance day",
                         "winning_score": 300,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
                     }
@@ -4790,6 +4923,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -4803,7 +4938,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -4814,11 +4956,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -5768,8 +5920,8 @@
                 "visibility_key": "late_morning_to_post_dusk",
                 "visibility": "Late morning to post-dusk",
                 "illumination_band": "1%-49%",
-                "illumination_fraction": 0.12141200828812598,
-                "illumination_percent": 12.141200828812599,
+                "illumination_fraction": 0.12141200828812593,
+                "illumination_percent": 12.141200828812593,
                 "phase_angle_degrees": 40.78413263827059,
                 "synodic_age_days": 3.345498480536833
             },
@@ -5846,6 +5998,8 @@
                         "karmakala_type": "madhyahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9786.000028252602,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -5859,7 +6013,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1163,
+                            "winning_window_overlap_seconds": 9786.000028252602,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -5870,11 +6031,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1163,
+                        "winning_window_overlap_seconds": 9786.000028252602,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -5926,6 +6097,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -5939,7 +6112,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -5950,11 +6130,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6031,6 +6221,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -6044,7 +6236,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -6055,11 +6254,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6111,6 +6320,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -6124,7 +6335,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -6135,11 +6353,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6709,6 +6937,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -6722,7 +6952,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -6733,11 +6970,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6808,6 +7055,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -6821,7 +7070,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -6832,11 +7088,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -7463,6 +7729,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -7476,7 +7744,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -7487,11 +7762,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -7780,6 +8065,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -7793,7 +8080,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -7804,11 +8098,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -8392,6 +8696,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -8405,7 +8711,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -8416,11 +8729,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9041,6 +9364,8 @@
                         "karmakala_type": "pradosha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8640.000008046627,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -9054,7 +9379,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1144,
+                            "winning_window_overlap_seconds": 8640.000008046627,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -9065,11 +9397,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1144,
+                        "winning_window_overlap_seconds": 8640.000008046627,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9652,6 +9994,8 @@
                         "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 7507.399995625019,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -9665,7 +10009,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1125,
+                            "winning_window_overlap_seconds": 7507.399995625019,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -9676,11 +10027,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1125,
+                        "winning_window_overlap_seconds": 7507.399995625019,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9735,6 +10096,8 @@
                         "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 7507.399995625019,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -9748,7 +10111,14 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1125,
+                            "winning_window_overlap_seconds": 7507.399995625019,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -9759,11 +10129,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1125,
+                        "winning_window_overlap_seconds": 7507.399995625019,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9834,6 +10214,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
@@ -9847,7 +10229,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -9858,11 +10247,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -10139,6 +10538,8 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 3599.999986588955,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": true,
@@ -10152,7 +10553,14 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
@@ -10163,11 +10571,21 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
+                        "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }

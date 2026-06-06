@@ -143,6 +143,21 @@ trait PanchangSelectiveApiTrait
                 [$relSunrise] = $this->sunService->getSunriseSunset($prevBirth);
             }
 
+            $previousForSunrise = $relSunrise->subDay();
+            $previousSunriseBirth = [
+                'year' => $previousForSunrise->year,
+                'month' => $previousForSunrise->month,
+                'day' => $previousForSunrise->day,
+                'hour' => 0,
+                'minute' => 0,
+                'second' => 0,
+                'timezone' => $tz,
+                'latitude' => $lat,
+                'longitude' => $lon,
+                'elevation' => $elevation,
+            ];
+            [$previousSunrise] = $this->sunService->getSunriseSunset($previousSunriseBirth);
+
             $birthAt = [
                 ...$birthBase,
                 'hour' => (int) $at->format('H'),
@@ -163,6 +178,7 @@ trait PanchangSelectiveApiTrait
                 'calculation_at' => $at,
                 'birth_at' => $birthAt,
                 'rel_sunrise' => $relSunrise,
+                'previous_sunrise' => $previousSunrise,
                 'sunrise_birth' => $sunriseBirth,
             ];
         };
@@ -224,6 +240,7 @@ trait PanchangSelectiveApiTrait
             $ensureTimeContext();
             $ctx['jds'] = [
                 'sunrise' => $this->toJulianDayFromCarbon($ctx['time']['rel_sunrise'], $tz),
+                'previous_sunrise' => $this->toJulianDayFromCarbon($ctx['time']['previous_sunrise'], $tz),
                 'sunset' => $this->toJulianDayFromCarbon($ctx['sun']['sunset'], $tz),
                 'next_sunrise' => $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], $tz),
                 'calculation_at' => $this->toJulianDayFromCarbon($ctx['time']['calculation_at'], $tz),
@@ -402,6 +419,7 @@ trait PanchangSelectiveApiTrait
                 ],
                 'Resolution_Context' => [
                     'sunrise_jd' => $ctx['jds']['sunrise'],
+                    'previous_sunrise_jd' => $ctx['jds']['previous_sunrise'],
                     'sunset_jd' => $ctx['jds']['sunset'],
                     'next_sunrise_jd' => $ctx['jds']['next_sunrise'],
                     'tithi_start_jd' => $ctx['crossings']['tithi_start_jd'],
@@ -411,6 +429,7 @@ trait PanchangSelectiveApiTrait
                     'tithi_index_phase' => (int) $tithi['index'] > 15 ? (int) $tithi['index'] - 15 : (int) $tithi['index'],
                     'paksha' => (string) ($tithi['paksha'] ?? ''),
                     'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+                    'previous_sunrise_iso' => AstroCore::formatDateTime($ctx['time']['previous_sunrise']),
                     'sunset_iso' => AstroCore::formatDateTime($sunset),
                     'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                     'sankranti_rashi' => $ctx['sankranti']['rashi'],
@@ -785,12 +804,14 @@ trait PanchangSelectiveApiTrait
                     $ensureJds(); $ensurePanchanga();
                     return $this->findBhadraPeriods($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], (int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''));
                 })(),
-                'Dharma_Sindhu' => (function () use (&$ctx, $ensureSankranti, $ensurePanchanga, $ensureCrossings, $ensureJds, $tz, $lat, $lon, $buildShivaVaasa, $buildAgniVaasa, $buildYoginiVaasa): array {
-                    $ensureSankranti(); $ensurePanchanga(); $ensureCrossings(); $ensureJds();
+                'Dharma_Sindhu' => (function () use (&$ctx, $ensureSankranti, $ensurePanchanga, $ensureCrossings, $ensureJds, $ensureHinduMonth, $tz, $lat, $lon, $buildShivaVaasa, $buildAgniVaasa, $buildYoginiVaasa): array {
+                    $ensureSankranti(); $ensurePanchanga(); $ensureCrossings(); $ensureJds(); $ensureHinduMonth();
                     $tithiNum = (int) $ctx['panchanga']['tithi']['index'];
+                    $month = (string) ($ctx['hindu_month']['Month_Amanta_En'] ?? $ctx['hindu_month']['Month_Amanta'] ?? '');
+                    $paksha = (string) ($ctx['panchanga']['tithi']['paksha'] ?? '');
                     return array_filter([
                         'Punya_Kaal' => $ctx['sankranti']['punya_kaal'],
-                        'Ekadashi_Observance' => $this->buildEkadashiObservance($tithiNum, $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $tz, $lat, $lon),
+                        'Ekadashi_Observance' => $this->buildEkadashiObservance($tithiNum, $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $tz, $lat, $lon, $ctx['jds']['previous_sunrise'], $month, $paksha),
                         'Shiva_Vaasa' => $buildShivaVaasa(),
                         'Agni_Vaasa' => $buildAgniVaasa(),
                         'Yogini_Vaasa' => $buildYoginiVaasa(),

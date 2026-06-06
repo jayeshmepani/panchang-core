@@ -393,7 +393,10 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $nextSunriseJd,
         string $tz,
         float $lat,
-        float $lon
+        float $lon,
+        ?float $previousSunriseJd = null,
+        ?string $monthAmanta = null,
+        ?string $paksha = null
     ): ?array {
         return $this->ekadashiParanaCalculator->buildEkadashiObservance(
             $tithiNumber,
@@ -404,7 +407,10 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $nextSunriseJd,
             $tz,
             $lat,
-            $lon
+            $lon,
+            $previousSunriseJd,
+            $monthAmanta,
+            $paksha
         );
     }
 

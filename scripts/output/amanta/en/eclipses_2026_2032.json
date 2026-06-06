@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-05T10:55:25+00:00",
+        "generated_at": "2026-06-06T20:28:19+00:00",
         "type": "eclipses",
         "from_year": 2026,
         "to_year": 2032,
@@ -27,7 +27,10 @@
                     "jd": 2461089.0086204344,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -57,6 +60,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -80,6 +87,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 304
                 },
                 {
@@ -91,8 +109,10 @@
                     "datetime": "03/03/2026 05:04:14 PM",
                     "jd": 2461102.982114697,
                     "magnitudes": {
-                        "umbral": 1.1532400933932143,
-                        "penumbral": 2.1862981825587227
+                        "umbral": 1.1532400933932159,
+                        "penumbral": 2.1862981825587244,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -132,6 +152,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Penumbral",
                         "retflag": 299,
                         "window": {
@@ -161,6 +185,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 299
                 },
                 {
@@ -173,7 +208,10 @@
                     "jd": 2461265.240601616,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -203,6 +241,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -226,6 +268,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 309
                 },
                 {
@@ -238,7 +291,9 @@
                     "jd": 2461280.6760356044,
                     "magnitudes": {
                         "umbral": 0.9324411274081709,
-                        "penumbral": 1.966894532782135
+                        "penumbral": 1.966894532782135,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -272,6 +327,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 297,
                         "window": {
@@ -301,6 +360,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 297
                 }
             ],
@@ -315,7 +385,10 @@
                     "jd": 2461443.1668419973,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -351,6 +424,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -374,6 +451,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 304
                 },
                 {
@@ -386,7 +474,9 @@
                     "jd": 2461457.4675964573,
                     "magnitudes": {
                         "umbral": -0.054536624637522825,
-                        "penumbral": 0.9287277673234376
+                        "penumbral": 0.9287277673234376,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -414,6 +504,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": true,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Penumbral",
                         "retflag": 298,
                         "window": {
@@ -443,6 +537,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 },
                 {
@@ -455,7 +560,9 @@
                     "jd": 2461605.1691567544,
                     "magnitudes": {
                         "umbral": -1.0637167251739195,
-                        "penumbral": 0.005262801352932537
+                        "penumbral": 0.005262801352932537,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -483,6 +590,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": true,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Penumbral",
                         "retflag": 298,
                         "window": {
@@ -512,6 +623,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 },
                 {
@@ -523,8 +645,11 @@
                     "datetime": "02/08/2027 04:33:21 PM",
                     "jd": 2461619.9606617414,
                     "magnitudes": {
-                        "eclipse": 0.3845186954431124,
-                        "obscuration": 0.2743148987850926
+                        "eclipse": 0.38451869544513984,
+                        "local_eclipse": 0.38451869544513984,
+                        "obscuration": 0.2743148987871693,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "first_contact_jd": {
@@ -569,6 +694,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": "Partial",
                         "retflag": 308,
                         "window": {
@@ -590,6 +719,25 @@
                         "relaxed_end": "02/08/2027 05:22:41 PM",
                         "duration_hours": 12
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2461619.923603789,
+                        "visible_start": "02/08/2027 03:39:59 PM",
+                        "visible_end_jd": 2461619.994927641,
+                        "visible_end": "02/08/2027 05:22:41 PM",
+                        "sunrise_jd": 2461619.535601615,
+                        "sunset_jd": 2461620.0859912205,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2461619.994927641,
+                        "starts_after": "02/08/2027 05:22:41 PM"
+                    },
                     "retflag": 309
                 },
                 {
@@ -602,7 +750,9 @@
                     "jd": 2461634.8017030614,
                     "magnitudes": {
                         "umbral": -0.5232230777681162,
-                        "penumbral": 0.5474904180981016
+                        "penumbral": 0.5474904180981016,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -630,6 +780,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
@@ -659,6 +813,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 }
             ],
@@ -672,8 +837,10 @@
                     "datetime": "12/01/2028 09:43:33 AM",
                     "jd": 2461782.676086169,
                     "magnitudes": {
-                        "umbral": 0.0705544276512994,
-                        "penumbral": 1.050929039221064
+                        "umbral": 0.0705544276513015,
+                        "penumbral": 1.0509290392210662,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -707,6 +874,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 297,
                         "window": {
@@ -736,6 +907,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 297
                 },
                 {
@@ -748,7 +930,10 @@
                     "jd": 2461797.1308655683,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -784,6 +969,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -807,6 +996,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 304
                 },
                 {
@@ -819,7 +1019,9 @@
                     "jd": 2461959.264091564,
                     "magnitudes": {
                         "umbral": 0.39372849642968927,
-                        "penumbral": 1.4309088382770259
+                        "penumbral": 1.4309088382770259,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -853,6 +1055,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Partial",
                         "retflag": 297,
                         "window": {
@@ -880,6 +1086,25 @@
                         "relaxed_end": "07/07/2028 01:01:28 AM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2461959.214664721,
+                        "visible_start": "06/07/2028 10:39:07 PM",
+                        "visible_end_jd": 2461959.313521783,
+                        "visible_end": "07/07/2028 01:01:28 AM",
+                        "sunrise_jd": 2461959.528094927,
+                        "sunset_jd": 2461959.091826436,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2461959.313521783,
+                        "starts_after": "07/07/2028 01:01:28 AM"
+                    },
                     "retflag": 297
                 },
                 {
@@ -889,10 +1114,13 @@
                     "local_eclipse_type": null,
                     "date": "2028-07-22",
                     "datetime": "22/07/2028 08:25:55 AM",
-                    "jd": 2461974.6221680306,
+                    "jd": 2461974.6221680758,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -907,7 +1135,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2461974.6221680306,
+                            "jd": 2461974.6221680758,
                             "time": "22/07/2028 08:25:55 AM"
                         },
                         "third_contact_jd": null,
@@ -922,6 +1150,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -945,6 +1177,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 309
                 },
                 {
@@ -957,7 +1200,9 @@
                     "jd": 2462137.203201241,
                     "magnitudes": {
                         "umbral": 1.2510290064186078,
-                        "penumbral": 2.2788656878194007
+                        "penumbral": 2.2788656878194007,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -997,6 +1242,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Total",
                         "retflag": 299,
                         "window": {
@@ -1024,6 +1273,25 @@
                         "relaxed_end": "01/01/2029 12:07:15 AM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2462137.1305195745,
+                        "visible_start": "31/12/2028 08:37:56 PM",
+                        "visible_end_jd": 2462137.275874217,
+                        "visible_end": "01/01/2029 12:07:15 AM",
+                        "sunrise_jd": 2462137.584780056,
+                        "sunset_jd": 2462137.032861389,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2462137.275874217,
+                        "starts_after": "01/01/2029 12:07:15 AM"
+                    },
                     "retflag": 299
                 }
             ],
@@ -1038,7 +1306,10 @@
                     "jd": 2462151.217554229,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -1068,6 +1339,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -1091,6 +1366,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 308
                 },
                 {
@@ -1100,10 +1386,13 @@
                     "local_eclipse_type": null,
                     "date": "2029-06-12",
                     "datetime": "12/06/2029 09:35:27 AM",
-                    "jd": 2462299.670459806,
+                    "jd": 2462299.670459851,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -1118,7 +1407,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462299.670459806,
+                            "jd": 2462299.670459851,
                             "time": "12/06/2029 09:35:27 AM"
                         },
                         "third_contact_jd": null,
@@ -1133,6 +1422,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -1156,6 +1449,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 308
                 },
                 {
@@ -1168,7 +1472,9 @@
                     "jd": 2462313.640748907,
                     "magnitudes": {
                         "umbral": 1.846434611023467,
-                        "penumbral": 2.829368907176946
+                        "penumbral": 2.829368907176946,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1208,6 +1514,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 299,
                         "window": {
@@ -1237,6 +1547,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 299
                 },
                 {
@@ -1246,10 +1567,13 @@
                     "local_eclipse_type": null,
                     "date": "2029-07-11",
                     "datetime": "11/07/2029 09:06:28 PM",
-                    "jd": 2462329.15033076,
+                    "jd": 2462329.1503307605,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -1264,7 +1588,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462329.15033076,
+                            "jd": 2462329.1503307605,
                             "time": "11/07/2029 09:06:28 PM"
                         },
                         "third_contact_jd": null,
@@ -1279,6 +1603,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -1302,6 +1630,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 308
                 },
                 {
@@ -1311,10 +1650,13 @@
                     "local_eclipse_type": null,
                     "date": "2029-12-05",
                     "datetime": "05/12/2029 08:33:17 PM",
-                    "jd": 2462476.1272871257,
+                    "jd": 2462476.127287126,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -1329,7 +1671,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462476.1272871257,
+                            "jd": 2462476.127287126,
                             "time": "05/12/2029 08:33:17 PM"
                         },
                         "third_contact_jd": null,
@@ -1344,6 +1686,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -1367,6 +1713,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 308
                 },
                 {
@@ -1379,7 +1736,9 @@
                     "jd": 2462491.4462645226,
                     "magnitudes": {
                         "umbral": 1.1199166453010174,
-                        "penumbral": 2.2031517047422127
+                        "penumbral": 2.2031517047422127,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1419,6 +1778,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Total",
                         "retflag": 299,
                         "window": {
@@ -1446,6 +1809,25 @@
                         "relaxed_end": "21/12/2029 05:59:27 AM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2462491.372059593,
+                        "visible_start": "21/12/2029 02:25:45 AM",
+                        "visible_end_jd": 2462491.5204625605,
+                        "visible_end": "21/12/2029 05:59:27 AM",
+                        "sunrise_jd": 2462491.5815820685,
+                        "sunset_jd": 2462492.0287955576,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2462491.5204625605,
+                        "starts_after": "21/12/2029 05:59:27 AM"
+                    },
                     "retflag": 299
                 }
             ],
@@ -1457,24 +1839,27 @@
                     "local_eclipse_type": "Partial",
                     "date": "2030-06-01",
                     "datetime": "01/06/2030 10:58:57 AM",
-                    "jd": 2462653.728446573,
+                    "jd": 2462653.728446646,
                     "magnitudes": {
-                        "eclipse": 0.11491423153806558,
-                        "obscuration": 0.04528269259871744
+                        "eclipse": 0.11491423289467813,
+                        "local_eclipse": 0.11491423289467813,
+                        "obscuration": 0.045282693425480317,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "first_contact_jd": {
-                            "jd": 2462653.6920342194,
+                            "jd": 2462653.692034292,
                             "time": "01/06/2030 10:06:31 AM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462653.728446573,
+                            "jd": 2462653.728446646,
                             "time": "01/06/2030 10:58:57 AM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2462653.7693437897,
+                            "jd": 2462653.7693438623,
                             "time": "01/06/2030 11:57:51 AM"
                         },
                         "sunrise_jd": null,
@@ -1505,26 +1890,49 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": "Partial",
                         "retflag": 308,
                         "window": {
-                            "start_jd": 2462653.6920342194,
+                            "start_jd": 2462653.692034292,
                             "start": "01/06/2030 10:06:31 AM",
-                            "end_jd": 2462653.7693437897,
+                            "end_jd": 2462653.7693438623,
                             "end": "01/06/2030 11:57:51 AM"
                         }
                     },
                     "sutak": {
                         "applicable": true,
                         "start_jd": 2462653.19544172,
-                        "end_jd": 2462653.7693437897,
+                        "end_jd": 2462653.7693438623,
                         "start": "31/05/2030 10:11:26 PM",
                         "end": "01/06/2030 11:57:51 AM",
                         "relaxed_start_jd": 2462653.523861884,
-                        "relaxed_end_jd": 2462653.7693437897,
+                        "relaxed_end_jd": 2462653.7693438623,
                         "relaxed_start": "01/06/2030 06:04:21 AM",
                         "relaxed_end": "01/06/2030 11:57:51 AM",
                         "duration_hours": 12
+                    },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2462653.692034292,
+                        "visible_start": "01/06/2030 10:06:31 AM",
+                        "visible_end_jd": 2462653.7693438623,
+                        "visible_end": "01/06/2030 11:57:51 AM",
+                        "sunrise_jd": 2462653.523861884,
+                        "sunset_jd": 2462654.086271601,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2462653.7693438623,
+                        "starts_after": "01/06/2030 11:57:51 AM"
                     },
                     "retflag": 304
                 },
@@ -1538,7 +1946,9 @@
                     "jd": 2462668.273462731,
                     "magnitudes": {
                         "umbral": 0.5049523114011153,
-                        "penumbral": 1.4503008523770917
+                        "penumbral": 1.4503008523770917,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1572,6 +1982,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Partial",
                         "retflag": 297,
                         "window": {
@@ -1599,6 +2013,25 @@
                         "relaxed_end": "16/06/2030 01:16:11 AM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2462668.223183344,
+                        "visible_start": "15/06/2030 10:51:23 PM",
+                        "visible_end_jd": 2462668.3237435045,
+                        "visible_end": "16/06/2030 01:16:11 AM",
+                        "sunrise_jd": 2462668.5239407215,
+                        "sunset_jd": 2462668.0898917485,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2462668.3237435045,
+                        "starts_after": "16/06/2030 01:16:11 AM"
+                    },
                     "retflag": 297
                 },
                 {
@@ -1608,10 +2041,13 @@
                     "local_eclipse_type": null,
                     "date": "2030-11-25",
                     "datetime": "25/11/2030 12:20:52 PM",
-                    "jd": 2462830.7853249004,
+                    "jd": 2462830.7853248953,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -1624,17 +2060,17 @@
                     },
                     "global_contacts": {
                         "first_contact_jd": {
-                            "jd": 2462830.7584676,
+                            "jd": 2462830.7584675956,
                             "time": "25/11/2030 11:42:11 AM"
                         },
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2462830.7853249004,
+                            "jd": 2462830.7853248953,
                             "time": "25/11/2030 12:20:52 PM"
                         },
                         "third_contact_jd": null,
                         "fourth_contact_jd": {
-                            "jd": 2462830.8121771654,
+                            "jd": 2462830.81217716,
                             "time": "25/11/2030 12:59:32 PM"
                         },
                         "sunrise_jd": null,
@@ -1647,6 +2083,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -1670,6 +2110,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 309
                 },
                 {
@@ -1682,7 +2133,9 @@
                     "jd": 2462845.436303885,
                     "magnitudes": {
                         "umbral": -0.1606447441356739,
-                        "penumbral": 0.9434572733478531
+                        "penumbral": 0.9434572733478531,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1710,6 +2163,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": true,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Penumbral",
                         "retflag": 298,
                         "window": {
@@ -1739,6 +2196,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 }
             ],
@@ -1753,7 +2221,9 @@
                     "jd": 2462993.6606682823,
                     "magnitudes": {
                         "umbral": -0.08612262842526823,
-                        "penumbral": 0.8854965017875
+                        "penumbral": 0.8854965017875,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1781,6 +2251,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
@@ -1810,6 +2284,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 },
                 {
@@ -1822,7 +2307,10 @@
                     "jd": 2463007.8060617177,
                     "magnitudes": {
                         "eclipse": 0.5442939102123742,
-                        "obscuration": 0.4349842736608601
+                        "local_eclipse": 0.5442939102123742,
+                        "obscuration": 0.4349842736608601,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "first_contact_jd": {
@@ -1867,6 +2355,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": "Partial",
                         "retflag": 308,
                         "window": {
@@ -1888,6 +2380,25 @@
                         "relaxed_end": "21/05/2031 02:33:32 PM",
                         "duration_hours": 12
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2463007.73559602,
+                        "visible_start": "21/05/2031 11:09:15 AM",
+                        "visible_end_jd": 2463007.8774582017,
+                        "visible_end": "21/05/2031 02:33:32 PM",
+                        "sunrise_jd": 2463007.525738715,
+                        "sunset_jd": 2463008.082701044,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2463007.8774582017,
+                        "starts_after": "21/05/2031 02:33:32 PM"
+                    },
                     "retflag": 304
                 },
                 {
@@ -1900,7 +2411,9 @@
                     "jd": 2463022.989313889,
                     "magnitudes": {
                         "umbral": -0.8177157954193571,
-                        "penumbral": 0.13094603293236518
+                        "penumbral": 0.13094603293236518,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1928,6 +2441,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
@@ -1957,6 +2474,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 },
                 {
@@ -1969,7 +2497,9 @@
                     "jd": 2463169.8235758543,
                     "magnitudes": {
                         "umbral": -0.31609691000643125,
-                        "penumbral": 0.7201326441166159
+                        "penumbral": 0.7201326441166159,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -1997,6 +2527,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": null,
                         "retflag": 298,
                         "window": {
@@ -2026,6 +2560,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 298
                 },
                 {
@@ -2038,7 +2583,10 @@
                     "jd": 2463185.3797182967,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -2074,6 +2622,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -2097,6 +2649,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 306
                 }
             ],
@@ -2110,8 +2673,10 @@
                     "datetime": "25/04/2032 08:44:10 PM",
                     "jd": 2463348.134847014,
                     "magnitudes": {
-                        "umbral": 1.1960913408372267,
-                        "penumbral": 2.2238630791536065
+                        "umbral": 1.1960913408372233,
+                        "penumbral": 2.223863079153603,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -2151,6 +2716,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Total",
                         "retflag": 299,
                         "window": {
@@ -2178,6 +2747,25 @@
                         "relaxed_end": "25/04/2032 10:30:01 PM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2463348.0722692944,
+                        "visible_start": "25/04/2032 07:14:04 PM",
+                        "visible_end_jd": 2463348.2083472386,
+                        "visible_end": "25/04/2032 10:30:01 PM",
+                        "sunrise_jd": 2463347.535760561,
+                        "sunset_jd": 2463348.0745795537,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2463348.2083472386,
+                        "starts_after": "25/04/2032 10:30:01 PM"
+                    },
                     "retflag": 299
                 },
                 {
@@ -2187,10 +2775,13 @@
                     "local_eclipse_type": null,
                     "date": "2032-05-09",
                     "datetime": "09/05/2032 06:56:05 PM",
-                    "jd": 2463362.0597821265,
+                    "jd": 2463362.0597820813,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -2205,7 +2796,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463362.0597821265,
+                            "jd": 2463362.0597820813,
                             "time": "09/05/2032 06:56:05 PM"
                         },
                         "third_contact_jd": null,
@@ -2220,6 +2811,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -2243,6 +2838,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 304
                 },
                 {
@@ -2255,7 +2861,9 @@
                     "jd": 2463524.293688124,
                     "magnitudes": {
                         "umbral": 1.1074297607547825,
-                        "penumbral": 2.0875450256001518
+                        "penumbral": 2.0875450256001518,
+                        "ritual_minimum": 0.0625,
+                        "meets_ritual_minimum": true
                     },
                     "contacts": {
                         "penumbral_begin_jd": {
@@ -2295,6 +2903,10 @@
                     "visibility": {
                         "visible": true,
                         "astronomical_visible": true,
+                        "unaided_eye_ritual_visible": true,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": true,
+                        "ritual_magnitude_minimum": 0.0625,
                         "local_eclipse_type": "Total",
                         "retflag": 299,
                         "window": {
@@ -2322,6 +2934,25 @@
                         "relaxed_end": "19/10/2032 02:11:07 AM",
                         "duration_hours": 9
                     },
+                    "ritual_boundary": {
+                        "type": "ordinary_visible_eclipse",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "visible_start_jd": 2463524.2254885044,
+                        "visible_start": "18/10/2032 10:54:42 PM",
+                        "visible_end_jd": 2463524.361893315,
+                        "visible_end": "19/10/2032 02:11:07 AM",
+                        "sunrise_jd": 2463524.5551697407,
+                        "sunset_jd": 2463524.037178355,
+                        "rule": "visible_at_sunrise_or_sunset_boundary"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": true,
+                        "snana_required": true,
+                        "fresh_food_after_eclipse": true,
+                        "starts_after_jd": 2463524.361893315,
+                        "starts_after": "19/10/2032 02:11:07 AM"
+                    },
                     "retflag": 299
                 },
                 {
@@ -2331,10 +2962,13 @@
                     "local_eclipse_type": null,
                     "date": "2032-11-03",
                     "datetime": "03/11/2032 11:03:28 AM",
-                    "jd": 2463539.731581821,
+                    "jd": 2463539.7315818206,
                     "magnitudes": {
                         "eclipse": 0,
-                        "obscuration": 0
+                        "local_eclipse": 0,
+                        "obscuration": 0,
+                        "ritual_minimum": 0.08333333333333333,
+                        "meets_ritual_minimum": false
                     },
                     "contacts": {
                         "first_contact_jd": null,
@@ -2349,7 +2983,7 @@
                         "first_contact_jd": null,
                         "second_contact_jd": null,
                         "maximum_jd": {
-                            "jd": 2463539.731581821,
+                            "jd": 2463539.7315818206,
                             "time": "03/11/2032 11:03:28 AM"
                         },
                         "third_contact_jd": null,
@@ -2364,6 +2998,10 @@
                     "visibility": {
                         "visible": false,
                         "astronomical_visible": false,
+                        "unaided_eye_ritual_visible": false,
+                        "telescope_only": false,
+                        "meets_ritual_magnitude": false,
+                        "ritual_magnitude_minimum": 0.08333333333333333,
                         "local_eclipse_type": null,
                         "retflag": -1,
                         "window": {
@@ -2387,6 +3025,17 @@
                         "relaxed_end": null,
                         "duration_hours": 0
                     },
+                    "ritual_boundary": {
+                        "type": "not_applicable",
+                        "grast_uday": false,
+                        "grast_ast": false,
+                        "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                    },
+                    "post_eclipse_ritual": {
+                        "applicable": false,
+                        "snana_required": false,
+                        "fresh_food_after_eclipse": false
+                    },
                     "retflag": 308
                 }
             ]
@@ -2402,7 +3051,10 @@
                 "jd": 2461089.0086204344,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -2432,6 +3084,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -2455,6 +3111,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 304
             },
             {
@@ -2466,8 +3133,10 @@
                 "datetime": "03/03/2026 05:04:14 PM",
                 "jd": 2461102.982114697,
                 "magnitudes": {
-                    "umbral": 1.1532400933932143,
-                    "penumbral": 2.1862981825587227
+                    "umbral": 1.1532400933932159,
+                    "penumbral": 2.1862981825587244,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -2507,6 +3176,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Penumbral",
                     "retflag": 299,
                     "window": {
@@ -2536,6 +3209,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 299
             },
             {
@@ -2548,7 +3232,10 @@
                 "jd": 2461265.240601616,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -2578,6 +3265,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -2601,6 +3292,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 309
             },
             {
@@ -2613,7 +3315,9 @@
                 "jd": 2461280.6760356044,
                 "magnitudes": {
                     "umbral": 0.9324411274081709,
-                    "penumbral": 1.966894532782135
+                    "penumbral": 1.966894532782135,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -2647,6 +3351,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 297,
                     "window": {
@@ -2676,6 +3384,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 297
             },
             {
@@ -2688,7 +3407,10 @@
                 "jd": 2461443.1668419973,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -2724,6 +3446,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -2747,6 +3473,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 304
             },
             {
@@ -2759,7 +3496,9 @@
                 "jd": 2461457.4675964573,
                 "magnitudes": {
                     "umbral": -0.054536624637522825,
-                    "penumbral": 0.9287277673234376
+                    "penumbral": 0.9287277673234376,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -2787,6 +3526,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": true,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Penumbral",
                     "retflag": 298,
                     "window": {
@@ -2816,6 +3559,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -2828,7 +3582,9 @@
                 "jd": 2461605.1691567544,
                 "magnitudes": {
                     "umbral": -1.0637167251739195,
-                    "penumbral": 0.005262801352932537
+                    "penumbral": 0.005262801352932537,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -2856,6 +3612,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": true,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Penumbral",
                     "retflag": 298,
                     "window": {
@@ -2885,6 +3645,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -2896,8 +3667,11 @@
                 "datetime": "02/08/2027 04:33:21 PM",
                 "jd": 2461619.9606617414,
                 "magnitudes": {
-                    "eclipse": 0.3845186954431124,
-                    "obscuration": 0.2743148987850926
+                    "eclipse": 0.38451869544513984,
+                    "local_eclipse": 0.38451869544513984,
+                    "obscuration": 0.2743148987871693,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "first_contact_jd": {
@@ -2942,6 +3716,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": "Partial",
                     "retflag": 308,
                     "window": {
@@ -2963,6 +3741,25 @@
                     "relaxed_end": "02/08/2027 05:22:41 PM",
                     "duration_hours": 12
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2461619.923603789,
+                    "visible_start": "02/08/2027 03:39:59 PM",
+                    "visible_end_jd": 2461619.994927641,
+                    "visible_end": "02/08/2027 05:22:41 PM",
+                    "sunrise_jd": 2461619.535601615,
+                    "sunset_jd": 2461620.0859912205,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2461619.994927641,
+                    "starts_after": "02/08/2027 05:22:41 PM"
+                },
                 "retflag": 309
             },
             {
@@ -2975,7 +3772,9 @@
                 "jd": 2461634.8017030614,
                 "magnitudes": {
                     "umbral": -0.5232230777681162,
-                    "penumbral": 0.5474904180981016
+                    "penumbral": 0.5474904180981016,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3003,6 +3802,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
@@ -3032,6 +3835,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -3043,8 +3857,10 @@
                 "datetime": "12/01/2028 09:43:33 AM",
                 "jd": 2461782.676086169,
                 "magnitudes": {
-                    "umbral": 0.0705544276512994,
-                    "penumbral": 1.050929039221064
+                    "umbral": 0.0705544276513015,
+                    "penumbral": 1.0509290392210662,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3078,6 +3894,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 297,
                     "window": {
@@ -3107,6 +3927,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 297
             },
             {
@@ -3119,7 +3950,10 @@
                 "jd": 2461797.1308655683,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3155,6 +3989,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3178,6 +4016,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 304
             },
             {
@@ -3190,7 +4039,9 @@
                 "jd": 2461959.264091564,
                 "magnitudes": {
                     "umbral": 0.39372849642968927,
-                    "penumbral": 1.4309088382770259
+                    "penumbral": 1.4309088382770259,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3224,6 +4075,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Partial",
                     "retflag": 297,
                     "window": {
@@ -3251,6 +4106,25 @@
                     "relaxed_end": "07/07/2028 01:01:28 AM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2461959.214664721,
+                    "visible_start": "06/07/2028 10:39:07 PM",
+                    "visible_end_jd": 2461959.313521783,
+                    "visible_end": "07/07/2028 01:01:28 AM",
+                    "sunrise_jd": 2461959.528094927,
+                    "sunset_jd": 2461959.091826436,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2461959.313521783,
+                    "starts_after": "07/07/2028 01:01:28 AM"
+                },
                 "retflag": 297
             },
             {
@@ -3260,10 +4134,13 @@
                 "local_eclipse_type": null,
                 "date": "2028-07-22",
                 "datetime": "22/07/2028 08:25:55 AM",
-                "jd": 2461974.6221680306,
+                "jd": 2461974.6221680758,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3278,7 +4155,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2461974.6221680306,
+                        "jd": 2461974.6221680758,
                         "time": "22/07/2028 08:25:55 AM"
                     },
                     "third_contact_jd": null,
@@ -3293,6 +4170,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3316,6 +4197,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 309
             },
             {
@@ -3328,7 +4220,9 @@
                 "jd": 2462137.203201241,
                 "magnitudes": {
                     "umbral": 1.2510290064186078,
-                    "penumbral": 2.2788656878194007
+                    "penumbral": 2.2788656878194007,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3368,6 +4262,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Total",
                     "retflag": 299,
                     "window": {
@@ -3395,6 +4293,25 @@
                     "relaxed_end": "01/01/2029 12:07:15 AM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2462137.1305195745,
+                    "visible_start": "31/12/2028 08:37:56 PM",
+                    "visible_end_jd": 2462137.275874217,
+                    "visible_end": "01/01/2029 12:07:15 AM",
+                    "sunrise_jd": 2462137.584780056,
+                    "sunset_jd": 2462137.032861389,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2462137.275874217,
+                    "starts_after": "01/01/2029 12:07:15 AM"
+                },
                 "retflag": 299
             },
             {
@@ -3407,7 +4324,10 @@
                 "jd": 2462151.217554229,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3437,6 +4357,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3460,6 +4384,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 308
             },
             {
@@ -3469,10 +4404,13 @@
                 "local_eclipse_type": null,
                 "date": "2029-06-12",
                 "datetime": "12/06/2029 09:35:27 AM",
-                "jd": 2462299.670459806,
+                "jd": 2462299.670459851,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3487,7 +4425,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462299.670459806,
+                        "jd": 2462299.670459851,
                         "time": "12/06/2029 09:35:27 AM"
                     },
                     "third_contact_jd": null,
@@ -3502,6 +4440,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3525,6 +4467,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 308
             },
             {
@@ -3537,7 +4490,9 @@
                 "jd": 2462313.640748907,
                 "magnitudes": {
                     "umbral": 1.846434611023467,
-                    "penumbral": 2.829368907176946
+                    "penumbral": 2.829368907176946,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3577,6 +4532,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 299,
                     "window": {
@@ -3606,6 +4565,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 299
             },
             {
@@ -3615,10 +4585,13 @@
                 "local_eclipse_type": null,
                 "date": "2029-07-11",
                 "datetime": "11/07/2029 09:06:28 PM",
-                "jd": 2462329.15033076,
+                "jd": 2462329.1503307605,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3633,7 +4606,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462329.15033076,
+                        "jd": 2462329.1503307605,
                         "time": "11/07/2029 09:06:28 PM"
                     },
                     "third_contact_jd": null,
@@ -3648,6 +4621,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3671,6 +4648,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 308
             },
             {
@@ -3680,10 +4668,13 @@
                 "local_eclipse_type": null,
                 "date": "2029-12-05",
                 "datetime": "05/12/2029 08:33:17 PM",
-                "jd": 2462476.1272871257,
+                "jd": 2462476.127287126,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3698,7 +4689,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462476.1272871257,
+                        "jd": 2462476.127287126,
                         "time": "05/12/2029 08:33:17 PM"
                     },
                     "third_contact_jd": null,
@@ -3713,6 +4704,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -3736,6 +4731,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 308
             },
             {
@@ -3748,7 +4754,9 @@
                 "jd": 2462491.4462645226,
                 "magnitudes": {
                     "umbral": 1.1199166453010174,
-                    "penumbral": 2.2031517047422127
+                    "penumbral": 2.2031517047422127,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3788,6 +4796,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Total",
                     "retflag": 299,
                     "window": {
@@ -3815,6 +4827,25 @@
                     "relaxed_end": "21/12/2029 05:59:27 AM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2462491.372059593,
+                    "visible_start": "21/12/2029 02:25:45 AM",
+                    "visible_end_jd": 2462491.5204625605,
+                    "visible_end": "21/12/2029 05:59:27 AM",
+                    "sunrise_jd": 2462491.5815820685,
+                    "sunset_jd": 2462492.0287955576,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2462491.5204625605,
+                    "starts_after": "21/12/2029 05:59:27 AM"
+                },
                 "retflag": 299
             },
             {
@@ -3824,24 +4855,27 @@
                 "local_eclipse_type": "Partial",
                 "date": "2030-06-01",
                 "datetime": "01/06/2030 10:58:57 AM",
-                "jd": 2462653.728446573,
+                "jd": 2462653.728446646,
                 "magnitudes": {
-                    "eclipse": 0.11491423153806558,
-                    "obscuration": 0.04528269259871744
+                    "eclipse": 0.11491423289467813,
+                    "local_eclipse": 0.11491423289467813,
+                    "obscuration": 0.045282693425480317,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "first_contact_jd": {
-                        "jd": 2462653.6920342194,
+                        "jd": 2462653.692034292,
                         "time": "01/06/2030 10:06:31 AM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462653.728446573,
+                        "jd": 2462653.728446646,
                         "time": "01/06/2030 10:58:57 AM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2462653.7693437897,
+                        "jd": 2462653.7693438623,
                         "time": "01/06/2030 11:57:51 AM"
                     },
                     "sunrise_jd": null,
@@ -3872,26 +4906,49 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": "Partial",
                     "retflag": 308,
                     "window": {
-                        "start_jd": 2462653.6920342194,
+                        "start_jd": 2462653.692034292,
                         "start": "01/06/2030 10:06:31 AM",
-                        "end_jd": 2462653.7693437897,
+                        "end_jd": 2462653.7693438623,
                         "end": "01/06/2030 11:57:51 AM"
                     }
                 },
                 "sutak": {
                     "applicable": true,
                     "start_jd": 2462653.19544172,
-                    "end_jd": 2462653.7693437897,
+                    "end_jd": 2462653.7693438623,
                     "start": "31/05/2030 10:11:26 PM",
                     "end": "01/06/2030 11:57:51 AM",
                     "relaxed_start_jd": 2462653.523861884,
-                    "relaxed_end_jd": 2462653.7693437897,
+                    "relaxed_end_jd": 2462653.7693438623,
                     "relaxed_start": "01/06/2030 06:04:21 AM",
                     "relaxed_end": "01/06/2030 11:57:51 AM",
                     "duration_hours": 12
+                },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2462653.692034292,
+                    "visible_start": "01/06/2030 10:06:31 AM",
+                    "visible_end_jd": 2462653.7693438623,
+                    "visible_end": "01/06/2030 11:57:51 AM",
+                    "sunrise_jd": 2462653.523861884,
+                    "sunset_jd": 2462654.086271601,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2462653.7693438623,
+                    "starts_after": "01/06/2030 11:57:51 AM"
                 },
                 "retflag": 304
             },
@@ -3905,7 +4962,9 @@
                 "jd": 2462668.273462731,
                 "magnitudes": {
                     "umbral": 0.5049523114011153,
-                    "penumbral": 1.4503008523770917
+                    "penumbral": 1.4503008523770917,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -3939,6 +4998,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Partial",
                     "retflag": 297,
                     "window": {
@@ -3966,6 +5029,25 @@
                     "relaxed_end": "16/06/2030 01:16:11 AM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2462668.223183344,
+                    "visible_start": "15/06/2030 10:51:23 PM",
+                    "visible_end_jd": 2462668.3237435045,
+                    "visible_end": "16/06/2030 01:16:11 AM",
+                    "sunrise_jd": 2462668.5239407215,
+                    "sunset_jd": 2462668.0898917485,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2462668.3237435045,
+                    "starts_after": "16/06/2030 01:16:11 AM"
+                },
                 "retflag": 297
             },
             {
@@ -3975,10 +5057,13 @@
                 "local_eclipse_type": null,
                 "date": "2030-11-25",
                 "datetime": "25/11/2030 12:20:52 PM",
-                "jd": 2462830.7853249004,
+                "jd": 2462830.7853248953,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -3991,17 +5076,17 @@
                 },
                 "global_contacts": {
                     "first_contact_jd": {
-                        "jd": 2462830.7584676,
+                        "jd": 2462830.7584675956,
                         "time": "25/11/2030 11:42:11 AM"
                     },
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2462830.7853249004,
+                        "jd": 2462830.7853248953,
                         "time": "25/11/2030 12:20:52 PM"
                     },
                     "third_contact_jd": null,
                     "fourth_contact_jd": {
-                        "jd": 2462830.8121771654,
+                        "jd": 2462830.81217716,
                         "time": "25/11/2030 12:59:32 PM"
                     },
                     "sunrise_jd": null,
@@ -4014,6 +5099,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -4037,6 +5126,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 309
             },
             {
@@ -4049,7 +5149,9 @@
                 "jd": 2462845.436303885,
                 "magnitudes": {
                     "umbral": -0.1606447441356739,
-                    "penumbral": 0.9434572733478531
+                    "penumbral": 0.9434572733478531,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4077,6 +5179,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": true,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Penumbral",
                     "retflag": 298,
                     "window": {
@@ -4106,6 +5212,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -4118,7 +5235,9 @@
                 "jd": 2462993.6606682823,
                 "magnitudes": {
                     "umbral": -0.08612262842526823,
-                    "penumbral": 0.8854965017875
+                    "penumbral": 0.8854965017875,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4146,6 +5265,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
@@ -4175,6 +5298,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -4187,7 +5321,10 @@
                 "jd": 2463007.8060617177,
                 "magnitudes": {
                     "eclipse": 0.5442939102123742,
-                    "obscuration": 0.4349842736608601
+                    "local_eclipse": 0.5442939102123742,
+                    "obscuration": 0.4349842736608601,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "first_contact_jd": {
@@ -4232,6 +5369,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": "Partial",
                     "retflag": 308,
                     "window": {
@@ -4253,6 +5394,25 @@
                     "relaxed_end": "21/05/2031 02:33:32 PM",
                     "duration_hours": 12
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2463007.73559602,
+                    "visible_start": "21/05/2031 11:09:15 AM",
+                    "visible_end_jd": 2463007.8774582017,
+                    "visible_end": "21/05/2031 02:33:32 PM",
+                    "sunrise_jd": 2463007.525738715,
+                    "sunset_jd": 2463008.082701044,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2463007.8774582017,
+                    "starts_after": "21/05/2031 02:33:32 PM"
+                },
                 "retflag": 304
             },
             {
@@ -4265,7 +5425,9 @@
                 "jd": 2463022.989313889,
                 "magnitudes": {
                     "umbral": -0.8177157954193571,
-                    "penumbral": 0.13094603293236518
+                    "penumbral": 0.13094603293236518,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4293,6 +5455,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
@@ -4322,6 +5488,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -4334,7 +5511,9 @@
                 "jd": 2463169.8235758543,
                 "magnitudes": {
                     "umbral": -0.31609691000643125,
-                    "penumbral": 0.7201326441166159
+                    "penumbral": 0.7201326441166159,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4362,6 +5541,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": null,
                     "retflag": 298,
                     "window": {
@@ -4391,6 +5574,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 298
             },
             {
@@ -4403,7 +5597,10 @@
                 "jd": 2463185.3797182967,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -4439,6 +5636,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -4462,6 +5663,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 306
             },
             {
@@ -4473,8 +5685,10 @@
                 "datetime": "25/04/2032 08:44:10 PM",
                 "jd": 2463348.134847014,
                 "magnitudes": {
-                    "umbral": 1.1960913408372267,
-                    "penumbral": 2.2238630791536065
+                    "umbral": 1.1960913408372233,
+                    "penumbral": 2.223863079153603,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4514,6 +5728,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Total",
                     "retflag": 299,
                     "window": {
@@ -4541,6 +5759,25 @@
                     "relaxed_end": "25/04/2032 10:30:01 PM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2463348.0722692944,
+                    "visible_start": "25/04/2032 07:14:04 PM",
+                    "visible_end_jd": 2463348.2083472386,
+                    "visible_end": "25/04/2032 10:30:01 PM",
+                    "sunrise_jd": 2463347.535760561,
+                    "sunset_jd": 2463348.0745795537,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2463348.2083472386,
+                    "starts_after": "25/04/2032 10:30:01 PM"
+                },
                 "retflag": 299
             },
             {
@@ -4550,10 +5787,13 @@
                 "local_eclipse_type": null,
                 "date": "2032-05-09",
                 "datetime": "09/05/2032 06:56:05 PM",
-                "jd": 2463362.0597821265,
+                "jd": 2463362.0597820813,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -4568,7 +5808,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463362.0597821265,
+                        "jd": 2463362.0597820813,
                         "time": "09/05/2032 06:56:05 PM"
                     },
                     "third_contact_jd": null,
@@ -4583,6 +5823,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -4606,6 +5850,17 @@
                     "relaxed_end": null,
                     "duration_hours": 0
                 },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
+                },
                 "retflag": 304
             },
             {
@@ -4618,7 +5873,9 @@
                 "jd": 2463524.293688124,
                 "magnitudes": {
                     "umbral": 1.1074297607547825,
-                    "penumbral": 2.0875450256001518
+                    "penumbral": 2.0875450256001518,
+                    "ritual_minimum": 0.0625,
+                    "meets_ritual_minimum": true
                 },
                 "contacts": {
                     "penumbral_begin_jd": {
@@ -4658,6 +5915,10 @@
                 "visibility": {
                     "visible": true,
                     "astronomical_visible": true,
+                    "unaided_eye_ritual_visible": true,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": true,
+                    "ritual_magnitude_minimum": 0.0625,
                     "local_eclipse_type": "Total",
                     "retflag": 299,
                     "window": {
@@ -4685,6 +5946,25 @@
                     "relaxed_end": "19/10/2032 02:11:07 AM",
                     "duration_hours": 9
                 },
+                "ritual_boundary": {
+                    "type": "ordinary_visible_eclipse",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "visible_start_jd": 2463524.2254885044,
+                    "visible_start": "18/10/2032 10:54:42 PM",
+                    "visible_end_jd": 2463524.361893315,
+                    "visible_end": "19/10/2032 02:11:07 AM",
+                    "sunrise_jd": 2463524.5551697407,
+                    "sunset_jd": 2463524.037178355,
+                    "rule": "visible_at_sunrise_or_sunset_boundary"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": true,
+                    "snana_required": true,
+                    "fresh_food_after_eclipse": true,
+                    "starts_after_jd": 2463524.361893315,
+                    "starts_after": "19/10/2032 02:11:07 AM"
+                },
                 "retflag": 299
             },
             {
@@ -4694,10 +5974,13 @@
                 "local_eclipse_type": null,
                 "date": "2032-11-03",
                 "datetime": "03/11/2032 11:03:28 AM",
-                "jd": 2463539.731581821,
+                "jd": 2463539.7315818206,
                 "magnitudes": {
                     "eclipse": 0,
-                    "obscuration": 0
+                    "local_eclipse": 0,
+                    "obscuration": 0,
+                    "ritual_minimum": 0.08333333333333333,
+                    "meets_ritual_minimum": false
                 },
                 "contacts": {
                     "first_contact_jd": null,
@@ -4712,7 +5995,7 @@
                     "first_contact_jd": null,
                     "second_contact_jd": null,
                     "maximum_jd": {
-                        "jd": 2463539.731581821,
+                        "jd": 2463539.7315818206,
                         "time": "03/11/2032 11:03:28 AM"
                     },
                     "third_contact_jd": null,
@@ -4727,6 +6010,10 @@
                 "visibility": {
                     "visible": false,
                     "astronomical_visible": false,
+                    "unaided_eye_ritual_visible": false,
+                    "telescope_only": false,
+                    "meets_ritual_magnitude": false,
+                    "ritual_magnitude_minimum": 0.08333333333333333,
                     "local_eclipse_type": null,
                     "retflag": -1,
                     "window": {
@@ -4749,6 +6036,17 @@
                     "relaxed_start": null,
                     "relaxed_end": null,
                     "duration_hours": 0
+                },
+                "ritual_boundary": {
+                    "type": "not_applicable",
+                    "grast_uday": false,
+                    "grast_ast": false,
+                    "rule": "no_ritual_boundary_rule_without_local_ritual_visibility"
+                },
+                "post_eclipse_ritual": {
+                    "applicable": false,
+                    "snana_required": false,
+                    "fresh_food_after_eclipse": false
                 },
                 "retflag": 308
             }

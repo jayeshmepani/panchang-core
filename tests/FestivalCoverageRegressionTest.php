@@ -78,6 +78,78 @@ class FestivalCoverageRegressionTest extends TestCase
         $this->assertContains('2026-01-01', $rohiniDates, 'Known Rohini Vrat date should be present');
     }
 
+    public function test_gujarat_2026_festival_dates_match_verified_public_baselines(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $calendar = $service->getFestivalYearCalendar(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $datesByName = [];
+        foreach (($calendar['flat'] ?? []) as $entry) {
+            $festival = (array) ($entry['festival'] ?? []);
+            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+            if ($name === '') {
+                continue;
+            }
+
+            $datesByName[$name][] = (string) ($entry['date'] ?? '');
+        }
+
+        $this->assertContains('2026-11-10', $datesByName['Govardhan Puja'] ?? [], 'Govardhan Puja should be emitted with the Kartika Shukla Pratipada observance.');
+        $this->assertNotContains('2026-12-08', $datesByName['Govardhan Puja'] ?? [], 'Govardhan Puja must not leak into the next lunar month.');
+        $this->assertSame(['2026-07-23'], array_values(array_unique($datesByName['Ashadha Gupt Navaratri Day 9'] ?? [])));
+        $this->assertSame(['2026-03-03'], array_values(array_unique($datesByName['Phuldolotsava'] ?? [])));
+        $this->assertSame(['2026-03-02'], array_values(array_unique($datesByName['Holika Dahan'] ?? [])));
+        $this->assertSame(['2026-03-31'], array_values(array_unique($datesByName['Mahavir Jayanti'] ?? [])));
+        $this->assertSame(['2026-09-12'], array_values(array_unique($datesByName['Samaveda Upakarma'] ?? [])));
+        $this->assertSame(['2026-02-15'], array_values(array_unique($datesByName['Maha Shivaratri'] ?? [])));
+        $this->assertNotContains('2026-02-16', array_values(array_unique($datesByName['Masik Shivaratri'] ?? [])));
+        $this->assertSame(['2026-10-20'], array_values(array_unique($datesByName['Dussehra'] ?? [])));
+    }
+
+    public function test_purnima_vrat_and_civil_festival_labels_are_split(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $calendar = $service->getFestivalYearCalendar(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $datesByName = [];
+        foreach (($calendar['flat'] ?? []) as $entry) {
+            $festival = (array) ($entry['festival'] ?? []);
+            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+            if ($name === '') {
+                continue;
+            }
+
+            $datesByName[$name][] = (string) ($entry['date'] ?? '');
+        }
+
+        self::assertSame(['2026-01-03'], array_values(array_unique($datesByName['Pausha Purnima Vrat'] ?? [])));
+        self::assertSame(['2026-01-03'], array_values(array_unique($datesByName['Pausha Purnima'] ?? [])));
+        self::assertSame(['2026-04-01'], array_values(array_unique($datesByName['Chaitra Purnima Vrat'] ?? [])));
+        self::assertSame(['2026-04-02'], array_values(array_unique($datesByName['Chaitra Purnima'] ?? [])));
+        self::assertSame(['2026-07-28'], array_values(array_unique($datesByName['Ashadha Purnima Vrat'] ?? [])));
+        self::assertSame(['2026-07-29'], array_values(array_unique($datesByName['Ashadha Purnima'] ?? [])));
+    }
+
     #[Override]
     protected function getPackageProviders($app): array
     {

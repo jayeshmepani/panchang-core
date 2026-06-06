@@ -15,6 +15,10 @@ class EclipseService
 {
     use ConfiguresEphemeris;
 
+    private const float NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE = 1.0 / 16.0;
+
+    private const float NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE = 1.0 / 12.0;
+
     private readonly SunService $sunService;
 
     public function __construct(private JmeEphFFI $jme, ?SunService $sunService = null)
@@ -211,7 +215,8 @@ class EclipseService
         $hasNativeVisibilityWindow = $visibilityStartJd !== null && $visibilityEndJd !== null && $visibilityEndJd > $visibilityStartJd;
         $hasLocalContacts = $hasNativeVisibilityWindow || $hasRitualPhase;
         $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE || $hasRitualPhase;
-        $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts;
+        $meetsRitualMagnitude = (float) $attr[0] >= self::NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE;
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts && $meetsRitualMagnitude;
         $ritualVisibleStartJd = $this->maxJd($visibilityStartJd, $localContacts['partial_begin_jd']);
         $ritualVisibleEndJd = $this->minJd($visibilityEndJd, $localContacts['partial_end_jd']);
         if ($ritualVisibleStartJd === null || $ritualVisibleEndJd === null || $ritualVisibleEndJd <= $ritualVisibleStartJd) {
@@ -221,6 +226,8 @@ class EclipseService
 
         $sutakStartAnchor = $ritualVisibleStartJd;
         $sutakEndAnchor = $ritualVisibleEndJd;
+
+        $ritualBoundary = $this->buildRitualBoundaryPayload($ritualVisibleStartJd, $ritualVisibleEndJd, $lat, $lon, $tz, $isVisible);
 
         return [
             'type' => Localization::translate('String', 'Lunar'),
@@ -233,6 +240,8 @@ class EclipseService
             'magnitudes' => [
                 'umbral' => (float) $attr[0],
                 'penumbral' => (float) $attr[1],
+                'ritual_minimum' => self::NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE,
+                'meets_ritual_minimum' => $meetsRitualMagnitude,
             ],
             'contacts' => $this->formatContactTimes($globalContacts, $tz),
             'durations' => [
@@ -243,12 +252,18 @@ class EclipseService
             'visibility' => [
                 'visible' => $isVisible,
                 'astronomical_visible' => $astroVisible,
+                'unaided_eye_ritual_visible' => $isVisible,
+                'telescope_only' => $astroVisible && !$isVisible,
+                'meets_ritual_magnitude' => $meetsRitualMagnitude,
+                'ritual_magnitude_minimum' => self::NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE,
                 'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
                 'retflag' => $retHow,
                 'window' => $this->formatVisibilityWindow($isVisible ? $ritualVisibleStartJd : null, $isVisible ? $ritualVisibleEndJd : null, $tz),
                 'penumbral_window' => $this->formatVisibilityWindow($isVisible ? $visibilityStartJd : null, $isVisible ? $visibilityEndJd : null, $tz),
             ],
             'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, 3, $lat, $lon, $tz, $isVisible),
+            'ritual_boundary' => $ritualBoundary,
+            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($ritualVisibleEndJd, $tz, $isVisible),
             'retflag' => $retFlag,
         ];
     }
@@ -293,7 +308,9 @@ class EclipseService
         $dt = $this->jdToCarbon($localMaximumJd, $tz);
 
         $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
-        $hasVisibleDiskMagnitude = max((float) $attr[0], (float) $attrLoc[0]) > 0.0;
+        $diskMagnitude = max((float) $attr[0], (float) $attrLoc[0]);
+        $hasVisibleDiskMagnitude = $diskMagnitude > 0.0;
+        $meetsRitualMagnitude = $diskMagnitude >= self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE;
         // JME local solar search currently exposes local contact times but not
         // separate rise/set truncation markers, so the visible window must be
         // derived from ordered local outer contacts.
@@ -302,7 +319,7 @@ class EclipseService
         $hasVisibleWindow = $visibilityWindowStartJd !== null
             && $visibilityWindowEndJd !== null
             && $visibilityWindowEndJd > $visibilityWindowStartJd;
-        $isVisible = $contactsFromSameEvent && $astroVisible && $hasVisibleDiskMagnitude && $hasVisibleWindow;
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasVisibleDiskMagnitude && $hasVisibleWindow && $meetsRitualMagnitude;
         $sutakStartAnchor = $visibilityWindowStartJd;
         $sutakEndAnchor = $visibilityWindowEndJd;
 
@@ -315,6 +332,8 @@ class EclipseService
 
         $obscuration = $this->calculateSolarObscuration($sep, $sunR, $moonR);
 
+        $ritualBoundary = $this->buildRitualBoundaryPayload($visibilityWindowStartJd, $visibilityWindowEndJd, $lat, $lon, $tz, $isVisible);
+
         return [
             'type' => Localization::translate('String', 'Solar'),
             'eclipse_type' => Localization::translate('Eclipse', $globalType),
@@ -325,7 +344,10 @@ class EclipseService
             'jd' => $localMaximumJd,
             'magnitudes' => [
                 'eclipse' => (float) $attr[0],
+                'local_eclipse' => (float) $attrLoc[0],
                 'obscuration' => $obscuration,
+                'ritual_minimum' => self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE,
+                'meets_ritual_minimum' => $meetsRitualMagnitude,
             ],
             'contacts' => $this->formatContactTimes($localContacts, $tz),
             'global_contacts' => $this->formatContactTimes($globalContacts, $tz),
@@ -336,6 +358,10 @@ class EclipseService
             'visibility' => [
                 'visible' => $isVisible,
                 'astronomical_visible' => $astroVisible,
+                'unaided_eye_ritual_visible' => $isVisible,
+                'telescope_only' => $astroVisible && !$isVisible,
+                'meets_ritual_magnitude' => $meetsRitualMagnitude,
+                'ritual_magnitude_minimum' => self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE,
                 'local_eclipse_type' => $localType !== null ? Localization::translate('Eclipse', $localType) : null,
                 'retflag' => $retHow,
                 'window' => $this->formatVisibilityWindow(
@@ -345,6 +371,8 @@ class EclipseService
                 ),
             ],
             'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, 4, $lat, $lon, $tz, $isVisible),
+            'ritual_boundary' => $ritualBoundary,
+            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($visibilityWindowEndJd, $tz, $isVisible),
             'retflag' => $retFlag,
         ];
     }
@@ -443,6 +471,63 @@ class EclipseService
             'relaxed_start' => AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
             'relaxed_end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
             'duration_hours' => $praharsBefore * 3.0,
+        ];
+    }
+
+    private function buildRitualBoundaryPayload(?float $visibleStartJd, ?float $visibleEndJd, float $lat, float $lon, string $tz, bool $isVisible): array
+    {
+        if (!$isVisible || $visibleStartJd === null || $visibleEndJd === null) {
+            return [
+                'type' => 'not_applicable',
+                'grast_uday' => false,
+                'grast_ast' => false,
+                'rule' => 'no_ritual_boundary_rule_without_local_ritual_visibility',
+            ];
+        }
+
+        $start = $this->jdToCarbon($visibleStartJd, $tz);
+        $end = $this->jdToCarbon($visibleEndJd, $tz);
+        [$startSunrise, $startSunset] = $this->sunriseSunsetForDate($start->startOfDay(), $lat, $lon, $tz);
+        [$endSunrise, $endSunset] = $this->sunriseSunsetForDate($end->startOfDay(), $lat, $lon, $tz);
+
+        $grastUday = abs($start->getTimestamp() - $startSunrise->getTimestamp()) <= 300;
+        $grastAst = abs($end->getTimestamp() - $endSunset->getTimestamp()) <= 300;
+
+        return [
+            'type' => match (true) {
+                $grastUday && $grastAst => 'grast_uday_and_grast_ast',
+                $grastUday => 'grast_uday',
+                $grastAst => 'grast_ast',
+                default => 'ordinary_visible_eclipse',
+            },
+            'grast_uday' => $grastUday,
+            'grast_ast' => $grastAst,
+            'visible_start_jd' => $visibleStartJd,
+            'visible_start' => AstroCore::formatDateTime($start),
+            'visible_end_jd' => $visibleEndJd,
+            'visible_end' => AstroCore::formatDateTime($end),
+            'sunrise_jd' => $this->carbonToJd($grastUday ? $startSunrise : $endSunrise),
+            'sunset_jd' => $this->carbonToJd($grastAst ? $endSunset : $startSunset),
+            'rule' => 'visible_at_sunrise_or_sunset_boundary',
+        ];
+    }
+
+    private function buildPostEclipseRitualPayload(?float $visibleEndJd, string $tz, bool $isVisible): array
+    {
+        if (!$isVisible || $visibleEndJd === null) {
+            return [
+                'applicable' => false,
+                'snana_required' => false,
+                'fresh_food_after_eclipse' => false,
+            ];
+        }
+
+        return [
+            'applicable' => true,
+            'snana_required' => true,
+            'fresh_food_after_eclipse' => true,
+            'starts_after_jd' => $visibleEndJd,
+            'starts_after' => AstroCore::formatDateTime($this->jdToCarbon($visibleEndJd, $tz)),
         ];
     }
 

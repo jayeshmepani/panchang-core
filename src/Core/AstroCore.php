@@ -180,11 +180,11 @@ final readonly class AstroCore
         $notation = self::getConfig('panchang.defaults.time_notation', '12h');
 
         if ($notation === '24h') {
-            return $time->format('H:i:s');
+            return self::localizeTimeDisplay($time->format('H:i:s'));
         }
 
         // 12h by default
-        return $time->format('h:i:s A');
+        return self::localizeTimeDisplay($time->format('h:i:s A'));
     }
 
     /** Format an angle according to global config (degree vs dms). */
@@ -237,6 +237,20 @@ final readonly class AstroCore
         }
 
         return $minutes;
+    }
+
+    /** Localize display-formatted times without changing parseable date-time fields. */
+    private static function localizeTimeDisplay(string $value): string
+    {
+        $locale = (string) self::getConfig('panchang.defaults.locale', 'en');
+
+        $value = match ($locale) {
+            'hi' => str_replace(['AM', 'PM'], ['पूर्वाह्न', 'अपराह्न'], $value),
+            'gu' => str_replace(['AM', 'PM'], ['પૂર્વાહ્ન', 'અપરાહ્ન'], $value),
+            default => $value,
+        };
+
+        return Localization::localizeNumber($value, $locale);
     }
 
 }

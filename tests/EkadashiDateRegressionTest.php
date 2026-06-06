@@ -43,6 +43,29 @@ class EkadashiDateRegressionTest extends TestCase
         }
     }
 
+    public function test_padmini_ekadashi_is_not_emitted_on_previous_kshaya_day(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $details = $service->getDayDetails(
+            CarbonImmutable::parse('2026-05-26', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $festivalNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $details['Festivals'] ?? []
+        );
+
+        $this->assertNotContains('Padmini Ekadashi', $festivalNames, 'Padmini Ekadashi should not be emitted on the previous kshaya day.');
+    }
+
     #[Override]
     protected function getPackageProviders($app): array
     {

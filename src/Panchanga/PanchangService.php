@@ -53,6 +53,7 @@ class PanchangService
     /** @var array<int, string> */
     private const array YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
         'Ganga Dussehra',
+        'Samaveda Upakarma',
     ];
 
     private const int BODY_LONGITUDE_CACHE_MAX = 20000;
@@ -309,7 +310,7 @@ class PanchangService
             'longitude' => $lon,
             'elevation' => $elevation,
         ];
-        [, $previousSunset] = $this->sunService->getSunriseSunset($previousBirth);
+        [$previousSunrise, $previousSunset] = $this->sunService->getSunriseSunset($previousBirth);
         $nextBirth = [
             'year' => $nextDay->year,
             'month' => $nextDay->month,
@@ -382,6 +383,7 @@ class PanchangService
         $jdSunrise = $this->toJulianDayFromCarbon($relSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
+        $jdPreviousSunrise = $this->toJulianDayFromCarbon($previousSunrise, $tz);
         $jdCalculationAt = $this->toJulianDayFromCarbon($calculationAt, $tz);
 
         $tithiNum = (int) $tithi['index'];
@@ -514,7 +516,10 @@ class PanchangService
             $jdNextSunrise,
             $tz,
             $lat,
-            $lon
+            $lon,
+            $jdPreviousSunrise,
+            $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
+            (string) ($tithi['paksha'] ?? '')
         );
 
         $todaySnapshot = [
@@ -535,6 +540,7 @@ class PanchangService
             ],
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
+                'previous_sunrise_jd' => $jdPreviousSunrise,
                 'sunset_jd' => $jdSunset,
                 'next_sunrise_jd' => $jdNextSunrise,
                 'tithi_start_jd' => $tithiStartJd,
@@ -544,6 +550,7 @@ class PanchangService
                 'tithi_index_phase' => $tithiNum > 15 ? $tithiNum - 15 : $tithiNum,
                 'paksha' => (string) ($tithi['paksha'] ?? ''),
                 'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
+                'previous_sunrise_iso' => AstroCore::formatDateTime($previousSunrise),
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
@@ -649,7 +656,10 @@ class PanchangService
             $jdNextSunrise,
             $tz,
             $lat,
-            $lon
+            $lon,
+            $jdPreviousSunrise,
+            $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
+            (string) ($tithi['paksha'] ?? '')
         );
         DebugTrace::log('panchang.day', 'advanced observance layer completed');
 
@@ -1027,6 +1037,13 @@ class PanchangService
 
         [$sunrise, $sunset] = $this->sunService->getSunriseSunset($birthBase);
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
+        $previousDay = $date->subDay();
+        [$previousSunrise] = $this->sunService->getSunriseSunset([
+            ...$birthBase,
+            'year' => $previousDay->year,
+            'month' => $previousDay->month,
+            'day' => $previousDay->day,
+        ]);
         $nextDay = $date->addDay();
         [$nextSunrise] = $this->sunService->getSunriseSunset([
             ...$birthBase,
@@ -1041,6 +1058,7 @@ class PanchangService
         $ayanamsaDeg = $this->astronomy->getAyanamsa($ayanamsaJd);
 
         $jdSunrise = $this->toJulianDayFromCarbon($sunrise, $tz);
+        $jdPreviousSunrise = $this->toJulianDayFromCarbon($previousSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
         $sunriseBirth = [
@@ -1123,7 +1141,10 @@ class PanchangService
             $jdNextSunrise,
             $tz,
             $lat,
-            $lon
+            $lon,
+            $jdPreviousSunrise,
+            $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
+            (string) ($tithi['paksha'] ?? '')
         );
 
         return $this->festivalSnapshotCache[$snapshotCacheKey] = [
@@ -1156,6 +1177,8 @@ class PanchangService
             'Sunset' => AstroCore::formatTime($sunset),
             'Moonrise' => $moonrise instanceof CarbonImmutable ? AstroCore::formatTime($moonrise) : null,
             'Moonset' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
+            'Moonrise_JD' => $moonrise instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonrise, $tz) : null,
+            'Moonset_JD' => $moonset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonset, $tz) : null,
             'Moonrise_Date' => $moonrise instanceof CarbonImmutable ? $moonrise->toDateString() : null,
             'Moonset_Date' => $moonset instanceof CarbonImmutable ? $moonset->toDateString() : null,
             'Moonrise_ISO' => $moonrise instanceof CarbonImmutable ? AstroCore::formatDateTime($moonrise) : null,
@@ -1177,6 +1200,7 @@ class PanchangService
             'Ekadashi_Observance' => $ekadashiObservance,
             'Resolution_Context' => [
                 'sunrise_jd' => $jdSunrise,
+                'previous_sunrise_jd' => $jdPreviousSunrise,
                 'sunset_jd' => $jdSunset,
                 'next_sunrise_jd' => $jdNextSunrise,
                 'tithi_start_jd' => $tithiStartJd,
@@ -1186,6 +1210,7 @@ class PanchangService
                 'tithi_index_phase' => $tithiNum > 15 ? $tithiNum - 15 : $tithiNum,
                 'paksha' => (string) ($tithi['paksha'] ?? ''),
                 'sunrise_iso' => AstroCore::formatDateTime($sunrise),
+                'previous_sunrise_iso' => AstroCore::formatDateTime($previousSunrise),
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
