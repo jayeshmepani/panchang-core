@@ -2210,6 +2210,29 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
             </div>
 
             <div class="method">
+              <h4 class="method-name">getCalendarPeriodWindowsRange()</h4>
+              <p class="method-description">Build dedicated Hindu calendar period windows for a month range without generating full daily month rows. Use this when the client only needs period-level calendar context such as Ayana, Ritu, Samvat, Samvatsara, or Amanta/Purnimanta month windows.</p>
+              <div class="method-signature">
+                <code>public function getCalendarPeriodWindowsRange(int $fromYear, int $fromMonth, int $toYear, int $toMonth, float $lat, float $lon, string $tz, array $fields=[], float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
+              </div>
+              <div class="method-params"><strong>Selectable period fields:</strong>
+                <ul>
+                  <li><code>ayana</code> returns <code>ayana_windows</code></li>
+                  <li><code>ritu</code> returns <code>ritu_windows</code></li>
+                  <li><code>vikram_samvat</code> returns <code>vikram_samvat_windows</code></li>
+                  <li><code>gujarati_samvat</code> returns <code>gujarati_samvat_windows</code></li>
+                  <li><code>saka_samvat</code> returns <code>saka_samvat_windows</code></li>
+                  <li><code>kali_samvat</code> returns <code>kali_samvat_windows</code></li>
+                  <li><code>samvatsara</code> returns <code>samvatsara_windows</code></li>
+                  <li><code>samvatsara_north</code> returns <code>samvatsara_north_windows</code></li>
+                  <li><code>amanta_month</code> returns <code>amanta_month_windows</code></li>
+                  <li><code>purnimanta_month</code> returns <code>purnimanta_month_windows</code></li>
+                </ul>
+              </div>
+              <p class="method-description">Window objects intentionally return only <code>name</code>, <code>start_iso</code>, and <code>end_iso</code>. Month windows additionally include <code>index</code>. Internal calculation fields such as Julian day values are not exposed.</p>
+            </div>
+
+            <div class="method">
               <h4 class="method-name">getElectionalSnapshot()</h4>
               <p class="method-description">Return electional-analysis inputs built from day details, planetary states, sunrise context, and transit moorthy helpers.</p>
               <div class="method-signature">
@@ -3825,6 +3848,41 @@ print_r(array_keys($calendar['2026-06-01']));
           </div>
 
           <div class="method">
+            <h4 class="method-name">I only want Hindu calendar period windows for a month range</h4>
+            <pre><code class="language-php">$periods = Panchang::getCalendarPeriodWindowsRange(
+    fromYear: 2026,
+    fromMonth: 4,
+    toYear: 2026,
+    toMonth: 6,
+    lat: $lat,
+    lon: $lon,
+    tz: $tz,
+    fields: ['ayana', 'ritu', 'amanta_month', 'purnimanta_month']
+);
+
+echo $periods['ayana_windows'][0]['name'];
+// Example output: Southward Course
+
+print_r($periods['amanta_month_windows'][2]);
+// Example output:
+// [
+//   'name' => 'Jyeshtha (Intercalary)',
+//   'start_iso' => '17/05/2026 01:30:56 AM',
+//   'end_iso' => '15/06/2026 08:24:04 AM',
+//   'index' => 2,
+// ]
+
+print_r($periods['purnimanta_month_windows'][2]);
+// Example output:
+// [
+//   'name' => 'Jyeshtha (Intercalary)',
+//   'start_iso' => '01/05/2026 10:51:36 PM',
+//   'end_iso' => '31/05/2026 02:13:37 PM',
+//   'index' => 2,
+// ]</code></pre>
+          </div>
+
+          <div class="method">
             <h4 class="method-name">I only want festival flat output for a year</h4>
             <pre><code class="language-php">$generator = app(\JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService::class);
 
@@ -4581,19 +4639,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.0.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.1.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.0.0 is a major generated-output and rule-resolution release; v4.0.0 remains the main historical API breaking-change block, while v5.x through v8.x document newer output, precision, and ephemeris changes.</p>
+            <p>Review the version-specific notes below before upgrading. v9.1.0 is a backward-compatible selective API release with a Purnimanta month-window correction; v9.0.0 remains the latest major generated-output and rule-resolution release.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.1.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Calendar Period Selective API and Purnimanta Intercalary Fix</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release adding a dedicated selective API for Hindu calendar period windows and correcting intercalary month labeling in Purnimanta month-window output.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Verified Nirnay Rules, Panchang Conventions, and Localized Output Contract</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Verified Nirnay Rules, Panchang Conventions, and Localized Output Contract</span></div>
                 <p class="release-note">Major release aligning festival, vrat, eclipse, sunrise, moonrise, Ekadashi-parana, and generated JSON behavior with verified engine conventions and localized user-facing output.</p>
               </div>
             </li>
@@ -4752,6 +4817,33 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v9.1.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Backward-compatible feature release focused on selective Hindu calendar period windows and a Purnimanta intercalary month-window correction.</p>
+
+          <div class="info-box" style="border-inline-start-color: var(--color-success); background: rgba(34, 197, 94, 0.05);">
+            <h4 style="color: var(--color-success); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Breaking Changes</h4>
+            <p><strong>None.</strong> v9.1.0 adds a new selective API and fixes a Purnimanta calendar-period label issue without removing or redefining existing public APIs.</p>
+          </div>
+
+          <h4>Added</h4>
+          <ul>
+            <li><strong>Dedicated calendar-period selective API:</strong> Added <code>getCalendarPeriodWindowsRange()</code> for month-range period windows without generating full daily month rows.</li>
+            <li><strong>Selectable calendar period fields:</strong> Consumers can request only the period branches they need: <code>ayana</code>, <code>ritu</code>, <code>vikram_samvat</code>, <code>gujarati_samvat</code>, <code>saka_samvat</code>, <code>kali_samvat</code>, <code>samvatsara</code>, <code>samvatsara_north</code>, <code>amanta_month</code>, and <code>purnimanta_month</code>.</li>
+            <li><strong>Lean output contract:</strong> Period windows expose only <code>name</code>, <code>start_iso</code>, and <code>end_iso</code>. Amanta and Purnimanta month windows additionally expose <code>index</code>.</li>
+          </ul>
+
+          <h4>Fixed</h4>
+          <ul>
+            <li><strong>Purnimanta intercalary month windows:</strong> Purnimanta month-window labels now preserve the intercalary suffix where applicable. For example, the 2026 repeated Jyeshtha period is returned as <code>Jyeshtha (Intercalary)</code> followed by normal <code>Jyeshtha</code>.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>Use <code>getCalendarPeriodWindowsRange()</code> when your API or UI needs only period windows such as Ayana, Ritu, Samvat, or lunar month ranges.</li>
+            <li>Use <code>getMonthFields()</code> or <code>getMonthRangeFields()</code> when you need daily calendar cells. Calendar-period windows are intentionally separate from daily month rows.</li>
+            <li>If you cached Purnimanta month-window output generated before v9.1.0, regenerate it for ranges containing adhik months.</li>
+          </ul>
 
           <h3>v9.0.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Major release focused on verified Hindu Panchang conventions, Nirnay-rule festival decisions, eclipse ritual thresholds, Ekadashi parana restrictions, localized generated output, and regenerated 2026-2032 JSON artifacts.</p>

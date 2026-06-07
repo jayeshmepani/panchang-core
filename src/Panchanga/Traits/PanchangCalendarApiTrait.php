@@ -10,6 +10,7 @@ use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Ritu;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
@@ -67,6 +68,67 @@ trait PanchangCalendarApiTrait
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
 
         return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'vrats');
+    }
+
+    /**
+     * Get dedicated Hindu calendar period windows for a month range.
+     *
+     * This avoids building full month calendar rows when consumers only need
+     * period-level context such as ayana, ritu, lunar months, and samvat labels.
+     *
+     * @param array<int, string> $fields
+     *
+     * @return array<string, array<int, array<string, mixed>>>
+     */
+    public function getCalendarPeriodWindowsRange(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        float $lat,
+        float $lon,
+        string $tz,
+        array $fields = [],
+        float $elevation = 0.0,
+        CalendarType|string $calendarType = CalendarType::Amanta
+    ): array {
+        [$start, $endDay] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
+        $end = $endDay->addDay();
+        $startJd = $this->toJulianDayFromCarbon($start, $tz);
+        $endJd = $this->toJulianDayFromCarbon($end, $tz);
+        $requested = $this->normalizeCalendarPeriodFields($fields);
+
+        $amantaWindows = null;
+        $result = [];
+
+        foreach ($requested as $field) {
+            $windows = match ($field) {
+                'ayana' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn (float $sunLon): string => $this->panchanga->getAyana($sunLon)),
+                'ritu' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn (float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName()),
+                'amanta_month' => $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta'),
+                'purnimanta_month' => $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 180.0, 'Month_Purnimanta'),
+                'vikram_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): int => $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat']),
+                'saka_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): int => $this->panchanga->getSamvat($date->year, $date->month)['Saka_Samvat']),
+                'kali_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): int {
+                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
+                    return $this->panchanga->getKaliSamvat($vikram);
+                }),
+                'samvatsara' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
+                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
+                    return $this->panchanga->getSamvatsara($vikram);
+                }),
+                'samvatsara_north' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
+                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
+                    return $this->panchanga->getSamvatsaraNorth($vikram);
+                }),
+                'gujarati_samvat' => $this->buildGujaratiSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')),
+                default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
+            };
+
+            $result[$field . '_windows'] = $this->publicCalendarPeriodWindows($windows);
+        }
+
+        return $result;
     }
 
     public function getFestivalYearCalendar(
@@ -1187,6 +1249,264 @@ trait PanchangCalendarApiTrait
         CalendarType $calendarType
     ): array {
         return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all')['by_date'];
+    }
+
+    /**
+     * @param array<int, string> $fields
+     *
+     * @return array<int, string>
+     */
+    private function normalizeCalendarPeriodFields(array $fields): array
+    {
+        if ($fields === []) {
+            $fields = [
+                'ayana',
+                'ritu',
+                'vikram_samvat',
+                'gujarati_samvat',
+                'saka_samvat',
+                'kali_samvat',
+                'samvatsara',
+                'samvatsara_north',
+                'amanta_month',
+                'purnimanta_month',
+            ];
+        }
+
+        $normalized = [];
+        foreach ($fields as $field) {
+            $key = strtolower(str_replace([' ', '-'], '_', trim($field)));
+            $key = match ($key) {
+                'ayana_windows' => 'ayana',
+                'ritu_windows' => 'ritu',
+                'vikram', 'vikram_samvat_windows' => 'vikram_samvat',
+                'gujarati', 'gujarati_samvat_windows' => 'gujarati_samvat',
+                'saka', 'saka_samvat_windows' => 'saka_samvat',
+                'kali', 'kali_samvat_windows' => 'kali_samvat',
+                'samvatsara_windows' => 'samvatsara',
+                'samvatsara_north_windows' => 'samvatsara_north',
+                'amanta', 'month_amanta', 'amanta_month_windows' => 'amanta_month',
+                'purnimanta', 'month_purnimanta', 'purnimanta_month_windows' => 'purnimanta_month',
+                default => $key,
+            };
+
+            match ($key) {
+                'ayana',
+                'ritu',
+                'vikram_samvat',
+                'gujarati_samvat',
+                'saka_samvat',
+                'kali_samvat',
+                'samvatsara',
+                'samvatsara_north',
+                'amanta_month',
+                'purnimanta_month' => true,
+                default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
+            };
+
+            $normalized[$key] = $key;
+        }
+
+        return array_values($normalized);
+    }
+
+    /**
+     * @param array<int, float> $boundaries
+     * @param callable(float): string $nameResolver
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildSolarLongitudePeriodWindows(
+        float $startJd,
+        float $endJd,
+        string $tz,
+        array $boundaries,
+        callable $nameResolver
+    ): array {
+        sort($boundaries);
+        $windows = [];
+        $cursor = $startJd;
+
+        while ($cursor < $endJd - 1e-8) {
+            $sunLon = $this->getSunLongitude($cursor + 1e-7);
+            $target = $this->nextSolarBoundary($sunLon, $boundaries);
+            $nextJd = $this->findAngleCrossing($cursor + 1e-5, $target, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+            $segmentEnd = min($nextJd, $endJd);
+
+            $windows[] = $this->periodWindow($nameResolver($sunLon), $cursor, $segmentEnd, $tz);
+            $cursor = max($segmentEnd, $cursor + 0.0001);
+        }
+
+        return $this->mergeAdjacentPeriodWindows($windows);
+    }
+
+    /** @param array<int, float> $boundaries */
+    private function nextSolarBoundary(float $sunLon, array $boundaries): float
+    {
+        foreach ($boundaries as $boundary) {
+            if ($boundary > $sunLon + 1e-8) {
+                return $boundary;
+            }
+        }
+
+        return $boundaries[0];
+    }
+
+    /** @return array<int, array<string, mixed>> */
+    private function buildLunarMonthPeriodWindows(float $startJd, float $endJd, string $tz, float $boundaryAngle, string $monthKey): array
+    {
+        $periodStart = $this->findAngleCrossing($startJd, $boundaryAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $windows = [];
+
+        while ($periodStart < $endJd - 1e-8) {
+            $periodEnd = $this->findAngleCrossing($periodStart + 1.0, $boundaryAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+            if ($periodEnd <= $startJd) {
+                $periodStart = $periodEnd;
+                continue;
+            }
+
+            $sampleJd = $monthKey === 'Month_Purnimanta'
+                ? $periodEnd - 1e-5
+                : ($periodStart + $periodEnd) / 2.0;
+            $month = $this->getTrueHinduMonth($sampleJd);
+            $windows[] = [
+                ...$this->periodWindow((string) $month[$monthKey], max($periodStart, $startJd), min($periodEnd, $endJd), $tz),
+                'index' => $monthKey === 'Month_Amanta' ? $month['Amanta_Index'] : $month['Purnimanta_Index'],
+            ];
+
+            $periodStart = $periodEnd;
+        }
+
+        return $windows;
+    }
+
+    /**
+     * @param callable(CarbonImmutable): (scalar|null) $valueResolver
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildCivilCalendarValueWindows(CarbonImmutable $start, CarbonImmutable $endDay, callable $valueResolver): array
+    {
+        $windows = [];
+        $active = null;
+
+        for ($date = $start; $date->lessThanOrEqualTo($endDay); $date = $date->addDay()) {
+            $value = $valueResolver($date);
+            if ($active === null) {
+                $active = $this->civilWindow((string) $value, $value, $date, $date);
+                continue;
+            }
+
+            if ($active['value'] === $value) {
+                $active['end_date'] = $date->toDateString();
+                $active['end_iso'] = AstroCore::formatDateTime($date->endOfDay());
+                continue;
+            }
+
+            $windows[] = $active;
+            $active = $this->civilWindow((string) $value, $value, $date, $date);
+        }
+
+        if ($active !== null) {
+            $windows[] = $active;
+        }
+
+        return $windows;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $amantaWindows
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildGujaratiSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = [];
+
+        foreach ($amantaWindows as $window) {
+            $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
+            $vikram = $this->panchanga->getSamvat($start->year, $start->month)['Vikram_Samvat'];
+            $value = $this->panchanga->getGujaratiSamvat($vikram, (int) $window['index']);
+            $windows[] = [
+                'name' => (string) $value,
+                'value' => $value,
+                'start_jd' => max((float) $window['start_jd'], $startJd),
+                'end_jd' => min((float) $window['end_jd'], $endJd),
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }
+
+        return $this->mergeAdjacentPeriodWindows($windows);
+    }
+
+    /** @return array<string, mixed> */
+    private function periodWindow(string $name, float $startJd, float $endJd, string $tz): array
+    {
+        return [
+            'name' => $name,
+            'value' => $name,
+            'start_jd' => $startJd,
+            'end_jd' => $endJd,
+            'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($startJd, $tz)),
+            'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+        ];
+    }
+
+    private function civilWindow(string $name, mixed $value, CarbonImmutable $start, CarbonImmutable $end): array
+    {
+        return [
+            'name' => $name,
+            'value' => $value,
+            'start_date' => $start->toDateString(),
+            'end_date' => $end->toDateString(),
+            'start_iso' => AstroCore::formatDateTime($start->startOfDay()),
+            'end_iso' => AstroCore::formatDateTime($end->endOfDay()),
+        ];
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $windows
+     *
+     * @return array<int, array{name: string, start_iso: string, end_iso: string, index?: int}>
+     */
+    private function publicCalendarPeriodWindows(array $windows): array
+    {
+        return array_map(static function (array $window): array {
+            $public = [
+                'name' => (string) $window['name'],
+                'start_iso' => (string) $window['start_iso'],
+                'end_iso' => (string) $window['end_iso'],
+            ];
+
+            if (array_key_exists('index', $window)) {
+                $public['index'] = (int) $window['index'];
+            }
+
+            return $public;
+        }, $windows);
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $windows
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function mergeAdjacentPeriodWindows(array $windows): array
+    {
+        $merged = [];
+        foreach ($windows as $window) {
+            $lastIndex = array_key_last($merged);
+            if ($lastIndex !== null && $merged[$lastIndex]['value'] === $window['value']) {
+                $merged[$lastIndex]['end_jd'] = $window['end_jd'] ?? $merged[$lastIndex]['end_jd'] ?? null;
+                $merged[$lastIndex]['end_iso'] = $window['end_iso'];
+                continue;
+            }
+
+            $merged[] = $window;
+        }
+
+        return $merged;
     }
 
     /** @return array{0: CarbonImmutable, 1: CarbonImmutable} */
