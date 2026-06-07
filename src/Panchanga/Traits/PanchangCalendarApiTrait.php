@@ -955,7 +955,13 @@ trait PanchangCalendarApiTrait
     {
         $grouped = [];
         foreach ($festivalFlat as $idx => $entry) {
-            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            $name = (string) (
+                $entry['festival']['resolution']['festival_name_key']
+                ?? $entry['festival']['name_key']
+                ?? $entry['festival']['resolution']['festival_name']
+                ?? $entry['festival']['name']
+                ?? ''
+            );
             if ($name === '') {
                 continue;
             }
@@ -1057,7 +1063,13 @@ trait PanchangCalendarApiTrait
         $targets = array_flip(self::YEARLY_SINGLE_OBSERVANCE_FESTIVALS);
         $grouped = [];
         foreach ($festivalFlat as $idx => $entry) {
-            $name = (string) ($entry['festival']['resolution']['festival_name'] ?? $entry['festival']['name'] ?? '');
+            $name = (string) (
+                $entry['festival']['resolution']['festival_name_key']
+                ?? $entry['festival']['name_key']
+                ?? $entry['festival']['resolution']['festival_name']
+                ?? $entry['festival']['name']
+                ?? ''
+            );
             if ($name === '' || !isset($targets[$name])) {
                 continue;
             }

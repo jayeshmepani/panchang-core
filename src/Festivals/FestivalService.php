@@ -2564,15 +2564,15 @@ class FestivalService
             'karmakala_type' => 'sunset',
             'strict_karmakala' => true,
         ],
-        'Margashirsha Purnima' => [
+        'Margashirsha Purnima Vrat' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
             'month_amanta' => 'Margashirsha',
             'month_purnimanta' => 'Margashirsha',
-            'aliases' => ['Margashirsha Purnima Vrat', 'Dattatreya Jayanti'],
-            'description' => 'Birth of Lord Dattatreya',
+            'aliases' => ['Margashirsha Purnima'],
+            'description' => 'Margashirsha Purnima fasting and upavasa observance',
             'deity' => 'Dattatreya',
             'fasting' => true,
             'karmakala_type' => 'sunset',
@@ -5717,6 +5717,7 @@ class FestivalService
 
         $payload = [
             'name' => Localization::translate('Festival', $name),
+            'name_key' => $name,
             'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
             'deity' => $deity === null ? null : Localization::translate('Deity', (string) $deity),
             'fasting' => (bool) ($rules['fasting'] ?? false),

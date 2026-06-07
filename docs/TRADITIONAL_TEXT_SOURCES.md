@@ -19,7 +19,7 @@ Some package components are architectural helpers and are intentionally **not** 
 - `OutputGeneratorService` (output assembly wrapper around package services)
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
-Currently, the package implements **391** top-level festival definitions within `FestivalService::FESTIVALS`. Each entry maps to a specific timing rule (Tithi, Nakshatra, Yoga, etc.) with associated metadata.
+Currently, the package outputs **323 unique festival identities** and **85 unique vrat identities** for the generated yearly Panchang contract. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
 

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-06T20:33:02+00:00",
+        "generated_at": "2026-06-07T02:54:56+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -19,10 +19,11 @@
         "calendar_type": "purnimanta",
         "vrat_day_count": 140,
         "vrat_entry_count": 208,
-        "total_vrats": 573,
+        "total_vrats": 85,
         "recurring_weekday_vrats": [
             {
                 "name": "रविवार व्रत",
+                "name_key": "Ravivar Vrat",
                 "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
                 "deity": "सूर्य",
                 "fasting": true,
@@ -48,6 +49,7 @@
             },
             {
                 "name": "सोमवार व्रत",
+                "name_key": "Somwar Vrat",
                 "description": "भगवान शिव को समर्पित साप्ताहिक सोमवार व्रत",
                 "deity": "शिव",
                 "fasting": true,
@@ -73,6 +75,7 @@
             },
             {
                 "name": "मंगलवार व्रत",
+                "name_key": "Mangalwar Vrat",
                 "description": "हनुमान और मंगल को समर्पित साप्ताहिक मंगलवार व्रत",
                 "deity": "हनुमान",
                 "fasting": true,
@@ -97,6 +100,7 @@
             },
             {
                 "name": "बुधवार व्रत",
+                "name_key": "Budhwar Vrat",
                 "description": "भगवान विष्णु और बुध को समर्पित साप्ताहिक बुधवार व्रत",
                 "deity": "विष्णु",
                 "fasting": true,
@@ -121,6 +125,7 @@
             },
             {
                 "name": "गुरुवार व्रत",
+                "name_key": "Guruvar Vrat",
                 "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
                 "deity": "विष्णु",
                 "fasting": true,
@@ -146,6 +151,7 @@
             },
             {
                 "name": "शुक्रवार व्रत",
+                "name_key": "Shukravar Vrat",
                 "description": "देवी लक्ष्मी और शुक्र को समर्पित साप्ताहिक शुक्रवार व्रत",
                 "deity": "लक्ष्मी",
                 "fasting": true,
@@ -170,6 +176,7 @@
             },
             {
                 "name": "शनिवार व्रत",
+                "name_key": "Shanivar Vrat",
                 "description": "भगवान शनि को समर्पित साप्ताहिक शनिवार व्रत",
                 "deity": "शनि",
                 "fasting": true,
@@ -197,6 +204,7 @@
             "2026-01-01": [
                 {
                     "name": "गुरु प्रदोष व्रत",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "गुरुवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -293,6 +301,7 @@
                 },
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -351,6 +360,7 @@
             "2026-01-02": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -451,6 +461,7 @@
             "2026-01-03": [
                 {
                     "name": "पौष पूर्णिमा व्रत",
+                    "name_key": "Pausha Purnima Vrat",
                     "description": "पौष पूर्णिमा व्रत और उपवास",
                     "deity": "सूर्य/चंद्र",
                     "fasting": true,
@@ -491,7 +502,7 @@
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "सूर्योदय",
                         "strict_karmakala": true,
-                        "rule_convention": "दृक-शैली में नामित पूर्णिमा व्रत दिन; पिछली तिथि-आरंभ/उपवास-विंडो वाला लेबल नहीं",
+                        "rule_convention": "दृक-शैली में नामित पूर्णिमा व्रत दिन; पिछली तिथि-आरंभ/उपवास कालखंड वाला नाम नहीं",
                         "rule_convention_key": "Drik-style labeled Purnima vrat day, not the previous tithi-start/upavasa-window label"
                     },
                     "resolution": {
@@ -557,6 +568,7 @@
             "2026-01-11": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -650,6 +662,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -745,6 +758,7 @@
             "2026-01-14": [
                 {
                     "name": "षटतिला एकादशी",
+                    "name_key": "Shattila Ekadashi",
                     "description": "षटतिला एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -844,6 +858,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -884,6 +899,7 @@
             "2026-01-16": [
                 {
                     "name": "शुक्र प्रदोष व्रत",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "शुक्रवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -980,6 +996,7 @@
                 },
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -1077,6 +1094,7 @@
             "2026-01-18": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -1172,6 +1190,7 @@
             "2026-01-19": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -1267,6 +1286,7 @@
             "2026-01-25": [
                 {
                     "name": "भानु सप्तमी",
+                    "name_key": "Bhanu Saptami",
                     "description": "रविवार को पड़ने वाली भगवान सूर्य को समर्पित शुभ सप्तमी",
                     "deity": "सूर्य",
                     "fasting": true,
@@ -1306,6 +1326,7 @@
             "2026-01-26": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -1401,6 +1422,7 @@
             "2026-01-28": [
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -1459,6 +1481,7 @@
             "2026-01-29": [
                 {
                     "name": "जया एकादशी",
+                    "name_key": "Jaya Ekadashi",
                     "description": "जया एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -1561,6 +1584,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -1601,6 +1625,7 @@
             "2026-01-30": [
                 {
                     "name": "शुक्र प्रदोष व्रत",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "शुक्रवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -1700,6 +1725,7 @@
             "2026-02-01": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -1797,6 +1823,7 @@
                 },
                 {
                     "name": "माघी पूर्णिमा",
+                    "name_key": "Maghi Purnima",
                     "description": "माघ स्नान का समापन, गुरु रविदास की जयंती",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -1904,6 +1931,7 @@
             "2026-02-09": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -1997,6 +2025,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -2092,6 +2121,7 @@
             "2026-02-13": [
                 {
                     "name": "विजया एकादशी",
+                    "name_key": "Vijaya Ekadashi",
                     "description": "विजया एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -2191,6 +2221,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -2231,6 +2262,7 @@
             "2026-02-14": [
                 {
                     "name": "शनि प्रदोष व्रत",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "शनिवार को पड़ने वाला प्रदोष व्रत, भगवान शिव और शनि के लिए अत्यंत शुभ",
                     "deity": "शिव/शनि",
                     "fasting": true,
@@ -2331,6 +2363,7 @@
             "2026-02-15": [
                 {
                     "name": "महा शिवरात्रि",
+                    "name_key": "Maha Shivaratri",
                     "description": "भगवान शिव की महान रात्रि",
                     "deity": "शिव",
                     "fasting": true,
@@ -2439,6 +2472,7 @@
             "2026-02-17": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -2534,6 +2568,7 @@
             "2026-02-18": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -2629,6 +2664,7 @@
             "2026-02-24": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -2722,6 +2758,7 @@
                 },
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -2780,6 +2817,7 @@
             "2026-02-25": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -2838,6 +2876,7 @@
             "2026-02-27": [
                 {
                     "name": "आमलकी एकादशी",
+                    "name_key": "Amalaki Ekadashi",
                     "description": "आमलकी एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -2937,6 +2976,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -2977,6 +3017,7 @@
             "2026-02-28": [
                 {
                     "name": "शनि प्रदोष व्रत",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "शनिवार को पड़ने वाला प्रदोष व्रत, भगवान शिव और शनि के लिए अत्यंत शुभ",
                     "deity": "शिव/शनि",
                     "fasting": true,
@@ -3077,6 +3118,7 @@
             "2026-03-02": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -3175,6 +3217,7 @@
                 },
                 {
                     "name": "फाल्गुन पूर्णिमा",
+                    "name_key": "Phalguna Purnima",
                     "description": "फाल्गुन मास की पूर्णिमा",
                     "deity": "विष्णु/लक्ष्मी",
                     "fasting": true,
@@ -3285,6 +3328,7 @@
             "2026-03-11": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -3378,6 +3422,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -3473,6 +3518,7 @@
             "2026-03-15": [
                 {
                     "name": "पापमोचनी एकादशी",
+                    "name_key": "Papmochani Ekadashi",
                     "description": "पापमोचनी एकादशी के लिए व्रत (पापों से मुक्ति)",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -3572,6 +3618,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -3612,6 +3659,7 @@
             "2026-03-16": [
                 {
                     "name": "सोम प्रदोष व्रत",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "सोमवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -3711,6 +3759,7 @@
             "2026-03-17": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -3808,6 +3857,7 @@
             "2026-03-18": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -3903,6 +3953,7 @@
             "2026-03-19": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -3998,6 +4049,7 @@
             "2026-03-21": [
                 {
                     "name": "मत्स्य जयंती",
+                    "name_key": "Matsya Jayanti",
                     "description": "भगवान विष्णु के मत्स्य अवतार की जयंती",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -4099,6 +4151,7 @@
             "2026-03-23": [
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -4157,6 +4210,7 @@
             "2026-03-24": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -4215,6 +4269,7 @@
             "2026-03-26": [
                 {
                     "name": "राम नवमी",
+                    "name_key": "Rama Navami",
                     "description": "भगवान राम (विष्णु के सातवें अवतार) की जयंती",
                     "deity": "राम",
                     "fasting": true,
@@ -4316,6 +4371,7 @@
                 },
                 {
                     "name": "स्वामीनारायण जयंती (हरि-नोम)",
+                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
                     "description": "भगवान स्वामीनारायण का जन्म; सभाओं, सांस्कृतिक कार्यक्रमों और भजन गायन के साथ मनाया जाता है",
                     "deity": "स्वामीनारायण",
                     "fasting": true,
@@ -4417,6 +4473,7 @@
                 },
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -4510,6 +4567,7 @@
                 },
                 {
                     "name": "अशोक अष्टमी व्रत",
+                    "name_key": "Ashoka Ashtami Vrat",
                     "description": "चैत्र शुक्ल अष्टमी का व्रत और पूजा, जो देवी दुर्गा और अशोक पुष्पों से संबंधित है",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -4611,6 +4669,7 @@
             "2026-03-29": [
                 {
                     "name": "कामदा एकादशी",
+                    "name_key": "Kamada Ekadashi",
                     "description": "कामदा एकादशी के लिए व्रत (इच्छाओं की पूर्ति करने वाली)",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -4710,6 +4769,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -4750,6 +4810,7 @@
             "2026-03-30": [
                 {
                     "name": "सोम प्रदोष व्रत",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "सोमवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -4849,6 +4910,7 @@
             "2026-04-01": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -4947,6 +5009,7 @@
                 },
                 {
                     "name": "चैत्र पूर्णिमा व्रत",
+                    "name_key": "Chaitra Purnima Vrat",
                     "description": "चैत्र पूर्णिमा व्रत और उपवास",
                     "deity": "विष्णु/हनुमान",
                     "fasting": true,
@@ -5050,6 +5113,7 @@
             "2026-04-10": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -5143,6 +5207,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -5238,6 +5303,7 @@
             "2026-04-13": [
                 {
                     "name": "वरुथिनी एकादशी",
+                    "name_key": "Varuthini Ekadashi",
                     "description": "वरुथिनी एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -5337,6 +5403,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -5377,6 +5444,7 @@
             "2026-04-15": [
                 {
                     "name": "बुध प्रदोष व्रत",
+                    "name_key": "Budha Pradosh Vrat",
                     "description": "बुधवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -5473,6 +5541,7 @@
                 },
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -5570,6 +5639,7 @@
             "2026-04-17": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -5665,6 +5735,7 @@
             "2026-04-18": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -5760,6 +5831,7 @@
             "2026-04-20": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -5818,6 +5890,7 @@
             "2026-04-24": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -5913,6 +5986,7 @@
             "2026-04-27": [
                 {
                     "name": "मोहिनी एकादशी",
+                    "name_key": "Mohini Ekadashi",
                     "description": "मोहिनी एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -6012,6 +6086,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -6052,6 +6127,7 @@
             "2026-04-28": [
                 {
                     "name": "भौम प्रदोष व्रत",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "मंगलवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -6151,6 +6227,7 @@
             "2026-04-30": [
                 {
                     "name": "नरसिंह जयंती",
+                    "name_key": "Narasimha Jayanti",
                     "description": "भगवान नरसिंह का प्राकट्य दिवस",
                     "deity": "नरसिंह",
                     "fasting": true,
@@ -6254,6 +6331,7 @@
             "2026-05-01": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -6351,6 +6429,7 @@
                 },
                 {
                     "name": "वैशाख पूर्णिमा",
+                    "name_key": "Vaishakha Purnima",
                     "description": "बुद्ध और कूर्म अवतार का जन्म",
                     "deity": "विष्णु/बुद्ध",
                     "fasting": true,
@@ -6458,6 +6537,7 @@
             "2026-05-10": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -6551,6 +6631,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -6646,6 +6727,7 @@
             "2026-05-13": [
                 {
                     "name": "अपरा एकादशी",
+                    "name_key": "Apara Ekadashi",
                     "description": "अपरा एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -6745,6 +6827,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -6785,6 +6868,7 @@
             "2026-05-14": [
                 {
                     "name": "गुरु प्रदोष व्रत",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "गुरुवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -6884,6 +6968,7 @@
             "2026-05-15": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -6980,6 +7065,7 @@
             "2026-05-16": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -7075,6 +7161,7 @@
             "2026-05-27": [
                 {
                     "name": "पद्मिनी एकादशी",
+                    "name_key": "Padmini Ekadashi",
                     "description": "विशेष एकादशी जो केवल अधिक मास के दौरान आती है",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7172,6 +7259,7 @@
                 },
                 {
                     "name": "महाद्वादशी",
+                    "name_key": "Mahadwadashi",
                     "description": "जब वैष्णव एकादशी व्रत द्वादशी पर स्थानांतरित होता है तब उससे निकाला गया महाद्वादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7212,6 +7300,7 @@
             "2026-05-30": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7310,6 +7399,7 @@
                 },
                 {
                     "name": "अधिक पूर्णिमा व्रत",
+                    "name_key": "Adhika Purnima Vrat",
                     "description": "अधिक मास में होने वाला पूर्णिमा व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7410,6 +7500,7 @@
             "2026-06-11": [
                 {
                     "name": "परमा एकादशी",
+                    "name_key": "Parama Ekadashi",
                     "description": "विशेष एकादशी जो केवल अधिक मास के कृष्ण पक्ष में आती है",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7508,6 +7599,7 @@
             "2026-06-21": [
                 {
                     "name": "भानु सप्तमी",
+                    "name_key": "Bhanu Saptami",
                     "description": "रविवार को पड़ने वाली भगवान सूर्य को समर्पित शुभ सप्तमी",
                     "deity": "सूर्य",
                     "fasting": true,
@@ -7547,6 +7639,7 @@
             "2026-06-22": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -7642,6 +7735,7 @@
             "2026-06-25": [
                 {
                     "name": "निर्जला एकादशी",
+                    "name_key": "Nirjala Ekadashi",
                     "description": "सबसे कठिन एकादशी व्रत (बिना जल के किया जाने वाला) / गायत्री जयंती",
                     "deity": "विष्णु/गायत्री",
                     "fasting": true,
@@ -7741,6 +7835,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7781,6 +7876,7 @@
             "2026-06-27": [
                 {
                     "name": "शनि प्रदोष व्रत",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "शनिवार को पड़ने वाला प्रदोष व्रत, भगवान शिव और शनि के लिए अत्यंत शुभ",
                     "deity": "शिव/शनि",
                     "fasting": true,
@@ -7880,6 +7976,7 @@
             "2026-06-29": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -7977,6 +8074,7 @@
                 },
                 {
                     "name": "ज्येष्ठ पूर्णिमा",
+                    "name_key": "Jyeshtha Purnima",
                     "description": "ज्येष्ठ मास की पूर्णिमा",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -8081,6 +8179,7 @@
             "2026-07-08": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -8174,6 +8273,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -8269,6 +8369,7 @@
             "2026-07-11": [
                 {
                     "name": "योगिनी एकादशी",
+                    "name_key": "Yogini Ekadashi",
                     "description": "योगिनी एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -8369,6 +8470,7 @@
                 },
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -8427,6 +8529,7 @@
             "2026-07-12": [
                 {
                     "name": "रवि प्रदोष व्रत",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "रविवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -8523,6 +8626,7 @@
                 },
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -8618,6 +8722,7 @@
                 },
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -8676,6 +8781,7 @@
             "2026-07-14": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -8771,6 +8877,7 @@
             "2026-07-15": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -8866,6 +8973,7 @@
             "2026-07-21": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -8961,6 +9069,7 @@
             "2026-07-25": [
                 {
                     "name": "देवशयनी एकादशी",
+                    "name_key": "Devshayani Ekadashi",
                     "description": "चातुर्मास आरंभ, भगवान विष्णु योगनिद्रा में जाते हैं",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -9060,6 +9169,7 @@
                 },
                 {
                     "name": "चातुर्मास प्रारंभ",
+                    "name_key": "Chaturmasa Begins",
                     "description": "आषाढ़ शुक्ल द्वादशी की सायं पूजा के बाद परंपरागत रूप से मनाया जाने वाला चातुर्मास का प्रारंभ",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -9163,6 +9273,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -9203,6 +9314,7 @@
             "2026-07-26": [
                 {
                     "name": "रवि प्रदोष व्रत",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "रविवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -9302,6 +9414,7 @@
             "2026-07-28": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -9400,6 +9513,7 @@
                 },
                 {
                     "name": "आषाढ़ पूर्णिमा व्रत",
+                    "name_key": "Ashadha Purnima Vrat",
                     "description": "आषाढ़ पूर्णिमा व्रत और उपवास",
                     "deity": "व्यास",
                     "fasting": true,
@@ -9503,6 +9617,7 @@
             "2026-08-03": [
                 {
                     "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "भगवान शिव को समर्पित श्रावण मास का शुभ सोमवार",
                     "deity": "शिव",
                     "fasting": true,
@@ -9533,6 +9648,7 @@
             "2026-08-04": [
                 {
                     "name": "प्रथम मंगला गौरी व्रत",
+                    "name_key": "First Mangala Gauri Vrat",
                     "description": "देवी गौरी को समर्पित श्रावण मास का प्रथम मंगलवार व्रत",
                     "deity": "गौरी",
                     "fasting": true,
@@ -9563,6 +9679,7 @@
             "2026-08-06": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -9656,6 +9773,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -9751,6 +9869,7 @@
             "2026-08-07": [
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -9809,6 +9928,7 @@
             "2026-08-08": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -9867,6 +9987,7 @@
             "2026-08-09": [
                 {
                     "name": "कामिका एकादशी",
+                    "name_key": "Kamika Ekadashi",
                     "description": "कामिका एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -9966,6 +10087,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -10006,6 +10128,7 @@
             "2026-08-10": [
                 {
                     "name": "सोम प्रदोष व्रत",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "सोमवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -10102,6 +10225,7 @@
                 },
                 {
                     "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "भगवान शिव को समर्पित श्रावण मास का शुभ सोमवार",
                     "deity": "शिव",
                     "fasting": true,
@@ -10132,6 +10256,7 @@
             "2026-08-11": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -10226,6 +10351,7 @@
                 },
                 {
                     "name": "द्वितीय मंगला गौरी व्रत",
+                    "name_key": "Second Mangala Gauri Vrat",
                     "description": "देवी गौरी को समर्पित श्रावण मास का द्वितीय मंगलवार व्रत",
                     "deity": "गौरी",
                     "fasting": true,
@@ -10256,6 +10382,7 @@
             "2026-08-12": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -10351,6 +10478,7 @@
             "2026-08-13": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -10446,6 +10574,7 @@
             "2026-08-17": [
                 {
                     "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "भगवान शिव को समर्पित श्रावण मास का शुभ सोमवार",
                     "deity": "शिव",
                     "fasting": true,
@@ -10476,6 +10605,7 @@
             "2026-08-18": [
                 {
                     "name": "कल्कि जयंती",
+                    "name_key": "Kalki Jayanti",
                     "description": "भगवान विष्णु के कल्कि अवतार की जयंती।",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -10575,6 +10705,7 @@
                 },
                 {
                     "name": "तृतीय मंगला गौरी व्रत",
+                    "name_key": "Third Mangala Gauri Vrat",
                     "description": "देवी गौरी को समर्पित श्रावण मास का तृतीय मंगलवार व्रत",
                     "deity": "गौरी",
                     "fasting": true,
@@ -10605,6 +10736,7 @@
             "2026-08-20": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -10700,6 +10832,7 @@
             "2026-08-23": [
                 {
                     "name": "श्रावण पुत्रदा एकादशी",
+                    "name_key": "Shravana Putrada Ekadashi",
                     "description": "पुत्र प्राप्ति के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -10801,6 +10934,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -10841,6 +10975,7 @@
             "2026-08-24": [
                 {
                     "name": "श्रावण सोमवार (सोमवार व्रत)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "भगवान शिव को समर्पित श्रावण मास का शुभ सोमवार",
                     "deity": "शिव",
                     "fasting": true,
@@ -10871,6 +11006,7 @@
             "2026-08-25": [
                 {
                     "name": "भौम प्रदोष व्रत",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "मंगलवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -10967,6 +11103,7 @@
                 },
                 {
                     "name": "चतुर्थ मंगला गौरी व्रत",
+                    "name_key": "Fourth Mangala Gauri Vrat",
                     "description": "देवी गौरी को समर्पित श्रावण मास का चतुर्थ मंगलवार व्रत",
                     "deity": "गौरी",
                     "fasting": true,
@@ -10997,6 +11134,7 @@
             "2026-08-27": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -11095,6 +11233,7 @@
                 },
                 {
                     "name": "श्रावण पूर्णिमा",
+                    "name_key": "Shravana Purnima",
                     "description": "श्रावण मास की पूर्णिमा",
                     "deity": "विष्णु/गायत्री",
                     "fasting": true,
@@ -11204,6 +11343,7 @@
             "2026-08-28": [
                 {
                     "name": "वरलक्ष्मी व्रतम",
+                    "name_key": "Varalakshmi Vratam",
                     "description": "समृद्धि के लिए देवी लक्ष्मी की पूजा",
                     "deity": "लक्ष्मी",
                     "fasting": true,
@@ -11258,6 +11398,7 @@
             "2026-09-03": [
                 {
                     "name": "शीतला सातम",
+                    "name_key": "Sheetala Satam",
                     "description": "शीतला माता का पर्व, जिसे गुजरात में शीतला सातम के रूप में जाना जाता है, स्वास्थ्य के लिए प्रार्थना और ठंडे भोजन के प्रसाद द्वारा मनाया जाता है",
                     "deity": "शीतला माता",
                     "fasting": true,
@@ -11359,6 +11500,7 @@
                 },
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -11417,6 +11559,7 @@
             "2026-09-04": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -11473,6 +11616,7 @@
                 },
                 {
                     "name": "कृष्ण जन्माष्टमी",
+                    "name_key": "Krishna Janmashtami",
                     "description": "भगवान कृष्ण का जन्मोत्सव",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -11584,6 +11728,7 @@
                 },
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -11677,6 +11822,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -11772,6 +11918,7 @@
             "2026-09-07": [
                 {
                     "name": "अजा एकादशी",
+                    "name_key": "Aja Ekadashi",
                     "description": "अजा एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -11871,6 +12018,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -11911,6 +12059,7 @@
             "2026-09-08": [
                 {
                     "name": "भौम प्रदोष व्रत",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "मंगलवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -12010,6 +12159,7 @@
             "2026-09-09": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -12107,6 +12257,7 @@
             "2026-09-11": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -12202,6 +12353,7 @@
             "2026-09-12": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -12297,6 +12449,7 @@
             "2026-09-14": [
                 {
                     "name": "वराह जयंती",
+                    "name_key": "Varaha Jayanti",
                     "description": "भगवान विष्णु के वराह अवतार की जयंती।",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -12398,6 +12551,7 @@
             "2026-09-19": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -12493,6 +12647,7 @@
             "2026-09-22": [
                 {
                     "name": "परिवर्तिनी एकादशी",
+                    "name_key": "Parivartini Ekadashi",
                     "description": "परिवर्तनी (पार्श्व) एकादशी जब भगवान विष्णु चातुर्मास के दौरान करवट बदलते हैं; जल झिलानी उत्सव (स्वामीनारायण) के रूप में भी जाना जाता है",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -12596,6 +12751,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -12636,6 +12792,7 @@
             "2026-09-24": [
                 {
                     "name": "गुरु प्रदोष व्रत",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "गुरुवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -12734,6 +12891,7 @@
             "2026-09-26": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -12831,6 +12989,7 @@
                 },
                 {
                     "name": "भाद्रपद पूर्णिमा",
+                    "name_key": "Bhadrapada Purnima",
                     "description": "कुछ परंपराओं के लिए पितृ पक्ष का प्रारंभ",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -12935,6 +13094,7 @@
             "2026-10-01": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -12993,6 +13153,7 @@
             "2026-10-03": [
                 {
                     "name": "जीवितपुत्रिका व्रत (जितिया)",
+                    "name_key": "Jivitputrika Vrat (Jitiya)",
                     "description": "संतानों की लंबी आयु के लिए माताओं द्वारा किया जाने वाला कठिन निर्जला व्रत (जितिया)",
                     "deity": "जीमूतवाहन",
                     "fasting": true,
@@ -13095,6 +13256,7 @@
                 },
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -13188,6 +13350,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -13283,6 +13446,7 @@
             "2026-10-06": [
                 {
                     "name": "इन्दिरा एकादशी",
+                    "name_key": "Indira Ekadashi",
                     "description": "इन्दिरा एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -13382,6 +13546,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -13422,6 +13587,7 @@
             "2026-10-08": [
                 {
                     "name": "गुरु प्रदोष व्रत",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "गुरुवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -13518,6 +13684,7 @@
                 },
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -13615,6 +13782,7 @@
             "2026-10-10": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -13710,6 +13878,7 @@
             "2026-10-11": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -13805,6 +13974,7 @@
             "2026-10-18": [
                 {
                     "name": "भानु सप्तमी",
+                    "name_key": "Bhanu Saptami",
                     "description": "रविवार को पड़ने वाली भगवान सूर्य को समर्पित शुभ सप्तमी",
                     "deity": "सूर्य",
                     "fasting": true,
@@ -13844,6 +14014,7 @@
             "2026-10-19": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -13939,6 +14110,7 @@
             "2026-10-22": [
                 {
                     "name": "पापांकुशा एकादशी",
+                    "name_key": "Papankusha Ekadashi",
                     "description": "पापांकुशा एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -14038,6 +14210,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -14078,6 +14251,7 @@
             "2026-10-23": [
                 {
                     "name": "शुक्र प्रदोष व्रत",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "शुक्रवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -14177,6 +14351,7 @@
             "2026-10-25": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -14275,6 +14450,7 @@
                 },
                 {
                     "name": "अश्विन पूर्णिमा",
+                    "name_key": "Ashvina Purnima",
                     "description": "फसल उत्सव और लक्ष्मी पूजा",
                     "deity": "लक्ष्मी",
                     "fasting": true,
@@ -14382,6 +14558,7 @@
             "2026-10-28": [
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -14440,6 +14617,7 @@
             "2026-10-29": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -14496,6 +14674,7 @@
                 },
                 {
                     "name": "करवा चौथ",
+                    "name_key": "Karva Chauth",
                     "description": "विवाहित महिलाएं पति की लंबी उम्र के लिए व्रत रखती हैं",
                     "deity": "पार्वती/शिव",
                     "fasting": true,
@@ -14597,6 +14776,7 @@
             "2026-11-01": [
                 {
                     "name": "अहोई अष्टमी",
+                    "name_key": "Ahoi Ashtami",
                     "description": "माताएं बच्चों की भलाई के लिए व्रत रखती हैं",
                     "deity": "अहोई माता",
                     "fasting": true,
@@ -14699,6 +14879,7 @@
             "2026-11-02": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -14792,6 +14973,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -14887,6 +15069,7 @@
             "2026-11-05": [
                 {
                     "name": "रमा एकादशी",
+                    "name_key": "Rama Ekadashi",
                     "description": "रमा एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -14986,6 +15169,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -15026,6 +15210,7 @@
             "2026-11-06": [
                 {
                     "name": "शुक्र प्रदोष व्रत",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "शुक्रवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -15125,6 +15310,7 @@
             "2026-11-07": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -15222,6 +15408,7 @@
             "2026-11-09": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -15317,6 +15504,7 @@
             "2026-11-10": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -15412,6 +15600,7 @@
             "2026-11-15": [
                 {
                     "name": "छठ पूजा (संध्या अर्घ्य)",
+                    "name_key": "Chhath Puja (Sandhya Arghya)",
                     "description": "छठ पूजा का प्रमुख दिन (४ में से तीसरा) - सूर्य को संध्या अर्घ्य; पर्व कार्तिक शुक्ल ४-७ तक चलता है",
                     "deity": "सूर्य/छठी मईया",
                     "fasting": true,
@@ -15516,6 +15705,7 @@
             "2026-11-17": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -15611,6 +15801,7 @@
             "2026-11-20": [
                 {
                     "name": "देवोत्थान (प्रबोधिनी) एकादशी",
+                    "name_key": "Devutthana (Prabodhini) Ekadashi",
                     "description": "प्रबोधिनी एकादशी / चातुर्मास का समापन",
                     "deity": "विष्णु/स्वामीनारायण",
                     "fasting": true,
@@ -15717,6 +15908,7 @@
             "2026-11-21": [
                 {
                     "name": "चातुर्मास समापन",
+                    "name_key": "Chaturmasa Ends",
                     "description": "कार्तिक शुक्ल द्वादशी पर चातुर्मास का समापन",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -15821,6 +16013,7 @@
             "2026-11-22": [
                 {
                     "name": "रवि प्रदोष व्रत",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "रविवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -15919,6 +16112,7 @@
             "2026-11-24": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -16016,6 +16210,7 @@
                 },
                 {
                     "name": "कार्तिक पूर्णिमा",
+                    "name_key": "Kartika Purnima",
                     "description": "कार्तिक मास की पूर्णिमा",
                     "deity": "शिव/विष्णु",
                     "fasting": true,
@@ -16120,6 +16315,7 @@
                 },
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -16178,6 +16374,7 @@
             "2026-11-25": [
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -16236,6 +16433,7 @@
             "2026-12-01": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -16329,6 +16527,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,
@@ -16424,6 +16623,7 @@
             "2026-12-04": [
                 {
                     "name": "उत्पन्ना एकादशी",
+                    "name_key": "Utpanna Ekadashi",
                     "description": "उत्पन्ना एकादशी के लिए व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -16523,6 +16723,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -16563,6 +16764,7 @@
             "2026-12-06": [
                 {
                     "name": "रवि प्रदोष व्रत",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "रविवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -16661,6 +16863,7 @@
             "2026-12-07": [
                 {
                     "name": "मासिक शिवरात्रि",
+                    "name_key": "Masik Shivaratri",
                     "description": "भगवान शिव को समर्पित मासिक रात्रि व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -16757,6 +16960,7 @@
             "2026-12-08": [
                 {
                     "name": "दर्श अमावस्या",
+                    "name_key": "Darsha Amavasya",
                     "description": "अमावस्या का व्रत",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
@@ -16852,6 +17056,7 @@
             "2026-12-10": [
                 {
                     "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
                     "deity": "चंद्र",
                     "fasting": true,
@@ -16947,6 +17152,7 @@
             "2026-12-17": [
                 {
                     "name": "मासिक दुर्गाष्टमी",
+                    "name_key": "Masik Durgashtami",
                     "description": "देवी दुर्गा को समर्पित मासिक व्रत",
                     "deity": "दुर्गा",
                     "fasting": true,
@@ -17042,6 +17248,7 @@
             "2026-12-20": [
                 {
                     "name": "मोक्षदा एकादशी (गीता जयंती)",
+                    "name_key": "Mokshada Ekadashi (Geeta Jayanti)",
                     "description": "मोक्षदा एकादशी का व्रत और भगवद गीता (गीता जयंती) का उत्सव; स्वर्ग के द्वार के रूप में जाना जाता है",
                     "deity": "कृष्ण/विष्णु",
                     "fasting": true,
@@ -17144,6 +17351,7 @@
                 },
                 {
                     "name": "इस्कॉन एकादशी",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "सूर्योदय और अरुणोदय नियमों से निर्धारित वैष्णव / इस्कॉन एकादशी व्रत दिवस",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -17184,6 +17392,7 @@
             "2026-12-21": [
                 {
                     "name": "सोम प्रदोष व्रत",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "सोमवार को पड़ने वाला प्रदोष व्रत",
                     "deity": "शिव",
                     "fasting": true,
@@ -17283,6 +17492,7 @@
             "2026-12-22": [
                 {
                     "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
                     "deity": "मुरुगन",
                     "fasting": true,
@@ -17341,6 +17551,7 @@
             "2026-12-23": [
                 {
                     "name": "श्री सत्यनारायण व्रत",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "पूर्णिमा की सायं श्री सत्यनारायण पूजा और व्रत",
                     "deity": "विष्णु",
                     "fasting": true,
@@ -17437,16 +17648,16 @@
                     }
                 },
                 {
-                    "name": "मार्गशीर्ष पूर्णिमा",
-                    "description": "भगवान दत्तात्रेय का जन्म",
+                    "name": "मार्गशीर्ष पूर्णिमा व्रत",
+                    "name_key": "Margashirsha Purnima Vrat",
+                    "description": "मार्गशीर्ष पूर्णिमा व्रत और उपवास",
                     "deity": "दत्तात्रेय",
                     "fasting": true,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "aliases": [
-                        "मार्गशीर्ष पूर्णिमा व्रत",
-                        "दत्तात्रेय जयंती"
+                        "मार्गशीर्ष पूर्णिमा"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -17481,7 +17692,7 @@
                         "strict_karmakala": true
                     },
                     "resolution": {
-                        "festival_name": "मार्गशीर्ष पूर्णिमा",
+                        "festival_name": "मार्गशीर्ष पूर्णिमा व्रत",
                         "required_tithi": 15,
                         "paksha": "Shukla",
                         "karmakala_type": "sunset",
@@ -17513,8 +17724,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                         },
-                        "festival_name_key": "Margashirsha Purnima",
-                        "festival_name_localized": "मार्गशीर्ष पूर्णिमा",
+                        "festival_name_key": "Margashirsha Purnima Vrat",
+                        "festival_name_localized": "मार्गशीर्ष पूर्णिमा व्रत",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्यास्त"
                     },
@@ -17541,6 +17752,7 @@
                 },
                 {
                     "name": "रोहिणी व्रत",
+                    "name_key": "Rohini Vrat",
                     "description": "जिस दिन सूर्योदय के बाद रोहिणी नक्षत्र विद्यमान हो उस दिन किया जाने वाला व्रत",
                     "deity": "रोहिणी",
                     "fasting": true,
@@ -17599,6 +17811,7 @@
             "2026-12-31": [
                 {
                     "name": "कालाष्टमी",
+                    "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
                     "deity": "भैरव (शिव)",
                     "fasting": true,
@@ -17692,6 +17905,7 @@
                 },
                 {
                     "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
                     "deity": "कृष्ण",
                     "fasting": true,

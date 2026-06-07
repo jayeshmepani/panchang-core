@@ -9,7 +9,6 @@ use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Localization;
-use JayeshMepani\PanchangCore\Festivals\FestivalService;
 
 /**
  * Output Generator Service.
@@ -368,7 +367,8 @@ class OutputGeneratorService
                 'calendar_type' => $calendarType->value,
                 'festival_day_count' => $festivalCalendar['festival_day_count'],
                 'festival_entry_count' => $festivalCalendar['festival_entry_count'],
-                'total_festivals' => FestivalService::getFestivalCount(),
+                'total_festivals' => $this->countUniqueIdentities($festivalCalendar['by_date'], false),
+                'total_vrats' => $this->countUniqueIdentities($festivalCalendar['by_date'], true),
                 'by_date' => $festivalCalendar['by_date'],
                 'flat' => $festivalCalendar['flat'],
             ],
@@ -412,7 +412,7 @@ class OutputGeneratorService
                 'calendar_type' => $calendarType->value,
                 'festival_day_count' => $festivalCalendar['festival_day_count'],
                 'festival_entry_count' => $festivalCalendar['festival_entry_count'],
-                'total_festivals' => $festivalCalendar['festival_entry_count'],
+                'total_festivals' => $this->countUniqueIdentities($festivalCalendar['by_date']),
                 'by_date' => $festivalCalendar['by_date'],
                 'flat' => $festivalCalendar['flat'],
             ],
@@ -456,7 +456,7 @@ class OutputGeneratorService
                 'calendar_type' => $calendarType->value,
                 'vrat_day_count' => $vratCalendar['festival_day_count'],
                 'vrat_entry_count' => $vratCalendar['festival_entry_count'],
-                'total_vrats' => $vratCalendar['festival_entry_count'],
+                'total_vrats' => $this->countUniqueIdentities($vratCalendar['by_date']),
                 'by_date' => $vratCalendar['by_date'],
                 'flat' => $vratCalendar['flat'],
             ],
@@ -502,7 +502,7 @@ class OutputGeneratorService
                 'calendar_type' => $calendarType->value,
                 'vrat_day_count' => $compacted['dated_day_count'],
                 'vrat_entry_count' => $compacted['dated_entry_count'],
-                'total_vrats' => $vratCalendar['festival_entry_count'],
+                'total_vrats' => $this->countUniqueIdentities($compacted['by_date'], null, $compacted['recurring_weekday_vrats']),
                 'recurring_weekday_vrats' => $compacted['recurring_weekday_vrats'],
                 'by_date' => $compacted['by_date'],
             ],
@@ -1009,7 +1009,8 @@ class OutputGeneratorService
             'calendar_type' => $calendarType->value,
             'festival_day_count' => $festivalOutput['festival_day_count'],
             'festival_entry_count' => $festivalOutput['festival_entry_count'],
-            'total_festivals' => FestivalService::getFestivalCount(),
+            'total_festivals' => $this->countUniqueIdentities($festivalOutput['by_date'], false),
+            'total_vrats' => $this->countUniqueIdentities($festivalOutput['by_date'], true),
             'by_date' => $festivalOutput['by_date'],
         ];
 
@@ -1042,6 +1043,8 @@ class OutputGeneratorService
             'flat' => 'flat',
             'festival_day_count', 'day_count' => 'festival_day_count',
             'festival_entry_count', 'entry_count' => 'festival_entry_count',
+            'total_festivals', 'unique_festival_count', 'festival_identity_count' => 'total_festivals',
+            'total_vrats', 'unique_vrat_count', 'vrat_identity_count' => 'total_vrats',
             default => $section,
         };
     }
@@ -1062,11 +1065,59 @@ class OutputGeneratorService
                 'flat' => $festivalCalendar['flat'],
                 'festival_day_count' => $festivalCalendar['festival_day_count'],
                 'festival_entry_count' => $festivalCalendar['festival_entry_count'],
+                'total_festivals' => $this->countUniqueIdentities($festivalCalendar['by_date'], false),
+                'total_vrats' => $this->countUniqueIdentities($festivalCalendar['by_date'], true),
                 default => throw new InvalidArgumentException('Unknown festival output section: ' . $section),
             };
         }
 
         return $result;
+    }
+
+    /**
+     * Count distinct observance identities, not dated occurrences.
+     *
+     * For example, a monthly or seasonal vrat that occurs four times in a year
+     * is counted as one identity when all occurrences share the same display name.
+     *
+     * @param array<string, array<int, array<string, mixed>>> $byDate
+     * @param array<int, array<string, mixed>> $extraEntries
+     */
+    private function countUniqueIdentities(array $byDate, ?bool $fasting = null, array $extraEntries = []): int
+    {
+        $identities = [];
+
+        foreach ($byDate as $entries) {
+            foreach ($entries as $entry) {
+                if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
+                    continue;
+                }
+
+                $key = $this->observanceIdentityKey($entry);
+                if ($key !== '') {
+                    $identities[$key] = true;
+                }
+            }
+        }
+
+        foreach ($extraEntries as $entry) {
+            if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
+                continue;
+            }
+
+            $key = $this->observanceIdentityKey($entry);
+            if ($key !== '') {
+                $identities[$key] = true;
+            }
+        }
+
+        return count($identities);
+    }
+
+    /** @param array<string, mixed> $entry */
+    private function observanceIdentityKey(array $entry): string
+    {
+        return trim((string) ($entry['name_key'] ?? $entry['name'] ?? ''));
     }
 
     /**

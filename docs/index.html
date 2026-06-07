@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 391 festival definitions, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 323 festival identities, 85 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,8 +490,8 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>391 Festival Definitions</h3>
-              <p>Comprehensive library of festival definitions covering major and minor observances for all regions and
+              <h3>323 Festivals + 85 Vrats</h3>
+              <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
             <div class="feature-card">
@@ -2231,7 +2231,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 391 Hindu festivals based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 323 unique festival identities and 85 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2336,8 +2336,11 @@ foreach ($festivals as $festival) {
                   <li><code>flat</code></li>
                   <li><code>festival_day_count</code> alias: <code>day_count</code></li>
                   <li><code>festival_entry_count</code> alias: <code>entry_count</code></li>
+                  <li><code>total_festivals</code> aliases: <code>unique_festival_count</code>, <code>festival_identity_count</code></li>
+                  <li><code>total_vrats</code> aliases: <code>unique_vrat_count</code>, <code>vrat_identity_count</code></li>
                 </ul>
               </div>
+              <p class="method-description"><code>festival_entry_count</code> counts dated occurrences. <code>total_festivals</code> and <code>total_vrats</code> count unique observance identities, so repeated observances such as Pradosh variants or monthly/seasonal vrats are counted once per distinct identity name.</p>
             </div>
 
             <div class="method">
@@ -2351,7 +2354,7 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">generateFestivalsOnly() / generateVrats()</h4>
-              <p class="method-description">Dedicated selective yearly outputs for non-vrat festivals and vrat-only observances. These use dedicated resolver filtering instead of building the combined yearly payload and slicing it afterward.</p>
+              <p class="method-description">Dedicated selective yearly outputs for non-vrat festivals and vrat-only observances. These use dedicated resolver filtering instead of building the combined yearly payload and slicing it afterward. Their <code>total_festivals</code> and <code>total_vrats</code> fields count unique identities, while <code>festival_entry_count</code> and <code>vrat_entry_count</code> count dated occurrences.</p>
               <div class="method-signature">
                 <code>public function generateFestivalsOnly(int $year, float $lat, float $lon, string $tz, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code><br>
                 <code>public function generateVrats(int $year, float $lat, float $lon, string $tz, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
@@ -2463,8 +2466,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified festival catalog currently contains <code>391</code> definitions after merging true
-                alias/variant duplicates; distinct festivals that fall on the same tithi remain separate entries.</li>
+              <li>The verified yearly catalog currently reports <code>323</code> unique festival identities and <code>85</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -5017,7 +5019,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <ul>
                 <li>Consolidated <code>Shakambhari Purnima</code> under <code>Pausha Purnima</code>.</li>
                 <li>Refactored <code>Pradosh Vrat</code> to resolve dynamically based on the weekday (e.g., calculating names like <em>Shani Pradosh Vrat</em>, weekday-specific descriptions, and deities dynamically) instead of hardcoding multiple redundant entries.</li>
-                <li>De-duplicated the total packaged festival definitions count from <code>399</code> to exactly <code>391</code>.</li>
+                <li>Clarified public observance totals as <code>323</code> unique festival identities and <code>85</code> unique vrat identities.</li>
               </ul>
             </li>
           </ul>
@@ -5061,7 +5063,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
             <li><strong>Festival Expansion:</strong>
               <ul>
-                <li>Expanded built-in festival coverage from <strong>237 festivals to 391 festivals</strong> with broader regional and traditional observance support.</li>
+                <li>Expanded built-in observance coverage to <strong>323 unique festival identities and 85 unique vrat identities</strong> with broader regional and traditional observance support.</li>
                 <li>Added support for many regional festival naming conventions and aliases.</li>
                 <li>Improved handling for regional observances such as Uttarayan, Pongal, Maghi, Til Sankranti, Khichdi, Ghughuti, Sakraat, Thiruvadhirai, Arudra Darshanam, and many more.</li>
                 <li>Improved handling for weekday-specific Pradosh observances.</li>

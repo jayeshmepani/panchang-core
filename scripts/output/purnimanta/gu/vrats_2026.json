@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-06T20:34:18+00:00",
+        "generated_at": "2026-06-07T02:56:05+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -19,10 +19,11 @@
         "calendar_type": "purnimanta",
         "vrat_day_count": 140,
         "vrat_entry_count": 208,
-        "total_vrats": 573,
+        "total_vrats": 85,
         "recurring_weekday_vrats": [
             {
                 "name": "રવિવાર વ્રત",
+                "name_key": "Ravivar Vrat",
                 "description": "ભગવાન સૂર્યને સમર્પિત સાપ્તાહિક રવિવાર વ્રત",
                 "deity": "સૂર્ય",
                 "fasting": true,
@@ -48,6 +49,7 @@
             },
             {
                 "name": "સોમવાર વ્રત",
+                "name_key": "Somwar Vrat",
                 "description": "ભગવાન શિવને સમર્પિત સાપ્તાહિક સોમવાર વ્રત",
                 "deity": "શિવ",
                 "fasting": true,
@@ -73,6 +75,7 @@
             },
             {
                 "name": "મંગળવાર વ્રત",
+                "name_key": "Mangalwar Vrat",
                 "description": "હનુમાન અને મંગળને સમર્પિત સાપ્તાહિક મંગળવાર વ્રત",
                 "deity": "હનુમાન",
                 "fasting": true,
@@ -97,6 +100,7 @@
             },
             {
                 "name": "બુધવાર વ્રત",
+                "name_key": "Budhwar Vrat",
                 "description": "ભગવાન વિષ્ણુ અને બુધને સમર્પિત સાપ્તાહિક બુધવાર વ્રત",
                 "deity": "વિષ્ણુ",
                 "fasting": true,
@@ -121,6 +125,7 @@
             },
             {
                 "name": "ગુરુવાર વ્રત",
+                "name_key": "Guruvar Vrat",
                 "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
                 "deity": "વિષ્ણુ",
                 "fasting": true,
@@ -146,6 +151,7 @@
             },
             {
                 "name": "શુક્રવાર વ્રત",
+                "name_key": "Shukravar Vrat",
                 "description": "દેવી લક્ષ્મી અને શુક્રને સમર્પિત સાપ્તાહિક શુક્રવાર વ્રત",
                 "deity": "લક્ષ્મી",
                 "fasting": true,
@@ -170,6 +176,7 @@
             },
             {
                 "name": "શનિવાર વ્રત",
+                "name_key": "Shanivar Vrat",
                 "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
                 "deity": "શનિ",
                 "fasting": true,
@@ -197,6 +204,7 @@
             "2026-01-01": [
                 {
                     "name": "ગુરૂ પ્રદોષ વ્રત",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "ગુરૂવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -293,6 +301,7 @@
                 },
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -351,6 +360,7 @@
             "2026-01-02": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -451,6 +461,7 @@
             "2026-01-03": [
                 {
                     "name": "પોષ પૂનમ વ્રત",
+                    "name_key": "Pausha Purnima Vrat",
                     "description": "પોષ પૂનમ વ્રત અને ઉપવાસ",
                     "deity": "સૂર્ય/ચંદ્ર",
                     "fasting": true,
@@ -491,7 +502,7 @@
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય",
                         "strict_karmakala": true,
-                        "rule_convention": "દૃક-શૈલીનું નામિત પૂનમ વ્રત દિવસ; અગાઉની તિથિ-શરૂઆત/ઉપવાસ-વિન્ડો લેબલ નહીં",
+                        "rule_convention": "દૃક-શૈલીનું નામિત પૂનમ વ્રત દિવસ; અગાઉની તિથિ-શરૂઆત/ઉપવાસ સમયખંડનું નામ નહીં",
                         "rule_convention_key": "Drik-style labeled Purnima vrat day, not the previous tithi-start/upavasa-window label"
                     },
                     "resolution": {
@@ -557,6 +568,7 @@
             "2026-01-11": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -650,6 +662,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -745,6 +758,7 @@
             "2026-01-14": [
                 {
                     "name": "ષટતિલા એકાદશી",
+                    "name_key": "Shattila Ekadashi",
                     "description": "ષટતિલા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -844,6 +858,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -884,6 +899,7 @@
             "2026-01-16": [
                 {
                     "name": "શુક્ર પ્રદોષ વ્રત",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "શુક્રવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -980,6 +996,7 @@
                 },
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -1077,6 +1094,7 @@
             "2026-01-18": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -1172,6 +1190,7 @@
             "2026-01-19": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -1267,6 +1286,7 @@
             "2026-01-25": [
                 {
                     "name": "ભાનુ સપ્તમી",
+                    "name_key": "Bhanu Saptami",
                     "description": "રવિવારે આવતી ભગવાન સૂર્યને સમર્પિત શુભ સપ્તમી",
                     "deity": "સૂર્ય",
                     "fasting": true,
@@ -1306,6 +1326,7 @@
             "2026-01-26": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -1401,6 +1422,7 @@
             "2026-01-28": [
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -1459,6 +1481,7 @@
             "2026-01-29": [
                 {
                     "name": "જયા એકાદશી",
+                    "name_key": "Jaya Ekadashi",
                     "description": "જયા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -1561,6 +1584,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -1601,6 +1625,7 @@
             "2026-01-30": [
                 {
                     "name": "શુક્ર પ્રદોષ વ્રત",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "શુક્રવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -1700,6 +1725,7 @@
             "2026-02-01": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -1797,6 +1823,7 @@
                 },
                 {
                     "name": "માઘી પૂર્ણિમા",
+                    "name_key": "Maghi Purnima",
                     "description": "માઘ સ્નાનનું સમાપન, ગુરુ રવિદાસની જયંતિ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -1904,6 +1931,7 @@
             "2026-02-09": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -1997,6 +2025,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -2092,6 +2121,7 @@
             "2026-02-13": [
                 {
                     "name": "વિજયા એકાદશી",
+                    "name_key": "Vijaya Ekadashi",
                     "description": "વિજયા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -2191,6 +2221,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -2231,6 +2262,7 @@
             "2026-02-14": [
                 {
                     "name": "શનિ પ્રદોષ વ્રત",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "શનિવારે આવતું પ્રદોષ વ્રત, ભગવાન શિવ અને શનિ માટે અત્યંત શુભ",
                     "deity": "શિવ/શનિ",
                     "fasting": true,
@@ -2331,6 +2363,7 @@
             "2026-02-15": [
                 {
                     "name": "મહા શિવરાત્રી",
+                    "name_key": "Maha Shivaratri",
                     "description": "ભગવાન શિવની મહાન રાત્રિ",
                     "deity": "શિવ",
                     "fasting": true,
@@ -2439,6 +2472,7 @@
             "2026-02-17": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -2534,6 +2568,7 @@
             "2026-02-18": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -2629,6 +2664,7 @@
             "2026-02-24": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -2722,6 +2758,7 @@
                 },
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -2780,6 +2817,7 @@
             "2026-02-25": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -2838,6 +2876,7 @@
             "2026-02-27": [
                 {
                     "name": "આમલકી એકાદશી",
+                    "name_key": "Amalaki Ekadashi",
                     "description": "આમલકી એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -2937,6 +2976,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -2977,6 +3017,7 @@
             "2026-02-28": [
                 {
                     "name": "શનિ પ્રદોષ વ્રત",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "શનિવારે આવતું પ્રદોષ વ્રત, ભગવાન શિવ અને શનિ માટે અત્યંત શુભ",
                     "deity": "શિવ/શનિ",
                     "fasting": true,
@@ -3077,6 +3118,7 @@
             "2026-03-02": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -3175,6 +3217,7 @@
                 },
                 {
                     "name": "ફાગણ પૂનમ",
+                    "name_key": "Phalguna Purnima",
                     "description": "ફાગણ માસની પૂનમ",
                     "deity": "વિષ્ણુ/લક્ષ્મી",
                     "fasting": true,
@@ -3285,6 +3328,7 @@
             "2026-03-11": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -3378,6 +3422,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -3473,6 +3518,7 @@
             "2026-03-15": [
                 {
                     "name": "પાપમોચની એકાદશી",
+                    "name_key": "Papmochani Ekadashi",
                     "description": "પાપમોચની એકાદશી માટે વ્રત (પાપોમાંથી મુક્તિ)",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -3572,6 +3618,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -3612,6 +3659,7 @@
             "2026-03-16": [
                 {
                     "name": "સોમ પ્રદોષ વ્રત",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "સોમવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -3711,6 +3759,7 @@
             "2026-03-17": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -3808,6 +3857,7 @@
             "2026-03-18": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -3903,6 +3953,7 @@
             "2026-03-19": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -3998,6 +4049,7 @@
             "2026-03-21": [
                 {
                     "name": "મત્સ્ય જયંતિ",
+                    "name_key": "Matsya Jayanti",
                     "description": "ભગવાન વિષ્ણુના મત્સ્ય અવતારની જયંતિ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -4099,6 +4151,7 @@
             "2026-03-23": [
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -4157,6 +4210,7 @@
             "2026-03-24": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -4215,6 +4269,7 @@
             "2026-03-26": [
                 {
                     "name": "રામ નવમી",
+                    "name_key": "Rama Navami",
                     "description": "ભગવાન રામ (વિષ્ણુના સાતમા અવતાર) ની જન્મજયંતિ",
                     "deity": "રામ",
                     "fasting": true,
@@ -4316,6 +4371,7 @@
                 },
                 {
                     "name": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
+                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
                     "description": "ભગવાન સ્વામિનારાયણનો જન્મ; સભાઓ, સાંસ્કૃતિક કાર્યક્રમો અને ભજન કીર્તન સાથે ઉજવાય છે",
                     "deity": "સ્વામિનારાયણ",
                     "fasting": true,
@@ -4417,6 +4473,7 @@
                 },
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -4510,6 +4567,7 @@
                 },
                 {
                     "name": "અશોક આઠમ વ્રત",
+                    "name_key": "Ashoka Ashtami Vrat",
                     "description": "ચૈત્ર શુક્લ આઠમે દેવી દુર્ગા અને અશોક પુષ્પો સાથે જોડાયેલ વ્રત અને પૂજા",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -4611,6 +4669,7 @@
             "2026-03-29": [
                 {
                     "name": "કામદા એકાદશી",
+                    "name_key": "Kamada Ekadashi",
                     "description": "કામદા એકાદશી માટે વ્રત (મનોકામનાઓ પૂર્ણ કરનારી)",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -4710,6 +4769,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -4750,6 +4810,7 @@
             "2026-03-30": [
                 {
                     "name": "સોમ પ્રદોષ વ્રત",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "સોમવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -4849,6 +4910,7 @@
             "2026-04-01": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -4947,6 +5009,7 @@
                 },
                 {
                     "name": "ચૈત્ર પૂનમ વ્રત",
+                    "name_key": "Chaitra Purnima Vrat",
                     "description": "ચૈત્ર પૂનમ વ્રત અને ઉપવાસ",
                     "deity": "વિષ્ણુ/હનુમાન",
                     "fasting": true,
@@ -5050,6 +5113,7 @@
             "2026-04-10": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -5143,6 +5207,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -5238,6 +5303,7 @@
             "2026-04-13": [
                 {
                     "name": "વરુથિની એકાદશી",
+                    "name_key": "Varuthini Ekadashi",
                     "description": "વરુથિની એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -5337,6 +5403,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -5377,6 +5444,7 @@
             "2026-04-15": [
                 {
                     "name": "બુધ પ્રદોષ વ્રત",
+                    "name_key": "Budha Pradosh Vrat",
                     "description": "બુધવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -5473,6 +5541,7 @@
                 },
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -5570,6 +5639,7 @@
             "2026-04-17": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -5665,6 +5735,7 @@
             "2026-04-18": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -5760,6 +5831,7 @@
             "2026-04-20": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -5818,6 +5890,7 @@
             "2026-04-24": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -5913,6 +5986,7 @@
             "2026-04-27": [
                 {
                     "name": "મોહિની એકાદશી",
+                    "name_key": "Mohini Ekadashi",
                     "description": "મોહિની એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -6012,6 +6086,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -6052,6 +6127,7 @@
             "2026-04-28": [
                 {
                     "name": "ભૌમ પ્રદોષ વ્રત",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "મંગળવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -6151,6 +6227,7 @@
             "2026-04-30": [
                 {
                     "name": "નૃસિંહ જયંતિ",
+                    "name_key": "Narasimha Jayanti",
                     "description": "ભગવાન નૃસિંહનો પ્રાગટ્ય દિવસ",
                     "deity": "નૃસિંહ",
                     "fasting": true,
@@ -6254,6 +6331,7 @@
             "2026-05-01": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -6351,6 +6429,7 @@
                 },
                 {
                     "name": "વૈશાખ પૂનમ",
+                    "name_key": "Vaishakha Purnima",
                     "description": "બુદ્ધ અને કૂર્મ અવતારનો જન્મ",
                     "deity": "વિષ્ણુ/બુદ્ધ",
                     "fasting": true,
@@ -6458,6 +6537,7 @@
             "2026-05-10": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -6551,6 +6631,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -6646,6 +6727,7 @@
             "2026-05-13": [
                 {
                     "name": "અપરા એકાદશી",
+                    "name_key": "Apara Ekadashi",
                     "description": "અપરા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -6745,6 +6827,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -6785,6 +6868,7 @@
             "2026-05-14": [
                 {
                     "name": "ગુરૂ પ્રદોષ વ્રત",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "ગુરૂવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -6884,6 +6968,7 @@
             "2026-05-15": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -6980,6 +7065,7 @@
             "2026-05-16": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -7075,6 +7161,7 @@
             "2026-05-27": [
                 {
                     "name": "પદ્મિની એકાદશી",
+                    "name_key": "Padmini Ekadashi",
                     "description": "વિશેષ એકાદશી જે માત્ર અધિક માસ દરમિયાન આવે છે",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7172,6 +7259,7 @@
                 },
                 {
                     "name": "મહાદ્વાદશી",
+                    "name_key": "Mahadwadashi",
                     "description": "જ્યારે વૈષ્ણવ એકાદશી વ્રત દ્વાદશી પર ખસે ત્યારે તેમાંથી નક્કી થતો મહાદ્વાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7212,6 +7300,7 @@
             "2026-05-30": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7310,6 +7399,7 @@
                 },
                 {
                     "name": "અધિક પૂનમ વ્રત",
+                    "name_key": "Adhika Purnima Vrat",
                     "description": "અધિક માસમાં થતું પૂનમ વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7410,6 +7500,7 @@
             "2026-06-11": [
                 {
                     "name": "પરમા એકાદશી",
+                    "name_key": "Parama Ekadashi",
                     "description": "વિશેષ એકાદશી જે માત્ર અધિક માસના કૃષ્ણ પક્ષમાં આવે છે",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7508,6 +7599,7 @@
             "2026-06-21": [
                 {
                     "name": "ભાનુ સપ્તમી",
+                    "name_key": "Bhanu Saptami",
                     "description": "રવિવારે આવતી ભગવાન સૂર્યને સમર્પિત શુભ સપ્તમી",
                     "deity": "સૂર્ય",
                     "fasting": true,
@@ -7547,6 +7639,7 @@
             "2026-06-22": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -7642,6 +7735,7 @@
             "2026-06-25": [
                 {
                     "name": "નિર્જળા એકાદશી",
+                    "name_key": "Nirjala Ekadashi",
                     "description": "સૌથી કઠિન એકાદશી વ્રત (નિર્જળ ઉપવાસ) / ગાયત્રી જયંતિ",
                     "deity": "વિષ્ણુ/ગાયત્રી",
                     "fasting": true,
@@ -7741,6 +7835,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7781,6 +7876,7 @@
             "2026-06-27": [
                 {
                     "name": "શનિ પ્રદોષ વ્રત",
+                    "name_key": "Shani Pradosh Vrat",
                     "description": "શનિવારે આવતું પ્રદોષ વ્રત, ભગવાન શિવ અને શનિ માટે અત્યંત શુભ",
                     "deity": "શિવ/શનિ",
                     "fasting": true,
@@ -7880,6 +7976,7 @@
             "2026-06-29": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -7977,6 +8074,7 @@
                 },
                 {
                     "name": "જેઠ પૂનમ",
+                    "name_key": "Jyeshtha Purnima",
                     "description": "જેઠ માસની પૂનમ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -8081,6 +8179,7 @@
             "2026-07-08": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -8174,6 +8273,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -8269,6 +8369,7 @@
             "2026-07-11": [
                 {
                     "name": "યોગિની એકાદશી",
+                    "name_key": "Yogini Ekadashi",
                     "description": "યોગિની એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -8369,6 +8470,7 @@
                 },
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -8427,6 +8529,7 @@
             "2026-07-12": [
                 {
                     "name": "રવિ પ્રદોષ વ્રત",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "રવિવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -8523,6 +8626,7 @@
                 },
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -8618,6 +8722,7 @@
                 },
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -8676,6 +8781,7 @@
             "2026-07-14": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -8771,6 +8877,7 @@
             "2026-07-15": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -8866,6 +8973,7 @@
             "2026-07-21": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -8961,6 +9069,7 @@
             "2026-07-25": [
                 {
                     "name": "દેવપોઢી એકાદશી",
+                    "name_key": "Devshayani Ekadashi",
                     "description": "ચાતુર્માસ પ્રારંભ, ભગવાન વિષ્ણુ યોગનિદ્રામાં જાય છે",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -9060,6 +9169,7 @@
                 },
                 {
                     "name": "ચાતુર્માસ પ્રારંભ",
+                    "name_key": "Chaturmasa Begins",
                     "description": "અષાઢ શુક્લ દ્વાદશીની સાંજની પૂજા પછી પરંપરાગત રીતે માનવામાં આવતો ચાતુર્માસનો પ્રારંભ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -9163,6 +9273,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -9203,6 +9314,7 @@
             "2026-07-26": [
                 {
                     "name": "રવિ પ્રદોષ વ્રત",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "રવિવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -9302,6 +9414,7 @@
             "2026-07-28": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -9400,6 +9513,7 @@
                 },
                 {
                     "name": "અષાઢ પૂનમ વ્રત",
+                    "name_key": "Ashadha Purnima Vrat",
                     "description": "અષાઢ પૂનમ વ્રત અને ઉપવાસ",
                     "deity": "વ્યાસ",
                     "fasting": true,
@@ -9503,6 +9617,7 @@
             "2026-08-03": [
                 {
                     "name": "શ્રાવણ સોમવાર (સોમવાર વ્રત)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "ભગવાન શિવને સમર્પિત શ્રાવણ માસનો શુભ સોમવાર",
                     "deity": "શિવ",
                     "fasting": true,
@@ -9533,6 +9648,7 @@
             "2026-08-04": [
                 {
                     "name": "પ્રથમ મંગળા ગૌરી વ્રત",
+                    "name_key": "First Mangala Gauri Vrat",
                     "description": "દેવી ગૌરીને સમર્પિત શ્રાવણ માસનો પ્રથમ મંગળવાર વ્રત",
                     "deity": "ગૌરી",
                     "fasting": true,
@@ -9563,6 +9679,7 @@
             "2026-08-06": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -9656,6 +9773,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -9751,6 +9869,7 @@
             "2026-08-07": [
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -9809,6 +9928,7 @@
             "2026-08-08": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -9867,6 +9987,7 @@
             "2026-08-09": [
                 {
                     "name": "કામિકા એકાદશી",
+                    "name_key": "Kamika Ekadashi",
                     "description": "કામિકા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -9966,6 +10087,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -10006,6 +10128,7 @@
             "2026-08-10": [
                 {
                     "name": "સોમ પ્રદોષ વ્રત",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "સોમવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10102,6 +10225,7 @@
                 },
                 {
                     "name": "શ્રાવણ સોમવાર (સોમવાર વ્રત)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "ભગવાન શિવને સમર્પિત શ્રાવણ માસનો શુભ સોમવાર",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10132,6 +10256,7 @@
             "2026-08-11": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10226,6 +10351,7 @@
                 },
                 {
                     "name": "દ્વિતીય મંગળા ગૌરી વ્રત",
+                    "name_key": "Second Mangala Gauri Vrat",
                     "description": "દેવી ગૌરીને સમર્પિત શ્રાવણ માસનો દ્વિતીય મંગળવાર વ્રત",
                     "deity": "ગૌરી",
                     "fasting": true,
@@ -10256,6 +10382,7 @@
             "2026-08-12": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -10351,6 +10478,7 @@
             "2026-08-13": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -10446,6 +10574,7 @@
             "2026-08-17": [
                 {
                     "name": "શ્રાવણ સોમવાર (સોમવાર વ્રત)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "ભગવાન શિવને સમર્પિત શ્રાવણ માસનો શુભ સોમવાર",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10476,6 +10605,7 @@
             "2026-08-18": [
                 {
                     "name": "કલ્કિ જયંતિ",
+                    "name_key": "Kalki Jayanti",
                     "description": "ભગવાન વિષ્ણુના કલ્કિ અવતારની જન્મજયંતી.",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -10575,6 +10705,7 @@
                 },
                 {
                     "name": "તૃતીય મંગળા ગૌરી વ્રત",
+                    "name_key": "Third Mangala Gauri Vrat",
                     "description": "દેવી ગૌરીને સમર્પિત શ્રાવણ માસનો તૃતીય મંગળવાર વ્રત",
                     "deity": "ગૌરી",
                     "fasting": true,
@@ -10605,6 +10736,7 @@
             "2026-08-20": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -10700,6 +10832,7 @@
             "2026-08-23": [
                 {
                     "name": "શ્રાવણ પુત્રદા એકાદશી",
+                    "name_key": "Shravana Putrada Ekadashi",
                     "description": "પુત્ર પ્રાપ્તિ માટેનું વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -10801,6 +10934,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -10841,6 +10975,7 @@
             "2026-08-24": [
                 {
                     "name": "શ્રાવણ સોમવાર (સોમવાર વ્રત)",
+                    "name_key": "Shravana Somvar (Monday Fasting)",
                     "description": "ભગવાન શિવને સમર્પિત શ્રાવણ માસનો શુભ સોમવાર",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10871,6 +11006,7 @@
             "2026-08-25": [
                 {
                     "name": "ભૌમ પ્રદોષ વ્રત",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "મંગળવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -10967,6 +11103,7 @@
                 },
                 {
                     "name": "ચતુર્થ મંગળા ગૌરી વ્રત",
+                    "name_key": "Fourth Mangala Gauri Vrat",
                     "description": "દેવી ગૌરીને સમર્પિત શ્રાવણ માસનો ચતુર્થ મંગળવાર વ્રત",
                     "deity": "ગૌરી",
                     "fasting": true,
@@ -10997,6 +11134,7 @@
             "2026-08-27": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -11095,6 +11233,7 @@
                 },
                 {
                     "name": "શ્રાવણ પૂનમ",
+                    "name_key": "Shravana Purnima",
                     "description": "શ્રાવણ માસની પૂનમ",
                     "deity": "વિષ્ણુ/ગાયત્રી",
                     "fasting": true,
@@ -11204,6 +11343,7 @@
             "2026-08-28": [
                 {
                     "name": "વરલક્ષ્મી વ્રતમ",
+                    "name_key": "Varalakshmi Vratam",
                     "description": "સમૃદ્ધિ માટે દેવી લક્ષ્મીની પૂજા",
                     "deity": "લક્ષ્મી",
                     "fasting": true,
@@ -11258,6 +11398,7 @@
             "2026-09-03": [
                 {
                     "name": "શીતળા સાતમ",
+                    "name_key": "Sheetala Satam",
                     "description": "શીતળા માતાનું પર્વ, જે ગુજરાતમાં શીતળા સાતમ તરીકે ઓળખાય છે, આરોગ્ય માટેની પ્રાર્થના અને ટાઢું ભોજન આરોગવાથી ઉજવાય છે",
                     "deity": "શીતળા માતા",
                     "fasting": true,
@@ -11359,6 +11500,7 @@
                 },
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -11417,6 +11559,7 @@
             "2026-09-04": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -11473,6 +11616,7 @@
                 },
                 {
                     "name": "કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણનો જન્મોત્સવ",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -11584,6 +11728,7 @@
                 },
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -11677,6 +11822,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -11772,6 +11918,7 @@
             "2026-09-07": [
                 {
                     "name": "અજા એકાદશી",
+                    "name_key": "Aja Ekadashi",
                     "description": "અજા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -11871,6 +12018,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -11911,6 +12059,7 @@
             "2026-09-08": [
                 {
                     "name": "ભૌમ પ્રદોષ વ્રત",
+                    "name_key": "Bhauma Pradosh Vrat",
                     "description": "મંગળવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -12010,6 +12159,7 @@
             "2026-09-09": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -12107,6 +12257,7 @@
             "2026-09-11": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -12202,6 +12353,7 @@
             "2026-09-12": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -12297,6 +12449,7 @@
             "2026-09-14": [
                 {
                     "name": "વરાહ જયંતિ",
+                    "name_key": "Varaha Jayanti",
                     "description": "ભગવાન વિષ્ણુના વરાહ અવતારની જન્મજયંતી.",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -12398,6 +12551,7 @@
             "2026-09-19": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -12493,6 +12647,7 @@
             "2026-09-22": [
                 {
                     "name": "પરિવર્તિની એકાદશી",
+                    "name_key": "Parivartini Ekadashi",
                     "description": "પરિવર્તિની (પાર્શ્વ) એકાદશી જ્યારે ભગવાન વિષ્ણુ ચાતુર્માસ દરમિયાન પડખું ફરે છે; જલ ઝીલણી ઉત્સવ (સ્વામિનારાયણ) તરીકે પણ ઓળખાય છે",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -12596,6 +12751,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -12636,6 +12792,7 @@
             "2026-09-24": [
                 {
                     "name": "ગુરૂ પ્રદોષ વ્રત",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "ગુરૂવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -12734,6 +12891,7 @@
             "2026-09-26": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -12831,6 +12989,7 @@
                 },
                 {
                     "name": "ભાદરવા પૂનમ",
+                    "name_key": "Bhadrapada Purnima",
                     "description": "અમુક પરંપરાઓ માટે પિતૃ પક્ષનો પ્રારંભ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -12935,6 +13094,7 @@
             "2026-10-01": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -12993,6 +13153,7 @@
             "2026-10-03": [
                 {
                     "name": "જીવિતપુત્રિકા વ્રત (જિતિયા)",
+                    "name_key": "Jivitputrika Vrat (Jitiya)",
                     "description": "સંતાનોના લાંબા આયુષ્ય માટે માતાઓ દ્વારા કરવામાં આવતું કઠિન નિર્જલા વ્રત (જિતિયા)",
                     "deity": "જીમૂતવાહન",
                     "fasting": true,
@@ -13095,6 +13256,7 @@
                 },
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -13188,6 +13350,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -13283,6 +13446,7 @@
             "2026-10-06": [
                 {
                     "name": "ઇન્દિરા એકાદશી",
+                    "name_key": "Indira Ekadashi",
                     "description": "ઇન્દિરા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -13382,6 +13546,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -13422,6 +13587,7 @@
             "2026-10-08": [
                 {
                     "name": "ગુરૂ પ્રદોષ વ્રત",
+                    "name_key": "Guru Pradosh Vrat",
                     "description": "ગુરૂવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -13518,6 +13684,7 @@
                 },
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -13615,6 +13782,7 @@
             "2026-10-10": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -13710,6 +13878,7 @@
             "2026-10-11": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -13805,6 +13974,7 @@
             "2026-10-18": [
                 {
                     "name": "ભાનુ સપ્તમી",
+                    "name_key": "Bhanu Saptami",
                     "description": "રવિવારે આવતી ભગવાન સૂર્યને સમર્પિત શુભ સપ્તમી",
                     "deity": "સૂર્ય",
                     "fasting": true,
@@ -13844,6 +14014,7 @@
             "2026-10-19": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -13939,6 +14110,7 @@
             "2026-10-22": [
                 {
                     "name": "પાપાંકુશા એકાદશી",
+                    "name_key": "Papankusha Ekadashi",
                     "description": "પાપાંકુશા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -14038,6 +14210,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -14078,6 +14251,7 @@
             "2026-10-23": [
                 {
                     "name": "શુક્ર પ્રદોષ વ્રત",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "શુક્રવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -14177,6 +14351,7 @@
             "2026-10-25": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -14275,6 +14450,7 @@
                 },
                 {
                     "name": "આસો પૂનમ",
+                    "name_key": "Ashvina Purnima",
                     "description": "લણણીનો ઉત્સવ અને લક્ષ્મી પૂજા",
                     "deity": "લક્ષ્મી",
                     "fasting": true,
@@ -14382,6 +14558,7 @@
             "2026-10-28": [
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -14440,6 +14617,7 @@
             "2026-10-29": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -14496,6 +14674,7 @@
                 },
                 {
                     "name": "કરવા ચોથ",
+                    "name_key": "Karva Chauth",
                     "description": "પરિણીત સ્ત્રીઓ પતિના લાંબા આયુષ્ય માટે વ્રત રાખે છે",
                     "deity": "પાર્વતી/શિવ",
                     "fasting": true,
@@ -14597,6 +14776,7 @@
             "2026-11-01": [
                 {
                     "name": "અહોઈ અષ્ટમી",
+                    "name_key": "Ahoi Ashtami",
                     "description": "માતાઓ બાળકોની સુખાકારી માટે વ્રત રાખે છે",
                     "deity": "અહોઈ માતા",
                     "fasting": true,
@@ -14699,6 +14879,7 @@
             "2026-11-02": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -14792,6 +14973,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -14887,6 +15069,7 @@
             "2026-11-05": [
                 {
                     "name": "રમા એકાદશી",
+                    "name_key": "Rama Ekadashi",
                     "description": "રમા એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -14986,6 +15169,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -15026,6 +15210,7 @@
             "2026-11-06": [
                 {
                     "name": "શુક્ર પ્રદોષ વ્રત",
+                    "name_key": "Shukra Pradosh Vrat",
                     "description": "શુક્રવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -15125,6 +15310,7 @@
             "2026-11-07": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -15222,6 +15408,7 @@
             "2026-11-09": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -15317,6 +15504,7 @@
             "2026-11-10": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -15412,6 +15600,7 @@
             "2026-11-15": [
                 {
                     "name": "છઠ પૂજા (સંધ્યા અર્ઘ્ય)",
+                    "name_key": "Chhath Puja (Sandhya Arghya)",
                     "description": "છઠ પૂજાનો મુખ્ય દિવસ (4 માંથી ત્રીજો) - સૂર્યને સંધ્યા અર્ઘ્ય; પર્વ કાર્તિક શુક્લ 4-7 સુધી ચાલે છે",
                     "deity": "સૂર્ય/છઠ્ઠી મૈયા",
                     "fasting": true,
@@ -15516,6 +15705,7 @@
             "2026-11-17": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -15611,6 +15801,7 @@
             "2026-11-20": [
                 {
                     "name": "દેવઉઠી (પ્રબોધિની) એકાદશી",
+                    "name_key": "Devutthana (Prabodhini) Ekadashi",
                     "description": "પ્રબોધિની એકાદશી / ચાતુર્માસની પૂર્ણાહુતિ",
                     "deity": "વિષ્ણુ/સ્વામિનારાયણ",
                     "fasting": true,
@@ -15717,6 +15908,7 @@
             "2026-11-21": [
                 {
                     "name": "ચાતુર્માસ સમાપન",
+                    "name_key": "Chaturmasa Ends",
                     "description": "કારતક શુક્લ દ્વાદશીએ ચાતુર્માસનો સમાપન",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -15821,6 +16013,7 @@
             "2026-11-22": [
                 {
                     "name": "રવિ પ્રદોષ વ્રત",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "રવિવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -15919,6 +16112,7 @@
             "2026-11-24": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -16016,6 +16210,7 @@
                 },
                 {
                     "name": "કારતક પૂનમ",
+                    "name_key": "Kartika Purnima",
                     "description": "કારતક માસની પૂનમ",
                     "deity": "શિવ/વિષ્ણુ",
                     "fasting": true,
@@ -16120,6 +16315,7 @@
                 },
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -16178,6 +16374,7 @@
             "2026-11-25": [
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -16236,6 +16433,7 @@
             "2026-12-01": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -16329,6 +16527,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,
@@ -16424,6 +16623,7 @@
             "2026-12-04": [
                 {
                     "name": "ઉત્પન્ના એકાદશી",
+                    "name_key": "Utpanna Ekadashi",
                     "description": "ઉત્પન્ના એકાદશી માટે વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -16523,6 +16723,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -16563,6 +16764,7 @@
             "2026-12-06": [
                 {
                     "name": "રવિ પ્રદોષ વ્રત",
+                    "name_key": "Ravi Pradosh Vrat",
                     "description": "રવિવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -16661,6 +16863,7 @@
             "2026-12-07": [
                 {
                     "name": "માસિક શિવરાત્રી",
+                    "name_key": "Masik Shivaratri",
                     "description": "ભગવાન શિવને સમર્પિત માસિક રાત્રિ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -16757,6 +16960,7 @@
             "2026-12-08": [
                 {
                     "name": "દર્શ અમાસ",
+                    "name_key": "Darsha Amavasya",
                     "description": "અમાસનું વ્રત",
                     "deity": "ચંદ્ર/પિતૃ",
                     "fasting": true,
@@ -16852,6 +17056,7 @@
             "2026-12-10": [
                 {
                     "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
                     "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
                     "deity": "ચંદ્ર",
                     "fasting": true,
@@ -16947,6 +17152,7 @@
             "2026-12-17": [
                 {
                     "name": "માસિક દુર્ગાષ્ટમી",
+                    "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
                     "deity": "દુર્ગા",
                     "fasting": true,
@@ -17042,6 +17248,7 @@
             "2026-12-20": [
                 {
                     "name": "મોક્ષદા એકાદશી (ગીતા જયંતિ)",
+                    "name_key": "Mokshada Ekadashi (Geeta Jayanti)",
                     "description": "મોક્ષદા એકાદશીનું વ્રત અને ભગવદ ગીતા (ગીતા જયંતી) ની ઉજવણી; સ્વર્ગના દ્વાર તરીકે ઓળખાય છે",
                     "deity": "કૃષ્ણ/વિષ્ણુ",
                     "fasting": true,
@@ -17144,6 +17351,7 @@
                 },
                 {
                     "name": "ઇસ્કોન એકાદશી",
+                    "name_key": "ISKCON Ekadashi",
                     "description": "સૂર્યોદય અને અરુણોદયના નિયમોથી નક્કી થતો વૈષ્ણવ / ઇસ્કોન એકાદશી વ્રત દિવસ",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -17184,6 +17392,7 @@
             "2026-12-21": [
                 {
                     "name": "સોમ પ્રદોષ વ્રત",
+                    "name_key": "Soma Pradosh Vrat",
                     "description": "સોમવારે આવતું પ્રદોષ વ્રત",
                     "deity": "શિવ",
                     "fasting": true,
@@ -17283,6 +17492,7 @@
             "2026-12-22": [
                 {
                     "name": "માસિક કાર્તિકેય",
+                    "name_key": "Masik Karthigai",
                     "description": "ભગવાન મુરુગન માટે માસિક કૃત્તિકા નક્ષત્ર વ્રત",
                     "deity": "મુરુગન",
                     "fasting": true,
@@ -17341,6 +17551,7 @@
             "2026-12-23": [
                 {
                     "name": "શ્રી સત્યનારાયણ વ્રત",
+                    "name_key": "Shri Satyanarayana Vrat",
                     "description": "પૂર્ણિમાની સાંજે શ્રી સત્યનારાયણ પૂજા અને વ્રત",
                     "deity": "વિષ્ણુ",
                     "fasting": true,
@@ -17437,16 +17648,16 @@
                     }
                 },
                 {
-                    "name": "માગશર પૂનમ",
-                    "description": "ભગવાન દત્તાત્રેયનો જન્મ",
+                    "name": "માગશર પૂનમ વ્રત",
+                    "name_key": "Margashirsha Purnima Vrat",
+                    "description": "માગશર પૂનમ વ્રત અને ઉપવાસ",
                     "deity": "દત્તાત્રેય",
                     "fasting": true,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
-                        "માગશર પૂનમ વ્રત",
-                        "દત્તાત્રેય જયંતિ"
+                        "માગશર પૂનમ"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -17481,7 +17692,7 @@
                         "strict_karmakala": true
                     },
                     "resolution": {
-                        "festival_name": "માગશર પૂનમ",
+                        "festival_name": "માગશર પૂનમ વ્રત",
                         "required_tithi": 15,
                         "paksha": "Shukla",
                         "karmakala_type": "sunset",
@@ -17513,8 +17724,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                         },
-                        "festival_name_key": "Margashirsha Purnima",
-                        "festival_name_localized": "માગશર પૂનમ",
+                        "festival_name_key": "Margashirsha Purnima Vrat",
+                        "festival_name_localized": "માગશર પૂનમ વ્રત",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યાસ્ત"
                     },
@@ -17541,6 +17752,7 @@
                 },
                 {
                     "name": "રોહિણી વ્રત",
+                    "name_key": "Rohini Vrat",
                     "description": "જે દિવસે સૂર્યોદય પછી રોહિણી નક્ષત્ર રહે તે દિવસે કરવામાં આવતું વ્રત",
                     "deity": "રોહિણી",
                     "fasting": true,
@@ -17599,6 +17811,7 @@
             "2026-12-31": [
                 {
                     "name": "કાલાષ્ટમી",
+                    "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
                     "deity": "ભૈરવ (શિવ)",
                     "fasting": true,
@@ -17692,6 +17905,7 @@
                 },
                 {
                     "name": "માસિક કૃષ્ણ જન્માષ્ટમી",
+                    "name_key": "Masik Krishna Janmashtami",
                     "description": "ભગવાન કૃષ્ણની જન્મ તિથિનું માસિક વ્રત",
                     "deity": "કૃષ્ણ",
                     "fasting": true,

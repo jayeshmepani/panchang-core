@@ -139,6 +139,36 @@ class OutputGeneratorSelectiveTest extends TestCase
         }
     }
 
+    public function testFestivalAndVratTotalsCountUniqueIdentitiesNotOccurrences(): void
+    {
+        /** @var OutputGeneratorService $service */
+        $service = $this->app->make(OutputGeneratorService::class);
+
+        $combined = $service->generateFestivals(2026, 23.2472446, 69.668339, 'Asia/Kolkata')['festivals'];
+        $festivalOnly = $service->generateFestivalsOnly(2026, 23.2472446, 69.668339, 'Asia/Kolkata')['festivals'];
+        $vratCompact = $service->generateVratsByDateCompact(2026, 23.2472446, 69.668339, 'Asia/Kolkata')['vrats'];
+        $selectedTotals = $service->generateFestivalsSelected(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            ['total_festivals', 'total_vrats']
+        );
+
+        $this->assertSame($this->countUniqueIdentities($combined['by_date'], false), $combined['total_festivals']);
+        $this->assertSame($this->countUniqueIdentities($combined['by_date'], true), $combined['total_vrats']);
+        $this->assertSame($combined['total_festivals'], $selectedTotals['total_festivals']);
+        $this->assertSame($combined['total_vrats'], $selectedTotals['total_vrats']);
+        $this->assertSame($this->countUniqueIdentities($festivalOnly['by_date']), $festivalOnly['total_festivals']);
+        $this->assertSame(
+            $this->countUniqueIdentities($vratCompact['by_date'], null, $vratCompact['recurring_weekday_vrats']),
+            $vratCompact['total_vrats']
+        );
+
+        $this->assertLessThan($combined['festival_entry_count'], $combined['total_festivals']);
+        $this->assertLessThan($vratCompact['vrat_entry_count'] + 365, $vratCompact['total_vrats']);
+    }
+
     public function testEclipseSelectiveOutputsMatchFullGeneratorBranches(): void
     {
         /** @var OutputGeneratorService $service */
@@ -405,5 +435,40 @@ class OutputGeneratorSelectiveTest extends TestCase
     protected function getPackageProviders($app): array
     {
         return [PanchangServiceProvider::class];
+    }
+
+    /**
+     * @param array<string, array<int, array<string, mixed>>> $byDate
+     * @param array<int, array<string, mixed>> $extraEntries
+     */
+    private function countUniqueIdentities(array $byDate, ?bool $fasting = null, array $extraEntries = []): int
+    {
+        $identities = [];
+
+        foreach ($byDate as $entries) {
+            foreach ($entries as $entry) {
+                if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
+                    continue;
+                }
+
+                $key = trim((string) ($entry['name_key'] ?? $entry['name'] ?? ''));
+                if ($key !== '') {
+                    $identities[$key] = true;
+                }
+            }
+        }
+
+        foreach ($extraEntries as $entry) {
+            if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
+                continue;
+            }
+
+            $key = trim((string) ($entry['name_key'] ?? $entry['name'] ?? ''));
+            if ($key !== '') {
+                $identities[$key] = true;
+            }
+        }
+
+        return count($identities);
     }
 }

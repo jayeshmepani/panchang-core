@@ -89,7 +89,7 @@ class BhadraEngine
                 'start_time' => $jdToTime($vishtiStartJd),
                 'end_time' => $jdToTime($mukhaEndJd),
                 'ghatis' => round(min(self::MUKHA_GHATIS, $durationGhatis), 2),
-                'status' => 'Extremely Inauspicious',
+                'status' => Localization::translate('Common', 'Extremely Inauspicious'),
             ],
         ];
 
@@ -99,13 +99,13 @@ class BhadraEngine
                 'start_time' => $jdToTime($mukhaEndJd),
                 'end_time' => $jdToTime($puchhaStartJd),
                 'ghatis' => round(($puchhaStartJd - $mukhaEndJd) * 60.0, 2),
-                'status' => 'Inauspicious',
+                'status' => Localization::translate('Common', 'Inauspicious'),
             ];
             $parts['puchha'] = [
                 'start_time' => $jdToTime($puchhaStartJd),
                 'end_time' => $jdToTime($vishtiEndJd),
                 'ghatis' => round(self::PUCHHA_GHATIS, 2),
-                'status' => 'Auspicious/Safe',
+                'status' => Localization::translate('Common', 'Auspicious/Safe'),
             ];
         }
 
