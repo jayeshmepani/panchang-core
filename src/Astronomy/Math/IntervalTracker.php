@@ -362,6 +362,12 @@ class IntervalTracker
             $moonLongitude = AstroCore::normalize($this->transitEngine->getMoonLongitude($cursor + 0.000001));
 
             if ($moonLongitude >= $rangeStart && $moonLongitude < $rangeEnd) {
+                $trueStartJd = $this->transitEngine->findAngleCrossing(
+                    $cursor,
+                    $rangeStart,
+                    -1,
+                    fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                );
                 $endJd = $this->transitEngine->findAngleCrossing(
                     $cursor,
                     $rangeEnd,
@@ -370,10 +376,14 @@ class IntervalTracker
                 );
                 $segmentEnd = min($endJd, $jdEnd);
                 $windows[] = [
-                    'start_jd' => $cursor,
-                    'end_jd' => $segmentEnd,
-                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($cursor, $tz)),
-                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($segmentEnd, $tz)),
+                    'start_jd' => $trueStartJd,
+                    'end_jd' => $endJd,
+                    'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($trueStartJd, $tz)),
+                    'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                    'visible_start_jd' => $cursor,
+                    'visible_end_jd' => $segmentEnd,
+                    'visible_start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($cursor, $tz)),
+                    'visible_end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($segmentEnd, $tz)),
                 ];
                 $cursor = $segmentEnd + 0.000001;
 
@@ -391,7 +401,24 @@ class IntervalTracker
                 break;
             }
 
-            $cursor = $nextJd + 0.000001;
+            $endJd = $this->transitEngine->findAngleCrossing(
+                $nextJd,
+                $rangeEnd,
+                1,
+                fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+            );
+            $segmentEnd = min($endJd, $jdEnd);
+            $windows[] = [
+                'start_jd' => $nextJd,
+                'end_jd' => $endJd,
+                'start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($nextJd, $tz)),
+                'end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($endJd, $tz)),
+                'visible_start_jd' => max($nextJd, $jdStart),
+                'visible_end_jd' => $segmentEnd,
+                'visible_start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic(max($nextJd, $jdStart), $tz)),
+                'visible_end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($segmentEnd, $tz)),
+            ];
+            $cursor = $segmentEnd + 0.000001;
         }
 
         return $windows;

@@ -55,41 +55,6 @@ final class ElectionalEvaluator
         'underworld' => [5, 6, 7, 8],
     ];
 
-    public static function calculateTransitMoorthy(string $nakshatraName): array
-    {
-        $normalized = strtolower((string) preg_replace('/\s+/', '', trim($nakshatraName)));
-        $nakshatraNumber = 1;
-
-        foreach (Nakshatra::cases() as $case) {
-            $caseName = strtolower((string) preg_replace('/\s+/', '', $case->getName('en')));
-            if ($caseName === $normalized) {
-                $nakshatraNumber = $case->value + 1;
-                break;
-            }
-        }
-
-        $moorthyIdx = $nakshatraNumber % 4;
-        $moorthyKey = match ($moorthyIdx) {
-            1 => 'Suvarna',
-            2 => 'Rajata',
-            3 => 'Tamra',
-            default => 'Lauha',
-        };
-
-        $qualityKey = match ($moorthyIdx) {
-            1 => 'Excellent',
-            2 => 'Good',
-            3 => 'Mixed',
-            default => 'Challenging',
-        };
-
-        return [
-            'moorthy' => Localization::translate('Moorthy', $moorthyKey),
-            'quality' => Localization::translate('Common', $qualityKey),
-            'score' => match($moorthyIdx) { 1 => 4, 2 => 3, 3 => 2, default => 1 },
-        ];
-    }
-
     public static function calculatePanchakaDosha(int $tithiNumber, int $varaNumber, int $nakshatraNumber, int $lagnaNumber): array
     {
         // Adjust indices to match 1-based logic usually expected in Muhurta manuals for the sum
@@ -191,6 +156,85 @@ final class ElectionalEvaluator
         ];
     }
 
+    public static function calculateVaraTithiDoshas(int $varaNumber, int $tithiNumber): array
+    {
+        $normalizedTithi = self::normalizeTithiNumber($tithiNumber);
+        $definitions = [
+            'mrityu' => ['label' => 'Mrityu', 'english' => 'Death', 'severity' => 'critical'],
+            'dagdha' => ['label' => 'Dagdha', 'english' => 'Burnt', 'severity' => 'high'],
+            'visha' => ['label' => 'Visha', 'english' => 'Poison', 'severity' => 'high'],
+            'hutashana' => ['label' => 'Hutashana', 'english' => 'Fire', 'severity' => 'high'],
+            'krakacha' => ['label' => 'Krakacha', 'english' => 'Saw', 'severity' => 'critical'],
+            'samvarta' => ['label' => 'Samvarta', 'english' => 'Dissolution', 'severity' => 'critical'],
+        ];
+
+        $results = [];
+        $active = [];
+
+        foreach ($definitions as $key => $definition) {
+            $ruleTithis = ElectionalRuleBook::VARA_TITHI_YOGAS[$key][$varaNumber] ?? [];
+            $isPresent = in_array($normalizedTithi, $ruleTithis, true);
+            $payload = [
+                'dosha_key' => $key,
+                'dosha_name' => Localization::translate('String', $definition['label']),
+                'dosha_english' => $definition['english'],
+                'vara_number' => $varaNumber,
+                'vara_name' => Vara::from($varaNumber)->getName(),
+                'tithi_number' => $normalizedTithi,
+                'tithi_name' => Tithi::from($normalizedTithi)->getName(),
+                'matching_tithis_for_vara' => $ruleTithis,
+                'is_present' => $isPresent,
+                'has_dosha' => $isPresent,
+                'severity' => $isPresent ? $definition['severity'] : 'none',
+                'source' => Localization::translate('Source', 'Muhurta Chintamani'),
+            ];
+
+            $payload['description'] = $isPresent
+                ? $payload['dosha_name'] . ' - ' . Localization::translate('Common', 'Inauspicious')
+                : $payload['dosha_name'] . ' - ' . Localization::translate('Common', 'Not applicable');
+
+            $results[$key] = $payload;
+            if ($isPresent) {
+                $active[$key] = $payload;
+            }
+        }
+
+        return [
+            'tithi_number' => $normalizedTithi,
+            'tithi_name' => Tithi::from($normalizedTithi)->getName(),
+            'vara_number' => $varaNumber,
+            'vara_name' => Vara::from($varaNumber)->getName(),
+            'active_count' => count($active),
+            'active_keys' => array_keys($active),
+            'has_any_dosha' => $active !== [],
+            'active' => $active,
+            'all' => $results,
+        ];
+    }
+
+    public static function calculateNityaYogaObservations(int $yogaIndex, string $yogaName): array
+    {
+        $prohibitedForMarriage = [1, 6, 9, 10, 13, 15, 17, 19, 27];
+        $krantiDosha = [17, 27];
+        $isProhibited = in_array($yogaIndex, $prohibitedForMarriage, true);
+        $isKrantiDosha = in_array($yogaIndex, $krantiDosha, true);
+
+        return [
+            'yoga_index' => $yogaIndex,
+            'yoga_name' => $yogaName,
+            'is_marriage_prohibited' => $isProhibited,
+            'is_kranti_dosha' => $isKrantiDosha,
+            'avoidance_scope' => $isKrantiDosha ? 'entire_yoga' : ($isProhibited ? 'marriage_and_major_rites' : 'none'),
+            'severity' => $isKrantiDosha ? 'critical' : ($isProhibited ? 'high' : 'none'),
+            'source' => Localization::translate('Source', 'Muhurta Chintamani / Drik Panchang prohibited Nitya Yoga list'),
+            'description' => $isKrantiDosha
+                ? Localization::translate('String', 'Kranti Dosha (Vyatipata/Vaidhriti)')
+                : ($isProhibited
+                    ? Localization::translate('String', 'Traditionally prohibited Nitya Yoga')
+                    : Localization::translate('String', 'No special Nitya Yoga dosha')),
+        ];
+    }
+
     public static function calculateBhadra(int $moonSignIdx): array
     {
         $abodeType = 'unknown';
@@ -252,7 +296,7 @@ final class ElectionalEvaluator
             'severity' => $hasDosha ? 'high' : 'none',
             'description' => $hasDosha
                 ? Localization::translate('String', 'Varjyam (Visha Ghati)') . ' - ' . Localization::translate('Common', 'Inauspicious')
-                : 'No Varjyam',
+                : Localization::translate('String', 'No Varjyam'),
         ];
     }
 
@@ -279,8 +323,10 @@ final class ElectionalEvaluator
         $hasCancellationPower = $isInAbhijit && !$isWednesday;
 
         $note = $hasCancellationPower
-            ? 'Abhijit Muhurta - High Dosha Cancellation Power'
-            : ($isInAbhijit ? 'Abhijit power cancelled (Wednesday)' : 'Not in Abhijit Muhurta');
+            ? Localization::translate('String', 'Abhijit Muhurta - High Dosha Cancellation Power')
+            : ($isInAbhijit
+                ? Localization::translate('String', 'Abhijit power cancelled (Wednesday)')
+                : Localization::translate('String', 'Not in Abhijit Muhurta'));
 
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani / Muhurta Martanda'),

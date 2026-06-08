@@ -39,7 +39,6 @@ class SelectiveRuntimeApiTest extends TestCase
         $this->assertArrayHasKey('day_details', $snapshot);
         $this->assertArrayHasKey('Tithi', $snapshot['day_details']);
         $this->assertArrayHasKey('Panchanga', $snapshot['day_details']);
-        $this->assertArrayHasKey('planetary_states', $snapshot);
         $this->assertArrayHasKey('sunrise_context', $snapshot);
         $this->assertArrayNotHasKey('Special_Yogas', $snapshot['day_details']);
         $this->assertArrayNotHasKey('Muhurta_Full_Day', $snapshot['day_details']);

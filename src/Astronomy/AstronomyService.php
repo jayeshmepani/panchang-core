@@ -8,7 +8,6 @@ use Carbon\CarbonImmutable;
 use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Panchanga\ElectionalRuleBook;
 use JmeEph\FFI\JmeEphFFI;
 
 /**
@@ -29,9 +28,6 @@ class AstronomyService
 
     /** @var array<string, array<string, float>> */
     private array $planetLongitudeCache = [];
-
-    /** @var array<string, array<string, array<string, bool|float|null>>> */
-    private array $planetaryStateCache = [];
 
     /** @var array<string, float> */
     private array $ascendantCache = [];
@@ -149,86 +145,6 @@ class AstronomyService
         return $this->planetLongitudeCache[$cacheKey] = $out;
     }
 
-    public function getPlanetaryStates(array $birth, string $nodeMode = 'mean', float $stationTolerance = 1.0e-6): array
-    {
-        $cacheKey = $this->birthCacheKey($birth) . '|node=' . strtoupper($nodeMode) . '|tol=' . sprintf('%.12g', $stationTolerance);
-        if (isset($this->planetaryStateCache[$cacheKey])) {
-            return $this->planetaryStateCache[$cacheKey];
-        }
-
-        $jd = $this->toJulianDayUtc($birth);
-        $this->setAyanamsa($jd);
-
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_SPEED;
-        $rahupId = strtoupper($nodeMode) === 'TRUE' ? JmeEphFFI::JME_BODY_TRUE_NODE : JmeEphFFI::JME_BODY_MEAN_NODE;
-        $planets = [
-            'Sun' => JmeEphFFI::JME_BODY_SUN,
-            'Moon' => JmeEphFFI::JME_BODY_MOON,
-            'Mars' => JmeEphFFI::JME_BODY_MARS,
-            'Mercury' => JmeEphFFI::JME_BODY_MERCURY,
-            'Jupiter' => JmeEphFFI::JME_BODY_JUPITER,
-            'Venus' => JmeEphFFI::JME_BODY_VENUS,
-            'Saturn' => JmeEphFFI::JME_BODY_SATURN,
-            'Rahu' => $rahupId,
-        ];
-
-        $sunLongitude = 0.0;
-        $states = [];
-
-        foreach ($planets as $name => $pid) {
-            $this->jme->jme_calc_ut($jd, $pid, $flags, $this->xxBuffer, $this->serrBuffer);
-            $longitude = AstroCore::normalize($this->xxBuffer[0]);
-            $speed = (float) $this->xxBuffer[3];
-
-            if ($name === 'Sun') {
-                $sunLongitude = $longitude;
-            }
-
-            $isRetrograde = match ($name) {
-                'Moon' => false,
-                'Rahu' => strtoupper($nodeMode) === 'MEAN' ? true : $speed < 0.0,
-                default => $speed < 0.0,
-            };
-
-            $separation = $this->minimalAngularSeparation($longitude, $sunLongitude);
-            $orb = null;
-            if ($name !== 'Sun') {
-                $orb = $isRetrograde && isset(ElectionalRuleBook::COMBUSTION_ORBS_RETRO[$name])
-                    ? ElectionalRuleBook::COMBUSTION_ORBS_RETRO[$name]
-                    : (ElectionalRuleBook::COMBUSTION_ORBS[$name] ?? null);
-            }
-
-            $isCombust = false;
-            if (!in_array($name, ['Sun', 'Rahu'], true) && $orb !== null) {
-                $outerRetrogradeExempt = in_array($name, ['Mars', 'Jupiter', 'Saturn'], true) && $isRetrograde;
-                $isCombust = !$outerRetrogradeExempt && $separation <= $orb;
-            }
-
-            $states[$name] = [
-                'lon' => $longitude,
-                'speed_deg_per_day' => $speed,
-                'is_retrograde' => $isRetrograde,
-                'is_stationary' => abs($speed) <= $stationTolerance,
-                'is_combust' => $isCombust,
-                'separation_from_sun' => $separation,
-                'orb_used' => $orb,
-            ];
-        }
-
-        $ketuLongitude = AstroCore::normalize($states['Rahu']['lon'] + 180.0);
-        $states['Ketu'] = [
-            'lon' => $ketuLongitude,
-            'speed_deg_per_day' => -($states['Rahu']['speed_deg_per_day']),
-            'is_retrograde' => $states['Rahu']['is_retrograde'],
-            'is_stationary' => $states['Rahu']['is_stationary'],
-            'is_combust' => false,
-            'separation_from_sun' => $this->minimalAngularSeparation($ketuLongitude, $sunLongitude),
-            'orb_used' => null,
-        ];
-
-        return $this->planetaryStateCache[$cacheKey] = $states;
-    }
-
     public function getAscendant(array $birth): float
     {
         $cacheKey = $this->birthCacheKey($birth);
@@ -259,12 +175,6 @@ class AstronomyService
         $cacheKey = sprintf('%.17g', $jd);
 
         return $this->ayanamsaCache[$cacheKey] ?? $this->ayanamsaCache[$cacheKey] = $this->jme->jme_get_ayanamsa_ut($jd);
-    }
-
-    private function minimalAngularSeparation(float $a, float $b): float
-    {
-        $delta = abs(AstroCore::normalize($a) - AstroCore::normalize($b));
-        return min($delta, 360.0 - $delta);
     }
 
     private function birthCacheKey(array $birth): string

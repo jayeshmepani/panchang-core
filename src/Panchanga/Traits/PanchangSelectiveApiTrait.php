@@ -267,6 +267,7 @@ trait PanchangSelectiveApiTrait
                 'nakshatra_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], ($nakIdx + 1) * (360.0 / 27.0), 1, fn (float $jd): float => $this->getMoonLongitude($jd)),
                 'yoga_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $yogaIdx * (360.0 / 27.0), 1, fn (float $jd): float => $this->getSunMoonSum($jd)),
                 'karana_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $karanaIdx * 6.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
+                'current_tithi_start_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], ($currentTithiNum - 1) * 12.0, -1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
                 'current_tithi_end_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], $currentTithiNum * 12.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
             ];
         };
@@ -346,6 +347,24 @@ trait PanchangSelectiveApiTrait
             );
         };
 
+        $ensurePeriods = function () use (&$ctx, $ensureTimeContext): void {
+            if (isset($ctx['periods'])) {
+                return;
+            }
+
+            $ensureTimeContext();
+            $ctx['periods'] = [
+                'pradosha' => $this->calculatePradoshaKaal(
+                    $ctx['sun']['sunset'],
+                    $ctx['sun']['next_sunrise'],
+                    $this->toJulianDayFromCarbon($ctx['sun']['sunset'], (string) $ctx['time']['birth_at']['timezone']),
+                    $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], (string) $ctx['time']['birth_at']['timezone']),
+                    (string) $ctx['time']['birth_at']['timezone']
+                ),
+                'nishitha' => $this->muhurta->calculateNishitaMuhurta($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']),
+            ];
+        };
+
         $ensureBasic = function () use (
             &$ctx,
             $ensureSun,
@@ -357,6 +376,7 @@ trait PanchangSelectiveApiTrait
             $ensureAyanamsa,
             $ensureHinduMonth,
             $ensureSankranti,
+            $ensurePeriods,
             $birthBase,
             $date,
             $lat,
@@ -380,6 +400,7 @@ trait PanchangSelectiveApiTrait
             $ensureAyanamsa();
             $ensureHinduMonth();
             $ensureSankranti();
+            $ensurePeriods();
 
             [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
             $twilight = $this->sunService->getTwilightTimes($birthBase);
@@ -402,6 +423,7 @@ trait PanchangSelectiveApiTrait
             $sunset = $ctx['sun']['sunset'];
             $nextSunrise = $ctx['sun']['next_sunrise'];
             $calculationAt = $ctx['time']['calculation_at'];
+            $moonriseJd = $moonrise instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonrise, $tz) : null;
 
             $todaySnapshot = [
                 'Tithi' => $tithi,
@@ -574,6 +596,54 @@ trait PanchangSelectiveApiTrait
                 ],
                 'Moon_Phase_At_Sunrise' => $this->buildMoonPhase($sunLon, $moonLon),
                 'Current_Moon_Phase_At_Input_Now' => $this->buildMoonPhase($currentSunLon, $currentMoonLon),
+                'Nitya_Yoga_Observations' => ElectionalEvaluator::calculateNityaYogaObservations((int) $ctx['panchanga']['current_yoga']['index'], (string) $ctx['panchanga']['current_yoga']['name']),
+                'Vara_Tithi_Doshas' => ElectionalEvaluator::calculateVaraTithiDoshas((int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['current_tithi']['index']),
+                'Tithi_Observance_Analysis' => [
+                    'rule_system' => 'smarta_udaya_tithi_structural_analysis',
+                    'is_festival_specific_engine' => false,
+                    'festival_specific_override_required' => true,
+                    'current_at_input_now' => [
+                        ...$this->buildTithiObservanceAnalysis(new KalaNirnayaEngine($lat, $lon), (int) $ctx['panchanga']['current_tithi']['index'], $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['current_tithi_start_jd'], $tz),
+                        'calculated_for' => 'input_now',
+                        'input_now_iso' => AstroCore::formatDateTime($ctx['time']['calculation_at']),
+                    ],
+                    'at_sunrise' => [
+                        ...$this->buildTithiObservanceAnalysis(new KalaNirnayaEngine($lat, $lon), (int) $ctx['panchanga']['tithi']['index'], $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['tithi_start_jd'], $tz),
+                        'calculated_for' => 'sunrise',
+                        'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
+                    ],
+                ],
+                'Yatra_Screening' => [
+                    'current_at_input_now' => [
+                        ...$this->calculateYatraScreening((int) $ctx['panchanga']['current_tithi']['index'], (int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['current_nak_index'], AstroCore::getSign($this->astronomy->getAscendant($ctx['time']['birth_at']))),
+                        'calculated_for' => 'input_now',
+                        'input_now_iso' => AstroCore::formatDateTime($ctx['time']['calculation_at']),
+                    ],
+                    'at_sunrise' => [
+                        ...$this->calculateYatraScreening((int) $ctx['panchanga']['tithi']['index'], (int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['nak_index'], AstroCore::getSign($this->astronomy->getAscendant([
+                            'year' => (int) $ctx['time']['rel_sunrise']->format('Y'),
+                            'month' => (int) $ctx['time']['rel_sunrise']->format('m'),
+                            'day' => (int) $ctx['time']['rel_sunrise']->format('d'),
+                            'hour' => (int) $ctx['time']['rel_sunrise']->format('H'),
+                            'minute' => (int) $ctx['time']['rel_sunrise']->format('i'),
+                            'second' => (int) $ctx['time']['rel_sunrise']->format('s'),
+                            'timezone' => $tz,
+                            'latitude' => $lat,
+                            'longitude' => $lon,
+                            'elevation' => $elevation,
+                        ]))),
+                        'calculated_for' => 'sunrise',
+                        'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
+                    ],
+                ],
+                'Vrata_Parana' => [
+                    'rule_system' => 'supported_non_ekadashi_vrata_parana_profiles',
+                    'is_complete_system' => false,
+                    'supported_families' => $this->supportedVrataParanaFamilies(),
+                    'current_at_input_now' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['current_tithi']['index'], (string) ($ctx['panchanga']['current_tithi']['paksha'] ?? ''), $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $moonriseJd, $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
+                    'at_sunrise' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''), $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $moonriseJd, $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
+                ],
+                'Day_Night_Measures' => $this->buildDayNightMeasures($relSunrise, $sunset, $ctx['sun']['next_sunrise']),
                 'Festivals' => $festivals,
                 'Daily_Observances' => $this->festivalService->getDailyObservances($todaySnapshot),
             ];
@@ -650,6 +720,10 @@ trait PanchangSelectiveApiTrait
                     $ensureJds(); $ensurePanchanga();
                     return $this->calculateAmritadiYoga($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], (int) $ctx['panchanga']['vara']['index'], $tz, $ctx['jds']['calculation_at']);
                 })(),
+                'Nitya_Yoga_Observations' => (function () use (&$ctx, $ensurePanchanga): array {
+                    $ensurePanchanga();
+                    return ElectionalEvaluator::calculateNityaYogaObservations((int) $ctx['panchanga']['current_yoga']['index'], (string) $ctx['panchanga']['current_yoga']['name']);
+                })(),
                 'Panchak' => (function () use (&$ctx, $ensureJds, $tz): array {
                     $ensureJds();
                     return $this->calculatePanchak($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $tz);
@@ -669,6 +743,32 @@ trait PanchangSelectiveApiTrait
                 'Disha_Shool' => (function () use (&$ctx, $ensurePanchanga): array {
                     $ensurePanchanga();
                     return $this->calculateDishaShool((int) $ctx['panchanga']['vara']['index']);
+                })(),
+                'Yatra_Screening' => (function () use (&$ctx, $ensurePanchanga, $ensureTimeContext, $lat, $lon, $tz, $elevation): array {
+                    $ensurePanchanga(); $ensureTimeContext();
+                    return [
+                        'current_at_input_now' => [
+                            ...$this->calculateYatraScreening((int) $ctx['panchanga']['current_tithi']['index'], (int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['current_nak_index'], AstroCore::getSign($this->astronomy->getAscendant($ctx['time']['birth_at']))),
+                            'calculated_for' => 'input_now',
+                            'input_now_iso' => AstroCore::formatDateTime($ctx['time']['calculation_at']),
+                        ],
+                        'at_sunrise' => [
+                            ...$this->calculateYatraScreening((int) $ctx['panchanga']['tithi']['index'], (int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['nak_index'], AstroCore::getSign($this->astronomy->getAscendant([
+                                'year' => (int) $ctx['time']['rel_sunrise']->format('Y'),
+                                'month' => (int) $ctx['time']['rel_sunrise']->format('m'),
+                                'day' => (int) $ctx['time']['rel_sunrise']->format('d'),
+                                'hour' => (int) $ctx['time']['rel_sunrise']->format('H'),
+                                'minute' => (int) $ctx['time']['rel_sunrise']->format('i'),
+                                'second' => (int) $ctx['time']['rel_sunrise']->format('s'),
+                                'timezone' => $tz,
+                                'latitude' => $lat,
+                                'longitude' => $lon,
+                                'elevation' => $elevation,
+                            ]))),
+                            'calculated_for' => 'sunrise',
+                            'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
+                        ],
+                    ];
                 })(),
                 'Rahu_Vaasa' => (function () use (&$ctx, $ensurePanchanga): array {
                     $ensurePanchanga();
@@ -707,6 +807,40 @@ trait PanchangSelectiveApiTrait
                             'nakshatra' => $ctx['panchanga']['nak_index'] + 1,
                             'nakshatra_name' => Nakshatra::from($ctx['panchanga']['nak_index'] % 27)->getName(),
                         ],
+                    ];
+                })(),
+                'Vara_Tithi_Doshas' => (function () use (&$ctx, $ensurePanchanga): array {
+                    $ensurePanchanga();
+                    return ElectionalEvaluator::calculateVaraTithiDoshas((int) $ctx['panchanga']['vara']['index'], (int) $ctx['panchanga']['current_tithi']['index']);
+                })(),
+                'Tithi_Observance_Analysis' => (function () use (&$ctx, $ensureCrossings, $ensureJds, $ensurePanchanga, $ensureTimeContext, $lat, $lon, $tz): array {
+                    $ensureCrossings(); $ensureJds(); $ensurePanchanga(); $ensureTimeContext();
+                    $kalaEngine = new KalaNirnayaEngine($lat, $lon);
+
+                    return [
+                        'rule_system' => 'smarta_udaya_tithi_structural_analysis',
+                        'is_festival_specific_engine' => false,
+                        'festival_specific_override_required' => true,
+                        'current_at_input_now' => [
+                            ...$this->buildTithiObservanceAnalysis($kalaEngine, (int) $ctx['panchanga']['current_tithi']['index'], $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['current_tithi_start_jd'], $tz),
+                            'calculated_for' => 'input_now',
+                            'input_now_iso' => AstroCore::formatDateTime($ctx['time']['calculation_at']),
+                        ],
+                        'at_sunrise' => [
+                            ...$this->buildTithiObservanceAnalysis($kalaEngine, (int) $ctx['panchanga']['tithi']['index'], $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['tithi_start_jd'], $tz),
+                            'calculated_for' => 'sunrise',
+                            'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
+                        ],
+                    ];
+                })(),
+                'Vrata_Parana' => (function () use (&$ctx, $ensureCrossings, $ensureJds, $ensurePanchanga, $ensureTimeContext, $ensurePeriods, $ensureBasic, $tz): array {
+                    $ensureCrossings(); $ensureJds(); $ensurePanchanga(); $ensureTimeContext(); $ensurePeriods(); $ensureBasic();
+                    return [
+                        'rule_system' => 'supported_non_ekadashi_vrata_parana_profiles',
+                        'is_complete_system' => false,
+                        'supported_families' => $this->supportedVrataParanaFamilies(),
+                        'current_at_input_now' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['current_tithi']['index'], (string) ($ctx['panchanga']['current_tithi']['paksha'] ?? ''), $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $ctx['basic']['Panchanga']['Moonrise']['jd'], $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
+                        'at_sunrise' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''), $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $ctx['basic']['Panchanga']['Moonrise']['jd'], $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
                     ];
                 })(),
                 'Hora_Full_Day' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
@@ -779,6 +913,10 @@ trait PanchangSelectiveApiTrait
                         ],
                     ];
                 })(),
+                'Day_Night_Measures' => (function () use (&$ctx, $ensureTimeContext): array {
+                    $ensureTimeContext();
+                    return $this->buildDayNightMeasures($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise']);
+                })(),
                 'Gowri_Panchangam' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
                     $ensureTimeContext(); $ensurePanchanga();
                     return $this->muhurta->calculateGowriPanchangam($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], (int) $ctx['panchanga']['vara']['index']);
@@ -792,6 +930,10 @@ trait PanchangSelectiveApiTrait
                     $ensureTimeContext(); $ensureJds(); $ensurePanchanga(); $ensureCrossings();
                     return $this->buildVarjyamPayload($this->calculateVarjyamWindows($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['panchanga']['nak_index'], $ctx['crossings']['nakshatra_start_jd'], $ctx['crossings']['nakshatra_end_jd']));
                 })(),
+                'Nakshatra_Tyajya' => (function () use (&$ctx, $ensureTimeContext, $ensureJds, $ensurePanchanga, $ensureCrossings): array {
+                    $ensureTimeContext(); $ensureJds(); $ensurePanchanga(); $ensureCrossings();
+                    return $this->buildNakshatraTyajyaPayload($this->buildVarjyamPayload($this->calculateVarjyamWindows($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['panchanga']['nak_index'], $ctx['crossings']['nakshatra_start_jd'], $ctx['crossings']['nakshatra_end_jd'])));
+                })(),
                 'Amrita_Kaal' => (function () use (&$ctx, $ensureTimeContext, $ensureJds, $ensurePanchanga, $ensureCrossings): array {
                     $ensureTimeContext(); $ensureJds(); $ensurePanchanga(); $ensureCrossings();
                     return $this->buildAmritaKaalPayload($this->calculateAmritaKaalWindows($ctx['time']['rel_sunrise'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['panchanga']['nak_index'], $ctx['crossings']['nakshatra_start_jd'], $ctx['crossings']['nakshatra_end_jd']));
@@ -804,14 +946,30 @@ trait PanchangSelectiveApiTrait
                     $ensureJds(); $ensurePanchanga();
                     return $this->findBhadraPeriods($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], (int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''));
                 })(),
-                'Dharma_Sindhu' => (function () use (&$ctx, $ensureSankranti, $ensurePanchanga, $ensureCrossings, $ensureJds, $ensureHinduMonth, $tz, $lat, $lon, $buildShivaVaasa, $buildAgniVaasa, $buildYoginiVaasa): array {
-                    $ensureSankranti(); $ensurePanchanga(); $ensureCrossings(); $ensureJds(); $ensureHinduMonth();
+                'Dharma_Sindhu' => (function () use (&$ctx, $ensureSankranti, $ensurePanchanga, $ensureCrossings, $ensureJds, $ensureHinduMonth, $ensureTimeContext, $tz, $lat, $lon, $buildShivaVaasa, $buildAgniVaasa, $buildYoginiVaasa): array {
+                    $ensureSankranti(); $ensurePanchanga(); $ensureCrossings(); $ensureJds(); $ensureHinduMonth(); $ensureTimeContext();
                     $tithiNum = (int) $ctx['panchanga']['tithi']['index'];
                     $month = (string) ($ctx['hindu_month']['Month_Amanta_En'] ?? $ctx['hindu_month']['Month_Amanta'] ?? '');
                     $paksha = (string) ($ctx['panchanga']['tithi']['paksha'] ?? '');
+                    $kalaEngine = new KalaNirnayaEngine($lat, $lon);
                     return array_filter([
                         'Punya_Kaal' => $ctx['sankranti']['punya_kaal'],
                         'Ekadashi_Observance' => $this->buildEkadashiObservance($tithiNum, $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $tz, $lat, $lon, $ctx['jds']['previous_sunrise'], $month, $paksha),
+                        'Tithi_Observance_Analysis' => [
+                            'rule_system' => 'smarta_udaya_tithi_structural_analysis',
+                            'is_festival_specific_engine' => false,
+                            'festival_specific_override_required' => true,
+                            'current_at_input_now' => [
+                                ...$this->buildTithiObservanceAnalysis($kalaEngine, (int) $ctx['panchanga']['current_tithi']['index'], $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['current_tithi_start_jd'], $tz),
+                                'calculated_for' => 'input_now',
+                                'input_now_iso' => AstroCore::formatDateTime($ctx['time']['calculation_at']),
+                            ],
+                            'at_sunrise' => [
+                                ...$this->buildTithiObservanceAnalysis($kalaEngine, (int) $ctx['panchanga']['tithi']['index'], $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['next_sunrise'], $ctx['crossings']['tithi_start_jd'], $tz),
+                                'calculated_for' => 'sunrise',
+                                'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
+                            ],
+                        ],
                         'Shiva_Vaasa' => $buildShivaVaasa(),
                         'Agni_Vaasa' => $buildAgniVaasa(),
                         'Yogini_Vaasa' => $buildYoginiVaasa(),
@@ -1150,17 +1308,22 @@ trait PanchangSelectiveApiTrait
             'Special_Yogas',
             'Anandadi_Yoga',
             'Amritadi_Yoga',
+            'Nitya_Yoga_Observations',
             'Panchak',
             'Maitreya_Yoga',
             'Gajachchhaya_Yoga',
             'Nakshatra_Shool',
             'Disha_Shool',
+            'Yatra_Screening',
             'Rahu_Vaasa',
             'Chandra_Vaasa',
             'Shiva_Vaasa',
             'Agni_Vaasa',
             'Yogini_Vaasa',
             'Panchaka_Rahita',
+            'Vara_Tithi_Doshas',
+            'Tithi_Observance_Analysis',
+            'Vrata_Parana',
             'Hora_Full_Day',
             'Chogadiya_Full_Day',
             'Muhurta_Full_Day',
@@ -1175,10 +1338,12 @@ trait PanchangSelectiveApiTrait
             'Vijaya_Muhurta',
             'Godhuli_Muhurta',
             'Sandhya',
+            'Day_Night_Measures',
             'Gowri_Panchangam',
             'Kala_Vela',
             'Karmakala_Windows',
             'Varjyam',
+            'Nakshatra_Tyajya',
             'Amrita_Kaal',
             'Pradosha_Kaal',
             'Bhadra',

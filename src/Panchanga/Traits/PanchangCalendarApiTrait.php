@@ -473,18 +473,8 @@ trait PanchangCalendarApiTrait
         $nakIndex = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
         $moonSign = (int) floor($moonLongitude / 30.0);
         $ascLongitude = $this->astronomy->getAscendant($sunriseBirth);
-        $planetaryStates = $this->astronomy->getPlanetaryStates($sunriseBirth);
-        $planets = [];
-        foreach ($planetaryStates as $planet => $state) {
-            if (isset($state['lon'])) {
-                $planets[$planet] = (float) $state['lon'];
-            }
-        }
-
         return [
             'day_details' => $dayDetails,
-            'transit_moorthy' => ElectionalEvaluator::calculateTransitMoorthy((string) ($dayDetails['Nakshatra']['name'] ?? '')),
-            'planetary_states' => $planetaryStates,
             'sunrise_context' => [
                 'sunrise_iso' => AstroCore::formatDateTime($sunrise),
                 'sunset_iso' => $sunset instanceof CarbonImmutable ? AstroCore::formatDateTime($sunset) : null,
@@ -1324,17 +1314,26 @@ trait PanchangCalendarApiTrait
         callable $nameResolver
     ): array {
         sort($boundaries);
+        $sampleJd = $startJd + 1e-7;
+        $sunLon = $this->getSunLongitude($sampleJd);
+        $cursor = $this->findAngleCrossing(
+            $startJd,
+            $this->previousSolarBoundary($sunLon, $boundaries),
+            -1,
+            fn (float $jd): float => $this->getSunLongitude($jd)
+        );
         $windows = [];
-        $cursor = $startJd;
 
         while ($cursor < $endJd - 1e-8) {
             $sunLon = $this->getSunLongitude($cursor + 1e-7);
             $target = $this->nextSolarBoundary($sunLon, $boundaries);
             $nextJd = $this->findAngleCrossing($cursor + 1e-5, $target, 1, fn (float $jd): float => $this->getSunLongitude($jd));
-            $segmentEnd = min($nextJd, $endJd);
 
-            $windows[] = $this->periodWindow($nameResolver($sunLon), $cursor, $segmentEnd, $tz);
-            $cursor = max($segmentEnd, $cursor + 0.0001);
+            if ($nextJd > $startJd + 1e-8) {
+                $windows[] = $this->periodWindow($nameResolver($sunLon), $cursor, $nextJd, $tz);
+            }
+
+            $cursor = $nextJd;
         }
 
         return $this->mergeAdjacentPeriodWindows($windows);
@@ -1350,6 +1349,18 @@ trait PanchangCalendarApiTrait
         }
 
         return $boundaries[0];
+    }
+
+    /** @param array<int, float> $boundaries */
+    private function previousSolarBoundary(float $sunLon, array $boundaries): float
+    {
+        for ($index = count($boundaries) - 1; $index >= 0; $index--) {
+            if ($boundaries[$index] < $sunLon - 1e-8) {
+                return $boundaries[$index];
+            }
+        }
+
+        return $boundaries[array_key_last($boundaries)];
     }
 
     /** @return array<int, array<string, mixed>> */
@@ -1370,7 +1381,7 @@ trait PanchangCalendarApiTrait
                 : ($periodStart + $periodEnd) / 2.0;
             $month = $this->getTrueHinduMonth($sampleJd);
             $windows[] = [
-                ...$this->periodWindow((string) $month[$monthKey], max($periodStart, $startJd), min($periodEnd, $endJd), $tz),
+                ...$this->periodWindow((string) $month[$monthKey], $periodStart, $periodEnd, $tz),
                 'index' => $monthKey === 'Month_Amanta' ? $month['Amanta_Index'] : $month['Purnimanta_Index'],
             ];
 
@@ -1387,28 +1398,35 @@ trait PanchangCalendarApiTrait
      */
     private function buildCivilCalendarValueWindows(CarbonImmutable $start, CarbonImmutable $endDay, callable $valueResolver): array
     {
-        $windows = [];
-        $active = null;
+        $windowStart = $start;
+        $activeValue = $valueResolver($windowStart);
 
-        for ($date = $start; $date->lessThanOrEqualTo($endDay); $date = $date->addDay()) {
-            $value = $valueResolver($date);
-            if ($active === null) {
-                $active = $this->civilWindow((string) $value, $value, $date, $date);
-                continue;
+        while (true) {
+            $previousDate = $windowStart->subDay();
+            if ($valueResolver($previousDate) !== $activeValue) {
+                break;
             }
 
-            if ($active['value'] === $value) {
-                $active['end_date'] = $date->toDateString();
-                $active['end_iso'] = AstroCore::formatDateTime($date->endOfDay());
-                continue;
-            }
-
-            $windows[] = $active;
-            $active = $this->civilWindow((string) $value, $value, $date, $date);
+            $windowStart = $previousDate;
         }
 
-        if ($active !== null) {
-            $windows[] = $active;
+        $windows = [];
+        for ($date = $windowStart; ; $date = $date->addDay()) {
+            $nextDate = $date->addDay();
+            $nextValue = $valueResolver($nextDate);
+
+            if ($nextValue === $activeValue) {
+                continue;
+            }
+
+            $windows[] = $this->civilWindow((string) $activeValue, $activeValue, $windowStart, $date);
+
+            if ($date->greaterThanOrEqualTo($endDay)) {
+                break;
+            }
+
+            $windowStart = $nextDate;
+            $activeValue = $nextValue;
         }
 
         return $windows;
@@ -1421,23 +1439,87 @@ trait PanchangCalendarApiTrait
      */
     private function buildGujaratiSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
     {
-        $windows = [];
+        $windows = array_map(fn (array $window): array => $this->gujaratiSamvatWindowFromAmantaWindow($window, $tz), $amantaWindows);
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
 
-        foreach ($amantaWindows as $window) {
-            $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
-            $vikram = $this->panchanga->getSamvat($start->year, $start->month)['Vikram_Samvat'];
-            $value = $this->panchanga->getGujaratiSamvat($vikram, (int) $window['index']);
-            $windows[] = [
-                'name' => (string) $value,
-                'value' => $value,
-                'start_jd' => max((float) $window['start_jd'], $startJd),
-                'end_jd' => min((float) $window['end_jd'], $endJd),
-                'start_iso' => $window['start_iso'],
-                'end_iso' => $window['end_iso'],
+        if ($windows === []) {
+            return [];
+        }
+
+        while (true) {
+            $firstIndex = array_key_first($windows);
+            $firstWindow = $windows[$firstIndex];
+            $previousWindow = $this->buildAdjacentAmantaMonthWindow((float) $firstWindow['start_jd'], -1, $tz);
+            $previousGujaratiWindow = $this->gujaratiSamvatWindowFromAmantaWindow($previousWindow, $tz);
+
+            if ($previousGujaratiWindow['value'] !== $firstWindow['value']) {
+                break;
+            }
+
+            $windows[$firstIndex]['start_jd'] = $previousGujaratiWindow['start_jd'];
+            $windows[$firstIndex]['start_iso'] = $previousGujaratiWindow['start_iso'];
+        }
+
+        while (true) {
+            $lastIndex = array_key_last($windows);
+            $lastWindow = $windows[$lastIndex];
+            $nextWindow = $this->buildAdjacentAmantaMonthWindow((float) $lastWindow['end_jd'], 1, $tz);
+            $nextGujaratiWindow = $this->gujaratiSamvatWindowFromAmantaWindow($nextWindow, $tz);
+
+            if ($nextGujaratiWindow['value'] !== $lastWindow['value']) {
+                break;
+            }
+
+            $windows[$lastIndex]['end_jd'] = $nextGujaratiWindow['end_jd'];
+            $windows[$lastIndex]['end_iso'] = $nextGujaratiWindow['end_iso'];
+        }
+
+        return $windows;
+    }
+
+    /** @param array<string, mixed> $window */
+    private function gujaratiSamvatWindowFromAmantaWindow(array $window, string $tz): array
+    {
+        $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
+        $vikram = $this->panchanga->getSamvat($start->year, $start->month)['Vikram_Samvat'];
+        $value = $this->panchanga->getGujaratiSamvat($vikram, (int) $window['index']);
+
+        return [
+            'name' => (string) $value,
+            'value' => $value,
+            'start_jd' => (float) $window['start_jd'],
+            'end_jd' => (float) $window['end_jd'],
+            'start_iso' => $window['start_iso'],
+            'end_iso' => $window['end_iso'],
+        ];
+    }
+
+    /** @return array<string, mixed> */
+    private function buildAdjacentAmantaMonthWindow(float $boundaryJd, int $direction, string $tz): array
+    {
+        if ($direction !== -1 && $direction !== 1) {
+            throw new InvalidArgumentException('Adjacent amanta month direction must be -1 or 1.');
+        }
+
+        if ($direction === -1) {
+            $startJd = $this->findAngleCrossing($boundaryJd - 1.0, 0.0, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+            $sampleJd = ($startJd + $boundaryJd) / 2.0;
+            $month = $this->getTrueHinduMonth($sampleJd);
+
+            return [
+                ...$this->periodWindow((string) $month['Month_Amanta'], $startJd, $boundaryJd, $tz),
+                'index' => $month['Amanta_Index'],
             ];
         }
 
-        return $this->mergeAdjacentPeriodWindows($windows);
+        $endJd = $this->findAngleCrossing($boundaryJd + 1.0, 0.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $sampleJd = ($boundaryJd + $endJd) / 2.0;
+        $month = $this->getTrueHinduMonth($sampleJd);
+
+        return [
+            ...$this->periodWindow((string) $month['Month_Amanta'], $boundaryJd, $endJd, $tz),
+            'index' => $month['Amanta_Index'],
+        ];
     }
 
     /** @return array<string, mixed> */

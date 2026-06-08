@@ -288,6 +288,11 @@ trait PanchangMuhurtaYogaDelegatesTrait
         return $this->shoolaCalculator->calculateDishaShool($weekdayIndex);
     }
 
+    private function calculateYatraScreening(int $tithiNumber, int $weekdayIndex, int $nakshatraIndex, int $lagnaSignIndex): array
+    {
+        return $this->shoolaCalculator->calculateYatraScreening($tithiNumber, $weekdayIndex, $nakshatraIndex, $lagnaSignIndex);
+    }
+
     private function calculateRahuVaasa(int $weekdayIndex): array
     {
         return $this->vaasaCalculator->calculateRahuVaasa($weekdayIndex);

@@ -395,6 +395,19 @@ The package covers:
 - panchaka rahita
 - panchaka dosha evaluation
 - auspicious versus inauspicious classification for panchaka remainder logic
+- explicit vara-tithi dosha exposure for:
+  - mrityu
+  - dagdha
+  - visha
+  - hutashana
+  - krakacha
+  - samvarta
+- explicit nitya yoga observations, including kranti dosha detection for Vyatipata and Vaidhriti
+- explicit tithi observance analysis for:
+  - Shuddha
+  - Viddha
+  - Kshaya
+  - Vriddhi presence across consecutive sunrises
 
 This is important because the package does not only expose raw components. It also provides interpretive readiness checks built on those components.
 
@@ -409,6 +422,26 @@ The package covers:
 These are exposed as interpretive screening results, including whether the relevant dosha is active and what the decision layer says about it.
 
 The output also carries descriptive verdict language such as whether the dosha is absent, active, mild, or blocking.
+
+### Traditional Time, Travel, And Observance Metrics
+
+The package also exposes general calculative layers that are useful before any prediction or domain-specific interpretation:
+
+- day and night duration metrics:
+  - Dinamana
+  - Ratrimana
+  - hours
+  - ghati
+  - pala
+- Panchak weekday-type classification on active Panchak windows
+- transit moorthy scoring as a public daily payload
+- travel-direction screening with:
+  - weekday
+  - tithi
+  - nakshatra
+  - lagna
+- Nakshatra Tyajya surfaced explicitly as the Varjyam-equivalent day window
+- supported non-Ekadashi vrata parana families
 
 ### Bhadra And Vishti Handling
 
