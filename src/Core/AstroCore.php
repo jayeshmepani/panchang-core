@@ -239,6 +239,11 @@ final readonly class AstroCore
         return $minutes;
     }
 
+    public static function toJulianDay(CarbonImmutable $time): float
+    {
+        return ($time->getTimestamp() + $time->micro / 1_000_000.0) / 86400.0 + 2440587.5;
+    }
+
     /** Localize display-formatted times without changing parseable date-time fields. */
     private static function localizeTimeDisplay(string $value): string
     {

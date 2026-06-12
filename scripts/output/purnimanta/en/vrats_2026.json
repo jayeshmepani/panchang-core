@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-08T07:31:12+00:00",
+        "generated_at": "2026-06-12T13:10:58+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -17,7 +17,7 @@
         "title": "Vrats 2026 - All vrat observances for the entire year",
         "year": 2026,
         "calendar_type": "purnimanta",
-        "vrat_day_count": 142,
+        "vrat_day_count": 143,
         "vrat_entry_count": 210,
         "total_vrats": 85,
         "recurring_weekday_vrats": [
@@ -2430,7 +2430,7 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
-                            "winning_reason": "Mahashivaratri Nishitha only on day 1",
+                            "winning_reason": "Mahashivaratri Day 1 full Nishitha over Day 2 partial",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 2879.999989271164,
                             "winning_window_coverage_ratio": 1,
@@ -2439,8 +2439,8 @@
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                            "winning_reason_name": "Mahashivaratri Nishitha only on day 1"
+                            "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                            "winning_reason_name": "Mahashivaratri Day 1 full Nishitha over Day 2 partial"
                         },
                         "festival_name_key": "Maha Shivaratri",
                         "festival_name_localized": "Maha Shivaratri",
@@ -2453,7 +2453,7 @@
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "Mahashivaratri Nishitha only on day 1",
+                        "winning_reason": "Mahashivaratri Day 1 full Nishitha over Day 2 partial",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 2879.999989271164,
                         "winning_window_coverage_ratio": 1,
@@ -2464,8 +2464,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                        "winning_reason_name": "Mahashivaratri Nishitha only on day 1"
+                        "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                        "winning_reason_name": "Mahashivaratri Day 1 full Nishitha over Day 2 partial"
                     }
                 }
             ],
@@ -4370,108 +4370,6 @@
                     }
                 },
                 {
-                    "name": "Swaminarayan Jayanti (Hari-Nom)",
-                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                    "description": "Birth of Bhagwan Swaminarayan; celebrated with assemblies, cultural programs, and devotional singing",
-                    "deity": "Swaminarayan",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 9 falls on 2026-03-27 at sunrise, but due to tradition/ritual requiring noon presence, it is celebrated on 2026-03-26.",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "Ninth Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Chaitra",
-                            "value_key": "Chaitra",
-                            "name": "Chaitra"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "noon",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "Swaminarayan Jayanti (Hari-Nom)",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 9 falls on 2026-03-27 at sunrise, but due to tradition/ritual requiring noon presence, it is celebrated on 2026-03-26.",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                        "festival_name_localized": "Swaminarayan Jayanti (Hari-Nom)",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "noon"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Masik Durgashtami",
                     "name_key": "Masik Durgashtami",
                     "description": "Monthly fasting dedicated to Goddess Durga",
@@ -4641,6 +4539,111 @@
                         },
                         "festival_name_key": "Ashoka Ashtami Vrat",
                         "festival_name_localized": "Ashoka Ashtami Vrat",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-03-27": [
+                {
+                    "name": "Swaminarayan Jayanti (Hari-Nom)",
+                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                    "description": "Birth of Bhagwan Swaminarayan on Chaitra Shukla Navami; day selection follows sunrise-vyapini Navami while the incarnation remembrance is observed at night",
+                    "deity": "Swaminarayan",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "Ninth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
+                        "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami"
+                    },
+                    "resolution": {
+                        "festival_name": "Swaminarayan Jayanti (Hari-Nom)",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                        "festival_name_localized": "Swaminarayan Jayanti (Hari-Nom)",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type_name": "sunrise"
                     },

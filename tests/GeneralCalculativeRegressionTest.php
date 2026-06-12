@@ -124,6 +124,24 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertNotSame('East', $details['Yatra_Screening']['current_at_input_now']['direction_grid'][0]['direction'] ?? null);
     }
 
+    public function testPanchakWeekdaysDoNotDependOnEnglishFormattedDateParsingForHindiLocale(): void
+    {
+        config(['panchang.defaults.locale' => 'hi']);
+
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+        $date = CarbonImmutable::create(2026, 6, 8, 0, 0, 0, 'Asia/Kolkata');
+        $at = CarbonImmutable::create(2026, 6, 8, 10, 15, 0, 'Asia/Kolkata');
+
+        $details = $service->getDayDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at, CalendarType::Amanta);
+        $panchak = $details['Panchak'];
+
+        self::assertTrue($panchak['is_present']);
+        self::assertNotEmpty($panchak['windows'][0]['start_weekday'] ?? null);
+        self::assertNotEmpty($panchak['windows'][0]['current_running_weekday'] ?? null);
+        self::assertNotEmpty($panchak['windows'][0]['weekday_type'] ?? null);
+    }
+
     protected function getPackageProviders($app): array
     {
         return [PanchangServiceProvider::class];

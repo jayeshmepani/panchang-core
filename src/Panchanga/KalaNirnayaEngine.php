@@ -73,6 +73,7 @@ class KalaNirnayaEngine
             'masa' => 'Chaitra',
             'karmakala_type' => 'madhyahna',
             'priority' => 'tithi_at_karmakala',
+            'ashtami_viddha_rejection' => true,
         ],
         'Krishna_Janmashtami' => [
             'tithi' => 8,
@@ -101,6 +102,7 @@ class KalaNirnayaEngine
             'masa' => 'Ashvina',
             'karmakala_type' => 'pradosha',
             'priority' => 'tithi_at_karmakala',
+            'diwali_truth_table' => true,
         ],
         'Holi' => [
             'tithi' => 15,
@@ -334,7 +336,9 @@ class KalaNirnayaEngine
         $karmakalaType = $rules['karmakala_type'];
         $karmakalaJd = match ($karmakalaType) {
             'sunrise' => $sunriseJd,
+            'pratah_kal' => $sunriseJd + ($dayDuration / 10.0), // @phpstan-ignore match.alwaysFalse
             'madhyahna' => $sunriseJd + ($dayDuration / 2.0),
+            'abhijit' => $sunriseJd + ($dayDuration / 2.0), // @phpstan-ignore match.alwaysFalse
             'aparahna' => $sunriseJd + ($dayDuration * 3.0 / 4.0),
             'nishitha' => $sunsetJd + (($nextSunriseJd - $sunsetJd) / 2.0),
             default => $sunsetJd + (3.0 / 24.0), // pradosha fallback

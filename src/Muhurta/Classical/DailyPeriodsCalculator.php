@@ -159,6 +159,8 @@ class DailyPeriodsCalculator
             'nishita_end' => AstroCore::formatTime($end),
             'nishita_start_iso' => AstroCore::formatDateTime($start),
             'nishita_end_iso' => AstroCore::formatDateTime($end),
+            'nishita_start_jd' => AstroCore::toJulianDay($start),
+            'nishita_end_jd' => AstroCore::toJulianDay($end),
             'night_midpoint' => AstroCore::formatTime($midpoint),
             'night_midpoint_iso' => AstroCore::formatDateTime($midpoint),
             'muhurta_duration_minutes' => AstroCore::formatDuration($nightMuhurta / 60.0),

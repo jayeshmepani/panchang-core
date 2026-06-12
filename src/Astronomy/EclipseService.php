@@ -216,7 +216,7 @@ class EclipseService
         $hasLocalContacts = $hasNativeVisibilityWindow || $hasRitualPhase;
         $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE || $hasRitualPhase;
         $meetsRitualMagnitude = (float) $attr[0] >= self::NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE;
-        $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts && $meetsRitualMagnitude;
+
         $ritualVisibleStartJd = $this->maxJd($visibilityStartJd, $localContacts['partial_begin_jd']);
         $ritualVisibleEndJd = $this->minJd($visibilityEndJd, $localContacts['partial_end_jd']);
         if ($ritualVisibleStartJd === null || $ritualVisibleEndJd === null || $ritualVisibleEndJd <= $ritualVisibleStartJd) {
@@ -224,10 +224,19 @@ class EclipseService
             $ritualVisibleEndJd = $localContacts['partial_end_jd'];
         }
 
+        $visibleDuration = $ritualVisibleStartJd !== null && $ritualVisibleEndJd !== null ? $ritualVisibleEndJd - $ritualVisibleStartJd : 0.0;
+        $meetsDurationThreshold = $visibleDuration > (12.0 / 1440.0);
+
+        $isPenumbralOnly = ($retHow & $this->lunarPenumbralFlag()) !== 0
+            && ($retHow & JmeEphFFI::JME_ECLIPSE_LUNAR_PARTIAL) === 0
+            && ($retHow & JmeEphFFI::JME_ECLIPSE_LUNAR_TOTAL) === 0;
+
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasRitualPhase && $hasLocalContacts && $meetsRitualMagnitude && $meetsDurationThreshold && !$isPenumbralOnly;
+
         $sutakStartAnchor = $ritualVisibleStartJd;
         $sutakEndAnchor = $ritualVisibleEndJd;
 
-        $ritualBoundary = $this->buildRitualBoundaryPayload($ritualVisibleStartJd, $ritualVisibleEndJd, $lat, $lon, $tz, $isVisible);
+        $ritualBoundary = $this->buildRitualBoundaryPayload('Lunar', $ritualVisibleStartJd, $ritualVisibleEndJd, $lat, $lon, $tz, $isVisible);
 
         return [
             'type' => Localization::translate('String', 'Lunar'),
@@ -319,7 +328,11 @@ class EclipseService
         $hasVisibleWindow = $visibilityWindowStartJd !== null
             && $visibilityWindowEndJd !== null
             && $visibilityWindowEndJd > $visibilityWindowStartJd;
-        $isVisible = $contactsFromSameEvent && $astroVisible && $hasVisibleDiskMagnitude && $hasVisibleWindow && $meetsRitualMagnitude;
+
+        $visibleDuration = $hasVisibleWindow ? $visibilityWindowEndJd - $visibilityWindowStartJd : 0.0;
+        $meetsDurationThreshold = $visibleDuration > (12.0 / 1440.0);
+
+        $isVisible = $contactsFromSameEvent && $astroVisible && $hasVisibleDiskMagnitude && $hasVisibleWindow && $meetsRitualMagnitude && $meetsDurationThreshold;
         $sutakStartAnchor = $visibilityWindowStartJd;
         $sutakEndAnchor = $visibilityWindowEndJd;
 
@@ -332,7 +345,7 @@ class EclipseService
 
         $obscuration = $this->calculateSolarObscuration($sep, $sunR, $moonR);
 
-        $ritualBoundary = $this->buildRitualBoundaryPayload($visibilityWindowStartJd, $visibilityWindowEndJd, $lat, $lon, $tz, $isVisible);
+        $ritualBoundary = $this->buildRitualBoundaryPayload('Solar', $visibilityWindowStartJd, $visibilityWindowEndJd, $lat, $lon, $tz, $isVisible);
 
         return [
             'type' => Localization::translate('String', 'Solar'),
@@ -388,6 +401,13 @@ class EclipseService
         }
 
         return 'Penumbral';
+    }
+
+    private function lunarPenumbralFlag(): int
+    {
+        return defined(JmeEphFFI::class . '::JME_ECLIPSE_LUNAR_PENUMBRAL')
+            ? JmeEphFFI::JME_ECLIPSE_LUNAR_PENUMBRAL
+            : JmeEphFFI::JME_ECLIPSE_PENUMBRAL_BEGIN;
     }
 
     private function solarTypeFromCode(int $code): string
@@ -456,9 +476,28 @@ class EclipseService
             ];
         }
 
+        // Sutak is counted backward in praharas from the local eclipse sparsha.
+        // Prahara boundaries are resolved from the actual day/night spans around the event.
         $anchors = $this->resolveSutakAnchors($eclipseStartJd, $lat, $lon, $tz, $praharsBefore);
-        $startJd = $anchors['start_jd'] ?? ($eclipseStartJd - (($praharsBefore * 3.0) / 24.0));
-        $relaxedStartJd = $anchors['relaxed_start_jd'] ?? ($eclipseStartJd - (3.0 / 24.0));
+        $startJd = $anchors['start_jd'] ?? null;
+        $relaxedStartJd = $anchors['relaxed_start_jd'] ?? null;
+
+        if ($startJd === null || $relaxedStartJd === null) {
+            return [
+                'applicable' => false,
+                'reason' => 'Unable to resolve local prahara boundaries for sutak.',
+                'reason_key' => 'sutak_boundary_resolution_failed',
+                'start_jd' => null,
+                'end_jd' => null,
+                'start' => null,
+                'end' => null,
+                'relaxed_start_jd' => null,
+                'relaxed_end_jd' => null,
+                'relaxed_start' => null,
+                'relaxed_end' => null,
+                'duration_hours' => 0.0,
+            ];
+        }
 
         return [
             'applicable' => true,
@@ -470,11 +509,11 @@ class EclipseService
             'relaxed_end_jd' => $eclipseEndJd,
             'relaxed_start' => AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
             'relaxed_end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
-            'duration_hours' => $praharsBefore * 3.0,
+            'duration_hours' => ($eclipseStartJd - $startJd) * 24.0,
         ];
     }
 
-    private function buildRitualBoundaryPayload(?float $visibleStartJd, ?float $visibleEndJd, float $lat, float $lon, string $tz, bool $isVisible): array
+    private function buildRitualBoundaryPayload(string $eclipseKind, ?float $visibleStartJd, ?float $visibleEndJd, float $lat, float $lon, string $tz, bool $isVisible): array
     {
         if (!$isVisible || $visibleStartJd === null || $visibleEndJd === null) {
             return [
@@ -490,8 +529,11 @@ class EclipseService
         [$startSunrise, $startSunset] = $this->sunriseSunsetForDate($start->startOfDay(), $lat, $lon, $tz);
         [$endSunrise, $endSunset] = $this->sunriseSunsetForDate($end->startOfDay(), $lat, $lon, $tz);
 
-        $grastUday = abs($start->getTimestamp() - $startSunrise->getTimestamp()) <= 300;
-        $grastAst = abs($end->getTimestamp() - $endSunset->getTimestamp()) <= 300;
+        // Scriptural Interval Logic: Body is 'already eclipsed' during rise/set
+        // Grastodaya: Sparsha (start) < Sunrise < Moksha (end)
+        // Grastasta: Sparsha (start) < Sunset < Moksha (end)
+        $grastUday = ($visibleStartJd < $this->carbonToJd($startSunrise)) && ($visibleEndJd > $this->carbonToJd($startSunrise));
+        $grastAst = ($visibleStartJd < $this->carbonToJd($endSunset)) && ($visibleEndJd > $this->carbonToJd($endSunset));
 
         return [
             'type' => match (true) {
@@ -499,6 +541,13 @@ class EclipseService
                 $grastUday => 'grast_uday',
                 $grastAst => 'grast_ast',
                 default => 'ordinary_visible_eclipse',
+            },
+            'scriptural_instructions' => match (true) {
+                $grastUday && $eclipseKind === 'Lunar' => 'Lunar Grastodaya: 4-prahar vedha applies. Do not eat on the previous day.',
+                $grastUday && $eclipseKind === 'Solar' => 'Solar Grastodaya: stop food from previous night. After eclipse release, bathe and see the pure sun disc before eating.',
+                $grastAst && $eclipseKind === 'Lunar' => 'Lunar Grastasta: Eat only when moon rises again in the evening.',
+                $grastAst && $eclipseKind === 'Solar' => 'Solar Grastasta: do not eat that day or following night. Next day after sunrise, bathe, see pure sun disc, then eat.',
+                default => sprintf('Ordinary %s Eclipse: Observe standard %d-prahara Sutak.', $eclipseKind, $eclipseKind === 'Lunar' ? 3 : 4),
             },
             'grast_uday' => $grastUday,
             'grast_ast' => $grastAst,

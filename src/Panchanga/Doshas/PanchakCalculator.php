@@ -30,10 +30,10 @@ class PanchakCalculator
         foreach ($windows as &$window) {
             $window['range'] = 'Dhanishta Pada 3 through Revati';
             $window['range_key'] = 'dhanishta_pada_3_to_revati';
-            $weekdayIndex = $this->weekdayIndexFromFormattedDateTime((string) $window['start'], $tz);
+            $weekdayIndex = $this->weekdayIndexFromJd((float) $window['start_jd'], $tz);
             $typeKey = self::WEEKDAY_TYPES[$weekdayIndex] ?? 'Shubha Panchaka';
-            $window['start_weekday'] = $this->localizedWeekdayFromFormattedDateTime((string) $window['start'], $tz);
-            $window['current_running_weekday'] = $this->localizedWeekdayFromFormattedDateTime((string) $window['visible_start'], $tz);
+            $window['start_weekday'] = $this->localizedWeekdayFromJd((float) $window['start_jd'], $tz);
+            $window['current_running_weekday'] = $this->localizedWeekdayFromJd((float) $window['visible_start_jd'], $tz);
             $window['weekday_type'] = Localization::translate('Panchaka', $typeKey);
             $window['weekday_type_key'] = $typeKey;
             $window['classification_lock'] = 'entry_weekday';
@@ -55,23 +55,32 @@ class PanchakCalculator
         ];
     }
 
-    private function weekdayIndexFromFormattedDateTime(string $dateTime, string $tz): int
+    private function weekdayIndexFromJd(float $jd, string $tz): int
     {
-        $carbon = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', $dateTime, $tz);
-        if (!$carbon instanceof CarbonImmutable) {
-            return 0;
-        }
-
-        return $carbon->dayOfWeek % 7;
+        return $this->carbonFromJd($jd, $tz)->dayOfWeek % 7;
     }
 
-    private function localizedWeekdayFromFormattedDateTime(string $dateTime, string $tz): string
+    private function localizedWeekdayFromJd(float $jd, string $tz): string
     {
-        $carbon = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', $dateTime, $tz);
-        if (!$carbon instanceof CarbonImmutable) {
-            return '';
+        return Localization::translate('Vara', $this->weekdayIndexFromJd($jd, $tz));
+    }
+
+    private function carbonFromJd(float $jd, string $tz): CarbonImmutable
+    {
+        $unixSeconds = ($jd - 2440587.5) * 86400.0;
+        $wholeSeconds = (int) floor($unixSeconds);
+        $microseconds = (int) round(($unixSeconds - $wholeSeconds) * 1_000_000);
+
+        if ($microseconds >= 1_000_000) {
+            $wholeSeconds++;
+            $microseconds -= 1_000_000;
+        } elseif ($microseconds < 0) {
+            $wholeSeconds--;
+            $microseconds += 1_000_000;
         }
 
-        return Localization::translate('Vara', $carbon->dayOfWeek % 7);
+        return CarbonImmutable::createFromTimestampUTC($wholeSeconds)
+            ->addMicroseconds($microseconds)
+            ->setTimezone($tz);
     }
 }

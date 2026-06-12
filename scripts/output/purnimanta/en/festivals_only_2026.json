@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-08T07:31:00+00:00",
+        "generated_at": "2026-06-12T13:10:47+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -5968,117 +5968,6 @@
                     }
                 },
                 {
-                    "name": "Phuldolotsava",
-                    "name_key": "Phuldolotsava",
-                    "description": "Swaminarayan Pushpadolotsav / Fuldol tithi observance in the Holi/Purnima festival cluster",
-                    "deity": "Krishna",
-                    "fasting": false,
-                    "regions": [
-                        "Swaminarayan",
-                        "Gujarat"
-                    ],
-                    "aliases": [
-                        "Pushpadolotsav",
-                        "Phuldol",
-                        "Dhuleti"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Phalguna",
-                            "value_key": "Phalguna",
-                            "name": "Phalguna"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "strict_karmakala": true,
-                        "sect_specific": true,
-                        "tradition_profile": "Swaminarayan/BAPS tithi observance",
-                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
-                        "rule_convention": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
-                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ."
-                    },
-                    "resolution": {
-                        "festival_name": "Phuldolotsava",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461102.0171825113,
-                        "target_tithi_end_jd": 2461102.9836481707,
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Phuldolotsava",
-                        "festival_name_localized": "Phuldolotsava",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Savarni Manvadi",
                     "name_key": "Savarni Manvadi",
                     "description": "Commemoration of the beginning of Savarni Manvantara",
@@ -6274,6 +6163,117 @@
                 }
             ],
             "2026-03-04": [
+                {
+                    "name": "Phuldolotsava",
+                    "name_key": "Phuldolotsava",
+                    "description": "Swaminarayan Pushpadolotsav / Fuldol tithi observance in the Holi/Purnima festival cluster",
+                    "deity": "Krishna",
+                    "fasting": false,
+                    "regions": [
+                        "Swaminarayan",
+                        "Gujarat"
+                    ],
+                    "aliases": [
+                        "Pushpadolotsav",
+                        "Phuldol",
+                        "Dhuleti"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "First Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "tradition_profile": "Swaminarayan/BAPS tithi observance",
+                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
+                        "rule_convention": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
+                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ."
+                    },
+                    "resolution": {
+                        "festival_name": "Phuldolotsava",
+                        "required_tithi": 1,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461102.9836481707,
+                        "target_tithi_end_jd": 2461103.970803272,
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Phuldolotsava",
+                        "festival_name_localized": "Phuldolotsava",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
                 {
                     "name": "Ishti",
                     "name_key": "Ishti",
@@ -22791,64 +22791,6 @@
             ],
             "2026-09-12": [
                 {
-                    "name": "Samaveda Upakarma",
-                    "name_key": "Samaveda Upakarma",
-                    "description": "Annual ritual of changing the sacred thread for Samavedis",
-                    "deity": "Rishis/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "nakshatra",
-                        "basis_name": "nakshatra",
-                        "nakshatra": "Hasta",
-                        "nakshatra_key": "Hasta",
-                        "nakshatra_only": true,
-                        "karmakala_type": "aparahna",
-                        "karmakala_type_name": "afternoon",
-                        "prefer_nakshatra_window": true,
-                        "preferred_nakshatra": "Hasta",
-                        "preferred_nakshatra_key": "Hasta"
-                    },
-                    "resolution": {
-                        "festival_name": "Samaveda Upakarma",
-                        "required_nakshatra": "Hasta",
-                        "karmakala_type": "aparahna",
-                        "standard_date": "2026-09-12",
-                        "observance_date": "2026-09-12",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Hasta",
-                            "winning_reason": "nakshatra_overlaps_karmakala_window",
-                            "winning_nakshatra_window_overlap_seconds": 8912.999975681305,
-                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
-                            "nakshatra_name_key": "Hasta",
-                            "nakshatra_name_localized": "Hasta"
-                        },
-                        "festival_name_key": "Samaveda Upakarma",
-                        "festival_name_localized": "Samaveda Upakarma",
-                        "karmakala_type_name": "afternoon",
-                        "required_nakshatra_key": "Hasta",
-                        "required_nakshatra_name": "Hasta"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Hasta",
-                        "winning_reason": "nakshatra_overlaps_karmakala_window",
-                        "winning_nakshatra_window_overlap_seconds": 8912.999975681305,
-                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
-                        "nakshatra_name_key": "Hasta",
-                        "nakshatra_name_localized": "Hasta"
-                    }
-                },
-                {
                     "name": "Navratri Begins",
                     "name_key": "Navratri Begins",
                     "description": "Start of the nine-day Navratri festival",
@@ -23146,6 +23088,63 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Samaveda Upakarma",
+                    "name_key": "Samaveda Upakarma",
+                    "description": "Annual ritual of changing the sacred thread for Samavedis (primarily Hasta nakshatra based)",
+                    "deity": "Rishis/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "nakshatra",
+                        "basis_name": "nakshatra",
+                        "nakshatra": "Hasta",
+                        "nakshatra_key": "Hasta",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "preferred_nakshatra": "Hasta",
+                        "preferred_nakshatra_key": "Hasta"
+                    },
+                    "resolution": {
+                        "festival_name": "Samaveda Upakarma",
+                        "required_nakshatra": "Hasta",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-09-13",
+                        "observance_date": "2026-09-13",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "Hasta",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "nakshatra_name_key": "Hasta",
+                            "nakshatra_name_localized": "Hasta"
+                        },
+                        "festival_name_key": "Samaveda Upakarma",
+                        "festival_name_localized": "Samaveda Upakarma",
+                        "karmakala_type_name": "sunrise",
+                        "required_nakshatra_key": "Hasta",
+                        "required_nakshatra_name": "Hasta"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Hasta",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "nakshatra_name_key": "Hasta",
+                        "nakshatra_name_localized": "Hasta"
                     }
                 }
             ],
@@ -24760,8 +24759,8 @@
                         },
                         "nakshatra": "Shravana",
                         "nakshatra_key": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "noon",
+                        "karmakala_type": "abhijit",
+                        "karmakala_type_name": "Abhijit",
                         "strict_karmakala": true,
                         "prefer_nakshatra": true,
                         "preferred_nakshatra": "Shravana",
@@ -24771,10 +24770,10 @@
                         "festival_name": "Vamana Jayanti",
                         "required_tithi": 12,
                         "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
+                        "karmakala_type": "abhijit",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8737.199963629246,
+                        "tithi_coverage_seconds_today": 2912.4000146985054,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -24790,8 +24789,8 @@
                             "kshaya_preference": "first",
                             "preferred_nakshatra": "Shravana",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1270,
-                            "winning_window_overlap_seconds": 8737.199963629246,
+                            "winning_score": 1173,
+                            "winning_window_overlap_seconds": 2912.4000146985054,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -24806,7 +24805,7 @@
                         "festival_name_key": "Vamana Jayanti",
                         "festival_name_localized": "Vamana Jayanti",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "noon"
+                        "karmakala_type_name": "Abhijit"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -24815,8 +24814,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": "Shravana",
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1270,
-                        "winning_window_overlap_seconds": 8737.199963629246,
+                        "winning_score": 1173,
+                        "winning_window_overlap_seconds": 2912.4000146985054,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -31782,8 +31781,8 @@
                             "value_key": "Kartika",
                             "name": "Kartika"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type": "pratah_kal",
+                        "karmakala_type_name": "Pratah Kal",
                         "strict_karmakala": true,
                         "chandradarshan_nishedh": true,
                         "deepotsav_sequence": "govardhan_annakut",
@@ -31795,10 +31794,10 @@
                         "festival_name": "Govardhan Puja",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "pratah_kal",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 8018.400000035763,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -31811,11 +31810,11 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "vriddhi_preference": "first",
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_score": 1133,
+                            "winning_window_overlap_seconds": 8018.400000035763,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -31828,17 +31827,17 @@
                         "festival_name_key": "Govardhan Puja",
                         "festival_name_localized": "Govardhan Puja",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Pratah Kal"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "require_karmakala_match": true,
-                        "vriddhi_preference": "first",
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_score": 1133,
+                        "winning_window_overlap_seconds": 8018.400000035763,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,

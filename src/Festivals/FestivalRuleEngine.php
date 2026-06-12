@@ -763,12 +763,20 @@ class FestivalRuleEngine
             return $this->resolveMahashivaratriTruthTable($candidates);
         }
 
+        if ((bool) ($rule['diwali_truth_table'] ?? false)) {
+            return $this->resolveDiwaliTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['ashtami_viddha_rejection'] ?? false)) {
+            return $this->resolveRamNavamiTruthTable($candidates, $today, $targetInterval);
+        }
+
         return null;
     }
 
     private function usesExclusiveTruthTable(array $rule): bool
     {
-        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table'] as $flag) {
+        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ashtami_viddha_rejection'] as $flag) {
             if ((bool) ($rule[$flag] ?? false)) {
                 return true;
             }
@@ -906,39 +914,36 @@ class FestivalRuleEngine
     {
         $day1 = $candidates[0];
         $day2 = $candidates[1];
+
+        $day1Full = $day1['target_window_coverage_ratio'] >= 0.999;
+        $day2Full = $day2['target_window_coverage_ratio'] >= 0.999;
+
+        if ($day1Full && !$day2Full) {
+            return $this->markSpecialWinner($day1, 'mahashivaratri_day1_full_over_day2_partial');
+        }
+
+        if (!$day1Full && $day2Full) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_full_over_day1_partial');
+        }
+
+        if ($day1Full) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_both_full_nishitha_choose_day2');
+        }
+
+        if ($day1['target_window_overlap_seconds'] > $day2['target_window_overlap_seconds'] && $day1['target_window_overlap_seconds'] > 0) {
+            return $this->markSpecialWinner($day1, 'mahashivaratri_day1_longer_overlap');
+        }
+
+        if ($day2['target_window_overlap_seconds'] > $day1['target_window_overlap_seconds'] && $day2['target_window_overlap_seconds'] > 0) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_longer_overlap');
+        }
+
         if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
             return $this->markSpecialWinner($day1, 'mahashivaratri_nishitha_only_day1');
         }
 
         if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
             return $this->markSpecialWinner($day2, 'mahashivaratri_nishitha_only_day2');
-        }
-
-        $day1Full = $day1['target_window_coverage_ratio'] >= 0.999;
-        $day2Full = $day2['target_window_coverage_ratio'] >= 0.999;
-        $day1Partial = $day1['target_window_coverage_ratio'] >= 0.5;
-        $day2Partial = $day2['target_window_coverage_ratio'] >= 0.5;
-        $day1Ekadesha = $day1['target_window_overlap_seconds'] > 0.0;
-        $day2Ekadesha = $day2['target_window_overlap_seconds'] > 0.0;
-
-        if ($day1Full && $day2Full) {
-            return $this->markSpecialWinner($day2, 'mahashivaratri_both_full_nishitha_choose_day2');
-        }
-
-        if ($day1Full && $day2Ekadesha) {
-            return $this->markSpecialWinner($day1, 'mahashivaratri_day1_full_over_day2_ekadesha');
-        }
-
-        if ($day1Ekadesha && $day2Full) {
-            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_full_over_day1_ekadesha');
-        }
-
-        if ($day2Ekadesha) {
-            return $this->markSpecialWinner($day2, 'mahashivaratri_day2_more_than_one_yama_or_ekadesha');
-        }
-
-        if ($day1Partial && $day2Partial) {
-            return $this->markSpecialWinner($day2, 'mahashivaratri_both_partial_choose_day2');
         }
 
         return null;
@@ -997,8 +1002,10 @@ class FestivalRuleEngine
 
         return match ($type) {
             'arunodaya' => ['start_jd' => $sunrise - (4.0 * $ghati), 'end_jd' => $sunrise],
+            'pratah_kal' => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 5.0)],
             'sangava' => ['start_jd' => $sunrise + ($dayDuration / 5.0), 'end_jd' => $sunrise + ($dayDuration * 2.0 / 5.0)],
             'madhyahna' => ['start_jd' => $sunrise + ($dayDuration * 2.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 3.0 / 5.0)],
+            'abhijit' => ['start_jd' => $sunrise + ($dayDuration * 7.0 / 15.0), 'end_jd' => $sunrise + ($dayDuration * 8.0 / 15.0)],
             'aparahna' => ['start_jd' => $sunrise + ($dayDuration * 3.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 4.0 / 5.0)],
             'vijaya_kaal' => ['start_jd' => $sunrise + ($dayDuration * 4.0 / 5.0), 'end_jd' => $sunset + ($nightDuration / 10.0)],
             'sayankala', 'sunset' => ['start_jd' => $sunset, 'end_jd' => $sunset + ($nightDuration / 5.0)],
@@ -1265,5 +1272,51 @@ class FestivalRuleEngine
 
         // Keep letters across all scripts (Latin + Indic) and remove separators/punctuation.
         return preg_replace('/[^\p{L}]+/u', '', $label) ?? '';
+    }
+
+    private function resolveDiwaliTruthTable(array $candidates): array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+
+        $d1Vyapti = $day1['target_at_karmakala'];
+        $d2Vyapti = $day2['target_at_karmakala'];
+
+        if ($d1Vyapti && !$d2Vyapti) {
+            return $this->markSpecialWinner($day1, 'diwali_d1_only_pradosha');
+        }
+
+        if (!$d1Vyapti && $d2Vyapti) {
+            return $this->markSpecialWinner($day2, 'diwali_d2_only_pradosha');
+        }
+
+        if ($d1Vyapti) {
+            return $this->markSpecialWinner($day2, 'diwali_both_pradosha_d2');
+        }
+
+        return $this->markSpecialWinner($day1, 'diwali_both_avyapti_d1');
+    }
+
+    private function resolveRamNavamiTruthTable(array $candidates, array $today, array $targetInterval): array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+
+        $day1Vyapti = $day1['target_window_overlap_seconds'] > 0;
+        $day2Vyapti = $day2['target_window_overlap_seconds'] > 0;
+
+        if ($day1Vyapti && $day2Vyapti) {
+            if ($this->previousTithiActiveAtPoint($today, $targetInterval, 'sunrise')) {
+                return $this->markSpecialWinner($day2, 'ram_navami_vriddhi_ashtami_viddha_reject_day1');
+            }
+
+            return $this->markSpecialWinner($day1, 'ram_navami_vriddhi_choose_day1');
+        }
+
+        if (!$day1Vyapti && !$day2Vyapti) {
+            return $this->markSpecialWinner($day1, 'ram_navami_kshaya_choose_combined_day');
+        }
+
+        return $day1Vyapti ? $this->markSpecialWinner($day1, 'ram_navami_shuddha_day1') : $this->markSpecialWinner($day2, 'ram_navami_shuddha_day2');
     }
 }

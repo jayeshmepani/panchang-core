@@ -10,6 +10,8 @@ use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Panchanga\KalaNirnayaEngine;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
+use JmeEph\FFI\JmeEphFFI;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -127,6 +129,62 @@ final class NirnayVerifiedRulesTest extends TestCase
         ], $constant->getValue());
     }
 
+    public function testEclipseServiceResolvesInstalledLunarPenumbralFlagConstant(): void
+    {
+        $reflection = new ReflectionClass(EclipseService::class);
+        $service = $reflection->newInstanceWithoutConstructor();
+        $method = $reflection->getMethod('lunarPenumbralFlag');
+
+        self::assertSame(
+            JmeEphFFI::JME_ECLIPSE_LUNAR_PENUMBRAL,
+            $method->invoke($service)
+        );
+    }
+
+    public function testVisibleEclipseSutakUsesDynamicPraharBoundaries(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+        $events = $service->getEclipsesForYear(2025, 23.2472446, 69.668339, 'Asia/Kolkata');
+
+        $event = null;
+        foreach ($events as $candidate) {
+            if (($candidate['date'] ?? null) === '2025-09-07' && ($candidate['type'] ?? null) === 'Lunar') {
+                $event = $candidate;
+                break;
+            }
+        }
+
+        self::assertIsArray($event, 'Expected visible 2025-09-07 lunar eclipse event.');
+        self::assertTrue((bool) ($event['sutak']['applicable'] ?? false));
+
+        $reflection = new ReflectionClass(EclipseService::class);
+        $resolveAnchors = $reflection->getMethod('resolveSutakAnchors');
+
+        $expectedAnchors = $resolveAnchors->invoke(
+            $service,
+            (float) $event['visibility']['window']['start_jd'],
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            3
+        );
+
+        self::assertIsArray($expectedAnchors);
+        self::assertEqualsWithDelta(
+            $expectedAnchors['start_jd'],
+            $event['sutak']['start_jd'] ?? null,
+            1e-9,
+            'Sutak start should align to dynamic prahara boundary.'
+        );
+        self::assertEqualsWithDelta(
+            $expectedAnchors['relaxed_start_jd'],
+            $event['sutak']['relaxed_start_jd'] ?? null,
+            1e-9,
+            'Relaxed sutak start should align to previous dynamic prahara boundary.'
+        );
+    }
+
     public function testGujaratiParanaNakshatraRestrictionsAreMonthPakshaSpecific(): void
     {
         $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
@@ -168,11 +226,31 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('arunodaya', FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['karmakala_type']);
         self::assertTrue(FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['location_sensitive']);
         self::assertSame('sunrise', FestivalService::FESTIVALS['Chaitra Purnima']['karmakala_type']);
-        self::assertSame('madhyahna', FestivalService::FESTIVALS['Vamana Jayanti']['karmakala_type']);
+        self::assertSame('sunrise', FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['require_sunrise_vyapini']);
+        self::assertSame('first', FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['vriddhi_preference']);
+        self::assertSame('abhijit', FestivalService::FESTIVALS['Vamana Jayanti']['karmakala_type']);
         self::assertSame('Shravana', FestivalService::FESTIVALS['Vamana Jayanti']['nakshatra']);
-        self::assertSame('aparahna', FestivalService::FESTIVALS['Samaveda Upakarma']['karmakala_type']);
+        self::assertSame('sunrise', FestivalService::FESTIVALS['Samaveda Upakarma']['karmakala_type']);
         self::assertTrue(FestivalService::FESTIVALS['Govardhan Puja']['chandradarshan_nishedh']);
         self::assertTrue(FestivalService::FESTIVALS['Govardhan Puja']['location_sensitive']);
+    }
+
+    public function testHariJayantiUsesSunriseVyapiniNavamiAndPrefersFirstVriddhiDay(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-03-26');
+        $today = $this->festivalSnapshot(9, 'Shukla', 100.25, 100.75, 101.25, 100.10, 101.60, 'Pushya');
+        $tomorrow = $this->festivalSnapshot(9, 'Shukla', 101.25, 101.75, 102.25, 100.10, 101.60, 'Ashlesha');
+
+        $resolved = $engine->resolveMajorFestival('Swaminarayan Jayanti (Hari-Nom)', FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)'], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-03-26', $resolved['observance_date']);
+        self::assertTrue($resolved['tithi_at_sunrise_today']);
+        self::assertTrue($resolved['tithi_at_sunrise_tomorrow']);
+        self::assertSame('sunrise', $resolved['karmakala_type']);
+        self::assertSame('first', $resolved['decision']['vriddhi_preference']);
     }
 
     public function testHolikaDahanRejectsBhadraMukhaDuringPradosha(): void
@@ -378,7 +456,7 @@ final class NirnayVerifiedRulesTest extends TestCase
 
         self::assertNotNull($resolved);
         self::assertSame('2026-02-14', $resolved['observance_date']);
-        self::assertSame('mahashivaratri_day1_full_over_day2_ekadesha', $resolved['decision']['winning_reason']);
+        self::assertSame('mahashivaratri_day1_full_over_day2_partial', $resolved['decision']['winning_reason']);
     }
 
     public function testRemainingGujaratiFestivalRuleFlagsAreEncoded(): void
@@ -404,10 +482,10 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('diwali_lakshmi_kali_puja', FestivalService::FESTIVALS['Kali Puja']['deepotsav_sequence']);
         self::assertSame('bhai_beej', FestivalService::FESTIVALS['Bhai Dooj']['deepotsav_sequence']);
         self::assertArrayHasKey('Phuldolotsava', FestivalService::FESTIVALS);
-        self::assertSame(15, FestivalService::FESTIVALS['Phuldolotsava']['tithi']);
+        self::assertSame(1, FestivalService::FESTIVALS['Phuldolotsava']['tithi']);
         self::assertSame('Phalguna', FestivalService::FESTIVALS['Phuldolotsava']['month_amanta']);
         self::assertTrue(FestivalService::FESTIVALS['Phuldolotsava']['sect_specific']);
-        self::assertTrue(FestivalService::FESTIVALS['Samaveda Upakarma']['prefer_nakshatra_window']);
+        self::assertTrue(FestivalService::FESTIVALS['Samaveda Upakarma']['nakshatra_only']);
     }
 
     public function testNakshatraOnlyResolverUsesKarmakalaWindowOverlap(): void

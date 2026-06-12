@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-08T07:30:09+00:00",
+        "generated_at": "2026-06-12T13:09:59+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "amanta",
@@ -17,7 +17,7 @@
         "title": "વ્રતો 2026 - સમગ્ર વર્ષના બધા વ્રતો અને ઉપવાસ",
         "year": 2026,
         "calendar_type": "amanta",
-        "vrat_day_count": 140,
+        "vrat_day_count": 141,
         "vrat_entry_count": 208,
         "total_vrats": 85,
         "recurring_weekday_vrats": [
@@ -2430,7 +2430,7 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
-                            "winning_reason": "મહાશિવરાત્રિ નિશીથ માત્ર પહેલા દિવસે",
+                            "winning_reason": "મહાશિવરાત્રિ પહેલા દિવસે સંપૂર્ણ નિશીથ, બીજા દિવસે આંશિક",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 2879.999989271164,
                             "winning_window_coverage_ratio": 1,
@@ -2439,8 +2439,8 @@
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                            "winning_reason_name": "મહાશિવરાત્રિ નિશીથ માત્ર પહેલા દિવસે"
+                            "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                            "winning_reason_name": "મહાશિવરાત્રિ પહેલા દિવસે સંપૂર્ણ નિશીથ, બીજા દિવસે આંશિક"
                         },
                         "festival_name_key": "Maha Shivaratri",
                         "festival_name_localized": "મહા શિવરાત્રી",
@@ -2453,7 +2453,7 @@
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "મહાશિવરાત્રિ નિશીથ માત્ર પહેલા દિવસે",
+                        "winning_reason": "મહાશિવરાત્રિ પહેલા દિવસે સંપૂર્ણ નિશીથ, બીજા દિવસે આંશિક",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 2879.999989271164,
                         "winning_window_coverage_ratio": 1,
@@ -2464,8 +2464,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                        "winning_reason_name": "મહાશિવરાત્રિ નિશીથ માત્ર પહેલા દિવસે"
+                        "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                        "winning_reason_name": "મહાશિવરાત્રિ પહેલા દિવસે સંપૂર્ણ નિશીથ, બીજા દિવસે આંશિક"
                     }
                 }
             ],
@@ -4370,108 +4370,6 @@
                     }
                 },
                 {
-                    "name": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
-                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                    "description": "ભગવાન સ્વામિનારાયણનો જન્મ; સભાઓ, સાંસ્કૃતિક કાર્યક્રમો અને ભજન કીર્તન સાથે ઉજવાય છે",
-                    "deity": "સ્વામિનારાયણ",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 9 સૂર્યોદયે 2026-03-27 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-03-26 પર ઉજવાય છે.",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "સુદ નોમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "ચૈત્ર",
-                            "value_key": "Chaitra",
-                            "name": "ચૈત્ર"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 9 સૂર્યોદયે 2026-03-27 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-03-26 પર ઉજવાય છે.",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                        "festival_name_localized": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "માસિક દુર્ગાષ્ટમી",
                     "name_key": "Masik Durgashtami",
                     "description": "દેવી દુર્ગાને સમર્પિત માસિક વ્રત",
@@ -4641,6 +4539,111 @@
                         },
                         "festival_name_key": "Ashoka Ashtami Vrat",
                         "festival_name_localized": "અશોક આઠમ વ્રત",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-03-27": [
+                {
+                    "name": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
+                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                    "description": "Birth of Bhagwan Swaminarayan on Chaitra Shukla Navami; day selection follows sunrise-vyapini Navami while the incarnation remembrance is observed at night",
+                    "deity": "સ્વામિનારાયણ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "સુદ નોમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "ચૈત્ર",
+                            "value_key": "Chaitra",
+                            "name": "ચૈત્ર"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
+                        "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami"
+                    },
+                    "resolution": {
+                        "festival_name": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                        "festival_name_localized": "સ્વામિનારાયણ જયંતિ (હરિ-નોમ)",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },

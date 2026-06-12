@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-08T07:31:52+00:00",
+        "generated_at": "2026-06-12T13:11:37+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -7547,7 +7547,7 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
-                            "winning_reason": "महाशिवरात्रि निशीथ केवल पहले दिन",
+                            "winning_reason": "महाशिवरात्रि पहले दिन पूर्ण निशीथ, दूसरे दिन आंशिक",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 2879.999989271164,
                             "winning_window_coverage_ratio": 1,
@@ -7556,8 +7556,8 @@
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                            "winning_reason_name": "महाशिवरात्रि निशीथ केवल पहले दिन"
+                            "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                            "winning_reason_name": "महाशिवरात्रि पहले दिन पूर्ण निशीथ, दूसरे दिन आंशिक"
                         },
                         "festival_name_key": "Maha Shivaratri",
                         "festival_name_localized": "महा शिवरात्रि",
@@ -7570,7 +7570,7 @@
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "महाशिवरात्रि निशीथ केवल पहले दिन",
+                        "winning_reason": "महाशिवरात्रि पहले दिन पूर्ण निशीथ, दूसरे दिन आंशिक",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 2879.999989271164,
                         "winning_window_coverage_ratio": 1,
@@ -7581,8 +7581,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "mahashivaratri_nishitha_only_day1",
-                        "winning_reason_name": "महाशिवरात्रि निशीथ केवल पहले दिन"
+                        "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
+                        "winning_reason_name": "महाशिवरात्रि पहले दिन पूर्ण निशीथ, दूसरे दिन आंशिक"
                     }
                 }
             ],
@@ -10574,117 +10574,6 @@
                     }
                 },
                 {
-                    "name": "फूलडोलोत्सव",
-                    "name_key": "Phuldolotsava",
-                    "description": "होली/पूर्णिमा उत्सव समूह में स्वामीनारायण पुष्पदोलोत्सव / फूलडोल तिथि उत्सव",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "स्वामीनारायण",
-                        "गुजरात"
-                    ],
-                    "aliases": [
-                        "पुष्पदोलोत्सव",
-                        "फूलडोल",
-                        "धुलेटी"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "फाल्गुन",
-                            "value_key": "Phalguna",
-                            "name": "फाल्गुन"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय",
-                        "strict_karmakala": true,
-                        "sect_specific": true,
-                        "tradition_profile": "स्वामीनारायण/बीएपीएस तिथि उत्सव",
-                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
-                        "rule_convention": "संप्रदाय-विशेष तिथि उत्सव; सार्वजनिक आयोजन और मुख्यधारा के होली-पश्चात नागरिक दिन अलग हो सकते हैं।",
-                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ."
-                    },
-                    "resolution": {
-                        "festival_name": "फूलडोलोत्सव",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461102.0171825113,
-                        "target_tithi_end_jd": 2461102.9836481707,
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Phuldolotsava",
-                        "festival_name_localized": "फूलडोलोत्सव",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "सावर्णि मन्वदि",
                     "name_key": "Savarni Manvadi",
                     "description": "सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
@@ -10903,6 +10792,117 @@
                             "name": "बुधवार",
                             "english_name": "Wednesday"
                         }
+                    }
+                },
+                {
+                    "name": "फूलडोलोत्सव",
+                    "name_key": "Phuldolotsava",
+                    "description": "होली/पूर्णिमा उत्सव समूह में स्वामीनारायण पुष्पदोलोत्सव / फूलडोल तिथि उत्सव",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "स्वामीनारायण",
+                        "गुजरात"
+                    ],
+                    "aliases": [
+                        "पुष्पदोलोत्सव",
+                        "फूलडोल",
+                        "धुलेटी"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "कृष्ण प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "चैत्र",
+                            "value_key": "Chaitra",
+                            "name": "चैत्र"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "tradition_profile": "स्वामीनारायण/बीएपीएस तिथि उत्सव",
+                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
+                        "rule_convention": "संप्रदाय-विशेष तिथि उत्सव; सार्वजनिक आयोजन और मुख्यधारा के होली-पश्चात नागरिक दिन अलग हो सकते हैं।",
+                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ."
+                    },
+                    "resolution": {
+                        "festival_name": "फूलडोलोत्सव",
+                        "required_tithi": 1,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461102.9836481707,
+                        "target_tithi_end_jd": 2461103.970803272,
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Phuldolotsava",
+                        "festival_name_localized": "फूलडोलोत्सव",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 },
                 {
@@ -15416,210 +15416,6 @@
                     }
                 },
                 {
-                    "name": "राम नवमी",
-                    "name_key": "Rama Navami",
-                    "description": "भगवान राम (विष्णु के सातवें अवतार) की जयंती",
-                    "deity": "राम",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "शुक्ल नवमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "चैत्र",
-                            "value_key": "Chaitra",
-                            "name": "चैत्र"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "राम नवमी",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Rama Navami",
-                        "festival_name_localized": "राम नवमी",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "मध्याह्न"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "स्वामीनारायण जयंती (हरि-नोम)",
-                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                    "description": "भगवान स्वामीनारायण का जन्म; सभाओं, सांस्कृतिक कार्यक्रमों और भजन गायन के साथ मनाया जाता है",
-                    "deity": "स्वामीनारायण",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "शुक्ल नवमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "चैत्र",
-                            "value_key": "Chaitra",
-                            "name": "चैत्र"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "स्वामीनारायण जयंती (हरि-नोम)",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
-                        "festival_name_localized": "स्वामीनारायण जयंती (हरि-नोम)",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "मध्याह्न"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "गुरुवार व्रत",
                     "name_key": "Guruvar Vrat",
                     "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
@@ -15917,6 +15713,210 @@
                         },
                         "festival_name_key": "Chaitra (Vasant) Navaratri Day 9 (Siddhidatri Puja)",
                         "festival_name_localized": "चैत्र (वसंत) नवरात्रि दिन ९ (सिद्धिदात्री पूजा)",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "राम नवमी",
+                    "name_key": "Rama Navami",
+                    "description": "भगवान राम (विष्णु के सातवें अवतार) की जयंती",
+                    "deity": "राम",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "शुक्ल नवमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "चैत्र",
+                            "value_key": "Chaitra",
+                            "name": "चैत्र"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "राम नवमी",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                            "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
+                        },
+                        "festival_name_key": "Rama Navami",
+                        "festival_name_localized": "राम नवमी",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                        "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
+                    }
+                },
+                {
+                    "name": "स्वामीनारायण जयंती (हरि-नोम)",
+                    "name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                    "description": "Birth of Bhagwan Swaminarayan on Chaitra Shukla Navami; day selection follows sunrise-vyapini Navami while the incarnation remembrance is observed at night",
+                    "deity": "स्वामीनारायण",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "शुक्ल नवमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "चैत्र",
+                            "value_key": "Chaitra",
+                            "name": "चैत्र"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
+                        "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami"
+                    },
+                    "resolution": {
+                        "festival_name": "स्वामीनारायण जयंती (हरि-नोम)",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Swaminarayan Jayanti (Hari-Nom)",
+                        "festival_name_localized": "स्वामीनारायण जयंती (हरि-नोम)",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -41787,7 +41787,7 @@
                 {
                     "name": "सामवेद उपाकर्म",
                     "name_key": "Samaveda Upakarma",
-                    "description": "सामवेदियों के लिए जनेऊ बदलने का वार्षिक अनुष्ठान",
+                    "description": "सामवेदियों के लिए जनेऊ बदलने का वार्षिक अनुष्ठान (मुख्यतः हस्त नक्षत्र आधारित)",
                     "deity": "ऋषि/विष्णु",
                     "fasting": false,
                     "regions": [
@@ -41803,16 +41803,15 @@
                         "nakshatra": "हस्त",
                         "nakshatra_key": "Hasta",
                         "nakshatra_only": true,
-                        "karmakala_type": "aparahna",
-                        "karmakala_type_name": "अपराह्न",
-                        "prefer_nakshatra_window": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
                         "preferred_nakshatra": "हस्त",
                         "preferred_nakshatra_key": "Hasta"
                     },
                     "resolution": {
                         "festival_name": "सामवेद उपाकर्म",
                         "required_nakshatra": "हस्त",
-                        "karmakala_type": "aparahna",
+                        "karmakala_type": "sunrise",
                         "standard_date": "2026-09-13",
                         "observance_date": "2026-09-13",
                         "decision": {
@@ -41827,7 +41826,7 @@
                         },
                         "festival_name_key": "Samaveda Upakarma",
                         "festival_name_localized": "सामवेद उपाकर्म",
-                        "karmakala_type_name": "अपराह्न",
+                        "karmakala_type_name": "सूर्योदय",
                         "required_nakshatra_key": "Hasta",
                         "required_nakshatra_name": "हस्त"
                     },
@@ -44051,8 +44050,8 @@
                         },
                         "nakshatra": "श्रवण",
                         "nakshatra_key": "Shravana",
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
+                        "karmakala_type": "abhijit",
+                        "karmakala_type_name": "अभिजित",
                         "strict_karmakala": true,
                         "prefer_nakshatra": true,
                         "preferred_nakshatra": "श्रवण",
@@ -44062,10 +44061,10 @@
                         "festival_name": "वामन जयंती",
                         "required_tithi": 12,
                         "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
+                        "karmakala_type": "abhijit",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8737.199963629246,
+                        "tithi_coverage_seconds_today": 2912.4000146985054,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -44081,8 +44080,8 @@
                             "kshaya_preference": "first",
                             "preferred_nakshatra": "श्रवण",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1145,
-                            "winning_window_overlap_seconds": 8737.199963629246,
+                            "winning_score": 1048,
+                            "winning_window_overlap_seconds": 2912.4000146985054,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -44097,7 +44096,7 @@
                         "festival_name_key": "Vamana Jayanti",
                         "festival_name_localized": "वामन जयंती",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "मध्याह्न"
+                        "karmakala_type_name": "अभिजित"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -44106,8 +44105,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": "श्रवण",
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1145,
-                        "winning_window_overlap_seconds": 8737.199963629246,
+                        "winning_score": 1048,
+                        "winning_window_overlap_seconds": 2912.4000146985054,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -55002,8 +55001,8 @@
                             "value_key": "Kartika",
                             "name": "कार्तिक"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय",
+                        "karmakala_type": "pratah_kal",
+                        "karmakala_type_name": "प्रातः काल",
                         "strict_karmakala": true,
                         "chandradarshan_nishedh": true,
                         "deepotsav_sequence": "govardhan_annakut",
@@ -55015,10 +55014,10 @@
                         "festival_name": "गोवर्धन पूजा",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "pratah_kal",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 8018.400000035763,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -55031,11 +55030,11 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "vriddhi_preference": "first",
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_score": 1133,
+                            "winning_window_overlap_seconds": 8018.400000035763,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -55048,17 +55047,17 @@
                         "festival_name_key": "Govardhan Puja",
                         "festival_name_localized": "गोवर्धन पूजा",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "प्रातः काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "require_karmakala_match": true,
-                        "vriddhi_preference": "first",
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_score": 1133,
+                        "winning_window_overlap_seconds": 8018.400000035763,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
