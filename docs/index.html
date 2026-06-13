@@ -4646,19 +4646,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.2.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.3.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.2.0 expands the public non-natal daily rule-engine surface and localization coverage; v9.1.0 remains the selective calendar-period release, and v9.0.0 remains the latest major generated-output and rule-resolution release.</p>
+            <p>Review the version-specific notes below before upgrading. v9.3.0 refines eclipse ritual gating, tightens several festival truth tables, and corrects JD-based weekday handling in Panchak output; v9.2.0 remains the daily rule-engine expansion release.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.3.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Eclipse Ritual Gating and Festival Truth Table Refinements</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Refines local eclipse ritual visibility and sutak handling, corrects Panchak weekday locking to JD-based resolution, and updates major festival decision tables including Diwali, Ram Navami, Hari Jayanti, Vamana Jayanti, Samaveda Upakarma, and Phuldolotsava.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.2.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">General Panchang Rule Outputs and Localization Hardening</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">General Panchang Rule Outputs and Localization Hardening</span></div>
                 <p class="release-note">Expands the public non-natal daily rule-engine surface with Panchak subtype locking, Nitya Yoga flags, Tithi and vrata observance analysis, Yatra screening, Nakshatra Tyajya, and localized user-facing output cleanup.</p>
               </div>
             </li>
@@ -4831,6 +4838,52 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v9.3.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Feature release focused on stronger eclipse ritual gating, corrected Panchak weekday resolution, and verified festival-rule refinements in the Nirnay layer.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Generated eclipse output can change:</strong> Local eclipse visibility, sutak applicability, and ritual-boundary classification are stricter in this release. Short or penumbral-only local cases can now be rejected even when earlier output treated them as visible.</li>
+              <li><strong>Festival observance dates can shift for affected rules:</strong> Diwali-family observances, Ram Navami / Hari Jayanti selection, Vamana Jayanti, Samaveda Upakarma, and Phuldolotsava use updated rule inputs and truth tables.</li>
+              <li><strong>Panchak weekday labels are now JD-based:</strong> Panchak weekday and subtype output no longer depends on parsing formatted English timestamps. This fixes locale-sensitive weekday drift in non-English output.</li>
+            </ul>
+          </div>
+
+          <h4>Added and Improved</h4>
+          <ul>
+            <li><strong>Eclipse scriptural classification:</strong> Eclipse output now includes explicit scriptural instruction text for Grastodaya, Grastasta, ordinary visible eclipses, and not-applicable cases.</li>
+            <li><strong>Nishita JD fields:</strong> Nishita Muhurta output now carries Julian-day start and end values in addition to formatted timestamps.</li>
+            <li><strong>Additional localized period labels:</strong> Localization coverage now includes period labels such as Abhijit, Pratah Kal, Arunodaya, Sangava, Vijaya Kaal, and Nishitha.</li>
+          </ul>
+
+          <h4>Fixed</h4>
+          <ul>
+            <li><strong>Lunar eclipse ritual visibility:</strong> Local ritual visibility now rejects penumbral-only lunar cases and requires a minimum visible duration before marking an eclipse as visible for ritual purposes.</li>
+            <li><strong>Solar eclipse ritual visibility:</strong> Solar ritual visibility now also enforces a minimum visible duration before local visibility and sutak are considered applicable.</li>
+            <li><strong>Sutak boundaries:</strong> Sutak now fails closed when local prahara boundaries cannot be resolved, and returned sutak duration reflects the actual computed interval instead of a fixed nominal hour count.</li>
+            <li><strong>Panchak weekday locking:</strong> Panchak subtype determination now uses JD-based weekday resolution instead of parsing localized formatted timestamps.</li>
+          </ul>
+
+          <h4>Festival Rule Refinements</h4>
+          <ul>
+            <li><strong>Diwali truth table:</strong> Added explicit Pradosha-based day-selection truth-table handling when Amavasya spans competing evenings.</li>
+            <li><strong>Ram Navami:</strong> Added explicit handling for Vriddhi, Kshaya, and Ashtami-viddha rejection around Navami selection.</li>
+            <li><strong>Swaminarayan Jayanti (Hari-Nom):</strong> Rule profile now follows sunrise-vyapini Navami with first-day preference for Vriddhi/Kshaya handling, while keeping the incarnation remembrance context distinct.</li>
+            <li><strong>Vamana Jayanti:</strong> Primary observance window now uses Abhijit rather than Madhyahna while retaining Shravana Nakshatra preference.</li>
+            <li><strong>Govardhan Puja:</strong> Morning observance basis is now modeled through Pratah Kal instead of raw sunrise.</li>
+            <li><strong>Samaveda Upakarma:</strong> Rule emphasis now follows a primarily Hasta-Nakshatra-based profile with sunrise observance handling.</li>
+            <li><strong>Phuldolotsava:</strong> Tithi and month mapping now follow the corrected Holi-cluster tithi placement in the staged rules.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>Regenerate eclipse, today, festival, and raw yearly artifacts after upgrading.</li>
+            <li>If your application compares exact ritual visibility or sutak fields, rebaseline expected output for short local eclipses and penumbral lunar cases.</li>
+            <li>If your application depends on Panchak weekday display fields in Hindi or Gujarati output, no client change is needed; the correction is internal and output-only.</li>
+            <li>If you cached festival observance dates for the affected festival families, regenerate those caches after upgrading.</li>
+          </ul>
 
           <h3>v9.2.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Feature release focused on expanding the public non-natal daily rule-engine surface, tightening Panchak and travel logic, and hardening localized user-facing generated output.</p>
