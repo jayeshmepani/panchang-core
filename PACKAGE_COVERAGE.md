@@ -577,6 +577,10 @@ This includes:
 - monthly Ekadashi observances
 - Vaishnava / ISKCON Ekadashi observance surfacing
 - Mahadwadashi surfacing when Vaishnava fasting shifts to Dwadashi
+- Hari Vasara parana-window surfacing
+- Tithyavasara vs. Harivasara-style parana classification output
+- Gujarati/Nirnay parana restrictions for Anuradha P1, Shravana P2-3, and Revati P4
+- first-six-ghati daytime parana preference when Dwadashi extends past Madhyahna
 - monthly Pradosh Vrat observances
 - monthly Sankashti Chaturthi observances
 - monthly Vinayaka Chaturthi observances

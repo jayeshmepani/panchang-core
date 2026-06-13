@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-12T13:09:38+00:00",
+        "generated_at": "2026-06-13T05:19:02+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -15316,108 +15316,6 @@
                     }
                 },
                 {
-                    "name": "રામ નવમી",
-                    "name_key": "Rama Navami",
-                    "description": "ભગવાન રામ (વિષ્ણુના સાતમા અવતાર) ની જન્મજયંતિ",
-                    "deity": "રામ",
-                    "fasting": true,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 9 સૂર્યોદયે 2026-03-27 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-03-26 પર ઉજવાય છે.",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "સુદ નોમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "ચૈત્ર",
-                            "value_key": "Chaitra",
-                            "name": "ચૈત્ર"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "રામ નવમી",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 9 સૂર્યોદયે 2026-03-27 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-03-26 પર ઉજવાય છે.",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Rama Navami",
-                        "festival_name_localized": "રામ નવમી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "ગુરુવાર વ્રત",
                     "name_key": "Guruvar Vrat",
                     "description": "બૃહસ્પતિ અને ભગવાન વિષ્ણુને સમર્પિત સાપ્તાહિક ગુરુવાર વ્રત",
@@ -15737,6 +15635,107 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રામ નવમી",
+                    "name_key": "Rama Navami",
+                    "description": "ભગવાન રામ (વિષ્ણુના સાતમા અવતાર) ની જન્મજયંતિ",
+                    "deity": "રામ",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "સુદ નોમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "ચૈત્ર",
+                            "value_key": "Chaitra",
+                            "name": "ચૈત્ર"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "રામ નવમી",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "રામ નવમી ક્ષય, સંયુક્ત દિવસ પસંદ કરો",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                            "winning_reason_name": "રામ નવમી ક્ષય, સંયુક્ત દિવસ પસંદ કરો"
+                        },
+                        "festival_name_key": "Rama Navami",
+                        "festival_name_localized": "રામ નવમી",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "રામ નવમી ક્ષય, સંયુક્ત દિવસ પસંદ કરો",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                        "winning_reason_name": "રામ નવમી ક્ષય, સંયુક્ત દિવસ પસંદ કરો"
                     }
                 },
                 {

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-12T13:08:29+00:00",
+        "generated_at": "2026-06-13T05:18:04+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -15316,108 +15316,6 @@
                     }
                 },
                 {
-                    "name": "राम नवमी",
-                    "name_key": "Rama Navami",
-                    "description": "भगवान राम (विष्णु के सातवें अवतार) की जयंती",
-                    "deity": "राम",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                9
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                9
-                            ],
-                            "names": [
-                                "शुक्ल नवमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "चैत्र",
-                            "value_key": "Chaitra",
-                            "name": "चैत्र"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "राम नवमी",
-                        "required_tithi": 9,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8536.790549755096,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461125.762891313,
-                        "target_tithi_end_jd": 2461126.6919623697,
-                        "standard_date": "2026-03-27",
-                        "observance_date": "2026-03-26",
-                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 9 सूर्योदय पर 2026-03-27 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-03-26 को मनाई जाती है।",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1142,
-                            "winning_window_overlap_seconds": 8536.790549755096,
-                            "winning_window_coverage_ratio": 0.9662249359673524,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Rama Navami",
-                        "festival_name_localized": "राम नवमी",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "मध्याह्न"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1142,
-                        "winning_window_overlap_seconds": 8536.790549755096,
-                        "winning_window_coverage_ratio": 0.9662249359673524,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "गुरुवार व्रत",
                     "name_key": "Guruvar Vrat",
                     "description": "बृहस्पति और भगवान विष्णु को समर्पित साप्ताहिक गुरुवार व्रत",
@@ -15737,6 +15635,107 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "राम नवमी",
+                    "name_key": "Rama Navami",
+                    "description": "भगवान राम (विष्णु के सातवें अवतार) की जयंती",
+                    "deity": "राम",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "शुक्ल नवमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "चैत्र",
+                            "value_key": "Chaitra",
+                            "name": "चैत्र"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "राम नवमी",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461125.762891313,
+                        "target_tithi_end_jd": 2461126.6919623697,
+                        "standard_date": "2026-03-27",
+                        "observance_date": "2026-03-27",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                            "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
+                        },
+                        "festival_name_key": "Rama Navami",
+                        "festival_name_localized": "राम नवमी",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
+                        "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
                     }
                 },
                 {

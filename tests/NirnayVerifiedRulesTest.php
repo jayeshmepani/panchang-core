@@ -198,6 +198,42 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame([], $method->invoke($calculator, 'Vaishakha', 'Shukla'));
     }
 
+    public function testEkadashiParanaBasisIsClassifiedForTithyavasaraAndHarivasara(): void
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        $calculator = $reflection->newInstanceWithoutConstructor();
+        $method = $reflection->getMethod('classifyParanaBasis');
+
+        self::assertSame([
+            'basis_key' => 'tithyavasara',
+            'basis_label' => 'Tithyavasara',
+            'has_nakshatra_restrictions' => false,
+        ], $method->invoke($calculator, [], []));
+
+        self::assertSame([
+            'basis_key' => 'harivasara_nakshatra_restricted',
+            'basis_label' => 'Harivasara',
+            'has_nakshatra_restrictions' => true,
+        ], $method->invoke($calculator, ['Anuradha' => [1]], [['nakshatra' => 'Anuradha', 'pada' => 1]]));
+    }
+
+    public function testEkadashiParanaDaytimePreferenceUsesFirstSixGhatisWhenDvadashiRunsPastMadhyahna(): void
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        $calculator = $reflection->newInstanceWithoutConstructor();
+        $method = $reflection->getMethod('buildDaytimePreferenceRule');
+
+        $preferred = $method->invoke($calculator, 100.0, 100.7, 100.0, 100.25);
+        self::assertSame('pratah_kala_first_six_ghatis', $preferred['rule_key']);
+        self::assertTrue($preferred['applies']);
+        self::assertEqualsWithDelta(100.1, $preferred['preferred_end_jd'], 1e-12);
+
+        $notPreferred = $method->invoke($calculator, 100.0, 100.2, 100.0, 100.25);
+        self::assertSame('standard_dvadashi_parana', $notPreferred['rule_key']);
+        self::assertFalse($notPreferred['applies']);
+        self::assertNull($notPreferred['preferred_end_jd']);
+    }
+
     public function testFestivalResolverUsesFullPradoshaWindowInsteadOfSinglePoint(): void
     {
         $engine = new FestivalRuleEngine;

@@ -102,15 +102,23 @@ class EkadashiParanaCalculator
         $shortDvadashiRule = $this->shortDvadashiRule($dvadashiDurationGhatikas, $sunriseJd, $dvadashiEndJd);
         $restrictedWindows = $this->collectParanaRestrictedWindows($paranaStartJd, $dvadashiEndJd, $tz, $monthAmanta, $paksha);
         $allowedWindows = $this->subtractRestrictedWindows($paranaStartJd, $dvadashiEndJd, $restrictedWindows, $tz);
+        $paranaBasis = $this->classifyParanaBasis($this->activeRestrictedNakshatraPadas($monthAmanta, $paksha), $restrictedWindows);
+        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $allowedWindows[0]['end_jd'] ?? null);
+        $preferredWindows = $this->applyPreferredWindowCap($allowedWindows, $daytimePreferenceRule['preferred_end_jd'] ?? null, $tz);
         $available = $allowedWindows !== [];
         $firstAllowed = $allowedWindows[0] ?? null;
         $lastAllowed = $allowedWindows !== [] ? $allowedWindows[array_key_last($allowedWindows)] : null;
+        $firstPreferred = $preferredWindows[0] ?? null;
+        $lastPreferred = $preferredWindows !== [] ? $preferredWindows[array_key_last($preferredWindows)] : null;
 
         return [
             'hari_vasara_start' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($dvadashiStartJd, $tz)),
             'hari_vasara_end' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($hariVasaraEndJd, $tz)),
             'hari_vasara_start_jd' => $dvadashiStartJd,
             'hari_vasara_end_jd' => $hariVasaraEndJd,
+            'hari_vasara_classification_key' => $paranaBasis['basis_key'],
+            'hari_vasara_classification' => $paranaBasis['basis_label'],
+            'has_nakshatra_restrictions' => $paranaBasis['has_nakshatra_restrictions'],
             'parana_day' => Localization::translate('String', $startsTomorrow ? 'Next Day' : 'Today'),
             'parana_day_key' => $startsTomorrow ? 'next_day' : 'today',
             'parana_available' => $available,
@@ -123,10 +131,16 @@ class EkadashiParanaCalculator
             'dvadashi_duration_ghatikas' => $dvadashiDurationGhatikas,
             'short_dvadashi_rule' => $shortDvadashiRule,
             'symbolic_water_parana_allowed' => $shortDvadashiRule['symbolic_water_parana_allowed'],
+            'daytime_preference_rule' => $daytimePreferenceRule,
+            'preferred_parana_start' => $firstPreferred !== null ? AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($firstPreferred['start_jd'], $tz)) : null,
+            'preferred_parana_end' => $lastPreferred !== null ? AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($lastPreferred['end_jd'], $tz)) : null,
+            'preferred_parana_start_jd' => $firstPreferred['start_jd'] ?? null,
+            'preferred_parana_end_jd' => $lastPreferred['end_jd'] ?? null,
             'nirnay_restricted_nakshatra_padas' => self::NIRNAY_PARANA_RESTRICTED_NAKSHATRA_PADAS,
             'nirnay_restricted_nakshatra_scope' => $this->restrictedNakshatraScope($monthAmanta, $paksha),
             'restricted_windows' => $restrictedWindows,
             'parana_windows' => $allowedWindows,
+            'preferred_parana_windows' => $preferredWindows,
         ];
     }
 
@@ -198,6 +212,23 @@ class EkadashiParanaCalculator
         ];
     }
 
+    /**
+     * @param array<string, list<int>> $activeRestrictions
+     * @param list<array{nakshatra:string, pada:int, start_jd?:float, end_jd?:float, start?:string, end?:string}> $restrictedWindows
+     *
+     * @return array{basis_key:string, basis_label:string, has_nakshatra_restrictions:bool}
+     */
+    private function classifyParanaBasis(array $activeRestrictions, array $restrictedWindows): array
+    {
+        $hasRestrictions = $activeRestrictions !== [] && $restrictedWindows !== [];
+
+        return [
+            'basis_key' => $hasRestrictions ? 'harivasara_nakshatra_restricted' : 'tithyavasara',
+            'basis_label' => $hasRestrictions ? 'Harivasara' : 'Tithyavasara',
+            'has_nakshatra_restrictions' => $hasRestrictions,
+        ];
+    }
+
     /** @return array{category:string, must_break_before_dvadashi_end:bool, symbolic_water_parana_allowed:bool} */
     private function shortDvadashiRule(float $dvadashiDurationGhatikas, float $sunriseJd, float $dvadashiEndJd): array
     {
@@ -211,6 +242,32 @@ class EkadashiParanaCalculator
             'category' => $category,
             'must_break_before_dvadashi_end' => $dvadashiEndJd > $sunriseJd,
             'symbolic_water_parana_allowed' => $category === 'ati_alpa_dvadashi',
+        ];
+    }
+
+    /**
+     * @return array{
+     *   rule_key:string,
+     *   applies:bool,
+     *   preferred_end_jd:?float,
+     *   preferred_duration_ghatikas:?float
+     * }
+     */
+    private function buildDaytimePreferenceRule(float $sunriseJd, float $dvadashiEndJd, float $rawParanaStartJd, ?float $firstAllowedEndJd): array
+    {
+        $madhyahnaJd = $sunriseJd + (15.0 * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0);
+        $preferredEndJd = $sunriseJd + (6.0 * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0);
+        $applies = $dvadashiEndJd > $madhyahnaJd && $preferredEndJd > $rawParanaStartJd;
+
+        if ($firstAllowedEndJd !== null) {
+            $applies = $applies && $firstAllowedEndJd > $rawParanaStartJd;
+        }
+
+        return [
+            'rule_key' => $applies ? 'pratah_kala_first_six_ghatis' : 'standard_dvadashi_parana',
+            'applies' => $applies,
+            'preferred_end_jd' => $applies ? $preferredEndJd : null,
+            'preferred_duration_ghatikas' => $applies ? 6.0 : null,
         ];
     }
 
@@ -267,6 +324,31 @@ class EkadashiParanaCalculator
         ];
     }
 
+    /**
+     * @param list<array{start_jd:float, end_jd:float, start:string, end:string}> $allowedWindows
+     *
+     * @return list<array{start_jd:float, end_jd:float, start:string, end:string}>
+     */
+    private function applyPreferredWindowCap(array $allowedWindows, ?float $preferredEndJd, string $tz): array
+    {
+        if ($preferredEndJd === null) {
+            return [];
+        }
+
+        $preferred = [];
+        foreach ($allowedWindows as $window) {
+            $startJd = $window['start_jd'];
+            $endJd = min($window['end_jd'], $preferredEndJd);
+            if ($endJd <= $startJd) {
+                continue;
+            }
+
+            $preferred[] = $this->buildParanaWindow($startJd, $endJd, $tz);
+        }
+
+        return $preferred;
+    }
+
     private function localizeEkadashiObservancePayload(array $payload): array
     {
         if (isset($payload['viddha_tithi_analysis']) && is_array($payload['viddha_tithi_analysis'])) {
@@ -288,6 +370,20 @@ class EkadashiParanaCalculator
             $payload[$key]['tradition_label'] = Localization::translate('String', (string) ($payload[$key]['tradition'] ?? ''));
             $payload[$key]['status_label'] = Localization::translate('String', (string) ($payload[$key]['status'] ?? ''));
             $payload[$key]['fasting_day_label'] = Localization::translate('String', (string) ($payload[$key]['fasting_day'] ?? ''));
+        }
+
+        if (isset($payload['parana']) && is_array($payload['parana'])) {
+            $payload['parana']['hari_vasara_classification_label'] = Localization::translate(
+                'String',
+                (string) ($payload['parana']['hari_vasara_classification'] ?? '')
+            );
+
+            if (isset($payload['parana']['daytime_preference_rule']) && is_array($payload['parana']['daytime_preference_rule'])) {
+                $payload['parana']['daytime_preference_rule']['rule_label'] = Localization::translate(
+                    'String',
+                    (string) ($payload['parana']['daytime_preference_rule']['rule_key'] ?? '')
+                );
+            }
         }
 
         return $payload;

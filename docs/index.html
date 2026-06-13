@@ -4646,19 +4646,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.3.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.4.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.3.0 refines eclipse ritual gating, tightens several festival truth tables, and corrects JD-based weekday handling in Panchak output; v9.2.0 remains the daily rule-engine expansion release.</p>
+            <p>Review the version-specific notes below before upgrading. v9.4.0 expands Ekadashi observance and parana output, adds explicit Tithyavasara and Harivasara classification metadata, and localizes the new user-facing parana labels; v9.3.0 remains the eclipse and festival truth-table refinement release.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.4.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Ekadashi Parana Classification and Preferred Window Output</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Expands Ekadashi observance output with explicit Tithyavasara versus Harivasara classification, preferred first-six-ghatika daytime parana windows when Dwadashi runs past Madhyahna, localized user-facing parana labels, and regenerated daily, festival, vrat, and raw artifacts.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.3.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Eclipse Ritual Gating and Festival Truth Table Refinements</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Eclipse Ritual Gating and Festival Truth Table Refinements</span></div>
                 <p class="release-note">Refines local eclipse ritual visibility and sutak handling, corrects Panchak weekday locking to JD-based resolution, and updates major festival decision tables including Diwali, Ram Navami, Hari Jayanti, Vamana Jayanti, Samaveda Upakarma, and Phuldolotsava.</p>
               </div>
             </li>
@@ -4839,6 +4846,39 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v9.4.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Feature release focused on richer Ekadashi observance output, clearer parana classification, and localized user-facing parana terminology.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Ekadashi observance payload expanded:</strong> Parana output now includes additional classification and preference fields such as <code>hari_vasara_classification_key</code>, <code>daytime_preference_rule</code>, <code>preferred_parana_windows</code>, and the corresponding preferred start/end timestamps.</li>
+              <li><strong>Generated JSON changed:</strong> Today, yearly festival, yearly vrat, raw yearly, and month/day artifacts have been regenerated to include the richer Ekadashi-parana structure and localized display labels.</li>
+              <li><strong>Client display text can change:</strong> New parana labels now surface in English, Hindi, and Gujarati for Tithyavasara, Harivasara, Pratah Kala first six ghatis, and standard Dwadashi parana.</li>
+            </ul>
+          </div>
+
+          <h4>Added and Improved</h4>
+          <ul>
+            <li><strong>Parana basis classification:</strong> Ekadashi output now distinguishes ordinary <code>Tithyavasara</code> parana from nakshatra-restricted <code>Harivasara</code> resolution.</li>
+            <li><strong>Preferred daytime window:</strong> When Dwadashi continues past Madhyahna, the public payload now exposes the traditional first-six-ghatika Pratah Kala preference as an explicit rule and preferred parana window set.</li>
+            <li><strong>Richer preferred-window fields:</strong> Ekadashi parana now includes preferred start/end fields in addition to the full allowed window set, making client rendering simpler for common observance views.</li>
+            <li><strong>Localized parana terminology:</strong> The newly added parana classifications and daytime-preference rule labels are now localized in English, Hindi, and Gujarati output.</li>
+          </ul>
+
+          <h4>Fixed</h4>
+          <ul>
+            <li><strong>Public Ekadashi parity:</strong> The exposed Ekadashi observance payload now reflects the newer Nirnay decision tree already encoded in the engine instead of stopping at only the basic allowed-window view.</li>
+            <li><strong>Preferred-window semantics:</strong> Clients can now distinguish the full valid parana span from the traditionally preferred early-day portion when the Dwadashi duration is long enough to require that distinction.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>Regenerate stored today, festival, vrat, month, and raw yearly JSON after upgrading.</li>
+            <li>If your application displays Ekadashi parana, prefer the new <code>preferred_parana_windows</code> branch when present and fall back to <code>parana_windows</code> only when no preferred window is published.</li>
+            <li>If your application shows user-facing parana labels, consume the localized classification and rule-label fields instead of deriving display text from raw keys.</li>
+          </ul>
+
           <h3>v9.3.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Feature release focused on stronger eclipse ritual gating, corrected Panchak weekday resolution, and verified festival-rule refinements in the Nirnay layer.</p>
 
@@ -4982,7 +5022,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h4>Nirnay and Festival Rule Improvements</h4>
           <ul>
             <li><strong>Vaishnava Ekadashi:</strong> Dashami-vedha handling uses the 55-ghatika threshold from the previous sunrise for Nirnay-style Vaishnava decisions.</li>
-            <li><strong>Hari Vasara and Parana:</strong> Parana starts after the first quarter of Dwadashi and now exposes restricted and allowed windows. Gujarati/Nirnay month-paksha restrictions block Ashadha Shukla Anuradha pada 1, Bhadrapada Shukla Shravana padas 2-3, and Kartika Shukla Revati pada 4.</li>
+            <li><strong>Hari Vasara and Parana:</strong> Parana starts after the first quarter of Dwadashi and now exposes restricted and allowed windows. Gujarati/Nirnay month-paksha restrictions block Ashadha Shukla Anuradha pada 1, Bhadrapada Shukla Shravana padas 2-3, and Kartika Shukla Revati pada 4. The public payload now also distinguishes ordinary <code>Tithyavasara</code> parana from nakshatra-restricted <code>Harivasara</code> style resolution and exposes the first-six-ghaṭikā daytime preference when Dwadashi continues past Madhyahna.</li>
             <li><strong>Festival karmakala engine:</strong> Pradosha, Nishitha, Madhyahna, Aparahna, Sangava, Arunodaya, and Vijaya Kaal decisions use window overlap and coverage metadata instead of only single-point matching.</li>
             <li><strong>Holika Dahan:</strong> Bhadra Mukha/Madhya rejection, Bhadra Puchha preference, lunar-eclipse exception logic, and Purnima-in-Pradosha requirements are implemented in the decision engine.</li>
             <li><strong>Major truth tables:</strong> Janmashtami, Mahashivaratri, Vijayadashami, and Govatsa Dwadashi now use dedicated decision branches with tie-breakers and fallback handling encoded in the engine.</li>
