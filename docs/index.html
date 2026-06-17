@@ -4747,24 +4747,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.5.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.6.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. This release adds Chandra Darshana visibility support, new Satsangi Jeevan festivals and vrats, improved Ekadashi fasting guidance, expanded traditional source documentation, and fully regenerated data for 2026.</p>
+            <p>Review the version-specific notes below before upgrading. This release includes a critical precision fix for Sun and Moon position calculations, corrects a double-aberration issue in JPL mode, and regenerates all 2026 data artifacts with improved astronomical accuracy.</p>
           </div>
 
           <div class="info-box">
-            <h3>v9.5.0 Documentation Snapshot</h3>
-            <p>This documentation covers v9.5.0: Chandra Darshana visibility support, new Satsangi Jeevan annual festival and vrat profiles, Satsangi Ekadashi fasting guidance, expanded traditional source documentation, and regenerated English/Hindi/Gujarati data for Amanta and Purnimanta calendars.</p>
+            <h3>v9.6.0 Documentation Snapshot</h3>
+            <p>This documentation covers v9.6.0: Precision fix for Sun/Moon longitudes and angles (JME aberration correction), improved accuracy in astronomy calculations across multiple components, and fully regenerated English/Hindi/Gujarati JSON data for Amanta and Purnimanta.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.6.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Sun and Moon Position Accuracy Fix</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Fixes a double annual aberration error in JPL ephemeris calculations for Sun and Moon. Applies the NO_ABERRATION flag consistently in key astronomy services and traits for correct apparent positions. All 2026 data regenerated with improved precision.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.5.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Chandra Darshana Visibility and Satsangi Jeevan Observance Expansion</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Chandra Darshana Visibility and Satsangi Jeevan Observance Expansion</span></div>
                 <p class="release-note">Adds support for Chandra Darshana (the first visible waxing crescent), expands Swaminarayan tradition festivals and vrats, provides improved Ekadashi fasting guidance, includes a dedicated decision tree document, and regenerates all 2026 localized outputs.</p>
               </div>
             </li>
@@ -4959,32 +4966,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
-          <h3>v9.5.0 Upgrade &amp; Release Notes</h3>
-          <p class="lead">Documentation snapshot focused on Chandra Darshana timing, Satsangi Jeevan festival coverage, source documentation, and regenerated localized artifacts.</p>
+          <h3>v9.6.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Precision improvements to Sun and Moon astronomical calculations with aberration fix and regenerated data.</p>
 
           <div class="info-box is-danger">
             <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
             <ul>
-              <li><strong>Chandra Darshana now provides helpful timing windows:</strong> When applicable, festival entries include clear visibility start/end times, duration, and assessment details so you can show users when the crescent is expected to be visible.</li>
-              <li><strong>Generated data has been refreshed:</strong> All Amanta and Purnimanta JSON artifacts (English, Hindi, Gujarati) for today, month calendars, festivals, vrats, and raw outputs have been regenerated for 2026.</li>
-              <li><strong>New localized content:</strong> Added descriptions, guidance, and labels for the new festivals and Chandra Darshana features across English, Hindi, and Gujarati.</li>
+              <li><strong>More accurate Sun and Moon positions:</strong> A fix was applied to prevent double-counting of annual aberration in JPL ephemeris mode. This corrects Sun longitude by approximately 20.5 arcseconds.</li>
+              <li><strong>Generated data has been refreshed:</strong> All Amanta and Purnimanta JSON artifacts (English, Hindi, Gujarati) have been regenerated using the corrected calculations for 2026 and beyond.</li>
+              <li><strong>Affects precise astronomy:</strong> Improvements apply to tithi, nakshatra, yoga, festival timing windows, moon visibility, birth month calculations, and any features relying on accurate solar/lunar longitudes.</li>
             </ul>
           </div>
 
           <h4>Highlights</h4>
           <ul>
-            <li><strong>Chandra Darshana support:</strong> The calendar now identifies the first likely visible waxing crescent after the new moon (typically Shukla Pratipada or Dwitiya) with easy-to-use visibility timing information.</li>
-            <li><strong>Expanded Swaminarayan observances:</strong> Added new festivals and vrats including Ramanand Swami Appearance Festival, Nara-Narayan Arjun Janmotsav, Chandrayan Vrat, Dharmadev Janmotsav, Hatadi Festival, Swaminarayan Kurma Jayanti, Snanyatra, Rathyatra, Hindola, Pavitra, Varaha Jayanti, Dhanatrayodashi, and others. Total now stands at 329 festivals and 90 vrats.</li>
-            <li><strong>Ekadashi fasting guidance:</strong> Ekadashi entries can include practical Satsangi Jeevan guidance, including general advice and stricter guidance for Prabodhini Ekadashi.</li>
-            <li><strong>Better documentation:</strong> New dedicated Chandra Darshana Decision Tree document clearly explains the traditional rule versus the practical visibility checks used. Traditional sources documentation has also been significantly expanded.</li>
+            <li><strong>JME Aberration Correction:</strong> Added the NO_ABERRATION flag consistently in four key files (AstronomyService, TransitEngine, and two helper traits) to produce correct single-aberration apparent positions for the Sun and Moon.</li>
+            <li><strong>Four files updated:</strong> AstronomyService, TransitEngine, PanchangAstronomyHelpersTrait, and PanchangBirthMonthHelpersTrait now all use the corrected calculation flags.</li>
+            <li><strong>Verified accuracy:</strong> Positions now align with published 2026 equinox and solstice instants.</li>
+            <li><strong>Data regeneration:</strong> All output files (today, month, festivals, vrats, eclipses, raw) have been updated with the improved precision.</li>
           </ul>
 
           <h4>Upgrade Notes</h4>
           <ul>
-            <li>Regenerate any cached 2026 JSON data files (today, festivals, vrats, month, raw) to pick up the new observances and fields.</li>
-            <li>Chandra Darshana entries now include visibility timing windows with readable display times and duration — great for user-facing calendars.</li>
-            <li>Fasting guidance is optional new information. Existing integrations will continue to work unchanged.</li>
-            <li>Visibility calculations for Chandra Darshana are based on practical astronomical checks and clearly documented as such (not presented as direct classical shastra rules).</li>
+            <li>Regenerate any stored or cached JSON data for 2026+ to benefit from the corrected Sun/Moon positions.</li>
+            <li>This is a pure accuracy improvement. No changes to API structure or field names.</li>
+            <li>Users working in strict JPL mode with high-precision requirements (eclipses, exact festival timings, etc.) will see the most noticeable benefits.</li>
+            <li>The fix has been applied uniformly so all calculation paths (daily panchang, festival resolution, birth month helpers, transit angles) are consistent.</li>
           </ul>
 
           <h3>v9.4.0 Upgrade &amp; Release Notes</h3>
