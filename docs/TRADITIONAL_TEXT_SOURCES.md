@@ -19,7 +19,7 @@ Some package components are architectural helpers and are intentionally **not** 
 - `OutputGeneratorService` (output assembly wrapper around package services)
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
-Currently, the package outputs **323 unique festival identities** and **85 unique vrat identities** for the generated yearly Panchang contract. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity.
+Currently, the package outputs **329 unique festival identities** and **90 unique vrat identities** for the generated yearly Panchang contract. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
 
@@ -27,7 +27,7 @@ Currently, the package outputs **323 unique festival identities** and **85 uniqu
 
 ## Current Engine Convention Matrix
 
-This section records the actual calculation conventions currently used by the engine. It is intended to make the package defaults explicit for audits, client review, and future rule changes.
+This section records the actual calculation conventions currently used by the engine. It is intended to make the package defaults explicit for maintainers, client review, and future rule changes.
 
 | Area | Current Setting | Where Implemented | Notes |
 |------|-----------------|-------------------|-------|
@@ -42,10 +42,16 @@ This section records the actual calculation conventions currently used by the en
 | Panchang day boundary | Sunrise to next sunrise | `PanchangService`, `PanchangCalendarApiTrait`, `KalaNirnayaEngine` | Top-level daily Tithi/Karana preserve sunrise semantics for backward compatibility; runtime values are separately exposed as current-at-input fields. |
 | Festival default tradition | `Smarta` by default; supported traditions include `Smarta` and `Vaishnava` | `config/panchang.php`, `FestivalFamilyOrchestrator`, `KalaNirnayaEngine` | Vaishnava/ISKCON variants are resolved where festival metadata and rule handlers support them. |
 | Lunar month representation | `amanta` default, with `purnimanta` supported | `config/panchang.php`, `PanchangaEngine`, calendar APIs | This is representation-level month naming; core Tithi/Nakshatra/Yoga/Karana arithmetic is unchanged. |
+| Gujarati-style month conventions | Amanta/Gujarati Samvat presentation is supported; explicit kshaya-masa edge handling should be reviewed separately where required | `config/panchang.php`, `PanchangaEngine`, calendar APIs | Gujarati-style Amanta month naming is presentation-level; kshaya-masa handling is a separate calendar edge case from ordinary amanta/purnimanta display. |
 | Vaishnava Ekadashi Dashami-vedha | 55 ghaṭikā threshold from previous sunrise | `KalaNirnayaEngine::determineEkadashi()` | Common 4-ghaṭikā arunodaya is documented separately but is not the active Nirnay vedha threshold. |
 | Hari Vasara | First quarter of Dvadashi | `EkadashiParanaCalculator` | Parana starts after Hari Vasara unless restricted further by Nakshatra-pada rules. |
 | Ekadashi parana restrictions | Gujarati/Nirnay month-paksha scope: Ashadha Shukla Anuradha P1, Bhadrapada Shukla Shravana P2-P3, Kartika Shukla Revati P4 | `EkadashiParanaCalculator::buildParanaPayload()` | The payload exposes restricted windows, allowed parana windows, short-Dwadashi classification, and symbolic-water emergency allowance. Calls without month/paksha context retain the old global Nirnay fallback. |
+| Ekadashi parana source refinements | Break within Dwadashi unless Dwadashi expires before sunrise; Harivasara is the first quarter of Dwadashi; tight-overlap cases can expose symbolic-water parana metadata | `EkadashiParanaCalculator::buildParanaPayload()` | Source basis includes Drik Panchang Ekadashi/ISKCON parana pages, Swaminarayan Satsangi Jeevan parana restrictions, and Hari Bhakti Vilasa / Vaishnava practice. |
+| Vaishnava Ekadashi case labels | Candidate payload metadata can distinguish scenario names such as Viddha, Kshaya, Unmillani, Trisparsha, and Mahadvadashi variants where implemented | `KalaNirnayaEngine`, `EkadashiParanaCalculator` | Source basis includes Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, Kamakoti Dharma Sindhu Vaishnava/Smarta distinctions, and Drik Panchang's published Mahadvadashi profiles. |
 | Festival karmakala resolution | Window overlap, not single-point-only, for Pradosha/Nishitha/Madhyahna/Aparahna/Sangava/Arunodaya | `FestivalRuleEngine` | Pradosha is sunset to 6 ghati after sunset for festival decisions; resolution metadata exposes overlap seconds. |
+| Rama Navami / Shri Ram Jayanti | Madhyahna-vyapini Chaitra Shukla Navami is the classical target for Rama-birth observance | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Valmiki Ramayana Bala Kanda 1.18.8, Dharma Sindhu Madhyahna Navami instruction, and Drik Panchang Rama Navami published timing. Swaminarayan Jayanti is intentionally documented separately because that sectarian day resolution is not the same rule. |
+| Dhanteras / Dhantrayodashi | Krishna Trayodashi overlapping Pradosha is the puja-date target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Pradosha Trayodashi rule and Drik Panchang Dhantrayodashi puja timing. |
+| Diwali / Lakshmi Puja | Amavasya overlapping Pradosha/night is the Lakshmi Puja target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Amavasya night/Pradosha rule and Drik Panchang Diwali puja muhurta. |
 | Holika Bhadra and eclipse handling | Reject Bhadra Mukha/Madhya overlap, prefer clear or Bhadra Puchha windows, apply the lunar-eclipse exception path, and require Purnima in Pradosha | `FestivalRuleEngine`, `BhadraCalculator`, `BhadraEngine` | Active when festival snapshots include Bhadra period or lunar-eclipse data; branch-level PHPUnit coverage locks the Gujarati decision paths. |
 | Ganesh Chaturthi special Madhyahna preference | Prefer full Madhyahna Chaturthi coverage over partial overlap | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Encoded as `prefer_full_karmakala_coverage` plus Gujarati special-case metadata. |
 | Deepotsav observance sequence | Date-wise rules for Vagh Baras, Dhanteras, Narak Chaturdashi Abhyanga Snan, Kali Chaudas, Diwali/Kali Puja, Govardhan/Annakut, and Bhai Beej | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | Entries expose `deepotsav_sequence`; Naraka Chaturdashi Abhyanga Snan and Govardhan Puja are marked `location_sensitive` because published city almanacs can differ by one civil date. |
@@ -57,13 +63,16 @@ This section records the actual calculation conventions currently used by the en
 | Mahavir Jayanti | Chaitra Shukla Trayodashi at exact sunrise | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | The earlier Monday/Pushya rejection was removed after public-almanac verification for 2026. |
 | Swaminarayan Jayanti (Hari-Nom) | Chaitra Shukla Navami by sunrise-vyapini day selection; birth remembrance remains night-centered | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | Promoted from `Satsangi Jeevan` / Swaminarayan tradition evidence: the text anchors the avatara on Chaitra Sud 9 and describes the manifestation in the night, so this package uses sunrise-vyapini Navami for day resolution rather than Ram-Navami-style Madhyahna resolution. |
 | Samavedi Shravani | Hasta Nakshatra during Aparahna, consolidated to one annual output row | `FestivalRuleEngine::resolveNakshatraFestival()`, `PanchangService::consolidateYearlySingleObservanceFestivals()` | Nakshatra-only resolver checks `Nakshatra_Windows`; yearly output keeps the best annual Samaveda Upakarma observance. |
-| Phuldolotsava | Swaminarayan/BAPS Phalguna Purnima sunrise tithi observance | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | Marked `sect_specific`; mainstream post-Holi civil dates and public event logistics can differ from the tithi observance date. |
+| Samavedi Shravani source family | Bhadrapada/Hasta priority with regional procedure variants | `FestivalRuleEngine::resolveNakshatraFestival()` | Source basis includes Yajnavalkya Smriti 1.142 references as quoted in modern summaries, Samskaaram.com procedure notes, and Samskara-ratnamala Upakarma material. |
+| Phuldolotsava | Swaminarayan/BAPS Phalguna Purnima sunrise tithi observance | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | Marked `sect_specific`; contemporary BAPS/Swaminarayan public calendars often present Fuldol/Pushpadolotsav on Fagun Vad 1 after Holi, while Satsangi Jivan preserves a Phalguni-at-sunrise/Nar-Narayan rationale. Treat these as selectable profile conventions, not one universal rule. |
+| Chandra Darshana | First visible waxing crescent after Amavasya, after local sunset and before moonset, usually in Shukla Pratipada/Dwitiya context | `FestivalRuleEngine`, `FestivalService::FESTIVALS`, `PanchangCalendarApiTrait` | Core observance follows Panchang practice and Dharma/Nirnaya Sindhu-style tithi-vrata nirnaya for tithi context. Numeric lag/elongation/illumination checks are explicitly modern heuristics, not classical textual rules. |
 | Arunodaya length | Default 4 ghati, configurable 4-5 ghati at Ekadashi decision call site | `KalaNirnayaEngine::determineEkadashi()` | The default preserves current output; returned metadata exposes active arunodaya ghati/minute values. |
 | Eclipse search | JME high-precision global eclipse search, then local-location visibility/contact evaluation | `EclipseService` | Solar and lunar eclipse outputs separate global contacts from local visibility where applicable. |
 | Eclipse ritual visibility | Local visibility plus ritual magnitude minimum | `EclipseService` | `visible`, `sutak.applicable`, and ritual windows require local visibility and the configured ritual magnitude threshold. |
 | Lunar eclipse ritual minimum | Umbral magnitude `>= 1/16` (`0.0625`) | `EclipseService::NIRNAY_LUNAR_ECLIPSE_MINIMUM_MAGNITUDE` | Astronomical magnitude is still reported when the ritual threshold is not met. |
 | Solar eclipse ritual minimum | Eclipse/local disk magnitude `>= 1/12` (`0.083333...`) | `EclipseService::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE` | Astronomical/local magnitude is still reported when the ritual threshold is not met. |
 | Eclipse sutak | Lunar: 3 prahar lookback; Solar: 4 prahar lookback | `EclipseService::sutak()` | Prahar boundaries are dynamic, using local sunrise/sunset day and night divisions. Sutak is not applicable when the eclipse is not ritually visible at the location. Outputs also expose Grast Uday/Grast Ast classification, telescope-only status, and post-eclipse bath/fresh-food guidance. |
+| Eclipse edge classifications | Grastodaya/Grastasta handling, short local visibility checks, and penumbral/mandya eclipse filtering are rule branches to preserve where enabled | `EclipseService` | Source basis combines grahana-sutak tradition, local-visibility almanac practice, astronomical eclipse classification, and the half-ghadi / 12-minute short-visibility convention where that profile is enabled. |
 | Prahar calculation | Variable prahar: day length divided by 4 and night length divided by 4 | `MuhurtaService`, `EclipseService` | Used for daily Prahar outputs and sutak boundary anchoring. |
 | Brahma Muhurta | Dynamic night-muhurta convention by default | `PanchangService`, muhurta calculators | Previous sunset to sunrise is divided into 15 night muhurtas; Brahma Muhurta is the penultimate pre-sunrise night muhurta. |
 | Output precision | Raw calculation floats are preserved internally; display formatting is configurable | `config/panchang.php`, `AstroCore` | Formatting settings affect representation, not the underlying calculation values. |
@@ -134,6 +143,41 @@ These rules have been promoted from general attribution into explicit engine dec
 | Ekadashi Parana Nakshatra-Pada Restrictions | `EkadashiParanaCalculator::buildParanaPayload()` | Parana windows exclude Anuradha pada 1, Shravana padas 2-3, and Revati pada 4. The payload exposes both `restricted_windows` and allowed `parana_windows`. | Swaminarayan `Satsangi Jeevan` parana restriction passage, interpreted as specific nakshatra-pada blocked intervals. |
 | Grahana Ritual Magnitude Thresholds | `EclipseService` | Ritual visibility/sutak requires lunar umbral magnitude at least `1/16` and solar eclipse magnitude at least `1/12`. Astronomical magnitude is still reported even when the ritual threshold is not met. | Brahmagupta/Khaṇḍakhādyaka-style eclipse magnitude rule as preserved in astronomical source summaries; aligned with the package's Nirnay-rule configuration. |
 
+### Additional Source Rule Families
+
+These source families are useful for attribution and future rule-hardening, but they should not be read as a claim that every branch is fully implemented in this package unless an active component is named above.
+
+| Rule Area | Implementation Status | Source Basis |
+|-----------|-----------------------|-----------------------|
+| Grahana sutak in yama/prahara units | Implemented through dynamic prahar-based sutak windows where eclipse visibility qualifies | Sutak verse tradition for 4 yamas before solar eclipse and 3 yamas before lunar eclipse; Śrīmad Bhāgavatam 3.11.10 for four yamas in day/night; Bhāskara commentary to Āryabhaṭīya for day/night quarter definition of yama. |
+| Grahana local edge cases | Partly implemented / profile-sensitive | Grastodaya and Grastasta classification, local-visible contact windows, penumbral/mandya lunar eclipse exclusion, and a half-ghadi / 12-minute short-visibility cutoff where that convention is enabled. |
+| Ekadashi parana timing | Implemented with Nirnay/Satsangi restrictions and dynamic windows | Drik Panchang guidance that parana should occur within Dwadashi unless Dwadashi expires before sunrise; Harivasara as the first quarter of Dwadashi; Vaishnava/ISKCON parana pages for symbolic water-only parana in tight overlaps. |
+| Vaishnava Ekadashi naming | Candidate metadata / profile refinement | Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, Kamakoti Dharma Sindhu Vaishnava/Smarta distinction, and Drik Panchang's eight Mahadvadashi profile names. |
+| Rama Navami / Shri Ram Jayanti | Source basis for Madhyahna-vyapini rule | Vālmīki Rāmāyaṇa 1.18.8, Dharma Sindhu Madhyahna-vyapini Navami rule, and Drik Panchang Rama Navami timing. |
+| Dhanteras and Lakshmi Puja | Source basis for Pradosha/night-window rules | Dharma Sindhu-style Trayodashi-in-Pradosha and Amavasya-in-night/Pradosha rules; Drik Panchang Dhantrayodashi and Diwali Puja timing pages. |
+| Mahashivaratri | Source basis for Nishitha-vyapini Chaturdashi rule | Dharma Sindhu OCR preserving Nishitha selector and Drik Panchang Nishita Kaal / Chaturdashi timing. |
+| Vamana Jayanti | Source basis for Dwadashi-Abhijit-Shravana priority | Śrīmad Bhāgavatam 8.18.5: Vamanadeva's appearance on Shravana Dwadashi in Abhijit Muhurta. |
+| Narasimha Jayanti | Source basis for evening / Pradosha Chaturdashi | Dharma Sindhu-style Vaishakha Shukla Chaturdashi evening rule, Drik Panchang Narasimha Jayanti timing, and ISKCON public observance notes. |
+| Govardhan Puja / Annakuta | Source basis for worship and offerings metadata | Śrīmad Bhāgavatam 10.24.25-26 and ISKCON public Govardhan Puja / Annakuta observance summaries. |
+| Phuldolotsava profile split | Source basis for tradition-profile variants | BAPS and Swaminarayan.org public Fuldol/Pushpadolotsav pages for Fagun Vad 1 presentation; Satsangi Jivan volume 3 for Nar-Narayan / Phalguni-at-sunrise rationale. |
+| Samavedi Shravani / Upakarma | Source basis for Hasta-priority rule family | Yājñavalkya Smṛti 1.142 as quoted in modern summaries, Samskaaram.com Sāma Veda Upākarmā procedure, and Saṃskāra-ratnamālā Upakarma material. |
+
+---
+
+### Pushtimarg / Vaishnava Sectarian Nirnaya Sources
+
+These sources are relevant where the package models, or may later model, sect-specific festival scheduling, tithi conflict resolution, vrata conduct, and temple/seva calendar practice. They should be treated as tradition-profile sources, not universal Hindu Panchang rules.
+
+| Component | Relevant Logic | Source Attribution |
+|-----------|----------------|-------------------|
+| `FestivalRuleEngine`, `FestivalService::FESTIVALS`, future `KalaNirnayaEngine` tradition profiles | Tithi conflict resolution, festival date shifting, and utsava timing where a Pushtimarg profile applies | **Utsava-Nirnaya** by Shri Vitthalnathji / Gusainji; Pushtimarg festival and tithi-vedha nirnaya framework |
+| `FestivalRuleEngine`, vrata and grahana handling | Vrata conduct and eclipse-related timing in sectarian practice | **Bhakti-Hamsa** by Shri Vitthalnathji |
+| `FestivalService::FESTIVALS`, seasonal or seva metadata | Seasonal seva, shringar, bhog, and utsava practice where metadata is tradition-specific | **Seva-Shlokah Shringar-Rasamandanam** by Shri Vitthalnathji |
+| Nirnaya decision philosophy | Resolution of contradictions in religious duties | **Tattvartha-Dipa-Nibandha - Sarva-Nirnaya Prakarana** by Vallabhacharya |
+| Operational yearly calendar practice | Living annual application of Pushtimarg nirnaya rules | **Utsav Tippani / Varsha Tippani** from Nathdwara / lineage calendar practice |
+
+For Chandra Darshana specifically, these Pushtimarg sources are relevant only to tithi-conflict or observance-scheduling profile decisions. No numeric crescent-visibility thresholds are attributed to them.
+
 ---
 
 ### Tier 4: Published Panchang and Regional-Practice Conventions
@@ -196,86 +240,112 @@ Some entries below are exact text names. Others are intentionally labeled as sou
 2. Brahmagupta / Khaṇḍakhādyaka eclipse-magnitude tradition
 3. Classical astronomy texts
 4. Classical Panchanga Calculation Texts
+5. Āryabhaṭīya and Bhāskara commentary tradition for yama/prahara definitions
 
 ### Muhurta Texts
-5. Muhūrta Chintāmaṇi
-6. Muhūrta Mārtaṇḍa
-7. Kālaprakāśikā
-8. Nirṇaya Sindhu
-9. Dharma Sindhu / Dharma_Sindhu
-10. Ernst Wilhelm's Classical Muhurta
-11. Classical Choghadiya texts
-12. Classical Yoga texts
-13. Visha Ghati constants
+6. Muhūrta Chintāmaṇi
+7. Muhūrta Mārtaṇḍa
+8. Kālaprakāśikā
+9. Nirṇaya Sindhu
+10. Dharma Sindhu / Dharma_Sindhu
+11. Kamakoti Dharma Sindhu translation / public digest
+12. Dharma Sindhu OCR / archive-public text references
+13. Ernst Wilhelm's Classical Muhurta
+14. Classical Choghadiya texts
+15. Classical Yoga texts
+16. Visha Ghati constants
 
 ### Dharmashastra Texts
-14. Manusmṛti
+17. Manusmṛti
+18. Yājñavalkya Smṛti
+19. Saṃskāra-ratnamālā
 
 ### Ayurveda Texts
-15. Aṣṭāṅga Hṛdaya
-16. Charaka Saṃhitā
+20. Aṣṭāṅga Hṛdaya
+21. Charaka Saṃhitā
 
 ### Jyotisha Texts
-17. Bṛhat Saṃhitā
-18. Bṛhat Jātaka
-19. Nārada Saṃhitā
-20. Sarāvalī
-21. Gargiya Jyotisha
-22. Jyotisha Ratnamala / Sripati tradition
+22. Bṛhat Saṃhitā
+23. Bṛhat Jātaka
+24. Nārada Saṃhitā
+25. Sarāvalī
+26. Gargiya Jyotisha
+27. Jyotisha Ratnamala / Sripati tradition
 
 ### Puranic Texts
-23. Śrīmad Bhāgavata Purāṇa
-24. Agni Purāṇa
+28. Śrīmad Bhāgavata Purāṇa
+29. Agni Purāṇa
+30. Śrīmad Bhāgavatam 3.11.10 yama/time-unit reference
+31. Śrīmad Bhāgavatam 8.18.5 Vamana Jayanti reference
+32. Śrīmad Bhāgavatam 10.24.25-26 Govardhan/Annakuta references
+33. Vālmīki Rāmāyaṇa, Bāla Kāṇḍa, Sarga 18
 
 ### Devotional and Commentarial Sources
-25. Gīta Govinda / Jayadeva tradition
+34. Gīta Govinda / Jayadeva tradition
 
 ### Regional/Almanac Conventions
-26. Tamil Gowri Panchangam
-27. Pambu Panchangam
-28. Popular travel-muhurta Panchang tables
-29. Nivas-Shool / Vaasa style published Panchang tables
-30. Drik Nivas-Shool Panchang style
-31. Modern Nivas-Shool Panchang style
-32. Published Gowri/Pambu table convention
-33. Published Panchang dynamic night-muhurta convention
-34. Observed Panchang convention / tradition-dependent rules
+35. Tamil Gowri Panchangam
+36. Pambu Panchangam
+37. Popular travel-muhurta Panchang tables
+38. Nivas-Shool / Vaasa style published Panchang tables
+39. Drik Nivas-Shool Panchang style
+40. Drik Panchang Ekadashi / Harivasara / Parana pages
+41. Drik Panchang Mahadvadashi / ISKCON Parana pages
+42. Drik Panchang festival timing pages for Rama Navami, Dhantrayodashi, Diwali, Mahashivaratri, Narasimha Jayanti, and Chandra Darshana
+43. Modern Nivas-Shool Panchang style
+44. Published Gowri/Pambu table convention
+45. Published Panchang dynamic night-muhurta convention
+46. Observed Panchang convention / tradition-dependent rules
 
 ### Vāstu Texts
-35. Māyamata
+47. Māyamata
 
 ### Āgama Texts
-36. Vaikhānasa Āgama
+48. Vaikhānasa Āgama
 
 ### Gṛhya Sūtra Texts
-37. Aśvalāyana Gṛhya Sūtra
+49. Aśvalāyana Gṛhya Sūtra
 
 ### Vaishnava Texts
-38. Hari Bhakti Vilāsa
-39. Satsangi Jeevan
+50. Hari Bhakti Vilāsa
+51. Satsangi Jeevan
+52. Shikshapatri
+53. Utsava-Nirnaya (Shri Vitthalnathji / Gusainji)
+54. Bhakti-Hamsa (Shri Vitthalnathji)
+55. Seva-Shlokah Shringar-Rasamandanam (Shri Vitthalnathji)
+56. Tattvartha-Dipa-Nibandha - Sarva-Nirnaya Prakarana (Vallabhacharya)
 
 ### Sectarian and Regional Traditions
-40. Smarta tradition
-41. Vaishnava tradition
-42. ISKCON / Gaudiya Vaishnava tradition
-43. Swaminarayan tradition
-44. Bengal / Bengali tradition
-45. Odia / Odisha tradition
-46. Tamil tradition
-47. South Indian / Telugu / Andhra tradition
-48. Malayalam / Kerala tradition
-49. Nepali tradition
-50. Himalayan / Tibetan Buddhist regional observance
-51. Kutchi / Gujarat regional observance
+57. Smarta tradition
+58. Vaishnava tradition
+59. Pushtimarg / Vallabha tradition
+60. Utsav Tippani / Varsha Tippani (Nathdwara / Pushtimarg lineage)
+61. ISKCON / Gaudiya Vaishnava tradition
+62. ISKCON Bangalore and ISKCON Mumbai public observance summaries
+63. Swaminarayan tradition
+64. BAPS Swaminarayan Sanstha public festival references
+65. Swaminarayan.org public festival references
+66. Bengal / Bengali tradition
+67. Odia / Odisha tradition
+68. Tamil tradition
+69. South Indian / Telugu / Andhra tradition
+70. Malayalam / Kerala tradition
+71. Nepali tradition
+72. Himalayan / Tibetan Buddhist regional observance
+73. Kutchi / Gujarat regional observance
+74. Samaveda Upakarma / Samavedi Shravani procedure summaries
 
 ### Modern Systems
-52. KP System (Krishnamurti Paddhati)
-53. JME native ephemeris
-54. Drik Panchang-style modern published almanac convention
+75. KP System (Krishnamurti Paddhati)
+76. JME native ephemeris
+77. Drik Panchang-style modern published almanac convention
+78. Bharat Discovery public grahana-sutak citation
+79. Indica Today Upakarma/Utsarjana summary
+80. Samskaaram.com Sāma Veda Upākarmā procedure reference
 
 ### Living Traditions
-55. Sandhyāvandanam Tradition
-56. Puri Shankaracharya Swami Nischalananda Saraswati / modern living-authority citation
+81. Sandhyāvandanam Tradition
+82. Puri Shankaracharya Swami Nischalananda Saraswati / modern living-authority citation
 
 ---
 

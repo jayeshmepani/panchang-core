@@ -1113,6 +1113,8 @@ class PanchangService
         $jdPreviousSunrise = $this->toJulianDayFromCarbon($previousSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
+        $moonSunAngleAtSunset = $this->getMoonSunAngle($jdSunset);
+        $moonIlluminationAtSunset = (1.0 - cos(deg2rad($moonSunAngleAtSunset))) / 2.0;
         $sunriseBirth = [
             ...$birthBase,
             'year' => (int) $sunrise->format('Y'),
@@ -1255,6 +1257,9 @@ class PanchangService
                 'previous_sunrise_jd' => $jdPreviousSunrise,
                 'sunset_jd' => $jdSunset,
                 'next_sunrise_jd' => $jdNextSunrise,
+                'moon_sun_elongation_at_sunset_degrees' => $moonSunAngleAtSunset,
+                'moon_illumination_at_sunset_fraction' => $moonIlluminationAtSunset,
+                'moon_illumination_at_sunset_percent' => $moonIlluminationAtSunset * 100.0,
                 'tithi_start_jd' => $tithiStartJd,
                 'tithi_end_jd' => $tithiEndJd,
                 'prev_tithi_end_jd' => $prevTithiEndJd,

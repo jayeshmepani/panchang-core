@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-13T05:18:15+00:00",
+        "generated_at": "2026-06-17T09:24:24+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "amanta",
@@ -17,9 +17,9 @@
         "title": "उत्सव 2026 - व्रतों को छोड़कर पूरे वर्ष के नामित उत्सव",
         "year": 2026,
         "calendar_type": "amanta",
-        "festival_day_count": 204,
-        "festival_entry_count": 396,
-        "total_festivals": 323,
+        "festival_day_count": 206,
+        "festival_entry_count": 401,
+        "total_festivals": 328,
         "by_date": {
             "2026-01-03": [
                 {
@@ -803,7 +803,11 @@
                             "name": "मकर",
                             "english_name": "Capricorn",
                             "symbol": "♑"
-                        }
+                        },
+                        "after_sunset_next_day_punya_rule": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.59.19-29"
+                        ]
                     }
                 },
                 {
@@ -1312,7 +1316,9 @@
                         },
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन १ (घटस्थापना)",
@@ -1508,7 +1514,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन २",
@@ -1610,7 +1618,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ३",
@@ -1808,7 +1818,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ४",
@@ -2010,7 +2022,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ५",
@@ -2115,7 +2129,12 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.59.31-58"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "वसंत पंचमी",
@@ -2135,7 +2154,7 @@
                         "standard_date": "2026-01-23",
                         "observance_date": "2026-01-23",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
@@ -2156,7 +2175,7 @@
                         "karmakala_type_name": "सूर्योदय"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
@@ -2217,7 +2236,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ६",
@@ -2414,7 +2435,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ७",
@@ -2716,7 +2739,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ८",
@@ -2918,7 +2943,9 @@
                             "name": "माघ"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "माघ गुप्त नवरात्रि दिन ९",
@@ -5660,6 +5687,123 @@
                     }
                 },
                 {
+                    "name": "फूलडोलोत्सव",
+                    "name_key": "Phuldolotsava",
+                    "description": "होली/पूर्णिमा उत्सव समूह में स्वामीनारायण पुष्पदोलोत्सव / फूलडोल तिथि उत्सव",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "स्वामीनारायण",
+                        "गुजरात"
+                    ],
+                    "aliases": [
+                        "पुष्पदोलोत्सव",
+                        "फूलडोल",
+                        "धुलेटी"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "फाल्गुन",
+                            "value_key": "Phalguna",
+                            "name": "फाल्गुन"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "tradition_profile": "स्वामीनारायण/बीएपीएस तिथि उत्सव",
+                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
+                        "ritual_profile": "सत्संगी पुष्प-दोलोत्सव अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "pushpa_dolotsav_satsangi",
+                        "rule_convention": "संप्रदाय-विशेष तिथि उत्सव; सार्वजनिक आयोजन और मुख्यधारा के होली-पश्चात नागरिक दिन अलग हो सकते हैं।",
+                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.45",
+                            "Satsangi Jeevan 4.60"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "फूलडोलोत्सव",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461102.0171825113,
+                        "target_tithi_end_jd": 2461102.9836481707,
+                        "standard_date": "2026-03-03",
+                        "observance_date": "2026-03-03",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Phuldolotsava",
+                        "festival_name_localized": "फूलडोलोत्सव",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "सावर्णि मन्वदि",
                     "name_key": "Savarni Manvadi",
                     "description": "सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
@@ -5855,117 +5999,6 @@
                 }
             ],
             "2026-03-04": [
-                {
-                    "name": "फूलडोलोत्सव",
-                    "name_key": "Phuldolotsava",
-                    "description": "होली/पूर्णिमा उत्सव समूह में स्वामीनारायण पुष्पदोलोत्सव / फूलडोल तिथि उत्सव",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "स्वामीनारायण",
-                        "गुजरात"
-                    ],
-                    "aliases": [
-                        "पुष्पदोलोत्सव",
-                        "फूलडोल",
-                        "धुलेटी"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                16
-                            ],
-                            "names": [
-                                "कृष्ण प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "फाल्गुन",
-                            "value_key": "Phalguna",
-                            "name": "फाल्गुन"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय",
-                        "strict_karmakala": true,
-                        "sect_specific": true,
-                        "tradition_profile": "स्वामीनारायण/बीएपीएस तिथि उत्सव",
-                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
-                        "rule_convention": "संप्रदाय-विशेष तिथि उत्सव; सार्वजनिक आयोजन और मुख्यधारा के होली-पश्चात नागरिक दिन अलग हो सकते हैं।",
-                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ."
-                    },
-                    "resolution": {
-                        "festival_name": "फूलडोलोत्सव",
-                        "required_tithi": 1,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461102.9836481707,
-                        "target_tithi_end_jd": 2461103.970803272,
-                        "standard_date": "2026-03-04",
-                        "observance_date": "2026-03-04",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Phuldolotsava",
-                        "festival_name_localized": "फूलडोलोत्सव",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
                 {
                     "name": "इष्टि",
                     "name_key": "Ishti",
@@ -7339,7 +7372,9 @@
                         },
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन १ (शैलपुत्री पूजा)",
@@ -7739,7 +7774,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन २ (ब्रह्मचारिणी पूजा)",
@@ -7841,7 +7878,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ३ (चंद्रघंटा पूजा)",
@@ -8239,7 +8278,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ४ (कूष्मांडा पूजा)",
@@ -8341,7 +8382,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ५ (स्कंदमाता पूजा)",
@@ -8653,7 +8696,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ६ (कात्यायनी पूजा)",
@@ -9050,7 +9095,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ७ (कालरात्रि पूजा)",
@@ -9152,7 +9199,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ८ (महागौरी पूजा)",
@@ -9254,7 +9303,9 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "चैत्र (वसंत) नवरात्रि दिन ९ (सिद्धिदात्री पूजा)",
@@ -9556,7 +9607,8 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "require_sunrise_vyapini": true
                     },
                     "resolution": {
                         "festival_name": "महावीर जयंती",
@@ -11145,6 +11197,115 @@
             ],
             "2026-04-18": [
                 {
+                    "name": "स्वामीनारायण कूर्म जयंती",
+                    "name_key": "Swaminarayan Kurma Jayanti",
+                    "description": "वैशाख शुक्ल प्रतिपदा पर स्वामीनारायण कूर्म जयंती नियम",
+                    "deity": "विष्णु (कूर्म)",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "कूर्म जयंती"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "वैशाख",
+                            "value_key": "Vaishakha",
+                            "name": "वैशाख"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी कूर्म जयंती अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "kurma_jayanti_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "स्वामीनारायण कूर्म जयंती",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.9942389783,
+                        "target_tithi_end_jd": 2461148.861769636,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Swaminarayan Kurma Jayanti",
+                        "festival_name_localized": "स्वामीनारायण कूर्म जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "नवरात्रि प्रारंभ",
                     "name_key": "Navratri Begins",
                     "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
@@ -11338,7 +11499,13 @@
                             "name": "वैशाख"
                         },
                         "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न"
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true,
+                        "ritual_profile": "सत्संगी परशुराम जयंती अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "parashurama_jayanti_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "परशुराम जयंती",
@@ -13953,8 +14120,17 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true,
                         "adhika": {
                             "adhika_only": true
                         }
@@ -13963,10 +14139,10 @@
                         "festival_name": "अधिक चन्द्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
+                        "karmakala_type": "chandra_darshana_visibility",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 3199.0000292658806,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -13978,35 +14154,74 @@
                         "observance_date": "2026-05-17",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1553,
+                            "winning_window_overlap_seconds": 3199.0000292658806,
                             "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                            "moon_visibility_start_jd": 2461178.081412037,
+                            "moon_visibility_end_jd": 2461178.1184375,
+                            "moon_visibility_seconds": 3199.0000292658806,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.31666715443134,
+                                "elongation_degrees": 10.671031637322471,
+                                "illumination_percent": 0.8646728626094613,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "अधिक चन्द्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1553,
+                        "winning_window_overlap_seconds": 3199.0000292658806,
                         "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                        "moon_visibility_start_jd": 2461178.081412037,
+                        "moon_visibility_end_jd": 2461178.1184375,
+                        "moon_visibility_seconds": 3199.0000292658806,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 53.31666715443134,
+                            "elongation_degrees": 10.671031637322471,
+                            "illumination_percent": 0.8646728626094613,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -14014,8 +14229,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२७ अपराह्न to ०८:२० अपराह्न",
+                        "start": "०७:२७ अपराह्न",
+                        "end": "०८:२० अपराह्न",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२७ अपराह्न to ०८:२० अपराह्न",
+                        "start": "०७:२७ अपराह्न",
+                        "end": "०८:२० अपराह्न",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
                     }
                 },
                 {
@@ -14264,7 +14507,10 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "गंगावतार",
+                        "दशहरा"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -14295,9 +14541,14 @@
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "सूर्योदय",
+                        "ritual_profile": "सत्संगी गंगावतार दशहरा अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "gangavatar_dasahara_satsangi",
                         "adhika": {
                             "allows_adhika": true
-                        }
+                        },
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "गंगा दशहरा",
@@ -15109,103 +15360,6 @@
                             "english_name": "Gemini",
                             "symbol": "♊"
                         }
-                    }
-                },
-                {
-                    "name": "अधिक चन्द्र दर्शन",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "अधिक मास में होने वाला चंद्र दर्शन।",
-                    "deity": "चंद्र",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय",
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "अधिक चन्द्र दर्शन",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461206.6208802294,
-                        "target_tithi_end_jd": 2461207.4591981247,
-                        "standard_date": "2026-06-15",
-                        "observance_date": "2026-06-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि पालन दिवस में",
-                            "winning_score": 300,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_during_observance",
-                            "winning_reason_name": "लक्षित तिथि पालन दिवस में"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "अधिक चन्द्र दर्शन",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि पालन दिवस में",
-                        "winning_score": 300,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_during_observance",
-                        "winning_reason_name": "लक्षित तिथि पालन दिवस में"
                     }
                 },
                 {
@@ -16156,6 +16310,73 @@
                     }
                 }
             ],
+            "2026-06-28": [
+                {
+                    "name": "स्नानयात्रा",
+                    "name_key": "Snanyatra",
+                    "description": "सूर्योदय पर ज्येष्ठा नक्षत्र होने पर स्वामीनारायण स्नानयात्रा",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "resolver": "classical",
+                        "nakshatra": "ज्येष्ठा",
+                        "nakshatra_key": "Jyeshtha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी स्नानयात्रा अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "snanyatra_satsangi",
+                        "preferred_nakshatra": "ज्येष्ठा",
+                        "preferred_nakshatra_key": "Jyeshtha",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "स्नानयात्रा",
+                        "required_nakshatra": "ज्येष्ठा",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-06-28",
+                        "observance_date": "2026-06-28",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "ज्येष्ठा",
+                            "winning_reason": "नक्षत्र मेल",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "नक्षत्र मेल",
+                            "nakshatra_name_key": "Jyeshtha",
+                            "nakshatra_name_localized": "ज्येष्ठा"
+                        },
+                        "festival_name_key": "Snanyatra",
+                        "festival_name_localized": "स्नानयात्रा",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Jyeshtha",
+                        "required_nakshatra_name": "ज्येष्ठा"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "ज्येष्ठा",
+                        "winning_reason": "नक्षत्र मेल",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "नक्षत्र मेल",
+                        "nakshatra_name_key": "Jyeshtha",
+                        "nakshatra_name_localized": "ज्येष्ठा"
+                    }
+                }
+            ],
             "2026-06-29": [
                 {
                     "name": "अन्वाधान",
@@ -16902,7 +17123,9 @@
                         },
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन १ (घटस्थापना)",
@@ -16961,6 +17184,71 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "स्वामीनारायण रथयात्रा",
+                    "name_key": "Swaminarayan Rathyatra",
+                    "description": "आषाढ़ में सूर्योदय पर पुष्य नक्षत्र होने पर स्वामीनारायण रथयात्रा",
+                    "deity": "बालकृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "resolver": "classical",
+                        "nakshatra": "पुष्य",
+                        "nakshatra_key": "Pushya",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी रथयात्रा अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "rathyatra_satsangi",
+                        "preferred_nakshatra": "पुष्य",
+                        "preferred_nakshatra_key": "Pushya",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "स्वामीनारायण रथयात्रा",
+                        "required_nakshatra": "पुष्य",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-07-15",
+                        "observance_date": "2026-07-15",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "पुष्य",
+                            "winning_reason": "नक्षत्र मेल",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "नक्षत्र मेल",
+                            "nakshatra_name_key": "Pushya",
+                            "nakshatra_name_localized": "पुष्य"
+                        },
+                        "festival_name_key": "Swaminarayan Rathyatra",
+                        "festival_name_localized": "स्वामीनारायण रथयात्रा",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Pushya",
+                        "required_nakshatra_name": "पुष्य"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "पुष्य",
+                        "winning_reason": "नक्षत्र मेल",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "नक्षत्र मेल",
+                        "nakshatra_name_key": "Pushya",
+                        "nakshatra_name_localized": "पुष्य"
                     }
                 },
                 {
@@ -17224,7 +17512,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन २",
@@ -17324,7 +17614,10 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "जगन्नाथ रथ यात्रा",
@@ -17522,7 +17815,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ३",
@@ -17622,7 +17917,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ४",
@@ -17824,7 +18121,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ५",
@@ -17955,7 +18254,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ६",
@@ -18152,7 +18453,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ७",
@@ -18254,7 +18557,9 @@
                             "name": "आषाढ़"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ८",
@@ -18357,7 +18662,9 @@
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "सूर्योदय",
-                        "vriddhi_preference": "last"
+                        "vriddhi_preference": "last",
+                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
                         "festival_name": "आषाढ़ गुप्त नवरात्रि दिन ९",
@@ -19358,6 +19665,116 @@
             ],
             "2026-07-30": [
                 {
+                    "name": "हिंडोला उत्सव प्रारंभ",
+                    "name_key": "Hindola Festival Begins",
+                    "description": "स्वामीनारायण हिंडोला उत्सव ऋतु का प्रारंभ; स्रोत चंद्रमा वृषभ में होने पर आषाढ़ कृष्ण प्रतिपदा या द्वितीया स्वीकार करता है",
+                    "deity": "बालकृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "कृष्ण प्रतिपदा"
+                            ]
+                        },
+                        "tithi_options": [
+                            1,
+                            2
+                        ],
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "आषाढ़",
+                            "value_key": "Ashadha",
+                            "name": "आषाढ़"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "sayankala",
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी हिंडोला अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "hindola_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "हिंडोला उत्सव प्रारंभ",
+                        "required_tithi": 1,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 6838.405394554138,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461251.107072735,
+                        "target_tithi_end_jd": 2461252.1661852477,
+                        "standard_date": "2026-07-30",
+                        "observance_date": "2026-07-30",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1113,
+                            "winning_window_overlap_seconds": 6838.405394554138,
+                            "winning_window_coverage_ratio": 0.8832866681972096,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Hindola Festival Begins",
+                        "festival_name_localized": "हिंडोला उत्सव प्रारंभ",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "sayankala"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1113,
+                        "winning_window_overlap_seconds": 6838.405394554138,
+                        "winning_window_coverage_ratio": 0.8832866681972096,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "इष्टि",
                     "name_key": "Ishti",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",
@@ -20050,6 +20467,71 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "स्वामीनारायण रथयात्रा",
+                    "name_key": "Swaminarayan Rathyatra",
+                    "description": "आषाढ़ में सूर्योदय पर पुष्य नक्षत्र होने पर स्वामीनारायण रथयात्रा",
+                    "deity": "बालकृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "resolver": "classical",
+                        "nakshatra": "पुष्य",
+                        "nakshatra_key": "Pushya",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी रथयात्रा अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "rathyatra_satsangi",
+                        "preferred_nakshatra": "पुष्य",
+                        "preferred_nakshatra_key": "Pushya",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "स्वामीनारायण रथयात्रा",
+                        "required_nakshatra": "पुष्य",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-08-12",
+                        "observance_date": "2026-08-12",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "पुष्य",
+                            "winning_reason": "नक्षत्र मेल",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "नक्षत्र मेल",
+                            "nakshatra_name_key": "Pushya",
+                            "nakshatra_name_localized": "पुष्य"
+                        },
+                        "festival_name_key": "Swaminarayan Rathyatra",
+                        "festival_name_localized": "स्वामीनारायण रथयात्रा",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Pushya",
+                        "required_nakshatra_name": "पुष्य"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "पुष्य",
+                        "winning_reason": "नक्षत्र मेल",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "नक्षत्र मेल",
+                        "nakshatra_name_key": "Pushya",
+                        "nakshatra_name_localized": "पुष्य"
                     }
                 }
             ],
@@ -20750,6 +21232,118 @@
                         },
                         "festival_name_key": "Tulsidas Jayanti",
                         "festival_name_localized": "तुलसीदास जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
+            "2026-08-23": [
+                {
+                    "name": "पवित्रा उत्सव",
+                    "name_key": "Pavitra Festival",
+                    "description": "श्रावण शुक्ल एकादशी या द्वादशी पर स्वामीनारायण पवित्रा अर्पण",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "शुक्ल एकादशी"
+                            ]
+                        },
+                        "tithi_options": [
+                            11,
+                            12
+                        ],
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "श्रावण",
+                            "value_key": "Shravana",
+                            "name": "श्रावण"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी पवित्रा अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "pavitra_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "पवित्रा उत्सव",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461275.353926589,
+                        "target_tithi_end_jd": 2461276.449925906,
+                        "standard_date": "2026-08-23",
+                        "observance_date": "2026-08-23",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Pavitra Festival",
+                        "festival_name_localized": "पवित्रा उत्सव",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -22729,6 +23323,127 @@
             ],
             "2026-09-12": [
                 {
+                    "name": "नर-नारायण अर्जुन जन्मोत्सव",
+                    "name_key": "Nara-Narayan Arjun Janmotsav",
+                    "description": "मध्याह्न द्वितीया और उत्तरा फाल्गुनी वरीयता सहित स्वामीनारायण नर-नारायण/अर्जुन जन्मोत्सव",
+                    "deity": "नर-नारायण/अर्जुन",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "नर-नारायण जन्मोत्सव",
+                        "अर्जुन जन्मोत्सव"
+                    ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 2 सूर्योदय पर 2026-09-13 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-12 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                2
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                2
+                            ],
+                            "names": [
+                                "शुक्ल द्वितीया"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "nakshatra": "उत्तर फाल्गुनी",
+                        "nakshatra_key": "Uttara Phalguni",
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true,
+                        "prefer_nakshatra": true,
+                        "sect_specific": true,
+                        "ritual_profile": "नर-नारायण अर्जुन जन्मोत्सव अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "nara_narayan_arjun_janmotsav",
+                        "preferred_nakshatra": "उत्तर फाल्गुनी",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.21-26"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "नर-नारायण अर्जुन जन्मोत्सव",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8913.00001591444,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461295.5949594853,
+                        "target_tithi_end_jd": 2461296.568580226,
+                        "standard_date": "2026-09-13",
+                        "observance_date": "2026-09-12",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 2 सूर्योदय पर 2026-09-13 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-12 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "preferred_nakshatra": "उत्तर फाल्गुनी",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1148,
+                            "winning_window_overlap_seconds": 8913.00001591444,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                            "preferred_nakshatra_key": "Uttara Phalguni",
+                            "preferred_nakshatra_name": "उत्तर फाल्गुनी"
+                        },
+                        "festival_name_key": "Nara-Narayan Arjun Janmotsav",
+                        "festival_name_localized": "नर-नारायण अर्जुन जन्मोत्सव",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": "उत्तर फाल्गुनी",
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1148,
+                        "winning_window_overlap_seconds": 8913.00001591444,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "preferred_nakshatra_name": "उत्तर फाल्गुनी"
+                    }
+                },
+                {
                     "name": "नवरात्रि प्रारंभ",
                     "name_key": "Navratri Begins",
                     "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
@@ -23027,63 +23742,6 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
-                },
-                {
-                    "name": "सामवेद उपाकर्म",
-                    "name_key": "Samaveda Upakarma",
-                    "description": "सामवेदियों के लिए जनेऊ बदलने का वार्षिक अनुष्ठान (मुख्यतः हस्त नक्षत्र आधारित)",
-                    "deity": "ऋषि/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "nakshatra",
-                        "basis_name": "नक्षत्र",
-                        "nakshatra": "हस्त",
-                        "nakshatra_key": "Hasta",
-                        "nakshatra_only": true,
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय",
-                        "preferred_nakshatra": "हस्त",
-                        "preferred_nakshatra_key": "Hasta"
-                    },
-                    "resolution": {
-                        "festival_name": "सामवेद उपाकर्म",
-                        "required_nakshatra": "हस्त",
-                        "karmakala_type": "sunrise",
-                        "standard_date": "2026-09-13",
-                        "observance_date": "2026-09-13",
-                        "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "हस्त",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
-                            "nakshatra_name_key": "Hasta",
-                            "nakshatra_name_localized": "हस्त"
-                        },
-                        "festival_name_key": "Samaveda Upakarma",
-                        "festival_name_localized": "सामवेद उपाकर्म",
-                        "karmakala_type_name": "सूर्योदय",
-                        "required_nakshatra_key": "Hasta",
-                        "required_nakshatra_name": "हस्त"
-                    },
-                    "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "हस्त",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
-                        "nakshatra_name_key": "Hasta",
-                        "nakshatra_name_localized": "हस्त"
-                    }
                 }
             ],
             "2026-09-14": [
@@ -23328,7 +23986,11 @@
                         "karmakala_type_name": "मध्याह्न",
                         "strict_karmakala": true,
                         "prefer_full_karmakala_coverage": true,
-                        "gujarati_special_case": "prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap"
+                        "chandradarshan_nishedh": true,
+                        "gujarati_special_case": "prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.42-56"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "गणेश चतुर्थी",
@@ -24289,7 +24951,10 @@
                             "name": "भाद्रपद"
                         },
                         "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न"
+                        "karmakala_type_name": "मध्याह्न",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.64-78"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "राधा अष्टमी",
@@ -24702,7 +25367,10 @@
                         "strict_karmakala": true,
                         "prefer_nakshatra": true,
                         "preferred_nakshatra": "श्रवण",
-                        "preferred_nakshatra_key": "Shravana"
+                        "preferred_nakshatra_key": "Shravana",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.89-101"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "वामन जयंती",
@@ -26764,7 +27432,9 @@
                         },
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन १ (शैलपुत्री पूजा)",
@@ -26960,7 +27630,9 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन २ (ब्रह्मचारिणी पूजा)",
@@ -27062,7 +27734,9 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन ३ (चंद्रघंटा पूजा)",
@@ -27260,7 +27934,9 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन ४ (कूष्मांडा पूजा)",
@@ -27362,7 +28038,9 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन ५ (स्कंदमाता पूजा)",
@@ -27564,7 +28242,9 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन ६ (कात्यायनी पूजा)",
@@ -28218,7 +28898,9 @@
                         "karmakala_type": "aparahna",
                         "karmakala_type_name": "अपराह्न",
                         "strict_karmakala": true,
-                        "prefer_first_karmakala": true
+                        "prefer_first_karmakala": true,
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "अश्विन शरद नवरात्रि दिन ७ (कालरात्रि पूजा)",
@@ -28422,7 +29104,9 @@
                         "karmakala_type": "aparahna",
                         "karmakala_type_name": "अपराह्न",
                         "strict_karmakala": true,
-                        "prefer_first_karmakala": true
+                        "prefer_first_karmakala": true,
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "दुर्गा अष्टमी (महागौरी पूजा)",
@@ -28627,7 +29311,9 @@
                         "karmakala_type": "aparahna",
                         "karmakala_type_name": "अपराह्न",
                         "strict_karmakala": true,
-                        "prefer_first_karmakala": true
+                        "prefer_first_karmakala": true,
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa"
                     },
                     "resolution": {
                         "festival_name": "महा नवमी (सिद्धिदात्री पूजा)",
@@ -29043,9 +29729,16 @@
                         "karmakala_type_name": "विजय काल",
                         "strict_karmakala": true,
                         "prefer_nakshatra": true,
+                        "ritual_profile": "सत्संगी विजयादशमी अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "vijayadashami_satsangi",
+                        "worship_profile": "north_navadurga_bhadrakali_kalpa",
+                        "worship_profile_key": "north_navadurga_bhadrakali_kalpa",
                         "vijaya_kaal_primary": true,
                         "preferred_nakshatra": "श्रवण",
-                        "preferred_nakshatra_key": "Shravana"
+                        "preferred_nakshatra_key": "Shravana",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.57.19-23"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "दशहरा",
@@ -29460,7 +30153,13 @@
                             "name": "अश्विन"
                         },
                         "karmakala_type": "nishitha",
-                        "karmakala_type_name": "निशीथ"
+                        "karmakala_type_name": "निशीथ",
+                        "ritual_profile": "शरद पूर्णिमा रास अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "sharad_purnima_rasa",
+                        "reject_anumati_purnima": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.57.30-34"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "कोजागरी लक्ष्मी पूजा",
@@ -30444,7 +31143,10 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "धनत्रयोदशी",
+                        "अलंकार मार्जन"
+                    ],
                     "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 13 सूर्योदय पर 2026-11-07 को होती है, किंतु प्रदोष की उपस्थिति की परंपरा/विधि के कारण 2026-11-06 को मनाई जाती है।",
                     "calculation_basis": {
                         "type": "tithi",
@@ -30476,7 +31178,12 @@
                         "karmakala_type": "pradosha",
                         "karmakala_type_name": "प्रदोष",
                         "strict_karmakala": true,
-                        "deepotsav_sequence": "dhanteras"
+                        "deepotsav_sequence": "dhanteras",
+                        "ritual_profile": "सत्संगी अलंकार मार्जन अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "alankar_marjan_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.57.50-57"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "धनतेरस",
@@ -31726,7 +32433,10 @@
                         "deepotsav_sequence": "govardhan_annakut",
                         "location_sensitive": true,
                         "rule_convention": "गोवर्धन पूजा विन्यस्त स्थान के अनुसार निकाली जाती है; नगर-विशेष सार्वजनिक पंचांगों में एक नागरिक दिन का अंतर हो सकता है।",
-                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date."
+                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.19-21"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "गोवर्धन पूजा",
@@ -33104,7 +33814,10 @@
                             "name": "कार्तिक"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.36-44"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "गोपाष्टमी",
@@ -33409,17 +34122,22 @@
                             "value_key": "Kartika",
                             "name": "कार्तिक"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "ritual_kala_type": "sayankala",
+                        "ritual_kala_type_name": "sayankala",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.105-117"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "तुलसी विवाह",
                         "required_tithi": 12,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "madhyahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 7893.200035393238,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -33430,12 +34148,12 @@
                         "standard_date": "2026-11-21",
                         "observance_date": "2026-11-21",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_score": 1131,
+                            "winning_window_overlap_seconds": 7893.200035393238,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -33448,17 +34166,17 @@
                         "festival_name_key": "Tulsi Vivah",
                         "festival_name_localized": "तुलसी विवाह",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "मध्याह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
+                        "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_score": 1131,
+                        "winning_window_overlap_seconds": 7893.200035393238,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -33715,7 +34433,12 @@
                             "name": "कार्तिक"
                         },
                         "karmakala_type": "pradosha",
-                        "karmakala_type_name": "प्रदोष"
+                        "karmakala_type_name": "प्रदोष",
+                        "ritual_kala_type": "moonrise",
+                        "ritual_kala_type_name": "चंद्रोदय",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.119-134"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "देव दिवाली (त्रिपुरारी पूर्णिमा)",
@@ -35592,7 +36315,9 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "धनुर्मास उत्सव प्रारंभ"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "solar_sankranti",
@@ -35605,7 +36330,13 @@
                             "name": "धनु",
                             "english_name": "Sagittarius",
                             "symbol": "♐"
-                        }
+                        },
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी धनुर्मास अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "dhanurmas_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.59.19-29"
+                        ]
                     }
                 }
             ],

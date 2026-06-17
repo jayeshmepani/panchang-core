@@ -58,6 +58,10 @@ class FestivalRuleEngine
             return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
         }
 
+        if ((bool) ($rule['chandra_darshana_visibility'] ?? false)) {
+            return $this->resolveChandraDarshanaFestival($festivalName, $rule, $date, $today, $tomorrow);
+        }
+
         $rulePaksha = $rule['paksha'] ?? 'Shukla';
         $currentPaksha = (string) ($today['Tithi']['paksha'] ?? 'Shukla');
 
@@ -294,6 +298,173 @@ class FestivalRuleEngine
         return $tagsByDate;
     }
 
+    private function resolveChandraDarshanaFestival(
+        string $festivalName,
+        array $rule,
+        CarbonImmutable $date,
+        array $today,
+        array $tomorrow
+    ): ?array {
+        $todayCandidate = $this->buildChandraDarshanaCandidate($date, $today, $tomorrow, 0, $rule);
+        if ($todayCandidate !== null) {
+            return $this->buildChandraDarshanaResult($festivalName, $rule, $todayCandidate);
+        }
+
+        $tomorrowCandidate = $this->buildChandraDarshanaCandidate($date->addDay(), $tomorrow, null, 1, $rule);
+        if ($tomorrowCandidate !== null) {
+            return $this->buildChandraDarshanaResult($festivalName, $rule, $tomorrowCandidate);
+        }
+
+        return null;
+    }
+
+    private function buildChandraDarshanaCandidate(
+        CarbonImmutable $date,
+        array $details,
+        ?array $nextDetails,
+        int $dayOffset,
+        array $rule
+    ): ?array {
+        $visibilityWindow = $this->chandraDarshanaVisibilityWindow($details);
+        if ($visibilityWindow === null) {
+            return null;
+        }
+
+        $moonVisibilitySeconds = max(0.0, ($visibilityWindow['end_jd'] - $visibilityWindow['start_jd']) * 86400.0);
+        $visibilityAssessment = $this->assessChandraDarshanaVisibility($details, $moonVisibilitySeconds, $rule);
+        if (!(bool) $visibilityAssessment['visible']) {
+            return null;
+        }
+
+        foreach ([1, 2] as $targetTithi) {
+            $targetInterval = $this->deriveSnapshotTithiInterval($targetTithi, 'Shukla', $details, $nextDetails);
+            if ($targetInterval === null) {
+                continue;
+            }
+
+            $overlapSeconds = $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
+            $ctx = (array) ($details['Resolution_Context'] ?? []);
+            $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
+            $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+            $targetAtSunrise = $sunriseJd > 0.0 && $this->isTargetAtPoint($sunriseJd, $targetInterval);
+            $targetDaylightOverlapSeconds = ($sunriseJd > 0.0 && $sunsetJd > $sunriseJd)
+                ? $this->intervalOverlapSeconds($targetInterval, ['start_jd' => $sunriseJd, 'end_jd' => $sunsetJd])
+                : 0.0;
+
+            if ($overlapSeconds <= 0.0 && $targetDaylightOverlapSeconds <= 0.0) {
+                continue;
+            }
+
+            return [
+                'date' => $date->toDateString(),
+                'day_offset' => $dayOffset,
+                'required_tithi' => $targetTithi,
+                'target_interval' => $targetInterval,
+                'visibility_window' => $visibilityWindow,
+                'target_at_sunrise' => $targetAtSunrise,
+                'target_at_karmakala' => $overlapSeconds > 0.0,
+                'target_window_overlap_seconds' => $overlapSeconds,
+                'target_daylight_overlap_seconds' => $targetDaylightOverlapSeconds,
+                'moon_visibility_seconds' => $moonVisibilitySeconds,
+                'visibility_assessment' => $visibilityAssessment,
+                'reason' => $targetTithi === 1
+                    ? 'chandra_darshana_pratipada_visible_after_sunset'
+                    : 'chandra_darshana_dwitiya_visible_after_sunset',
+            ];
+        }
+
+        return null;
+    }
+
+    private function buildChandraDarshanaResult(string $festivalName, array $rule, array $winner): array
+    {
+        $targetInterval = (array) $winner['target_interval'];
+        $visibilityWindow = (array) $winner['visibility_window'];
+        $overlapSeconds = (float) $winner['target_window_overlap_seconds'];
+        $daylightOverlapSeconds = (float) ($winner['target_daylight_overlap_seconds'] ?? 0.0);
+        $moonVisibilitySeconds = (float) $winner['moon_visibility_seconds'];
+
+        return [
+            'festival_name' => $festivalName,
+            'required_tithi' => (int) $winner['required_tithi'],
+            'paksha' => 'Shukla',
+            'karmakala_type' => (string) ($rule['karmakala_type'] ?? 'moonrise'),
+            'tithi_at_karmakala_today' => $winner['day_offset'] === 0 && $overlapSeconds > 0.0,
+            'tithi_at_karmakala_tomorrow' => $winner['day_offset'] === 1 && $overlapSeconds > 0.0,
+            'tithi_coverage_seconds_today' => $winner['day_offset'] === 0 ? $overlapSeconds : 0.0,
+            'tithi_coverage_seconds_tomorrow' => $winner['day_offset'] === 1 ? $overlapSeconds : 0.0,
+            'tithi_at_sunrise_today' => $winner['day_offset'] === 0 && (bool) $winner['target_at_sunrise'],
+            'tithi_at_sunrise_tomorrow' => $winner['day_offset'] === 1 && (bool) $winner['target_at_sunrise'],
+            'is_tithi_vriddhi' => false,
+            'is_tithi_kshaya' => false,
+            'target_tithi_start_jd' => (float) $targetInterval['start_jd'],
+            'target_tithi_end_jd' => (float) $targetInterval['end_jd'],
+            'standard_date' => (string) $winner['date'],
+            'observance_date' => (string) $winner['date'],
+            'observance_note' => null,
+            'decision' => [
+                'strict_karmakala' => true,
+                'require_karmakala_match' => true,
+                'vriddhi_preference' => null,
+                'kshaya_preference' => null,
+                'preferred_nakshatra' => null,
+                'winning_reason' => (string) $winner['reason'],
+                'winning_score' => 1500 + min(240, (int) floor($overlapSeconds / 60.0)),
+                'winning_window_overlap_seconds' => $overlapSeconds,
+                'winning_window_coverage_ratio' => $moonVisibilitySeconds > 0.0 ? min(1.0, $overlapSeconds / $moonVisibilitySeconds) : 0.0,
+                'target_tithi_daylight_overlap_seconds' => $daylightOverlapSeconds,
+                'moon_visibility_start_jd' => (float) $visibilityWindow['start_jd'],
+                'moon_visibility_end_jd' => (float) $visibilityWindow['end_jd'],
+                'moon_visibility_seconds' => $moonVisibilitySeconds,
+                'visibility_assessment' => $winner['visibility_assessment'] ?? [],
+                'bhadra_decision' => [
+                    'applicable' => false,
+                    'rejected' => false,
+                    'preferred' => false,
+                    'reason' => null,
+                ],
+                'rule_rejection_reason' => null,
+            ],
+        ];
+    }
+
+    /** @return array<string, bool|float|string> */
+    private function assessChandraDarshanaVisibility(array $details, float $moonVisibilitySeconds, array $rule): array
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $elongation = (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
+        $illuminationPercent = (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0);
+        $lagMinutes = $moonVisibilitySeconds / 60.0;
+
+        $minLagMinutes = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? 38.0);
+        $minElongationDegrees = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? 9.0);
+        $hardElongationFloorDegrees = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? 7.0);
+        $minIlluminationPercent = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? 0.8);
+
+        $passesHardElongationFloor = $elongation >= $hardElongationFloorDegrees;
+        $passesLag = $lagMinutes >= $minLagMinutes;
+        $passesElongation = $elongation >= $minElongationDegrees;
+        $passesIllumination = $illuminationPercent >= $minIlluminationPercent;
+        $visible = $passesHardElongationFloor && $passesLag && ($passesElongation || $passesIllumination);
+
+        return [
+            'model' => 'simplified_modern_crescent_visibility',
+            'visible' => $visible,
+            'lag_minutes' => $lagMinutes,
+            'elongation_degrees' => $elongation,
+            'illumination_percent' => $illuminationPercent,
+            'min_lag_minutes' => $minLagMinutes,
+            'min_elongation_degrees' => $minElongationDegrees,
+            'hard_elongation_floor_degrees' => $hardElongationFloorDegrees,
+            'min_illumination_percent' => $minIlluminationPercent,
+            'passes_lag' => $passesLag,
+            'passes_elongation' => $passesElongation,
+            'passes_hard_elongation_floor' => $passesHardElongationFloor,
+            'passes_illumination' => $passesIllumination,
+            'basis' => 'modern_astronomical_heuristic_not_classical',
+        ];
+    }
+
     private function localizedPaksha(string $paksha): string
     {
         return match ($paksha) {
@@ -334,6 +505,7 @@ class FestivalRuleEngine
         $tomorrowNakshatraNumber = $this->resolveSnapshotNakshatraNumber((array) ($tomorrow['Nakshatra'] ?? []));
         $todayNakshatraWindow = $this->nakshatraWindowOverlapSeconds($today, $requiredNakshatra, $karmakalaType);
         $tomorrowNakshatraWindow = $this->nakshatraWindowOverlapSeconds($tomorrow, $requiredNakshatra, $karmakalaType);
+        $requireNakshatraWindow = (bool) ($rule['require_nakshatra_window'] ?? false);
 
         if ($requiredNakshatraNumber !== null && $todayNakshatraNumber !== null && $tomorrowNakshatraNumber !== null) {
             $nakshatraTodayMatch = $todayNakshatraNumber === $requiredNakshatraNumber;
@@ -345,8 +517,13 @@ class FestivalRuleEngine
             $nakshatraTomorrowMatch = strcasecmp($requiredNakshatra, $nakshatraTomorrow) === 0;
         }
 
-        $nakshatraTodayMatch = $nakshatraTodayMatch || $todayNakshatraWindow > 0.0;
-        $nakshatraTomorrowMatch = $nakshatraTomorrowMatch || $tomorrowNakshatraWindow > 0.0;
+        if ($requireNakshatraWindow) {
+            $nakshatraTodayMatch = $todayNakshatraWindow > 0.0;
+            $nakshatraTomorrowMatch = $tomorrowNakshatraWindow > 0.0;
+        } else {
+            $nakshatraTodayMatch = $nakshatraTodayMatch || $todayNakshatraWindow > 0.0;
+            $nakshatraTomorrowMatch = $nakshatraTomorrowMatch || $tomorrowNakshatraWindow > 0.0;
+        }
 
         // If nakshatra doesn't match today or tomorrow, skip
         if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
@@ -1125,6 +1302,71 @@ class FestivalRuleEngine
         $sign = str_starts_with($relativeTime, '-') ? -1.0 : 1.0;
 
         return $periodStartJd + ($sign * (($hours * 3600) + ($minutes * 60) + $seconds) / 86400.0);
+    }
+
+    /** @return array{start_jd:float, end_jd:float}|null */
+    private function chandraDarshanaVisibilityWindow(array $details): ?array
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
+        $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
+
+        if ($sunsetJd <= 0.0 || $nextSunriseJd <= $sunsetJd || $moonsetJd === null || $moonsetJd <= $sunsetJd) {
+            return null;
+        }
+
+        $endJd = min($moonsetJd, $nextSunriseJd);
+        if ($endJd <= $sunsetJd) {
+            return null;
+        }
+
+        return [
+            'start_jd' => $sunsetJd,
+            'end_jd' => $endJd,
+        ];
+    }
+
+    /** @return array{start_jd:float, end_jd:float}|null */
+    private function deriveSnapshotTithiInterval(int $targetTithi, string $paksha, array $details, ?array $nextDetails): ?array
+    {
+        $targetAbs = $paksha === 'Krishna' ? 15 + $targetTithi : $targetTithi;
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        if ($ctx === []) {
+            return null;
+        }
+
+        $currentAbs = (int) ($ctx['tithi_index_abs'] ?? 0);
+        if ($currentAbs === $targetAbs) {
+            return [
+                'start_jd' => (float) $ctx['tithi_start_jd'],
+                'end_jd' => (float) $ctx['tithi_end_jd'],
+            ];
+        }
+
+        $nextAbs = ($currentAbs % 30) + 1;
+        if ($nextAbs !== $targetAbs) {
+            return null;
+        }
+
+        $startJd = (float) ($ctx['tithi_end_jd'] ?? 0.0);
+        if ($startJd <= 0.0) {
+            return null;
+        }
+
+        $nextCtx = (array) ($nextDetails['Resolution_Context'] ?? []);
+        $endJd = $nextCtx !== [] && (int) ($nextCtx['tithi_index_abs'] ?? 0) === $targetAbs
+            ? (float) ($nextCtx['tithi_end_jd'] ?? 0.0)
+            : (float) ($ctx['next_sunrise_jd'] ?? 0.0);
+
+        if ($endJd <= $startJd) {
+            return null;
+        }
+
+        return [
+            'start_jd' => $startJd,
+            'end_jd' => $endJd,
+        ];
     }
 
     private function moonVisibleAfterSunset(array $details): bool

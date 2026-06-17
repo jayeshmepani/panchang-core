@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-13T05:17:37+00:00",
+        "generated_at": "2026-06-17T09:23:51+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "amanta",
@@ -4750,103 +4750,6 @@
                     }
                 },
                 {
-                    "name": "Adhika Chandra Darshana",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "Chandra Darshana occurring in the intercalary month",
-                    "deity": "Chandra",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "First Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "moonrise",
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Adhika Chandra Darshana",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461206.6208802294,
-                        "target_tithi_end_jd": 2461207.4591981247,
-                        "standard_date": "2026-06-15",
-                        "observance_date": "2026-06-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi during observance day",
-                            "winning_score": 300,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_during_observance",
-                            "winning_reason_name": "target tithi during observance day"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "Adhika Chandra Darshana",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "moonrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi during observance day",
-                        "winning_score": 300,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_during_observance",
-                        "winning_reason_name": "target tithi during observance day"
-                    }
-                },
-                {
                     "name": "Adhika Darsha Amavasya",
                     "name_key": "Adhika Darsha Amavasya",
                     "description": "Darsha Amavasya occurring in the intercalary month",
@@ -5276,6 +5179,176 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Chandra Darshana",
+                    "name_key": "Chandra Darshana",
+                    "description": "First sighting of the moon after Amavasya",
+                    "deity": "Chandra",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "First Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "sunset to moonset visibility",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "simplified modern crescent visibility model",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "modern astronomical visibility heuristic; not a classical textual rule",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "Chandra Darshana",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 5843.000011146069,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461207.4591981247,
+                        "target_tithi_end_jd": 2461208.307458926,
+                        "standard_date": "2026-06-16",
+                        "observance_date": "2026-06-16",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "Dwitiya visible after sunset before moonset",
+                            "winning_score": 1597,
+                            "winning_window_overlap_seconds": 5843.000011146069,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                            "moon_visibility_start_jd": 2461208.0900578704,
+                            "moon_visibility_end_jd": 2461208.1576851853,
+                            "moon_visibility_seconds": 5843.000011146069,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 97.38333351910114,
+                                "elongation_degrees": 20.943665725795363,
+                                "illumination_percent": 3.3033835396359956,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "Dwitiya visible after sunset before moonset"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "Chandra Darshana",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunset to moonset visibility"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "Dwitiya visible after sunset before moonset",
+                        "winning_score": 1597,
+                        "winning_window_overlap_seconds": 5843.000011146069,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                        "moon_visibility_start_jd": 2461208.0900578704,
+                        "moon_visibility_end_jd": 2461208.1576851853,
+                        "moon_visibility_seconds": 5843.000011146069,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 97.38333351910114,
+                            "elongation_degrees": 20.943665725795363,
+                            "illumination_percent": 3.3033835396359956,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "Dwitiya visible after sunset before moonset"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "sunset to moonset visibility",
+                        "display": "07:39 PM to 09:17 PM",
+                        "start": "07:39 PM",
+                        "end": "09:17 PM",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "sunset to moonset visibility",
+                        "display": "07:39 PM to 09:17 PM",
+                        "start": "07:39 PM",
+                        "end": "09:17 PM",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
                     }
                 },
                 {
@@ -9697,6 +9770,71 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Snanyatra",
+                    "name_key": "Snanyatra",
+                    "description": "Swaminarayan Snanyatra when Jyeshtha nakshatra is present at sunrise",
+                    "deity": "Krishna",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "nakshatra",
+                        "basis_name": "nakshatra",
+                        "resolver": "classical",
+                        "nakshatra": "Jyeshtha",
+                        "nakshatra_key": "Jyeshtha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "Satsangi Snanyatra ritual profile",
+                        "ritual_profile_key": "snanyatra_satsangi",
+                        "preferred_nakshatra": "Jyeshtha",
+                        "preferred_nakshatra_key": "Jyeshtha",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Snanyatra",
+                        "required_nakshatra": "Jyeshtha",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-06-28",
+                        "observance_date": "2026-06-28",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "Jyeshtha",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "nakshatra_name_key": "Jyeshtha",
+                            "nakshatra_name_localized": "Jyeshtha"
+                        },
+                        "festival_name_key": "Snanyatra",
+                        "festival_name_localized": "Snanyatra",
+                        "karmakala_type_name": "sunrise",
+                        "required_nakshatra_key": "Jyeshtha",
+                        "required_nakshatra_name": "Jyeshtha"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Jyeshtha",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "nakshatra_name_key": "Jyeshtha",
+                        "nakshatra_name_localized": "Jyeshtha"
                     }
                 }
             ],

@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 323 festival identities, 85 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 329 festival identities, 90 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,7 +490,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>323 Festivals + 85 Vrats</h3>
+              <h3>329 Festivals + 90 Vrats</h3>
               <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -585,6 +585,10 @@
                   <td>Eclipse ritual magnitude thresholds used by Nirnay-rule handling</td>
                 </tr>
                 <tr>
+                  <td><strong>Śrīmad Bhāgavatam 3.11.10 / Āryabhaṭīya commentary tradition</strong></td>
+                  <td>Yama and Prahar as day/night quarters for dynamic sutak and daily-period calculations</td>
+                </tr>
+                <tr>
                   <td><strong>Classical astronomy and Panchanga calculation texts</strong></td>
                   <td>Generic source-family labels used in Panchanga calculation metadata</td>
                 </tr>
@@ -608,7 +612,11 @@
                 </tr>
                 <tr>
                   <td><strong>Dharma Sindhu / Dharma_Sindhu</strong></td>
-                  <td>Punya Kala, Sankranti, and Dharma-Sindhu output section attribution</td>
+                  <td>Punya Kala, Sankranti, Ekadashi classification, Rama Navami, Dhanteras, Diwali, Mahashivaratri, and Narasimha Jayanti rule families</td>
+                </tr>
+                <tr>
+                  <td><strong>Kamakoti Dharma Sindhu translation / public digest</strong></td>
+                  <td>Vaishnava/Smarta Ekadashi classification references and Dharma-Sindhu-style rule explanations</td>
                 </tr>
                 <tr>
                   <td><strong>Bṛhat Saṃhitā</strong></td>
@@ -669,8 +677,24 @@
                   <td>Vaishnava Ekadashi Dashami-vedha and parana nakshatra-pada restrictions</td>
                 </tr>
                 <tr>
+                  <td><strong>Shikshapatri and Vitthalnathji vrata-nirnaya tradition</strong></td>
+                  <td>Vaishnava vrata compliance and sectarian Ekadashi decision-profile context</td>
+                </tr>
+                <tr>
+                  <td><strong>Vālmīki Rāmāyaṇa and Śrīmad Bhāgavatam</strong></td>
+                  <td>Rama Navami, Vamana Jayanti, Govardhan Puja, and Annakuta source context</td>
+                </tr>
+                <tr>
                   <td><strong>Śrīmad Bhāgavata Purāṇa, Agni Purāṇa, Gīta Govinda</strong></td>
                   <td>Festival-description sources for Vaishakha Purnima and Sugata Buddha/Kurma Jayanti notes</td>
+                </tr>
+                <tr>
+                  <td><strong>Yājñavalkya Smṛti and Saṃskāra-ratnamālā</strong></td>
+                  <td>Samavedi Shravani / Upakarma Hasta-nakshatra rule family</td>
+                </tr>
+                <tr>
+                  <td><strong>Utsava-Nirnaya, Bhakti-Hamsa, Seva-Shlokah Shringar-Rasamandanam</strong></td>
+                  <td>Pushtimarg / Vaishnava tithi-conflict, vrata, grahana, and seva-calendar source families</td>
                 </tr>
               </tbody>
             </table>
@@ -697,6 +721,22 @@
                 <tr>
                   <td><strong>Drik / modern Nivas-Shool Panchang style</strong></td>
                   <td>Source-family metadata for Vaasa-style published almanac rules</td>
+                </tr>
+                <tr>
+                  <td><strong>Drik Panchang Ekadashi, Mahadvadashi, and festival timing pages</strong></td>
+                  <td>Published almanac references for parana windows, Harivasara, symbolic water parana, and public festival timing comparisons</td>
+                </tr>
+                <tr>
+                  <td><strong>BAPS, Swaminarayan.org, and Satsangi Jivan public tradition references</strong></td>
+                  <td>Phuldolotsava / Pushpadolotsav profile variants and Swaminarayan observance context</td>
+                </tr>
+                <tr>
+                  <td><strong>ISKCON public observance references</strong></td>
+                  <td>Gaudiya/ISKCON Ekadashi, Narasimha Jayanti, Govardhan Puja, and Annakuta observance context</td>
+                </tr>
+                <tr>
+                  <td><strong>Indica Today and Samskaaram.com Upakarma summaries</strong></td>
+                  <td>Samavedi Shravani / Sāma Veda Upākarmā procedure references used as modern public summaries</td>
                 </tr>
                 <tr>
                   <td><strong>Sarāvalī</strong></td>
@@ -925,7 +965,7 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
           <p class="lead">Current calculation settings used by the package for Panchanga, sunrise, moonrise, eclipses,
             and Nirnay rules.</p>
           <div class="info-box">
-            <h3>Audit Note</h3>
+            <h3>Scope Note</h3>
             <p>These are implementation conventions, not a claim that every Hindu almanac school uses the same choices.
               The detailed source and rule map is maintained in <a href="TRADITIONAL_TEXT_SOURCES.md"
                 style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a>.</p>
@@ -989,6 +1029,36 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
                   midnight.</td>
               </tr>
               <tr>
+                <td><strong>Ekadashi parana refinements</strong></td>
+                <td>Dwadashi-bound parana, preferred early-day windows, and symbolic-water emergency metadata</td>
+                <td>Outputs distinguish valid and preferred parana spans where available, with Vaishnava/Nirnay
+                  restrictions preserved in localized display fields.</td>
+              </tr>
+              <tr>
+                <td><strong>Festival karmakala</strong></td>
+                <td>Window overlap for Pradosha, Nishitha, Madhyahna, Aparahna, Sangava, Arunodaya, and Vijaya Kaal</td>
+                <td>Festival resolution uses interval overlap and source-specific fallback/tie-break behavior rather
+                  than only testing a single clock instant.</td>
+              </tr>
+              <tr>
+                <td><strong>Deepotsav and major festival rules</strong></td>
+                <td>Dhanteras in Pradosha Trayodashi; Diwali/Lakshmi Puja in Amavasya Pradosha/night</td>
+                <td>Related rule families include Rama Navami Madhyahna, Mahashivaratri Nishitha, Vamana Abhijit/Shravana,
+                  Narasimha Pradosha, Samavedi Shravani Hasta, and Phuldolotsava profile variants.</td>
+              </tr>
+              <tr>
+                <td><strong>Chandra Darshana</strong></td>
+                <td>First visible waxing crescent after Amavasya, after local sunset and before moonset</td>
+                <td>The tithi context is Shukla Pratipada/Dwitiya. Lag, elongation, and illumination checks are labeled
+                  as a simplified modern crescent-visibility heuristic, not a classical shloka-based threshold.</td>
+              </tr>
+              <tr>
+                <td><strong>Chandra sunset factors</strong></td>
+                <td><code>moon_sun_elongation_at_sunset_degrees</code> and <code>moon_illumination_at_sunset_percent</code></td>
+                <td>Festival snapshots include these values so Chandra Darshana can expose a transparent
+                  <code>visibility_assessment</code> with lag, elongation, illumination, pass/fail flags, and basis labels.</td>
+              </tr>
+              <tr>
                 <td><strong>Eclipse visibility</strong></td>
                 <td>Local visibility plus ritual magnitude threshold</td>
                 <td>Lunar ritual minimum is <code>1/16</code>; solar ritual minimum is <code>1/12</code>. Sutak applies
@@ -998,6 +1068,12 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
                 <td><strong>Eclipse sutak</strong></td>
                 <td>Lunar 3 prahar, Solar 4 prahar</td>
                 <td>Prahar boundaries are variable: day length divided by 4 and night length divided by 4.</td>
+              </tr>
+              <tr>
+                <td><strong>Eclipse edge handling</strong></td>
+                <td>Grastodaya/Grastasta, local-visible windows, penumbral/mandya filtering, and half-ghadi short-visibility profile</td>
+                <td>Ritual output separates astronomical eclipse data from local observability and tradition-profile
+                  restrictions.</td>
               </tr>
               <tr>
                 <td><strong>Month system</strong></td>
@@ -2182,7 +2258,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
 
             <div class="method">
               <h4 class="method-name">getMonthCalendar()</h4>
-              <p class="method-description">Build a month-wise calendar summary with canonical festival orchestration, moon visibility fields, and compact daily Panchang snapshots.</p>
+              <p class="method-description">Build a month-wise calendar summary with canonical festival orchestration, moon visibility fields, Chandra Darshana timing fields, and compact daily Panchang snapshots.</p>
               <div class="method-signature">
                 <code>public function getMonthCalendar(int $year, int $month, float $lat, float $lon, string $tz, float $elevation=0.0, array $options=[], ?CarbonImmutable $calculationAt=null, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
               </div>
@@ -2254,7 +2330,27 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 323 unique festival identities and 85 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 329 unique festival identities and 90 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
+              <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
+              and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
+          </div>
+          <div class="info-box">
+            <h3>Recent Festival Rule Coverage</h3>
+            <ul>
+              <li><strong>Chandra Darshana:</strong> resolved from the first likely visible waxing crescent after Amavasya,
+                with <code>visibility_window</code>, <code>observance_window</code>, <code>start_iso</code>,
+                <code>end_iso</code>, <code>duration_seconds</code>, <code>duration_minutes</code>,
+                <code>duration_min</code>, and <code>visibility_assessment</code>.</li>
+              <li><strong>Satsangi Jeevan annual entries:</strong> Ramanand Swami Appearance Festival, Chandrayan Vrat,
+                Nara-Narayan Arjun Janmotsav, Dharmadev Janmotsav, Hatadi Festival, Swaminarayan Kurma Jayanti,
+                Snanyatra, Swaminarayan Rathyatra, Hindola Festival Begins, Pavitra Festival, Swaminarayan Varaha Jayanti,
+                and related Dhanurmas, Ramnavami, Parashurama, Narasimha, Gangavatar/Dasahara, Vijayadashami,
+                Sharad Purnima Rasa, Alankar Marjan, and Pushpa-Dolotsav ritual profiles.</li>
+              <li><strong>Profile metadata:</strong> festival rows can expose <code>tradition_profile</code>,
+                <code>ritual_profile</code>, <code>ritual_profile_key</code>, <code>source_refs</code>, sect-specific
+                flags, aliases, and localized deity/description strings in English, Hindi, and Gujarati.</li>
+            </ul>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -2283,7 +2379,7 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">buildFestivalPayload()</h4>
-              <p class="method-description">Build the canonical resolved festival object used by service and script outputs. It preserves raw rule keys for integrations while adding localized companion labels for human-facing JSON.</p>
+              <p class="method-description">Build the canonical resolved festival object used by service and script outputs. It preserves raw rule keys for integrations while adding localized companion labels, source references, ritual-profile labels, and explicit Chandra Darshana visibility/observance windows for human-facing JSON.</p>
               <div class="method-signature">
                 <code>public function buildFestivalPayload(string $name, array $rules, ?array $resolved=null): array</code>
               </div>
@@ -2489,7 +2585,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified yearly catalog currently reports <code>323</code> unique festival identities and <code>85</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
+              <li>The verified yearly catalog currently reports <code>329</code> unique festival identities and <code>90</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -3343,7 +3439,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
             <h3>Public Methods</h3>
             <div class="method">
               <h4 class="method-name">determineEkadashi()</h4>
-              <p class="method-description">Resolves Smarta vs Vaishnava Ekadashi dates based on Arunodaya and Dashami-overlap rules.</p>
+              <p class="method-description">Resolves Smarta vs Vaishnava Ekadashi dates based on Arunodaya and Dashami-overlap rules. The observance payload can include Satsangi Jeevan fasting guidance, standard unable-person allowances, and stricter Prabodhini guidance when Kartika Shukla Ekadashi is active.</p>
               <div class="method-signature">
                 <code>public function determineEkadashi(CarbonImmutable $date, array $panchangData): array</code>
               </div>
@@ -4143,6 +4239,11 @@ class PanchangController extends Controller
   'Agni_Vaasa' => [...],
   'Yogini_Vaasa' => [...],
   'Ekadashi_Observance' => [...],
+  // Ekadashi_Observance can include:
+  // fasting_guidance.profile
+  // fasting_guidance.guidance_keys
+  // fasting_guidance.guidance
+  // fasting_guidance.source_refs
   'Vara_Tithi_Doshas' => ['active_keys' => ['dagdha'], 'all' => [...]],
   'Tithi_Observance_Analysis' => ['rule_system' => 'smarta_udaya_tithi_structural_analysis', 'current_at_input_now' => ['status' => 'Shuddha'], 'at_sunrise' => ['status' => 'Shuddha']],
   'Vrata_Parana' => ['supported_families' => [['family_key' => 'sankashti_chaturthi']], 'current_at_input_now' => ['family_key' => 'sankashti_chaturthi']],
@@ -4650,7 +4751,12 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.4.0 expands Ekadashi observance and parana output, adds explicit Tithyavasara and Harivasara classification metadata, and localizes the new user-facing parana labels; v9.3.0 remains the eclipse and festival truth-table refinement release.</p>
+            <p>Review the version-specific notes below before upgrading. The current documentation snapshot adds Chandra Darshana visibility output, Satsangi Jeevan annual observance profiles, expanded source documentation, and regenerated localized artifacts; v9.4.0 remains the latest published Ekadashi parana classification release.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>Current Documentation Snapshot</h3>
+            <p>This working tree documents staged changes after v9.4.0: Chandra Darshana visibility fields, Satsangi Jeevan annual festival and vrat profiles, Satsangi Ekadashi fasting guidance, expanded traditional source documentation, and regenerated English/Hindi/Gujarati JSON artifacts for Amanta and Purnimanta outputs.</p>
           </div>
 
           <h3>Published Releases</h3>
@@ -4845,6 +4951,34 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>Current Unreleased Changes</h3>
+          <p class="lead">Documentation snapshot focused on Chandra Darshana timing, Satsangi Jeevan festival coverage, source documentation, and regenerated localized artifacts.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Festival payloads can include new Chandra Darshana fields:</strong> Chandra Darshana entries expose <code>visibility_window</code>, <code>observance_window</code>, <code>start_iso</code>, <code>end_iso</code>, <code>duration_min</code>, and <code>visibility_assessment</code>.</li>
+              <li><strong>Generated JSON changed:</strong> Amanta and Purnimanta output artifacts for English, Hindi, and Gujarati have been regenerated across today, month, festival, vrat, eclipse, and raw yearly files.</li>
+              <li><strong>Localized strings changed:</strong> New Chandra Darshana visibility labels, Satsangi ritual profiles, Satsangi Ekadashi fasting guidance, festival descriptions, deity labels, and source-facing labels are localized in all supported locales.</li>
+            </ul>
+          </div>
+
+          <h4>Added and Improved</h4>
+          <ul>
+            <li><strong>Chandra Darshana decision tree:</strong> Added a dedicated Markdown decision tree documenting traditional Pratipada/Dwitiya observance logic separately from the simplified modern crescent-visibility heuristic.</li>
+            <li><strong>Chandra Darshana visibility assessment:</strong> Festival snapshots now include sunset elongation and illumination inputs, and resolved entries expose lag, elongation, illumination, threshold, and pass/fail metadata.</li>
+            <li><strong>Satsangi Jeevan annual observances:</strong> Added or refined Swaminarayan/Uddhav-sampraday entries including Ramanand Swami Appearance Festival, Chandrayan Vrat, Nara-Narayan Arjun Janmotsav, Dharmadev Janmotsav, Hatadi Festival, Swaminarayan Kurma Jayanti, Snanyatra, Swaminarayan Rathyatra, Hindola Festival Begins, Pavitra Festival, Swaminarayan Varaha Jayanti, and related ritual profiles.</li>
+            <li><strong>Ekadashi fasting guidance:</strong> Ekadashi observance output can include Satsangi Jeevan fasting guidance, unable-person allowance guidance, Prabodhini stricter-fast guidance, and source references.</li>
+            <li><strong>Traditional source docs:</strong> The source map and HTML docs now include the expanded classical, sectarian, living-tradition, and published Panchang source families without referencing intermediate review artifacts.</li>
+          </ul>
+
+          <h4>Upgrade Checklist</h4>
+          <ul>
+            <li>Regenerate or refresh cached generated JSON for all locale/calendar-type combinations.</li>
+            <li>If client code renders Chandra Darshana, prefer <code>visibility_window.display</code> and <code>duration_min</code> for human-facing timing, while keeping <code>start_iso</code> and <code>end_iso</code> for exact timestamps.</li>
+            <li>If client code displays Ekadashi details, surface <code>fasting_guidance.guidance</code> when present and fall back to older parana fields when absent.</li>
+          </ul>
 
           <h3>v9.4.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Feature release focused on richer Ekadashi observance output, clearer parana classification, and localized user-facing parana terminology.</p>
@@ -5260,7 +5394,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <ul>
                 <li>Consolidated <code>Shakambhari Purnima</code> under <code>Pausha Purnima</code>.</li>
                 <li>Refactored <code>Pradosh Vrat</code> to resolve dynamically based on the weekday (e.g., calculating names like <em>Shani Pradosh Vrat</em>, weekday-specific descriptions, and deities dynamically) instead of hardcoding multiple redundant entries.</li>
-                <li>Clarified public observance totals as <code>323</code> unique festival identities and <code>85</code> unique vrat identities.</li>
+                <li>Clarified public observance totals as <code>329</code> unique festival identities and <code>90</code> unique vrat identities.</li>
               </ul>
             </li>
           </ul>
@@ -5304,7 +5438,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
             <li><strong>Festival Expansion:</strong>
               <ul>
-                <li>Expanded built-in observance coverage to <strong>323 unique festival identities and 85 unique vrat identities</strong> with broader regional and traditional observance support.</li>
+                <li>Expanded built-in observance coverage to <strong>329 unique festival identities and 90 unique vrat identities</strong> with broader regional and traditional observance support.</li>
                 <li>Added support for many regional festival naming conventions and aliases.</li>
                 <li>Improved handling for regional observances such as Uttarayan, Pongal, Maghi, Til Sankranti, Khichdi, Ghughuti, Sakraat, Thiruvadhirai, Arudra Darshanam, and many more.</li>
                 <li>Improved handling for weekday-specific Pradosh observances.</li>
@@ -6352,7 +6486,42 @@ const FESTIVAL_RULES
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Śrīmad Bhāgavatam 3.11.10 / Āryabhaṭīya commentary tradition</strong>→ Yama and Prahar duration basis</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Vālmīki Rāmāyaṇa / Śrīmad Bhāgavatam</strong>→ Rama Navami, Vamana Jayanti, Govardhan Puja, and Annakuta context</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Shikshapatri / Vitthalnathji tradition</strong>→ Vaishnava vrata-nirnaya and Ekadashi profile context</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Utsava-Nirnaya, Bhakti-Hamsa, Seva-Shlokah Shringar-Rasamandanam</strong>→ Pushtimarg festival, vrata, grahana, and seva-calendar source families</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Yājñavalkya Smṛti / Saṃskāra-ratnamālā</strong>→ Samavedi Shravani and Upakarma Hasta-nakshatra rule family</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
                 </svg><strong>Popular travel-muhurta, Drik/Nivas-Shool, Gowri/Pambu conventions</strong>→ Published Panchang table systems</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>Drik Panchang public timing references</strong>→ Ekadashi parana, Harivasara, Mahadvadashi, and festival timing comparisons</li>
+              <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg><strong>BAPS, Swaminarayan.org, ISKCON, Indica Today, Samskaaram.com</strong>→ Living/public observance summaries used only as modern reference context</li>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />

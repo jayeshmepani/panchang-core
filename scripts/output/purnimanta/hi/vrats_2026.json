@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-13T05:21:06+00:00",
+        "generated_at": "2026-06-17T09:27:15+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -17,9 +17,9 @@
         "title": "व्रत 2026 - पूरे वर्ष के सभी व्रत और उपवास",
         "year": 2026,
         "calendar_type": "purnimanta",
-        "vrat_day_count": 141,
-        "vrat_entry_count": 208,
-        "total_vrats": 85,
+        "vrat_day_count": 143,
+        "vrat_entry_count": 214,
+        "total_vrats": 90,
         "recurring_weekday_vrats": [
             {
                 "name": "रविवार व्रत",
@@ -446,6 +446,112 @@
                         "winning_score": 1124,
                         "winning_window_overlap_seconds": 7471.511435508728,
                         "winning_window_coverage_ratio": 0.784015554144078,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "चांद्रायण व्रत",
+                    "name_key": "Chandrayan Vrat",
+                    "description": "स्वामीनारायण वार्षिक व्रत चक्र में पौष शुक्ल चतुर्दशी से आरंभ होने वाला चांद्रायण व्रत",
+                    "deity": "विष्णु/चंद्र",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                14
+                            ],
+                            "names": [
+                                "शुक्ल चतुर्दशी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "पौष",
+                            "value_key": "Pausha",
+                            "name": "पौष"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी चांद्रायण व्रत अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "chandrayan_vrat_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.19"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "चांद्रायण व्रत",
+                        "required_tithi": 14,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461042.2024431536,
+                        "target_tithi_end_jd": 2461043.0574338958,
+                        "standard_date": "2026-01-02",
+                        "observance_date": "2026-01-02",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1059,
+                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Chandrayan Vrat",
+                        "festival_name_localized": "चांद्रायण व्रत",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1059,
+                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -1187,7 +1293,7 @@
                     }
                 }
             ],
-            "2026-01-19": [
+            "2026-01-20": [
                 {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
@@ -1220,57 +1326,105 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
+                        "karmakala_type": "chandra_darshana_visibility",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 5346.000011265278,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461059.3276976775,
-                        "target_tithi_end_jd": 2461060.364259341,
-                        "standard_date": "2026-01-19",
-                        "observance_date": "2026-01-19",
+                        "target_tithi_start_jd": 2461060.364259341,
+                        "target_tithi_end_jd": 2461061.3839227688,
+                        "standard_date": "2026-01-20",
+                        "observance_date": "2026-01-20",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1589,
+                            "winning_window_overlap_seconds": 5346.000011265278,
                             "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 39428.99997532368,
+                            "moon_visibility_start_jd": 2461061.042337963,
+                            "moon_visibility_end_jd": 2461061.104212963,
+                            "moon_visibility_seconds": 5346.000011265278,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 89.10000018775463,
+                                "elongation_degrees": 19.958161515901566,
+                                "illumination_percent": 3.0028940028826834,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1589,
+                        "winning_window_overlap_seconds": 5346.000011265278,
                         "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 39428.99997532368,
+                        "moon_visibility_start_jd": 2461061.042337963,
+                        "moon_visibility_end_jd": 2461061.104212963,
+                        "moon_visibility_seconds": 5346.000011265278,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 89.10000018775463,
+                            "elongation_degrees": 19.958161515901566,
+                            "illumination_percent": 3.0028940028826834,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -1278,8 +1432,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:३० अपराह्न to ०८:०० अपराह्न",
+                        "start": "०६:३० अपराह्न",
+                        "end": "०८:०० अपराह्न",
+                        "start_iso": "20/01/2026 06:30:57 PM",
+                        "end_iso": "20/01/2026 08:00:04 PM",
+                        "start_jd": 2461061.042337963,
+                        "end_jd": 2461061.104212963,
+                        "duration_seconds": 5346.000011265278,
+                        "duration_minutes": 89.10000018775463,
+                        "duration_min": "1h 29m 6s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:३० अपराह्न to ०८:०० अपराह्न",
+                        "start": "०६:३० अपराह्न",
+                        "end": "०८:०० अपराह्न",
+                        "start_iso": "20/01/2026 06:30:57 PM",
+                        "end_iso": "20/01/2026 08:00:04 PM",
+                        "start_jd": 2461061.042337963,
+                        "end_jd": 2461061.104212963,
+                        "duration_seconds": 5346.000011265278,
+                        "duration_minutes": 89.10000018775463,
+                        "duration_min": "1h 29m 6s"
                     }
                 }
             ],
@@ -2406,7 +2588,10 @@
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
                         "prefer_full_karmakala_coverage": true,
-                        "ekadesha_coverage_allowed": true
+                        "ekadesha_coverage_allowed": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.59.60-66"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "महा शिवरात्रि",
@@ -2598,17 +2783,26 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2620,35 +2814,74 @@
                         "observance_date": "2026-02-18",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 34605.31493425369,
+                            "moon_visibility_start_jd": 2461090.055266204,
+                            "moon_visibility_end_jd": 2461090.093541667,
+                            "moon_visibility_seconds": 3307.000006735325,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 55.11666677892208,
+                                "elongation_degrees": 12.962265511100668,
+                                "illumination_percent": 1.27409978909781,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 34605.31493425369,
+                        "moon_visibility_start_jd": 2461090.055266204,
+                        "moon_visibility_end_jd": 2461090.093541667,
+                        "moon_visibility_seconds": 3307.000006735325,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 55.11666677892208,
+                            "elongation_degrees": 12.962265511100668,
+                            "illumination_percent": 1.27409978909781,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -2656,8 +2889,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:४९ अपराह्न to ०७:४४ अपराह्न",
+                        "start": "०६:४९ अपराह्न",
+                        "end": "०७:४४ अपराह्न",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:४९ अपराह्न to ०७:४४ अपराह्न",
+                        "start": "०६:४९ अपराह्न",
+                        "end": "०७:४४ अपराह्न",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
                     }
                 }
             ],
@@ -3950,7 +4211,7 @@
                     }
                 }
             ],
-            "2026-03-19": [
+            "2026-03-20": [
                 {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
@@ -3983,57 +4244,105 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
+                        "karmakala_type": "chandra_darshana_visibility",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 5177.000002563,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461118.5579019254,
-                        "target_tithi_end_jd": 2461119.474087096,
-                        "standard_date": "2026-03-19",
-                        "observance_date": "2026-03-19",
+                        "target_tithi_start_jd": 2461119.474087096,
+                        "target_tithi_end_jd": 2461120.3758340282,
+                        "standard_date": "2026-03-20",
+                        "observance_date": "2026-03-20",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1586,
+                            "winning_window_overlap_seconds": 5177.000002563,
                             "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 43688.00000846386,
+                            "moon_visibility_start_jd": 2461120.0646412037,
+                            "moon_visibility_end_jd": 2461120.1245601852,
+                            "moon_visibility_seconds": 5177.000002563,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 86.28333337605,
+                                "elongation_degrees": 19.84153009628119,
+                                "illumination_percent": 2.968250396932154,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1586,
+                        "winning_window_overlap_seconds": 5177.000002563,
                         "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 43688.00000846386,
+                        "moon_visibility_start_jd": 2461120.0646412037,
+                        "moon_visibility_end_jd": 2461120.1245601852,
+                        "moon_visibility_seconds": 5177.000002563,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 86.28333337605,
+                            "elongation_degrees": 19.84153009628119,
+                            "illumination_percent": 2.968250396932154,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -4041,8 +4350,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:०३ अपराह्न to ०८:२९ अपराह्न",
+                        "start": "०७:०३ अपराह्न",
+                        "end": "०८:२९ अपराह्न",
+                        "start_iso": "20/03/2026 07:03:05 PM",
+                        "end_iso": "20/03/2026 08:29:22 PM",
+                        "start_jd": 2461120.0646412037,
+                        "end_jd": 2461120.1245601852,
+                        "duration_seconds": 5177.000002563,
+                        "duration_minutes": 86.28333337605,
+                        "duration_min": "1h 26m 17s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:०३ अपराह्न to ०८:२९ अपराह्न",
+                        "start": "०७:०३ अपराह्न",
+                        "end": "०८:२९ अपराह्न",
+                        "start_iso": "20/03/2026 07:03:05 PM",
+                        "end_iso": "20/03/2026 08:29:22 PM",
+                        "start_jd": 2461120.0646412037,
+                        "end_jd": 2461120.1245601852,
+                        "duration_seconds": 5177.000002563,
+                        "duration_minutes": 86.28333337605,
+                        "duration_min": "1h 26m 17s"
                     }
                 }
             ],
@@ -4086,7 +4423,13 @@
                             "name": "चैत्र"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "vriddhi_preference": "first",
+                        "ritual_profile": "matsya_jayanti_satsangi",
+                        "ritual_profile_key": "matsya_jayanti_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "मत्स्य जयंती",
@@ -4501,9 +4844,19 @@
                             "value_key": "Chaitra",
                             "name": "चैत्र"
                         },
+                        "nakshatra": "पुनर्वसु",
+                        "nakshatra_key": "Punarvasu",
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "prefer_nakshatra": true,
+                        "ritual_profile": "सत्संगी रामनवमी अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "ramnavami_satsangi",
+                        "preferred_nakshatra": "पुनर्वसु",
+                        "preferred_nakshatra_key": "Punarvasu",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "राम नवमी",
@@ -4526,6 +4879,7 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
+                            "preferred_nakshatra": "पुनर्वसु",
                             "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 0,
@@ -4536,7 +4890,9 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
-                            "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
+                            "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                            "preferred_nakshatra_key": "Punarvasu",
+                            "preferred_nakshatra_name": "पुनर्वसु"
                         },
                         "festival_name_key": "Rama Navami",
                         "festival_name_localized": "राम नवमी",
@@ -4548,7 +4904,7 @@
                         "require_karmakala_match": null,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
+                        "preferred_nakshatra": "पुनर्वसु",
                         "winning_reason": "राम नवमी क्षय, संयुक्त दिन चुनें",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 0,
@@ -4561,7 +4917,9 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "ram_navami_kshaya_choose_combined_day",
-                        "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें"
+                        "winning_reason_name": "राम नवमी क्षय, संयुक्त दिन चुनें",
+                        "preferred_nakshatra_key": "Punarvasu",
+                        "preferred_nakshatra_name": "पुनर्वसु"
                     }
                 },
                 {
@@ -4604,6 +4962,7 @@
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "सूर्योदय",
+                        "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
                         "tradition_profile": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
                         "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami"
@@ -5767,17 +6126,26 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -5789,35 +6157,74 @@
                         "observance_date": "2026-04-18",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 27801.89655572176,
+                            "moon_visibility_start_jd": 2461149.072337963,
+                            "moon_visibility_end_jd": 2461149.1196875,
+                            "moon_visibility_seconds": 4090.9999787807465,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 68.18333297967911,
+                                "elongation_degrees": 14.93186407656107,
+                                "illumination_percent": 1.6883535078945078,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 27801.89655572176,
+                        "moon_visibility_start_jd": 2461149.072337963,
+                        "moon_visibility_end_jd": 2461149.1196875,
+                        "moon_visibility_seconds": 4090.9999787807465,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 68.18333297967911,
+                            "elongation_degrees": 14.93186407656107,
+                            "illumination_percent": 1.6883535078945078,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -5825,8 +6232,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:१४ अपराह्न to ०८:२२ अपराह्न",
+                        "start": "०७:१४ अपराह्न",
+                        "end": "०८:२२ अपराह्न",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:१४ अपराह्न to ०८:२२ अपराह्न",
+                        "start": "०७:१४ अपराह्न",
+                        "end": "०८:२२ अपराह्न",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
                     }
                 }
             ],
@@ -6267,8 +6702,15 @@
                         },
                         "karmakala_type": "sunset",
                         "karmakala_type_name": "सूर्यास्त",
+                        "ritual_kala_type": "pradosha",
+                        "ritual_kala_type_name": "प्रदोष",
                         "strict_karmakala": true,
-                        "vriddhi_preference": "last"
+                        "vriddhi_preference": "last",
+                        "ritual_profile": "सत्संगी नरसिंह जयंती अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "narasimha_jayanti_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.60"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "नरसिंह जयंती",
@@ -7598,6 +8040,178 @@
                     }
                 }
             ],
+            "2026-06-16": [
+                {
+                    "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
+                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
+                    "deity": "चंद्र",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "चंद्र दर्शन",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 5843.000011146069,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461207.4591981247,
+                        "target_tithi_end_jd": 2461208.307458926,
+                        "standard_date": "2026-06-16",
+                        "observance_date": "2026-06-16",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1597,
+                            "winning_window_overlap_seconds": 5843.000011146069,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                            "moon_visibility_start_jd": 2461208.0900578704,
+                            "moon_visibility_end_jd": 2461208.1576851853,
+                            "moon_visibility_seconds": 5843.000011146069,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 97.38333351910114,
+                                "elongation_degrees": 20.943665725795363,
+                                "illumination_percent": 3.3033835396359956,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "चंद्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1597,
+                        "winning_window_overlap_seconds": 5843.000011146069,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                        "moon_visibility_start_jd": 2461208.0900578704,
+                        "moon_visibility_end_jd": 2461208.1576851853,
+                        "moon_visibility_seconds": 5843.000011146069,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 97.38333351910114,
+                            "elongation_degrees": 20.943665725795363,
+                            "illumination_percent": 3.3033835396359956,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:३९ अपराह्न to ०९:१७ अपराह्न",
+                        "start": "०७:३९ अपराह्न",
+                        "end": "०९:१७ अपराह्न",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:३९ अपराह्न to ०९:१७ अपराह्न",
+                        "start": "०७:३९ अपराह्न",
+                        "end": "०९:१७ अपराह्न",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
+                    }
+                }
+            ],
             "2026-06-21": [
                 {
                     "name": "भानु सप्तमी",
@@ -8909,17 +9523,26 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -8931,35 +9554,74 @@
                         "observance_date": "2026-07-15",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 20273.103515803814,
+                            "moon_visibility_start_jd": 2461237.0909722224,
+                            "moon_visibility_end_jd": 2461237.1354050925,
+                            "moon_visibility_seconds": 3838.999977707863,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 63.983332961797714,
+                                "elongation_degrees": 16.49709561950189,
+                                "illumination_percent": 2.058293467058375,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 20273.103515803814,
+                        "moon_visibility_start_jd": 2461237.0909722224,
+                        "moon_visibility_end_jd": 2461237.1354050925,
+                        "moon_visibility_seconds": 3838.999977707863,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 63.983332961797714,
+                            "elongation_degrees": 16.49709561950189,
+                            "illumination_percent": 2.058293467058375,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -8967,8 +9629,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:४१ अपराह्न to ०८:४४ अपराह्न",
+                        "start": "०७:४१ अपराह्न",
+                        "end": "०८:४४ अपराह्न",
+                        "start_iso": "15/07/2026 07:41:00 PM",
+                        "end_iso": "15/07/2026 08:44:58 PM",
+                        "start_jd": 2461237.0909722224,
+                        "end_jd": 2461237.1354050925,
+                        "duration_seconds": 3838.999977707863,
+                        "duration_minutes": 63.983332961797714,
+                        "duration_min": "1h 3m 59s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:४१ अपराह्न to ०८:४४ अपराह्न",
+                        "start": "०७:४१ अपराह्न",
+                        "end": "०८:४४ अपराह्न",
+                        "start_iso": "15/07/2026 07:41:00 PM",
+                        "end_iso": "15/07/2026 08:44:58 PM",
+                        "start_jd": 2461237.0909722224,
+                        "end_jd": 2461237.1354050925,
+                        "duration_seconds": 3838.999977707863,
+                        "duration_minutes": 63.983332961797714,
+                        "duration_min": "1h 3m 59s"
                     }
                 }
             ],
@@ -10477,7 +11167,7 @@
                     }
                 }
             ],
-            "2026-08-13": [
+            "2026-08-14": [
                 {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
@@ -10510,33 +11200,218 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461265.233781427,
-                        "target_tithi_end_jd": 2461266.133280446,
-                        "standard_date": "2026-08-13",
-                        "observance_date": "2026-08-13",
+                        "target_tithi_start_jd": 2461266.133280446,
+                        "target_tithi_end_jd": 2461267.0536203925,
+                        "standard_date": "2026-08-14",
+                        "observance_date": "2026-08-14",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 44455.80191910267,
+                            "moon_visibility_start_jd": 2461267.0802662037,
+                            "moon_visibility_end_jd": 2461267.1283217594,
+                            "moon_visibility_seconds": 4152.00001001358,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 69.200000166893,
+                                "elongation_degrees": 24.342801472773075,
+                                "illumination_percent": 4.445219491098684,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "चंद्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 44455.80191910267,
+                        "moon_visibility_start_jd": 2461267.0802662037,
+                        "moon_visibility_end_jd": 2461267.1283217594,
+                        "moon_visibility_seconds": 4152.00001001358,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 69.200000166893,
+                            "elongation_degrees": 24.342801472773075,
+                            "illumination_percent": 4.445219491098684,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२५ अपराह्न to ०८:३४ अपराह्न",
+                        "start": "०७:२५ अपराह्न",
+                        "end": "०८:३४ अपराह्न",
+                        "start_iso": "14/08/2026 07:25:35 PM",
+                        "end_iso": "14/08/2026 08:34:47 PM",
+                        "start_jd": 2461267.0802662037,
+                        "end_jd": 2461267.1283217594,
+                        "duration_seconds": 4152.00001001358,
+                        "duration_minutes": 69.200000166893,
+                        "duration_min": "1h 9m 12s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२५ अपराह्न to ०८:३४ अपराह्न",
+                        "start": "०७:२५ अपराह्न",
+                        "end": "०८:३४ अपराह्न",
+                        "start_iso": "14/08/2026 07:25:35 PM",
+                        "end_iso": "14/08/2026 08:34:47 PM",
+                        "start_jd": 2461267.0802662037,
+                        "end_jd": 2461267.1283217594,
+                        "duration_seconds": 4152.00001001358,
+                        "duration_minutes": 69.200000166893,
+                        "duration_min": "1h 9m 12s"
+                    }
+                }
+            ],
+            "2026-08-16": [
+                {
+                    "name": "स्वामीनारायण वराह जयंती",
+                    "name_key": "Swaminarayan Varaha Jayanti",
+                    "description": "मध्याह्न पूजा सहित श्रावण शुक्ल चतुर्थी पर स्वामीनारायण वराह जयंती",
+                    "deity": "विष्णु (वराह)",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                4
+                            ],
+                            "names": [
+                                "शुक्ल चतुर्थी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "श्रावण",
+                            "value_key": "Shravana",
+                            "name": "श्रावण"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी वराह जयंती अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "varaha_jayanti_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "स्वामीनारायण वराह जयंती",
+                        "required_tithi": 4,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9323.399962484837,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461267.9994307365,
+                        "target_tithi_end_jd": 2461268.974106932,
+                        "standard_date": "2026-08-16",
+                        "observance_date": "2026-08-16",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "winning_score": 1155,
+                            "winning_window_overlap_seconds": 9323.399962484837,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -10546,10 +11421,10 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                         },
-                        "festival_name_key": "Chandra Darshana",
-                        "festival_name_localized": "चंद्र दर्शन",
+                        "festival_name_key": "Swaminarayan Varaha Jayanti",
+                        "festival_name_localized": "स्वामीनारायण वराह जयंती",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "मध्याह्न"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -10558,8 +11433,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_score": 1155,
+                        "winning_window_overlap_seconds": 9323.399962484837,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -11661,8 +12536,16 @@
                         "strict_karmakala": true,
                         "vriddhi_preference": "last",
                         "prefer_nakshatra": true,
+                        "tradition_profile": "विट्ठलेश गोस्वामी के स्वीकृत मत सहित उद्धव/स्वामीनारायण जन्माष्टमी",
+                        "tradition_profile_key": "Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
+                        "ritual_profile": "उद्धव/स्वामीनारायण जन्माष्टमी अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "janmashtami_uddhav",
                         "preferred_nakshatra": "रोहिणी",
-                        "preferred_nakshatra_key": "Rohini"
+                        "preferred_nakshatra_key": "Rohini",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.11",
+                            "Satsangi Jeevan 4.55"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "कृष्ण जन्माष्टमी",
@@ -11726,6 +12609,116 @@
                         "winning_reason_name": "रोहिणी न होने पर जन्माष्टमी पहले दिन",
                         "preferred_nakshatra_key": "Rohini",
                         "preferred_nakshatra_name": "रोहिणी"
+                    }
+                },
+                {
+                    "name": "रामानंद स्वामी प्राकट्य उत्सव",
+                    "name_key": "Ramanand Swami Appearance Festival",
+                    "description": "जन्माष्टमी पर स्वामीनारायण/उद्धव संप्रदाय का रामानंद स्वामी प्राकट्य पालन",
+                    "deity": "रामानंद स्वामी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "निशीथ",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "tradition_profile": "स्वामीनारायण/उद्धव जन्माष्टमी प्रातः और मध्यरात्रि पालन",
+                        "tradition_profile_key": "Swaminarayan/Uddhav Janmashtami morning and midnight observance",
+                        "ritual_profile": "उद्धव/स्वामीनारायण जन्माष्टमी अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "janmashtami_uddhav",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.12",
+                            "Satsangi Jeevan 4.55"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "रामानंद स्वामी प्राकट्य उत्सव",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3716326756,
+                        "target_tithi_end_jd": 2461288.2801613174,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि सूर्योदय पर",
+                            "winning_score": 700,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "लक्षित तिथि सूर्योदय पर"
+                        },
+                        "festival_name_key": "Ramanand Swami Appearance Festival",
+                        "festival_name_localized": "रामानंद स्वामी प्राकट्य उत्सव",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "निशीथ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि सूर्योदय पर",
+                        "winning_score": 700,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "लक्षित तिथि सूर्योदय पर"
                     }
                 },
                 {
@@ -12385,17 +13378,26 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12407,35 +13409,74 @@
                         "observance_date": "2026-09-12",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 4235.499536991119,
+                            "moon_visibility_start_jd": 2461296.061736111,
+                            "moon_visibility_end_jd": 2461296.089340278,
+                            "moon_visibility_seconds": 2385.000018775463,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 39.750000312924385,
+                                "elongation_degrees": 17.79004877973162,
+                                "illumination_percent": 2.3908763990915793,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 4235.499536991119,
+                        "moon_visibility_start_jd": 2461296.061736111,
+                        "moon_visibility_end_jd": 2461296.089340278,
+                        "moon_visibility_seconds": 2385.000018775463,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 39.750000312924385,
+                            "elongation_degrees": 17.79004877973162,
+                            "illumination_percent": 2.3908763990915793,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12443,8 +13484,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:५८ अपराह्न to ०७:३८ अपराह्न",
+                        "start": "०६:५८ अपराह्न",
+                        "end": "०७:३८ अपराह्न",
+                        "start_iso": "12/09/2026 06:58:53 PM",
+                        "end_iso": "12/09/2026 07:38:39 PM",
+                        "start_jd": 2461296.061736111,
+                        "end_jd": 2461296.089340278,
+                        "duration_seconds": 2385.000018775463,
+                        "duration_minutes": 39.750000312924385,
+                        "duration_min": "39m 45s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:५८ अपराह्न to ०७:३८ अपराह्न",
+                        "start": "०६:५८ अपराह्न",
+                        "end": "०७:३८ अपराह्न",
+                        "start_iso": "12/09/2026 06:58:53 PM",
+                        "end_iso": "12/09/2026 07:38:39 PM",
+                        "start_jd": 2461296.061736111,
+                        "end_jd": 2461296.089340278,
+                        "duration_seconds": 2385.000018775463,
+                        "duration_minutes": 39.750000312924385,
+                        "duration_min": "39m 45s"
                     }
                 }
             ],
@@ -12488,7 +13557,10 @@
                             "name": "भाद्रपद"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "वराह जयंती",
@@ -12659,7 +13731,9 @@
                     "aliases": [
                         "पार्श्व एकादशी",
                         "जल झीलणी एकादशी",
-                        "वामन एकादशी"
+                        "वामन एकादशी",
+                        "दानलीला महोत्सव",
+                        "पद्मा एकादशी"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -12690,7 +13764,13 @@
                             "name": "भाद्रपद"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "fasting_guidance": "सत्संगी जीवन एकादशी मार्गदर्शन: संभव हो तो उपवास, इंद्रिय-निग्रह, पूजन और रात्रि जागरण करें।",
+                        "fasting_guidance_key": "satsangi_ekadashi_standard_fast_guidance",
+                        "source_refs": [
+                            "Satsangi Jeevan 3.32.160-168",
+                            "Satsangi Jeevan 4.56.80-87"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "परिवर्तिनी एकादशी",
@@ -13877,7 +14957,7 @@
                     }
                 }
             ],
-            "2026-10-11": [
+            "2026-10-12": [
                 {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
@@ -13910,57 +14990,105 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
+                        "karmakala_type": "chandra_darshana_visibility",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 3191.999986767769,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461324.15970804,
-                        "target_tithi_end_jd": 2461325.167652594,
-                        "standard_date": "2026-10-11",
-                        "observance_date": "2026-10-11",
+                        "target_tithi_start_jd": 2461325.167652594,
+                        "target_tithi_end_jd": 2461326.196935367,
+                        "standard_date": "2026-10-12",
+                        "observance_date": "2026-10-12",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1553,
+                            "winning_window_overlap_seconds": 3191.999986767769,
                             "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 42176.999996602535,
+                            "moon_visibility_start_jd": 2461326.041111111,
+                            "moon_visibility_end_jd": 2461326.0780555555,
+                            "moon_visibility_seconds": 3191.999986767769,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.199999779462814,
+                                "elongation_degrees": 22.199849943419082,
+                                "illumination_percent": 3.7064212817593587,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1553,
+                        "winning_window_overlap_seconds": 3191.999986767769,
                         "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 42176.999996602535,
+                        "moon_visibility_start_jd": 2461326.041111111,
+                        "moon_visibility_end_jd": 2461326.0780555555,
+                        "moon_visibility_seconds": 3191.999986767769,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 53.199999779462814,
+                            "elongation_degrees": 22.199849943419082,
+                            "illumination_percent": 3.7064212817593587,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -13968,8 +15096,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:२९ अपराह्न to ०७:२२ अपराह्न",
+                        "start": "०६:२९ अपराह्न",
+                        "end": "०७:२२ अपराह्न",
+                        "start_iso": "12/10/2026 06:29:12 PM",
+                        "end_iso": "12/10/2026 07:22:23 PM",
+                        "start_jd": 2461326.041111111,
+                        "end_jd": 2461326.0780555555,
+                        "duration_seconds": 3191.999986767769,
+                        "duration_minutes": 53.199999779462814,
+                        "duration_min": "53m 12s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:२९ अपराह्न to ०७:२२ अपराह्न",
+                        "start": "०६:२९ अपराह्न",
+                        "end": "०७:२२ अपराह्न",
+                        "start_iso": "12/10/2026 06:29:12 PM",
+                        "end_iso": "12/10/2026 07:22:23 PM",
+                        "start_jd": 2461326.041111111,
+                        "end_jd": 2461326.0780555555,
+                        "duration_seconds": 3191.999986767769,
+                        "duration_minutes": 53.199999779462814,
+                        "duration_min": "53m 12s"
                     }
                 }
             ],
@@ -15503,7 +16659,7 @@
                     }
                 }
             ],
-            "2026-11-10": [
+            "2026-11-11": [
                 {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
@@ -15536,57 +16692,105 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930629794,
-                        "target_tithi_end_jd": 2461354.854515955,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
+                        "target_tithi_start_jd": 2461354.854515955,
+                        "target_tithi_end_jd": 2461355.933150786,
+                        "standard_date": "2026-11-11",
+                        "observance_date": "2026-11-11",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 31925.227922201157,
+                            "moon_visibility_start_jd": 2461356.0269560185,
+                            "moon_visibility_end_jd": 2461356.0830092593,
+                            "moon_visibility_seconds": 4843.000003695488,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 80.71666672825813,
+                                "elongation_degrees": 25.035020279580408,
+                                "illumination_percent": 4.697534731472835,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 31925.227922201157,
+                        "moon_visibility_start_jd": 2461356.0269560185,
+                        "moon_visibility_end_jd": 2461356.0830092593,
+                        "moon_visibility_seconds": 4843.000003695488,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 80.71666672825813,
+                            "elongation_degrees": 25.035020279580408,
+                            "illumination_percent": 4.697534731472835,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -15594,8 +16798,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले द्वितीया दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०८ अपराह्न to ०७:२९ अपराह्न",
+                        "start": "०६:०८ अपराह्न",
+                        "end": "०७:२९ अपराह्न",
+                        "start_iso": "11/11/2026 06:08:49 PM",
+                        "end_iso": "11/11/2026 07:29:32 PM",
+                        "start_jd": 2461356.0269560185,
+                        "end_jd": 2461356.0830092593,
+                        "duration_seconds": 4843.000003695488,
+                        "duration_minutes": 80.71666672825813,
+                        "duration_min": "1h 20m 43s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०८ अपराह्न to ०७:२९ अपराह्न",
+                        "start": "०६:०८ अपराह्न",
+                        "end": "०७:२९ अपराह्न",
+                        "start_iso": "11/11/2026 06:08:49 PM",
+                        "end_iso": "11/11/2026 07:29:32 PM",
+                        "start_jd": 2461356.0269560185,
+                        "end_jd": 2461356.0830092593,
+                        "duration_seconds": 4843.000003695488,
+                        "duration_minutes": 80.71666672825813,
+                        "duration_min": "1h 20m 43s"
                     }
                 }
             ],
@@ -15844,7 +17076,13 @@
                             "name": "कार्तिक"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "सूर्योदय",
+                        "fasting_guidance": "प्रबोधिनी एकादशी मुख्य चातुर्मास एकादशी मानी जाती है; स्वास्थ्य अनुमति दे तो अधिक कठोर उपवास श्रेष्ठ है।",
+                        "fasting_guidance_key": "satsangi_prabodhini_strict_fast_guidance",
+                        "source_refs": [
+                            "Satsangi Jeevan 3.32.147-175",
+                            "Satsangi Jeevan 4.58.45-99"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "देवोत्थान (प्रबोधिनी) एकादशी",
@@ -15904,6 +17142,224 @@
                         "rule_rejection_reason": null,
                         "winning_reason_key": "kshaya_next_day",
                         "winning_reason_name": "क्षय तिथि के कारण अगले दिन"
+                    }
+                },
+                {
+                    "name": "धर्मदेव जन्मोत्सव",
+                    "name_key": "Dharmadev Janmotsav",
+                    "description": "प्रबोधिनी एकादशी पर मनाया जाने वाला स्वामीनारायण धर्मदेव जन्मोत्सव",
+                    "deity": "धर्मदेव/भक्तिदेवी",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "शुक्ल एकादशी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "कार्तिक",
+                            "value_key": "Kartika",
+                            "name": "कार्तिक"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "धर्मदेव जन्मोत्सव अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "dharmadev_janmotsav",
+                        "fasting_guidance": "प्रबोधिनी एकादशी मुख्य चातुर्मास एकादशी मानी जाती है; स्वास्थ्य अनुमति दे तो अधिक कठोर उपवास श्रेष्ठ है।",
+                        "fasting_guidance_key": "satsangi_prabodhini_strict_fast_guidance",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.55-99"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "धर्मदेव जन्मोत्सव",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 7903.399980068207,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461364.5729511185,
+                        "target_tithi_end_jd": 2461365.5422408413,
+                        "standard_date": "2026-11-20",
+                        "observance_date": "2026-11-20",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1131,
+                            "winning_window_overlap_seconds": 7903.399980068207,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Dharmadev Janmotsav",
+                        "festival_name_localized": "धर्मदेव जन्मोत्सव",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1131,
+                        "winning_window_overlap_seconds": 7903.399980068207,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "हाटड़ी उत्सव",
+                    "name_key": "Hatadi Festival",
+                    "description": "प्रबोधिनी संध्या पर राधा-दामोदर पूजा सहित स्वामीनारायण हाटड़ी पालन",
+                    "deity": "राधा-दामोदर",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "शुक्ल एकादशी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "कार्तिक",
+                            "value_key": "Kartika",
+                            "name": "कार्तिक"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "sayankala",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "हाटड़ी प्रबोधिनी अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "hatadi_prabodhini",
+                        "fasting_guidance": "प्रबोधिनी एकादशी मुख्य चातुर्मास एकादशी मानी जाती है; स्वास्थ्य अनुमति दे तो अधिक कठोर उपवास श्रेष्ठ है।",
+                        "fasting_guidance_key": "satsangi_prabodhini_strict_fast_guidance",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.55-99"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "हाटड़ी उत्सव",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9384.599992632866,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": true,
+                        "target_tithi_start_jd": 2461364.5729511185,
+                        "target_tithi_end_jd": 2461365.5422408413,
+                        "standard_date": "2026-11-20",
+                        "observance_date": "2026-11-20",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1156,
+                            "winning_window_overlap_seconds": 9384.599992632866,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Hatadi Festival",
+                        "festival_name_localized": "हाटड़ी उत्सव",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "sayankala"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1156,
+                        "winning_window_overlap_seconds": 9384.599992632866,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -17088,17 +18544,26 @@
                         },
                         "paksha": "Shukla",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "सरलीकृत आधुनिक अर्धचंद्र दृश्यता मॉडल",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "आधुनिक खगोलीय दृश्यता अनुमान; शास्त्रीय पाठ्य नियम नहीं",
+                        "location_sensitive": true
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
                         "required_tithi": 1,
                         "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -17110,35 +18575,74 @@
                         "observance_date": "2026-12-10",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 5126.7375111579895,
+                            "moon_visibility_start_jd": 2461385.025717593,
+                            "moon_visibility_end_jd": 2461385.067465278,
+                            "moon_visibility_seconds": 3606.9999888539314,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 60.11666648089886,
+                                "elongation_degrees": 16.22152474406488,
+                                "illumination_percent": 1.990559640492856,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                            "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "चंद्रोदय"
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 5126.7375111579895,
+                        "moon_visibility_start_jd": 2461385.025717593,
+                        "moon_visibility_end_jd": 2461385.067465278,
+                        "moon_visibility_seconds": 3606.9999888539314,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 60.11666648089886,
+                            "elongation_degrees": 16.22152474406488,
+                            "illumination_percent": 1.990559640492856,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -17146,8 +18650,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
+                        "winning_reason_name": "सूर्यास्त के बाद चंद्रास्त से पहले प्रतिपदा दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०७ अपराह्न to ०७:०७ अपराह्न",
+                        "start": "०६:०७ अपराह्न",
+                        "end": "०७:०७ अपराह्न",
+                        "start_iso": "10/12/2026 06:07:02 PM",
+                        "end_iso": "10/12/2026 07:07:09 PM",
+                        "start_jd": 2461385.025717593,
+                        "end_jd": 2461385.067465278,
+                        "duration_seconds": 3606.9999888539314,
+                        "duration_minutes": 60.11666648089886,
+                        "duration_min": "1h 0m 7s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०७ अपराह्न to ०७:०७ अपराह्न",
+                        "start": "०६:०७ अपराह्न",
+                        "end": "०७:०७ अपराह्न",
+                        "start_iso": "10/12/2026 06:07:02 PM",
+                        "end_iso": "10/12/2026 07:07:09 PM",
+                        "start_jd": 2461385.025717593,
+                        "end_jd": 2461385.067465278,
+                        "duration_seconds": 3606.9999888539314,
+                        "duration_minutes": 60.11666648089886,
+                        "duration_min": "1h 0m 7s"
                     }
                 }
             ],

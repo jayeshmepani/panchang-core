@@ -67,6 +67,7 @@ class EkadashiParanaCalculator
             'viddha_tithi_analysis' => $report['viddha_tithi_analysis'] ?? null,
             'ekadashi_smarta' => $report['ekadashi_smarta'] ?? null,
             'ekadashi_vaishnava' => $report['ekadashi_vaishnava'] ?? null,
+            'fasting_guidance' => $this->buildFastingGuidance($phaseTithi, $monthAmanta, $paksha),
         ];
 
         if ($phaseTithi === 11) {
@@ -209,6 +210,29 @@ class EkadashiParanaCalculator
             'profile' => $monthAmanta === null || $paksha === null ? 'global_nirnay_fallback' : 'gujarati_month_paksha_specific',
             'month_amanta' => $monthAmanta,
             'paksha' => $paksha,
+        ];
+    }
+
+    /** @return array{profile:string, guidance_keys:list<string>, guidance:list<string>, source_refs:list<string>} */
+    private function buildFastingGuidance(int $phaseTithi, ?string $monthAmanta, ?string $paksha): array
+    {
+        $guidanceKeys = [
+            'satsangi_ekadashi_standard_fast_guidance',
+            'satsangi_ekadashi_unable_allowance_guidance',
+        ];
+
+        if ($phaseTithi === 11 && $paksha === 'Shukla' && $this->normalizeMonthName((string) $monthAmanta) === 'kartika') {
+            $guidanceKeys[] = 'satsangi_prabodhini_strict_fast_guidance';
+        }
+
+        return [
+            'profile' => 'satsangi_jeevan_ekadashi',
+            'guidance_keys' => $guidanceKeys,
+            'guidance' => array_map(
+                static fn (string $key): string => Localization::translate('String', $key),
+                $guidanceKeys
+            ),
+            'source_refs' => ['Satsangi Jeevan 3.32.84-87', 'Satsangi Jeevan 3.32.160-175'],
         ];
     }
 

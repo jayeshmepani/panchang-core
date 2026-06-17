@@ -672,6 +672,7 @@ trait PanchangCalendarApiTrait
             $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, null, false, $selection);
 
             foreach ($festivals as $festival) {
+                $festival = $this->withFestivalTimingWindow($festival, $tz);
                 $dateKey = $this->festivalObservanceDate($festival, $date->toDateString());
                 $festivalsByDate[$dateKey] ??= [];
                 $festivalsByDate[$dateKey][] = $festival;
@@ -716,6 +717,87 @@ trait PanchangCalendarApiTrait
             'by_date' => $filteredByDate,
             'flat' => $filteredFlat,
         ];
+    }
+
+    /**
+     * Attach consumer-friendly timing for festivals whose resolver emits an
+     * explicit visibility/observance window.
+     *
+     * @param array<string, mixed> $festival
+     *
+     * @return array<string, mixed>
+     */
+    private function withFestivalTimingWindow(array $festival, string $tz): array
+    {
+        $decision = (array) ($festival['rules_applied'] ?? []);
+        $startJd = isset($decision['moon_visibility_start_jd']) ? (float) $decision['moon_visibility_start_jd'] : null;
+        $endJd = isset($decision['moon_visibility_end_jd']) ? (float) $decision['moon_visibility_end_jd'] : null;
+
+        if ($startJd === null || $endJd === null || $endJd <= $startJd) {
+            return $festival;
+        }
+
+        $start = $this->sunService->jdToCarbonPublic($startJd, $tz);
+        $end = $this->sunService->jdToCarbonPublic($endJd, $tz);
+        $seconds = max(0.0, ($endJd - $startJd) * 86400.0);
+        $startDisplay = $this->formatFestivalWindowTime($start);
+        $endDisplay = $this->formatFestivalWindowTime($end);
+
+        $window = [
+            'type' => 'moon_visibility',
+            'type_name' => Localization::translate('String', 'chandra_darshana_visibility'),
+            'display' => $startDisplay . ' to ' . $endDisplay,
+            'start' => $startDisplay,
+            'end' => $endDisplay,
+            'start_iso' => AstroCore::formatDateTime($start),
+            'end_iso' => AstroCore::formatDateTime($end),
+            'start_jd' => $startJd,
+            'end_jd' => $endJd,
+            'duration_seconds' => $seconds,
+            'duration_minutes' => $seconds / 60.0,
+            'duration_min' => $this->formatFestivalDuration($seconds),
+        ];
+
+        $festival['visibility_window'] = $window;
+        $festival['observance_window'] = $window;
+
+        return $festival;
+    }
+
+    private function formatFestivalWindowTime(CarbonImmutable $time): string
+    {
+        $notation = (string) config('panchang.defaults.time_notation', '12h');
+        $locale = (string) config('panchang.defaults.locale', 'en');
+        $display = $notation === '24h' ? $time->format('H:i') : $time->format('h:i A');
+
+        $display = match ($locale) {
+            'hi' => str_replace(['AM', 'PM'], ['पूर्वाह्न', 'अपराह्न'], $display),
+            'gu' => str_replace(['AM', 'PM'], ['પૂર્વાહ્ન', 'અપરાહ્ન'], $display),
+            default => $display,
+        };
+
+        return Localization::localizeNumber($display, $locale);
+    }
+
+    private function formatFestivalDuration(float $seconds): string
+    {
+        $rounded = (int) round($seconds);
+        $hours = intdiv($rounded, 3600);
+        $minutes = intdiv($rounded % 3600, 60);
+        $remainingSeconds = $rounded % 60;
+
+        $parts = [];
+        if ($hours > 0) {
+            $parts[] = sprintf('%dh', $hours);
+        }
+
+        $parts[] = sprintf('%dm', $minutes);
+
+        if ($remainingSeconds > 0) {
+            $parts[] = sprintf('%ds', $remainingSeconds);
+        }
+
+        return implode(' ', $parts);
     }
 
     /**
@@ -1054,6 +1136,7 @@ trait PanchangCalendarApiTrait
                     $rules = (array) ($festival['rules_applied'] ?? []);
                     $score = (int) ($rules['winning_score'] ?? -1);
                     $reason = (string) ($rules['winning_reason'] ?? '');
+                    $reasonKey = (string) ($rules['winning_reason_key'] ?? $reason);
                     $date = $candidate['entry']['date'];
                     $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? $festival['resolution']['decision']['vriddhi_preference'] ?? '');
 
@@ -1061,11 +1144,12 @@ trait PanchangCalendarApiTrait
                         continue;
                     }
 
-                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $date, $vriddhiPreference, $best)) {
+                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $reasonKey, $date, $vriddhiPreference, $best)) {
                         $best = [
                             'idx' => $candidate['idx'],
                             'score' => $score,
                             'reason' => $reason,
+                            'reason_key' => $reasonKey,
                             'date' => $date,
                             'vriddhi_preference' => $vriddhiPreference,
                         ];
@@ -1184,9 +1268,14 @@ trait PanchangCalendarApiTrait
         return $filtered;
     }
 
-    /** @param array{score:int, reason:string, date:string, vriddhi_preference:string} $best */
-    private function isStrongerFestivalDecision(int $score, string $reason, string $date, string $vriddhiPreference, array $best): bool
+    /** @param array{score:int, reason:string, reason_key:string, date:string, vriddhi_preference:string} $best */
+    private function isStrongerFestivalDecision(int $score, string $reason, string $reasonKey, string $date, string $vriddhiPreference, array $best): bool
     {
+        $isChandraDarshanaReason = static fn (string $r): bool => str_starts_with($r, 'chandra_darshana_');
+        if ($isChandraDarshanaReason($reasonKey) && $isChandraDarshanaReason($best['reason_key'])) {
+            return strcmp($date, $best['date']) < 0;
+        }
+
         $reasonRank = static fn (string $r): int => match ($r) {
             'target_at_karmakala' => 2,
             'target_during_observance' => 1,

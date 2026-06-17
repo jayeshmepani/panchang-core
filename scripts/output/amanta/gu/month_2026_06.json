@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-13T05:19:33+00:00",
+        "generated_at": "2026-06-17T09:25:40+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "amanta",
@@ -4750,103 +4750,6 @@
                     }
                 },
                 {
-                    "name": "અધિક ચંદ્ર દર્શન",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "અધિક માસમાં થતું ચંદ્ર દર્શન.",
-                    "deity": "ચંદ્ર",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "સુદ એકમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type": "moonrise",
-                        "karmakala_type_name": "ચંદ્રોદય",
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "અધિક ચંદ્ર દર્શન",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "moonrise",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461206.6208802294,
-                        "target_tithi_end_jd": 2461207.4591981247,
-                        "standard_date": "2026-06-15",
-                        "observance_date": "2026-06-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
-                            "winning_score": 300,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_during_observance",
-                            "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "અધિક ચંદ્ર દર્શન",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "ચંદ્રોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
-                        "winning_score": 300,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_during_observance",
-                        "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
-                    }
-                },
-                {
                     "name": "અધિક દર્શ અમાસ",
                     "name_key": "Adhika Darsha Amavasya",
                     "description": "અધિક માસમાં આવતી દર્શ અમાસ",
@@ -5276,6 +5179,176 @@
                             "name": "મંગળવાર",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "ચંદ્ર દર્શન",
+                    "name_key": "Chandra Darshana",
+                    "description": "અમાસ પછી ચંદ્રના પ્રથમ દર્શન",
+                    "deity": "ચંદ્ર",
+                    "fasting": true,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "સુદ એકમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
+                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
+                        "chandra_darshana_visibility_model_name": "સરળીકૃત આધુનિક અર્ધચંદ્ર દૃશ્યતા મોડેલ",
+                        "chandra_darshana_visibility_min_lag_minutes": 38,
+                        "chandra_darshana_visibility_min_elongation_degrees": 9,
+                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
+                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
+                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
+                        "chandra_darshana_visibility_basis_name": "આધુનિક ખગોળીય દૃશ્યતા અનુમાન; શાસ્ત્રીય ગ્રંથનો નિયમ નહીં",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "ચંદ્ર દર્શન",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 5843.000011146069,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461207.4591981247,
+                        "target_tithi_end_jd": 2461208.307458926,
+                        "standard_date": "2026-06-16",
+                        "observance_date": "2026-06-16",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "સૂર્યાસ્ત પછી ચંદ્રાસ્ત પહેલાં દ્વિતિયા દૃશ્યમાન",
+                            "winning_score": 1597,
+                            "winning_window_overlap_seconds": 5843.000011146069,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                            "moon_visibility_start_jd": 2461208.0900578704,
+                            "moon_visibility_end_jd": 2461208.1576851853,
+                            "moon_visibility_seconds": 5843.000011146069,
+                            "visibility_assessment": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 97.38333351910114,
+                                "elongation_degrees": 20.943665725795363,
+                                "illumination_percent": 3.3033835396359956,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                            "winning_reason_name": "સૂર્યાસ્ત પછી ચંદ્રાસ્ત પહેલાં દ્વિતિયા દૃશ્યમાન"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "ચંદ્ર દર્શન",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "સૂર્યાસ્ત પછી ચંદ્રાસ્ત પહેલાં દ્વિતિયા દૃશ્યમાન",
+                        "winning_score": 1597,
+                        "winning_window_overlap_seconds": 5843.000011146069,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 48916.00001603365,
+                        "moon_visibility_start_jd": 2461208.0900578704,
+                        "moon_visibility_end_jd": 2461208.1576851853,
+                        "moon_visibility_seconds": 5843.000011146069,
+                        "visibility_assessment": {
+                            "model": "simplified_modern_crescent_visibility",
+                            "visible": true,
+                            "lag_minutes": 97.38333351910114,
+                            "elongation_degrees": 20.943665725795363,
+                            "illumination_percent": 3.3033835396359956,
+                            "min_lag_minutes": 38,
+                            "min_elongation_degrees": 9,
+                            "hard_elongation_floor_degrees": 7,
+                            "min_illumination_percent": 0.8,
+                            "passes_lag": true,
+                            "passes_elongation": true,
+                            "passes_hard_elongation_floor": true,
+                            "passes_illumination": true,
+                            "basis": "modern_astronomical_heuristic_not_classical"
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_visible_after_sunset",
+                        "winning_reason_name": "સૂર્યાસ્ત પછી ચંદ્રાસ્ત પહેલાં દ્વિતિયા દૃશ્યમાન"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
+                        "display": "૦૭:૩૯ અપરાહ્ન to ૦૯:૧૭ અપરાહ્ન",
+                        "start": "૦૭:૩૯ અપરાહ્ન",
+                        "end": "૦૯:૧૭ અપરાહ્ન",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
+                        "display": "૦૭:૩૯ અપરાહ્ન to ૦૯:૧૭ અપરાહ્ન",
+                        "start": "૦૭:૩૯ અપરાહ્ન",
+                        "end": "૦૯:૧૭ અપરાહ્ન",
+                        "start_iso": "16/06/2026 07:39:41 PM",
+                        "end_iso": "16/06/2026 09:17:04 PM",
+                        "start_jd": 2461208.0900578704,
+                        "end_jd": 2461208.1576851853,
+                        "duration_seconds": 5843.000011146069,
+                        "duration_minutes": 97.38333351910114,
+                        "duration_min": "1h 37m 23s"
                     }
                 },
                 {
@@ -9697,6 +9770,71 @@
                             "name": "રવિવાર",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "સ્નાનયાત્રા",
+                    "name_key": "Snanyatra",
+                    "description": "સૂર્યોદયે જ્યેષ્ઠા નક્ષત્ર હોય ત્યારે સ્વામિનારાયણ સ્નાનયાત્રા",
+                    "deity": "કૃષ્ણ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "nakshatra",
+                        "basis_name": "નક્ષત્ર",
+                        "resolver": "classical",
+                        "nakshatra": "જ્યેષ્ઠા",
+                        "nakshatra_key": "Jyeshtha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "strict_karmakala": true,
+                        "sect_specific": true,
+                        "ritual_profile": "સત્સંગી સ્નાનયાત્રા વિધિ રૂપરેખા",
+                        "ritual_profile_key": "snanyatra_satsangi",
+                        "preferred_nakshatra": "જ્યેષ્ઠા",
+                        "preferred_nakshatra_key": "Jyeshtha",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "સ્નાનયાત્રા",
+                        "required_nakshatra": "જ્યેષ્ઠા",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-06-28",
+                        "observance_date": "2026-06-28",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "જ્યેષ્ઠા",
+                            "winning_reason": "નક્ષત્ર મેળ",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "નક્ષત્ર મેળ",
+                            "nakshatra_name_key": "Jyeshtha",
+                            "nakshatra_name_localized": "જ્યેષ્ઠા"
+                        },
+                        "festival_name_key": "Snanyatra",
+                        "festival_name_localized": "સ્નાનયાત્રા",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "required_nakshatra_key": "Jyeshtha",
+                        "required_nakshatra_name": "જ્યેષ્ઠા"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "જ્યેષ્ઠા",
+                        "winning_reason": "નક્ષત્ર મેળ",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "નક્ષત્ર મેળ",
+                        "nakshatra_name_key": "Jyeshtha",
+                        "nakshatra_name_localized": "જ્યેષ્ઠા"
                     }
                 }
             ],

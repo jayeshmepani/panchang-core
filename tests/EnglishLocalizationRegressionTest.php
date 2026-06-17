@@ -76,14 +76,25 @@ class EnglishLocalizationRegressionTest extends TestCase
         $this->assertSame('Full Moon', $calendar['2026-06-02']['moon_phase']['name'] ?? null);
 
         $sankranti = $calendar['2026-06-15']['festivals'][0] ?? [];
-        $adhikaChandraDarshana = $calendar['2026-06-15']['festivals'][2] ?? [];
+        $chandraDarshana = array_values(array_filter(
+            $calendar['2026-06-16']['festivals'] ?? [],
+            static fn (array $festival): bool => ($festival['name_key'] ?? '') === 'Chandra Darshana'
+        ))[0] ?? [];
 
         $this->assertSame('Mithuna Sankranti', $sankranti['name'] ?? null);
         $this->assertSame('Sun enters Gemini', $sankranti['description'] ?? null);
         $this->assertSame('Gemini', $sankranti['calculation_basis']['solar_rashi']['name'] ?? null);
-        $this->assertSame('Adhika Chandra Darshana', $adhikaChandraDarshana['name'] ?? null);
-        $this->assertSame('Chandra Darshana occurring in the intercalary month', $adhikaChandraDarshana['description'] ?? null);
-        $this->assertSame('Bright Half (waxing)', $adhikaChandraDarshana['calculation_basis']['tithi']['paksha_name'] ?? null);
+        $this->assertSame('Chandra Darshana', $chandraDarshana['name'] ?? null);
+        $this->assertSame('First sighting of the moon after Amavasya', $chandraDarshana['description'] ?? null);
+        $this->assertSame('Bright Half (waxing)', $chandraDarshana['calculation_basis']['tithi']['paksha_name'] ?? null);
+        $this->assertSame('sunset to moonset visibility', $chandraDarshana['visibility_window']['type_name'] ?? null);
+        $this->assertSame('07:39 PM to 09:17 PM', $chandraDarshana['visibility_window']['display'] ?? null);
+        $this->assertSame($chandraDarshana['visibility_window'], $chandraDarshana['observance_window'] ?? null);
+        $this->assertMatchesRegularExpression('/^\\d{2}\\/\\d{2}\\/2026 \\d{2}:\\d{2}:\\d{2} (AM|PM)$/', $chandraDarshana['visibility_window']['start_iso'] ?? '');
+        $this->assertMatchesRegularExpression('/^1h 3\\dm \\d+s$/', $chandraDarshana['visibility_window']['duration_min'] ?? '');
+        $this->assertIsFloat($chandraDarshana['visibility_window']['duration_minutes'] ?? null);
+        $this->assertSame('simplified modern crescent visibility model', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_model_name'] ?? null);
+        $this->assertSame('modern astronomical visibility heuristic; not a classical textual rule', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_basis_name'] ?? null);
     }
 
     public function test_english_sankranti_day_details_use_translated_runtime_labels(): void
