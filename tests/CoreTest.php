@@ -19,9 +19,11 @@ namespace JayeshMepani\PanchangCore\Tests;
 
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
+use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use PHPUnit\Framework\TestCase;
 
 class CoreTest extends TestCase
@@ -140,6 +142,34 @@ class CoreTest extends TestCase
         $this->assertSame('૩', Localization::localizeNumber(3, 'gu'));
         $this->assertSame('३', Localization::localizeNumber(3, 'hi'));
         $this->assertSame('આડી પેરુક્કુ', Localization::translate('Festival', 'Aadi Perukku', 'gu'));
+    }
+
+    public function testMuhurtaEnumNamesMatchLocalizedClassicalSequence(): void
+    {
+        $this->assertCount(30, Muhurta::cases());
+        $this->assertSame(Muhurta::Ahi, Muhurta::getDaySequence()[1]);
+        $this->assertSame(Muhurta::Isha, Muhurta::getNightSequence()[0]);
+        $this->assertSame('Ahi', Muhurta::Ahi->getName());
+        $this->assertSame('Vidhatr', Muhurta::Vidhatr->getName());
+        $this->assertSame('Tvashtr', Muhurta::Tvashtr->getName());
+        $this->assertSame('अहि', Muhurta::Ahi->getName('hi'));
+        $this->assertSame('અહિ', Muhurta::Ahi->getName('gu'));
+        $this->assertContains('Sarpa', Muhurta::Ahi->getAliases());
+        $this->assertContains('Daitya', Muhurta::Nirriti->getAliases());
+        $this->assertContains('Shashi', Muhurta::Chandra->getAliases());
+        $this->assertContains('Acyuta', Muhurta::Vishnu->getAliases());
+    }
+
+    public function testDuplicateNagPanchamIdentityIsCollapsedIntoAlias(): void
+    {
+        $this->assertArrayHasKey('Nag Panchami', FestivalService::FESTIVALS);
+        $this->assertArrayNotHasKey('Nag Pancham', FestivalService::FESTIVALS);
+        $this->assertContains('Nag Pancham', FestivalService::FESTIVALS['Nag Panchami']['aliases']);
+        $this->assertArrayHasKey('Labh Panchami', FestivalService::FESTIVALS);
+        $this->assertArrayNotHasKey('Labh Pancham', FestivalService::FESTIVALS);
+        $this->assertContains('Labh Pancham', FestivalService::FESTIVALS['Labh Panchami']['aliases']);
+        $this->assertNotContains('Masik Shivaratri', FestivalService::FESTIVALS['Maha Shivaratri']['aliases'] ?? []);
+        $this->assertArrayNotHasKey('Navratri Begins', FestivalService::FESTIVALS);
     }
 
 }

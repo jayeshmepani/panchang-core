@@ -14,7 +14,8 @@ It calculates Panchanga limbs, festivals, Muhurta windows, Karmakala timings, Ch
 - Panchanga: Tithi, Vara, Nakshatra, Yoga, Karana
 - Muhurta and Karmakala: Abhijit, Brahma Muhurta, Dur Muhurta, Nishita, Vijaya, Godhuli, Pradosha, Varjyam, Amrita Kaal
 - Daily tables: Chogadiya, Hora, Prahara, 30 Muhurtas, Lagna intervals
-- Festival engine: 329 unique festival identities and 90 unique vrat identities with tradition and regional handling
+- Muhurta devata sequence: Rudra-Ahi-Mitra day/night model aligned with Nārada Saṃhitā 9.1-5 and Kāśyapa/Vṛddha Vasiṣṭha attribution
+- Festival engine: 326 unique festival identities and 90 unique vrat identities with tradition and regional handling
 - Vaasa and direction checks: Disha Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, Yogini Vaasa
 - Locales: English, Hindi, Gujarati
 - Calendar types: Amanta and Purnimanta
@@ -126,6 +127,9 @@ Notes:
 - Full HTML documentation: [docs/index.html](docs/index.html)
 - Coverage matrix: [PACKAGE_COVERAGE.md](PACKAGE_COVERAGE.md)
 - Traditional source attribution: [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TEXT_SOURCES.md)
+- Muhurta text source classification: [docs/MUHURTA_TEXT_SOURCES.md](docs/MUHURTA_TEXT_SOURCES.md)
+- Festival and vrat identity catalog: [docs/FESTIVAL_VRAT_IDENTITIES.md](docs/FESTIVAL_VRAT_IDENTITIES.md)
+- Festival and vrat duplicate audit: [docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md](docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md)
 
 ## Development
 

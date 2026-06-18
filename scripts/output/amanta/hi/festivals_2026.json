@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-17T11:20:53+00:00",
+        "generated_at": "2026-06-18T12:48:47+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -18,8 +18,8 @@
         "year": 2026,
         "calendar_type": "amanta",
         "festival_day_count": 365,
-        "festival_entry_count": 979,
-        "total_festivals": 328,
+        "festival_entry_count": 970,
+        "total_festivals": 326,
         "total_vrats": 90,
         "by_date": {
             "2026-01-01": [
@@ -153,10 +153,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -169,10 +169,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -684,10 +684,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "आर्द्रा",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Ardra",
                             "nakshatra_name_localized": "आर्द्रा"
                         },
@@ -700,10 +700,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "आर्द्रा",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Ardra",
                         "nakshatra_name_localized": "आर्द्रा"
                     }
@@ -2867,100 +2867,6 @@
                             "english_name": "Monday"
                         }
                     }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461059.327696806,
-                        "target_tithi_end_jd": 2461060.3642701786,
-                        "standard_date": "2026-01-19",
-                        "observance_date": "2026-01-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
                 }
             ],
             "2026-01-20": [
@@ -5033,10 +4939,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "भरणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Bharani",
                             "nakshatra_name_localized": "भरणी"
                         },
@@ -5049,10 +4955,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "भरणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Bharani",
                         "nakshatra_name_localized": "भरणी"
                     }
@@ -5217,10 +5123,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -5233,10 +5139,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -6036,7 +5942,7 @@
                             "nakshatra_based": true,
                             "nakshatra_name": "पुष्य",
                             "winning_reason": "नक्षत्र और पूर्णिमा मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
                             "winning_reason_key": "nakshatra_and_purnima_match",
                             "winning_reason_name": "नक्षत्र और पूर्णिमा मेल",
                             "nakshatra_name_key": "Pushya",
@@ -6052,7 +5958,7 @@
                         "nakshatra_based": true,
                         "nakshatra_name": "पुष्य",
                         "winning_reason": "नक्षत्र और पूर्णिमा मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
                         "winning_reason_key": "nakshatra_and_purnima_match",
                         "winning_reason_name": "नक्षत्र और पूर्णिमा मेल",
                         "nakshatra_name_key": "Pushya",
@@ -7394,9 +7300,7 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [
-                        "मासिक शिवरात्रि"
-                    ],
+                    "aliases": [],
                     "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 14 सूर्योदय पर 2026-02-16 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-02-15 को मनाई जाती है।",
                     "calculation_basis": {
                         "type": "tithi",
@@ -8245,100 +8149,6 @@
                         "duration_minutes": 55.11666677892208,
                         "duration_min": "55m 7s"
                     }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461089.0007303273,
-                        "target_tithi_end_jd": 2461089.9777463675,
-                        "standard_date": "2026-02-18",
-                        "observance_date": "2026-02-18",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
                 }
             ],
             "2026-02-19": [
@@ -9104,10 +8914,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "भरणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Bharani",
                             "nakshatra_name_localized": "भरणी"
                         },
@@ -9120,10 +8930,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "भरणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Bharani",
                         "nakshatra_name_localized": "भरणी"
                     }
@@ -9282,10 +9092,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -9298,10 +9108,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -9341,10 +9151,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -9357,10 +9167,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -13439,100 +13249,6 @@
                             "english_name": "Thursday"
                         }
                     }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461118.5579017187,
-                        "target_tithi_end_jd": 2461119.4740974326,
-                        "standard_date": "2026-03-19",
-                        "observance_date": "2026-03-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
                 }
             ],
             "2026-03-20": [
@@ -14869,10 +14585,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -14885,10 +14601,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -15330,10 +15046,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -15346,10 +15062,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -16957,10 +16673,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "पूर्व फाल्गुनी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Purva Phalguni",
                             "nakshatra_name_localized": "पूर्व फाल्गुनी"
                         },
@@ -16973,10 +16689,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "पूर्व फाल्गुनी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Purva Phalguni",
                         "nakshatra_name_localized": "पूर्व फाल्गुनी"
                     }
@@ -20019,100 +19735,6 @@
                     }
                 },
                 {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461147.9942380227,
-                        "target_tithi_end_jd": 2461148.861778616,
-                        "standard_date": "2026-04-18",
-                        "observance_date": "2026-04-18",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "रोंगाली बिहू दिन ५",
                     "name_key": "Rongali Bihu Day 5",
                     "description": "रोंगाली/बोहाग बिहू का पांचवां दिन; स्नेह, संगीत, नृत्य और सामाजिक मेलजोल का दिन",
@@ -20408,6 +20030,63 @@
                     }
                 },
                 {
+                    "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
+                    "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
+                    "deity": "मुरुगन",
+                    "fasting": true,
+                    "regions": [
+                        "तमिलनाडु"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "nakshatra": "कृत्तिका",
+                        "nakshatra_key": "Krittika",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "preferred_nakshatra": "कृत्तिका",
+                        "preferred_nakshatra_key": "Krittika"
+                    },
+                    "resolution": {
+                        "festival_name": "मासिक कार्तिकेय",
+                        "required_nakshatra": "कृत्तिका",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-04-19",
+                        "observance_date": "2026-04-19",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "कृत्तिका",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 1011.2640380859375,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "nakshatra_name_key": "Krittika",
+                            "nakshatra_name_localized": "कृत्तिका"
+                        },
+                        "festival_name_key": "Masik Karthigai",
+                        "festival_name_localized": "मासिक कार्तिकेय",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Krittika",
+                        "required_nakshatra_name": "कृत्तिका"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "कृत्तिका",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 1011.2640380859375,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "nakshatra_name_key": "Krittika",
+                        "nakshatra_name_localized": "कृत्तिका"
+                    }
+                },
+                {
                     "name": "रोंगाली बिहू दिन ६",
                     "name_key": "Rongali Bihu Day 6",
                     "description": "रोंगाली/बोहाग बिहू का छठा दिन; मेले, सांस्कृतिक प्रस्तुतियां और सामुदायिक आयोजन",
@@ -20597,10 +20276,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -20613,10 +20292,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -22222,10 +21901,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "पूर्व फाल्गुनी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Purva Phalguni",
                             "nakshatra_name_localized": "पूर्व फाल्गुनी"
                         },
@@ -22238,10 +21917,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "पूर्व फाल्गुनी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Purva Phalguni",
                         "nakshatra_name_localized": "पूर्व फाल्गुनी"
                     }
@@ -29233,10 +28912,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "ज्येष्ठा",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Jyeshtha",
                             "nakshatra_name_localized": "ज्येष्ठा"
                         },
@@ -29249,10 +28928,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "ज्येष्ठा",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Jyeshtha",
                         "nakshatra_name_localized": "ज्येष्ठा"
                     }
@@ -30527,10 +30206,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -30543,10 +30222,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -30779,10 +30458,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -30795,10 +30474,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -31453,10 +31132,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "पुष्य",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Pushya",
                             "nakshatra_name_localized": "पुष्य"
                         },
@@ -31469,10 +31148,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "पुष्य",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Pushya",
                         "nakshatra_name_localized": "पुष्य"
                     }
@@ -31645,100 +31324,6 @@
                         "duration_seconds": 3838.999977707863,
                         "duration_minutes": 63.983332961797714,
                         "duration_min": "1h 3m 59s"
-                    }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461235.9052164834,
-                        "target_tithi_end_jd": 2461236.764870608,
-                        "standard_date": "2026-07-15",
-                        "observance_date": "2026-07-15",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -35880,10 +35465,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -35896,10 +35481,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -35939,10 +35524,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -35955,10 +35540,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -36907,10 +36492,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "पुष्य",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Pushya",
                             "nakshatra_name_localized": "पुष्य"
                         },
@@ -36923,10 +36508,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "पुष्य",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Pushya",
                         "nakshatra_name_localized": "पुष्य"
                     }
@@ -37051,100 +36636,6 @@
                             "name": "गुरुवार",
                             "english_name": "Thursday"
                         }
-                    }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461265.233781376,
-                        "target_tithi_end_jd": 2461266.133288839,
-                        "standard_date": "2026-08-13",
-                        "observance_date": "2026-08-13",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -37738,7 +37229,9 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "नाग पंचम"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -37882,106 +37375,6 @@
                             "name": "सोमवार",
                             "english_name": "Monday"
                         }
-                    }
-                },
-                {
-                    "name": "नाग पंचम",
-                    "name_key": "Nag Pancham",
-                    "description": "नागों की पारंपरिक पूजा",
-                    "deity": "नाग देवता",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                5
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                5
-                            ],
-                            "names": [
-                                "शुक्ल पंचमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "श्रावण",
-                            "value_key": "Shravana",
-                            "name": "श्रावण"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नाग पंचम",
-                        "required_tithi": 5,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461268.974256019,
-                        "target_tithi_end_jd": 2461269.97950634,
-                        "standard_date": "2026-08-17",
-                        "observance_date": "2026-08-17",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Nag Pancham",
-                        "festival_name_localized": "नाग पंचम",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -39189,10 +38582,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "श्रवण",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 9177.200031280518,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Shravana",
                             "nakshatra_name_localized": "श्रवण"
                         },
@@ -39205,10 +38598,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "श्रवण",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 9177.200031280518,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Shravana",
                         "nakshatra_name_localized": "श्रवण"
                     }
@@ -41039,10 +40432,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -41055,10 +40448,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -41098,10 +40491,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -41114,10 +40507,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -43007,6 +42400,64 @@
                     }
                 },
                 {
+                    "name": "सामवेद उपाकर्म",
+                    "name_key": "Samaveda Upakarma",
+                    "description": "सामवेदियों के लिए जनेऊ बदलने का वार्षिक अनुष्ठान (मुख्यतः हस्त नक्षत्र आधारित)",
+                    "deity": "ऋषि/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "nakshatra": "हस्त",
+                        "nakshatra_key": "Hasta",
+                        "nakshatra_only": true,
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "require_nakshatra_window": true,
+                        "preferred_nakshatra": "हस्त",
+                        "preferred_nakshatra_key": "Hasta"
+                    },
+                    "resolution": {
+                        "festival_name": "सामवेद उपाकर्म",
+                        "required_nakshatra": "हस्त",
+                        "karmakala_type": "aparahna",
+                        "standard_date": "2026-09-12",
+                        "observance_date": "2026-09-12",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "हस्त",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 8912.999975681305,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "nakshatra_name_key": "Hasta",
+                            "nakshatra_name_localized": "हस्त"
+                        },
+                        "festival_name_key": "Samaveda Upakarma",
+                        "festival_name_localized": "सामवेद उपाकर्म",
+                        "karmakala_type_name": "अपराह्न",
+                        "required_nakshatra_key": "Hasta",
+                        "required_nakshatra_name": "हस्त"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "हस्त",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 8912.999975681305,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "nakshatra_name_key": "Hasta",
+                        "nakshatra_name_localized": "हस्त"
+                    }
+                },
+                {
                     "name": "चंद्र दर्शन",
                     "name_key": "Chandra Darshana",
                     "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
@@ -43174,100 +42625,6 @@
                         "duration_seconds": 2385.000018775463,
                         "duration_minutes": 39.750000312924385,
                         "duration_min": "39m 45s"
-                    }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461294.6436758693,
-                        "target_tithi_end_jd": 2461295.59496745,
-                        "standard_date": "2026-09-12",
-                        "observance_date": "2026-09-12",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -47096,6 +46453,63 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "मासिक कार्तिकेय",
+                    "name_key": "Masik Karthigai",
+                    "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
+                    "deity": "मुरुगन",
+                    "fasting": true,
+                    "regions": [
+                        "तमिलनाडु"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "nakshatra",
+                        "basis_name": "नक्षत्र",
+                        "nakshatra": "कृत्तिका",
+                        "nakshatra_key": "Krittika",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "preferred_nakshatra": "कृत्तिका",
+                        "preferred_nakshatra_key": "Krittika"
+                    },
+                    "resolution": {
+                        "festival_name": "मासिक कार्तिकेय",
+                        "required_nakshatra": "कृत्तिका",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-09-30",
+                        "observance_date": "2026-09-30",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "कृत्तिका",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 313.65144699811935,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "nakshatra_name_key": "Krittika",
+                            "nakshatra_name_localized": "कृत्तिका"
+                        },
+                        "festival_name_key": "Masik Karthigai",
+                        "festival_name_localized": "मासिक कार्तिकेय",
+                        "karmakala_type_name": "सूर्योदय",
+                        "required_nakshatra_key": "Krittika",
+                        "required_nakshatra_name": "कृत्तिका"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "कृत्तिका",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 313.65144699811935,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "nakshatra_name_key": "Krittika",
+                        "nakshatra_name_localized": "कृत्तिका"
+                    }
                 }
             ],
             "2026-10-01": [
@@ -47132,10 +46546,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -47148,10 +46562,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -49406,100 +48820,6 @@
                             "name": "रविवार",
                             "english_name": "Sunday"
                         }
-                    }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461324.159706977,
-                        "target_tithi_end_jd": 2461325.1676600566,
-                        "standard_date": "2026-10-11",
-                        "observance_date": "2026-10-11",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -53843,10 +53163,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -53859,10 +53179,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -54005,10 +53325,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -54021,10 +53341,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -57071,100 +56391,6 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930611074,
-                        "target_tithi_end_jd": 2461354.8545238134,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
                 }
             ],
             "2026-11-11": [
@@ -57933,6 +57159,7 @@
                         "गुजरात"
                     ],
                     "aliases": [
+                        "लाभ पंचम",
                         "सौभाग्य पंचमी"
                     ],
                     "observance_note": null,
@@ -58048,106 +57275,6 @@
                             "name": "शनिवार",
                             "english_name": "Saturday"
                         }
-                    }
-                },
-                {
-                    "name": "लाभ पंचम",
-                    "name_key": "Labh Pancham",
-                    "description": "गुजरात में व्यवसायों के लिए शुभ दिन",
-                    "deity": "लक्ष्मी/गणेश",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                5
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                5
-                            ],
-                            "names": [
-                                "शुक्ल पंचमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "कार्तिक",
-                            "value_key": "Kartika",
-                            "name": "कार्तिक"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "लाभ पंचम",
-                        "required_tithi": 5,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461358.1339754313,
-                        "target_tithi_end_jd": 2461359.2460901113,
-                        "standard_date": "2026-11-14",
-                        "observance_date": "2026-11-14",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Labh Pancham",
-                        "festival_name_localized": "लाभ पंचम",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -60766,10 +59893,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -60782,10 +59909,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -60925,10 +60052,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -60941,10 +60068,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -62566,100 +61693,6 @@
                             "name": "बुधवार",
                             "english_name": "Wednesday"
                         }
-                    }
-                },
-                {
-                    "name": "नवरात्रि प्रारंभ",
-                    "name_key": "Navratri Begins",
-                    "description": "नौ दिवसीय नवरात्रि उत्सव का प्रारंभ",
-                    "deity": "दुर्गा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "नवरात्रि प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 3599.999986588955,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": true,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461383.535933121,
-                        "target_tithi_end_jd": 2461384.636407001,
-                        "standard_date": "2026-12-09",
-                        "observance_date": "2026-12-09",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Navratri Begins",
-                        "festival_name_localized": "नवरात्रि प्रारंभ",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -64386,10 +63419,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "कृत्तिका",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "कृत्तिका"
                         },
@@ -64402,10 +63435,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "कृत्तिका",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "कृत्तिका"
                     }
@@ -64646,10 +63679,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "रोहिणी",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 1683.0833673477173,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "रोहिणी"
                         },
@@ -64662,10 +63695,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "रोहिणी",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 1683.0833673477173,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "रोहिणी"
                     }
@@ -64929,10 +63962,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "आर्द्रा",
-                            "winning_reason": "नक्षत्र मेल",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "नक्षत्र मेल",
+                            "winning_reason": "nakshatra_overlaps_karmakala_window",
+                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                             "nakshatra_name_key": "Ardra",
                             "nakshatra_name_localized": "आर्द्रा"
                         },
@@ -64945,10 +63978,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "आर्द्रा",
-                        "winning_reason": "नक्षत्र मेल",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "नक्षत्र मेल",
+                        "winning_reason": "nakshatra_overlaps_karmakala_window",
+                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
+                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
                         "nakshatra_name_key": "Ardra",
                         "nakshatra_name_localized": "आर्द्रा"
                     }

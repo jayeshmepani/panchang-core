@@ -19,9 +19,10 @@ Some package components are architectural helpers and are intentionally **not** 
 - `OutputGeneratorService` (output assembly wrapper around package services)
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
-Currently, the package outputs **329 unique festival identities** and **90 unique vrat identities** for the generated yearly Panchang contract. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity.
+Currently, the package outputs **326 unique festival identities** and **90 unique vrat identities** for the generated yearly Panchang contract. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
+- Muhurta devata enum source classification: [MUHURTA_TEXT_SOURCES.md](MUHURTA_TEXT_SOURCES.md).
 
 ---
 
@@ -101,8 +102,11 @@ These parts of the package are **rulebooks encoded by the package**. They may be
 
 They should be read as **package mappings**, not as proof that every table entry has been independently verified against a primary-edition Sanskrit text.
 
+For the 30 named Muhurta devata enum specifically, see [MUHURTA_TEXT_SOURCES.md](MUHURTA_TEXT_SOURCES.md) for source classification and exact ślokas.
+
 | File | Functions/Constants | Source Attribution |
 |------|-------------------|-------------------|
+| `Core/Enums/Muhurta.php` | 30 named Muhurta devata sequence:<br>- 15 day muhurtas beginning Rudra, Ahi, Mitra<br>- 15 night muhurtas beginning Isha, Ajapada, Ahirbudhnya | **Source-primary attribution:** Nārada Saṃhitā 9.1-5, Muhūrta-adhyāya; Kāśyapa as quoted in Vṛddha Vasiṣṭha Saṃhitā, Muhūrtādhyāya. Taittirīya Brāhmaṇa 3.10 is treated only as an older qualitative time-segment tradition, not the direct source for this named list. Detailed classification and exact ślokas: [MUHURTA_TEXT_SOURCES.md](MUHURTA_TEXT_SOURCES.md). |
 | `ElectionalRuleBook.php` | `UNIVERSAL_BAD_TITHIS`<br>`VARA_TITHI_YOGAS` | **Package attribution:** Muhurta Chintamani, Brihat Samhita, Mayamata, Vaikhanasa Agama, Ashvalayana Grihya Sutra |
 | `ElectionalEvaluator.php` | `calculatePanchakaDosha()`<br>`calculateDagdhaTithi()`<br>`calculateDagdhaYoga()`<br>`calculateRiktaTithi()`<br>`calculateAbhijitCancellation()`<br>`generateRejectionReport()` | **Package attribution:** Muhurta Chintamani, Brihat Samhita, Gargiya Jyotisha |
 | `PanchangService.php` | `getElectionalSnapshot()`<br>`getDailyMuhurtaEvaluation()` | **Package attribution:** Muhurta Chintamani, Muhurta Martanda |
@@ -267,85 +271,86 @@ Some entries below are exact text names. Others are intentionally labeled as sou
 ### Jyotisha Texts
 22. Bṛhat Saṃhitā
 23. Bṛhat Jātaka
-24. Nārada Saṃhitā
-25. Sarāvalī
-26. Gargiya Jyotisha
-27. Jyotisha Ratnamala / Sripati tradition
+24. Nārada Saṃhitā, Muhūrta-adhyāya 9.1-5
+25. Kāśyapa quotation in Vṛddha Vasiṣṭha Saṃhitā, Muhūrtādhyāya
+26. Sarāvalī
+27. Gargiya Jyotisha
+28. Jyotisha Ratnamala / Sripati tradition
 
 ### Puranic Texts
-28. Śrīmad Bhāgavata Purāṇa
-29. Agni Purāṇa
-30. Śrīmad Bhāgavatam 3.11.10 yama/time-unit reference
-31. Śrīmad Bhāgavatam 8.18.5 Vamana Jayanti reference
-32. Śrīmad Bhāgavatam 10.24.25-26 Govardhan/Annakuta references
-33. Vālmīki Rāmāyaṇa, Bāla Kāṇḍa, Sarga 18
+29. Śrīmad Bhāgavata Purāṇa
+30. Agni Purāṇa
+31. Śrīmad Bhāgavatam 3.11.10 yama/time-unit reference
+32. Śrīmad Bhāgavatam 8.18.5 Vamana Jayanti reference
+33. Śrīmad Bhāgavatam 10.24.25-26 Govardhan/Annakuta references
+34. Vālmīki Rāmāyaṇa, Bāla Kāṇḍa, Sarga 18
 
 ### Devotional and Commentarial Sources
-34. Gīta Govinda / Jayadeva tradition
+35. Gīta Govinda / Jayadeva tradition
 
 ### Regional/Almanac Conventions
-35. Tamil Gowri Panchangam
-36. Pambu Panchangam
-37. Popular travel-muhurta Panchang tables
-38. Nivas-Shool / Vaasa style published Panchang tables
-39. Drik Nivas-Shool Panchang style
-40. Drik Panchang Ekadashi / Harivasara / Parana pages
-41. Drik Panchang Mahadvadashi / ISKCON Parana pages
-42. Drik Panchang festival timing pages for Rama Navami, Dhantrayodashi, Diwali, Mahashivaratri, Narasimha Jayanti, and Chandra Darshana
-43. Modern Nivas-Shool Panchang style
-44. Published Gowri/Pambu table convention
-45. Published Panchang dynamic night-muhurta convention
-46. Observed Panchang convention / tradition-dependent rules
+36. Tamil Gowri Panchangam
+37. Pambu Panchangam
+38. Popular travel-muhurta Panchang tables
+39. Nivas-Shool / Vaasa style published Panchang tables
+40. Drik Nivas-Shool Panchang style
+41. Drik Panchang Ekadashi / Harivasara / Parana pages
+42. Drik Panchang Mahadvadashi / ISKCON Parana pages
+43. Drik Panchang festival timing pages for Rama Navami, Dhantrayodashi, Diwali, Mahashivaratri, Narasimha Jayanti, and Chandra Darshana
+44. Modern Nivas-Shool Panchang style
+45. Published Gowri/Pambu table convention
+46. Published Panchang dynamic night-muhurta convention
+47. Observed Panchang convention / tradition-dependent rules
 
 ### Vāstu Texts
-47. Māyamata
+48. Māyamata
 
 ### Āgama Texts
-48. Vaikhānasa Āgama
+49. Vaikhānasa Āgama
 
 ### Gṛhya Sūtra Texts
-49. Aśvalāyana Gṛhya Sūtra
+50. Aśvalāyana Gṛhya Sūtra
 
 ### Vaishnava Texts
-50. Hari Bhakti Vilāsa
-51. Satsangi Jeevan
-52. Shikshapatri
-53. Utsava-Nirnaya (Shri Vitthalnathji / Gusainji)
-54. Bhakti-Hamsa (Shri Vitthalnathji)
-55. Seva-Shlokah Shringar-Rasamandanam (Shri Vitthalnathji)
-56. Tattvartha-Dipa-Nibandha - Sarva-Nirnaya Prakarana (Vallabhacharya)
+51. Hari Bhakti Vilāsa
+52. Satsangi Jeevan
+53. Shikshapatri
+54. Utsava-Nirnaya (Shri Vitthalnathji / Gusainji)
+55. Bhakti-Hamsa (Shri Vitthalnathji)
+56. Seva-Shlokah Shringar-Rasamandanam (Shri Vitthalnathji)
+57. Tattvartha-Dipa-Nibandha - Sarva-Nirnaya Prakarana (Vallabhacharya)
 
 ### Sectarian and Regional Traditions
-57. Smarta tradition
-58. Vaishnava tradition
-59. Pushtimarg / Vallabha tradition
-60. Utsav Tippani / Varsha Tippani (Nathdwara / Pushtimarg lineage)
-61. ISKCON / Gaudiya Vaishnava tradition
-62. ISKCON Bangalore and ISKCON Mumbai public observance summaries
-63. Swaminarayan tradition
-64. BAPS Swaminarayan Sanstha public festival references
-65. Swaminarayan.org public festival references
-66. Bengal / Bengali tradition
-67. Odia / Odisha tradition
-68. Tamil tradition
-69. South Indian / Telugu / Andhra tradition
-70. Malayalam / Kerala tradition
-71. Nepali tradition
-72. Himalayan / Tibetan Buddhist regional observance
-73. Kutchi / Gujarat regional observance
-74. Samaveda Upakarma / Samavedi Shravani procedure summaries
+58. Smarta tradition
+59. Vaishnava tradition
+60. Pushtimarg / Vallabha tradition
+61. Utsav Tippani / Varsha Tippani (Nathdwara / Pushtimarg lineage)
+62. ISKCON / Gaudiya Vaishnava tradition
+63. ISKCON Bangalore and ISKCON Mumbai public observance summaries
+64. Swaminarayan tradition
+65. BAPS Swaminarayan Sanstha public festival references
+66. Swaminarayan.org public festival references
+67. Bengal / Bengali tradition
+68. Odia / Odisha tradition
+69. Tamil tradition
+70. South Indian / Telugu / Andhra tradition
+71. Malayalam / Kerala tradition
+72. Nepali tradition
+73. Himalayan / Tibetan Buddhist regional observance
+74. Kutchi / Gujarat regional observance
+75. Samaveda Upakarma / Samavedi Shravani procedure summaries
 
 ### Modern Systems
-75. KP System (Krishnamurti Paddhati)
-76. JME native ephemeris
-77. Drik Panchang-style modern published almanac convention
-78. Bharat Discovery public grahana-sutak citation
-79. Indica Today Upakarma/Utsarjana summary
-80. Samskaaram.com Sāma Veda Upākarmā procedure reference
+76. KP System (Krishnamurti Paddhati)
+77. JME native ephemeris
+78. Drik Panchang-style modern published almanac convention
+79. Bharat Discovery public grahana-sutak citation
+80. Indica Today Upakarma/Utsarjana summary
+81. Samskaaram.com Sāma Veda Upākarmā procedure reference
 
 ### Living Traditions
-81. Sandhyāvandanam Tradition
-82. Puri Shankaracharya Swami Nischalananda Saraswati / modern living-authority citation
+82. Sandhyāvandanam Tradition
+83. Puri Shankaracharya Swami Nischalananda Saraswati / modern living-authority citation
 
 ---
 

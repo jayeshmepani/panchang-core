@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 329 festival identities, 90 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 326 festival identities, 90 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,7 +490,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>329 Festivals + 90 Vrats</h3>
+              <h3>326 Festivals + 90 Vrats</h3>
               <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -546,7 +546,13 @@
               <p><strong>Important:</strong> This is a <strong>source-integrity map</strong>, not a manuscript-critical
                 proof. The codebase mixes direct conventions, package rule mappings, regional almanac conventions,
                 modern references, and legacy helpers. For complete details, see <a href="TRADITIONAL_TEXT_SOURCES.md"
-                  style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a>.</p>
+                  style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a>. For the
+                current canonical identity list, see <a href="FESTIVAL_VRAT_IDENTITIES.md"
+                  style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_IDENTITIES.md</a>; for
+                duplicate-name cleanup decisions, see <a href="FESTIVAL_VRAT_DUPLICATE_AUDIT.md"
+                  style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md</a>; for
+                Muhurta source classification, see <a href="MUHURTA_TEXT_SOURCES.md"
+                  style="color: inherit; text-decoration: underline;">docs/MUHURTA_TEXT_SOURCES.md</a>.</p>
             </div>
 
             <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Tier 1: Direct or
@@ -745,6 +751,10 @@
                 <tr>
                   <td><strong>Published Panchang convention</strong></td>
                   <td>Dynamic night-muhurta Brahma Muhurta timing</td>
+                </tr>
+                <tr>
+                  <td><strong>Nārada Saṃhitā 9.1-5 and Kāśyapa / Vṛddha Vasiṣṭha Saṃhitā</strong></td>
+                  <td>30 named Muhurta devata sequence: 15 day muhurtas beginning Rudra, Ahi, Mitra and 15 night muhurtas beginning Isha, Ajapada, Ahirbudhnya. See <a href="MUHURTA_TEXT_SOURCES.md">docs/MUHURTA_TEXT_SOURCES.md</a> for source classification and exact ślokas.</td>
                 </tr>
                 <tr>
                   <td><strong>Aṣṭāṅga Hṛdaya</strong></td>
@@ -2004,9 +2014,9 @@ echo $vara->getRulingPlanet();  // "Maṅgala (Mars)"</code></pre>
                 <div class="case-item"><code>Mitra</code></div>
                 <div class="case-item"><code>Pitri</code></div>
                 <div class="case-item"><code>Vasu</code></div>
-                <div class="case-item"><code>Varaha</code></div>
+                <div class="case-item"><code>Udaka</code></div>
                 <div class="case-item"><code>Vishvedeva</code></div>
-                <div class="case-item"><code>Vidhi</code></div>
+                <div class="case-item"><code>Vidhatr</code></div>
                 <div class="case-item"><code>… (30 total)</code></div>
               </div>
             </div>
@@ -2330,7 +2340,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 329 unique festival identities and 90 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 326 unique festival identities and 90 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
             <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
               <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
               and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
@@ -2585,7 +2595,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified yearly catalog currently reports <code>329</code> unique festival identities and <code>90</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
+              <li>The verified yearly catalog currently reports <code>326</code> unique festival identities and <code>90</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -4747,24 +4757,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.6.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.7.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. This release includes a critical precision fix for Sun and Moon position calculations, corrects a double-aberration issue in JPL mode, and regenerates all 2026 data artifacts with improved astronomical accuracy.</p>
+            <p>Review the version-specific notes below before upgrading. v9.7.0 brings important corrections to classical muhūrta qualities and the weekday Durmuhūrta schedule, plus new quality and index fields in muhūrta output. Previous releases (such as v9.6.0) focused on Sun/Moon astronomical accuracy.</p>
           </div>
 
           <div class="info-box">
-            <h3>v9.6.0 Documentation Snapshot</h3>
-            <p>This documentation covers v9.6.0: Precision fix for Sun/Moon longitudes and angles (JME aberration correction), improved accuracy in astronomy calculations across multiple components, and fully regenerated English/Hindi/Gujarati JSON data for Amanta and Purnimanta.</p>
+            <h3>v9.7.0 Documentation Snapshot</h3>
+            <p>This documentation covers v9.7.0: Correction of classical muhūrta base qualities per Vṛddha Vasiṣṭha and Nārada Saṃhitā, proper separation of fixed tyājya qualities from weekday Durmuhūrta, accurate weekday Durmuhūrta schedule using traditional 1-based positions, and enhanced muhūrta table output with quality and index fields.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.7.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Classical Muhurta Quality Correction and Nārada-Aligned Durmuhūrta Schedule</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Aligns the 30 muhūrtas with classical sources: corrects base tyājya labels (Indragni and Īśa now Inauspicious; Arka and Vāyu now Auspicious). Introduces clear separation between fixed base quality and weekday-specific Durmuhūrta using the Nārada verse. Adds quality and index fields to muhūrta table output and provides authoritative weekday Durmuhūrta indexes.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.6.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Sun and Moon Position Accuracy Fix</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Sun and Moon Position Accuracy Fix</span></div>
                 <p class="release-note">Fixes a double annual aberration error in JPL ephemeris calculations for Sun and Moon. Applies the NO_ABERRATION flag consistently in key astronomy services and traits for correct apparent positions. All 2026 data regenerated with improved precision.</p>
               </div>
             </li>
@@ -4965,6 +4982,36 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v9.7.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Classical muhūrta base quality alignment with Vṛddha Vasiṣṭha/Nārada tradition and correct weekday Durmuhūrta schedule.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Muhūrta table rows now include quality information:</strong> <code>calculateMuhurtaTable()</code> and <code>Muhurta_Full_Day</code> output now carry <code>quality</code> ("Inauspicious" / "Auspicious") and <code>is_auspicious</code> based on the fixed classical tyājya list.</li>
+              <li><strong>Additional <code>index</code> field:</strong> Every muhūrta row now also includes the absolute 0-based index (0–29) alongside the traditional 1-based <code>muhurta_number</code> (within day or night).</li>
+              <li><strong>Durmuhūrta behavior updated:</strong> The weekday Durmuhūrta list now follows the authoritative Nārada schedule. Previous internal logic has been replaced.</li>
+              <li><strong>Base quality is now queryable:</strong> The <code>Muhurta</code> enum exposes <code>getBaseQuality()</code>, <code>isBaseAuspicious()</code>, and the full <code>getMuhurtaBaseQualityMap()</code>.</li>
+            </ul>
+          </div>
+
+          <h4>Highlights</h4>
+          <ul>
+            <li><strong>Corrected Base Muhūrta Qualities:</strong> Day tyājya (Inauspicious) are now Rudra, Ahi, Pitṛ, Indrāgni, Nirṛti, and Bhaga. Night krūra are Īśa, Ajapāda, Yama, and Vahni. Indrāgni and Īśa are properly marked Inauspicious; Arka and Vāyu are Auspicious.</li>
+            <li><strong>Clear Separation of Layers:</strong> Fixed base quality (from Muhūrtādhyāya) is now independent of weekday Durmuhūrta (Nārada verse). The engine applies both layers correctly.</li>
+            <li><strong>Accurate Weekday Durmuhūrta Schedule:</strong> Sunday Aryamā (14th), Monday Nirṛti + Brahmā, Tuesday Pitṛ + Agni, Wednesday Vidhātṛ/Abhijit (8th), and so on — using traditional numbering as explained in the sources.</li>
+            <li><strong>Nārada Verse Support:</strong> The Durmuhūrta implementation now directly follows the well-known śloka beginning “अर्यमा राक्षसब्राह्मौ...” with correct 1-based positions documented.</li>
+            <li><strong>Documentation Improvements:</strong> MASTER.md and the new MUHURTA_TEXT_SOURCES.md now contain clear, user-friendly explanations of the thirty muhūrtas, their qualities, and the distinction between base and weekday rules.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>If you consume the full muhūrta table, expect two new fields (<code>quality</code> and <code>index</code>) on each row. Existing fields remain unchanged.</li>
+            <li>Weekday Durmuhūrta results may differ on certain days compared to previous versions because the schedule now matches classical sources.</li>
+            <li>New methods on the <code>Muhurta</code> enum make it easy to inspect base quality or retrieve the Durmuhūrta indexes for a given vara without parsing tables.</li>
+            <li>No changes to other panchāṅga limbs (tithi, nakṣatra, yoga, etc.) or festival/vrat logic.</li>
+          </ul>
 
           <h3>v9.6.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Precision improvements to Sun and Moon astronomical calculations with aberration fix and regenerated data.</p>
@@ -5408,7 +5455,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <ul>
                 <li>Consolidated <code>Shakambhari Purnima</code> under <code>Pausha Purnima</code>.</li>
                 <li>Refactored <code>Pradosh Vrat</code> to resolve dynamically based on the weekday (e.g., calculating names like <em>Shani Pradosh Vrat</em>, weekday-specific descriptions, and deities dynamically) instead of hardcoding multiple redundant entries.</li>
-                <li>Clarified public observance totals as <code>329</code> unique festival identities and <code>90</code> unique vrat identities.</li>
+                <li>Clarified public observance totals as <code>326</code> unique festival identities and <code>90</code> unique vrat identities.</li>
               </ul>
             </li>
           </ul>
@@ -5452,7 +5499,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
             <li><strong>Festival Expansion:</strong>
               <ul>
-                <li>Expanded built-in observance coverage to <strong>329 unique festival identities and 90 unique vrat identities</strong> with broader regional and traditional observance support.</li>
+                <li>Expanded built-in observance coverage to <strong>326 unique festival identities and 90 unique vrat identities</strong> with broader regional and traditional observance support.</li>
                 <li>Added support for many regional festival naming conventions and aliases.</li>
                 <li>Improved handling for regional observances such as Uttarayan, Pongal, Maghi, Til Sankranti, Khichdi, Ghughuti, Sakraat, Thiruvadhirai, Arudra Darshanam, and many more.</li>
                 <li>Improved handling for weekday-specific Pradosh observances.</li>
@@ -5834,34 +5881,34 @@ const Phalguna
 
 ## JayeshMepani\PanchangCore\Core\Enums\Muhurta
 const Rudra
-const Sarpa
+const Ahi
 const Mitra
 const Pitri
 const Vasu
-const Vara
+const Udaka
 const Vishvedeva
-const Vidhi
+const Vidhatr
 const Brahma
 const Indra
 const Indragni
-const Daitya
-const Varuna
+const Nirriti
+const Toyapa
 const Aryaman
 const Bhaga
-const Ishvara
+const Isha
 const Ajapada
 const Ahirbudhnya
-const Pushya
-const Nasatya
+const Pusha
+const Ashvini
 const Yama
 const Vahni
-const Dhala
-const Shashi
-const Aditya
-const Guru
-const Acyuta
+const Dhatr
+const Chandra
+const Aditi
+const Ijya
+const Vishnu
 const Arka
-const Tvashta
+const Tvashtr
 const Vayu
 - cases(): array
 - from(string|int $value): static
@@ -6429,7 +6476,13 @@ const FESTIVAL_RULES
               conventions, and modern calculation systems. See <a
                 href="TRADITIONAL_TEXT_SOURCES.md"
                 style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a> for complete
-              source-integrity map with confidence tiers.</p>
+              source-integrity map with confidence tiers, and <a href="FESTIVAL_VRAT_IDENTITIES.md"
+                style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_IDENTITIES.md</a> for the
+              canonical 326 festival and 90 vrat identity lists, <a href="MUHURTA_TEXT_SOURCES.md"
+                style="color: inherit; text-decoration: underline;">docs/MUHURTA_TEXT_SOURCES.md</a> for Muhurta
+              source classification, and <a href="FESTIVAL_VRAT_DUPLICATE_AUDIT.md"
+                style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md</a> for
+              duplicate-name cleanup decisions.</p>
             <ul>
               <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

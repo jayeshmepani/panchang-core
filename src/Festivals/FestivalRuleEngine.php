@@ -663,13 +663,17 @@ class FestivalRuleEngine
 
         $window = $this->karmakalaWindowJd($karmakalaType, $ctx);
         $maxOverlap = 0.0;
+        $requiredNakshatraNumber = $this->resolveNakshatraNumber($requiredNakshatra);
         foreach ((array) ($details['Nakshatra_Windows'] ?? []) as $interval) {
             if (!is_array($interval)) {
                 continue;
             }
 
             $name = (string) ($interval['name'] ?? $interval['nakshatra'] ?? '');
-            if ($name === '' || strcasecmp($name, $requiredNakshatra) !== 0) {
+            $intervalNakshatraNumber = $this->resolveNakshatraNumber($name);
+            if ($name === ''
+                || ($requiredNakshatraNumber !== null && $intervalNakshatraNumber !== null && $requiredNakshatraNumber !== $intervalNakshatraNumber)
+                || (($requiredNakshatraNumber === null || $intervalNakshatraNumber === null) && strcasecmp($name, $requiredNakshatra) !== 0)) {
                 continue;
             }
 

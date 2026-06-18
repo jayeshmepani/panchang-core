@@ -10,7 +10,12 @@ use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Localization;
 
-/** Daily Periods Calculator - Handles Abhijit, Brahma, Dur, Nishita, Vijaya, Godhuli, Sandhya, Prahara. */
+/**
+ * Daily Periods Calculator - Handles Abhijit, Brahma, Dur, Nishita, Vijaya, Godhuli, Sandhya, Prahara.
+ *
+ * Durmuhūrta uses 0-based enum 'index' (from Nārada) rather than per-period muhurta_number or names.
+ * See Muhurta::getWeekdayDurMuhurtaIndexes and docs/MUHURTA_TEXT_SOURCES.md for the numbering table.
+ */
 class DailyPeriodsCalculator
 {
     public function calculateAbhijitMuhurta(CarbonImmutable $sunrise, CarbonImmutable $sunset): array
@@ -77,6 +82,18 @@ class DailyPeriodsCalculator
         ];
     }
 
+    /**
+     * Returns the full 30 Muhurta table (15 daytime + 15 nighttime) with start/end times.
+     *
+     * Every row contains:
+     *   'muhurta_number' => 1-based within Day (1-15) or within Night (1-15)
+     *   'index'          => 0-based absolute enum index (0-29) — authoritative for Durmuhūrta rules
+     *   'quality' + 'is_auspicious' (base tyājya)
+     *
+     * Base quality is independent of weekday.
+     * See Muhurta::getMuhurtaBaseQualityMap(), getWeekdayDurMuhurtaIndexes(),
+     * and docs/MUHURTA_TEXT_SOURCES.md for the full numbering table and Nārada rule.
+     */
     public function calculateMuhurtaTable(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
@@ -90,51 +107,58 @@ class DailyPeriodsCalculator
 
         for ($i = 0; $i < 15; $i++) {
             $start = $this->addFloatSeconds($sunrise, $i * $dayDuration);
+            $m = $daySeq[$i];
             $rows[] = $this->buildTimedRow($start, $dayDuration, [
                 'period' => Localization::translate('String', 'Day'),
-                'muhurta_number' => $i + 1,
-                'name' => $daySeq[$i]->getName(),
+                'muhurta_number' => $i + 1,   // 1-based within daytime
+                'index' => $m->value,         // 0-based enum index (reliable for rules)
+                'name' => $m->getName(),
+                'quality' => $m->getBaseQuality(),
+                'is_auspicious' => $m->isBaseAuspicious(),
             ]);
         }
 
         for ($i = 0; $i < 15; $i++) {
             $start = $this->addFloatSeconds($sunset, $i * $nightDuration);
+            $m = $nightSeq[$i];
             $rows[] = $this->buildTimedRow($start, $nightDuration, [
                 'period' => Localization::translate('String', 'Night'),
-                'muhurta_number' => $i + 1,
-                'name' => $nightSeq[$i]->getName(),
+                'muhurta_number' => $i + 1,   // 1-based within nighttime
+                'index' => $m->value,         // 0-based enum index (reliable for rules)
+                'name' => $m->getName(),
+                'quality' => $m->getBaseQuality(),
+                'is_auspicious' => $m->isBaseAuspicious(),
             ]);
         }
 
         return $rows;
     }
 
+    /**
+     * Returns only the Dur Muhūrtas for the given weekday (vara).
+     *
+     * Uses the authoritative 0-based enum indexes from Nārada (see Muhurta::getWeekdayDurMuhurtaIndexes).
+     * Separate from base tyājya quality.
+     *
+     * Rows include both:
+     * - 'muhurta_number' (1-based within Day or within Night)
+     * - 'index' (0-based absolute enum index, used for the rule)
+     *
+     * Returned rows have 'is_auspicious' forced false; they also carry base 'quality'.
+     */
     public function calculateDurMuhurta(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
         int $varaIdx
     ): array {
-        $rules = [
-            0 => ['day' => [14, 15], 'night' => []],
-            1 => ['day' => [9, 11], 'night' => []],
-            2 => ['day' => [1, 5], 'night' => []],
-            3 => ['day' => [12], 'night' => []],
-            4 => ['day' => [1, 2, 4, 11, 12, 15], 'night' => [1, 2, 6, 7]],
-            5 => ['day' => [4, 9], 'night' => []],
-            6 => ['day' => [1], 'night' => []],
-        ];
+        $badIndexes = Muhurta::getWeekdayDurMuhurtaIndexes($varaIdx);
 
-        $currentRules = $rules[$varaIdx] ?? $rules[0];
         $full = $this->calculateMuhurtaTable($sunrise, $sunset, $nextSunrise);
         $durMuhurtas = [];
 
         foreach ($full as $row) {
-            $num = $row['muhurta_number'];
-            $isNight = $row['period'] === Localization::translate('String', 'Night');
-            $targetList = $isNight ? $currentRules['night'] : $currentRules['day'];
-
-            if (in_array($num, $targetList, true)) {
+            if (in_array($row['index'] ?? -1, $badIndexes, true)) {
                 $row['is_auspicious'] = false;
                 $durMuhurtas[] = $row;
             }

@@ -3186,7 +3186,7 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
-            'aliases' => ['Saubhagya Panchami'],
+            'aliases' => ['Labh Pancham', 'Saubhagya Panchami'],
             'description' => 'Auspicious day for opening new accounts and business ventures',
             'deity' => 'Lakshmi',
             'regions' => ['Gujarat'],
@@ -3389,8 +3389,10 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Shravana',
+            'aliases' => ['Nag Pancham'],
             'description' => 'Worship of serpent deities',
             'deity' => 'Nagas',
+            'karmakala_type' => 'sunrise',
         ],
         'Tulsidas Jayanti' => [
             'type' => 'tithi',
@@ -4116,16 +4118,6 @@ class FestivalService
             'karmakala_type' => 'aparahna',
             'deepotsav_sequence' => 'bhai_beej',
         ],
-        'Labh Pancham' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 5,
-            'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Kartika',
-            'description' => 'Auspicious day for businesses in Gujarat',
-            'deity' => 'Lakshmi/Ganesha',
-        ],
         'Chhath Puja (Sandhya Arghya)' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -4520,7 +4512,6 @@ class FestivalService
             'tithi' => 14,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Phalguna',
-            'aliases' => ['Masik Shivaratri'],
             'description' => 'Great night of Lord Shiva',
             'deity' => 'Shiva',
             'fasting' => true,
@@ -5566,17 +5557,6 @@ class FestivalService
             'deity' => 'Ganesha',
             'karmakala_type' => 'sunrise',
         ],
-        'Nag Pancham' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 5,
-            'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Shravana',
-            'description' => 'Traditional worship of Nagas',
-            'deity' => 'Naga Devatas',
-            'karmakala_type' => 'sunrise',
-        ],
         'Nagula Chavithi' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -5648,15 +5628,6 @@ class FestivalService
             'month_purnimanta' => 'Kartika',
             'description' => 'Worship of Lord Hanuman during Diwali period',
             'deity' => 'Hanuman',
-            'karmakala_type' => 'sunrise',
-        ],
-        'Navratri Begins' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 1,
-            'description' => 'Start of the nine-day Navratri festival',
-            'deity' => 'Durga',
             'karmakala_type' => 'sunrise',
         ],
         'Kedar Gauri Vrat' => [
@@ -6558,6 +6529,53 @@ class FestivalService
         return $nakshatra;
     }
 
+    private function nakshatraRuleMatches(string $requiredNakshatra, array $snapshotNakshatra): bool
+    {
+        $required = $this->resolveNakshatraNumber($requiredNakshatra);
+        $current = isset($snapshotNakshatra['number'])
+            ? (int) $snapshotNakshatra['number']
+            : $this->resolveNakshatraNumber((string) ($snapshotNakshatra['name'] ?? ''));
+
+        if ($required !== null && $current >= 1 && $current <= 27) {
+            return $required === $current;
+        }
+
+        return strcasecmp($requiredNakshatra, (string) ($snapshotNakshatra['name'] ?? '')) === 0;
+    }
+
+    private function resolveNakshatraNumber(string $label): ?int
+    {
+        $label = trim($label);
+        if ($label === '') {
+            return null;
+        }
+
+        foreach (Nakshatra::cases() as $case) {
+            if ($case->getName('en') === $label || $case->getName('hi') === $label || $case->getName('gu') === $label) {
+                return $case->value + 1;
+            }
+        }
+
+        $normalized = $this->normalizeMonthName($label);
+        if ($normalized === '') {
+            return null;
+        }
+
+        foreach (Nakshatra::cases() as $case) {
+            if ($this->normalizeMonthName($case->getName('en')) === $normalized) {
+                return $case->value + 1;
+            }
+
+            foreach (['hi', 'gu'] as $locale) {
+                if ($this->normalizeMonthName($case->getName($locale)) === $normalized) {
+                    return $case->value + 1;
+                }
+            }
+        }
+
+        return null;
+    }
+
     private function localizedString(mixed $value): ?string
     {
         if (!is_string($value) || $value === '') {
@@ -6821,7 +6839,8 @@ class FestivalService
         }
 
         // Check nakshatra match (if specified)
-        if (isset($rules['nakshatra'], $panchangDetails['Nakshatra']['name']) && $panchangDetails['Nakshatra']['name'] !== $rules['nakshatra']) {
+        if (isset($rules['nakshatra'], $panchangDetails['Nakshatra']['name'])
+            && !$this->nakshatraRuleMatches((string) $rules['nakshatra'], (array) $panchangDetails['Nakshatra'])) {
             return false;
         }
 
