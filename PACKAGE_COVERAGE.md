@@ -371,6 +371,13 @@ The package covers day-level special yoga signals useful for muhurta screening a
 - Anandadi Yoga, including the 28-nakshatra Abhijit variant
 - Amritadi Yoga, covering the full 27 nakshatra by 7 weekday table
 - Panchak, from Dhanishta pada 3 through Revati
+- Panchak weekday subtype classification locked to the true Panchak entry weekday:
+  - Sunday: Roga Panchaka
+  - Monday: Raja Panchaka
+  - Tuesday: Agni Panchaka
+  - Friday: Chora Panchaka
+  - Saturday: Mrityu Panchaka
+  - Wednesday or Thursday: Shubha Panchaka / no named five-dosha subtype
 - Maitreya Yoga, using strict weekday, nakshatra, and lagna overlap
 - Gajachchhaya Yoga, including the known tithi, Sun-nakshatra, Moon-nakshatra, and Pitru Paksha variants
 
@@ -435,7 +442,7 @@ The package also exposes general calculative layers that are useful before any p
   - hours
   - ghati
   - pala
-- Panchak weekday-type classification on active Panchak windows
+- Panchak weekday-type classification on active Panchak windows, including localized display labels and machine keys such as `current_weekday_type_key` and per-window `weekday_type_key`
 - transit moorthy scoring as a public daily payload
 - travel-direction screening with:
   - weekday

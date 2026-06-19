@@ -108,6 +108,15 @@ A 27-Nakshatra classification system based on weekday-Nakshatra combinations, yi
 ### Specific Planetary Configurations
 *   **Panchak:** The sensitive five-day transit period of the Moon through the last segment of the zodiac, spanning five Nakshatras:
     > *Dhanishta (latter half), Shatabhisha, Purva Bhadrapada, Uttara Bhadrapada, Revati*
+    The package calculates Panchak using the Moon longitude range from **Dhanishta pada 3 through Revati** (300°–360°) and locks the subtype to the weekday at the true Panchak entry moment. The current running weekday inside the active Panchak span is exposed separately.
+
+    **Panchak subtype by entry weekday:**
+    *   **Sunday:** *Roga Panchaka* (illness/disease sensitivity)
+    *   **Monday:** *Raja Panchaka* (authority/government/status sensitivity)
+    *   **Tuesday:** *Agni Panchaka* (fire/heat/accident sensitivity)
+    *   **Friday:** *Chora Panchaka* (theft/loss/security sensitivity)
+    *   **Saturday:** *Mrityu Panchaka* (danger/mortality sensitivity)
+    *   **Wednesday / Thursday:** *Shubha Panchaka* / Panchak without the five named weekday dosha subtypes
 *   **Maitreya Yoga:** Formed by the precise alignment of specific weekdays, Nakshatras, and rising signs (Lagnas).
 *   **Gajachchhaya Yoga:** Highly specific planetary alignments observed during Pitru Paksha, categorized by three variants:
     *   *Variant 1:* Trayodashi Tithi with the Sun in Hasta Nakshatra and the Moon in Magha Nakshatra.
@@ -140,9 +149,29 @@ Calculations applied to determine the purity of an hour for major life events. T
 *   **Krakacha** (Sharp conflict/Instruments)
 *   **Samvarta** (Ruins/Destruction)
 
+This electional remainder check is separate from the Moon-in-Panchak weekday subtype system. In practice, it is used as a muhurta-screening layer rather than as a general daily Panchak transit label.
+
 ### Vara Tithi Doshas
 Specific daily flaws arising when a weekday and a particular Tithi collide:
 *   *Mrityu, Dagdha, Visha, Krakacha, Samvarta*
+
+### Daily Screening and Observance Layers
+The package also includes several daily interpretive layers for non-natal panchang screening:
+*   **Nitya Yoga Observations:** Flags special concerns in Yogas such as Vyatipata and Vaidhriti.
+*   **Vara-Tithi Doshas:** Checks flaws caused by weekday and Tithi combinations.
+*   **Tithi Observance Analysis:** Distinguishes Shuddha, Viddha, Kshaya, and Vriddhi-style sunrise observance states.
+*   **Vrata Parana:** Gives parana guidance for supported fasting families.
+*   **Yatra Screening:** Evaluates travel direction concerns and blocked directions.
+*   **Day and Night Measures:** Presents Dinamana and Ratrimana in modern duration units as well as Ghati and Pala.
+*   **Nakshatra Tyajya:** Shows the Varjyam-like avoided portion of the active Nakshatra.
+*   **Dharma Sindhu Style Notes:** Preserves observance and Punya-Kala style guidance where the package has a supported rule family.
+
+### Bhadra, Parana, and Nirnay Refinements
+The package includes deeper observance-resolution helpers beyond simple Tithi labels:
+*   **Bhadra / Vishti Handling:** Supports Bhadra period handling, including Bhadra Mukha, Bhadra Madhya, and Bhadra Puchha style preference or rejection rules where festival decisions need them.
+*   **Ekadashi Parana:** Ekadashi handling includes Harivasara, Dwadashi-parana windows, restricted/allowed parana intervals, and emergency symbolic-water parana notes where the supported tradition profile requires it.
+*   **Vaishnava Ekadashi Cases:** The observance decision can represent Viddha, Kshaya, Unmillani, Trisparsha, and Mahadvadashi-style cases where implemented.
+*   **Festival Karmakala Resolution:** Festival date selection uses overlap against windows such as Pradosha, Nishitha, Madhyahna, Aparahna, Sangava, Arunodaya, and Vijaya Kaal instead of only checking a single instant.
 
 ---
 
@@ -174,6 +203,8 @@ Daily sub-periods representing planetary shadow zones:
 
 ### The 30 Daily Muhurtas (15 Day & 15 Night)
 Each Muhurta lasts approximately 48 minutes (2 Ghadis).
+
+The primary package list follows the Nārada Saṃhitā 9.1-5 / Muhūrtādhyāya sequence, with Kāśyapa as quoted in Vṛddha Vasiṣṭha Saṃhitā used as a close parallel witness. Taittirīya Brāhmaṇa 3.10 is documented as an older qualitative time-segment naming tradition, not as the direct source of this exact Rudra-Ahi-Mitra day/night list.
 
 #### Day Muhurtas (Nārada Saṃhitā 9.1–3)
 1.  **Rudra** (रुद्र - Inauspicious)
@@ -221,7 +252,7 @@ Specific temporal windows allocated for daily rituals, duties, and astrological 
 *   **Yamaganda:** Daily inauspicious period ruled by Ketu.
 *   **Abhijit Muhurta:** Highly auspicious mid-day window (around the 8th Muhurta of the day).
 *   **Brahma Muhurta:** Time of early morning spiritual practice (approx. 1.5 hours before sunrise).
-*   **Dur Muhurta:** Certain muhūrtas that are specially considered inauspicious on particular weekdays, according to the Nārada Saṃhitā. These are to be avoided for performing auspicious activities (śubha-karma). They are distinct from the general auspicious or inauspicious nature of the muhūrtas listed above.
+*   **Dur Muhurta / Durmuhurta:** Certain muhūrtas that are specially considered inauspicious on particular weekdays, according to the Nārada Saṃhitā. These are to be avoided for performing auspicious activities (śubha-karma). They are distinct from the general auspicious or inauspicious nature of the muhūrtas listed above.
 
     The traditional rule is stated in this verse:
 
@@ -244,6 +275,8 @@ Specific temporal windows allocated for daily rituals, duties, and astrological 
 *   **Pradosha Kaal:** Twilight period dedicated to Lord Shiva.
 *   **Varjyam / Nakshatra Tyajya:** Inauspicious portion of a Nakshatra's duration.
 *   **Amrita Kaal:** Auspicious portion of a Nakshatra's duration.
+
+The package also covers full-day tables for Rahu Kaal, Gulika, Yamaganda, Hora, Choghadiya, the 30 Muhurtas, Prahara, Dur Muhurta, Lagna, and Karmakala windows.
 
 ---
 
@@ -283,6 +316,8 @@ Specific divisions used to schedule actions based on religious injunctions:
 # 9. Festival and Vrat Identities
 
 These canonical identities are mapped to regional calendars, specific astronomical transits, and local lunar month definitions.
+
+The package currently includes **326 unique festival identities** and **90 unique vrat identities**.
 
 ## Festival Identities (326)
 
@@ -731,6 +766,7 @@ Eclipse evaluations combine physical astronomy with scriptural standards. Rather
 Sutak and daily temple observances are based strictly on local, physical visibility rather than global occurrence.
 
 *   **Local Visibility Analysis:** Verifies if the eclipse is visible to the unaided eye at the specified coordinates, filtering out events that are solely astronomically visible (e.g., penumbral lunar eclipses or minor partial eclipses occurring below the horizon).
+*   **Ritual Visibility Thresholds:** Local ritual visibility can reject penumbral-only lunar cases, telescope-only cases, below-horizon events, and short local visibility cases that do not meet the configured minimum visible duration.
 *   **Sutak Applicability:** Determines if the purification rules apply based on local visibility.
 *   **Sutak Time Windows:** Calculates the precise start and end times for the period of physical restraint.
     *   *Solar Eclipse Sutak:* Commences 4 Praharas (approx. 12 hours) before the eclipse begins.
@@ -739,8 +775,8 @@ Sutak and daily temple observances are based strictly on local, physical visibil
 
 ### Ritual Boundaries & Scriptural Instructions
 *   **Ritual Boundary Assessment:** Identifies specific scriptural situations, such as:
-    *   *Grast Uday:* An eclipse that begins before sunrise, meaning the sun rises already eclipsed.
-    *   *Grast Ast:* An eclipse that continues past sunset, meaning the sun sets while still eclipsed.
+    *   *Grastodaya / Grast Uday:* An eclipse that begins before sunrise, meaning the sun rises already eclipsed.
+    *   *Grastasta / Grast Ast:* An eclipse that continues past sunset, meaning the sun sets while still eclipsed.
     *   *Ordinary Visible Eclipse:* A standard visible eclipse occurring entirely while the celestial body is above the horizon.
 *   **Post-Eclipse Rituals:**
     *   *Snana (Bathing):* Determines if purification baths are required immediately following fourth contact (eclipse end).

@@ -3375,7 +3375,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculatePanchakaDosha()</h4>
-              <p class="method-description">Calculates the 5-fold Panchaka classification based on Tithi, Vara, Nakshatra, and Lagna.</p>
+              <p class="method-description">Calculates the 5-fold Panchaka Rahita / Panchaka Dosha classification based on Tithi, Vara, Nakshatra, and Lagna. This is the electional remainder check and is separate from active Moon-in-Panchak weekday subtype labels.</p>
               <div class="method-signature">
                 <code>public static function calculatePanchakaDosha(int $tithiNumber, int $varaNumber, int $nakshatraNumber, int $lagnaNumber): array</code>
               </div>
@@ -5135,14 +5135,14 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h4>Added</h4>
           <ul>
             <li><strong>New public daily rule outputs:</strong> Added <code>Nitya_Yoga_Observations</code>, <code>Vara_Tithi_Doshas</code>, <code>Tithi_Observance_Analysis</code>, <code>Vrata_Parana</code>, <code>Yatra_Screening</code>, <code>Day_Night_Measures</code>, and <code>Nakshatra_Tyajya</code> to full day details and selectable daily APIs.</li>
-            <li><strong>Panchak subtype classification:</strong> Public Panchak output now includes weekday subtype classification such as <code>Mrityu Panchaka</code>, <code>Raja Panchaka</code>, and related keys tied to the cycle-entry weekday.</li>
+            <li><strong>Panchak subtype classification:</strong> Public Panchak output now includes entry-weekday subtype classification for <code>Roga Panchaka</code>, <code>Raja Panchaka</code>, <code>Agni Panchaka</code>, <code>Chora Panchaka</code>, <code>Mrityu Panchaka</code>, and <code>Shubha Panchaka</code> / no named five-dosha subtype, with related keys tied to the cycle-entry weekday.</li>
             <li><strong>Day and night traditional duration metrics:</strong> Added explicit <code>Dinamana</code> and <code>Ratrimana</code> style payloads with <code>seconds</code>, <code>minutes</code>, <code>hours</code>, <code>ghati</code>, and <code>pala</code>.</li>
             <li><strong>Supported non-Ekadashi parana families:</strong> Added structured parana-family output for supported non-Ekadashi observances including Sankashti Chaturthi, Pradosha Vrat, Masik Shivaratri, and Skanda Shashthi.</li>
           </ul>
 
           <h4>Improved</h4>
           <ul>
-            <li><strong>Panchak window metadata:</strong> Panchak windows now expose localized <code>start_weekday</code>, localized <code>current_running_weekday</code>, subtype key, and the explicit <code>entry_weekday</code> lock semantics.</li>
+            <li><strong>Panchak window metadata:</strong> Panchak windows now expose localized <code>start_weekday</code>, localized <code>current_running_weekday</code>, subtype key, and the explicit <code>entry_weekday</code> lock semantics. The current-day payload also exposes <code>current_weekday_type</code> and <code>current_weekday_type_key</code> when the calculation time is inside an active Panchak window.</li>
             <li><strong>Yatra screening:</strong> Directional travel screening now exposes a full direction grid, blocked-direction determination, and urgent-travel exception guidance in the public output.</li>
             <li><strong>Tithi observance analysis:</strong> Structural sunrise-based tithi observance analysis is now exposed explicitly as a non-festival-specific engine with <code>Shuddha</code>, <code>Viddha</code>, <code>Kshaya</code>, and <code>Vriddhi</code>-style state reporting.</li>
             <li><strong>Nitya Yoga flags:</strong> Public output now exposes explicit <code>Vyatipata</code> / <code>Vaidhriti</code> style Kranti-dosha flagging and general Nitya-yoga avoidance scope.</li>
