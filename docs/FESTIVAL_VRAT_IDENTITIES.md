@@ -410,7 +410,7 @@ This list is generated from the canonical English Amanta 2026 yearly outputs. Th
 | 70 | Shanivar Vrat | Saturday Vrat |
 | 71 | Shattila Ekadashi | - |
 | 72 | Sheetala Satam | Sheetala Saptami |
-| 73 | Shravana Purnima | Shravana Purnima Vrat, Raksha Bandhan, Narali Purnima, Hayagriva Jayanti, Gayatri Jayanti |
+| 73 | Shravana Purnima | Shravana Purnima Vrat, Raksha Bandhan, Rakshabandhan, Rakshabandh, Narali Purnima, Hayagriva Jayanti, Gayatri Jayanti |
 | 74 | Shravana Putrada Ekadashi | Vaishnava Shravana Putrada Ekadashi |
 | 75 | Shravana Somvar (Monday Fasting) | - |
 | 76 | Shri Satyanarayana Vrat | - |

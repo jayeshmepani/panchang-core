@@ -78,9 +78,10 @@ class EkadashiParanaCalculator
                 1,
                 fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
             );
-            $payload['parana'] = $this->buildParanaPayload($tithiEndJd, $dvadashiEndJd, $nextSunriseJd, $tz, true, $monthAmanta, $paksha);
+            $paranaSunsetJd = $this->calculateSunsetForJdDate($nextSunriseJd, $tz, $lat, $lon);
+            $payload['parana'] = $this->buildParanaPayload($tithiEndJd, $dvadashiEndJd, $nextSunriseJd, $tz, true, $monthAmanta, $paksha, $paranaSunsetJd);
         } else {
-            $payload['parana'] = $this->buildParanaPayload($tithiStartJd, $tithiEndJd, $sunriseJd, $tz, false, $monthAmanta, $paksha);
+            $payload['parana'] = $this->buildParanaPayload($tithiStartJd, $tithiEndJd, $sunriseJd, $tz, false, $monthAmanta, $paksha, $sunsetJd);
         }
 
         $payload = $this->localizeEkadashiObservancePayload($payload);
@@ -95,16 +96,21 @@ class EkadashiParanaCalculator
         string $tz,
         bool $startsTomorrow,
         ?string $monthAmanta = null,
-        ?string $paksha = null
+        ?string $paksha = null,
+        ?float $paranaDaySunsetJd = null
     ): array {
         $hariVasaraEndJd = $dvadashiStartJd + (($dvadashiEndJd - $dvadashiStartJd) / 4.0);
         $paranaStartJd = max($sunriseJd, $hariVasaraEndJd);
+        $dayDurationJd = $paranaDaySunsetJd !== null && $paranaDaySunsetJd > $sunriseJd
+            ? $paranaDaySunsetJd - $sunriseJd
+            : 0.5;
+        $fixedGhatiJd = KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0;
         $dvadashiDurationGhatikas = (($dvadashiEndJd - $dvadashiStartJd) * 1440.0) / KalaNirnayaEngine::GHATI_IN_MINUTES;
         $shortDvadashiRule = $this->shortDvadashiRule($dvadashiDurationGhatikas, $sunriseJd, $dvadashiEndJd);
         $restrictedWindows = $this->collectParanaRestrictedWindows($paranaStartJd, $dvadashiEndJd, $tz, $monthAmanta, $paksha);
         $allowedWindows = $this->subtractRestrictedWindows($paranaStartJd, $dvadashiEndJd, $restrictedWindows, $tz);
         $paranaBasis = $this->classifyParanaBasis($this->activeRestrictedNakshatraPadas($monthAmanta, $paksha), $restrictedWindows);
-        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $allowedWindows[0]['end_jd'] ?? null);
+        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $allowedWindows[0]['end_jd'] ?? null, $dayDurationJd, $fixedGhatiJd);
         $preferredWindows = $this->applyPreferredWindowCap($allowedWindows, $daytimePreferenceRule['preferred_end_jd'] ?? null, $tz);
         $available = $allowedWindows !== [];
         $firstAllowed = $allowedWindows[0] ?? null;
@@ -130,6 +136,9 @@ class EkadashiParanaCalculator
             'raw_parana_start_jd' => $paranaStartJd,
             'raw_parana_end_jd' => $dvadashiEndJd,
             'dvadashi_duration_ghatikas' => $dvadashiDurationGhatikas,
+            'fixed_ghati_minutes' => KalaNirnayaEngine::GHATI_IN_MINUTES,
+            'ghati_basis' => 'fixed_elapsed_time_unit',
+            'parana_day_dinamana_minutes' => $dayDurationJd * 1440.0,
             'short_dvadashi_rule' => $shortDvadashiRule,
             'symbolic_water_parana_allowed' => $shortDvadashiRule['symbolic_water_parana_allowed'],
             'daytime_preference_rule' => $daytimePreferenceRule,
@@ -277,10 +286,10 @@ class EkadashiParanaCalculator
      *   preferred_duration_ghatikas:?float
      * }
      */
-    private function buildDaytimePreferenceRule(float $sunriseJd, float $dvadashiEndJd, float $rawParanaStartJd, ?float $firstAllowedEndJd): array
+    private function buildDaytimePreferenceRule(float $sunriseJd, float $dvadashiEndJd, float $rawParanaStartJd, ?float $firstAllowedEndJd, float $dayDurationJd, float $fixedGhatiJd): array
     {
-        $madhyahnaJd = $sunriseJd + (15.0 * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0);
-        $preferredEndJd = $sunriseJd + (6.0 * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0);
+        $madhyahnaJd = $sunriseJd + ($dayDurationJd / 2.0);
+        $preferredEndJd = $sunriseJd + (6.0 * $fixedGhatiJd);
         $applies = $dvadashiEndJd > $madhyahnaJd && $preferredEndJd > $rawParanaStartJd;
 
         if ($firstAllowedEndJd !== null) {
@@ -292,7 +301,29 @@ class EkadashiParanaCalculator
             'applies' => $applies,
             'preferred_end_jd' => $applies ? $preferredEndJd : null,
             'preferred_duration_ghatikas' => $applies ? 6.0 : null,
+            'fixed_ghati_minutes' => KalaNirnayaEngine::GHATI_IN_MINUTES,
+            'madhyahna_basis' => 'dynamic_dinamana_midpoint',
+            'preferred_duration_basis' => 'fixed_ghati_elapsed_time_unit',
         ];
+    }
+
+    private function calculateSunsetForJdDate(float $jd, string $tz, float $lat, float $lon): float
+    {
+        $date = $this->sunService->jdToCarbonPublic($jd, $tz);
+        [, $sunset] = $this->sunService->getSunriseSunset([
+            'year' => $date->year,
+            'month' => $date->month,
+            'day' => $date->day,
+            'hour' => 12,
+            'minute' => 0,
+            'second' => 0,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'timezone' => $tz,
+            'elevation' => 0.0,
+        ]);
+
+        return AstroCore::toJulianDay($sunset);
     }
 
     private function normalizeMonthName(string $month): string

@@ -1271,13 +1271,15 @@ $details['Amrita_Kaal']['windows'][0]['window_end_iso'];</code></pre>
             <h4 style="margin-top: 1.5rem;">4. Pradosha Kaal Calculation</h4>
             <p>Pradosha is computed from two factors:</p>
             <ol style="margin-top: 0.5rem;">
-              <li><strong>Night fraction:</strong> First 1/5th of night (sunset to next sunrise)</li>
+              <li><strong>Local sunset anchor:</strong> The base window begins at the calculated local sunset and continues for six fixed ghaṭīs (144 minutes)</li>
               <li><strong>Trayodashi overlap:</strong> Only auspicious when Trayodashi tithi overlaps the window</li>
             </ol>
             <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Returns both base and effective windows
 $pradosha = $details['Pradosha_Kaal'];
-$base_window = $pradosha['pradosha_window'];           // Base 1/5th night
-$effective = $pradosha['effective_trayodashi_window']; // Overlap with T13</code></pre>
+$base_start = $pradosha['base_pradosha_start_iso'];
+$base_end = $pradosha['base_pradosha_end_iso'];       // Sunset + 6 fixed ghaṭīs
+$effective_start = $pradosha['pradosha_start_iso'];
+$effective_end = $pradosha['pradosha_end_iso'];       // Trayodashi overlap</code></pre>
 
             <h4 style="margin-top: 1.5rem;">5. Hindu Calendar Month Resolution</h4>
             <p>The package uses <strong>exact amavasya-to-amavasya</strong> solar transit logic:</p>
@@ -2600,6 +2602,7 @@ foreach ($festivals as $festival) {
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
               </li>
+              <li>Pratah, Sangava, Madhyahna, Aparahna, Sayahna, Abhijit, Vijaya, and Nishitha use actual local daytime or nighttime proportions. Arunodaya, Pradosha, and Sandhya use fixed ghaṭī offsets from local solar anchors.</li>
             </ul>
           </div>
         </section>
@@ -3084,9 +3087,9 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateSandhya()</h4>
-              <p class="method-description">Calculate morning, noon, and evening Sandhya windows.</p>
+              <p class="method-description">Calculate fixed-ghaṭī morning, noon, and evening Sandhya windows around local sunrise, solar noon, and sunset.</p>
               <div class="method-signature">
-                <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $solarNoon): array</code>
+                <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $solarNoon): array</code>
               </div>
             </div>
 
@@ -3458,7 +3461,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <h4 class="method-name">calculatePunyaKaal()</h4>
               <p class="method-description">Identifies the auspicious 'Punya Kaal' window for Sankrantis.</p>
               <div class="method-signature">
-                <code>public function calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd): array</code>
+                <code>public function calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array</code>
               </div>
             </div>
             <div class="method">
@@ -3541,7 +3544,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <tr><td><code>Rahu_Kaal_Gulika_Yamaganda</code></td><td>Object</td><td>{rahu_kaal: {start, end}, gulika, yamaganda}</td></tr>
               <tr><td><code>Varjyam</code></td><td>Object</td><td>{is_available, window_count, windows: [{varjyam_start, varjyam_end, window_start_jd, window_end_jd, visible_start_jd, visible_end_jd, offset_ghati, duration_ghati}]}</td></tr>
               <tr><td><code>Amrita_Kaal</code></td><td>Object</td><td>{is_available, window_count, windows: [{amrita_kaal_start, amrita_kaal_end, window_start_jd, window_end_jd, visible_start_jd, visible_end_jd, offset_ghati, duration_ghati}]}</td></tr>
-              <tr><td><code>Pradosha_Kaal</code></td><td>Object</td><td>{pradosha_window, effective_trayodashi_window}</td></tr>
+              <tr><td><code>Pradosha_Kaal</code></td><td>Object</td><td>{base_pradosha_start_iso, base_pradosha_end_iso, pradosha_start_iso, pradosha_end_iso, trayodashi_overlaps}</td></tr>
               <tr><td><code>Bhadra</code></td><td>Array|null</td><td>[{name, start, end, mukha, madhya, puchha, lok, status}]</td></tr>
             </tbody>
           </table>
@@ -4757,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.7.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.8.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.7.0 brings important corrections to classical muhūrta qualities and the weekday Durmuhūrta schedule, plus new quality and index fields in muhūrta output. Previous releases (such as v9.6.0) focused on Sun/Moon astronomical accuracy.</p>
+            <p>Review the version-specific notes below before upgrading. v9.8.0 improves dynamic day/night period handling, Raksha Bandhan Nirnay selection, and related festival/vrat timing behavior. Previous releases (such as v9.7.0) focused on classical muhūrta qualities and weekday Durmuhūrta correction.</p>
           </div>
 
           <div class="info-box">
-            <h3>v9.7.0 Documentation Snapshot</h3>
-            <p>This documentation covers v9.7.0: Correction of classical muhūrta base qualities per Vṛddha Vasiṣṭha and Nārada Saṃhitā, proper separation of fixed tyājya qualities from weekday Durmuhūrta, accurate weekday Durmuhūrta schedule using traditional 1-based positions, and enhanced muhūrta table output with quality and index fields.</p>
+            <h3>v9.8.0 Documentation Snapshot</h3>
+            <p>This documentation covers v9.8.0: dynamic dinamāna/rātrimāna period handling across festival and daily timing rules, dedicated Raksha Bandhan truth-table selection, corrected karmakāla windows, and clearer separation between fixed ghaṭī elapsed units and proportional day/night divisions.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">9.8.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Dynamic Dinamāna/Rātrimāna Periods and Raksha Bandhan Rule Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Corrects day and night period handling so proportional windows use actual local dinamāna and rātrimāna, while ghaṭī remains a fixed elapsed-time unit. Adds dedicated Raksha Bandhan Nirnay selection with a dynamic three-day-muhūrta Udaya Purnima threshold, improves karmakāla windows, and refreshes generated festival and vrat output.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.7.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Classical Muhurta Quality Correction and Nārada-Aligned Durmuhūrta Schedule</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Classical Muhurta Quality Correction and Nārada-Aligned Durmuhūrta Schedule</span></div>
                 <p class="release-note">Aligns the 30 muhūrtas with classical sources: corrects base tyājya labels (Indragni and Īśa now Inauspicious; Arka and Vāyu now Auspicious). Introduces clear separation between fixed base quality and weekday-specific Durmuhūrta using the Nārada verse. Adds quality and index fields to muhūrta table output and provides authoritative weekday Durmuhūrta indexes.</p>
               </div>
             </li>
@@ -4982,6 +4992,35 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v9.8.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Dynamic day/night period correction across festival, vrat, and daily timing logic with dedicated Raksha Bandhan Nirnay handling.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Festival and vrat dates can change:</strong> Karmakāla windows now use actual local dinamāna and rātrimāna where proportional day/night periods are required.</li>
+              <li><strong>Raksha Bandhan selection is stricter:</strong> Shravana Purnima / Raksha Bandhan now uses a dedicated truth-table path with a dynamic three-day-muhūrta Udaya Purnima threshold and previous-day fallback handling.</li>
+              <li><strong>Generated output should be regenerated:</strong> Festival, vrat, daily, month, raw yearly, and localized generated JSON should be refreshed after upgrading.</li>
+              <li><strong>Ghaṭī remains fixed:</strong> Iṣṭakāla and ghaṭī-based offsets continue to use fixed elapsed ghaṭī units. Only proportional day/night windows are scaled by actual dinamāna or rātrimāna.</li>
+            </ul>
+          </div>
+
+          <h4>Highlights</h4>
+          <ul>
+            <li><strong>Dynamic Day/Night Periods:</strong> Daytime muhūrtas, nighttime muhūrtas, fivefold day periods, Abhijit, Vijaya, and Niśītha now follow actual local sunrise, sunset, and next sunrise boundaries.</li>
+            <li><strong>Fixed-Offset Ritual Windows Preserved:</strong> Aruṇodaya, Sandhyā, Pradoṣa, and fixed ghaṭī durations remain sunrise/sunset anchored fixed elapsed-time intervals where tradition requires that treatment.</li>
+            <li><strong>Raksha Bandhan Nirnay:</strong> The package now distinguishes Udaya Purnima selection from previous-day fallback and exposes the basis used for the decision.</li>
+            <li><strong>Ekadashi Parana Refinement:</strong> Preferred parana guidance now uses dynamic day midpoint for Madhyāhna while keeping first-six-ghaṭī preference as a fixed elapsed-time rule.</li>
+            <li><strong>Generated Count Alignment:</strong> Generated observance output is refreshed for the corrected 326 festival and 90 vrat identity set.</li>
+          </ul>
+
+          <h4>Upgrade Notes</h4>
+          <ul>
+            <li>Rebaseline generated festival and vrat snapshots because corrected dynamic period rules can shift or remove observances that were previously selected by overly broad static windows.</li>
+            <li>Review Raksha Bandhan displays and aliases: Shravana Purnima now carries the Raksha Bandhan/Rakshabandhan/Rakshabandh aliases and uses Aparāhna-based Nirnay selection.</li>
+            <li>Do not treat normalized day/night divisions as classical ghaṭīs. Classical ghaṭī remains 24 minutes; proportional divisions are derived from local dinamāna or rātrimāna.</li>
+          </ul>
 
           <h3>v9.7.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Classical muhūrta base quality alignment with Vṛddha Vasiṣṭha/Nārada tradition and correct weekday Durmuhūrta schedule.</p>
@@ -5766,10 +5805,16 @@ const MUHURTA_IN_MINUTES
 const MUHURTA_PER_DAY
 const ARUNODAYA_MINUTES
 const ARUNODAYA_PER_DAY
+const PRADOSHA_GHATIKAS
 const PRADOSHA_MINUTES
 const PRADOSHA_PER_DAY
 const BRAHMA_MUHURTA_MINUTES
 const BRAHMA_MUHURTA_OFFSET_MINUTES
+const PRATAH_SANDHYA_BEFORE_SUNRISE_GHATIKAS
+const PRATAH_SANDHYA_AFTER_SUNRISE_GHATIKAS
+const MADHYAHNA_SANDHYA_HALF_GHATIKAS
+const SAYAM_SANDHYA_BEFORE_SUNSET_GHATIKAS
+const SAYAM_SANDHYA_AFTER_SUNSET_GHATIKAS
 const DEGREES_PER_SIGN
 const DEGREES_PER_NAKSHATRA
 const DEGREES_PER_TITHI
@@ -6258,7 +6303,7 @@ const SANKRANTI_PUNYA_KAAL
 const TITHI_NAMES
 const FESTIVAL_RULES
 - __construct(float $latitude, float $longitude): void
-- calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd): array
+- calculatePunyaKaal(string $sankrantiName, float $sankrantiJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array
 - configure(string $ephePath = ""): void
 - determineEkadashi(float $ekadashiStartJd, float $ekadashiEndJd, float $dashamiEndJd, float $dvadashiStartJd, float $sunriseJd, float $nextSunriseJd, string $tradition = "Vaishnava"): array
 - determineViddhaTithi(int $tithiNumber, float $tithiStartJd, float $tithiEndJd, float $sunriseDay1Jd, float $sunriseDay2Jd, float $prevTithiEndJd): array
@@ -6287,7 +6332,7 @@ const FESTIVAL_RULES
 - calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, int $tithiNum): array
 - calculatePrahara(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
-- calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $solarNoon): array
+- calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $solarNoon): array
 - calculateVarjyam(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd): array
 - calculateVijayaMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
 

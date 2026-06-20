@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
@@ -150,16 +151,13 @@ trait PanchangMuhurtaYogaDelegatesTrait
         ];
     }
 
-    /** Calculate Pradosha Kaal using first 1/5th of night and Trayodashi overlap logic. */
+    /** Calculate Pradosha Kaal using six fixed ghatis after local sunset and Trayodashi overlap logic. */
     private function calculatePradoshaKaal(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise,
         float $jdSunset,
-        float $jdNextSunrise,
         string $tz
     ): array {
-        $nightDurationJd = $jdNextSunrise - $jdSunset;
-        $pradoshaEndJd = $jdSunset + ($nightDurationJd / 5.0);
+        $pradoshaEndJd = $jdSunset + (ClassicalTimeConstants::PRADOSHA_MINUTES / 1440.0);
 
         $trayodashiOverlaps = [];
         $cursor = $jdSunset + 1e-7;
@@ -224,6 +222,9 @@ trait PanchangMuhurtaYogaDelegatesTrait
             'base_pradosha_start_iso' => AstroCore::formatDateTime($baseStart),
             'base_pradosha_end_iso' => AstroCore::formatDateTime($baseEnd),
             'base_duration_minutes' => $basePradoshaDurationMinutes,
+            'duration_ghatikas' => ClassicalTimeConstants::PRADOSHA_GHATIKAS,
+            'fixed_ghati_minutes' => ClassicalTimeConstants::GHATIKA_IN_MINUTES,
+            'calculation_basis' => 'fixed_ghati_offset_from_local_sunset',
             'is_trayodashi' => $hasTrayodashiOverlap,
             'is_auspicious' => $hasTrayodashiOverlap,
             'trayodashi_overlap_minutes' => $trayodashiDurationMinutes,

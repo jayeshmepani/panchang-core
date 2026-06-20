@@ -282,8 +282,8 @@ The package also covers full-day tables for Rahu Kaal, Gulika, Yamaganda, Hora, 
 
 # 8. Time Segments & Ritual Divisions
 
-### Praharas (8-Fold Division of the 24-Hour Cycle)
-Four daytime Praharas and four nighttime Praharas (each lasting approximately 3 hours):
+### Praharas (8-Fold Division of the Day and Night)
+Four daytime Praharas and four nighttime Praharas, with their duration changing according to the actual length of daylight and night:
 *   **Daytime Praharas:** *Pratah Prahara, Sangava Prahara, Madhyahna Prahara, Aparahna Prahara*
 *   **Nighttime Praharas:** *Pradosha Prahara, Nishitha Prahara, Triyama Prahara, Usha Prahara*
 
@@ -295,9 +295,9 @@ Four daytime Praharas and four nighttime Praharas (each lasting approximately 3 
 *   **Sayahna** (Late Afternoon/Evening - final 1/5th of the daytime)
 
 ### Sandhya (Three Daily Transitions)
-*   **Pratah Sandhya** (Dawn twilight - sunrise period)
-*   **Madhyahna Sandhya** (Solar noon transition)
-*   **Sayahna Sandhya** (Dusk twilight - sunset period)
+*   **Pratah Sandhya** (Fixed-ghati ritual window around local sunrise)
+*   **Madhyahna Sandhya** (Fixed-ghati ritual window around local solar noon)
+*   **Sayam Sandhya** (Fixed-ghati ritual window around local sunset)
 
 ### Karmakala Ritual Divisions
 Specific divisions used to schedule actions based on religious injunctions:
@@ -307,9 +307,9 @@ Specific divisions used to schedule actions based on religious injunctions:
 *   *Abhijit* (Midday)
 *   *Aparahna* (Afternoon)
 *   *Vijaya Kaal* (Inherent success hour)
-*   *Sayankala* (Sunset time)
+*   *Sayankala* (Final one-fifth of the actual daytime)
 *   *Nishitha* (Midnight)
-*   *Pradosha* (Early night/evening)
+*   *Pradosha* (Six fixed ghatis after local sunset)
 
 ---
 

@@ -75,12 +75,19 @@ enum Choghadiya: int
      *
      * @param float $jdSunrise Sunrise Julian Day
      * @param float $jdSunset Sunset Julian Day
+     * @param float $jdNextSunrise Next sunrise Julian Day
      * @param float $jdCurrent Current Julian Day
      * @param Vara $vara Weekday
      *
      * @return self Choghadiya instance
      */
-    public static function fromTime(float $jdSunrise, float $jdSunset, float $jdCurrent, Vara $vara): self
+    public static function fromTime(
+        float $jdSunrise,
+        float $jdSunset,
+        float $jdNextSunrise,
+        float $jdCurrent,
+        Vara $vara
+    ): self
     {
         $isDay = $jdCurrent >= $jdSunrise && $jdCurrent < $jdSunset;
 
@@ -88,7 +95,7 @@ enum Choghadiya: int
             $durationTotal = $jdSunset - $jdSunrise;
             $elapsed = $jdCurrent - $jdSunrise;
         } else {
-            $durationTotal = ($jdSunrise + 1.0) - $jdSunset;
+            $durationTotal = $jdNextSunrise - $jdSunset;
             $elapsed = $jdCurrent - $jdSunset;
         }
 

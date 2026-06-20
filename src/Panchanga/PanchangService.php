@@ -365,7 +365,7 @@ class PanchangService
         $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
         $vijayaMuhurta = $this->muhurta->calculateVijayaMuhurta($relSunrise, $sunset);
         $godhuliMuhurta = $this->muhurta->calculateGodhuliMuhurta($sunset, $nextSunrise);
-        $sandhya = $this->muhurta->calculateSandhya($relSunrise, $sunset, $nextSunrise, $solarTransits['solar_noon']);
+        $sandhya = $this->muhurta->calculateSandhya($relSunrise, $sunset, $solarTransits['solar_noon']);
         $gowriPanchangam = $this->muhurta->calculateGowriPanchangam($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
         $kalaVela = $this->muhurta->calculateKalaVela($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
 
@@ -422,8 +422,8 @@ class PanchangService
             'window_count' => count($varjyamWindows),
         ]);
 
-        // Pradosha Kaal: first 1/5th of night, auspicious only when Trayodashi overlaps it.
-        $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $nextSunrise, $jdSunset, $jdNextSunrise, $tz);
+        // Pradosha Kaal: six fixed ghatis after local sunset, auspicious only when Trayodashi overlaps it.
+        $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $jdSunset, $tz);
 
         // Lagna calculation
         $lagna = $this->muhurta->calculateLagna(
@@ -503,7 +503,7 @@ class PanchangService
             if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                 $sankrantiName = $sankrantiNameMap[$nextSign];
                 $sankrantiRashi = $nextSign;
-                $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset);
+                $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset, $jdNextSunrise);
                 $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
             }
         }

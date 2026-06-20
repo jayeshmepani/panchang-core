@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Localization;
 
 class FestivalRuleEngine
 {
+    private const float RAKSHA_BANDHAN_UDAYA_PURNIMA_THRESHOLD_MUHURTAS = 3.0;
+
     private const array NAKSHATRA_NUMBERS = [
         'Ashwini' => 1,
         'Bharani' => 2,
@@ -237,6 +240,7 @@ class FestivalRuleEngine
                 'winning_window_coverage_ratio' => $winner['target_window_coverage_ratio'],
                 'bhadra_decision' => $winner['bhadra_decision'],
                 'rule_rejection_reason' => $winner['rule_rejection_reason'],
+                'raksha_bandhan_selection' => $winner['raksha_bandhan_selection'] ?? null,
             ],
         ];
     }
@@ -731,6 +735,9 @@ class FestivalRuleEngine
         $karmakalaWindow = $this->karmakalaWindowJd($karmakalaType, $ctx);
         $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
         $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
+        $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $dinamanaSeconds = max(0.0, ($sunsetJd - $sunriseJd) * 86400.0);
+        $ratrimanaSeconds = max(0.0, ($nextSunriseJd - $sunsetJd) * 86400.0);
         $prevTithiEndJd = (float) ($ctx['prev_tithi_end_jd'] ?? 0.0);
         $nakshatraName = (string) ($details['Nakshatra']['name'] ?? '');
         $requiredNakshatra = (string) ($rule['nakshatra'] ?? '');
@@ -825,6 +832,18 @@ class FestivalRuleEngine
             'prev_tithi_at_forbidden_karmakala' => $prevTithiAtForbiddenPoint,
             'target_window_start_jd' => $karmakalaWindow['start_jd'],
             'target_window_end_jd' => $karmakalaWindow['end_jd'],
+            'sunrise_jd' => $sunriseJd,
+            'sunset_jd' => $sunsetJd,
+            'next_sunrise_jd' => $nextSunriseJd,
+            'dinamana_seconds' => $dinamanaSeconds,
+            'ratrimana_seconds' => $ratrimanaSeconds,
+            'day_muhurta_seconds' => $dinamanaSeconds / 15.0,
+            'night_muhurta_seconds' => $ratrimanaSeconds / 15.0,
+            // These are *not* classical fixed ghaṭīs (24 min each).
+            // They are equal normalized divisions of the actual day/night length.
+            // (dinamana ÷ 30 and ratrimana ÷ 30). Renamed to avoid confusion with true ghaṭī.
+            'day_normalized_division_seconds' => $dinamanaSeconds / 30.0,
+            'night_normalized_division_seconds' => $ratrimanaSeconds / 30.0,
             'target_interval_start_jd' => $targetInterval['start_jd'],
             'target_interval_end_jd' => $targetInterval['end_jd'],
             'target_window_overlap_seconds' => $targetWindowOverlapSeconds,
@@ -948,6 +967,10 @@ class FestivalRuleEngine
             return $this->resolveDiwaliTruthTable($candidates);
         }
 
+        if ((bool) ($rule['raksha_bandhan_truth_table'] ?? false)) {
+            return $this->resolveRakshaBandhanTruthTable($candidates, $targetInterval);
+        }
+
         if ((bool) ($rule['ashtami_viddha_rejection'] ?? false)) {
             return $this->resolveRamNavamiTruthTable($candidates, $today, $targetInterval);
         }
@@ -957,7 +980,7 @@ class FestivalRuleEngine
 
     private function usesExclusiveTruthTable(array $rule): bool
     {
-        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ashtami_viddha_rejection'] as $flag) {
+        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'raksha_bandhan_truth_table', 'ashtami_viddha_rejection'] as $flag) {
             if ((bool) ($rule[$flag] ?? false)) {
                 return true;
             }
@@ -1130,6 +1153,44 @@ class FestivalRuleEngine
         return null;
     }
 
+    private function resolveRakshaBandhanTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+        $nextSunriseJd = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $thresholdSeconds = self::RAKSHA_BANDHAN_UDAYA_PURNIMA_THRESHOLD_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+        $postSunrisePurnimaSeconds = $this->isTargetAtPoint($nextSunriseJd, $targetInterval)
+            ? max(0.0, ($targetInterval['end_jd'] - $nextSunriseJd) * 86400.0)
+            : 0.0;
+        $useUdayaPurnima = $thresholdSeconds > 0.0 && $postSunrisePurnimaSeconds >= $thresholdSeconds;
+        $winner = $useUdayaPurnima ? $day2 : $day1;
+        if (!$winner['target_during_observance']) {
+            return null;
+        }
+
+        $winner['reason'] = $useUdayaPurnima
+            ? 'raksha_bandhan_udaya_purnima_3_muhurta'
+            : 'raksha_bandhan_previous_day_fallback';
+        $winner['score'] = max((int) ($winner['score'] ?? 0), 20_000);
+        $winner['raksha_bandhan_selection'] = [
+            'selection_rule' => $useUdayaPurnima ? 'UDAYA_PURNIMA_3_MUHURTA' : 'PREVIOUS_DAY_FALLBACK',
+            'previous_day_fallback_selected' => !$useUdayaPurnima,
+            'post_sunrise_purnima_seconds' => $postSunrisePurnimaSeconds,
+            'post_sunrise_purnima_minutes' => $postSunrisePurnimaSeconds / 60.0,
+            'minimum_post_sunrise_purnima_muhurtas' => self::RAKSHA_BANDHAN_UDAYA_PURNIMA_THRESHOLD_MUHURTAS,
+            'minimum_post_sunrise_purnima_seconds' => $thresholdSeconds,
+            'minimum_post_sunrise_purnima_minutes' => $thresholdSeconds / 60.0,
+            'day_muhurta_seconds' => (float) ($day2['day_muhurta_seconds'] ?? 0.0),
+            'day_muhurta_minutes' => (float) ($day2['day_muhurta_seconds'] ?? 0.0) / 60.0,
+            'dinamana_seconds' => (float) ($day2['dinamana_seconds'] ?? 0.0),
+            'basis' => 'dynamic_dinamana_day_muhurta',
+            'tradition_profiles' => ['STRICT_CURRENT_TITHI', 'ASSIGNED_FESTIVAL_DAY'],
+            'instant_restrictions' => ['eclipse_restriction_if_enabled', 'bhadra_prohibited'],
+        ];
+
+        return $winner;
+    }
+
     private function markSpecialWinner(array $candidate, string $reason): array
     {
         $candidate['reason'] = $reason;
@@ -1179,23 +1240,30 @@ class FestivalRuleEngine
         $nextSunrise = (float) $ctx['next_sunrise_jd'];
         $dayDuration = $sunset - $sunrise;
         $nightDuration = $nextSunrise - $sunset;
-        $ghati = 24.0 / 1440.0;
+        $dayMuhurta = $dayDuration / 15.0;
+        $nightMuhurta = $nightDuration / 15.0;
+        $fixedGhati = ClassicalTimeConstants::GHATIKA_IN_MINUTES / 1440.0;
 
         return match ($type) {
-            'arunodaya' => ['start_jd' => $sunrise - (4.0 * $ghati), 'end_jd' => $sunrise],
+            'sunrise' => ['start_jd' => $sunrise, 'end_jd' => $sunrise],
+            'arunodaya' => ['start_jd' => $sunrise - (4.0 * $fixedGhati), 'end_jd' => $sunrise],
             'pratah_kal' => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 5.0)],
             'sangava' => ['start_jd' => $sunrise + ($dayDuration / 5.0), 'end_jd' => $sunrise + ($dayDuration * 2.0 / 5.0)],
             'madhyahna' => ['start_jd' => $sunrise + ($dayDuration * 2.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 3.0 / 5.0)],
-            'abhijit' => ['start_jd' => $sunrise + ($dayDuration * 7.0 / 15.0), 'end_jd' => $sunrise + ($dayDuration * 8.0 / 15.0)],
+            'abhijit' => ['start_jd' => $sunrise + (7.0 * $dayMuhurta), 'end_jd' => $sunrise + (8.0 * $dayMuhurta)],
             'aparahna' => ['start_jd' => $sunrise + ($dayDuration * 3.0 / 5.0), 'end_jd' => $sunrise + ($dayDuration * 4.0 / 5.0)],
-            'vijaya_kaal' => ['start_jd' => $sunrise + ($dayDuration * 4.0 / 5.0), 'end_jd' => $sunset + ($nightDuration / 10.0)],
-            'sayankala', 'sunset' => ['start_jd' => $sunset, 'end_jd' => $sunset + ($nightDuration / 5.0)],
-            'nishitha' => [
-                'start_jd' => $sunset + ($nightDuration / 2.0) - $ghati,
-                'end_jd' => $sunset + ($nightDuration / 2.0) + $ghati,
+            'vijaya_kaal' => ['start_jd' => $sunrise + (10.0 * $dayMuhurta), 'end_jd' => $sunrise + (11.0 * $dayMuhurta)],
+            'sayankala' => ['start_jd' => $sunrise + ($dayDuration * 4.0 / 5.0), 'end_jd' => $sunset],
+            'sunset' => [
+                'start_jd' => $sunset - (ClassicalTimeConstants::SAYAM_SANDHYA_BEFORE_SUNSET_GHATIKAS * $fixedGhati),
+                'end_jd' => $sunset + (ClassicalTimeConstants::SAYAM_SANDHYA_AFTER_SUNSET_GHATIKAS * $fixedGhati),
             ],
-            'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (6.0 * $ghati)],
-            default => ['start_jd' => $sunrise, 'end_jd' => $sunrise + min($dayDuration / 5.0, 1.0 / 24.0)],
+            'nishitha' => [
+                'start_jd' => $sunset + ($nightDuration / 2.0) - ($nightMuhurta / 2.0),
+                'end_jd' => $sunset + ($nightDuration / 2.0) + ($nightMuhurta / 2.0),
+            ],
+            'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (ClassicalTimeConstants::PRADOSHA_GHATIKAS * $fixedGhati)],
+            default => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 5.0)],
         };
     }
 

@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Muhurta\Classical;
 use Carbon\CarbonImmutable;
 use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Muhurta;
 use JayeshMepani\PanchangCore\Core\Localization;
 
@@ -234,22 +235,30 @@ class DailyPeriodsCalculator
     public function calculateSandhya(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise,
         CarbonImmutable $solarNoon
     ): array {
-        $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
-        $twilightDuration = $nightDuration / 10.0;
-        $madhyahnaHalf = 36.0 * 60.0;
+        if ($sunset <= $sunrise) {
+            throw new InvalidArgumentException('Sunset must be after sunrise for Sandhya calculation.');
+        }
 
-        $pratahStart = $this->addFloatSeconds($sunrise, -$twilightDuration);
-        $pratahEnd = $sunrise;
-        $sayahnaStart = $sunset;
-        $sayahnaEnd = $this->addFloatSeconds($sunset, $twilightDuration);
+        $ghatiSeconds = ClassicalTimeConstants::GHATIKA_IN_MINUTES * 60.0;
+        $pratahBefore = ClassicalTimeConstants::PRATAH_SANDHYA_BEFORE_SUNRISE_GHATIKAS * $ghatiSeconds;
+        $pratahAfter = ClassicalTimeConstants::PRATAH_SANDHYA_AFTER_SUNRISE_GHATIKAS * $ghatiSeconds;
+        $madhyahnaHalf = ClassicalTimeConstants::MADHYAHNA_SANDHYA_HALF_GHATIKAS * $ghatiSeconds;
+        $sayamBefore = ClassicalTimeConstants::SAYAM_SANDHYA_BEFORE_SUNSET_GHATIKAS * $ghatiSeconds;
+        $sayamAfter = ClassicalTimeConstants::SAYAM_SANDHYA_AFTER_SUNSET_GHATIKAS * $ghatiSeconds;
+
+        $pratahStart = $this->addFloatSeconds($sunrise, -$pratahBefore);
+        $pratahEnd = $this->addFloatSeconds($sunrise, $pratahAfter);
+        $sayahnaStart = $this->addFloatSeconds($sunset, -$sayamBefore);
+        $sayahnaEnd = $this->addFloatSeconds($sunset, $sayamAfter);
         $madhyahnaStart = $this->addFloatSeconds($solarNoon, -$madhyahnaHalf);
         $madhyahnaEnd = $this->addFloatSeconds($solarNoon, $madhyahnaHalf);
 
         return [
-            'source' => Localization::translate('Source', 'Sandhyavandanam practice convention'),
+            'source' => Localization::translate('Source', 'Sandhyavandanam fixed-ghati anchor convention'),
+            'calculation_basis' => 'fixed_ghati_offsets_from_local_solar_anchors',
+            'fixed_ghati_minutes' => ClassicalTimeConstants::GHATIKA_IN_MINUTES,
             'pratah_sandhya' => [
                 'start' => AstroCore::formatTime($pratahStart),
                 'end' => AstroCore::formatTime($pratahEnd),

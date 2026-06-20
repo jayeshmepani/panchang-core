@@ -113,10 +113,9 @@ class MuhurtaService
     public function calculateSandhya(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise,
         CarbonImmutable $solarNoon
     ): array {
-        return $this->dailyPeriodsCalculator->calculateSandhya($sunrise, $sunset, $nextSunrise, $solarNoon);
+        return $this->dailyPeriodsCalculator->calculateSandhya($sunrise, $sunset, $solarNoon);
     }
 
     public function calculateGowriPanchangam(

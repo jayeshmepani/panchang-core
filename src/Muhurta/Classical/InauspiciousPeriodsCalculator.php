@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Localization;
 use RuntimeException;
@@ -154,14 +155,20 @@ class InauspiciousPeriodsCalculator
     public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array
     {
         $isTrayodashi = ($tithiNum === 13);
-        $dur = 90.0 * 60.0;
-        $start = $this->addFloatSeconds($sunset, -$dur);
-        $end = $this->addFloatSeconds($sunset, $dur);
+        $duration = ClassicalTimeConstants::PRADOSHA_MINUTES * 60.0;
+        $start = $sunset;
+        $end = $this->addFloatSeconds($sunset, $duration);
 
         return [
             'name' => Localization::translate('String', 'Pradosha Kaal'),
             'pradosha_start' => AstroCore::formatTime($start),
             'pradosha_end' => AstroCore::formatTime($end),
+            'pradosha_start_iso' => AstroCore::formatDateTime($start),
+            'pradosha_end_iso' => AstroCore::formatDateTime($end),
+            'duration_seconds' => $duration,
+            'duration_ghatikas' => ClassicalTimeConstants::PRADOSHA_GHATIKAS,
+            'fixed_ghati_minutes' => ClassicalTimeConstants::GHATIKA_IN_MINUTES,
+            'calculation_basis' => 'fixed_ghati_offset_from_local_sunset',
             'is_auspicious' => $isTrayodashi,
         ];
     }

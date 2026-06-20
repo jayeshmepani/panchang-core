@@ -316,7 +316,7 @@ trait PanchangSelectiveApiTrait
                     $sankrantiRashi = $nextSign;
                     $kalaEngine = new KalaNirnayaEngine($lat, $lon);
                     $nameMap = ['Mesha', 'Vrishabha', 'Mithuna', 'Karka', 'Simha', 'Kanya', 'Tula', 'Vrischika', 'Dhanu', 'Makara', 'Kumbha', 'Meena'];
-                    $punyaKaal = $kalaEngine->calculatePunyaKaal($nameMap[$nextSign], $sankrantiJd, $ctx['jds']['sunrise'], $ctx['jds']['sunset']);
+                    $punyaKaal = $kalaEngine->calculatePunyaKaal($nameMap[$nextSign], $sankrantiJd, $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise']);
                     $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
                 }
             }
@@ -356,9 +356,7 @@ trait PanchangSelectiveApiTrait
             $ctx['periods'] = [
                 'pradosha' => $this->calculatePradoshaKaal(
                     $ctx['sun']['sunset'],
-                    $ctx['sun']['next_sunrise'],
                     $this->toJulianDayFromCarbon($ctx['sun']['sunset'], (string) $ctx['time']['birth_at']['timezone']),
-                    $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], (string) $ctx['time']['birth_at']['timezone']),
                     (string) $ctx['time']['birth_at']['timezone']
                 ),
                 'nishitha' => $this->muhurta->calculateNishitaMuhurta($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']),
@@ -897,7 +895,7 @@ trait PanchangSelectiveApiTrait
                 })(),
                 'Sandhya' => (function () use (&$ctx, $ensureTimeContext, $birthBase): array {
                     $ensureTimeContext();
-                    $sandhya = $this->muhurta->calculateSandhya($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], $this->sunService->getSolarTransits($birthBase)['solar_noon']);
+                    $sandhya = $this->muhurta->calculateSandhya($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $this->sunService->getSolarTransits($birthBase)['solar_noon']);
                     return [
                         'pratah_sandhya' => [
                             ...$sandhya['pratah_sandhya'],
@@ -940,7 +938,7 @@ trait PanchangSelectiveApiTrait
                 })(),
                 'Pradosha_Kaal' => (function () use (&$ctx, $ensureTimeContext, $ensureJds, $tz): array {
                     $ensureTimeContext(); $ensureJds();
-                    return $this->calculatePradoshaKaal($ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $tz);
+                    return $this->calculatePradoshaKaal($ctx['sun']['sunset'], $ctx['jds']['sunset'], $tz);
                 })(),
                 'Bhadra' => (function () use (&$ctx, $ensureJds, $ensurePanchanga): array {
                     $ensureJds(); $ensurePanchanga();
@@ -1285,9 +1283,7 @@ trait PanchangSelectiveApiTrait
             'sayahna' => $daylightFivefoldByName['sayahna'] ?? null,
             'pradosha' => $this->calculatePradoshaKaal(
                 $ctx['sun']['sunset'],
-                $ctx['sun']['next_sunrise'],
                 $this->toJulianDayFromCarbon($ctx['sun']['sunset'], (string) $ctx['time']['birth_at']['timezone']),
-                $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], (string) $ctx['time']['birth_at']['timezone']),
                 (string) $ctx['time']['birth_at']['timezone']
             ),
             'nishitha' => $this->muhurta->calculateNishitaMuhurta($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']),

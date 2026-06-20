@@ -15,6 +15,7 @@ use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 use JmeEph\FFI\JmeEphFFI;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionMethod;
 
 final class NirnayVerifiedRulesTest extends TestCase
 {
@@ -109,12 +110,15 @@ final class NirnayVerifiedRulesTest extends TestCase
             102.0,
             'Smarta',
             100.0,
-            5.0
+            5.0,
+            101.60
         );
 
         self::assertSame(5.0, $result['arunodaya_ghatikas']);
-        self::assertSame(120.0, $result['arunodaya_minutes']);
+        self::assertEqualsWithDelta(120.0, $result['arunodaya_minutes'], 1e-10);
         self::assertEqualsWithDelta(100.9166666667, $result['arunodaya_jd'], 1e-10);
+        self::assertSame('fixed_ghati_elapsed_before_dynamic_local_sunrise', $result['arunodaya_basis']);
+        self::assertSame(24.0, $result['fixed_ghati_minutes']);
     }
 
     public function testVerifiedParanaNakshatraPadaRestrictionsAreEncoded(): void
@@ -243,12 +247,15 @@ final class NirnayVerifiedRulesTest extends TestCase
         $calculator = $reflection->newInstanceWithoutConstructor();
         $method = $reflection->getMethod('buildDaytimePreferenceRule');
 
-        $preferred = $method->invoke($calculator, 100.0, 100.7, 100.0, 100.25);
+        $preferred = $method->invoke($calculator, 100.0, 100.7, 100.0, 100.25, 0.60, 24.0 / 1440.0);
         self::assertSame('pratah_kala_first_six_ghatis', $preferred['rule_key']);
         self::assertTrue($preferred['applies']);
         self::assertEqualsWithDelta(100.1, $preferred['preferred_end_jd'], 1e-12);
+        self::assertSame(24.0, $preferred['fixed_ghati_minutes']);
+        self::assertSame('dynamic_dinamana_midpoint', $preferred['madhyahna_basis']);
+        self::assertSame('fixed_ghati_elapsed_time_unit', $preferred['preferred_duration_basis']);
 
-        $notPreferred = $method->invoke($calculator, 100.0, 100.2, 100.0, 100.25);
+        $notPreferred = $method->invoke($calculator, 100.0, 100.2, 100.0, 100.25, 0.60, 24.0 / 1440.0);
         self::assertSame('standard_dvadashi_parana', $notPreferred['rule_key']);
         self::assertFalse($notPreferred['applies']);
         self::assertNull($notPreferred['preferred_end_jd']);
@@ -529,6 +536,89 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertNotNull($resolved);
         self::assertSame('2026-03-03', $resolved['observance_date']);
         self::assertSame('no_bhadra_in_window', $resolved['decision']['bhadra_decision']['reason']);
+    }
+
+    public function testFestivalKarmakalasSeparateProportionalAndFixedAnchorWindows(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $method = new ReflectionMethod(FestivalRuleEngine::class, 'karmakalaWindowJd');
+        $ctx = [
+            'sunrise_jd' => 100.25,
+            'sunset_jd' => 100.85,
+            'next_sunrise_jd' => 101.25,
+        ];
+
+        $dayDuration = 0.60;
+        $nightDuration = 0.40;
+        $dayMuhurta = $dayDuration / 15.0;
+        $nightMuhurta = $nightDuration / 15.0;
+        $fixedGhati = 24.0 / 1440.0;
+
+        $windows = [
+            'arunodaya' => [100.25 - (4.0 * $fixedGhati), 100.25],
+            'pratah_kal' => [100.25, 100.25 + ($dayDuration / 5.0)],
+            'sangava' => [100.25 + ($dayDuration / 5.0), 100.25 + ($dayDuration * 2.0 / 5.0)],
+            'madhyahna' => [100.25 + ($dayDuration * 2.0 / 5.0), 100.25 + ($dayDuration * 3.0 / 5.0)],
+            'abhijit' => [100.25 + (7.0 * $dayMuhurta), 100.25 + (8.0 * $dayMuhurta)],
+            'aparahna' => [100.25 + ($dayDuration * 3.0 / 5.0), 100.25 + ($dayDuration * 4.0 / 5.0)],
+            'vijaya_kaal' => [100.25 + (10.0 * $dayMuhurta), 100.25 + (11.0 * $dayMuhurta)],
+            'sayankala' => [100.25 + ($dayDuration * 4.0 / 5.0), 100.85],
+            'sunset' => [100.85 - $fixedGhati, 100.85 + (2.0 * $fixedGhati)],
+            'nishitha' => [100.85 + ($nightDuration / 2.0) - ($nightMuhurta / 2.0), 100.85 + ($nightDuration / 2.0) + ($nightMuhurta / 2.0)],
+            'pradosha' => [100.85, 100.85 + (6.0 * $fixedGhati)],
+        ];
+
+        foreach ($windows as $type => [$expectedStart, $expectedEnd]) {
+            $window = $method->invoke($engine, $type, $ctx);
+            self::assertEqualsWithDelta($expectedStart, $window['start_jd'], 1e-10, $type . ' start');
+            self::assertEqualsWithDelta($expectedEnd, $window['end_jd'], 1e-10, $type . ' end');
+        }
+    }
+
+    public function testRakshaBandhanUsesUdayaPurnimaWhenThreeMuhurtasRemainAfterSunrise(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-08-27');
+        $today = $this->festivalSnapshot(15, 'Shukla', 100.25, 100.75, 101.25, 100.70, 101.38, 'Shravana');
+        $tomorrow = $this->festivalSnapshot(15, 'Shukla', 101.25, 101.85, 102.25, 100.70, 101.38, 'Dhanishta');
+
+        $resolved = $engine->resolveMajorFestival('Shravana Purnima', FestivalService::FESTIVALS['Shravana Purnima'], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-08-28', $resolved['observance_date']);
+        self::assertSame('raksha_bandhan_udaya_purnima_3_muhurta', $resolved['decision']['winning_reason']);
+        self::assertSame('UDAYA_PURNIMA_3_MUHURTA', $resolved['decision']['raksha_bandhan_selection']['selection_rule']);
+        self::assertFalse($resolved['decision']['raksha_bandhan_selection']['previous_day_fallback_selected']);
+        self::assertSame('dynamic_dinamana_day_muhurta', $resolved['decision']['raksha_bandhan_selection']['basis']);
+        self::assertEqualsWithDelta(57.6, $resolved['decision']['raksha_bandhan_selection']['day_muhurta_minutes'], 1e-6);
+        self::assertEqualsWithDelta(172.8, $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'], 1e-6);
+        self::assertGreaterThanOrEqual(
+            $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'],
+            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes']
+        );
+    }
+
+    public function testRakshaBandhanFallsBackToPreviousDayWhenUdayaPurnimaIsShorterThanThreeMuhurtas(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-08-27');
+        $today = $this->festivalSnapshot(15, 'Shukla', 100.25, 100.75, 101.25, 100.70, 101.36, 'Shravana');
+        $tomorrow = $this->festivalSnapshot(15, 'Shukla', 101.25, 101.85, 102.25, 100.70, 101.36, 'Dhanishta');
+
+        $resolved = $engine->resolveMajorFestival('Shravana Purnima', FestivalService::FESTIVALS['Shravana Purnima'], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-08-27', $resolved['observance_date']);
+        self::assertSame('raksha_bandhan_previous_day_fallback', $resolved['decision']['winning_reason']);
+        self::assertSame('PREVIOUS_DAY_FALLBACK', $resolved['decision']['raksha_bandhan_selection']['selection_rule']);
+        self::assertTrue($resolved['decision']['raksha_bandhan_selection']['previous_day_fallback_selected']);
+        self::assertSame('dynamic_dinamana_day_muhurta', $resolved['decision']['raksha_bandhan_selection']['basis']);
+        self::assertEqualsWithDelta(57.6, $resolved['decision']['raksha_bandhan_selection']['day_muhurta_minutes'], 1e-6);
+        self::assertEqualsWithDelta(172.8, $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'], 1e-6);
+        self::assertLessThan(
+            $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'],
+            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes']
+        );
     }
 
     public function testGaneshChaturthiPrefersFullMadhyahnaCoverage(): void

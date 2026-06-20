@@ -107,13 +107,15 @@ final readonly class ClassicalTimeConstants
      * Pradoṣa duration in minutes.
      *
      * Classical Definition:
-     * - Pradoṣa = 3 ghaṭikās after sunset = 72 minutes (exact)
+     * - Pradoṣa = 6 ghaṭikās after sunset = 144 minutes (exact)
      * - "Pradoṣa is most auspicious for Śiva worship"
      *
      * Traditional Pradoṣa window reference used by package festival logic.
      * Usage may vary across ritual contexts.
      */
-    public const float PRADOSHA_MINUTES = 72.0;
+    public const float PRADOSHA_GHATIKAS = 6.0;
+
+    public const float PRADOSHA_MINUTES = self::PRADOSHA_GHATIKAS * self::GHATIKA_IN_MINUTES;
 
     /** Pradoṣa in days (exact fraction) */
     public const float PRADOSHA_PER_DAY = self::PRADOSHA_MINUTES / self::MINUTES_PER_DAY;
@@ -135,6 +137,23 @@ final readonly class ClassicalTimeConstants
      * Ends 1 muhūrta (48 minutes) before sunrise.
      */
     public const float BRAHMA_MUHURTA_OFFSET_MINUTES = 96.0;
+
+    // ===== SANDHYA OFFSETS =====
+
+    /** Prātaḥ Sandhyā begins 2 ghaṭikās before local sunrise. */
+    public const float PRATAH_SANDHYA_BEFORE_SUNRISE_GHATIKAS = 2.0;
+
+    /** Prātaḥ Sandhyā ends 1 ghaṭikā after local sunrise. */
+    public const float PRATAH_SANDHYA_AFTER_SUNRISE_GHATIKAS = 1.0;
+
+    /** Madhyāhna Sandhyā extends 1.5 ghaṭikās on either side of local solar noon. */
+    public const float MADHYAHNA_SANDHYA_HALF_GHATIKAS = 1.5;
+
+    /** Sāyam Sandhyā begins 1 ghaṭikā before local sunset. */
+    public const float SAYAM_SANDHYA_BEFORE_SUNSET_GHATIKAS = 1.0;
+
+    /** Sāyam Sandhyā ends 2 ghaṭikās after local sunset. */
+    public const float SAYAM_SANDHYA_AFTER_SUNSET_GHATIKAS = 2.0;
 
     // ===== ASTRONOMICAL CONSTANTS =====
 
