@@ -618,11 +618,12 @@ class EclipseService
         }
 
         $startBoundaryIndex = $containingIndex - $praharsBefore;
-        $relaxedBoundaryIndex = $containingIndex - 1;
+        $containingPraharDurationJd = $this->carbonToJd($boundaries[$containingIndex + 1])
+            - $this->carbonToJd($boundaries[$containingIndex]);
 
         return [
             'start_jd' => $startBoundaryIndex >= 0 ? $this->carbonToJd($boundaries[$startBoundaryIndex]) : null,
-            'relaxed_start_jd' => $relaxedBoundaryIndex >= 0 ? $this->carbonToJd($boundaries[$relaxedBoundaryIndex]) : null,
+            'relaxed_start_jd' => $eclipseStartJd - $containingPraharDurationJd,
         ];
     }
 

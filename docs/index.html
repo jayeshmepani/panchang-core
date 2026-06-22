@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v9.8.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v9.8.0 improves dynamic day/night period handling, Raksha Bandhan Nirnay selection, and related festival/vrat timing behavior. Previous releases (such as v9.7.0) focused on classical muhūrta qualities and weekday Durmuhūrta correction.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.0 corrects the relaxed food restriction window during visible eclipses. The window for children, elderly people, and those who are unwell now begins one full local prahara before the eclipse contact. The regular Sutak timing remains unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v9.8.0 Documentation Snapshot</h3>
-            <p>This documentation covers v9.8.0: dynamic dinamāna/rātrimāna period handling across festival and daily timing rules, dedicated Raksha Bandhan truth-table selection, corrected karmakāla windows, and clearer separation between fixed ghaṭī elapsed units and proportional day/night divisions.</p>
+            <h3>v10.0.0 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.0: corrected relaxed food window during visible eclipses (one local prahara before contact), regular Sutak timing unchanged, and refreshed eclipse outputs.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Relaxed Eclipse-Sutak Timing Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Major release with a corrected relaxed food restriction window during visible eclipses. The window for children, elderly people and the unwell now starts one full local prahara before eclipse contact. Regular Sutak timing is unchanged. All eclipse and raw outputs have been refreshed.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">9.8.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Dynamic Dinamāna/Rātrimāna Periods and Raksha Bandhan Rule Correction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Dynamic Dinamāna/Rātrimāna Periods and Raksha Bandhan Rule Correction</span></div>
                 <p class="release-note">Corrects day and night period handling so proportional windows use actual local dinamāna and rātrimāna, while ghaṭī remains a fixed elapsed-time unit. Adds dedicated Raksha Bandhan Nirnay selection with a dynamic three-day-muhūrta Udaya Purnima threshold, improves karmakāla windows, and refreshes generated festival and vrat output.</p>
               </div>
             </li>
@@ -4992,6 +4999,35 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.0 Upgrade &amp; Breaking Changes</h3>
+          <p class="lead">The relaxed food window during visible eclipses now starts one full local prahara before the eclipse contact, instead of the beginning of the previous time segment.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Relaxed Sutak timing has changed:</strong> The start time for the relaxed food restriction (for children, elderly people, and the unwell) is now different for visible eclipses.</li>
+              <li><strong>Regular Sutak is unchanged:</strong> The main Sutak period for general use continues to follow the traditional four-prahara (solar) or three-prahara (lunar) rule.</li>
+              <li><strong>Only visible eclipses are affected:</strong> Locations where the eclipse is not visible continue to show no Sutak as before.</li>
+              <li><strong>Relaxed categories remain the same:</strong> This one-prahara relaxation is specifically for children, elderly people, and those who are sick. It is not automatically applied based on pregnancy.</li>
+            </ul>
+          </div>
+
+          <h4>Practical Example</h4>
+          <p>For the solar eclipse visible from Bhuj on 2 August 2027:</p>
+          <ul>
+            <li>v9.8.0 showed the relaxed window starting around 9:39 AM (based on the previous segment).</li>
+            <li>v10.0.0 now correctly shows it starting around 12:21 PM — one full local daytime prahara before the eclipse begins.</li>
+          </ul>
+          <p>The calculation uses the actual length of the prahara in which the eclipse contact occurs, rather than simply taking the start of the segment before it.</p>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate any eclipse data or combined raw output files you maintain.</li>
+            <li>Review and update any tests or comparisons that rely on the previous relaxed Sutak start times.</li>
+            <li>Keep pregnancy-related precautions separate — the relaxed window is intended only for children, elderly people, and the unwell.</li>
+            <li>Use the regular Sutak timing for general use, and the relaxed timing only for the specific vulnerable groups mentioned.</li>
+          </ul>
 
           <h3>v9.8.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">Dynamic day/night period correction across festival, vrat, and daily timing logic with dedicated Raksha Bandhan Nirnay handling.</p>

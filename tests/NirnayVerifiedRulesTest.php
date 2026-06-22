@@ -183,10 +183,16 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Sutak start should align to dynamic prahara boundary.'
         );
         self::assertEqualsWithDelta(
-            $expectedAnchors['relaxed_start_jd'],
+            (float) $event['visibility']['window']['start_jd'] - $this->containingPraharDurationJd(
+                $service,
+                (float) $event['visibility']['window']['start_jd'],
+                23.2472446,
+                69.668339,
+                'Asia/Kolkata'
+            ),
             $event['sutak']['relaxed_start_jd'] ?? null,
             1e-9,
-            'Relaxed sutak start should align to previous dynamic prahara boundary.'
+            'Relaxed sutak should begin one variable prahara before local eclipse contact.'
         );
     }
 
@@ -876,6 +882,32 @@ final class NirnayVerifiedRulesTest extends TestCase
             $solarMinimum->getValue(),
             1e-12
         );
+    }
+
+    private function containingPraharDurationJd(
+        EclipseService $service,
+        float $eventStartJd,
+        float $lat,
+        float $lon,
+        string $tz
+    ): float {
+        $reflection = new ReflectionClass(EclipseService::class);
+        $eventStart = $reflection->getMethod('jdToCarbon')->invoke($service, $eventStartJd, $tz);
+        $boundaries = $reflection->getMethod('buildPraharBoundaries')->invoke($service, $eventStart, $lat, $lon, $tz);
+        $eventTimestamp = $eventStart->getTimestamp();
+
+        for ($index = 0, $count = count($boundaries) - 1; $index < $count; $index++) {
+            $startTimestamp = $boundaries[$index]->getTimestamp();
+            $endTimestamp = $boundaries[$index + 1]->getTimestamp();
+            if ($eventTimestamp >= $startTimestamp && $eventTimestamp < $endTimestamp) {
+                $carbonToJd = $reflection->getMethod('carbonToJd');
+
+                return $carbonToJd->invoke($service, $boundaries[$index + 1])
+                    - $carbonToJd->invoke($service, $boundaries[$index]);
+            }
+        }
+
+        self::fail('Unable to find contact-containing prahara.');
     }
 
     private function festivalSnapshot(
