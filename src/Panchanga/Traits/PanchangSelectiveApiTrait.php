@@ -895,7 +895,7 @@ trait PanchangSelectiveApiTrait
                 })(),
                 'Sandhya' => (function () use (&$ctx, $ensureTimeContext, $birthBase): array {
                     $ensureTimeContext();
-                    $sandhya = $this->muhurta->calculateSandhya($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $this->sunService->getSolarTransits($birthBase)['solar_noon']);
+                    $sandhya = $this->muhurta->calculateSandhya($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], $this->sunService->getSolarTransits($birthBase)['solar_noon']);
                     return [
                         'pratah_sandhya' => [
                             ...$sandhya['pratah_sandhya'],

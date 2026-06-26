@@ -149,6 +149,9 @@ final readonly class ClassicalTimeConstants
     /** Madhyāhna Sandhyā extends 1.5 ghaṭikās on either side of local solar noon. */
     public const float MADHYAHNA_SANDHYA_HALF_GHATIKAS = 1.5;
 
+    /** Drik-style public Panchang Sandhyā window uses 3 dynamic night-ghaṭīs. */
+    public const float SANDHYA_DYNAMIC_NIGHT_GHATIKAS = 3.0;
+
     /** Sāyam Sandhyā begins 1 ghaṭikā before local sunset. */
     public const float SAYAM_SANDHYA_BEFORE_SUNSET_GHATIKAS = 1.0;
 

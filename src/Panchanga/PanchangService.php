@@ -365,7 +365,7 @@ class PanchangService
         $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
         $vijayaMuhurta = $this->muhurta->calculateVijayaMuhurta($relSunrise, $sunset);
         $godhuliMuhurta = $this->muhurta->calculateGodhuliMuhurta($sunset, $nextSunrise);
-        $sandhya = $this->muhurta->calculateSandhya($relSunrise, $sunset, $solarTransits['solar_noon']);
+        $sandhya = $this->muhurta->calculateSandhya($relSunrise, $sunset, $nextSunrise, $solarTransits['solar_noon']);
         $gowriPanchangam = $this->muhurta->calculateGowriPanchangam($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
         $kalaVela = $this->muhurta->calculateKalaVela($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
 

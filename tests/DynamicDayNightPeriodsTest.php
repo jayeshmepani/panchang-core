@@ -13,28 +13,31 @@ use PHPUnit\Framework\TestCase;
 
 final class DynamicDayNightPeriodsTest extends TestCase
 {
-    public function testSandhyaUsesLocalAstronomicalAnchorsWithFixedGhatiOffsets(): void
+    public function testSandhyaUsesDynamicNightGhatiWindowsLikePublishedPanchangs(): void
     {
         $calculator = new DailyPeriodsCalculator;
         $sunrise = CarbonImmutable::parse('2026-06-20 05:30:00', 'Asia/Kolkata');
         $solarNoon = CarbonImmutable::parse('2026-06-20 12:30:00', 'Asia/Kolkata');
         $sunset = CarbonImmutable::parse('2026-06-20 19:30:00', 'Asia/Kolkata');
+        $nextSunrise = CarbonImmutable::parse('2026-06-21 05:45:00', 'Asia/Kolkata');
 
         $sandhya = $calculator->calculateSandhya(
             $sunrise,
             $sunset,
+            $nextSunrise,
             $solarNoon
         );
 
-        self::assertSame(4320, $sandhya['pratah_sandhya']['duration_seconds']);
+        self::assertSame('dynamic_ratrimana_30_ghati_sandhya', $sandhya['calculation_basis']);
+        self::assertSame(3690, $sandhya['pratah_sandhya']['duration_seconds']);
         self::assertSame(4320, $sandhya['madhyahna_sandhya']['duration_seconds']);
-        self::assertSame(4320, $sandhya['sayahna_sandhya']['duration_seconds']);
-        self::assertSame('20/06/2026 04:42:00 AM', $sandhya['pratah_sandhya']['start_iso']);
-        self::assertSame('20/06/2026 05:54:00 AM', $sandhya['pratah_sandhya']['end_iso']);
+        self::assertSame(3690, $sandhya['sayahna_sandhya']['duration_seconds']);
+        self::assertSame('20/06/2026 04:28:30 AM', $sandhya['pratah_sandhya']['start_iso']);
+        self::assertSame('20/06/2026 05:30:00 AM', $sandhya['pratah_sandhya']['end_iso']);
         self::assertSame('20/06/2026 11:54:00 AM', $sandhya['madhyahna_sandhya']['start_iso']);
         self::assertSame('20/06/2026 01:06:00 PM', $sandhya['madhyahna_sandhya']['end_iso']);
-        self::assertSame('20/06/2026 07:06:00 PM', $sandhya['sayahna_sandhya']['start_iso']);
-        self::assertSame('20/06/2026 08:18:00 PM', $sandhya['sayahna_sandhya']['end_iso']);
+        self::assertSame('20/06/2026 07:30:00 PM', $sandhya['sayahna_sandhya']['start_iso']);
+        self::assertSame('20/06/2026 08:31:30 PM', $sandhya['sayahna_sandhya']['end_iso']);
     }
 
     public function testChoghadiyaFromTimeUsesTheActualNextSunrise(): void
