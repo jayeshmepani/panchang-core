@@ -407,36 +407,6 @@ class EkadashiParanaCalculator
         return strtolower((string) preg_replace('/[^A-Za-z]/', '', $month));
     }
 
-    /**
-     * @param list<array{start_jd:float, end_jd:float}> $restrictedWindows
-     *
-     * @return list<array{start_jd:float, end_jd:float, start:string, end:string}>
-     */
-    private function subtractRestrictedWindows(float $startJd, float $endJd, array $restrictedWindows, string $tz): array
-    {
-        if ($endJd <= $startJd) {
-            return [];
-        }
-
-        $allowed = [];
-        $cursor = $startJd;
-        foreach ($restrictedWindows as $window) {
-            $blockedStart = max($startJd, $window['start_jd']);
-            $blockedEnd = min($endJd, $window['end_jd']);
-            if ($blockedStart > $cursor) {
-                $allowed[] = $this->buildParanaWindow($cursor, $blockedStart, $tz);
-            }
-
-            $cursor = max($cursor, $blockedEnd);
-        }
-
-        if ($cursor < $endJd) {
-            $allowed[] = $this->buildParanaWindow($cursor, $endJd, $tz);
-        }
-
-        return $allowed;
-    }
-
     /** @return array{start_jd:float, end_jd:float, start:string, end:string} */
     private function buildParanaWindow(float $startJd, float $endJd, string $tz): array
     {
