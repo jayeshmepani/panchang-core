@@ -108,9 +108,17 @@ class EkadashiParanaCalculator
         $dvadashiDurationGhatikas = (($dvadashiEndJd - $dvadashiStartJd) * 1440.0) / KalaNirnayaEngine::GHATI_IN_MINUTES;
         $shortDvadashiRule = $this->shortDvadashiRule($dvadashiDurationGhatikas, $sunriseJd, $dvadashiEndJd);
         $restrictedWindows = $this->collectParanaRestrictedWindows($paranaStartJd, $dvadashiEndJd, $tz, $monthAmanta, $paksha);
-        $allowedWindows = $this->subtractRestrictedWindows($paranaStartJd, $dvadashiEndJd, $restrictedWindows, $tz);
+        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $dvadashiEndJd, $dayDurationJd, $fixedGhatiJd);
+        $resolvedWindows = $this->resolveParanaWindows(
+            $paranaStartJd,
+            $dvadashiEndJd,
+            $restrictedWindows,
+            $daytimePreferenceRule['preferred_end_jd'] ?? null,
+            $tz
+        );
+        $restrictedWindows = $resolvedWindows['restricted_windows'];
+        $allowedWindows = $resolvedWindows['allowed_windows'];
         $paranaBasis = $this->classifyParanaBasis($this->activeRestrictedNakshatraPadas($monthAmanta, $paksha), $restrictedWindows);
-        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $allowedWindows[0]['end_jd'] ?? null, $dayDurationJd, $fixedGhatiJd);
         $preferredWindows = $this->applyPreferredWindowCap($allowedWindows, $daytimePreferenceRule['preferred_end_jd'] ?? null, $tz);
         $available = $allowedWindows !== [];
         $firstAllowed = $allowedWindows[0] ?? null;
@@ -191,6 +199,67 @@ class EkadashiParanaCalculator
         }
 
         return $blocked;
+    }
+
+    /**
+     * @param list<array{nakshatra?:string, pada?:int, start_jd:float, end_jd:float, start?:string, end?:string}> $restrictedWindows
+     *
+     * @return list<array{nakshatra?:string, pada?:int, start_jd:float, end_jd:float, start?:string, end?:string}>
+     */
+    private function filterRestrictedWindowsAtParanaStart(float $paranaStartJd, array $restrictedWindows): array
+    {
+        foreach ($restrictedWindows as $window) {
+            if ($window['start_jd'] <= $paranaStartJd && $window['end_jd'] > $paranaStartJd) {
+                return [$window];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * @param list<array{nakshatra?:string, pada?:int, start_jd:float, end_jd:float, start?:string, end?:string}> $restrictedWindows
+     *
+     * @return array{
+     *   restricted_windows:list<array{nakshatra?:string, pada?:int, start_jd:float, end_jd:float, start?:string, end?:string}>,
+     *   allowed_windows:list<array{start_jd:float, end_jd:float, start:string, end:string}>
+     * }
+     */
+    private function resolveParanaWindows(
+        float $rawParanaStartJd,
+        float $rawParanaEndJd,
+        array $restrictedWindows,
+        ?float $preferredEndJd,
+        string $tz
+    ): array {
+        $activeRestrictedWindows = $this->filterRestrictedWindowsAtParanaStart($rawParanaStartJd, $restrictedWindows);
+        $windowStartJd = $rawParanaStartJd;
+        if ($activeRestrictedWindows !== []) {
+            $windowStartJd = max($windowStartJd, $activeRestrictedWindows[0]['end_jd']);
+        }
+
+        $windowEndJd = $preferredEndJd !== null
+            ? min($rawParanaEndJd, $preferredEndJd)
+            : $rawParanaEndJd;
+
+        if ($windowStartJd >= $windowEndJd) {
+            if ($windowStartJd < $rawParanaEndJd) {
+                $windowEndJd = $rawParanaEndJd;
+            } else {
+                $windowStartJd = $rawParanaStartJd;
+                $windowEndJd = $rawParanaEndJd;
+                $activeRestrictedWindows = [];
+            }
+        }
+
+        $allowedWindows = $windowEndJd > $windowStartJd
+            ? [$this->buildParanaWindow($windowStartJd, $windowEndJd, $tz)]
+            : [];
+
+        return [
+            'restricted_windows' => $activeRestrictedWindows,
+            'allowed_windows' => $allowedWindows,
+        ];
     }
 
     /** @return array<string, list<int>> */

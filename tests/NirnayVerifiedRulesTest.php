@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
+use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
@@ -13,6 +14,7 @@ use JayeshMepani\PanchangCore\Panchanga\KalaNirnayaEngine;
 use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 use JmeEph\FFI\JmeEphFFI;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionMethod;
@@ -265,6 +267,79 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('standard_dvadashi_parana', $notPreferred['rule_key']);
         self::assertFalse($notPreferred['applies']);
         self::assertNull($notPreferred['preferred_end_jd']);
+    }
+
+    public function testEkadashiParanaResolutionEnforcesSixGhatiWindowWhenApplicable(): void
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        $calculator = $this->paranaCalculatorForWindowResolution();
+        $method = $reflection->getMethod('resolveParanaWindows');
+
+        $resolved = $method->invoke(
+            $calculator,
+            100.025,
+            100.7,
+            [],
+            100.1,
+            'Asia/Kolkata'
+        );
+
+        self::assertSame([], $resolved['restricted_windows']);
+        self::assertCount(1, $resolved['allowed_windows']);
+        self::assertEqualsWithDelta(100.025, $resolved['allowed_windows'][0]['start_jd'], 1e-12);
+        self::assertEqualsWithDelta(100.1, $resolved['allowed_windows'][0]['end_jd'], 1e-12);
+    }
+
+    public function testEkadashiParanaResolutionIgnoresRestrictionThatStartsAfterParanaOpens(): void
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        $calculator = $this->paranaCalculatorForWindowResolution();
+        $method = $reflection->getMethod('resolveParanaWindows');
+
+        $resolved = $method->invoke(
+            $calculator,
+            100.025,
+            100.2,
+            [[
+                'nakshatra' => 'Revati',
+                'pada' => 4,
+                'start_jd' => 100.15,
+                'end_jd' => 100.18,
+            ]],
+            null,
+            'Asia/Kolkata'
+        );
+
+        self::assertSame([], $resolved['restricted_windows']);
+        self::assertCount(1, $resolved['allowed_windows']);
+        self::assertEqualsWithDelta(100.025, $resolved['allowed_windows'][0]['start_jd'], 1e-12);
+        self::assertEqualsWithDelta(100.2, $resolved['allowed_windows'][0]['end_jd'], 1e-12);
+    }
+
+    public function testEkadashiParanaResolutionReopensDvadashiIfActiveRestrictionConsumesMorningCap(): void
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        $calculator = $this->paranaCalculatorForWindowResolution();
+        $method = $reflection->getMethod('resolveParanaWindows');
+
+        $resolved = $method->invoke(
+            $calculator,
+            100.025,
+            100.3,
+            [[
+                'nakshatra' => 'Revati',
+                'pada' => 4,
+                'start_jd' => 100.0,
+                'end_jd' => 100.2,
+            ]],
+            100.1,
+            'Asia/Kolkata'
+        );
+
+        self::assertCount(1, $resolved['restricted_windows']);
+        self::assertCount(1, $resolved['allowed_windows']);
+        self::assertEqualsWithDelta(100.2, $resolved['allowed_windows'][0]['start_jd'], 1e-12);
+        self::assertEqualsWithDelta(100.3, $resolved['allowed_windows'][0]['end_jd'], 1e-12);
     }
 
     public function testFestivalResolverUsesFullPradoshaWindowInsteadOfSinglePoint(): void
@@ -882,6 +957,26 @@ final class NirnayVerifiedRulesTest extends TestCase
             $solarMinimum->getValue(),
             1e-12
         );
+    }
+
+    private function paranaCalculatorForWindowResolution(): EkadashiParanaCalculator
+    {
+        $reflection = new ReflectionClass(EkadashiParanaCalculator::class);
+        /** @var EkadashiParanaCalculator $calculator */
+        $calculator = $reflection->newInstanceWithoutConstructor();
+        /** @var MockObject&SunService $sunService */
+        $sunService = $this->createMock(SunService::class);
+        $sunService
+            ->method('jdToCarbonPublic')
+            ->willReturnCallback(
+                static fn (float $jd, string $tz): CarbonImmutable => CarbonImmutable::createFromTimestampUTC((int) round($jd * 86400))
+                    ->setTimezone($tz)
+            );
+
+        $sunServiceProperty = $reflection->getProperty('sunService');
+        $sunServiceProperty->setValue($calculator, $sunService);
+
+        return $calculator;
     }
 
     private function containingPraharDurationJd(
