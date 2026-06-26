@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.0 corrects the relaxed food restriction window during visible eclipses. The window for children, elderly people, and those who are unwell now begins one full local prahara before the eclipse contact. The regular Sutak timing remains unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.1 corrects Ekadashi parana timing so the first-six-ghaṭī cap is enforced when Dvādaśī runs past Madhyāhna and restricted nakṣatra windows apply only when active at parana opening. The visible-eclipse relaxed Sutak correction from v10.0.0 remains unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.0 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.0: corrected relaxed food window during visible eclipses (one local prahara before contact), regular Sutak timing unchanged, and refreshed eclipse outputs.</p>
+            <h3>v10.0.1 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.1: corrected Ekadashi parana window resolution, strict first-six-ghaṭī handling when Dvādaśī extends beyond Madhyāhna, active-at-opening nakṣatra restriction handling, and preserved v10.0.0 eclipse timing behavior.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Ekadashi Parana Timing Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release correcting Ekadashi parana timing. Enforces the first-six-ghaṭī morning cap when Dvādaśī continues past Madhyāhna, applies restricted nakṣatra-pada blocking only when active at parana opening, and reopens the remaining Dvādaśī window if an active restriction consumes the early cap.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Relaxed Eclipse-Sutak Timing Correction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Relaxed Eclipse-Sutak Timing Correction</span></div>
                 <p class="release-note">Major release with a corrected relaxed food restriction window during visible eclipses. The window for children, elderly people and the unwell now starts one full local prahara before eclipse contact. Regular Sutak timing is unchanged. All eclipse and raw outputs have been refreshed.</p>
               </div>
             </li>
@@ -4999,6 +5006,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.1 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Ekadashi parana timing now strictly follows the first-six-ghaṭī cap when Dvādaśī extends beyond Madhyāhna, while nakṣatra blocking is limited to restrictions active at parana opening.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Parana end times can change:</strong> When Dvādaśī continues beyond Madhyāhna, the actual parana end now stops at the first six ghaṭīs of the morning unless an active opening restriction pushes it later within Dvādaśī.</li>
+              <li><strong>Future nakṣatra blocks no longer split the window:</strong> Restricted nakṣatra-pada windows that begin later in Dvādaśī are no longer subtracted unless they are active when parana opens.</li>
+              <li><strong>Fallback handling is corrected:</strong> If an active restricted nakṣatra consumes the early-morning cap, parana now reopens in the remaining Dvādaśī span instead of reporting a misleading early cutoff.</li>
+              <li><strong>No public API shape changed:</strong> This is a behavior correction release; constants, month scopes, and exposed parana fields remain the same.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached Ekadashi observance, vrat, festival, and raw yearly output if you store parana timings.</li>
+            <li>Rebaseline tests or snapshots that compare exact parana start/end windows.</li>
+            <li>Expect corrected parana results especially on Dvādaśī days that extend past Madhyāhna or begin under Anuradha 1, Shravana 2-3, or Revati 4 restrictions.</li>
+          </ul>
 
           <h3>v10.0.0 Upgrade &amp; Breaking Changes</h3>
           <p class="lead">The relaxed food window during visible eclipses now starts one full local prahara before the eclipse contact, instead of the beginning of the previous time segment.</p>
