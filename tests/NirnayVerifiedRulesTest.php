@@ -255,15 +255,15 @@ final class NirnayVerifiedRulesTest extends TestCase
         $calculator = $reflection->newInstanceWithoutConstructor();
         $method = $reflection->getMethod('buildDaytimePreferenceRule');
 
-        $preferred = $method->invoke($calculator, 100.0, 100.7, 100.0, 100.25, 0.60, 24.0 / 1440.0);
+        $preferred = $method->invoke($calculator, 100.0, 100.7, 100.0, 100.25, 0.60);
         self::assertSame('pratah_kala_first_six_ghatis', $preferred['rule_key']);
         self::assertTrue($preferred['applies']);
-        self::assertEqualsWithDelta(100.1, $preferred['preferred_end_jd'], 1e-12);
-        self::assertSame(24.0, $preferred['fixed_ghati_minutes']);
+        self::assertEqualsWithDelta(100.12, $preferred['preferred_end_jd'], 1e-12);
+        self::assertEqualsWithDelta(28.8, $preferred['dynamic_ghati_minutes'], 1e-12);
         self::assertSame('dynamic_dinamana_midpoint', $preferred['madhyahna_basis']);
-        self::assertSame('fixed_ghati_elapsed_time_unit', $preferred['preferred_duration_basis']);
+        self::assertSame('dynamic_dinamana_30_ghati_day', $preferred['preferred_duration_basis']);
 
-        $notPreferred = $method->invoke($calculator, 100.0, 100.2, 100.0, 100.25, 0.60, 24.0 / 1440.0);
+        $notPreferred = $method->invoke($calculator, 100.0, 100.2, 100.0, 100.25, 0.60);
         self::assertSame('standard_dvadashi_parana', $notPreferred['rule_key']);
         self::assertFalse($notPreferred['applies']);
         self::assertNull($notPreferred['preferred_end_jd']);

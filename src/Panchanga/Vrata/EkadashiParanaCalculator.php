@@ -104,11 +104,10 @@ class EkadashiParanaCalculator
         $dayDurationJd = $paranaDaySunsetJd !== null && $paranaDaySunsetJd > $sunriseJd
             ? $paranaDaySunsetJd - $sunriseJd
             : 0.5;
-        $fixedGhatiJd = KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0;
         $dvadashiDurationGhatikas = (($dvadashiEndJd - $dvadashiStartJd) * 1440.0) / KalaNirnayaEngine::GHATI_IN_MINUTES;
         $shortDvadashiRule = $this->shortDvadashiRule($dvadashiDurationGhatikas, $sunriseJd, $dvadashiEndJd);
         $restrictedWindows = $this->collectParanaRestrictedWindows($paranaStartJd, $dvadashiEndJd, $tz, $monthAmanta, $paksha);
-        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $dvadashiEndJd, $dayDurationJd, $fixedGhatiJd);
+        $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $dvadashiEndJd, $dayDurationJd);
         $resolvedWindows = $this->resolveParanaWindows(
             $paranaStartJd,
             $dvadashiEndJd,
@@ -355,10 +354,11 @@ class EkadashiParanaCalculator
      *   preferred_duration_ghatikas:?float
      * }
      */
-    private function buildDaytimePreferenceRule(float $sunriseJd, float $dvadashiEndJd, float $rawParanaStartJd, ?float $firstAllowedEndJd, float $dayDurationJd, float $fixedGhatiJd): array
+    private function buildDaytimePreferenceRule(float $sunriseJd, float $dvadashiEndJd, float $rawParanaStartJd, ?float $firstAllowedEndJd, float $dayDurationJd): array
     {
         $madhyahnaJd = $sunriseJd + ($dayDurationJd / 2.0);
-        $preferredEndJd = $sunriseJd + (6.0 * $fixedGhatiJd);
+        $dynamicGhatiMinutes = ($dayDurationJd * 1440.0) / 30.0;
+        $preferredEndJd = $sunriseJd + ($dayDurationJd / 5.0);
         $applies = $dvadashiEndJd > $madhyahnaJd && $preferredEndJd > $rawParanaStartJd;
 
         if ($firstAllowedEndJd !== null) {
@@ -370,9 +370,9 @@ class EkadashiParanaCalculator
             'applies' => $applies,
             'preferred_end_jd' => $applies ? $preferredEndJd : null,
             'preferred_duration_ghatikas' => $applies ? 6.0 : null,
-            'fixed_ghati_minutes' => KalaNirnayaEngine::GHATI_IN_MINUTES,
+            'dynamic_ghati_minutes' => $applies ? $dynamicGhatiMinutes : null,
             'madhyahna_basis' => 'dynamic_dinamana_midpoint',
-            'preferred_duration_basis' => 'fixed_ghati_elapsed_time_unit',
+            'preferred_duration_basis' => 'dynamic_dinamana_30_ghati_day',
         ];
     }
 
