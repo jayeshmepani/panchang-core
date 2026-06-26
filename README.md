@@ -105,8 +105,8 @@ $festivals = $details['Festivals'];
 - Eclipse output separates global classification from local visibility classification with `global_eclipse_type` and `local_eclipse_type`.
 - `Day_Types.apparent_solar_noon` is the astronomical solar transit.
 - `Abhijit_Muhurta.daylight_midpoint` is the sunrise-to-sunset midpoint used for Abhijit calculation.
-- Proportional periods such as Hora, Choghadiya, daytime/nighttime Muhurtas, Prahara, the fivefold daytime divisions, Vijaya, and Nishitha use actual local dinamana or ratrimana.
-- Arunodaya, Pradosha, and Sandhya ritual windows use fixed ghati offsets from actual local sunrise, sunset, or solar noon; the ghati itself remains 24 elapsed minutes.
+- Proportional periods such as Hora, Choghadiya, daytime/nighttime Muhurtas, Prahara, the fivefold daytime divisions, Vijaya, Nishitha, Godhuli, Pratah Sandhya, and Sayahna Sandhya use actual local dinamana or ratrimana where their rule depends on day or night length.
+- Arunodaya, Pradosha, and Madhyahna Sandhya use fixed ghati offsets from actual local sunrise, sunset, or solar noon; the ghati itself remains 24 elapsed minutes.
 
 ## CLI Exporters
 

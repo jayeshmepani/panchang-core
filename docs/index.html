@@ -2602,7 +2602,7 @@ foreach ($festivals as $festival) {
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
               </li>
-              <li>Pratah, Sangava, Madhyahna, Aparahna, Sayahna, Abhijit, Vijaya, and Nishitha use actual local daytime or nighttime proportions. Arunodaya, Pradosha, and Sandhya use fixed ghaṭī offsets from local solar anchors.</li>
+              <li>Pratah, Sangava, Madhyahna, Aparahna, Sayahna, Abhijit, Vijaya, Nishitha, Godhuli, Pratah Sandhya, and Sayahna Sandhya use actual local daytime or nighttime proportions where their rule depends on dinamāna or rātrimāna. Arunodaya, Pradosha, and Madhyahna Sandhya use fixed ghaṭī offsets from local solar anchors.</li>
             </ul>
           </div>
         </section>
@@ -3087,9 +3087,9 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculateSandhya()</h4>
-              <p class="method-description">Calculate fixed-ghaṭī morning, noon, and evening Sandhya windows around local sunrise, solar noon, and sunset.</p>
+              <p class="method-description">Calculate morning, noon, and evening Sandhya windows. Pratah and Sayahna use three dynamic rātrimāna-ghaṭīs around local sunrise and sunset; Madhyahna remains fixed-ghaṭī based around local solar noon.</p>
               <div class="method-signature">
-                <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $solarNoon): array</code>
+                <code>public function calculateSandhya(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, CarbonImmutable $solarNoon): array</code>
               </div>
             </div>
 
@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.1 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.2 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.1 corrects Ekadashi parana timing so the first-six-ghaṭī cap is enforced when Dvādaśī runs past Madhyāhna and restricted nakṣatra windows apply only when active at parana opening. The visible-eclipse relaxed Sutak correction from v10.0.0 remains unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.2 corrects Sandhya timing to use the dynamic rātrimāna-ghaṭī convention used by published panchangs. The Ekadashi parana correction from v10.0.1 and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.1 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.1: corrected Ekadashi parana window resolution, strict first-six-ghaṭī handling when Dvādaśī extends beyond Madhyāhna, active-at-opening nakṣatra restriction handling, and preserved v10.0.0 eclipse timing behavior.</p>
+            <h3>v10.0.2 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.2: dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.2</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Dynamic Sandhya Timing Alignment</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release aligning Pratah and Sayahna Sandhya timing with the dynamic rātrimāna-ghaṭī convention used by published Panchang output. Pratah Sandhya now ends at sunrise, Sayahna Sandhya begins at sunset, and both use three dynamic night-ghaṭīs based on actual local rātrimāna.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Ekadashi Parana Timing Correction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Ekadashi Parana Timing Correction</span></div>
                 <p class="release-note">Patch release correcting Ekadashi parana timing. Enforces the first-six-ghaṭī morning cap when Dvādaśī continues past Madhyāhna, applies restricted nakṣatra-pada blocking only when active at parana opening, and reopens the remaining Dvādaśī window if an active restriction consumes the early cap.</p>
               </div>
             </li>
@@ -5006,6 +5013,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.2 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Sandhya timing now follows the dynamic rātrimāna-ghaṭī convention used by published Panchang output.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Sandhya timings can change:</strong> Pratah Sandhya now runs from three dynamic night-ghaṭīs before sunrise until sunrise. Sayahna Sandhya now runs from sunset until three dynamic night-ghaṭīs after sunset.</li>
+              <li><strong>Godhuli is unchanged:</strong> Godhuli already used the dynamic night-ghaṭī convention and remains aligned with published Panchang timing.</li>
+              <li><strong>Public method signature changed:</strong> <code>calculateSandhya()</code> now requires <code>$nextSunrise</code> so the actual local rātrimāna can be used.</li>
+              <li><strong>Madhyahna Sandhya remains fixed-ghaṭī based:</strong> The noon Sandhya window continues to use fixed ghaṭī offsets around local solar noon.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Update direct calls to <code>calculateSandhya()</code> to pass <code>$nextSunrise</code> between <code>$sunset</code> and <code>$solarNoon</code>.</li>
+            <li>Regenerate cached daily, today, month, and raw output if you store Sandhya timings.</li>
+            <li>Rebaseline tests or snapshots that compare exact Pratah or Sayahna Sandhya start/end times.</li>
+          </ul>
 
           <h3>v10.0.1 Upgrade &amp; Release Notes</h3>
           <p class="lead">Ekadashi parana timing now strictly follows the first-six-ghaṭī cap when Dvādaśī extends beyond Madhyāhna, while nakṣatra blocking is limited to restrictions active at parana opening.</p>
@@ -6395,7 +6422,7 @@ const FESTIVAL_RULES
 - calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, int $tithiNum): array
 - calculatePrahara(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
-- calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $solarNoon): array
+- calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $solarNoon): array
 - calculateVarjyam(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd): array
 - calculateVijayaMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
 
