@@ -114,6 +114,9 @@ class FestivalCoverageRegressionTest extends TestCase
         $this->assertSame(['2026-02-15'], array_values(array_unique($datesByName['Maha Shivaratri'] ?? [])));
         $this->assertNotContains('2026-02-16', array_values(array_unique($datesByName['Masik Shivaratri'] ?? [])));
         $this->assertSame(['2026-10-20'], array_values(array_unique($datesByName['Dussehra'] ?? [])));
+        $this->assertContains('2026-09-14', array_values(array_unique($datesByName['Vinayaka Chaturthi'] ?? [])));
+        $this->assertArrayNotHasKey('Ganesh Chaturthi', $datesByName);
+        $this->assertArrayNotHasKey('Siddhivinayaka Chaturthi', $datesByName);
     }
 
     public function test_purnima_vrat_and_civil_festival_labels_are_split(): void

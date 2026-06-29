@@ -450,6 +450,9 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Govardhan Puja']['location_sensitive']);
         self::assertTrue(FestivalService::FESTIVALS['Ganesh Chaturthi']['chandradarshan_nishedh']);
         self::assertSame('metadata', FestivalService::FESTIVALS['Ganesh Chaturthi']['chandradarshan_nishedh_mode']);
+        self::assertContains('Ganesh Chaturthi', FestivalService::FESTIVALS['Vinayaka Chaturthi']['aliases']);
+        self::assertContains('Siddhivinayaka Chaturthi', FestivalService::FESTIVALS['Vinayaka Chaturthi']['aliases']);
+        self::assertArrayNotHasKey('Siddhivinayaka Chaturthi', FestivalService::FESTIVALS);
         self::assertSame('madhyahna', FestivalService::FESTIVALS['Tulsi Vivah']['karmakala_type']);
         self::assertSame('sayankala', FestivalService::FESTIVALS['Tulsi Vivah']['ritual_kala_type']);
         self::assertSame('Satsangi Jeevan 4.58.105-117', FestivalService::FESTIVALS['Tulsi Vivah']['source_refs'][0]);

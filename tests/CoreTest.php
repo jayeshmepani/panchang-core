@@ -168,6 +168,10 @@ class CoreTest extends TestCase
         $this->assertArrayHasKey('Labh Panchami', FestivalService::FESTIVALS);
         $this->assertArrayNotHasKey('Labh Pancham', FestivalService::FESTIVALS);
         $this->assertContains('Labh Pancham', FestivalService::FESTIVALS['Labh Panchami']['aliases']);
+        $this->assertArrayHasKey('Vinayaka Chaturthi', FestivalService::FESTIVALS);
+        $this->assertArrayNotHasKey('Siddhivinayaka Chaturthi', FestivalService::FESTIVALS);
+        $this->assertContains('Ganesh Chaturthi', FestivalService::FESTIVALS['Vinayaka Chaturthi']['aliases']);
+        $this->assertContains('Siddhivinayaka Chaturthi', FestivalService::FESTIVALS['Vinayaka Chaturthi']['aliases']);
         $this->assertNotContains('Masik Shivaratri', FestivalService::FESTIVALS['Maha Shivaratri']['aliases'] ?? []);
         $this->assertArrayNotHasKey('Navratri Begins', FestivalService::FESTIVALS);
     }

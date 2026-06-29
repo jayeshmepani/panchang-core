@@ -2,7 +2,7 @@
 
 This list is generated from the canonical English Amanta 2026 yearly outputs. The first column is only a serial number for reading convenience; the identity column is the canonical key emitted by the package, and aliases are alternate public names carried in the generated payload.
 
-## Festival Identities (326)
+## Festival Identities (325)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -273,65 +273,64 @@ This list is generated from the canonical English Amanta 2026 yearly outputs. Th
 | 265 | Sheetala Ashtami | Basoda, Sheetala Aatham |
 | 266 | Shravana Amavasya | Hariyali Amavasya, Pithori Amavasya, Aadi Amavasai |
 | 267 | Siddhilakshmi Jayanti | - |
-| 268 | Siddhivinayaka Chaturthi | Ganesh Chaturthi, Vinayaka Chaturthi |
-| 269 | Simha Sankranti | - |
-| 270 | Sita Navami | - |
-| 271 | Skanda Sashti | - |
-| 272 | Snanyatra | - |
-| 273 | Subrahmanya Shashti (Champa Shashthi) | Champa Shashthi |
-| 274 | Surdas Jayanti | - |
-| 275 | Swaminarayan Kurma Jayanti | Kurma Jayanti |
-| 276 | Swaminarayan Rathyatra | - |
-| 277 | Swarochisha Manvadi | - |
-| 278 | Swayambhuva Manvadi | - |
-| 279 | Tamasa Manvadi | - |
-| 280 | Tara Jayanti | - |
-| 281 | Tarnetar Fair | - |
-| 282 | Tarnetar Fair Day 2 | - |
-| 283 | Tarnetar Fair Day 3 | - |
-| 284 | Telugu Hanuman Jayanti | - |
-| 285 | Thai Amavasai | Darsha Amavasya |
-| 286 | Thai Poosam | - |
-| 287 | Thrissur Pooram | - |
-| 288 | Treta Yuga Diwas | Akshaya Tritiya |
-| 289 | Tula Sankranti | - |
-| 290 | Tulsidas Jayanti | - |
-| 291 | Tulsi Vivah | - |
-| 292 | Ugadi | Gudi Padwa |
-| 293 | Uttama Manvadi | - |
-| 294 | Vachanamrut Jayanti | - |
-| 295 | Vagh Baras | Govatsa Dwadashi, Vasu Baras, Bachha Baras |
-| 296 | Vaikuntha Chaturdashi | - |
-| 297 | Vaishakha Amavasya | Shani Jayanti, Vat Savitri Vrat |
-| 298 | Vaivaswata Manvadi | - |
-| 299 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
-| 300 | Vallabhacharya Jayanti | - |
-| 301 | Valmiki Jayanti | - |
-| 302 | Vamana Dwadashi | - |
-| 303 | Vamana Jayanti | - |
-| 304 | Varada Chaturthi | - |
-| 305 | Varaha Dwadashi | - |
-| 306 | Vasant Panchami | Saraswati Jayanti, Saraswati Puja, Shree Panchami, Shikshapatri Jayanti |
-| 307 | Vasi Uttarayan | - |
-| 308 | Vasudeva Chaturthi | - |
-| 309 | Vibhuvana Sankashti Chaturthi | Vibhuvana Sankashti, Sankashti Chaturthi |
-| 310 | Vidyarambham | Vidyarambham Day |
-| 311 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
-| 312 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
-| 313 | Vinayaka Chaturthi | Ganesha Jayanti |
-| 314 | Vishu | - |
-| 315 | Vishwakarma Jayanti | - |
-| 316 | Vivah Panchami | - |
-| 317 | Vivekananda Jayanti (Samvat) | - |
-| 318 | Vrischika Sankranti | - |
-| 319 | Vrishabha Sankranti | - |
-| 320 | Yajurveda Upakarma | - |
-| 321 | Yama Deepam | - |
-| 322 | Yama Panchaka Begins | - |
-| 323 | Yamuna Chhath | - |
-| 324 | Yaoshang | - |
-| 325 | Yashoda Jayanti | - |
-| 326 | Yogi Maharaj Jayanti | - |
+| 268 | Simha Sankranti | - |
+| 269 | Sita Navami | - |
+| 270 | Skanda Sashti | - |
+| 271 | Snanyatra | - |
+| 272 | Subrahmanya Shashti (Champa Shashthi) | Champa Shashthi |
+| 273 | Surdas Jayanti | - |
+| 274 | Swaminarayan Kurma Jayanti | Kurma Jayanti |
+| 275 | Swaminarayan Rathyatra | - |
+| 276 | Swarochisha Manvadi | - |
+| 277 | Swayambhuva Manvadi | - |
+| 278 | Tamasa Manvadi | - |
+| 279 | Tara Jayanti | - |
+| 280 | Tarnetar Fair | - |
+| 281 | Tarnetar Fair Day 2 | - |
+| 282 | Tarnetar Fair Day 3 | - |
+| 283 | Telugu Hanuman Jayanti | - |
+| 284 | Thai Amavasai | Darsha Amavasya |
+| 285 | Thai Poosam | - |
+| 286 | Thrissur Pooram | - |
+| 287 | Treta Yuga Diwas | Akshaya Tritiya |
+| 288 | Tula Sankranti | - |
+| 289 | Tulsidas Jayanti | - |
+| 290 | Tulsi Vivah | - |
+| 291 | Ugadi | Gudi Padwa |
+| 292 | Uttama Manvadi | - |
+| 293 | Vachanamrut Jayanti | - |
+| 294 | Vagh Baras | Govatsa Dwadashi, Vasu Baras, Bachha Baras |
+| 295 | Vaikuntha Chaturdashi | - |
+| 296 | Vaishakha Amavasya | Shani Jayanti, Vat Savitri Vrat |
+| 297 | Vaivaswata Manvadi | - |
+| 298 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
+| 299 | Vallabhacharya Jayanti | - |
+| 300 | Valmiki Jayanti | - |
+| 301 | Vamana Dwadashi | - |
+| 302 | Vamana Jayanti | - |
+| 303 | Varada Chaturthi | - |
+| 304 | Varaha Dwadashi | - |
+| 305 | Vasant Panchami | Saraswati Jayanti, Saraswati Puja, Shree Panchami, Shikshapatri Jayanti |
+| 306 | Vasi Uttarayan | - |
+| 307 | Vasudeva Chaturthi | - |
+| 308 | Vibhuvana Sankashti Chaturthi | Vibhuvana Sankashti, Sankashti Chaturthi |
+| 309 | Vidyarambham | Vidyarambham Day |
+| 310 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
+| 311 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
+| 312 | Vinayaka Chaturthi | Ganesha Jayanti, Ganesh Chaturthi, Siddhivinayaka Chaturthi |
+| 313 | Vishu | - |
+| 314 | Vishwakarma Jayanti | - |
+| 315 | Vivah Panchami | - |
+| 316 | Vivekananda Jayanti (Samvat) | - |
+| 317 | Vrischika Sankranti | - |
+| 318 | Vrishabha Sankranti | - |
+| 319 | Yajurveda Upakarma | - |
+| 320 | Yama Deepam | - |
+| 321 | Yama Panchaka Begins | - |
+| 322 | Yamuna Chhath | - |
+| 323 | Yaoshang | - |
+| 324 | Yashoda Jayanti | - |
+| 325 | Yogi Maharaj Jayanti | - |
 
 
 ## Vrat Identities (90)
