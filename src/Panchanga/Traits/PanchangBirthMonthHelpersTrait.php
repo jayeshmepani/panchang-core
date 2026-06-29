@@ -126,14 +126,18 @@ trait PanchangBirthMonthHelpersTrait
         $isAdhika = ($signCrossings === 0);
         $isKshaya = ($signCrossings >= 2);
 
-        // Month name = sun's sign at the ENDING Amavasya
-        // (the sign the sun entered during this lunar month)
+        // Month name = the first sankranti month reached inside the lunar month.
+        // In a normal month this equals the sun's sign at the ending Amavasya.
+        // In a kshaya month, multiple sankrantis occur; the current lunar month
+        // keeps the first progressed name, while the later name is the omitted one.
         $amantaIdx = $signAtEnd;
 
         // For Adhika: the sun didn't enter a new sign, so this month repeats
         // the previous month's name. The Adhika month takes the name of the
         // sign the sun WILL enter (the NEXT sign after signAtStart).
         if ($isAdhika) {
+            $amantaIdx = ($signAtStart + 1) % 12;
+        } elseif ($isKshaya) {
             $amantaIdx = ($signAtStart + 1) % 12;
         }
 
@@ -145,9 +149,6 @@ trait PanchangBirthMonthHelpersTrait
         if ($isAdhika) {
             $amantaName .= $adhikaStr;
             $amantaNameEn .= $adhikaStr;
-        } elseif ($isKshaya) {
-            $amantaName .= $kshayaStr;
-            $amantaNameEn .= $kshayaStr;
         }
 
         // Purnimanta month: Amanta month during Shukla Paksha, (Amanta+1) during Krishna Paksha

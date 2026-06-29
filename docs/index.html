@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.2 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.3 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.2 corrects Sandhya timing to use the dynamic rātrimāna-ghaṭī convention used by published panchangs. The Ekadashi parana correction from v10.0.1 and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.3 corrects rare Adhika and Kshaya Maas month-boundary handling so Amanta and Purnimanta month naming stays aligned across intercalary, omitted, and returning Nija month transitions. The dynamic Sandhya correction from v10.0.2, the Ekadashi parana correction from v10.0.1, and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.2 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.2: dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
+            <h3>v10.0.3 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.3: corrected Adhika, Kshaya, and Nija month-boundary handling across Amanta and Purnimanta output, dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.3</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Adhika and Kshaya Maas Boundary Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release correcting rare lunar month-boundary handling for Adhika Maas, Kshaya Maas, and returning Nija Maas across both Amanta and Purnimanta systems. Keeps skipped months out of the active month label, preserves intercalary Jyeshtha timing in 2026, and aligns rare 2123–2124 Pausha-Kshaya sequencing with expected public Panchang behavior.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.2</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Dynamic Sandhya Timing Alignment</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Dynamic Sandhya Timing Alignment</span></div>
                 <p class="release-note">Patch release aligning Pratah and Sayahna Sandhya timing with the dynamic rātrimāna-ghaṭī convention used by published Panchang output. Pratah Sandhya now ends at sunrise, Sayahna Sandhya begins at sunset, and both use three dynamic night-ghaṭīs based on actual local rātrimāna.</p>
               </div>
             </li>
@@ -5013,6 +5020,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.3 Upgrade &amp; Release Notes</h3>
+          <p class="lead">Rare Adhika, Kshaya, and Nija month transitions now keep the active month sequence aligned in both Amanta and Purnimanta output.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Rare month labels can change:</strong> Kshaya month spans no longer display the omitted month itself as the active month name.</li>
+              <li><strong>Adhika to Nija return is tightened:</strong> Intercalary month end and the return to the regular month now stay aligned across Amanta and Purnimanta boundaries.</li>
+              <li><strong>No public payload shape changed:</strong> This is a correctness release for month naming and status flags, not a structural API change.</li>
+              <li><strong>Rare-year snapshots may differ:</strong> Generated month, festival, vrat, and raw output can change for uncommon Adhika/Kshaya years such as 2026 and 2123–2124.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached month, daily, festival, vrat, and raw output if you store lunar month names or month-status flags.</li>
+            <li>Rebaseline tests or snapshots that compare exact Amanta or Purnimanta month labels near Adhika or Kshaya transitions.</li>
+            <li>Expect corrected output especially around Adhika Jyeshtha in 2026 and the Pausha Kshaya sequence in 2123–2124.</li>
+          </ul>
 
           <h3>v10.0.2 Upgrade &amp; Release Notes</h3>
           <p class="lead">Sandhya timing now follows the dynamic rātrimāna-ghaṭī convention used by published Panchang output.</p>
