@@ -4760,28 +4760,35 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.6 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.7 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.6 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. v10.0.3 keeps rare Adhika and Kshaya Maas month-boundary handling aligned across intercalary, omitted, and returning Nija month transitions. The dynamic Sandhya correction from v10.0.2, the Ekadashi parana correction from v10.0.1, and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. v10.0.6 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. The prior corrections from v10.0.3 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.6 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.6: refreshed public festival and vrat catalog totals, current registry cleanup for overlapping observance identities and aliases, localized user-facing rule labels aligned with the latest festival output, corrected Kurma Jayanti and Vaishakha Purnima separation, improved Skanda Sashti observance routing, corrected Adhika, Kshaya, and Nija month-boundary handling across Amanta and Purnimanta output, dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
+            <h3>v10.0.7 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.7: Phuldolotsava now follows the precise Satsangi Jeevan Krishna Pratipada + Uttara Phalguni sunrise vyapini rule with rich structured metadata (<code>calendar_rule</code>, <code>astronomy_rule</code>, <code>ritual_layers</code>, source evidence); Festival rules support explicit <code>paksha_amanta</code> / <code>paksha_purnimanta</code> (and month equivalents); multiple <code>month_purnimanta</code> mappings corrected for avatar Jayantis; richer rule metadata exposed in festival output; localization updated for new/renamed observances. All Amanta and Purnimanta outputs regenerated. 324 festival identities, 98 vrat identities.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.7</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Phuldolotsava Rule Refinement, Purnimanta Month Corrections, and Calendar-Aware Paksha Support</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release refining Phuldolotsava (Satsangi Jeevan Dolotsav) with accurate Krishna Pratipada + Uttara Phalguni vyapini rules and structured metadata, introducing <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support, correcting <code>month_purnimanta</code> values across multiple avatar and tithi observances, exposing richer rule metadata, and updating localization. All outputs regenerated.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.6</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Festival Catalog and Localization Refresh</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Festival Catalog and Localization Refresh</span></div>
                 <p class="release-note">Patch release refreshing the public festival and vrat catalog, tightening overlapping alias and rule handling in the current registry, and keeping the updated user-facing labels aligned across supported languages. The current generated output now reports 324 festival identities and 98 vrat identities.</p>
               </div>
             </li>
-            <li class="release-row is-latest">
+            <li class="release-row">
               <span class="release-tag">10.0.4</span>
               <div class="release-body">
                 <div class="release-heading"><span class="release-title">Festival Identity and Rule Alignment</span></div>
@@ -5034,6 +5041,28 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.7 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release improves precision for Satsangi tradition observances and adds first-class support for calendar-specific paksha and month definitions in the festival registry.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Phuldolotsava date and identity updated:</strong> Now resolved on Krishna Pratipada (Phalguna amanta / Chaitra purnimanta) with Uttara Phalguni sunrise vyapini requirement per Satsangi Jeevan.</li>
+              <li><strong>New rule structure for some festivals:</strong> Affected entries now publish <code>calendar_rule</code>, <code>astronomy_rule</code>, <code>resolution_policy</code>, and <code>ritual_layers</code>.</li>
+              <li><strong>Purnimanta month labels corrected:</strong> Several Krishna Paksha Jayantis and tithi observances had incorrect <code>month_purnimanta</code> values; these are now accurate.</li>
+              <li><strong>Paksha selection is now calendar-aware:</strong> Rules can declare separate <code>paksha_amanta</code> / <code>paksha_purnimanta</code>.</li>
+              <li><strong>No payload structure breaking change:</strong> Output format is unchanged; only rule evaluation and labels for touched observances are affected.</li>
+              <li><strong>Festival/vrat counts:</strong> 324 unique festival identities and 98 unique vrat identities (unchanged from v10.0.6).</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate any cached yearly festival, vrat, month, or raw outputs.</li>
+            <li>Rebaseline tests/snapshots that assert on Phuldolotsava date, name, tithi, or nakshatra rules, or on purnimanta month names for avatar observances.</li>
+            <li>Review Dhuleti vs Phuldolotsava distinction if your application treats Holi-cluster observances specially.</li>
+          </ul>
 
           <h3>v10.0.6 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release updates the festival module more broadly: some observances were added, some overlapping identities were merged or cleaned up, several decision rules were corrected, and the related user-facing labels were aligned across supported languages.</p>

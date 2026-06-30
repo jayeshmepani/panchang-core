@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-30T10:09:18+00:00",
+        "generated_at": "2026-06-30T11:56:51+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "amanta",
@@ -5271,124 +5271,6 @@
                     }
                 },
                 {
-                    "name": "फूलडोलोत्सव",
-                    "name_key": "Phuldolotsava",
-                    "description": "होली/पूर्णिमा उत्सव समूह में स्वामीनारायण पुष्पदोलोत्सव / फूलडोल तिथि उत्सव",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "स्वामीनारायण",
-                        "गुजरात"
-                    ],
-                    "aliases": [
-                        "पुष्पदोलोत्सव",
-                        "फूलडोल",
-                        "धुलेटी"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "फाल्गुन",
-                            "value_key": "Phalguna",
-                            "name": "फाल्गुन"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय",
-                        "strict_karmakala": true,
-                        "sect_specific": true,
-                        "tradition_profile": "स्वामीनारायण/बीएपीएस तिथि उत्सव",
-                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
-                        "ritual_profile": "सत्संगी पुष्प-दोलोत्सव अनुष्ठान रूपरेखा",
-                        "ritual_profile_key": "pushpa_dolotsav_satsangi",
-                        "rule_convention": "संप्रदाय-विशेष तिथि उत्सव; सार्वजनिक आयोजन और मुख्यधारा के होली-पश्चात नागरिक दिन अलग हो सकते हैं।",
-                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.45",
-                            "Satsangi Jeevan 4.60"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "फूलडोलोत्सव",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461102.018089395,
-                        "target_tithi_end_jd": 2461102.9845809415,
-                        "standard_date": "2026-03-03",
-                        "observance_date": "2026-03-03",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Phuldolotsava",
-                        "festival_name_localized": "फूलडोलोत्सव",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "सावर्णि मन्वदि",
                     "name_key": "Savarni Manvadi",
                     "description": "सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
@@ -5587,6 +5469,206 @@
             ],
             "2026-03-04": [
                 {
+                    "name": "फूलडोलोत्सव",
+                    "name_key": "Phuldolotsava",
+                    "description": "नर-नारायण/कृष्ण परंपरा का फूलडोलोत्सव, जो झूला, पुष्प और वसंत-ऋतु के आनंदमय उत्सव के साथ मनाया जाता है",
+                    "deity": "Nar-Narayan",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "पुष्पदोलोत्सव",
+                        "फूलडोल उत्सव",
+                        "फाल्गुन डोलोत्सव"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "कृष्ण प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "paksha_amanta": "Krishna",
+                        "paksha_amanta_name": "कृष्ण",
+                        "paksha_purnimanta": "Krishna",
+                        "paksha_purnimanta_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "फाल्गुन",
+                            "value_key": "Phalguna",
+                            "name": "फाल्गुन"
+                        },
+                        "nakshatra": "उत्तर फाल्गुनी",
+                        "nakshatra_key": "Uttara Phalguni",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "sect_specific": true,
+                        "tradition_profile": "सत्संगी जीवन डोलोत्सव (प्रकरण ४ संदर्भ)",
+                        "tradition_profile_key": "Satsangi Jeevan Dolotsav (Prakaran 4 context)",
+                        "ritual_profile": "सत्संगी पुष्प-दोलोत्सव अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "pushpa_dolotsav_satsangi",
+                        "preferred_nakshatra": "उत्तर फाल्गुनी",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "calendar_rule": {
+                            "tithi": {
+                                "numbers": [
+                                    1
+                                ],
+                                "absolute_numbers": [
+                                    1
+                                ],
+                                "names": [
+                                    "शुक्ल प्रतिपदा"
+                                ]
+                            },
+                            "paksha_amanta": "Krishna",
+                            "paksha_amanta_name": "कृष्ण",
+                            "paksha_purnimanta": "Krishna",
+                            "paksha_purnimanta_name": "कृष्ण",
+                            "month_amanta": "Phalguna",
+                            "month_amanta_name": "Phalguna",
+                            "month_purnimanta": "Chaitra",
+                            "month_purnimanta_name": "Chaitra"
+                        },
+                        "astronomy_rule": {
+                            "nakshatra": "उत्तर फाल्गुनी",
+                            "nakshatra_key": "Uttara Phalguni",
+                            "require_sunrise_vyapini": true,
+                            "sunrise_reference": "arya_devata_window",
+                            "sunrise_reference_name": "arya_devata_window"
+                        },
+                        "resolution_policy": {
+                            "vriddhi_preference": "first",
+                            "kshaya_policy": "prefer_primary_day",
+                            "kshaya_policy_name": "prefer_primary_day",
+                            "dual_day_rule": "choose_first_valid_sunrise_vyapini",
+                            "dual_day_rule_name": "choose_first_valid_sunrise_vyapini"
+                        },
+                        "ritual_layers": [
+                            {
+                                "key": "swing_dolotsav",
+                                "name": "swing_dolotsav"
+                            },
+                            {
+                                "key": "pushpa_abhishek",
+                                "name": "pushpa_abhishek"
+                            },
+                            {
+                                "key": "vasant_rang_kriya",
+                                "name": "vasant_rang_kriya"
+                            },
+                            {
+                                "key": "nar_narayan_dhyana",
+                                "name": "nar_narayan_dhyana"
+                            }
+                        ],
+                        "source_refs": [
+                            "Satsangi Jeevan Prakaran 4 (Dolotsav section)"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "date_rule",
+                                "source": "Satsangi Jeevan",
+                                "locator": "Prakaran 4, Dolotsav Adhyaya (Phalguna Krishna Pratipada)",
+                                "supports": "Festival occurs on Krishna Paksha Pratipada aligned with Uttara Phalguni sunrise window"
+                            },
+                            {
+                                "kind": "astronomy_rule",
+                                "source": "Satsangi Jeevan",
+                                "supports": "Uttara Phalguni nakshatra plus sunrise condition governs observance validity"
+                            },
+                            {
+                                "kind": "ritual_rule",
+                                "source": "Satsangi Jeevan",
+                                "supports": "Dolotsav includes swing worship, flower offering, and Vasant seasonal celebration"
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "फूलडोलोत्सव",
+                        "required_tithi": 1,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461102.9845809415,
+                        "target_tithi_end_jd": 2461103.9717461914,
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "preferred_nakshatra": "उत्तर फाल्गुनी",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                            "preferred_nakshatra_key": "Uttara Phalguni",
+                            "preferred_nakshatra_name": "उत्तर फाल्गुनी"
+                        },
+                        "festival_name_key": "Phuldolotsava",
+                        "festival_name_localized": "फूलडोलोत्सव",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": "उत्तर फाल्गुनी",
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "preferred_nakshatra_name": "उत्तर फाल्गुनी"
+                    }
+                },
+                {
                     "name": "इष्टि",
                     "name_key": "Ishti",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",
@@ -5682,17 +5764,16 @@
                     }
                 },
                 {
-                    "name": "होली",
-                    "name_key": "Holi",
-                    "description": "रंगों का त्योहार",
+                    "name": "धुलेटी",
+                    "name_key": "Dhuleti",
+                    "description": "Mainstream festival of colors played on the day following the Holika Dahan bonfire.",
                     "deity": "कृष्ण",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "aliases": [
-                        "धुलेटी",
-                        "पुष्पदोलोत्सव"
+                        "Dhulandi"
                     ],
                     "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
                     "calculation_basis": {
@@ -5710,7 +5791,7 @@
                         "parent_festival_key": "Holika Dahan"
                     },
                     "resolution": {
-                        "festival_name": "होली",
+                        "festival_name": "धुलेटी",
                         "standard_date": "2026-03-04",
                         "observance_date": "2026-03-04",
                         "observance_note": "होलिका दहन के 1 दिन बाद मनाया गया",
@@ -5725,8 +5806,8 @@
                             "parent_festival_key": "Holika Dahan",
                             "parent_festival_name": "होलिका दहन"
                         },
-                        "festival_name_key": "Holi",
-                        "festival_name_localized": "होली"
+                        "festival_name_key": "Dhuleti",
+                        "festival_name_localized": "धुलेटी"
                     },
                     "rules_applied": {
                         "winning_reason": "मूल उत्सव के बाद का दिन",

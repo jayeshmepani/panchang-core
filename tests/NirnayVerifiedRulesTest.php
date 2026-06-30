@@ -491,10 +491,8 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('Pushya', FestivalService::FESTIVALS['Swaminarayan Rathyatra']['nakshatra']);
         self::assertSame([1, 2], FestivalService::FESTIVALS['Hindola Festival Begins']['tithi_options']);
         self::assertArrayHasKey('Kurma Jayanti', FestivalService::FESTIVALS);
-        self::assertArrayHasKey('traditions', FestivalService::FESTIVALS['Kurma Jayanti']);
-        self::assertArrayHasKey('Swaminarayan Kurma Jayanti', $expanded);
-        self::assertTrue($expanded['Swaminarayan Kurma Jayanti']['sect_specific'] ?? false);
-        self::assertSame('kurma_jayanti_satsangi', $expanded['Swaminarayan Kurma Jayanti']['ritual_profile']);
+        self::assertTrue(FestivalService::FESTIVALS['Kurma Jayanti']['sect_specific'] ?? false);
+        self::assertSame('kurma_jayanti_satsangi', FestivalService::FESTIVALS['Kurma Jayanti']['ritual_profile']);
     }
 
     public function testNewSatsangiFestivalStringsAreLocalizedInHindiAndGujarati(): void
@@ -1006,8 +1004,8 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertContains('Telugu Hanuman Jayanthi', FestivalService::FESTIVALS['Telugu Hanuman Jayanti']['aliases']);
         self::assertTrue(FestivalService::FESTIVALS['Telugu Hanuman Jayanti']['require_sunrise_vyapini']);
         self::assertArrayHasKey('Phuldolotsava', FestivalService::FESTIVALS);
-        self::assertSame(15, FestivalService::FESTIVALS['Phuldolotsava']['tithi']);
-        self::assertSame('Shukla', FestivalService::FESTIVALS['Phuldolotsava']['paksha']);
+        self::assertSame(1, FestivalService::FESTIVALS['Phuldolotsava']['tithi']);
+        self::assertSame('Krishna', FestivalService::FESTIVALS['Phuldolotsava']['paksha_amanta']);
         self::assertSame('Phalguna', FestivalService::FESTIVALS['Phuldolotsava']['month_amanta']);
         self::assertTrue(FestivalService::FESTIVALS['Phuldolotsava']['sect_specific']);
         self::assertTrue(FestivalService::FESTIVALS['Samaveda Upakarma']['nakshatra_only']);

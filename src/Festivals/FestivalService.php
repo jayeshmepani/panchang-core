@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
@@ -3055,7 +3056,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Pausha',
-            'month_purnimanta' => 'Pausha',
+            'month_purnimanta' => 'Magha',
             'description' => 'Krishna Paksha appearance day of Kurma avatar',
             'deity' => 'Vishnu (Kurma)',
             'karmakala_type' => 'sunrise',
@@ -3066,7 +3067,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Magha',
-            'month_purnimanta' => 'Magha',
+            'month_purnimanta' => 'Phalguna',
             'description' => 'Krishna Paksha day dedicated to Bhishma Pitamaha',
             'deity' => 'Bhishma',
             'karmakala_type' => 'sunrise',
@@ -3077,7 +3078,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
             'description' => 'Krishna Paksha appearance day of Narasimha avatar',
             'deity' => 'Vishnu (Narasimha)',
             'karmakala_type' => 'sunrise',
@@ -3088,7 +3089,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Chaitra',
+            'month_purnimanta' => 'Vaishakha',
             'description' => 'Krishna Paksha appearance day of Vamana avatar',
             'deity' => 'Vishnu (Vamana)',
             'karmakala_type' => 'sunrise',
@@ -3099,7 +3100,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Vaishakha',
-            'month_purnimanta' => 'Vaishakha',
+            'month_purnimanta' => 'Jyeshtha',
             'description' => 'Krishna Paksha appearance day of Parashurama avatar',
             'deity' => 'Vishnu (Parashurama)',
             'karmakala_type' => 'sunrise',
@@ -3110,7 +3111,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Jyeshtha',
-            'month_purnimanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Ashadha',
             'description' => 'Krishna Paksha appearance day of Rama and Lakshmana',
             'deity' => 'Rama/Lakshmana',
             'karmakala_type' => 'sunrise',
@@ -3121,7 +3122,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Ashadha',
-            'month_purnimanta' => 'Ashadha',
+            'month_purnimanta' => 'Shravana',
             'description' => 'Krishna Paksha appearance day of Vasudeva (Krishna)',
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
@@ -3132,7 +3133,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Shravana',
+            'month_purnimanta' => 'Bhadrapada',
             'description' => 'Krishna Paksha appearance day of Damodara (Krishna)',
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
@@ -3143,7 +3144,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Ashvina',
             'description' => 'Krishna Paksha appearance day of Kalki avatar',
             'deity' => 'Vishnu (Kalki)',
             'karmakala_type' => 'sunrise',
@@ -3154,7 +3155,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Kartika',
             'description' => 'Krishna Paksha appearance day of Padmanabha (Vishnu)',
             'deity' => 'Vishnu',
             'karmakala_type' => 'sunrise',
@@ -3165,7 +3166,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Kartika',
+            'month_purnimanta' => 'Margashirsha',
             'description' => 'Krishna Paksha appearance day of Yogeshwara (Krishna)',
             'deity' => 'Krishna',
             'karmakala_type' => 'sunrise',
@@ -3176,7 +3177,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 12,
             'month_amanta' => 'Margashirsha',
-            'month_purnimanta' => 'Margashirsha',
+            'month_purnimanta' => 'Pausha',
             'description' => 'Krishna Paksha appearance day of Matsya avatar',
             'deity' => 'Vishnu (Matsya)',
             'karmakala_type' => 'sunrise',
@@ -4651,32 +4652,71 @@ class FestivalService
             'description' => 'Birth of Bhagatji Maharaj (Swaminarayan Sect)',
             'deity' => 'Swaminarayan',
         ],
-        'Holi' => [
+        'Dhuleti' => [
             'type' => 'day_after',
-            'parent_festival' => 'Holika Dahan',
+            'parent_festival'  => 'Holika Dahan',
             'days_after' => 1,
-            'aliases' => ['Dhuleti', 'Pushpadolotsav'],
-            'description' => 'Festival of colors',
+            'aliases' => ['Dhulandi'],
+            'description' => 'Mainstream festival of colors played on the day following the Holika Dahan bonfire.',
             'deity' => 'Krishna',
+            'regions' => ['Pan-India'],
         ],
         'Phuldolotsava' => [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
+            'calendar_rule' => [
+                'tithi' => 1,
+                'month_amanta' => 'Phalguna',
+                'month_purnimanta' => 'Chaitra',
+                'paksha_amanta' => 'Krishna',
+                'paksha_purnimanta' => 'Krishna',
+            ],
+            'astronomy_rule' => [
+                'nakshatra' => 'Uttara Phalguni',
+                'require_sunrise_vyapini' => true,
+                'sunrise_reference' => 'arya_devata_window',
+            ],
+            'resolution_policy' => [
+                'vriddhi_preference' => 'first',
+                'kshaya_policy' => 'prefer_primary_day',
+                'dual_day_rule' => 'choose_first_valid_sunrise_vyapini',
+            ],
+            'tithi' => 1,
             'month_amanta' => 'Phalguna',
             'month_purnimanta' => 'Chaitra',
-            'aliases' => ['Pushpadolotsav', 'Phuldol', 'Dhuleti'],
-            'description' => 'Swaminarayan Pushpadolotsav / Fuldol tithi observance in the Holi/Purnima festival cluster',
-            'deity' => 'Krishna',
-            'regions' => ['Swaminarayan', 'Gujarat'],
+            'paksha_amanta' => 'Krishna',
+            'paksha_purnimanta' => 'Krishna',
+            'nakshatra' => 'Uttara Phalguni',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'aliases' => ['Pushpadolotsav', 'Fuldol Utsav', 'Phalgun Dolotsav'],
+            'description' => 'Phuldolotsava (Dolotsav of Nar-Narayan/Krishna tradition) performed with swing, flowers, and Vasant-season ritual joy',
+            'deity' => 'Nar-Narayan',
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
             'sect_specific' => true,
-            'tradition_profile' => 'Swaminarayan/BAPS tithi observance',
-            'rule_convention' => 'Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.',
+            'tradition_profile' => 'Satsangi Jeevan Dolotsav (Prakaran 4 context)',
             'ritual_profile' => 'pushpa_dolotsav_satsangi',
-            'source_refs' => ['Satsangi Jeevan 4.45', 'Satsangi Jeevan 4.60'],
+            'ritual_layers' => ['swing_dolotsav', 'pushpa_abhishek', 'vasant_rang_kriya', 'nar_narayan_dhyana'],
+            'source_refs' => ['Satsangi Jeevan Prakaran 4 (Dolotsav section)'],
+            'source_evidence' => [
+                [
+                    'kind' => 'date_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'locator' => 'Prakaran 4, Dolotsav Adhyaya (Phalguna Krishna Pratipada)',
+                    'supports' => 'Festival occurs on Krishna Paksha Pratipada aligned with Uttara Phalguni sunrise window',
+                ],
+                [
+                    'kind' => 'astronomy_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'supports' => 'Uttara Phalguni nakshatra plus sunrise condition governs observance validity',
+                ],
+                [
+                    'kind' => 'ritual_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'supports' => 'Dolotsav includes swing worship, flower offering, and Vasant seasonal celebration',
+                ],
+            ],
         ],
         'Kurma Jayanti' => [
             'type' => 'tithi',
@@ -5516,7 +5556,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 6,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
             'description' => 'Birth anniversary of Mother Yashoda',
             'deity' => 'Yashoda',
             'karmakala_type' => 'sunrise',
@@ -5527,7 +5567,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 7,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
             'description' => 'Birth anniversary of Shabari',
             'deity' => 'Shabari',
             'karmakala_type' => 'sunrise',
@@ -5538,7 +5578,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 8,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Phalguna',
+            'month_purnimanta' => 'Chaitra',
             'aliases' => ['Sita Ashtami'],
             'description' => 'Birth anniversary of Goddess Sita (according to some regional calendars)',
             'deity' => 'Sita',
@@ -5661,7 +5701,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 8,
             'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Chaitra',
+            'month_purnimanta' => 'Vaishakha',
             'description' => 'Birth anniversary of Goddess Chandika',
             'deity' => 'Chandika (Durga)',
             'karmakala_type' => 'sunrise',
@@ -6430,6 +6470,10 @@ class FestivalService
             'tithi_options' => $rules['tithi_options'] ?? null,
             'paksha' => $rules['paksha'] ?? ($resolved['paksha'] ?? null),
             'paksha_name' => $this->localizedPakshaName($rules['paksha'] ?? ($resolved['paksha'] ?? null)),
+            'paksha_amanta' => $rules['paksha_amanta'] ?? null,
+            'paksha_amanta_name' => $this->localizedPakshaName($rules['paksha_amanta'] ?? null),
+            'paksha_purnimanta' => $rules['paksha_purnimanta'] ?? null,
+            'paksha_purnimanta_name' => $this->localizedPakshaName($rules['paksha_purnimanta'] ?? null),
             'month' => $this->formatMonthRule($rules),
             'solar_rashi' => $this->formatRashiRule($rules['rashi'] ?? null),
             'nakshatra' => is_string($nakshatraRaw) && $nakshatraRaw !== '' ? $this->localizedNakshatraName($nakshatraRaw) : $nakshatraRaw,
@@ -6486,6 +6530,10 @@ class FestivalService
             'relative_day' => $this->formatRelativeDayRule($rules),
             'parent_festival' => is_string($parentFestivalRaw) && $parentFestivalRaw !== '' ? Localization::translate('Festival', $parentFestivalRaw) : null,
             'parent_festival_key' => $parentFestivalRaw,
+            'calendar_rule' => $this->formatCalendarRuleMetadata($rules['calendar_rule'] ?? null),
+            'astronomy_rule' => $this->formatAstronomyRuleMetadata($rules['astronomy_rule'] ?? null),
+            'resolution_policy' => $this->formatResolutionPolicyMetadata($rules['resolution_policy'] ?? null),
+            'ritual_layers' => $this->formatRitualLayersMetadata($rules['ritual_layers'] ?? null),
             'source_refs' => $rules['source_refs'] ?? null,
             'source_evidence' => $rules['source_evidence'] ?? null,
             'textual_variants' => $rules['textual_variants'] ?? null,
@@ -6494,6 +6542,88 @@ class FestivalService
         ];
 
         return $this->filterEmptyMetadata($basis);
+    }
+
+    private function formatCalendarRuleMetadata(mixed $rule): ?array
+    {
+        if (!is_array($rule) || $rule === []) {
+            return null;
+        }
+
+        $paksha = $rule['paksha'] ?? null;
+        $pakshaAmanta = $rule['paksha_amanta'] ?? null;
+        $pakshaPurnimanta = $rule['paksha_purnimanta'] ?? null;
+        $formatted = [
+            'tithi' => $this->formatTithiRule($rule['tithi'] ?? null, $paksha),
+            'paksha' => $paksha,
+            'paksha_name' => $this->localizedPakshaName($paksha),
+            'paksha_amanta' => $pakshaAmanta,
+            'paksha_amanta_name' => $this->localizedPakshaName($pakshaAmanta),
+            'paksha_purnimanta' => $pakshaPurnimanta,
+            'paksha_purnimanta_name' => $this->localizedPakshaName($pakshaPurnimanta),
+            'month_amanta' => $rule['month_amanta'] ?? null,
+            'month_amanta_name' => $rule['month_amanta'] ?? null,
+            'month_purnimanta' => $rule['month_purnimanta'] ?? null,
+            'month_purnimanta_name' => $rule['month_purnimanta'] ?? null,
+        ];
+
+        return $this->filterEmptyMetadata($formatted);
+    }
+
+    private function formatAstronomyRuleMetadata(mixed $rule): ?array
+    {
+        if (!is_array($rule) || $rule === []) {
+            return null;
+        }
+
+        $nakshatra = $rule['nakshatra'] ?? null;
+        $formatted = [
+            'nakshatra' => is_string($nakshatra) && $nakshatra !== '' ? $this->localizedNakshatraName($nakshatra) : $nakshatra,
+            'nakshatra_key' => $nakshatra,
+            'require_sunrise_vyapini' => $rule['require_sunrise_vyapini'] ?? null,
+            'sunrise_reference' => $rule['sunrise_reference'] ?? null,
+            'sunrise_reference_name' => $this->localizedString($rule['sunrise_reference'] ?? null),
+        ];
+
+        return $this->filterEmptyMetadata($formatted);
+    }
+
+    private function formatResolutionPolicyMetadata(mixed $policy): ?array
+    {
+        if (!is_array($policy) || $policy === []) {
+            return null;
+        }
+
+        $formatted = [
+            'vriddhi_preference' => $policy['vriddhi_preference'] ?? null,
+            'kshaya_policy' => $policy['kshaya_policy'] ?? null,
+            'kshaya_policy_name' => $this->localizedString($policy['kshaya_policy'] ?? null),
+            'dual_day_rule' => $policy['dual_day_rule'] ?? null,
+            'dual_day_rule_name' => $this->localizedString($policy['dual_day_rule'] ?? null),
+        ];
+
+        return $this->filterEmptyMetadata($formatted);
+    }
+
+    private function formatRitualLayersMetadata(mixed $layers): ?array
+    {
+        if (!is_array($layers) || $layers === []) {
+            return null;
+        }
+
+        $formatted = [];
+        foreach ($layers as $layer) {
+            if (!is_string($layer) || $layer === '') {
+                continue;
+            }
+
+            $formatted[] = [
+                'key' => $layer,
+                'name' => $this->localizedString($layer),
+            ];
+        }
+
+        return $formatted === [] ? null : $formatted;
     }
 
     private function buildResolutionMetadata(?array $resolved): array
@@ -6617,7 +6747,7 @@ class FestivalService
             return null;
         }
 
-        $calendarType = strtolower((string) config('panchang.defaults.calendar_type', 'amanta'));
+        $calendarType = strtolower((string) AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta'));
         $field = $calendarType === 'purnimanta' ? 'month_purnimanta' : 'month_amanta';
         $fallbackField = $field === 'month_purnimanta' ? 'month_amanta' : 'month_purnimanta';
         $month = $rules[$field] ?? $rules[$fallbackField] ?? null;
@@ -7057,7 +7187,7 @@ class FestivalService
                 }
 
                 // If paksha is Both, check Krishna equivalent
-                $rulePaksha = $rules['paksha'] ?? 'Shukla';
+                $rulePaksha = $this->resolveRulePakshaForCalendar($rules, (array) ($panchangDetails['Hindu_Calendar'] ?? []), 'Shukla');
                 if ($rulePaksha === 'Both' && $tithiNum === ($rTithi + 15)) {
                     $matchedTithi = true;
                     break;
@@ -7070,8 +7200,8 @@ class FestivalService
         }
 
         // Check paksha match
-        if (isset($rules['paksha'])) {
-            $rulePaksha = $rules['paksha'];
+        if (isset($rules['paksha']) || isset($rules['paksha_amanta']) || isset($rules['paksha_purnimanta'])) {
+            $rulePaksha = $this->resolveRulePakshaForCalendar($rules, (array) ($panchangDetails['Hindu_Calendar'] ?? []), 'Shukla');
             $rulePakshas = $rulePaksha === 'Both' ? ['Shukla', 'Krishna'] : (is_array($rulePaksha) ? $rulePaksha : [$rulePaksha]);
             if (!in_array($paksha, $rulePakshas, true)) {
                 return false;
@@ -7179,7 +7309,7 @@ class FestivalService
         $purnimanta = $this->normalizeMonthName($dynamicPurnimanta);
         $ruleAmanta = isset($rules['month_amanta']) ? $this->normalizeMonthName((string) $rules['month_amanta']) : '';
         $rulePurnimanta = isset($rules['month_purnimanta']) ? $this->normalizeMonthName((string) $rules['month_purnimanta']) : '';
-        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? config('panchang.defaults.calendar_type', 'amanta')));
+        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
 
         if ($calendarType === 'purnimanta') {
             if ($rulePurnimanta !== '') {
@@ -7211,7 +7341,7 @@ class FestivalService
         $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
         $dynamicPurnimanta = $this->getDynamicPurnimantaName($rules, $calendar);
         $purnimanta = $this->normalizeMonthName($dynamicPurnimanta);
-        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? config('panchang.defaults.calendar_type', 'amanta')));
+        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
 
         $excludedAmanta = array_map(fn ($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_amanta'] ?? []));
         $excludedPurnimanta = array_map(fn ($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_purnimanta'] ?? []));
@@ -7242,6 +7372,20 @@ class FestivalService
         return $this->monthRuleMatches($rules, $tomorrowCalendar);
     }
 
+    private function resolveRulePakshaForCalendar(array $rules, array $calendar, string $fallbackPaksha = 'Shukla'): array|string
+    {
+        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
+        if ($calendarType === 'purnimanta' && array_key_exists('paksha_purnimanta', $rules)) {
+            return $rules['paksha_purnimanta'];
+        }
+
+        if ($calendarType !== 'purnimanta' && array_key_exists('paksha_amanta', $rules)) {
+            return $rules['paksha_amanta'];
+        }
+
+        return $rules['paksha'] ?? $fallbackPaksha;
+    }
+
     /**
      * Dynamically determine the expected Purnimanta month name based on the festival rule's paksha.
      * This fixes edge cases where the daily snapshot's Purnimanta month (from a Krishna sunrise)
@@ -7251,8 +7395,9 @@ class FestivalService
     {
         $basePurnimanta = (string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? '');
 
-        if (isset($rules['paksha'], $calendar['Amanta_Index'])) {
-            $rulePakshas = is_array($rules['paksha']) ? $rules['paksha'] : [$rules['paksha']];
+        $resolvedRulePaksha = $this->resolveRulePakshaForCalendar($rules, $calendar, '');
+        if ($resolvedRulePaksha !== '' && isset($calendar['Amanta_Index'])) {
+            $rulePakshas = is_array($resolvedRulePaksha) ? $resolvedRulePaksha : [$resolvedRulePaksha];
             if (count($rulePakshas) === 1) {
                 $rulePaksha = $rulePakshas[0];
                 $amantaIdx = (int) $calendar['Amanta_Index'];

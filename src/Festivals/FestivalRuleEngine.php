@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Localization;
 use LogicException;
@@ -92,8 +93,7 @@ class FestivalRuleEngine
             return $this->resolveChandraDarshanaFestival($festivalName, $rule, $date, $today, $tomorrow);
         }
 
-        $rulePaksha = $rule['paksha'] ?? 'Shukla';
-        $currentPaksha = (string) ($today['Tithi']['paksha'] ?? 'Shukla');
+        $rulePaksha = $this->resolveRulePaksha($rule, (array) ($today['Hindu_Calendar'] ?? []), $currentPaksha = (string) ($today['Tithi']['paksha'] ?? 'Shukla'));
 
         // Handle 'Both' paksha (bi-monthly recurring festivals like Pradosh Vrat) or arrays
         if ($rulePaksha === 'Both') {
@@ -101,7 +101,7 @@ class FestivalRuleEngine
         } elseif (is_array($rulePaksha)) {
             $paksha = in_array($currentPaksha, $rulePaksha, true) ? $currentPaksha : (string) ($rulePaksha[0] ?? 'Shukla');
         } else {
-            $paksha = (string) $rulePaksha;
+            $paksha = $rulePaksha;
         }
 
         $configuredTithi = (int) ($rule['tithi'] ?? 0);
@@ -379,6 +379,20 @@ class FestivalRuleEngine
         }
 
         return $tagsByDate;
+    }
+
+    private function resolveRulePaksha(array $rule, array $calendar, string $fallbackPaksha = 'Shukla'): array|string
+    {
+        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
+        if ($calendarType === 'purnimanta' && isset($rule['paksha_purnimanta'])) {
+            return $rule['paksha_purnimanta'];
+        }
+
+        if ($calendarType !== 'purnimanta' && isset($rule['paksha_amanta'])) {
+            return $rule['paksha_amanta'];
+        }
+
+        return $rule['paksha'] ?? $fallbackPaksha;
     }
 
     private function resolveChandraDarshanaFestival(

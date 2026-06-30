@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-30T10:12:03+00:00",
+        "generated_at": "2026-06-30T11:59:51+00:00",
         "type": "combined_output",
         "calendar_type": "purnimanta",
         "location": {
@@ -2090,10 +2090,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Bhishma Dwadashi",
-                    "name_key": "Krishna Bhishma Dwadashi",
-                    "description": "Dark Half day dedicated to Bhishma Pitamaha",
-                    "deity": "Bhishma",
+                    "name": "Krishna Kurma Dwadashi",
+                    "name_key": "Krishna Kurma Dwadashi",
+                    "description": "Dark Half appearance day of Kurma avatar",
+                    "deity": "Vishnu (Kurma)",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -2131,7 +2131,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Bhishma Dwadashi",
+                        "festival_name": "Krishna Kurma Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -2163,8 +2163,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Bhishma Dwadashi",
-                        "festival_name_localized": "Krishna Bhishma Dwadashi",
+                        "festival_name_key": "Krishna Kurma Dwadashi",
+                        "festival_name_localized": "Krishna Kurma Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -6549,107 +6549,6 @@
                             "english_name": "Saturday"
                         }
                     }
-                },
-                {
-                    "name": "Yashoda Jayanti",
-                    "name_key": "Yashoda Jayanti",
-                    "description": "Birth anniversary of Mother Yashoda",
-                    "deity": "Yashoda",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                6
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                21
-                            ],
-                            "names": [
-                                "Sixth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Phalguna",
-                            "value_key": "Phalguna",
-                            "name": "Phalguna"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Yashoda Jayanti",
-                        "required_tithi": 6,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461078.3256684653,
-                        "target_tithi_end_jd": 2461079.3921753196,
-                        "standard_date": "2026-02-07",
-                        "observance_date": "2026-02-07",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Yashoda Jayanti",
-                        "festival_name_localized": "Yashoda Jayanti",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
                 }
             ],
             "2026-02-08": [
@@ -6677,107 +6576,6 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
-                    }
-                },
-                {
-                    "name": "Shabari Jayanti",
-                    "name_key": "Shabari Jayanti",
-                    "description": "Birth anniversary of Shabari",
-                    "deity": "Shabari",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                7
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                22
-                            ],
-                            "names": [
-                                "Seventh Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Phalguna",
-                            "value_key": "Phalguna",
-                            "name": "Phalguna"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Shabari Jayanti",
-                        "required_tithi": 7,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461079.3921753196,
-                        "target_tithi_end_jd": 2461080.480244958,
-                        "standard_date": "2026-02-08",
-                        "observance_date": "2026-02-08",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Shabari Jayanti",
-                        "festival_name_localized": "Shabari Jayanti",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -6986,109 +6784,6 @@
                         "winning_score": 1050,
                         "winning_window_overlap_seconds": 3047.733297944069,
                         "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Janaki Jayanti",
-                    "name_key": "Janaki Jayanti",
-                    "description": "Birth anniversary of Goddess Sita (according to some regional calendars)",
-                    "deity": "Sita",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Sita Ashtami"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Phalguna",
-                            "value_key": "Phalguna",
-                            "name": "Phalguna"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Janaki Jayanti",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": true,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461080.480244958,
-                        "target_tithi_end_jd": 2461081.581663713,
-                        "standard_date": "2026-02-09",
-                        "observance_date": "2026-02-09",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Janaki Jayanti",
-                        "festival_name_localized": "Janaki Jayanti",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -7478,10 +7173,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Narasimha Dwadashi",
-                    "name_key": "Krishna Narasimha Dwadashi",
-                    "description": "Dark Half appearance day of Narasimha avatar",
-                    "deity": "Vishnu (Narasimha)",
+                    "name": "Krishna Bhishma Dwadashi",
+                    "name_key": "Krishna Bhishma Dwadashi",
+                    "description": "Dark Half day dedicated to Bhishma Pitamaha",
+                    "deity": "Bhishma",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -7519,7 +7214,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Narasimha Dwadashi",
+                        "festival_name": "Krishna Bhishma Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -7551,8 +7246,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Narasimha Dwadashi",
-                        "festival_name_localized": "Krishna Narasimha Dwadashi",
+                        "festival_name_key": "Krishna Bhishma Dwadashi",
+                        "festival_name_localized": "Krishna Bhishma Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -10762,6 +10457,206 @@
                     }
                 },
                 {
+                    "name": "Phuldolotsava",
+                    "name_key": "Phuldolotsava",
+                    "description": "Phuldolotsava (Dolotsav of Nar-Narayan/Krishna tradition) performed with swing, flowers, and Vasant-season ritual joy",
+                    "deity": "Nar-Narayan",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pushpadolotsav",
+                        "Fuldol Utsav",
+                        "Phalgun Dolotsav"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "First Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "paksha_amanta": "Krishna",
+                        "paksha_amanta_name": "Dark Half (waning)",
+                        "paksha_purnimanta": "Krishna",
+                        "paksha_purnimanta_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "nakshatra": "Uttara Phalguni",
+                        "nakshatra_key": "Uttara Phalguni",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "sect_specific": true,
+                        "tradition_profile": "Satsangi Jeevan Dolotsav (Prakaran 4 context)",
+                        "tradition_profile_key": "Satsangi Jeevan Dolotsav (Prakaran 4 context)",
+                        "ritual_profile": "Satsangi Pushpa-Dolotsav ritual profile",
+                        "ritual_profile_key": "pushpa_dolotsav_satsangi",
+                        "preferred_nakshatra": "Uttara Phalguni",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "calendar_rule": {
+                            "tithi": {
+                                "numbers": [
+                                    1
+                                ],
+                                "absolute_numbers": [
+                                    1
+                                ],
+                                "names": [
+                                    "First Lunar Day of Bright Half"
+                                ]
+                            },
+                            "paksha_amanta": "Krishna",
+                            "paksha_amanta_name": "Dark Half (waning)",
+                            "paksha_purnimanta": "Krishna",
+                            "paksha_purnimanta_name": "Dark Half (waning)",
+                            "month_amanta": "Phalguna",
+                            "month_amanta_name": "Phalguna",
+                            "month_purnimanta": "Chaitra",
+                            "month_purnimanta_name": "Chaitra"
+                        },
+                        "astronomy_rule": {
+                            "nakshatra": "Uttara Phalguni",
+                            "nakshatra_key": "Uttara Phalguni",
+                            "require_sunrise_vyapini": true,
+                            "sunrise_reference": "arya_devata_window",
+                            "sunrise_reference_name": "arya_devata_window"
+                        },
+                        "resolution_policy": {
+                            "vriddhi_preference": "first",
+                            "kshaya_policy": "prefer_primary_day",
+                            "kshaya_policy_name": "prefer_primary_day",
+                            "dual_day_rule": "choose_first_valid_sunrise_vyapini",
+                            "dual_day_rule_name": "choose_first_valid_sunrise_vyapini"
+                        },
+                        "ritual_layers": [
+                            {
+                                "key": "swing_dolotsav",
+                                "name": "swing_dolotsav"
+                            },
+                            {
+                                "key": "pushpa_abhishek",
+                                "name": "pushpa_abhishek"
+                            },
+                            {
+                                "key": "vasant_rang_kriya",
+                                "name": "vasant_rang_kriya"
+                            },
+                            {
+                                "key": "nar_narayan_dhyana",
+                                "name": "nar_narayan_dhyana"
+                            }
+                        ],
+                        "source_refs": [
+                            "Satsangi Jeevan Prakaran 4 (Dolotsav section)"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "date_rule",
+                                "source": "Satsangi Jeevan",
+                                "locator": "Prakaran 4, Dolotsav Adhyaya (Phalguna Krishna Pratipada)",
+                                "supports": "Festival occurs on Krishna Paksha Pratipada aligned with Uttara Phalguni sunrise window"
+                            },
+                            {
+                                "kind": "astronomy_rule",
+                                "source": "Satsangi Jeevan",
+                                "supports": "Uttara Phalguni nakshatra plus sunrise condition governs observance validity"
+                            },
+                            {
+                                "kind": "ritual_rule",
+                                "source": "Satsangi Jeevan",
+                                "supports": "Dolotsav includes swing worship, flower offering, and Vasant seasonal celebration"
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Phuldolotsava",
+                        "required_tithi": 1,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461102.9845809415,
+                        "target_tithi_end_jd": 2461103.9717461914,
+                        "standard_date": "2026-03-04",
+                        "observance_date": "2026-03-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "preferred_nakshatra": "Uttara Phalguni",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala",
+                            "preferred_nakshatra_key": "Uttara Phalguni",
+                            "preferred_nakshatra_name": "Uttara Phalguni"
+                        },
+                        "festival_name_key": "Phuldolotsava",
+                        "festival_name_localized": "Phuldolotsava",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": "Uttara Phalguni",
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala",
+                        "preferred_nakshatra_key": "Uttara Phalguni",
+                        "preferred_nakshatra_name": "Uttara Phalguni"
+                    }
+                },
+                {
                     "name": "Ishti",
                     "name_key": "Ishti",
                     "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
@@ -10857,17 +10752,16 @@
                     }
                 },
                 {
-                    "name": "Holi",
-                    "name_key": "Holi",
-                    "description": "Festival of colors",
+                    "name": "Dhuleti",
+                    "name_key": "Dhuleti",
+                    "description": "Mainstream festival of colors played on the day following the Holika Dahan bonfire.",
                     "deity": "Krishna",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Dhuleti",
-                        "Pushpadolotsav"
+                        "Dhulandi"
                     ],
                     "observance_note": "Observed 1 day(s) after Holika Dahan",
                     "calculation_basis": {
@@ -10885,7 +10779,7 @@
                         "parent_festival_key": "Holika Dahan"
                     },
                     "resolution": {
-                        "festival_name": "Holi",
+                        "festival_name": "Dhuleti",
                         "standard_date": "2026-03-04",
                         "observance_date": "2026-03-04",
                         "observance_note": "Observed 1 day(s) after Holika Dahan",
@@ -10900,8 +10794,8 @@
                             "parent_festival_key": "Holika Dahan",
                             "parent_festival_name": "Holika Dahan"
                         },
-                        "festival_name_key": "Holi",
-                        "festival_name_localized": "Holi"
+                        "festival_name_key": "Dhuleti",
+                        "festival_name_localized": "Dhuleti"
                     },
                     "rules_applied": {
                         "winning_reason": "day after parent festival",
@@ -11258,6 +11152,107 @@
                             "english_name": "Monday"
                         }
                     }
+                },
+                {
+                    "name": "Yashoda Jayanti",
+                    "name_key": "Yashoda Jayanti",
+                    "description": "Birth anniversary of Mother Yashoda",
+                    "deity": "Yashoda",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                21
+                            ],
+                            "names": [
+                                "Sixth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Yashoda Jayanti",
+                        "required_tithi": 6,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461108.1537946956,
+                        "target_tithi_end_jd": 2461109.24827048,
+                        "standard_date": "2026-03-09",
+                        "observance_date": "2026-03-09",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Yashoda Jayanti",
+                        "festival_name_localized": "Yashoda Jayanti",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-03-10": [
@@ -11284,6 +11279,107 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Shabari Jayanti",
+                    "name_key": "Shabari Jayanti",
+                    "description": "Birth anniversary of Shabari",
+                    "deity": "Shabari",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                22
+                            ],
+                            "names": [
+                                "Seventh Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Shabari Jayanti",
+                        "required_tithi": 7,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461109.24827048,
+                        "target_tithi_end_jd": 2461110.3504961757,
+                        "standard_date": "2026-03-10",
+                        "observance_date": "2026-03-10",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Shabari Jayanti",
+                        "festival_name_localized": "Shabari Jayanti",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -11609,15 +11705,17 @@
                     }
                 },
                 {
-                    "name": "Chandika Jayanti",
-                    "name_key": "Chandika Jayanti",
-                    "description": "Birth anniversary of Goddess Chandika",
-                    "deity": "Chandika (Durga)",
+                    "name": "Janaki Jayanti",
+                    "name_key": "Janaki Jayanti",
+                    "description": "Birth anniversary of Goddess Sita (according to some regional calendars)",
+                    "deity": "Sita",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Sita Ashtami"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -11650,7 +11748,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Chandika Jayanti",
+                        "festival_name": "Janaki Jayanti",
                         "required_tithi": 8,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -11682,8 +11780,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Chandika Jayanti",
-                        "festival_name_localized": "Chandika Jayanti",
+                        "festival_name_key": "Janaki Jayanti",
+                        "festival_name_localized": "Janaki Jayanti",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -12209,10 +12307,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Vamana Dwadashi",
-                    "name_key": "Krishna Vamana Dwadashi",
-                    "description": "Dark Half appearance day of Vamana avatar",
-                    "deity": "Vishnu (Vamana)",
+                    "name": "Krishna Narasimha Dwadashi",
+                    "name_key": "Krishna Narasimha Dwadashi",
+                    "description": "Dark Half appearance day of Narasimha avatar",
+                    "deity": "Vishnu (Narasimha)",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -12250,7 +12348,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Vamana Dwadashi",
+                        "festival_name": "Krishna Narasimha Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -12282,8 +12380,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Vamana Dwadashi",
-                        "festival_name_localized": "Krishna Vamana Dwadashi",
+                        "festival_name_key": "Krishna Narasimha Dwadashi",
+                        "festival_name_localized": "Krishna Narasimha Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -16776,124 +16874,6 @@
                     }
                 },
                 {
-                    "name": "Phuldolotsava",
-                    "name_key": "Phuldolotsava",
-                    "description": "Swaminarayan Pushpadolotsav / Fuldol tithi observance in the Holi/Purnima festival cluster",
-                    "deity": "Krishna",
-                    "fasting": false,
-                    "regions": [
-                        "Swaminarayan",
-                        "Gujarat"
-                    ],
-                    "aliases": [
-                        "Pushpadolotsav",
-                        "Phuldol",
-                        "Dhuleti"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Chaitra",
-                            "value_key": "Chaitra",
-                            "name": "Chaitra"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "strict_karmakala": true,
-                        "sect_specific": true,
-                        "tradition_profile": "Swaminarayan/BAPS tithi observance",
-                        "tradition_profile_key": "Swaminarayan/BAPS tithi observance",
-                        "ritual_profile": "Satsangi Pushpa-Dolotsav ritual profile",
-                        "ritual_profile_key": "pushpa_dolotsav_satsangi",
-                        "rule_convention": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
-                        "rule_convention_key": "Sect-specific tithi observance; public celebration logistics and mainstream post-Holi civil dates can differ.",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.45",
-                            "Satsangi Jeevan 4.60"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "Phuldolotsava",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461131.5671095178,
-                        "target_tithi_end_jd": 2461132.5915732076,
-                        "standard_date": "2026-04-02",
-                        "observance_date": "2026-04-02",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Phuldolotsava",
-                        "festival_name_localized": "Phuldolotsava",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Swarochisha Manvadi",
                     "name_key": "Swarochisha Manvadi",
                     "description": "Commemoration of the beginning of Swarochisha Manvantara",
@@ -17808,6 +17788,107 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Chandika Jayanti",
+                    "name_key": "Chandika Jayanti",
+                    "description": "Birth anniversary of Goddess Chandika",
+                    "deity": "Chandika (Durga)",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "value_key": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Chandika Jayanti",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.1597563364,
+                        "target_tithi_end_jd": 2461141.240247607,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-10",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Chandika Jayanti",
+                        "festival_name_localized": "Chandika Jayanti",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-04-11": [
@@ -18277,10 +18358,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Parashurama Dwadashi",
-                    "name_key": "Krishna Parashurama Dwadashi",
-                    "description": "Dark Half appearance day of Parashurama avatar",
-                    "deity": "Vishnu (Parashurama)",
+                    "name": "Krishna Vamana Dwadashi",
+                    "name_key": "Krishna Vamana Dwadashi",
+                    "description": "Dark Half appearance day of Vamana avatar",
+                    "deity": "Vishnu (Vamana)",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -18318,7 +18399,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Parashurama Dwadashi",
+                        "festival_name": "Krishna Vamana Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -18350,8 +18431,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Parashurama Dwadashi",
-                        "festival_name_localized": "Krishna Parashurama Dwadashi",
+                        "festival_name_key": "Krishna Vamana Dwadashi",
+                        "festival_name_localized": "Krishna Vamana Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -23763,10 +23844,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Ramalakshmana Dwadashi",
-                    "name_key": "Krishna Ramalakshmana Dwadashi",
-                    "description": "Dark Half appearance day of Rama and Lakshmana",
-                    "deity": "Rama/Lakshmana",
+                    "name": "Krishna Parashurama Dwadashi",
+                    "name_key": "Krishna Parashurama Dwadashi",
+                    "description": "Dark Half appearance day of Parashurama avatar",
+                    "deity": "Vishnu (Parashurama)",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -23804,7 +23885,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Ramalakshmana Dwadashi",
+                        "festival_name": "Krishna Parashurama Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -23836,8 +23917,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Ramalakshmana Dwadashi",
-                        "festival_name_localized": "Krishna Ramalakshmana Dwadashi",
+                        "festival_name_key": "Krishna Parashurama Dwadashi",
+                        "festival_name_localized": "Krishna Parashurama Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -29879,10 +29960,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Vasudeva Dwadashi",
-                    "name_key": "Krishna Vasudeva Dwadashi",
-                    "description": "Dark Half appearance day of Vasudeva (Krishna)",
-                    "deity": "Krishna",
+                    "name": "Krishna Ramalakshmana Dwadashi",
+                    "name_key": "Krishna Ramalakshmana Dwadashi",
+                    "description": "Dark Half appearance day of Rama and Lakshmana",
+                    "deity": "Rama/Lakshmana",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -29920,7 +30001,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Vasudeva Dwadashi",
+                        "festival_name": "Krishna Ramalakshmana Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -29952,8 +30033,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Vasudeva Dwadashi",
-                        "festival_name_localized": "Krishna Vasudeva Dwadashi",
+                        "festival_name_key": "Krishna Ramalakshmana Dwadashi",
+                        "festival_name_localized": "Krishna Ramalakshmana Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -35681,9 +35762,9 @@
                     }
                 },
                 {
-                    "name": "Krishna Damodara Dwadashi",
-                    "name_key": "Krishna Damodara Dwadashi",
-                    "description": "Dark Half appearance day of Damodara (Krishna)",
+                    "name": "Krishna Vasudeva Dwadashi",
+                    "name_key": "Krishna Vasudeva Dwadashi",
+                    "description": "Dark Half appearance day of Vasudeva (Krishna)",
                     "deity": "Krishna",
                     "fasting": false,
                     "regions": [
@@ -35722,7 +35803,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Damodara Dwadashi",
+                        "festival_name": "Krishna Vasudeva Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -35754,8 +35835,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Damodara Dwadashi",
-                        "festival_name_localized": "Krishna Damodara Dwadashi",
+                        "festival_name_key": "Krishna Vasudeva Dwadashi",
+                        "festival_name_localized": "Krishna Vasudeva Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -41113,10 +41194,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Kalki Dwadashi",
-                    "name_key": "Krishna Kalki Dwadashi",
-                    "description": "Dark Half appearance day of Kalki avatar",
-                    "deity": "Vishnu (Kalki)",
+                    "name": "Krishna Damodara Dwadashi",
+                    "name_key": "Krishna Damodara Dwadashi",
+                    "description": "Dark Half appearance day of Damodara (Krishna)",
+                    "deity": "Krishna",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -41154,7 +41235,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Kalki Dwadashi",
+                        "festival_name": "Krishna Damodara Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -41186,8 +41267,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Kalki Dwadashi",
-                        "festival_name_localized": "Krishna Kalki Dwadashi",
+                        "festival_name_key": "Krishna Damodara Dwadashi",
+                        "festival_name_localized": "Krishna Damodara Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -46847,10 +46928,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Padmanabha Dwadashi",
-                    "name_key": "Krishna Padmanabha Dwadashi",
-                    "description": "Dark Half appearance day of Padmanabha (Vishnu)",
-                    "deity": "Vishnu",
+                    "name": "Krishna Kalki Dwadashi",
+                    "name_key": "Krishna Kalki Dwadashi",
+                    "description": "Dark Half appearance day of Kalki avatar",
+                    "deity": "Vishnu (Kalki)",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -46888,7 +46969,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Padmanabha Dwadashi",
+                        "festival_name": "Krishna Kalki Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -46920,8 +47001,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Padmanabha Dwadashi",
-                        "festival_name_localized": "Krishna Padmanabha Dwadashi",
+                        "festival_name_key": "Krishna Kalki Dwadashi",
+                        "festival_name_localized": "Krishna Kalki Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -53766,10 +53847,10 @@
                     }
                 },
                 {
-                    "name": "Krishna Yogeshwara Dwadashi",
-                    "name_key": "Krishna Yogeshwara Dwadashi",
-                    "description": "Dark Half appearance day of Yogeshwara (Krishna)",
-                    "deity": "Krishna",
+                    "name": "Krishna Padmanabha Dwadashi",
+                    "name_key": "Krishna Padmanabha Dwadashi",
+                    "description": "Dark Half appearance day of Padmanabha (Vishnu)",
+                    "deity": "Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -53807,7 +53888,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Yogeshwara Dwadashi",
+                        "festival_name": "Krishna Padmanabha Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -53839,8 +53920,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Yogeshwara Dwadashi",
-                        "festival_name_localized": "Krishna Yogeshwara Dwadashi",
+                        "festival_name_key": "Krishna Padmanabha Dwadashi",
+                        "festival_name_localized": "Krishna Padmanabha Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -60306,10 +60387,10 @@
             ],
             "2026-12-05": [
                 {
-                    "name": "Krishna Matsya Dwadashi",
-                    "name_key": "Krishna Matsya Dwadashi",
-                    "description": "Dark Half appearance day of Matsya avatar",
-                    "deity": "Vishnu (Matsya)",
+                    "name": "Krishna Yogeshwara Dwadashi",
+                    "name_key": "Krishna Yogeshwara Dwadashi",
+                    "description": "Dark Half appearance day of Yogeshwara (Krishna)",
+                    "deity": "Krishna",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
@@ -60347,7 +60428,7 @@
                         "karmakala_type_name": "sunrise"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Matsya Dwadashi",
+                        "festival_name": "Krishna Yogeshwara Dwadashi",
                         "required_tithi": 12,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -60379,8 +60460,8 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Krishna Matsya Dwadashi",
-                        "festival_name_localized": "Krishna Matsya Dwadashi",
+                        "festival_name_key": "Krishna Yogeshwara Dwadashi",
+                        "festival_name_localized": "Krishna Yogeshwara Dwadashi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
@@ -69942,7 +70023,7 @@
     },
     "todays_complete_details": {
         "title": "Today's Complete Details - Every single data point from the package",
-        "input_now": "2026-06-30T15:42:02+05:30",
+        "input_now": "2026-06-30T17:29:50+05:30",
         "date": "2026-06-30",
         "details": {
             "Display_Settings": {
@@ -70024,7 +70105,7 @@
                 "name": "First Lunar Day of Dark Half",
                 "paksha": "Krishna",
                 "paksha_name": "Dark Half (waning)",
-                "fraction_left": 0.6092312521801446
+                "fraction_left": 0.5406961668082364
             },
             "Vara": {
                 "index": 2,
@@ -70042,7 +70123,7 @@
             },
             "Current_Nakshatra_At_Input_Now": {
                 "name": "Purva Ashadha",
-                "pada": 2,
+                "pada": 3,
                 "lord": "Venus"
             },
             "Yoga": {
@@ -70068,8 +70149,8 @@
             "Is_Vishti_Karana": false,
             "Sunrise": "06:07:45 AM",
             "Sunset": "07:42:12 PM",
-            "Ishtkaal": "23:55:40",
-            "Ishtkaal_iso": "30/06/2026 03:42:02 PM",
+            "Ishtkaal": "28:25:10",
+            "Ishtkaal_iso": "30/06/2026 05:29:50 PM",
             "sun_sunrise_lon": 74.04752914382074,
             "moon_sunrise_lon": 254.3608817915613,
             "sunrise_hm": [
@@ -70078,9 +70159,9 @@
             ],
             "sunrise_dt": "30/06/2026 06:07:45 AM",
             "Ayanamsa": "LAHIRI (Chitra Paksha)",
-            "Ayanamsa_Degree": 24.227134944382026,
-            "Ayanamsa_At": "30/06/2026 03:42:02 PM",
-            "Ayanamsa_JD": 2461221.9250231483,
+            "Ayanamsa_Degree": 24.22713780792933,
+            "Ayanamsa_At": "30/06/2026 05:29:50 PM",
+            "Ayanamsa_JD": 2461221.9998842594,
             "Day_Types": {
                 "civil_day_start": "30/06/2026 12:00:00 AM",
                 "civil_day_end": "01/07/2026 12:00:00 AM",
@@ -70124,7 +70205,7 @@
                     "name": "First Lunar Day of Dark Half",
                     "paksha": "Krishna",
                     "paksha_name": "Dark Half (waning)",
-                    "fraction_left": 0.6092312521801446
+                    "fraction_left": 0.5406961668082364
                 },
                 "Vara": {
                     "index": 2,
@@ -70142,7 +70223,7 @@
                 },
                 "Current_Nakshatra_At_Input_Now": {
                     "name": "Purva Ashadha",
-                    "pada": 2,
+                    "pada": 3,
                     "lord": "Venus"
                 },
                 "Yoga": {
@@ -70193,8 +70274,8 @@
                     "timestamp": 1782869517,
                     "display_iso": "30/06/2026 07:01:57 AM"
                 },
-                "Ishtkaal": "23:55:40",
-                "Ishtkaal_iso": "30/06/2026 03:42:02 PM",
+                "Ishtkaal": "28:25:10",
+                "Ishtkaal_iso": "30/06/2026 05:29:50 PM",
                 "sun_sunrise_lon": 74.04752914382074,
                 "moon_sunrise_lon": 254.3608817915613,
                 "sunrise_hm": [
@@ -70265,10 +70346,10 @@
                 "visibility_key": "sunset_to_sunrise",
                 "visibility": "Sunset to sunrise",
                 "illumination_band": "100%",
-                "illumination_fraction": 0.9983263892620928,
-                "illumination_percent": 99.83263892620928,
-                "phase_angle_degrees": 184.68922497383824,
-                "synodic_age_days": 15.149948804886527
+                "illumination_fraction": 0.9976883480499759,
+                "illumination_percent": 99.76883480499758,
+                "phase_angle_degrees": 185.51164599830122,
+                "synodic_age_days": 15.217411519175581
             },
             "Festivals": [
                 {
@@ -70694,7 +70775,7 @@
                         "tithi_name": "First Lunar Day of Dark Half",
                         "weekday": "Tuesday",
                         "nakshatra": "Purva Ashadha",
-                        "lagna": "Libra"
+                        "lagna": "Scorpio"
                     },
                     "general_auspicious_travel_nakshatras": [
                         "Ashwini",
@@ -70721,14 +70802,14 @@
                         13
                     ],
                     "recommended_directions": [
+                        "East",
                         "South-East",
-                        "South",
                         "South-West",
                         "West",
                         "North-East"
                     ],
                     "blocked_directions": [
-                        "East",
+                        "South",
                         "North-West",
                         "North"
                     ],
@@ -70736,12 +70817,12 @@
                         {
                             "direction": "East",
                             "direction_key": "East",
-                            "is_allowed": false,
+                            "is_allowed": true,
                             "blocked_by": {
                                 "tithi": false,
                                 "weekday": false,
                                 "nakshatra": false,
-                                "lagna": true
+                                "lagna": false
                             },
                             "matching_rules": {
                                 "tithis": [
@@ -70790,12 +70871,12 @@
                         {
                             "direction": "South",
                             "direction_key": "South",
-                            "is_allowed": true,
+                            "is_allowed": false,
                             "blocked_by": {
                                 "tithi": false,
                                 "weekday": false,
                                 "nakshatra": false,
-                                "lagna": false
+                                "lagna": true
                             },
                             "matching_rules": {
                                 "tithis": [
@@ -70949,7 +71030,7 @@
                         }
                     ],
                     "calculated_for": "input_now",
-                    "input_now_iso": "30/06/2026 03:42:02 PM"
+                    "input_now_iso": "30/06/2026 05:29:50 PM"
                 },
                 "at_sunrise": {
                     "rule_system": "travel_direction_composite_tithi_vara_nakshatra_lagna",
@@ -71265,17 +71346,17 @@
                     "rule_system": "nakshatra_pada_abode_4_part",
                     "source_family": "modern_nivas_shool_panchang_style",
                     "current": {
-                        "abode": "Nara",
-                        "abode_key": "Nara",
-                        "quality": "Neutral",
-                        "quality_key": "Neutral",
+                        "abode": "Pashava",
+                        "abode_key": "Pashava",
+                        "quality": "Mixed",
+                        "quality_key": "Mixed",
                         "nakshatra": "Purva Ashadha",
                         "nakshatra_index": 19,
-                        "pada": 2,
-                        "start_jd": 2461221.719653204,
-                        "end_jd": 2461221.9989881776,
-                        "start": "30/06/2026 10:46:18 AM",
-                        "end": "30/06/2026 05:28:32 PM"
+                        "pada": 3,
+                        "start_jd": 2461221.9989881776,
+                        "end_jd": 2461222.277916017,
+                        "start": "30/06/2026 05:28:32 PM",
+                        "end": "01/07/2026 12:10:11 AM"
                     },
                     "window_count": 4,
                     "windows": [
@@ -71354,7 +71435,7 @@
                     "effect_key": "Happiness and wealth"
                 },
                 "calculated_for": "input_now",
-                "input_now_iso": "30/06/2026 03:42:02 PM",
+                "input_now_iso": "30/06/2026 05:29:50 PM",
                 "at_sunrise": {
                     "tithi_number": 16,
                     "tithi_name": "First Lunar Day of Dark Half",
@@ -71390,7 +71471,7 @@
                 "valid_until": "01/07/2026 07:38:34 AM",
                 "valid_until_jd": 2461222.5892892135,
                 "calculated_for": "input_now",
-                "input_now_iso": "30/06/2026 03:42:02 PM",
+                "input_now_iso": "30/06/2026 05:29:50 PM",
                 "at_sunrise": {
                     "tithi_number": 16,
                     "tithi_name": "First Lunar Day of Dark Half",
@@ -71413,7 +71494,7 @@
                 "direction": "East",
                 "direction_key": "East",
                 "calculated_for": "input_now",
-                "input_now_iso": "30/06/2026 03:42:02 PM",
+                "input_now_iso": "30/06/2026 05:29:50 PM",
                 "at_sunrise": {
                     "tithi_number": 16,
                     "tithi_name": "First Lunar Day of Dark Half",
@@ -71453,7 +71534,7 @@
                     "is_tithi_vriddhi": true,
                     "is_tithi_kshaya": false,
                     "calculated_for": "input_now",
-                    "input_now_iso": "30/06/2026 03:42:02 PM"
+                    "input_now_iso": "30/06/2026 05:29:50 PM"
                 },
                 "at_sunrise": {
                     "tithi_number": 16,
@@ -71682,24 +71763,24 @@
                 "nakshatra": 20,
                 "nakshatra_name": "Purva Ashadha",
                 "nakshatra_number_base": 1,
-                "lagna": 7,
-                "lagna_name": "Libra",
+                "lagna": 8,
+                "lagna_name": "Scorpio",
                 "lagna_number_base": 1,
-                "sum": 46,
-                "remainder": 1,
-                "panchaka_name": "Mrityu",
-                "panchaka_english": "Death",
-                "severity": "critical",
+                "sum": 47,
+                "remainder": 2,
+                "panchaka_name": "Agni",
+                "panchaka_english": "Fire",
+                "severity": "high",
                 "has_dosha": true,
                 "is_panchaka_rahita": false,
-                "description": "Mrityu - Inauspicious",
+                "description": "Agni - Inauspicious",
                 "is_auspicious": false,
                 "calculated_for": "input_now",
-                "input_now_iso": "30/06/2026 03:42:02 PM",
+                "input_now_iso": "30/06/2026 05:29:50 PM",
                 "at_sunrise": {
-                    "sum": 46,
-                    "remainder": 1,
-                    "panchaka_name": "Mrityu Panchaka",
+                    "sum": 47,
+                    "remainder": 2,
+                    "panchaka_name": "Agni Panchaka",
                     "is_auspicious": false,
                     "calculated_for": "sunrise",
                     "sunrise_iso": "30/06/2026 06:07:45 AM",
@@ -71824,17 +71905,17 @@
                 }
             },
             "Hora": {
-                "hora_number": 9,
+                "hora_number": 11,
                 "is_day_hora": true,
-                "ruler": "Sun",
+                "ruler": "Mercury",
                 "hora_duration_seconds": 4072.25,
                 "hora_duration_minutes": "1h 7m 52.25s"
             },
             "Chogadiya": {
                 "mode": "Day",
-                "division": 6,
-                "name": "Kaal",
-                "is_auspicious": false,
+                "division": 7,
+                "name": "Shubh",
+                "is_auspicious": true,
                 "division_duration_minutes": "1h 41m 48.375s"
             },
             "Chogadiya_Duration": {
@@ -73769,12 +73850,12 @@
                 "sunset_iso": "30/06/2026 07:42:12 PM"
             },
             "Lagna": {
-                "lagna_longitude_nirayana": 202.01180037252294,
-                "lagna_longitude_sayana": 226.23893531690496,
-                "sign_index": 6,
-                "sign_name": "Libra",
-                "degree_in_sign": 22.01180037252294,
-                "ayanamsa_applied": 24.227134944382026
+                "lagna_longitude_nirayana": 225.65765795643748,
+                "lagna_longitude_sayana": 249.8847957643668,
+                "sign_index": 7,
+                "sign_name": "Scorpio",
+                "degree_in_sign": 15.657657956437475,
+                "ayanamsa_applied": 24.22713780792933
             },
             "Lagna_Full_Day": [
                 {
@@ -73783,20 +73864,20 @@
                     "sign_index": 2,
                     "start": "05:11:14 AM",
                     "start_iso": "30/06/2026 05:11:14 AM",
-                    "start_jd": 2461221.486970455,
+                    "start_jd": 2461221.4869704633,
                     "end": "07:24:41 AM",
                     "end_iso": "30/06/2026 07:24:41 AM",
-                    "end_jd": 2461221.579650451,
+                    "end_jd": 2461221.5796504603,
                     "visible_start": "06:07:44 AM",
                     "visible_start_iso": "30/06/2026 06:07:44 AM",
                     "visible_start_jd": 2461221.5262152776,
                     "visible_end": "07:24:41 AM",
                     "visible_end_iso": "30/06/2026 07:24:41 AM",
-                    "visible_end_jd": 2461221.579650451,
+                    "visible_end_jd": 2461221.5796504603,
                     "is_partial_start": true,
                     "is_partial_end": false,
-                    "duration_minutes": 133.4591943025589,
-                    "visible_duration_minutes": 76.94664962589741,
+                    "duration_minutes": 133.4591956436634,
+                    "visible_duration_minutes": 76.94666303694248,
                     "is_day_lagna": true
                 },
                 {
@@ -73805,20 +73886,20 @@
                     "sign_index": 3,
                     "start": "07:24:41 AM",
                     "start_iso": "30/06/2026 07:24:41 AM",
-                    "start_jd": 2461221.579650451,
+                    "start_jd": 2461221.5796504603,
                     "end": "09:40:52 AM",
                     "end_iso": "30/06/2026 09:40:52 AM",
-                    "end_jd": 2461221.67421932,
+                    "end_jd": 2461221.674219329,
                     "visible_start": "07:24:41 AM",
                     "visible_start_iso": "30/06/2026 07:24:41 AM",
-                    "visible_start_jd": 2461221.579650451,
+                    "visible_start_jd": 2461221.5796504603,
                     "visible_end": "09:40:52 AM",
                     "visible_end_iso": "30/06/2026 09:40:52 AM",
-                    "visible_end_jd": 2461221.67421932,
+                    "visible_end_jd": 2461221.674219329,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 136.17917150259018,
-                    "visible_duration_minutes": 136.17917150259018,
+                    "duration_minutes": 136.17917083203793,
+                    "visible_duration_minutes": 136.17917083203793,
                     "is_day_lagna": true
                 },
                 {
@@ -73827,20 +73908,20 @@
                     "sign_index": 4,
                     "start": "09:40:52 AM",
                     "start_iso": "30/06/2026 09:40:52 AM",
-                    "start_jd": 2461221.67421932,
+                    "start_jd": 2461221.674219329,
                     "end": "11:52:49 AM",
                     "end_iso": "30/06/2026 11:52:49 AM",
-                    "end_jd": 2461221.7658477947,
+                    "end_jd": 2461221.765847803,
                     "visible_start": "09:40:52 AM",
                     "visible_start_iso": "30/06/2026 09:40:52 AM",
-                    "visible_start_jd": 2461221.67421932,
+                    "visible_start_jd": 2461221.674219329,
                     "visible_end": "11:52:49 AM",
                     "visible_end_iso": "30/06/2026 11:52:49 AM",
-                    "visible_end_jd": 2461221.7658477947,
+                    "visible_end_jd": 2461221.765847803,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 131.94500349462032,
-                    "visible_duration_minutes": 131.94500349462032,
+                    "duration_minutes": 131.94500282406807,
+                    "visible_duration_minutes": 131.94500282406807,
                     "is_day_lagna": true
                 },
                 {
@@ -73849,20 +73930,20 @@
                     "sign_index": 5,
                     "start": "11:52:49 AM",
                     "start_iso": "30/06/2026 11:52:49 AM",
-                    "start_jd": 2461221.7658477947,
+                    "start_jd": 2461221.765847803,
                     "end": "02:03:38 PM",
                     "end_iso": "30/06/2026 02:03:38 PM",
-                    "end_jd": 2461221.856693724,
+                    "end_jd": 2461221.856693733,
                     "visible_start": "11:52:49 AM",
                     "visible_start_iso": "30/06/2026 11:52:49 AM",
-                    "visible_start_jd": 2461221.7658477947,
+                    "visible_start_jd": 2461221.765847803,
                     "visible_end": "02:03:38 PM",
                     "visible_end_iso": "30/06/2026 02:03:38 PM",
-                    "visible_end_jd": 2461221.856693724,
+                    "visible_end_jd": 2461221.856693733,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 130.81813842058182,
-                    "visible_duration_minutes": 130.81813842058182,
+                    "duration_minutes": 130.81813909113407,
+                    "visible_duration_minutes": 130.81813909113407,
                     "is_day_lagna": true
                 },
                 {
@@ -73871,20 +73952,20 @@
                     "sign_index": 6,
                     "start": "02:03:38 PM",
                     "start_iso": "30/06/2026 02:03:38 PM",
-                    "start_jd": 2461221.856693724,
+                    "start_jd": 2461221.856693733,
                     "end": "04:18:21 PM",
                     "end_iso": "30/06/2026 04:18:21 PM",
-                    "end_jd": 2461221.950245102,
+                    "end_jd": 2461221.9502451112,
                     "visible_start": "02:03:38 PM",
                     "visible_start_iso": "30/06/2026 02:03:38 PM",
-                    "visible_start_jd": 2461221.856693724,
+                    "visible_start_jd": 2461221.856693733,
                     "visible_end": "04:18:21 PM",
                     "visible_end_iso": "30/06/2026 04:18:21 PM",
-                    "visible_end_jd": 2461221.950245102,
+                    "visible_end_jd": 2461221.9502451112,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 134.71398398280144,
-                    "visible_duration_minutes": 134.71398398280144,
+                    "duration_minutes": 134.7139846533537,
+                    "visible_duration_minutes": 134.7139846533537,
                     "is_day_lagna": true
                 },
                 {
@@ -73893,20 +73974,20 @@
                     "sign_index": 7,
                     "start": "04:18:21 PM",
                     "start_iso": "30/06/2026 04:18:21 PM",
-                    "start_jd": 2461221.950245102,
+                    "start_jd": 2461221.9502451112,
                     "end": "06:34:22 PM",
                     "end_iso": "30/06/2026 06:34:22 PM",
-                    "end_jd": 2461222.0447081095,
+                    "end_jd": 2461222.0447081183,
                     "visible_start": "04:18:21 PM",
                     "visible_start_iso": "30/06/2026 04:18:21 PM",
-                    "visible_start_jd": 2461221.950245102,
+                    "visible_start_jd": 2461221.9502451112,
                     "visible_end": "06:34:22 PM",
                     "visible_end_iso": "30/06/2026 06:34:22 PM",
-                    "visible_end_jd": 2461222.0447081095,
+                    "visible_end_jd": 2461222.0447081183,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 136.02673083543777,
-                    "visible_duration_minutes": 136.02673083543777,
+                    "duration_minutes": 136.02673016488552,
+                    "visible_duration_minutes": 136.02673016488552,
                     "is_day_lagna": true
                 },
                 {
@@ -73915,20 +73996,20 @@
                     "sign_index": 8,
                     "start": "06:34:22 PM",
                     "start_iso": "30/06/2026 06:34:22 PM",
-                    "start_jd": 2461222.0447081095,
+                    "start_jd": 2461222.0447081183,
                     "end": "08:39:31 PM",
                     "end_iso": "30/06/2026 08:39:31 PM",
-                    "end_jd": 2461222.1316132764,
+                    "end_jd": 2461222.1316132843,
                     "visible_start": "06:34:22 PM",
                     "visible_start_iso": "30/06/2026 06:34:22 PM",
-                    "visible_start_jd": 2461222.0447081095,
+                    "visible_start_jd": 2461222.0447081183,
                     "visible_end": "08:39:31 PM",
                     "visible_end_iso": "30/06/2026 08:39:31 PM",
-                    "visible_end_jd": 2461222.1316132764,
+                    "visible_end_jd": 2461222.1316132843,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 125.14344044029713,
-                    "visible_duration_minutes": 125.14344044029713,
+                    "duration_minutes": 125.14343909919262,
+                    "visible_duration_minutes": 125.14343909919262,
                     "is_day_lagna": true
                 },
                 {
@@ -73937,20 +74018,20 @@
                     "sign_index": 9,
                     "start": "08:39:31 PM",
                     "start_iso": "30/06/2026 08:39:31 PM",
-                    "start_jd": 2461222.1316132764,
+                    "start_jd": 2461222.1316132843,
                     "end": "10:25:56 PM",
                     "end_iso": "30/06/2026 10:25:56 PM",
-                    "end_jd": 2461222.2055124165,
+                    "end_jd": 2461222.205512423,
                     "visible_start": "08:39:31 PM",
                     "visible_start_iso": "30/06/2026 08:39:31 PM",
-                    "visible_start_jd": 2461222.1316132764,
+                    "visible_start_jd": 2461222.1316132843,
                     "visible_end": "10:25:56 PM",
                     "visible_end_iso": "30/06/2026 10:25:56 PM",
-                    "visible_end_jd": 2461222.2055124165,
+                    "visible_end_jd": 2461222.205512423,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 106.41476176679134,
-                    "visible_duration_minutes": 106.41476176679134,
+                    "duration_minutes": 106.41475975513458,
+                    "visible_duration_minutes": 106.41475975513458,
                     "is_day_lagna": false
                 },
                 {
@@ -73959,20 +74040,20 @@
                     "sign_index": 10,
                     "start": "10:25:56 PM",
                     "start_iso": "30/06/2026 10:25:56 PM",
-                    "start_jd": 2461222.2055124165,
+                    "start_jd": 2461222.205512423,
                     "end": "11:58:43 PM",
                     "end_iso": "30/06/2026 11:58:43 PM",
-                    "end_jd": 2461222.2699429123,
+                    "end_jd": 2461222.269942918,
                     "visible_start": "10:25:56 PM",
                     "visible_start_iso": "30/06/2026 10:25:56 PM",
-                    "visible_start_jd": 2461222.2055124165,
+                    "visible_start_jd": 2461222.205512423,
                     "visible_end": "11:58:43 PM",
                     "visible_end_iso": "30/06/2026 11:58:43 PM",
-                    "visible_end_jd": 2461222.2699429123,
+                    "visible_end_jd": 2461222.269942918,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 92.77991384267807,
-                    "visible_duration_minutes": 92.77991384267807,
+                    "duration_minutes": 92.77991250157356,
+                    "visible_duration_minutes": 92.77991250157356,
                     "is_day_lagna": false
                 },
                 {
@@ -73981,20 +74062,20 @@
                     "sign_index": 11,
                     "start": "11:58:43 PM",
                     "start_iso": "30/06/2026 11:58:43 PM",
-                    "start_jd": 2461222.2699429123,
+                    "start_jd": 2461222.269942918,
                     "end": "01:29:09 AM",
                     "end_iso": "01/07/2026 01:29:09 AM",
-                    "end_jd": 2461222.332749236,
+                    "end_jd": 2461222.3327492424,
                     "visible_start": "11:58:43 PM",
                     "visible_start_iso": "30/06/2026 11:58:43 PM",
-                    "visible_start_jd": 2461222.2699429123,
+                    "visible_start_jd": 2461222.269942918,
                     "visible_end": "01:29:09 AM",
                     "visible_end_iso": "01/07/2026 01:29:09 AM",
-                    "visible_end_jd": 2461222.332749236,
+                    "visible_end_jd": 2461222.3327492424,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 90.44110603630543,
-                    "visible_duration_minutes": 90.44110603630543,
+                    "duration_minutes": 90.44110737740993,
+                    "visible_duration_minutes": 90.44110737740993,
                     "is_day_lagna": false
                 },
                 {
@@ -74003,20 +74084,20 @@
                     "sign_index": 0,
                     "start": "01:29:09 AM",
                     "start_iso": "01/07/2026 01:29:09 AM",
-                    "start_jd": 2461222.332749236,
+                    "start_jd": 2461222.3327492424,
                     "end": "03:09:11 AM",
                     "end_iso": "01/07/2026 03:09:11 AM",
-                    "end_jd": 2461222.4022172075,
+                    "end_jd": 2461222.4022172145,
                     "visible_start": "01:29:09 AM",
                     "visible_start_iso": "01/07/2026 01:29:09 AM",
-                    "visible_start_jd": 2461222.332749236,
+                    "visible_start_jd": 2461222.3327492424,
                     "visible_end": "03:09:11 AM",
                     "visible_end_iso": "01/07/2026 03:09:11 AM",
-                    "visible_end_jd": 2461222.4022172075,
+                    "visible_end_jd": 2461222.4022172145,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 100.03387905657291,
-                    "visible_duration_minutes": 100.03387905657291,
+                    "duration_minutes": 100.03387972712517,
+                    "visible_duration_minutes": 100.03387972712517,
                     "is_day_lagna": false
                 },
                 {
@@ -74025,20 +74106,20 @@
                     "sign_index": 1,
                     "start": "03:09:11 AM",
                     "start_iso": "01/07/2026 03:09:11 AM",
-                    "start_jd": 2461222.4022172075,
+                    "start_jd": 2461222.4022172145,
                     "end": "05:07:18 AM",
                     "end_iso": "01/07/2026 05:07:18 AM",
-                    "end_jd": 2461222.4842399242,
+                    "end_jd": 2461222.4842399326,
                     "visible_start": "03:09:11 AM",
                     "visible_start_iso": "01/07/2026 03:09:11 AM",
-                    "visible_start_jd": 2461222.4022172075,
+                    "visible_start_jd": 2461222.4022172145,
                     "visible_end": "05:07:18 AM",
                     "visible_end_iso": "01/07/2026 05:07:18 AM",
-                    "visible_end_jd": 2461222.4842399242,
+                    "visible_end_jd": 2461222.4842399326,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 118.11271212995052,
-                    "visible_duration_minutes": 118.11271212995052,
+                    "duration_minutes": 118.11271414160728,
+                    "visible_duration_minutes": 118.11271414160728,
                     "is_day_lagna": false
                 },
                 {
@@ -74047,20 +74128,20 @@
                     "sign_index": 2,
                     "start": "05:07:18 AM",
                     "start_iso": "01/07/2026 05:07:18 AM",
-                    "start_jd": 2461222.4842399242,
+                    "start_jd": 2461222.4842399326,
                     "end": "07:20:45 AM",
                     "end_iso": "01/07/2026 07:20:45 AM",
-                    "end_jd": 2461222.5769199273,
+                    "end_jd": 2461222.576919936,
                     "visible_start": "05:07:18 AM",
                     "visible_start_iso": "01/07/2026 05:07:18 AM",
-                    "visible_start_jd": 2461222.4842399242,
+                    "visible_start_jd": 2461222.4842399326,
                     "visible_end": "06:08:04 AM",
                     "visible_end_iso": "01/07/2026 06:08:04 AM",
                     "visible_end_jd": 2461222.526435185,
                     "is_partial_start": false,
                     "is_partial_end": true,
-                    "duration_minutes": 133.4592043608427,
-                    "visible_duration_minutes": 60.7611758261919,
+                    "duration_minutes": 133.45920503139496,
+                    "visible_duration_minutes": 60.761163756251335,
                     "is_day_lagna": false
                 }
             ],
@@ -74094,7 +74175,7 @@
                         "is_tithi_vriddhi": true,
                         "is_tithi_kshaya": false,
                         "calculated_for": "input_now",
-                        "input_now_iso": "30/06/2026 03:42:02 PM"
+                        "input_now_iso": "30/06/2026 05:29:50 PM"
                     },
                     "at_sunrise": {
                         "tithi_number": 16,
@@ -74143,7 +74224,7 @@
                         "effect_key": "Happiness and wealth"
                     },
                     "calculated_for": "input_now",
-                    "input_now_iso": "30/06/2026 03:42:02 PM",
+                    "input_now_iso": "30/06/2026 05:29:50 PM",
                     "at_sunrise": {
                         "tithi_number": 16,
                         "tithi_name": "First Lunar Day of Dark Half",
@@ -74179,7 +74260,7 @@
                     "valid_until": "01/07/2026 07:38:34 AM",
                     "valid_until_jd": 2461222.5892892135,
                     "calculated_for": "input_now",
-                    "input_now_iso": "30/06/2026 03:42:02 PM",
+                    "input_now_iso": "30/06/2026 05:29:50 PM",
                     "at_sunrise": {
                         "tithi_number": 16,
                         "tithi_name": "First Lunar Day of Dark Half",
@@ -74202,7 +74283,7 @@
                     "direction": "East",
                     "direction_key": "East",
                     "calculated_for": "input_now",
-                    "input_now_iso": "30/06/2026 03:42:02 PM",
+                    "input_now_iso": "30/06/2026 05:29:50 PM",
                     "at_sunrise": {
                         "tithi_number": 16,
                         "tithi_name": "First Lunar Day of Dark Half",
@@ -74225,7 +74306,7 @@
             "Evaluation is derived only from current Panchang and transit state for the configured location/time."
         ],
         "title": "Complete Muhurta Evaluation - Centralized package output",
-        "input_now": "30/06/2026 03:42:02 PM",
+        "input_now": "30/06/2026 05:29:50 PM",
         "date": "2026-06-30",
         "input_parameters": {
             "tithi_number": 16,
@@ -74239,8 +74320,8 @@
             "nakshatra_number": 20,
             "nakshatra_name": "Purva Ashadha",
             "nakshatra_number_base": 1,
-            "lagna_number": 7,
-            "lagna_name": "Libra",
+            "lagna_number": 8,
+            "lagna_name": "Scorpio",
             "lagna_number_base": 1,
             "moon_sign_idx": 8,
             "moon_sign_name": "Sagittarius",
@@ -74257,9 +74338,9 @@
             "next_sunrise": "06:08:04 AM",
             "next_sunrise_iso": "01/07/2026 06:08:04 AM",
             "next_sunrise_decimal_hours": 30.134444444444444,
-            "current_time": "03:42:02 PM",
-            "current_time_iso": "30/06/2026 03:42:02 PM",
-            "current_time_decimal_hours": 15.700555555555555
+            "current_time": "05:29:50 PM",
+            "current_time_iso": "30/06/2026 05:29:50 PM",
+            "current_time_decimal_hours": 17.497222222222224
         },
         "evaluation_results": {
             "panchaka_dosha": {
@@ -74273,17 +74354,17 @@
                 "nakshatra": 20,
                 "nakshatra_name": "Purva Ashadha",
                 "nakshatra_number_base": 1,
-                "lagna": 7,
-                "lagna_name": "Libra",
+                "lagna": 8,
+                "lagna_name": "Scorpio",
                 "lagna_number_base": 1,
-                "sum": 46,
-                "remainder": 1,
-                "panchaka_name": "Mrityu",
-                "panchaka_english": "Death",
-                "severity": "critical",
+                "sum": 47,
+                "remainder": 2,
+                "panchaka_name": "Agni",
+                "panchaka_english": "Fire",
+                "severity": "high",
                 "has_dosha": true,
                 "is_panchaka_rahita": false,
-                "description": "Mrityu - Inauspicious"
+                "description": "Agni - Inauspicious"
             },
             "dagdha_tithi": {
                 "source": "Muhurta Chintamani",
@@ -74354,45 +74435,17 @@
             },
             "varjyam": {
                 "source": "Varjyam (Tyajyam) window from Panchang day calculation",
-                "is_active": true,
+                "is_active": false,
                 "is_available": true,
                 "period_is_auspicious": false,
-                "is_current_time_safe": false,
-                "is_currently_blocking": true,
-                "has_dosha": true,
-                "active_window": {
-                    "varjyam_start": "02:46:36 PM",
-                    "varjyam_end": "04:33:46 PM",
-                    "varjyam_start_iso": "30/06/2026 02:46:36 PM",
-                    "varjyam_end_iso": "30/06/2026 04:33:46 PM",
-                    "type": "varjyam",
-                    "duration_minutes": "1h 47m 10.618944168092s",
-                    "duration_seconds_raw": 6430.618944168092,
-                    "duration_ghati": 4,
-                    "offset_ghati": 24,
-                    "nakshatra_start_jd": 2461221.4399604574,
-                    "nakshatra_end_jd": 2461222.5563873574,
-                    "nakshatra_start_iso": "30/06/2026 04:03:32 AM",
-                    "nakshatra_end_iso": "01/07/2026 06:51:11 AM",
-                    "nakshatra_duration_seconds_raw": 96459.28416252136,
-                    "nakshatra_index": 19,
-                    "nakshatra_name": "Purva Ashadha",
-                    "window_start_jd": 2461221.8865312175,
-                    "window_end_jd": 2461221.9609596776,
-                    "window_start_iso": "30/06/2026 02:46:36 PM",
-                    "window_end_iso": "30/06/2026 04:33:46 PM",
-                    "visible_start_jd": 2461221.8865312175,
-                    "visible_end_jd": 2461221.9609596776,
-                    "visible_start_iso": "30/06/2026 02:46:36 PM",
-                    "visible_end_iso": "30/06/2026 04:33:46 PM",
-                    "is_partial_start": false,
-                    "is_partial_end": false,
-                    "is_auspicious": false
-                },
+                "is_current_time_safe": true,
+                "is_currently_blocking": false,
+                "has_dosha": false,
+                "active_window": null,
                 "window_count": 1,
-                "severity": "high",
+                "severity": "none",
                 "is_auspicious": false,
-                "description": "Varjyam is active at the evaluation time."
+                "description": "Varjyam is not active at the evaluation time."
             },
             "amrita_kaal": {
                 "source": "Classical Panchanga Calculation Texts",
@@ -74414,7 +74467,7 @@
                 "sunset": 19.703333333333333,
                 "vara_number": 2,
                 "vara_name": "Tuesday",
-                "current_time": 15.700555555555555,
+                "current_time": 17.497222222222224,
                 "abhijit_start": 12.463777777777779,
                 "abhijit_end": 13.368722222222223,
                 "abhijit_duration_minutes": 54.29666666666667,
@@ -74439,24 +74492,16 @@
             "source": "Transit-only evaluation",
             "overall_verdict": "Rejected but remedies can be tried",
             "confidence_level": "low",
-            "rejection_count": 2,
+            "rejection_count": 1,
             "warning_count": 0,
             "acceptance_count": 0,
             "critical_rejections": [],
             "high_severity_rejections": [
                 {
                     "dosha_name": "panchaka_dosha",
-                    "severity": "critical",
-                    "source": "Rule engine",
-                    "description": "Mrityu - Inauspicious",
-                    "cancellation_possible": false,
-                    "cancellation_method": null
-                },
-                {
-                    "dosha_name": "varjyam",
                     "severity": "high",
                     "source": "Rule engine",
-                    "description": "Varjyam is active at the evaluation time.",
+                    "description": "Agni - Inauspicious",
                     "cancellation_possible": false,
                     "cancellation_method": null
                 }
@@ -74466,17 +74511,9 @@
             "detailed_rejections": [
                 {
                     "dosha_name": "panchaka_dosha",
-                    "severity": "critical",
-                    "source": "Rule engine",
-                    "description": "Mrityu - Inauspicious",
-                    "cancellation_possible": false,
-                    "cancellation_method": null
-                },
-                {
-                    "dosha_name": "varjyam",
                     "severity": "high",
                     "source": "Rule engine",
-                    "description": "Varjyam is active at the evaluation time.",
+                    "description": "Agni - Inauspicious",
                     "cancellation_possible": false,
                     "cancellation_method": null
                 }
