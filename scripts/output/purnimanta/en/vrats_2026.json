@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-26T05:26:05+00:00",
+        "generated_at": "2026-06-30T10:11:35+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -17,9 +17,9 @@
         "title": "Vrats 2026 - All vrat observances for the entire year",
         "year": 2026,
         "calendar_type": "purnimanta",
-        "vrat_day_count": 143,
-        "vrat_entry_count": 214,
-        "total_vrats": 90,
+        "vrat_day_count": 152,
+        "vrat_entry_count": 222,
+        "total_vrats": 98,
         "recurring_weekday_vrats": [
             {
                 "name": "Ravivar Vrat",
@@ -675,6 +675,104 @@
                     }
                 }
             ],
+            "2026-01-10": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-01-11 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-01-10.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3160.533329844475,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461050.620941988,
+                        "target_tithi_end_jd": 2461051.7017921684,
+                        "standard_date": "2026-01-11",
+                        "observance_date": "2026-01-10",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-01-11 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-01-10.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1052,
+                            "winning_window_overlap_seconds": 3160.533329844475,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1052,
+                        "winning_window_overlap_seconds": 3160.533329844475,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-01-11": [
                 {
                     "name": "Kalashtami",
@@ -759,101 +857,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7806.799980998039,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461050.620941988,
-                        "target_tithi_end_jd": 2461051.7017921684,
-                        "standard_date": "2026-01-11",
-                        "observance_date": "2026-01-11",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1130,
-                            "winning_window_overlap_seconds": 7806.799980998039,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1130,
-                        "winning_window_overlap_seconds": 7806.799980998039,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -2123,6 +2126,71 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Thai Pusam",
+                    "name_key": "Thai Pusam",
+                    "description": "Murugan festival in the solar month Thai under Pushya Nakshatra",
+                    "deity": "Skanda-Murugan",
+                    "fasting": true,
+                    "regions": [
+                        "Tamil Nadu"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_nakshatra",
+                        "type_name": "solar_nakshatra",
+                        "basis": "nakshatra",
+                        "basis_name": "nakshatra",
+                        "resolver": "classical",
+                        "solar_rashi": {
+                            "index": 9,
+                            "number": 10,
+                            "name": "Capricorn",
+                            "english_name": "Capricorn",
+                            "symbol": "♑"
+                        },
+                        "nakshatra": "Pushya",
+                        "nakshatra_key": "Pushya",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "preferred_nakshatra": "Pushya",
+                        "preferred_nakshatra_key": "Pushya"
+                    },
+                    "resolution": {
+                        "festival_name": "Thai Pusam",
+                        "required_nakshatra": "Pushya",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-02-01",
+                        "observance_date": "2026-02-01",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "Pushya",
+                            "winning_reason": "nakshatra match",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "nakshatra match",
+                            "nakshatra_name_key": "Pushya",
+                            "nakshatra_name_localized": "Pushya"
+                        },
+                        "festival_name_key": "Thai Pusam",
+                        "festival_name_localized": "Thai Pusam",
+                        "karmakala_type_name": "sunrise",
+                        "required_nakshatra_key": "Pushya",
+                        "required_nakshatra_name": "Pushya"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Pushya",
+                        "winning_reason": "nakshatra match",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "nakshatra match",
+                        "nakshatra_name_key": "Pushya",
+                        "nakshatra_name_localized": "Pushya"
+                    }
                 }
             ],
             "2026-02-09": [
@@ -2260,11 +2328,11 @@
                         "festival_name": "Masik Krishna Janmashtami",
                         "required_tithi": 8,
                         "paksha": "Krishna",
-                        "karmakala_type": "midnight",
+                        "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 8129.999998211861,
-                        "tithi_coverage_seconds_tomorrow": 76.74478590488434,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3047.733297944069,
+                        "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": true,
@@ -2278,8 +2346,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1135,
-                            "winning_window_overlap_seconds": 8129.999998211861,
+                            "winning_score": 1050,
+                            "winning_window_overlap_seconds": 3047.733297944069,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -2292,7 +2360,7 @@
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
+                        "karmakala_type_name": "nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -2301,8 +2369,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1135,
-                        "winning_window_overlap_seconds": 8129.999998211861,
+                        "winning_score": 1050,
+                        "winning_window_overlap_seconds": 3047.733297944069,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -3745,10 +3813,10 @@
                         "festival_name": "Masik Krishna Janmashtami",
                         "required_tithi": 8,
                         "paksha": "Krishna",
-                        "karmakala_type": "midnight",
+                        "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8591.399990022182,
+                        "tithi_coverage_seconds_today": 2892.466628551483,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -3763,8 +3831,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1143,
-                            "winning_window_overlap_seconds": 8591.399990022182,
+                            "winning_score": 1048,
+                            "winning_window_overlap_seconds": 2892.466628551483,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -3777,7 +3845,7 @@
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
+                        "karmakala_type_name": "nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -3786,8 +3854,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1143,
-                        "winning_window_overlap_seconds": 8591.399990022182,
+                        "winning_score": 1048,
+                        "winning_window_overlap_seconds": 2892.466628551483,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -4454,8 +4522,9 @@
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
-                        "ritual_profile": "matsya_jayanti_satsangi",
+                        "ritual_profile": "Satsangi Matsya Jayanti ritual profile",
                         "ritual_profile_key": "matsya_jayanti_satsangi",
                         "source_refs": [
                             "Satsangi Jeevan 4.60"
@@ -4582,6 +4651,109 @@
                 }
             ],
             "2026-03-24": [
+                {
+                    "name": "Yamuna Chhath",
+                    "name_key": "Yamuna Chhath",
+                    "description": "Descent of Goddess Yamuna",
+                    "deity": "Yamuna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "Sixth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "Yamuna Chhath",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461123.047748358,
+                        "target_tithi_end_jd": 2461123.9432258923,
+                        "standard_date": "2026-03-24",
+                        "observance_date": "2026-03-24",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Yamuna Chhath",
+                        "festival_name_localized": "Yamuna Chhath",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
                 {
                     "name": "Rohini Vrat",
                     "name_key": "Rohini Vrat",
@@ -4882,7 +5054,9 @@
                         "karmakala_type": "madhyahna",
                         "karmakala_type_name": "noon",
                         "strict_karmakala": true,
+                        "vriddhi_preference": "last",
                         "prefer_nakshatra": true,
+                        "prefer_nakshatra_window": true,
                         "ritual_profile": "Satsangi Ramnavami ritual profile",
                         "ritual_profile_key": "ramnavami_satsangi",
                         "preferred_nakshatra": "Punarvasu",
@@ -4910,6 +5084,7 @@
                         "observance_date": "2026-03-27",
                         "decision": {
                             "strict_karmakala": true,
+                            "require_karmakala_match": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "preferred_nakshatra": "Punarvasu",
@@ -4934,7 +5109,7 @@
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
+                        "require_karmakala_match": true,
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": "Punarvasu",
@@ -4999,7 +5174,9 @@
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
                         "tradition_profile": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
-                        "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami"
+                        "tradition_profile_key": "Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami",
+                        "ritual_profile": "Swaminarayan Jayanti night observance profile",
+                        "ritual_profile_key": "swaminarayan_jayanti_night"
                     },
                     "resolution": {
                         "festival_name": "Swaminarayan Jayanti (Hari-Nom)",
@@ -5510,6 +5687,104 @@
                     }
                 }
             ],
+            "2026-04-09": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-04-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-09.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2736.3999634981155,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461140.1597563364,
+                        "target_tithi_end_jd": 2461141.240247607,
+                        "standard_date": "2026-04-10",
+                        "observance_date": "2026-04-09",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-04-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-04-09.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1045,
+                            "winning_window_overlap_seconds": 2736.3999634981155,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1045,
+                        "winning_window_overlap_seconds": 2736.3999634981155,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-04-10": [
                 {
                     "name": "Kalashtami",
@@ -5594,101 +5869,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9075.400020182133,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461140.1597563364,
-                        "target_tithi_end_jd": 2461141.240247607,
-                        "standard_date": "2026-04-10",
-                        "observance_date": "2026-04-10",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1151,
-                            "winning_window_overlap_seconds": 9075.400020182133,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1151,
-                        "winning_window_overlap_seconds": 9075.400020182133,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6310,6 +6490,112 @@
                     }
                 }
             ],
+            "2026-04-19": [
+                {
+                    "name": "Parashurama Jayanti (Pradosha Tradition)",
+                    "name_key": "Parashurama Jayanti (Pradosha Tradition)",
+                    "description": "Birth celebration of Lord Parashurama with tradition-aware observance routing",
+                    "deity": "Parashurama",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 3 falls on 2026-04-20 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-19.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                3
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                3
+                            ],
+                            "names": [
+                                "Third Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "value_key": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last"
+                    },
+                    "resolution": {
+                        "festival_name": "Parashurama Jayanti (Pradosha Tradition)",
+                        "required_tithi": 3,
+                        "paksha": "Shukla",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8640.000008046627,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461149.7219889043,
+                        "target_tithi_end_jd": 2461150.5818800544,
+                        "standard_date": "2026-04-20",
+                        "observance_date": "2026-04-19",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 3 falls on 2026-04-20 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-19.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1144,
+                            "winning_window_overlap_seconds": 8640.000008046627,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Parashurama Jayanti (Pradosha Tradition)",
+                        "festival_name_localized": "Parashurama Jayanti (Pradosha Tradition)",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1144,
+                        "winning_window_overlap_seconds": 8640.000008046627,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-04-20": [
                 {
                     "name": "Rohini Vrat",
@@ -6709,7 +6995,7 @@
                     }
                 }
             ],
-            "2026-04-30": [
+            "2026-04-29": [
                 {
                     "name": "Narasimha Jayanti",
                     "name_key": "Narasimha Jayanti",
@@ -6720,7 +7006,7 @@
                         "Pan-India"
                     ],
                     "aliases": [],
-                    "observance_note": null,
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 14 falls on 2026-04-30 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-29.",
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "tithi",
@@ -6748,66 +7034,77 @@
                             "value_key": "Vaishakha",
                             "name": "Vaishakha"
                         },
-                        "karmakala_type": "sunset",
-                        "karmakala_type_name": "sunset",
-                        "ritual_kala_type": "pradosha",
-                        "ritual_kala_type_name": "pradosha",
+                        "nakshatra": "Swati",
+                        "nakshatra_key": "Swati",
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha",
                         "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "ritual_profile": "Satsangi Narasimha Jayanti ritual profile",
-                        "ritual_profile_key": "narasimha_jayanti_satsangi",
+                        "vriddhi_preference": "first",
+                        "prefer_nakshatra": true,
+                        "ritual_profile": "narasimha_jayanti",
+                        "ritual_profile_key": "narasimha_jayanti",
+                        "fasting_guidance": "capable_full_fast_incapable_falahar_no_grains",
+                        "fasting_guidance_key": "capable_full_fast_incapable_falahar_no_grains",
+                        "preferred_nakshatra": "Swati",
+                        "preferred_nakshatra_key": "Swati",
                         "source_refs": [
-                            "Satsangi Jeevan 4.60"
+                            "Satsangi Jeevan 4.60.53-60",
+                            "Dharma Sindhu / Nirnaya Sindhu Narasimha Chaturdashi"
                         ]
                     },
                     "resolution": {
                         "festival_name": "Narasimha Jayanti",
                         "required_tithi": 14,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunset",
+                        "karmakala_type": "pradosha",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 4319.999983906746,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 6649.023923277855,
+                        "tithi_coverage_seconds_tomorrow": 6821.7159658670425,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
                         "target_tithi_start_jd": 2461160.0986339822,
                         "target_tithi_end_jd": 2461161.1548578236,
                         "standard_date": "2026-04-30",
-                        "observance_date": "2026-04-30",
+                        "observance_date": "2026-04-29",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 14 falls on 2026-04-30 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-04-29.",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
+                            "require_karmakala_match": true,
+                            "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1071,
-                            "winning_window_overlap_seconds": 4319.999983906746,
-                            "winning_window_coverage_ratio": 1,
+                            "preferred_nakshatra": "Swati",
+                            "winning_reason": "shuddha day 1",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 6649.023923277855,
+                            "winning_window_coverage_ratio": 0.7695629533663737,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "generic_shuddha_day1",
+                            "winning_reason_name": "shuddha day 1",
+                            "preferred_nakshatra_key": "Swati",
+                            "preferred_nakshatra_name": "Swati"
                         },
                         "festival_name_key": "Narasimha Jayanti",
                         "festival_name_localized": "Narasimha Jayanti",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunset"
+                        "karmakala_type_name": "pradosha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": "first",
                         "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1071,
-                        "winning_window_overlap_seconds": 4319.999983906746,
-                        "winning_window_coverage_ratio": 1,
+                        "preferred_nakshatra": "Swati",
+                        "winning_reason": "shuddha day 1",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 6649.023923277855,
+                        "winning_window_coverage_ratio": 0.7695629533663737,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6816,8 +7113,10 @@
                         },
                         "rule_rejection_reason": null,
                         "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "winning_reason_key": "generic_shuddha_day1",
+                        "winning_reason_name": "shuddha day 1",
+                        "preferred_nakshatra_key": "Swati",
+                        "preferred_nakshatra_name": "Swati"
                     }
                 }
             ],
@@ -6924,7 +7223,7 @@
                 {
                     "name": "Vaishakha Purnima",
                     "name_key": "Vaishakha Purnima",
-                    "description": "Birth of Buddha and Kurma Avatar",
+                    "description": "Vaishakha Purnima vrata associated with Buddha Purnima and related lunar observances",
                     "deity": "Vishnu/Buddha",
                     "fasting": true,
                     "regions": [
@@ -6932,7 +7231,6 @@
                     ],
                     "aliases": [
                         "Buddha Purnima",
-                        "Kurma Jayanti",
                         "Chitra Pournami",
                         "Vaishakha Purnima Vrat"
                     ],
@@ -7015,6 +7313,247 @@
                         "winning_reason": "target tithi at karmakala",
                         "winning_score": 1071,
                         "winning_window_overlap_seconds": 4319.999983906746,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Kurma Jayanti (Vaishakha Purnima Tradition)",
+                    "name_key": "Kurma Jayanti (Vaishakha Purnima Tradition)",
+                    "description": "Vaishakha Purnima convention associating Kurma Jayanti with a later calendrical observance",
+                    "deity": "Vishnu (Kurma)",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Shri Koorma Jayanti",
+                        "Kurma Avatara Appearance"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Vaishakha",
+                            "value_key": "Vaishakha",
+                            "name": "Vaishakha"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "afternoon",
+                        "strict_karmakala": true,
+                        "tradition_profile": "Vaishakha Purnima Kurma Jayanti convention",
+                        "tradition_profile_key": "Vaishakha Purnima Kurma Jayanti convention",
+                        "source_refs": [
+                            "Siddhanta Darpana",
+                            "Drik Panchang Kurma Jayanti convention"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "calendar_rule",
+                                "source": "Siddhanta Darpana",
+                                "locator": "Shukla Panchadashi/Purnima festival table",
+                                "supports": "Vaishakha Purnima associated with Kurma Jayanti in a later calendrical convention"
+                            },
+                            {
+                                "kind": "living_calendar_rule",
+                                "source": "Drik Panchang",
+                                "supports": "Kurma Jayanti observed on Vaishakha Shukla Purnima in current published practice"
+                            },
+                            {
+                                "kind": "narrative",
+                                "source": "Kurma Purana",
+                                "locator": "1.1.27-30",
+                                "supports": "Vishnu assumes Kurma form and supports Mount Mandara"
+                            },
+                            {
+                                "kind": "narrative",
+                                "source": "Padma Purana",
+                                "locator": "Uttara Khanda 232.1-4",
+                                "supports": "Narrative circumstances associated with Samudra Manthana"
+                            },
+                            {
+                                "kind": "narrative",
+                                "source": "Srimad Bhagavata Purana",
+                                "locator": "8.7.8-10",
+                                "supports": "Vishnu assumes the tortoise form and supports Mandara"
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Kurma Jayanti (Vaishakha Purnima Tradition)",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9387.399977445602,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461161.1548578236,
+                        "target_tithi_end_jd": 2461162.2243585223,
+                        "standard_date": "2026-05-01",
+                        "observance_date": "2026-05-01",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1156,
+                            "winning_window_overlap_seconds": 9387.399977445602,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Kurma Jayanti (Vaishakha Purnima Tradition)",
+                        "festival_name_localized": "Kurma Jayanti (Vaishakha Purnima Tradition)",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "afternoon"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1156,
+                        "winning_window_overlap_seconds": 9387.399977445602,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-05-09": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-05-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-05-09.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2593.7333464622498,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461169.8564151963,
+                        "target_tithi_end_jd": 2461170.900654315,
+                        "standard_date": "2026-05-10",
+                        "observance_date": "2026-05-09",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-05-10 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-05-09.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1043,
+                            "winning_window_overlap_seconds": 2593.7333464622498,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1043,
+                        "winning_window_overlap_seconds": 2593.7333464622498,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -7113,101 +7652,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9504.599985480309,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461169.8564151963,
-                        "target_tithi_end_jd": 2461170.900654315,
-                        "standard_date": "2026-05-10",
-                        "observance_date": "2026-05-10",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1158,
-                            "winning_window_overlap_seconds": 9504.599985480309,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1158,
-                        "winning_window_overlap_seconds": 9504.599985480309,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -7998,6 +8442,71 @@
                         "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Vaikasi Visakam",
+                    "name_key": "Vaikasi Visakam",
+                    "description": "Murugan festival in the solar month Vaikasi under Vishakha Nakshatra",
+                    "deity": "Skanda-Murugan",
+                    "fasting": true,
+                    "regions": [
+                        "Tamil Nadu"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "solar_nakshatra",
+                        "type_name": "solar_nakshatra",
+                        "basis": "nakshatra",
+                        "basis_name": "nakshatra",
+                        "resolver": "classical",
+                        "solar_rashi": {
+                            "index": 1,
+                            "number": 2,
+                            "name": "Taurus",
+                            "english_name": "Taurus",
+                            "symbol": "♉"
+                        },
+                        "nakshatra": "Vishakha",
+                        "nakshatra_key": "Vishakha",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "preferred_nakshatra": "Vishakha",
+                        "preferred_nakshatra_key": "Vishakha"
+                    },
+                    "resolution": {
+                        "festival_name": "Vaikasi Visakam",
+                        "required_nakshatra": "Vishakha",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-05-30",
+                        "observance_date": "2026-05-30",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "Vishakha",
+                            "winning_reason": "nakshatra match",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "nakshatra match",
+                            "nakshatra_name_key": "Vishakha",
+                            "nakshatra_name_localized": "Vishakha"
+                        },
+                        "festival_name_key": "Vaikasi Visakam",
+                        "festival_name_localized": "Vaikasi Visakam",
+                        "karmakala_type_name": "sunrise",
+                        "required_nakshatra_key": "Vishakha",
+                        "required_nakshatra_name": "Vishakha"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Vishakha",
+                        "winning_reason": "nakshatra match",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "nakshatra match",
+                        "nakshatra_name_key": "Vishakha",
+                        "nakshatra_name_localized": "Vishakha"
                     }
                 }
             ],
@@ -8858,6 +9367,104 @@
                     }
                 }
             ],
+            "2026-07-07": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2513.733297586441,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461228.8300981633,
+                        "target_tithi_end_jd": 2461229.786186537,
+                        "standard_date": "2026-07-08",
+                        "observance_date": "2026-07-07",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1041,
+                            "winning_window_overlap_seconds": 2513.733297586441,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1041,
+                        "winning_window_overlap_seconds": 2513.733297586441,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-07-08": [
                 {
                     "name": "Kalashtami",
@@ -8942,101 +9549,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9737.800008058548,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461228.8300981633,
-                        "target_tithi_end_jd": 2461229.786186537,
-                        "standard_date": "2026-07-08",
-                        "observance_date": "2026-07-08",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1162,
-                            "winning_window_overlap_seconds": 9737.800008058548,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1162,
-                        "winning_window_overlap_seconds": 9737.800008058548,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -10446,6 +10958,104 @@
                     }
                 }
             ],
+            "2026-08-05": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-08-06 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-08-05.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2604.7333270311356,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461258.13385309,
+                        "target_tithi_end_jd": 2461259.0577095402,
+                        "standard_date": "2026-08-06",
+                        "observance_date": "2026-08-05",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-08-06 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-08-05.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1043,
+                            "winning_window_overlap_seconds": 2604.7333270311356,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1043,
+                        "winning_window_overlap_seconds": 2604.7333270311356,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-08-06": [
                 {
                     "name": "Kalashtami",
@@ -10530,101 +11140,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9458.19999575615,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461258.13385309,
-                        "target_tithi_end_jd": 2461259.0577095402,
-                        "standard_date": "2026-08-06",
-                        "observance_date": "2026-08-06",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1157,
-                            "winning_window_overlap_seconds": 9458.19999575615,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1157,
-                        "winning_window_overlap_seconds": 9458.19999575615,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12203,7 +12718,7 @@
                 {
                     "name": "Shravana Purnima",
                     "name_key": "Shravana Purnima",
-                    "description": "Full moon of Shravana month",
+                    "description": "Full moon of Shravana month, including Raksha Bandhan and related regional observances",
                     "deity": "Vishnu/Gayatri",
                     "fasting": true,
                     "regions": [
@@ -12248,7 +12763,9 @@
                         },
                         "karmakala_type": "aparahna",
                         "karmakala_type_name": "afternoon",
-                        "strict_karmakala": true
+                        "strict_karmakala": true,
+                        "avoid_bhadra_mukha": true,
+                        "prefer_bhadra_puchha": true
                     },
                     "resolution": {
                         "festival_name": "Shravana Purnima",
@@ -12276,9 +12793,12 @@
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
-                                "applicable": false,
+                                "applicable": true,
                                 "rejected": false,
-                                "preferred": false
+                                "preferred": true,
+                                "reason": "No Bhadra in window",
+                                "reason_key": "no_bhadra_in_window",
+                                "reason_name": "No Bhadra in window"
                             },
                             "raksha_bandhan_selection": {
                                 "selection_rule": "PREVIOUS_DAY_FALLBACK",
@@ -12320,10 +12840,12 @@
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
-                            "applicable": false,
+                            "applicable": true,
                             "rejected": false,
-                            "preferred": false,
-                            "reason": null
+                            "preferred": true,
+                            "reason": "No Bhadra in window",
+                            "reason_key": "no_bhadra_in_window",
+                            "reason_name": "No Bhadra in window"
                         },
                         "rule_rejection_reason": null,
                         "raksha_bandhan_selection": {
@@ -12628,7 +13150,132 @@
                 {
                     "name": "Krishna Janmashtami",
                     "name_key": "Krishna Janmashtami",
-                    "description": "Birth celebration of Lord Krishna",
+                    "description": "Birth celebration of Lord Krishna with tradition-aware observance routing",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Krishna Janmashtami (Swaminarayan-Uddhav)",
+                        "Gokulashtami"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "nakshatra": "Rohini",
+                        "nakshatra_key": "Rohini",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "nishitha",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "prefer_nakshatra": true,
+                        "prefer_nakshatra_window": false,
+                        "tradition_profile": "Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
+                        "tradition_profile_key": "Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
+                        "ritual_profile": "Uddhav/Swaminarayan Janmashtami ritual profile",
+                        "ritual_profile_key": "janmashtami_uddhav",
+                        "preferred_nakshatra": "Rohini",
+                        "preferred_nakshatra_key": "Rohini",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.11",
+                            "Satsangi Jeevan 4.55"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721125238,
+                        "target_tithi_end_jd": 2461288.280548431,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "preferred_nakshatra": "Rohini",
+                            "winning_reason": "Janmashtami pure Rohini on day 1",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "janmashtami_shuddha_rohini_day1",
+                            "winning_reason_name": "Janmashtami pure Rohini on day 1",
+                            "preferred_nakshatra_key": "Rohini",
+                            "preferred_nakshatra_name": "Rohini"
+                        },
+                        "festival_name_key": "Krishna Janmashtami",
+                        "festival_name_localized": "Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": "Rohini",
+                        "winning_reason": "Janmashtami pure Rohini on day 1",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "janmashtami_shuddha_rohini_day1",
+                        "winning_reason_name": "Janmashtami pure Rohini on day 1",
+                        "preferred_nakshatra_key": "Rohini",
+                        "preferred_nakshatra_name": "Rohini"
+                    }
+                },
+                {
+                    "name": "Krishna Janmashtami (Smarta)",
+                    "name_key": "Krishna Janmashtami (Smarta)",
+                    "description": "Birth celebration of Lord Krishna with tradition-aware observance routing",
                     "deity": "Krishna",
                     "fasting": true,
                     "regions": [
@@ -12668,21 +13315,14 @@
                         "karmakala_type": "nishitha",
                         "karmakala_type_name": "nishitha",
                         "strict_karmakala": true,
-                        "vriddhi_preference": "last",
+                        "vriddhi_preference": "first",
                         "prefer_nakshatra": true,
-                        "tradition_profile": "Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
-                        "tradition_profile_key": "Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
-                        "ritual_profile": "Uddhav/Swaminarayan Janmashtami ritual profile",
-                        "ritual_profile_key": "janmashtami_uddhav",
+                        "prefer_nakshatra_window": true,
                         "preferred_nakshatra": "Rohini",
-                        "preferred_nakshatra_key": "Rohini",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.11",
-                            "Satsangi Jeevan 4.55"
-                        ]
+                        "preferred_nakshatra_key": "Rohini"
                     },
                     "resolution": {
-                        "festival_name": "Krishna Janmashtami",
+                        "festival_name": "Krishna Janmashtami (Smarta)",
                         "required_tithi": 8,
                         "paksha": "Krishna",
                         "karmakala_type": "nishitha",
@@ -12700,10 +13340,10 @@
                         "observance_date": "2026-09-04",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
+                            "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "preferred_nakshatra": "Rohini",
-                            "winning_reason": "janmashtami_shuddha_rohini_day1",
+                            "winning_reason": "Janmashtami pure Rohini on day 1",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
@@ -12713,22 +13353,22 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "janmashtami_shuddha_rohini_day1",
-                            "winning_reason_name": "janmashtami_shuddha_rohini_day1",
+                            "winning_reason_name": "Janmashtami pure Rohini on day 1",
                             "preferred_nakshatra_key": "Rohini",
                             "preferred_nakshatra_name": "Rohini"
                         },
-                        "festival_name_key": "Krishna Janmashtami",
-                        "festival_name_localized": "Krishna Janmashtami",
+                        "festival_name_key": "Krishna Janmashtami (Smarta)",
+                        "festival_name_localized": "Krishna Janmashtami (Smarta)",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
+                        "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": "Rohini",
-                        "winning_reason": "janmashtami_shuddha_rohini_day1",
+                        "winning_reason": "Janmashtami pure Rohini on day 1",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
@@ -12741,7 +13381,7 @@
                         "rule_rejection_reason": null,
                         "raksha_bandhan_selection": null,
                         "winning_reason_key": "janmashtami_shuddha_rohini_day1",
-                        "winning_reason_name": "janmashtami_shuddha_rohini_day1",
+                        "winning_reason_name": "Janmashtami pure Rohini on day 1",
                         "preferred_nakshatra_key": "Rohini",
                         "preferred_nakshatra_name": "Rohini"
                     }
@@ -12991,10 +13631,10 @@
                         "festival_name": "Masik Krishna Janmashtami",
                         "required_tithi": 8,
                         "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9039.000016450882,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -13008,22 +13648,22 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1150,
-                            "winning_window_overlap_seconds": 9039.000016450882,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_reason": "target tithi at sunrise",
+                            "winning_score": 700,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "target_at_sunrise",
+                            "winning_reason_name": "target tithi at sunrise"
                         },
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
+                        "karmakala_type_name": "nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -13031,10 +13671,10 @@
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1150,
-                        "winning_window_overlap_seconds": 9039.000016450882,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "target tithi at sunrise",
+                        "winning_score": 700,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -13043,8 +13683,8 @@
                         },
                         "rule_rejection_reason": null,
                         "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "winning_reason_key": "target_at_sunrise",
+                        "winning_reason_name": "target tithi at sunrise"
                     }
                 }
             ],
@@ -13762,6 +14402,131 @@
                         "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
+            "2026-09-16": [
+                {
+                    "name": "Balarama Jayanti",
+                    "name_key": "Balarama Jayanti",
+                    "description": "Balarama birth celebration following the classical Garga Samhita tradition observed during Madhyahna",
+                    "deity": "Balarama",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Balarama Jayanti (Hala Shashthi)",
+                        "Hal Shashthi (Balarama Jayanti)",
+                        "Baladeva Chhath",
+                        "Baldev Chhath",
+                        "Balbhadra Jayanti"
+                    ],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 6 falls on 2026-09-17 at sunrise, but due to tradition/ritual requiring noon presence, it is celebrated on 2026-09-16.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                6
+                            ],
+                            "names": [
+                                "Sixth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Bhadrapada",
+                            "value_key": "Bhadrapada",
+                            "name": "Bhadrapada"
+                        },
+                        "nakshatra": "Swati",
+                        "nakshatra_key": "Swati",
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "noon",
+                        "strict_karmakala": true,
+                        "prefer_nakshatra": true,
+                        "preferred_nakshatra": "Swati",
+                        "preferred_nakshatra_key": "Swati",
+                        "source_refs": [
+                            "Garga Samhita 1.11",
+                            "Satsangi Jeevan 4.60"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Balarama Jayanti",
+                        "required_tithi": 6,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8849.399998784065,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461299.6456891997,
+                        "target_tithi_end_jd": 2461300.7210244983,
+                        "standard_date": "2026-09-17",
+                        "observance_date": "2026-09-16",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 6 falls on 2026-09-17 at sunrise, but due to tradition/ritual requiring noon presence, it is celebrated on 2026-09-16.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "preferred_nakshatra": "Swati",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1147,
+                            "winning_window_overlap_seconds": 8849.399998784065,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala",
+                            "preferred_nakshatra_key": "Swati",
+                            "preferred_nakshatra_name": "Swati"
+                        },
+                        "festival_name_key": "Balarama Jayanti",
+                        "festival_name_localized": "Balarama Jayanti",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "noon"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": "Swati",
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1147,
+                        "winning_window_overlap_seconds": 8849.399998784065,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala",
+                        "preferred_nakshatra_key": "Swati",
+                        "preferred_nakshatra_name": "Swati"
                     }
                 }
             ],
@@ -14619,10 +15384,10 @@
                         "festival_name": "Masik Krishna Janmashtami",
                         "required_tithi": 8,
                         "paksha": "Krishna",
-                        "karmakala_type": "midnight",
+                        "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3948.1546863913536,
+                        "tithi_coverage_seconds_today": 2902.3333221673965,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -14637,9 +15402,9 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1065,
-                            "winning_window_overlap_seconds": 3948.1546863913536,
-                            "winning_window_coverage_ratio": 0.46030810667467864,
+                            "winning_score": 1048,
+                            "winning_window_overlap_seconds": 2902.3333221673965,
+                            "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -14651,7 +15416,7 @@
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
+                        "karmakala_type_name": "nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -14660,9 +15425,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1065,
-                        "winning_window_overlap_seconds": 3948.1546863913536,
-                        "winning_window_coverage_ratio": 0.46030810667467864,
+                        "winning_score": 1048,
+                        "winning_window_overlap_seconds": 2902.3333221673965,
+                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -16194,6 +16959,102 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-11-02 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-11-01.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3049.6666610240936,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461345.8903280105,
+                        "target_tithi_end_jd": 2461346.8200666225,
+                        "standard_date": "2026-11-02",
+                        "observance_date": "2026-11-01",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-11-02 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-11-01.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1050,
+                            "winning_window_overlap_seconds": 3049.6666610240936,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1050,
+                        "winning_window_overlap_seconds": 3049.6666610240936,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-11-02": [
@@ -16280,101 +17141,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 8123.799991607666,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461345.8903280105,
-                        "target_tithi_end_jd": 2461346.8200666225,
-                        "standard_date": "2026-11-02",
-                        "observance_date": "2026-11-02",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1135,
-                            "winning_window_overlap_seconds": 8123.799991607666,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1135,
-                        "winning_window_overlap_seconds": 8123.799991607666,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -17012,7 +17778,9 @@
                         "Eastern UP",
                         "Nepal"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Chhath Puja (Surya Shashthi)"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -18065,6 +18833,104 @@
                     }
                 }
             ],
+            "2026-11-30": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-12-01 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-11-30.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3158.4666341543198,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461375.279231108,
+                        "target_tithi_end_jd": 2461376.239059885,
+                        "standard_date": "2026-12-01",
+                        "observance_date": "2026-11-30",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-12-01 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-11-30.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1052,
+                            "winning_window_overlap_seconds": 3158.4666341543198,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1052,
+                        "winning_window_overlap_seconds": 3158.4666341543198,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-12-01": [
                 {
                     "name": "Kalashtami",
@@ -18149,101 +19015,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7805.1999896764755,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461375.279231108,
-                        "target_tithi_end_jd": 2461376.239059885,
-                        "standard_date": "2026-12-01",
-                        "observance_date": "2026-12-01",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1130,
-                            "winning_window_overlap_seconds": 7805.1999896764755,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1130,
-                        "winning_window_overlap_seconds": 7805.1999896764755,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -19266,6 +20037,108 @@
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "Krittika"
                     }
+                },
+                {
+                    "name": "Kannada Hanuman Vratam",
+                    "name_key": "Kannada Hanuman Vratam",
+                    "description": "Karnataka Hanuman Vratam on Margashirsha Shukla Trayodashi",
+                    "deity": "Hanuman",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                13
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                13
+                            ],
+                            "names": [
+                                "Thirteenth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Margashirsha",
+                            "value_key": "Margashirsha",
+                            "name": "Margashirsha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true
+                    },
+                    "resolution": {
+                        "festival_name": "Kannada Hanuman Vratam",
+                        "required_tithi": 13,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461396.0046953904,
+                        "target_tithi_end_jd": 2461396.8709070124,
+                        "standard_date": "2026-12-22",
+                        "observance_date": "2026-12-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Kannada Hanuman Vratam",
+                        "festival_name_localized": "Kannada Hanuman Vratam",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-12-23": [
@@ -19530,6 +20403,104 @@
                     }
                 }
             ],
+            "2026-12-30": [
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-12-31 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-12-30.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3180.9332996606827,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461404.7964037927,
+                        "target_tithi_end_jd": 2461405.7936332943,
+                        "standard_date": "2026-12-31",
+                        "observance_date": "2026-12-30",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-12-31 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-12-30.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1053,
+                            "winning_window_overlap_seconds": 3180.9332996606827,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1053,
+                        "winning_window_overlap_seconds": 3180.9332996606827,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                }
+            ],
             "2026-12-31": [
                 {
                     "name": "Kalashtami",
@@ -19614,101 +20585,6 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7744.599996507168,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461404.7964037927,
-                        "target_tithi_end_jd": 2461405.7936332943,
-                        "standard_date": "2026-12-31",
-                        "observance_date": "2026-12-31",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1129,
-                            "winning_window_overlap_seconds": 7744.599996507168,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1129,
-                        "winning_window_overlap_seconds": 7744.599996507168,
-                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,

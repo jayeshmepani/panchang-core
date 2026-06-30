@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 325 festival identities, 90 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 324 festival identities, 98 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,7 +490,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>325 Festivals + 90 Vrats</h3>
+              <h3>324 Festivals + 98 Vrats</h3>
               <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -2342,7 +2342,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 325 unique festival identities and 90 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 324 unique festival identities and 98 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
             <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
               <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
               and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
@@ -4760,25 +4760,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.4 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.5 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.4 consolidates the Ganesh Chaturthi family so Siddhivinayaka Chaturthi is treated as an alias instead of a separate festival identity, while v10.0.3 keeps rare Adhika and Kshaya Maas month-boundary handling aligned across intercalary, omitted, and returning Nija month transitions. The dynamic Sandhya correction from v10.0.2, the Ekadashi parana correction from v10.0.1, and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.5 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. v10.0.3 keeps rare Adhika and Kshaya Maas month-boundary handling aligned across intercalary, omitted, and returning Nija month transitions. The dynamic Sandhya correction from v10.0.2, the Ekadashi parana correction from v10.0.1, and the visible-eclipse relaxed Sutak correction from v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.4 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.4: consolidated Ganesh Chaturthi identity handling, corrected Adhika, Kshaya, and Nija month-boundary handling across Amanta and Purnimanta output, dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
+            <h3>v10.0.5 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.5: refreshed public festival and vrat catalog totals, current registry cleanup for overlapping observance identities and aliases, localized user-facing rule labels aligned with the latest festival output, corrected Kurma Jayanti and Vaishakha Purnima separation, improved Skanda Sashti observance routing, corrected Adhika, Kshaya, and Nija month-boundary handling across Amanta and Purnimanta output, dynamic Sandhya windows aligned with published Panchang timing, corrected Ekadashi parana window resolution from v10.0.1, and preserved v10.0.0 eclipse timing behavior.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.5</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Festival Catalog and Localization Refresh</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release refreshing the public festival and vrat catalog, tightening overlapping alias and rule handling in the current registry, and keeping the updated user-facing labels aligned across supported languages. The current generated output now reports 324 festival identities and 98 vrat identities.</p>
+              </div>
+            </li>
+            <li class="release-row is-latest">
               <span class="release-tag">10.0.4</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Ganesh Chaturthi Identity Consolidation</span><span class="release-meta">Latest Release</span></div>
-                <p class="release-note">Patch release consolidating Siddhivinayaka Chaturthi into the Vinayaka Chaturthi alias set so Ganesh Chaturthi family observances no longer drift across separate identity entries. The canonical festival list now reports 325 festival identities and keeps the Bhadrapada Shukla Chaturthi observance aligned under the shared Madhyahna-based rule.</p>
+                <div class="release-heading"><span class="release-title">Festival Identity and Rule Alignment</span></div>
+                <p class="release-note">Patch release consolidating Siddhivinayaka Chaturthi into the Vinayaka Chaturthi alias set, separating Kurma Jayanti from Vaishakha Purnima convention handling, aligning Skanda Sashti with its evening decision path, and localizing the new user-facing festival-rule labels. The canonical festival list now reports 325 festival identities while keeping observance dates aligned under their corrected rules.</p>
               </div>
             </li>
             <li class="release-row">
@@ -5028,24 +5035,47 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v10.0.5 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release updates the festival module more broadly: some observances were added, some overlapping identities were merged or cleaned up, several decision rules were corrected, and the related user-facing labels were aligned across supported languages.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Festival and vrat totals now differ from earlier releases:</strong> The current generated output reports 324 unique festival identities and 98 unique vrat identities.</li>
+              <li><strong>The festival registry was corrected, not just renamed:</strong> this release includes festival additions, canonical-identity cleanup, alias merges, and rule corrections for touched observances.</li>
+              <li><strong>Decision output may change for touched observances:</strong> corrected rule paths and observance wording can change resolved names, aliases, and decision notes in generated output.</li>
+              <li><strong>User-facing wording is refreshed:</strong> new and corrected festival descriptions, tradition labels, and decision strings are aligned in English, Hindi, and Gujarati output.</li>
+              <li><strong>No payload structure changed:</strong> this is a festival catalog, rule, and localization correction release, not a structural API redesign.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, month, and raw output if you store canonical observance names, total counts, aliases, descriptions, or decision labels.</li>
+            <li>Rebaseline tests or snapshots that compare exact festival totals, vrat totals, resolved observance names, aliases, or user-facing festival decision strings.</li>
+            <li>Expect generated observance output to reflect the refreshed 324 festival and 98 vrat identity set, along with corrected touched festival decisions.</li>
+          </ul>
+
           <h3>v10.0.4 Upgrade &amp; Release Notes</h3>
-          <p class="lead">Ganesh Chaturthi family identities are now consolidated so Siddhivinayaka Chaturthi no longer resolves as a separate festival from Ganesh Chaturthi and Vinayaka Chaturthi.</p>
+          <p class="lead">Festival identity and rule handling is now cleaner across the Ganesh Chaturthi family, Kurma Jayanti, Vaishakha Purnima, and Skanda Sashti, with the related user-facing labels localized consistently.</p>
 
           <div class="info-box is-danger">
             <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
             <ul>
               <li><strong>Festival identity totals change:</strong> The canonical festival list now reports 325 unique festival identities because Siddhivinayaka Chaturthi is no longer emitted as a separate identity.</li>
               <li><strong>Ganesh-family aliasing is cleaner:</strong> Ganesh Chaturthi and Siddhivinayaka Chaturthi are now represented through the Vinayaka Chaturthi alias set instead of separate competing registry entries.</li>
-              <li><strong>Observance dates are more consistent:</strong> Bhadrapada Shukla Chaturthi no longer risks a sunrise-based duplicate landing on a different civil day from the shared Madhyahna rule.</li>
-              <li><strong>No payload structure changed:</strong> This is an identity and rule-catalog correction, not a structural API redesign.</li>
+              <li><strong>Kurma and Vaishakha Purnima no longer blur together:</strong> Kurma-related handling now stays distinct from the broader Vaishakha Purnima observance convention.</li>
+              <li><strong>Skanda Sashti follows the corrected observance path:</strong> Evening-based rule handling is now reflected in the public decision output.</li>
+              <li><strong>No payload structure changed:</strong> This is a festival rule and identity correction release, not a structural API redesign.</li>
             </ul>
           </div>
 
           <h4>Upgrade Actions</h4>
           <ul>
-            <li>Regenerate cached festival, month, and raw output if you store canonical festival identity names or total festival counts.</li>
-            <li>Rebaseline tests or snapshots that compare exact festival identity totals or Ganesh Chaturthi family aliases.</li>
+            <li>Regenerate cached festival, month, and raw output if you store canonical festival identity names, total festival counts, or detailed decision reasons.</li>
+            <li>Rebaseline tests or snapshots that compare exact festival identity totals, Ganesh Chaturthi family aliases, or festival decision notes.</li>
             <li>Expect Vinayaka Chaturthi and Ganesh Chaturthi to stay aligned on the same resolved Bhadrapada observance date.</li>
+            <li>Expect Kurma Jayanti, Vaishakha Purnima, and Skanda Sashti outputs to reflect their corrected public rule wording.</li>
           </ul>
 
           <h3>v10.0.3 Upgrade &amp; Release Notes</h3>

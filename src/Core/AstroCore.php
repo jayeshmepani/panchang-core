@@ -48,7 +48,7 @@ final readonly class AstroCore
     {
         $diff = abs($a - $b);
         if ($diff > 180.0) {
-            $diff = 360.0 - $diff;
+            return 360.0 - $diff;
         }
 
         return $diff;

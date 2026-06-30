@@ -3,10 +3,11 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
+use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 
 return RectorConfig::configure()
     ->withPaths([__DIR__ . '/src', __DIR__ . '/config', __DIR__ . '/tests'])
-
     ->withSkip([
         __DIR__ . '/vendor',
         __DIR__ . '/node_modules',
@@ -19,27 +20,22 @@ return RectorConfig::configure()
         __DIR__ . '/tests/Fixtures',
         __DIR__ . '/tests/fixtures',
     ])
-
     ->withPhpSets()
-
-    /*
-     * SAFE ONLY.
-     *
-     * Avoid aggressive semantic rewrites.
-     */
     ->withPreparedSets(
         deadCode: false,
-        codeQuality: false,
+        codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
         privatization: false,
         naming: false,
         instanceOf: false,
-        earlyReturn: false,
+        earlyReturn: true,
     )
-
+    ->withSkip([
+        ChangeOrIfContinueToMultiContinueRector::class,
+        ChangeNestedForeachIfsToEarlyContinueRector::class,
+    ])
     ->withParallel()
-
     ->withImportNames(
         importNames: true,
         removeUnusedImports: true,

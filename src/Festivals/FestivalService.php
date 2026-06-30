@@ -194,9 +194,10 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'aliases' => ['Balarama Jayanti'],
-            'description' => 'Birth anniversary of Lord Balarama',
-            'deity' => 'Balarama',
+            'aliases' => ['Hal Chhath', 'Har Chhath', 'Lalahi Chhath'],
+            'description' => 'Regional vrata for the longevity, health and wellbeing of children, observed in connection with Lord Balarama and Chhathi traditions',
+            'deity' => 'Balarama/Chhathi Mata',
+            'regions' => ['Bihar', 'Nepal', 'North India'],
             'karmakala_type' => 'sunrise',
         ],
         'Kali Jayanti' => [
@@ -1230,6 +1231,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Diwali Lakshmi Puja'],
             'description' => 'Deepavali night Lakshmi Puja in Pradosha window',
             'deity' => 'Lakshmi',
             'regions' => ['Pan-India'],
@@ -1447,6 +1449,7 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
+            'aliases' => ['Chaitra Navratri Ghatasthapana'],
             'description' => 'Chaitra (Vasant) Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.',
             'deity' => 'Durga/Shailaputri',
             'karmakala_type' => 'madhyahna',
@@ -1567,6 +1570,7 @@ class FestivalService
             'tithi' => 1,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Sharad Navratri Ghatasthapana'],
             'description' => 'Ashvina Sharad Navaratri Day 1 (Ghatasthapana): worship of Shailaputri (Daughter of the Mountain). Ghatasthapana is preferred before Madhyahna while Pratipada prevails.',
             'deity' => 'Durga/Shailaputri',
             'karmakala_type' => 'madhyahna',
@@ -1663,6 +1667,7 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Durga Ashtami'],
             'description' => 'Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami',
             'deity' => 'Durga/Mahagauri',
             'karmakala_type' => 'aparahna',
@@ -1678,6 +1683,7 @@ class FestivalService
             'tithi' => 9,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Maha Navami'],
             'description' => 'Ashvina Sharad Navaratri - Worship of Siddhidatri (Giver of Supernatural Powers) / Maha Navami',
             'deity' => 'Durga/Siddhidatri',
             'karmakala_type' => 'aparahna',
@@ -2015,6 +2021,9 @@ class FestivalService
             'month_purnimanta' => 'Chaitra',
             'description' => 'Descent of Goddess Yamuna',
             'deity' => 'Yamuna',
+            'fasting' => true,
+            'require_sunrise_vyapini' => true,
+            'location_sensitive' => true,
         ],
         'Chaiti Chhath' => [
             'type' => 'tithi',
@@ -2042,7 +2051,11 @@ class FestivalService
             'previous_tithi_vedha_tolerated' => true,
             'nakshatra' => 'Punarvasu',
             'prefer_nakshatra' => true,
+            'prefer_nakshatra_window' => true,
             'ritual_profile' => 'ramnavami_satsangi',
+            'require_karmakala_match' => true,
+            'vriddhi_preference' => 'last',
+            'kshaya_preference' => 'first',
             'source_refs' => ['Satsangi Jeevan 4.60'],
         ],
         'Swaminarayan Jayanti (Hari-Nom)' => [
@@ -2060,6 +2073,7 @@ class FestivalService
             'vriddhi_preference' => 'first',
             'kshaya_preference' => 'first',
             'tradition_profile' => 'Swaminarayan/Satsangi Jeevan sunrise-vyapini Navami',
+            'ritual_profile' => 'swaminarayan_jayanti_night',
         ],
         'Kamada Ekadashi' => [
             'type' => 'tithi',
@@ -2105,12 +2119,24 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'description' => 'Birth of Lord Parashurama',
+            'description' => 'Birth celebration of Lord Parashurama with tradition-aware observance routing',
             'deity' => 'Parashurama',
-            'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
-            'ritual_profile' => 'parashurama_jayanti_satsangi',
-            'source_refs' => ['Satsangi Jeevan 4.60'],
+            'traditions' => [
+                'satsangi' => [
+                    'variant_name' => 'Parashurama Jayanti',
+                    'aliases' => ['Parashurama Jayanti (Swaminarayan/Satsangi)'],
+                    'karmakala_type' => 'madhyahna',
+                    'ritual_profile' => 'parashurama_jayanti_satsangi',
+                    'source_refs' => ['Satsangi Jeevan 4.60'],
+                ],
+                'pradosha' => [
+                    'variant_name' => 'Parashurama Jayanti (Pradosha Tradition)',
+                    'fasting' => true,
+                    'karmakala_type' => 'pradosha',
+                    'vriddhi_preference' => 'last',
+                ],
+            ],
         ],
         'Akshaya Tritiya' => [
             'type' => 'tithi',
@@ -2119,6 +2145,7 @@ class FestivalService
             'tithi' => 3,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Akshaya Tritiya (Lakshmi-Narayana)'],
             'description' => 'Most auspicious for new beginnings',
             'deity' => 'Vishnu/Lakshmi',
             'karmakala_type' => 'madhyahna',
@@ -2142,6 +2169,8 @@ class FestivalService
             'month_purnimanta' => 'Vaishakha',
             'description' => 'Rebirth of River Ganga',
             'deity' => 'Ganga',
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
         ],
         'Sita Navami' => [
             'type' => 'tithi',
@@ -2152,6 +2181,8 @@ class FestivalService
             'month_purnimanta' => 'Vaishakha',
             'description' => 'Birth anniversary of Goddess Sita',
             'deity' => 'Sita',
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
         ],
         'Mohini Ekadashi' => [
             'type' => 'tithi',
@@ -2175,13 +2206,22 @@ class FestivalService
             'description' => 'Appearance day of Lord Narasimha',
             'deity' => 'Narasimha',
             'fasting' => true,
-            'karmakala_type' => 'sunset',
+            'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
-            'vriddhi_preference' => 'last',
-            'previous_tithi_vedha_ignored' => true,
-            'ritual_kala_type' => 'pradosha',
-            'ritual_profile' => 'narasimha_jayanti_satsangi',
-            'source_refs' => ['Satsangi Jeevan 4.60'],
+            'require_karmakala_match' => true,
+            'trayodashi_viddha_rejection' => true,
+            'kshaya_accept_previous_tithi_vedha' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
+            'nakshatra' => 'Swati',
+            'prefer_nakshatra' => true,
+            'prefer_weekdays' => [1],
+            'ritual_profile' => 'narasimha_jayanti',
+            'fasting_guidance_key' => 'capable_full_fast_incapable_falahar_no_grains',
+            'source_refs' => [
+                'Satsangi Jeevan 4.60.53-60',
+                'Dharma Sindhu / Nirnaya Sindhu Narasimha Chaturdashi',
+            ],
         ],
         'Narsinh Mehta Janma Jayanti' => [
             'type' => 'tithi',
@@ -2245,6 +2285,7 @@ class FestivalService
             'description' => 'Descent of Mother Ganga to Earth',
             'deity' => 'Ganga',
             'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'allows_adhika' => true,
             'aliases' => ['Gangavatar', 'Dasahara'],
             'ritual_profile' => 'gangavatar_dasahara_satsangi',
@@ -2435,7 +2476,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Chaitra',
             'month_purnimanta' => 'Chaitra',
-            'aliases' => ['Hanuman Jayanti'],
+            'aliases' => ['Hanuman Jayanti', 'Hanuman Jayanti (North Indian)'],
             'description' => 'Chaitra full moon day and Hanuman Jayanti in many traditions',
             'deity' => 'Hanuman',
             'fasting' => false,
@@ -2451,8 +2492,8 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'aliases' => ['Buddha Purnima', 'Kurma Jayanti', 'Chitra Pournami', 'Vaishakha Purnima Vrat'],
-            'description' => 'Birth of Buddha and Kurma Avatar',
+            'aliases' => ['Buddha Purnima', 'Chitra Pournami', 'Vaishakha Purnima Vrat'],
+            'description' => 'Vaishakha Purnima vrata associated with Buddha Purnima and related lunar observances',
             'deity' => 'Vishnu/Buddha',
             'fasting' => true,
             'karmakala_type' => 'sunset',
@@ -2524,11 +2565,13 @@ class FestivalService
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Shravana',
             'aliases' => ['Shravana Purnima Vrat', 'Raksha Bandhan', 'Rakshabandhan', 'Rakshabandh', 'Narali Purnima', 'Hayagriva Jayanti', 'Gayatri Jayanti'],
-            'description' => 'Full moon of Shravana month',
+            'description' => 'Full moon of Shravana month, including Raksha Bandhan and related regional observances',
             'deity' => 'Vishnu/Gayatri',
             'fasting' => true,
             'karmakala_type' => 'aparahna',
             'strict_karmakala' => true,
+            'avoid_bhadra_mukha' => true,
+            'prefer_bhadra_puchha' => true,
             'raksha_bandhan_truth_table' => true,
         ],
         'Bhadrapada Purnima' => [
@@ -2946,6 +2989,8 @@ class FestivalService
             'deity' => 'Durga (Chamunda)',
             'regions' => ['Bengal'],
             'karmakala_type' => 'sunrise', // Logic for Sandhi Puja is usually exact time, but tagging on Ashtami
+            'strict_karmakala' => true,
+            'ritual_profile' => 'ashtami_navami_sandhi_interval',
         ],
         'Saraswati Avahan' => [
             'type' => 'tithi',
@@ -3205,7 +3250,9 @@ class FestivalService
             'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
             'ritual_profile' => 'matsya_jayanti_satsangi',
             'source_refs' => ['Satsangi Jeevan 4.60'],
         ],
@@ -3313,10 +3360,12 @@ class FestivalService
             'tithi' => 10,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Jyeshtha',
+            'aliases' => ['Telugu Hanuman Vratam', 'Telugu Hanuman Jayanthi'],
             'description' => '41-day Hanuman Deeksha conclusion; celebrated primarily in Andhra and Telangana',
             'deity' => 'Hanuman',
             'regions' => ['Andhra Pradesh', 'Telangana'],
             'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
         ],
         'Ramanuja Jayanti' => [
             'type' => 'tithi',
@@ -3614,15 +3663,22 @@ class FestivalService
             'deity' => 'Sheetala Mata',
             'regions' => ['Gujarat'],
         ],
-        'Balarama Jayanti (Hala Shashthi)' => [
+        'Balarama Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'paksha' => 'Krishna',
+            'paksha' => 'Shukla',
             'tithi' => 6,
-            'month_amanta' => 'Shravana',
+            'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Birth celebration of Lord Balarama, worship of Haladhara (plough bearer)',
+            'aliases' => ['Balarama Jayanti (Hala Shashthi)', 'Hal Shashthi (Balarama Jayanti)', 'Baladeva Chhath', 'Baldev Chhath', 'Balbhadra Jayanti'],
+            'description' => 'Balarama birth celebration following the classical Garga Samhita tradition observed during Madhyahna',
             'deity' => 'Balarama',
+            'fasting' => true,
+            'nakshatra' => 'Swati',
+            'prefer_nakshatra' => true,
+            'karmakala_type' => 'madhyahna',
+            'strict_karmakala' => true,
+            'source_refs' => ['Garga Samhita 1.11', 'Satsangi Jeevan 4.60'],
         ],
         'Sheetala Satam' => [
             'type' => 'tithi',
@@ -3643,19 +3699,31 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Birth celebration of Lord Krishna',
+            'description' => 'Birth celebration of Lord Krishna with tradition-aware observance routing',
             'deity' => 'Krishna',
             'fasting' => true,
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
-            'vriddhi_preference' => 'last',
             'nakshatra' => 'Rohini',
             'prefer_nakshatra' => true,
             'prefer_weekdays' => [1, 3],
             'janmashtami_truth_table' => true,
-            'tradition_profile' => 'Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion',
-            'ritual_profile' => 'janmashtami_uddhav',
-            'source_refs' => ['Satsangi Jeevan 4.11', 'Satsangi Jeevan 4.55'],
+            'traditions' => [
+                'uddhav' => [
+                    'variant_name' => 'Krishna Janmashtami',
+                    'aliases' => ['Krishna Janmashtami (Swaminarayan-Uddhav)', 'Gokulashtami'],
+                    'vriddhi_preference' => 'last',
+                    'prefer_nakshatra_window' => false,
+                    'tradition_profile' => 'Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion',
+                    'ritual_profile' => 'janmashtami_uddhav',
+                    'source_refs' => ['Satsangi Jeevan 4.11', 'Satsangi Jeevan 4.55'],
+                ],
+                'smarta' => [
+                    'variant_name' => 'Krishna Janmashtami (Smarta)',
+                    'prefer_nakshatra_window' => true,
+                    'vriddhi_preference' => 'first',
+                ],
+            ],
         ],
         'Ramanand Swami Appearance Festival' => [
             'type' => 'tithi',
@@ -3709,6 +3777,8 @@ class FestivalService
             'deity' => 'Ganesha',
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
+            'require_karmakala_match' => true,
+            'previous_tithi_vedha_tolerated' => true,
             'prefer_full_karmakala_coverage' => true,
             'gujarati_special_case' => 'prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap',
             'chandradarshan_nishedh' => true,
@@ -3751,6 +3821,7 @@ class FestivalService
             'tithi' => 8,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Radhashtami'],
             'description' => 'Birth anniversary of Radha Rani',
             'deity' => 'Radha',
             'karmakala_type' => 'madhyahna',
@@ -3842,6 +3913,7 @@ class FestivalService
             'description' => 'Worship of Lord Ananta; Ganesh Visarjan',
             'deity' => 'Vishnu/Ganesha',
             'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
         ],
         'Purnima Shraddha' => [
             'type' => 'tithi',
@@ -3893,7 +3965,7 @@ class FestivalService
             'tithi' => 10,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
-            'aliases' => ['Vijayadashami'],
+            'aliases' => ['Vijayadashami', 'Vijayadashami (Aparajita Puja)'],
             'description' => 'Victory of Lord Rama over Ravana / End of Sharad Navaratri',
             'deity' => 'Rama/Durga',
             'karmakala_type' => 'vijaya_kaal',
@@ -4004,7 +4076,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
-            'aliases' => ['Sharad Purnima'],
+            'aliases' => ['Sharad Purnima', 'Kojagara Lakshmi Puja'],
             'description' => 'Lakshmi worship on Sharad Purnima night (Kojagari)',
             'deity' => 'Lakshmi',
             'karmakala_type' => 'nishitha',
@@ -4024,7 +4096,7 @@ class FestivalService
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
             'deepotsav_sequence' => 'dhanteras',
-            'aliases' => ['Dhanatrayodashi', 'Alankar Marjan'],
+            'aliases' => ['Dhanatrayodashi', 'Alankar Marjan', 'Dhanvantari Jayanti (Dhantrayodashi)'],
             'ritual_profile' => 'alankar_marjan_satsangi',
             'source_refs' => ['Satsangi Jeevan 4.57.50-57'],
         ],
@@ -4066,7 +4138,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Kartika',
-            'aliases' => ['Diwali'],
+            'aliases' => ['Diwali', 'Kali Puja (Shyama Puja)'],
             'description' => 'Festival of lights / Worship of Goddess Kali',
             'deity' => 'Kali',
             'karmakala_type' => 'pradosha',
@@ -4127,6 +4199,7 @@ class FestivalService
             'tithi' => 6,
             'month_amanta' => 'Kartika',
             'month_purnimanta' => 'Kartika',
+            'aliases' => ['Chhath Puja (Surya Shashthi)'],
             'description' => 'Major day (3rd of 4) of Chhath Puja - evening arghya to Surya; festival runs Kartika Shukla 4-7',
             'deity' => 'Surya/Chhathi Maiya',
             'fasting' => true,
@@ -4439,7 +4512,7 @@ class FestivalService
             'tithi' => 5,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'aliases' => ['Saraswati Jayanti', 'Saraswati Puja', 'Shree Panchami', 'Shikshapatri Jayanti'],
+            'aliases' => ['Saraswati Jayanti', 'Saraswati Puja', 'Shree Panchami', 'Shikshapatri Jayanti', 'Vasant Panchami (Saraswati Puja)'],
             'description' => 'Worship of Goddess Saraswati and welcoming of spring; Shikshapatri presentation',
             'deity' => 'Saraswati',
             'karmakala_type' => 'sunrise',
@@ -4469,8 +4542,12 @@ class FestivalService
             'tithi' => 7,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
+            'aliases' => ['Ratha Saptami (Surya Jayanti)'],
             'description' => 'Surya Jayanti',
             'deity' => 'Surya',
+            'karmakala_type' => 'arunodaya',
+            'strict_karmakala' => true,
+            'require_karmakala_match' => true,
         ],
         'Bhishma Ashtami' => [
             'type' => 'tithi',
@@ -4601,21 +4678,95 @@ class FestivalService
             'ritual_profile' => 'pushpa_dolotsav_satsangi',
             'source_refs' => ['Satsangi Jeevan 4.45', 'Satsangi Jeevan 4.60'],
         ],
-        'Swaminarayan Kurma Jayanti' => [
+        'Kurma Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 1,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'aliases' => ['Kurma Jayanti'],
-            'description' => 'Swaminarayan Kurma Jayanti rule on Vaishakha Shukla Pratipada',
+            'aliases' => ['Swaminarayan Kurma Jayanti', 'Kurma Jayanti (Swaminarayan/Satsangi)'],
+            'description' => 'Commemorates Kurma avatar appearance during Samudra Manthana',
             'deity' => 'Vishnu (Kurma)',
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
+            'require_karmakala_match' => true,
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'last',
             'sect_specific' => true,
+            'tradition_profile' => 'Swaminarayan Kurma Jayanti rule on Vaishakha Shukla Pratipada',
             'ritual_profile' => 'kurma_jayanti_satsangi',
-            'source_refs' => ['Satsangi Jeevan 4.60'],
+            'source_refs' => ['Satsangi Jeevan 4.60.37-43'],
+            'source_evidence' => [
+                [
+                    'kind' => 'narrative_date',
+                    'source' => 'Satsangi Jeevan',
+                    'locator' => '4.60.37',
+                    'supports' => 'Kurma manifestation on Vaishakha Shukla Pratipada in the morning',
+                ],
+                [
+                    'kind' => 'date_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'locator' => '4.60.38',
+                    'supports' => 'Select sunrise-vyapini Pratipada; when sunrise-vyapini on both days, choose the later Dvitiya-associated Pratipada',
+                ],
+                [
+                    'kind' => 'ritual_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'locator' => '4.60.39-43',
+                    'supports' => 'Kurma-form worship, iconography, Sarvatobhadra mandala, laddoo offering and meal after worship',
+                ],
+            ],
+        ],
+        'Kurma Jayanti (Vaishakha Purnima Tradition)' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Shri Koorma Jayanti', 'Kurma Avatara Appearance'],
+            'description' => 'Vaishakha Purnima convention associating Kurma Jayanti with a later calendrical observance',
+            'deity' => 'Vishnu (Kurma)',
+            'fasting' => true,
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
+            'require_karmakala_match' => true,
+            'tradition_profile' => 'Vaishakha Purnima Kurma Jayanti convention',
+            'date_rule_authority' => 'later_calendrical_compendium_and_living_panchanga',
+            'source_status' => 'date_tradition_verified_classical_nirnaya_locus_pending',
+            'source_refs' => ['Siddhanta Darpana', 'Drik Panchang Kurma Jayanti convention'],
+            'source_evidence' => [
+                [
+                    'kind' => 'calendar_rule',
+                    'source' => 'Siddhanta Darpana',
+                    'locator' => 'Shukla Panchadashi/Purnima festival table',
+                    'supports' => 'Vaishakha Purnima associated with Kurma Jayanti in a later calendrical convention',
+                ],
+                [
+                    'kind' => 'living_calendar_rule',
+                    'source' => 'Drik Panchang',
+                    'supports' => 'Kurma Jayanti observed on Vaishakha Shukla Purnima in current published practice',
+                ],
+                [
+                    'kind' => 'narrative',
+                    'source' => 'Kurma Purana',
+                    'locator' => '1.1.27-30',
+                    'supports' => 'Vishnu assumes Kurma form and supports Mount Mandara',
+                ],
+                [
+                    'kind' => 'narrative',
+                    'source' => 'Padma Purana',
+                    'locator' => 'Uttara Khanda 232.1-4',
+                    'supports' => 'Narrative circumstances associated with Samudra Manthana',
+                ],
+                [
+                    'kind' => 'narrative',
+                    'source' => 'Srimad Bhagavata Purana',
+                    'locator' => '8.7.8-10',
+                    'supports' => 'Vishnu assumes the tortoise form and supports Mandara',
+                ],
+            ],
         ],
         'Snanyatra' => [
             'type' => 'tithi',
@@ -4733,16 +4884,20 @@ class FestivalService
             'adhika_only' => true,
             'require_vaishnava_ekadashi_today' => true,
         ],
-
         'Skanda Sashti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 6,
-            'description' => 'Dedicated to Lord Murugan (Skanda)',
+            'month_amanta' => 'Kartika',
+            'month_purnimanta' => 'Kartika',
+            'aliases' => ['Kanda Sashti (Soorasamharam)', 'Skanda Shashti Vratam'],
+            'description' => 'Lord Murugan triumph over Surapadman, calculated through Panchami-viddha evening overlap rules',
             'deity' => 'Skanda',
             'regions' => ['Tamil Nadu', 'South India'],
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'sunset',
+            'strict_karmakala' => true,
+            'panchami_viddha_allowed' => true,
         ],
         'Vidyarambham' => [
             'type' => 'tithi',
@@ -5632,6 +5787,71 @@ class FestivalService
             'regions' => ['South India'],
             'karmakala_type' => 'pradosha',
         ],
+        'Jagannath Ratha Yatra' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 2,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'description' => 'Chariot festival of Jagannath, Balabhadra and Subhadra',
+            'deity' => 'Jagannath',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+        ],
+        'Kannada Hanuman Vratam' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 13,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Margashirsha',
+            'description' => 'Karnataka Hanuman Vratam on Margashirsha Shukla Trayodashi',
+            'deity' => 'Hanuman',
+            'fasting' => true,
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+        ],
+        'Tamil Hanumath Jayanthi' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Krishna',
+            'tithi' => 15,
+            'month_amanta' => 'Margashirsha',
+            'month_purnimanta' => 'Pausha',
+            'description' => 'Tamil Hanuman observance on Margashirsha Amavasya',
+            'deity' => 'Hanuman',
+            'fasting' => true,
+            'nakshatra' => 'Mula',
+            'prefer_nakshatra' => true,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Thai Pusam' => [
+            'type' => 'solar_nakshatra',
+            'resolver' => 'classical',
+            'rashi' => 9,
+            'nakshatra' => 'Pushya',
+            'nakshatra_only' => true,
+            'description' => 'Murugan festival in the solar month Thai under Pushya Nakshatra',
+            'deity' => 'Skanda-Murugan',
+            'fasting' => true,
+            'regions' => ['Tamil Nadu'],
+            'sun_sign' => 9,
+            'karmakala_type' => 'sunrise',
+        ],
+        'Vaikasi Visakam' => [
+            'type' => 'solar_nakshatra',
+            'resolver' => 'classical',
+            'rashi' => 1,
+            'nakshatra' => 'Vishakha',
+            'nakshatra_only' => true,
+            'description' => 'Murugan festival in the solar month Vaikasi under Vishakha Nakshatra',
+            'deity' => 'Skanda-Murugan',
+            'fasting' => true,
+            'regions' => ['Tamil Nadu'],
+            'sun_sign' => 1,
+            'karmakala_type' => 'sunrise',
+        ],
     ];
 
     /** Month name mapping */
@@ -5688,7 +5908,7 @@ class FestivalService
         $tithiNum = (int) ($tithi['index'] ?? 0);
         $paksha = $tithi['paksha'] ?? 'Shukla';
 
-        foreach (self::FESTIVALS as $name => $rules) {
+        foreach ($this->expandFestivalRules() as $name => $rules) {
             if (!$this->shouldIncludeFestivalRules($rules, $selection)) {
                 continue;
             }
@@ -5700,7 +5920,7 @@ class FestivalService
 
             // Adhika/Nija filtering logic for lunar (tithi) observances.
             // Default behavior is Nija-only unless explicitly marked otherwise.
-            $adhikaAllowed = ($rules['allow_adhika'] ?? false) || ($rules['allows_adhika'] ?? false);
+            $adhikaAllowed = (bool) ($rules['allow_adhika'] ?? false) || (bool) ($rules['allows_adhika'] ?? false);
             $adhikaOnly = (bool) ($rules['adhika_only'] ?? false);
 
             if ($type === 'tithi') {
@@ -5997,6 +6217,55 @@ class FestivalService
         throw new LogicException('Year-wide festival calculation is intentionally disabled in FestivalService. Use date-wise calculation via PanchangService.');
     }
 
+    /**
+     * Expand merged tradition-aware festival definitions into effective runtime rules.
+     *
+     * This allows the registry to keep one canonical root entry while still emitting
+     * distinct observance variants such as Smarta vs Uddhav/Swaminarayan.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function expandFestivalRules(): array
+    {
+        $expanded = [];
+
+        foreach (self::FESTIVALS as $name => $rules) {
+            $traditions = $rules['traditions'] ?? null;
+            if (!is_array($traditions)) {
+                $expanded[$name] = $rules;
+                continue;
+            }
+
+            $baseRules = $rules;
+            unset($baseRules['traditions']);
+
+            foreach ($traditions as $traditionKey => $traditionRules) {
+                if (!is_array($traditionRules)) {
+                    continue;
+                }
+
+                $variantName = $traditionRules['variant_name'];
+                $variantAliases = array_map(
+                    static fn (mixed $alias): string => (string) $alias,
+                    (array) ($traditionRules['aliases'] ?? [])
+                );
+
+                $effectiveTraditionRules = $traditionRules;
+                unset($effectiveTraditionRules['variant_name'], $effectiveTraditionRules['aliases']);
+
+                $effectiveRules = array_replace($baseRules, $effectiveTraditionRules);
+                if ($variantAliases !== []) {
+                    $effectiveRules['aliases'] = array_values(array_unique($variantAliases));
+                }
+
+                $effectiveRules['merged_tradition_key'] = (string) $traditionKey;
+                $expanded[$variantName] = $effectiveRules;
+            }
+        }
+
+        return $expanded;
+    }
+
     private function rejectResolvedFestivalForDay(array $rules, array $todayDetails): bool
     {
         if ((bool) ($rules['require_vaishnava_ekadashi_today'] ?? false)) {
@@ -6025,7 +6294,7 @@ class FestivalService
     ): array {
         $results = [];
 
-        foreach (self::FESTIVALS as $name => $rules) {
+        foreach ($this->expandFestivalRules() as $name => $rules) {
             if ((string) ($rules['type'] ?? '') !== 'day_after') {
                 continue;
             }
@@ -6174,6 +6443,7 @@ class FestivalService
             'ritual_kala_type_name' => $this->localizedString($rules['ritual_kala_type'] ?? null),
             'strict_karmakala' => $rules['strict_karmakala'] ?? null,
             'require_sunrise_vyapini' => $rules['require_sunrise_vyapini'] ?? null,
+            'require_previous_tithi_at' => $rules['require_previous_tithi_at'] ?? null,
             'vriddhi_preference' => $rules['vriddhi_preference'] ?? null,
             'prefer_first_karmakala' => $rules['prefer_first_karmakala'] ?? null,
             'prefer_full_karmakala_coverage' => $rules['prefer_full_karmakala_coverage'] ?? null,
@@ -6217,6 +6487,10 @@ class FestivalService
             'parent_festival' => is_string($parentFestivalRaw) && $parentFestivalRaw !== '' ? Localization::translate('Festival', $parentFestivalRaw) : null,
             'parent_festival_key' => $parentFestivalRaw,
             'source_refs' => $rules['source_refs'] ?? null,
+            'source_evidence' => $rules['source_evidence'] ?? null,
+            'textual_variants' => $rules['textual_variants'] ?? null,
+            'resolver_compatibility' => $rules['resolver_compatibility'] ?? null,
+            'unresolved_conditions' => $rules['unresolved_conditions'] ?? null,
         ];
 
         return $this->filterEmptyMetadata($basis);

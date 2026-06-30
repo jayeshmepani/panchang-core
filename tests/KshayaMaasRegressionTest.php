@@ -37,8 +37,8 @@ class KshayaMaasRegressionTest extends TestCase
         $this->assertSame('Margashirsha', $start['Month_Amanta_En'] ?? null);
         $this->assertSame('Margashirsha', $start['Month_Purnimanta_En'] ?? null);
         $this->assertTrue((bool) ($start['Is_Kshaya'] ?? false));
-        $this->assertStringNotContainsString('Omitted', (string) ($start['Month_Amanta_En'] ?? ''));
-        $this->assertStringNotContainsString('Omitted', (string) ($start['Month_Purnimanta_En'] ?? ''));
+        $this->assertStringNotContainsString('Omitted', $start['Month_Amanta_En'] ?? '');
+        $this->assertStringNotContainsString('Omitted', $start['Month_Purnimanta_En'] ?? '');
 
         $this->assertSame('Margashirsha', $next['Month_Amanta_En'] ?? null);
         $this->assertTrue((bool) ($next['Is_Kshaya'] ?? false));

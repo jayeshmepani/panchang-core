@@ -108,7 +108,7 @@ class SunService
 
         $geopos = $this->newGeoPos($birth);
         $moonrise = $this->runRiseTransit($jd, $geopos, JmeEphFFI::JME_BODY_MOON, JmeEphFFI::JME_RISE_RISE, $birth['timezone'], false);
-        if ($moonrise === null) {
+        if (!$moonrise instanceof CarbonImmutable) {
             return $this->moonriseMoonsetCache[$cacheKey] = [null, null];
         }
 

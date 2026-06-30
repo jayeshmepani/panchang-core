@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-06-26T05:25:21+00:00",
+        "generated_at": "2026-06-30T10:10:50+00:00",
         "year": 2026,
         "month": 6,
         "calendar_type": "amanta",
@@ -2247,10 +2247,10 @@
                         "festival_name": "અધિક માસિક કૃષ્ણ જન્માષ્ટમી",
                         "required_tithi": 8,
                         "paksha": "Krishna",
-                        "karmakala_type": "midnight",
+                        "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9757.799980044365,
+                        "tithi_coverage_seconds_today": 2507.4000388383865,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2265,8 +2265,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1162,
-                            "winning_window_overlap_seconds": 9757.799980044365,
+                            "winning_score": 1041,
+                            "winning_window_overlap_seconds": 2507.4000388383865,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -2279,7 +2279,7 @@
                         "festival_name_key": "Adhik Masik Krishna Janmashtami",
                         "festival_name_localized": "અધિક માસિક કૃષ્ણ જન્માષ્ટમી",
                         "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "મધ્યરાત્રિ"
+                        "karmakala_type_name": "નિશીથ"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -2288,8 +2288,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1162,
-                        "winning_window_overlap_seconds": 9757.799980044365,
+                        "winning_score": 1041,
+                        "winning_window_overlap_seconds": 2507.4000388383865,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -4000,6 +4000,105 @@
             },
             "festivals": [
                 {
+                    "name": "અધિક માસિક શિવરાત્રી",
+                    "name_key": "Adhika Masik Shivaratri",
+                    "description": "અધિક માસમાં થતી માસિક શિવરાત્રી",
+                    "deity": "શિવ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 14 સૂર્યોદયે 2026-06-14 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-06-13 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                14
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                29
+                            ],
+                            "names": [
+                                "વદ ચૌદશ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "મધ્યરાત્રિ",
+                        "adhika": {
+                            "adhika_only": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "અધિક માસિક શિવરાત્રી",
+                        "required_tithi": 14,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2501.600030064583,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461204.943147473,
+                        "target_tithi_end_jd": 2461205.7848104322,
+                        "standard_date": "2026-06-14",
+                        "observance_date": "2026-06-13",
+                        "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 14 સૂર્યોદયે 2026-06-14 પર આવે છે, પરંતુ નિશીથ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-06-13 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1041,
+                            "winning_window_overlap_seconds": 2501.600030064583,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Adhika Masik Shivaratri",
+                        "festival_name_localized": "અધિક માસિક શિવરાત્રી",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "નિશીથ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1041,
+                        "winning_window_overlap_seconds": 2501.600030064583,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
                     "name": "શનિવાર વ્રત",
                     "name_key": "Shanivar Vrat",
                     "description": "ભગવાન શનિને સમર્પિત સાપ્તાહિક શનિવાર વ્રત",
@@ -4281,104 +4380,6 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
-                {
-                    "name": "અધિક માસિક શિવરાત્રી",
-                    "name_key": "Adhika Masik Shivaratri",
-                    "description": "અધિક માસમાં થતી માસિક શિવરાત્રી",
-                    "deity": "શિવ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                14
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                29
-                            ],
-                            "names": [
-                                "વદ ચૌદશ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "મધ્યરાત્રિ",
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "અધિક માસિક શિવરાત્રી",
-                        "required_tithi": 14,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9778.99998575449,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461204.943147473,
-                        "target_tithi_end_jd": 2461205.7848104322,
-                        "standard_date": "2026-06-14",
-                        "observance_date": "2026-06-14",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1162,
-                            "winning_window_overlap_seconds": 9778.99998575449,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Adhika Masik Shivaratri",
-                        "festival_name_localized": "અધિક માસિક શિવરાત્રી",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "મધ્યરાત્રિ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1162,
-                        "winning_window_overlap_seconds": 9778.99998575449,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
                 {
                     "name": "રવિવાર વ્રત",
                     "name_key": "Ravivar Vrat",
@@ -6010,103 +6011,6 @@
             },
             "festivals": [
                 {
-                    "name": "વિનાયક ચતુર્થી",
-                    "name_key": "Vinayaka Chaturthi",
-                    "description": "શુક્લ પક્ષ દરમિયાન ભગવાન ગણેશને સમર્પિત માસિક વ્રત",
-                    "deity": "ગણેશ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "ગણેશ જયંતિ"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                4
-                            ],
-                            "names": [
-                                "સુદ ચોથ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "resolution": {
-                        "festival_name": "વિનાયક ચતુર્થી",
-                        "required_tithi": 4,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9786.000028252602,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461209.1729483334,
-                        "target_tithi_end_jd": 2461210.0618966212,
-                        "standard_date": "2026-06-18",
-                        "observance_date": "2026-06-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1163,
-                            "winning_window_overlap_seconds": 9786.000028252602,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Vinayaka Chaturthi",
-                        "festival_name_localized": "વિનાયક ચતુર્થી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1163,
-                        "winning_window_overlap_seconds": 9786.000028252602,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "પ્રમુખ વર્ણી દિન",
                     "name_key": "Pramukh Varni Din",
                     "description": "તે દિવસ જ્યારે પ્રમુખ સ્વામી મહારાજને બીએપીએસ ના વહીવટી પ્રમુખ નિયુક્ત કરવામાં આવ્યા હતા (1950)",
@@ -7078,102 +6982,6 @@
                             "name": "શનિવાર",
                             "english_name": "Saturday"
                         }
-                    }
-                },
-                {
-                    "name": "સ્કંદ ષષ્ઠી",
-                    "name_key": "Skanda Sashti",
-                    "description": "ભગવાન મુરુગન (સ્કંદ) ને સમર્પિત",
-                    "deity": "સ્કંદ",
-                    "fasting": false,
-                    "regions": [
-                        "તમિલનાડુ",
-                        "દક્ષિણ ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                6
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                6
-                            ],
-                            "names": [
-                                "સુદ છઠ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "સ્કંદ ષષ્ઠી",
-                        "required_tithi": 6,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461210.97934347,
-                        "target_tithi_end_jd": 2461211.9285120843,
-                        "standard_date": "2026-06-20",
-                        "observance_date": "2026-06-20",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Skanda Sashti",
-                        "festival_name_localized": "સ્કંદ ષષ્ઠી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
             ],

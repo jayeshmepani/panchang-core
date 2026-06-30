@@ -317,9 +317,11 @@ Specific divisions used to schedule actions based on religious injunctions:
 
 These canonical identities are mapped to regional calendars, specific astronomical transits, and local lunar month definitions.
 
-The package currently includes **325 unique festival identities** and **90 unique vrat identities**.
+The current generated output reports **324 unique festival identities** and **98 unique vrat identities**.
 
-## Festival Identities (325)
+Recent festival-module updates also cleaned up overlapping observance identities, merged alias-only duplicates into their canonical families where appropriate, added missing observances, and corrected some tradition-specific date-selection and decision-rule handling.
+
+## Festival Identities (Current Generated Output: 324)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -423,7 +425,7 @@ The package currently includes **325 unique festival identities** and **90 uniqu
 | 98 | Ekadanta Sankashti Chaturthi | Sankashti Chaturthi, Ekadanta Sankashti |
 | 99 | Gajanana Sankashti Chaturthi | Sankashti Chaturthi, Gajanana Sankashti |
 | 100 | Ganadhipa Sankashti Chaturthi | Sankashti Chaturthi, Ganadhipa Sankashti |
-| 101 | Ganesh Chaturthi | - |
+| 101 | Ganesh Chaturthi | In current generated output this family is aligned under Vinayaka Chaturthi aliases |
 | 102 | Ganga Dussehra | Gangavatar, Dasahara |
 | 103 | Ganga Sagar Mela | - |
 | 104 | Ganga Saptami | - |
@@ -592,11 +594,11 @@ The package currently includes **325 unique festival identities** and **90 uniqu
 | 267 | Siddhilakshmi Jayanti | - |
 | 268 | Simha Sankranti | - |
 | 269 | Sita Navami | - |
-| 270 | Skanda Sashti | - |
+| 270 | Skanda Sashti | Kanda Sashti (Soorasamharam), Skanda Shashti Vratam |
 | 271 | Snanyatra | - |
 | 272 | Subrahmanya Shashti (Champa Shashthi) | Champa Shashthi |
 | 273 | Surdas Jayanti | - |
-| 274 | Swaminarayan Kurma Jayanti | Kurma Jayanti |
+| 274 | Kurma Jayanti | Swaminarayan Kurma Jayanti, Kurma Jayanti (Swaminarayan/Satsangi) |
 | 275 | Swaminarayan Rathyatra | - |
 | 276 | Swarochisha Manvadi | - |
 | 277 | Swayambhuva Manvadi | - |
@@ -739,7 +741,7 @@ The package currently includes **325 unique festival identities** and **90 uniqu
 | 82 | Swaminarayan Varaha Jayanti | - |
 | 83 | Third Mangala Gauri Vrat | - |
 | 84 | Utpanna Ekadashi | - |
-| 85 | Vaishakha Purnima | Buddha Purnima, Kurma Jayanti, Chitra Pournami, Vaishakha Purnima Vrat |
+| 85 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
 | 86 | Varaha Jayanti | - |
 | 87 | Varalakshmi Vratam | - |
 | 88 | Varuthini Ekadashi | - |
