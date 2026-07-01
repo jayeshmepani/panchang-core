@@ -1047,6 +1047,60 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertGreaterThan(0, $resolved['decision']['winning_nakshatra_window_overlap_seconds']);
     }
 
+    public function testPhuldolotsavaResolvesAsKrishnaPratipadaInAmanta(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-03-04');
+        $rule = FestivalService::FESTIVALS['Phuldolotsava'];
+
+        $today = $this->festivalSnapshot(16, 'Krishna', 100.25, 100.75, 101.25, 100.10, 101.10, 'Uttara Phalguni');
+        $today['Hindu_Calendar'] = [
+            'Calendar_Type' => 'amanta',
+            'Month_Amanta_En' => 'Phalguna',
+            'Month_Purnimanta_En' => 'Chaitra',
+        ];
+
+        $tomorrow = $this->festivalSnapshot(17, 'Krishna', 101.25, 101.75, 102.25, 101.10, 102.10, 'Hasta');
+        $tomorrow['Hindu_Calendar'] = [
+            'Calendar_Type' => 'amanta',
+            'Month_Amanta_En' => 'Phalguna',
+            'Month_Purnimanta_En' => 'Chaitra',
+        ];
+
+        $resolved = $engine->resolveMajorFestival('Phuldolotsava', $rule, $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('Krishna', $resolved['paksha']);
+        self::assertSame('2026-03-04', $resolved['observance_date']);
+    }
+
+    public function testPhuldolotsavaResolvesAsKrishnaPratipadaInPurnimantaMonthContext(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-03-04');
+        $rule = FestivalService::FESTIVALS['Phuldolotsava'];
+
+        $today = $this->festivalSnapshot(16, 'Krishna', 100.25, 100.75, 101.25, 100.10, 101.10, 'Uttara Phalguni');
+        $today['Hindu_Calendar'] = [
+            'Calendar_Type' => 'purnimanta',
+            'Month_Amanta_En' => 'Phalguna',
+            'Month_Purnimanta_En' => 'Chaitra',
+        ];
+
+        $tomorrow = $this->festivalSnapshot(17, 'Krishna', 101.25, 101.75, 102.25, 101.10, 102.10, 'Hasta');
+        $tomorrow['Hindu_Calendar'] = [
+            'Calendar_Type' => 'purnimanta',
+            'Month_Amanta_En' => 'Phalguna',
+            'Month_Purnimanta_En' => 'Chaitra',
+        ];
+
+        $resolved = $engine->resolveMajorFestival('Phuldolotsava', $rule, $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('Krishna', $resolved['paksha']);
+        self::assertSame('2026-03-04', $resolved['observance_date']);
+    }
+
     public function testFestivalRuleEngineRejectsUnknownKarmakalaType(): void
     {
         $engine = new FestivalRuleEngine;

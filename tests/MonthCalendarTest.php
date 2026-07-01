@@ -147,6 +147,54 @@ class MonthCalendarTest extends TestCase
         }
     }
 
+    public function testPhuldolotsavaStaysOnMarchFourthInPurnimantaAndDoesNotShiftToChaitraShuklaPratipada(): void
+    {
+        $lat = 23.2472446;
+        $lon = 69.668339;
+        $tz = 'Asia/Kolkata';
+
+        config(['panchang.defaults.locale' => 'en']);
+
+        $marchFourth = Panchang::getDayDetails(
+            CarbonImmutable::parse('2026-03-04', $tz),
+            $lat,
+            $lon,
+            $tz,
+            0.0,
+            null,
+            'purnimanta'
+        );
+
+        $marchNineteenth = Panchang::getDayDetails(
+            CarbonImmutable::parse('2026-03-19', $tz),
+            $lat,
+            $lon,
+            $tz,
+            0.0,
+            null,
+            'purnimanta'
+        );
+
+        $marchFourthFestival = null;
+        foreach (($marchFourth['Festivals'] ?? []) as $festival) {
+            if (($festival['name'] ?? null) === 'Phuldolotsava') {
+                $marchFourthFestival = $festival;
+                break;
+            }
+        }
+
+        $marchNineteenthNames = array_map(
+            static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+            $marchNineteenth['Festivals'] ?? []
+        );
+
+        $this->assertIsArray($marchFourthFestival);
+        $this->assertSame('2026-03-04', $marchFourthFestival['resolution']['observance_date'] ?? null);
+        $this->assertSame('Krishna', $marchFourthFestival['resolution']['paksha'] ?? null);
+        $this->assertSame('Chaitra', $marchFourthFestival['calculation_basis']['month']['value'] ?? null);
+        $this->assertNotContains('Phuldolotsava', $marchNineteenthNames);
+    }
+
     #[Override]
     protected function getPackageProviders($app)
     {
