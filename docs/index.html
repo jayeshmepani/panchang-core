@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.7 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.8 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. v10.0.6 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. The prior corrections from v10.0.3 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. v10.0.6 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. The prior corrections from v10.0.3 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.7 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.7: Phuldolotsava now follows the precise Satsangi Jeevan Krishna Pratipada + Uttara Phalguni sunrise vyapini rule with rich structured metadata (<code>calendar_rule</code>, <code>astronomy_rule</code>, <code>ritual_layers</code>, source evidence); Festival rules support explicit <code>paksha_amanta</code> / <code>paksha_purnimanta</code> (and month equivalents); multiple <code>month_purnimanta</code> mappings corrected for avatar Jayantis; richer rule metadata exposed in festival output; localization updated for new/renamed observances. All Amanta and Purnimanta outputs regenerated. 324 festival identities, 98 vrat identities.</p>
+            <h3>v10.0.8 Documentation Snapshot</h3>
+            <p>This documentation covers v10.0.8: Ekadashi entries now carry broader canonical alias coverage, and the festival registry, identity docs, and user-facing localization layer are aligned with the refreshed Ekadashi identity set. The current generated output remains at 324 festival identities and 98 vrat identities.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.0.8</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Ekadashi Alias Expansion and Formal Naming Cleanup</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release expanding canonical alias coverage across the Ekadashi family and aligning the festival registry, identity documentation, and localization layer with the refreshed identity set.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.7</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Phuldolotsava Rule Refinement, Purnimanta Month Corrections, and Calendar-Aware Paksha Support</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Phuldolotsava Rule Refinement, Purnimanta Month Corrections, and Calendar-Aware Paksha Support</span></div>
                 <p class="release-note">Patch release refining Phuldolotsava (Satsangi Jeevan Dolotsav) with accurate Krishna Pratipada + Uttara Phalguni vyapini rules and structured metadata, introducing <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support, correcting <code>month_purnimanta</code> values across multiple avatar and tithi observances, exposing richer rule metadata, and updating localization. All outputs regenerated.</p>
               </div>
             </li>
@@ -5041,6 +5048,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.0.8 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release expands the canonical alias set for the 26 named Ekadashis and keeps the festival registry, documentation, and localization layer aligned with the current Ekadashi identity set.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Ekadashi aliases are broader:</strong> the named Ekadashi family now carries a fuller canonical alias set in the registry and public identity docs.</li>
+              <li><strong>Ekadashi aliases are broader:</strong> the named Ekadashi family now carries a fuller canonical alias set in the registry and public identity docs.</li>
+              <li><strong>Localization is aligned:</strong> touched Ekadashi aliases and related user-facing names are now consistently covered in English, Hindi, and Gujarati.</li>
+              <li><strong>No structural payload redesign:</strong> this is a naming, alias, and localization cleanup release.</li>
+              <li><strong>Festival/vrat counts unchanged:</strong> the current generated output remains at 324 unique festival identities and 98 unique vrat identities.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, month, or raw yearly output if your application displays Ekadashi aliases or localized festival names.</li>
+            <li>Rebaseline snapshots or tests that assert on Ekadashi alias lists, localized festival names, or user-facing festival identity strings.</li>
+            <li>Prefer the refreshed canonical Ekadashi alias set in UI display, search, and documentation surfaces.</li>
+          </ul>
 
           <h3>v10.0.7 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release improves precision for Satsangi tradition observances and adds first-class support for calendar-specific paksha and month definitions in the festival registry.</p>
