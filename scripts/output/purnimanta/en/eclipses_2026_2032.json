@@ -1,9 +1,11 @@
 {
     "meta": {
-        "generated_at": "2026-06-30T11:59:22+00:00",
+        "generated_at": "2026-07-08T12:22:44+00:00",
         "type": "eclipses",
         "from_year": 2026,
         "to_year": 2032,
+        "calendar_type": "purnimanta",
+        "locale": "en",
         "location": {
             "latitude": 23.2472446,
             "longitude": 69.668339,
@@ -14,6 +16,8 @@
         "title": "Eclipses 2026-2032 - All eclipses for 7 years",
         "from_year": 2026,
         "to_year": 2032,
+        "calendar_type": "purnimanta",
+        "locale": "en",
         "total_eclipse_count": 33,
         "by_year": {
             "2026": [
@@ -54,7 +58,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 41229.87658828497,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -96,7 +100,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 304
                 },
@@ -194,7 +200,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 299
                 },
@@ -235,7 +243,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 46894.976618885994,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -277,7 +285,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 309
                 },
@@ -369,7 +379,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 297
                 }
@@ -418,7 +430,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 40427.70982682705,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -460,7 +472,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 304
                 },
@@ -546,7 +560,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 },
@@ -632,7 +648,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 },
@@ -713,17 +731,23 @@
                         "end_jd": 2461619.994927641,
                         "start": "02/08/2027 12:57:49 AM",
                         "end": "02/08/2027 05:22:41 PM",
-                        "relaxed_start_jd": 2461619.786006388,
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
+                        "relaxed_start_jd": 2461619.7860063873,
                         "relaxed_end_jd": 2461619.994927641,
                         "relaxed_start": "02/08/2027 12:21:50 PM",
                         "relaxed_end": "02/08/2027 05:22:41 PM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 14.702692452818155
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2461619.923603789,
                         "visible_start": "02/08/2027 03:39:59 PM",
                         "visible_end_jd": 2461619.994927641,
@@ -737,7 +761,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2461619.994927641,
-                        "starts_after": "02/08/2027 05:22:41 PM"
+                        "starts_after": "02/08/2027 05:22:41 PM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 309
                 },
@@ -823,7 +849,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 }
@@ -917,7 +945,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 297
                 },
@@ -964,7 +994,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 39724.63977187872,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1006,7 +1036,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 304
                 },
@@ -1081,17 +1113,23 @@
                         "end_jd": 2461959.313521783,
                         "start": "06/07/2028 12:56:09 PM",
                         "end": "07/07/2028 01:01:28 AM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2461959.105597598,
                         "relaxed_end_jd": 2461959.313521783,
                         "relaxed_start": "06/07/2028 08:02:03 PM",
                         "relaxed_end": "07/07/2028 01:01:28 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 9.71608603745699
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2461959.214664721,
                         "visible_start": "06/07/2028 10:39:07 PM",
                         "visible_end_jd": 2461959.313521783,
@@ -1105,7 +1143,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2461959.313521783,
-                        "starts_after": "07/07/2028 01:01:28 AM"
+                        "starts_after": "07/07/2028 01:01:28 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 297
                 },
@@ -1146,7 +1186,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 48115.502728521824,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1188,7 +1228,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 309
                 },
@@ -1269,17 +1311,23 @@
                         "end_jd": 2462137.275874217,
                         "start": "31/12/2028 10:13:09 AM",
                         "end": "01/01/2029 12:07:15 AM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2462136.992539908,
                         "relaxed_end_jd": 2462137.275874217,
                         "relaxed_start": "31/12/2028 05:19:15 PM",
                         "relaxed_end": "01/01/2029 12:07:15 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 10.41313999146223
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2462137.1305195745,
                         "visible_start": "31/12/2028 08:37:56 PM",
                         "visible_end_jd": 2462137.275874217,
@@ -1293,7 +1341,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2462137.275874217,
-                        "starts_after": "01/01/2029 12:07:15 AM"
+                        "starts_after": "01/01/2029 12:07:15 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 299
                 }
@@ -1336,7 +1386,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 39164.501832425594,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1378,7 +1428,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 308
                 },
@@ -1419,7 +1471,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 48870.4282656312,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1461,7 +1513,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 308
                 },
@@ -1559,7 +1613,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 299
                 },
@@ -1600,7 +1656,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 48585.38796901703,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1642,7 +1698,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 308
                 },
@@ -1683,7 +1741,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 38885.5589479208,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -1725,7 +1783,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 308
                 },
@@ -1806,17 +1866,23 @@
                         "end_jd": 2462491.5204625605,
                         "start": "20/12/2029 03:29:58 PM",
                         "end": "21/12/2029 05:59:27 AM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2462491.233778565,
                         "relaxed_end_jd": 2462491.5204625605,
                         "relaxed_start": "20/12/2029 11:06:38 PM",
                         "relaxed_end": "21/12/2029 05:59:27 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 10.929823201149702
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2462491.372059593,
                         "visible_start": "21/12/2029 02:25:45 AM",
                         "visible_end_jd": 2462491.5204625605,
@@ -1830,7 +1896,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2462491.5204625605,
-                        "starts_after": "21/12/2029 05:59:27 AM"
+                        "starts_after": "21/12/2029 05:59:27 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 299
                 }
@@ -1913,17 +1981,23 @@
                         "end_jd": 2462653.7693437897,
                         "start": "31/05/2030 10:11:26 PM",
                         "end": "01/06/2030 11:57:51 AM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2462653.55143179,
                         "relaxed_end_jd": 2462653.7693437897,
                         "relaxed_start": "01/06/2030 06:44:03 AM",
                         "relaxed_end": "01/06/2030 11:57:51 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 11.918219983577728
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2462653.6920342194,
                         "visible_start": "01/06/2030 10:06:31 AM",
                         "visible_end_jd": 2462653.7693437897,
@@ -1937,7 +2011,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2462653.7693437897,
-                        "starts_after": "01/06/2030 11:57:51 AM"
+                        "starts_after": "01/06/2030 11:57:51 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 304
                 },
@@ -2012,17 +2088,23 @@
                         "end_jd": 2462668.3237435045,
                         "start": "15/06/2030 12:51:53 PM",
                         "end": "16/06/2030 01:16:11 AM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2462668.114671101,
                         "relaxed_end_jd": 2462668.3237435045,
                         "relaxed_start": "15/06/2030 08:15:07 PM",
                         "relaxed_end": "16/06/2030 01:16:11 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 9.991486363112926
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2462668.223183344,
                         "visible_start": "15/06/2030 10:51:23 PM",
                         "visible_end_jd": 2462668.3237435045,
@@ -2036,7 +2118,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2462668.3237435045,
-                        "starts_after": "16/06/2030 01:16:11 AM"
+                        "starts_after": "16/06/2030 01:16:11 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 297
                 },
@@ -2083,7 +2167,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 39272.82701432705,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -2125,7 +2209,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 309
                 },
@@ -2211,7 +2297,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 }
@@ -2299,7 +2387,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 },
@@ -2380,17 +2470,23 @@
                         "end_jd": 2463007.8774582017,
                         "start": "20/05/2031 10:08:13 PM",
                         "end": "21/05/2031 02:33:32 PM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2463007.5963554373,
                         "relaxed_end_jd": 2463007.8774582017,
                         "relaxed_start": "21/05/2031 07:48:45 AM",
                         "relaxed_end": "21/05/2031 02:33:32 PM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 13.017204310745
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2463007.73559602,
                         "visible_start": "21/05/2031 11:09:15 AM",
                         "visible_end_jd": 2463007.8774582017,
@@ -2404,7 +2500,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2463007.8774582017,
-                        "starts_after": "21/05/2031 02:33:32 PM"
+                        "starts_after": "21/05/2031 02:33:32 PM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 304
                 },
@@ -2490,7 +2588,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 },
@@ -2576,7 +2676,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 298
                 },
@@ -2623,7 +2725,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 39804.73010390997,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -2665,7 +2767,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 306
                 }
@@ -2748,17 +2852,23 @@
                         "end_jd": 2463348.2083472386,
                         "start": "25/04/2032 06:21:29 AM",
                         "end": "25/04/2032 10:30:01 PM",
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
                         "relaxed_start_jd": 2463347.9375645462,
                         "relaxed_end_jd": 2463348.2083472386,
                         "relaxed_start": "25/04/2032 04:00:05 PM",
                         "relaxed_end": "25/04/2032 10:30:01 PM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 12.87620960175991
                     },
                     "ritual_boundary": {
                         "type": "grast_ast",
-                        "scriptural_instructions": "Lunar Grastasta: Eat only when moon rises again in the evening.",
+                        "instruction_key": "lunar_grastasta",
+                        "scriptural_instructions": "Lunar Grastasta: do not eat that night. Break fast after moonrise again.",
                         "grast_uday": false,
                         "grast_ast": true,
+                        "is_chudamani_yoga": false,
                         "visible_start_jd": 2463348.0722692944,
                         "visible_start": "25/04/2032 07:14:04 PM",
                         "visible_end_jd": 2463348.2083472386,
@@ -2771,8 +2881,10 @@
                         "applicable": true,
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
-                        "starts_after_jd": 2463348.2083472386,
-                        "starts_after": "25/04/2032 10:30:01 PM"
+                        "starts_after_jd": 2463349.1086180974,
+                        "starts_after": "26/04/2032 08:06:24 PM",
+                        "ritual_completion_requirement_key": "after_moonrise_again_then_eat",
+                        "ritual_completion_requirement": "Eat only after the moon rises again."
                     },
                     "retflag": 299
                 },
@@ -2813,7 +2925,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 47494.445626437664,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -2855,7 +2967,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 304
                 },
@@ -2936,17 +3050,23 @@
                         "end_jd": 2463524.361893315,
                         "start": "18/10/2032 12:36:16 PM",
                         "end": "19/10/2032 02:11:07 AM",
-                        "relaxed_start_jd": 2463524.0959906583,
+                        "profile_key": "standard_sutak",
+                        "profile_name": "standard Sutak",
+                        "relaxed_start_jd": 2463524.095990658,
                         "relaxed_end_jd": 2463524.361893315,
                         "relaxed_start": "18/10/2032 07:48:13 PM",
                         "relaxed_end": "19/10/2032 02:11:07 AM",
+                        "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                        "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                         "duration_hours": 10.307277739048004
                     },
                     "ritual_boundary": {
                         "type": "ordinary_visible_eclipse",
-                        "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                        "instruction_key": "ordinary_visible",
+                        "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                         "grast_uday": false,
                         "grast_ast": false,
+                        "is_chudamani_yoga": true,
                         "visible_start_jd": 2463524.2254885044,
                         "visible_start": "18/10/2032 10:54:42 PM",
                         "visible_end_jd": 2463524.361893315,
@@ -2960,7 +3080,9 @@
                         "snana_required": true,
                         "fresh_food_after_eclipse": true,
                         "starts_after_jd": 2463524.361893315,
-                        "starts_after": "19/10/2032 02:11:07 AM"
+                        "starts_after": "19/10/2032 02:11:07 AM",
+                        "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                        "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                     },
                     "retflag": 299
                 },
@@ -3001,7 +3123,7 @@
                         "sunset_jd": null
                     },
                     "durations": {
-                        "partial_seconds": 0,
+                        "partial_seconds": 40514.391915500164,
                         "total_seconds": 0
                     },
                     "visibility": {
@@ -3043,7 +3165,9 @@
                     "post_eclipse_ritual": {
                         "applicable": false,
                         "snana_required": false,
-                        "fresh_food_after_eclipse": false
+                        "fresh_food_after_eclipse": false,
+                        "ritual_completion_requirement_key": null,
+                        "ritual_completion_requirement": null
                     },
                     "retflag": 308
                 }
@@ -3087,7 +3211,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 41229.87658828497,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -3129,7 +3253,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 304
             },
@@ -3227,7 +3353,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 299
             },
@@ -3268,7 +3396,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 46894.976618885994,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -3310,7 +3438,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 309
             },
@@ -3402,7 +3532,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 297
             },
@@ -3449,7 +3581,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 40427.70982682705,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -3491,7 +3623,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 304
             },
@@ -3577,7 +3711,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -3663,7 +3799,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -3744,17 +3882,23 @@
                     "end_jd": 2461619.994927641,
                     "start": "02/08/2027 12:57:49 AM",
                     "end": "02/08/2027 05:22:41 PM",
-                    "relaxed_start_jd": 2461619.786006388,
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
+                    "relaxed_start_jd": 2461619.7860063873,
                     "relaxed_end_jd": 2461619.994927641,
                     "relaxed_start": "02/08/2027 12:21:50 PM",
                     "relaxed_end": "02/08/2027 05:22:41 PM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 14.702692452818155
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2461619.923603789,
                     "visible_start": "02/08/2027 03:39:59 PM",
                     "visible_end_jd": 2461619.994927641,
@@ -3768,7 +3912,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2461619.994927641,
-                    "starts_after": "02/08/2027 05:22:41 PM"
+                    "starts_after": "02/08/2027 05:22:41 PM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 309
             },
@@ -3854,7 +4000,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -3946,7 +4094,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 297
             },
@@ -3993,7 +4143,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 39724.63977187872,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4035,7 +4185,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 304
             },
@@ -4110,17 +4262,23 @@
                     "end_jd": 2461959.313521783,
                     "start": "06/07/2028 12:56:09 PM",
                     "end": "07/07/2028 01:01:28 AM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2461959.105597598,
                     "relaxed_end_jd": 2461959.313521783,
                     "relaxed_start": "06/07/2028 08:02:03 PM",
                     "relaxed_end": "07/07/2028 01:01:28 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 9.71608603745699
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2461959.214664721,
                     "visible_start": "06/07/2028 10:39:07 PM",
                     "visible_end_jd": 2461959.313521783,
@@ -4134,7 +4292,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2461959.313521783,
-                    "starts_after": "07/07/2028 01:01:28 AM"
+                    "starts_after": "07/07/2028 01:01:28 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 297
             },
@@ -4175,7 +4335,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 48115.502728521824,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4217,7 +4377,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 309
             },
@@ -4298,17 +4460,23 @@
                     "end_jd": 2462137.275874217,
                     "start": "31/12/2028 10:13:09 AM",
                     "end": "01/01/2029 12:07:15 AM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2462136.992539908,
                     "relaxed_end_jd": 2462137.275874217,
                     "relaxed_start": "31/12/2028 05:19:15 PM",
                     "relaxed_end": "01/01/2029 12:07:15 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 10.41313999146223
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2462137.1305195745,
                     "visible_start": "31/12/2028 08:37:56 PM",
                     "visible_end_jd": 2462137.275874217,
@@ -4322,7 +4490,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2462137.275874217,
-                    "starts_after": "01/01/2029 12:07:15 AM"
+                    "starts_after": "01/01/2029 12:07:15 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 299
             },
@@ -4363,7 +4533,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 39164.501832425594,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4405,7 +4575,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 308
             },
@@ -4446,7 +4618,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 48870.4282656312,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4488,7 +4660,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 308
             },
@@ -4586,7 +4760,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 299
             },
@@ -4627,7 +4803,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 48585.38796901703,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4669,7 +4845,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 308
             },
@@ -4710,7 +4888,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 38885.5589479208,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -4752,7 +4930,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 308
             },
@@ -4833,17 +5013,23 @@
                     "end_jd": 2462491.5204625605,
                     "start": "20/12/2029 03:29:58 PM",
                     "end": "21/12/2029 05:59:27 AM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2462491.233778565,
                     "relaxed_end_jd": 2462491.5204625605,
                     "relaxed_start": "20/12/2029 11:06:38 PM",
                     "relaxed_end": "21/12/2029 05:59:27 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 10.929823201149702
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2462491.372059593,
                     "visible_start": "21/12/2029 02:25:45 AM",
                     "visible_end_jd": 2462491.5204625605,
@@ -4857,7 +5043,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2462491.5204625605,
-                    "starts_after": "21/12/2029 05:59:27 AM"
+                    "starts_after": "21/12/2029 05:59:27 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 299
             },
@@ -4938,17 +5126,23 @@
                     "end_jd": 2462653.7693437897,
                     "start": "31/05/2030 10:11:26 PM",
                     "end": "01/06/2030 11:57:51 AM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2462653.55143179,
                     "relaxed_end_jd": 2462653.7693437897,
                     "relaxed_start": "01/06/2030 06:44:03 AM",
                     "relaxed_end": "01/06/2030 11:57:51 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 11.918219983577728
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2462653.6920342194,
                     "visible_start": "01/06/2030 10:06:31 AM",
                     "visible_end_jd": 2462653.7693437897,
@@ -4962,7 +5156,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2462653.7693437897,
-                    "starts_after": "01/06/2030 11:57:51 AM"
+                    "starts_after": "01/06/2030 11:57:51 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 304
             },
@@ -5037,17 +5233,23 @@
                     "end_jd": 2462668.3237435045,
                     "start": "15/06/2030 12:51:53 PM",
                     "end": "16/06/2030 01:16:11 AM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2462668.114671101,
                     "relaxed_end_jd": 2462668.3237435045,
                     "relaxed_start": "15/06/2030 08:15:07 PM",
                     "relaxed_end": "16/06/2030 01:16:11 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 9.991486363112926
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2462668.223183344,
                     "visible_start": "15/06/2030 10:51:23 PM",
                     "visible_end_jd": 2462668.3237435045,
@@ -5061,7 +5263,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2462668.3237435045,
-                    "starts_after": "16/06/2030 01:16:11 AM"
+                    "starts_after": "16/06/2030 01:16:11 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 297
             },
@@ -5108,7 +5312,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 39272.82701432705,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -5150,7 +5354,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 309
             },
@@ -5236,7 +5442,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -5322,7 +5530,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -5403,17 +5613,23 @@
                     "end_jd": 2463007.8774582017,
                     "start": "20/05/2031 10:08:13 PM",
                     "end": "21/05/2031 02:33:32 PM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2463007.5963554373,
                     "relaxed_end_jd": 2463007.8774582017,
                     "relaxed_start": "21/05/2031 07:48:45 AM",
                     "relaxed_end": "21/05/2031 02:33:32 PM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 13.017204310745
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Solar Eclipse: Observe standard 4-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2463007.73559602,
                     "visible_start": "21/05/2031 11:09:15 AM",
                     "visible_end_jd": 2463007.8774582017,
@@ -5427,7 +5643,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2463007.8774582017,
-                    "starts_after": "21/05/2031 02:33:32 PM"
+                    "starts_after": "21/05/2031 02:33:32 PM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 304
             },
@@ -5513,7 +5731,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -5599,7 +5819,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 298
             },
@@ -5646,7 +5868,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 39804.73010390997,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -5688,7 +5910,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 306
             },
@@ -5769,17 +5993,23 @@
                     "end_jd": 2463348.2083472386,
                     "start": "25/04/2032 06:21:29 AM",
                     "end": "25/04/2032 10:30:01 PM",
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
                     "relaxed_start_jd": 2463347.9375645462,
                     "relaxed_end_jd": 2463348.2083472386,
                     "relaxed_start": "25/04/2032 04:00:05 PM",
                     "relaxed_end": "25/04/2032 10:30:01 PM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 12.87620960175991
                 },
                 "ritual_boundary": {
                     "type": "grast_ast",
-                    "scriptural_instructions": "Lunar Grastasta: Eat only when moon rises again in the evening.",
+                    "instruction_key": "lunar_grastasta",
+                    "scriptural_instructions": "Lunar Grastasta: do not eat that night. Break fast after moonrise again.",
                     "grast_uday": false,
                     "grast_ast": true,
+                    "is_chudamani_yoga": false,
                     "visible_start_jd": 2463348.0722692944,
                     "visible_start": "25/04/2032 07:14:04 PM",
                     "visible_end_jd": 2463348.2083472386,
@@ -5792,8 +6022,10 @@
                     "applicable": true,
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
-                    "starts_after_jd": 2463348.2083472386,
-                    "starts_after": "25/04/2032 10:30:01 PM"
+                    "starts_after_jd": 2463349.1086180974,
+                    "starts_after": "26/04/2032 08:06:24 PM",
+                    "ritual_completion_requirement_key": "after_moonrise_again_then_eat",
+                    "ritual_completion_requirement": "Eat only after the moon rises again."
                 },
                 "retflag": 299
             },
@@ -5834,7 +6066,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 47494.445626437664,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -5876,7 +6108,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 304
             },
@@ -5957,17 +6191,23 @@
                     "end_jd": 2463524.361893315,
                     "start": "18/10/2032 12:36:16 PM",
                     "end": "19/10/2032 02:11:07 AM",
-                    "relaxed_start_jd": 2463524.0959906583,
+                    "profile_key": "standard_sutak",
+                    "profile_name": "standard Sutak",
+                    "relaxed_start_jd": 2463524.095990658,
                     "relaxed_end_jd": 2463524.361893315,
                     "relaxed_start": "18/10/2032 07:48:13 PM",
                     "relaxed_end": "19/10/2032 02:11:07 AM",
+                    "relaxed_profile_key": "sutak_for_children_elderly_sick",
+                    "relaxed_profile_name": "Sutak for children, elderly, and the sick",
                     "duration_hours": 10.307277739048004
                 },
                 "ritual_boundary": {
                     "type": "ordinary_visible_eclipse",
-                    "scriptural_instructions": "Ordinary Lunar Eclipse: Observe standard 3-prahara Sutak.",
+                    "instruction_key": "ordinary_visible",
+                    "scriptural_instructions": "Ordinary Eclipse: Observe standard 9-hour (Lunar) or 12-hour (Solar) Sutak.",
                     "grast_uday": false,
                     "grast_ast": false,
+                    "is_chudamani_yoga": true,
                     "visible_start_jd": 2463524.2254885044,
                     "visible_start": "18/10/2032 10:54:42 PM",
                     "visible_end_jd": 2463524.361893315,
@@ -5981,7 +6221,9 @@
                     "snana_required": true,
                     "fresh_food_after_eclipse": true,
                     "starts_after_jd": 2463524.361893315,
-                    "starts_after": "19/10/2032 02:11:07 AM"
+                    "starts_after": "19/10/2032 02:11:07 AM",
+                    "ritual_completion_requirement_key": "snana_after_moksha_then_fresh_food",
+                    "ritual_completion_requirement": "After eclipse release, bathe and take fresh food."
                 },
                 "retflag": 299
             },
@@ -6022,7 +6264,7 @@
                     "sunset_jd": null
                 },
                 "durations": {
-                    "partial_seconds": 0,
+                    "partial_seconds": 40514.391915500164,
                     "total_seconds": 0
                 },
                 "visibility": {
@@ -6064,7 +6306,9 @@
                 "post_eclipse_ritual": {
                     "applicable": false,
                     "snana_required": false,
-                    "fresh_food_after_eclipse": false
+                    "fresh_food_after_eclipse": false,
+                    "ritual_completion_requirement_key": null,
+                    "ritual_completion_requirement": null
                 },
                 "retflag": 308
             }

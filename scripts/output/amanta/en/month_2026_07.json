@@ -1,9 +1,10 @@
 {
     "meta": {
-        "generated_at": "2026-06-18T07:52:09+00:00",
+        "generated_at": "2026-07-08T12:19:36+00:00",
         "year": 2026,
         "month": 7,
         "calendar_type": "amanta",
+        "locale": "en",
         "location": {
             "latitude": 23.2472446,
             "longitude": 69.668339,
@@ -782,6 +783,118 @@
             },
             "festivals": [
                 {
+                    "name": "Krishnapingala Sankashti Chaturthi",
+                    "name_key": "Krishnapingala Sankashti Chaturthi",
+                    "description": "Sankashti Chaturthi of Jyeshtha/Ashadha month",
+                    "deity": "Ganesha",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Sankashti Chaturthi",
+                        "Krishnapingala Sankashti"
+                    ],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring moonrise presence, it is celebrated on 2026-07-03.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Fourth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Jyeshtha",
+                            "value_key": "Jyeshtha",
+                            "name": "Jyeshtha"
+                        },
+                        "karmakala_type": "moonrise",
+                        "karmakala_type_name": "moonrise",
+                        "source_evidence": [
+                            {
+                                "kind": "inherited_rule",
+                                "locator": "Generic Sankashti Chaturthi section",
+                                "supports": "The named monthly Sankashti identity inherits the generic moonrise-vyapini Sankashti Chaturthi rule."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Krishnapingala Sankashti Chaturthi",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "moonrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461224.7435945086,
+                        "target_tithi_end_jd": 2461225.798878582,
+                        "standard_date": "2026-07-04",
+                        "observance_date": "2026-07-03",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring moonrise presence, it is celebrated on 2026-07-03.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Krishnapingala Sankashti Chaturthi",
+                        "festival_name_localized": "Krishnapingala Sankashti Chaturthi",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "moonrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Shukravar Vrat",
                     "name_key": "Shukravar Vrat",
                     "description": "Weekly Friday fast dedicated to Goddess Lakshmi and Shukra",
@@ -1053,109 +1166,6 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
-                {
-                    "name": "Krishnapingala Sankashti Chaturthi",
-                    "name_key": "Krishnapingala Sankashti Chaturthi",
-                    "description": "Sankashti Chaturthi of Jyeshtha/Ashadha month",
-                    "deity": "Ganesha",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Sankashti Chaturthi",
-                        "Krishnapingala Sankashti"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                4
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                19
-                            ],
-                            "names": [
-                                "Fourth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Jyeshtha",
-                            "value_key": "Jyeshtha",
-                            "name": "Jyeshtha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Krishnapingala Sankashti Chaturthi",
-                        "required_tithi": 4,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461224.7435945086,
-                        "target_tithi_end_jd": 2461225.798878582,
-                        "standard_date": "2026-07-04",
-                        "observance_date": "2026-07-04",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Krishnapingala Sankashti Chaturthi",
-                        "festival_name_localized": "Krishnapingala Sankashti Chaturthi",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
                 {
                     "name": "Shanivar Vrat",
                     "name_key": "Shanivar Vrat",
@@ -1998,6 +2008,102 @@
                             "english_name": "Tuesday"
                         }
                     }
+                },
+                {
+                    "name": "Masik Krishna Janmashtami",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
+                    "deity": "Krishna",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "midnight",
+                        "karmakala_type_name": "Midnight"
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Krishna Janmashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2513.733297586441,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461228.8300981633,
+                        "target_tithi_end_jd": 2461229.786186537,
+                        "standard_date": "2026-07-08",
+                        "observance_date": "2026-07-07",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1041,
+                            "winning_window_overlap_seconds": 2513.733297586441,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "Masik Krishna Janmashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "nishitha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1041,
+                        "winning_window_overlap_seconds": 2513.733297586441,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "daily_observances": [
@@ -2313,7 +2419,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -2328,9 +2434,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -2351,9 +2457,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -2361,100 +2467,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Masik Krishna Janmashtami",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "Monthly fasting marking the birth tithi of Lord Krishna",
-                    "deity": "Krishna",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "midnight",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "resolution": {
-                        "festival_name": "Masik Krishna Janmashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "midnight",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461228.8300981633,
-                        "target_tithi_end_jd": 2461229.786186537,
-                        "standard_date": "2026-07-08",
-                        "observance_date": "2026-07-08",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "Masik Krishna Janmashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Midnight"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -3313,7 +3326,10 @@
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Anasara Ekadashi",
+                        "Khalilagi Ekadashi"
+                    ],
                     "observance_note": "Exception: Dark Half (waning) tithi 11 is Kshaya (no sunrise). Observance shifts to 2026-07-11 due to sunrise rules.",
                     "calculation_basis": {
                         "type": "tithi",
@@ -3401,6 +3417,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "kshaya_next_day",
                         "winning_reason_name": "kshaya tithi shifted to next day"
                     }
@@ -3453,7 +3470,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -3468,9 +3485,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -3491,9 +3508,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -3501,6 +3518,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -3563,10 +3581,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "Krittika",
-                            "winning_reason": "nakshatra_overlaps_karmakala_window",
-                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason": "nakshatra match",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "nakshatra match",
                             "nakshatra_name_key": "Krittika",
                             "nakshatra_name_localized": "Krittika"
                         },
@@ -3579,10 +3597,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "Krittika",
-                        "winning_reason": "nakshatra_overlaps_karmakala_window",
-                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason": "nakshatra match",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Krittika",
                         "nakshatra_name_localized": "Krittika"
                     }
@@ -3947,6 +3965,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -3994,7 +4013,7 @@
                         "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2879.999989271164,
+                        "tithi_coverage_seconds_today": 2524.266654253006,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": true,
@@ -4010,8 +4029,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1047,
-                            "winning_window_overlap_seconds": 2879.999989271164,
+                            "winning_score": 1042,
+                            "winning_window_overlap_seconds": 2524.266654253006,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -4033,8 +4052,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1047,
-                        "winning_window_overlap_seconds": 2879.999989271164,
+                        "winning_score": 1042,
+                        "winning_window_overlap_seconds": 2524.266654253006,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -4043,6 +4062,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -4080,10 +4100,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "Rohini",
-                            "winning_reason": "nakshatra_overlaps_karmakala_window",
-                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason": "nakshatra match",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "nakshatra match",
                             "nakshatra_name_key": "Rohini",
                             "nakshatra_name_localized": "Rohini"
                         },
@@ -4096,10 +4116,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "Rohini",
-                        "winning_reason": "nakshatra_overlaps_karmakala_window",
-                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason": "nakshatra match",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "Rohini"
                     }
@@ -4766,6 +4786,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -4869,6 +4890,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -4970,6 +4992,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -5002,7 +5025,7 @@
                 {
                     "name": "Darsha Amavasya",
                     "name_key": "Darsha Amavasya",
-                    "description": "No moon day fasting",
+                    "description": "Darsha Amavasya is the monthly Amavasya observance associated with pitru rites and ancestral remembrance.",
                     "deity": "Chandra/Pitrus",
                     "fasting": true,
                     "regions": [
@@ -5031,17 +5054,18 @@
                         },
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "afternoon",
+                        "vriddhi_preference": "first"
                     },
                     "resolution": {
                         "festival_name": "Darsha Amavasya",
                         "required_tithi": 15,
                         "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "aparahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 3332.904191315174,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -5052,13 +5076,120 @@
                         "standard_date": "2026-07-14",
                         "observance_date": "2026-07-14",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "darsha_amavasya_only_first_aparahna",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 3332.904191315174,
+                            "winning_window_coverage_ratio": 0.34368340442420775,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                            "winning_reason_name": "darsha_amavasya_only_first_aparahna"
+                        },
+                        "festival_name_key": "Darsha Amavasya",
+                        "festival_name_localized": "Darsha Amavasya",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "afternoon"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "darsha_amavasya_only_first_aparahna",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 3332.904191315174,
+                        "winning_window_coverage_ratio": 0.34368340442420775,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                        "winning_reason_name": "darsha_amavasya_only_first_aparahna"
+                    }
+                },
+                {
+                    "name": "Amavasya",
+                    "name_key": "Amavasya",
+                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
+                    "deity": "Pitru/Chandra",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Amas",
+                        "Amavasya Vrat",
+                        "Somavati Amavasya",
+                        "Bhaumavati Amavasya",
+                        "Shani Amavasya"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "New Moon"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Amavasya",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461235.0554826334,
+                        "target_tithi_end_jd": 2461235.9052164834,
+                        "standard_date": "2026-07-14",
+                        "observance_date": "2026-07-14",
+                        "decision": {
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -5067,21 +5198,21 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Darsha Amavasya",
-                        "festival_name_localized": "Darsha Amavasya",
+                        "festival_name_key": "Amavasya",
+                        "festival_name_localized": "Amavasya",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "sunrise"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -5089,6 +5220,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -5449,6 +5581,123 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Kachchhi & Halari Ashadhi New Year",
+                    "name_key": "Kachchhi Halari Ashadhi Varsharambh",
+                    "description": "Kachchhi and Halari Ashadhi Varsharambh marks the traditional new-year beginning for these regional communities.",
+                    "deity": "Lakshmi/Ganesha",
+                    "fasting": false,
+                    "regions": [
+                        "Kutch",
+                        "Halar",
+                        "Gujarat"
+                    ],
+                    "aliases": [
+                        "Kachchhi Nutan Varsh",
+                        "Halari Nutan Varsh",
+                        "Ashadhi Beej Varsharambh"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "First Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "source_evidence": [
+                            {
+                                "kind": "heading_only",
+                                "locator": "Kachchhi and Halari Ashadhi Varsharambh heading",
+                                "supports": "The observance identity and tithi are listed; the sunrise-vyapini handling is inherited from the general Pratipada/new-year style resolver."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Kachchhi & Halari Ashadhi New Year",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461235.9052164834,
+                        "target_tithi_end_jd": 2461236.764870608,
+                        "standard_date": "2026-07-15",
+                        "observance_date": "2026-07-15",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Kachchhi Halari Ashadhi Varsharambh",
+                        "festival_name_localized": "Kachchhi & Halari Ashadhi New Year",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -5519,10 +5768,10 @@
                         "decision": {
                             "nakshatra_based": true,
                             "nakshatra_name": "Pushya",
-                            "winning_reason": "nakshatra_overlaps_karmakala_window",
-                            "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                            "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                            "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                            "winning_reason": "nakshatra match",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_match",
+                            "winning_reason_name": "nakshatra match",
                             "nakshatra_name_key": "Pushya",
                             "nakshatra_name_localized": "Pushya"
                         },
@@ -5535,10 +5784,10 @@
                     "rules_applied": {
                         "nakshatra_based": true,
                         "nakshatra_name": "Pushya",
-                        "winning_reason": "nakshatra_overlaps_karmakala_window",
-                        "winning_nakshatra_window_overlap_seconds": 3599.999986588955,
-                        "winning_reason_key": "nakshatra_overlaps_karmakala_window",
-                        "winning_reason_name": "nakshatra_overlaps_karmakala_window",
+                        "winning_reason": "nakshatra match",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_match",
+                        "winning_reason_name": "nakshatra match",
                         "nakshatra_name_key": "Pushya",
                         "nakshatra_name_localized": "Pushya"
                     }
@@ -5577,14 +5826,10 @@
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "chandra_darshana_visibility",
                         "karmakala_type_name": "sunset to moonset visibility",
-                        "chandra_darshana_visibility_model": "simplified_modern_crescent_visibility",
-                        "chandra_darshana_visibility_model_name": "simplified modern crescent visibility model",
-                        "chandra_darshana_visibility_min_lag_minutes": 38,
-                        "chandra_darshana_visibility_min_elongation_degrees": 9,
-                        "chandra_darshana_visibility_hard_elongation_floor_degrees": 7,
-                        "chandra_darshana_visibility_min_illumination_percent": 0.8,
-                        "chandra_darshana_visibility_basis": "modern_astronomical_heuristic_not_classical",
-                        "chandra_darshana_visibility_basis_name": "modern astronomical visibility heuristic; not a classical textual rule",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "classical Sthula Chandra Darshana 9-muhurta rule",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)",
                         "location_sensitive": true
                     },
                     "resolution": {
@@ -5607,7 +5852,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "Pratipada visible after sunset before moonset",
+                            "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
                             "winning_score": 1500,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
@@ -5616,28 +5861,25 @@
                             "moon_visibility_end_jd": 2461237.1354050925,
                             "moon_visibility_seconds": 3838.999977707863,
                             "visibility_assessment": {
-                                "model": "simplified_modern_crescent_visibility",
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "lag_minutes": 63.983332961797714,
-                                "elongation_degrees": 16.496872541337837,
-                                "illumination_percent": 2.0582381869283797,
-                                "min_lag_minutes": 38,
-                                "min_elongation_degrees": 9,
-                                "hard_elongation_floor_degrees": 7,
-                                "min_illumination_percent": 0.8,
-                                "passes_lag": true,
-                                "passes_elongation": true,
-                                "passes_hard_elongation_floor": true,
-                                "passes_illumination": true,
-                                "basis": "modern_astronomical_heuristic_not_classical"
+                                "evening_tithi": "shukla_pratipada",
+                                "pratipada_post_sunrise_seconds": 20273.820550739765,
+                                "pratipada_post_sunrise_minutes": 337.8970091789961,
+                                "pratipada_post_sunrise_muhurtas": 6.2768541800848565,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 29069.40000861883,
+                                "day_muhurta_seconds": 3229.9333342909813,
+                                "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana"
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
-                            "winning_reason_name": "Pratipada visible after sunset before moonset"
+                            "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
+                            "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "Chandra Darshana",
@@ -5650,7 +5892,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "Pratipada visible after sunset before moonset",
+                        "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
                         "winning_score": 1500,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
@@ -5659,20 +5901,17 @@
                         "moon_visibility_end_jd": 2461237.1354050925,
                         "moon_visibility_seconds": 3838.999977707863,
                         "visibility_assessment": {
-                            "model": "simplified_modern_crescent_visibility",
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "lag_minutes": 63.983332961797714,
-                            "elongation_degrees": 16.496872541337837,
-                            "illumination_percent": 2.0582381869283797,
-                            "min_lag_minutes": 38,
-                            "min_elongation_degrees": 9,
-                            "hard_elongation_floor_degrees": 7,
-                            "min_illumination_percent": 0.8,
-                            "passes_lag": true,
-                            "passes_elongation": true,
-                            "passes_hard_elongation_floor": true,
-                            "passes_illumination": true,
-                            "basis": "modern_astronomical_heuristic_not_classical"
+                            "evening_tithi": "shukla_pratipada",
+                            "pratipada_post_sunrise_seconds": 20273.820550739765,
+                            "pratipada_post_sunrise_minutes": 337.8970091789961,
+                            "pratipada_post_sunrise_muhurtas": 6.2768541800848565,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 29069.40000861883,
+                            "day_muhurta_seconds": 3229.9333342909813,
+                            "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana"
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -5681,8 +5920,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_pratipada_visible_after_sunset",
-                        "winning_reason_name": "Pratipada visible after sunset before moonset"
+                        "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
+                        "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -6034,7 +6273,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6049,9 +6288,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -6072,9 +6311,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6082,6 +6321,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6136,7 +6376,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6151,9 +6391,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -6174,9 +6414,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6184,6 +6424,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6191,7 +6432,7 @@
                 {
                     "name": "Jagannath Rath Yatra",
                     "name_key": "Jagannath Rath Yatra",
-                    "description": "Chariot festival of Lord Jagannath",
+                    "description": "Rath Yatra celebrates Lord Jagannath's chariot procession with Balabhadra and Subhadra.",
                     "deity": "Jagannath",
                     "fasting": false,
                     "regions": [
@@ -6228,9 +6469,11 @@
                         },
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "sunrise",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.60"
-                        ]
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Jagannath Rath Yatra",
@@ -6239,7 +6482,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6254,9 +6497,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -6277,9 +6520,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6287,6 +6530,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6315,6 +6559,108 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Jagannath Ratha Yatra",
+                    "name_key": "Jagannath Ratha Yatra",
+                    "description": "Chariot festival of Jagannath, Balabhadra and Subhadra",
+                    "deity": "Jagannath",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                2
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                2
+                            ],
+                            "names": [
+                                "Second Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true
+                    },
+                    "resolution": {
+                        "festival_name": "Jagannath Ratha Yatra",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461236.764870608,
+                        "target_tithi_end_jd": 2461237.6412273804,
+                        "standard_date": "2026-07-16",
+                        "observance_date": "2026-07-16",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Jagannath Ratha Yatra",
+                        "festival_name_localized": "Jagannath Ratha Yatra",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -6608,17 +6954,15 @@
             },
             "festivals": [
                 {
-                    "name": "Vinayaka Chaturthi",
-                    "name_key": "Vinayaka Chaturthi",
-                    "description": "Monthly fast dedicated to Lord Ganesha during the waxing moon",
+                    "name": "Vinayaki Chaturthi",
+                    "name_key": "Vinayaki Chaturthi",
+                    "description": "Monthly Vinayaki Chaturthi is a Shukla Paksha Chaturthi vrata dedicated to Lord Ganesha and auspicious beginnings.",
                     "deity": "Ganesha",
-                    "fasting": false,
+                    "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [
-                        "Ganesha Jayanti"
-                    ],
+                    "aliases": [],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -6642,10 +6986,16 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "noon"
+                        "karmakala_type_name": "noon",
+                        "strict_karmakala": true,
+                        "prefer_full_karmakala_coverage": true,
+                        "gujarati_special_case": "prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56"
+                        ]
                     },
                     "resolution": {
-                        "festival_name": "Vinayaka Chaturthi",
+                        "festival_name": "Vinayaki Chaturthi",
                         "required_tithi": 4,
                         "paksha": "Shukla",
                         "karmakala_type": "madhyahna",
@@ -6665,8 +7015,8 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1161,
+                            "winning_reason": "target covers full karmakala",
+                            "winning_score": 1461,
                             "winning_window_overlap_seconds": 9673.600034415722,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
@@ -6674,11 +7024,11 @@
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "target_covers_full_karmakala",
+                            "winning_reason_name": "target covers full karmakala"
                         },
-                        "festival_name_key": "Vinayaka Chaturthi",
-                        "festival_name_localized": "Vinayaka Chaturthi",
+                        "festival_name_key": "Vinayaki Chaturthi",
+                        "festival_name_localized": "Vinayaki Chaturthi",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type_name": "noon"
                     },
@@ -6688,8 +7038,8 @@
                         "vriddhi_preference": "last",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1161,
+                        "winning_reason": "target covers full karmakala",
+                        "winning_score": 1461,
                         "winning_window_overlap_seconds": 9673.600034415722,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
@@ -6699,8 +7049,9 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_covers_full_karmakala",
+                        "winning_reason_name": "target covers full karmakala"
                     }
                 },
                 {
@@ -6753,7 +7104,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 828.9567187428474,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6768,9 +7119,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1013,
-                            "winning_window_overlap_seconds": 828.9567187428474,
-                            "winning_window_coverage_ratio": 0.2302657560641533,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -6791,9 +7142,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1013,
-                        "winning_window_overlap_seconds": 828.9567187428474,
-                        "winning_window_coverage_ratio": 0.2302657560641533,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6801,6 +7152,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -6853,9 +7205,9 @@
                         "required_tithi": 4,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2771.0432678461075,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6869,17 +7221,17 @@
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1046,
-                            "winning_window_overlap_seconds": 2771.0432678461075,
-                            "winning_window_coverage_ratio": 0.7697342439358467,
+                            "winning_reason": "target tithi during observance day",
+                            "winning_score": 300,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "target tithi during observance day"
                         },
                         "festival_name_key": "Ashadha Gupt Navaratri Day 4",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 4",
@@ -6892,10 +7244,10 @@
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1046,
-                        "winning_window_overlap_seconds": 2771.0432678461075,
-                        "winning_window_coverage_ratio": 0.7697342439358467,
+                        "winning_reason": "target tithi during observance day",
+                        "winning_score": 300,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -6903,8 +7255,9 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "target tithi during observance day"
                     }
                 },
                 {
@@ -6978,9 +7331,9 @@
                         "required_tithi": 4,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_today": false,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2771.0432678461075,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
@@ -6994,17 +7347,17 @@
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1046,
-                            "winning_window_overlap_seconds": 2771.0432678461075,
-                            "winning_window_coverage_ratio": 0.7697342439358467,
+                            "winning_reason": "target tithi during observance day",
+                            "winning_score": 300,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "target_during_observance",
+                            "winning_reason_name": "target tithi during observance day"
                         },
                         "festival_name_key": "Aniruddha Chaturthi",
                         "festival_name_localized": "Aniruddha Chaturthi",
@@ -7017,10 +7370,10 @@
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1046,
-                        "winning_window_overlap_seconds": 2771.0432678461075,
-                        "winning_window_coverage_ratio": 0.7697342439358467,
+                        "winning_reason": "target tithi during observance day",
+                        "winning_score": 300,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -7028,8 +7381,9 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_during_observance",
+                        "winning_reason_name": "target tithi during observance day"
                     }
                 }
             ],
@@ -7329,7 +7683,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -7344,9 +7698,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -7367,9 +7721,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -7377,6 +7731,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -7722,7 +8077,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -7737,9 +8092,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -7760,9 +8115,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -7770,6 +8125,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -7798,101 +8154,6 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
-                    }
-                },
-                {
-                    "name": "Skanda Sashti",
-                    "name_key": "Skanda Sashti",
-                    "description": "Dedicated to Lord Murugan (Skanda)",
-                    "deity": "Skanda",
-                    "fasting": false,
-                    "regions": [
-                        "Tamil Nadu",
-                        "South India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                6
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                6
-                            ],
-                            "names": [
-                                "Sixth Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Skanda Sashti",
-                        "required_tithi": 6,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461240.42578284,
-                        "target_tithi_end_jd": 2461241.416880168,
-                        "standard_date": "2026-07-19",
-                        "observance_date": "2026-07-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Skanda Sashti",
-                        "festival_name_localized": "Skanda Sashti",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -8192,7 +8453,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -8207,9 +8468,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -8230,9 +8491,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -8240,6 +8501,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -8567,7 +8829,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -8582,9 +8844,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -8605,9 +8867,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -8615,6 +8877,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -8647,7 +8910,7 @@
                 {
                     "name": "Masik Durgashtami",
                     "name_key": "Masik Durgashtami",
-                    "description": "Monthly fasting dedicated to Goddess Durga",
+                    "description": "Masik Durgashtami is the monthly Shukla Ashtami observance dedicated to Devi.",
                     "deity": "Durga",
                     "fasting": true,
                     "regions": [
@@ -8677,7 +8940,13 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "sunrise",
+                        "resolution_policy": {
+                            "vriddhi_preference": "first"
+                        },
+                        "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "Masik Durgashtami",
@@ -8686,7 +8955,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -8700,17 +8969,17 @@
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_reason": "durgashtami_navami_viddha_3_muhurta_day1",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "durgashtami_navami_viddha_3_muhurta_day1",
+                            "winning_reason_name": "durgashtami_navami_viddha_3_muhurta_day1"
                         },
                         "festival_name_key": "Masik Durgashtami",
                         "festival_name_localized": "Masik Durgashtami",
@@ -8723,10 +8992,10 @@
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_reason": "durgashtami_navami_viddha_3_muhurta_day1",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -8734,8 +9003,9 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "durgashtami_navami_viddha_3_muhurta_day1",
+                        "winning_reason_name": "durgashtami_navami_viddha_3_muhurta_day1"
                     }
                 }
             ],
@@ -8965,6 +9235,141 @@
                 "Calendar_Type": "amanta"
             },
             "festivals": [
+                {
+                    "name": "Hari Jayanti",
+                    "name_key": "Hari Jayanti",
+                    "description": "Monthly Shri Hari Jayanti is the Shukla Navami remembrance of Bhagwan Swaminarayan outside the annual Chaitra celebration.",
+                    "deity": "Swaminarayan/Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "Ninth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
+                        "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
+                        "ritual_profile": "hari_jayanti_monthly",
+                        "ritual_profile_key": "hari_jayanti_monthly",
+                        "calendar_rule": {
+                            "tithi": {
+                                "numbers": [
+                                    9
+                                ],
+                                "paksha": "Shukla",
+                                "paksha_name": "Bright Half (waxing)",
+                                "absolute_numbers": [
+                                    9
+                                ],
+                                "names": [
+                                    "Ninth Lunar Day of Bright Half"
+                                ]
+                            },
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)"
+                        },
+                        "ritual_layers": [
+                            {
+                                "key": "hari_jayanti_puja",
+                                "name": "hari_jayanti_puja"
+                            },
+                            {
+                                "key": "swaminarayan_navami",
+                                "name": "swaminarayan_navami"
+                            },
+                            {
+                                "key": "monthly_sud9",
+                                "name": "monthly_sud9"
+                            }
+                        ],
+                        "source_refs": [
+                            "Satsangi Jeevan 5.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Hari Jayanti",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461243.4910200816,
+                        "target_tithi_end_jd": 2461244.5650831284,
+                        "standard_date": "2026-07-22",
+                        "observance_date": "2026-07-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Hari Jayanti",
+                        "festival_name_localized": "Hari Jayanti",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
                 {
                     "name": "Budhwar Vrat",
                     "name_key": "Budhwar Vrat",
@@ -9278,7 +9683,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2803.182300925255,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9293,9 +9698,9 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1046,
-                            "winning_window_overlap_seconds": 2803.182300925255,
-                            "winning_window_coverage_ratio": 0.7786617531577563,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -9316,9 +9721,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1046,
-                        "winning_window_overlap_seconds": 2803.182300925255,
-                        "winning_window_coverage_ratio": 0.7786617531577563,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9326,6 +9731,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9606,7 +10012,7 @@
                 {
                     "name": "Ashadha Gupt Navaratri Parana (Dashami)",
                     "name_key": "Ashadha Gupt Navaratri Parana (Dashami)",
-                    "description": "Ashadha Gupta Navaratri Parana on Dashami after Navami completion (Nirnaya-Sindhu rule family).",
+                    "description": "Parana for Ashadha Gupta Navaratri is performed after the completion of the Navami observance.",
                     "deity": "Devi",
                     "fasting": false,
                     "regions": [
@@ -9651,7 +10057,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9666,9 +10072,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -9689,9 +10095,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9699,6 +10105,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9751,7 +10158,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9766,9 +10173,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -9789,9 +10196,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9799,6 +10206,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -9876,7 +10284,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9891,9 +10299,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -9914,9 +10322,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9924,6 +10332,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -10164,7 +10573,14 @@
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shayani Ekadashi",
+                        "Ashadhi Ekadashi",
+                        "Harishayani Ekadashi",
+                        "Prathama Ekadashi",
+                        "Toli Ekadashi",
+                        "Devpodhi Ekadashi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -10203,7 +10619,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -10218,9 +10634,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -10241,9 +10657,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -10251,6 +10667,235 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Pandharpur Yatra",
+                    "name_key": "Pandharpur Yatra",
+                    "description": "Pandharpur Yatra, also known as Ashadhi Wari, is the devotional pilgrimage to Lord Vithoba of Pandharpur.",
+                    "deity": "Vitthala/Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Maharashtra",
+                        "Pandharpur"
+                    ],
+                    "aliases": [
+                        "Pandharpur Wari",
+                        "Ashadhi Wari",
+                        "Ashadhi Ekadashi Yatra"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "Eleventh Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "source_evidence": [
+                            {
+                                "kind": "inherited_rule",
+                                "locator": "Pandharpur Yatra heading and Ekadashi Vrat section",
+                                "supports": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Pandharpur Yatra",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461245.6549787372,
+                        "target_tithi_end_jd": 2461246.753264387,
+                        "standard_date": "2026-07-25",
+                        "observance_date": "2026-07-25",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Pandharpur Yatra",
+                        "festival_name_localized": "Pandharpur Yatra",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Shaka Vrata Begins",
+                    "name_key": "Shaka Vrata Begins",
+                    "description": "Shaka Vrata begins the Chaturmas discipline of abstaining from leafy vegetables.",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "Eleventh Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "fasting_guidance": "chaturmas_no_shak",
+                        "fasting_guidance_key": "chaturmas_no_shak",
+                        "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "inherited_rule",
+                                "locator": "Shaka Vrata heading and Ekadashi Vrat section",
+                                "supports": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Shaka Vrata Begins",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461245.6549787372,
+                        "target_tithi_end_jd": 2461246.753264387,
+                        "standard_date": "2026-07-25",
+                        "observance_date": "2026-07-25",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Shaka Vrata Begins",
+                        "festival_name_localized": "Shaka Vrata Begins",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -10303,7 +10948,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -10318,9 +10963,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -10341,9 +10986,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -10351,6 +10996,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -10406,7 +11052,7 @@
                         "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7687.399984896183,
+                        "tithi_coverage_seconds_today": 4319.999983906746,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": true,
@@ -10422,8 +11068,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1128,
-                            "winning_window_overlap_seconds": 7687.399984896183,
+                            "winning_score": 1071,
+                            "winning_window_overlap_seconds": 4319.999983906746,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -10445,8 +11091,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1128,
-                        "winning_window_overlap_seconds": 7687.399984896183,
+                        "winning_score": 1071,
+                        "winning_window_overlap_seconds": 4319.999983906746,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -10455,6 +11101,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -10487,7 +11134,7 @@
                 {
                     "name": "ISKCON Ekadashi",
                     "name_key": "ISKCON Ekadashi",
-                    "description": "Vaishnava / ISKCON Ekadashi fasting day resolved from sunrise and Arunodaya rules",
+                    "description": "Vaishnava / ISKCON Ekadashi fasting day observed with devotion to Lord Vishnu",
                     "deity": "Vishnu",
                     "fasting": true,
                     "regions": [
@@ -10893,6 +11540,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -11208,7 +11856,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -11223,9 +11871,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -11246,9 +11894,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -11256,6 +11904,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -11569,8 +12218,8 @@
                         "karmakala_type": "sunset",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 7719.600011408329,
-                        "tithi_coverage_seconds_tomorrow": 1787.2248262166977,
+                        "tithi_coverage_seconds_today": 4319.999983906746,
+                        "tithi_coverage_seconds_tomorrow": 3227.2248208522797,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
@@ -11585,8 +12234,8 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1128,
-                            "winning_window_overlap_seconds": 7719.600011408329,
+                            "winning_score": 1071,
+                            "winning_window_overlap_seconds": 4319.999983906746,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -11608,8 +12257,8 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1128,
-                        "winning_window_overlap_seconds": 7719.600011408329,
+                        "winning_score": 1071,
+                        "winning_window_overlap_seconds": 4319.999983906746,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -11618,108 +12267,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Ashadha Purnima Vrat",
-                    "name_key": "Ashadha Purnima Vrat",
-                    "description": "Ashadha Purnima fasting and upavasa observance",
-                    "deity": "Vyasa",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-07-28.",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Ashadha",
-                            "value_key": "Ashadha",
-                            "name": "Ashadha"
-                        },
-                        "karmakala_type": "sunset",
-                        "karmakala_type_name": "sunset",
-                        "strict_karmakala": true
-                    },
-                    "resolution": {
-                        "festival_name": "Ashadha Purnima Vrat",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunset",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 7719.600011408329,
-                        "tithi_coverage_seconds_tomorrow": 1787.2248262166977,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461250.0342799416,
-                        "target_tithi_end_jd": 2461251.108069732,
-                        "standard_date": "2026-07-29",
-                        "observance_date": "2026-07-28",
-                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-07-28.",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1128,
-                            "winning_window_overlap_seconds": 7719.600011408329,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Ashadha Purnima Vrat",
-                        "festival_name_localized": "Ashadha Purnima Vrat",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunset"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1128,
-                        "winning_window_overlap_seconds": 7719.600011408329,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -11997,6 +12545,115 @@
             },
             "festivals": [
                 {
+                    "name": "Ashadha Purnima Vrat",
+                    "name_key": "Ashadha Purnima Vrat",
+                    "description": "Ashadha Purnima fasting and upavasa observance",
+                    "deity": "Vyasa",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "source_evidence": [
+                            {
+                                "kind": "inherited_rule",
+                                "locator": "Vratni Poonam section",
+                                "supports": "This Purnima Vrat inherits the generic Purnima-vrat 18-ghadi Chaturdashi condition; the sunrise field is only the resolver anchor for that table."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Ashadha Purnima Vrat",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461250.0342799416,
+                        "target_tithi_end_jd": 2461251.108069732,
+                        "standard_date": "2026-07-29",
+                        "observance_date": "2026-07-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1",
+                            "winning_reason_name": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1"
+                        },
+                        "festival_name_key": "Ashadha Purnima Vrat",
+                        "festival_name_localized": "Ashadha Purnima Vrat",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1",
+                        "winning_reason_name": "purnima_vrat_chaturdashi_below_18_ghadi_keep_day1"
+                    }
+                },
+                {
                     "name": "Ashadha Purnima",
                     "name_key": "Ashadha Purnima",
                     "description": "Full moon of Ashadha month, honoring spiritual teachers",
@@ -12048,7 +12705,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12063,9 +12720,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12086,9 +12743,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12096,6 +12753,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -12173,7 +12831,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12188,9 +12846,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12211,9 +12869,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12221,6 +12879,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -12273,7 +12932,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12288,9 +12947,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12311,9 +12970,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12321,6 +12980,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -12367,7 +13027,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12382,9 +13042,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12405,9 +13065,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12415,6 +13075,107 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Mukutotsav Purnima",
+                    "name_key": "Mukutotsav Purnima",
+                    "description": "Mukutotsav Purnima is the monthly Purnima observance for offering a beautiful crown and festive adornment to Thakorji.",
+                    "deity": "Thakorji",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Mukutotsav Poonam"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first"
+                    },
+                    "resolution": {
+                        "festival_name": "Mukutotsav Purnima",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461250.0342799416,
+                        "target_tithi_end_jd": 2461251.108069732,
+                        "standard_date": "2026-07-29",
+                        "observance_date": "2026-07-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Mukutotsav Purnima",
+                        "festival_name_localized": "Mukutotsav Purnima",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -12685,7 +13446,7 @@
                 {
                     "name": "Hindola Festival Begins",
                     "name_key": "Hindola Festival Begins",
-                    "description": "Beginning of the Swaminarayan Hindola festival season; source permits Ashadha Krishna Pratipada or Dwitiya when Moon is in Taurus",
+                    "description": "Hindola Festival Begins marks the start of the Swaminarayan hindola season, when Shri Balakrishna is lovingly seated and swung in decorated swings.",
                     "deity": "Balakrishna",
                     "fasting": false,
                     "regions": [
@@ -12740,7 +13501,7 @@
                         "karmakala_type": "sayankala",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 6922.406950592995,
+                        "tithi_coverage_seconds_today": 9543.200017511845,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12755,9 +13516,9 @@
                             "vriddhi_preference": "last",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1115,
-                            "winning_window_overlap_seconds": 6922.406950592995,
-                            "winning_window_coverage_ratio": 0.8941367787531048,
+                            "winning_score": 1159,
+                            "winning_window_overlap_seconds": 9543.200017511845,
+                            "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12778,9 +13539,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1115,
-                        "winning_window_overlap_seconds": 6922.406950592995,
-                        "winning_window_coverage_ratio": 0.8941367787531048,
+                        "winning_score": 1159,
+                        "winning_window_overlap_seconds": 9543.200017511845,
+                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12788,6 +13549,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
@@ -12834,7 +13596,7 @@
                         "karmakala_type": "sunrise",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 3599.999986588955,
+                        "tithi_coverage_seconds_today": 0,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -12849,9 +13611,9 @@
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1059,
-                            "winning_window_overlap_seconds": 3599.999986588955,
-                            "winning_window_coverage_ratio": 1,
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -12872,9 +13634,9 @@
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1059,
-                        "winning_window_overlap_seconds": 3599.999986588955,
-                        "winning_window_coverage_ratio": 1,
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -12882,6 +13644,7 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }

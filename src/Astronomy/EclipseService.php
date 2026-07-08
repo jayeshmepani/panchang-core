@@ -224,8 +224,11 @@ class EclipseService
             $ritualVisibleEndJd = $localContacts['partial_end_jd'];
         }
 
+        $isGrastodaya = $visibilityStartJd !== null;
+        $isGrastasta = $visibilityEndJd !== null;
+
         $visibleDuration = $ritualVisibleStartJd !== null && $ritualVisibleEndJd !== null ? $ritualVisibleEndJd - $ritualVisibleStartJd : 0.0;
-        $meetsDurationThreshold = $visibleDuration > (12.0 / 1440.0);
+        $meetsDurationThreshold = $isGrastodaya || $isGrastasta || ($visibleDuration > (12.0 / 1440.0));
 
         $isPenumbralOnly = ($retHow & $this->lunarPenumbralFlag()) !== 0
             && ($retHow & JmeEphFFI::JME_ECLIPSE_LUNAR_PARTIAL) === 0
@@ -237,6 +240,7 @@ class EclipseService
         $sutakEndAnchor = $ritualVisibleEndJd;
 
         $ritualBoundary = $this->buildRitualBoundaryPayload('Lunar', $ritualVisibleStartJd, $ritualVisibleEndJd, $lat, $lon, $tz, $isVisible);
+        $sutakPraharCount = $this->resolveSutakPraharCount('Lunar', $ritualBoundary);
 
         return [
             'type' => Localization::translate('String', 'Lunar'),
@@ -270,9 +274,9 @@ class EclipseService
                 'window' => $this->formatVisibilityWindow($isVisible ? $ritualVisibleStartJd : null, $isVisible ? $ritualVisibleEndJd : null, $tz),
                 'penumbral_window' => $this->formatVisibilityWindow($isVisible ? $visibilityStartJd : null, $isVisible ? $visibilityEndJd : null, $tz),
             ],
-            'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, 3, $lat, $lon, $tz, $isVisible),
+            'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, $sutakPraharCount, $lat, $lon, $tz, $isVisible),
             'ritual_boundary' => $ritualBoundary,
-            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($ritualVisibleEndJd, $tz, $isVisible),
+            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($ritualVisibleEndJd, 'Lunar', $lat, $lon, $tz, $isVisible, $ritualBoundary),
             'retflag' => $retFlag,
         ];
     }
@@ -315,16 +319,19 @@ class EclipseService
         ];
 
         $dt = $this->jdToCarbon($localMaximumJd, $tz);
+        [$localSunrise, $localSunset] = $this->sunriseSunsetForDate($dt->startOfDay(), $lat, $lon, $tz);
+        $localSunriseJd = $this->carbonToJd($localSunrise);
+        $localSunsetJd = $this->carbonToJd($localSunset);
 
         $astroVisible = (int) $attrLoc[8] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
-        $diskMagnitude = max((float) $attr[0], (float) $attrLoc[0]);
-        $hasVisibleDiskMagnitude = $diskMagnitude > 0.0;
-        $meetsRitualMagnitude = $diskMagnitude >= self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE;
+        $localDiskMagnitude = (float) $attrLoc[0];
+        $hasVisibleDiskMagnitude = $localDiskMagnitude > 0.0;
+        $meetsRitualMagnitude = $localDiskMagnitude >= self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE;
         // JME local solar search currently exposes local contact times but not
         // separate rise/set truncation markers, so the visible window must be
         // derived from ordered local outer contacts.
-        $visibilityWindowStartJd = $localContacts['first_contact_jd'] ?? $localContacts['sunrise_jd'];
-        $visibilityWindowEndJd = $localContacts['fourth_contact_jd'] ?? $localContacts['sunset_jd'];
+        $visibilityWindowStartJd = $this->maxJd($localContacts['first_contact_jd'], $localSunriseJd);
+        $visibilityWindowEndJd = $this->minJd($localContacts['fourth_contact_jd'], $localSunsetJd);
         $hasVisibleWindow = $visibilityWindowStartJd !== null
             && $visibilityWindowEndJd !== null
             && $visibilityWindowEndJd > $visibilityWindowStartJd;
@@ -357,7 +364,7 @@ class EclipseService
             'jd' => $localMaximumJd,
             'magnitudes' => [
                 'eclipse' => (float) $attr[0],
-                'local_eclipse' => (float) $attrLoc[0],
+                'local_eclipse' => $localDiskMagnitude,
                 'obscuration' => $obscuration,
                 'ritual_minimum' => self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE,
                 'meets_ritual_minimum' => $meetsRitualMagnitude,
@@ -385,7 +392,7 @@ class EclipseService
             ],
             'sutak' => $this->sutak($sutakStartAnchor, $sutakEndAnchor, 4, $lat, $lon, $tz, $isVisible),
             'ritual_boundary' => $ritualBoundary,
-            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($visibilityWindowEndJd, $tz, $isVisible),
+            'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload($visibilityWindowEndJd, 'Solar', $lat, $lon, $tz, $isVisible, $ritualBoundary),
             'retflag' => $retFlag,
         ];
     }
@@ -505,10 +512,14 @@ class EclipseService
             'end_jd' => $eclipseEndJd,
             'start' => AstroCore::formatDateTime($this->jdToCarbon($startJd, $tz)),
             'end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
+            'profile_key' => 'standard_sutak',
+            'profile_name' => Localization::translate('String', 'standard_sutak'),
             'relaxed_start_jd' => $relaxedStartJd,
             'relaxed_end_jd' => $eclipseEndJd,
             'relaxed_start' => AstroCore::formatDateTime($this->jdToCarbon($relaxedStartJd, $tz)),
             'relaxed_end' => AstroCore::formatDateTime($this->jdToCarbon($eclipseEndJd, $tz)),
+            'relaxed_profile_key' => 'sutak_for_children_elderly_sick',
+            'relaxed_profile_name' => Localization::translate('String', 'sutak_for_children_elderly_sick'),
             'duration_hours' => ($eclipseStartJd - $startJd) * 24.0,
         ];
     }
@@ -535,6 +546,15 @@ class EclipseService
         $grastUday = ($visibleStartJd < $this->carbonToJd($startSunrise)) && ($visibleEndJd > $this->carbonToJd($startSunrise));
         $grastAst = ($visibleStartJd < $this->carbonToJd($endSunset)) && ($visibleEndJd > $this->carbonToJd($endSunset));
 
+        $instructionKey = match (true) {
+            $grastUday && $eclipseKind === 'Lunar' => 'lunar_grastodaya',
+            $grastUday && $eclipseKind === 'Solar' => 'solar_grastodaya',
+            $grastAst && $eclipseKind === 'Lunar' => 'lunar_grastasta',
+            $grastAst && $eclipseKind === 'Solar' => 'solar_grastasta',
+            default => 'ordinary_visible',
+        };
+        $isChudamaniYoga = $this->isChudamaniYoga($eclipseKind, $visibleStartJd, $tz);
+
         return [
             'type' => match (true) {
                 $grastUday && $grastAst => 'grast_uday_and_grast_ast',
@@ -542,15 +562,11 @@ class EclipseService
                 $grastAst => 'grast_ast',
                 default => 'ordinary_visible_eclipse',
             },
-            'scriptural_instructions' => match (true) {
-                $grastUday && $eclipseKind === 'Lunar' => 'Lunar Grastodaya: 4-prahar vedha applies. Do not eat on the previous day.',
-                $grastUday && $eclipseKind === 'Solar' => 'Solar Grastodaya: stop food from previous night. After eclipse release, bathe and see the pure sun disc before eating.',
-                $grastAst && $eclipseKind === 'Lunar' => 'Lunar Grastasta: Eat only when moon rises again in the evening.',
-                $grastAst && $eclipseKind === 'Solar' => 'Solar Grastasta: do not eat that day or following night. Next day after sunrise, bathe, see pure sun disc, then eat.',
-                default => sprintf('Ordinary %s Eclipse: Observe standard %d-prahara Sutak.', $eclipseKind, $eclipseKind === 'Lunar' ? 3 : 4),
-            },
+            'instruction_key' => $instructionKey,
+            'scriptural_instructions' => Localization::translate('EclipseInstructions', $instructionKey),
             'grast_uday' => $grastUday,
             'grast_ast' => $grastAst,
+            'is_chudamani_yoga' => $isChudamaniYoga,
             'visible_start_jd' => $visibleStartJd,
             'visible_start' => AstroCore::formatDateTime($start),
             'visible_end_jd' => $visibleEndJd,
@@ -561,23 +577,102 @@ class EclipseService
         ];
     }
 
-    private function buildPostEclipseRitualPayload(?float $visibleEndJd, string $tz, bool $isVisible): array
+    private function buildPostEclipseRitualPayload(?float $visibleEndJd, string $eclipseKind, float $lat, float $lon, string $tz, bool $isVisible, array $ritualBoundary = []): array
     {
         if (!$isVisible || $visibleEndJd === null) {
             return [
                 'applicable' => false,
                 'snana_required' => false,
                 'fresh_food_after_eclipse' => false,
+                'ritual_completion_requirement_key' => null,
+                'ritual_completion_requirement' => null,
             ];
+        }
+
+        $startsAfterJd = $visibleEndJd;
+        $completionRequirementKey = 'snana_after_moksha_then_fresh_food';
+
+        if ((bool) ($ritualBoundary['grast_ast'] ?? false)) {
+            if ($eclipseKind === 'Solar') {
+                $startsAfterJd = $this->nextSunriseAfter($visibleEndJd, $lat, $lon, $tz);
+                $completionRequirementKey = 'after_next_sunrise_bathe_see_pure_sun_disc_then_eat';
+            } else {
+                $startsAfterJd = $this->nextMoonriseAfter($visibleEndJd, $lat, $lon, $tz) ?? $visibleEndJd;
+                $completionRequirementKey = 'after_moonrise_again_then_eat';
+            }
+        } elseif ((bool) ($ritualBoundary['grast_uday'] ?? false) && $eclipseKind === 'Solar') {
+            $completionRequirementKey = 'see_pure_sun_disc_after_moksha_then_eat';
         }
 
         return [
             'applicable' => true,
             'snana_required' => true,
             'fresh_food_after_eclipse' => true,
-            'starts_after_jd' => $visibleEndJd,
-            'starts_after' => AstroCore::formatDateTime($this->jdToCarbon($visibleEndJd, $tz)),
+            'starts_after_jd' => $startsAfterJd,
+            'starts_after' => AstroCore::formatDateTime($this->jdToCarbon($startsAfterJd, $tz)),
+            'ritual_completion_requirement_key' => $completionRequirementKey,
+            'ritual_completion_requirement' => Localization::translate('String', $completionRequirementKey),
         ];
+    }
+
+    /** @param array<string, mixed> $ritualBoundary */
+    private function resolveSutakPraharCount(string $eclipseKind, array $ritualBoundary): int
+    {
+        if ($eclipseKind === 'Solar') {
+            return 4;
+        }
+
+        return (bool) ($ritualBoundary['grast_uday'] ?? false) ? 4 : 3;
+    }
+
+    private function isChudamaniYoga(string $eclipseKind, float $referenceJd, string $tz): bool
+    {
+        $weekday = $this->jdToCarbon($referenceJd, $tz)->dayOfWeek;
+
+        return match ($eclipseKind) {
+            'Solar' => $weekday === CarbonImmutable::SUNDAY,
+            'Lunar' => $weekday === CarbonImmutable::MONDAY,
+            default => false,
+        };
+    }
+
+    private function nextSunriseAfter(float $jd, float $lat, float $lon, string $tz): float
+    {
+        $time = $this->jdToCarbon($jd, $tz);
+        [$todaySunrise] = $this->sunriseSunsetForDate($time->startOfDay(), $lat, $lon, $tz);
+        if ($todaySunrise->greaterThan($time)) {
+            return $this->carbonToJd($todaySunrise);
+        }
+
+        [$nextSunrise] = $this->sunriseSunsetForDate($time->startOfDay()->addDay(), $lat, $lon, $tz);
+
+        return $this->carbonToJd($nextSunrise);
+    }
+
+    private function nextMoonriseAfter(float $jd, float $lat, float $lon, string $tz): ?float
+    {
+        $time = $this->jdToCarbon($jd, $tz);
+
+        foreach ([0, 1, 2] as $offsetDays) {
+            [$moonrise] = $this->sunService->getMoonriseMoonset([
+                'year' => $time->addDays($offsetDays)->year,
+                'month' => $time->addDays($offsetDays)->month,
+                'day' => $time->addDays($offsetDays)->day,
+                'hour' => 0,
+                'minute' => 0,
+                'second' => 0,
+                'timezone' => $tz,
+                'latitude' => $lat,
+                'longitude' => $lon,
+                'elevation' => 0.0,
+            ]);
+
+            if ($moonrise instanceof CarbonImmutable && $moonrise->greaterThan($time)) {
+                return $this->carbonToJd($moonrise);
+            }
+        }
+
+        return null;
     }
 
     /** @return array{start_jd:?float, relaxed_start_jd:?float} */
@@ -618,12 +713,20 @@ class EclipseService
         }
 
         $startBoundaryIndex = $containingIndex - $praharsBefore;
-        $containingPraharDurationJd = $this->carbonToJd($boundaries[$containingIndex + 1])
-            - $this->carbonToJd($boundaries[$containingIndex]);
+        $segmentStart = $boundaries[$containingIndex];
+        $segmentEnd = $boundaries[$containingIndex + 1];
+        $segmentDurationSeconds = max(
+            0.0,
+            ($segmentEnd->getTimestamp() - $segmentStart->getTimestamp())
+            + (((int) $segmentEnd->format('u')) - ((int) $segmentStart->format('u'))) / 1_000_000
+        );
+        $relaxedStart = $segmentDurationSeconds > 0.0
+            ? $this->addFloatSeconds($eventStart, -$segmentDurationSeconds)
+            : null;
 
         return [
             'start_jd' => $startBoundaryIndex >= 0 ? $this->carbonToJd($boundaries[$startBoundaryIndex]) : null,
-            'relaxed_start_jd' => $eclipseStartJd - $containingPraharDurationJd,
+            'relaxed_start_jd' => $relaxedStart instanceof CarbonImmutable ? $this->carbonToJd($relaxedStart) : null,
         ];
     }
 

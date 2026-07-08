@@ -47,13 +47,13 @@ This section records the actual calculation conventions currently used by the en
 | Vaishnava Ekadashi Dashami-vedha | 55 ghaṭikā threshold from previous sunrise | `KalaNirnayaEngine::determineEkadashi()` | Common 4-ghaṭikā arunodaya is documented separately but is not the active Nirnay vedha threshold. |
 | Hari Vasara | First quarter of Dvadashi | `EkadashiParanaCalculator` | Parana starts after Hari Vasara unless restricted further by Nakshatra-pada rules. |
 | Ekadashi parana restrictions | Gujarati/Nirnay month-paksha scope: Ashadha Shukla Anuradha P1, Bhadrapada Shukla Shravana P2-P3, Kartika Shukla Revati P4 | `EkadashiParanaCalculator::buildParanaPayload()` | The payload exposes restricted windows, allowed parana windows, short-Dwadashi classification, and symbolic-water emergency allowance. Calls without month/paksha context retain the old global Nirnay fallback. |
-| Ekadashi parana source refinements | Break within Dwadashi unless Dwadashi expires before sunrise; Harivasara is the first quarter of Dwadashi; tight-overlap cases can expose symbolic-water parana metadata | `EkadashiParanaCalculator::buildParanaPayload()` | Source basis includes Drik Panchang Ekadashi/ISKCON parana pages, Swaminarayan Satsangi Jeevan parana restrictions, and Hari Bhakti Vilasa / Vaishnava practice. |
-| Vaishnava Ekadashi case labels | Candidate payload metadata can distinguish scenario names such as Viddha, Kshaya, Unmillani, Trisparsha, and Mahadvadashi variants where implemented | `KalaNirnayaEngine`, `EkadashiParanaCalculator` | Source basis includes Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, Kamakoti Dharma Sindhu Vaishnava/Smarta distinctions, and Drik Panchang's published Mahadvadashi profiles. |
+| Ekadashi parana source refinements | Break within Dwadashi unless Dwadashi expires before sunrise; Harivasara is the first quarter of Dwadashi; tight-overlap cases can expose symbolic-water parana metadata | `EkadashiParanaCalculator::buildParanaPayload()` | Source basis includes Swaminarayan Satsangi Jeevan parana restrictions and Hari Bhakti Vilasa / Vaishnava practice. |
+| Vaishnava Ekadashi case labels | Candidate payload metadata can distinguish scenario names such as Viddha, Kshaya, Unmillani, Trisparsha, and Mahadvadashi variants where implemented | `KalaNirnayaEngine`, `EkadashiParanaCalculator` | Source basis includes Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, and Kamakoti Dharma Sindhu Vaishnava/Smarta distinctions. |
 | Festival karmakala resolution | Window overlap, not single-point-only, for Pradosha/Nishitha/Madhyahna/Aparahna/Sangava/Arunodaya | `FestivalRuleEngine` | Pradosha is sunset to 6 ghati after sunset for festival decisions; resolution metadata exposes overlap seconds. |
 | Karmakala time basis | Pratah, Sangava, Madhyahna, Aparahna, Sayahna, Abhijit, Vijaya, and Nishitha use actual daytime/nighttime divisions; Arunodaya, Pradosha, and Sandhya ritual windows use fixed ghati offsets from local solar anchors | `FestivalRuleEngine`, `DailyPeriodsCalculator`, `PanchangMuhurtaYogaDelegatesTrait` | Fixed ghati remains 24 elapsed minutes and is not resized by dinamana or ratrimana. Vijaya is the 11th daytime muhurta; Sayahna is the final fifth of daytime and is distinct from sunset-relative Sayam Sandhya. |
-| Rama Navami / Shri Ram Jayanti | Madhyahna-vyapini Chaitra Shukla Navami is the classical target for Rama-birth observance | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Valmiki Ramayana Bala Kanda 1.18.8, Dharma Sindhu Madhyahna Navami instruction, and Drik Panchang Rama Navami published timing. Swaminarayan Jayanti is intentionally documented separately because that sectarian day resolution is not the same rule. |
-| Dhanteras / Dhantrayodashi | Krishna Trayodashi overlapping Pradosha is the puja-date target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Pradosha Trayodashi rule and Drik Panchang Dhantrayodashi puja timing. |
-| Diwali / Lakshmi Puja | Amavasya overlapping Pradosha/night is the Lakshmi Puja target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Amavasya night/Pradosha rule and Drik Panchang Diwali puja muhurta. |
+| Rama Navami / Shri Ram Jayanti | Madhyahna-vyapini Chaitra Shukla Navami is the classical target for Rama-birth observance | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Valmiki Ramayana Bala Kanda 1.18.8 and Dharma Sindhu Madhyahna Navami instruction. Swaminarayan Jayanti is intentionally documented separately because that sectarian day resolution is not the same rule. |
+| Dhanteras / Dhantrayodashi | Krishna Trayodashi overlapping Pradosha is the puja-date target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Pradosha Trayodashi rule. |
+| Diwali / Lakshmi Puja | Amavasya overlapping Pradosha/night is the Lakshmi Puja target | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Source basis: Dharma Sindhu-style Amavasya night/Pradosha rule. |
 | Holika Bhadra and eclipse handling | Reject Bhadra Mukha/Madhya overlap, prefer clear or Bhadra Puchha windows, apply the lunar-eclipse exception path, and require Purnima in Pradosha | `FestivalRuleEngine`, `BhadraCalculator`, `BhadraEngine` | Active when festival snapshots include Bhadra period or lunar-eclipse data; branch-level PHPUnit coverage locks the Gujarati decision paths. |
 | Ganesh Chaturthi special Madhyahna preference | Prefer full Madhyahna Chaturthi coverage over partial overlap | `FestivalRuleEngine`, `FestivalService::FESTIVALS` | Encoded as `prefer_full_karmakala_coverage` plus Gujarati special-case metadata. |
 | Deepotsav observance sequence | Date-wise rules for Vagh Baras, Dhanteras, Narak Chaturdashi Abhyanga Snan, Kali Chaudas, Diwali/Kali Puja, Govardhan/Annakut, and Bhai Beej | `FestivalService::FESTIVALS`, `FestivalRuleEngine` | Entries expose `deepotsav_sequence`; Naraka Chaturdashi Abhyanga Snan and Govardhan Puja are marked `location_sensitive` because published city almanacs can differ by one civil date. |
@@ -156,13 +156,13 @@ These source families are useful for attribution and future rule-hardening, but 
 |-----------|-----------------------|-----------------------|
 | Grahana sutak in yama/prahara units | Implemented through dynamic prahar-based sutak windows where eclipse visibility qualifies | Sutak verse tradition for 4 yamas before solar eclipse and 3 yamas before lunar eclipse; Śrīmad Bhāgavatam 3.11.10 for four yamas in day/night; Bhāskara commentary to Āryabhaṭīya for day/night quarter definition of yama. |
 | Grahana local edge cases | Partly implemented / profile-sensitive | Grastodaya and Grastasta classification, local-visible contact windows, penumbral/mandya lunar eclipse exclusion, and a half-ghadi / 12-minute short-visibility cutoff where that convention is enabled. |
-| Ekadashi parana timing | Implemented with Nirnay/Satsangi restrictions and dynamic windows | Drik Panchang guidance that parana should occur within Dwadashi unless Dwadashi expires before sunrise; Harivasara as the first quarter of Dwadashi; Vaishnava/ISKCON parana pages for symbolic water-only parana in tight overlaps. |
-| Vaishnava Ekadashi naming | Candidate metadata / profile refinement | Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, Kamakoti Dharma Sindhu Vaishnava/Smarta distinction, and Drik Panchang's eight Mahadvadashi profile names. |
-| Rama Navami / Shri Ram Jayanti | Source basis for Madhyahna-vyapini rule | Vālmīki Rāmāyaṇa 1.18.8, Dharma Sindhu Madhyahna-vyapini Navami rule, and Drik Panchang Rama Navami timing. |
-| Dhanteras and Lakshmi Puja | Source basis for Pradosha/night-window rules | Dharma Sindhu-style Trayodashi-in-Pradosha and Amavasya-in-night/Pradosha rules; Drik Panchang Dhantrayodashi and Diwali Puja timing pages. |
-| Mahashivaratri | Source basis for Nishitha-vyapini Chaturdashi rule | Dharma Sindhu OCR preserving Nishitha selector and Drik Panchang Nishita Kaal / Chaturdashi timing. |
+| Ekadashi parana timing | Implemented with Nirnay/Satsangi restrictions and dynamic windows | Hari Bhakti Vilasa, Vaishnava practice, and Satsangi Jeevan-based Dwadashi/Harivasara constraints including symbolic-water parana handling in tight overlaps. |
+| Vaishnava Ekadashi naming | Candidate metadata / profile refinement | Shikshapatri 81, Vitthalnathji vrata-nirnaya compliance, and Kamakoti Dharma Sindhu Vaishnava/Smarta distinction. |
+| Rama Navami / Shri Ram Jayanti | Source basis for Madhyahna-vyapini rule | Vālmīki Rāmāyaṇa 1.18.8 and Dharma Sindhu Madhyahna-vyapini Navami rule. |
+| Dhanteras and Lakshmi Puja | Source basis for Pradosha/night-window rules | Dharma Sindhu-style Trayodashi-in-Pradosha and Amavasya-in-night/Pradosha rules. |
+| Mahashivaratri | Source basis for Nishitha-vyapini Chaturdashi rule | Dharma Sindhu OCR preserving Nishitha selector. |
 | Vamana Jayanti | Source basis for Dwadashi-Abhijit-Shravana priority | Śrīmad Bhāgavatam 8.18.5: Vamanadeva's appearance on Shravana Dwadashi in Abhijit Muhurta. |
-| Narasimha Jayanti | Source basis for evening / Pradosha Chaturdashi | Dharma Sindhu-style Vaishakha Shukla Chaturdashi evening rule, Drik Panchang Narasimha Jayanti timing, and ISKCON public observance notes. |
+| Narasimha Jayanti | Source basis for evening / Pradosha Chaturdashi | Dharma Sindhu-style Vaishakha Shukla Chaturdashi evening rule and ISKCON public observance notes. |
 | Govardhan Puja / Annakuta | Source basis for worship and offerings metadata | Śrīmad Bhāgavatam 10.24.25-26 and ISKCON public Govardhan Puja / Annakuta observance summaries. |
 | Phuldolotsava profile split | Source basis for tradition-profile variants | BAPS and Swaminarayan.org public Fuldol/Pushpadolotsav pages for Fagun Vad 1 presentation; Satsangi Jivan volume 3 for Nar-Narayan / Phalguni-at-sunrise rationale. |
 | Samavedi Shravani / Upakarma | Source basis for Hasta-priority rule family | Yājñavalkya Smṛti 1.142 as quoted in modern summaries, Samskaaram.com Sāma Veda Upākarmā procedure, and Saṃskāra-ratnamālā Upakarma material. |
@@ -297,9 +297,6 @@ Some entries below are exact text names. Others are intentionally labeled as sou
 38. Popular travel-muhurta Panchang tables
 39. Nivas-Shool / Vaasa style published Panchang tables
 40. Drik Nivas-Shool Panchang style
-41. Drik Panchang Ekadashi / Harivasara / Parana pages
-42. Drik Panchang Mahadvadashi / ISKCON Parana pages
-43. Drik Panchang festival timing pages for Rama Navami, Dhantrayodashi, Diwali, Mahashivaratri, Narasimha Jayanti, and Chandra Darshana
 44. Modern Nivas-Shool Panchang style
 45. Published Gowri/Pambu table convention
 46. Published Panchang dynamic night-muhurta convention
@@ -346,7 +343,6 @@ Some entries below are exact text names. Others are intentionally labeled as sou
 ### Modern Systems
 76. KP System (Krishnamurti Paddhati)
 77. JME native ephemeris
-78. Drik Panchang-style modern published almanac convention
 79. Bharat Discovery public grahana-sutak citation
 80. Indica Today Upakarma/Utsarjana summary
 81. Samskaaram.com Sāma Veda Upākarmā procedure reference

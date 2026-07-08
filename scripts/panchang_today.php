@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Generate today's complete panchang JSON.
  *
  * Usage: php scripts/panchang_today.php
- * Output: today_panchang.json
+ * Output: scripts/output/{calendar_type}/{locale}/today.json
  *
  * This data changes daily — run whenever you need current data.
  */
@@ -17,6 +17,7 @@ use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
+require __DIR__ . '/output_helpers.php';
 
 CliBootstrap::init($baseDir);
 DebugTrace::log('script.today', 'starting today panchang generation');
@@ -27,12 +28,15 @@ $longitude = 69.668339;
 $elevation = 0.0;
 $city = 'Bhuj';
 $country = 'IN';
-$calendarType = config('panchang.defaults.calendar_type', 'amanta');
+$calendarType = panchang_script_calendar_type();
+$locale = panchang_script_locale();
+$outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
 
 $panchangService = CliBootstrap::makePanchangService();
 $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 DebugTrace::log('script.today', 'services constructed', [
     'calendar_type' => $calendarType,
+    'locale' => $locale,
     'timezone' => $timezone,
     'latitude' => $latitude,
     'longitude' => $longitude,
@@ -54,6 +58,7 @@ $output = [
         'generated_at' => date('c'),
         'type' => 'today_panchang',
         'calendar_type' => $calendarType,
+        'locale' => $locale,
         'location' => [
             'city' => $city,
             'country' => $country,
@@ -67,13 +72,15 @@ $output = [
     'muhurta_evaluation' => $result['muhurta_evaluation'],
 ];
 
-$json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-if ($json === false) {
-    fwrite(STDERR, 'JSON encoding failed: ' . json_last_error_msg() . PHP_EOL);
+$outputPath = $outputDir . DIRECTORY_SEPARATOR . 'today.json';
+
+try {
+    panchang_script_write_json($outputPath, $output);
+} catch (RuntimeException $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
     exit(1);
 }
 
-file_put_contents('today_panchang.json', $json . PHP_EOL);
-DebugTrace::log('script.today', 'today_panchang.json written', ['date' => $todayDate]);
+DebugTrace::log('script.today', 'today.json written', ['date' => $todayDate, 'path' => $outputPath]);
 
-echo "Written today_panchang.json — {$todayDate} for {$city}, {$country}." . PHP_EOL;
+echo "Written {$outputPath} — {$todayDate} for {$city}, {$country}." . PHP_EOL;

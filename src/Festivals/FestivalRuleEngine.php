@@ -14,6 +14,42 @@ class FestivalRuleEngine
 {
     private const float RAKSHA_BANDHAN_UDAYA_PURNIMA_THRESHOLD_MUHURTAS = 3.0;
 
+    // Govardhan/Annakut "Sthula Chandra Darshana" threshold: if Kartika Shukla Pratipada
+    // persists at least 9 muhurtas past sunrise the day is treated as free of Sthula
+    // Chandra Darshana; otherwise the observance shifts to the previous (Amavasya-viddha) day.
+    private const float GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS = 9.0;
+
+    // Nag Panchami (Shravana Krishna Panchami) is paraviddha: the reference keeps the Panchami
+    // pierced by the Shashthi that spans at least 6 (fixed 24-minute) ghadis past sunrise, and
+    // only shifts the observance based on the same 6-ghadi Chaturthi vedha threshold.
+    private const float NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI = 6.0;
+
+    // Durgashtami / Bhavani Pragatya (Chaitra Shukla Ashtami and its monthly derivative) is
+    // paraviddha (navami-viddha): the reference takes the Ashtami spanning at least 3 muhurtas
+    // past sunrise, otherwise it falls back to the Saptami-viddha previous day.
+    private const float DURGASHTAMI_PARAVIDDHA_MUHURTAS = 3.0;
+
+    // Akshaya Tritiya (Vaishakha Shukla Tritiya) is purvahna (forenoon) vyapini. When the
+    // Tritiya pervades the purvahna on both civil days the reference shifts the observance to
+    // the second day only if the second day's Tritiya spans at least 3 muhurtas past sunrise;
+    // otherwise it stays on the first (purva) day.
+    private const float AKSHAYA_TRITIYA_PURVAHNA_MUHURTAS = 3.0;
+
+    // Anant Chaturdashi (Bhadrapada Shukla Chaturdashi) is a post-sunrise paraviddha: the
+    // reference takes the Chaturdashi spanning at least 2 muhurtas past sunrise, otherwise the
+    // observance falls back to the previous day. Purvahna is the primary kala.
+    private const float ANANT_CHATURDASHI_PARAVIDDHA_MUHURTAS = 2.0;
+
+    // Chaitra/Ashvina Navaratri Pratipada starts on Pratipada when it lasts at least one
+    // dinamana-muhurta after sunrise; when below one muhurta or kshaya, the start falls
+    // back to the Amavasya-viddha previous day.
+    private const float NAVRATRI_PRATIPADA_MIN_MUHURTAS = 1.0;
+
+    // Durva Ashtami (Dharo Atham) is purvaviddha with a sunset-side check: if Ashtami
+    // begins at least three dinamana-muhurtas before sunset on the Saptami day, take
+    // that first day; vriddhi/kshaya also keep the first day.
+    private const float DURVA_ASHTAMI_PURVAVIDDHA_MUHURTAS = 3.0;
+
     private const array SUPPORTED_KARMAKALA_TYPES = [
         'abhijit',
         'aparahna',
@@ -32,6 +68,7 @@ class FestivalRuleEngine
         'sayankala',
         'sunrise',
         'sunset',
+        'tithi_boundary',
         'vijaya_kaal',
     ];
 
@@ -149,7 +186,7 @@ class FestivalRuleEngine
                 $this->buildCandidate($date, $today, $targetInterval, $karmakalaType, 0, $rule),
                 $this->buildCandidate($date->addDay(), $tomorrow, $targetInterval, $karmakalaType, 1, $rule),
             ];
-            $specialWinner = $this->resolveSpecialFestivalCandidate($rule, $candidates, $today, $targetInterval);
+            $specialWinner = $this->resolveSpecialFestivalCandidate($date, $rule, $candidates, $today, $targetInterval);
             $exclusiveTruthTable = $this->usesExclusiveTruthTable($rule);
             if ($specialWinner === null && $exclusiveTruthTable) {
                 continue;
@@ -293,6 +330,7 @@ class FestivalRuleEngine
             'festival_name' => $festivalName,
             'required_tithi' => $requiredTithi,
             'paksha' => $paksha,
+            'calendar_type' => strtolower((string) ($today['Hindu_Calendar']['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta'))),
             'karmakala_type' => $karmakalaType,
             'tithi_at_karmakala_today' => $candidates[0]['target_at_karmakala'],
             'tithi_at_karmakala_tomorrow' => $candidates[1]['target_at_karmakala'],
@@ -402,19 +440,25 @@ class FestivalRuleEngine
         array $today,
         array $tomorrow
     ): ?array {
+        // The classical rule is anchored on the processed civil day itself (its sunrise tithi
+        // plus the preceding/following sunrise), so it is evaluated once per date with the real
+        // next-day snapshot. A previous "next day" fallback with a null next snapshot truncated
+        // the Pratipada interval at the next sunrise and spuriously triggered the kshaya branch.
         $todayCandidate = $this->buildChandraDarshanaCandidate($date, $today, $tomorrow, 0, $rule);
         if ($todayCandidate !== null) {
             return $this->buildChandraDarshanaResult($festivalName, $rule, $todayCandidate);
         }
 
-        $tomorrowCandidate = $this->buildChandraDarshanaCandidate($date->addDay(), $tomorrow, null, 1, $rule);
-        if ($tomorrowCandidate !== null) {
-            return $this->buildChandraDarshanaResult($festivalName, $rule, $tomorrowCandidate);
-        }
-
         return null;
     }
 
+    /**
+     * Classical "Sud 1 or Sud 2" Chandra Darshana determination via the Sthula Chandra
+     * Darshana 9-muhurta rule. The gross first crescent is placed
+     * on Shukla Pratipada (Sud 1) when Pratipada is "short" (< 9 muhurtas past sunrise), and on
+     * Shukla Dwitiya (Sud 2) when Pratipada is "long" (>= 9 muhurtas, no Sthula darshana on Sud
+     * 1). The physical sunset->moonset window is retained only as a lunar-visibility gate.
+     */
     private function buildChandraDarshanaCandidate(
         CarbonImmutable $date,
         array $details,
@@ -428,49 +472,116 @@ class FestivalRuleEngine
         }
 
         $moonVisibilitySeconds = max(0.0, ($visibilityWindow['end_jd'] - $visibilityWindow['start_jd']) * 86400.0);
-        $visibilityAssessment = $this->assessChandraDarshanaVisibility($details, $moonVisibilitySeconds, $rule);
-        if (!(bool) $visibilityAssessment['visible']) {
+
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
+        $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $prevSunriseJd = (float) ($ctx['previous_sunrise_jd'] ?? 0.0);
+        $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
+        $currentAbs = (int) ($ctx['tithi_index_abs'] ?? 0);
+        if ($sunriseJd <= 0.0 || $sunsetJd <= $sunriseJd) {
             return null;
         }
 
-        foreach ([1, 2] as $targetTithi) {
-            $targetInterval = $this->deriveSnapshotTithiInterval($targetTithi, 'Shukla', $details, $nextDetails);
-            if ($targetInterval === null) {
-                continue;
-            }
-
-            $overlapSeconds = $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
-            $ctx = (array) ($details['Resolution_Context'] ?? []);
-            $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
-            $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
-            $targetAtSunrise = $sunriseJd > 0.0 && $this->isTargetAtPoint($sunriseJd, $targetInterval);
-            $targetDaylightOverlapSeconds = ($sunriseJd > 0.0 && $sunsetJd > $sunriseJd)
-                ? $this->intervalOverlapSeconds($targetInterval, ['start_jd' => $sunriseJd, 'end_jd' => $sunsetJd])
-                : 0.0;
-
-            if ($overlapSeconds <= 0.0 && $targetDaylightOverlapSeconds <= 0.0) {
-                continue;
-            }
-
-            return [
-                'date' => $date->toDateString(),
-                'day_offset' => $dayOffset,
-                'required_tithi' => $targetTithi,
-                'target_interval' => $targetInterval,
-                'visibility_window' => $visibilityWindow,
-                'target_at_sunrise' => $targetAtSunrise,
-                'target_at_karmakala' => $overlapSeconds > 0.0,
-                'target_window_overlap_seconds' => $overlapSeconds,
-                'target_daylight_overlap_seconds' => $targetDaylightOverlapSeconds,
-                'moon_visibility_seconds' => $moonVisibilitySeconds,
-                'visibility_assessment' => $visibilityAssessment,
-                'reason' => $targetTithi === 1
-                    ? 'chandra_darshana_pratipada_visible_after_sunset'
-                    : 'chandra_darshana_dwitiya_visible_after_sunset',
-            ];
+        $muhurtaSeconds = (($sunsetJd - $sunriseJd) * 86400.0) / 15.0;
+        $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * $muhurtaSeconds;
+        if ($thresholdSeconds <= 0.0) {
+            return null;
         }
 
-        return null;
+        $targetTithi = null;
+        $assessment = null;
+
+        if ($currentAbs === 1) {
+            // Pratipada is udaya-vyapini (day P). Sthula darshana is present (CD today, Sud 1)
+            // only when Pratipada is short: it does not persist 9 muhurtas past sunrise.
+            $pratipadaInterval = $this->deriveSnapshotTithiInterval(1, 'Shukla', $details, $nextDetails);
+            if ($pratipadaInterval !== null) {
+                $postSunriseSeconds = max(0.0, ($pratipadaInterval['end_jd'] - $sunriseJd) * 86400.0);
+                if ($postSunriseSeconds < $thresholdSeconds) {
+                    $targetTithi = 1;
+                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_short_pratipada_sthula_present');
+                }
+            }
+        } elseif ($currentAbs === 2) {
+            // Dwitiya is udaya-vyapini. CD is here (Sud 2) only when the preceding Pratipada was
+            // long (>= 9 muhurtas past its sunrise), i.e. no Sthula darshana on Sud 1.
+            $prevPratipadaEndJd = (float) ($ctx['tithi_start_jd'] ?? 0.0);
+            if ($prevSunriseJd > 0.0 && $prevPratipadaEndJd > $prevSunriseJd) {
+                $postSunriseSeconds = max(0.0, ($prevPratipadaEndJd - $prevSunriseJd) * 86400.0);
+                if ($postSunriseSeconds >= $thresholdSeconds) {
+                    $targetTithi = 2;
+                    $assessment = $this->chandraDarshanaSthulaAssessment(2, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1');
+                }
+            }
+        } elseif ($currentAbs === 30) {
+            // Kshaya Pratipada: Amavasya is udaya-vyapini and Pratipada is wholly contained in
+            // the day (never touches a sunrise). Being short, Sthula darshana is present, so CD
+            // stays on this Amavasya-viddha (Sud 1) day.
+            $pratipadaInterval = $this->deriveSnapshotTithiInterval(1, 'Shukla', $details, $nextDetails);
+            if (
+                $pratipadaInterval !== null
+                && $nextSunriseJd > 0.0
+                && $pratipadaInterval['start_jd'] < $nextSunriseJd
+                && $pratipadaInterval['end_jd'] <= $nextSunriseJd
+            ) {
+                $postSunriseSeconds = max(0.0, ($pratipadaInterval['end_jd'] - $sunriseJd) * 86400.0);
+                $targetTithi = 1;
+                $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_kshaya_pratipada_sthula_present');
+            }
+        }
+
+        if ($targetTithi === null || $assessment === null) {
+            return null;
+        }
+
+        $targetInterval = $this->deriveSnapshotTithiInterval($targetTithi, 'Shukla', $details, $nextDetails);
+        if ($targetInterval === null) {
+            return null;
+        }
+
+        $overlapSeconds = $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
+        $targetAtSunrise = $this->isTargetAtPoint($sunriseJd, $targetInterval);
+        $targetDaylightOverlapSeconds = $sunsetJd > $sunriseJd
+            ? $this->intervalOverlapSeconds($targetInterval, ['start_jd' => $sunriseJd, 'end_jd' => $sunsetJd])
+            : 0.0;
+
+        return [
+            'date' => $date->toDateString(),
+            'day_offset' => $dayOffset,
+            'required_tithi' => $targetTithi,
+            'target_interval' => $targetInterval,
+            'visibility_window' => $visibilityWindow,
+            'target_at_sunrise' => $targetAtSunrise,
+            'target_at_karmakala' => $overlapSeconds > 0.0,
+            'target_window_overlap_seconds' => $overlapSeconds,
+            'target_daylight_overlap_seconds' => $targetDaylightOverlapSeconds,
+            'moon_visibility_seconds' => $moonVisibilitySeconds,
+            'visibility_assessment' => $assessment,
+            'reason' => (string) $assessment['reason'],
+        ];
+    }
+
+    /** @return array<string, bool|float|int|string> */
+    private function chandraDarshanaSthulaAssessment(
+        int $targetTithi,
+        float $pratipadaPostSunriseSeconds,
+        float $muhurtaSeconds,
+        string $reason
+    ): array {
+        return [
+            'model' => 'classical_sthula_chandra_darshana_9_muhurta',
+            'visible' => true,
+            'evening_tithi' => $targetTithi === 1 ? 'shukla_pratipada' : 'shukla_dwitiya',
+            'pratipada_post_sunrise_seconds' => $pratipadaPostSunriseSeconds,
+            'pratipada_post_sunrise_minutes' => $pratipadaPostSunriseSeconds / 60.0,
+            'pratipada_post_sunrise_muhurtas' => $muhurtaSeconds > 0.0 ? $pratipadaPostSunriseSeconds / $muhurtaSeconds : 0.0,
+            'sthula_threshold_muhurtas' => self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS,
+            'sthula_threshold_seconds' => self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * $muhurtaSeconds,
+            'day_muhurta_seconds' => $muhurtaSeconds,
+            'reason' => $reason,
+            'basis' => 'classical_textual_rule_sthula_chandra_darshana',
+        ];
     }
 
     private function buildChandraDarshanaResult(string $festivalName, array $rule, array $winner): array
@@ -522,43 +633,6 @@ class FestivalRuleEngine
                 ],
                 'rule_rejection_reason' => null,
             ],
-        ];
-    }
-
-    /** @return array<string, bool|float|string> */
-    private function assessChandraDarshanaVisibility(array $details, float $moonVisibilitySeconds, array $rule): array
-    {
-        $ctx = (array) ($details['Resolution_Context'] ?? []);
-        $elongation = (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
-        $illuminationPercent = (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0);
-        $lagMinutes = $moonVisibilitySeconds / 60.0;
-
-        $minLagMinutes = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? 38.0);
-        $minElongationDegrees = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? 9.0);
-        $hardElongationFloorDegrees = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? 7.0);
-        $minIlluminationPercent = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? 0.8);
-
-        $passesHardElongationFloor = $elongation >= $hardElongationFloorDegrees;
-        $passesLag = $lagMinutes >= $minLagMinutes;
-        $passesElongation = $elongation >= $minElongationDegrees;
-        $passesIllumination = $illuminationPercent >= $minIlluminationPercent;
-        $visible = $passesHardElongationFloor && $passesLag && ($passesElongation || $passesIllumination);
-
-        return [
-            'model' => 'simplified_modern_crescent_visibility',
-            'visible' => $visible,
-            'lag_minutes' => $lagMinutes,
-            'elongation_degrees' => $elongation,
-            'illumination_percent' => $illuminationPercent,
-            'min_lag_minutes' => $minLagMinutes,
-            'min_elongation_degrees' => $minElongationDegrees,
-            'hard_elongation_floor_degrees' => $hardElongationFloorDegrees,
-            'min_illumination_percent' => $minIlluminationPercent,
-            'passes_lag' => $passesLag,
-            'passes_elongation' => $passesElongation,
-            'passes_hard_elongation_floor' => $passesHardElongationFloor,
-            'passes_illumination' => $passesIllumination,
-            'basis' => 'modern_astronomical_heuristic_not_classical',
         ];
     }
 
@@ -714,6 +788,24 @@ class FestivalRuleEngine
             }
         }
 
+        $requiredPakshas = $this->requiredPakshasForNakshatraRule($rule);
+        if ($requiredPakshas !== []) {
+            $pakshaToday = (string) ($today['Tithi']['paksha'] ?? '');
+            $pakshaTomorrow = (string) ($tomorrow['Tithi']['paksha'] ?? '');
+
+            if ($nakshatraTodayMatch && !in_array($pakshaToday, $requiredPakshas, true)) {
+                $nakshatraTodayMatch = false;
+            }
+
+            if ($nakshatraTomorrowMatch && !in_array($pakshaTomorrow, $requiredPakshas, true)) {
+                $nakshatraTomorrowMatch = false;
+            }
+
+            if (!$nakshatraTodayMatch && !$nakshatraTomorrowMatch) {
+                return null;
+            }
+        }
+
         // Check if purnima is also required (e.g., Thai Poosam = Pushya + Purnima)
         $requiresPurnima = (bool) ($rule['requires_purnima'] ?? false);
         if ($requiresPurnima) {
@@ -762,6 +854,34 @@ class FestivalRuleEngine
             $tomorrowNakshatraWindow > 0.0 ? 'nakshatra_overlaps_karmakala_window' : 'nakshatra_match',
             $tomorrowNakshatraWindow
         );
+    }
+
+    /** @return list<string> */
+    private function requiredPakshasForNakshatraRule(array $rule): array
+    {
+        $pakshas = [];
+
+        foreach (['paksha', 'paksha_amanta', 'paksha_purnimanta'] as $key) {
+            if (!isset($rule[$key])) {
+                continue;
+            }
+
+            foreach ((array) $rule[$key] as $value) {
+                $value = (string) $value;
+                if ($value !== '' && $value !== 'Both') {
+                    $pakshas[] = $value;
+                }
+            }
+        }
+
+        foreach ((array) ($rule['allowed_pakshas'] ?? []) as $value) {
+            $value = (string) $value;
+            if ($value !== '' && $value !== 'Both') {
+                $pakshas[] = $value;
+            }
+        }
+
+        return array_values(array_unique($pakshas));
     }
 
     /** Build nakshatra-based festival result. */
@@ -889,11 +1009,18 @@ class FestivalRuleEngine
             $ctx['moonrise_jd'] = $moonriseJd;
         }
 
-        $karmakalaJd = $this->karmakalaJd($karmakalaType, $ctx);
-        $karmakalaWindow = $this->karmakalaWindowJd($karmakalaType, $ctx);
         $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
         $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
         $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $karmakalaAvailable = !($karmakalaType === 'moonrise' && $moonriseJd === null);
+        if ($karmakalaAvailable) {
+            $karmakalaJd = $this->karmakalaJd($karmakalaType, $ctx);
+            $karmakalaWindow = $this->karmakalaWindowJd($karmakalaType, $ctx);
+        } else {
+            $karmakalaJd = -1.0;
+            $karmakalaWindow = ['start_jd' => -1.0, 'end_jd' => -1.0];
+        }
+
         $dinamanaSeconds = max(0.0, ($sunsetJd - $sunriseJd) * 86400.0);
         $ratrimanaSeconds = max(0.0, ($nextSunriseJd - $sunsetJd) * 86400.0);
         $prevTithiEndJd = (float) ($ctx['prev_tithi_end_jd'] ?? 0.0);
@@ -905,9 +1032,11 @@ class FestivalRuleEngine
         $targetAtSunrise = $this->isTargetAtPoint($sunriseJd, $targetInterval);
         $targetAtKarmakalaPoint = (bool) ($rule['require_sunrise_vyapini'] ?? false)
             ? $targetAtSunrise
-            : $this->isTargetAtPoint($karmakalaJd, $targetInterval);
-        $targetAtKarmakala = $targetAtKarmakalaPoint || ($targetWindowOverlapSeconds > 0.0 && !(bool) ($rule['require_sunrise_vyapini'] ?? false));
-        $targetDuringObservance = $targetInterval['start_jd'] < $nextSunriseJd && $targetInterval['end_jd'] > $sunriseJd;
+            : ($karmakalaAvailable && $this->isTargetAtPoint($karmakalaJd, $targetInterval));
+        $targetAtKarmakala = $targetAtKarmakalaPoint || ($karmakalaAvailable && $targetWindowOverlapSeconds > 0.0 && !(bool) ($rule['require_sunrise_vyapini'] ?? false));
+        $targetDuringObservance = $karmakalaAvailable
+            ? ($targetInterval['start_jd'] < $nextSunriseJd && $targetInterval['end_jd'] > $sunriseJd)
+            : false;
         $forbiddenPrevTithiAt = $rule['forbid_previous_tithi_at'] ?? null;
         $forbiddenPrevTithiJd = is_string($forbiddenPrevTithiAt) && $forbiddenPrevTithiAt !== ''
             ? $this->karmakalaJd($forbiddenPrevTithiAt, $ctx)
@@ -1116,11 +1245,16 @@ class FestivalRuleEngine
     }
 
     private function resolveSpecialFestivalCandidate(
+        CarbonImmutable $date,
         array $rule,
         array $candidates,
         array $today,
         array $targetInterval
     ): ?array {
+        if (isset($rule['tithi_boundary_rule'])) {
+            return $this->resolveTithiBoundaryTruthTable($date, $rule, $candidates, $targetInterval);
+        }
+
         if ((bool) ($rule['holika_lunar_eclipse_exception'] ?? false)) {
             return $this->resolveHolikaLunarEclipseException($candidates, $today);
         }
@@ -1145,8 +1279,64 @@ class FestivalRuleEngine
             return $this->resolveDiwaliTruthTable($candidates);
         }
 
+        if ((bool) ($rule['purnima_vrat_18_ghadi_rule'] ?? false)) {
+            return $this->resolvePurnimaVratTruthTable($candidates);
+        }
+
         if ((bool) ($rule['raksha_bandhan_truth_table'] ?? false)) {
             return $this->resolveRakshaBandhanTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['govardhan_annakut_truth_table'] ?? false)) {
+            return $this->resolveGovardhanAnnakutTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['nag_panchami_paraviddha_table'] ?? false)) {
+            return $this->resolveNagPanchamiTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['durgashtami_paraviddha_table'] ?? false)) {
+            return $this->resolveDurgashtamiTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['akshaya_tritiya_purvahna_table'] ?? false)) {
+            return $this->resolveAkshayaTritiyaTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['anant_chaturdashi_paraviddha_table'] ?? false)) {
+            return $this->resolveAnantChaturdashiTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['navratri_pratipada_table'] ?? false)) {
+            return $this->resolveNavratriPratipadaTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['durva_ashtami_purvaviddha_table'] ?? false)) {
+            return $this->resolveDurvaAshtamiTruthTable($candidates, $targetInterval);
+        }
+
+        if ((bool) ($rule['lalita_panchami_aparahna_table'] ?? false)) {
+            return $this->resolveFirstFallbackKarmakalaTruthTable($candidates, 'lalita_panchami_aparahna');
+        }
+
+        if ((bool) ($rule['akshaya_navami_purvahna_table'] ?? false)) {
+            return $this->resolveFirstFallbackKarmakalaTruthTable($candidates, 'akshaya_navami_purvahna');
+        }
+
+        if ((bool) ($rule['naraka_chaturdashi_abhyanga_table'] ?? false)) {
+            return $this->resolveNarakaChaturdashiAbhyangaTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['darsha_amavasya_aparahna_table'] ?? false)) {
+            return $this->resolveDarshaAmavasyaTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['gauri_tritiya_parayuta_table'] ?? false)) {
+            return $this->resolveGauriTritiyaTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['madhyahna_purvatithi_vedha_rejection'] ?? false)) {
+            return $this->resolveMadhyahnaPurvaTithiVedhaTable($candidates);
         }
 
         if ((bool) ($rule['panchami_viddha_allowed'] ?? false)) {
@@ -1171,7 +1361,7 @@ class FestivalRuleEngine
 
     private function usesExclusiveTruthTable(array $rule): bool
     {
-        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'raksha_bandhan_truth_table', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection'] as $flag) {
+        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'purnima_vrat_18_ghadi_rule', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
             if ((bool) ($rule[$flag] ?? false)) {
                 return true;
             }
@@ -1322,7 +1512,7 @@ class FestivalRuleEngine
         }
 
         if ($day1Full) {
-            return $this->markSpecialWinner($day2, 'mahashivaratri_both_full_nishitha_choose_day2');
+            return $this->markSpecialWinner($day2, 'mahashivaratri_both_full_nishitha_choose_day2_per_ref');
         }
 
         if ($day1['target_window_overlap_seconds'] > $day2['target_window_overlap_seconds'] && $day1['target_window_overlap_seconds'] > 0) {
@@ -1339,6 +1529,11 @@ class FestivalRuleEngine
 
         if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
             return $this->markSpecialWinner($day2, 'mahashivaratri_nishitha_only_day2');
+        }
+
+        // ekadesha/both main kaal -> day2
+        if (($day1['target_window_coverage_ratio'] ?? 0) > 0 && ($day2['target_window_coverage_ratio'] ?? 0) > 0) {
+            return $this->markSpecialWinner($day2, 'mahashivaratri_ekadesha_or_both_choose_day2_per_ref');
         }
 
         return null;
@@ -1380,6 +1575,695 @@ class FestivalRuleEngine
         ];
 
         return $winner;
+    }
+
+    /**
+     * Govardhan Puja / Annakut / Gokrida / Bali Puja selection via the "Sthula Chandra
+     * Darshana" assessment (Kartika Shukla Pratipada, sayahna-vyapini). Chandra Darshana on
+     * the festival evening is forbidden, so the day is only accepted when Pratipada persists
+     * at least 9 muhurtas past sunrise; otherwise the observance moves to the previous
+     * (Amavasya-viddha) Pratipada day.
+     */
+    private function resolveGovardhanAnnakutTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $targetEndJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+
+        // Case 1: Pratipada is present at day2 sunrise (day1 is the Amavasya-viddha Pratipada,
+        // day2 is the full udaya-vyapini Pratipada). This pair holds the shift decision.
+        if ($this->isTargetAtPoint($day2Sunrise, $targetInterval)) {
+            $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+            $postSunrisePratipadaSeconds = max(0.0, ($targetEndJd - $day2Sunrise) * 86400.0);
+            $noSthulaChandraDarshana = $thresholdSeconds > 0.0 && $postSunrisePratipadaSeconds >= $thresholdSeconds;
+
+            if ($noSthulaChandraDarshana) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day')
+                    : null;
+            }
+
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'govardhan_below_9_muhurta_sthula_chandra_darshana_amavasya_viddha_prev_day')
+                : null;
+        }
+
+        // Case 2: Pratipada is at day1 sunrise but not day2 (day1 is the full Pratipada day;
+        // the Amavasya-viddha day precedes this pair). Accept day1 only when it clears the
+        // 9-muhurta threshold, otherwise defer so the previous-day pairing shifts it back.
+        if ((bool) ($day1['target_at_sunrise'] ?? false)) {
+            $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
+            $postSunrisePratipadaSeconds = max(0.0, ($targetEndJd - $day1Sunrise) * 86400.0);
+            $noSthulaChandraDarshana = $thresholdSeconds > 0.0 && $postSunrisePratipadaSeconds >= $thresholdSeconds;
+
+            if ($noSthulaChandraDarshana && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day');
+            }
+
+            return null;
+        }
+
+        // Case 3: Kshaya Pratipada (not at either sunrise) is a short tithi, so Sthula
+        // Chandra Darshana is assumed and the observance stays on the Amavasya-viddha day1.
+        if ((bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'govardhan_kshaya_pratipada_sthula_chandra_darshana_amavasya_viddha_day');
+        }
+
+        return null;
+    }
+
+    /**
+     * Nag Panchami (Shravana Krishna Panchami) paraviddha selection.:
+     *  - take the Panchami pierced by the Shashthi that spans >= 6 ghadis past sunrise;
+     *  - if the second day's Panchami is under 6 ghadis and the first day is only
+     *    Chaturthi-viddha with the Chaturthi under 6 ghadis, keep the first day;
+     *  - if the first day's Chaturthi vedha exceeds 6 ghadis, shift to the second day even
+     *    when its Panchami is as little as 4 ghadis.
+     * Truth table (lines 724-727): vriddhi keeps Vad 5 (first); kshaya keeps Vad 4-5 (first).
+     * All ghadis here are fixed 24-minute ghatis.
+     */
+    private function resolveNagPanchamiTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $sixGhadiJd = self::NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI * 24.0 / 1440.0;
+        $startJd = (float) ($targetInterval['start_jd'] ?? 0.0);
+        $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Vriddhi: Panchami spans both sunrises -> keep the first day (Vad 5).
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'nag_panchami_vriddhi_first_day')
+                : null;
+        }
+
+        // Main pairing: Panchami is udaya-vyapini on day2; day1 is the Chaturthi-viddha day.
+        if ($day2AtSunrise) {
+            $panchamiSpanDay2 = max(0.0, $endJd - $day2Sunrise);
+            if ($panchamiSpanDay2 >= $sixGhadiJd) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'nag_panchami_shashthi_viddha_6_ghadi_day2')
+                    : null;
+            }
+
+            // Day2 Panchami is under 6 ghadis: weigh the first day's Chaturthi vedha.
+            $chaturthiSpanDay1 = max(0.0, $startJd - $day1Sunrise);
+            if ($chaturthiSpanDay1 <= $sixGhadiJd) {
+                if ((bool) ($day1['target_during_observance'] ?? false)) {
+                    return $this->markSpecialWinner($day1, 'nag_panchami_chaturthi_vedha_under_6_ghadi_day1');
+                }
+
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'nag_panchami_short_pair_fallback_day2')
+                    : null;
+            }
+
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'nag_panchami_chaturthi_vedha_over_6_ghadi_day2')
+                : null;
+        }
+
+        // Panchami at day1 sunrise only (day2 is Shashthi): accept day1 when it spans >= 6
+        // ghadis, otherwise defer so the previous-day pairing (with this day as "day2") decides.
+        if ($day1AtSunrise) {
+            $panchamiSpanDay1 = max(0.0, $endJd - $day1Sunrise);
+            if ($panchamiSpanDay1 >= $sixGhadiJd && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'nag_panchami_shashthi_viddha_6_ghadi_day1');
+            }
+
+            return null;
+        }
+
+        // Kshaya Panchami (neither sunrise): observe on the Chaturthi-viddha day1 (Vad 4-5).
+        if ((bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'nag_panchami_kshaya_chaturthi_viddha_day1');
+        }
+
+        return null;
+    }
+
+    /**
+     * Durgashtami / Bhavani Pragatya (Shukla Ashtami) paraviddha selection.:
+     * take the navami-viddha Ashtami spanning at least 3 muhurtas past sunrise; if the Ashtami
+     * is under 3 muhurtas it falls back to the Saptami-viddha previous day. Vriddhi keeps the
+     * first day; kshaya keeps the Saptami-yuta Ashtami (first) day. Muhurtas are dinamana-based
+     * (day length / 15), matching the Govardhan and Raksha Bandhan muhurta thresholds.
+     */
+    private function resolveDurgashtamiTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Vriddhi: Ashtami at both sunrises -> keep the first day.
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'durgashtami_vriddhi_first_day')
+                : null;
+        }
+
+        // Main pairing: Ashtami udaya-vyapini on day2 (navami-viddha); day1 is Saptami-viddha.
+        if ($day2AtSunrise) {
+            $thresholdSeconds = self::DURGASHTAMI_PARAVIDDHA_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+            $ashtamiSpanDay2Seconds = max(0.0, ($endJd - $day2Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $ashtamiSpanDay2Seconds >= $thresholdSeconds) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'durgashtami_navami_viddha_3_muhurta_day2')
+                    : null;
+            }
+
+            // Ashtami under 3 muhurtas on day2 -> Saptami-viddha first day.
+            if ((bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'durgashtami_below_3_muhurta_saptami_viddha_day1');
+            }
+
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'durgashtami_short_pair_fallback_day2')
+                : null;
+        }
+
+        // Ashtami at day1 sunrise only: accept when it spans >= 3 muhurtas, else defer so the
+        // previous-day pairing (with this day as "day2") decides.
+        if ($day1AtSunrise) {
+            $thresholdSeconds = self::DURGASHTAMI_PARAVIDDHA_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
+            $ashtamiSpanDay1Seconds = max(0.0, ($endJd - $day1Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $ashtamiSpanDay1Seconds >= $thresholdSeconds && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'durgashtami_navami_viddha_3_muhurta_day1');
+            }
+
+            return null;
+        }
+
+        // Kshaya Ashtami (neither sunrise): observe on the Saptami-yuta Ashtami day1.
+        if ((bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'durgashtami_kshaya_saptami_yuta_day1');
+        }
+
+        return null;
+    }
+
+    /**
+     * Akshaya Tritiya (Vaishakha Shukla Tritiya) purvahna selection.:
+     *  - the Tritiya vyapini in the purvahna (forenoon) is taken;
+     *  - when the Tritiya pervades the purvahna on both civil days, the observance shifts to the
+     *    second day only if that day's Tritiya spans at least 3 muhurtas past sunrise, otherwise
+     *    it stays on the first (purva/Dvitiya-yuta) day;
+     *  - vriddhi (Tritiya at both sunrises) keeps the first day; kshaya keeps the first day.
+     * Muhurtas are dinamana-based (day length / 15).
+     */
+    private function resolveAkshayaTritiyaTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Vriddhi: Tritiya spans both sunrises -> keep the first (purva) day.
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'akshaya_tritiya_vriddhi_first_day')
+                : null;
+        }
+
+        // Main pairing: shuddha (udaya-vyapini) Tritiya on day2; day1 is the Dvitiya-viddha day.
+        if ($day2AtSunrise) {
+            $day1PurvahnaVyapti = (float) ($day1['target_window_overlap_seconds'] ?? 0.0) > 0.0;
+            if ($day1PurvahnaVyapti) {
+                // Tritiya pervades the purvahna on both days -> the 3-muhurta rule decides.
+                $thresholdSeconds = self::AKSHAYA_TRITIYA_PURVAHNA_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+                $tritiyaSpanDay2Seconds = max(0.0, ($endJd - $day2Sunrise) * 86400.0);
+                if ($thresholdSeconds > 0.0 && $tritiyaSpanDay2Seconds >= $thresholdSeconds) {
+                    return (bool) ($day2['target_during_observance'] ?? false)
+                        ? $this->markSpecialWinner($day2, 'akshaya_tritiya_both_purvahna_day2_3_muhurta')
+                        : null;
+                }
+
+                return (bool) ($day1['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day1, 'akshaya_tritiya_both_purvahna_below_3_muhurta_purva_day1')
+                    : null;
+            }
+
+            // Only day2 is purvahna-vyapini -> observe day2.
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'akshaya_tritiya_purvahna_vyapini_day2')
+                : null;
+        }
+
+        // Tritiya at day1 sunrise only: this shuddha day was already evaluated as day2 of the
+        // previous pairing; defer so a single observance date is emitted.
+        if ($day1AtSunrise) {
+            return null;
+        }
+
+        // Kshaya (neither sunrise): observe on the first (Dvitiya-yuta) day.
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'akshaya_tritiya_kshaya_first_day')
+            : null;
+    }
+
+    /**
+     * Anant Chaturdashi (Bhadrapada Shukla Chaturdashi) paraviddha selection.:
+     * take the Chaturdashi spanning at least 2 muhurtas past sunrise; if the Chaturdashi is
+     * under 2 muhurtas the observance falls back to the previous day. Vriddhi keeps the first
+     * day; kshaya keeps the (single) kshaya day. Purvahna is the primary kala and muhurtas are
+     * dinamana-based (day length / 15).
+     */
+    private function resolveAnantChaturdashiTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Vriddhi: Chaturdashi at both sunrises -> keep the first day.
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'anant_chaturdashi_vriddhi_first_day')
+                : null;
+        }
+
+        // Main pairing: Chaturdashi udaya-vyapini on day2; day1 is the previous day.
+        if ($day2AtSunrise) {
+            $thresholdSeconds = self::ANANT_CHATURDASHI_PARAVIDDHA_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+            $spanDay2Seconds = max(0.0, ($endJd - $day2Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $spanDay2Seconds >= $thresholdSeconds) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'anant_chaturdashi_2_muhurta_day2')
+                    : null;
+            }
+
+            // Chaturdashi under 2 muhurtas on day2 -> previous (first) day.
+            if ((bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'anant_chaturdashi_below_2_muhurta_prev_day1');
+            }
+
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'anant_chaturdashi_short_pair_fallback_day2')
+                : null;
+        }
+
+        // Chaturdashi at day1 sunrise only: accept when it spans >= 2 muhurtas, else defer so the
+        // previous-day pairing (with this day as "day2") decides.
+        if ($day1AtSunrise) {
+            $thresholdSeconds = self::ANANT_CHATURDASHI_PARAVIDDHA_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
+            $spanDay1Seconds = max(0.0, ($endJd - $day1Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $spanDay1Seconds >= $thresholdSeconds && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'anant_chaturdashi_2_muhurta_day1');
+            }
+
+            return null;
+        }
+
+        // Kshaya (neither sunrise): observe on the first (kshaya) day.
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'anant_chaturdashi_kshaya_day1')
+            : null;
+    }
+
+    /**
+     * Navaratri Pratipada start table (Chaitra and Ashvina): accept Pratipada when it lasts
+     * at least one daytime muhurta after sunrise; if the sunrise span is below one muhurta
+     * or the tithi is kshaya, fall back to the Amavasya-viddha previous day.
+     */
+    private function resolveNavratriPratipadaTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'navratri_pratipada_vriddhi_first_day')
+                : null;
+        }
+
+        if ($day2AtSunrise) {
+            $thresholdSeconds = self::NAVRATRI_PRATIPADA_MIN_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
+            $spanDay2Seconds = max(0.0, ($endJd - $day2Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $spanDay2Seconds >= $thresholdSeconds) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'navratri_pratipada_one_muhurta_day2')
+                    : null;
+            }
+
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'navratri_pratipada_below_one_muhurta_amavasya_viddha_day1')
+                : null;
+        }
+
+        if ($day1AtSunrise) {
+            $thresholdSeconds = self::NAVRATRI_PRATIPADA_MIN_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
+            $spanDay1Seconds = max(0.0, ($endJd - $day1Sunrise) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $spanDay1Seconds >= $thresholdSeconds && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'navratri_pratipada_one_muhurta_day1');
+            }
+
+            return null;
+        }
+
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'navratri_pratipada_kshaya_amavasya_viddha_day1')
+            : null;
+    }
+
+    /** Durva Ashtami: purvaviddha, sunset-side three-muhurta rule. */
+    private function resolveDurvaAshtamiTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $startJd = (float) ($targetInterval['start_jd'] ?? 0.0);
+        $day1Sunset = (float) ($day1['sunset_jd'] ?? 0.0);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        if ($day1AtSunrise && $day2AtSunrise) {
+            return (bool) ($day1['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day1, 'durva_ashtami_vriddhi_first_day')
+                : null;
+        }
+
+        if ($day2AtSunrise) {
+            $thresholdSeconds = self::DURVA_ASHTAMI_PURVAVIDDHA_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
+            $leadBeforeSunsetSeconds = max(0.0, ($day1Sunset - $startJd) * 86400.0);
+            if ($thresholdSeconds > 0.0 && $leadBeforeSunsetSeconds >= $thresholdSeconds && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'durva_ashtami_purvaviddha_three_muhurta_before_sunset_day1');
+            }
+
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'durva_ashtami_day2_when_no_three_muhurta_purvaviddha')
+                : null;
+        }
+
+        if ($day1AtSunrise && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'durva_ashtami_first_sunrise_day');
+        }
+
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'durva_ashtami_kshaya_first_day')
+            : null;
+    }
+
+    /**
+     * First-fallback karmakala table used by Lalita Panchami and Akshaya Navami: if only one
+     * day has the main-kala overlap choose it; if both have overlap, unequal overlap, equal
+     * overlap, or neither overlap, keep the first day as prescribed.
+     */
+    private function resolveFirstFallbackKarmakalaTruthTable(array $candidates, string $reasonPrefix): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
+        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
+
+        if ($day1Overlap > 0.0 && $day2Overlap <= 0.0 && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, $reasonPrefix . '_only_first_karmakala');
+        }
+
+        if ($day2Overlap > 0.0 && $day1Overlap <= 0.0 && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, $reasonPrefix . '_only_second_karmakala');
+        }
+
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, $reasonPrefix . '_both_or_neither_keep_first')
+            : null;
+    }
+
+    /**
+     * Naraka Chaturdashi Abhyanga Snan primarily follows chandrodaya-vyapini Chaturdashi.
+     * When moonrise does not settle the choice, keep the sunrise/ushah-side fallback before
+     * falling back to a broad observance-window tie.
+     */
+    private function resolveNarakaChaturdashiAbhyangaTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1AtMoonrise = (bool) ($day1['target_at_karmakala'] ?? false);
+        $day2AtMoonrise = (bool) ($day2['target_at_karmakala'] ?? false);
+
+        if ($day1AtMoonrise && !$day2AtMoonrise) {
+            return $this->markSpecialWinner($day1, 'naraka_chaturdashi_abhyanga_chandrodaya_day1');
+        }
+
+        if (!$day1AtMoonrise && $day2AtMoonrise) {
+            return $this->markSpecialWinner($day2, 'naraka_chaturdashi_abhyanga_chandrodaya_day2');
+        }
+
+        if ($day1AtMoonrise) {
+            return $this->markSpecialWinner($day1, 'naraka_chaturdashi_abhyanga_both_chandrodaya_keep_first');
+        }
+
+        if ((bool) ($day1['target_at_sunrise'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'naraka_chaturdashi_abhyanga_ushah_sunrise_fallback_day1');
+        }
+
+        if ((bool) ($day2['target_at_sunrise'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'naraka_chaturdashi_abhyanga_ushah_sunrise_fallback_day2');
+        }
+
+        if ((bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'naraka_chaturdashi_abhyanga_observance_fallback_day1');
+        }
+
+        return (bool) ($day2['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day2, 'naraka_chaturdashi_abhyanga_observance_fallback_day2')
+            : null;
+    }
+
+    /** Holashtak-style observances are tied to the actual tithi boundary, not sunrise vyapti. */
+    private function resolveTithiBoundaryTruthTable(CarbonImmutable $date, array $rule, array $candidates, array $targetInterval): ?array
+    {
+        $boundaryRule = (string) ($rule['tithi_boundary_rule'] ?? '');
+        $boundaryJd = match ($boundaryRule) {
+            'start' => $targetInterval['start_jd'],
+            'end' => $targetInterval['end_jd'],
+            default => null,
+        };
+
+        if (!is_float($boundaryJd)) {
+            return null;
+        }
+
+        $dayStartJd = AstroCore::toJulianDay($date->startOfDay());
+        $dayEndJd = AstroCore::toJulianDay($date->addDay()->startOfDay());
+        if ($boundaryJd >= $dayStartJd && $boundaryJd < $dayEndJd && isset($candidates[0])) {
+            return $this->markSpecialWinner($candidates[0], 'tithi_boundary_' . $boundaryRule . '_same_civil_day');
+        }
+
+        $tomorrowEndJd = AstroCore::toJulianDay($date->addDays(2)->startOfDay());
+        if ($boundaryJd >= $dayEndJd && $boundaryJd < $tomorrowEndJd && isset($candidates[1])) {
+            return $this->markSpecialWinner($candidates[1], 'tithi_boundary_' . $boundaryRule . '_next_civil_day');
+        }
+
+        return null;
+    }
+
+    /** Gauri Tritiya is parayuta: prefer the Chaturthi-yukta second occurrence when present. */
+    private function resolveGauriTritiyaTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1)) {
+            return null;
+        }
+
+        if (is_array($day2) && (bool) ($day2['target_during_observance'] ?? false) && !(bool) ($day2['rule_rejected'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'gauri_tritiya_parayuta_chaturthi_yukta_day2');
+        }
+
+        if ((bool) ($day1['target_during_observance'] ?? false) && !(bool) ($day1['rule_rejected'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'gauri_tritiya_kshaya_dvitiya_yukta_day1');
+        }
+
+        return null;
+    }
+
+    /** Darsha Amavasya aparahna table from the Nirnay reference. */
+    private function resolveDarshaAmavasyaTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+        if ($day1AtSunrise && $day2AtSunrise && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'darsha_amavasya_vriddhi_first_day');
+        }
+
+        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
+        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
+        if ($day1Overlap > 0.0 && $day2Overlap > 0.0) {
+            if (abs($day1Overlap - $day2Overlap) < 1.0) {
+                return (bool) ($day2['target_during_observance'] ?? false)
+                    ? $this->markSpecialWinner($day2, 'darsha_amavasya_equal_aparahna_second_day')
+                    : null;
+            }
+
+            $winner = $day1Overlap > $day2Overlap ? $day1 : $day2;
+            return (bool) ($winner['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($winner, 'darsha_amavasya_longer_aparahna_overlap')
+                : null;
+        }
+
+        if ($day1Overlap > 0.0 && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'darsha_amavasya_only_first_aparahna');
+        }
+
+        if ($day2Overlap > 0.0 && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'darsha_amavasya_only_second_aparahna');
+        }
+
+        if (!$day1AtSunrise && !$day2AtSunrise && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'darsha_amavasya_kshaya_first_day');
+        }
+
+        return (bool) ($day2['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day2, 'darsha_amavasya_no_aparahna_second_day')
+            : null;
+    }
+
+    /**
+     * Generic madhyahna previous-tithi (vedha) rejection table used by festivals such as
+     * Radhashtami (Bhadrapada Shukla Ashtami, saptami-vedha) and the
+     * Swaminarayan Varaha Jayanti (Shravana Shukla Chaturthi, tritiya-vedha):
+     *  - the previous-tithi-viddha day is always rejected (the vedha "occurs even from a single
+     *    pala"), so the shuddha day pervading the madhyahna wins;
+     *  - when both days are shuddha and madhyahna-vyapini (vriddhi) the purva (first) day is kept;
+     *  - when the shuddha tithi does not reach the madhyahna on either day the navami/panchami-yuta
+     *    (shuddha, later) sunrise day is still taken;
+     *  - kshaya (only the previous-tithi-viddha purva day carries the tithi) accepts that viddha day.
+     */
+    private function resolveMadhyahnaPurvaTithiVedhaTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Vyapti = (float) ($day1['target_window_overlap_seconds'] ?? 0.0) > 0.0;
+        $day2Vyapti = (float) ($day2['target_window_overlap_seconds'] ?? 0.0) > 0.0;
+        $day1Viddha = (bool) ($day1['prev_tithi_at_sunrise'] ?? false);
+        $day2Viddha = (bool) ($day2['prev_tithi_at_sunrise'] ?? false);
+        $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Shuddha (vedha-free) day pervading the madhyahna wins. Vriddhi (both shuddha and
+        // madhyahna-vyapini) lands on the purva (first) day here.
+        if ($day1Vyapti && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+        }
+
+        if ($day2Vyapti && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2');
+        }
+
+        // Shuddha tithi is at sunrise but does not reach the madhyahna: still prefer the shuddha
+        // (navami/panchami-yuta) day over the rejected previous-tithi-viddha day.
+        if ($day2AtSunrise && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_yuta_day2');
+        }
+
+        if ($day1AtSunrise && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_yuta_day1');
+        }
+
+        // Kshaya: only the previous-tithi-viddha purva day carries the tithi -> accept it. If
+        // instead the later candidate carries a still-viddha tithi (whose shuddha lies on the
+        // following day), defer so the shuddha pairing decides.
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'madhyahna_kshaya_accept_prev_vedha_day1')
+            : null;
+    }
+
+    private function resolvePurnimaVratTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+
+        if (!is_array($day1)) {
+            return null;
+        }
+
+        if (!(bool) ($day1['target_during_observance'] ?? false)) {
+            return is_array($day2) && (bool) ($day2['target_during_observance'] ?? false) && !(bool) ($day2['rule_rejected'] ?? false)
+                ? $this->markSpecialWinner($day2, 'purnima_vrat_only_day2_available')
+                : null;
+        }
+
+        $sunriseJd = (float) ($day1['sunrise_jd'] ?? 0.0);
+        $sunsetJd = (float) ($day1['sunset_jd'] ?? $sunriseJd);
+        $dayLengthJd = max(0.0001, $sunsetJd - $sunriseJd);
+        $contaminationJd = max(0.0, (float) ($day1['target_interval_start_jd'] ?? $sunriseJd) - $sunriseJd);
+        $thresholdJd = 18.0 * ($dayLengthJd / 30.0);
+
+        if ($contaminationJd < $thresholdJd) {
+            return $this->markSpecialWinner($day1, 'purnima_vrat_chaturdashi_below_18_ghadi_keep_day1');
+        }
+
+        if (is_array($day2) && (bool) ($day2['target_during_observance'] ?? false) && !(bool) ($day2['rule_rejected'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'purnima_vrat_chaturdashi_at_or_above_18_ghadi_shift_day2');
+        }
+
+        return $this->markSpecialWinner($day1, 'purnima_vrat_no_day2_fallback_day1');
     }
 
     private function resolveSkandaSashtiTruthTable(array $candidates): ?array
@@ -1494,6 +2378,7 @@ class FestivalRuleEngine
                 ? ['start_jd' => $moonrise, 'end_jd' => $moonrise]
                 : throw new LogicException('Moonrise karmakala requested but moonrise_jd is unavailable in festival context.'),
             'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (ClassicalTimeConstants::PRADOSHA_GHATIKAS * $fixedGhati)],
+            'tithi_boundary' => ['start_jd' => $sunrise, 'end_jd' => $nextSunrise],
             default => throw new LogicException(sprintf("Unknown karmakala_type '%s' in festival resolver.", $type)),
         };
     }
@@ -1523,6 +2408,8 @@ class FestivalRuleEngine
         if ((bool) ($rule['chandradarshan_nishedh'] ?? false) && $chandradarshanMode === 'strict' && $this->moonVisibleAfterSunset($details)) {
             return 'rejected_by_chandradarshan_nishedh';
         }
+
+        // For Govardhan, the dedicated selection path handles the tithi-based Chandra Darshana risk.
 
         return null;
     }

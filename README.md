@@ -112,17 +112,21 @@ $festivals = $details['Festivals'];
 
 ```bash
 php scripts/panchang_today.php
-php scripts/panchang_month_output.php 2026 5 > month_2026_05.json
+php scripts/panchang_month_output.php 2026 5
 php scripts/panchang_festivals.php 2026
 php scripts/panchang_eclipses.php 2026 2032
+php scripts/panchang_raw_output.php 2026 2026 2032
 ```
 
 Notes:
 
-- `panchang_today.php` writes `today_panchang.json` and prints status text.
-- `panchang_month_output.php` prints JSON to stdout. Without arguments, it generates the current month.
-- `panchang_festivals.php` writes `festivals_YYYY.json`.
+- Scripts write into `scripts/output/{calendar_type}/{locale}/`.
+- `panchang_today.php` writes `today.json` and prints status text.
+- `panchang_month_output.php` writes `month_YYYY_MM.json`. Without arguments, it generates the current month.
+- `panchang_festivals.php` writes `festivals_YYYY.json`, `festivals_only_YYYY.json`, or `vrats_YYYY.json`.
 - `panchang_eclipses.php` writes `eclipses_YYYY_YYYY.json`.
+- `panchang_raw_output.php` writes `raw_output_YYYY_YYYY.json`.
+- `panchang_month_output.php` and `panchang_raw_output.php` still emit JSON to stdout when piped or redirected.
 - Use `PANCHANG_LOCALE=en|hi|gu` and `PANCHANG_CALENDAR_TYPE=amanta|purnimanta` for variants.
 
 ## Documentation

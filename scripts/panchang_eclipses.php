@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  * Usage: php scripts/panchang_eclipses.php [start_year] [end_year]
  * Default: 2018-2025
- * Output: eclipses_{start_year}_{end_year}.json
+ * Output: scripts/output/{calendar_type}/{locale}/eclipses_{start_year}_{end_year}.json
  *
  * This data is static — run once for a multi-year range.
  */
@@ -18,6 +18,7 @@ use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
+require __DIR__ . '/output_helpers.php';
 
 CliBootstrap::init($baseDir);
 
@@ -26,6 +27,9 @@ $endYear = isset($argv[2]) ? (int) $argv[2] : 2025;
 $timezone = 'Asia/Kolkata';
 $latitude = 23.2472446;
 $longitude = 69.668339;
+$calendarType = panchang_script_calendar_type();
+$locale = panchang_script_locale();
+$outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
 
 $eclipseService = CliBootstrap::makeEclipseService();
 
@@ -48,7 +52,13 @@ $output = [
         'type' => 'eclipses',
         'from_year' => $startYear,
         'to_year' => $endYear,
-        'location' => ['latitude' => $latitude, 'longitude' => $longitude, 'timezone' => $timezone],
+        'calendar_type' => $calendarType,
+        'locale' => $locale,
+        'location' => [
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'timezone' => $timezone,
+        ],
     ],
     'eclipses' => [
         'title' => sprintf(
@@ -59,19 +69,22 @@ $output = [
         ),
         'from_year' => $startYear,
         'to_year' => $endYear,
+        'calendar_type' => $calendarType,
+        'locale' => $locale,
         'total_eclipse_count' => count($eclipsesFlat),
         'by_year' => $eclipsesByYear,
         'flat' => $eclipsesFlat,
     ],
 ];
 
-$json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-if ($json === false) {
-    fwrite(STDERR, 'JSON encoding failed: ' . json_last_error_msg() . PHP_EOL);
+$filename = "eclipses_{$startYear}_{$endYear}.json";
+$outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
+
+try {
+    panchang_script_write_json($outputPath, $output);
+} catch (RuntimeException $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
     exit(1);
 }
 
-$filename = "eclipses_{$startYear}_{$endYear}.json";
-file_put_contents($filename, $json . PHP_EOL);
-
-echo "Written {$filename} — " . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;
+echo "Written {$outputPath} — " . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;

@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  * Usage: php scripts/panchang_festivals.php [year] [all|festivals|vrats]
  * Default: current year
- * Output: festivals_{year}.json (by_date only)
+ * Output: scripts/output/{calendar_type}/{locale}/*.json
  *
  * This data is static — run once per year.
  */
@@ -18,6 +18,7 @@ use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
+require __DIR__ . '/output_helpers.php';
 
 CliBootstrap::init($baseDir);
 
@@ -27,12 +28,14 @@ $timezone = 'Asia/Kolkata';
 $latitude = 23.2472446;
 $longitude = 69.668339;
 $elevation = 0.0;
-$calendarType = config('panchang.defaults.calendar_type', 'amanta');
+$calendarType = panchang_script_calendar_type();
+$locale = panchang_script_locale();
+$outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
 
 $panchangService = CliBootstrap::makePanchangService();
 $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 
-if (!in_array($scope, ['all', 'festivals', 'vrats'], true)) {
+if (! in_array($scope, ['all', 'festivals', 'vrats'], true)) {
     fwrite(STDERR, "Unknown scope: {$scope}. Allowed: all, festivals, vrats" . PHP_EOL);
     exit(1);
 }
@@ -73,7 +76,7 @@ $countUniqueIdentities = static function (array $byDate, ?bool $fasting = null, 
 
     foreach ($byDate as $entries) {
         foreach ((array) $entries as $entry) {
-            if (!is_array($entry)) {
+            if (! is_array($entry)) {
                 continue;
             }
 
@@ -89,7 +92,7 @@ $countUniqueIdentities = static function (array $byDate, ?bool $fasting = null, 
     }
 
     foreach ($extraEntries as $entry) {
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             continue;
         }
 
@@ -116,6 +119,7 @@ $output = [
         },
         'year' => $festivalYear,
         'calendar_type' => $calendarType,
+        'locale' => $locale,
         'location' => [
             'city' => 'Bhuj',
             'country' => 'IN',
@@ -131,6 +135,7 @@ $output = [
                 'title' => sprintf(Localization::translate('String', 'Festivals %d - Named festivals excluding vrat observances'), $festivalYear),
                 'year' => $festivalYear,
                 'calendar_type' => $calendarType,
+                'locale' => $locale,
                 'festival_day_count' => $calendar['festival_day_count'],
                 'festival_entry_count' => $calendar['festival_entry_count'],
                 'total_festivals' => $countUniqueIdentities($calendar['by_date']),
@@ -143,6 +148,7 @@ $output = [
                 'title' => sprintf(Localization::translate('String', 'Festivals %d - All festivals for the entire year'), $festivalYear),
                 'year' => $festivalYear,
                 'calendar_type' => $calendarType,
+                'locale' => $locale,
                 'festival_day_count' => $calendar['festival_day_count'],
                 'festival_entry_count' => $calendar['festival_entry_count'],
                 'total_festivals' => $countUniqueIdentities($calendar['by_date'], false),
@@ -153,20 +159,21 @@ $output = [
     },
 ];
 
-$json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-if ($json === false) {
-    fwrite(STDERR, 'JSON encoding failed: ' . json_last_error_msg() . PHP_EOL);
-    exit(1);
-}
-
 $filename = match ($scope) {
     'festivals' => "festivals_only_{$festivalYear}.json",
     'vrats' => "vrats_{$festivalYear}.json",
     default => "festivals_{$festivalYear}.json",
 };
-file_put_contents($filename, $json . PHP_EOL);
+$outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
+
+try {
+    panchang_script_write_json($outputPath, $output);
+} catch (RuntimeException $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+    exit(1);
+}
 
 $payload = $scope === 'vrats' ? $output['vrats'] : $output['festivals'];
 $dayCount = $scope === 'vrats' ? $payload['vrat_day_count'] : $payload['festival_day_count'];
 $entryCount = $scope === 'vrats' ? $payload['vrat_entry_count'] : $payload['festival_entry_count'];
-echo "Written {$filename} — {$dayCount} days, {$entryCount} entries." . PHP_EOL;
+echo "Written {$outputPath} — {$dayCount} days, {$entryCount} entries." . PHP_EOL;

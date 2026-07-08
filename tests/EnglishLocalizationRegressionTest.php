@@ -93,8 +93,8 @@ class EnglishLocalizationRegressionTest extends TestCase
         $this->assertMatchesRegularExpression('/^\\d{2}\\/\\d{2}\\/2026 \\d{2}:\\d{2}:\\d{2} (AM|PM)$/', $chandraDarshana['visibility_window']['start_iso'] ?? '');
         $this->assertMatchesRegularExpression('/^1h 3\\dm \\d+s$/', $chandraDarshana['visibility_window']['duration_min'] ?? '');
         $this->assertIsFloat($chandraDarshana['visibility_window']['duration_minutes'] ?? null);
-        $this->assertSame('simplified modern crescent visibility model', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_model_name'] ?? null);
-        $this->assertSame('modern astronomical visibility heuristic; not a classical textual rule', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_basis_name'] ?? null);
+        $this->assertSame('classical Sthula Chandra Darshana 9-muhurta rule', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_model_name'] ?? null);
+        $this->assertSame('classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_basis_name'] ?? null);
     }
 
     public function test_english_sankranti_day_details_use_translated_runtime_labels(): void

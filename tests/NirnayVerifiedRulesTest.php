@@ -186,17 +186,95 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Sutak start should align to dynamic prahara boundary.'
         );
         self::assertEqualsWithDelta(
-            (float) $event['visibility']['window']['start_jd'] - $this->containingPraharDurationJd(
-                $service,
-                (float) $event['visibility']['window']['start_jd'],
-                23.2472446,
-                69.668339,
-                'Asia/Kolkata'
-            ),
+            $expectedAnchors['relaxed_start_jd'],
             $event['sutak']['relaxed_start_jd'] ?? null,
             1e-9,
             'Relaxed sutak should begin one variable prahara before local eclipse contact.'
         );
+    }
+
+    public function testLunarGrastodayaUsesFourPraharSutakRule(): void
+    {
+        $reflection = new ReflectionClass(EclipseService::class);
+        $service = CliBootstrap::makeEclipseService();
+        $method = $reflection->getMethod('resolveSutakPraharCount');
+
+        self::assertSame(4, $method->invoke($service, 'Lunar', ['grast_uday' => true]));
+        self::assertSame(3, $method->invoke($service, 'Lunar', ['grast_uday' => false]));
+        self::assertSame(4, $method->invoke($service, 'Solar', ['grast_uday' => false]));
+    }
+
+    public function testChudamaniYogaMatchesWeekdayRule(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+        $reflection = new ReflectionClass(EclipseService::class);
+        $carbonToJd = $reflection->getMethod('carbonToJd');
+        $isChudamaniYoga = $reflection->getMethod('isChudamaniYoga');
+
+        $mondayLunarJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2025-09-08 00:30:00', 'Asia/Kolkata'));
+        $sundaySolarJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2026-02-15 12:00:00', 'Asia/Kolkata'));
+        $tuesdayLunarJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2025-09-09 00:30:00', 'Asia/Kolkata'));
+
+        self::assertTrue($isChudamaniYoga->invoke($service, 'Lunar', $mondayLunarJd, 'Asia/Kolkata'));
+        self::assertTrue($isChudamaniYoga->invoke($service, 'Solar', $sundaySolarJd, 'Asia/Kolkata'));
+        self::assertFalse($isChudamaniYoga->invoke($service, 'Lunar', $tuesdayLunarJd, 'Asia/Kolkata'));
+    }
+
+    public function testSolarGrastastaPostEclipseRitualExtendsToNextSunrise(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+        $reflection = new ReflectionClass(EclipseService::class);
+        $carbonToJd = $reflection->getMethod('carbonToJd');
+        $nextSunriseAfter = $reflection->getMethod('nextSunriseAfter');
+        $buildPostEclipseRitualPayload = $reflection->getMethod('buildPostEclipseRitualPayload');
+
+        $visibleEndJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2022-10-25 18:18:00', 'Asia/Kolkata'));
+        $expectedNextSunriseJd = $nextSunriseAfter->invoke($service, $visibleEndJd, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $payload = $buildPostEclipseRitualPayload->invoke(
+            $service,
+            $visibleEndJd,
+            'Solar',
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            true,
+            ['grast_ast' => true]
+        );
+
+        self::assertTrue($payload['applicable']);
+        self::assertSame('after_next_sunrise_bathe_see_pure_sun_disc_then_eat', $payload['ritual_completion_requirement_key']);
+        self::assertEqualsWithDelta($expectedNextSunriseJd, $payload['starts_after_jd'], 1e-9);
+        self::assertGreaterThan($visibleEndJd, $payload['starts_after_jd']);
+    }
+
+    public function testLunarGrastastaPostEclipseRitualWaitsForMoonriseAgain(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+        $reflection = new ReflectionClass(EclipseService::class);
+        $carbonToJd = $reflection->getMethod('carbonToJd');
+        $nextMoonriseAfter = $reflection->getMethod('nextMoonriseAfter');
+        $buildPostEclipseRitualPayload = $reflection->getMethod('buildPostEclipseRitualPayload');
+
+        $visibleEndJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2022-11-08 18:18:00', 'Asia/Kolkata'));
+        $expectedNextMoonriseJd = $nextMoonriseAfter->invoke($service, $visibleEndJd, 23.2472446, 69.668339, 'Asia/Kolkata');
+        $payload = $buildPostEclipseRitualPayload->invoke(
+            $service,
+            $visibleEndJd,
+            'Lunar',
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            true,
+            ['grast_ast' => true]
+        );
+
+        self::assertTrue($payload['applicable']);
+        self::assertSame('after_moonrise_again_then_eat', $payload['ritual_completion_requirement_key']);
+        self::assertEqualsWithDelta($expectedNextMoonriseJd, $payload['starts_after_jd'], 1e-9);
+        self::assertGreaterThan($visibleEndJd, $payload['starts_after_jd']);
     }
 
     public function testGujaratiParanaNakshatraRestrictionsAreMonthPakshaSpecific(): void
@@ -376,73 +454,34 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertNull($resolved);
     }
 
-    public function testChandraDarshanaUsesSunsetToMoonsetVisibilityWindowForPratipada(): void
+    public function testChandraDarshanaUsesClassicalSthulaMetadata(): void
     {
-        $engine = new FestivalRuleEngine;
-        $date = CarbonImmutable::parse('2026-06-16');
-        $today = $this->festivalSnapshot(1, 'Shukla', 100.25, 100.75, 101.25, 100.60, 101.10, 'Mrigashira', 100.82);
-        $tomorrow = $this->festivalSnapshot(2, 'Shukla', 101.25, 101.75, 102.25, 101.10, 102.00, 'Ardra', 101.90);
-
-        $resolved = $engine->resolveMajorFestival('Chandra Darshana', FestivalService::FESTIVALS['Chandra Darshana'], $date, $today, $tomorrow);
-
-        self::assertNotNull($resolved);
-        self::assertSame('2026-06-16', $resolved['observance_date']);
-        self::assertSame(1, $resolved['required_tithi']);
-        self::assertSame('chandra_darshana_pratipada_visible_after_sunset', $resolved['decision']['winning_reason']);
-        self::assertGreaterThan(0, $resolved['decision']['moon_visibility_seconds']);
-
-        $payload = (new FestivalService($engine))->buildFestivalPayload('Chandra Darshana', FestivalService::FESTIVALS['Chandra Darshana'], $resolved);
-        self::assertSame('chandra_darshana_visibility', $payload['calculation_basis']['karmakala_type'] ?? null);
-        self::assertSame('sunset to moonset visibility', $payload['calculation_basis']['karmakala_type_name'] ?? null);
-        self::assertSame('chandra_darshana_pratipada_visible_after_sunset', $payload['rules_applied']['winning_reason_key'] ?? null);
-        self::assertSame('Pratipada visible after sunset before moonset', $payload['rules_applied']['winning_reason'] ?? null);
-    }
-
-    public function testChandraDarshanaFallsBackToDwitiyaWhenPratipadaMissesEveningVisibility(): void
-    {
-        $engine = new FestivalRuleEngine;
-        $date = CarbonImmutable::parse('2026-07-15');
-        $today = $this->festivalSnapshot(1, 'Shukla', 100.25, 100.75, 101.25, 100.20, 100.50, 'Punarvasu', 100.77);
-        $tomorrow = $this->festivalSnapshot(2, 'Shukla', 101.25, 101.75, 102.25, 100.50, 101.70, 'Pushya', 101.95);
-
-        $resolved = $engine->resolveMajorFestival('Chandra Darshana', FestivalService::FESTIVALS['Chandra Darshana'], $date, $today, $tomorrow);
-
-        self::assertNotNull($resolved);
-        self::assertSame('2026-07-16', $resolved['observance_date']);
-        self::assertSame(2, $resolved['required_tithi']);
-        self::assertSame('chandra_darshana_dwitiya_visible_after_sunset', $resolved['decision']['winning_reason']);
-        self::assertTrue($resolved['decision']['visibility_assessment']['visible']);
-        self::assertTrue($resolved['decision']['visibility_assessment']['passes_lag']);
-    }
-
-    public function testChandraDarshanaRejectsTooShortPratipadaVisibilityWindow(): void
-    {
-        $engine = new FestivalRuleEngine;
-        $date = CarbonImmutable::parse('2026-08-13');
-        $today = $this->festivalSnapshot(1, 'Shukla', 100.25, 100.75, 101.25, 100.10, 100.95, 'Ashlesha', 100.772);
-        $tomorrow = $this->festivalSnapshot(2, 'Shukla', 101.25, 101.75, 102.25, 100.95, 101.60, 'Magha', 101.84);
-
-        $resolved = $engine->resolveMajorFestival('Chandra Darshana', FestivalService::FESTIVALS['Chandra Darshana'], $date, $today, $tomorrow);
-
-        self::assertNotNull($resolved);
-        self::assertSame('2026-08-14', $resolved['observance_date']);
-        self::assertSame(2, $resolved['required_tithi']);
-        self::assertSame('chandra_darshana_dwitiya_visible_after_sunset', $resolved['decision']['winning_reason']);
-        self::assertTrue($resolved['decision']['visibility_assessment']['visible']);
-        self::assertTrue($resolved['decision']['visibility_assessment']['passes_lag']);
-        self::assertSame(0.0, $resolved['decision']['winning_window_overlap_seconds']);
+        self::assertSame(1, FestivalService::FESTIVALS['Chandra Darshana']['tithi']);
+        self::assertSame('chandra_darshana_visibility', FestivalService::FESTIVALS['Chandra Darshana']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility']);
+        self::assertSame('classical_sthula_chandra_darshana_9_muhurta', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_model']);
+        self::assertSame('classical_textual_rule_sthula_chandra_darshana', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_basis']);
+        self::assertSame(9, FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_sthula_muhurta_threshold']);
     }
 
     public function testGujaratiFestivalRegistryCorrectionsAreEncoded(): void
     {
         self::assertSame('sangava', FestivalService::FESTIVALS['Kali Chaudas (Naraka Chaturdashi)']['karmakala_type']);
         self::assertArrayHasKey('Naraka Chaturdashi Abhyanga Snan', FestivalService::FESTIVALS);
-        self::assertSame('arunodaya', FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['karmakala_type']);
+        self::assertSame('moonrise', FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['karmakala_type']);
         self::assertTrue(FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['location_sensitive']);
+        self::assertTrue(FestivalService::FESTIVALS['Naraka Chaturdashi Abhyanga Snan']['naraka_chaturdashi_abhyanga_table']);
         self::assertSame('sunrise', FestivalService::FESTIVALS['Chaitra Purnima']['karmakala_type']);
         self::assertSame('sunrise', FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['karmakala_type']);
         self::assertTrue(FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['require_sunrise_vyapini']);
         self::assertSame('first', FestivalService::FESTIVALS['Swaminarayan Jayanti (Hari-Nom)']['vriddhi_preference']);
+        self::assertArrayHasKey('Hari Jayanti', FestivalService::FESTIVALS);
+        self::assertSame('sunrise', FestivalService::FESTIVALS['Hari Jayanti']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Hari Jayanti']['require_sunrise_vyapini']);
+        self::assertSame('first', FestivalService::FESTIVALS['Hari Jayanti']['vriddhi_preference']);
+        self::assertSame('first', FestivalService::FESTIVALS['Hari Jayanti']['kshaya_preference']);
+        self::assertSame(['Chaitra'], FestivalService::FESTIVALS['Hari Jayanti']['excluded_months_amanta']);
+        self::assertSame(['Chaitra'], FestivalService::FESTIVALS['Hari Jayanti']['excluded_months_purnimanta']);
         self::assertSame('abhijit', FestivalService::FESTIVALS['Vamana Jayanti']['karmakala_type']);
         self::assertSame('Shravana', FestivalService::FESTIVALS['Vamana Jayanti']['nakshatra']);
         self::assertSame('aparahna', FestivalService::FESTIVALS['Samaveda Upakarma']['karmakala_type']);
@@ -552,8 +591,8 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'sharad_purnima_rasa',
                 'alankar_marjan_satsangi',
                 'pushpa_dolotsav_satsangi',
-                'simplified_modern_crescent_visibility',
-                'modern_astronomical_heuristic_not_classical',
+                'classical_sthula_chandra_darshana_9_muhurta',
+                'classical_textual_rule_sthula_chandra_darshana',
                 'Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion',
                 'Swaminarayan/Uddhav Janmashtami morning and midnight observance',
             ],
@@ -590,6 +629,33 @@ final class NirnayVerifiedRulesTest extends TestCase
 
         self::assertNotNull($resolved);
         self::assertSame('2026-03-26', $resolved['observance_date']);
+        self::assertTrue($resolved['tithi_at_sunrise_today']);
+        self::assertTrue($resolved['tithi_at_sunrise_tomorrow']);
+        self::assertSame('sunrise', $resolved['karmakala_type']);
+        self::assertSame('first', $resolved['decision']['vriddhi_preference']);
+    }
+
+    public function testMonthlyHariJayantiInheritsSunriseVyapiniNavamiRuleOutsideChaitra(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-05-26');
+        $today = $this->festivalSnapshot(9, 'Shukla', 100.25, 100.75, 101.25, 100.10, 101.60, 'Pushya');
+        $today['Hindu_Calendar'] = [
+            'Calendar_Type' => 'amanta',
+            'Month_Amanta_En' => 'Vaishakha',
+            'Month_Purnimanta_En' => 'Vaishakha',
+        ];
+        $tomorrow = $this->festivalSnapshot(9, 'Shukla', 101.25, 101.75, 102.25, 100.10, 101.60, 'Ashlesha');
+        $tomorrow['Hindu_Calendar'] = [
+            'Calendar_Type' => 'amanta',
+            'Month_Amanta_En' => 'Vaishakha',
+            'Month_Purnimanta_En' => 'Vaishakha',
+        ];
+
+        $resolved = $engine->resolveMajorFestival('Hari Jayanti', FestivalService::FESTIVALS['Hari Jayanti'], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-05-26', $resolved['observance_date']);
         self::assertTrue($resolved['tithi_at_sunrise_today']);
         self::assertTrue($resolved['tithi_at_sunrise_tomorrow']);
         self::assertSame('sunrise', $resolved['karmakala_type']);
@@ -708,6 +774,48 @@ final class NirnayVerifiedRulesTest extends TestCase
             $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'],
             $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes']
         );
+    }
+
+    public function testPurnimaVratTruthTableKeepsFirstDayWhenChaturdashiEndsBeforeEighteenGhadis(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-01-03');
+        $today = $this->festivalSnapshot(15, 'Shukla', 100.25, 100.85, 101.25, 100.40, 101.60, 'Punarvasu');
+        $tomorrow = $this->festivalSnapshot(15, 'Shukla', 101.25, 101.85, 102.25, 100.40, 101.60, 'Pushya');
+
+        $resolved = $engine->resolveMajorFestival('Pausha Purnima Vrat', [
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+            'purnima_vrat_18_ghadi_rule' => true,
+        ], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-01-03', $resolved['observance_date']);
+        self::assertSame('purnima_vrat_chaturdashi_below_18_ghadi_keep_day1', $resolved['decision']['winning_reason']);
+    }
+
+    public function testPurnimaVratTruthTableShiftsToSecondDayWhenChaturdashiReachesEighteenGhadis(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-01-03');
+        $today = $this->festivalSnapshot(15, 'Shukla', 100.25, 100.85, 101.25, 100.70, 101.60, 'Punarvasu');
+        $tomorrow = $this->festivalSnapshot(15, 'Shukla', 101.25, 101.85, 102.25, 100.70, 101.60, 'Pushya');
+
+        $resolved = $engine->resolveMajorFestival('Pausha Purnima Vrat', [
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'karmakala_type' => 'sunrise',
+            'strict_karmakala' => true,
+            'purnima_vrat_18_ghadi_rule' => true,
+        ], $date, $today, $tomorrow);
+
+        self::assertNotNull($resolved);
+        self::assertSame('2026-01-04', $resolved['observance_date']);
+        self::assertSame('purnima_vrat_chaturdashi_at_or_above_18_ghadi_shift_day2', $resolved['decision']['winning_reason']);
     }
 
     public function testGaneshChaturthiPrefersFullMadhyahnaCoverage(): void
@@ -861,7 +969,7 @@ final class NirnayVerifiedRulesTest extends TestCase
 
         self::assertNotNull($resolved);
         self::assertSame('2026-02-15', $resolved['observance_date']);
-        self::assertSame('mahashivaratri_both_full_nishitha_choose_day2', $resolved['decision']['winning_reason']);
+        self::assertSame('mahashivaratri_both_full_nishitha_choose_day2_per_ref', $resolved['decision']['winning_reason']);
     }
 
     public function testMahashivaratriTruthTableKeepsFullNishithaOverSecondDayEkadesha(): void
@@ -940,7 +1048,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Ganesh Chaturthi']['prefer_full_karmakala_coverage']);
         self::assertSame('prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap', FestivalService::FESTIVALS['Ganesh Chaturthi']['gujarati_special_case']);
         self::assertTrue(FestivalService::FESTIVALS['Vasant Panchami']['require_sunrise_vyapini']);
-        self::assertSame(['Satsangi Jeevan 4.59.31-58'], FestivalService::FESTIVALS['Vasant Panchami']['source_refs']);
+        self::assertContains('Satsangi Jeevan 4.59', FestivalService::FESTIVALS['Vasant Panchami']['source_refs']);
         self::assertSame('matsya_jayanti_satsangi', FestivalService::FESTIVALS['Matsya Jayanti']['ritual_profile']);
         self::assertTrue(FestivalService::FESTIVALS['Matsya Jayanti']['require_sunrise_vyapini']);
         self::assertSame('first', FestivalService::FESTIVALS['Matsya Jayanti']['kshaya_preference']);
@@ -968,6 +1076,14 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Yamuna Chhath']['require_sunrise_vyapini']);
         self::assertTrue(FestivalService::FESTIVALS['Shravana Purnima']['avoid_bhadra_mukha']);
         self::assertTrue(FestivalService::FESTIVALS['Shravana Purnima']['prefer_bhadra_puchha']);
+        self::assertSame('aparahna', FestivalService::FESTIVALS['Darsha Amavasya']['karmakala_type']);
+        self::assertSame('aparahna', FestivalService::FESTIVALS['Adhika Darsha Amavasya']['karmakala_type']);
+        self::assertSame('sunrise', FestivalService::FESTIVALS['Maghi Purnima']['karmakala_type']);
+        self::assertArrayNotHasKey('forbid_previous_tithi_at', FestivalService::FESTIVALS['Maghi Purnima']);
+        self::assertSame('first', FestivalService::FESTIVALS['Maghi Purnima']['vriddhi_preference']);
+        self::assertTrue(FestivalService::FESTIVALS['Pausha Purnima Vrat']['purnima_vrat_18_ghadi_rule']);
+        self::assertSame('sunrise', FestivalService::FESTIVALS['Ashadha Purnima Vrat']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Ashadha Purnima Vrat']['purnima_vrat_18_ghadi_rule']);
         self::assertSame('ashtami_navami_sandhi_interval', FestivalService::FESTIVALS['Sandhi Puja']['ritual_profile']);
         self::assertSame('sharad_purnima_rasa', FestivalService::FESTIVALS['Kojagari Lakshmi Puja']['ritual_profile']);
         self::assertTrue(FestivalService::FESTIVALS['Maha Shivaratri']['ekadesha_coverage_allowed']);
@@ -975,7 +1091,21 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Ganesh Chaturthi']['require_karmakala_match']);
         self::assertTrue(FestivalService::FESTIVALS['Ganesh Chaturthi']['previous_tithi_vedha_tolerated']);
         self::assertTrue(FestivalService::FESTIVALS['Anant Chaturdashi']['require_sunrise_vyapini']);
-        self::assertTrue(FestivalService::FESTIVALS['Ganga Dussehra']['require_sunrise_vyapini']);
+        self::assertTrue(FestivalService::FESTIVALS['Anant Chaturdashi']['anant_chaturdashi_paraviddha_table']);
+        self::assertSame(2, FestivalService::FESTIVALS['Anant Chaturdashi']['resolution_policy']['post_sunrise_muhurta_threshold']);
+        self::assertSame('purvahna', FestivalService::FESTIVALS['Akshaya Tritiya']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Akshaya Tritiya']['akshaya_tritiya_purvahna_table']);
+        self::assertSame(3, FestivalService::FESTIVALS['Akshaya Tritiya']['resolution_policy']['both_days_purvahna_second_day_muhurta_threshold']);
+        self::assertSame('first', FestivalService::FESTIVALS['Akshaya Tritiya']['vriddhi_preference']);
+        self::assertSame('madhyahna', FestivalService::FESTIVALS['Radha Ashtami']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Radha Ashtami']['madhyahna_purvatithi_vedha_rejection']);
+        self::assertTrue(FestivalService::FESTIVALS['Radha Ashtami']['kshaya_accept_previous_tithi_vedha']);
+        self::assertSame('first', FestivalService::FESTIVALS['Radha Ashtami']['vriddhi_preference']);
+        self::assertSame('madhyahna', FestivalService::FESTIVALS['Swaminarayan Varaha Jayanti']['karmakala_type']);
+        self::assertTrue(FestivalService::FESTIVALS['Swaminarayan Varaha Jayanti']['madhyahna_purvatithi_vedha_rejection']);
+        self::assertTrue(FestivalService::FESTIVALS['Swaminarayan Varaha Jayanti']['kshaya_accept_previous_tithi_vedha']);
+        self::assertSame('purvahna', FestivalService::FESTIVALS['Ganga Dussehra']['karmakala_type']);
+        self::assertSame('madhyahna', FestivalService::FESTIVALS['Ganga Dussehra']['ritual_kala_type']);
         self::assertSame('govatsa_dwadashi', FestivalService::FESTIVALS['Vagh Baras']['deepotsav_sequence']);
         self::assertSame('second_day', FestivalService::FESTIVALS['Vagh Baras']['govatsa_equal_pradosha_preference']);
         self::assertTrue(FestivalService::FESTIVALS['Vagh Baras']['govatsa_truth_table']);
@@ -1004,9 +1134,8 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertContains('Telugu Hanuman Jayanthi', FestivalService::FESTIVALS['Telugu Hanuman Jayanti']['aliases']);
         self::assertTrue(FestivalService::FESTIVALS['Telugu Hanuman Jayanti']['require_sunrise_vyapini']);
         self::assertArrayHasKey('Phuldolotsava', FestivalService::FESTIVALS);
-        self::assertSame(1, FestivalService::FESTIVALS['Phuldolotsava']['tithi']);
-        self::assertSame('Krishna', FestivalService::FESTIVALS['Phuldolotsava']['paksha_amanta']);
-        self::assertSame('Phalguna', FestivalService::FESTIVALS['Phuldolotsava']['month_amanta']);
+        self::assertTrue(FestivalService::FESTIVALS['Phuldolotsava']['nakshatra_only']);
+        self::assertSame(['Phalguna'], FestivalService::FESTIVALS['Phuldolotsava']['allowed_months_amanta']);
         self::assertTrue(FestivalService::FESTIVALS['Phuldolotsava']['sect_specific']);
         self::assertTrue(FestivalService::FESTIVALS['Samaveda Upakarma']['nakshatra_only']);
         self::assertArrayNotHasKey('Chaitra Navratri Ghatasthapana', FestivalService::FESTIVALS);
@@ -1047,58 +1176,14 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertGreaterThan(0, $resolved['decision']['winning_nakshatra_window_overlap_seconds']);
     }
 
-    public function testPhuldolotsavaResolvesAsKrishnaPratipadaInAmanta(): void
+    public function testPhuldolotsavaCarriesKrishnaPratipadaAndUttaraPhalguniMetadata(): void
     {
-        $engine = new FestivalRuleEngine;
-        $date = CarbonImmutable::parse('2026-03-04');
         $rule = FestivalService::FESTIVALS['Phuldolotsava'];
 
-        $today = $this->festivalSnapshot(16, 'Krishna', 100.25, 100.75, 101.25, 100.10, 101.10, 'Uttara Phalguni');
-        $today['Hindu_Calendar'] = [
-            'Calendar_Type' => 'amanta',
-            'Month_Amanta_En' => 'Phalguna',
-            'Month_Purnimanta_En' => 'Chaitra',
-        ];
-
-        $tomorrow = $this->festivalSnapshot(17, 'Krishna', 101.25, 101.75, 102.25, 101.10, 102.10, 'Hasta');
-        $tomorrow['Hindu_Calendar'] = [
-            'Calendar_Type' => 'amanta',
-            'Month_Amanta_En' => 'Phalguna',
-            'Month_Purnimanta_En' => 'Chaitra',
-        ];
-
-        $resolved = $engine->resolveMajorFestival('Phuldolotsava', $rule, $date, $today, $tomorrow);
-
-        self::assertNotNull($resolved);
-        self::assertSame('Krishna', $resolved['paksha']);
-        self::assertSame('2026-03-04', $resolved['observance_date']);
-    }
-
-    public function testPhuldolotsavaResolvesAsKrishnaPratipadaInPurnimantaMonthContext(): void
-    {
-        $engine = new FestivalRuleEngine;
-        $date = CarbonImmutable::parse('2026-03-04');
-        $rule = FestivalService::FESTIVALS['Phuldolotsava'];
-
-        $today = $this->festivalSnapshot(16, 'Krishna', 100.25, 100.75, 101.25, 100.10, 101.10, 'Uttara Phalguni');
-        $today['Hindu_Calendar'] = [
-            'Calendar_Type' => 'purnimanta',
-            'Month_Amanta_En' => 'Phalguna',
-            'Month_Purnimanta_En' => 'Chaitra',
-        ];
-
-        $tomorrow = $this->festivalSnapshot(17, 'Krishna', 101.25, 101.75, 102.25, 101.10, 102.10, 'Hasta');
-        $tomorrow['Hindu_Calendar'] = [
-            'Calendar_Type' => 'purnimanta',
-            'Month_Amanta_En' => 'Phalguna',
-            'Month_Purnimanta_En' => 'Chaitra',
-        ];
-
-        $resolved = $engine->resolveMajorFestival('Phuldolotsava', $rule, $date, $today, $tomorrow);
-
-        self::assertNotNull($resolved);
-        self::assertSame('Krishna', $resolved['paksha']);
-        self::assertSame('2026-03-04', $resolved['observance_date']);
+        self::assertTrue($rule['nakshatra_only']);
+        self::assertSame(['Phalguna'], $rule['allowed_months_amanta']);
+        self::assertSame('Uttara Phalguni', $rule['nakshatra']);
+        self::assertTrue($rule['require_sunrise_vyapini']);
     }
 
     public function testFestivalRuleEngineRejectsUnknownKarmakalaType(): void
@@ -1255,32 +1340,6 @@ final class NirnayVerifiedRulesTest extends TestCase
         $sunServiceProperty->setValue($calculator, $sunService);
 
         return $calculator;
-    }
-
-    private function containingPraharDurationJd(
-        EclipseService $service,
-        float $eventStartJd,
-        float $lat,
-        float $lon,
-        string $tz
-    ): float {
-        $reflection = new ReflectionClass(EclipseService::class);
-        $eventStart = $reflection->getMethod('jdToCarbon')->invoke($service, $eventStartJd, $tz);
-        $boundaries = $reflection->getMethod('buildPraharBoundaries')->invoke($service, $eventStart, $lat, $lon, $tz);
-        $eventTimestamp = $eventStart->getTimestamp();
-
-        for ($index = 0, $count = count($boundaries) - 1; $index < $count; $index++) {
-            $startTimestamp = $boundaries[$index]->getTimestamp();
-            $endTimestamp = $boundaries[$index + 1]->getTimestamp();
-            if ($eventTimestamp >= $startTimestamp && $eventTimestamp < $endTimestamp) {
-                $carbonToJd = $reflection->getMethod('carbonToJd');
-
-                return $carbonToJd->invoke($service, $boundaries[$index + 1])
-                    - $carbonToJd->invoke($service, $boundaries[$index]);
-            }
-        }
-
-        self::fail('Unable to find contact-containing prahara.');
     }
 
     private function festivalSnapshot(

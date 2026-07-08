@@ -49,6 +49,55 @@ class FestivalCoverageRegressionTest extends TestCase
         }
     }
 
+    public function test_lossless_paraviddha_resolvers_emit_expected_2026_dates(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $calendar = $service->getFestivalYearCalendar(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $flat = $calendar['flat'] ?? [];
+
+        // Each of these observances is driven by a dedicated, textually-literal paraviddha
+        // resolver added for lossless fidelity to the master Nirnay document:
+        //  - Treta Yuga Diwas / Akshaya Tritiya: purvahna both-days 3-muhurta chooser (ref 385-389)
+        //  - Radha Ashtami: madhyahna saptami-vedha rejection (ref 919-938)
+        //  - Swaminarayan Varaha Jayanti: madhyahna tritiya-vedha rejection (ref 588-604)
+        //  - Anant Chaturdashi: purvahna 2-muhurta post-sunrise chooser (ref 984-999)
+        $expected = [
+            'Treta Yuga Diwas' => ['2026-04-19', 'akshaya_tritiya_both_purvahna_below_3_muhurta_purva_day1'],
+            'Radha Ashtami' => ['2026-09-18', 'madhyahna_shuddha_purva_vedha_free_day1'],
+            'Swaminarayan Varaha Jayanti' => ['2026-08-16', 'madhyahna_shuddha_purva_vedha_free_day1'],
+            'Anant Chaturdashi' => ['2026-09-25', 'anant_chaturdashi_2_muhurta_day1'],
+        ];
+
+        $found = [];
+        foreach ($flat as $entry) {
+            $festival = $entry['festival'] ?? [];
+            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+            if (isset($expected[$name])) {
+                $found[$name] = [
+                    (string) ($entry['date'] ?? ''),
+                    (string) ($festival['resolution']['decision']['winning_reason'] ?? ''),
+                ];
+            }
+        }
+
+        foreach ($expected as $name => [$date, $reason]) {
+            self::assertArrayHasKey($name, $found, $name . ' must be emitted in 2026');
+            self::assertSame($date, $found[$name][0], $name . ' observance date');
+            self::assertSame($reason, $found[$name][1], $name . ' winning reason');
+        }
+    }
+
     public function test_rohini_vrat_is_present_in_year_calendar(): void
     {
         /** @var PanchangService $service */
@@ -76,6 +125,46 @@ class FestivalCoverageRegressionTest extends TestCase
 
         $this->assertNotEmpty($rohiniDates, 'Rohini Vrat should be emitted in the annual festival calendar');
         $this->assertContains('2026-01-01', $rohiniDates, 'Known Rohini Vrat date should be present');
+    }
+
+    public function test_monthly_hari_jayanti_emits_outside_chaitra_but_not_on_annual_chaitra_jayanti_day(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $vaishakhaDetails = $service->getDayDetails(
+            CarbonImmutable::parse('2026-04-25', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $vaishakhaNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $vaishakhaDetails['Festivals'] ?? []
+        );
+
+        $chaitraDetails = $service->getDayDetails(
+            CarbonImmutable::parse('2026-03-27', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $chaitraNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $chaitraDetails['Festivals'] ?? []
+        );
+
+        $this->assertContains('Hari Jayanti', $vaishakhaNames, 'Monthly Hari Jayanti should emit outside Chaitra on the verified Vaishakha Sud 9 date (2026-04-25).');
+        $this->assertContains('Swaminarayan Jayanti (Hari-Nom)', $chaitraNames, 'Annual Chaitra Hari-Nom should stay on the annual Chaitra observance date (2026-03-27).');
+        $this->assertNotContains('Hari Jayanti', $chaitraNames, 'Monthly Hari Jayanti must not duplicate the annual Chaitra Hari-Nom observance.');
     }
 
     public function test_gujarat_2026_festival_dates_match_verified_public_baselines(): void
@@ -149,8 +238,38 @@ class FestivalCoverageRegressionTest extends TestCase
         self::assertSame(['2026-01-03'], array_values(array_unique($datesByName['Pausha Purnima'] ?? [])));
         self::assertSame(['2026-04-01'], array_values(array_unique($datesByName['Chaitra Purnima Vrat'] ?? [])));
         self::assertSame(['2026-04-02'], array_values(array_unique($datesByName['Chaitra Purnima'] ?? [])));
-        self::assertSame(['2026-07-28'], array_values(array_unique($datesByName['Ashadha Purnima Vrat'] ?? [])));
+        self::assertSame(['2026-07-29'], array_values(array_unique($datesByName['Ashadha Purnima Vrat'] ?? [])));
         self::assertSame(['2026-07-29'], array_values(array_unique($datesByName['Ashadha Purnima'] ?? [])));
+    }
+
+    public function test_nag_panchami_uses_calendar_specific_shravana_dates(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $datesByCalendar = [];
+        foreach (['amanta', 'purnimanta'] as $calendarType) {
+            $calendar = $service->getFestivalYearCalendar(
+                2026,
+                23.2472446,
+                69.668339,
+                'Asia/Kolkata',
+                0.0,
+                null,
+                $calendarType,
+            );
+
+            foreach (($calendar['flat'] ?? []) as $entry) {
+                $festival = (array) ($entry['festival'] ?? []);
+                $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+                if ($name === 'Nag Panchami') {
+                    $datesByCalendar[$calendarType][] = (string) ($entry['date'] ?? '');
+                }
+            }
+        }
+
+        self::assertSame(['2026-09-01'], array_values(array_unique($datesByCalendar['amanta'] ?? [])));
+        self::assertSame(['2026-08-17'], array_values(array_unique($datesByCalendar['purnimanta'] ?? [])));
     }
 
     #[Override]
