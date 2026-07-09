@@ -55,6 +55,9 @@ These five elements are calculated daily based on the positions of the Sun and t
     *   *Sharad:* Autumn (Ashvina to Kartika)
     *   *Hemant:* Pre-winter (Margashirsha to Pausha)
     *   *Shishir:* Winter (Magha to Phalguna)
+*   **Sayana Ayana and Sayana Ritu:** The tropical or seasonal course of the Sun, used to show the solstice/equinox-based half-year and season alongside the sidereal Hindu calendar layers.
+    *   *Sayana Ayana:* Tropical Uttarayana / Dakshinayana.
+    *   *Sayana Ritu:* Tropical seasonal division such as Vasanta, Grishma, Varsha, Sharad, Hemant, and Shishir according to the Sayana solar course.
 *   **Regional Month Systems:**
     *   *Month (Amanta):* Month-tracking system where the month ends on the New Moon (Amavasya); common in South and West India.
     *   *Month (Purnimanta):* Month-tracking system where the month ends on the Full Moon (Purnima); common in North India.
@@ -66,6 +69,7 @@ These five elements are calculated daily based on the positions of the Sun and t
 *   **60-Year Jovian Cycle (Samvatsara):**
     *   *Samvatsara (South):* **Parabhava** (The 40th year of the continuous sequence).
     *   *Samvatsara (North):* **Siddharthi** (The 53rd year, calculated using Jupiter's actual transits).
+*   **Calendar Period Windows:** The package can expose the start and end windows for larger calendar periods, including Ayana, Ritu, Sayana Ayana, Sayana Ritu, Vikram Samvat, Gujarati Samvat, Saka Samvat, Kali Samvat, Samvatsara, Amanta months, and Purnimanta months.
 
 ### Note on the 13-Year Samvatsara Gap
 The difference in Samvatsara names between North and South India is a result of different mathematical calculation systems rather than differences in month-tracking (Amanta or Purnimanta):
@@ -165,6 +169,7 @@ The package also includes several daily interpretive layers for non-natal pancha
 *   **Day and Night Measures:** Presents Dinamana and Ratrimana in modern duration units as well as Ghati and Pala.
 *   **Nakshatra Tyajya:** Shows the Varjyam-like avoided portion of the active Nakshatra.
 *   **Dharma Sindhu Style Notes:** Preserves observance and Punya-Kala style guidance where the package has a supported rule family.
+*   **Mahadiksha Guidance:** Gives day-level initiation guidance by checking broad ritual blockers such as Guru Asta, Shukra Asta, Adhika Maas, and Varsha Ritu, while preserving exceptions such as eclipse-related diksha where applicable.
 
 ### Bhadra, Parana, and Nirnay Refinements
 The package includes deeper observance-resolution helpers beyond simple Tithi labels:
@@ -314,11 +319,12 @@ Specific divisions used to schedule actions based on religious injunctions:
 ---
 
 # 9. Festival and Vrat Identities
+
 This list is generated from the canonical English Amanta 2026 yearly outputs. The first column is only a serial number for reading convenience; the identity column is the canonical key emitted by the package, and aliases are alternate public names carried in the generated payload.
 
-The current generated 2026 output reports **324 festival identities** and **120 vrat identities**. These identity totals are distinct from dated occurrence counts; repeated monthly and weekday observances are counted once per canonical identity.
+The current generated 2026 output reports **324 festival identities** and **122 vrat identities**. These identity totals are distinct from dated occurrence counts; repeated monthly and weekday observances are counted once per canonical identity.
 
-Recent festival-module updates also merged overlapping observances into canonical families, refreshed aliases, corrected calendar-specific rules such as Nag Panchami, and regenerated localized Amanta/Purnimanta output.
+Recent festival-module updates also merge overlapping observances into canonical families, refresh aliases, add the generic monthly Vratni Purnima identity, correct calendar-specific rules such as Nag Panchami, and regenerate localized Amanta/Purnimanta output.
 
 ## Festival Identities (Current Generated Output: 324)
 
@@ -384,8 +390,8 @@ Recent festival-module updates also merged overlapping observances into canonica
 | 58 | Holashtak Samapt | Holi Ashtak Ends, Holashtak Samapt |
 | 59 | Bhagatji Maharaj Jayanti | - |
 | 60 | Savarni Manvadi | - |
-| 61 | Dhuleti | Dhulandi |
-| 62 | Phuldolotsava | Pushpadolotsav, Fuldol Utsav, Phalgun Dolotsav, Phooldolotsav |
+| 61 | Phuldolotsava | Pushpadolotsav, Fuldol Utsav, Phalgun Dolotsav, Phooldolotsav |
+| 62 | Dhuleti | Dhulandi |
 | 63 | Rang Panchami | Rangpanchami, Dev Holi, Dev Panchami, Ranga Panchami |
 | 64 | Yashoda Jayanti | - |
 | 65 | Shabari Jayanti | - |
@@ -413,34 +419,34 @@ Recent festival-module updates also merged overlapping observances into canonica
 | 87 | Chaitra (Vasant) Navaratri Day 9 (Siddhidatri Puja) | - |
 | 88 | Tara Jayanti | - |
 | 89 | Kubjika Jayanti | - |
-| 90 | Chaitri Dolotsav | Vimala Ekadashi Dolotsav, Chaitra Sud 11 Vishnu Dolotsav, Chaitri Hindola |
-| 91 | Mahavir Jayanti | - |
-| 92 | Thrissur Pooram | - |
-| 93 | Chaitra Purnima | Hanuman Jayanti, Hanuman Jayanti (North Indian) |
-| 94 | Vaishakh Snan Prarambh | Vaishakh Snan Begins, Chaitra Purnima Snan Start |
-| 95 | Swarochisha Manvadi | - |
-| 96 | Chitra Pournami | - |
-| 97 | Chandika Jayanti | - |
-| 98 | Vallabhacharya Jayanti | - |
-| 99 | Mesha Sankranti | Baisakhi, Puthandu, Mesha Vishu |
-| 100 | Vishu | - |
-| 101 | Pohela Boishakh | Pahela Baishakh |
-| 102 | Pana Sankranti | Maha Vishuba Sankranti |
-| 103 | Rongali Bihu Day 1 | Bohag Bihu, Bohag Bihu Day 1, Goru Bihu |
-| 104 | Krishna Vamana Dwadashi | - |
-| 105 | Jur Sital | - |
-| 106 | Rongali Bihu Day 2 | Bohag Bihu Day 2, Manuh Bihu |
-| 107 | Rongali Bihu Day 3 | Bohag Bihu Day 3, Gosai Bihu |
-| 108 | Vaishakha Amavasya | Shani Jayanti, Vat Savitri Vrat |
-| 109 | Rongali Bihu Day 4 | Bohag Bihu Day 4, Kutum Bihu |
-| 110 | Kurma Jayanti | Swaminarayan Kurma Jayanti, Kurma Jayanti (Swaminarayan/Satsangi) |
-| 111 | Rongali Bihu Day 5 | Bohag Bihu Day 5, Senehi Bihu |
-| 112 | Parashurama Jayanti | Parashurama Jayanti (Swaminarayan/Satsangi) |
-| 113 | Treta Yuga Diwas | Akshaya Tritiya |
-| 114 | Rongali Bihu Day 6 | Bohag Bihu Day 6, Mela Bihu |
-| 115 | Sankarshana Chaturthi | - |
-| 116 | Parashara Rishi Jayanti | - |
-| 117 | Matangi Jayanti | - |
+| 90 | Mahavir Jayanti | - |
+| 91 | Thrissur Pooram | - |
+| 92 | Chaitra Purnima | Hanuman Jayanti, Hanuman Jayanti (North Indian) |
+| 93 | Vaishakh Snan Prarambh | Vaishakh Snan Begins, Chaitra Purnima Snan Start |
+| 94 | Swarochisha Manvadi | - |
+| 95 | Chitra Pournami | - |
+| 96 | Chandika Jayanti | - |
+| 97 | Vallabhacharya Jayanti | - |
+| 98 | Mesha Sankranti | Baisakhi, Puthandu, Mesha Vishu |
+| 99 | Vishu | - |
+| 100 | Pohela Boishakh | Pahela Baishakh |
+| 101 | Pana Sankranti | Maha Vishuba Sankranti |
+| 102 | Rongali Bihu Day 1 | Bohag Bihu, Bohag Bihu Day 1, Goru Bihu |
+| 103 | Krishna Vamana Dwadashi | - |
+| 104 | Jur Sital | - |
+| 105 | Rongali Bihu Day 2 | Bohag Bihu Day 2, Manuh Bihu |
+| 106 | Rongali Bihu Day 3 | Bohag Bihu Day 3, Gosai Bihu |
+| 107 | Vaishakha Amavasya | Shani Jayanti, Vat Savitri Vrat |
+| 108 | Rongali Bihu Day 4 | Bohag Bihu Day 4, Kutum Bihu |
+| 109 | Kurma Jayanti | Swaminarayan Kurma Jayanti, Kurma Jayanti (Swaminarayan/Satsangi) |
+| 110 | Rongali Bihu Day 5 | Bohag Bihu Day 5, Senehi Bihu |
+| 111 | Parashurama Jayanti | Parashurama Jayanti (Swaminarayan/Satsangi), Parashuram Jayanti |
+| 112 | Treta Yuga Diwas | Akshaya Tritiya |
+| 113 | Rongali Bihu Day 6 | Bohag Bihu Day 6, Mela Bihu |
+| 114 | Sankarshana Chaturthi | - |
+| 115 | Parashara Rishi Jayanti | - |
+| 116 | Matangi Jayanti | - |
+| 117 | Chandan Yatra Begins | Chandan Yatra, Chandanotsav Begins |
 | 118 | Rongali Bihu Day 7 | Bohag Bihu Day 7, Chera Bihu |
 | 119 | Adi Shankaracharya Jayanti | - |
 | 120 | Surdas Jayanti | - |
@@ -516,13 +522,13 @@ Recent festival-module updates also merged overlapping observances into canonica
 | 190 | Hariyali Teej | - |
 | 191 | Simha Sankranti | - |
 | 192 | Tulsidas Jayanti | - |
-| 193 | Pavitra Festival | - |
+| 193 | Pavitra Festival | Pavitra Arpan, Pavitra Arpan Utsav |
 | 194 | Damodara Dwadashi | - |
 | 195 | Onam (Thiruvonam) | - |
 | 196 | Avani Avittam (Yajur Upakarma) | - |
 | 197 | Yajurveda Upakarma | - |
-| 198 | Hindola Festival Ends | - |
-| 199 | Gayatri Japam | - |
+| 198 | Gayatri Japam | - |
+| 199 | Hindola Festival Ends | - |
 | 200 | Kajari Teej | - |
 | 201 | Bol Choth | - |
 | 202 | Nag Panchami | Nag Pancham |
@@ -649,7 +655,7 @@ Recent festival-module updates also merged overlapping observances into canonica
 | 323 | Dattatreya Jayanti | - |
 | 324 | Mandala Pooja | - |
 
-## Vrat Identities (Current Generated Output: 120)
+## Vrat Identities (Current Generated Output: 122)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -657,119 +663,121 @@ Recent festival-module updates also merged overlapping observances into canonica
 | 2 | Rohini Vrat | - |
 | 3 | Shri Satyanarayana Vrat | - |
 | 4 | Chandrayan Vrat | - |
-| 5 | Pausha Purnima Vrat | Paush Purnima Vrat |
-| 6 | Lambodara Sankashti Chaturthi | Sankashti Chaturthi, Lambodara Sankashti |
-| 7 | Masik Krishna Janmashtami | - |
+| 5 | Vratni Purnima | - |
+| 6 | Pausha Purnima Vrat | Paush Purnima Vrat |
+| 7 | Lambodara Sankashti Chaturthi | Sankashti Chaturthi, Lambodara Sankashti |
 | 8 | Kalashtami | - |
-| 9 | Shattila Ekadashi | Tila Ekadashi, Tilda Ekadashi |
-| 10 | ISKCON Ekadashi | Vaishnava Ekadashi |
-| 11 | Shukra Pradosh Vrat | Pradosh Vrat |
-| 12 | Masik Shivaratri | - |
-| 13 | Darsha Amavasya | - |
-| 14 | Chandra Darshana | - |
-| 15 | Vinayaki Chaturthi | - |
-| 16 | Bhanu Saptami | - |
-| 17 | Masik Durgashtami | - |
-| 18 | Hari Jayanti | - |
-| 19 | Masik Karthigai | - |
-| 20 | Jaya Ekadashi | Gauna Jaya Ekadashi, Vaishnava Jaya Ekadashi, Bhaimi Ekadashi, Bhishma Ekadashi |
-| 21 | Maghi Purnima | Magha Purnima, Magha Purnima Vrat, Guru Ravidas Jayanti, Lalita Jayanti |
-| 22 | Thai Pusam | - |
-| 23 | Dwijapriya Sankashti Chaturthi | Sankashti Chaturthi, Dwijapriya Sankashti |
-| 24 | Vijaya Ekadashi | - |
-| 25 | Shani Pradosh Vrat | Pradosh Vrat, Shani Trayodashi |
-| 26 | Maha Shivaratri | - |
-| 27 | Amalaki Ekadashi | Amla Ekadashi, Rangbhari Ekadashi |
-| 28 | Phalguna Purnima | Phalguna Purnima Vrat, Dol Purnima, Chaitanya Mahaprabhu Jayanti, Lakshmi Jayanti, Vasanta Purnima, Gaura Purnima |
-| 29 | Bhalachandra Sankashti Chaturthi | Sankashti Chaturthi, Bhalachandra Sankashti |
-| 30 | Papmochani Ekadashi | Papavimocani Ekadashi |
-| 31 | Soma Pradosh Vrat | Pradosh Vrat |
-| 32 | Gangaur | Gauri Tritiya, Gauri Teej, Saubhagya Gauri Tritiya |
-| 33 | Matsya Jayanti | - |
-| 34 | Yamuna Chhath | - |
-| 35 | Ashoka Ashtami Vrat | - |
-| 36 | Rama Navami | - |
-| 37 | Swaminarayan Jayanti (Hari-Nom) | - |
-| 38 | Kamada Ekadashi | Kamana Ekadashi, Phalda Ekadashi |
-| 39 | Chaitra Purnima Vrat | - |
-| 40 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
-| 41 | Varuthini Ekadashi | Baruthani Ekadashi |
-| 42 | Budha Pradosh Vrat | Pradosh Vrat |
-| 43 | Parashurama Jayanti (Pradosha Tradition) | - |
-| 44 | Mohini Ekadashi | Laxmi Narayan Ekadashi |
-| 45 | Bhauma Pradosh Vrat | Pradosh Vrat |
-| 46 | Narasimha Jayanti | - |
-| 47 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
-| 48 | Kurma Jayanti (Vaishakha Purnima Tradition) | Shri Koorma Jayanti, Kurma Avatara Appearance |
-| 49 | Ekadanta Sankashti Chaturthi | Sankashti Chaturthi, Ekadanta Sankashti |
-| 50 | Apara Ekadashi | Achala Ekadashi |
-| 51 | Padmini Ekadashi | Kamala Ekadashi, Purushottami Ekadashi, Padmini Vishuddha Ekadashi |
-| 52 | Mahadwadashi | Vaishnava Mahadwadashi |
-| 53 | Adhika Purnima Vrat | - |
-| 54 | Vaikasi Visakam | - |
-| 55 | Vibhuvana Sankashti Chaturthi | Vibhuvana Sankashti, Sankashti Chaturthi |
-| 56 | Parama Ekadashi | Parama Shuddha Ekadashi |
-| 57 | Nirjala Ekadashi | Pandava Ekadashi, Bhima Ekadashi, Bhimseni Ekadashi |
-| 58 | Jyeshtha Purnima | Vat Purnima |
-| 59 | Krishnapingala Sankashti Chaturthi | Sankashti Chaturthi, Krishnapingala Sankashti |
-| 60 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |
-| 61 | Ravi Pradosh Vrat | Pradosh Vrat |
-| 62 | Devshayani Ekadashi | Shayani Ekadashi, Ashadhi Ekadashi, Harishayani Ekadashi, Prathama Ekadashi, Toli Ekadashi, Devpodhi Ekadashi |
-| 63 | Pandharpur Yatra | Pandharpur Wari, Ashadhi Wari, Ashadhi Ekadashi Yatra |
-| 64 | Shaka Vrata Begins | - |
-| 65 | Chaturmasa Begins | Devashayana Kala Begins |
-| 66 | Ashadha Purnima Vrat | - |
-| 67 | Gajanana Sankashti Chaturthi | Sankashti Chaturthi, Gajanana Sankashti |
-| 68 | Kamika Ekadashi | - |
-| 69 | Varaha Jayanti | Swaminarayan Varaha Jayanti |
-| 70 | Shravana Somvar (Monday Fasting) | - |
-| 71 | Kalki Jayanti | - |
-| 72 | Third Mangala Gauri Vrat | - |
-| 73 | Dahi Vrata Begins | - |
-| 74 | Shravana Putrada Ekadashi | Vaishnava Shravana Putrada Ekadashi, Pavitra Ekadashi, Pavitropana Ekadashi, Pavitran Ekadashi, Pavitra Utsav, Pavitrotsava |
-| 75 | Fourth Mangala Gauri Vrat | - |
-| 76 | Shravana Purnima | Shravana Purnima Vrat, Raksha Bandhan, Rakshabandhan, Rakshabandh, Narali Purnima, Hayagriva Jayanti, Gayatri Jayanti |
-| 77 | Varalakshmi Vratam | - |
-| 78 | Heramba Sankashti Chaturthi | Sankashti Chaturthi, Heramba Sankashti |
-| 79 | Maha Sangada Hara Chathurti | - |
-| 80 | First Mangala Gauri Vrat | - |
-| 81 | Sheetala Satam | Sheetala Saptami |
-| 82 | Krishna Janmashtami | Krishna Janmashtami (Swaminarayan-Uddhav), Gokulashtami |
-| 83 | Krishna Janmashtami (Smarta) | - |
-| 84 | Ramanand Swami Appearance Festival | - |
-| 85 | Aja Ekadashi | Annada Ekadashi, Kaliya Dalana Ekadashi |
-| 86 | Second Mangala Gauri Vrat | - |
-| 87 | Balarama Jayanti | Balarama Jayanti (Hala Shashthi), Hal Shashthi (Balarama Jayanti), Baladeva Chhath, Baldev Chhath, Balbhadra Jayanti |
-| 88 | Dudh Vrata Begins | - |
-| 89 | Parivartini Ekadashi | Parsva Ekadashi, Parshva Ekadashi, Jal Jhilani Ekadashi, Vamana Ekadashi, Dol Gyaras, Jayanti Ekadashi, Danleela Mahotsav, Padma Ekadashi |
-| 90 | Bhadrapada Purnima | Bhadrapada Purnima Vrat |
-| 91 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
-| 92 | Jivitputrika Vrat (Jitiya) | - |
-| 93 | Indira Ekadashi | Pitri Uddhar Ekadashi, Ekadashi Shradh |
-| 94 | Dwidala Vrata Begins | Dwidal Vrata Begins |
-| 95 | Papankusha Ekadashi | - |
-| 96 | Ashvina Purnima | Ashwina Purnima, Ashwina Purnima Vrat, Kojagara Puja |
-| 97 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
-| 98 | Karva Chauth | - |
-| 99 | Ahoi Ashtami | - |
-| 100 | Rama Ekadashi | Rambha Ekadashi, Rameshwaram Ekadashi |
-| 101 | Chhath Puja (Sandhya Arghya) | Chhath Puja (Surya Shashthi) |
-| 102 | Devutthana (Prabodhini) Ekadashi | Gauna Devutthana Ekadashi, Vaishnava Devutthana Ekadashi, Devutthana Ekadashi, Prabodhini Ekadashi, Haribodhini Ekadashi, Vishnu Prabodhini Ekadashi, Dev Uthani Ekadashi, Uttana Ekadashi, Papaharini Ekadashi, Kartiki Ekadashi, Devuthi Ekadashi |
-| 103 | Dharmadev Janmotsav | - |
-| 104 | Hatadi Festival | - |
-| 105 | Chaturmasa Ends | Devashayana Kala Ends |
-| 106 | Vaikuntha Chaturdashi | - |
-| 107 | Kartika Purnima | Kartika Purnima Vrat, Dev Deepavali, Tripuri Purnima |
-| 108 | Ganadhipa Sankashti Chaturthi | Sankashti Chaturthi, Ganadhipa Sankashti |
-| 109 | Utpanna Ekadashi | Utpatti Ekadashi |
-| 110 | Mokshada Ekadashi (Geeta Jayanti) | Geeta Jayanti, Gita Jayanti Ekadashi, Mokshada Ekadashi, Mauna Ekadashi |
-| 111 | Kannada Hanuman Vratam | - |
-| 112 | Margashirsha Purnima Vrat | Margashirsha Purnima |
-| 113 | Akhuratha Sankashti Chaturthi | Sankashti Chaturthi, Akhuratha Sankashti |
-| 114 | Ravivar Vrat | Sunday Vrat, Navagraha Weekday Fasting |
-| 115 | Somwar Vrat | Monday Vrat, Deities Weekdays Fasting |
-| 116 | Mangalwar Vrat | Tuesday Vrat |
-| 117 | Budhwar Vrat | Wednesday Vrat |
-| 118 | Guruvar Vrat | Brihaspativar Vrat, Thursday Vrat |
-| 119 | Shukravar Vrat | Friday Vrat |
-| 120 | Shanivar Vrat | Saturday Vrat |
+| 9 | Masik Krishna Janmashtami | - |
+| 10 | Shattila Ekadashi | Tila Ekadashi, Tilda Ekadashi |
+| 11 | ISKCON Ekadashi | Vaishnava Ekadashi |
+| 12 | Shukra Pradosh Vrat | Pradosh Vrat |
+| 13 | Masik Shivaratri | - |
+| 14 | Darsha Amavasya | - |
+| 15 | Chandra Darshana | - |
+| 16 | Vinayaki Chaturthi | - |
+| 17 | Bhanu Saptami | - |
+| 18 | Masik Durgashtami | - |
+| 19 | Hari Jayanti | - |
+| 20 | Masik Karthigai | - |
+| 21 | Jaya Ekadashi | Gauna Jaya Ekadashi, Vaishnava Jaya Ekadashi, Bhaimi Ekadashi, Bhishma Ekadashi |
+| 22 | Maghi Purnima | Magha Purnima, Magha Purnima Vrat, Guru Ravidas Jayanti, Lalita Jayanti |
+| 23 | Thai Pusam | - |
+| 24 | Dwijapriya Sankashti Chaturthi | Sankashti Chaturthi, Dwijapriya Sankashti |
+| 25 | Vijaya Ekadashi | - |
+| 26 | Shani Pradosh Vrat | Pradosh Vrat, Shani Trayodashi |
+| 27 | Maha Shivaratri | - |
+| 28 | Amalaki Ekadashi | Amla Ekadashi, Rangbhari Ekadashi |
+| 29 | Ravi Pradosh Vrat | Pradosh Vrat |
+| 30 | Phalguna Purnima | Phalguna Purnima Vrat, Dol Purnima, Chaitanya Mahaprabhu Jayanti, Lakshmi Jayanti, Vasanta Purnima, Gaura Purnima |
+| 31 | Bhalachandra Sankashti Chaturthi | Sankashti Chaturthi, Bhalachandra Sankashti |
+| 32 | Papmochani Ekadashi | Papavimocani Ekadashi |
+| 33 | Soma Pradosh Vrat | Pradosh Vrat |
+| 34 | Gangaur | Gauri Tritiya, Gauri Teej, Saubhagya Gauri Tritiya |
+| 35 | Matsya Jayanti | - |
+| 36 | Yamuna Chhath | - |
+| 37 | Ashoka Ashtami Vrat | - |
+| 38 | Rama Navami | - |
+| 39 | Swaminarayan Jayanti (Hari-Nom) | - |
+| 40 | Kamada Ekadashi | Kamana Ekadashi, Phalda Ekadashi |
+| 41 | Chaitri Dolotsav | Vimala Ekadashi Dolotsav, Chaitra Sud 11 Vishnu Dolotsav, Chaitri Hindola, Vimala Ekadashi |
+| 42 | Chaitra Purnima Vrat | - |
+| 43 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
+| 44 | Varuthini Ekadashi | Baruthani Ekadashi |
+| 45 | Budha Pradosh Vrat | Pradosh Vrat |
+| 46 | Parashurama Jayanti (Pradosha Tradition) | - |
+| 47 | Mohini Ekadashi | Laxmi Narayan Ekadashi |
+| 48 | Bhauma Pradosh Vrat | Pradosh Vrat |
+| 49 | Narasimha Jayanti | - |
+| 50 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
+| 51 | Kurma Jayanti (Vaishakha Purnima Tradition) | Shri Koorma Jayanti, Kurma Avatara Appearance |
+| 52 | Ekadanta Sankashti Chaturthi | Sankashti Chaturthi, Ekadanta Sankashti |
+| 53 | Apara Ekadashi | Achala Ekadashi |
+| 54 | Padmini Ekadashi | Kamala Ekadashi, Purushottami Ekadashi, Padmini Vishuddha Ekadashi |
+| 55 | Mahadwadashi | Vaishnava Mahadwadashi |
+| 56 | Adhika Purnima Vrat | - |
+| 57 | Vaikasi Visakam | - |
+| 58 | Vibhuvana Sankashti Chaturthi | Vibhuvana Sankashti, Sankashti Chaturthi |
+| 59 | Parama Ekadashi | Parama Shuddha Ekadashi |
+| 60 | Nirjala Ekadashi | Pandava Ekadashi, Bhima Ekadashi, Bhimseni Ekadashi |
+| 61 | Jyeshtha Purnima | Vat Purnima |
+| 62 | Krishnapingala Sankashti Chaturthi | Sankashti Chaturthi, Krishnapingala Sankashti |
+| 63 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |
+| 64 | Devshayani Ekadashi | Shayani Ekadashi, Ashadhi Ekadashi, Harishayani Ekadashi, Prathama Ekadashi, Toli Ekadashi, Devpodhi Ekadashi |
+| 65 | Pandharpur Yatra | Pandharpur Wari, Ashadhi Wari, Ashadhi Ekadashi Yatra |
+| 66 | Shaka Vrata Begins | - |
+| 67 | Chaturmasa Begins | Devashayana Kala Begins, Chaturmas Prarambh |
+| 68 | Ashadha Purnima Vrat | - |
+| 69 | Gajanana Sankashti Chaturthi | Sankashti Chaturthi, Gajanana Sankashti |
+| 70 | Kamika Ekadashi | - |
+| 71 | Varaha Jayanti | Swaminarayan Varaha Jayanti |
+| 72 | Shravana Somvar (Monday Fasting) | - |
+| 73 | Kalki Jayanti | - |
+| 74 | Third Mangala Gauri Vrat | - |
+| 75 | Dahi Vrata Begins | - |
+| 76 | Shravana Putrada Ekadashi | Vaishnava Shravana Putrada Ekadashi, Pavitra Ekadashi, Pavitropana Ekadashi, Pavitran Ekadashi, Pavitra Utsav, Pavitrotsava |
+| 77 | Fourth Mangala Gauri Vrat | - |
+| 78 | Shravana Purnima | Shravana Purnima Vrat, Raksha Bandhan, Rakshabandhan, Rakshabandh, Narali Purnima, Hayagriva Jayanti, Gayatri Jayanti |
+| 79 | Varalakshmi Vratam | - |
+| 80 | Heramba Sankashti Chaturthi | Sankashti Chaturthi, Heramba Sankashti |
+| 81 | Maha Sangada Hara Chathurti | - |
+| 82 | First Mangala Gauri Vrat | - |
+| 83 | Sheetala Satam | Sheetala Saptami |
+| 84 | Krishna Janmashtami | Krishna Janmashtami (Swaminarayan-Uddhav), Gokulashtami |
+| 85 | Krishna Janmashtami (Smarta) | - |
+| 86 | Ramanand Swami Appearance Festival | Ramanand Swami Pradurbhavotsav |
+| 87 | Aja Ekadashi | Annada Ekadashi, Kaliya Dalana Ekadashi |
+| 88 | Second Mangala Gauri Vrat | - |
+| 89 | Balarama Jayanti | Balarama Jayanti (Hala Shashthi), Hal Shashthi (Balarama Jayanti), Baladeva Chhath, Baldev Chhath, Balbhadra Jayanti |
+| 90 | Dudh Vrata Begins | - |
+| 91 | Parivartini Ekadashi | Parsva Ekadashi, Parshva Ekadashi, Jal Jhilani Ekadashi, Vamana Ekadashi, Dol Gyaras, Jayanti Ekadashi, Danleela Mahotsav, Padma Ekadashi |
+| 92 | Bhadrapada Purnima | Bhadrapada Purnima Vrat |
+| 93 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
+| 94 | Jivitputrika Vrat (Jitiya) | - |
+| 95 | Indira Ekadashi | Pitri Uddhar Ekadashi, Ekadashi Shradh |
+| 96 | Dwidala Vrata Begins | Dwidal Vrata Begins |
+| 97 | Papankusha Ekadashi | - |
+| 98 | Ashvina Purnima | Ashwina Purnima, Ashwina Purnima Vrat, Kojagara Puja |
+| 99 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
+| 100 | Karva Chauth | - |
+| 101 | Ahoi Ashtami | - |
+| 102 | Rama Ekadashi | Rambha Ekadashi, Rameshwaram Ekadashi |
+| 103 | Chhath Puja (Sandhya Arghya) | Chhath Puja (Surya Shashthi) |
+| 104 | Devutthana (Prabodhini) Ekadashi | Gauna Devutthana Ekadashi, Vaishnava Devutthana Ekadashi, Devutthana Ekadashi, Prabodhini Ekadashi, Haribodhini Ekadashi, Vishnu Prabodhini Ekadashi, Dev Uthani Ekadashi, Uttana Ekadashi, Papaharini Ekadashi, Kartiki Ekadashi, Devuthi Ekadashi |
+| 105 | Chaturmasa Ends | Devashayana Kala Ends, Chaturmas Samapt |
+| 106 | Dharmadev Janmotsav | - |
+| 107 | Hatadi Festival | - |
+| 108 | Vaikuntha Chaturdashi | - |
+| 109 | Kartika Purnima | Kartika Purnima Vrat, Dev Deepavali, Tripuri Purnima |
+| 110 | Ganadhipa Sankashti Chaturthi | Sankashti Chaturthi, Ganadhipa Sankashti |
+| 111 | Utpanna Ekadashi | Utpatti Ekadashi |
+| 112 | Mokshada Ekadashi (Geeta Jayanti) | Geeta Jayanti, Gita Jayanti Ekadashi, Mokshada Ekadashi, Mauna Ekadashi |
+| 113 | Kannada Hanuman Vratam | - |
+| 114 | Margashirsha Purnima Vrat | Margashirsha Purnima |
+| 115 | Akhuratha Sankashti Chaturthi | Sankashti Chaturthi, Akhuratha Sankashti |
+| 116 | Ravivar Vrat | Sunday Vrat, Navagraha Weekday Fasting |
+| 117 | Somwar Vrat | Monday Vrat, Deities Weekdays Fasting |
+| 118 | Mangalwar Vrat | Tuesday Vrat |
+| 119 | Budhwar Vrat | Wednesday Vrat |
+| 120 | Guruvar Vrat | Brihaspativar Vrat, Thursday Vrat |
+| 121 | Shukravar Vrat | Friday Vrat |
+| 122 | Shanivar Vrat | Saturday Vrat |

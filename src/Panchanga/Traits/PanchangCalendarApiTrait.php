@@ -105,6 +105,8 @@ trait PanchangCalendarApiTrait
             $windows = match ($field) {
                 'ayana' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn (float $sunLon): string => $this->panchanga->getAyana($sunLon)),
                 'ritu' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn (float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName()),
+                'sayana_ayana' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn (float $sunLon): string => $this->panchanga->getAyana($sunLon), tropical: true),
+                'sayana_ritu' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn (float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName(), tropical: true),
                 'amanta_month' => $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta'),
                 'purnimanta_month' => $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 180.0, 'Month_Purnimanta'),
                 'vikram_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): int => $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat']),
@@ -1276,10 +1278,14 @@ trait PanchangCalendarApiTrait
             return strcmp($date, $best['date']) < 0;
         }
 
-        $reasonRank = static fn (string $r): int => match ($r) {
+        $reasonRank = static fn (string $r): int => match (true) {
+            str_starts_with($r, 'masik_janmashtami_') && !str_contains($r, '_no_nishitha_') => 3,
+            str_starts_with($r, 'masik_janmashtami_no_nishitha_') => 1,
+            default => match ($r) {
             'target_at_karmakala' => 2,
             'target_during_observance' => 1,
             default => 0,
+            },
         };
 
         $sameScore = $score === $best['score'];
@@ -1341,6 +1347,8 @@ trait PanchangCalendarApiTrait
             $fields = [
                 'ayana',
                 'ritu',
+                'sayana_ayana',
+                'sayana_ritu',
                 'vikram_samvat',
                 'gujarati_samvat',
                 'saka_samvat',
@@ -1358,6 +1366,8 @@ trait PanchangCalendarApiTrait
             $key = match ($key) {
                 'ayana_windows' => 'ayana',
                 'ritu_windows' => 'ritu',
+                'sayana_ayana_windows', 'tropical_ayana', 'tropical_ayana_windows' => 'sayana_ayana',
+                'sayana_ritu_windows', 'tropical_ritu', 'tropical_ritu_windows' => 'sayana_ritu',
                 'vikram', 'vikram_samvat_windows' => 'vikram_samvat',
                 'gujarati', 'gujarati_samvat_windows' => 'gujarati_samvat',
                 'saka', 'saka_samvat_windows' => 'saka_samvat',
@@ -1372,6 +1382,8 @@ trait PanchangCalendarApiTrait
             match ($key) {
                 'ayana',
                 'ritu',
+                'sayana_ayana',
+                'sayana_ritu',
                 'vikram_samvat',
                 'gujarati_samvat',
                 'saka_samvat',
@@ -1400,23 +1412,27 @@ trait PanchangCalendarApiTrait
         float $endJd,
         string $tz,
         array $boundaries,
-        callable $nameResolver
+        callable $nameResolver,
+        bool $tropical = false
     ): array {
         sort($boundaries);
         $sampleJd = $startJd + 1e-7;
-        $sunLon = $this->getSunLongitude($sampleJd);
+        $longitudeResolver = $tropical
+            ? fn (float $jd): float => $this->getTropicalSunLongitude($jd)
+            : fn (float $jd): float => $this->getSunLongitude($jd);
+        $sunLon = $longitudeResolver($sampleJd);
         $cursor = $this->findAngleCrossing(
             $startJd,
             $this->previousSolarBoundary($sunLon, $boundaries),
             -1,
-            fn (float $jd): float => $this->getSunLongitude($jd)
+            $longitudeResolver
         );
         $windows = [];
 
         while ($cursor < $endJd - 1e-8) {
-            $sunLon = $this->getSunLongitude($cursor + 1e-7);
+            $sunLon = $longitudeResolver($cursor + 1e-7);
             $target = $this->nextSolarBoundary($sunLon, $boundaries);
-            $nextJd = $this->findAngleCrossing($cursor + 1e-5, $target, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+            $nextJd = $this->findAngleCrossing($cursor + 1e-5, $target, 1, $longitudeResolver);
 
             if ($nextJd > $startJd + 1e-8) {
                 $windows[] = $this->periodWindow($nameResolver($sunLon), $cursor, $nextJd, $tz);

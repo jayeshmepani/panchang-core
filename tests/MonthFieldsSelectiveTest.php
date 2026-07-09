@@ -88,22 +88,44 @@ class MonthFieldsSelectiveTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            ['ayana', 'ritu', 'amanta_month', 'purnimanta_month']
+            ['ayana', 'ritu', 'sayana_ayana', 'sayana_ritu', 'amanta_month', 'purnimanta_month']
         );
 
         $this->assertSame(
-            ['ayana_windows', 'ritu_windows', 'amanta_month_windows', 'purnimanta_month_windows'],
+            ['ayana_windows', 'ritu_windows', 'sayana_ayana_windows', 'sayana_ritu_windows', 'amanta_month_windows', 'purnimanta_month_windows'],
             array_keys($selected)
         );
         $this->assertNotEmpty($selected['ayana_windows']);
         $this->assertNotEmpty($selected['ritu_windows']);
+        $this->assertNotEmpty($selected['sayana_ayana_windows']);
+        $this->assertNotEmpty($selected['sayana_ritu_windows']);
         $this->assertNotEmpty($selected['amanta_month_windows']);
         $this->assertNotEmpty($selected['purnimanta_month_windows']);
         $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['ayana_windows'][0]));
         $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['ritu_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['sayana_ayana_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['sayana_ritu_windows'][0]));
         $this->assertSame(['name', 'start_iso', 'end_iso', 'index'], array_keys($selected['amanta_month_windows'][0]));
         $this->assertSame(['name', 'start_iso', 'end_iso', 'index'], array_keys($selected['purnimanta_month_windows'][0]));
         $this->assertArrayNotHasKey('vikram_samvat_windows', $selected);
+    }
+
+    public function testFullMonthCalendarDaysExposeSayanaCalendarValues(): void
+    {
+        config(['panchang.defaults.locale' => 'en']);
+
+        $full = Panchang::getMonthCalendar(
+            2026,
+            7,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            ['festival_scope' => 'month']
+        );
+
+        $this->assertArrayHasKey('Sayana_Ayana', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Sayana_Ritu', $full['2026-07-01']['hindu_calendar']);
     }
 
     public function testCalendarPeriodWindowsRangePreservesTrueWindowBoundariesAcrossRangeFilters(): void

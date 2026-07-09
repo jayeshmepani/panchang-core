@@ -33,6 +33,7 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JmeEph\FFI\JmeEphFFI;
+use Throwable;
 
 /**
  * CLI Bootstrap trait for standalone PHP scripts.
@@ -47,6 +48,8 @@ use JmeEph\FFI\JmeEphFFI;
  */
 final class CliBootstrap
 {
+    private static ?string $baseDir = null;
+
     /**
      * Set up the standalone environment. Call this ONCE at the top of a script.
      *
@@ -54,6 +57,7 @@ final class CliBootstrap
      */
     public static function init(string $baseDir): void
     {
+        self::$baseDir = $baseDir;
         DebugTrace::log('cli.init', 'bootstrapping CLI environment', ['base_dir' => $baseDir]);
         self::defineEnvHelper();
         self::defineConfigHelper($baseDir);
@@ -67,6 +71,7 @@ final class CliBootstrap
      */
     public static function makePanchangService(): PanchangService
     {
+        self::ensureInitialized();
         $jme = new JmeEphFFI;
         self::configureJme($jme);
         $sunService = new SunService($jme);
@@ -109,6 +114,7 @@ final class CliBootstrap
     /** Convenience: create an EclipseService. */
     public static function makeEclipseService(): EclipseService
     {
+        self::ensureInitialized();
         $jme = new JmeEphFFI;
         self::configureJme($jme);
         return new EclipseService($jme);
@@ -118,10 +124,32 @@ final class CliBootstrap
     public static function makeOutputGenerator(
         PanchangService $panchang,
     ): OutputGeneratorService {
+        self::ensureInitialized();
         return new OutputGeneratorService(
             $panchang,
             self::makeEclipseService(),
         );
+    }
+
+    /**
+     * Ensure init() has run. When Laravel helpers already define config(), the
+     * container still needs a bound "config" repository before config() is safe.
+     */
+    private static function ensureInitialized(?string $baseDir = null): void
+    {
+        if (self::$baseDir !== null) {
+            // Re-bind config into the active container if a later testbench boot wiped it.
+            self::setupContainer(self::$baseDir);
+
+            return;
+        }
+
+        $resolved = $baseDir;
+        if ($resolved === null || $resolved === '') {
+            $resolved = dirname(__DIR__, 2);
+        }
+
+        self::init($resolved);
     }
 
     /** Define env() helper if not already defined. */
@@ -191,21 +219,55 @@ final class CliBootstrap
             return;
         }
 
-        $container = new Container;
-        $repo = new Repository(['panchang' => require $baseDir . '/config/panchang.php']);
-        $container->instance('config', $repo);
-        Container::setInstance($container);
+        $configPath = $baseDir . '/config/panchang.php';
+        $repo = new Repository(['panchang' => file_exists($configPath) ? require $configPath : []]);
+
+        $existing = Container::getInstance();
+        $existing->instance('config', $repo);
+    }
+
+    /** Resolve package config without assuming a fully booted Laravel app. */
+    private static function configValue(string $key, mixed $default = null): mixed
+    {
+        if (function_exists('config')) {
+            try {
+                return config($key, $default);
+            } catch (Throwable) {
+                // Fall through to file-based lookup when container/config is unbound.
+            }
+        }
+
+        $baseDir = self::$baseDir ?? dirname(__DIR__, 2);
+        $configPath = $baseDir . '/config/panchang.php';
+        if (!file_exists($configPath)) {
+            return $default;
+        }
+
+        /** @var array<string, mixed> $panchang */
+        $panchang = require $configPath;
+        $store = ['panchang' => $panchang];
+        $segments = explode('.', $key);
+        $value = $store;
+        foreach ($segments as $segment) {
+            if (!is_array($value) || !array_key_exists($segment, $value)) {
+                return $default;
+            }
+
+            $value = $value[$segment];
+        }
+
+        return $value;
     }
 
     private static function configureJme(JmeEphFFI $jme): void
     {
-        $ephePath = config('panchang.ephe_path', $_ENV['PANCHANG_EPHE_PATH'] ?? '');
+        $ephePath = self::configValue('panchang.ephe_path', $_ENV['PANCHANG_EPHE_PATH'] ?? '');
         if (is_string($ephePath) && $ephePath !== '' && file_exists($ephePath)) {
             $jme->jme_set_ephemeris_path($ephePath);
         }
 
         $jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
-        $engineMode = strtoupper((string) config('panchang.jme_settings.mode', 'auto'));
+        $engineMode = strtoupper((string) self::configValue('panchang.jme_settings.mode', 'auto'));
         $nativeEngine = match ($engineMode) {
             'JPL' => 'JPL',
             'MOSHIER' => 'MOSHIER',

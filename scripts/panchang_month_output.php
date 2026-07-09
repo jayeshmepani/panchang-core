@@ -36,6 +36,7 @@ $month = isset($argv[2]) ? (int) $argv[2] : (int) CarbonImmutable::now($timezone
 $fixedRefDate = CarbonImmutable::create($year, $month, 1, 0, 0, 0, $timezone);
 
 $panchangService = CliBootstrap::makePanchangService();
+$outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 
 fwrite(STDERR, sprintf("Building month output for %04d-%02d...\n", $year, $month));
 
@@ -47,6 +48,13 @@ $calendar = $panchangService->getMonthCalendar(
     tz: $timezone,
     elevation: $elevation,
     calculationAt: $fixedRefDate,
+    calendarType: $calendarType,
+);
+$calendarPeriodWindows = $outputGen->buildCalendarPeriodWindowsForMonth(
+    date: $fixedRefDate,
+    lat: $latitude,
+    lon: $longitude,
+    tz: $timezone,
     calendarType: $calendarType,
 );
 
@@ -64,6 +72,7 @@ $output = [
         ],
     ],
     'calendar' => $calendar,
+    'calendar_period_windows' => $calendarPeriodWindows,
 ];
 
 $filename = sprintf('month_%04d_%02d.json', $year, $month);

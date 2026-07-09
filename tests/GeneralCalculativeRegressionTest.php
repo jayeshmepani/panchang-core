@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Tests;
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
+use JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
@@ -64,6 +65,9 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertArrayHasKey('Yatra_Screening', $details);
         self::assertArrayHasKey('Vrata_Parana', $details);
         self::assertArrayHasKey('Nakshatra_Tyajya', $details);
+        self::assertArrayHasKey('Mahadiksha_Guidance', $details);
+        self::assertArrayHasKey('Sayana_Ayana', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Sayana_Ritu', $details['Hindu_Calendar']);
 
         self::assertArrayHasKey('all', $details['Vara_Tithi_Doshas']);
         self::assertArrayHasKey('dagdha', $details['Vara_Tithi_Doshas']['all']);
@@ -84,6 +88,8 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertCount(8, $details['Yatra_Screening']['current_at_input_now']['direction_grid']);
         self::assertTrue($details['Yatra_Screening']['current_at_input_now']['urgent_same_day_return_exception'] ?? false);
         self::assertSame(true, $details['Nakshatra_Tyajya']['is_equivalent_to_varjyam'] ?? false);
+        self::assertSame('mahadiksha', $details['Mahadiksha_Guidance']['guidance_key'] ?? null);
+        self::assertIsBool($details['Mahadiksha_Guidance']['eligible'] ?? null);
     }
 
     public function testPanchakSubtypeLocksToCycleEntryWeekdayNotCurrentDay(): void
@@ -104,6 +110,26 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertStringStartsWith('06/06/2026', (string) $panchak['windows'][0]['start']);
         self::assertStringStartsWith('11/06/2026', (string) $panchak['windows'][0]['end']);
         self::assertStringStartsWith('08/06/2026', (string) $panchak['windows'][0]['visible_start']);
+    }
+
+    public function testOutputGeneratorExposesCalendarPeriodWindowsInTodayPayload(): void
+    {
+        /** @var OutputGeneratorService $outputGenerator */
+        $outputGenerator = $this->app->make(OutputGeneratorService::class);
+
+        $result = $outputGenerator->generateTodayPanchang(
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            CalendarType::Amanta
+        );
+
+        self::assertArrayHasKey('calendar_period_windows', $result);
+        self::assertNotEmpty($result['calendar_period_windows']['sayana_ayana_windows'] ?? []);
+        self::assertNotEmpty($result['calendar_period_windows']['sayana_ritu_windows'] ?? []);
+        self::assertArrayHasKey('Mahadiksha_Guidance', $result['todays_complete_details']['details']);
+        self::assertArrayHasKey('Sayana_Ayana', $result['todays_complete_details']['details']['Hindu_Calendar']);
     }
 
     public function testNewUserFacingGeneralLayersAreLocalizedForGujarati(): void

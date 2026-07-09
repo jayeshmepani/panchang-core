@@ -897,6 +897,7 @@ class OutputGeneratorService
                         elevation: $elevation,
                     )
                 ),
+                'calendar_period_windows' => $this->buildCalendarPeriodWindowsForMonth($todayDate, $lat, $lon, $tz, $calendarType),
                 default => throw new InvalidArgumentException('Unknown today output section: ' . $section),
             };
         }
@@ -907,7 +908,7 @@ class OutputGeneratorService
     /**
      * Generate today's panchang output array.
      *
-     * @return array{todays_complete_details: array<string, mixed>, muhurta_evaluation: array<string, mixed>}
+     * @return array{todays_complete_details: array<string, mixed>, muhurta_evaluation: array<string, mixed>, calendar_period_windows: array<string, mixed>}
      */
     public function generateTodayPanchang(
         float $lat,
@@ -965,6 +966,7 @@ class OutputGeneratorService
                 ],
                 $dailyMuhurtaEvaluation
             ),
+            'calendar_period_windows' => $this->buildCalendarPeriodWindowsForMonth($todayDate, $lat, $lon, $tz, $calendarType),
         ];
     }
 
@@ -1030,8 +1032,37 @@ class OutputGeneratorService
         $todayOutput = $this->generateTodayPanchang($lat, $lon, $tz, $elevation, $calendarType);
         $output['todays_complete_details'] = $todayOutput['todays_complete_details'];
         $output['muhurta_evaluation'] = $todayOutput['muhurta_evaluation'];
+        $output['calendar_period_windows'] = $todayOutput['calendar_period_windows'];
 
         return $output;
+    }
+
+    /** @return array<string, mixed> */
+    public function buildCalendarPeriodWindowsForMonth(
+        CarbonImmutable $date,
+        float $lat,
+        float $lon,
+        string $tz,
+        CalendarType|string $calendarType
+    ): array {
+        if (is_string($calendarType)) {
+            $calendarType = match (strtolower($calendarType)) {
+                'purnimanta', 'purnimant' => CalendarType::Purnimanta,
+                default => CalendarType::Amanta,
+            };
+        }
+
+        return $this->panchangService->getCalendarPeriodWindowsRange(
+            fromYear: $date->year,
+            fromMonth: $date->month,
+            toYear: $date->year,
+            toMonth: $date->month,
+            lat: $lat,
+            lon: $lon,
+            tz: $tz,
+            fields: [],
+            calendarType: $calendarType
+        );
     }
 
     private function normalizeFestivalSection(string $section): string
@@ -1192,6 +1223,7 @@ class OutputGeneratorService
         return match ($key) {
             'today', 'details', 'todays_complete_details' => 'todays_complete_details',
             'muhurta', 'muhurta_evaluation', 'evaluation' => 'muhurta_evaluation',
+            'calendar_period_windows', 'period_windows', 'windows' => 'calendar_period_windows',
             default => $section,
         };
     }

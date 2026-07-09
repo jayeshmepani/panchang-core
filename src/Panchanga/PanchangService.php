@@ -15,6 +15,7 @@ use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\Enums\Ritu;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
@@ -23,6 +24,7 @@ use JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Doshas\PanchakCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Residences\ShoolaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Residences\VaasaCalculator;
+use JayeshMepani\PanchangCore\Panchanga\Ritual\MahadikshaGuidance;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangAstronomyHelpersTrait;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangBirthMonthHelpersTrait;
 use JayeshMepani\PanchangCore\Panchanga\Traits\PanchangCalendarApiTrait;
@@ -244,6 +246,7 @@ class PanchangService
         $ayanamsaBirth = $birthAt;
         $ayanamsaJd = $this->astronomy->toJulianDayUtc($ayanamsaBirth);
         $ayanamsaDeg = $this->astronomy->getAyanamsa($ayanamsaJd);
+        $sayanaSunLon = AstroCore::normalize($sunLon + $ayanamsaDeg);
 
         $tithi = $this->panchanga->calculateTithi($sunLon, $moonLon);
         $yoga = $this->panchanga->calculateYoga($sunLon, $moonLon);
@@ -537,6 +540,10 @@ class PanchangService
             'Nakshatra' => [
                 'name' => $nakName,
             ],
+            'Moonrise_JD' => $moonrise instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonrise, $tz) : null,
+            'Moonset_JD' => $moonset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonset, $tz) : null,
+            'Moonrise' => $moonrise instanceof CarbonImmutable ? AstroCore::formatTime($moonrise) : null,
+            'Moonset' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
             'Hindu_Calendar' => [
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
@@ -926,6 +933,8 @@ class PanchangService
             'Hindu_Calendar' => [
                 'Ayana' => $this->panchanga->getAyana($sunLon),
                 'Ritu' => $this->panchanga->getRitu($sunLon),
+                'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
+                'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
                 'Vikram_Samvat' => $vikram,
                 'Gujarati_Samvat' => $gujarati,
                 'Saka_Samvat' => $saka,
@@ -969,6 +978,7 @@ class PanchangService
             'Ekadashi_Observance' => $ekadashiObservance,
             'Tithi_Observance_Analysis' => $tithiObservanceAnalysis,
             'Vrata_Parana' => $vrataParana,
+            'Mahadiksha_Guidance' => $this->buildMahadikshaGuidance($hinduMonth, $sunLon),
             'Transitions' => $transitionSignals,
             'Panchaka_Rahita' => $panchaka,
             'Vara_Tithi_Doshas' => $varaTithiDoshas,
@@ -1128,6 +1138,7 @@ class PanchangService
         $sunMoon = $this->getSunMoonLongitudes($sunriseBirth);
         $sunLon = $sunMoon['Sun'];
         $moonLon = $sunMoon['Moon'];
+        $sayanaSunLon = AstroCore::normalize($sunLon + $ayanamsaDeg);
 
         $tithi = $this->panchanga->calculateTithi($sunLon, $moonLon);
         $yoga = $this->panchanga->calculateYoga($sunLon, $moonLon);
@@ -1217,6 +1228,10 @@ class PanchangService
             'Moon_Sign_Index' => AstroCore::getSign($moonLon),
             'Moon_Phase' => $this->buildMoonPhase($sunLon, $moonLon),
             'Hindu_Calendar' => [
+                'Ayana' => $this->panchanga->getAyana($sunLon),
+                'Ritu' => $this->panchanga->getRitu($sunLon),
+                'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
+                'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -1289,6 +1304,54 @@ class PanchangService
         return [
             'dinamana' => $this->buildTraditionalDurationPayload($daySeconds),
             'ratrimana' => $this->buildTraditionalDurationPayload($nightSeconds),
+        ];
+    }
+
+    /** @param array<string, mixed> $hinduMonth */
+    private function buildMahadikshaGuidance(array $hinduMonth, float $sunLongitude): array
+    {
+        $isAdhikaMasa = (bool) ($hinduMonth['Is_Adhika'] ?? false);
+        $isVarshaRitu = Ritu::fromSunLongitude($sunLongitude) === Ritu::Varsha;
+        $guidance = MahadikshaGuidance::evaluate([
+            'adhika_masa' => $isAdhikaMasa,
+            'varsha_ritu' => $isVarshaRitu,
+        ]);
+
+        $prohibitions = array_values(array_map(
+            fn (string $key): array => [
+                'key' => $key,
+                'name' => Localization::translate('String', $key),
+                'active' => in_array($key, $guidance['blocking_conditions'], true),
+            ],
+            $guidance['prohibitions']
+        ));
+        $exceptions = array_values(array_map(
+            fn (string $key): array => [
+                'key' => $key,
+                'name' => Localization::translate('String', $key),
+            ],
+            $guidance['exceptions']
+        ));
+
+        return [
+            'type' => $guidance['type'],
+            'type_name' => Localization::translate('String', (string) $guidance['type']),
+            'calendar_event' => $guidance['calendar_event'],
+            'guidance_key' => $guidance['guidance_key'],
+            'guidance_name' => Localization::translate('String', (string) $guidance['guidance_key']),
+            'eligible' => $guidance['eligible'],
+            'blocking_conditions' => $guidance['blocking_conditions'],
+            'blocking_condition_names' => array_map(
+                static fn (string $key): string => Localization::translate('String', $key),
+                $guidance['blocking_conditions']
+            ),
+            'prohibitions' => $prohibitions,
+            'exceptions' => $exceptions,
+            'exception_applied' => $guidance['exception_applied'],
+            'context' => [
+                'adhika_masa' => $isAdhikaMasa,
+                'varsha_ritu' => $isVarshaRitu,
+            ],
         ];
     }
 
@@ -1431,7 +1494,7 @@ class PanchangService
             ];
 
             if ($family['family_key'] === 'sankashti_chaturthi') {
-                if ($moonriseJd === null || !($tithiStartJd <= $moonriseJd && $tithiEndJd > $moonriseJd)) {
+                if ($moonriseJd === null || ($tithiStartJd > $moonriseJd || $tithiEndJd <= $moonriseJd)) {
                     continue;
                 }
 

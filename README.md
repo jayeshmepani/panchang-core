@@ -15,7 +15,7 @@ It calculates Panchanga limbs, festivals, Muhurta windows, Karmakala timings, Ch
 - Muhurta and Karmakala: Abhijit, Brahma Muhurta, Dur Muhurta, Nishita, Vijaya, Godhuli, Pradosha, Varjyam, Amrita Kaal
 - Daily tables: Chogadiya, Hora, Prahara, 30 Muhurtas, Lagna intervals
 - Muhurta devata sequence: Rudra-Ahi-Mitra day/night model aligned with Nārada Saṃhitā 9.1-5 and Kāśyapa/Vṛddha Vasiṣṭha attribution
-- Festival engine: 324 unique festival identities and 120 unique vrat identities with tradition and regional handling
+- Festival engine: 324 unique festival identities and 122 unique vrat identities with tradition and regional handling
 - Vaasa and direction checks: Disha Shool, Rahu Vaasa, Chandra Vaasa, Shiva Vaasa, Agni Vaasa, Yogini Vaasa
 - Panchak rule output: Dhanishta pada 3 through Revati with entry-weekday subtype labels for Roga, Raja, Agni, Chora, Mrityu, and Shubha Panchaka
 - Locales: English, Hindi, Gujarati
@@ -107,6 +107,8 @@ $festivals = $details['Festivals'];
 - `Abhijit_Muhurta.daylight_midpoint` is the sunrise-to-sunset midpoint used for Abhijit calculation.
 - Proportional periods such as Hora, Choghadiya, daytime/nighttime Muhurtas, Prahara, the fivefold daytime divisions, Vijaya, Nishitha, Godhuli, Pratah Sandhya, and Sayahna Sandhya use actual local dinamana or ratrimana where their rule depends on day or night length.
 - Arunodaya, Pradosha, and Madhyahna Sandhya use fixed ghati offsets from actual local sunrise, sunset, or solar noon; the ghati itself remains 24 elapsed minutes.
+- Generated `today`, `month`, and `raw` JSON include `calendar_period_windows` with sidereal and Sayana ayana/ritu windows alongside samvat, samvatsara, and lunar-month windows.
+- Daily detail payloads in `today` and `raw` output include `Sayana_Ayana`, `Sayana_Ritu`, and `Mahadiksha_Guidance` where the selected output profile includes day details.
 
 ## CLI Exporters
 

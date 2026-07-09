@@ -83,8 +83,13 @@ class FestivalCoverageRegressionTest extends TestCase
         foreach ($flat as $entry) {
             $festival = $entry['festival'] ?? [];
             $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
-            if (isset($expected[$name])) {
-                $found[$name] = [
+            $aliases = array_map(strval(...), (array) ($festival['aliases'] ?? []));
+            foreach (array_keys($expected) as $expectedName) {
+                if ($name !== $expectedName && !in_array($expectedName, $aliases, true)) {
+                    continue;
+                }
+
+                $found[$expectedName] = [
                     (string) ($entry['date'] ?? ''),
                     (string) ($festival['resolution']['decision']['winning_reason'] ?? ''),
                 ];
@@ -185,7 +190,7 @@ class FestivalCoverageRegressionTest extends TestCase
         $datesByName = [];
         foreach (($calendar['flat'] ?? []) as $entry) {
             $festival = (array) ($entry['festival'] ?? []);
-            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+            $name = (string) ($festival['name_key'] ?? $festival['name'] ?? $festival['resolution']['festival_name'] ?? '');
             if ($name === '') {
                 continue;
             }
@@ -204,8 +209,47 @@ class FestivalCoverageRegressionTest extends TestCase
         $this->assertNotContains('2026-02-16', array_values(array_unique($datesByName['Masik Shivaratri'] ?? [])));
         $this->assertSame(['2026-10-20'], array_values(array_unique($datesByName['Dussehra'] ?? [])));
         $this->assertContains('2026-09-14', array_values(array_unique($datesByName['Vinayaka Chaturthi'] ?? [])));
+        $this->assertSame(['2026-03-06'], array_values(array_unique($datesByName['Bhalachandra Sankashti Chaturthi'] ?? [])));
+        $this->assertSame(['2026-12-26'], array_values(array_unique($datesByName['Akhuratha Sankashti Chaturthi'] ?? [])));
+        $this->assertContains('2026-04-28', array_values(array_unique($datesByName['Bhauma Pradosh Vrat'] ?? [])));
+        $this->assertNotContains('2026-03-17', array_values(array_unique($datesByName['Bhauma Pradosh Vrat'] ?? [])));
+        $this->assertNotContains('2026-12-22', array_values(array_unique($datesByName['Bhauma Pradosh Vrat'] ?? [])));
+        $this->assertContains('2026-05-28', array_values(array_unique($datesByName['Guru Pradosh Vrat'] ?? [])));
         $this->assertArrayNotHasKey('Ganesh Chaturthi', $datesByName);
         $this->assertArrayNotHasKey('Siddhivinayaka Chaturthi', $datesByName);
+    }
+
+    public function test_calculation_basis_only_emits_applicable_truth_table_flags(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $calendar = $service->getFestivalYearCalendar(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $byName = [];
+        foreach (($calendar['flat'] ?? []) as $entry) {
+            $festival = (array) ($entry['festival'] ?? []);
+            $name = (string) ($festival['name_key'] ?? $festival['name'] ?? $festival['resolution']['festival_name'] ?? '');
+            if ($name !== '') {
+                $byName[$name] = $festival;
+            }
+        }
+
+        $paushaPurnimaBasis = (array) ($byName['Pausha Purnima']['calculation_basis'] ?? []);
+        self::assertArrayNotHasKey('ekadashi_nirnay_table', $paushaPurnimaBasis);
+        self::assertArrayNotHasKey('pradosh_truth_table', $paushaPurnimaBasis);
+        self::assertArrayNotHasKey('sankashti_truth_table', $paushaPurnimaBasis);
+
+        self::assertTrue($byName['Bhalachandra Sankashti Chaturthi']['calculation_basis']['sankashti_truth_table'] ?? false);
+        self::assertTrue($byName['Bhauma Pradosh Vrat']['calculation_basis']['pradosh_truth_table'] ?? false);
     }
 
     public function test_purnima_vrat_and_civil_festival_labels_are_split(): void

@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Panchanga\KalaNirnayaEngine;
 use LogicException;
 
 class FestivalRuleEngine
@@ -49,6 +50,9 @@ class FestivalRuleEngine
     // begins at least three dinamana-muhurtas before sunset on the Saptami day, take
     // that first day; vriddhi/kshaya also keep the first day.
     private const float DURVA_ASHTAMI_PURVAVIDDHA_MUHURTAS = 3.0;
+
+    // Vratni Purnima uses fixed ghadis, not a dinamana-scaled division.
+    private const float PURNIMA_VRAT_CHATURDASHI_THRESHOLD_GHADIS = 18.0;
 
     private const array SUPPORTED_KARMAKALA_TYPES = [
         'abhijit',
@@ -124,6 +128,11 @@ class FestivalRuleEngine
         // Check if this is a nakshatra-only based festival (no tithi requirement)
         if (isset($rule['nakshatra_only']) && $rule['nakshatra_only']) {
             return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
+        }
+
+        // Satsangi Jeevan 4.60 Phuldolotsava: sunrise Uttara Phalguni across Purnima/Pratipada.
+        if ($this->isPhuldolotsavaRule($rule)) {
+            return $this->resolvePhuldolotsavaFestival($festivalName, $rule, $date, $today, $tomorrow);
         }
 
         if ((bool) ($rule['chandra_darshana_visibility'] ?? false)) {
@@ -358,6 +367,8 @@ class FestivalRuleEngine
                 'bhadra_decision' => $winner['bhadra_decision'],
                 'rule_rejection_reason' => $winner['rule_rejection_reason'],
                 'raksha_bandhan_selection' => $winner['raksha_bandhan_selection'] ?? null,
+                'ekadashi_selection' => $winner['ekadashi_selection'] ?? null,
+                'sankashti_selection' => $winner['sankashti_selection'] ?? null,
             ],
         ];
     }
@@ -964,14 +975,45 @@ class FestivalRuleEngine
         // Handle transition (e.g., 30 -> 1)
         $todayPlusOne = ($todayAbs % 30) + 1;
         if ($todayPlusOne === $targetAbs) {
-            $targetEnd = (float) ($ctxTomorrow['prev_tithi_end_jd'] ?? $ctxTomorrow['tithi_start_jd'] ?? $ctxTomorrow['tithi_end_jd']);
+            $targetStart = (float) $ctxToday['tithi_end_jd'];
+            $targetEnd = $this->firstBoundaryAfter($targetStart, [
+                $ctxTomorrow['prev_tithi_end_jd'] ?? null,
+                $ctxTomorrow['tithi_start_jd'] ?? null,
+                $ctxTomorrow['tithi_end_jd'] ?? null,
+            ]);
+            if ($targetEnd === null) {
+                return null;
+            }
+
             return [
-                'start_jd' => (float) $ctxToday['tithi_end_jd'],
+                'start_jd' => $targetStart,
                 'end_jd' => $targetEnd,
             ];
         }
 
         return null;
+    }
+
+    /** @param list<mixed> $boundaries */
+    private function firstBoundaryAfter(float $startJd, array $boundaries): ?float
+    {
+        $valid = [];
+        foreach ($boundaries as $boundary) {
+            if (!is_numeric($boundary)) {
+                continue;
+            }
+
+            $boundaryJd = (float) $boundary;
+            if ($boundaryJd > $startJd) {
+                $valid[] = $boundaryJd;
+            }
+        }
+
+        if ($valid === []) {
+            return null;
+        }
+
+        return min($valid);
     }
 
     /** @return list<array{tithi:int, interval:array{start_jd:float, end_jd:float}}> */
@@ -1004,7 +1046,8 @@ class FestivalRuleEngine
         array $rule
     ): array {
         $ctx = (array) ($details['Resolution_Context'] ?? []);
-        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? null));
+        $panchanga = (array) ($details['Panchanga'] ?? []);
+        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? ($panchanga['Moonrise'] ?? null)));
         if ($moonriseJd !== null) {
             $ctx['moonrise_jd'] = $moonriseJd;
         }
@@ -1012,7 +1055,7 @@ class FestivalRuleEngine
         $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
         $nextSunriseJd = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
         $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
-        $karmakalaAvailable = !($karmakalaType === 'moonrise' && $moonriseJd === null);
+        $karmakalaAvailable = $karmakalaType !== 'moonrise' || $moonriseJd !== null;
         if ($karmakalaAvailable) {
             $karmakalaJd = $this->karmakalaJd($karmakalaType, $ctx);
             $karmakalaWindow = $this->karmakalaWindowJd($karmakalaType, $ctx);
@@ -1129,6 +1172,7 @@ class FestivalRuleEngine
             'sunrise_jd' => $sunriseJd,
             'sunset_jd' => $sunsetJd,
             'next_sunrise_jd' => $nextSunriseJd,
+            'previous_sunrise_jd' => (float) ($ctx['previous_sunrise_jd'] ?? ($sunriseJd - max(0.0, $nextSunriseJd - $sunriseJd))),
             'dinamana_seconds' => $dinamanaSeconds,
             'ratrimana_seconds' => $ratrimanaSeconds,
             'day_muhurta_seconds' => $dinamanaSeconds / 15.0,
@@ -1263,6 +1307,10 @@ class FestivalRuleEngine
             return $this->resolveJanmashtamiTruthTable($candidates, $today, $targetInterval);
         }
 
+        if ((bool) ($rule['masik_janmashtami_truth_table'] ?? false)) {
+            return $this->resolveMasikJanmashtamiTruthTable($candidates);
+        }
+
         if ((bool) ($rule['vijayadashami_truth_table'] ?? false)) {
             return $this->resolveVijayadashamiTruthTable($candidates);
         }
@@ -1279,8 +1327,24 @@ class FestivalRuleEngine
             return $this->resolveDiwaliTruthTable($candidates);
         }
 
+        if ((bool) ($rule['ekadashi_nirnay_table'] ?? false) || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false)) {
+            return $this->resolveEkadashiNirnayTruthTable($candidates, $targetInterval);
+        }
+
         if ((bool) ($rule['purnima_vrat_18_ghadi_rule'] ?? false)) {
             return $this->resolvePurnimaVratTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['pradosh_truth_table'] ?? false) || $this->isPradoshRule($rule)) {
+            return $this->resolvePradoshTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['sankashti_truth_table'] ?? false) || $this->isSankashtiRule($rule)) {
+            return $this->resolveSankashtiTruthTable($candidates);
+        }
+
+        if ((bool) ($rule['vinayaki_chaturthi_truth_table'] ?? false)) {
+            return $this->resolveVinayakiChaturthiTruthTable($candidates);
         }
 
         if ((bool) ($rule['raksha_bandhan_truth_table'] ?? false)) {
@@ -1336,7 +1400,10 @@ class FestivalRuleEngine
         }
 
         if ((bool) ($rule['madhyahna_purvatithi_vedha_rejection'] ?? false)) {
-            return $this->resolveMadhyahnaPurvaTithiVedhaTable($candidates);
+            return $this->resolveMadhyahnaPurvaTithiVedhaTable(
+                $candidates,
+                (string) ($rule['vriddhi_preference'] ?? 'first')
+            );
         }
 
         if ((bool) ($rule['panchami_viddha_allowed'] ?? false)) {
@@ -1361,9 +1428,303 @@ class FestivalRuleEngine
 
     private function usesExclusiveTruthTable(array $rule): bool
     {
-        foreach (['janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'purnima_vrat_18_ghadi_rule', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
+        foreach (['janmashtami_truth_table', 'masik_janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ekadashi_nirnay_table', 'purnima_vrat_18_ghadi_rule', 'pradosh_truth_table', 'sankashti_truth_table', 'vinayaki_chaturthi_truth_table', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
             if ((bool) ($rule[$flag] ?? false)) {
                 return true;
+            }
+        }
+
+        return $this->isEkadashiNirnayRule($rule) || $this->isPradoshRule($rule) || $this->isSankashtiRule($rule);
+    }
+
+    private function isEkadashiNirnayRule(array $rule): bool
+    {
+        return (int) ($rule['tithi'] ?? 0) === 11
+            && ((bool) ($rule['ekadashi_nirnay_table'] ?? false) || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false));
+    }
+
+    private function isPradoshRule(array $rule): bool
+    {
+        return (int) ($rule['tithi'] ?? 0) === 13
+            && $this->normalizeKarmakalaType((string) ($rule['karmakala_type'] ?? '')) === 'pradosha'
+            && (bool) ($rule['fasting'] ?? false);
+    }
+
+    private function isSankashtiRule(array $rule): bool
+    {
+        return (int) ($rule['tithi'] ?? 0) === 4
+            && (string) ($rule['paksha'] ?? '') === 'Krishna'
+            && $this->normalizeKarmakalaType((string) ($rule['karmakala_type'] ?? '')) === 'moonrise'
+            && str_contains(strtolower((string) ($rule['description'] ?? '')), 'sankashti');
+    }
+
+    private function isPhuldolotsavaRule(array $rule): bool
+    {
+        return (string) ($rule['resolver'] ?? '') === 'phuldolotsava'
+            || (string) ($rule['family'] ?? '') === 'phuldolotsava'
+            || (string) ($rule['dual_day_rule'] ?? '') === 'if_purnima_and_pratipada_both_have_sunrise_uttara_phalguni_choose_purnima';
+    }
+
+    /**
+     * Satsangi Jeevan 4.60 Phuldolotsava:
+     * - Phalguna boundary around Shukla Purnima → Krishna Pratipada
+     * - mandatory Uttara Phalguni at sunrise on the selected civil day
+     * - if both Purnima and Pratipada have sunrise Uttara Phalguni, choose Purnima
+     * - if only one candidate has it, choose that day
+     * - if neither has it, fall back to the main Pratipada candidate (Padwa)
+     */
+    private function resolvePhuldolotsavaFestival(
+        string $festivalName,
+        array $rule,
+        CarbonImmutable $date,
+        array $today,
+        array $tomorrow
+    ): ?array {
+        $requiredNakshatra = (string) ($rule['nakshatra'] ?? 'Uttara Phalguni');
+        $karmakalaType = $this->normalizeKarmakalaType((string) ($rule['karmakala_type'] ?? 'sunrise'));
+        $requireSunriseNakshatra = (bool) ($rule['require_sunrise_nakshatra'] ?? true);
+
+        $daySpecs = [
+            [
+                'details' => $today,
+                'date' => $date,
+                'offset' => 0,
+            ],
+            [
+                'details' => $tomorrow,
+                'date' => $date->addDay(),
+                'offset' => 1,
+            ],
+        ];
+
+        $purnimaDay = null;
+        $pratipadaDay = null;
+
+        foreach ($daySpecs as $spec) {
+            $role = $this->phuldolotsavaCandidateRole($spec['details'], $rule);
+            if ($role === null) {
+                continue;
+            }
+
+            $hasSunriseNakshatra = $this->hasSunriseNakshatra($spec['details'], $requiredNakshatra);
+            if ($requireSunriseNakshatra && !$hasSunriseNakshatra) {
+                // Keep the day as a fallback candidate, but mark nakshatra miss.
+            }
+
+            $entry = [
+                'date' => $spec['date']->toDateString(),
+                'day_offset' => $spec['offset'],
+                'role' => $role,
+                'has_sunrise_nakshatra' => $hasSunriseNakshatra,
+                'paksha' => $role === 'purnima' ? 'Shukla' : 'Krishna',
+                'tithi' => $role === 'purnima' ? 15 : 1,
+            ];
+
+            if ($role === 'purnima') {
+                $purnimaDay = $entry;
+            } else {
+                $pratipadaDay = $entry;
+            }
+        }
+
+        if ($purnimaDay === null && $pratipadaDay === null) {
+            return null;
+        }
+
+        $winner = null;
+        $reason = null;
+
+        $purnimaMatch = is_array($purnimaDay) && $purnimaDay['has_sunrise_nakshatra'];
+        $pratipadaMatch = is_array($pratipadaDay) && $pratipadaDay['has_sunrise_nakshatra'];
+
+        if ($purnimaMatch && $pratipadaMatch) {
+            $winner = $purnimaDay;
+            $reason = 'phuldolotsava_both_have_sunrise_uttara_phalguni_choose_purnima';
+        } elseif ($purnimaMatch) {
+            $winner = $purnimaDay;
+            $reason = 'phuldolotsava_purnima_sunrise_uttara_phalguni';
+        } elseif ($pratipadaMatch) {
+            $winner = $pratipadaDay;
+            $reason = 'phuldolotsava_pratipada_sunrise_uttara_phalguni';
+        } elseif (is_array($pratipadaDay)) {
+            // Neither candidate has the sunrise nakshatra: main Padwa/Pratipada day.
+            $winner = $pratipadaDay;
+            $reason = 'phuldolotsava_fallback_pratipada_without_sunrise_uttara_phalguni';
+        } else {
+            // Only Purnima is in the today/tomorrow window and it lacks sunrise Uttara Phalguni.
+            // Defer so the Pratipada civil day can decide via its own pair.
+            return null;
+        }
+
+        return [
+            'festival_name' => $festivalName,
+            'required_tithi' => $winner['tithi'],
+            'paksha' => $winner['paksha'],
+            'calendar_type' => strtolower((string) ($today['Hindu_Calendar']['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta'))),
+            'karmakala_type' => $karmakalaType,
+            'tithi_at_karmakala_today' => $purnimaMatch || ($pratipadaDay !== null && $pratipadaDay['day_offset'] === 0 && $pratipadaMatch),
+            'tithi_at_karmakala_tomorrow' => ($purnimaDay !== null && $purnimaDay['day_offset'] === 1 && $purnimaMatch)
+                || ($pratipadaDay !== null && $pratipadaDay['day_offset'] === 1 && $pratipadaMatch),
+            'tithi_coverage_seconds_today' => 0.0,
+            'tithi_coverage_seconds_tomorrow' => 0.0,
+            'tithi_at_sunrise_today' => $this->phuldolotsavaCandidateRole($today, $rule) !== null,
+            'tithi_at_sunrise_tomorrow' => $this->phuldolotsavaCandidateRole($tomorrow, $rule) !== null,
+            'is_tithi_vriddhi' => false,
+            'is_tithi_kshaya' => false,
+            'target_tithi_start_jd' => null,
+            'target_tithi_end_jd' => null,
+            'standard_date' => $winner['date'],
+            'observance_date' => $winner['date'],
+            'observance_note' => null,
+            'decision' => [
+                'strict_karmakala' => (bool) ($rule['strict_karmakala'] ?? true),
+                'require_sunrise_nakshatra' => $requireSunriseNakshatra,
+                'preferred_nakshatra' => $requiredNakshatra,
+                'dual_day_rule' => $rule['dual_day_rule'] ?? 'if_purnima_and_pratipada_both_have_sunrise_uttara_phalguni_choose_purnima',
+                'purnima_has_sunrise_nakshatra' => $purnimaMatch,
+                'pratipada_has_sunrise_nakshatra' => $pratipadaMatch,
+                'winning_role' => $winner['role'],
+                'winning_reason' => $reason,
+                'winning_score' => $purnimaMatch || $pratipadaMatch ? 1100 : 700,
+            ],
+        ];
+    }
+
+    /** @return 'pratipada'|'purnima'|null */
+    private function phuldolotsavaCandidateRole(array $details, array $rule): ?string
+    {
+        if (!$this->phuldolotsavaMonthAllowed($details, $rule)) {
+            return null;
+        }
+
+        $tithi = (array) ($details['Tithi'] ?? []);
+        $paksha = (string) ($tithi['paksha'] ?? '');
+        $index = (int) ($tithi['index'] ?? 0);
+        if ($index > 15) {
+            $index -= 15;
+        }
+
+        // Prefer sunrise tithi when present (civil-day classification).
+        $sunriseTithi = (array) ($details['Tithi_At_Sunrise'] ?? []);
+        if ($sunriseTithi !== []) {
+            $sunrisePaksha = (string) ($sunriseTithi['paksha'] ?? $paksha);
+            $sunriseIndex = (int) ($sunriseTithi['index'] ?? $index);
+            if ($sunriseIndex > 15) {
+                $sunriseIndex -= 15;
+            }
+
+            $paksha = $sunrisePaksha;
+            $index = $sunriseIndex;
+        }
+
+        if ($paksha === 'Shukla' && $index === 15) {
+            return 'purnima';
+        }
+
+        if ($paksha === 'Krishna' && $index === 1) {
+            return 'pratipada';
+        }
+
+        return null;
+    }
+
+    private function phuldolotsavaMonthAllowed(array $details, array $rule): bool
+    {
+        $calendar = (array) ($details['Hindu_Calendar'] ?? []);
+        $amanta = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
+        $purnimanta = $this->normalizeMonthName((string) ($calendar['Month_Purnimanta_En'] ?? $calendar['Month_Purnimanta'] ?? ''));
+        $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
+
+        $allowedAmanta = array_map(
+            fn ($month): string => $this->normalizeMonthName((string) $month),
+            (array) ($rule['allowed_months_amanta'] ?? (isset($rule['month_amanta']) ? [$rule['month_amanta']] : []))
+        );
+        $allowedPurnimanta = array_map(
+            fn ($month): string => $this->normalizeMonthName((string) $month),
+            (array) ($rule['allowed_months_purnimanta'] ?? (isset($rule['month_purnimanta']) ? [$rule['month_purnimanta']] : []))
+        );
+
+        if ((string) ($rule['family'] ?? '') === 'phuldolotsava' && $allowedAmanta !== []) {
+            return $amanta !== '' && in_array($amanta, $allowedAmanta, true);
+        }
+
+        if ($calendarType === 'purnimanta') {
+            if ($allowedPurnimanta !== []) {
+                return $purnimanta !== '' && in_array($purnimanta, $allowedPurnimanta, true);
+            }
+
+            if ($allowedAmanta !== []) {
+                return $amanta !== '' && in_array($amanta, $allowedAmanta, true);
+            }
+
+            return true;
+        }
+
+        if ($allowedAmanta !== []) {
+            return $amanta !== '' && in_array($amanta, $allowedAmanta, true);
+        }
+
+        if ($allowedPurnimanta !== []) {
+            return $purnimanta !== '' && in_array($purnimanta, $allowedPurnimanta, true);
+        }
+
+        return true;
+    }
+
+    private function hasSunriseNakshatra(array $details, string $requiredNakshatra): bool
+    {
+        $requiredNumber = $this->resolveNakshatraNumber($requiredNakshatra);
+
+        $sunriseNak = (array) ($details['Nakshatra_At_Sunrise'] ?? []);
+        if ($sunriseNak !== []) {
+            $sunriseNumber = $this->resolveSnapshotNakshatraNumber($sunriseNak);
+            if ($requiredNumber !== null && $sunriseNumber !== null) {
+                return $requiredNumber === $sunriseNumber;
+            }
+
+            $sunriseName = (string) ($sunriseNak['name'] ?? '');
+            if ($sunriseName !== '') {
+                return strcasecmp($requiredNakshatra, $sunriseName) === 0
+                    || ($requiredNumber !== null && $this->resolveNakshatraNumber($sunriseName) === $requiredNumber);
+            }
+        }
+
+        // Fall back to day nakshatra (often the sunrise nakshatra in festival snapshots).
+        $dayNak = (array) ($details['Nakshatra'] ?? []);
+        $dayNumber = $this->resolveSnapshotNakshatraNumber($dayNak);
+        if ($requiredNumber !== null && $dayNumber !== null) {
+            return $requiredNumber === $dayNumber;
+        }
+
+        $dayName = (string) ($dayNak['name'] ?? '');
+        if ($dayName !== '') {
+            return strcasecmp($requiredNakshatra, $dayName) === 0
+                || ($requiredNumber !== null && $this->resolveNakshatraNumber($dayName) === $requiredNumber);
+        }
+
+        // Optional window-based evidence when present.
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
+        if ($sunriseJd > 0.0) {
+            foreach ((array) ($details['Nakshatra_Windows'] ?? []) as $interval) {
+                if (!is_array($interval)) {
+                    continue;
+                }
+
+                $name = (string) ($interval['name'] ?? $interval['nakshatra'] ?? '');
+                $intervalNumber = $this->resolveNakshatraNumber($name);
+                $matches = $requiredNumber !== null && $intervalNumber !== null
+                    ? $requiredNumber === $intervalNumber
+                    : strcasecmp($name, $requiredNakshatra) === 0;
+                if (!$matches) {
+                    continue;
+                }
+
+                $start = $this->extractJd($interval['start_jd'] ?? ($interval['start']['jd'] ?? null));
+                $end = $this->extractJd($interval['end_jd'] ?? ($interval['end']['jd'] ?? null));
+                if ($start !== null && $end !== null && $sunriseJd >= $start && $sunriseJd < $end) {
+                    return true;
+                }
             }
         }
 
@@ -1429,6 +1790,40 @@ class FestivalRuleEngine
         return $day1['target_during_observance']
             ? $this->markSpecialWinner($day1, 'janmashtami_no_rohini_fallback_day1')
             : null;
+    }
+
+    private function resolveMasikJanmashtamiTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0];
+        $day2 = $candidates[1];
+
+        if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'masik_janmashtami_nishitha_only_day1');
+        }
+
+        if (!$day1['target_at_karmakala'] && $day2['target_at_karmakala']) {
+            return $this->markSpecialWinner($day2, 'masik_janmashtami_nishitha_only_day2');
+        }
+
+        if ($day1['target_at_karmakala']) {
+            return $this->markSpecialWinner($day1, 'masik_janmashtami_both_nishitha_choose_day1');
+        }
+
+        if ($day1['target_during_observance']) {
+            $winner = $this->markSpecialWinner($day1, 'masik_janmashtami_no_nishitha_fallback_day1');
+            $winner['score'] = min((int) ($winner['score'] ?? 0), 19_000);
+
+            return $winner;
+        }
+
+        if ($day2['target_during_observance']) {
+            $winner = $this->markSpecialWinner($day2, 'masik_janmashtami_no_nishitha_fallback_day2');
+            $winner['score'] = min((int) ($winner['score'] ?? 0), 19_000);
+
+            return $winner;
+        }
+
+        return null;
     }
 
     private function resolveVijayadashamiTruthTable(array $candidates): ?array
@@ -2180,18 +2575,171 @@ class FestivalRuleEngine
             : null;
     }
 
+    private function resolveEkadashiNirnayTruthTable(array $candidates, array $targetInterval): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $kalaEngine = new KalaNirnayaEngine(0.0, 0.0);
+        $ekadashiDecision = $kalaEngine->determineEkadashi(
+            (float) ($targetInterval['start_jd'] ?? 0.0),
+            (float) ($targetInterval['end_jd'] ?? 0.0),
+            (float) ($targetInterval['start_jd'] ?? 0.0),
+            (float) ($targetInterval['end_jd'] ?? 0.0),
+            (float) ($day1['sunrise_jd'] ?? 0.0),
+            (float) ($day2['sunrise_jd'] ?? ($day1['next_sunrise_jd'] ?? 0.0)),
+            'Vaishnava',
+            (float) ($day1['previous_sunrise_jd'] ?? 0.0)
+        );
+
+        $fastingDay = (string) ($ekadashiDecision['fasting_day'] ?? '');
+        $caseKey = (string) ($ekadashiDecision['case_key'] ?? 'ekadashi_nirnay');
+        if (str_starts_with($fastingDay, 'Tomorrow')) {
+            $winner = $this->markSpecialWinner($day2, 'ekadashi_' . $caseKey);
+            $winner['ekadashi_selection'] = $ekadashiDecision;
+
+            return $winner;
+        }
+
+        if ($fastingDay === 'Today' && (bool) ($day1['target_during_observance'] ?? false)) {
+            $winner = $this->markSpecialWinner($day1, 'ekadashi_' . $caseKey);
+            $winner['ekadashi_selection'] = $ekadashiDecision;
+
+            return $winner;
+        }
+
+        return null;
+    }
+
+    private function resolvePradoshTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
+        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
+        $day1Coverage = (float) ($day1['target_window_coverage_ratio'] ?? 0.0);
+
+        if ($day1Overlap > 0.0 && $day2Overlap > 0.0) {
+            if ($day1Coverage >= 0.999 && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'pradosh_first_day_full_pradosha_coverage');
+            }
+
+            return (bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'pradosh_both_partial_choose_day2')
+                : null;
+        }
+
+        if ($day1Overlap > 0.0 && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'pradosh_only_day1_pradosha_vyapini');
+        }
+
+        if ($day2Overlap > 0.0 && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'pradosh_only_day2_pradosha_vyapini');
+        }
+
+        return null;
+    }
+
+    private function resolveSankashtiTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Moonrise = (bool) ($day1['target_at_karmakala'] ?? false);
+        $day2Moonrise = (bool) ($day2['target_at_karmakala'] ?? false);
+        if ($day1Moonrise && $day2Moonrise && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSankashtiWinner($day1, 'sankashti_both_moonrise_vyapini_tritiya_yuta_day1');
+        }
+
+        if ($day1Moonrise && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSankashtiWinner($day1, 'sankashti_only_day1_moonrise_vyapini');
+        }
+
+        if ($day2Moonrise && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSankashtiWinner($day2, 'sankashti_only_day2_moonrise_vyapini');
+        }
+
+        if (!(bool) ($day1['target_during_observance'] ?? false) && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSankashtiWinner($day2, 'sankashti_neither_moonrise_vyapini_choose_day2');
+        }
+
+        return null;
+    }
+
+    private function markSankashtiWinner(array $candidate, string $reason): array
+    {
+        $winner = $this->markSpecialWinner($candidate, $reason);
+        $isAngarak = CarbonImmutable::parse((string) $winner['date'])->dayOfWeek === CarbonImmutable::TUESDAY;
+        $winner['sankashti_selection'] = [
+            'is_angarak_sankashti' => $isAngarak,
+            'special_name' => $isAngarak ? 'Angarak Sankashti Chaturthi' : null,
+        ];
+
+        return $winner;
+    }
+
+    private function resolveVinayakiChaturthiTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Full = (float) ($day1['target_window_coverage_ratio'] ?? 0.0) >= 0.999;
+        $day2Full = (float) ($day2['target_window_coverage_ratio'] ?? 0.0) >= 0.999;
+        if ($day1Full && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'vinayaki_full_madhyahna_day1');
+        }
+
+        if ($day2Full && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'vinayaki_full_madhyahna_day2');
+        }
+
+        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
+        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
+        if ($day1Overlap > 0.0 && $day2Overlap > 0.0) {
+            $winner = $day1Overlap >= $day2Overlap ? $day1 : $day2;
+
+            return $this->markSpecialWinner($winner, $winner === $day1 ? 'vinayaki_longer_or_equal_madhyahna_day1' : 'vinayaki_longer_madhyahna_day2');
+        }
+
+        if ($day1Overlap > 0.0 && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'vinayaki_only_day1_madhyahna');
+        }
+
+        if ($day2Overlap > 0.0 && (bool) ($day2['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'vinayaki_only_day2_madhyahna');
+        }
+
+        return (bool) ($day1['target_during_observance'] ?? false)
+            ? $this->markSpecialWinner($day1, 'vinayaki_fallback_day1')
+            : null;
+    }
+
     /**
      * Generic madhyahna previous-tithi (vedha) rejection table used by festivals such as
      * Radhashtami (Bhadrapada Shukla Ashtami, saptami-vedha) and the
      * Swaminarayan Varaha Jayanti (Shravana Shukla Chaturthi, tritiya-vedha):
      *  - the previous-tithi-viddha day is always rejected (the vedha "occurs even from a single
      *    pala"), so the shuddha day pervading the madhyahna wins;
-     *  - when both days are shuddha and madhyahna-vyapini (vriddhi) the purva (first) day is kept;
-     *  - when the shuddha tithi does not reach the madhyahna on either day the navami/panchami-yuta
-     *    (shuddha, later) sunrise day is still taken;
+     *  - when both days are shuddha and madhyahna-vyapini (vriddhi), preference follows
+     *    `$vriddhiPreference` (`first` keeps purva/day1; `last` keeps para/day2 — SJ 4.61 Varaha);
+     *  - when the shuddha tithi does not reach the madhyahna on either day the later/panchami-yuta
+     *    (shuddha) sunrise day is preferred for `last`, otherwise first is tried first;
      *  - kshaya (only the previous-tithi-viddha purva day carries the tithi) accepts that viddha day.
      */
-    private function resolveMadhyahnaPurvaTithiVedhaTable(array $candidates): ?array
+    private function resolveMadhyahnaPurvaTithiVedhaTable(array $candidates, string $vriddhiPreference = 'first'): ?array
     {
         $day1 = $candidates[0] ?? null;
         $day2 = $candidates[1] ?? null;
@@ -2205,25 +2753,53 @@ class FestivalRuleEngine
         $day2Viddha = (bool) ($day2['prev_tithi_at_sunrise'] ?? false);
         $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
         $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+        $day1ShuddhaVyapti = $day1Vyapti && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false);
+        $day2ShuddhaVyapti = $day2Vyapti && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false);
+        $preferLast = $vriddhiPreference === 'last';
 
-        // Shuddha (vedha-free) day pervading the madhyahna wins. Vriddhi (both shuddha and
-        // madhyahna-vyapini) lands on the purva (first) day here.
-        if ($day1Vyapti && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
-            return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+        // Both shuddha madhyahna-vyapini: respect configured vriddhi preference.
+        if ($day1ShuddhaVyapti && $day2ShuddhaVyapti) {
+            return $preferLast
+                ? $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2')
+                : $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
         }
 
-        if ($day2Vyapti && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
-            return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2');
+        if ($preferLast) {
+            if ($day2ShuddhaVyapti) {
+                return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2');
+            }
+
+            if ($day1ShuddhaVyapti) {
+                return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+            }
+        } else {
+            if ($day1ShuddhaVyapti) {
+                return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+            }
+
+            if ($day2ShuddhaVyapti) {
+                return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2');
+            }
         }
 
-        // Shuddha tithi is at sunrise but does not reach the madhyahna: still prefer the shuddha
-        // (navami/panchami-yuta) day over the rejected previous-tithi-viddha day.
-        if ($day2AtSunrise && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
-            return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_yuta_day2');
-        }
+        // Neither (or only non-vyapini) madhyahna: prefer shuddha sunrise day.
+        // SJ Varaha (`last`) and panchami-yuta style fallbacks take the later day first.
+        if ($preferLast) {
+            if ($day2AtSunrise && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_yuta_day2');
+            }
 
-        if ($day1AtSunrise && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
-            return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_yuta_day1');
+            if ($day1AtSunrise && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_yuta_day1');
+            }
+        } else {
+            if ($day2AtSunrise && !$day2Viddha && (bool) ($day2['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_yuta_day2');
+            }
+
+            if ($day1AtSunrise && !$day1Viddha && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_yuta_day1');
+            }
         }
 
         // Kshaya: only the previous-tithi-viddha purva day carries the tithi -> accept it. If
@@ -2250,10 +2826,8 @@ class FestivalRuleEngine
         }
 
         $sunriseJd = (float) ($day1['sunrise_jd'] ?? 0.0);
-        $sunsetJd = (float) ($day1['sunset_jd'] ?? $sunriseJd);
-        $dayLengthJd = max(0.0001, $sunsetJd - $sunriseJd);
         $contaminationJd = max(0.0, (float) ($day1['target_interval_start_jd'] ?? $sunriseJd) - $sunriseJd);
-        $thresholdJd = 18.0 * ($dayLengthJd / 30.0);
+        $thresholdJd = self::PURNIMA_VRAT_CHATURDASHI_THRESHOLD_GHADIS * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0;
 
         if ($contaminationJd < $thresholdJd) {
             return $this->markSpecialWinner($day1, 'purnima_vrat_chaturdashi_below_18_ghadi_keep_day1');
@@ -2568,8 +3142,9 @@ class FestivalRuleEngine
             return false;
         }
 
-        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? null));
-        $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
+        $panchanga = (array) ($details['Panchanga'] ?? []);
+        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? ($panchanga['Moonrise'] ?? null)));
+        $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? ($panchanga['Moonset'] ?? null)));
         if ($moonriseJd === null) {
             return false;
         }
@@ -2729,27 +3304,79 @@ class FestivalRuleEngine
         return $this->markSpecialWinner($day1, 'diwali_both_avyapti_d1');
     }
 
+    /**
+     * Satsangi Jeevan 4.60 (śl. 24–27) Rama Navami:
+     * - take Ashtami-vedha-free madhyahna-vyapini Navami;
+     * - if madhyahna-vyapini on both days, or not clearly on either day, take the later (para) Navami;
+     * - Ashtami-viddha Navami is rejected even if Punarvasu is present;
+     * - on kshaya of the pure Navami, the purva-yuk / Ashtami-joined day is accepted.
+     */
     private function resolveRamNavamiTruthTable(array $candidates, array $today, array $targetInterval): array
     {
         $day1 = $candidates[0];
         $day2 = $candidates[1];
 
-        $day1Vyapti = $day1['target_window_overlap_seconds'] > 0;
-        $day2Vyapti = $day2['target_window_overlap_seconds'] > 0;
+        $day1Vyapti = ((float) ($day1['target_window_overlap_seconds'] ?? 0.0) > 0.0)
+            || (bool) ($day1['target_at_karmakala'] ?? false);
+        $day2Vyapti = ((float) ($day2['target_window_overlap_seconds'] ?? 0.0) > 0.0)
+            || (bool) ($day2['target_at_karmakala'] ?? false);
+        $day1Viddha = (bool) ($day1['prev_tithi_at_sunrise'] ?? false)
+            || $this->previousTithiActiveAtPoint($today, $targetInterval, 'sunrise');
+        $day2Viddha = (bool) ($day2['prev_tithi_at_sunrise'] ?? false);
+        $day1During = (bool) ($day1['target_during_observance'] ?? false);
+        $day2During = (bool) ($day2['target_during_observance'] ?? false);
 
-        if ($day1Vyapti && $day2Vyapti) {
-            if ($this->previousTithiActiveAtPoint($today, $targetInterval, 'sunrise')) {
-                return $this->markSpecialWinner($day2, 'ram_navami_vriddhi_ashtami_viddha_reject_day1');
+        $day1ShuddhaVyapti = $day1Vyapti && !$day1Viddha && $day1During;
+        $day2ShuddhaVyapti = $day2Vyapti && !$day2Viddha && $day2During;
+
+        // Both pure and madhyahna-vyapini → para (second) Navami.
+        if ($day1ShuddhaVyapti && $day2ShuddhaVyapti) {
+            return $this->markSpecialWinner($day2, 'ram_navami_both_madhyahna_choose_para_day2');
+        }
+
+        // Single pure madhyahna-vyapini day.
+        if ($day1ShuddhaVyapti) {
+            return $this->markSpecialWinner($day1, 'ram_navami_shuddha_madhyahna_day1');
+        }
+
+        if ($day2ShuddhaVyapti) {
+            return $this->markSpecialWinner($day2, 'ram_navami_shuddha_madhyahna_day2');
+        }
+
+        // Ashtami-viddha first day rejected when a pure later day exists.
+        if ($day1Viddha && !$day2Viddha && $day2During) {
+            return $this->markSpecialWinner($day2, 'ram_navami_ashtami_viddha_reject_choose_para_day2');
+        }
+
+        // Neither clearly madhyahna-vyapini → still take the later/pure Navami when available.
+        if (!$day1Vyapti && !$day2Vyapti) {
+            if (!$day2Viddha && $day2During) {
+                return $this->markSpecialWinner($day2, 'ram_navami_neither_madhyahna_choose_para_day2');
             }
 
-            return $this->markSpecialWinner($day1, 'ram_navami_vriddhi_choose_day1');
+            if ($day1During) {
+                return $this->markSpecialWinner($day1, 'ram_navami_kshaya_accept_purva_yuk_day1');
+            }
         }
 
-        if (!$day1Vyapti && !$day2Vyapti) {
-            return $this->markSpecialWinner($day1, 'ram_navami_kshaya_choose_combined_day');
+        // Only one day carries madhyahna (possibly with residual vedha handling above).
+        if ($day1Vyapti && $day1During && !$day2Vyapti) {
+            return $this->markSpecialWinner($day1, $day1Viddha
+                ? 'ram_navami_kshaya_accept_ashtami_viddha_day1'
+                : 'ram_navami_shuddha_madhyahna_day1');
         }
 
-        return $day1Vyapti ? $this->markSpecialWinner($day1, 'ram_navami_shuddha_day1') : $this->markSpecialWinner($day2, 'ram_navami_shuddha_day2');
+        if ($day2Vyapti && $day2During) {
+            return $this->markSpecialWinner($day2, $day2Viddha
+                ? 'ram_navami_accept_day2_with_vedha'
+                : 'ram_navami_shuddha_madhyahna_day2');
+        }
+
+        if ($day2During) {
+            return $this->markSpecialWinner($day2, 'ram_navami_fallback_para_day2');
+        }
+
+        return $this->markSpecialWinner($day1, 'ram_navami_fallback_purva_day1');
     }
 
     private function resolveGenericViddhaRejectionTable(

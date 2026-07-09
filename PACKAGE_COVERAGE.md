@@ -528,7 +528,7 @@ The package covers:
 - daily festival snapshots
 - month calendar festival embedding
 - daily observances in addition to named festivals
-- current generated output reporting 324 unique festival identities and 120 unique vrat identities
+- current generated output reporting 324 unique festival identities and 122 unique vrat identities
 - multi-rule observance resolution
 - location-aware and timezone-aware output
 
@@ -543,6 +543,28 @@ The package also supports separate yearly output paths for:
 - combined festival + vrat observance output
 - festival-only output
 - vrat-only output
+
+Current generated vrat coverage includes the generic monthly `Vratni Purnima`
+identity in addition to named Purnima vrat identities. Family-based vrat
+resolution also keeps named Sankashti, Pradosh, Ekadashi, Masik Shivaratri, and
+Masik Krishna Janmashtami observances tied to their parent rule families rather
+than treating each display name as a separate rule system.
+
+## Calendar Period Windows
+
+Generated `today`, `month`, and `raw` outputs expose
+`calendar_period_windows`, including:
+
+- sidereal ayana windows
+- sidereal ritu windows
+- Sayana ayana windows
+- Sayana ritu windows
+- Vikram, Gujarati, Saka, and Kali samvat windows
+- samvatsara windows
+- amanta and purnimanta lunar-month windows
+
+When day-detail payloads are included, `today` and `raw` output also expose
+localized `Sayana_Ayana`, `Sayana_Ritu`, and `Mahadiksha_Guidance` branches.
 
 ### Festival Resolution Dimensions
 
@@ -907,7 +929,7 @@ This dual style matters because the package often exposes both:
 
 If someone asks what this package covers, the shortest accurate answer is:
 
-It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine whose current generated output reports 324 unique festival identities and 120 unique vrat identities, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
+It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, sidereal and Sayana calendar-period windows, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine whose current generated output reports 324 unique festival identities and 122 unique vrat identities, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
 
 If someone asks what kind of use cases it supports, the package is suitable for:
 

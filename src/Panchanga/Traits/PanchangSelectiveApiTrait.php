@@ -417,6 +417,7 @@ trait PanchangSelectiveApiTrait
             $moonLon = $ctx['longitudes']['moon'];
             $currentSunLon = $ctx['longitudes']['current_sun'];
             $currentMoonLon = $ctx['longitudes']['current_moon'];
+            $sayanaSunLon = AstroCore::normalize($sunLon + (float) $ctx['ayanamsa']['degree']);
             $relSunrise = $ctx['time']['rel_sunrise'];
             $sunset = $ctx['sun']['sunset'];
             $nextSunrise = $ctx['sun']['next_sunrise'];
@@ -427,6 +428,10 @@ trait PanchangSelectiveApiTrait
                 'Tithi' => $tithi,
                 'Nakshatra' => ['name' => $ctx['panchanga']['nakshatra']['name']],
                 'Hindu_Calendar' => [
+                    'Ayana' => $this->panchanga->getAyana($sunLon),
+                    'Ritu' => $this->panchanga->getRitu($sunLon),
+                    'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
+                    'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
                     'Month_Amanta' => $hinduMonth['Month_Amanta'],
                     'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                     'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -571,6 +576,8 @@ trait PanchangSelectiveApiTrait
                 'Hindu_Calendar' => [
                     'Ayana' => $this->panchanga->getAyana($sunLon),
                     'Ritu' => $this->panchanga->getRitu($sunLon),
+                    'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
+                    'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
                     'Vikram_Samvat' => $vikram,
                     'Gujarati_Samvat' => $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']),
                     'Saka_Samvat' => $saka,
@@ -641,6 +648,7 @@ trait PanchangSelectiveApiTrait
                     'current_at_input_now' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['current_tithi']['index'], (string) ($ctx['panchanga']['current_tithi']['paksha'] ?? ''), $ctx['crossings']['current_tithi_start_jd'], $ctx['crossings']['current_tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $moonriseJd, $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
                     'at_sunrise' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''), $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $moonriseJd, $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
                 ],
+                'Mahadiksha_Guidance' => $this->buildMahadikshaGuidance($hinduMonth, $sunLon),
                 'Day_Night_Measures' => $this->buildDayNightMeasures($relSunrise, $sunset, $ctx['sun']['next_sunrise']),
                 'Festivals' => $festivals,
                 'Daily_Observances' => $this->festivalService->getDailyObservances($todaySnapshot),

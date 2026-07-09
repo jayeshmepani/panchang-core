@@ -70,6 +70,7 @@ $output = [
     ],
     'today' => $result['todays_complete_details'],
     'muhurta_evaluation' => $result['muhurta_evaluation'],
+    'calendar_period_windows' => $result['calendar_period_windows'],
 ];
 
 $outputPath = $outputDir . DIRECTORY_SEPARATOR . 'today.json';

@@ -47,6 +47,12 @@ trait PanchangAstronomyHelpersTrait
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
+    private function getTropicalSunLongitude(float $jd): float
+    {
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
+    }
+
     private function getMoonLongitude(float $jd): float
     {
         // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
