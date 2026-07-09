@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 324 festival identities, 98 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 324 festival identities, 120 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -2342,7 +2342,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 324 unique festival identities and 98 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 324 unique festival identities and 120 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
             <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
               <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
               and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
@@ -2597,7 +2597,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified yearly catalog currently reports <code>326</code> unique festival identities and <code>90</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
+              <li>The verified yearly catalog currently reports <code>324</code> unique festival identities and <code>120</code> unique vrat identities after merging true alias/variant duplicates; distinct observances that fall on the same tithi remain separate entries.</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -4760,24 +4760,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.0.8 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.1.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. v10.0.6 refreshes the public festival and vrat catalog, tightens alias and rule handling in the current registry, and keeps the updated user-facing labels aligned across supported languages. v10.0.4 consolidates the Ganesh Chaturthi family, corrects Kurma Jayanti identity handling, and aligns Skanda Sashti with its evening rule path. The prior corrections from v10.0.3 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
-            <h3>v10.0.8 Documentation Snapshot</h3>
-            <p>This documentation covers v10.0.8: Ekadashi entries now carry broader canonical alias coverage, and the festival registry, identity docs, and user-facing localization layer are aligned with the refreshed Ekadashi identity set. The current generated output remains at 324 festival identities and 98 vrat identities.</p>
+            <h3>v10.1.0 Documentation Snapshot</h3>
+            <p>This documentation covers v10.1.0: the generated 2026 outputs report 324 festival identities and 120 vrat identities, with refreshed Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.1.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Nirnay Rule Expansion, Eclipse Ritual Refinements, and Multilingual Output Refresh</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release refreshing festival and vrat rule coverage, calendar-specific Nag Panchami handling, eclipse ritual guidance, and generated Amanta/Purnimanta JSON output across English, Hindi, and Gujarati. The current generated output reports 324 festival identities and 120 vrat identities.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.0.8</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Ekadashi Alias Expansion and Formal Naming Cleanup</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Ekadashi Alias Expansion and Formal Naming Cleanup</span></div>
                 <p class="release-note">Patch release expanding canonical alias coverage across the Ekadashi family and aligning the festival registry, identity documentation, and localization layer with the refreshed identity set.</p>
               </div>
             </li>
@@ -4792,14 +4799,14 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <span class="release-tag">10.0.6</span>
               <div class="release-body">
                 <div class="release-heading"><span class="release-title">Festival Catalog and Localization Refresh</span></div>
-                <p class="release-note">Patch release refreshing the public festival and vrat catalog, tightening overlapping alias and rule handling in the current registry, and keeping the updated user-facing labels aligned across supported languages. The current generated output now reports 324 festival identities and 98 vrat identities.</p>
+                <p class="release-note">Patch release refreshing the public festival and vrat catalog, tightening overlapping alias and rule handling in the current registry, and keeping the updated user-facing labels aligned across supported languages.</p>
               </div>
             </li>
             <li class="release-row">
               <span class="release-tag">10.0.4</span>
               <div class="release-body">
                 <div class="release-heading"><span class="release-title">Festival Identity and Rule Alignment</span></div>
-                <p class="release-note">Patch release consolidating Siddhivinayaka Chaturthi into the Vinayaka Chaturthi alias set, separating Kurma Jayanti from Vaishakha Purnima convention handling, aligning Skanda Sashti with its evening decision path, and localizing the new user-facing festival-rule labels. The canonical festival list now reports 325 festival identities while keeping observance dates aligned under their corrected rules.</p>
+                <p class="release-note">Patch release consolidating Siddhivinayaka Chaturthi into the Vinayaka Chaturthi alias set, separating Kurma Jayanti from Vaishakha Purnima convention handling, aligning Skanda Sashti with its evening decision path, and localizing the new user-facing festival-rule labels.</p>
               </div>
             </li>
             <li class="release-row">
@@ -5048,6 +5055,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.1.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release refreshes festival and vrat rule coverage, improves eclipse ritual output, and regenerates the public Amanta/Purnimanta JSON outputs across English, Hindi, and Gujarati.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Festival and vrat totals changed:</strong> the current generated output reports 324 festival identities and 120 vrat identities.</li>
+              <li><strong>Nag Panchami is calendar-specific:</strong> Amanta output follows the Shravan Vad Pancham / Gujarat convention, while Purnimanta output keeps the Shravan Shukla Panchami convention.</li>
+              <li><strong>Rule decisions are refreshed:</strong> touched observances now reflect the updated festival and vrat decision rules, aliases, and localized display names.</li>
+              <li><strong>Eclipse ritual output is clearer:</strong> local visibility, ritual magnitude, Chudamani Yoga, Grastodaya/Grastasta guidance, and post-eclipse ritual completion wording are tightened.</li>
+              <li><strong>No structural API redesign:</strong> this is a rule, catalog, localization, and generated-output refresh.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, month, eclipse, today, and raw yearly output after upgrading.</li>
+            <li>Rebaseline snapshots that compare exact festival dates, vrat dates, aliases, localized names, or eclipse ritual fields.</li>
+            <li>Review applications that display Nag Panchami, Sankashti, Chandra Darshana, Deepotsav, or eclipse-sutak guidance from cached JSON.</li>
+          </ul>
 
           <h3>v10.0.8 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release expands the canonical alias set for the 26 named Ekadashis and keeps the festival registry, documentation, and localization layer aligned with the current Ekadashi identity set.</p>
@@ -6754,7 +6782,7 @@ const FESTIVAL_RULES
                 style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a> for complete
               source-integrity map with confidence tiers, and <a href="FESTIVAL_VRAT_IDENTITIES.md"
                 style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_IDENTITIES.md</a> for the
-              canonical 325 festival and 90 vrat identity lists, <a href="MUHURTA_TEXT_SOURCES.md"
+              canonical 324 festival and 120 vrat identity lists, <a href="MUHURTA_TEXT_SOURCES.md"
                 style="color: inherit; text-decoration: underline;">docs/MUHURTA_TEXT_SOURCES.md</a> for Muhurta
               source classification, and <a href="FESTIVAL_VRAT_DUPLICATE_AUDIT.md"
                 style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md</a> for
