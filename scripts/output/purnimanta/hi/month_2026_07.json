@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-09T08:23:13+00:00",
+        "generated_at": "2026-07-11T05:33:31+00:00",
         "year": 2026,
         "month": 7,
         "calendar_type": "purnimanta",
@@ -2082,6 +2082,114 @@
                             "english_name": "Tuesday"
                         }
                     }
+                },
+                {
+                    "name": "मासिक कृष्ण जन्माष्टमी",
+                    "name_key": "Masik Krishna Janmashtami",
+                    "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
+                    "deity": "कृष्ण",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 8 सूर्योदय पर 2026-07-08 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-07-07 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "family": "मासिक कृष्ण जन्माष्टमी परिवार",
+                        "family_key": "masik_krishna_janmashtami",
+                        "inherit_decision_from": "कृष्ण जन्माष्टमी",
+                        "inherit_decision_from_key": "Krishna Janmashtami",
+                        "document_status": "नामित वर्गीकरण सहित सामान्य परिवार नियम",
+                        "document_status_key": "generic_family_rule_named_classifier",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "nishitha",
+                        "karmakala_type_name": "निशीथ",
+                        "strict_karmakala": true,
+                        "masik_janmashtami_truth_table": true,
+                        "tradition_profile": "Monthly Krishna Janmashtami Nishitha Ashtami decision",
+                        "tradition_profile_key": "Monthly Krishna Janmashtami Nishitha Ashtami decision"
+                    },
+                    "resolution": {
+                        "festival_name": "मासिक कृष्ण जन्माष्टमी",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "nishitha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 2513.733297586441,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461228.8300981633,
+                        "target_tithi_end_jd": 2461229.786186537,
+                        "standard_date": "2026-07-08",
+                        "observance_date": "2026-07-07",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 8 सूर्योदय पर 2026-07-08 को होती है, किंतु निशीथ की उपस्थिति की परंपरा/विधि के कारण 2026-07-07 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "मासिक कृष्ण जन्माष्टमी: निशीथ में अष्टमी केवल पहले दिन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 2513.733297586441,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "masik_janmashtami_nishitha_only_day1",
+                            "winning_reason_name": "मासिक कृष्ण जन्माष्टमी: निशीथ में अष्टमी केवल पहले दिन"
+                        },
+                        "festival_name_key": "Masik Krishna Janmashtami",
+                        "festival_name_localized": "मासिक कृष्ण जन्माष्टमी",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "निशीथ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "मासिक कृष्ण जन्माष्टमी: निशीथ में अष्टमी केवल पहले दिन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 2513.733297586441,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "masik_janmashtami_nishitha_only_day1",
+                        "winning_reason_name": "मासिक कृष्ण जन्माष्टमी: निशीथ में अष्टमी केवल पहले दिन"
+                    }
                 }
             ],
             "daily_observances": [
@@ -2454,112 +2562,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "मासिक कृष्ण जन्माष्टमी",
-                    "name_key": "Masik Krishna Janmashtami",
-                    "description": "भगवान कृष्ण की जन्म तिथि का मासिक व्रत",
-                    "deity": "कृष्ण",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "family": "मासिक कृष्ण जन्माष्टमी परिवार",
-                        "family_key": "masik_krishna_janmashtami",
-                        "inherit_decision_from": "कृष्ण जन्माष्टमी",
-                        "inherit_decision_from_key": "Krishna Janmashtami",
-                        "document_status": "नामित वर्गीकरण सहित सामान्य परिवार नियम",
-                        "document_status_key": "generic_family_rule_named_classifier",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                23
-                            ],
-                            "names": [
-                                "कृष्ण अष्टमी"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type": "nishitha",
-                        "karmakala_type_name": "निशीथ",
-                        "strict_karmakala": true,
-                        "tradition_profile": "मासिक कृष्ण जन्माष्टमी वार्षिक जन्माष्टमी निर्णय का अनुसरण करती है",
-                        "tradition_profile_key": "Monthly Krishna Janmashtami inherits annual Janmashtami decision"
-                    },
-                    "resolution": {
-                        "festival_name": "मासिक कृष्ण जन्माष्टमी",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "nishitha",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461228.8300981633,
-                        "target_tithi_end_jd": 2461229.786186537,
-                        "standard_date": "2026-07-08",
-                        "observance_date": "2026-07-08",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "रोहिणी न होने पर जन्माष्टमी पहले दिन",
-                            "winning_score": 20000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "janmashtami_no_rohini_fallback_day1",
-                            "winning_reason_name": "रोहिणी न होने पर जन्माष्टमी पहले दिन"
-                        },
-                        "festival_name_key": "Masik Krishna Janmashtami",
-                        "festival_name_localized": "मासिक कृष्ण जन्माष्टमी",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "निशीथ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "रोहिणी न होने पर जन्माष्टमी पहले दिन",
-                        "winning_score": 20000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "janmashtami_no_rohini_fallback_day1",
-                        "winning_reason_name": "रोहिणी न होने पर जन्माष्टमी पहले दिन"
                     }
                 }
             ],
@@ -11269,7 +11271,7 @@
                 {
                     "name": "चातुर्मास प्रारंभ",
                     "name_key": "Chaturmasa Begins",
-                    "description": "Beginning of Chaturmasa on Ashadha Shukla Ekadashi Vrat day",
+                    "description": "आषाढ़ शुक्ल एकादशी व्रत के दिन चातुर्मास का प्रारंभ",
                     "deity": "विष्णु",
                     "fasting": true,
                     "regions": [
@@ -12850,9 +12852,9 @@
             },
             "festivals": [
                 {
-                    "name": "Vratni Purnima",
+                    "name": "व्रतनी पूर्णिमा",
                     "name_key": "Vratni Purnima",
-                    "description": "Monthly Purnima fast selected by the 18 fixed-ghadi Chaturdashi condition",
+                    "description": "१८ निश्चित घड़ियों की चतुर्दशी की स्थिति द्वारा चयनित मासिक पूर्णिमा व्रत",
                     "deity": "विष्णु/चंद्र",
                     "fasting": true,
                     "regions": [
@@ -12893,7 +12895,7 @@
                         ]
                     },
                     "resolution": {
-                        "festival_name": "Vratni Purnima",
+                        "festival_name": "व्रतनी पूर्णिमा",
                         "required_tithi": 15,
                         "paksha": "Shukla",
                         "karmakala_type": "sunrise",
@@ -12926,7 +12928,7 @@
                             "winning_reason_name": "पूर्णिमा व्रत: चतुर्दशी १८ घड़ी से कम, पहला दिन रखें"
                         },
                         "festival_name_key": "Vratni Purnima",
-                        "festival_name_localized": "Vratni Purnima",
+                        "festival_name_localized": "व्रतनी पूर्णिमा",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -13870,132 +13872,6 @@
                     }
                 },
                 {
-                    "name": "हिंडोला उत्सव प्रारंभ",
-                    "name_key": "Hindola Festival Begins",
-                    "description": "हिंडोला उत्सव प्रारम्भ स्वामीनारायण हिंडोला-ऋतु की शुरुआत का सूचक है, जब श्री बालकृष्ण को सजे हुए झूलों में प्रेमपूर्वक विराजित कर झुलाया जाता है।",
-                    "deity": "बालकृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "family": "hindola_period",
-                        "family_key": "hindola_period",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                16
-                            ],
-                            "names": [
-                                "कृष्ण प्रतिपदा"
-                            ]
-                        },
-                        "tithi_options": [
-                            1,
-                            2
-                        ],
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "श्रावण",
-                            "value_key": "Shravana",
-                            "name": "श्रावण"
-                        },
-                        "karmakala_type": "sayankala",
-                        "karmakala_type_name": "सायंकाल",
-                        "sect_specific": true,
-                        "ritual_profile": "सत्संगी हिंडोला अनुष्ठान रूपरेखा",
-                        "ritual_profile_key": "hindola_satsangi",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.61"
-                        ],
-                        "source_evidence": [
-                            {
-                                "kind": "date_rule",
-                                "source": "Satsangi Jeevan",
-                                "locator": "4.61.17-18",
-                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
-                            }
-                        ],
-                        "unresolved_conditions": [
-                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "हिंडोला उत्सव प्रारंभ",
-                        "required_tithi": 1,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sayankala",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9543.200017511845,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461251.108069732,
-                        "target_tithi_end_jd": 2461252.167157488,
-                        "standard_date": "2026-07-30",
-                        "observance_date": "2026-07-30",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1159,
-                            "winning_window_overlap_seconds": 9543.200017511845,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Hindola Festival Begins",
-                        "festival_name_localized": "हिंडोला उत्सव प्रारंभ",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सायंकाल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1159,
-                        "winning_window_overlap_seconds": 9543.200017511845,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "इष्टि",
                     "name_key": "Ishti",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",
@@ -14366,6 +14242,133 @@
                             "name": "शुक्रवार",
                             "english_name": "Friday"
                         }
+                    }
+                },
+                {
+                    "name": "हिंडोला उत्सव प्रारंभ",
+                    "name_key": "Hindola Festival Begins",
+                    "description": "हिंडोला उत्सव प्रारम्भ स्वामीनारायण हिंडोला-ऋतु की शुरुआत का सूचक है, जब श्री बालकृष्ण को सजे हुए झूलों में प्रेमपूर्वक विराजित कर झुलाया जाता है।",
+                    "deity": "बालकृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "family": "hindola_period",
+                        "family_key": "hindola_period",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "कृष्ण प्रतिपदा"
+                            ]
+                        },
+                        "tithi_options": [
+                            1,
+                            2
+                        ],
+                        "prefer_higher_tithi_option": true,
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "श्रावण",
+                            "value_key": "Shravana",
+                            "name": "श्रावण"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "सायंकाल",
+                        "sect_specific": true,
+                        "ritual_profile": "सत्संगी हिंडोला अनुष्ठान रूपरेखा",
+                        "ritual_profile_key": "hindola_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "date_rule",
+                                "source": "Satsangi Jeevan",
+                                "locator": "4.61.17-18",
+                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
+                            }
+                        ],
+                        "unresolved_conditions": [
+                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "हिंडोला उत्सव प्रारंभ",
+                        "required_tithi": 2,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9531.599999964237,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461252.167157488,
+                        "target_tithi_end_jd": 2461253.2097865194,
+                        "standard_date": "2026-07-31",
+                        "observance_date": "2026-07-31",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1158,
+                            "winning_window_overlap_seconds": 9531.599999964237,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Hindola Festival Begins",
+                        "festival_name_localized": "हिंडोला उत्सव प्रारंभ",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सायंकाल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1158,
+                        "winning_window_overlap_seconds": 9531.599999964237,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],

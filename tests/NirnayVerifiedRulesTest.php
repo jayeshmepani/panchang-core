@@ -455,6 +455,24 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertNull($resolved);
     }
 
+    public function testAdhikaChandraDarshanaSkipsKshayaAmavasyaHostDay(): void
+    {
+        $engine = new FestivalRuleEngine;
+        $date = CarbonImmutable::parse('2026-06-15');
+        $today = $this->festivalSnapshot(30, 'Krishna', 100.25, 100.75, 101.25, 100.30, 100.55, 'Mrigashira', 100.70);
+        $tomorrow = $this->festivalSnapshot(1, 'Shukla', 101.25, 101.75, 102.25, 100.55, 101.10, 'Ardra', 101.70);
+
+        $resolved = $engine->resolveMajorFestival(
+            'Adhika Chandra Darshana',
+            FestivalService::FESTIVALS['Adhika Chandra Darshana'],
+            $date,
+            $today,
+            $tomorrow,
+        );
+
+        self::assertNull($resolved);
+    }
+
     public function testChandraDarshanaUsesClassicalSthulaMetadata(): void
     {
         self::assertSame(1, FestivalService::FESTIVALS['Chandra Darshana']['tithi']);
@@ -532,6 +550,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('Shukla', FestivalService::FESTIVALS['Swaminarayan Rathyatra']['paksha']);
         self::assertTrue(FestivalService::FESTIVALS['Swaminarayan Rathyatra']['nakshatra_only']);
         self::assertSame([1, 2], FestivalService::FESTIVALS['Hindola Festival Begins']['tithi_options']);
+        self::assertTrue(FestivalService::FESTIVALS['Hindola Festival Begins']['prefer_higher_tithi_option'] ?? false);
         self::assertSame(3, FestivalService::FESTIVALS['Hindola Festival Ends']['tithi']);
         self::assertSame('last', FestivalService::FESTIVALS['Varaha Jayanti']['vriddhi_preference']);
         self::assertSame('last', FestivalService::FESTIVALS['Swaminarayan Varaha Jayanti']['vriddhi_preference']);

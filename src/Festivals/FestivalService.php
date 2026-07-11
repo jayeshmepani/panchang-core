@@ -5902,6 +5902,7 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 1,
             'tithi_options' => [1, 2],
+            'prefer_higher_tithi_option' => true,
             'month_amanta' => 'Ashadha',
             'month_purnimanta' => 'Shravana',
             'description' => 'Hindola Festival Begins marks the start of the Swaminarayan hindola season, when Shri Balakrishna is lovingly seated and swung in decorated swings.',
@@ -5939,7 +5940,7 @@ class FestivalService
             'resolver' => 'classical',
             'family' => 'hindola_period',
             'paksha' => 'Krishna',
-            // SJ 4.61.19: ends on Shravana Krishna Tritiya with final arati and removal from the swing.
+            // SJ 4.61.19: Shravana Krishna Tritiya — final arati and removal from the hindola.
             'tithi' => 3,
             'tithi_options' => [3],
             'month_amanta' => 'Shravana',
@@ -7814,6 +7815,7 @@ class FestivalService
             'document_status_key' => $rules['document_status'] ?? null,
             'tithi' => $this->formatTithiRule($rules['tithi'] ?? ($resolved['required_tithi'] ?? null), $rules['paksha'] ?? ($resolved['paksha'] ?? null)),
             'tithi_options' => $rules['tithi_options'] ?? null,
+            'prefer_higher_tithi_option' => $rules['prefer_higher_tithi_option'] ?? null,
             'paksha' => $rules['paksha'] ?? ($resolved['paksha'] ?? null),
             'paksha_name' => $this->localizedPakshaName($rules['paksha'] ?? ($resolved['paksha'] ?? null)),
             'paksha_amanta' => $rules['paksha_amanta'] ?? null,

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-09T09:36:35+00:00",
+        "generated_at": "2026-07-11T05:31:02+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -20,7 +20,7 @@
         "calendar_type": "purnimanta",
         "locale": "en",
         "festival_day_count": 365,
-        "festival_entry_count": 1032,
+        "festival_entry_count": 1031,
         "total_festivals": 324,
         "total_vrats": 122,
         "by_date": {
@@ -31497,169 +31497,6 @@
                     }
                 },
                 {
-                    "name": "Adhika Chandra Darshana",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "Chandra Darshana occurring in the intercalary month",
-                    "deity": "Chandra",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "First Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "sunset to moonset visibility",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "classical Sthula Chandra Darshana 9-muhurta rule",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)",
-                        "location_sensitive": true,
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "Adhika Chandra Darshana",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2151.999995112419,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461206.620878922,
-                        "target_tithi_end_jd": 2461207.523900463,
-                        "standard_date": "2026-06-15",
-                        "observance_date": "2026-06-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "winning_score": 1535,
-                            "winning_window_overlap_seconds": 2151.999995112419,
-                            "winning_window_coverage_ratio": 1,
-                            "target_tithi_daylight_overlap_seconds": 40520.06116658449,
-                            "moon_visibility_start_jd": 2461207.0898611112,
-                            "moon_visibility_end_jd": 2461207.1147685186,
-                            "moon_visibility_seconds": 2151.999995112419,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_pratipada",
-                                "pratipada_post_sunrise_seconds": 86407.99999684095,
-                                "pratipada_post_sunrise_minutes": 1440.1333332806826,
-                                "pratipada_post_sunrise_muhurtas": 26.501727754722815,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 29344.20001477003,
-                                "day_muhurta_seconds": 3260.466668307781,
-                                "reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "winning_reason_name": "chandra_darshana_sud1_kshaya_pratipada_sthula_present"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "Adhika Chandra Darshana",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunset to moonset visibility"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                        "winning_score": 1535,
-                        "winning_window_overlap_seconds": 2151.999995112419,
-                        "winning_window_coverage_ratio": 1,
-                        "target_tithi_daylight_overlap_seconds": 40520.06116658449,
-                        "moon_visibility_start_jd": 2461207.0898611112,
-                        "moon_visibility_end_jd": 2461207.1147685186,
-                        "moon_visibility_seconds": 2151.999995112419,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_pratipada",
-                            "pratipada_post_sunrise_seconds": 86407.99999684095,
-                            "pratipada_post_sunrise_minutes": 1440.1333332806826,
-                            "pratipada_post_sunrise_muhurtas": 26.501727754722815,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 29344.20001477003,
-                            "day_muhurta_seconds": 3260.466668307781,
-                            "reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                        "winning_reason_name": "chandra_darshana_sud1_kshaya_pratipada_sthula_present"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "sunset to moonset visibility",
-                        "display": "07:39 PM to 08:15 PM",
-                        "start": "07:39 PM",
-                        "end": "08:15 PM",
-                        "start_iso": "15/06/2026 07:39:24 PM",
-                        "end_iso": "15/06/2026 08:15:16 PM",
-                        "start_jd": 2461207.0898611112,
-                        "end_jd": 2461207.1147685186,
-                        "duration_seconds": 2151.999995112419,
-                        "duration_minutes": 35.866666585206985,
-                        "duration_min": "35m 52s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "sunset to moonset visibility",
-                        "display": "07:39 PM to 08:15 PM",
-                        "start": "07:39 PM",
-                        "end": "08:15 PM",
-                        "start_iso": "15/06/2026 07:39:24 PM",
-                        "end_iso": "15/06/2026 08:15:16 PM",
-                        "start_jd": 2461207.0898611112,
-                        "end_jd": 2461207.1147685186,
-                        "duration_seconds": 2151.999995112419,
-                        "duration_minutes": 35.866666585206985,
-                        "duration_min": "35m 52s"
-                    }
-                },
-                {
                     "name": "Somwar Vrat",
                     "name_key": "Somwar Vrat",
                     "description": "Weekly Monday fast dedicated to Lord Shiva",
@@ -40595,132 +40432,6 @@
                     }
                 },
                 {
-                    "name": "Hindola Festival Begins",
-                    "name_key": "Hindola Festival Begins",
-                    "description": "Hindola Festival Begins marks the start of the Swaminarayan hindola season, when Shri Balakrishna is lovingly seated and swung in decorated swings.",
-                    "deity": "Balakrishna",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "family": "hindola_period",
-                        "family_key": "hindola_period",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                16
-                            ],
-                            "names": [
-                                "First Lunar Day of Dark Half"
-                            ]
-                        },
-                        "tithi_options": [
-                            1,
-                            2
-                        ],
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Shravana",
-                            "value_key": "Shravana",
-                            "name": "Shravana"
-                        },
-                        "karmakala_type": "sayankala",
-                        "karmakala_type_name": "sayankala",
-                        "sect_specific": true,
-                        "ritual_profile": "Satsangi Hindola ritual profile",
-                        "ritual_profile_key": "hindola_satsangi",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.61"
-                        ],
-                        "source_evidence": [
-                            {
-                                "kind": "date_rule",
-                                "source": "Satsangi Jeevan",
-                                "locator": "4.61.17-18",
-                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
-                            }
-                        ],
-                        "unresolved_conditions": [
-                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "Hindola Festival Begins",
-                        "required_tithi": 1,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sayankala",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9543.200017511845,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461251.108069732,
-                        "target_tithi_end_jd": 2461252.167157488,
-                        "standard_date": "2026-07-30",
-                        "observance_date": "2026-07-30",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1159,
-                            "winning_window_overlap_seconds": 9543.200017511845,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Hindola Festival Begins",
-                        "festival_name_localized": "Hindola Festival Begins",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sayankala"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1159,
-                        "winning_window_overlap_seconds": 9543.200017511845,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Ishti",
                     "name_key": "Ishti",
                     "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
@@ -40842,6 +40553,133 @@
                             "name": "Friday",
                             "english_name": "Friday"
                         }
+                    }
+                },
+                {
+                    "name": "Hindola Festival Begins",
+                    "name_key": "Hindola Festival Begins",
+                    "description": "Hindola Festival Begins marks the start of the Swaminarayan hindola season, when Shri Balakrishna is lovingly seated and swung in decorated swings.",
+                    "deity": "Balakrishna",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "family": "hindola_period",
+                        "family_key": "hindola_period",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "First Lunar Day of Dark Half"
+                            ]
+                        },
+                        "tithi_options": [
+                            1,
+                            2
+                        ],
+                        "prefer_higher_tithi_option": true,
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "sayankala",
+                        "sect_specific": true,
+                        "ritual_profile": "Satsangi Hindola ritual profile",
+                        "ritual_profile_key": "hindola_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "date_rule",
+                                "source": "Satsangi Jeevan",
+                                "locator": "4.61.17-18",
+                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
+                            }
+                        ],
+                        "unresolved_conditions": [
+                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Hindola Festival Begins",
+                        "required_tithi": 2,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9531.599999964237,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461252.167157488,
+                        "target_tithi_end_jd": 2461253.2097865194,
+                        "standard_date": "2026-07-31",
+                        "observance_date": "2026-07-31",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1158,
+                            "winning_window_overlap_seconds": 9531.599999964237,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Hindola Festival Begins",
+                        "festival_name_localized": "Hindola Festival Begins",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sayankala"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1158,
+                        "winning_window_overlap_seconds": 9531.599999964237,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],

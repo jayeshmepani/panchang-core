@@ -20,6 +20,14 @@ class FestivalRuleEngine
     // Chandra Darshana; otherwise the observance shifts to the previous (Amavasya-viddha) day.
     private const float GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS = 9.0;
 
+    private const float CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES = 38.0;
+
+    private const float CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES = 9.0;
+
+    private const float CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES = 7.0;
+
+    private const float CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT = 0.8;
+
     // Nag Panchami (Shravana Krishna Panchami) is paraviddha: the reference keeps the Panchami
     // pierced by the Shashthi that spans at least 6 (fixed 24-minute) ghadis past sunrise, and
     // only shifts the observance based on the same 6-ghadi Chaturthi vedha threshold.
@@ -172,6 +180,14 @@ class FestivalRuleEngine
             return null;
         }
 
+        $preferHigherTithi = (bool) ($rule['prefer_higher_tithi_option'] ?? false);
+        if ($preferHigherTithi) {
+            usort(
+                $targetIntervals,
+                static fn (array $left, array $right): int => $right['tithi'] <=> $left['tithi'],
+            );
+        }
+
         $karmakalaType = $this->normalizeKarmakalaType((string) ($rule['karmakala_type'] ?? 'sunrise'));
         $vriddhiPreference = (string) ($rule['vriddhi_preference'] ?? ($karmakalaType === 'sunrise' ? 'first' : 'last'));
         $kshayaPreference = (string) ($rule['kshaya_preference'] ?? 'first');
@@ -284,7 +300,12 @@ class FestivalRuleEngine
                 'score' => (int) ($winner['score'] ?? 0),
             ];
 
-            if ($bestResolution === null || $this->compareResolvedFestivalOutcome($resolution, $bestResolution) < 0) {
+            $preferHigherTithi = (bool) ($rule['prefer_higher_tithi_option'] ?? false);
+            if ($preferHigherTithi) {
+                $bestResolution = $resolution;
+                break;
+            }
+            if ($bestResolution === null || $this->compareResolvedFestivalOutcome($resolution, $bestResolution, $preferHigherTithi) < 0) {
                 $bestResolution = $resolution;
             }
         }
@@ -512,6 +533,11 @@ class FestivalRuleEngine
                 if ($postSunriseSeconds < $thresholdSeconds) {
                     $targetTithi = 1;
                     $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_short_pratipada_sthula_present');
+                } elseif ($this->isYoungCrescentVisibleAtSunset($details, $rule)) {
+                    // Long Pratipada normally defers Sthula darshana to Sud 2, but when the young
+                    // crescent is astronomically sightable at sunset the observance stays on Sud 1.
+                    $targetTithi = 1;
+                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_crescent_visible_at_sunset');
                 }
             }
         } elseif ($currentAbs === 2) {
@@ -525,10 +551,12 @@ class FestivalRuleEngine
                     $assessment = $this->chandraDarshanaSthulaAssessment(2, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1');
                 }
             }
-        } elseif ($currentAbs === 30) {
+        } elseif ($currentAbs === 30 && !(bool) ($rule['adhika_only'] ?? false)) {
             // Kshaya Pratipada: Amavasya is udaya-vyapini and Pratipada is wholly contained in
             // the day (never touches a sunrise). Being short, Sthula darshana is present, so CD
             // stays on this Amavasya-viddha (Sud 1) day.
+            // Skip for adhika-only Chandra Darshana: the kshaya Pratipada after Adhika Amavasya
+            // belongs to the following nija month, not a second Adhika observance.
             $pratipadaInterval = $this->deriveSnapshotTithiInterval(1, 'Shukla', $details, $nextDetails);
             if (
                 $pratipadaInterval !== null
@@ -1275,14 +1303,16 @@ class FestivalRuleEngine
         return 0;
     }
 
-    private function compareResolvedFestivalOutcome(array $left, array $right): int
+    private function compareResolvedFestivalOutcome(array $left, array $right, bool $preferHigherTithi = false): int
     {
         if ($left['score'] !== $right['score']) {
             return $right['score'] <=> $left['score'];
         }
 
         if ($left['required_tithi'] !== $right['required_tithi']) {
-            return $left['required_tithi'] <=> $right['required_tithi'];
+            return $preferHigherTithi
+                ? ($right['required_tithi'] <=> $left['required_tithi'])
+                : ($left['required_tithi'] <=> $right['required_tithi']);
         }
 
         return $left['winner']['day_offset'] <=> $right['winner']['day_offset'];
@@ -1400,9 +1430,12 @@ class FestivalRuleEngine
         }
 
         if ((bool) ($rule['madhyahna_purvatithi_vedha_rejection'] ?? false)) {
+            $resolutionPolicy = (array) ($rule['resolution_policy'] ?? []);
+
             return $this->resolveMadhyahnaPurvaTithiVedhaTable(
                 $candidates,
-                (string) ($rule['vriddhi_preference'] ?? 'first')
+                (string) ($rule['vriddhi_preference'] ?? 'first'),
+                (bool) ($resolutionPolicy['both_days_prefer_navami_yuta'] ?? false),
             );
         }
 
@@ -2739,8 +2772,11 @@ class FestivalRuleEngine
      *    (shuddha) sunrise day is preferred for `last`, otherwise first is tried first;
      *  - kshaya (only the previous-tithi-viddha purva day carries the tithi) accepts that viddha day.
      */
-    private function resolveMadhyahnaPurvaTithiVedhaTable(array $candidates, string $vriddhiPreference = 'first'): ?array
-    {
+    private function resolveMadhyahnaPurvaTithiVedhaTable(
+        array $candidates,
+        string $vriddhiPreference = 'first',
+        bool $bothDaysPreferNavamiYuta = false,
+    ): ?array {
         $day1 = $candidates[0] ?? null;
         $day2 = $candidates[1] ?? null;
         if (!is_array($day1) || !is_array($day2)) {
@@ -2759,9 +2795,28 @@ class FestivalRuleEngine
 
         // Both shuddha madhyahna-vyapini: respect configured vriddhi preference.
         if ($day1ShuddhaVyapti && $day2ShuddhaVyapti) {
+            if ($bothDaysPreferNavamiYuta) {
+                return $this->markSpecialWinner($day2, 'madhyahna_shuddha_navami_yuta_day2');
+            }
+
             return $preferLast
                 ? $this->markSpecialWinner($day2, 'madhyahna_shuddha_para_vedha_free_day2')
                 : $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+        }
+
+        $day1Present = (bool) ($day1['target_during_observance'] ?? false);
+        $day2Present = (bool) ($day2['target_during_observance'] ?? false);
+        if ($bothDaysPreferNavamiYuta && $day1Present && $day2Present) {
+            if ($day1ShuddhaVyapti && !$day2ShuddhaVyapti) {
+                return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
+            }
+
+            return $this->markSpecialWinner($day2, 'madhyahna_shuddha_navami_yuta_day2');
+        }
+
+        // Navami-yukta observance on the standalone shuddha udaya day (para day of the pair).
+        if ($bothDaysPreferNavamiYuta && $day1AtSunrise && !$day2AtSunrise && $day1ShuddhaVyapti && !$day1Viddha) {
+            return $this->markSpecialWinner($day1, 'madhyahna_shuddha_navami_yuta_day2');
         }
 
         if ($preferLast) {
@@ -3131,6 +3186,34 @@ class FestivalRuleEngine
             'start_jd' => $startJd,
             'end_jd' => $endJd,
         ];
+    }
+
+    private function isYoungCrescentVisibleAtSunset(array $details, array $rule): bool
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
+        $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
+        if ($sunsetJd <= 0.0 || $moonsetJd === null || $moonsetJd <= $sunsetJd) {
+            return false;
+        }
+
+        $lagMinutes = ($moonsetJd - $sunsetJd) * 1440.0;
+        $minLag = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES);
+        if ($lagMinutes < $minLag) {
+            return false;
+        }
+
+        $elongation = (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
+        $hardFloor = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES);
+        if ($elongation < $hardFloor) {
+            return false;
+        }
+
+        $minElongation = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES);
+        $minIllumination = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT);
+        $illumination = (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0);
+
+        return $elongation >= $minElongation || $illumination >= $minIllumination;
     }
 
     private function moonVisibleAfterSunset(array $details): bool

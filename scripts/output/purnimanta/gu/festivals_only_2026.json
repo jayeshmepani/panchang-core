@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-09T09:38:16+00:00",
+        "generated_at": "2026-07-11T05:34:37+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -19,8 +19,8 @@
         "year": 2026,
         "calendar_type": "purnimanta",
         "locale": "gu",
-        "festival_day_count": 198,
-        "festival_entry_count": 391,
+        "festival_day_count": 199,
+        "festival_entry_count": 390,
         "total_festivals": 324,
         "by_date": {
             "2026-01-03": [
@@ -15834,169 +15834,6 @@
                     }
                 },
                 {
-                    "name": "અધિક ચંદ્ર દર્શન",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "અધિક માસમાં થતું ચંદ્ર દર્શન.",
-                    "deity": "ચંદ્ર",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "સુદ એકમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "શાસ્ત્રીય સ્થૂળ ચંદ્રદર્શન ૯-મુહૂર્ત નિયમ",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "શાસ્ત્રીય ગ્રંથનો નિયમ (સ્થૂળ ચંદ્રદર્શન સુદ ૧ અથવા સુદ ૨)",
-                        "location_sensitive": true,
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "અધિક ચંદ્ર દર્શન",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2151.999995112419,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461206.620878922,
-                        "target_tithi_end_jd": 2461207.523900463,
-                        "standard_date": "2026-06-15",
-                        "observance_date": "2026-06-15",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "winning_score": 1535,
-                            "winning_window_overlap_seconds": 2151.999995112419,
-                            "winning_window_coverage_ratio": 1,
-                            "target_tithi_daylight_overlap_seconds": 40520.06116658449,
-                            "moon_visibility_start_jd": 2461207.0898611112,
-                            "moon_visibility_end_jd": 2461207.1147685186,
-                            "moon_visibility_seconds": 2151.999995112419,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_pratipada",
-                                "pratipada_post_sunrise_seconds": 86407.99999684095,
-                                "pratipada_post_sunrise_minutes": 1440.1333332806826,
-                                "pratipada_post_sunrise_muhurtas": 26.501727754722815,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 29344.20001477003,
-                                "day_muhurta_seconds": 3260.466668307781,
-                                "reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "winning_reason_name": "chandra_darshana_sud1_kshaya_pratipada_sthula_present"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "અધિક ચંદ્ર દર્શન",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                        "winning_score": 1535,
-                        "winning_window_overlap_seconds": 2151.999995112419,
-                        "winning_window_coverage_ratio": 1,
-                        "target_tithi_daylight_overlap_seconds": 40520.06116658449,
-                        "moon_visibility_start_jd": 2461207.0898611112,
-                        "moon_visibility_end_jd": 2461207.1147685186,
-                        "moon_visibility_seconds": 2151.999995112419,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_pratipada",
-                            "pratipada_post_sunrise_seconds": 86407.99999684095,
-                            "pratipada_post_sunrise_minutes": 1440.1333332806826,
-                            "pratipada_post_sunrise_muhurtas": 26.501727754722815,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 29344.20001477003,
-                            "day_muhurta_seconds": 3260.466668307781,
-                            "reason": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud1_kshaya_pratipada_sthula_present",
-                        "winning_reason_name": "chandra_darshana_sud1_kshaya_pratipada_sthula_present"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
-                        "display": "૦૭:૩૯ અપરાહ્ન to ૦૮:૧૫ અપરાહ્ન",
-                        "start": "૦૭:૩૯ અપરાહ્ન",
-                        "end": "૦૮:૧૫ અપરાહ્ન",
-                        "start_iso": "15/06/2026 07:39:24 PM",
-                        "end_iso": "15/06/2026 08:15:16 PM",
-                        "start_jd": 2461207.0898611112,
-                        "end_jd": 2461207.1147685186,
-                        "duration_seconds": 2151.999995112419,
-                        "duration_minutes": 35.866666585206985,
-                        "duration_min": "35m 52s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
-                        "display": "૦૭:૩૯ અપરાહ્ન to ૦૮:૧૫ અપરાહ્ન",
-                        "start": "૦૭:૩૯ અપરાહ્ન",
-                        "end": "૦૮:૧૫ અપરાહ્ન",
-                        "start_iso": "15/06/2026 07:39:24 PM",
-                        "end_iso": "15/06/2026 08:15:16 PM",
-                        "start_jd": 2461207.0898611112,
-                        "end_jd": 2461207.1147685186,
-                        "duration_seconds": 2151.999995112419,
-                        "duration_minutes": 35.866666585206985,
-                        "duration_min": "35m 52s"
-                    }
-                },
-                {
                     "name": "પુરુષોત્તમ માસ સમાપન",
                     "name_key": "Purushottam Maas Ends",
                     "description": "ભગવાન વિષ્ણુને સમર્પિત અધિક માસ એટલે પુરુષોત્તમ માસનો સમાપન",
@@ -20326,132 +20163,6 @@
             ],
             "2026-07-30": [
                 {
-                    "name": "હિંડોળા ઉત્સવ પ્રારંભ",
-                    "name_key": "Hindola Festival Begins",
-                    "description": "હિંડોળા ઉત્સવ પ્રારંભ સ્વામિનારાયણ હિંડોળા ઋતુની શરૂઆતનું સૂચક છે, જ્યારે શ્રી બાલકૃષ્ણને સજાવટ કરેલા હિંડોળાઓમાં પ્રેમથી બેસાડી ઝુલાવવામાં આવે છે.",
-                    "deity": "બાલકૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "family": "hindola_period",
-                        "family_key": "hindola_period",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                16
-                            ],
-                            "names": [
-                                "વદ એકમ"
-                            ]
-                        },
-                        "tithi_options": [
-                            1,
-                            2
-                        ],
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "શ્રાવણ",
-                            "value_key": "Shravana",
-                            "name": "શ્રાવણ"
-                        },
-                        "karmakala_type": "sayankala",
-                        "karmakala_type_name": "સાયંકાળ",
-                        "sect_specific": true,
-                        "ritual_profile": "સત્સંગી હિંડોળા વિધિ રૂપરેખા",
-                        "ritual_profile_key": "hindola_satsangi",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.61"
-                        ],
-                        "source_evidence": [
-                            {
-                                "kind": "date_rule",
-                                "source": "Satsangi Jeevan",
-                                "locator": "4.61.17-18",
-                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
-                            }
-                        ],
-                        "unresolved_conditions": [
-                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "હિંડોળા ઉત્સવ પ્રારંભ",
-                        "required_tithi": 1,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sayankala",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 9543.200017511845,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461251.108069732,
-                        "target_tithi_end_jd": 2461252.167157488,
-                        "standard_date": "2026-07-30",
-                        "observance_date": "2026-07-30",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1159,
-                            "winning_window_overlap_seconds": 9543.200017511845,
-                            "winning_window_coverage_ratio": 1,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Hindola Festival Begins",
-                        "festival_name_localized": "હિંડોળા ઉત્સવ પ્રારંભ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સાયંકાળ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1159,
-                        "winning_window_overlap_seconds": 9543.200017511845,
-                        "winning_window_coverage_ratio": 1,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "ઈષ્ટિ",
                     "name_key": "Ishti",
                     "description": "પૂનમ/અમાસ પછીના દિવસે કરવામાં આવતી યજ્ઞ વિધિ",
@@ -20534,6 +20245,135 @@
                         "winning_score": 1000,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-07-31": [
+                {
+                    "name": "હિંડોળા ઉત્સવ પ્રારંભ",
+                    "name_key": "Hindola Festival Begins",
+                    "description": "હિંડોળા ઉત્સવ પ્રારંભ સ્વામિનારાયણ હિંડોળા ઋતુની શરૂઆતનું સૂચક છે, જ્યારે શ્રી બાલકૃષ્ણને સજાવટ કરેલા હિંડોળાઓમાં પ્રેમથી બેસાડી ઝુલાવવામાં આવે છે.",
+                    "deity": "બાલકૃષ્ણ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "family": "hindola_period",
+                        "family_key": "hindola_period",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                16
+                            ],
+                            "names": [
+                                "વદ એકમ"
+                            ]
+                        },
+                        "tithi_options": [
+                            1,
+                            2
+                        ],
+                        "prefer_higher_tithi_option": true,
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "શ્રાવણ",
+                            "value_key": "Shravana",
+                            "name": "શ્રાવણ"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "સાયંકાળ",
+                        "sect_specific": true,
+                        "ritual_profile": "સત્સંગી હિંડોળા વિધિ રૂપરેખા",
+                        "ritual_profile_key": "hindola_satsangi",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "date_rule",
+                                "source": "Satsangi Jeevan",
+                                "locator": "4.61.17-18",
+                                "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
+                            }
+                        ],
+                        "unresolved_conditions": [
+                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "હિંડોળા ઉત્સવ પ્રારંભ",
+                        "required_tithi": 2,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9531.599999964237,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461252.167157488,
+                        "target_tithi_end_jd": 2461253.2097865194,
+                        "standard_date": "2026-07-31",
+                        "observance_date": "2026-07-31",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1158,
+                            "winning_window_overlap_seconds": 9531.599999964237,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Hindola Festival Begins",
+                        "festival_name_localized": "હિંડોળા ઉત્સવ પ્રારંભ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "સાયંકાળ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1158,
+                        "winning_window_overlap_seconds": 9531.599999964237,
+                        "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,

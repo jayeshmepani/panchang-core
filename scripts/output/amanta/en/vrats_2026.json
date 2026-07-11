@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T04:56:40+00:00",
+        "generated_at": "2026-07-11T06:50:54+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "amanta",
@@ -18,7 +18,7 @@
         "title": "Vrats 2026 - All vrat observances for the entire year",
         "year": 2026,
         "calendar_type": "amanta",
-        "vrat_day_count": 183,
+        "vrat_day_count": 184,
         "vrat_entry_count": 277,
         "total_vrats": 122,
         "recurring_weekday_vrats": [
@@ -3654,7 +3654,7 @@
                     }
                 }
             ],
-            "2026-02-19": [
+            "2026-02-18": [
                 {
                     "name": "Chandra Darshana",
                     "name_key": "Chandra Darshana",
@@ -3697,7 +3697,7 @@
                     },
                     "resolution": {
                         "festival_name": "Chandra Darshana",
-                        "required_tithi": 2,
+                        "required_tithi": 1,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
                         "tithi_at_karmakala_today": false,
@@ -3708,32 +3708,32 @@
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461089.9777463675,
-                        "target_tithi_end_jd": 2461090.9368880903,
-                        "standard_date": "2026-02-19",
-                        "observance_date": "2026-02-19",
+                        "target_tithi_start_jd": 2461089.0007303273,
+                        "target_tithi_end_jd": 2461089.9777463675,
+                        "standard_date": "2026-02-18",
+                        "observance_date": "2026-02-18",
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
                             "winning_score": 1500,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 31119.13098692894,
-                            "moon_visibility_start_jd": 2461091.055648148,
-                            "moon_visibility_end_jd": 2461091.13337963,
-                            "moon_visibility_seconds": 6716.00002348423,
+                            "target_tithi_daylight_overlap_seconds": 34606.286162137985,
+                            "moon_visibility_start_jd": 2461090.055266204,
+                            "moon_visibility_end_jd": 2461090.093541667,
+                            "moon_visibility_seconds": 3307.000006735325,
                             "visibility_assessment": {
                                 "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
+                                "evening_tithi": "shukla_pratipada",
                                 "pratipada_post_sunrise_seconds": 34606.286162137985,
                                 "pratipada_post_sunrise_minutes": 576.7714360356331,
-                                "pratipada_post_sunrise_muhurtas": 12.54456966538393,
+                                "pratipada_post_sunrise_muhurtas": 12.567651852706605,
                                 "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 24827.999984622,
-                                "day_muhurta_seconds": 2758.666664958,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                                "sthula_threshold_seconds": 24782.400014698505,
+                                "day_muhurta_seconds": 2753.6000016331673,
+                                "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
                                 "basis": "classical_textual_rule_sthula_chandra_darshana"
                             },
                             "bhadra_decision": {
@@ -3741,8 +3741,8 @@
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "Chandra Darshana",
@@ -3755,25 +3755,25 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
                         "winning_score": 1500,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 31119.13098692894,
-                        "moon_visibility_start_jd": 2461091.055648148,
-                        "moon_visibility_end_jd": 2461091.13337963,
-                        "moon_visibility_seconds": 6716.00002348423,
+                        "target_tithi_daylight_overlap_seconds": 34606.286162137985,
+                        "moon_visibility_start_jd": 2461090.055266204,
+                        "moon_visibility_end_jd": 2461090.093541667,
+                        "moon_visibility_seconds": 3307.000006735325,
                         "visibility_assessment": {
                             "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
+                            "evening_tithi": "shukla_pratipada",
                             "pratipada_post_sunrise_seconds": 34606.286162137985,
                             "pratipada_post_sunrise_minutes": 576.7714360356331,
-                            "pratipada_post_sunrise_muhurtas": 12.54456966538393,
+                            "pratipada_post_sunrise_muhurtas": 12.567651852706605,
                             "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 24827.999984622,
-                            "day_muhurta_seconds": 2758.666664958,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "sthula_threshold_seconds": 24782.400014698505,
+                            "day_muhurta_seconds": 2753.6000016331673,
+                            "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
                             "basis": "classical_textual_rule_sthula_chandra_darshana"
                         },
                         "bhadra_decision": {
@@ -3783,36 +3783,36 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
                         "type_name": "sunset to moonset visibility",
-                        "display": "06:50 PM to 08:42 PM",
-                        "start": "06:50 PM",
-                        "end": "08:42 PM",
-                        "start_iso": "19/02/2026 06:50:07 PM",
-                        "end_iso": "19/02/2026 08:42:04 PM",
-                        "start_jd": 2461091.055648148,
-                        "end_jd": 2461091.13337963,
-                        "duration_seconds": 6716.00002348423,
-                        "duration_minutes": 111.93333372473717,
-                        "duration_min": "1h 51m 56s"
+                        "display": "06:49 PM to 07:44 PM",
+                        "start": "06:49 PM",
+                        "end": "07:44 PM",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
                     },
                     "observance_window": {
                         "type": "moon_visibility",
                         "type_name": "sunset to moonset visibility",
-                        "display": "06:50 PM to 08:42 PM",
-                        "start": "06:50 PM",
-                        "end": "08:42 PM",
-                        "start_iso": "19/02/2026 06:50:07 PM",
-                        "end_iso": "19/02/2026 08:42:04 PM",
-                        "start_jd": 2461091.055648148,
-                        "end_jd": 2461091.13337963,
-                        "duration_seconds": 6716.00002348423,
-                        "duration_minutes": 111.93333372473717,
-                        "duration_min": "1h 51m 56s"
+                        "display": "06:49 PM to 07:44 PM",
+                        "start": "06:49 PM",
+                        "end": "07:44 PM",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
                     }
                 }
             ],
@@ -8478,6 +8478,168 @@
                     }
                 }
             ],
+            "2026-04-18": [
+                {
+                    "name": "Chandra Darshana",
+                    "name_key": "Chandra Darshana",
+                    "description": "First sighting of the moon after Amavasya",
+                    "deity": "Chandra",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "First Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "sunset to moonset visibility",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "classical Sthula Chandra Darshana 9-muhurta rule",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "Chandra Darshana",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461147.9942380227,
+                        "target_tithi_end_jd": 2461148.861778616,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_score": 1500,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "target_tithi_daylight_overlap_seconds": 27802.672411501408,
+                            "moon_visibility_start_jd": 2461149.072337963,
+                            "moon_visibility_end_jd": 2461149.1196875,
+                            "moon_visibility_seconds": 4090.9999787807465,
+                            "visibility_assessment": {
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
+                                "visible": true,
+                                "evening_tithi": "shukla_pratipada",
+                                "pratipada_post_sunrise_seconds": 27802.672411501408,
+                                "pratipada_post_sunrise_minutes": 463.37787352502346,
+                                "pratipada_post_sunrise_muhurtas": 9.067074379873116,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 27597.000004649162,
+                                "day_muhurta_seconds": 3066.333333849907,
+                                "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "Chandra Darshana",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunset to moonset visibility"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_score": 1500,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "target_tithi_daylight_overlap_seconds": 27802.672411501408,
+                        "moon_visibility_start_jd": 2461149.072337963,
+                        "moon_visibility_end_jd": 2461149.1196875,
+                        "moon_visibility_seconds": 4090.9999787807465,
+                        "visibility_assessment": {
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
+                            "visible": true,
+                            "evening_tithi": "shukla_pratipada",
+                            "pratipada_post_sunrise_seconds": 27802.672411501408,
+                            "pratipada_post_sunrise_minutes": 463.37787352502346,
+                            "pratipada_post_sunrise_muhurtas": 9.067074379873116,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 27597.000004649162,
+                            "day_muhurta_seconds": 3066.333333849907,
+                            "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "sunset to moonset visibility",
+                        "display": "07:14 PM to 08:22 PM",
+                        "start": "07:14 PM",
+                        "end": "08:22 PM",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "sunset to moonset visibility",
+                        "display": "07:14 PM to 08:22 PM",
+                        "start": "07:14 PM",
+                        "end": "08:22 PM",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
+                    }
+                }
+            ],
             "2026-04-19": [
                 {
                     "name": "Parashurama Jayanti (Pradosha Tradition)",
@@ -8583,166 +8745,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
-                    "name": "Chandra Darshana",
-                    "name_key": "Chandra Darshana",
-                    "description": "First sighting of the moon after Amavasya",
-                    "deity": "Chandra",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "First Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "sunset to moonset visibility",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "classical Sthula Chandra Darshana 9-muhurta rule",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)",
-                        "location_sensitive": true
-                    },
-                    "resolution": {
-                        "festival_name": "Chandra Darshana",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461148.861778616,
-                        "target_tithi_end_jd": 2461149.7219889043,
-                        "standard_date": "2026-04-19",
-                        "observance_date": "2026-04-19",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 15775.841327011585,
-                            "moon_visibility_start_jd": 2461150.072627315,
-                            "moon_visibility_end_jd": 2461150.1683333335,
-                            "moon_visibility_seconds": 8269.000008702278,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 27802.672411501408,
-                                "pratipada_post_sunrise_minutes": 463.37787352502346,
-                                "pratipada_post_sunrise_muhurtas": 9.052117084325168,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 27642.59999871254,
-                                "day_muhurta_seconds": 3071.399999856949,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                        },
-                        "festival_name_key": "Chandra Darshana",
-                        "festival_name_localized": "Chandra Darshana",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunset to moonset visibility"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 15775.841327011585,
-                        "moon_visibility_start_jd": 2461150.072627315,
-                        "moon_visibility_end_jd": 2461150.1683333335,
-                        "moon_visibility_seconds": 8269.000008702278,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 27802.672411501408,
-                            "pratipada_post_sunrise_minutes": 463.37787352502346,
-                            "pratipada_post_sunrise_muhurtas": 9.052117084325168,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 27642.59999871254,
-                            "day_muhurta_seconds": 3071.399999856949,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "sunset to moonset visibility",
-                        "display": "07:14 PM to 09:32 PM",
-                        "start": "07:14 PM",
-                        "end": "09:32 PM",
-                        "start_iso": "19/04/2026 07:14:35 PM",
-                        "end_iso": "19/04/2026 09:32:24 PM",
-                        "start_jd": 2461150.072627315,
-                        "end_jd": 2461150.1683333335,
-                        "duration_seconds": 8269.000008702278,
-                        "duration_minutes": 137.81666681170464,
-                        "duration_min": "2h 17m 49s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "sunset to moonset visibility",
-                        "display": "07:14 PM to 09:32 PM",
-                        "start": "07:14 PM",
-                        "end": "09:32 PM",
-                        "start_iso": "19/04/2026 07:14:35 PM",
-                        "end_iso": "19/04/2026 09:32:24 PM",
-                        "start_jd": 2461150.072627315,
-                        "end_jd": 2461150.1683333335,
-                        "duration_seconds": 8269.000008702278,
-                        "duration_minutes": 137.81666681170464,
-                        "duration_min": "2h 17m 49s"
                     }
                 }
             ],

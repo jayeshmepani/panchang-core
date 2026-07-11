@@ -74,7 +74,7 @@ class FestivalCoverageRegressionTest extends TestCase
         //  - Anant Chaturdashi: purvahna 2-muhurta post-sunrise chooser (ref 984-999)
         $expected = [
             'Treta Yuga Diwas' => ['2026-04-19', 'akshaya_tritiya_both_purvahna_below_3_muhurta_purva_day1'],
-            'Radha Ashtami' => ['2026-09-18', 'madhyahna_shuddha_purva_vedha_free_day1'],
+            'Radha Ashtami' => ['2026-09-19', 'madhyahna_shuddha_navami_yuta_day2'],
             'Swaminarayan Varaha Jayanti' => ['2026-08-16', 'madhyahna_shuddha_purva_vedha_free_day1'],
             'Anant Chaturdashi' => ['2026-09-25', 'anant_chaturdashi_2_muhurta_day1'],
         ];
@@ -314,6 +314,37 @@ class FestivalCoverageRegressionTest extends TestCase
 
         self::assertSame(['2026-09-01'], array_values(array_unique($datesByCalendar['amanta'] ?? [])));
         self::assertSame(['2026-08-17'], array_values(array_unique($datesByCalendar['purnimanta'] ?? [])));
+    }
+
+    public function test_satsangi_jeevan_61_hindola_and_adhika_chandra_darshana_2026(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $calendar = $service->getFestivalYearCalendar(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+
+        $byName = [];
+        foreach (($calendar['flat'] ?? []) as $entry) {
+            $festival = (array) ($entry['festival'] ?? []);
+            $name = (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? '');
+            $date = (string) ($entry['date'] ?? '');
+            if ($name !== '' && $date !== '') {
+                $byName[$name][] = $date;
+            }
+        }
+
+        self::assertSame(['2026-07-31'], array_values(array_unique($byName['Hindola Festival Begins'] ?? [])));
+        self::assertSame(['2026-08-30'], array_values(array_unique($byName['Hindola Festival Ends'] ?? [])));
+        self::assertNotContains('2026-06-15', $byName['Adhika Chandra Darshana'] ?? []);
+        self::assertContains('2026-06-16', $byName['Chandra Darshana'] ?? []);
     }
 
     #[Override]

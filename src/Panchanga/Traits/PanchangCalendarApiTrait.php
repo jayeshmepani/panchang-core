@@ -1136,17 +1136,29 @@ trait PanchangCalendarApiTrait
                 foreach ($cluster as $candidate) {
                     $festival = $candidate['entry']['festival'];
                     $rules = (array) ($festival['rules_applied'] ?? []);
+                    $basis = (array) ($festival['calculation_basis'] ?? []);
                     $score = (int) ($rules['winning_score'] ?? -1);
                     $reason = (string) ($rules['winning_reason'] ?? '');
                     $reasonKey = (string) ($rules['winning_reason_key'] ?? $reason);
                     $date = $candidate['entry']['date'];
                     $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? $festival['resolution']['decision']['vriddhi_preference'] ?? '');
+                    $preferHigherTithi = (bool) ($basis['prefer_higher_tithi_option'] ?? false);
+                    $requiredTithi = (int) ($festival['resolution']['required_tithi'] ?? 0);
 
                     if ($score < 0) {
                         continue;
                     }
 
-                    if ($best === null || $this->isStrongerFestivalDecision($score, $reason, $reasonKey, $date, $vriddhiPreference, $best)) {
+                    if ($best === null || $this->isStrongerFestivalDecision(
+                        $score,
+                        $reason,
+                        $reasonKey,
+                        $date,
+                        $vriddhiPreference,
+                        $preferHigherTithi,
+                        $requiredTithi,
+                        $best,
+                    )) {
                         $best = [
                             'idx' => $candidate['idx'],
                             'score' => $score,
@@ -1154,6 +1166,8 @@ trait PanchangCalendarApiTrait
                             'reason_key' => $reasonKey,
                             'date' => $date,
                             'vriddhi_preference' => $vriddhiPreference,
+                            'prefer_higher_tithi_option' => $preferHigherTithi,
+                            'required_tithi' => $requiredTithi,
                         ];
                     }
                 }
@@ -1270,9 +1284,29 @@ trait PanchangCalendarApiTrait
         return $filtered;
     }
 
-    /** @param array{score:int, reason:string, reason_key:string, date:string, vriddhi_preference:string} $best */
-    private function isStrongerFestivalDecision(int $score, string $reason, string $reasonKey, string $date, string $vriddhiPreference, array $best): bool
-    {
+    /** @param array{score:int, reason:string, reason_key:string, date:string, vriddhi_preference:string, prefer_higher_tithi_option?:bool, required_tithi?:int} $best */
+    private function isStrongerFestivalDecision(
+        int $score,
+        string $reason,
+        string $reasonKey,
+        string $date,
+        string $vriddhiPreference,
+        bool $preferHigherTithi,
+        int $requiredTithi,
+        array $best,
+    ): bool {
+        $bestPrefersHigherTithi = (bool) ($best['prefer_higher_tithi_option'] ?? false);
+        if ($preferHigherTithi || $bestPrefersHigherTithi) {
+            $bestRequiredTithi = (int) ($best['required_tithi'] ?? 0);
+            if ($requiredTithi > 0 && $bestRequiredTithi > 0 && $requiredTithi !== $bestRequiredTithi) {
+                return $requiredTithi > $bestRequiredTithi;
+            }
+
+            if ($requiredTithi > 0 && $bestRequiredTithi > 0 && $requiredTithi === $bestRequiredTithi) {
+                return strcmp($date, $best['date']) > 0;
+            }
+        }
+
         $isChandraDarshanaReason = static fn (string $r): bool => str_starts_with($r, 'chandra_darshana_');
         if ($isChandraDarshanaReason($reasonKey) && $isChandraDarshanaReason($best['reason_key'])) {
             return strcmp($date, $best['date']) < 0;
