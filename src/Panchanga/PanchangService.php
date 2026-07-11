@@ -1100,7 +1100,13 @@ class PanchangService
         [$sunrise, $sunset] = $this->sunService->getSunriseSunset($birthBase);
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
         $previousDay = $date->subDay();
-        [$previousSunrise] = $this->sunService->getSunriseSunset([
+        [$previousSunrise, $previousSunset] = $this->sunService->getSunriseSunset([
+            ...$birthBase,
+            'year' => $previousDay->year,
+            'month' => $previousDay->month,
+            'day' => $previousDay->day,
+        ]);
+        [$previousMoonrise, $previousMoonset] = $this->sunService->getMoonriseMoonset([
             ...$birthBase,
             'year' => $previousDay->year,
             'month' => $previousDay->month,
@@ -1123,6 +1129,11 @@ class PanchangService
         $jdPreviousSunrise = $this->toJulianDayFromCarbon($previousSunrise, $tz);
         $jdSunset = $this->toJulianDayFromCarbon($sunset, $tz);
         $jdNextSunrise = $this->toJulianDayFromCarbon($nextSunrise, $tz);
+        $jdPrevSunset = $previousSunset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($previousSunset, $tz) : 0.0;
+        $jdPrevMoonset = $previousMoonset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($previousMoonset, $tz) : null;
+        $prevMoonSunAngleAtSunset = $this->getMoonSunAngle($jdPrevSunset);
+        $prevMoonIlluminationAtSunset = (1.0 - cos(deg2rad($prevMoonSunAngleAtSunset))) / 2.0;
+
         $moonSunAngleAtSunset = $this->getMoonSunAngle($jdSunset);
         $moonIlluminationAtSunset = (1.0 - cos(deg2rad($moonSunAngleAtSunset))) / 2.0;
         $sunriseBirth = [
@@ -1272,6 +1283,10 @@ class PanchangService
                 'previous_sunrise_jd' => $jdPreviousSunrise,
                 'sunset_jd' => $jdSunset,
                 'next_sunrise_jd' => $jdNextSunrise,
+                'prev_sunset_jd' => $jdPrevSunset,
+                'prev_moonset_jd' => $jdPrevMoonset,
+                'prev_moon_sun_elongation_at_sunset_degrees' => $prevMoonSunAngleAtSunset,
+                'prev_moon_illumination_at_sunset_percent' => $prevMoonIlluminationAtSunset * 100.0,
                 'moon_sun_elongation_at_sunset_degrees' => $moonSunAngleAtSunset,
                 'moon_illumination_at_sunset_fraction' => $moonIlluminationAtSunset,
                 'moon_illumination_at_sunset_percent' => $moonIlluminationAtSunset * 100.0,

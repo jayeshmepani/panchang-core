@@ -305,6 +305,7 @@ class FestivalRuleEngine
                 $bestResolution = $resolution;
                 break;
             }
+
             if ($bestResolution === null || $this->compareResolvedFestivalOutcome($resolution, $bestResolution, $preferHigherTithi) < 0) {
                 $bestResolution = $resolution;
             }
@@ -524,31 +525,66 @@ class FestivalRuleEngine
         $targetTithi = null;
         $assessment = null;
 
+        $visibilityAffectsSelection = (bool) ($rule['chandra_darshana_visibility_affects_selection'] ?? false);
+        $crescentVisibleToday = $this->isYoungCrescentVisibleAtSunset($details, $rule);
+
         if ($currentAbs === 1) {
             // Pratipada is udaya-vyapini (day P). Sthula darshana is present (CD today, Sud 1)
             // only when Pratipada is short: it does not persist 9 muhurtas past sunrise.
             $pratipadaInterval = $this->deriveSnapshotTithiInterval(1, 'Shukla', $details, $nextDetails);
             if ($pratipadaInterval !== null) {
                 $postSunriseSeconds = max(0.0, ($pratipadaInterval['end_jd'] - $sunriseJd) * 86400.0);
-                if ($postSunriseSeconds < $thresholdSeconds) {
-                    $targetTithi = 1;
-                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_short_pratipada_sthula_present');
-                } elseif ($this->isYoungCrescentVisibleAtSunset($details, $rule)) {
+                $dwitiyaActiveAtSunset = ($pratipadaInterval['end_jd'] < $sunsetJd);
+
+                $classicalPassed = ($postSunriseSeconds < $thresholdSeconds || $dwitiyaActiveAtSunset);
+
+                if ($visibilityAffectsSelection) {
+                    // Under modern visibility selection, we must confirm crescent is visible today.
+                    if ($crescentVisibleToday) {
+                        $targetTithi = $dwitiyaActiveAtSunset ? 2 : 1;
+                        $reason = $dwitiyaActiveAtSunset
+                            ? 'chandra_darshana_dwitiya_fallback_at_local_sunset'
+                            : ($classicalPassed
+                                ? 'chandra_darshana_sud1_short_pratipada_sthula_present'
+                                : 'chandra_darshana_sud1_crescent_visible_at_sunset');
+                        $assessment = $this->chandraDarshanaSthulaAssessment($targetTithi, $postSunriseSeconds, $muhurtaSeconds, $reason, $details, $rule);
+                    }
+                } elseif ($classicalPassed) {
+                    // Classical selection.
+                    $targetTithi = $dwitiyaActiveAtSunset ? 2 : 1;
+                    $reason = $dwitiyaActiveAtSunset
+                        ? 'chandra_darshana_dwitiya_fallback_at_local_sunset'
+                        : 'chandra_darshana_sud1_short_pratipada_sthula_present';
+                    $assessment = $this->chandraDarshanaSthulaAssessment($targetTithi, $postSunriseSeconds, $muhurtaSeconds, $reason, $details, $rule);
+                } elseif ($crescentVisibleToday) {
                     // Long Pratipada normally defers Sthula darshana to Sud 2, but when the young
                     // crescent is astronomically sightable at sunset the observance stays on Sud 1.
                     $targetTithi = 1;
-                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_crescent_visible_at_sunset');
+                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_crescent_visible_at_sunset', $details, $rule);
                 }
             }
         } elseif ($currentAbs === 2) {
             // Dwitiya is udaya-vyapini. CD is here (Sud 2) only when the preceding Pratipada was
-            // long (>= 9 muhurtas past its sunrise), i.e. no Sthula darshana on Sud 1.
+            // long (>= 9 muhurtas past its sunrise) AND did not start before the preceding sunset.
             $prevPratipadaEndJd = (float) ($ctx['tithi_start_jd'] ?? 0.0);
             if ($prevSunriseJd > 0.0 && $prevPratipadaEndJd > $prevSunriseJd) {
                 $postSunriseSeconds = max(0.0, ($prevPratipadaEndJd - $prevSunriseJd) * 86400.0);
-                if ($postSunriseSeconds >= $thresholdSeconds) {
+                $prevSunsetJd = $prevSunriseJd + ($sunsetJd - $sunriseJd);
+                $dwitiyaStartedBeforePrevSunset = ($prevSunsetJd > 0.0 && $prevPratipadaEndJd < $prevSunsetJd);
+
+                if ($visibilityAffectsSelection) {
+                    // Resolve today if crescent is visible today and was NOT visible yesterday.
+                    if ($crescentVisibleToday) {
+                        $crescentVisibleYesterday = $this->isYoungCrescentVisibleAtYesterdaySunset($details, $rule);
+                        if (!$crescentVisibleYesterday) {
+                            $targetTithi = 2;
+                            $reason = 'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1';
+                            $assessment = $this->chandraDarshanaSthulaAssessment(2, $postSunriseSeconds, $muhurtaSeconds, $reason, $details, $rule);
+                        }
+                    }
+                } elseif ($postSunriseSeconds >= $thresholdSeconds && !$dwitiyaStartedBeforePrevSunset) {
                     $targetTithi = 2;
-                    $assessment = $this->chandraDarshanaSthulaAssessment(2, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1');
+                    $assessment = $this->chandraDarshanaSthulaAssessment(2, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1', $details, $rule);
                 }
             }
         } elseif ($currentAbs === 30 && !(bool) ($rule['adhika_only'] ?? false)) {
@@ -565,8 +601,16 @@ class FestivalRuleEngine
                 && $pratipadaInterval['end_jd'] <= $nextSunriseJd
             ) {
                 $postSunriseSeconds = max(0.0, ($pratipadaInterval['end_jd'] - $sunriseJd) * 86400.0);
-                $targetTithi = 1;
-                $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_kshaya_pratipada_sthula_present');
+
+                if ($visibilityAffectsSelection) {
+                    if ($crescentVisibleToday) {
+                        $targetTithi = 1;
+                        $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_kshaya_pratipada_sthula_present', $details, $rule);
+                    }
+                } else {
+                    $targetTithi = 1;
+                    $assessment = $this->chandraDarshanaSthulaAssessment(1, $postSunriseSeconds, $muhurtaSeconds, 'chandra_darshana_sud1_kshaya_pratipada_sthula_present', $details, $rule);
+                }
             }
         }
 
@@ -601,12 +645,14 @@ class FestivalRuleEngine
         ];
     }
 
-    /** @return array<string, bool|float|int|string> */
+    /** @return array<string, array<string, bool|float|int|string>|bool|float|int|string> */
     private function chandraDarshanaSthulaAssessment(
         int $targetTithi,
         float $pratipadaPostSunriseSeconds,
         float $muhurtaSeconds,
-        string $reason
+        string $reason,
+        array $details,
+        array $rule
     ): array {
         return [
             'model' => 'classical_sthula_chandra_darshana_9_muhurta',
@@ -620,6 +666,7 @@ class FestivalRuleEngine
             'day_muhurta_seconds' => $muhurtaSeconds,
             'reason' => $reason,
             'basis' => 'classical_textual_rule_sthula_chandra_darshana',
+            'modern_visibility' => $this->buildModernCrescentVisibilityAssessment($details, $rule),
         ];
     }
 
@@ -2807,7 +2854,7 @@ class FestivalRuleEngine
         $day1Present = (bool) ($day1['target_during_observance'] ?? false);
         $day2Present = (bool) ($day2['target_during_observance'] ?? false);
         if ($bothDaysPreferNavamiYuta && $day1Present && $day2Present) {
-            if ($day1ShuddhaVyapti && !$day2ShuddhaVyapti) {
+            if ($day1ShuddhaVyapti && !$day2ShuddhaVyapti) { // @phpstan-ignore booleanNot.alwaysTrue
                 return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
             }
 
@@ -2815,7 +2862,7 @@ class FestivalRuleEngine
         }
 
         // Navami-yukta observance on the standalone shuddha udaya day (para day of the pair).
-        if ($bothDaysPreferNavamiYuta && $day1AtSunrise && !$day2AtSunrise && $day1ShuddhaVyapti && !$day1Viddha) {
+        if ($bothDaysPreferNavamiYuta && $day1AtSunrise && !$day2AtSunrise && $day1ShuddhaVyapti && !$day1Viddha) { // @phpstan-ignore booleanNot.alwaysTrue
             return $this->markSpecialWinner($day1, 'madhyahna_shuddha_navami_yuta_day2');
         }
 
@@ -3188,32 +3235,95 @@ class FestivalRuleEngine
         ];
     }
 
-    private function isYoungCrescentVisibleAtSunset(array $details, array $rule): bool
+    private function buildModernCrescentVisibilityAssessment(array $details, array $rule): array
     {
         $ctx = (array) ($details['Resolution_Context'] ?? []);
         $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
         $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
+
+        $minLag = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES);
+        $minElongation = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES);
+        $hardFloor = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES);
+        $minIllumination = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT);
+
         if ($sunsetJd <= 0.0 || $moonsetJd === null || $moonsetJd <= $sunsetJd) {
+            return [
+                'model' => 'simplified_modern_crescent_visibility',
+                'visible' => false,
+                'lag_minutes' => 0.0,
+                'elongation_degrees' => 0.0,
+                'illumination_percent' => 0.0,
+                'min_lag_minutes' => $minLag,
+                'min_elongation_degrees' => $minElongation,
+                'hard_elongation_floor_degrees' => $hardFloor,
+                'min_illumination_percent' => $minIllumination,
+                'passes_lag' => false,
+                'passes_elongation' => false,
+                'passes_hard_elongation_floor' => false,
+                'passes_illumination' => false,
+                'basis' => 'modern_astronomical_heuristic_not_classical',
+            ];
+        }
+
+        $lagMinutes = ($moonsetJd - $sunsetJd) * 1440.0;
+        $elongation = (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
+        $illumination = (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0);
+
+        $passesLag = ($lagMinutes >= $minLag);
+        $passesHardElongationFloor = ($elongation >= $hardFloor);
+        $passesElongation = ($elongation >= $minElongation);
+        $passesIllumination = ($illumination >= $minIllumination);
+
+        $visible = $passesLag && $passesHardElongationFloor && ($passesElongation || $passesIllumination);
+
+        return [
+            'model' => 'simplified_modern_crescent_visibility',
+            'visible' => $visible,
+            'lag_minutes' => $lagMinutes,
+            'elongation_degrees' => $elongation,
+            'illumination_percent' => $illumination,
+            'min_lag_minutes' => $minLag,
+            'min_elongation_degrees' => $minElongation,
+            'hard_elongation_floor_degrees' => $hardFloor,
+            'min_illumination_percent' => $minIllumination,
+            'passes_lag' => $passesLag,
+            'passes_elongation' => $passesElongation,
+            'passes_hard_elongation_floor' => $passesHardElongationFloor,
+            'passes_illumination' => $passesIllumination,
+            'basis' => 'modern_astronomical_heuristic_not_classical',
+        ];
+    }
+
+    private function isYoungCrescentVisibleAtYesterdaySunset(array $details, array $rule): bool
+    {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        $sunsetJd = (float) ($ctx['prev_sunset_jd'] ?? 0.0);
+        $moonsetJd = (float) ($ctx['prev_moonset_jd'] ?? 0.0);
+
+        $minLag = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES);
+        $minElongation = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES);
+        $hardFloor = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES);
+        $minIllumination = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT);
+
+        if ($sunsetJd <= 0.0 || $moonsetJd <= $sunsetJd) {
             return false;
         }
 
         $lagMinutes = ($moonsetJd - $sunsetJd) * 1440.0;
-        $minLag = (float) ($rule['chandra_darshana_visibility_min_lag_minutes'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES);
-        if ($lagMinutes < $minLag) {
-            return false;
-        }
+        $elongation = (float) ($ctx['prev_moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
+        $illumination = (float) ($ctx['prev_moon_illumination_at_sunset_percent'] ?? 0.0);
 
-        $elongation = (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0);
-        $hardFloor = (float) ($rule['chandra_darshana_visibility_hard_elongation_floor_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES);
-        if ($elongation < $hardFloor) {
-            return false;
-        }
+        $passesLag = ($lagMinutes >= $minLag);
+        $passesHardElongationFloor = ($elongation >= $hardFloor);
+        $passesElongation = ($elongation >= $minElongation);
+        $passesIllumination = ($illumination >= $minIllumination);
 
-        $minElongation = (float) ($rule['chandra_darshana_visibility_min_elongation_degrees'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES);
-        $minIllumination = (float) ($rule['chandra_darshana_visibility_min_illumination_percent'] ?? self::CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT);
-        $illumination = (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0);
+        return $passesLag && $passesHardElongationFloor && ($passesElongation || $passesIllumination);
+    }
 
-        return $elongation >= $minElongation || $illumination >= $minIllumination;
+    private function isYoungCrescentVisibleAtSunset(array $details, array $rule): bool
+    {
+        return $this->buildModernCrescentVisibilityAssessment($details, $rule)['visible'];
     }
 
     private function moonVisibleAfterSunset(array $details): bool

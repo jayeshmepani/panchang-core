@@ -91,7 +91,7 @@ class FestivalCoverageRegressionTest extends TestCase
 
                 $found[$expectedName] = [
                     (string) ($entry['date'] ?? ''),
-                    (string) ($festival['resolution']['decision']['winning_reason'] ?? ''),
+                    (string) ($festival['resolution']['decision']['winning_reason_key'] ?? $festival['resolution']['decision']['winning_reason'] ?? ''),
                 ];
             }
         }

@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T05:28:01+00:00",
+        "generated_at": "2026-07-11T21:15:32+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -3601,7 +3601,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                             "winning_score": 1589,
                             "winning_window_overlap_seconds": 5346.000011265278,
                             "winning_window_coverage_ratio": 1,
@@ -3620,7 +3620,23 @@
                                 "sthula_threshold_seconds": 23657.399985194206,
                                 "day_muhurta_seconds": 2628.599998354912,
                                 "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 89.10000018775463,
+                                    "elongation_degrees": 19.95780790068858,
+                                    "illumination_percent": 3.0027886724162234,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -3628,7 +3644,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -3641,7 +3657,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                         "winning_score": 1589,
                         "winning_window_overlap_seconds": 5346.000011265278,
                         "winning_window_coverage_ratio": 1,
@@ -3660,7 +3676,23 @@
                             "sthula_threshold_seconds": 23657.399985194206,
                             "day_muhurta_seconds": 2628.599998354912,
                             "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 89.10000018775463,
+                                "elongation_degrees": 19.95780790068858,
+                                "illumination_percent": 3.0027886724162234,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -3670,7 +3702,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -9337,6 +9369,198 @@
                             "english_name": "Wednesday"
                         }
                     }
+                },
+                {
+                    "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
+                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
+                    "deity": "चंद्र",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "चंद्र दर्शन",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3307.000006735325,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461089.9777463675,
+                        "target_tithi_end_jd": 2461090.9368880903,
+                        "standard_date": "2026-02-18",
+                        "observance_date": "2026-02-18",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1555,
+                            "winning_window_overlap_seconds": 3307.000006735325,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 6697.713862359524,
+                            "moon_visibility_start_jd": 2461090.055266204,
+                            "moon_visibility_end_jd": 2461090.093541667,
+                            "moon_visibility_seconds": 3307.000006735325,
+                            "visibility_assessment": {
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
+                                "visible": true,
+                                "evening_tithi": "shukla_dwitiya",
+                                "pratipada_post_sunrise_seconds": 34606.286162137985,
+                                "pratipada_post_sunrise_minutes": 576.7714360356331,
+                                "pratipada_post_sunrise_muhurtas": 12.567651852706605,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 24782.400014698505,
+                                "day_muhurta_seconds": 2753.6000016331673,
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 55.11666677892208,
+                                    "elongation_degrees": 12.962104159855869,
+                                    "illumination_percent": 1.2740682053033803,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "चंद्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1555,
+                        "winning_window_overlap_seconds": 3307.000006735325,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 6697.713862359524,
+                        "moon_visibility_start_jd": 2461090.055266204,
+                        "moon_visibility_end_jd": 2461090.093541667,
+                        "moon_visibility_seconds": 3307.000006735325,
+                        "visibility_assessment": {
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
+                            "visible": true,
+                            "evening_tithi": "shukla_dwitiya",
+                            "pratipada_post_sunrise_seconds": 34606.286162137985,
+                            "pratipada_post_sunrise_minutes": 576.7714360356331,
+                            "pratipada_post_sunrise_muhurtas": 12.567651852706605,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 24782.400014698505,
+                            "day_muhurta_seconds": 2753.6000016331673,
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 55.11666677892208,
+                                "elongation_degrees": 12.962104159855869,
+                                "illumination_percent": 1.2740682053033803,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:४९ अपराह्न to ०७:४४ अपराह्न",
+                        "start": "०६:४९ अपराह्न",
+                        "end": "०७:४४ अपराह्न",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:४९ अपराह्न to ०७:४४ अपराह्न",
+                        "start": "०६:४९ अपराह्न",
+                        "end": "०७:४४ अपराह्न",
+                        "start_iso": "18/02/2026 06:49:35 PM",
+                        "end_iso": "18/02/2026 07:44:42 PM",
+                        "start_jd": 2461090.055266204,
+                        "end_jd": 2461090.093541667,
+                        "duration_seconds": 3307.000006735325,
+                        "duration_minutes": 55.11666677892208,
+                        "duration_min": "55m 7s"
+                    }
                 }
             ],
             "2026-02-19": [
@@ -9570,166 +9794,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "चंद्र दर्शन",
-                    "name_key": "Chandra Darshana",
-                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
-                    "deity": "चंद्र",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
-                        "location_sensitive": true
-                    },
-                    "resolution": {
-                        "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461089.9777463675,
-                        "target_tithi_end_jd": 2461090.9368880903,
-                        "standard_date": "2026-02-19",
-                        "observance_date": "2026-02-19",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 31119.13098692894,
-                            "moon_visibility_start_jd": 2461091.055648148,
-                            "moon_visibility_end_jd": 2461091.13337963,
-                            "moon_visibility_seconds": 6716.00002348423,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 34606.286162137985,
-                                "pratipada_post_sunrise_minutes": 576.7714360356331,
-                                "pratipada_post_sunrise_muhurtas": 12.54456966538393,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 24827.999984622,
-                                "day_muhurta_seconds": 2758.666664958,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                        },
-                        "festival_name_key": "Chandra Darshana",
-                        "festival_name_localized": "चंद्र दर्शन",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 31119.13098692894,
-                        "moon_visibility_start_jd": 2461091.055648148,
-                        "moon_visibility_end_jd": 2461091.13337963,
-                        "moon_visibility_seconds": 6716.00002348423,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 34606.286162137985,
-                            "pratipada_post_sunrise_minutes": 576.7714360356331,
-                            "pratipada_post_sunrise_muhurtas": 12.54456966538393,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 24827.999984622,
-                            "day_muhurta_seconds": 2758.666664958,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०६:५० अपराह्न to ०८:४२ अपराह्न",
-                        "start": "०६:५० अपराह्न",
-                        "end": "०८:४२ अपराह्न",
-                        "start_iso": "19/02/2026 06:50:07 PM",
-                        "end_iso": "19/02/2026 08:42:04 PM",
-                        "start_jd": 2461091.055648148,
-                        "end_jd": 2461091.13337963,
-                        "duration_seconds": 6716.00002348423,
-                        "duration_minutes": 111.93333372473717,
-                        "duration_min": "1h 51m 56s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०६:५० अपराह्न to ०८:४२ अपराह्न",
-                        "start": "०६:५० अपराह्न",
-                        "end": "०८:४२ अपराह्न",
-                        "start_iso": "19/02/2026 06:50:07 PM",
-                        "end_iso": "19/02/2026 08:42:04 PM",
-                        "start_jd": 2461091.055648148,
-                        "end_jd": 2461091.13337963,
-                        "duration_seconds": 6716.00002348423,
-                        "duration_minutes": 111.93333372473717,
-                        "duration_min": "1h 51m 56s"
                     }
                 }
             ],
@@ -15705,7 +15769,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                             "winning_score": 1586,
                             "winning_window_overlap_seconds": 5177.000002563,
                             "winning_window_coverage_ratio": 1,
@@ -15724,7 +15788,23 @@
                                 "sthula_threshold_seconds": 26212.800005078316,
                                 "day_muhurta_seconds": 2912.5333338975906,
                                 "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 86.28333337605,
+                                    "elongation_degrees": 19.84117034738665,
+                                    "illumination_percent": 2.968143840356441,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -15732,7 +15812,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -15745,7 +15825,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                         "winning_score": 1586,
                         "winning_window_overlap_seconds": 5177.000002563,
                         "winning_window_coverage_ratio": 1,
@@ -15764,7 +15844,23 @@
                             "sthula_threshold_seconds": 26212.800005078316,
                             "day_muhurta_seconds": 2912.5333338975906,
                             "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 86.28333337605,
+                                "elongation_degrees": 19.84117034738665,
+                                "illumination_percent": 2.968143840356441,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -15774,7 +15870,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -22425,6 +22521,198 @@
                     }
                 },
                 {
+                    "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
+                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
+                    "deity": "चंद्र",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "चंद्र दर्शन",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 4090.9999787807465,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461148.861778616,
+                        "target_tithi_end_jd": 2461149.7219889043,
+                        "standard_date": "2026-04-18",
+                        "observance_date": "2026-04-18",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1568,
+                            "winning_window_overlap_seconds": 4090.9999787807465,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 18192.327596247196,
+                            "moon_visibility_start_jd": 2461149.072337963,
+                            "moon_visibility_end_jd": 2461149.1196875,
+                            "moon_visibility_seconds": 4090.9999787807465,
+                            "visibility_assessment": {
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
+                                "visible": true,
+                                "evening_tithi": "shukla_dwitiya",
+                                "pratipada_post_sunrise_seconds": 27802.672411501408,
+                                "pratipada_post_sunrise_minutes": 463.37787352502346,
+                                "pratipada_post_sunrise_muhurtas": 9.067074379873116,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 27597.000004649162,
+                                "day_muhurta_seconds": 3066.333333849907,
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 68.18333297967911,
+                                    "elongation_degrees": 14.931667975700464,
+                                    "illumination_percent": 1.6883094130051401,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "चंद्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1568,
+                        "winning_window_overlap_seconds": 4090.9999787807465,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 18192.327596247196,
+                        "moon_visibility_start_jd": 2461149.072337963,
+                        "moon_visibility_end_jd": 2461149.1196875,
+                        "moon_visibility_seconds": 4090.9999787807465,
+                        "visibility_assessment": {
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
+                            "visible": true,
+                            "evening_tithi": "shukla_dwitiya",
+                            "pratipada_post_sunrise_seconds": 27802.672411501408,
+                            "pratipada_post_sunrise_minutes": 463.37787352502346,
+                            "pratipada_post_sunrise_muhurtas": 9.067074379873116,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 27597.000004649162,
+                            "day_muhurta_seconds": 3066.333333849907,
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 68.18333297967911,
+                                "elongation_degrees": 14.931667975700464,
+                                "illumination_percent": 1.6883094130051401,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:१४ अपराह्न to ०८:२२ अपराह्न",
+                        "start": "०७:१४ अपराह्न",
+                        "end": "०८:२२ अपराह्न",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:१४ अपराह्न to ०८:२२ अपराह्न",
+                        "start": "०७:१४ अपराह्न",
+                        "end": "०८:२२ अपराह्न",
+                        "start_iso": "18/04/2026 07:14:10 PM",
+                        "end_iso": "18/04/2026 08:22:20 PM",
+                        "start_jd": 2461149.072337963,
+                        "end_jd": 2461149.1196875,
+                        "duration_seconds": 4090.9999787807465,
+                        "duration_minutes": 68.18333297967911,
+                        "duration_min": "1h 8m 11s"
+                    }
+                },
+                {
                     "name": "रोंगाली बिहू दिन ५",
                     "name_key": "Rongali Bihu Day 5",
                     "description": "रोंगाली/बोहाग बिहू का पांचवां दिन; स्नेह, संगीत, नृत्य और सामाजिक मेलजोल का दिन",
@@ -22868,166 +23156,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "akshaya_tritiya_both_purvahna_below_3_muhurta_purva_day1",
                         "winning_reason_name": "akshaya_tritiya_both_purvahna_below_3_muhurta_purva_day1"
-                    }
-                },
-                {
-                    "name": "चंद्र दर्शन",
-                    "name_key": "Chandra Darshana",
-                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
-                    "deity": "चंद्र",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
-                        "location_sensitive": true
-                    },
-                    "resolution": {
-                        "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461148.861778616,
-                        "target_tithi_end_jd": 2461149.7219889043,
-                        "standard_date": "2026-04-19",
-                        "observance_date": "2026-04-19",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 15775.841327011585,
-                            "moon_visibility_start_jd": 2461150.072627315,
-                            "moon_visibility_end_jd": 2461150.1683333335,
-                            "moon_visibility_seconds": 8269.000008702278,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 27802.672411501408,
-                                "pratipada_post_sunrise_minutes": 463.37787352502346,
-                                "pratipada_post_sunrise_muhurtas": 9.052117084325168,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 27642.59999871254,
-                                "day_muhurta_seconds": 3071.399999856949,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                        },
-                        "festival_name_key": "Chandra Darshana",
-                        "festival_name_localized": "चंद्र दर्शन",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 15775.841327011585,
-                        "moon_visibility_start_jd": 2461150.072627315,
-                        "moon_visibility_end_jd": 2461150.1683333335,
-                        "moon_visibility_seconds": 8269.000008702278,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 27802.672411501408,
-                            "pratipada_post_sunrise_minutes": 463.37787352502346,
-                            "pratipada_post_sunrise_muhurtas": 9.052117084325168,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 27642.59999871254,
-                            "day_muhurta_seconds": 3071.399999856949,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०७:१४ अपराह्न to ०९:३२ अपराह्न",
-                        "start": "०७:१४ अपराह्न",
-                        "end": "०९:३२ अपराह्न",
-                        "start_iso": "19/04/2026 07:14:35 PM",
-                        "end_iso": "19/04/2026 09:32:24 PM",
-                        "start_jd": 2461150.072627315,
-                        "end_jd": 2461150.1683333335,
-                        "duration_seconds": 8269.000008702278,
-                        "duration_minutes": 137.81666681170464,
-                        "duration_min": "2h 17m 49s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०७:१४ अपराह्न to ०९:३२ अपराह्न",
-                        "start": "०७:१४ अपराह्न",
-                        "end": "०९:३२ अपराह्न",
-                        "start_iso": "19/04/2026 07:14:35 PM",
-                        "end_iso": "19/04/2026 09:32:24 PM",
-                        "start_jd": 2461150.072627315,
-                        "end_jd": 2461150.1683333335,
-                        "duration_seconds": 8269.000008702278,
-                        "duration_minutes": 137.81666681170464,
-                        "duration_min": "2h 17m 49s"
                     }
                 },
                 {
@@ -28354,6 +28482,201 @@
             ],
             "2026-05-17": [
                 {
+                    "name": "अधिक चन्द्र दर्शन",
+                    "name_key": "Adhika Chandra Darshana",
+                    "description": "अधिक मास में होने वाला चंद्र दर्शन।",
+                    "deity": "चंद्र",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
+                        "location_sensitive": true,
+                        "adhika": {
+                            "adhika_only": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "अधिक चन्द्र दर्शन",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 3199.0000292658806,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461177.333989271,
+                        "target_tithi_end_jd": 2461178.1744236536,
+                        "standard_date": "2026-05-17",
+                        "observance_date": "2026-05-17",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "सूर्यास्त के समय शुक्ल प्रतिपदा का बालचंद्र दृश्यमान",
+                            "winning_score": 1553,
+                            "winning_window_overlap_seconds": 3199.0000292658806,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                            "moon_visibility_start_jd": 2461178.081412037,
+                            "moon_visibility_end_jd": 2461178.1184375,
+                            "moon_visibility_seconds": 3199.0000292658806,
+                            "visibility_assessment": {
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
+                                "visible": true,
+                                "evening_tithi": "shukla_pratipada",
+                                "pratipada_post_sunrise_seconds": 55962.20367997885,
+                                "pratipada_post_sunrise_minutes": 932.7033946663141,
+                                "pratipada_post_sunrise_muhurtas": 17.51519123846525,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 28755.599996745586,
+                                "day_muhurta_seconds": 3195.066666305065,
+                                "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 53.31666715443134,
+                                    "elongation_degrees": 10.670943134268725,
+                                    "illumination_percent": 0.864658561360071,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_reason_name": "सूर्यास्त के समय शुक्ल प्रतिपदा का बालचंद्र दृश्यमान"
+                        },
+                        "festival_name_key": "Adhika Chandra Darshana",
+                        "festival_name_localized": "अधिक चन्द्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "सूर्यास्त के समय शुक्ल प्रतिपदा का बालचंद्र दृश्यमान",
+                        "winning_score": 1553,
+                        "winning_window_overlap_seconds": 3199.0000292658806,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                        "moon_visibility_start_jd": 2461178.081412037,
+                        "moon_visibility_end_jd": 2461178.1184375,
+                        "moon_visibility_seconds": 3199.0000292658806,
+                        "visibility_assessment": {
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
+                            "visible": true,
+                            "evening_tithi": "shukla_pratipada",
+                            "pratipada_post_sunrise_seconds": 55962.20367997885,
+                            "pratipada_post_sunrise_minutes": 932.7033946663141,
+                            "pratipada_post_sunrise_muhurtas": 17.51519123846525,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 28755.599996745586,
+                            "day_muhurta_seconds": 3195.066666305065,
+                            "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.31666715443134,
+                                "elongation_degrees": 10.670943134268725,
+                                "illumination_percent": 0.864658561360071,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_reason_name": "सूर्यास्त के समय शुक्ल प्रतिपदा का बालचंद्र दृश्यमान"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२७ अपराह्न to ०८:२० अपराह्न",
+                        "start": "०७:२७ अपराह्न",
+                        "end": "०८:२० अपराह्न",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०७:२७ अपराह्न to ०८:२० अपराह्न",
+                        "start": "०७:२७ अपराह्न",
+                        "end": "०८:२० अपराह्न",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
+                    }
+                },
+                {
                     "name": "रविवार व्रत",
                     "name_key": "Ravivar Vrat",
                     "description": "भगवान सूर्य को समर्पित साप्ताहिक रविवार व्रत",
@@ -28418,169 +28741,6 @@
                 }
             ],
             "2026-05-18": [
-                {
-                    "name": "अधिक चन्द्र दर्शन",
-                    "name_key": "Adhika Chandra Darshana",
-                    "description": "अधिक मास में होने वाला चंद्र दर्शन।",
-                    "deity": "चंद्र",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
-                        "location_sensitive": true,
-                        "adhika": {
-                            "adhika_only": true
-                        }
-                    },
-                    "resolution": {
-                        "festival_name": "अधिक चन्द्र दर्शन",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461178.1744236536,
-                        "target_tithi_end_jd": 2461179.0163119277,
-                        "standard_date": "2026-05-18",
-                        "observance_date": "2026-05-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 42326.35054439306,
-                            "moon_visibility_start_jd": 2461179.081747685,
-                            "moon_visibility_end_jd": 2461179.1673726854,
-                            "moon_visibility_seconds": 7398.0000257492065,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 55962.20367997885,
-                                "pratipada_post_sunrise_minutes": 932.7033946663141,
-                                "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 28787.99998998642,
-                                "day_muhurta_seconds": 3198.6666655540466,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                        },
-                        "festival_name_key": "Adhika Chandra Darshana",
-                        "festival_name_localized": "अधिक चन्द्र दर्शन",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 42326.35054439306,
-                        "moon_visibility_start_jd": 2461179.081747685,
-                        "moon_visibility_end_jd": 2461179.1673726854,
-                        "moon_visibility_seconds": 7398.0000257492065,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 55962.20367997885,
-                            "pratipada_post_sunrise_minutes": 932.7033946663141,
-                            "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 28787.99998998642,
-                            "day_muhurta_seconds": 3198.6666655540466,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०७:२७ अपराह्न to ०९:३१ अपराह्न",
-                        "start": "०७:२७ अपराह्न",
-                        "end": "०९:३१ अपराह्न",
-                        "start_iso": "18/05/2026 07:27:42 PM",
-                        "end_iso": "18/05/2026 09:31:01 PM",
-                        "start_jd": 2461179.081747685,
-                        "end_jd": 2461179.1673726854,
-                        "duration_seconds": 7398.0000257492065,
-                        "duration_minutes": 123.30000042915344,
-                        "duration_min": "2h 3m 18s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०७:२७ अपराह्न to ०९:३१ अपराह्न",
-                        "start": "०७:२७ अपराह्न",
-                        "end": "०९:३१ अपराह्न",
-                        "start_iso": "18/05/2026 07:27:42 PM",
-                        "end_iso": "18/05/2026 09:31:01 PM",
-                        "start_jd": 2461179.081747685,
-                        "end_jd": 2461179.1673726854,
-                        "duration_seconds": 7398.0000257492065,
-                        "duration_minutes": 123.30000042915344,
-                        "duration_min": "2h 3m 18s"
-                    }
-                },
                 {
                     "name": "सोमवार व्रत",
                     "name_key": "Somwar Vrat",
@@ -31588,7 +31748,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                             "winning_score": 1597,
                             "winning_window_overlap_seconds": 5843.000011146069,
                             "winning_window_coverage_ratio": 1,
@@ -31607,7 +31767,23 @@
                                 "sthula_threshold_seconds": 29349.60000962019,
                                 "day_muhurta_seconds": 3261.0666677355766,
                                 "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 97.38333351910114,
+                                    "elongation_degrees": 20.9432961223636,
+                                    "illumination_percent": 3.3032682487858125,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -31615,7 +31791,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -31628,7 +31804,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                         "winning_score": 1597,
                         "winning_window_overlap_seconds": 5843.000011146069,
                         "winning_window_coverage_ratio": 1,
@@ -31647,7 +31823,23 @@
                             "sthula_threshold_seconds": 29349.60000962019,
                             "day_muhurta_seconds": 3261.0666677355766,
                             "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 97.38333351910114,
+                                "elongation_degrees": 20.9432961223636,
+                                "illumination_percent": 3.3032682487858125,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -31657,7 +31849,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -36148,52 +36340,68 @@
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_today": 3838.999977707863,
                         "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461235.9052164834,
-                        "target_tithi_end_jd": 2461236.764870608,
+                        "target_tithi_start_jd": 2461236.764870608,
+                        "target_tithi_end_jd": 2461237.6412273804,
                         "standard_date": "2026-07-15",
                         "observance_date": "2026-07-15",
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 20273.820550739765,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1563,
+                            "winning_window_overlap_seconds": 3838.999977707863,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 28175.179463624954,
                             "moon_visibility_start_jd": 2461237.0909722224,
                             "moon_visibility_end_jd": 2461237.1354050925,
                             "moon_visibility_seconds": 3838.999977707863,
                             "visibility_assessment": {
                                 "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "evening_tithi": "shukla_pratipada",
+                                "evening_tithi": "shukla_dwitiya",
                                 "pratipada_post_sunrise_seconds": 20273.820550739765,
                                 "pratipada_post_sunrise_minutes": 337.8970091789961,
                                 "pratipada_post_sunrise_muhurtas": 6.2768541800848565,
                                 "sthula_threshold_muhurtas": 9,
                                 "sthula_threshold_seconds": 29069.40000861883,
                                 "day_muhurta_seconds": 3229.9333342909813,
-                                "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 63.983332961797714,
+                                    "elongation_degrees": 16.496872541337837,
+                                    "illumination_percent": 2.0582381869283797,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -36206,26 +36414,42 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 20273.820550739765,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1563,
+                        "winning_window_overlap_seconds": 3838.999977707863,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 28175.179463624954,
                         "moon_visibility_start_jd": 2461237.0909722224,
                         "moon_visibility_end_jd": 2461237.1354050925,
                         "moon_visibility_seconds": 3838.999977707863,
                         "visibility_assessment": {
                             "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "evening_tithi": "shukla_pratipada",
+                            "evening_tithi": "shukla_dwitiya",
                             "pratipada_post_sunrise_seconds": 20273.820550739765,
                             "pratipada_post_sunrise_minutes": 337.8970091789961,
                             "pratipada_post_sunrise_muhurtas": 6.2768541800848565,
                             "sthula_threshold_muhurtas": 9,
                             "sthula_threshold_seconds": 29069.40000861883,
                             "day_muhurta_seconds": 3229.9333342909813,
-                            "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 63.983332961797714,
+                                "elongation_degrees": 16.496872541337837,
+                                "illumination_percent": 2.0582381869283797,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -36234,8 +36458,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -42623,7 +42847,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                             "winning_score": 1500,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
@@ -42642,7 +42866,23 @@
                                 "sthula_threshold_seconds": 28054.80000793934,
                                 "day_muhurta_seconds": 3117.2000008821487,
                                 "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 69.200000166893,
+                                    "elongation_degrees": 24.342327777269603,
+                                    "illumination_percent": 4.445049100559889,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -42650,7 +42890,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -42663,7 +42903,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                         "winning_score": 1500,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
@@ -42682,7 +42922,23 @@
                             "sthula_threshold_seconds": 28054.80000793934,
                             "day_muhurta_seconds": 3117.2000008821487,
                             "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 69.200000166893,
+                                "elongation_degrees": 24.342327777269603,
+                                "illumination_percent": 4.445049100559889,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -42692,7 +42948,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -49362,52 +49618,68 @@
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_today": 2385.000018775463,
                         "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461294.6436758693,
-                        "target_tithi_end_jd": 2461295.59496745,
+                        "target_tithi_start_jd": 2461295.59496745,
+                        "target_tithi_end_jd": 2461296.5686166342,
                         "standard_date": "2026-09-12",
                         "observance_date": "2026-09-12",
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 4236.18768453598,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1539,
+                            "winning_window_overlap_seconds": 2385.000018775463,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 40328.81231456995,
                             "moon_visibility_start_jd": 2461296.061736111,
                             "moon_visibility_end_jd": 2461296.089340278,
                             "moon_visibility_seconds": 2385.000018775463,
                             "visibility_assessment": {
                                 "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "evening_tithi": "shukla_pratipada",
+                                "evening_tithi": "shukla_dwitiya",
                                 "pratipada_post_sunrise_seconds": 4236.18768453598,
                                 "pratipada_post_sunrise_minutes": 70.60312807559967,
                                 "pratipada_post_sunrise_muhurtas": 1.4258457369979693,
                                 "sthula_threshold_muhurtas": 9,
                                 "sthula_threshold_seconds": 26738.99999946356,
                                 "day_muhurta_seconds": 2970.9999999403954,
-                                "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 39.750000312924385,
+                                    "elongation_degrees": 17.78981316502734,
+                                    "illumination_percent": 2.390813578684786,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -49420,26 +49692,42 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 4236.18768453598,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1539,
+                        "winning_window_overlap_seconds": 2385.000018775463,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 40328.81231456995,
                         "moon_visibility_start_jd": 2461296.061736111,
                         "moon_visibility_end_jd": 2461296.089340278,
                         "moon_visibility_seconds": 2385.000018775463,
                         "visibility_assessment": {
                             "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "evening_tithi": "shukla_pratipada",
+                            "evening_tithi": "shukla_dwitiya",
                             "pratipada_post_sunrise_seconds": 4236.18768453598,
                             "pratipada_post_sunrise_minutes": 70.60312807559967,
                             "pratipada_post_sunrise_muhurtas": 1.4258457369979693,
                             "sthula_threshold_muhurtas": 9,
                             "sthula_threshold_seconds": 26738.99999946356,
                             "day_muhurta_seconds": 2970.9999999403954,
-                            "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 39.750000312924385,
+                                "elongation_degrees": 17.78981316502734,
+                                "illumination_percent": 2.390813578684786,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -49448,8 +49736,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -50762,120 +51050,6 @@
                             "english_name": "Friday"
                         }
                     }
-                },
-                {
-                    "name": "राधा अष्टमी",
-                    "name_key": "Radha Ashtami",
-                    "description": "राधा अष्टमी श्री राधिका के दिव्य प्राकट्य का उत्सव है, जो राधा-कृष्ण की पूजा और भक्ति के साथ मनाया जाता है।",
-                    "deity": "राधा",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [
-                        "राधाष्टमी"
-                    ],
-                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 8 सूर्योदय पर 2026-09-19 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-18 को मनाई जाती है।",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "शुक्ल अष्टमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "मध्याह्न",
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "resolution_policy": {
-                            "vriddhi_preference": "first"
-                        },
-                        "source_refs": [
-                            "Satsangi Jeevan 4.56.64-78"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "राधा अष्टमी",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 3443.8823863863945,
-                        "tithi_coverage_seconds_tomorrow": 8801.399977505207,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-18",
-                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 8 सूर्योदय पर 2026-09-19 को होती है, किंतु मध्याह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-18 को मनाई जाती है।",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "madhyahna_shuddha_purva_vedha_free_day1",
-                            "winning_score": 20000,
-                            "winning_window_overlap_seconds": 3443.8823863863945,
-                            "winning_window_coverage_ratio": 0.39057799324518266,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "madhyahna_shuddha_purva_vedha_free_day1",
-                            "winning_reason_name": "madhyahna_shuddha_purva_vedha_free_day1"
-                        },
-                        "festival_name_key": "Radha Ashtami",
-                        "festival_name_localized": "राधा अष्टमी",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "मध्याह्न"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "madhyahna_shuddha_purva_vedha_free_day1",
-                        "winning_score": 20000,
-                        "winning_window_overlap_seconds": 3443.8823863863945,
-                        "winning_window_coverage_ratio": 0.39057799324518266,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "madhyahna_shuddha_purva_vedha_free_day1",
-                        "winning_reason_name": "madhyahna_shuddha_purva_vedha_free_day1"
-                    }
                 }
             ],
             "2026-09-19": [
@@ -51006,6 +51180,119 @@
                             "name": "शनिवार",
                             "english_name": "Saturday"
                         }
+                    }
+                },
+                {
+                    "name": "राधा अष्टमी",
+                    "name_key": "Radha Ashtami",
+                    "description": "राधा अष्टमी श्री राधिका के दिव्य प्राकट्य का उत्सव है, जो राधा-कृष्ण की पूजा और भक्ति के साथ मनाया जाता है।",
+                    "deity": "राधा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "राधाष्टमी"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                8
+                            ],
+                            "names": [
+                                "शुक्ल अष्टमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "मध्याह्न",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "resolution_policy": {
+                            "vriddhi_preference": "first"
+                        },
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.64-78"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "राधा अष्टमी",
+                        "required_tithi": 8,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8801.399977505207,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461301.8135221945,
+                        "target_tithi_end_jd": 2461302.914826148,
+                        "standard_date": "2026-09-19",
+                        "observance_date": "2026-09-19",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8801.399977505207,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
+                            "winning_reason_name": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन"
+                        },
+                        "festival_name_key": "Radha Ashtami",
+                        "festival_name_localized": "राधा अष्टमी",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "मध्याह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8801.399977505207,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
+                        "winning_reason_name": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन"
                     }
                 },
                 {
@@ -56563,7 +56850,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                             "winning_score": 1553,
                             "winning_window_overlap_seconds": 3191.999986767769,
                             "winning_window_coverage_ratio": 1,
@@ -56582,7 +56869,23 @@
                                 "sthula_threshold_seconds": 25306.19999796152,
                                 "day_muhurta_seconds": 2811.7999997735023,
                                 "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 53.199999779462814,
+                                    "elongation_degrees": 22.19948175180835,
+                                    "illumination_percent": 3.7062998803045364,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -56590,7 +56893,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -56603,7 +56906,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
+                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
                         "winning_score": 1553,
                         "winning_window_overlap_seconds": 3191.999986767769,
                         "winning_window_coverage_ratio": 1,
@@ -56622,7 +56925,23 @@
                             "sthula_threshold_seconds": 25306.19999796152,
                             "day_muhurta_seconds": 2811.7999997735023,
                             "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.199999779462814,
+                                "elongation_degrees": 22.19948175180835,
+                                "illumination_percent": 3.7062998803045364,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -56632,7 +56951,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -64942,6 +65261,198 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
+                },
+                {
+                    "name": "चंद्र दर्शन",
+                    "name_key": "Chandra Darshana",
+                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
+                    "deity": "चंद्र",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
+                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
+                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
+                        "location_sensitive": true
+                    },
+                    "resolution": {
+                        "festival_name": "चंद्र दर्शन",
+                        "required_tithi": 2,
+                        "paksha": "Shukla",
+                        "karmakala_type": "chandra_darshana_visibility",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 1990.0000289082527,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461354.8545238134,
+                        "target_tithi_end_jd": 2461355.9331913134,
+                        "standard_date": "2026-11-10",
+                        "observance_date": "2026-11-10",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "require_karmakala_match": true,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1533,
+                            "winning_window_overlap_seconds": 1990.0000289082527,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 14922.14251756668,
+                            "moon_visibility_start_jd": 2461355.027233796,
+                            "moon_visibility_end_jd": 2461355.050266204,
+                            "moon_visibility_seconds": 1990.0000289082527,
+                            "visibility_assessment": {
+                                "model": "classical_sthula_chandra_darshana_9_muhurta",
+                                "visible": true,
+                                "evening_tithi": "shukla_dwitiya",
+                                "pratipada_post_sunrise_seconds": 25169.857482612133,
+                                "pratipada_post_sunrise_minutes": 419.4976247102022,
+                                "pratipada_post_sunrise_muhurtas": 9.417037369986483,
+                                "sthula_threshold_muhurtas": 9,
+                                "sthula_threshold_seconds": 24055.20000010729,
+                                "day_muhurta_seconds": 2672.800000011921,
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": false,
+                                    "lag_minutes": 33.16666714847088,
+                                    "elongation_degrees": 13.934121918780022,
+                                    "illumination_percent": 1.4713377960882623,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": false,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
+                            },
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                        },
+                        "festival_name_key": "Chandra Darshana",
+                        "festival_name_localized": "चंद्र दर्शन",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": true,
+                        "vriddhi_preference": null,
+                        "kshaya_preference": null,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1533,
+                        "winning_window_overlap_seconds": 1990.0000289082527,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 14922.14251756668,
+                        "moon_visibility_start_jd": 2461355.027233796,
+                        "moon_visibility_end_jd": 2461355.050266204,
+                        "moon_visibility_seconds": 1990.0000289082527,
+                        "visibility_assessment": {
+                            "model": "classical_sthula_chandra_darshana_9_muhurta",
+                            "visible": true,
+                            "evening_tithi": "shukla_dwitiya",
+                            "pratipada_post_sunrise_seconds": 25169.857482612133,
+                            "pratipada_post_sunrise_minutes": 419.4976247102022,
+                            "pratipada_post_sunrise_muhurtas": 9.417037369986483,
+                            "sthula_threshold_muhurtas": 9,
+                            "sthula_threshold_seconds": 24055.20000010729,
+                            "day_muhurta_seconds": 2672.800000011921,
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": false,
+                                "lag_minutes": 33.16666714847088,
+                                "elongation_degrees": 13.934121918780022,
+                                "illumination_percent": 1.4713377960882623,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": false,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
+                        },
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
+                    },
+                    "visibility_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०९ अपराह्न to ०६:४२ अपराह्न",
+                        "start": "०६:०९ अपराह्न",
+                        "end": "०६:४२ अपराह्न",
+                        "start_iso": "10/11/2026 06:09:12 PM",
+                        "end_iso": "10/11/2026 06:42:23 PM",
+                        "start_jd": 2461355.027233796,
+                        "end_jd": 2461355.050266204,
+                        "duration_seconds": 1990.0000289082527,
+                        "duration_minutes": 33.16666714847088,
+                        "duration_min": "33m 10s"
+                    },
+                    "observance_window": {
+                        "type": "moon_visibility",
+                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
+                        "display": "०६:०९ अपराह्न to ०६:४२ अपराह्न",
+                        "start": "०६:०९ अपराह्न",
+                        "end": "०६:४२ अपराह्न",
+                        "start_iso": "10/11/2026 06:09:12 PM",
+                        "end_iso": "10/11/2026 06:42:23 PM",
+                        "start_jd": 2461355.027233796,
+                        "end_jd": 2461355.050266204,
+                        "duration_seconds": 1990.0000289082527,
+                        "duration_minutes": 33.16666714847088,
+                        "duration_min": "33m 10s"
+                    }
                 }
             ],
             "2026-11-11": [
@@ -65180,166 +65691,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "चंद्र दर्शन",
-                    "name_key": "Chandra Darshana",
-                    "description": "अमावस्या के बाद चंद्रमा का प्रथम दर्शन",
-                    "deity": "चंद्र",
-                    "fasting": true,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
-                        "location_sensitive": true
-                    },
-                    "resolution": {
-                        "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461354.8545238134,
-                        "target_tithi_end_jd": 2461355.9331913134,
-                        "standard_date": "2026-11-11",
-                        "observance_date": "2026-11-11",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 31928.72949242592,
-                            "moon_visibility_start_jd": 2461356.0269560185,
-                            "moon_visibility_end_jd": 2461356.0830092593,
-                            "moon_visibility_seconds": 4843.000003695488,
-                            "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 25169.857482612133,
-                                "pratipada_post_sunrise_minutes": 419.4976247102022,
-                                "pratipada_post_sunrise_muhurtas": 9.43162283540971,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 24018.000008761883,
-                                "day_muhurta_seconds": 2668.666667640209,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
-                            },
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                        },
-                        "festival_name_key": "Chandra Darshana",
-                        "festival_name_localized": "चंद्र दर्शन",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": true,
-                        "vriddhi_preference": null,
-                        "kshaya_preference": null,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 31928.72949242592,
-                        "moon_visibility_start_jd": 2461356.0269560185,
-                        "moon_visibility_end_jd": 2461356.0830092593,
-                        "moon_visibility_seconds": 4843.000003695488,
-                        "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 25169.857482612133,
-                            "pratipada_post_sunrise_minutes": 419.4976247102022,
-                            "pratipada_post_sunrise_muhurtas": 9.43162283540971,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 24018.000008761883,
-                            "day_muhurta_seconds": 2668.666667640209,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
-                        },
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
-                    },
-                    "visibility_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०६:०८ अपराह्न to ०७:२९ अपराह्न",
-                        "start": "०६:०८ अपराह्न",
-                        "end": "०७:२९ अपराह्न",
-                        "start_iso": "11/11/2026 06:08:49 PM",
-                        "end_iso": "11/11/2026 07:29:32 PM",
-                        "start_jd": 2461356.0269560185,
-                        "end_jd": 2461356.0830092593,
-                        "duration_seconds": 4843.000003695488,
-                        "duration_minutes": 80.71666672825813,
-                        "duration_min": "1h 20m 43s"
-                    },
-                    "observance_window": {
-                        "type": "moon_visibility",
-                        "type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "display": "०६:०८ अपराह्न to ०७:२९ अपराह्न",
-                        "start": "०६:०८ अपराह्न",
-                        "end": "०७:२९ अपराह्न",
-                        "start_iso": "11/11/2026 06:08:49 PM",
-                        "end_iso": "11/11/2026 07:29:32 PM",
-                        "start_jd": 2461356.0269560185,
-                        "end_jd": 2461356.0830092593,
-                        "duration_seconds": 4843.000003695488,
-                        "duration_minutes": 80.71666672825813,
-                        "duration_min": "1h 20m 43s"
                     }
                 }
             ],
@@ -71130,52 +71481,68 @@
                     },
                     "resolution": {
                         "festival_name": "चंद्र दर्शन",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_today": 3606.9999888539314,
                         "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461383.535933121,
-                        "target_tithi_end_jd": 2461384.636407001,
+                        "target_tithi_start_jd": 2461384.636407001,
+                        "target_tithi_end_jd": 2461385.7453740695,
                         "standard_date": "2026-12-10",
                         "observance_date": "2026-12-10",
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 5127.564865350723,
+                            "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                            "winning_score": 1560,
+                            "winning_window_overlap_seconds": 3606.9999888539314,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 33636.435136199,
                             "moon_visibility_start_jd": 2461385.025717593,
                             "moon_visibility_end_jd": 2461385.067465278,
                             "moon_visibility_seconds": 3606.9999888539314,
                             "visibility_assessment": {
                                 "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "evening_tithi": "shukla_pratipada",
+                                "evening_tithi": "shukla_dwitiya",
                                 "pratipada_post_sunrise_seconds": 5127.564865350723,
                                 "pratipada_post_sunrise_minutes": 85.45941442251205,
                                 "pratipada_post_sunrise_muhurtas": 1.9841469656688158,
                                 "sthula_threshold_muhurtas": 9,
                                 "sthula_threshold_seconds": 23258.400000929832,
                                 "day_muhurta_seconds": 2584.2666667699814,
-                                "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 60.11666648089886,
+                                    "elongation_degrees": 16.221317800941506,
+                                    "illumination_percent": 1.9905091921130325,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                            "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                         },
                         "festival_name_key": "Chandra Darshana",
                         "festival_name_localized": "चंद्र दर्शन",
@@ -71188,26 +71555,42 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 5127.564865350723,
+                        "winning_reason": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय",
+                        "winning_score": 1560,
+                        "winning_window_overlap_seconds": 3606.9999888539314,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 33636.435136199,
                         "moon_visibility_start_jd": 2461385.025717593,
                         "moon_visibility_end_jd": 2461385.067465278,
                         "moon_visibility_seconds": 3606.9999888539314,
                         "visibility_assessment": {
                             "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "evening_tithi": "shukla_pratipada",
+                            "evening_tithi": "shukla_dwitiya",
                             "pratipada_post_sunrise_seconds": 5127.564865350723,
                             "pratipada_post_sunrise_minutes": 85.45941442251205,
                             "pratipada_post_sunrise_muhurtas": 1.9841469656688158,
                             "sthula_threshold_muhurtas": 9,
                             "sthula_threshold_seconds": 23258.400000929832,
                             "day_muhurta_seconds": 2584.2666667699814,
-                            "reason": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 60.11666648089886,
+                                "elongation_degrees": 16.221317800941506,
+                                "illumination_percent": 1.9905091921130325,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -71216,8 +71599,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud1_short_pratipada_sthula_present",
-                        "winning_reason_name": "chandra_darshana_sud1_short_pratipada_sthula_present"
+                        "winning_reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                        "winning_reason_name": "स्थानीय सूर्यास्त पर द्वितीया विकल्प सक्रिय"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",

@@ -1295,9 +1295,9 @@ trait PanchangCalendarApiTrait
         int $requiredTithi,
         array $best,
     ): bool {
-        $bestPrefersHigherTithi = (bool) ($best['prefer_higher_tithi_option'] ?? false);
+        $bestPrefersHigherTithi = $best['prefer_higher_tithi_option'] ?? false;
         if ($preferHigherTithi || $bestPrefersHigherTithi) {
-            $bestRequiredTithi = (int) ($best['required_tithi'] ?? 0);
+            $bestRequiredTithi = $best['required_tithi'] ?? 0;
             if ($requiredTithi > 0 && $bestRequiredTithi > 0 && $requiredTithi !== $bestRequiredTithi) {
                 return $requiredTithi > $bestRequiredTithi;
             }
@@ -1316,9 +1316,9 @@ trait PanchangCalendarApiTrait
             str_starts_with($r, 'masik_janmashtami_') && !str_contains($r, '_no_nishitha_') => 3,
             str_starts_with($r, 'masik_janmashtami_no_nishitha_') => 1,
             default => match ($r) {
-            'target_at_karmakala' => 2,
-            'target_during_observance' => 1,
-            default => 0,
+                'target_at_karmakala' => 2,
+                'target_during_observance' => 1,
+                default => 0,
             },
         };
 

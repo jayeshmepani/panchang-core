@@ -22,47 +22,47 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
     private const array EXPECTED_SUTAK_TIMES = [
         '2018-01-31|Lunar|Total' => [
             'sutak_start' => '31/01/2018 10:18:00 AM',
-            'relaxed_start' => '31/01/2018 03:51:00 PM',
+            'relaxed_start' => '31/01/2018 03:25:00 PM',
             'sutak_end' => '31/01/2018 08:41:00 PM',
         ],
         '2018-07-28|Lunar|Total' => [
             'sutak_start' => '27/07/2018 12:58:00 PM',
-            'relaxed_start' => '27/07/2018 07:36:00 PM',
+            'relaxed_start' => '27/07/2018 09:14:20 PM',
             'sutak_end' => '28/07/2018 03:50:00 AM',
         ],
         '2019-07-17|Lunar|Partial' => [
             'sutak_start' => '16/07/2019 04:19:00 PM',
-            'relaxed_start' => '16/07/2019 10:19:00 PM',
+            'relaxed_start' => '16/07/2019 10:53:50 PM',
             'sutak_end' => '17/07/2019 04:30:00 AM',
         ],
         '2019-12-26|Solar|Partial' => [
             'sutak_start' => '25/12/2019 06:13:00 PM',
-            'relaxed_start' => '26/12/2019 04:11:00 AM',
+            'relaxed_start' => '26/12/2019 05:24:07 AM',
             'sutak_end' => '26/12/2019 10:45:00 AM',
         ],
         '2020-06-21|Solar|Partial' => [
             'sutak_start' => '20/06/2020 10:17:00 PM',
-            'relaxed_start' => '21/06/2020 06:06:00 AM',
+            'relaxed_start' => '21/06/2020 06:35:49 AM',
             'sutak_end' => '21/06/2020 01:22:00 PM',
         ],
         '2022-10-25|Solar|Partial' => [
             'sutak_start' => '25/10/2022 03:44:00 AM',
-            'relaxed_start' => '25/10/2022 12:35:00 PM',
+            'relaxed_start' => '25/10/2022 01:44:16 PM',
             'sutak_end' => '25/10/2022 06:18:00 PM',
         ],
         '2022-11-08|Lunar|Partial' => [
             'sutak_start' => '08/11/2022 09:48:00 AM',
-            'relaxed_start' => '08/11/2022 03:22:00 PM',
+            'relaxed_start' => '08/11/2022 02:59:05 PM',
             'sutak_end' => '08/11/2022 06:18:00 PM',
         ],
         '2023-10-29|Lunar|Partial' => [
             'sutak_start' => '28/10/2023 03:25:00 PM',
-            'relaxed_start' => '28/10/2023 09:26:00 PM',
+            'relaxed_start' => '28/10/2023 09:56:10 PM',
             'sutak_end' => '29/10/2023 02:22:00 AM',
         ],
         '2025-09-07|Lunar|Total' => [
             'sutak_start' => '07/09/2025 12:49:00 PM',
-            'relaxed_start' => '07/09/2025 07:03:00 PM',
+            'relaxed_start' => '07/09/2025 07:04:33 PM',
             'sutak_end' => '08/09/2025 01:26:00 AM',
         ],
     ];

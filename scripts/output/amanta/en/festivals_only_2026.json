@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T06:50:29+00:00",
+        "generated_at": "2026-07-11T21:14:02+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "amanta",
@@ -14493,7 +14493,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_reason": "Shukla Pratipada crescent visible at sunset",
                             "winning_score": 1553,
                             "winning_window_overlap_seconds": 3199.0000292658806,
                             "winning_window_coverage_ratio": 1,
@@ -14512,7 +14512,23 @@
                                 "sthula_threshold_seconds": 28755.599996745586,
                                 "day_muhurta_seconds": 3195.066666305065,
                                 "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 53.31666715443134,
+                                    "elongation_degrees": 10.670943134268725,
+                                    "illumination_percent": 0.864658561360071,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -14520,7 +14536,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
-                            "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
+                            "winning_reason_name": "Shukla Pratipada crescent visible at sunset"
                         },
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "Adhika Chandra Darshana",
@@ -14533,7 +14549,7 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_reason": "Shukla Pratipada crescent visible at sunset",
                         "winning_score": 1553,
                         "winning_window_overlap_seconds": 3199.0000292658806,
                         "winning_window_coverage_ratio": 1,
@@ -14552,7 +14568,23 @@
                             "sthula_threshold_seconds": 28755.599996745586,
                             "day_muhurta_seconds": 3195.066666305065,
                             "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.31666715443134,
+                                "elongation_degrees": 10.670943134268725,
+                                "illumination_percent": 0.864658561360071,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -14562,7 +14594,7 @@
                         },
                         "rule_rejection_reason": null,
                         "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
-                        "winning_reason_name": "chandra_darshana_sud1_crescent_visible_at_sunset"
+                        "winning_reason_name": "Shukla Pratipada crescent visible at sunset"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -24931,7 +24963,7 @@
                             "strict_karmakala": true,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "winning_reason": "madhyahna_shuddha_navami_yuta_day2",
+                            "winning_reason": "Navami-yukta day selected on the later shuddha day",
                             "winning_score": 20000,
                             "winning_window_overlap_seconds": 8801.399977505207,
                             "winning_window_coverage_ratio": 1,
@@ -24941,7 +24973,7 @@
                                 "preferred": false
                             },
                             "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
-                            "winning_reason_name": "madhyahna_shuddha_navami_yuta_day2"
+                            "winning_reason_name": "Navami-yukta day selected on the later shuddha day"
                         },
                         "festival_name_key": "Radha Ashtami",
                         "festival_name_localized": "Radha Ashtami",
@@ -24954,7 +24986,7 @@
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
                         "preferred_nakshatra": null,
-                        "winning_reason": "madhyahna_shuddha_navami_yuta_day2",
+                        "winning_reason": "Navami-yukta day selected on the later shuddha day",
                         "winning_score": 20000,
                         "winning_window_overlap_seconds": 8801.399977505207,
                         "winning_window_coverage_ratio": 1,
@@ -24969,7 +25001,7 @@
                         "ekadashi_selection": null,
                         "sankashti_selection": null,
                         "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
-                        "winning_reason_name": "madhyahna_shuddha_navami_yuta_day2"
+                        "winning_reason_name": "Navami-yukta day selected on the later shuddha day"
                     }
                 },
                 {

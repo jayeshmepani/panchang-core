@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T05:29:49+00:00",
+        "generated_at": "2026-07-11T21:18:49+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "amanta",
@@ -19,7 +19,7 @@
         "year": 2026,
         "calendar_type": "amanta",
         "locale": "gu",
-        "festival_day_count": 198,
+        "festival_day_count": 196,
         "festival_entry_count": 388,
         "total_festivals": 324,
         "by_date": {
@@ -14431,45 +14431,6 @@
             ],
             "2026-05-17": [
                 {
-                    "name": "પુરુષોત્તમ માસ પ્રારંભ",
-                    "name_key": "Purushottam Maas Begins",
-                    "description": "ભગવાન વિષ્ણુને સમર્પિત અધિક માસ એટલે પુરુષોત્તમ માસનો પ્રારંભ",
-                    "deity": "વિષ્ણુ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "derived_adhika_month_boundary",
-                        "type_name": "ઉત્પન્ન અધિક માસ સીમા",
-                        "basis": "derived_observance",
-                        "basis_name": "ઉત્પન્ન પાલન"
-                    },
-                    "resolution": {
-                        "festival_name": "પુરુષોત્તમ માસ પ્રારંભ",
-                        "standard_date": "2026-05-17",
-                        "observance_date": "2026-05-17",
-                        "decision": {
-                            "winning_reason": "અધિક માસ આજે શરૂ થાય છે",
-                            "winning_score": 1000,
-                            "winning_reason_key": "adhika_month_begin",
-                            "winning_reason_name": "અધિક માસ આજે શરૂ થાય છે"
-                        },
-                        "festival_name_key": "Purushottam Maas Begins",
-                        "festival_name_localized": "પુરુષોત્તમ માસ પ્રારંભ"
-                    },
-                    "rules_applied": {
-                        "winning_reason": "અધિક માસ આજે શરૂ થાય છે",
-                        "winning_score": 1000,
-                        "winning_reason_key": "adhika_month_begin",
-                        "winning_reason_name": "અધિક માસ આજે શરૂ થાય છે"
-                    }
-                }
-            ],
-            "2026-05-18": [
-                {
                     "name": "અધિક ચંદ્ર દર્શન",
                     "name_key": "Adhika Chandra Darshana",
                     "description": "અધિક માસમાં થતું ચંદ્ર દર્શન.",
@@ -14514,52 +14475,68 @@
                     },
                     "resolution": {
                         "festival_name": "અધિક ચંદ્ર દર્શન",
-                        "required_tithi": 2,
+                        "required_tithi": 1,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_today": 3199.0000292658806,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461178.1744236536,
-                        "target_tithi_end_jd": 2461179.0163119277,
-                        "standard_date": "2026-05-18",
-                        "observance_date": "2026-05-18",
+                        "target_tithi_start_jd": 2461177.333989271,
+                        "target_tithi_end_jd": 2461178.1744236536,
+                        "standard_date": "2026-05-17",
+                        "observance_date": "2026-05-17",
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_score": 1500,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "target_tithi_daylight_overlap_seconds": 42326.35054439306,
-                            "moon_visibility_start_jd": 2461179.081747685,
-                            "moon_visibility_end_jd": 2461179.1673726854,
-                            "moon_visibility_seconds": 7398.0000257492065,
+                            "winning_reason": "સૂર્યાસ્તે સુદ એકમનો બીજવરચંદ્ર દૃશ્યમાન",
+                            "winning_score": 1553,
+                            "winning_window_overlap_seconds": 3199.0000292658806,
+                            "winning_window_coverage_ratio": 1,
+                            "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                            "moon_visibility_start_jd": 2461178.081412037,
+                            "moon_visibility_end_jd": 2461178.1184375,
+                            "moon_visibility_seconds": 3199.0000292658806,
                             "visibility_assessment": {
                                 "model": "classical_sthula_chandra_darshana_9_muhurta",
                                 "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
+                                "evening_tithi": "shukla_pratipada",
                                 "pratipada_post_sunrise_seconds": 55962.20367997885,
                                 "pratipada_post_sunrise_minutes": 932.7033946663141,
-                                "pratipada_post_sunrise_muhurtas": 17.495478438759275,
+                                "pratipada_post_sunrise_muhurtas": 17.51519123846525,
                                 "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 28787.99998998642,
-                                "day_muhurta_seconds": 3198.6666655540466,
-                                "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana"
+                                "sthula_threshold_seconds": 28755.599996745586,
+                                "day_muhurta_seconds": 3195.066666305065,
+                                "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                                "basis": "classical_textual_rule_sthula_chandra_darshana",
+                                "modern_visibility": {
+                                    "model": "simplified_modern_crescent_visibility",
+                                    "visible": true,
+                                    "lag_minutes": 53.31666715443134,
+                                    "elongation_degrees": 10.670943134268725,
+                                    "illumination_percent": 0.864658561360071,
+                                    "min_lag_minutes": 38,
+                                    "min_elongation_degrees": 9,
+                                    "hard_elongation_floor_degrees": 7,
+                                    "min_illumination_percent": 0.8,
+                                    "passes_lag": true,
+                                    "passes_elongation": true,
+                                    "passes_hard_elongation_floor": true,
+                                    "passes_illumination": true,
+                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                }
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                            "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "winning_reason_name": "સૂર્યાસ્તે સુદ એકમનો બીજવરચંદ્ર દૃશ્યમાન"
                         },
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "અધિક ચંદ્ર દર્શન",
@@ -14572,26 +14549,42 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_score": 1500,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "target_tithi_daylight_overlap_seconds": 42326.35054439306,
-                        "moon_visibility_start_jd": 2461179.081747685,
-                        "moon_visibility_end_jd": 2461179.1673726854,
-                        "moon_visibility_seconds": 7398.0000257492065,
+                        "winning_reason": "સૂર્યાસ્તે સુદ એકમનો બીજવરચંદ્ર દૃશ્યમાન",
+                        "winning_score": 1553,
+                        "winning_window_overlap_seconds": 3199.0000292658806,
+                        "winning_window_coverage_ratio": 1,
+                        "target_tithi_daylight_overlap_seconds": 47925.99999457598,
+                        "moon_visibility_start_jd": 2461178.081412037,
+                        "moon_visibility_end_jd": 2461178.1184375,
+                        "moon_visibility_seconds": 3199.0000292658806,
                         "visibility_assessment": {
                             "model": "classical_sthula_chandra_darshana_9_muhurta",
                             "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
+                            "evening_tithi": "shukla_pratipada",
                             "pratipada_post_sunrise_seconds": 55962.20367997885,
                             "pratipada_post_sunrise_minutes": 932.7033946663141,
-                            "pratipada_post_sunrise_muhurtas": 17.495478438759275,
+                            "pratipada_post_sunrise_muhurtas": 17.51519123846525,
                             "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 28787.99998998642,
-                            "day_muhurta_seconds": 3198.6666655540466,
-                            "reason": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana"
+                            "sthula_threshold_seconds": 28755.599996745586,
+                            "day_muhurta_seconds": 3195.066666305065,
+                            "reason": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                            "basis": "classical_textual_rule_sthula_chandra_darshana",
+                            "modern_visibility": {
+                                "model": "simplified_modern_crescent_visibility",
+                                "visible": true,
+                                "lag_minutes": 53.31666715443134,
+                                "elongation_degrees": 10.670943134268725,
+                                "illumination_percent": 0.864658561360071,
+                                "min_lag_minutes": 38,
+                                "min_elongation_degrees": 9,
+                                "hard_elongation_floor_degrees": 7,
+                                "min_illumination_percent": 0.8,
+                                "passes_lag": true,
+                                "passes_elongation": true,
+                                "passes_hard_elongation_floor": true,
+                                "passes_illumination": true,
+                                "basis": "modern_astronomical_heuristic_not_classical"
+                            }
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -14600,36 +14593,73 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1"
+                        "winning_reason_key": "chandra_darshana_sud1_crescent_visible_at_sunset",
+                        "winning_reason_name": "સૂર્યાસ્તે સુદ એકમનો બીજવરચંદ્ર દૃશ્યમાન"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
                         "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
-                        "display": "૦૭:૨૭ અપરાહ્ન to ૦૯:૩૧ અપરાહ્ન",
+                        "display": "૦૭:૨૭ અપરાહ્ન to ૦૮:૨૦ અપરાહ્ન",
                         "start": "૦૭:૨૭ અપરાહ્ન",
-                        "end": "૦૯:૩૧ અપરાહ્ન",
-                        "start_iso": "18/05/2026 07:27:42 PM",
-                        "end_iso": "18/05/2026 09:31:01 PM",
-                        "start_jd": 2461179.081747685,
-                        "end_jd": 2461179.1673726854,
-                        "duration_seconds": 7398.0000257492065,
-                        "duration_minutes": 123.30000042915344,
-                        "duration_min": "2h 3m 18s"
+                        "end": "૦૮:૨૦ અપરાહ્ન",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
                     },
                     "observance_window": {
                         "type": "moon_visibility",
                         "type_name": "સૂર્યાસ્તથી ચંદ્રાસ્ત સુધીનો દર્શન સમય",
-                        "display": "૦૭:૨૭ અપરાહ્ન to ૦૯:૩૧ અપરાહ્ન",
+                        "display": "૦૭:૨૭ અપરાહ્ન to ૦૮:૨૦ અપરાહ્ન",
                         "start": "૦૭:૨૭ અપરાહ્ન",
-                        "end": "૦૯:૩૧ અપરાહ્ન",
-                        "start_iso": "18/05/2026 07:27:42 PM",
-                        "end_iso": "18/05/2026 09:31:01 PM",
-                        "start_jd": 2461179.081747685,
-                        "end_jd": 2461179.1673726854,
-                        "duration_seconds": 7398.0000257492065,
-                        "duration_minutes": 123.30000042915344,
-                        "duration_min": "2h 3m 18s"
+                        "end": "૦૮:૨૦ અપરાહ્ન",
+                        "start_iso": "17/05/2026 07:27:13 PM",
+                        "end_iso": "17/05/2026 08:20:33 PM",
+                        "start_jd": 2461178.081412037,
+                        "end_jd": 2461178.1184375,
+                        "duration_seconds": 3199.0000292658806,
+                        "duration_minutes": 53.31666715443134,
+                        "duration_min": "53m 19s"
+                    }
+                },
+                {
+                    "name": "પુરુષોત્તમ માસ પ્રારંભ",
+                    "name_key": "Purushottam Maas Begins",
+                    "description": "ભગવાન વિષ્ણુને સમર્પિત અધિક માસ એટલે પુરુષોત્તમ માસનો પ્રારંભ",
+                    "deity": "વિષ્ણુ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "derived_adhika_month_boundary",
+                        "type_name": "ઉત્પન્ન અધિક માસ સીમા",
+                        "basis": "derived_observance",
+                        "basis_name": "ઉત્પન્ન પાલન"
+                    },
+                    "resolution": {
+                        "festival_name": "પુરુષોત્તમ માસ પ્રારંભ",
+                        "standard_date": "2026-05-17",
+                        "observance_date": "2026-05-17",
+                        "decision": {
+                            "winning_reason": "અધિક માસ આજે શરૂ થાય છે",
+                            "winning_score": 1000,
+                            "winning_reason_key": "adhika_month_begin",
+                            "winning_reason_name": "અધિક માસ આજે શરૂ થાય છે"
+                        },
+                        "festival_name_key": "Purushottam Maas Begins",
+                        "festival_name_localized": "પુરુષોત્તમ માસ પ્રારંભ"
+                    },
+                    "rules_applied": {
+                        "winning_reason": "અધિક માસ આજે શરૂ થાય છે",
+                        "winning_score": 1000,
+                        "winning_reason_key": "adhika_month_begin",
+                        "winning_reason_name": "અધિક માસ આજે શરૂ થાય છે"
                     }
                 }
             ],
@@ -24756,122 +24786,6 @@
                     }
                 }
             ],
-            "2026-09-18": [
-                {
-                    "name": "રાધા અષ્ટમી",
-                    "name_key": "Radha Ashtami",
-                    "description": "રાધા અષ્ટમી શ્રી રાધિકાના દિવ્ય પ્રાગટ્યનો ઉત્સવ છે, જે રાધા-કૃષ્ણની પૂજા અને ભક્તિ સાથે મનાય છે.",
-                    "deity": "રાધા",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "રાધાષ્ટમી"
-                    ],
-                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 8 સૂર્યોદયે 2026-09-19 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-18 પર ઉજવાય છે.",
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "સુદ આઠમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "ભાદરવો",
-                            "value_key": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "મધ્યાહ્ન",
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "resolution_policy": {
-                            "vriddhi_preference": "first"
-                        },
-                        "source_refs": [
-                            "Satsangi Jeevan 4.56.64-78"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "રાધા અષ્ટમી",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "madhyahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": true,
-                        "tithi_coverage_seconds_today": 3443.8823863863945,
-                        "tithi_coverage_seconds_tomorrow": 8801.399977505207,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": true,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-18",
-                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 8 સૂર્યોદયે 2026-09-19 પર આવે છે, પરંતુ મધ્યાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-18 પર ઉજવાય છે.",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "madhyahna_shuddha_purva_vedha_free_day1",
-                            "winning_score": 20000,
-                            "winning_window_overlap_seconds": 3443.8823863863945,
-                            "winning_window_coverage_ratio": 0.39057799324518266,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "madhyahna_shuddha_purva_vedha_free_day1",
-                            "winning_reason_name": "madhyahna_shuddha_purva_vedha_free_day1"
-                        },
-                        "festival_name_key": "Radha Ashtami",
-                        "festival_name_localized": "રાધા અષ્ટમી",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "મધ્યાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "madhyahna_shuddha_purva_vedha_free_day1",
-                        "winning_score": 20000,
-                        "winning_window_overlap_seconds": 3443.8823863863945,
-                        "winning_window_coverage_ratio": 0.39057799324518266,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "madhyahna_shuddha_purva_vedha_free_day1",
-                        "winning_reason_name": "madhyahna_shuddha_purva_vedha_free_day1"
-                    }
-                }
-            ],
             "2026-09-19": [
                 {
                     "name": "રવેચી માતાનો મેળો",
@@ -24975,6 +24889,119 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "રાધા અષ્ટમી",
+                    "name_key": "Radha Ashtami",
+                    "description": "રાધા અષ્ટમી શ્રી રાધિકાના દિવ્ય પ્રાગટ્યનો ઉત્સવ છે, જે રાધા-કૃષ્ણની પૂજા અને ભક્તિ સાથે મનાય છે.",
+                    "deity": "રાધા",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "રાધાષ્ટમી"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                8
+                            ],
+                            "names": [
+                                "સુદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "madhyahna",
+                        "karmakala_type_name": "મધ્યાહ્ન",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "resolution_policy": {
+                            "vriddhi_preference": "first"
+                        },
+                        "source_refs": [
+                            "Satsangi Jeevan 4.56.64-78"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "રાધા અષ્ટમી",
+                        "required_tithi": 8,
+                        "paksha": "Shukla",
+                        "karmakala_type": "madhyahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8801.399977505207,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461301.8135221945,
+                        "target_tithi_end_jd": 2461302.914826148,
+                        "standard_date": "2026-09-19",
+                        "observance_date": "2026-09-19",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "પછીના શુદ્ધ દિવસે નવમી-યુક્ત દિવસની પસંદગી",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8801.399977505207,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
+                            "winning_reason_name": "પછીના શુદ્ધ દિવસે નવમી-યુક્ત દિવસની પસંદગી"
+                        },
+                        "festival_name_key": "Radha Ashtami",
+                        "festival_name_localized": "રાધા અષ્ટમી",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "મધ્યાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "પછીના શુદ્ધ દિવસે નવમી-યુક્ત દિવસની પસંદગી",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8801.399977505207,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
+                        "winning_reason_name": "પછીના શુદ્ધ દિવસે નવમી-યુક્ત દિવસની પસંદગી"
                     }
                 },
                 {

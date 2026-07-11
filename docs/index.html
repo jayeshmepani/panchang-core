@@ -4760,11 +4760,11 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.2.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.3.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
@@ -4776,9 +4776,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.3.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Chandra Darshana Visibility Architecture, Hindola Higher-Tithi Preference, and Eclipse Sutak Corrections</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release completing the Chandra Darshana modern crescent-visibility engine: the visibility gate now applies across all three resolution branches (short Pratipada, Dwitiya fallback, Kshaya); modern astronomical metrics (lag, elongation, illumination) are always embedded in <code>visibility_assessment.modern_visibility</code> for auditing; yesterday&#39;s sunset/moonset data is injected into <code>Resolution_Context</code>; the Dwitiya branch gains a double-observation guard using yesterday&#39;s visibility; and Hindola Festival gains a <code>prefer_higher_tithi_option</code> to resolve Dwitiya over Pratipada when both qualify. Eclipse Sutak relaxed-start times are corrected for 8 of 9 events. New Gujarati localization strings are added for all new Chandra Darshana reason keys.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.2.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Calendar Period Windows, Mahadiksha Guidance, and Vrat Rule Expansion</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Calendar Period Windows, Mahadiksha Guidance, and Vrat Rule Expansion</span></div>
                 <p class="release-note">Minor release adding generated calendar-period windows for today, month, and raw outputs; exposing sidereal and Sayana ayana/ritu windows; adding day-detail Mahadiksha guidance; refreshing festival/vrat rule metadata and localization; adding generic Vratni Purnima coverage; and regenerating Amanta/Purnimanta JSON across English, Hindi, and Gujarati. The latest generated output reports 324 festival identities and 122 vrat identities.</p>
               </div>
             </li>
@@ -5063,6 +5070,29 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.3.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release completes the Chandra Darshana visibility engine, introduces the higher-tithi festival preference system, corrects eclipse Sutak relaxed-start times, and regenerates the public JSON outputs.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Eclipse Sutak relaxed-start times corrected:</strong> <code>relaxed_start</code> in the eclipse output changed for 8 of 9 events (2026–2032). Rebaseline any snapshot tests that assert on exact eclipse Sutak times.</li>
+              <li><strong><code>visibility_assessment</code> now includes <code>modern_visibility</code>:</strong> all Chandra Darshana outputs include a new nested <code>modern_visibility</code> object with <code>lag_minutes</code>, <code>elongation_degrees</code>, <code>illumination_percent</code>, and individual pass/fail flags, regardless of whether the heuristic flag is enabled. Consumers that iterate over keys of <code>visibility_assessment</code> should handle this new nested object.</li>
+              <li><strong>Modern visibility gate is a true rejection filter when enabled:</strong> when <code>chandra_darshana_visibility_affects_selection: true</code> is set on a festival rule, the crescent-visibility check now applies to <em>all</em> resolution branches (short Pratipada, Dwitiya fallback, Kshaya Pratipada), not only to the long-Pratipada override. The default (flag absent or false) is unchanged.</li>
+              <li><strong>Dwitiya double-observation guard added:</strong> when the visibility flag is enabled and Dwitiya is active at the preceding day&#39;s sunset, the engine skips the Dwitiya candidate to prevent a double-observation. This new <code>Resolution_Context</code> data (<code>prev_sunset_jd</code>, <code>prev_moonset_jd</code>, <code>prev_moon_sun_elongation_at_sunset_degrees</code>, <code>prev_moon_illumination_at_sunset_percent</code>) is always populated by <code>PanchangService</code>.</li>
+              <li><strong>Hindola Festival prefers Dwitiya over Pratipada:</strong> a new <code>prefer_higher_tithi_option</code> flag on the Hindola Festival rule ensures that when both Pratipada and Dwitiya candidates are present, Dwitiya is selected. This is also exposed in <code>calculation_basis.prefer_higher_tithi_option</code> in the festival output.</li>
+              <li><strong>New localization keys:</strong> Gujarati localization adds translations for <code>chandra_darshana_sud1_crescent_visible_at_sunset</code>, <code>chandra_darshana_dwitiya_fallback_at_local_sunset</code>, and related reason keys.</li>
+              <li><strong>Exporter output changed:</strong> regenerated today, month, raw, festival-only, combined festival, vrat, and eclipse JSON snapshots differ from v10.2.0 outputs due to eclipse Sutak corrections and Chandra Darshana metadata expansion.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached eclipse, today, month, raw, festival, and vrat output after upgrading.</li>
+            <li>Rebaseline tests or snapshots that assert on <code>visibility_assessment</code> structure, eclipse <code>relaxed_start</code> times, or Chandra Darshana <code>winning_reason_key</code> values.</li>
+            <li>Review any code that destructures <code>visibility_assessment</code> as a flat string-keyed map — it now contains a nested <code>modern_visibility</code> object.</li>
+          </ul>
 
           <h3>v10.2.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release expands generated calendar-period output, adds day-detail Mahadiksha guidance, refreshes festival and vrat metadata, and regenerates the public JSON outputs.</p>
