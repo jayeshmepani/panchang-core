@@ -216,6 +216,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             'pradosha_start_iso' => AstroCore::formatDateTime($effectiveStart),
             'pradosha_end_iso' => AstroCore::formatDateTime($effectiveEnd),
             'sunset' => AstroCore::formatTime($sunset),
+            'sunset_iso' => AstroCore::formatDateTime($sunset),
             'duration_minutes' => $effectiveDurationMinutes,
             'base_pradosha_start' => AstroCore::formatTime($baseStart),
             'base_pradosha_end' => AstroCore::formatTime($baseEnd),
