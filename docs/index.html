@@ -4760,25 +4760,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.3.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.3.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.3.1 corrects the Govardhan Puja / Bali Pratipada / Annakut decision path with sayahna-vyapini Pratipada and Sthula Chandra Darshana safeguards. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.2.0: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
+            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.3.1: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with sidereal and Sayana ayana/ritu windows; day-detail payloads also expose <code>Sayana_Ayana</code>, <code>Sayana_Ritu</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.3.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Govardhan Puja and Bali Pratipada Decision Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release correcting the Govardhan Puja / Bali Pratipada / Annakut selection path. The decision now requires sayahna-vyapini Pratipada, protects against Sthula Chandra Darshana risk when Pratipada is too short after sunrise, keeps Bestu Varas separate, and updates localized decision labels in English, Hindi, and Gujarati. The 2026 Bhuj generated output shifts Govardhan Puja and Bali Pratipada from November 10 to November 9 without changing festival or vrat identity totals.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.3.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Chandra Darshana Visibility Architecture, Hindola Higher-Tithi Preference, and Eclipse Sutak Corrections</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Chandra Darshana Visibility Architecture, Hindola Higher-Tithi Preference, and Eclipse Sutak Corrections</span></div>
                 <p class="release-note">Minor release completing the Chandra Darshana modern crescent-visibility engine: the visibility gate now applies across all three resolution branches (short Pratipada, Dwitiya fallback, Kshaya); modern astronomical metrics (lag, elongation, illumination) are always embedded in <code>visibility_assessment.modern_visibility</code> for auditing; yesterday&#39;s sunset/moonset data is injected into <code>Resolution_Context</code>; the Dwitiya branch gains a double-observation guard using yesterday&#39;s visibility; and Hindola Festival gains a <code>prefer_higher_tithi_option</code> to resolve Dwitiya over Pratipada when both qualify. Eclipse Sutak relaxed-start times are corrected for 8 of 9 events. New Gujarati localization strings are added for all new Chandra Darshana reason keys.</p>
               </div>
             </li>
@@ -5070,6 +5077,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.3.1 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This patch release corrects the Govardhan Puja / Bali Pratipada / Annakut decision path and regenerates the public JSON outputs without changing identity totals.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Govardhan-family observance date corrected:</strong> for the 2026 Bhuj generated output, <code>Govardhan Puja</code> and <code>Bali Pratipada</code> move from November 10 to November 9.</li>
+              <li><strong>Sayahna-vyapini Pratipada is enforced:</strong> Govardhan / Annakut selection now requires Pratipada to remain active in the evening window.</li>
+              <li><strong>Sthula Chandra Darshana safeguard refined:</strong> if Pratipada is too short after sunrise or leads to an evening Dwitiya / Chandra Darshana risk, the observance uses the Amavasya-viddha previous day.</li>
+              <li><strong>Bestu Varas remains separate:</strong> the sunrise-based new year observance is not moved by the Govardhan / Annakut evening rule.</li>
+              <li><strong>Identity totals are unchanged:</strong> the latest generated output still reports 324 festival identities and 122 vrat identities.</li>
+              <li><strong>Localized decision labels updated:</strong> new Govardhan-family decision reasons are available in English, Hindi, and Gujarati output.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, month, today, raw, and localized JSON output after upgrading.</li>
+            <li>Rebaseline tests or snapshots that assert on Govardhan Puja, Bali Pratipada, Annakut, or Deepotsav-family observance dates.</li>
+          </ul>
 
           <h3>v10.3.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release completes the Chandra Darshana visibility engine, introduces the higher-tithi festival preference system, corrects eclipse Sutak relaxed-start times, and regenerates the public JSON outputs.</p>

@@ -2053,11 +2053,15 @@ class FestivalRuleEngine
     }
 
     /**
-     * Govardhan Puja / Annakut / Gokrida / Bali Puja selection via the "Sthula Chandra
-     * Darshana" assessment (Kartika Shukla Pratipada, sayahna-vyapini). Chandra Darshana on
-     * the festival evening is forbidden, so the day is only accepted when Pratipada persists
-     * at least 9 muhurtas past sunrise; otherwise the observance moves to the previous
-     * (Amavasya-viddha) Pratipada day.
+     * Govardhan Puja / Annakut / Gokrida / Bali Puja (Satsangi Jeevan 4.58).
+     *
+     * Kartika Shukla Pratipada for these festivals must:
+     *  - be sayahna-vyapini (still present at local sunset), and
+     *  - not invite Sthula Chandra Darshana risk (Pratipada lasts ≥ 9 muhurtas after sunrise).
+     *
+     * If the pure udaya Pratipada day fails either test (e.g. Pratipada ends before sunset so
+     * evening is Dwitiya / CD night), use the previous Amavasya-viddha day — matching Bhuj
+     * Mandir Nirnay (Bestu Varas stays on sunrise Pratipada separately).
      */
     private function resolveGovardhanAnnakutTruthTable(array $candidates, array $targetInterval): ?array
     {
@@ -2068,50 +2072,81 @@ class FestivalRuleEngine
             return null;
         }
 
-        $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
-        $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
-        $targetEndJd = (float) ($targetInterval['end_jd'] ?? 0.0);
-
-        // Case 1: Pratipada is present at day2 sunrise (day1 is the Amavasya-viddha Pratipada,
-        // day2 is the full udaya-vyapini Pratipada). This pair holds the shift decision.
-        if ($this->isTargetAtPoint($day2Sunrise, $targetInterval)) {
-            $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * (float) ($day2['day_muhurta_seconds'] ?? 0.0);
-            $postSunrisePratipadaSeconds = max(0.0, ($targetEndJd - $day2Sunrise) * 86400.0);
-            $noSthulaChandraDarshana = $thresholdSeconds > 0.0 && $postSunrisePratipadaSeconds >= $thresholdSeconds;
-
-            if ($noSthulaChandraDarshana) {
+        // Case 1: Pratipada at day2 sunrise → day2 is udaya-vyapini Pratipada;
+        // day1 is the Amavasya-viddha civil day that may hold sayahna Pratipada.
+        if ($this->isTargetAtPoint((float) ($day2['sunrise_jd'] ?? 0.0), $targetInterval)) {
+            $safe = $this->isGovardhanSafeUdayaPratipadaDay($day2, $targetInterval);
+            if ($safe['safe']) {
                 return (bool) ($day2['target_during_observance'] ?? false)
-                    ? $this->markSpecialWinner($day2, 'govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day')
+                    ? $this->markSpecialWinner($day2, $safe['reason'])
                     : null;
             }
 
             return (bool) ($day1['target_during_observance'] ?? false)
-                ? $this->markSpecialWinner($day1, 'govardhan_below_9_muhurta_sthula_chandra_darshana_amavasya_viddha_prev_day')
+                ? $this->markSpecialWinner($day1, $safe['reason'])
                 : null;
         }
 
-        // Case 2: Pratipada is at day1 sunrise but not day2 (day1 is the full Pratipada day;
-        // the Amavasya-viddha day precedes this pair). Accept day1 only when it clears the
-        // 9-muhurta threshold, otherwise defer so the previous-day pairing shifts it back.
+        // Case 2: Pratipada only at day1 sunrise (no day2 pair).
         if ((bool) ($day1['target_at_sunrise'] ?? false)) {
-            $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * (float) ($day1['day_muhurta_seconds'] ?? 0.0);
-            $postSunrisePratipadaSeconds = max(0.0, ($targetEndJd - $day1Sunrise) * 86400.0);
-            $noSthulaChandraDarshana = $thresholdSeconds > 0.0 && $postSunrisePratipadaSeconds >= $thresholdSeconds;
-
-            if ($noSthulaChandraDarshana && (bool) ($day1['target_during_observance'] ?? false)) {
-                return $this->markSpecialWinner($day1, 'govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day');
+            $safe = $this->isGovardhanSafeUdayaPratipadaDay($day1, $targetInterval);
+            if ($safe['safe'] && (bool) ($day1['target_during_observance'] ?? false)) {
+                return $this->markSpecialWinner($day1, $safe['reason']);
             }
 
             return null;
         }
 
-        // Case 3: Kshaya Pratipada (not at either sunrise) is a short tithi, so Sthula
-        // Chandra Darshana is assumed and the observance stays on the Amavasya-viddha day1.
+        // Case 3: Kshaya Pratipada — short tithi; keep Amavasya-viddha day1.
         if ((bool) ($day1['target_during_observance'] ?? false)) {
             return $this->markSpecialWinner($day1, 'govardhan_kshaya_pratipada_sthula_chandra_darshana_amavasya_viddha_day');
         }
 
         return null;
+    }
+
+    /**
+     * @param array<string, mixed> $day
+     * @param array{start_jd?: float|int, end_jd?: float|int} $targetInterval
+     *
+     * @return array{safe: bool, reason: string}
+     */
+    private function isGovardhanSafeUdayaPratipadaDay(array $day, array $targetInterval): array
+    {
+        $sunriseJd = (float) ($day['sunrise_jd'] ?? 0.0);
+        $sunsetJd = (float) ($day['sunset_jd'] ?? 0.0);
+        $targetStartJd = (float) ($targetInterval['start_jd'] ?? 0.0);
+        $targetEndJd = (float) ($targetInterval['end_jd'] ?? 0.0);
+        $dayMuhurtaSeconds = (float) ($day['day_muhurta_seconds'] ?? 0.0);
+        $thresholdSeconds = self::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * $dayMuhurtaSeconds;
+        $postSunriseSeconds = max(0.0, ($targetEndJd - $sunriseJd) * 86400.0);
+
+        // SJ 4.58: reject if evening is already Dwitiya-linked (Pratipada ends before sunset).
+        // Sayahna-vyapini = Pratipada still running at local sunset.
+        $sayahnaVyapini = $sunsetJd > 0.0
+            && $targetStartJd < $sunsetJd
+            && $targetEndJd > $sunsetJd;
+
+        if (!$sayahnaVyapini) {
+            return [
+                'safe' => false,
+                'reason' => 'govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day',
+            ];
+        }
+
+        // SJ sthula Chandra Darshana: if Pratipada does not last 9 muhurtas past sunrise,
+        // assume CD risk and use previous (Amavasya-viddha) day.
+        if ($thresholdSeconds <= 0.0 || $postSunriseSeconds < $thresholdSeconds) {
+            return [
+                'safe' => false,
+                'reason' => 'govardhan_below_9_muhurta_sthula_chandra_darshana_amavasya_viddha_prev_day',
+            ];
+        }
+
+        return [
+            'safe' => true,
+            'reason' => 'govardhan_pratipada_9_muhurta_sayahna_no_sthula_chandra_darshana_same_day',
+        ];
     }
 
     /**

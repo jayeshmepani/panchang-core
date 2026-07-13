@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T21:23:17+00:00",
+        "generated_at": "2026-07-13T04:26:00+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -32866,6 +32866,236 @@
                     }
                 },
                 {
+                    "name": "ગોવર્ધન પૂજા",
+                    "name_key": "Govardhan Puja",
+                    "description": "ગોવર્ધન પૂજા અને અન્નકૂટ શ્રીકૃષ્ણની ગોવર્ધન લીલાનો ઉત્સવ છે, જેમાં ગૌપૂજન, ગોવર્ધન પૂજા અને સમૃદ્ધ અન્નભોગ અર્પણ થાય છે.",
+                    "deity": "કૃષ્ણ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "અન્નકૂટ",
+                        "ગોવર્ધન ઉત્સવ",
+                        "બલી પૂજા"
+                    ],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 1 સૂર્યોદયે 2026-11-10 પર આવે છે, પરંતુ સાયંકાળ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-11-09 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "સુદ એકમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "કારતક",
+                            "value_key": "Kartika",
+                            "name": "કારતક"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "સાયંકાળ",
+                        "strict_karmakala": true,
+                        "chandradarshan_nishedh": true,
+                        "deepotsav_sequence": "govardhan_annakut",
+                        "location_sensitive": true,
+                        "rule_convention": "ગોવર્ધન પૂજા રૂપરેખાંકિત સ્થળ પ્રમાણે નક્કી થાય છે; શહેર-વિશેષ જાહેર પંચાંગોમાં એક નાગરિક દિવસનો ફરક હોઈ શકે છે.",
+                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.19-21"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "ગોવર્ધન પૂજા",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8031.0000121593475,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461353.7930611074,
+                        "target_tithi_end_jd": 2461354.8545238134,
+                        "standard_date": "2026-11-10",
+                        "observance_date": "2026-11-09",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 1 સૂર્યોદયે 2026-11-10 પર આવે છે, પરંતુ સાયંકાળ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-11-09 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8031.0000121593475,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                            "winning_reason_name": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ"
+                        },
+                        "festival_name_key": "Govardhan Puja",
+                        "festival_name_localized": "ગોવર્ધન પૂજા",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સાયંકાળ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8031.0000121593475,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                        "winning_reason_name": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ"
+                    }
+                },
+                {
+                    "name": "બલિ પ્રતિપદા",
+                    "name_key": "Bali Pratipada",
+                    "description": "રાજા બલિ અને ગોવર્ધન પર્વતની પૂજા",
+                    "deity": "બલિ/કૃષ્ણ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "અન્નકૂટ"
+                    ],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 1 સૂર્યોદયે 2026-11-10 પર આવે છે, પરંતુ સાયંકાળ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-11-09 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "સુદ એકમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "કારતક",
+                            "value_key": "Kartika",
+                            "name": "કારતક"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "સાયંકાળ",
+                        "strict_karmakala": true,
+                        "chandradarshan_nishedh": true,
+                        "deepotsav_sequence": "govardhan_annakut",
+                        "location_sensitive": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "બલિ પ્રતિપદા",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8031.0000121593475,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461353.7930611074,
+                        "target_tithi_end_jd": 2461354.8545238134,
+                        "standard_date": "2026-11-10",
+                        "observance_date": "2026-11-09",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 1 સૂર્યોદયે 2026-11-10 પર આવે છે, પરંતુ સાયંકાળ ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-11-09 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8031.0000121593475,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                            "winning_reason_name": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ"
+                        },
+                        "festival_name_key": "Bali Pratipada",
+                        "festival_name_localized": "બલિ પ્રતિપદા",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સાયંકાળ"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8031.0000121593475,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                        "winning_reason_name": "ગોવર્ધન: પ્રતિપદા સાયંકાળ-વ્યાપિની નથી (દ્વિતીયા સાંજ / ચંદ્રદર્શન જોખમ) — અમાવાસ્યા-વિદ્ધા પૂર્વ દિવસ"
+                    }
+                },
+                {
                     "name": "અમાવસ્યા",
                     "name_key": "Amavasya",
                     "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
@@ -33080,122 +33310,6 @@
                     }
                 },
                 {
-                    "name": "ગોવર્ધન પૂજા",
-                    "name_key": "Govardhan Puja",
-                    "description": "ગોવર્ધન પૂજા અને અન્નકૂટ શ્રીકૃષ્ણની ગોવર્ધન લીલાનો ઉત્સવ છે, જેમાં ગૌપૂજન, ગોવર્ધન પૂજા અને સમૃદ્ધ અન્નભોગ અર્પણ થાય છે.",
-                    "deity": "કૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "અન્નકૂટ",
-                        "ગોવર્ધન ઉત્સવ",
-                        "બલી પૂજા"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "સુદ એકમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "કારતક",
-                            "value_key": "Kartika",
-                            "name": "કારતક"
-                        },
-                        "karmakala_type": "sayankala",
-                        "karmakala_type_name": "સાયંકાળ",
-                        "strict_karmakala": true,
-                        "chandradarshan_nishedh": true,
-                        "deepotsav_sequence": "govardhan_annakut",
-                        "location_sensitive": true,
-                        "rule_convention": "ગોવર્ધન પૂજા રૂપરેખાંકિત સ્થળ પ્રમાણે નક્કી થાય છે; શહેર-વિશેષ જાહેર પંચાંગોમાં એક નાગરિક દિવસનો ફરક હોઈ શકે છે.",
-                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.58.19-21"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "ગોવર્ધન પૂજા",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sayankala",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930611074,
-                        "target_tithi_end_jd": 2461354.8545238134,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                            "winning_score": 20000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                            "winning_reason_name": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day"
-                        },
-                        "festival_name_key": "Govardhan Puja",
-                        "festival_name_localized": "ગોવર્ધન પૂજા",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સાયંકાળ"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                        "winning_score": 20000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                        "winning_reason_name": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day"
-                    }
-                },
-                {
                     "name": "બેસતું વર્ષ",
                     "name_key": "Bestu Varas",
                     "description": "બેસ્ટુ વરસ કાર્તિક શુક્લ પ્રતિપદાનું ગુજરાતી નવું વર્ષ છે.",
@@ -33292,111 +33406,6 @@
                         },
                         "festival_name_key": "Bestu Varas",
                         "festival_name_localized": "બેસતું વર્ષ",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "બલિ પ્રતિપદા",
-                    "name_key": "Bali Pratipada",
-                    "description": "રાજા બલિ અને ગોવર્ધન પર્વતની પૂજા",
-                    "deity": "બલિ/કૃષ્ણ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "અન્નકૂટ"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "સુદ એકમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "કારતક",
-                            "value_key": "Kartika",
-                            "name": "કારતક"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "બલિ પ્રતિપદા",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930611074,
-                        "target_tithi_end_jd": 2461354.8545238134,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Bali Pratipada",
-                        "festival_name_localized": "બલિ પ્રતિપદા",
                         "paksha_name": "શુક્લ",
                         "karmakala_type_name": "સૂર્યોદય"
                     },

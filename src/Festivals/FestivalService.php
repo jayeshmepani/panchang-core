@@ -6139,7 +6139,22 @@ class FestivalService
             'aliases' => ['Annakut'],
             'description' => 'Worship of King Bali and Govardhan Hill',
             'deity' => 'Bali/Krishna',
-            'karmakala_type' => 'sunrise',
+            // Same SJ 4.58 Govardhan/Annakut day selection as Govardhan Puja (Bhuj Mandir:
+            // Bali+Annakut may shift to Amavasya-viddha day; Bestu Varas stays sunrise).
+            'karmakala_type' => 'sayankala',
+            'strict_karmakala' => true,
+            'govardhan_annakut_truth_table' => true,
+            'chandradarshan_nishedh' => true,
+            'chandradarshan_nishedh_mode' => 'metadata',
+            'deepotsav_sequence' => 'govardhan_annakut',
+            'location_sensitive' => true,
+            'resolution_policy' => [
+                'sayahna_vyapini_pratipada' => true,
+                'amavasya_viddha_pratipada_preferred' => true,
+                'dwitiya_viddha_pratipada_rejected' => true,
+                'sthula_chandra_darshana_muhurta_threshold' => 9,
+            ],
+            'source_refs' => ['Satsangi Jeevan 4.58'],
         ],
         'Sata Yuga Diwas' => [
             'type' => 'tithi',

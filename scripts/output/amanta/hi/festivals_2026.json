@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-11T21:15:32+00:00",
+        "generated_at": "2026-07-13T04:20:37+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -56875,7 +56875,7 @@
                                     "visible": true,
                                     "lag_minutes": 53.199999779462814,
                                     "elongation_degrees": 22.19948175180835,
-                                    "illumination_percent": 3.7062998803045364,
+                                    "illumination_percent": 3.706299880304542,
                                     "min_lag_minutes": 38,
                                     "min_elongation_degrees": 9,
                                     "hard_elongation_floor_degrees": 7,
@@ -56931,7 +56931,7 @@
                                 "visible": true,
                                 "lag_minutes": 53.199999779462814,
                                 "elongation_degrees": 22.19948175180835,
-                                "illumination_percent": 3.7062998803045364,
+                                "illumination_percent": 3.706299880304542,
                                 "min_lag_minutes": 38,
                                 "min_elongation_degrees": 9,
                                 "hard_elongation_floor_degrees": 7,
@@ -64679,6 +64679,236 @@
                     }
                 },
                 {
+                    "name": "गोवर्धन पूजा",
+                    "name_key": "Govardhan Puja",
+                    "description": "गोवर्धन पूजा और अन्नकूट श्रीकृष्ण की गोवर्धन लीला का उत्सव है, जिसमें गौपूजन, गोवर्धन पूजा और विपुल अन्न-भोग अर्पित किए जाते हैं।",
+                    "deity": "कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "अन्नकूट",
+                        "गोवर्धन उत्सव",
+                        "बली पूजा"
+                    ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 1 सूर्योदय पर 2026-11-10 को होती है, किंतु सायंकाल की उपस्थिति की परंपरा/विधि के कारण 2026-11-09 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "कार्तिक",
+                            "value_key": "Kartika",
+                            "name": "कार्तिक"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "सायंकाल",
+                        "strict_karmakala": true,
+                        "chandradarshan_nishedh": true,
+                        "deepotsav_sequence": "govardhan_annakut",
+                        "location_sensitive": true,
+                        "rule_convention": "गोवर्धन पूजा विन्यस्त स्थान के अनुसार निकाली जाती है; नगर-विशेष सार्वजनिक पंचांगों में एक नागरिक दिन का अंतर हो सकता है।",
+                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58.19-21"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "गोवर्धन पूजा",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8031.0000121593475,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461353.7930611074,
+                        "target_tithi_end_jd": 2461354.8545238134,
+                        "standard_date": "2026-11-10",
+                        "observance_date": "2026-11-09",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 1 सूर्योदय पर 2026-11-10 को होती है, किंतु सायंकाल की उपस्थिति की परंपरा/विधि के कारण 2026-11-09 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8031.0000121593475,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                            "winning_reason_name": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन"
+                        },
+                        "festival_name_key": "Govardhan Puja",
+                        "festival_name_localized": "गोवर्धन पूजा",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सायंकाल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8031.0000121593475,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                        "winning_reason_name": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन"
+                    }
+                },
+                {
+                    "name": "बलि प्रतिपदा",
+                    "name_key": "Bali Pratipada",
+                    "description": "राजा बलि और गोवर्धन पर्वत की पूजा",
+                    "deity": "बलि/कृष्ण",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "अन्नकूट"
+                    ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 1 सूर्योदय पर 2026-11-10 को होती है, किंतु सायंकाल की उपस्थिति की परंपरा/विधि के कारण 2026-11-09 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                1
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                1
+                            ],
+                            "names": [
+                                "शुक्ल प्रतिपदा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "कार्तिक",
+                            "value_key": "Kartika",
+                            "name": "कार्तिक"
+                        },
+                        "karmakala_type": "sayankala",
+                        "karmakala_type_name": "सायंकाल",
+                        "strict_karmakala": true,
+                        "chandradarshan_nishedh": true,
+                        "deepotsav_sequence": "govardhan_annakut",
+                        "location_sensitive": true,
+                        "source_refs": [
+                            "Satsangi Jeevan 4.58"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "बलि प्रतिपदा",
+                        "required_tithi": 1,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sayankala",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8031.0000121593475,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461353.7930611074,
+                        "target_tithi_end_jd": 2461354.8545238134,
+                        "standard_date": "2026-11-10",
+                        "observance_date": "2026-11-09",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 1 सूर्योदय पर 2026-11-10 को होती है, किंतु सायंकाल की उपस्थिति की परंपरा/विधि के कारण 2026-11-09 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8031.0000121593475,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                            "winning_reason_name": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन"
+                        },
+                        "festival_name_key": "Bali Pratipada",
+                        "festival_name_localized": "बलि प्रतिपदा",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सायंकाल"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8031.0000121593475,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day",
+                        "winning_reason_name": "गोवर्धन: प्रतिपदा सायंकाल-व्यापिनी नहीं (द्वितीया सायंकाल / चंद्रदर्शन जोखिम) — अमावस्या-विद्ध पूर्व दिन"
+                    }
+                },
+                {
                     "name": "अमावस्या",
                     "name_key": "Amavasya",
                     "description": "अमावस्या मासिक अमावस्या का दिन है, जो पूर्वज-स्मरण, पूजा और आन्तरिक शुद्धि से जुड़ा है।",
@@ -64918,122 +65148,6 @@
                     }
                 },
                 {
-                    "name": "गोवर्धन पूजा",
-                    "name_key": "Govardhan Puja",
-                    "description": "गोवर्धन पूजा और अन्नकूट श्रीकृष्ण की गोवर्धन लीला का उत्सव है, जिसमें गौपूजन, गोवर्धन पूजा और विपुल अन्न-भोग अर्पित किए जाते हैं।",
-                    "deity": "कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [
-                        "अन्नकूट",
-                        "गोवर्धन उत्सव",
-                        "बली पूजा"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "कार्तिक",
-                            "value_key": "Kartika",
-                            "name": "कार्तिक"
-                        },
-                        "karmakala_type": "sayankala",
-                        "karmakala_type_name": "सायंकाल",
-                        "strict_karmakala": true,
-                        "chandradarshan_nishedh": true,
-                        "deepotsav_sequence": "govardhan_annakut",
-                        "location_sensitive": true,
-                        "rule_convention": "गोवर्धन पूजा विन्यस्त स्थान के अनुसार निकाली जाती है; नगर-विशेष सार्वजनिक पंचांगों में एक नागरिक दिन का अंतर हो सकता है।",
-                        "rule_convention_key": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
-                        "source_refs": [
-                            "Satsangi Jeevan 4.58.19-21"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "गोवर्धन पूजा",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sayankala",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930611074,
-                        "target_tithi_end_jd": 2461354.8545238134,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "winning_reason": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                            "winning_score": 20000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                            "winning_reason_name": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day"
-                        },
-                        "festival_name_key": "Govardhan Puja",
-                        "festival_name_localized": "गोवर्धन पूजा",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सायंकाल"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                        "winning_score": 20000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day",
-                        "winning_reason_name": "govardhan_pratipada_9_muhurta_no_sthula_chandra_darshana_same_day"
-                    }
-                },
-                {
                     "name": "बेस्तु वरस",
                     "name_key": "Bestu Varas",
                     "description": "बेस्टु वर्ष कार्तिक शुक्ल प्रतिपदा को मनाया जाने वाला गुजराती नववर्ष है।",
@@ -65130,111 +65244,6 @@
                         },
                         "festival_name_key": "Bestu Varas",
                         "festival_name_localized": "बेस्तु वरस",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "बलि प्रतिपदा",
-                    "name_key": "Bali Pratipada",
-                    "description": "राजा बलि और गोवर्धन पर्वत की पूजा",
-                    "deity": "बलि/कृष्ण",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [
-                        "अन्नकूट"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                1
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                1
-                            ],
-                            "names": [
-                                "शुक्ल प्रतिपदा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "कार्तिक",
-                            "value_key": "Kartika",
-                            "name": "कार्तिक"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "बलि प्रतिपदा",
-                        "required_tithi": 1,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461353.7930611074,
-                        "target_tithi_end_jd": 2461354.8545238134,
-                        "standard_date": "2026-11-10",
-                        "observance_date": "2026-11-10",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Bali Pratipada",
-                        "festival_name_localized": "बलि प्रतिपदा",
                         "paksha_name": "शुक्ल",
                         "karmakala_type_name": "सूर्योदय"
                     },
@@ -71524,7 +71533,7 @@
                                     "visible": true,
                                     "lag_minutes": 60.11666648089886,
                                     "elongation_degrees": 16.221317800941506,
-                                    "illumination_percent": 1.9905091921130325,
+                                    "illumination_percent": 1.990509192113038,
                                     "min_lag_minutes": 38,
                                     "min_elongation_degrees": 9,
                                     "hard_elongation_floor_degrees": 7,
@@ -71580,7 +71589,7 @@
                                 "visible": true,
                                 "lag_minutes": 60.11666648089886,
                                 "elongation_degrees": 16.221317800941506,
-                                "illumination_percent": 1.9905091921130325,
+                                "illumination_percent": 1.990509192113038,
                                 "min_lag_minutes": 38,
                                 "min_elongation_degrees": 9,
                                 "hard_elongation_floor_degrees": 7,
