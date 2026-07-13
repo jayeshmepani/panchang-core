@@ -6,7 +6,6 @@ namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
@@ -151,13 +150,17 @@ trait PanchangMuhurtaYogaDelegatesTrait
         ];
     }
 
-    /** Calculate Pradosha Kaal using six fixed ghatis after local sunset and Trayodashi overlap logic. */
+    /** Calculate Pradosha Kaal using dynamic night-muhurta duration after local sunset and Trayodashi overlap logic. */
     private function calculatePradoshaKaal(
         CarbonImmutable $sunset,
         float $jdSunset,
+        CarbonImmutable $nextSunrise,
+        float $jdNextSunrise,
         string $tz
     ): array {
-        $pradoshaEndJd = $jdSunset + (ClassicalTimeConstants::PRADOSHA_MINUTES / 1440.0);
+        $nightDurationJd = $jdNextSunrise - $jdSunset;
+        $nightMuhurtaJd = $nightDurationJd / 15.0;
+        $pradoshaEndJd = $jdSunset + (3.0 * $nightMuhurtaJd);
 
         $trayodashiOverlaps = [];
         $cursor = $jdSunset + 1e-7;
@@ -223,9 +226,10 @@ trait PanchangMuhurtaYogaDelegatesTrait
             'base_pradosha_start_iso' => AstroCore::formatDateTime($baseStart),
             'base_pradosha_end_iso' => AstroCore::formatDateTime($baseEnd),
             'base_duration_minutes' => $basePradoshaDurationMinutes,
-            'duration_ghatikas' => ClassicalTimeConstants::PRADOSHA_GHATIKAS,
-            'fixed_ghati_minutes' => ClassicalTimeConstants::GHATIKA_IN_MINUTES,
-            'calculation_basis' => 'fixed_ghati_offset_from_local_sunset',
+            'duration_muhurtas' => 3.0,
+            'night_muhurta_minutes' => $nightMuhurtaJd * 1440.0,
+            'night_duration_minutes' => $nightDurationJd * 1440.0,
+            'calculation_basis' => 'dynamic_ratrimana_3_muhurta_from_local_sunset',
             'is_trayodashi' => $hasTrayodashiOverlap,
             'is_auspicious' => $hasTrayodashiOverlap,
             'trayodashi_overlap_minutes' => $trayodashiDurationMinutes,

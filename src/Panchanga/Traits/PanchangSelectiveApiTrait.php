@@ -316,7 +316,14 @@ trait PanchangSelectiveApiTrait
                     $sankrantiRashi = $nextSign;
                     $kalaEngine = new KalaNirnayaEngine($lat, $lon);
                     $nameMap = ['Mesha', 'Vrishabha', 'Mithuna', 'Karka', 'Simha', 'Kanya', 'Tula', 'Vrischika', 'Dhanu', 'Makara', 'Kumbha', 'Meena'];
-                    $punyaKaal = $kalaEngine->calculatePunyaKaal($nameMap[$nextSign], $sankrantiJd, $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise']);
+                    $punyaKaal = $kalaEngine->calculatePunyaKaal(
+                        $nameMap[$nextSign],
+                        $sankrantiJd,
+                        $ctx['jds']['sunrise'],
+                        $ctx['jds']['sunset'],
+                        $ctx['jds']['next_sunrise'],
+                        $this->toJulianDayFromCarbon($ctx['sun']['previous_sunset'], $tz)
+                    );
                     $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
                 }
             }
@@ -357,6 +364,8 @@ trait PanchangSelectiveApiTrait
                 'pradosha' => $this->calculatePradoshaKaal(
                     $ctx['sun']['sunset'],
                     $this->toJulianDayFromCarbon($ctx['sun']['sunset'], (string) $ctx['time']['birth_at']['timezone']),
+                    $ctx['sun']['next_sunrise'],
+                    $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], (string) $ctx['time']['birth_at']['timezone']),
                     (string) $ctx['time']['birth_at']['timezone']
                 ),
                 'nishitha' => $this->muhurta->calculateNishitaMuhurta($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']),
@@ -881,6 +890,14 @@ trait PanchangSelectiveApiTrait
                     $ensureTimeContext();
                     return $this->muhurta->calculateDaylightFivefoldDivision($ctx['time']['rel_sunrise'], $ctx['sun']['sunset']);
                 })(),
+                'Nighttime_Fivefold_Division' => (function () use (&$ctx, $ensureTimeContext): array {
+                    $ensureTimeContext();
+                    return $this->muhurta->calculateNighttimeFivefoldDivision($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']);
+                })(),
+                'DayNight_Tenfold_Kala_Division' => (function () use (&$ctx, $ensureTimeContext): array {
+                    $ensureTimeContext();
+                    return $this->muhurta->calculateTenKalaDivision($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise']);
+                })(),
                 'Brahma_Muhurta' => (function () use (&$ctx, $ensureTimeContext): array {
                     $ensureTimeContext();
                     return $this->muhurta->calculateBrahmaMuhurta($ctx['sun']['previous_sunset'], $ctx['time']['rel_sunrise']);
@@ -946,7 +963,7 @@ trait PanchangSelectiveApiTrait
                 })(),
                 'Pradosha_Kaal' => (function () use (&$ctx, $ensureTimeContext, $ensureJds, $tz): array {
                     $ensureTimeContext(); $ensureJds();
-                    return $this->calculatePradoshaKaal($ctx['sun']['sunset'], $ctx['jds']['sunset'], $tz);
+                    return $this->calculatePradoshaKaal($ctx['sun']['sunset'], $ctx['jds']['sunset'], $ctx['sun']['next_sunrise'], $ctx['jds']['next_sunrise'], $tz);
                 })(),
                 'Bhadra' => (function () use (&$ctx, $ensureJds, $ensurePanchanga): array {
                     $ensureJds(); $ensurePanchanga();
@@ -1269,11 +1286,20 @@ trait PanchangSelectiveApiTrait
     {
         $ensureTimeContext();
         $daylightFivefold = $this->muhurta->calculateDaylightFivefoldDivision($ctx['time']['rel_sunrise'], $ctx['sun']['sunset']);
+        $nighttimeFivefold = $this->muhurta->calculateNighttimeFivefoldDivision($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']);
         $englishNames = ['pratah', 'sangava', 'madhyahna', 'aparahna', 'sayahna'];
         $daylightFivefoldByName = [];
         foreach ($daylightFivefold as $index => $division) {
             if (is_array($division) && isset($englishNames[$index])) {
                 $daylightFivefoldByName[$englishNames[$index]] = $division;
+            }
+        }
+
+        $nightEnglishNames = ['pradosha', 'ratri', 'nishitha_kala', 'usha', 'arunodaya_kala'];
+        $nighttimeFivefoldByName = [];
+        foreach ($nighttimeFivefold as $index => $division) {
+            if (is_array($division) && isset($nightEnglishNames[$index])) {
+                $nighttimeFivefoldByName[$nightEnglishNames[$index]] = $division;
             }
         }
 
@@ -1292,9 +1318,14 @@ trait PanchangSelectiveApiTrait
             'pradosha' => $this->calculatePradoshaKaal(
                 $ctx['sun']['sunset'],
                 $this->toJulianDayFromCarbon($ctx['sun']['sunset'], (string) $ctx['time']['birth_at']['timezone']),
+                $ctx['sun']['next_sunrise'],
+                $ctx['jds']['next_sunrise'] ?? $this->toJulianDayFromCarbon($ctx['sun']['next_sunrise'], (string) $ctx['time']['birth_at']['timezone']),
                 (string) $ctx['time']['birth_at']['timezone']
             ),
+            'ratri' => $nighttimeFivefoldByName['ratri'] ?? null,
             'nishitha' => $this->muhurta->calculateNishitaMuhurta($ctx['sun']['sunset'], $ctx['sun']['next_sunrise']),
+            'usha' => $nighttimeFivefoldByName['usha'] ?? null,
+            'arunodaya' => $nighttimeFivefoldByName['arunodaya_kala'] ?? null,
             'brahma_muhurta' => $this->muhurta->calculateBrahmaMuhurta($ctx['sun']['previous_sunset'], $ctx['time']['rel_sunrise']),
             'abhijit' => $this->muhurta->calculateAbhijitMuhurta($ctx['time']['rel_sunrise'], $ctx['sun']['sunset']),
             'vijaya' => $this->muhurta->calculateVijayaMuhurta($ctx['time']['rel_sunrise'], $ctx['sun']['sunset']),
@@ -1336,6 +1367,8 @@ trait PanchangSelectiveApiTrait
             'Abhijit_Muhurta',
             'Prahara_Full_Day',
             'Daylight_Fivefold_Division',
+            'Nighttime_Fivefold_Division',
+            'DayNight_Tenfold_Kala_Division',
             'Brahma_Muhurta',
             'Dur_Muhurta_Full_Day',
             'Nishita_Muhurta',

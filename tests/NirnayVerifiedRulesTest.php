@@ -30,6 +30,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         $previousSunriseJd = 100.0;
         $sunriseJd = 101.0;
         $nextSunriseJd = 102.0;
+        $sunsetJd = 101.6;
         $ekadashiStartJd = 100.95;
         $ekadashiEndJd = 101.6;
         $dvadashiStartJd = $ekadashiEndJd;
@@ -42,7 +43,9 @@ final class NirnayVerifiedRulesTest extends TestCase
             $sunriseJd,
             $nextSunriseJd,
             'Vaishnava',
-            $previousSunriseJd
+            $previousSunriseJd,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            $sunsetJd
         );
 
         $viddha = $engine->determineEkadashi(
@@ -53,11 +56,14 @@ final class NirnayVerifiedRulesTest extends TestCase
             $sunriseJd,
             $nextSunriseJd,
             'Vaishnava',
-            $previousSunriseJd
+            $previousSunriseJd,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            $sunsetJd
         );
 
         self::assertSame(55.0, $clean['dashami_vedha_threshold_ghatikas_from_previous_sunrise']);
-        self::assertEqualsWithDelta(100.9166666667, $clean['dashami_vedha_threshold_jd'], 1e-10);
+        self::assertEqualsWithDelta(100.9333333333, $clean['dashami_vedha_threshold_jd'], 1e-10);
+        self::assertSame('dynamic_ratrimana_5_ghati_before_local_sunrise', $clean['dashami_vedha_threshold_basis']);
         self::assertSame('Shuddha_Ekadashi', $clean['status']);
         self::assertFalse($clean['dashami_pierces_nirnay_vedha']);
         self::assertSame('Viddha_Ekadashi', $viddha['status']);
@@ -119,10 +125,51 @@ final class NirnayVerifiedRulesTest extends TestCase
         );
 
         self::assertSame(5.0, $result['arunodaya_ghatikas']);
-        self::assertEqualsWithDelta(120.0, $result['arunodaya_minutes'], 1e-10);
-        self::assertEqualsWithDelta(100.9166666667, $result['arunodaya_jd'], 1e-10);
-        self::assertSame('fixed_ghati_elapsed_before_dynamic_local_sunrise', $result['arunodaya_basis']);
-        self::assertSame(24.0, $result['fixed_ghati_minutes']);
+        self::assertEqualsWithDelta(96.0, $result['arunodaya_minutes'], 1e-10);
+        self::assertEqualsWithDelta(100.9333333333, $result['arunodaya_jd'], 1e-10);
+        self::assertSame('dynamic_ratrimana_ghati_before_local_sunrise', $result['arunodaya_basis']);
+        self::assertEqualsWithDelta(19.2, $result['night_ghati_minutes'], 1e-10);
+    }
+
+    public function testSankrantiPunyaKaalUsesDynamicDayGhatisForDaytimeIngress(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->calculatePunyaKaal(
+            'Mesha',
+            100.5,
+            100.0,
+            100.75,
+            101.25,
+            99.5
+        );
+
+        self::assertSame('dynamic_dinamana_30_ghati_day', $result['ghati_basis']);
+        self::assertEqualsWithDelta(36.0, $result['dynamic_before_ghati_minutes'], 1e-10);
+        self::assertEqualsWithDelta(36.0, $result['dynamic_after_ghati_minutes'], 1e-10);
+        self::assertEqualsWithDelta(20.0, $result['duration_ghatikas'], 1e-10);
+        self::assertEqualsWithDelta(100.25, $result['punya_kaal_start_jd'], 1e-10);
+        self::assertEqualsWithDelta(100.75, $result['punya_kaal_end_jd'], 1e-10);
+    }
+
+    public function testSankrantiPunyaKaalUsesNightBeforeAndDayAfterForPreSunriseIngress(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->calculatePunyaKaal(
+            'Mesha',
+            99.9,
+            100.0,
+            100.75,
+            101.25,
+            99.5
+        );
+
+        self::assertSame('dynamic_segmental_ghati_by_day_night', $result['ghati_basis']);
+        self::assertEqualsWithDelta(24.0, $result['dynamic_before_ghati_minutes'], 1e-10);
+        self::assertEqualsWithDelta(36.0, $result['dynamic_after_ghati_minutes'], 1e-10);
+        self::assertEqualsWithDelta(99.7333333333, $result['punya_kaal_start_jd'], 1e-10);
+        self::assertEqualsWithDelta(100.25, $result['punya_kaal_end_jd'], 1e-10);
     }
 
     public function testVerifiedParanaNakshatraPadaRestrictionsAreEncoded(): void
@@ -732,10 +779,9 @@ final class NirnayVerifiedRulesTest extends TestCase
         $nightDuration = 0.40;
         $dayMuhurta = $dayDuration / 15.0;
         $nightMuhurta = $nightDuration / 15.0;
-        $fixedGhati = 24.0 / 1440.0;
 
         $windows = [
-            'arunodaya' => [100.25 - (4.0 * $fixedGhati), 100.25],
+            'arunodaya' => [100.25 - (2.0 * $nightMuhurta), 100.25],
             'pratah_kal' => [100.25, 100.25 + ($dayDuration / 5.0)],
             'sangava' => [100.25 + ($dayDuration / 5.0), 100.25 + ($dayDuration * 2.0 / 5.0)],
             'madhyahna' => [100.25 + ($dayDuration * 2.0 / 5.0), 100.25 + ($dayDuration * 3.0 / 5.0)],
@@ -743,9 +789,9 @@ final class NirnayVerifiedRulesTest extends TestCase
             'aparahna' => [100.25 + ($dayDuration * 3.0 / 5.0), 100.25 + ($dayDuration * 4.0 / 5.0)],
             'vijaya_kaal' => [100.25 + (10.0 * $dayMuhurta), 100.25 + (11.0 * $dayMuhurta)],
             'sayankala' => [100.25 + ($dayDuration * 4.0 / 5.0), 100.85],
-            'sunset' => [100.85 - $fixedGhati, 100.85 + (2.0 * $fixedGhati)],
+            'sunset' => [100.85 - (24.0 / 1440.0), 100.85 + (48.0 / 1440.0)],
             'nishitha' => [100.85 + ($nightDuration / 2.0) - ($nightMuhurta / 2.0), 100.85 + ($nightDuration / 2.0) + ($nightMuhurta / 2.0)],
-            'pradosha' => [100.85, 100.85 + (6.0 * $fixedGhati)],
+            'pradosha' => [100.85, 100.85 + (3.0 * $nightMuhurta)],
         ];
 
         foreach ($windows as $type => [$expectedStart, $expectedEnd]) {
@@ -843,7 +889,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('purnima_vrat_chaturdashi_at_or_above_18_ghadi_shift_day2', $resolved['decision']['winning_reason']);
     }
 
-    public function testPurnimaVratTruthTableUsesFixedEighteenGhadisNotScaledDinamana(): void
+    public function testPurnimaVratTruthTableUsesDynamicDaytimeEighteenGhadis(): void
     {
         $engine = new FestivalRuleEngine;
         $date = CarbonImmutable::parse('2026-01-03');
@@ -860,8 +906,8 @@ final class NirnayVerifiedRulesTest extends TestCase
         ], $date, $today, $tomorrow);
 
         self::assertNotNull($resolved);
-        self::assertSame('2026-01-04', $resolved['observance_date']);
-        self::assertSame('purnima_vrat_chaturdashi_at_or_above_18_ghadi_shift_day2', $resolved['decision']['winning_reason']);
+        self::assertSame('2026-01-03', $resolved['observance_date']);
+        self::assertSame('purnima_vrat_chaturdashi_below_18_ghadi_keep_day1', $resolved['decision']['winning_reason']);
     }
 
     public function testGaneshChaturthiPrefersFullMadhyahnaCoverage(): void

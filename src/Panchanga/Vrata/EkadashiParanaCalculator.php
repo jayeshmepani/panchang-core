@@ -104,7 +104,10 @@ class EkadashiParanaCalculator
         $dayDurationJd = $paranaDaySunsetJd !== null && $paranaDaySunsetJd > $sunriseJd
             ? $paranaDaySunsetJd - $sunriseJd
             : 0.5;
-        $dvadashiDurationGhatikas = (($dvadashiEndJd - $dvadashiStartJd) * 1440.0) / KalaNirnayaEngine::GHATI_IN_MINUTES;
+        $dynamicGhatiMinutes = ($dayDurationJd * 1440.0) / 30.0;
+        $dvadashiDurationGhatikas = $dynamicGhatiMinutes > 0.0
+            ? (($dvadashiEndJd - $dvadashiStartJd) * 1440.0) / $dynamicGhatiMinutes
+            : 0.0;
         $shortDvadashiRule = $this->shortDvadashiRule($dvadashiDurationGhatikas, $sunriseJd, $dvadashiEndJd);
         $restrictedWindows = $this->collectParanaRestrictedWindows($paranaStartJd, $dvadashiEndJd, $tz, $monthAmanta, $paksha);
         $daytimePreferenceRule = $this->buildDaytimePreferenceRule($sunriseJd, $dvadashiEndJd, $paranaStartJd, $dvadashiEndJd, $dayDurationJd);
@@ -143,8 +146,8 @@ class EkadashiParanaCalculator
             'raw_parana_start_jd' => $paranaStartJd,
             'raw_parana_end_jd' => $dvadashiEndJd,
             'dvadashi_duration_ghatikas' => $dvadashiDurationGhatikas,
-            'fixed_ghati_minutes' => KalaNirnayaEngine::GHATI_IN_MINUTES,
-            'ghati_basis' => 'fixed_elapsed_time_unit',
+            'dynamic_ghati_minutes' => $dynamicGhatiMinutes,
+            'ghati_basis' => 'dynamic_dinamana_30_ghati_day',
             'parana_day_dinamana_minutes' => $dayDurationJd * 1440.0,
             'short_dvadashi_rule' => $shortDvadashiRule,
             'symbolic_water_parana_allowed' => $shortDvadashiRule['symbolic_water_parana_allowed'],

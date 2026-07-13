@@ -52,17 +52,39 @@ final class DynamicDayNightPeriodsTest extends TestCase
         self::assertSame(Choghadiya::Amrit, $actual);
     }
 
-    public function testLegacyPradoshaHelperUsesSixFixedGhatisAfterLocalSunset(): void
+    public function testPradoshaHelperUsesThreeDynamicNightMuhurtasAfterLocalSunset(): void
     {
         $calculator = new InauspiciousPeriodsCalculator;
         $sunset = CarbonImmutable::parse('2026-06-20 19:30:00', 'Asia/Kolkata');
+        $nextSunrise = CarbonImmutable::parse('2026-06-21 05:45:00', 'Asia/Kolkata');
 
-        $pradosha = $calculator->calculatePradoshaKaal($sunset, 13);
+        $pradosha = $calculator->calculatePradoshaKaal($sunset, $nextSunrise, 13);
 
         self::assertSame('07:30:00 PM', $pradosha['pradosha_start']);
-        self::assertSame('09:54:00 PM', $pradosha['pradosha_end']);
-        self::assertSame(8640.0, $pradosha['duration_seconds']);
-        self::assertSame('fixed_ghati_offset_from_local_sunset', $pradosha['calculation_basis']);
+        self::assertSame('09:33:00 PM', $pradosha['pradosha_end']);
+        self::assertSame(7380.0, $pradosha['duration_seconds']);
+        self::assertSame('dynamic_ratrimana_3_muhurta_from_local_sunset', $pradosha['calculation_basis']);
         self::assertTrue($pradosha['is_auspicious']);
+    }
+
+    public function testNighttimeFivefoldDivisionUsesDynamicRatrimana(): void
+    {
+        $calculator = new DailyPeriodsCalculator;
+        $sunset = CarbonImmutable::parse('2026-06-20 19:30:00', 'Asia/Kolkata');
+        $nextSunrise = CarbonImmutable::parse('2026-06-21 05:45:00', 'Asia/Kolkata');
+
+        $nightFivefold = $calculator->calculateNighttimeFivefoldDivision($sunset, $nextSunrise);
+
+        self::assertCount(5, $nightFivefold);
+        self::assertSame('Pradosha', $nightFivefold[0]['name_key']);
+        self::assertSame('Ratri', $nightFivefold[1]['name_key']);
+        self::assertSame('Nishitha', $nightFivefold[2]['name_key']);
+        self::assertSame('Usha', $nightFivefold[3]['name_key']);
+        self::assertSame('Arunodaya', $nightFivefold[4]['name_key']);
+        self::assertSame(7380.0, $nightFivefold[0]['duration_seconds']);
+        self::assertSame('20/06/2026 07:30:00 PM', $nightFivefold[0]['start_iso']);
+        self::assertSame('20/06/2026 09:33:00 PM', $nightFivefold[0]['end_iso']);
+        self::assertSame('21/06/2026 03:42:00 AM', $nightFivefold[4]['start_iso']);
+        self::assertSame('21/06/2026 05:45:00 AM', $nightFivefold[4]['end_iso']);
     }
 }

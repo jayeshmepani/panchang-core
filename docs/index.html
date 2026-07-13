@@ -4760,25 +4760,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.3.1 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.4.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.3.1 corrects the Govardhan Puja / Bali Pratipada / Annakut decision path with sayahna-vyapini Pratipada and Sthula Chandra Darshana safeguards. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. v10.1.0 refreshes Nirnay-style festival and vrat decision rules, adds calendar-specific Nag Panchami handling, improves Chandra Darshana and eclipse ritual outputs, and regenerates Amanta/Purnimanta JSON in English, Hindi, and Gujarati. v10.0.8 expands the canonical Ekadashi alias coverage and aligns the festival registry, identity docs, and user-facing localization layer with the refreshed Ekadashi naming set. v10.0.7 refines Phuldolotsava (Satsangi Jeevan Dolotsav) with correct tithi, nakshatra vyapini rules and structured metadata, adds native <code>paksha_amanta</code> / <code>paksha_purnimanta</code> support in the Festival registry, and corrects <code>month_purnimanta</code> values for many Krishna Paksha avatar and tithi observances. The prior corrections from v10.0.6 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.4.0 moves key kala and vedha chronometry from fixed elapsed-time assumptions to dynamic <em>dinamāna</em> / <em>rātrimāna</em> divisions where required, adds generated night fivefold and full ten-kāla outputs, refines Pradosha and parāṇa timing metadata, and hardens multilingual user-facing localization. v10.3.1 corrects the Govardhan Puja / Bali Pratipada / Annakut decision path with sayahna-vyapini Pratipada and Sthula Chandra Darshana safeguards. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. The prior corrections from v10.1.0 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.3.1: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
+            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.4.0: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with sidereal and Sayana ayana/ritu windows; day-detail payloads also expose <code>Sayana_Ayana</code>, <code>Sayana_Ritu</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.4.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Dynamic Day-Night Kala Timing, Pradosha and Parana Chronometry, and Localization Refinement</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release aligning key Panchang timing windows with dynamic day and night divisions where the Nirnay-style rules require them. This release adds generated night fivefold and full ten-kāla outputs, moves Pradosha and related night timing from fixed offsets to rātrimāna-based windows, refines dynamic ghadi reporting in Ekadashi parāṇa and allied rule metadata, and tightens English, Hindi, and Gujarati user-facing localization across nakshatra, month, festival-rule, and observance output.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.3.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Govardhan Puja and Bali Pratipada Decision Correction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Govardhan Puja and Bali Pratipada Decision Correction</span></div>
                 <p class="release-note">Patch release correcting the Govardhan Puja / Bali Pratipada / Annakut selection path. The decision now requires sayahna-vyapini Pratipada, protects against Sthula Chandra Darshana risk when Pratipada is too short after sunrise, keeps Bestu Varas separate, and updates localized decision labels in English, Hindi, and Gujarati. The 2026 Bhuj generated output shifts Govardhan Puja and Bali Pratipada from November 10 to November 9 without changing festival or vrat identity totals.</p>
               </div>
             </li>
@@ -5077,6 +5084,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.4.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This release upgrades core Panchang chronometry to dynamic day and night division logic where the rule system depends on <em>dinamāna</em> and <em>rātrimāna</em>, expands generated kala output, and refreshes multilingual user-facing labeling.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Night-window timing is broader and more explicit:</strong> generated Panchang output now includes <code>Nighttime_Fivefold_Division</code> and <code>DayNight_Tenfold_Kala_Division</code> in the day-detail surface.</li>
+              <li><strong>Pradosha timing now follows dynamic night division:</strong> Pradosha is calculated from local sunset using three night muhūrtas derived from actual rātrimāna, instead of a fixed elapsed-time approximation.</li>
+              <li><strong>Dynamic ghadi metadata is now exposed more clearly:</strong> Ekadashi parāṇa and related outputs report dynamic day-based ghadi interpretation where the rule depends on day length.</li>
+              <li><strong>Localized user-facing labels were refreshed:</strong> generated English, Hindi, and Gujarati festival and vrat outputs now use corrected spellings and fuller localization for rule names, notes, and metadata labels.</li>
+              <li><strong>Identity totals are unchanged:</strong> the generated output continues to report 324 festival identities and 122 vrat identities.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached today, month, raw, festival, vrat, and localized JSON output after upgrading.</li>
+            <li>Rebaseline snapshots or downstream comparisons that assert on Pradosha windows, night-kāla fields, parāṇa ghadi metadata, or localized user-facing strings.</li>
+          </ul>
 
           <h3>v10.3.1 Upgrade &amp; Release Notes</h3>
           <p class="lead">This patch release corrects the Govardhan Puja / Bali Pratipada / Annakut decision path and regenerates the public JSON outputs without changing identity totals.</p>

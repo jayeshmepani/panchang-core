@@ -294,19 +294,37 @@ class DailyPeriodsCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset
     ): array {
-        $duration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 5.0;
-        $names = ['Pratah', 'Sangava', 'Madhyahna', 'Aparahna', 'Sayahna'];
+        return $this->buildFivefoldDivision(
+            $sunrise,
+            $sunset,
+            'day',
+            'Fivefold',
+            ['Pratah', 'Sangava', 'Madhyahna', 'Aparahna', 'Sayahna']
+        );
+    }
 
-        $rows = [];
-        foreach (array_keys($names) as $index) {
-            $start = $this->addFloatSeconds($sunrise, $index * $duration);
-            $rows[] = $this->buildTimedRow($start, $duration, [
-                'name' => Localization::translate('Fivefold', $index),
-                'division_number' => $index + 1,
-            ]);
-        }
+    public function calculateNighttimeFivefoldDivision(
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        return $this->buildFivefoldDivision(
+            $sunset,
+            $nextSunrise,
+            'night',
+            'NightFivefold',
+            ['Pradosha', 'Ratri', 'Nishitha', 'Usha', 'Arunodaya']
+        );
+    }
 
-        return $rows;
+    public function calculateTenKalaDivision(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        return [
+            ...$this->calculateDaylightFivefoldDivision($sunrise, $sunset),
+            ...$this->calculateNighttimeFivefoldDivision($sunset, $nextSunrise),
+        ];
     }
 
     public function calculatePrahara(
@@ -360,5 +378,35 @@ class DailyPeriodsCalculator
             'end_iso' => AstroCore::formatDateTime($end),
             'duration_seconds' => $duration,
         ];
+    }
+
+    /**
+     * @param 'day'|'night' $period
+     * @param list<string> $englishNames
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function buildFivefoldDivision(
+        CarbonImmutable $start,
+        CarbonImmutable $end,
+        string $period,
+        string $localizationDomain,
+        array $englishNames
+    ): array {
+        $duration = ($end->getTimestamp() - $start->getTimestamp()) / 5.0;
+        $rows = [];
+
+        foreach (array_keys($englishNames) as $index) {
+            $divisionStart = $this->addFloatSeconds($start, $index * $duration);
+            $rows[] = $this->buildTimedRow($divisionStart, $duration, [
+                'period' => Localization::translate('String', $period === 'day' ? 'Day' : 'Night'),
+                'period_key' => $period,
+                'name' => Localization::translate($localizationDomain, $index),
+                'name_key' => $englishNames[$index],
+                'division_number' => $index + 1,
+            ]);
+        }
+
+        return $rows;
     }
 }

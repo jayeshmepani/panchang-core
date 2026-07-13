@@ -43,6 +43,13 @@ class EnglishLocalizationRegressionTest extends TestCase
         $this->assertSame('Afternoon', $fivefold[3]['name'] ?? null);
         $this->assertSame('Evening', $fivefold[4]['name'] ?? null);
 
+        $nightFivefold = $details['Nighttime_Fivefold_Division'] ?? [];
+        $this->assertSame('Pradosha', $nightFivefold[0]['name'] ?? null);
+        $this->assertSame('Night', $nightFivefold[1]['name'] ?? null);
+        $this->assertSame('Nishitha', $nightFivefold[2]['name'] ?? null);
+        $this->assertSame('Dawn', $nightFivefold[3]['name'] ?? null);
+        $this->assertSame('Arunodaya', $nightFivefold[4]['name'] ?? null);
+
         $prahara = $details['Prahara_Full_Day'] ?? [];
         $this->assertSame('Morning Watch', $prahara[0]['name'] ?? null);
         $this->assertSame('Forenoon Watch', $prahara[1]['name'] ?? null);

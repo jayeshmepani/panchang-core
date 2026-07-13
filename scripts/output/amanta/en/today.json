@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-13T04:19:10+00:00",
+        "generated_at": "2026-07-13T11:03:22+00:00",
         "type": "today_panchang",
         "calendar_type": "amanta",
         "locale": "en",
@@ -15,7 +15,7 @@
     },
     "today": {
         "title": "Today's Complete Details - Every single data point from the package",
-        "input_now": "2026-07-13T09:49:10+05:30",
+        "input_now": "2026-07-13T16:33:21+05:30",
         "date": "2026-07-13",
         "details": {
             "Display_Settings": {
@@ -51,6 +51,10 @@
                 "Prahara.duration_hours": "hour",
                 "Daylight_Fivefold_Division.duration_seconds": "second",
                 "Daylight_Fivefold_Division.duration_hours": "hour",
+                "Nighttime_Fivefold_Division.duration_seconds": "second",
+                "Nighttime_Fivefold_Division.duration_hours": "hour",
+                "DayNight_Tenfold_Kala_Division.duration_seconds": "second",
+                "DayNight_Tenfold_Kala_Division.duration_hours": "hour",
                 "Brahma_Muhurta.duration_minutes": "minute",
                 "Brahma_Muhurta.duration_seconds": "second",
                 "Dur_Muhurta.duration_seconds": "second",
@@ -97,7 +101,7 @@
                 "name": "Fourteenth Lunar Day of Dark Half",
                 "paksha": "Krishna",
                 "paksha_name": "Dark Half (waning)",
-                "fraction_left": 0.44347475592966157
+                "fraction_left": 0.1119535427994407
             },
             "Vara": {
                 "index": 1,
@@ -115,7 +119,7 @@
             },
             "Current_Nakshatra_At_Input_Now": {
                 "name": "Ardra",
-                "pada": 1,
+                "pada": 3,
                 "lord": "Rahu"
             },
             "Yoga": {
@@ -123,8 +127,8 @@
                 "name": "Dhruva"
             },
             "Current_Yoga_At_Input_Now": {
-                "index": 12,
-                "name": "Dhruva"
+                "index": 13,
+                "name": "Vyaghata"
             },
             "Karana": {
                 "name": "Vishti",
@@ -141,8 +145,8 @@
             "Is_Vishti_Karana": true,
             "Sunrise": "06:12:40 AM",
             "Sunset": "07:41:25 PM",
-            "Ishtkaal": "09:01:12",
-            "Ishtkaal_iso": "13/07/2026 09:49:10 AM",
+            "Ishtkaal": "25:51:40",
+            "Ishtkaal_iso": "13/07/2026 04:33:21 PM",
             "sun_sunrise_lon": 86.44620605206663,
             "moon_sunrise_lon": 66.99355050586003,
             "sunrise_hm": [
@@ -151,9 +155,9 @@
             ],
             "sunrise_dt": "13/07/2026 06:12:40 AM",
             "Ayanamsa": "LAHIRI (Chitra Paksha)",
-            "Ayanamsa_Degree": 24.227622840130174,
-            "Ayanamsa_At": "13/07/2026 09:49:10 AM",
-            "Ayanamsa_JD": 2461234.6799768517,
+            "Ayanamsa_Degree": 24.227633576663347,
+            "Ayanamsa_At": "13/07/2026 04:33:21 PM",
+            "Ayanamsa_JD": 2461234.9606597223,
             "Day_Types": {
                 "civil_day_start": "13/07/2026 12:00:00 AM",
                 "civil_day_end": "14/07/2026 12:00:00 AM",
@@ -197,7 +201,7 @@
                     "name": "Fourteenth Lunar Day of Dark Half",
                     "paksha": "Krishna",
                     "paksha_name": "Dark Half (waning)",
-                    "fraction_left": 0.44347475592966157
+                    "fraction_left": 0.1119535427994407
                 },
                 "Vara": {
                     "index": 1,
@@ -215,7 +219,7 @@
                 },
                 "Current_Nakshatra_At_Input_Now": {
                     "name": "Ardra",
-                    "pada": 1,
+                    "pada": 3,
                     "lord": "Rahu"
                 },
                 "Yoga": {
@@ -223,8 +227,8 @@
                     "name": "Dhruva"
                 },
                 "Current_Yoga_At_Input_Now": {
-                    "index": 12,
-                    "name": "Dhruva"
+                    "index": 13,
+                    "name": "Vyaghata"
                 },
                 "Karana": {
                     "name": "Vishti",
@@ -266,8 +270,8 @@
                     "timestamp": 1783949273,
                     "display_iso": "13/07/2026 06:57:53 PM"
                 },
-                "Ishtkaal": "09:01:12",
-                "Ishtkaal_iso": "13/07/2026 09:49:10 AM",
+                "Ishtkaal": "25:51:40",
+                "Ishtkaal_iso": "13/07/2026 04:33:21 PM",
                 "sun_sunrise_lon": 86.44620605206663,
                 "moon_sunrise_lon": 66.99355050586003,
                 "sunrise_hm": [
@@ -340,10 +344,10 @@
                 "visibility_key": "invisible_except_eclipse",
                 "visibility": "Invisible (too close to Sun), except during a solar eclipse",
                 "illumination_band": "0%",
-                "illumination_fraction": 0.022675940227164293,
-                "illumination_percent": 2.2675940227164295,
-                "phase_angle_degrees": 342.67830292884406,
-                "synodic_age_days": 28.109700209380293
+                "illumination_fraction": 0.01349791703970843,
+                "illumination_percent": 1.349791703970843,
+                "phase_angle_degrees": 346.6565574864067,
+                "synodic_age_days": 28.43603409750191
             },
             "Festivals": [
                 {
@@ -505,7 +509,7 @@
                 "system_size": 28,
                 "weekday": "Monday",
                 "weekday_index": 1,
-                "weekday_start_nakshatra": "Mrigashira",
+                "weekday_start_nakshatra": "Mrigashirsha",
                 "current": {
                     "index": 2,
                     "name": "Kaladanda",
@@ -602,14 +606,14 @@
                 ]
             },
             "Nitya_Yoga_Observations": {
-                "yoga_index": 12,
-                "yoga_name": "Dhruva",
-                "is_marriage_prohibited": false,
+                "yoga_index": 13,
+                "yoga_name": "Vyaghata",
+                "is_marriage_prohibited": true,
                 "is_kranti_dosha": false,
-                "avoidance_scope": "none",
-                "severity": "none",
+                "avoidance_scope": "marriage_and_major_rites",
+                "severity": "high",
                 "source": "Muhurta Chintamani / Drik Panchang prohibited Nitya Yoga list",
-                "description": "No special Nitya Yoga dosha"
+                "description": "Traditionally prohibited Nitya Yoga"
             },
             "Panchak": {
                 "rule_system": "moon_dhanishta_pada_3_to_revati",
@@ -731,7 +735,7 @@
                         "tithi_name": "Fourteenth Lunar Day of Dark Half",
                         "weekday": "Monday",
                         "nakshatra": "Ardra",
-                        "lagna": "Leo"
+                        "lagna": "Scorpio"
                     },
                     "general_auspicious_travel_nakshatras": [
                         "Ashwini",
@@ -759,15 +763,15 @@
                     ],
                     "recommended_directions": [
                         "South-East",
-                        "South",
+                        "West",
                         "North-West",
                         "North",
                         "North-East"
                     ],
                     "blocked_directions": [
                         "East",
-                        "South-West",
-                        "West"
+                        "South",
+                        "South-West"
                     ],
                     "direction_grid": [
                         {
@@ -827,12 +831,12 @@
                         {
                             "direction": "South",
                             "direction_key": "South",
-                            "is_allowed": true,
+                            "is_allowed": false,
                             "blocked_by": {
                                 "tithi": false,
                                 "weekday": false,
                                 "nakshatra": false,
-                                "lagna": false
+                                "lagna": true
                             },
                             "matching_rules": {
                                 "tithis": [
@@ -880,12 +884,12 @@
                         {
                             "direction": "West",
                             "direction_key": "West",
-                            "is_allowed": false,
+                            "is_allowed": true,
                             "blocked_by": {
                                 "tithi": false,
                                 "weekday": false,
                                 "nakshatra": false,
-                                "lagna": true
+                                "lagna": false
                             },
                             "matching_rules": {
                                 "tithis": [
@@ -986,7 +990,7 @@
                         }
                     ],
                     "calculated_for": "input_now",
-                    "input_now_iso": "13/07/2026 09:49:10 AM"
+                    "input_now_iso": "13/07/2026 04:33:21 PM"
                 },
                 "at_sunrise": {
                     "rule_system": "travel_direction_composite_tithi_vara_nakshatra_lagna",
@@ -1302,17 +1306,17 @@
                     "rule_system": "nakshatra_pada_abode_4_part",
                     "source_family": "modern_nivas_shool_panchang_style",
                     "current": {
-                        "abode": "Deva",
-                        "abode_key": "Deva",
-                        "quality": "Auspicious",
-                        "quality_key": "Auspicious",
+                        "abode": "Pashava",
+                        "abode_key": "Pashava",
+                        "quality": "Mixed",
+                        "quality_key": "Mixed",
                         "nakshatra": "Ardra",
                         "nakshatra_index": 5,
-                        "pada": 1,
-                        "start_jd": 2461234.5080183567,
-                        "end_jd": 2461234.7283630557,
-                        "start": "13/07/2026 05:41:32 AM",
-                        "end": "13/07/2026 10:58:50 AM"
+                        "pada": 3,
+                        "start_jd": 2461234.948711524,
+                        "end_jd": 2461235.1691818945,
+                        "start": "13/07/2026 04:16:08 PM",
+                        "end": "13/07/2026 09:33:37 PM"
                     },
                     "window_count": 5,
                     "windows": [
@@ -1404,7 +1408,7 @@
                     "effect_key": "Death / severe inauspiciousness"
                 },
                 "calculated_for": "input_now",
-                "input_now_iso": "13/07/2026 09:49:10 AM",
+                "input_now_iso": "13/07/2026 04:33:21 PM",
                 "at_sunrise": {
                     "tithi_number": 29,
                     "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -1440,7 +1444,7 @@
                 "valid_until": "13/07/2026 06:49:53 PM",
                 "valid_until_jd": 2461235.0554826334,
                 "calculated_for": "input_now",
-                "input_now_iso": "13/07/2026 09:49:10 AM",
+                "input_now_iso": "13/07/2026 04:33:21 PM",
                 "at_sunrise": {
                     "tithi_number": 29,
                     "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -1463,7 +1467,7 @@
                 "direction": "West",
                 "direction_key": "West",
                 "calculated_for": "input_now",
-                "input_now_iso": "13/07/2026 09:49:10 AM",
+                "input_now_iso": "13/07/2026 04:33:21 PM",
                 "at_sunrise": {
                     "tithi_number": 29,
                     "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -1503,7 +1507,7 @@
                     "is_tithi_vriddhi": false,
                     "is_tithi_kshaya": false,
                     "calculated_for": "input_now",
-                    "input_now_iso": "13/07/2026 09:49:10 AM"
+                    "input_now_iso": "13/07/2026 04:33:21 PM"
                 },
                 "at_sunrise": {
                     "tithi_number": 29,
@@ -1727,8 +1731,8 @@
                     ]
                 },
                 "yoga": {
-                    "current": "Dhruva",
-                    "current_at_input_now": "Dhruva",
+                    "current": "Vyaghata",
+                    "current_at_input_now": "Vyaghata",
                     "current_at_sunrise": "Dhruva",
                     "windows": [
                         {
@@ -1825,25 +1829,25 @@
                 "nakshatra": 6,
                 "nakshatra_name": "Ardra",
                 "nakshatra_number_base": 1,
-                "lagna": 5,
-                "lagna_name": "Leo",
+                "lagna": 8,
+                "lagna_name": "Scorpio",
                 "lagna_number_base": 1,
-                "sum": 42,
-                "remainder": 6,
-                "panchaka_name": "Chora",
-                "panchaka_english": "Thief",
-                "severity": "high",
-                "has_dosha": true,
-                "is_panchaka_rahita": false,
-                "description": "Chora - Inauspicious",
-                "is_auspicious": false,
+                "sum": 45,
+                "remainder": 0,
+                "panchaka_name": "Rahita",
+                "panchaka_english": "Auspicious",
+                "severity": "none",
+                "has_dosha": false,
+                "is_panchaka_rahita": true,
+                "description": "Rahita - Auspicious",
+                "is_auspicious": true,
                 "calculated_for": "input_now",
-                "input_now_iso": "13/07/2026 09:49:10 AM",
+                "input_now_iso": "13/07/2026 04:33:21 PM",
                 "at_sunrise": {
-                    "sum": 42,
-                    "remainder": 6,
-                    "panchaka_name": "Chora Panchaka",
-                    "is_auspicious": false,
+                    "sum": 45,
+                    "remainder": 0,
+                    "panchaka_name": "Nish-Panchaka",
+                    "is_auspicious": true,
                     "calculated_for": "sunrise",
                     "sunrise_iso": "13/07/2026 06:12:40 AM",
                     "tithi": 29,
@@ -1967,16 +1971,16 @@
                 }
             },
             "Hora": {
-                "hora_number": 4,
+                "hora_number": 10,
                 "is_day_hora": true,
-                "ruler": "Mars",
+                "ruler": "Jupiter",
                 "hora_duration_seconds": 4043.75,
                 "hora_duration_minutes": "1h 7m 23.75s"
             },
             "Chogadiya": {
                 "mode": "Day",
-                "division": 3,
-                "name": "Shubh",
+                "division": 7,
+                "name": "Labh",
                 "is_auspicious": true,
                 "division_duration_minutes": "1h 41m 5.625s"
             },
@@ -2914,7 +2918,10 @@
             ],
             "Daylight_Fivefold_Division": [
                 {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Morning",
+                    "name_key": "Pratah",
                     "division_number": 1,
                     "start": "06:12:40 AM",
                     "end": "08:54:25 AM",
@@ -2923,7 +2930,10 @@
                     "duration_seconds": 9705
                 },
                 {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Forenoon",
+                    "name_key": "Sangava",
                     "division_number": 2,
                     "start": "08:54:25 AM",
                     "end": "11:36:10 AM",
@@ -2932,7 +2942,10 @@
                     "duration_seconds": 9705
                 },
                 {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Midday",
+                    "name_key": "Madhyahna",
                     "division_number": 3,
                     "start": "11:36:10 AM",
                     "end": "02:17:55 PM",
@@ -2941,7 +2954,10 @@
                     "duration_seconds": 9705
                 },
                 {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Afternoon",
+                    "name_key": "Aparahna",
                     "division_number": 4,
                     "start": "02:17:55 PM",
                     "end": "04:59:40 PM",
@@ -2950,13 +2966,200 @@
                     "duration_seconds": 9705
                 },
                 {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Evening",
+                    "name_key": "Sayahna",
                     "division_number": 5,
                     "start": "04:59:40 PM",
                     "end": "07:41:25 PM",
                     "start_iso": "13/07/2026 04:59:40 PM",
                     "end_iso": "13/07/2026 07:41:25 PM",
                     "duration_seconds": 9705
+                }
+            ],
+            "Nighttime_Fivefold_Division": [
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Pradosha",
+                    "name_key": "Pradosha",
+                    "division_number": 1,
+                    "start": "07:41:25 PM",
+                    "end": "09:47:45 PM",
+                    "start_iso": "13/07/2026 07:41:25 PM",
+                    "end_iso": "13/07/2026 09:47:45 PM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Night",
+                    "name_key": "Ratri",
+                    "division_number": 2,
+                    "start": "09:47:45 PM",
+                    "end": "11:54:05 PM",
+                    "start_iso": "13/07/2026 09:47:45 PM",
+                    "end_iso": "13/07/2026 11:54:05 PM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Nishitha",
+                    "name_key": "Nishitha",
+                    "division_number": 3,
+                    "start": "11:54:05 PM",
+                    "end": "02:00:25 AM",
+                    "start_iso": "13/07/2026 11:54:05 PM",
+                    "end_iso": "14/07/2026 02:00:25 AM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Dawn",
+                    "name_key": "Usha",
+                    "division_number": 4,
+                    "start": "02:00:25 AM",
+                    "end": "04:06:45 AM",
+                    "start_iso": "14/07/2026 02:00:25 AM",
+                    "end_iso": "14/07/2026 04:06:45 AM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Arunodaya",
+                    "name_key": "Arunodaya",
+                    "division_number": 5,
+                    "start": "04:06:45 AM",
+                    "end": "06:13:05 AM",
+                    "start_iso": "14/07/2026 04:06:45 AM",
+                    "end_iso": "14/07/2026 06:13:05 AM",
+                    "duration_seconds": 7580
+                }
+            ],
+            "DayNight_Tenfold_Kala_Division": [
+                {
+                    "period": "Day",
+                    "period_key": "day",
+                    "name": "Morning",
+                    "name_key": "Pratah",
+                    "division_number": 1,
+                    "start": "06:12:40 AM",
+                    "end": "08:54:25 AM",
+                    "start_iso": "13/07/2026 06:12:40 AM",
+                    "end_iso": "13/07/2026 08:54:25 AM",
+                    "duration_seconds": 9705
+                },
+                {
+                    "period": "Day",
+                    "period_key": "day",
+                    "name": "Forenoon",
+                    "name_key": "Sangava",
+                    "division_number": 2,
+                    "start": "08:54:25 AM",
+                    "end": "11:36:10 AM",
+                    "start_iso": "13/07/2026 08:54:25 AM",
+                    "end_iso": "13/07/2026 11:36:10 AM",
+                    "duration_seconds": 9705
+                },
+                {
+                    "period": "Day",
+                    "period_key": "day",
+                    "name": "Midday",
+                    "name_key": "Madhyahna",
+                    "division_number": 3,
+                    "start": "11:36:10 AM",
+                    "end": "02:17:55 PM",
+                    "start_iso": "13/07/2026 11:36:10 AM",
+                    "end_iso": "13/07/2026 02:17:55 PM",
+                    "duration_seconds": 9705
+                },
+                {
+                    "period": "Day",
+                    "period_key": "day",
+                    "name": "Afternoon",
+                    "name_key": "Aparahna",
+                    "division_number": 4,
+                    "start": "02:17:55 PM",
+                    "end": "04:59:40 PM",
+                    "start_iso": "13/07/2026 02:17:55 PM",
+                    "end_iso": "13/07/2026 04:59:40 PM",
+                    "duration_seconds": 9705
+                },
+                {
+                    "period": "Day",
+                    "period_key": "day",
+                    "name": "Evening",
+                    "name_key": "Sayahna",
+                    "division_number": 5,
+                    "start": "04:59:40 PM",
+                    "end": "07:41:25 PM",
+                    "start_iso": "13/07/2026 04:59:40 PM",
+                    "end_iso": "13/07/2026 07:41:25 PM",
+                    "duration_seconds": 9705
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Pradosha",
+                    "name_key": "Pradosha",
+                    "division_number": 1,
+                    "start": "07:41:25 PM",
+                    "end": "09:47:45 PM",
+                    "start_iso": "13/07/2026 07:41:25 PM",
+                    "end_iso": "13/07/2026 09:47:45 PM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Night",
+                    "name_key": "Ratri",
+                    "division_number": 2,
+                    "start": "09:47:45 PM",
+                    "end": "11:54:05 PM",
+                    "start_iso": "13/07/2026 09:47:45 PM",
+                    "end_iso": "13/07/2026 11:54:05 PM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Nishitha",
+                    "name_key": "Nishitha",
+                    "division_number": 3,
+                    "start": "11:54:05 PM",
+                    "end": "02:00:25 AM",
+                    "start_iso": "13/07/2026 11:54:05 PM",
+                    "end_iso": "14/07/2026 02:00:25 AM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Dawn",
+                    "name_key": "Usha",
+                    "division_number": 4,
+                    "start": "02:00:25 AM",
+                    "end": "04:06:45 AM",
+                    "start_iso": "14/07/2026 02:00:25 AM",
+                    "end_iso": "14/07/2026 04:06:45 AM",
+                    "duration_seconds": 7580
+                },
+                {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Arunodaya",
+                    "name_key": "Arunodaya",
+                    "division_number": 5,
+                    "start": "04:06:45 AM",
+                    "end": "06:13:05 AM",
+                    "start_iso": "14/07/2026 04:06:45 AM",
+                    "end_iso": "14/07/2026 06:13:05 AM",
+                    "duration_seconds": 7580
                 }
             ],
             "Brahma_Muhurta": {
@@ -3567,7 +3770,10 @@
                     "time_iso": "13/07/2026 06:12:40 AM"
                 },
                 "pratah": {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Morning",
+                    "name_key": "Pratah",
                     "division_number": 1,
                     "start": "06:12:40 AM",
                     "end": "08:54:25 AM",
@@ -3576,7 +3782,10 @@
                     "duration_seconds": 9705
                 },
                 "sangava": {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Forenoon",
+                    "name_key": "Sangava",
                     "division_number": 2,
                     "start": "08:54:25 AM",
                     "end": "11:36:10 AM",
@@ -3585,7 +3794,10 @@
                     "duration_seconds": 9705
                 },
                 "madhyahna": {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Midday",
+                    "name_key": "Madhyahna",
                     "division_number": 3,
                     "start": "11:36:10 AM",
                     "end": "02:17:55 PM",
@@ -3594,7 +3806,10 @@
                     "duration_seconds": 9705
                 },
                 "aparahna": {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Afternoon",
+                    "name_key": "Aparahna",
                     "division_number": 4,
                     "start": "02:17:55 PM",
                     "end": "04:59:40 PM",
@@ -3603,7 +3818,10 @@
                     "duration_seconds": 9705
                 },
                 "sayahna": {
+                    "period": "Day",
+                    "period_key": "day",
                     "name": "Evening",
+                    "name_key": "Sayahna",
                     "division_number": 5,
                     "start": "04:59:40 PM",
                     "end": "07:41:25 PM",
@@ -3613,25 +3831,38 @@
                 },
                 "pradosha": {
                     "pradosha_start": "07:41:24 PM",
-                    "pradosha_end": "10:05:25 PM",
+                    "pradosha_end": "09:47:45 PM",
                     "pradosha_start_iso": "13/07/2026 07:41:24 PM",
-                    "pradosha_end_iso": "13/07/2026 10:05:25 PM",
+                    "pradosha_end_iso": "13/07/2026 09:47:45 PM",
                     "sunset": "07:41:25 PM",
                     "sunset_iso": "13/07/2026 07:41:25 PM",
-                    "duration_minutes": 144.00000013411045,
+                    "duration_minutes": 126.33333340287209,
                     "base_pradosha_start": "07:41:25 PM",
-                    "base_pradosha_end": "10:05:25 PM",
+                    "base_pradosha_end": "09:47:45 PM",
                     "base_pradosha_start_iso": "13/07/2026 07:41:25 PM",
-                    "base_pradosha_end_iso": "13/07/2026 10:05:25 PM",
-                    "base_duration_minutes": 144.00000013411045,
-                    "duration_ghatikas": 6,
-                    "fixed_ghati_minutes": 24,
-                    "calculation_basis": "fixed_ghati_offset_from_local_sunset",
+                    "base_pradosha_end_iso": "13/07/2026 09:47:45 PM",
+                    "base_duration_minutes": 126.33333340287209,
+                    "duration_muhurtas": 3,
+                    "night_muhurta_minutes": 42.11111108958721,
+                    "night_duration_minutes": 631.6666663438082,
+                    "calculation_basis": "dynamic_ratrimana_3_muhurta_from_local_sunset",
                     "is_trayodashi": false,
                     "is_auspicious": false,
                     "trayodashi_overlap_minutes": 0,
                     "trayodashi_overlaps": [],
                     "significance": "No Trayodashi overlap in Pradosha Kaal for this day."
+                },
+                "ratri": {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Night",
+                    "name_key": "Ratri",
+                    "division_number": 2,
+                    "start": "09:47:45 PM",
+                    "end": "11:54:05 PM",
+                    "start_iso": "13/07/2026 09:47:45 PM",
+                    "end_iso": "13/07/2026 11:54:05 PM",
+                    "duration_seconds": 7580
                 },
                 "nishitha": {
                     "source": "15-part night Muhurta model",
@@ -3645,6 +3876,30 @@
                     "night_midpoint_iso": "14/07/2026 12:57:15 AM",
                     "muhurta_duration_minutes": "42m 6.6666666666665s",
                     "muhurta_number": "8th of 15 (Nishita)"
+                },
+                "usha": {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Dawn",
+                    "name_key": "Usha",
+                    "division_number": 4,
+                    "start": "02:00:25 AM",
+                    "end": "04:06:45 AM",
+                    "start_iso": "14/07/2026 02:00:25 AM",
+                    "end_iso": "14/07/2026 04:06:45 AM",
+                    "duration_seconds": 7580
+                },
+                "arunodaya": {
+                    "period": "Night",
+                    "period_key": "night",
+                    "name": "Arunodaya",
+                    "name_key": "Arunodaya",
+                    "division_number": 5,
+                    "start": "04:06:45 AM",
+                    "end": "06:13:05 AM",
+                    "start_iso": "14/07/2026 04:06:45 AM",
+                    "end_iso": "14/07/2026 06:13:05 AM",
+                    "duration_seconds": 7580
                 },
                 "brahma_muhurta": {
                     "source": "Night divided into 15 Muhurtas; Brahma Muhurta is the penultimate night Muhurta before sunrise",
@@ -3891,20 +4146,21 @@
             },
             "Pradosha_Kaal": {
                 "pradosha_start": "07:41:24 PM",
-                "pradosha_end": "10:05:25 PM",
+                "pradosha_end": "09:47:45 PM",
                 "pradosha_start_iso": "13/07/2026 07:41:24 PM",
-                "pradosha_end_iso": "13/07/2026 10:05:25 PM",
+                "pradosha_end_iso": "13/07/2026 09:47:45 PM",
                 "sunset": "07:41:25 PM",
                 "sunset_iso": "13/07/2026 07:41:25 PM",
-                "duration_minutes": 144.00000013411045,
+                "duration_minutes": 126.33333340287209,
                 "base_pradosha_start": "07:41:25 PM",
-                "base_pradosha_end": "10:05:25 PM",
+                "base_pradosha_end": "09:47:45 PM",
                 "base_pradosha_start_iso": "13/07/2026 07:41:25 PM",
-                "base_pradosha_end_iso": "13/07/2026 10:05:25 PM",
-                "base_duration_minutes": 144.00000013411045,
-                "duration_ghatikas": 6,
-                "fixed_ghati_minutes": 24,
-                "calculation_basis": "fixed_ghati_offset_from_local_sunset",
+                "base_pradosha_end_iso": "13/07/2026 09:47:45 PM",
+                "base_duration_minutes": 126.33333340287209,
+                "duration_muhurtas": 3,
+                "night_muhurta_minutes": 42.11111108958721,
+                "night_duration_minutes": 631.6666663438082,
+                "calculation_basis": "dynamic_ratrimana_3_muhurta_from_local_sunset",
                 "is_trayodashi": false,
                 "is_auspicious": false,
                 "trayodashi_overlap_minutes": 0,
@@ -3912,12 +4168,12 @@
                 "significance": "No Trayodashi overlap in Pradosha Kaal for this day."
             },
             "Lagna": {
-                "lagna_longitude_nirayana": 133.39249301341715,
-                "lagna_longitude_sayana": 157.62011585354733,
-                "sign_index": 4,
-                "sign_name": "Leo",
-                "degree_in_sign": 13.392493013417152,
-                "ayanamsa_applied": 24.227622840130174
+                "lagna_longitude_nirayana": 224.4781722578999,
+                "lagna_longitude_sayana": 248.70580583456325,
+                "sign_index": 7,
+                "sign_name": "Scorpio",
+                "degree_in_sign": 14.4781722578999,
+                "ayanamsa_applied": 24.227633576663347
             },
             "Lagna_Full_Day": [
                 {
@@ -3926,20 +4182,20 @@
                     "sign_index": 2,
                     "start": "04:20:07 AM",
                     "start_iso": "13/07/2026 04:20:07 AM",
-                    "start_jd": 2461234.4514758377,
+                    "start_jd": 2461234.4514758694,
                     "end": "06:33:35 AM",
                     "end_iso": "13/07/2026 06:33:35 AM",
-                    "end_jd": 2461234.5441559395,
+                    "end_jd": 2461234.5441559735,
                     "visible_start": "06:12:39 AM",
                     "visible_start_iso": "13/07/2026 06:12:39 AM",
                     "visible_start_jd": 2461234.5296296296,
                     "visible_end": "06:33:35 AM",
                     "visible_end_iso": "13/07/2026 06:33:35 AM",
-                    "visible_end_jd": 2461234.5441559395,
+                    "visible_end_jd": 2461234.5441559735,
                     "is_partial_start": true,
                     "is_partial_end": false,
-                    "duration_minutes": 133.4593465179205,
-                    "visible_duration_minutes": 20.917886272072792,
+                    "duration_minutes": 133.45934987068176,
+                    "visible_duration_minutes": 20.917935222387314,
                     "is_day_lagna": true
                 },
                 {
@@ -3948,20 +4204,20 @@
                     "sign_index": 3,
                     "start": "06:33:35 AM",
                     "start_iso": "13/07/2026 06:33:35 AM",
-                    "start_jd": 2461234.5441559395,
+                    "start_jd": 2461234.5441559735,
                     "end": "08:49:45 AM",
                     "end_iso": "13/07/2026 08:49:45 AM",
-                    "end_jd": 2461234.6387247746,
+                    "end_jd": 2461234.6387248076,
                     "visible_start": "06:33:35 AM",
                     "visible_start_iso": "13/07/2026 06:33:35 AM",
-                    "visible_start_jd": 2461234.5441559395,
+                    "visible_start_jd": 2461234.5441559735,
                     "visible_end": "08:49:45 AM",
                     "visible_end_iso": "13/07/2026 08:49:45 AM",
-                    "visible_end_jd": 2461234.6387247746,
+                    "visible_end_jd": 2461234.6387248076,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 136.17912255227566,
-                    "visible_duration_minutes": 136.17912255227566,
+                    "duration_minutes": 136.17912121117115,
+                    "visible_duration_minutes": 136.17912121117115,
                     "is_day_lagna": true
                 },
                 {
@@ -3970,20 +4226,20 @@
                     "sign_index": 4,
                     "start": "08:49:45 AM",
                     "start_iso": "13/07/2026 08:49:45 AM",
-                    "start_jd": 2461234.6387247746,
+                    "start_jd": 2461234.6387248076,
                     "end": "11:01:42 AM",
                     "end_iso": "13/07/2026 11:01:42 AM",
-                    "end_jd": 2461234.730353201,
+                    "end_jd": 2461234.7303532334,
                     "visible_start": "08:49:45 AM",
                     "visible_start_iso": "13/07/2026 08:49:45 AM",
-                    "visible_start_jd": 2461234.6387247746,
+                    "visible_start_jd": 2461234.6387248076,
                     "visible_end": "11:01:42 AM",
                     "visible_end_iso": "13/07/2026 11:01:42 AM",
-                    "visible_end_jd": 2461234.730353201,
+                    "visible_end_jd": 2461234.7303532334,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 131.94493375718594,
-                    "visible_duration_minutes": 131.94493375718594,
+                    "duration_minutes": 131.94493308663368,
+                    "visible_duration_minutes": 131.94493308663368,
                     "is_day_lagna": true
                 },
                 {
@@ -3992,16 +4248,16 @@
                     "sign_index": 5,
                     "start": "11:01:42 AM",
                     "start_iso": "13/07/2026 11:01:42 AM",
-                    "start_jd": 2461234.730353201,
+                    "start_jd": 2461234.7303532334,
                     "end": "01:12:31 PM",
                     "end_iso": "13/07/2026 01:12:31 PM",
-                    "end_jd": 2461234.8211991466,
+                    "end_jd": 2461234.821199179,
                     "visible_start": "11:01:42 AM",
                     "visible_start_iso": "13/07/2026 11:01:42 AM",
-                    "visible_start_jd": 2461234.730353201,
+                    "visible_start_jd": 2461234.7303532334,
                     "visible_end": "01:12:31 PM",
                     "visible_end_iso": "13/07/2026 01:12:31 PM",
-                    "visible_end_jd": 2461234.8211991466,
+                    "visible_end_jd": 2461234.821199179,
                     "is_partial_start": false,
                     "is_partial_end": false,
                     "duration_minutes": 130.8181618899107,
@@ -4014,20 +4270,20 @@
                     "sign_index": 6,
                     "start": "01:12:31 PM",
                     "start_iso": "13/07/2026 01:12:31 PM",
-                    "start_jd": 2461234.8211991466,
+                    "start_jd": 2461234.821199179,
                     "end": "03:27:14 PM",
                     "end_iso": "13/07/2026 03:27:14 PM",
-                    "end_jd": 2461234.914750572,
+                    "end_jd": 2461234.914750606,
                     "visible_start": "01:12:31 PM",
                     "visible_start_iso": "13/07/2026 01:12:31 PM",
-                    "visible_start_jd": 2461234.8211991466,
+                    "visible_start_jd": 2461234.821199179,
                     "visible_end": "03:27:14 PM",
                     "visible_end_iso": "13/07/2026 03:27:14 PM",
-                    "visible_end_jd": 2461234.914750572,
+                    "visible_end_jd": 2461234.914750606,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 134.71405237913132,
-                    "visible_duration_minutes": 134.71405237913132,
+                    "duration_minutes": 134.71405439078808,
+                    "visible_duration_minutes": 134.71405439078808,
                     "is_day_lagna": true
                 },
                 {
@@ -4036,20 +4292,20 @@
                     "sign_index": 7,
                     "start": "03:27:14 PM",
                     "start_iso": "13/07/2026 03:27:14 PM",
-                    "start_jd": 2461234.914750572,
+                    "start_jd": 2461234.914750606,
                     "end": "05:43:16 PM",
                     "end_iso": "13/07/2026 05:43:16 PM",
-                    "end_jd": 2461235.0092135333,
+                    "end_jd": 2461235.0092135663,
                     "visible_start": "03:27:14 PM",
                     "visible_start_iso": "13/07/2026 03:27:14 PM",
-                    "visible_start_jd": 2461234.914750572,
+                    "visible_start_jd": 2461234.914750606,
                     "visible_end": "05:43:16 PM",
                     "visible_end_iso": "13/07/2026 05:43:16 PM",
-                    "visible_end_jd": 2461235.0092135333,
+                    "visible_end_jd": 2461235.0092135663,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 136.02666445076466,
-                    "visible_duration_minutes": 136.02666445076466,
+                    "duration_minutes": 136.02666310966015,
+                    "visible_duration_minutes": 136.02666310966015,
                     "is_day_lagna": true
                 },
                 {
@@ -4058,20 +4314,20 @@
                     "sign_index": 8,
                     "start": "05:43:16 PM",
                     "start_iso": "13/07/2026 05:43:16 PM",
-                    "start_jd": 2461235.0092135333,
+                    "start_jd": 2461235.0092135663,
                     "end": "07:48:24 PM",
                     "end_iso": "13/07/2026 07:48:24 PM",
-                    "end_jd": 2461235.096118505,
+                    "end_jd": 2461235.096118534,
                     "visible_start": "05:43:16 PM",
                     "visible_start_iso": "13/07/2026 05:43:16 PM",
-                    "visible_start_jd": 2461235.0092135333,
+                    "visible_start_jd": 2461235.0092135663,
                     "visible_end": "07:48:24 PM",
                     "visible_end_iso": "13/07/2026 07:48:24 PM",
-                    "visible_end_jd": 2461235.096118505,
+                    "visible_end_jd": 2461235.096118534,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 125.14315947890282,
-                    "visible_duration_minutes": 125.14315947890282,
+                    "duration_minutes": 125.14315344393253,
+                    "visible_duration_minutes": 125.14315344393253,
                     "is_day_lagna": true
                 },
                 {
@@ -4080,20 +4336,20 @@
                     "sign_index": 9,
                     "start": "07:48:24 PM",
                     "start_iso": "13/07/2026 07:48:24 PM",
-                    "start_jd": 2461235.096118505,
+                    "start_jd": 2461235.096118534,
                     "end": "09:34:49 PM",
                     "end_iso": "13/07/2026 09:34:49 PM",
-                    "end_jd": 2461235.1700174357,
+                    "end_jd": 2461235.17001746,
                     "visible_start": "07:48:24 PM",
                     "visible_start_iso": "13/07/2026 07:48:24 PM",
-                    "visible_start_jd": 2461235.096118505,
+                    "visible_start_jd": 2461235.096118534,
                     "visible_end": "09:34:49 PM",
                     "visible_end_iso": "13/07/2026 09:34:49 PM",
-                    "visible_end_jd": 2461235.1700174357,
+                    "visible_end_jd": 2461235.17001746,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 106.41446001827717,
-                    "visible_duration_minutes": 106.41446001827717,
+                    "duration_minutes": 106.41445331275463,
+                    "visible_duration_minutes": 106.41445331275463,
                     "is_day_lagna": false
                 },
                 {
@@ -4102,20 +4358,20 @@
                     "sign_index": 10,
                     "start": "09:34:49 PM",
                     "start_iso": "13/07/2026 09:34:49 PM",
-                    "start_jd": 2461235.1700174357,
+                    "start_jd": 2461235.17001746,
                     "end": "11:07:36 PM",
                     "end_iso": "13/07/2026 11:07:36 PM",
-                    "end_jd": 2461235.2344478276,
+                    "end_jd": 2461235.23444785,
                     "visible_start": "09:34:49 PM",
                     "visible_start_iso": "13/07/2026 09:34:49 PM",
-                    "visible_start_jd": 2461235.1700174357,
+                    "visible_start_jd": 2461235.17001746,
                     "visible_end": "11:07:36 PM",
                     "visible_end_iso": "13/07/2026 11:07:36 PM",
-                    "visible_end_jd": 2461235.2344478276,
+                    "visible_end_jd": 2461235.23444785,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 92.77976430952549,
-                    "visible_duration_minutes": 92.77976430952549,
+                    "duration_minutes": 92.77976162731647,
+                    "visible_duration_minutes": 92.77976162731647,
                     "is_day_lagna": false
                 },
                 {
@@ -4124,20 +4380,20 @@
                     "sign_index": 11,
                     "start": "11:07:36 PM",
                     "start_iso": "13/07/2026 11:07:36 PM",
-                    "start_jd": 2461235.2344478276,
+                    "start_jd": 2461235.23444785,
                     "end": "12:38:02 AM",
                     "end_iso": "14/07/2026 12:38:02 AM",
-                    "end_jd": 2461235.2972541847,
+                    "end_jd": 2461235.297254208,
                     "visible_start": "11:07:36 PM",
                     "visible_start_iso": "13/07/2026 11:07:36 PM",
-                    "visible_start_jd": 2461235.2344478276,
+                    "visible_start_jd": 2461235.23444785,
                     "visible_end": "12:38:02 AM",
                     "visible_end_iso": "14/07/2026 12:38:02 AM",
-                    "visible_end_jd": 2461235.2972541847,
+                    "visible_end_jd": 2461235.297254208,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 90.4411543160677,
-                    "visible_duration_minutes": 90.4411543160677,
+                    "duration_minutes": 90.4411556571722,
+                    "visible_duration_minutes": 90.4411556571722,
                     "is_day_lagna": false
                 },
                 {
@@ -4146,20 +4402,20 @@
                     "sign_index": 0,
                     "start": "12:38:02 AM",
                     "start_iso": "14/07/2026 12:38:02 AM",
-                    "start_jd": 2461235.2972541847,
+                    "start_jd": 2461235.297254208,
                     "end": "02:18:04 AM",
                     "end_iso": "14/07/2026 02:18:04 AM",
-                    "end_jd": 2461235.366722317,
+                    "end_jd": 2461235.366722344,
                     "visible_start": "12:38:02 AM",
                     "visible_start_iso": "14/07/2026 12:38:02 AM",
-                    "visible_start_jd": 2461235.2972541847,
+                    "visible_start_jd": 2461235.297254208,
                     "visible_end": "02:18:04 AM",
                     "visible_end_iso": "14/07/2026 02:18:04 AM",
-                    "visible_end_jd": 2461235.366722317,
+                    "visible_end_jd": 2461235.366722344,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 100.03411039710045,
-                    "visible_duration_minutes": 100.03411039710045,
+                    "duration_minutes": 100.03411576151848,
+                    "visible_duration_minutes": 100.03411576151848,
                     "is_day_lagna": false
                 },
                 {
@@ -4168,20 +4424,20 @@
                     "sign_index": 1,
                     "start": "02:18:04 AM",
                     "start_iso": "14/07/2026 02:18:04 AM",
-                    "start_jd": 2461235.366722317,
+                    "start_jd": 2461235.366722344,
                     "end": "04:16:11 AM",
                     "end_iso": "14/07/2026 04:16:11 AM",
-                    "end_jd": 2461235.4487452456,
+                    "end_jd": 2461235.4487452772,
                     "visible_start": "02:18:04 AM",
                     "visible_start_iso": "14/07/2026 02:18:04 AM",
-                    "visible_start_jd": 2461235.366722317,
+                    "visible_start_jd": 2461235.366722344,
                     "visible_end": "04:16:11 AM",
                     "visible_end_iso": "14/07/2026 04:16:11 AM",
-                    "visible_end_jd": 2461235.4487452456,
+                    "visible_end_jd": 2461235.4487452772,
                     "is_partial_start": false,
                     "is_partial_end": false,
-                    "duration_minutes": 118.11301723122597,
-                    "visible_duration_minutes": 118.11301723122597,
+                    "duration_minutes": 118.1130239367485,
+                    "visible_duration_minutes": 118.1130239367485,
                     "is_day_lagna": false
                 },
                 {
@@ -4190,20 +4446,20 @@
                     "sign_index": 2,
                     "start": "04:16:11 AM",
                     "start_iso": "14/07/2026 04:16:11 AM",
-                    "start_jd": 2461235.4487452456,
+                    "start_jd": 2461235.4487452772,
                     "end": "06:29:39 AM",
                     "end_iso": "14/07/2026 06:29:39 AM",
-                    "end_jd": 2461235.5414253543,
+                    "end_jd": 2461235.5414253883,
                     "visible_start": "04:16:11 AM",
                     "visible_start_iso": "14/07/2026 04:16:11 AM",
-                    "visible_start_jd": 2461235.4487452456,
+                    "visible_start_jd": 2461235.4487452772,
                     "visible_end": "06:13:04 AM",
                     "visible_end_iso": "14/07/2026 06:13:04 AM",
                     "visible_end_jd": 2461235.5299189813,
                     "is_partial_start": false,
                     "is_partial_end": true,
-                    "duration_minutes": 133.4593565762043,
-                    "visible_duration_minutes": 116.89017936587334,
+                    "duration_minutes": 133.45935992896557,
+                    "visible_duration_minutes": 116.89013376832008,
                     "is_day_lagna": false
                 }
             ],
@@ -4275,7 +4531,7 @@
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
                         "calculated_for": "input_now",
-                        "input_now_iso": "13/07/2026 09:49:10 AM"
+                        "input_now_iso": "13/07/2026 04:33:21 PM"
                     },
                     "at_sunrise": {
                         "tithi_number": 29,
@@ -4324,7 +4580,7 @@
                         "effect_key": "Death / severe inauspiciousness"
                     },
                     "calculated_for": "input_now",
-                    "input_now_iso": "13/07/2026 09:49:10 AM",
+                    "input_now_iso": "13/07/2026 04:33:21 PM",
                     "at_sunrise": {
                         "tithi_number": 29,
                         "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -4360,7 +4616,7 @@
                     "valid_until": "13/07/2026 06:49:53 PM",
                     "valid_until_jd": 2461235.0554826334,
                     "calculated_for": "input_now",
-                    "input_now_iso": "13/07/2026 09:49:10 AM",
+                    "input_now_iso": "13/07/2026 04:33:21 PM",
                     "at_sunrise": {
                         "tithi_number": 29,
                         "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -4383,7 +4639,7 @@
                     "direction": "West",
                     "direction_key": "West",
                     "calculated_for": "input_now",
-                    "input_now_iso": "13/07/2026 09:49:10 AM",
+                    "input_now_iso": "13/07/2026 04:33:21 PM",
                     "at_sunrise": {
                         "tithi_number": 29,
                         "tithi_name": "Fourteenth Lunar Day of Dark Half",
@@ -4406,7 +4662,7 @@
             "Evaluation is derived only from current Panchang and transit state for the configured location/time."
         ],
         "title": "Complete Muhurta Evaluation - Centralized package output",
-        "input_now": "13/07/2026 09:49:10 AM",
+        "input_now": "13/07/2026 04:33:21 PM",
         "date": "2026-07-13",
         "input_parameters": {
             "tithi_number": 29,
@@ -4420,8 +4676,8 @@
             "nakshatra_number": 6,
             "nakshatra_name": "Ardra",
             "nakshatra_number_base": 1,
-            "lagna_number": 5,
-            "lagna_name": "Leo",
+            "lagna_number": 8,
+            "lagna_name": "Scorpio",
             "lagna_number_base": 1,
             "moon_sign_idx": 2,
             "moon_sign_name": "Gemini",
@@ -4438,9 +4694,9 @@
             "next_sunrise": "06:13:05 AM",
             "next_sunrise_iso": "14/07/2026 06:13:05 AM",
             "next_sunrise_decimal_hours": 30.218055555555555,
-            "current_time": "09:49:10 AM",
-            "current_time_iso": "13/07/2026 09:49:10 AM",
-            "current_time_decimal_hours": 9.819444444444445
+            "current_time": "04:33:21 PM",
+            "current_time_iso": "13/07/2026 04:33:21 PM",
+            "current_time_decimal_hours": 16.555833333333332
         },
         "evaluation_results": {
             "panchaka_dosha": {
@@ -4454,17 +4710,17 @@
                 "nakshatra": 6,
                 "nakshatra_name": "Ardra",
                 "nakshatra_number_base": 1,
-                "lagna": 5,
-                "lagna_name": "Leo",
+                "lagna": 8,
+                "lagna_name": "Scorpio",
                 "lagna_number_base": 1,
-                "sum": 42,
-                "remainder": 6,
-                "panchaka_name": "Chora",
-                "panchaka_english": "Thief",
-                "severity": "high",
-                "has_dosha": true,
-                "is_panchaka_rahita": false,
-                "description": "Chora - Inauspicious"
+                "sum": 45,
+                "remainder": 0,
+                "panchaka_name": "Rahita",
+                "panchaka_english": "Auspicious",
+                "severity": "none",
+                "has_dosha": false,
+                "is_panchaka_rahita": true,
+                "description": "Rahita - Auspicious"
             },
             "dagdha_tithi": {
                 "source": "Muhurta Chintamani",
@@ -4567,7 +4823,7 @@
                 "sunset": 19.690277777777776,
                 "vara_number": 1,
                 "vara_name": "Monday",
-                "current_time": 9.819444444444445,
+                "current_time": 16.555833333333332,
                 "abhijit_start": 12.501388888888888,
                 "abhijit_end": 13.399999999999999,
                 "abhijit_duration_minutes": 53.91666666666666,
@@ -4590,38 +4846,20 @@
         },
         "rejection_report": {
             "source": "Transit-only evaluation",
-            "overall_verdict": "Rejected but remedies can be tried",
+            "overall_verdict": "Accepted",
             "confidence_level": "low",
-            "rejection_count": 1,
+            "rejection_count": 0,
             "warning_count": 0,
-            "acceptance_count": 0,
+            "acceptance_count": 1,
             "critical_rejections": [],
-            "high_severity_rejections": [
-                {
-                    "dosha_name": "panchaka_dosha",
-                    "severity": "high",
-                    "source": "Rule engine",
-                    "description": "Chora - Inauspicious",
-                    "cancellation_possible": false,
-                    "cancellation_method": null
-                }
-            ],
+            "high_severity_rejections": [],
             "medium_severity_warnings": [],
             "low_severity_acceptances": [],
-            "detailed_rejections": [
-                {
-                    "dosha_name": "panchaka_dosha",
-                    "severity": "high",
-                    "source": "Rule engine",
-                    "description": "Chora - Inauspicious",
-                    "cancellation_possible": false,
-                    "cancellation_method": null
-                }
-            ],
+            "detailed_rejections": [],
             "detailed_warnings": [],
             "detailed_acceptances": [],
             "remedies_available": false,
-            "recommendation": "Muhurta has significant doshas. Remedies may help but alternative preferred."
+            "recommendation": "Muhurta is auspicious. Proceed with confidence."
         }
     },
     "calendar_period_windows": {

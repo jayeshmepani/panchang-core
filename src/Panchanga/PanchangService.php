@@ -320,6 +320,7 @@ class PanchangService
             'elevation' => $elevation,
         ];
         [$previousSunrise, $previousSunset] = $this->sunService->getSunriseSunset($previousBirth);
+        $jdPrevSunset = $this->toJulianDayFromCarbon($previousSunset, $tz);
         $nextBirth = [
             'year' => $nextDay->year,
             'month' => $nextDay->month,
@@ -365,6 +366,8 @@ class PanchangService
         $brahmaMuhurta = $this->muhurta->calculateBrahmaMuhurta($previousSunset, $relSunrise);
         $durMuhurtaTable = $this->muhurta->calculateDurMuhurta($relSunrise, $sunset, $nextSunrise, (int) $vara['index']);
         $daylightFivefold = $this->muhurta->calculateDaylightFivefoldDivision($relSunrise, $sunset);
+        $nighttimeFivefold = $this->muhurta->calculateNighttimeFivefoldDivision($sunset, $nextSunrise);
+        $tenKalaDivision = $this->muhurta->calculateTenKalaDivision($relSunrise, $sunset, $nextSunrise);
         $nishitaMuhurta = $this->muhurta->calculateNishitaMuhurta($sunset, $nextSunrise);
         $vijayaMuhurta = $this->muhurta->calculateVijayaMuhurta($relSunrise, $sunset);
         $godhuliMuhurta = $this->muhurta->calculateGodhuliMuhurta($sunset, $nextSunrise);
@@ -425,8 +428,8 @@ class PanchangService
             'window_count' => count($varjyamWindows),
         ]);
 
-        // Pradosha Kaal: six fixed ghatis after local sunset, auspicious only when Trayodashi overlaps it.
-        $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $jdSunset, $tz);
+        // Pradosha Kaal: three dynamic night-muhurtas after local sunset, auspicious only when Trayodashi overlaps it.
+        $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $jdSunset, $nextSunrise, $jdNextSunrise, $tz);
 
         // Lagna calculation
         $lagna = $this->muhurta->calculateLagna(
@@ -506,7 +509,7 @@ class PanchangService
             if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                 $sankrantiName = $sankrantiNameMap[$nextSign];
                 $sankrantiRashi = $nextSign;
-                $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset, $jdNextSunrise);
+                $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset, $jdNextSunrise, $jdPrevSunset);
                 $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
             }
         }
@@ -723,6 +726,14 @@ class PanchangService
             }
         }
 
+        $nightEnglishNames = ['pradosha', 'ratri', 'nishitha_kala', 'usha', 'arunodaya_kala'];
+        $nighttimeFivefoldByName = [];
+        foreach ($nighttimeFivefold as $index => $division) {
+            if (is_array($division) && isset($nightEnglishNames[$index])) {
+                $nighttimeFivefoldByName[$nightEnglishNames[$index]] = $division;
+            }
+        }
+
         $karmakalaWindows = [
             'sunrise' => [
                 'label' => Localization::translate('String', 'Sunrise'),
@@ -736,7 +747,10 @@ class PanchangService
             'aparahna' => $daylightFivefoldByName['aparahna'] ?? null,
             'sayahna' => $daylightFivefoldByName['sayahna'] ?? null,
             'pradosha' => $pradoshaKaal,
+            'ratri' => $nighttimeFivefoldByName['ratri'] ?? null,
             'nishitha' => $nishitaMuhurta,
+            'usha' => $nighttimeFivefoldByName['usha'] ?? null,
+            'arunodaya' => $nighttimeFivefoldByName['arunodaya_kala'] ?? null,
             'brahma_muhurta' => $brahmaMuhurta,
             'abhijit' => $abhijit,
             'vijaya' => $vijayaMuhurta,
@@ -782,6 +796,10 @@ class PanchangService
                 'Prahara.duration_hours' => 'hour',
                 'Daylight_Fivefold_Division.duration_seconds' => 'second',
                 'Daylight_Fivefold_Division.duration_hours' => 'hour',
+                'Nighttime_Fivefold_Division.duration_seconds' => 'second',
+                'Nighttime_Fivefold_Division.duration_hours' => 'hour',
+                'DayNight_Tenfold_Kala_Division.duration_seconds' => 'second',
+                'DayNight_Tenfold_Kala_Division.duration_hours' => 'hour',
                 'Brahma_Muhurta.duration_minutes' => 'minute',
                 'Brahma_Muhurta.duration_seconds' => 'second',
                 'Dur_Muhurta.duration_seconds' => 'second',
@@ -996,6 +1014,8 @@ class PanchangService
 
             'Prahara_Full_Day' => $praharaTable,
             'Daylight_Fivefold_Division' => $daylightFivefold,
+            'Nighttime_Fivefold_Division' => $nighttimeFivefold,
+            'DayNight_Tenfold_Kala_Division' => $tenKalaDivision,
             'Brahma_Muhurta' => $brahmaMuhurta,
             'Dur_Muhurta_Full_Day' => $durMuhurtaTable,
             'Nishita_Muhurta' => $nishitaMuhurta,

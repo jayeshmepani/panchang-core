@@ -29,8 +29,8 @@ class FestivalRuleEngine
     private const float CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT = 0.8;
 
     // Nag Panchami (Shravana Krishna Panchami) is paraviddha: the reference keeps the Panchami
-    // pierced by the Shashthi that spans at least 6 (fixed 24-minute) ghadis past sunrise, and
-    // only shifts the observance based on the same 6-ghadi Chaturthi vedha threshold.
+    // pierced by the Shashthi that spans at least 6 daytime ghadis past sunrise, and only
+    // shifts the observance based on the same 6-ghadi Chaturthi vedha threshold.
     private const float NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI = 6.0;
 
     // Durgashtami / Bhavani Pragatya (Chaitra Shukla Ashtami and its monthly derivative) is
@@ -59,7 +59,7 @@ class FestivalRuleEngine
     // that first day; vriddhi/kshaya also keep the first day.
     private const float DURVA_ASHTAMI_PURVAVIDDHA_MUHURTAS = 3.0;
 
-    // Vratni Purnima uses fixed ghadis, not a dinamana-scaled division.
+    // Vratni Purnima uses a daytime ghadi threshold derived from local dinamana.
     private const float PURNIMA_VRAT_CHATURDASHI_THRESHOLD_GHADIS = 18.0;
 
     private const array SUPPORTED_KARMAKALA_TYPES = [
@@ -2150,6 +2150,28 @@ class FestivalRuleEngine
     }
 
     /**
+     * Convert a classical daytime-ghadi threshold into a JD span using the candidate's local
+     * dinamana. Falls back to sunrise/sunset span when precomputed day-muhurta data is absent.
+     *
+     * @param array<string, mixed> $candidate
+     */
+    private function dynamicDayGhatiThresholdJd(array $candidate, float $ghatis): float
+    {
+        $dayMuhurtaSeconds = (float) ($candidate['day_muhurta_seconds'] ?? 0.0);
+        if ($dayMuhurtaSeconds > 0.0) {
+            $dayGhatiSeconds = $dayMuhurtaSeconds / 2.0;
+
+            return ($ghatis * $dayGhatiSeconds) / 86400.0;
+        }
+
+        $sunriseJd = (float) ($candidate['sunrise_jd'] ?? 0.0);
+        $sunsetJd = (float) ($candidate['sunset_jd'] ?? $sunriseJd);
+        $dayDurationJd = max(0.0, $sunsetJd - $sunriseJd);
+
+        return $ghatis * ($dayDurationJd / 30.0);
+    }
+
+    /**
      * Nag Panchami (Shravana Krishna Panchami) paraviddha selection.:
      *  - take the Panchami pierced by the Shashthi that spans >= 6 ghadis past sunrise;
      *  - if the second day's Panchami is under 6 ghadis and the first day is only
@@ -2157,7 +2179,7 @@ class FestivalRuleEngine
      *  - if the first day's Chaturthi vedha exceeds 6 ghadis, shift to the second day even
      *    when its Panchami is as little as 4 ghadis.
      * Truth table (lines 724-727): vriddhi keeps Vad 5 (first); kshaya keeps Vad 4-5 (first).
-     * All ghadis here are fixed 24-minute ghatis.
+     * The 6-ghadi thresholds are scaled from the local daytime length.
      */
     private function resolveNagPanchamiTruthTable(array $candidates, array $targetInterval): ?array
     {
@@ -2167,11 +2189,12 @@ class FestivalRuleEngine
             return null;
         }
 
-        $sixGhadiJd = self::NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI * 24.0 / 1440.0;
         $startJd = (float) ($targetInterval['start_jd'] ?? 0.0);
         $endJd = (float) ($targetInterval['end_jd'] ?? 0.0);
         $day1Sunrise = (float) ($day1['sunrise_jd'] ?? 0.0);
         $day2Sunrise = (float) ($day2['sunrise_jd'] ?? 0.0);
+        $day1SixGhadiJd = $this->dynamicDayGhatiThresholdJd($day1, self::NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI);
+        $day2SixGhadiJd = $this->dynamicDayGhatiThresholdJd($day2, self::NAG_PANCHAMI_SHASHTHI_VEDHA_GHADI);
         $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
         $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
 
@@ -2185,7 +2208,7 @@ class FestivalRuleEngine
         // Main pairing: Panchami is udaya-vyapini on day2; day1 is the Chaturthi-viddha day.
         if ($day2AtSunrise) {
             $panchamiSpanDay2 = max(0.0, $endJd - $day2Sunrise);
-            if ($panchamiSpanDay2 >= $sixGhadiJd) {
+            if ($panchamiSpanDay2 >= $day2SixGhadiJd) {
                 return (bool) ($day2['target_during_observance'] ?? false)
                     ? $this->markSpecialWinner($day2, 'nag_panchami_shashthi_viddha_6_ghadi_day2')
                     : null;
@@ -2193,7 +2216,7 @@ class FestivalRuleEngine
 
             // Day2 Panchami is under 6 ghadis: weigh the first day's Chaturthi vedha.
             $chaturthiSpanDay1 = max(0.0, $startJd - $day1Sunrise);
-            if ($chaturthiSpanDay1 <= $sixGhadiJd) {
+            if ($chaturthiSpanDay1 <= $day1SixGhadiJd) {
                 if ((bool) ($day1['target_during_observance'] ?? false)) {
                     return $this->markSpecialWinner($day1, 'nag_panchami_chaturthi_vedha_under_6_ghadi_day1');
                 }
@@ -2212,7 +2235,7 @@ class FestivalRuleEngine
         // ghadis, otherwise defer so the previous-day pairing (with this day as "day2") decides.
         if ($day1AtSunrise) {
             $panchamiSpanDay1 = max(0.0, $endJd - $day1Sunrise);
-            if ($panchamiSpanDay1 >= $sixGhadiJd && (bool) ($day1['target_during_observance'] ?? false)) {
+            if ($panchamiSpanDay1 >= $day1SixGhadiJd && (bool) ($day1['target_during_observance'] ?? false)) {
                 return $this->markSpecialWinner($day1, 'nag_panchami_shashthi_viddha_6_ghadi_day1');
             }
 
@@ -2964,7 +2987,7 @@ class FestivalRuleEngine
 
         $sunriseJd = (float) ($day1['sunrise_jd'] ?? 0.0);
         $contaminationJd = max(0.0, (float) ($day1['target_interval_start_jd'] ?? $sunriseJd) - $sunriseJd);
-        $thresholdJd = self::PURNIMA_VRAT_CHATURDASHI_THRESHOLD_GHADIS * KalaNirnayaEngine::GHATI_IN_MINUTES / 1440.0;
+        $thresholdJd = $this->dynamicDayGhatiThresholdJd($day1, self::PURNIMA_VRAT_CHATURDASHI_THRESHOLD_GHADIS);
 
         if ($contaminationJd < $thresholdJd) {
             return $this->markSpecialWinner($day1, 'purnima_vrat_chaturdashi_below_18_ghadi_keep_day1');
@@ -3065,7 +3088,7 @@ class FestivalRuleEngine
 
         return match ($type) {
             'sunrise' => ['start_jd' => $sunrise, 'end_jd' => $sunrise],
-            'arunodaya' => ['start_jd' => $sunrise - (4.0 * $fixedGhati), 'end_jd' => $sunrise],
+            'arunodaya' => ['start_jd' => $sunrise - (2.0 * $nightMuhurta), 'end_jd' => $sunrise],
             'purvahna' => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 2.0)],
             'pratah_kal' => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 5.0)],
             'pratah_first_third' => ['start_jd' => $sunrise, 'end_jd' => $sunrise + ($dayDuration / 15.0)],
@@ -3088,7 +3111,7 @@ class FestivalRuleEngine
             'moonrise' => $moonrise !== null
                 ? ['start_jd' => $moonrise, 'end_jd' => $moonrise]
                 : throw new LogicException('Moonrise karmakala requested but moonrise_jd is unavailable in festival context.'),
-            'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (ClassicalTimeConstants::PRADOSHA_GHATIKAS * $fixedGhati)],
+            'pradosha' => ['start_jd' => $sunset, 'end_jd' => $sunset + (3.0 * $nightMuhurta)],
             'tithi_boundary' => ['start_jd' => $sunrise, 'end_jd' => $nextSunrise],
             default => throw new LogicException(sprintf("Unknown karmakala_type '%s' in festival resolver.", $type)),
         };

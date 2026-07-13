@@ -189,11 +189,11 @@ class KalaNirnayaEngine
         ?float $sunsetJd = null
     ): array {
         $arunodayaGhatikas = max(self::ARUNODAYA_MIN_GHATIKAS, min(self::ARUNODAYA_MAX_GHATIKAS, $arunodayaGhatikas));
-        $arunodayaMinutes = $arunodayaGhatikas * self::GHATI_IN_MINUTES;
-        $arunodayaJd = $sunriseJd - ($arunodayaMinutes / 1440.0);
-        $dashamiVedhaThresholdJd = $previousSunriseJd !== null
-            ? $previousSunriseJd + (self::DASHAMI_VEDHA_THRESHOLD_MINUTES_FROM_PREVIOUS_SUNRISE / 1440.0)
-            : $sunriseJd - ((self::GHATIKA_PER_DAY - self::DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE) * self::GHATI_IN_MINUTES / 1440.0);
+        $nightGhatiJd = $this->nightGhatiJd($sunriseJd, $nextSunriseJd, $sunsetJd);
+        $arunodayaJd = $sunriseJd - ($arunodayaGhatikas * $nightGhatiJd);
+        $arunodayaMinutes = ($sunriseJd - $arunodayaJd) * 1440.0;
+        $dashamiVedhaThresholdJd = $sunriseJd
+            - ((self::GHATIKA_PER_DAY - self::DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE) * $nightGhatiJd);
 
         $result = [
             'tradition' => $tradition,
@@ -204,11 +204,11 @@ class KalaNirnayaEngine
             'arunodaya_jd' => $arunodayaJd,
             'arunodaya_ghatikas' => $arunodayaGhatikas,
             'arunodaya_minutes' => $arunodayaMinutes,
-            'arunodaya_basis' => 'fixed_ghati_elapsed_before_dynamic_local_sunrise',
-            'fixed_ghati_minutes' => self::GHATI_IN_MINUTES,
+            'arunodaya_basis' => 'dynamic_ratrimana_ghati_before_local_sunrise',
+            'night_ghati_minutes' => $nightGhatiJd * 1440.0,
             'dashami_vedha_threshold_jd' => $dashamiVedhaThresholdJd,
             'dashami_vedha_threshold_ghatikas_from_previous_sunrise' => self::DASHAMI_VEDHA_THRESHOLD_GHATIKAS_FROM_PREVIOUS_SUNRISE,
-            'dashami_vedha_threshold_basis' => $previousSunriseJd !== null ? 'fixed_ghati_elapsed_from_previous_sunrise' : 'fixed_ghati_elapsed_before_sunrise',
+            'dashami_vedha_threshold_basis' => 'dynamic_ratrimana_5_ghati_before_local_sunrise',
             'status' => '',
             'fasting_day' => '',
         ];
@@ -283,7 +283,8 @@ class KalaNirnayaEngine
         float $sankrantiJd,
         float $sunriseJd,
         float $sunsetJd,
-        float $nextSunriseJd
+        float $nextSunriseJd,
+        ?float $previousSunsetJd = null
     ): array
     {
         if (!isset(self::SANKRANTI_PUNYA_KAAL[$sankrantiName])) {
@@ -293,25 +294,36 @@ class KalaNirnayaEngine
         $config = self::SANKRANTI_PUNYA_KAAL[$sankrantiName];
         $ghatiBefore = $config['before'];
         $ghatiAfter = $config['after'];
-        $jdBefore = ($ghatiBefore * self::GHATI_IN_MINUTES) / 1440.0;
-        $jdAfter = ($ghatiAfter * self::GHATI_IN_MINUTES) / 1440.0;
-
-        $punyaStart = $sankrantiJd - $jdBefore;
-        $punyaEnd = $sankrantiJd + $jdAfter;
-
         $isDaytime = ($sankrantiJd >= $sunriseJd) && ($sankrantiJd <= $sunsetJd);
+        $dayGhatiJd = max(0.0, $sunsetJd - $sunriseJd) / 30.0;
+        $previousNightGhatiJd = $previousSunsetJd !== null && $sunriseJd > $previousSunsetJd
+            ? ($sunriseJd - $previousSunsetJd) / 30.0
+            : max(0.0, $nextSunriseJd - $sunsetJd) / 30.0;
+        $currentNightGhatiJd = max(0.0, $nextSunriseJd - $sunsetJd) / 30.0;
+        $beforeGhatiJd = $isDaytime
+            ? $dayGhatiJd
+            : ($sankrantiJd < $sunriseJd ? $previousNightGhatiJd : $currentNightGhatiJd);
+        $afterGhatiJd = $isDaytime
+            ? $dayGhatiJd
+            : ($sankrantiJd < $sunriseJd ? $dayGhatiJd : $currentNightGhatiJd);
+
+        $punyaStart = $sankrantiJd - ($ghatiBefore * $beforeGhatiJd);
+        $punyaEnd = $sankrantiJd + ($ghatiAfter * $afterGhatiJd);
 
         if (!$isDaytime) {
             if ($sankrantiJd < $sunriseJd) {
-                $punyaStart = $sankrantiJd - $jdBefore;
-                $punyaEnd = $sunriseJd + $jdAfter;
+                $punyaStart = $sankrantiJd - ($ghatiBefore * $beforeGhatiJd);
+                $punyaEnd = $sunriseJd + ($ghatiAfter * $afterGhatiJd);
             } else {
-                $punyaStart = $sankrantiJd - $jdBefore;
-                $punyaEnd = $nextSunriseJd + $jdAfter;
+                $punyaStart = $sankrantiJd - ($ghatiBefore * $beforeGhatiJd);
+                $punyaEnd = $nextSunriseJd + ($ghatiAfter * $dayGhatiJd);
             }
         }
 
         $totalMinutes = ($punyaEnd - $punyaStart) * 1440.0;
+        $durationGhatis = $beforeGhatiJd > 0.0
+            ? ($ghatiBefore + ($ghatiAfter * ($afterGhatiJd / $beforeGhatiJd)))
+            : 0.0;
 
         return [
             'sankranti_name' => $sankrantiName,
@@ -319,12 +331,13 @@ class KalaNirnayaEngine
             'punya_kaal_type' => $config['type'],
             'punya_kaal_start_jd' => $punyaStart,
             'punya_kaal_end_jd' => $punyaEnd,
-            'duration_ghatikas' => $totalMinutes / self::GHATI_IN_MINUTES,
+            'duration_ghatikas' => $durationGhatis,
             'duration_minutes' => $totalMinutes,
-            'fixed_ghati_minutes' => self::GHATI_IN_MINUTES,
-            'ghati_basis' => 'fixed_elapsed_time_unit',
+            'dynamic_before_ghati_minutes' => $beforeGhatiJd * 1440.0,
+            'dynamic_after_ghati_minutes' => $afterGhatiJd * 1440.0,
+            'ghati_basis' => $isDaytime ? 'dynamic_dinamana_30_ghati_day' : 'dynamic_segmental_ghati_by_day_night',
             'is_daytime_sankranti' => $isDaytime,
-            'ghati_pala_duration' => $this->minutesToGhatiPala($totalMinutes),
+            'ghati_pala_duration' => $this->minutesToGhatiPala($totalMinutes, $beforeGhatiJd * 1440.0),
         ];
     }
 
@@ -344,11 +357,12 @@ class KalaNirnayaEngine
         $dayDuration = $sunsetJd - $sunriseJd;
         $nightDuration = $nextSunriseJd - $sunsetJd;
         $dayMuhurta = $dayDuration / 15.0;
+        $nightMuhurta = $nightDuration / 15.0;
 
         $karmakalaType = $rules['karmakala_type'];
         $karmakalaJd = match ($karmakalaType) {
             'sunrise' => $sunriseJd,
-            'arunodaya' => $sunriseJd - ((4.0 * self::GHATI_IN_MINUTES) / 1440.0), // @phpstan-ignore match.alwaysFalse
+            'arunodaya' => $sunriseJd - (2.0 * $nightMuhurta), // @phpstan-ignore match.alwaysFalse
             'pratah_kal' => $sunriseJd + ($dayDuration / 10.0), // @phpstan-ignore match.alwaysFalse
             'sangava' => $sunriseJd + ($dayDuration * 3.0 / 10.0), // @phpstan-ignore match.alwaysFalse
             'madhyahna' => $sunriseJd + ($dayDuration / 2.0),
@@ -357,7 +371,7 @@ class KalaNirnayaEngine
             'vijaya_kaal' => $sunriseJd + (10.5 * $dayMuhurta), // @phpstan-ignore match.alwaysFalse
             'sayankala' => $sunriseJd + ($dayDuration * 9.0 / 10.0), // @phpstan-ignore match.alwaysFalse
             'nishitha' => $sunsetJd + (($nextSunriseJd - $sunsetJd) / 2.0),
-            default => $sunsetJd + ((3.0 * self::GHATI_IN_MINUTES) / 1440.0),
+            default => $sunsetJd + (1.5 * $nightMuhurta),
         };
 
         $tithiAtKarmakala = ($tithiStartJd <= $karmakalaJd) && ($tithiEndJd > $karmakalaJd);
@@ -448,18 +462,30 @@ class KalaNirnayaEngine
         ];
     }
 
-    private function minutesToGhatiPala(float $minutes): array
+    private function minutesToGhatiPala(float $minutes, float $ghatiMinutes = self::GHATI_IN_MINUTES): array
     {
-        $ghati = (int) floor($minutes / self::GHATI_IN_MINUTES);
-        $remaining = $minutes - ($ghati * self::GHATI_IN_MINUTES);
-        $pala = $remaining * (60.0 / self::GHATI_IN_MINUTES);
+        $normalizedGhatiMinutes = $ghatiMinutes > 0.0 ? $ghatiMinutes : self::GHATI_IN_MINUTES;
+        $ghati = (int) floor($minutes / $normalizedGhatiMinutes);
+        $remaining = $minutes - ($ghati * $normalizedGhatiMinutes);
+        $pala = $remaining * (60.0 / $normalizedGhatiMinutes);
 
         return [
             'ghati' => $ghati,
             'pala' => $pala,
             'total_minutes' => $minutes,
-            'ghati_minutes' => self::GHATI_IN_MINUTES,
-            'basis' => 'fixed_elapsed_time_unit',
+            'ghati_minutes' => $normalizedGhatiMinutes,
+            'basis' => $ghatiMinutes > 0.0 && abs($ghatiMinutes - self::GHATI_IN_MINUTES) > 1e-9
+                ? 'dynamic_segmental_ghati'
+                : 'fixed_elapsed_time_unit',
         ];
+    }
+
+    private function nightGhatiJd(float $sunriseJd, float $nextSunriseJd, ?float $sunsetJd): float
+    {
+        $nightDurationJd = $sunsetJd !== null && $nextSunriseJd > $sunsetJd
+            ? $nextSunriseJd - $sunsetJd
+            : max(0.0, $nextSunriseJd - $sunriseJd);
+
+        return $nightDurationJd / 30.0;
     }
 }

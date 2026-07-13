@@ -48,6 +48,8 @@ class SelectiveApiTest extends TestCase
             'Abhijit_Muhurta',
             'Prahara_Full_Day',
             'Daylight_Fivefold_Division',
+            'Nighttime_Fivefold_Division',
+            'DayNight_Tenfold_Kala_Division',
             'Brahma_Muhurta',
             'Dur_Muhurta_Full_Day',
             'Nishita_Muhurta',

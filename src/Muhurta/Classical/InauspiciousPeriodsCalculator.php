@@ -8,7 +8,6 @@ use Carbon\CarbonImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Localization;
 use RuntimeException;
@@ -152,10 +151,16 @@ class InauspiciousPeriodsCalculator
         ];
     }
 
-    public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array
+    public function calculatePradoshaKaal(CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $tithiNum): array
     {
         $isTrayodashi = ($tithiNum === 13);
-        $duration = ClassicalTimeConstants::PRADOSHA_MINUTES * 60.0;
+        $nightDurationSeconds = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
+        if ($nightDurationSeconds <= 0) {
+            throw new InvalidArgumentException('Next sunrise must be after sunset for Pradosha calculation.');
+        }
+
+        $nightMuhurtaSeconds = $nightDurationSeconds / 15.0;
+        $duration = 3.0 * $nightMuhurtaSeconds;
         $start = $sunset;
         $end = $this->addFloatSeconds($sunset, $duration);
 
@@ -166,9 +171,10 @@ class InauspiciousPeriodsCalculator
             'pradosha_start_iso' => AstroCore::formatDateTime($start),
             'pradosha_end_iso' => AstroCore::formatDateTime($end),
             'duration_seconds' => $duration,
-            'duration_ghatikas' => ClassicalTimeConstants::PRADOSHA_GHATIKAS,
-            'fixed_ghati_minutes' => ClassicalTimeConstants::GHATIKA_IN_MINUTES,
-            'calculation_basis' => 'fixed_ghati_offset_from_local_sunset',
+            'duration_muhurtas' => 3.0,
+            'night_muhurta_seconds' => $nightMuhurtaSeconds,
+            'night_duration_seconds' => $nightDurationSeconds,
+            'calculation_basis' => 'dynamic_ratrimana_3_muhurta_from_local_sunset',
             'is_auspicious' => $isTrayodashi,
         ];
     }

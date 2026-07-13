@@ -1436,7 +1436,7 @@ class FestivalService
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
-            'description' => 'Monthly Purnima fast selected by the 18 fixed-ghadi Chaturdashi condition',
+            'description' => 'Monthly Purnima fast selected by the 18 daytime-ghadi Chaturdashi condition',
             'deity' => 'Vishnu/Chandra',
             'regions' => ['Pan-India'],
             'fasting' => true,
@@ -1447,7 +1447,7 @@ class FestivalService
                 [
                     'kind' => 'date_rule',
                     'locator' => 'Monthly Purnima Vrat rule',
-                    'supports' => 'Generic Vratni Purnima follows the 18 fixed-ghadi Chaturdashi condition rather than plain sunrise-only Purnima.',
+                    'supports' => 'Generic Vratni Purnima follows the 18 daytime-ghadi Chaturdashi condition rather than plain sunrise-only Purnima.',
                 ],
             ],
         ],
@@ -3255,7 +3255,7 @@ class FestivalService
                 [
                     'kind' => 'inherited_rule',
                     'locator' => 'Vratni Poonam section',
-                    'supports' => 'This Purnima Vrat inherits the generic Purnima-vrat 18-ghadi Chaturdashi condition; the sunrise field is only the resolver anchor for that table.',
+                    'supports' => 'This Purnima Vrat inherits the generic Purnima-vrat 18 daytime-ghadi Chaturdashi condition; the sunrise field is only the resolver anchor for that table.',
                 ],
             ],
         ],
@@ -3395,7 +3395,7 @@ class FestivalService
                 [
                     'kind' => 'inherited_rule',
                     'locator' => 'Vratni Poonam section',
-                    'supports' => 'This generic Purnima Vrat inherits the Purnima-vrat 18-ghadi Chaturdashi condition. Dattatreya Jayanti is handled separately with Pradosha-vyapini Margashirsha Purnima.',
+                    'supports' => 'This generic Purnima Vrat inherits the Purnima-vrat 18 daytime-ghadi Chaturdashi condition. Dattatreya Jayanti is handled separately with Pradosha-vyapini Margashirsha Purnima.',
                 ],
             ],
         ],
@@ -3681,7 +3681,7 @@ class FestivalService
                 [
                     'kind' => 'inherited_rule',
                     'locator' => 'Vratni Poonam section',
-                    'supports' => 'Adhika Purnima Vrat inherits the generic Purnima-vrat 18-ghadi Chaturdashi condition; it is not a standalone plain sunrise rule.',
+                    'supports' => 'Adhika Purnima Vrat inherits the generic Purnima-vrat 18 daytime-ghadi Chaturdashi condition; it is not a standalone plain sunrise rule.',
                 ],
             ],
         ],
@@ -7662,7 +7662,10 @@ class FestivalService
 
             $parentLabel = Localization::translate('Festival', $parentName);
             $observanceNote = $daysAfter === 0
-                ? sprintf('Linked to %s on the same observance day.', $parentLabel)
+                ? sprintf(
+                    Localization::translate('String', 'observance_note_same_day_parent'),
+                    $parentLabel
+                )
                 : sprintf(
                     Localization::translate('String', 'observance_note_day_after'),
                     $daysAfter,
@@ -7957,9 +7960,9 @@ class FestivalService
             'paksha_purnimanta' => $pakshaPurnimanta,
             'paksha_purnimanta_name' => $this->localizedPakshaName($pakshaPurnimanta),
             'month_amanta' => $rule['month_amanta'] ?? null,
-            'month_amanta_name' => $rule['month_amanta'] ?? null,
+            'month_amanta_name' => $this->localizedMonthName($rule['month_amanta'] ?? null),
             'month_purnimanta' => $rule['month_purnimanta'] ?? null,
-            'month_purnimanta_name' => $rule['month_purnimanta'] ?? null,
+            'month_purnimanta_name' => $this->localizedMonthName($rule['month_purnimanta'] ?? null),
         ];
 
         return $this->filterEmptyMetadata($formatted);
@@ -7993,7 +7996,8 @@ class FestivalService
             'vriddhi_preference' => $policy['vriddhi_preference'] ?? null,
             'kshaya_policy' => $policy['kshaya_policy'] ?? null,
             'kshaya_policy_name' => $this->localizedString($policy['kshaya_policy'] ?? null),
-            'dual_day_rule' => $policy['dual_day_rule'] ?? null,
+            'dual_day_rule' => $this->localizedString($policy['dual_day_rule'] ?? null),
+            'dual_day_rule_key' => $policy['dual_day_rule'] ?? null,
             'dual_day_rule_name' => $this->localizedString($policy['dual_day_rule'] ?? null),
         ];
 
@@ -8262,6 +8266,13 @@ class FestivalService
             $decision['preferred_nakshatra_key'] = $preferredRaw;
             $decision['preferred_nakshatra'] = $this->localizedNakshatraName($preferredRaw);
             $decision['preferred_nakshatra_name'] = $decision['preferred_nakshatra'];
+        }
+
+        if (isset($decision['dual_day_rule'])) {
+            $ruleRaw = (string) $decision['dual_day_rule'];
+            $decision['dual_day_rule_key'] = $ruleRaw;
+            $decision['dual_day_rule'] = $this->localizedString($ruleRaw);
+            $decision['dual_day_rule_name'] = $decision['dual_day_rule'];
         }
 
         if (isset($decision['bhadra_decision']) && is_array($decision['bhadra_decision'])) {

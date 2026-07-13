@@ -89,6 +89,21 @@ class MuhurtaService
         return $this->dailyPeriodsCalculator->calculateDaylightFivefoldDivision($sunrise, $sunset);
     }
 
+    public function calculateNighttimeFivefoldDivision(
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        return $this->dailyPeriodsCalculator->calculateNighttimeFivefoldDivision($sunset, $nextSunrise);
+    }
+
+    public function calculateTenKalaDivision(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise
+    ): array {
+        return $this->dailyPeriodsCalculator->calculateTenKalaDivision($sunrise, $sunset, $nextSunrise);
+    }
+
     public function calculateNishitaMuhurta(
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise
@@ -195,9 +210,9 @@ class MuhurtaService
         );
     }
 
-    public function calculatePradoshaKaal(CarbonImmutable $sunset, int $tithiNum): array
+    public function calculatePradoshaKaal(CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $tithiNum): array
     {
-        return $this->inauspiciousPeriodsCalculator->calculatePradoshaKaal($sunset, $tithiNum);
+        return $this->inauspiciousPeriodsCalculator->calculatePradoshaKaal($sunset, $nextSunrise, $tithiNum);
     }
 
     public function calculateLagna(
