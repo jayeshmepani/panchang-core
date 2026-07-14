@@ -11,21 +11,25 @@ The resolution is executed once per civil date. The decision logic is branched b
 ### Key Parameters & Calculations
 
 **Daylight Muhurta**
+
 $$
 muhurtaSeconds = \frac{(\text{sunset\_jd} - \text{sunrise\_jd}) \times 86400.0}{15.0}
 $$
 
 **Sthula Threshold**
+
 $$
 thresholdSeconds = 9 \times muhurtaSeconds
 $$
 
 **Pratipada Duration past Sunrise**
+
 $$
 postSunriseSeconds = (\text{pratipadaInterval['end\_jd']} - \text{sunrise\_jd}) \times 86400.0
 $$
 
 **Dwitiya Sunset Transition**
+
 $$
 dwitiyaActiveAtSunset = (\text{pratipadaInterval['end\_jd']} < \text{sunset\_jd})
 $$
@@ -34,44 +38,58 @@ $$
 
 #### Branch A: Pratipada at Sunrise (`currentAbs === 1`)
 
-1. If
-   $$
-   postSunriseSeconds < thresholdSeconds \quad \text{(Pratipada is short)} \quad \text{OR} \quad dwitiyaActiveAtSunset = \text{true}
-   $$
-   - **Case A1** ($dwitiyaActiveAtSunset$): Target Tithi = `2`, Reason = `chandra_darshana_dwitiya_fallback_at_local_sunset`
-   - **Case A2** (not $dwitiyaActiveAtSunset$): Target Tithi = `1`, Reason = `chandra_darshana_sud1_short_pratipada_sthula_present`
-2. Else if `chandra_darshana_visibility_affects_selection` is **false** (classical): no further branches; the day is deferred to Sud 2 (handled in Branch B on the next day).
-3. Else if `chandra_darshana_visibility_affects_selection` is **true** AND `isYoungCrescentVisibleAtSunset` is true:
-   - Target Tithi = `1`, Reason = `chandra_darshana_sud1_crescent_visible_at_sunset`
-4. Else: defer to Sud 2.
+**Step 1.** Evaluate:
+
+$$
+postSunriseSeconds < thresholdSeconds \quad \text{(Pratipada is short)} \quad \text{OR} \quad dwitiyaActiveAtSunset = \text{true}
+$$
+
+- **Case A1** ($dwitiyaActiveAtSunset$): Target Tithi = `2`, Reason = `chandra_darshana_dwitiya_fallback_at_local_sunset`
+- **Case A2** (not $dwitiyaActiveAtSunset$): Target Tithi = `1`, Reason = `chandra_darshana_sud1_short_pratipada_sthula_present`
+
+**Step 2.** Else if `chandra_darshana_visibility_affects_selection` is **false** (classical): no further branches; the day is deferred to Sud 2 (handled in Branch B on the next day).
+
+**Step 3.** Else if `chandra_darshana_visibility_affects_selection` is **true** AND `isYoungCrescentVisibleAtSunset` is true: Target Tithi = `1`, Reason = `chandra_darshana_sud1_crescent_visible_at_sunset`
+
+**Step 4.** Else: defer to Sud 2.
 
 > **Modern visibility gate (when flag = true):** after establishing the initial candidate via classical rules, the engine additionally requires `isYoungCrescentVisibleAtSunset` to return `true`. If it returns `false`, the candidate is rejected regardless of classical outcome.
 
 #### Branch B: Dwitiya at Sunrise (`currentAbs === 2`)
 
-1. Calculate the preceding Pratipada duration:
-   $$
-   postSunriseSeconds = (\text{prevPratipadaEndJd} - \text{prevSunriseJd}) \times 86400.0
-   $$
-2. Calculate the preceding sunset time:
-   $$
-   prevSunsetJd = \text{prevSunriseJd} + (\text{sunset\_jd} - \text{sunrise\_jd})
-   $$
-3. Check duplicate prevention:
-   $$
-   dwitiyaStartedBeforePrevSunset = (\text{prevSunsetJd} > 0.0 \ \text{AND} \ \text{prevPratipadaEndJd} < \text{prevSunsetJd})
-   $$
-4. If
-   $$
-   postSunriseSeconds \ge thresholdSeconds \quad \text{(preceding Pratipada was long)} \quad \text{AND} \quad \text{not } dwitiyaStartedBeforePrevSunset
-   $$
-   - Target Tithi = `2`, Reason = `chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1`
-5. When `chandra_darshana_visibility_affects_selection` is **true**: additionally requires `isYoungCrescentVisibleAtYesterdaySunset` to return `false` (i.e. crescent was NOT visible yesterday). If the crescent was already visible at yesterday's sunset, the Dwitiya candidate is skipped to prevent a double-observation.
+**Step 1.** Calculate the preceding Pratipada duration:
+
+$$
+postSunriseSeconds = (\text{prevPratipadaEndJd} - \text{prevSunriseJd}) \times 86400.0
+$$
+
+**Step 2.** Calculate the preceding sunset time:
+
+$$
+prevSunsetJd = \text{prevSunriseJd} + (\text{sunset\_jd} - \text{sunrise\_jd})
+$$
+
+**Step 3.** Check duplicate prevention:
+
+$$
+dwitiyaStartedBeforePrevSunset = (\text{prevSunsetJd} > 0.0 \ \text{AND} \ \text{prevPratipadaEndJd} < \text{prevSunsetJd})
+$$
+
+**Step 4.** Evaluate:
+
+$$
+postSunriseSeconds \ge thresholdSeconds \quad \text{(preceding Pratipada was long)} \quad \text{AND} \quad \text{not } dwitiyaStartedBeforePrevSunset
+$$
+
+- If true: Target Tithi = `2`, Reason = `chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1`
+
+**Step 5.** When `chandra_darshana_visibility_affects_selection` is **true**: additionally requires `isYoungCrescentVisibleAtYesterdaySunset` to return `false` (i.e. crescent was NOT visible yesterday). If the crescent was already visible at yesterday's sunset, the Dwitiya candidate is skipped to prevent a double-observation.
 
 #### Branch C: Kshaya Pratipada (`currentAbs === 30`)
-1. If the Shukla Pratipada interval starts after today's sunrise, ends before next sunrise, and `adhika_only` is false:
-   - Target Tithi = `1`, Reason = `chandra_darshana_sud1_kshaya_pratipada_sthula_present`
-2. When `chandra_darshana_visibility_affects_selection` is **true**: additionally requires `isYoungCrescentVisibleAtSunset` to return `true`. If the crescent is not visible, the Kshaya candidate is also rejected.
+
+**Step 1.** If the Shukla Pratipada interval starts after today's sunrise, ends before next sunrise, and `adhika_only` is false: Target Tithi = `1`, Reason = `chandra_darshana_sud1_kshaya_pratipada_sthula_present`
+
+**Step 2.** When `chandra_darshana_visibility_affects_selection` is **true**: additionally requires `isYoungCrescentVisibleAtSunset` to return `true`. If the crescent is not visible, the Kshaya candidate is also rejected.
 
 ---
 
@@ -122,16 +140,19 @@ flowchart TD
 `isYoungCrescentVisibleAtSunset` is **always computed** to populate `visibility_assessment.modern_visibility` metadata. When `chandra_darshana_visibility_affects_selection` is `true` it additionally acts as a **rejection gate** across all three resolution branches.
 
 **Sunset-to-Moonset Lag**
+
 $$
 lagMinutes = (\text{moonset\_jd} - \text{sunset\_jd}) \times 1440.0
 $$
 
 **Elongation at Sunset**
+
 $$
 elongation = \text{moon\_sun\_elongation\_at\_sunset\_degrees}
 $$
 
 **Illumination at Sunset**
+
 $$
 illumination = \text{moon\_illumination\_at\_sunset\_percent}
 $$
