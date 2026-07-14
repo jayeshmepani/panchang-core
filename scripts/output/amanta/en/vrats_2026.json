@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-13T11:04:11+00:00",
+        "generated_at": "2026-07-14T03:23:08+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "amanta",
@@ -19,8 +19,8 @@
         "year": 2026,
         "calendar_type": "amanta",
         "vrat_day_count": 184,
-        "vrat_entry_count": 271,
-        "total_vrats": 116,
+        "vrat_entry_count": 277,
+        "total_vrats": 122,
         "recurring_weekday_vrats": [
             {
                 "name": "Ravivar Vrat",
@@ -22435,6 +22435,225 @@
             ],
             "2026-10-22": [
                 {
+                    "name": "Dwidala Vrata Begins",
+                    "name_key": "Dwidala Vrata Begins",
+                    "description": "Dwidala Vrata begins the Chaturmas discipline of abstaining from pulses and split legumes.",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Dwidal Vrata Begins"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "Eleventh Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise",
+                        "require_sunrise_vyapini": true,
+                        "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "inherited_rule",
+                                "locator": "Dwidala Vrat heading and Ekadashi Vrat section",
+                                "supports": "The heading identifies the observance with Ashvina Shukla Ekadashi; date selection inherits Ekadashi vrata logic."
+                            }
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "Dwidala Vrata Begins",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461334.862690596,
+                        "target_tithi_end_jd": 2461335.8878360717,
+                        "standard_date": "2026-10-22",
+                        "observance_date": "2026-10-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Dwidala Vrata Begins",
+                        "festival_name_localized": "Dwidala Vrata Begins",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Papankusha Ekadashi",
+                    "name_key": "Papankusha Ekadashi",
+                    "description": "Fasting for Papankusha Ekadashi",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                11
+                            ],
+                            "names": [
+                                "Eleventh Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Papankusha Ekadashi",
+                        "required_tithi": 11,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461334.862690596,
+                        "target_tithi_end_jd": 2461335.8878360717,
+                        "standard_date": "2026-10-22",
+                        "observance_date": "2026-10-22",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Papankusha Ekadashi",
+                        "festival_name_localized": "Papankusha Ekadashi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "ISKCON Ekadashi",
                     "name_key": "ISKCON Ekadashi",
                     "description": "Vaishnava / ISKCON Ekadashi fasting day observed with devotion to Lord Vishnu",
@@ -22794,6 +23013,115 @@
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
                     }
+                },
+                {
+                    "name": "Ashvina Purnima",
+                    "name_key": "Ashvina Purnima",
+                    "description": "Harvest festival and Lakshmi worship",
+                    "deity": "Lakshmi",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Ashwina Purnima",
+                        "Ashwina Purnima Vrat",
+                        "Kojagara Puja"
+                    ],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-10-26 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-10-25.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "sunset",
+                        "karmakala_type_name": "sunset",
+                        "strict_karmakala": true
+                    },
+                    "resolution": {
+                        "festival_name": "Ashvina Purnima",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunset",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 4319.999983906746,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461338.768419259,
+                        "target_tithi_end_jd": 2461339.6747962004,
+                        "standard_date": "2026-10-26",
+                        "observance_date": "2026-10-25",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-10-26 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-10-25.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1071,
+                            "winning_window_overlap_seconds": 4319.999983906746,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Ashvina Purnima",
+                        "festival_name_localized": "Ashvina Purnima",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "sunset"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1071,
+                        "winning_window_overlap_seconds": 4319.999983906746,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-10-28": [
@@ -22857,17 +23185,17 @@
             ],
             "2026-10-29": [
                 {
-                    "name": "Sankashti Chaturthi",
-                    "name_key": "Sankashti Chaturthi",
-                    "description": "Monthly Sankashti Chaturthi is a Krishna Paksha Chaturthi vrata dedicated to Lord Ganesha, traditionally associated with moonrise worship.",
+                    "name": "Vakratunda Sankashti Chaturthi",
+                    "name_key": "Vakratunda Sankashti Chaturthi",
+                    "description": "Sankashti Chaturthi of Ashvina/Kartika month",
                     "deity": "Ganesha",
                     "fasting": true,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Angarak Sankashti Chaturthi",
-                        "Angarki Sankashti Chaturthi"
+                        "Sankashti Chaturthi",
+                        "Vakratunda Sankashti"
                     ],
                     "observance_note": null,
                     "calculation_basis": {
@@ -22878,6 +23206,12 @@
                         "resolver": "classical",
                         "family": "Sankashti Chaturthi family",
                         "family_key": "sankashti_chaturthi",
+                        "name_classifier": "Vakratunda Sankashti Chaturthi",
+                        "name_classifier_key": "Vakratunda Sankashti Chaturthi",
+                        "inherit_decision_from": "Sankashti Chaturthi",
+                        "inherit_decision_from_key": "Sankashti Chaturthi",
+                        "document_status": "generic family rule with named classifier",
+                        "document_status_key": "generic_family_rule_named_classifier",
                         "tithi": {
                             "numbers": [
                                 4
@@ -22893,22 +23227,25 @@
                         },
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
                         "karmakala_type": "moonrise",
                         "karmakala_type_name": "moonrise",
                         "sankashti_truth_table": true,
-                        "source_refs": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ],
                         "source_evidence": [
                             {
-                                "kind": "date_rule",
-                                "locator": "Sankashti Chaturthi section",
-                                "supports": "Generic Krishna Paksha Chaturthi vrata is selected by moonrise-vyapini Chaturthi."
+                                "kind": "inherited_rule",
+                                "locator": "Generic Sankashti Chaturthi section",
+                                "supports": "The named monthly Sankashti identity inherits the generic moonrise-vyapini Sankashti Chaturthi rule."
                             }
                         ]
                     },
                     "resolution": {
-                        "festival_name": "Sankashti Chaturthi",
+                        "festival_name": "Vakratunda Sankashti Chaturthi",
                         "required_tithi": 4,
                         "paksha": "Krishna",
                         "karmakala_type": "moonrise",
@@ -22943,8 +23280,8 @@
                             "winning_reason_key": "sankashti_only_day1_moonrise_vyapini",
                             "winning_reason_name": "Sankashti Chaturthi: moonrise-vyapini only on day 1"
                         },
-                        "festival_name_key": "Sankashti Chaturthi",
-                        "festival_name_localized": "Sankashti Chaturthi",
+                        "festival_name_key": "Vakratunda Sankashti Chaturthi",
+                        "festival_name_localized": "Vakratunda Sankashti Chaturthi",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type_name": "moonrise"
                     },
@@ -23031,9 +23368,216 @@
                         "nakshatra_name_key": "Rohini",
                         "nakshatra_name_localized": "Rohini"
                     }
+                },
+                {
+                    "name": "Karva Chauth",
+                    "name_key": "Karva Chauth",
+                    "description": "Married women fast for husband long life",
+                    "deity": "Parvati/Shiva",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                4
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                19
+                            ],
+                            "names": [
+                                "Fourth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Karva Chauth",
+                        "required_tithi": 4,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461342.3174492996,
+                        "target_tithi_end_jd": 2461343.194820164,
+                        "standard_date": "2026-10-29",
+                        "observance_date": "2026-10-29",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Karva Chauth",
+                        "festival_name_localized": "Karva Chauth",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-11-01": [
+                {
+                    "name": "Ahoi Ashtami",
+                    "name_key": "Ahoi Ashtami",
+                    "description": "Mothers fast for wellbeing of children",
+                    "deity": "Ahoi Mata",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-11-02 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-11-01.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "pradosha",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "resolution": {
+                        "festival_name": "Ahoi Ashtami",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "pradosha",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9148.99998307228,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461345.8903280105,
+                        "target_tithi_end_jd": 2461346.8200666225,
+                        "standard_date": "2026-11-02",
+                        "observance_date": "2026-11-01",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-11-02 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-11-01.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1152,
+                            "winning_window_overlap_seconds": 9148.99998307228,
+                            "winning_window_coverage_ratio": 1,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Ahoi Ashtami",
+                        "festival_name_localized": "Ahoi Ashtami",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "pradosha"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1152,
+                        "winning_window_overlap_seconds": 9148.99998307228,
+                        "winning_window_coverage_ratio": 1,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
                 {
                     "name": "Masik Krishna Janmashtami",
                     "name_key": "Masik Krishna Janmashtami",
@@ -23243,6 +23787,112 @@
                 }
             ],
             "2026-11-05": [
+                {
+                    "name": "Rama Ekadashi",
+                    "name_key": "Rama Ekadashi",
+                    "description": "Fasting for Rama Ekadashi",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Rambha Ekadashi",
+                        "Rameshwaram Ekadashi"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "tithi",
+                        "basis": "tithi",
+                        "basis_name": "tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                11
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                26
+                            ],
+                            "names": [
+                                "Eleventh Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashwin",
+                            "value_key": "Ashvina",
+                            "name": "Ashwin"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "resolution": {
+                        "festival_name": "Rama Ekadashi",
+                        "required_tithi": 11,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461348.7317198766,
+                        "target_tithi_end_jd": 2461349.7125297925,
+                        "standard_date": "2026-11-05",
+                        "observance_date": "2026-11-05",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Rama Ekadashi",
+                        "festival_name_localized": "Rama Ekadashi",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "sunrise"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "preferred_nakshatra": null,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
                 {
                     "name": "ISKCON Ekadashi",
                     "name_key": "ISKCON Ekadashi",

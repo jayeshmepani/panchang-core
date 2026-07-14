@@ -3470,7 +3470,12 @@ class FestivalRuleEngine
 
         $asciiOnly = preg_replace('/[^A-Za-z]/', '', $transliterated) ?? '';
 
-        return strtolower($asciiOnly);
+        $normalized = strtolower($asciiOnly);
+
+        return match ($normalized) {
+            'ashwin', 'ashwina' => 'ashvina',
+            default => $normalized,
+        };
     }
 
     /** Resolve canonical nakshatra number (1..27) from a localized/english label. */

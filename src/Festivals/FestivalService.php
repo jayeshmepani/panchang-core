@@ -8704,7 +8704,12 @@ class FestivalService
 
         $asciiOnly = preg_replace('/[^A-Za-z]/', '', $transliterated) ?? '';
 
-        return strtolower($asciiOnly);
+        $normalized = strtolower($asciiOnly);
+
+        return match ($normalized) {
+            'ashwin', 'ashwina' => 'ashvina',
+            default => $normalized,
+        };
     }
 
     /** Match month rule against active calendar type (amanta/purnimanta). */

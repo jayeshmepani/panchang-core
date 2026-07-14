@@ -4760,25 +4760,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.4.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.4.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.4.0 moves key kala and vedha chronometry from fixed elapsed-time assumptions to dynamic <em>dinamāna</em> / <em>rātrimāna</em> divisions where required, adds generated night fivefold and full ten-kāla outputs, refines Pradosha and parāṇa timing metadata, and hardens multilingual user-facing localization. v10.3.1 corrects the Govardhan Puja / Bali Pratipada / Annakut decision path with sayahna-vyapini Pratipada and Sthula Chandra Darshana safeguards. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. The prior corrections from v10.1.0 through v10.0.0 remain unchanged.</p>
+            <p>Review the version-specific notes below before upgrading. v10.4.1 restores Ashvina-season festival and vrat output after the English month display spelling changed to Ashwin, preserving the v10.4.0 dynamic kala and chronometry behavior while recovering the expected 324 festival / 122 vrat identity set. v10.4.0 moves key kala and vedha chronometry from fixed elapsed-time assumptions to dynamic <em>dinamāna</em> / <em>rātrimāna</em> divisions where required, adds generated night fivefold and full ten-kāla outputs, refines Pradosha and parāṇa timing metadata, and hardens multilingual user-facing localization. v10.3.1 corrects the Govardhan Puja / Bali Pratipada / Annakut decision path with sayahna-vyapini Pratipada and Sthula Chandra Darshana safeguards. v10.3.0 completes the Chandra Darshana visibility architecture, adds Hindola higher-tithi preference, corrects eclipse Sutak relaxed-start times, and exposes modern crescent-visibility metrics in all Chandra Darshana outputs. v10.2.0 adds generated calendar-period windows, Sayana ayana/ritu output, Mahadiksha guidance, Vratni Purnima coverage, and refreshed 324 festival / 122 vrat identity documentation. The prior corrections from v10.1.0 through v10.0.0 remain unchanged.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.4.0: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
+            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.4.1: 324 festival identities and 122 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with sidereal and Sayana ayana/ritu windows; day-detail payloads also expose <code>Sayana_Ayana</code>, <code>Sayana_Ritu</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.4.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Ashwin Month Alias Restoration and Festival Catalog Output Fix</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release restoring Ashvina-season festival and vrat emission after the English month display spelling was normalized to Ashwin. Month matching now treats Ashwin, Ashwina, and Ashvina as the same canonical lunar month for rule selection, recovering Navaratri, Deepavali-family observances, Ashvina Ekadashi vrats, Ahoi Ashtami, Karva Chauth, and related output while keeping the v10.4.0 dynamic timing behavior intact.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.4.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Dynamic Day-Night Kala Timing, Pradosha and Parana Chronometry, and Localization Refinement</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Dynamic Day-Night Kala Timing, Pradosha and Parana Chronometry, and Localization Refinement</span></div>
                 <p class="release-note">Minor release aligning key Panchang timing windows with dynamic day and night divisions where the Nirnay-style rules require them. This release adds generated night fivefold and full ten-kāla outputs, moves Pradosha and related night timing from fixed offsets to rātrimāna-based windows, refines dynamic ghadi reporting in Ekadashi parāṇa and allied rule metadata, and tightens English, Hindi, and Gujarati user-facing localization across nakshatra, month, festival-rule, and observance output.</p>
               </div>
             </li>
@@ -5084,6 +5091,25 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.4.1 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This patch release restores Ashvina-season festival and vrat output after the English display month spelling changed to Ashwin, without changing the v10.4.0 dynamic timing model.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Festival and vrat identity totals are restored:</strong> generated output again reports 324 festival identities and 122 vrat identities.</li>
+              <li><strong>Ashvina / Ashwin month matching is canonicalized:</strong> rule matching now treats <code>Ashwin</code>, <code>Ashwina</code>, and <code>Ashvina</code> as the same lunar month while preserving user-facing month spelling.</li>
+              <li><strong>Ashvina-season observances are restored:</strong> Navaratri, Deepavali-family festivals, Ashvina Ekadashi vrats, Ahoi Ashtami, Karva Chauth, and related entries are emitted again in generated festival and vrat JSON.</li>
+              <li><strong>No payload structure changed:</strong> this is a catalog restoration and rule-matching patch, not a schema redesign.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, month, today, and raw JSON after upgrading from v10.4.0.</li>
+            <li>Rebaseline snapshots that compare exact festival counts, vrat counts, Ashvina/Ashwin month observances, or generated festival/vrat identity sets.</li>
+          </ul>
 
           <h3>v10.4.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This release upgrades core Panchang chronometry to dynamic day and night division logic where the rule system depends on <em>dinamāna</em> and <em>rātrimāna</em>, expands generated kala output, and refreshes multilingual user-facing labeling.</p>

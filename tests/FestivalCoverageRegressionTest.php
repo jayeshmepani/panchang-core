@@ -198,7 +198,7 @@ class FestivalCoverageRegressionTest extends TestCase
             $datesByName[$name][] = (string) ($entry['date'] ?? '');
         }
 
-        $this->assertContains('2026-11-10', $datesByName['Govardhan Puja'] ?? [], 'Govardhan Puja should be emitted with the Kartika Shukla Pratipada observance.');
+        $this->assertContains('2026-11-09', $datesByName['Govardhan Puja'] ?? [], 'Govardhan Puja should be emitted on the Amavasya-viddha previous day when Pratipada is not sayankala-vyapini.');
         $this->assertNotContains('2026-12-08', $datesByName['Govardhan Puja'] ?? [], 'Govardhan Puja must not leak into the next lunar month.');
         $this->assertSame(['2026-07-23'], array_values(array_unique($datesByName['Ashadha Gupt Navaratri Day 9'] ?? [])));
         $this->assertSame(['2026-03-04'], array_values(array_unique($datesByName['Phuldolotsava'] ?? [])));
