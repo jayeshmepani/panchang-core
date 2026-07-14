@@ -13,7 +13,7 @@ The resolution is executed once per civil date. The decision logic is branched b
 **Daylight Muhurta**
 
 $$
-\text{muhurtaSeconds} = \frac{(\text{sunset\_jd} - \text{sunrise\_jd}) \times 86400.0}{15.0}
+\text{muhurtaSeconds} = \frac{(\text{sunsetJd} - \text{sunriseJd}) \times 86400.0}{15.0}
 $$
 
 **Sthula Threshold**
@@ -25,13 +25,13 @@ $$
 **Pratipada Duration past Sunrise**
 
 $$
-\text{postSunriseSeconds} = (\text{pratipadaInterval.end\_jd} - \text{sunrise\_jd}) \times 86400.0
+\text{postSunriseSeconds} = (\text{pratipadaInterval.endJd} - \text{sunriseJd}) \times 86400.0
 $$
 
 **Dwitiya Sunset Transition**
 
 $$
-\text{dwitiyaActiveAtSunset} = (\text{pratipadaInterval.end\_jd} < \text{sunset\_jd})
+\text{dwitiyaActiveAtSunset} = (\text{pratipadaInterval.endJd} < \text{sunsetJd})
 $$
 
 ### Decision Logic
@@ -66,7 +66,7 @@ $$
 **Step 2.** Calculate the preceding sunset time:
 
 $$
-\text{prevSunsetJd} = \text{prevSunriseJd} + (\text{sunset\_jd} - \text{sunrise\_jd})
+\text{prevSunsetJd} = \text{prevSunriseJd} + (\text{sunsetJd} - \text{sunriseJd})
 $$
 
 **Step 3.** Check duplicate prevention:
@@ -142,19 +142,19 @@ flowchart TD
 **Sunset-to-Moonset Lag**
 
 $$
-\text{lagMinutes} = (\text{moonset\_jd} - \text{sunset\_jd}) \times 1440.0
+\text{lagMinutes} = (\text{moonsetJd} - \text{sunsetJd}) \times 1440.0
 $$
 
 **Elongation at Sunset**
 
 $$
-\text{elongation} = \text{moon\_sun\_elongation\_at\_sunset\_degrees}
+\text{elongation} = \text{moonSunElongationAtSunsetDegrees}
 $$
 
 **Illumination at Sunset**
 
 $$
-\text{illumination} = \text{moon\_illumination\_at\_sunset\_percent}
+\text{illumination} = \text{moonIlluminationAtSunsetPercent}
 $$
 
 ### Conditions
