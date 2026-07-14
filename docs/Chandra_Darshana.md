@@ -13,25 +13,25 @@ The resolution is executed once per civil date. The decision logic is branched b
 **Daylight Muhurta**
 
 $$
-muhurtaSeconds = \frac{(\text{sunset\_jd} - \text{sunrise\_jd}) \times 86400.0}{15.0}
+\text{muhurtaSeconds} = \frac{(\text{sunset\_jd} - \text{sunrise\_jd}) \times 86400.0}{15.0}
 $$
 
 **Sthula Threshold**
 
 $$
-thresholdSeconds = 9 \times muhurtaSeconds
+\text{thresholdSeconds} = 9 \times \text{muhurtaSeconds}
 $$
 
 **Pratipada Duration past Sunrise**
 
 $$
-postSunriseSeconds = (\text{pratipadaInterval['end\_jd']} - \text{sunrise\_jd}) \times 86400.0
+\text{postSunriseSeconds} = (\text{pratipadaInterval.end\_jd} - \text{sunrise\_jd}) \times 86400.0
 $$
 
 **Dwitiya Sunset Transition**
 
 $$
-dwitiyaActiveAtSunset = (\text{pratipadaInterval['end\_jd']} < \text{sunset\_jd})
+\text{dwitiyaActiveAtSunset} = (\text{pratipadaInterval.end\_jd} < \text{sunset\_jd})
 $$
 
 ### Decision Logic
@@ -41,11 +41,11 @@ $$
 **Step 1.** Evaluate:
 
 $$
-postSunriseSeconds < thresholdSeconds \quad \text{(Pratipada is short)} \quad \text{OR} \quad dwitiyaActiveAtSunset = \text{true}
+\text{postSunriseSeconds} < \text{thresholdSeconds} \quad \text{(Pratipada is short)} \quad \text{OR} \quad \text{dwitiyaActiveAtSunset} = \text{true}
 $$
 
-- **Case A1** ($dwitiyaActiveAtSunset$): Target Tithi = `2`, Reason = `chandra_darshana_dwitiya_fallback_at_local_sunset`
-- **Case A2** (not $dwitiyaActiveAtSunset$): Target Tithi = `1`, Reason = `chandra_darshana_sud1_short_pratipada_sthula_present`
+- **Case A1** (`dwitiyaActiveAtSunset` is true): Target Tithi = `2`, Reason = `chandra_darshana_dwitiya_fallback_at_local_sunset`
+- **Case A2** (`dwitiyaActiveAtSunset` is false): Target Tithi = `1`, Reason = `chandra_darshana_sud1_short_pratipada_sthula_present`
 
 **Step 2.** Else if `chandra_darshana_visibility_affects_selection` is **false** (classical): no further branches; the day is deferred to Sud 2 (handled in Branch B on the next day).
 
@@ -60,25 +60,25 @@ $$
 **Step 1.** Calculate the preceding Pratipada duration:
 
 $$
-postSunriseSeconds = (\text{prevPratipadaEndJd} - \text{prevSunriseJd}) \times 86400.0
+\text{postSunriseSeconds} = (\text{prevPratipadaEndJd} - \text{prevSunriseJd}) \times 86400.0
 $$
 
 **Step 2.** Calculate the preceding sunset time:
 
 $$
-prevSunsetJd = \text{prevSunriseJd} + (\text{sunset\_jd} - \text{sunrise\_jd})
+\text{prevSunsetJd} = \text{prevSunriseJd} + (\text{sunset\_jd} - \text{sunrise\_jd})
 $$
 
 **Step 3.** Check duplicate prevention:
 
 $$
-dwitiyaStartedBeforePrevSunset = (\text{prevSunsetJd} > 0.0 \ \text{AND} \ \text{prevPratipadaEndJd} < \text{prevSunsetJd})
+\text{dwitiyaStartedBeforePrevSunset} = (\text{prevSunsetJd} > 0.0 \quad \text{AND} \quad \text{prevPratipadaEndJd} < \text{prevSunsetJd})
 $$
 
 **Step 4.** Evaluate:
 
 $$
-postSunriseSeconds \ge thresholdSeconds \quad \text{(preceding Pratipada was long)} \quad \text{AND} \quad \text{not } dwitiyaStartedBeforePrevSunset
+\text{postSunriseSeconds} \ge \text{thresholdSeconds} \quad \text{(preceding Pratipada was long)} \quad \text{AND} \quad \text{NOT dwitiyaStartedBeforePrevSunset}
 $$
 
 - If true: Target Tithi = `2`, Reason = `chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1`
@@ -142,29 +142,29 @@ flowchart TD
 **Sunset-to-Moonset Lag**
 
 $$
-lagMinutes = (\text{moonset\_jd} - \text{sunset\_jd}) \times 1440.0
+\text{lagMinutes} = (\text{moonset\_jd} - \text{sunset\_jd}) \times 1440.0
 $$
 
 **Elongation at Sunset**
 
 $$
-elongation = \text{moon\_sun\_elongation\_at\_sunset\_degrees}
+\text{elongation} = \text{moon\_sun\_elongation\_at\_sunset\_degrees}
 $$
 
 **Illumination at Sunset**
 
 $$
-illumination = \text{moon\_illumination\_at\_sunset\_percent}
+\text{illumination} = \text{moon\_illumination\_at\_sunset\_percent}
 $$
 
 ### Conditions
 
 | # | Condition | Parameter (config key) | Default | Result |
 |---|---|---|---|---|
-| 1 | $lagMinutes < minLag$ | `chandra_darshana_visibility_min_lag_minutes` | `38.0` | return **false** |
-| 2 | $elongation < hardFloor$ | `chandra_darshana_visibility_hard_elongation_floor_degrees` | `7.0` | return **false** |
-| 3a | $elongation \ge minElongation$ | `chandra_darshana_visibility_min_elongation_degrees` | `9.0` | return **true** |
-| 3b | $illumination \ge minIllumination$ | `chandra_darshana_visibility_min_illumination_percent` | `0.8` | return **true** |
+| 1 | `lagMinutes < minLag` | `chandra_darshana_visibility_min_lag_minutes` | `38.0` | return **false** |
+| 2 | `elongation < hardFloor` | `chandra_darshana_visibility_hard_elongation_floor_degrees` | `7.0` | return **false** |
+| 3a | `elongation >= minElongation` | `chandra_darshana_visibility_min_elongation_degrees` | `9.0` | return **true** |
+| 3b | `illumination >= minIllumination` | `chandra_darshana_visibility_min_illumination_percent` | `0.8` | return **true** |
 
 Rule 3 is an **OR**: either 3a or 3b passing is sufficient to return `true`, provided rules 1 and 2 have not already short-circuited to `false`.
 
