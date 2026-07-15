@@ -127,6 +127,26 @@ class FestivalRuleEngine
             return null;
         }
 
+        // Named Ashwina Amavasya under purnimanta is the prior (Mahalaya) Amavasya and must
+        // use sunrise attribution (e.g. 2026-10-10). Aparahna/Deepavali civil-day logic
+        // applies only under amanta (e.g. 2026-11-08). Chopda/Lakshmi stay on their own rules.
+        $calendarTypeEarly = strtolower((string) (
+            $today['Hindu_Calendar']['Calendar_Type']
+            ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')
+        ));
+        if (
+            $calendarTypeEarly === 'purnimanta'
+            && (bool) ($rule['darsha_amavasya_aparahna_table'] ?? false)
+            && $this->normalizeMonthName((string) ($rule['month_purnimanta'] ?? $rule['month_amanta'] ?? '')) === 'ashvina'
+        ) {
+            $rule = array_merge($rule, [
+                'darsha_amavasya_aparahna_table' => false,
+                'karmakala_type' => 'sunrise',
+                'require_sunrise_vyapini' => true,
+                'strict_karmakala' => true,
+            ]);
+        }
+
         $ctxToday = (array) ($today['Resolution_Context'] ?? []);
         $ctxTomorrow = (array) ($tomorrow['Resolution_Context'] ?? []);
         if ($ctxToday === [] || $ctxTomorrow === []) {
@@ -381,6 +401,8 @@ class FestivalRuleEngine
                 'require_karmakala_match' => $rule['require_karmakala_match'] ?? null,
                 'vriddhi_preference' => $vriddhiPreference,
                 'kshaya_preference' => $kshayaPreference,
+                'prefer_first_karmakala' => $preferFirstKarmakala,
+                'prefer_growth_before_score' => $preferGrowthBeforeScore,
                 'preferred_nakshatra' => $rule['nakshatra'] ?? null,
                 'winning_reason' => $winner['reason'],
                 'winning_score' => $winner['score'],
@@ -1288,12 +1310,15 @@ class FestivalRuleEngine
             }
         }
 
-        if ($left['score'] !== $right['score']) {
-            return $right['score'] <=> $left['score'];
-        }
-
+        // Bahukala-purva / prefer-first: when both candidate days carry the target in the
+        // observance kala, take the earlier day even if the later day scores higher on
+        // sunrise/overlap secondary factors (Kali Chaudas sangava → 2026-11-07 not 11-08).
         if ($preferFirstKarmakala && $left['target_at_karmakala'] && $right['target_at_karmakala']) {
             return $left['day_offset'] <=> $right['day_offset'];
+        }
+
+        if ($left['score'] !== $right['score']) {
+            return $right['score'] <=> $left['score'];
         }
 
         if ($vriddhi) {
@@ -1424,6 +1449,10 @@ class FestivalRuleEngine
             return $this->resolveVinayakiChaturthiTruthTable($candidates);
         }
 
+        if ((bool) ($rule['narasimha_jayanti_truth_table'] ?? false)) {
+            return $this->resolveNarasimhaJayantiTruthTable($candidates);
+        }
+
         if ((bool) ($rule['raksha_bandhan_truth_table'] ?? false)) {
             return $this->resolveRakshaBandhanTruthTable($candidates, $targetInterval);
         }
@@ -1508,7 +1537,7 @@ class FestivalRuleEngine
 
     private function usesExclusiveTruthTable(array $rule): bool
     {
-        foreach (['janmashtami_truth_table', 'masik_janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ekadashi_nirnay_table', 'purnima_vrat_18_ghadi_rule', 'pradosh_truth_table', 'sankashti_truth_table', 'vinayaki_chaturthi_truth_table', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
+        foreach (['janmashtami_truth_table', 'masik_janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ekadashi_nirnay_table', 'purnima_vrat_18_ghadi_rule', 'pradosh_truth_table', 'sankashti_truth_table', 'vinayaki_chaturthi_truth_table', 'narasimha_jayanti_truth_table', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
             if ((bool) ($rule[$flag] ?? false)) {
                 return true;
             }
@@ -2677,12 +2706,21 @@ class FestivalRuleEngine
 
         $day1AtSunrise = (bool) ($day1['target_at_sunrise'] ?? false);
         $day2AtSunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+
+        // Prefer prior day when Amavasya covers that day's aparahna and next sunrise is Amavasya
+        // (Bhuj 2026: Jun 14→15, Sep 10→11, Nov 8→9). Night-only prior-day starts keep both on
+        // the sunrise Amavasya day (Apr 17, Jul 14).
+        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
+        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
+        if ($day2AtSunrise && !$day1AtSunrise && $day1Overlap > 0.0
+            && (bool) ($day1['target_during_observance'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'darsha_amavasya_day_before_sunrise_aparahna');
+        }
+
         if ($day1AtSunrise && $day2AtSunrise && (bool) ($day1['target_during_observance'] ?? false)) {
             return $this->markSpecialWinner($day1, 'darsha_amavasya_vriddhi_first_day');
         }
 
-        $day1Overlap = (float) ($day1['target_window_overlap_seconds'] ?? 0.0);
-        $day2Overlap = (float) ($day2['target_window_overlap_seconds'] ?? 0.0);
         if ($day1Overlap > 0.0 && $day2Overlap > 0.0) {
             if (abs($day1Overlap - $day2Overlap) < 1.0) {
                 return (bool) ($day2['target_during_observance'] ?? false)
@@ -2826,6 +2864,56 @@ class FestivalRuleEngine
         return $winner;
     }
 
+    private function resolveNarasimhaJayantiTruthTable(array $candidates): ?array
+    {
+        $day1 = $candidates[0] ?? null;
+        $day2 = $candidates[1] ?? null;
+        if (!is_array($day1) || !is_array($day2)) {
+            return null;
+        }
+
+        $day1Vyapti = ((float) ($day1['target_window_overlap_seconds'] ?? 0.0) > 0.0)
+            || (bool) ($day1['target_at_karmakala'] ?? false);
+        $day2Vyapti = ((float) ($day2['target_window_overlap_seconds'] ?? 0.0) > 0.0)
+            || (bool) ($day2['target_at_karmakala'] ?? false);
+        $day1Sunrise = (bool) ($day1['target_at_sunrise'] ?? false);
+        $day2Sunrise = (bool) ($day2['target_at_sunrise'] ?? false);
+        $isKshaya = !$day1Sunrise && !$day2Sunrise;
+
+        if ($isKshaya) {
+            if ($day1Vyapti) {
+                return $this->markSpecialWinner($day1, 'narasimha_kshaya_accept_pradosha_day1');
+            }
+            if ($day2Vyapti) {
+                return $this->markSpecialWinner($day2, 'narasimha_kshaya_accept_pradosha_day2');
+            }
+
+            return $this->markSpecialWinner($day1, 'narasimha_kshaya_fallback_day1');
+        }
+
+        // Prefer the sunrise-vyapini Chaturdashi day when it also carries pradosha.
+        if ($day2Vyapti && $day2Sunrise) {
+            return $this->markSpecialWinner($day2, 'narasimha_sunrise_chaturdashi_day2');
+        }
+        if ($day1Vyapti && $day1Sunrise) {
+            return $this->markSpecialWinner($day1, 'narasimha_sunrise_chaturdashi_day1');
+        }
+        if ($day1Vyapti && !$day2Vyapti) {
+            return $this->markSpecialWinner($day1, 'narasimha_pradosha_only_day1');
+        }
+        if ($day2Vyapti && !$day1Vyapti) {
+            return $this->markSpecialWinner($day2, 'narasimha_pradosha_only_day2');
+        }
+        if ($day2Sunrise) {
+            return $this->markSpecialWinner($day2, 'narasimha_sunrise_fallback_day2');
+        }
+        if ($day1Sunrise) {
+            return $this->markSpecialWinner($day1, 'narasimha_sunrise_fallback_day1');
+        }
+
+        return $this->markSpecialWinner($day2, 'narasimha_fallback_day2');
+    }
+
     private function resolveVinayakiChaturthiTruthTable(array $candidates): ?array
     {
         $day1 = $candidates[0] ?? null;
@@ -2860,9 +2948,19 @@ class FestivalRuleEngine
             return $this->markSpecialWinner($day2, 'vinayaki_only_day2_madhyahna');
         }
 
+        // Neither madhyahna (Chaturthi skips both middays) — prefer sunrise-vyapini day.
+        if ((bool) ($day2['target_at_sunrise'] ?? false)) {
+            return $this->markSpecialWinner($day2, 'vinayaki_neither_madhyahna_sunrise_day2');
+        }
+        if ((bool) ($day1['target_at_sunrise'] ?? false)) {
+            return $this->markSpecialWinner($day1, 'vinayaki_neither_madhyahna_sunrise_day1');
+        }
+
         return (bool) ($day1['target_during_observance'] ?? false)
             ? $this->markSpecialWinner($day1, 'vinayaki_fallback_day1')
-            : null;
+            : ((bool) ($day2['target_during_observance'] ?? false)
+                ? $this->markSpecialWinner($day2, 'vinayaki_fallback_day2')
+                : null);
     }
 
     /**

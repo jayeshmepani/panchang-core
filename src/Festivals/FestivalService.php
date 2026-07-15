@@ -771,7 +771,14 @@ class FestivalService
             [
                 0 => 'Pan-India',
             ],
-            'aliases' => ['Dhanurmas Festival Begins', 'Thakorji Thal Vahela Begins', 'Early Thal Begins'],
+            'aliases' => [
+                'Dhanu Sankranti',
+                'Dhanurmas / Early Thal',
+                'Dhanurmas Festival Begins',
+                'Thakorji Thal Vahela Begins',
+                'Early Thal Begins',
+            ],
+            'display_name' => 'Dhanurmas Begins',
             'sect_specific' => true,
             'ritual_profile' => 'dhanurmas_satsangi',
             'resolution_policy' => [
@@ -1067,7 +1074,11 @@ class FestivalService
             'aliases' => ['Angarak Sankashti Chaturthi', 'Angarki Sankashti Chaturthi'],
             'karmakala_type' => 'moonrise',
             'fasting' => true,
+            'allow_adhika' => true,
             'sankashti_truth_table' => true,
+            // Adjacent sunrise-host day can re-score the same Chaturthi; keep the earlier moonrise day.
+            'prefer_first_karmakala' => true,
+            'vriddhi_preference' => 'first',
             'source_refs' => ['Nirnaya Sindhu / Dharma Sindhu'],
             'source_evidence' => [
                 [
@@ -1091,10 +1102,11 @@ class FestivalService
             'previous_tithi_vedha_tolerated' => true,
             'prefer_full_karmakala_coverage' => true,
             'gujarati_special_case' => 'prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap',
-            'excluded_months_amanta' => ['Bhadrapada'],
-            'excluded_months_purnimanta' => ['Bhadrapada'],
+            'allow_adhika' => true,
+            // Madhyahna day1 must beat the following sunrise-only host day in year consolidation.
+            'prefer_first_karmakala' => true,
+            'vriddhi_preference' => 'first',
             'resolution_policy' => [
-                'monthly_excluding_annual' => true,
                 'inherit_ganapati_pradurbhava' => true,
                 'madhyahna_vyapini' => true,
                 'tritiya_viddha_preferred' => true,
@@ -1393,6 +1405,8 @@ class FestivalService
             'deity' => 'Ganesha',
             'karmakala_type' => 'moonrise',
             'fasting' => true,
+            'prefer_first_karmakala' => true,
+            'vriddhi_preference' => 'first',
             'source_evidence' => [
                 [
                     'kind' => 'inherited_rule',
@@ -1408,8 +1422,8 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
-            'aliases' => ['Ganesha Jayanti', 'Ganesh Chaturthi', 'Siddhivinayaka Chaturthi'],
-            'description' => 'Monthly fast dedicated to Lord Ganesha during the waxing moon',
+            'aliases' => ['Siddhivinayaka Chaturthi'],
+            'description' => 'Annual Bhadrapada Shukla Chaturthi dedicated to Lord Ganesha',
             'deity' => 'Ganesha',
             'regions' => ['Pan-India'],
             'karmakala_type' => 'madhyahna',
@@ -1440,6 +1454,7 @@ class FestivalService
             'deity' => 'Vishnu/Chandra',
             'regions' => ['Pan-India'],
             'fasting' => true,
+            'allow_adhika' => true,
             'karmakala_type' => 'sunrise',
             'strict_karmakala' => true,
             'purnima_vrat_18_ghadi_rule' => true,
@@ -1460,11 +1475,10 @@ class FestivalService
             'deity' => 'Shiva',
             'regions' => ['Pan-India'],
             'fasting' => true,
+            'allow_adhika' => true,
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
             'mahashivaratri_truth_table' => true,
-            'excluded_months_amanta' => ['Magha'],
-            'excluded_months_purnimanta' => ['Phalguna'],
         ],
         'Lakshmi Puja (Deepavali)' => [
             'type' => 'tithi',
@@ -1472,13 +1486,15 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Kartika',
-            'aliases' => ['Diwali Lakshmi Puja'],
-            'description' => 'Deepavali night Lakshmi Puja in Pradosha window',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Diwali Lakshmi Puja', 'Diwali', 'Dipotsav', 'Deepavali', 'Lakshmi Puja'],
+            'description' => 'Deepavali / Ashwina Amavasya Lakshmi Puja (follows Ashwina Amavasya under each calendar)',
             'deity' => 'Lakshmi',
             'regions' => ['Pan-India'],
-            'karmakala_type' => 'pradosha',
-            'strict_karmakala' => true,
+            'karmakala_type' => 'aparahna',
+            'darsha_amavasya_aparahna_table' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
 
         'Nabanna Utsav' => [
@@ -1927,9 +1943,9 @@ class FestivalService
             'aliases' => ['Durga Ashtami'],
             'description' => 'Ashvina Sharad Navaratri - Worship of Mahagauri (The Great White One) / Maha Ashtami',
             'deity' => 'Durga/Mahagauri',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'strict_karmakala' => true,
-            'prefer_first_karmakala' => true,
             'navratri_type' => 'sharad',
             'worship_profile' => 'north_navadurga_bhadrakali_kalpa',
         ],
@@ -2355,14 +2371,12 @@ class FestivalService
             'description' => 'Birth anniversary of Lord Rama, seventh avatar of Vishnu',
             'deity' => 'Rama',
             'fasting' => true,
-            // SJ 4.60.24–27: madhyahna-vyapini, Ashtami-vedha-free; both/neither → para (second).
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
             'require_madhyahna_vyapini' => true,
             'ashtami_viddha_rejection' => true,
             'previous_tithi_vedha_tolerated' => true,
             'kshaya_accept_previous_tithi_vedha' => true,
-            // Historical appearance yoga only; date rule does not require Punarvasu (4.60.26).
             'nakshatra' => 'Punarvasu',
             'prefer_nakshatra' => false,
             'prefer_nakshatra_window' => false,
@@ -2372,6 +2386,23 @@ class FestivalService
             'kshaya_preference' => 'first',
             'dual_day_rule' => 'both_or_neither_madhyahna_choose_para_navami_reject_ashtami_vedha',
             'source_refs' => ['Satsangi Jeevan 4.60'],
+            'traditions' => [
+                'smarta' => [
+                    'variant_name' => 'Rama Navami (Smarta)',
+                    'aliases' => ['Rama Navami'],
+                    'ashtami_viddha_rejection' => false,
+                    'vriddhi_preference' => 'first',
+                    'dual_day_rule' => 'prefer_ashtami_yukta_purva_navami',
+                    'prefer_first_karmakala' => true,
+                ],
+                'vaishnava' => [
+                    'variant_name' => 'Rama Navami (Vaishnava)',
+                    'aliases' => ['Rama Navami'],
+                    'ashtami_viddha_rejection' => true,
+                    'vriddhi_preference' => 'last',
+                    'dual_day_rule' => 'both_or_neither_madhyahna_choose_para_navami_reject_ashtami_vedha',
+                ],
+            ],
             'source_evidence' => [
                 [
                     'kind' => 'date_rule',
@@ -2613,15 +2644,17 @@ class FestivalService
             'description' => 'Appearance day of Lord Narasimha',
             'deity' => 'Narasimha',
             'fasting' => true,
-            // SJ 4.60.54–55: shuddha Chaturdashi free of Trayodashi vedha; two pure → first; kshaya accepts viddha; ritual at pradosha.
+            // SJ 4.60.54–55: shuddha Chaturdashi free of Trayodashi vedha; ritual at pradosha.
+            // When Chaturdashi covers pradosha on both civil days, prefer the sunrise-vyapini day
+            // (Bhuj 2026-04-30) over the trayodashi-yukta earlier evening.
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
             'require_karmakala_match' => true,
-            'trayodashi_viddha_rejection' => true,
+            'narasimha_jayanti_truth_table' => true,
             'kshaya_accept_previous_tithi_vedha' => true,
             'vriddhi_preference' => 'first',
             'kshaya_preference' => 'first',
-            'dual_day_rule' => 'two_shuddha_chaturdashi_choose_first_kshaya_accept_trayodashi_viddha',
+            'dual_day_rule' => 'sunrise_chaturdashi_preferred_when_both_pradosha',
             'nakshatra' => 'Swati',
             // Historical appearance yoga (Monday + Swati); date rule is shuddha Chaturdashi (4.60.54).
             'prefer_nakshatra' => false,
@@ -3042,12 +3075,12 @@ class FestivalService
             'month_amanta' => 'Phalguna',
             'month_purnimanta' => 'Phalguna',
             'aliases' => ['Phalguna Purnima Vrat', 'Dol Purnima', 'Chaitanya Mahaprabhu Jayanti', 'Lakshmi Jayanti', 'Vasanta Purnima', 'Gaura Purnima'],
-            'description' => 'Full moon of Phalguna month',
+            'description' => 'Full moon of Phalguna month (plain sunrise Purnima; Holika Dahan is separate)',
             'deity' => 'Vishnu/Lakshmi',
             'fasting' => true,
-            'karmakala_type' => 'sunset',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'strict_karmakala' => true,
-            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Chaitra Purnima Vrat' => [
             'type' => 'tithi',
@@ -3333,13 +3366,13 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
             'month_purnimanta' => 'Ashvina',
-            'aliases' => ['Ashwina Purnima', 'Ashwina Purnima Vrat', 'Kojagara Puja'],
-            'description' => 'Harvest festival and Lakshmi worship',
+            'aliases' => ['Ashwina Purnima', 'Ashwina Purnima Vrat'],
+            'description' => 'Full moon of Ashvina month (plain sunrise Purnima; Kojagari is separate)',
             'deity' => 'Lakshmi',
             'fasting' => true,
-            'karmakala_type' => 'sunset',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'strict_karmakala' => true,
-            'forbid_previous_tithi_at' => 'madhyahna',
         ],
         'Kartika Purnima' => [
             'type' => 'tithi',
@@ -3462,11 +3495,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Magha',
-            'month_purnimanta' => 'Phalguna',
+            'month_purnimanta' => 'Magha',
             'aliases' => ['Mauni Amavasya'],
             'description' => 'Auspicious Amavasya in the month of Magha',
             'deity' => 'Pitrus/Vishnu',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Chaitra Amavasya' => [
             'type' => 'tithi',
@@ -3474,10 +3510,13 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Vaishakha',
+            'month_purnimanta' => 'Chaitra',
             'description' => 'Amavasya falling in the month of Chaitra',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Vaishakha Amavasya' => [
             'type' => 'tithi',
@@ -3485,11 +3524,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
-            'month_purnimanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Vaishakha',
             'aliases' => ['Shani Jayanti', 'Vat Savitri Vrat'],
             'description' => 'Amavasya falling in the month of Vaishakha; coincides with Shani Jayanti',
             'deity' => 'Pitrus/Shani',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Jyeshtha Amavasya' => [
             'type' => 'tithi',
@@ -3497,10 +3539,13 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Jyeshtha',
-            'month_purnimanta' => 'Ashadha',
+            'month_purnimanta' => 'Jyeshtha',
             'description' => 'Amavasya falling in the month of Jyeshtha',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Ashadha Amavasya' => [
             'type' => 'tithi',
@@ -3508,11 +3553,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Ashadha',
-            'month_purnimanta' => 'Shravana',
+            'month_purnimanta' => 'Ashadha',
             'aliases' => ['Deep Puja', 'Divaso'],
             'description' => 'Amavasya falling in the month of Ashadha; observed as Deep Puja in some regions',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Shravana Amavasya' => [
             'type' => 'tithi',
@@ -3520,11 +3568,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Shravana',
             'aliases' => ['Hariyali Amavasya', 'Pithori Amavasya', 'Aadi Amavasai'],
             'description' => 'Amavasya falling in the month of Shravana; celebrated as Hariyali Amavasya',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Bhadrapada Amavasya' => [
             'type' => 'tithi',
@@ -3532,11 +3583,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Ashvina',
+            'month_purnimanta' => 'Bhadrapada',
             'aliases' => ['Mahalaya Amavasya', 'Sarva Pitru Amavasya'],
             'description' => 'Amavasya falling in the month of Bhadrapada; conclusion of Pitru Paksha',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Ashwina Amavasya' => [
             'type' => 'tithi',
@@ -3544,11 +3598,14 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Kartika',
-            'aliases' => ['Diwali', 'Deepavali'],
-            'description' => 'Amavasya falling in the month of Ashvina; celebrated as Diwali',
+            'month_purnimanta' => 'Ashvina',
+            // Deepavali Amavasya: aparahna/pradosha civil day (2026-11-08), not sunrise-only (11-09).
+            'description' => 'Amavasya falling in the month of Ashvina (Deepavali / Darsha day)',
             'deity' => 'Lakshmi/Pitrus',
             'karmakala_type' => 'aparahna',
+            'darsha_amavasya_aparahna_table' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Kartika Amavasya' => [
             'type' => 'tithi',
@@ -3556,10 +3613,13 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Kartika',
-            'month_purnimanta' => 'Margashirsha',
+            'month_purnimanta' => 'Kartika',
             'description' => 'Amavasya falling in the month of Kartika',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Margashirsha Amavasya' => [
             'type' => 'tithi',
@@ -3567,10 +3627,13 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Margashirsha',
-            'month_purnimanta' => 'Pausha',
+            'month_purnimanta' => 'Margashirsha',
             'description' => 'Amavasya falling in the month of Margashirsha',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Adhik Masik Krishna Janmashtami' => [
             'type' => 'tithi',
@@ -3713,10 +3776,13 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Phalguna',
-            'month_purnimanta' => 'Chaitra',
+            'month_purnimanta' => 'Phalguna',
             'description' => 'Amavasya falling in the month of Phalguna',
             'deity' => 'Pitrus',
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Adhika Ramalakshmana Dwadashi' => [
             'type' => 'tithi',
@@ -3855,7 +3921,10 @@ class FestivalService
             'description' => 'Immersion of Goddess Durga idols',
             'deity' => 'Durga',
             'regions' => ['Bengal'],
-            'karmakala_type' => 'sunrise',
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
+            'prefer_first_karmakala' => true,
+            'vriddhi_preference' => 'first',
         ],
         'Krishna Kurma Dwadashi' => [
             'type' => 'tithi',
@@ -4081,10 +4150,12 @@ class FestivalService
             'type' => 'tithi',
             'resolver' => 'classical',
             'paksha' => 'Shukla',
+            'paksha_amanta' => 'Shukla',
+            'paksha_purnimanta' => 'Krishna',
             'tithi' => 1,
             'month_amanta' => 'Shravana',
             'month_purnimanta' => 'Shravana',
-            'aliases' => ['Shravana Masarambh', 'Shravan Maas Begins', 'Shiva Puja Begins'],
+            'aliases' => ['Shravana Masarambh', 'Shravan Maas Begins', 'Shiva Puja Begins', 'Shravan Shivpujan'],
             'description' => 'Shravana Maas Begins marks the start of the sacred Shravana month and the beginning of the month-long Shiva worship period.',
             'deity' => 'Shiva',
             'karmakala_type' => 'sunrise',
@@ -4096,28 +4167,15 @@ class FestivalService
         'Varaha Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
-            'family' => 'varaha_jayanti',
             'paksha' => 'Shukla',
-            'tithi' => 4,
-            'month_amanta' => 'Shravana',
-            'month_purnimanta' => 'Shravana',
-            'aliases' => ['Swaminarayan Varaha Jayanti'],
-            'description' => 'Varaha Jayanti celebrates the appearance of Lord Vishnu as Varaha, observed on Shravana Shukla Chaturthi with madhyahna worship.',
-            'deity' => 'Vishnu (Varaha)',
+            'tithi' => 3,
+            'month_amanta' => 'Bhadrapada',
+            'month_purnimanta' => 'Bhadrapada',
+            'description' => 'Birth anniversary of Varaha (Boar) avatar of Lord Vishnu (Bhadrapada Tritiya)',
+            'deity' => 'Vishnu',
             'fasting' => true,
             'karmakala_type' => 'madhyahna',
             'strict_karmakala' => true,
-            'require_madhyahna_vyapini' => true,
-            'madhyahna_purvatithi_vedha_rejection' => true,
-            'reject_prev_tithi_vedha' => true,
-            'prev_tithi' => 3,
-            'kshaya_accept_previous_tithi_vedha' => true,
-            // SJ 4.61: when both or neither day is madhyahna-vyapini, take the later Chaturthi.
-            'vriddhi_preference' => 'last',
-            'kshaya_preference' => 'first',
-            'dual_day_rule' => 'choose_second_chaturthi_even_if_both_or_neither_are_madhyahna_vyapini',
-            'sect_specific' => true,
-            'source_refs' => ['Satsangi Jeevan 4.61'],
         ],
         'Kalki Jayanti' => [
             'type' => 'tithi',
@@ -4667,6 +4725,7 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Bhadrapada',
             'month_purnimanta' => 'Bhadrapada',
+            'aliases' => ['Vinayaka Chaturthi', 'Siddhivinayaka Chaturthi'],
             'description' => 'Birth anniversary of Lord Ganesha',
             'deity' => 'Ganesha',
             'karmakala_type' => 'madhyahna',
@@ -4964,7 +5023,8 @@ class FestivalService
             'description' => 'Worship of instruments, tools, and Goddess Saraswati during Navaratri',
             'deity' => 'Saraswati',
             'regions' => ['Karnataka', 'Tamil Nadu', 'Kerala', 'Andhra Pradesh', 'Telangana'],
-            'karmakala_type' => 'aparahna',
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
             'strict_karmakala' => true,
         ],
         'Papankusha Ekadashi' => [
@@ -5105,7 +5165,14 @@ class FestivalService
             'description' => 'Kali Chaudas worship of Goddess Kali and Hanuman during Sangava or Arunodaya',
             'deity' => 'Kali/Hanuman',
             'karmakala_type' => 'sangava',
-            'strict_karmakala' => true,
+            // SJ 4.57 bahukala-purva: both/neither → earlier Chaudas (2026-11-07).
+            // Keep non-strict so the earlier candidate is not dropped when only the later day
+            // fully covers sangava; prefer_first_karmakala / growth then picks day1.
+            'strict_karmakala' => false,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
+            'prefer_growth_before_score' => true,
+            'prefer_first_karmakala' => true,
             'deepotsav_sequence' => 'kali_chaudas_hanuman_puja',
             'source_refs' => ['Satsangi Jeevan 4.57'],
             'source_evidence' => [
@@ -5113,7 +5180,7 @@ class FestivalService
                     'kind' => 'date_rule',
                     'source' => 'Satsangi Jeevan',
                     'locator' => '4.57',
-                    'supports' => 'Hanuman worship on Kali Chaudas takes the Chaturdashi that pervades sangava-kala.',
+                    'supports' => 'Hanuman worship on Kali Chaudas takes the Chaturdashi that pervades sangava-kala; when both or neither day qualify, prefer the earlier day.',
                 ],
             ],
         ],
@@ -5804,13 +5871,30 @@ class FestivalService
         'Kurma Jayanti' => [
             'type' => 'tithi',
             'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 15,
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'aliases' => ['Shri Koorma Jayanti', 'Kurma Avatara Appearance', 'Kurma Jayanti (Vaishakha Purnima Tradition)'],
+            'description' => 'Generic Kurma Jayanti associated with Vaishakha Purnima',
+            'deity' => 'Vishnu (Kurma)',
+            'fasting' => true,
+            'karmakala_type' => 'aparahna',
+            'strict_karmakala' => true,
+            'require_karmakala_match' => true,
+            'tradition_profile' => 'Vaishakha Purnima Kurma Jayanti convention',
+            'source_refs' => ['Siddhanta Darpana'],
+        ],
+        'Swaminarayan Kurma Jayanti' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
             'family' => 'kurma_jayanti',
             'paksha' => 'Shukla',
             'tithi' => 1,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'aliases' => ['Swaminarayan Kurma Jayanti', 'Kurma Jayanti (Swaminarayan/Satsangi)'],
-            'description' => 'Commemorates Kurma avatar appearance during Samudra Manthana',
+            'aliases' => ['Kurma Jayanti (Swaminarayan/Satsangi)'],
+            'description' => 'Commemorates Kurma avatar appearance during Samudra Manthana (Satsangi Pratipada)',
             'deity' => 'Vishnu (Kurma)',
             // SJ 4.60.38: sunrise-vyapini Pratipada; both days → para-yukta / second.
             'karmakala_type' => 'sunrise',
@@ -5842,7 +5926,7 @@ class FestivalService
             'tithi' => 15,
             'month_amanta' => 'Vaishakha',
             'month_purnimanta' => 'Vaishakha',
-            'aliases' => ['Shri Koorma Jayanti', 'Kurma Avatara Appearance'],
+            'aliases' => ['Shri Koorma Jayanti'],
             'description' => 'This entry represents a later calendrical convention that associates Kurma Jayanti with Vaishakha Purnima.',
             'deity' => 'Vishnu (Kurma)',
             'fasting' => true,
@@ -6122,12 +6206,15 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Kartika',
-            'aliases' => ['Sharda Puja', 'Deepavali Puja'],
-            'description' => 'Consecration of account books and Lakshmi worship',
+            'month_purnimanta' => 'Ashvina',
+            'aliases' => ['Sharda Puja', 'Shaaradaa Pujan', 'Sharada Puja', 'Deepavali Puja'],
+            'description' => 'Consecration of account books and Lakshmi worship on Ashwina Amavasya',
             'deity' => 'Lakshmi/Ganesha',
             'regions' => ['Gujarat', 'Maharashtra'],
-            'karmakala_type' => 'pradosha',
+            'karmakala_type' => 'aparahna',
+            'darsha_amavasya_aparahna_table' => true,
+            'vriddhi_preference' => 'first',
+            'kshaya_preference' => 'first',
         ],
         'Bali Pratipada' => [
             'type' => 'tithi',
@@ -6513,8 +6600,8 @@ class FestivalService
             'tithi' => 4,
             'month_amanta' => 'Magha',
             'month_purnimanta' => 'Magha',
-            'aliases' => ['Dhundhiraja Chaturthi', 'Varada Chaturthi', 'Tila Chaturthi', 'Gauriganesha Chaturthi', 'Vinayaka Chaturthi'],
-            'description' => 'Birth anniversary of Lord Ganesha',
+            'aliases' => ['Dhundhiraja Chaturthi', 'Varada Chaturthi', 'Tila Chaturthi', 'Gauriganesha Chaturthi'],
+            'description' => 'Birth anniversary of Lord Ganesha (Magha)',
             'deity' => 'Ganesha',
             'karmakala_type' => 'sunrise',
         ],
@@ -6652,6 +6739,7 @@ class FestivalService
             'description' => 'Masik Durgashtami is the monthly Shukla Ashtami observance dedicated to Devi.',
             'deity' => 'Durga',
             'fasting' => true,
+            'allow_adhika' => true,
             'karmakala_type' => 'sunrise',
             'durgashtami_paraviddha_table' => true,
             'resolution_policy' => [
@@ -6673,6 +6761,7 @@ class FestivalService
             'description' => 'Monthly fasting marking the birth tithi of Lord Krishna',
             'deity' => 'Krishna',
             'fasting' => true,
+            'allow_adhika' => true,
             'karmakala_type' => 'nishitha',
             'strict_karmakala' => true,
             'masik_janmashtami_truth_table' => true,
@@ -6722,8 +6811,9 @@ class FestivalService
             'paksha' => 'Krishna',
             'tithi' => 15,
             'month_amanta' => 'Pausha',
-            'month_purnimanta' => 'Magha',
-            'aliases' => ['Darsha Amavasya'],
+            'month_purnimanta' => 'Pausha',
+            // Do not alias as "Darsha Amavasya" — that is the masik pitru identity.
+            'aliases' => ['Thai Amavasya', 'Thai Amavasai'],
             'description' => 'Auspicious Amavasya in Tamil month of Thai for ancestor worship',
             'deity' => 'Pitrus',
             'regions' => ['Tamil Nadu'],
@@ -6737,6 +6827,7 @@ class FestivalService
             'description' => 'Darsha Amavasya is the monthly Amavasya observance associated with pitru rites and ancestral remembrance.',
             'deity' => 'Chandra/Pitrus',
             'fasting' => true,
+            'allow_adhika' => true,
             'karmakala_type' => 'aparahna',
             'darsha_amavasya_aparahna_table' => true,
             'vriddhi_preference' => 'first',
@@ -6753,6 +6844,7 @@ class FestivalService
             'karmakala_type' => 'sunrise',
             'require_sunrise_vyapini' => true,
             'strict_karmakala' => true,
+            'allow_adhika' => true,
             'vriddhi_preference' => 'first',
             'kshaya_preference' => 'first',
             'source_refs' => ['Nirnaya Sindhu / Dharma Sindhu'],
@@ -6941,14 +7033,13 @@ class FestivalService
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
-            'nakshatra' => 'Chitra',
-            'month_amanta' => 'Chaitra',
-            'month_purnimanta' => 'Chaitra',
-            'description' => 'Full moon day associated with Chitra Nakshatra; worship of Chitragupta',
+            // Tamil Chithirai Pournami = Vaishakha Purnima (Bhuj 2026-05-01), not Chaitra+Chitra-nak yoga.
+            'month_amanta' => 'Vaishakha',
+            'month_purnimanta' => 'Vaishakha',
+            'description' => 'Tamil Chithirai / Vaishakha full-moon festival (Chitra Pournami)',
             'deity' => 'Chitragupta',
             'regions' => ['Tamil Nadu'],
             'karmakala_type' => 'sunrise',
-            'prefer_nakshatra' => true,
         ],
         'Bhishma Panchak Ends' => [
             'type' => 'tithi',
@@ -7224,17 +7315,26 @@ class FestivalService
                 continue;
             }
 
-            if ((isset($rules['month_amanta']) || isset($rules['month_purnimanta']))
-                && !$this->monthRuleMatches($rules, (array) ($todayDetails['Hindu_Calendar'] ?? []))
-                && !$this->canResolveAcrossMonthBoundary($rules, (array) ($tomorrowDetails['Hindu_Calendar'] ?? []), $isClassical)) {
-                continue; // Skip this festival for this month
+            if (isset($rules['month_amanta']) || isset($rules['month_purnimanta'])) {
+                $monthOk = $this->isKrishnaAmavasyaRule($rules)
+                    ? $this->namedAmavasyaAttributedMonthMatches($rules, $todayDetails, $tomorrowDetails)
+                    : ($this->monthRuleMatches($rules, (array) ($todayDetails['Hindu_Calendar'] ?? []))
+                        || $this->canResolveAcrossMonthBoundary(
+                            $rules,
+                            (array) ($tomorrowDetails['Hindu_Calendar'] ?? []),
+                            $isClassical,
+                            $todayDetails
+                        ));
+                if (!$monthOk) {
+                    continue; // Skip this festival for this month
+                }
             }
 
             if ($isClassical) {
                 $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null
                     && $resolved['observance_date'] === $date->toDateString()
-                    && !$this->previousDayAlreadyWonSamePradoshInterval($name, $rules, $date, $todayDetails, $yesterdayDetails, $resolved)
+                    && !$this->previousDayAlreadyWonSameTargetInterval($name, $rules, $date, $todayDetails, $yesterdayDetails, $resolved)
                     && !$this->rejectResolvedFestivalForDay($rules, $todayDetails)
                     && !isset($addedFestivalKeys[$name])) {
                     $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
@@ -7396,7 +7496,7 @@ class FestivalService
             $dateObj = CarbonImmutable::parse($resolved['observance_date']);
             $dayOfWeek = $dateObj->dayOfWeek; // 0 for Sunday, 6 for Saturday
 
-            $names = [
+            $weekdayNames = [
                 0 => 'Ravi Pradosh Vrat',
                 1 => 'Soma Pradosh Vrat',
                 2 => 'Bhauma Pradosh Vrat',
@@ -7416,13 +7516,28 @@ class FestivalService
                 6 => 'Pradosh Vrat falling on a Saturday, highly auspicious for Lord Shiva and Shani',
             ];
 
-            $name = $names[$dayOfWeek] ?? 'Pradosh Vrat';
+            // Keep the generic identity; attach weekday classifier as alias/metadata.
+            $weekdayName = $weekdayNames[$dayOfWeek] ?? null;
             $rules['description'] = $descriptions[$dayOfWeek] ?? ($rules['description'] ?? '');
             $rules['deity'] = ($dayOfWeek === 6) ? 'Shiva/Shani' : 'Shiva';
-            $rules['aliases'] = ['Pradosh Vrat'];
-            if ($dayOfWeek === 6) {
-                $rules['aliases'][] = 'Shani Trayodashi';
+            $aliases = ['Pradosh Vrat'];
+            if ($weekdayName !== null) {
+                $aliases[] = $weekdayName;
+                $rules['weekday_classifier'] = $weekdayName;
             }
+            if ($dayOfWeek === 6) {
+                $aliases[] = 'Shani Trayodashi';
+            }
+            $rules['aliases'] = $aliases;
+        }
+
+        if (is_string($rules['display_name'] ?? null) && $rules['display_name'] !== '') {
+            $aliases = array_values(array_unique(array_merge(
+                [(string) $name],
+                array_map(strval(...), (array) ($rules['aliases'] ?? [])),
+            )));
+            $rules['aliases'] = $aliases;
+            $name = (string) $rules['display_name'];
         }
 
         $regions = $rules['regions'] ?? ['Pan-India'];
@@ -7565,7 +7680,14 @@ class FestivalService
         return false;
     }
 
-    private function previousDayAlreadyWonSamePradoshInterval(
+    /**
+     * Suppress a second adjacent emit when yesterday already locked the same
+     * target-tithi interval (Pradosh truth-table; Kali Chaudas bahukala-purva).
+     *
+     * Classical resolve(..., today, tomorrow) on day-2 alone can re-select day-2
+     * with a higher score even though day-1+day-2 already chose day-1.
+     */
+    private function previousDayAlreadyWonSameTargetInterval(
         string $name,
         array $rules,
         CarbonImmutable $date,
@@ -7573,7 +7695,17 @@ class FestivalService
         ?array $yesterdayDetails,
         array $resolved
     ): bool {
-        if ($yesterdayDetails === null || !$this->isPradoshRuleMetadata($rules)) {
+        if ($yesterdayDetails === null) {
+            return false;
+        }
+
+        $gatePradosh = $this->isPradoshRuleMetadata($rules);
+        $gatePreferFirst = (bool) ($rules['prefer_first_karmakala'] ?? false)
+            || ((string) ($rules['vriddhi_preference'] ?? '') === 'first'
+                && (bool) ($rules['prefer_growth_before_score'] ?? false));
+        $gateDiwali = (bool) ($rules['diwali_truth_table'] ?? false)
+            || (bool) ($rules['darsha_amavasya_aparahna_table'] ?? false);
+        if (!$gatePradosh && !$gatePreferFirst && !$gateDiwali) {
             return false;
         }
 
@@ -8712,6 +8844,59 @@ class FestivalService
         };
     }
 
+    private function isKrishnaAmavasyaRule(array $rules): bool
+    {
+        $paksha = strtolower((string) ($rules['paksha'] ?? ''));
+        $tithi = (int) (is_array($rules['tithi'] ?? null) ? ($rules['tithi'][0] ?? 0) : ($rules['tithi'] ?? 0));
+
+        return $paksha === 'krishna' && $tithi === 15;
+    }
+
+    private function isAmavasyaAtSunrise(array $details): bool
+    {
+        $tithi = (array) ($details['Tithi'] ?? []);
+        $idx = (int) ($tithi['index'] ?? $tithi['Number'] ?? 0);
+        $paksha = strtolower((string) ($tithi['paksha'] ?? $tithi['Paksha'] ?? ''));
+
+        return $idx === 30 || ($idx === 15 && $paksha === 'krishna');
+    }
+
+    /** Civil day hosts Amavasya when it is present at sunrise, begins later today, or ends overnight into Shukla Pratipada. */
+    private function dayCarriesAmavasya(array $todayDetails, array $tomorrowDetails): bool
+    {
+        if ($this->isAmavasyaAtSunrise($todayDetails) || $this->isAmavasyaAtSunrise($tomorrowDetails)) {
+            return true;
+        }
+
+        $tom = (array) ($tomorrowDetails['Tithi'] ?? []);
+        $idx = (int) ($tom['index'] ?? $tom['Number'] ?? 0);
+        $paksha = strtolower((string) ($tom['paksha'] ?? $tom['Paksha'] ?? ''));
+
+        return $idx === 1 && $paksha === 'shukla';
+    }
+
+    /**
+     * Named Krishna-Amavasya month label — one civil date per named month.
+     * Always attribute from THIS civil day's Hindu month (amanta name, or dynamic
+     * Krishna purnimanta from today's Amanta_Index). Never look ahead to tomorrow's
+     * Pratipada — that dual-labeled Chaitra (2026-03-18+04-17) and dropped Phalguna.
+     */
+    private function namedAmavasyaAttributedMonthMatches(
+        array $rules,
+        array $todayDetails,
+        array $tomorrowDetails
+    ): bool {
+        if (!$this->isKrishnaAmavasyaRule($rules)) {
+            return false;
+        }
+
+        if (!$this->dayCarriesAmavasya($todayDetails, $tomorrowDetails)) {
+            return false;
+        }
+
+        return $this->monthRuleMatches($rules, (array) ($todayDetails['Hindu_Calendar'] ?? []));
+    }
+
     /** Match month rule against active calendar type (amanta/purnimanta). */
     private function monthRuleMatches(array $rules, array $calendar): bool
     {
@@ -8797,8 +8982,12 @@ class FestivalService
         return $excludedPurnimanta !== [] && in_array($purnimanta, $excludedPurnimanta, true);
     }
 
-    /** Allow evening/night observances whose correct karmakala falls before the named-month sunrise. */
-    private function canResolveAcrossMonthBoundary(array $rules, array $tomorrowCalendar, bool $isClassical): bool
+    /** Allow evening/night observances whose correct karmakala falls before the named-month sunrise.
+     *
+     * For Krishna Amavasya (tithi 15): never look ahead to tomorrow's month
+     * (one named month-Amavasya date; avoids Chaitra dual-label / Phalguna miss).
+     */
+    private function canResolveAcrossMonthBoundary(array $rules, array $tomorrowCalendar, bool $isClassical, array $todayDetails = []): bool
     {
         if (!$isClassical || $tomorrowCalendar === []) {
             return false;
@@ -8806,6 +8995,12 @@ class FestivalService
 
         $karmakalaType = (string) ($rules['karmakala_type'] ?? 'sunrise');
         if (in_array($karmakalaType, ['sunrise', 'arunodaya'], true)) {
+            return false;
+        }
+
+        $paksha = strtolower((string) ($rules['paksha'] ?? ''));
+        $tithi = (int) (is_array($rules['tithi'] ?? null) ? ($rules['tithi'][0] ?? 0) : ($rules['tithi'] ?? 0));
+        if ($paksha === 'krishna' && $tithi === 15) {
             return false;
         }
 
