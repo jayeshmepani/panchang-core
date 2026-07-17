@@ -20,16 +20,18 @@ class FestivalCoverageRegressionTest extends TestCase
         $service = $this->app->make(PanchangService::class);
 
         foreach ([
-            '2026-01-03' => 'Shri Satyanarayana Vrat',
-            '2026-01-05' => 'Somwar Vrat',
-            '2026-01-14' => 'ISKCON Ekadashi',
-            '2026-03-26' => 'Ashoka Ashtami Vrat',
-            '2026-05-17' => 'Purushottam Maas Begins',
-            '2026-05-27' => 'Mahadwadashi',
-            '2026-06-15' => 'Purushottam Maas Ends',
-            '2026-07-25' => 'Chaturmasa Begins',
-            '2026-11-21' => 'Chaturmasa Ends',
-        ] as $date => $expectedFestival) {
+            ['2026-01-03', 'Shri Satyanarayana Vrat'],
+            ['2026-01-05', 'Somwar Vrat'],
+            ['2026-01-14', 'ISKCON Ekadashi'],
+            ['2026-03-26', 'Ashoka Ashtami Vrat'],
+            ['2026-05-17', 'Purushottam Maas Begins'],
+            ['2026-05-27', 'ISKCON Ekadashi'],
+            ['2026-05-27', 'Mahadwadashi'],
+            ['2026-06-11', 'ISKCON Ekadashi'],
+            ['2026-06-15', 'Purushottam Maas Ends'],
+            ['2026-07-25', 'Chaturmasa Begins'],
+            ['2026-11-21', 'Chaturmasa Ends'],
+        ] as [$date, $expectedFestival]) {
             $details = $service->getDayDetails(
                 CarbonImmutable::parse($date, 'Asia/Kolkata'),
                 23.2472446,

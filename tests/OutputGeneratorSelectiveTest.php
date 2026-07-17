@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Facades\Panchang;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
@@ -139,10 +140,13 @@ class OutputGeneratorSelectiveTest extends TestCase
         }
     }
 
-    public function testFestivalAndVratTotalsCountUniqueIdentitiesNotOccurrences(): void
+    public function testFestivalAndVratTotalsUseCatalogCountsNotYearObserved(): void
     {
         /** @var OutputGeneratorService $service */
         $service = $this->app->make(OutputGeneratorService::class);
+
+        $catalogFestivals = FestivalService::getCatalogFestivalCount();
+        $catalogVrats = FestivalService::getCatalogVratCount();
 
         $combined = $service->generateFestivals(2026, 23.2472446, 69.668339, 'Asia/Kolkata')['festivals'];
         $festivalOnly = $service->generateFestivalsOnly(2026, 23.2472446, 69.668339, 'Asia/Kolkata')['festivals'];
@@ -154,17 +158,32 @@ class OutputGeneratorSelectiveTest extends TestCase
             'Asia/Kolkata',
             ['total_festivals', 'total_vrats']
         );
+        $purnimantaCombined = $service->generateFestivals(
+            2026,
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            'purnimanta'
+        )['festivals'];
 
-        $this->assertSame($this->countUniqueIdentities($combined['by_date'], false), $combined['total_festivals']);
-        $this->assertSame($this->countUniqueIdentities($combined['by_date'], true), $combined['total_vrats']);
-        $this->assertSame($combined['total_festivals'], $selectedTotals['total_festivals']);
-        $this->assertSame($combined['total_vrats'], $selectedTotals['total_vrats']);
-        $this->assertSame($this->countUniqueIdentities($festivalOnly['by_date']), $festivalOnly['total_festivals']);
-        $this->assertSame(
-            $this->countUniqueIdentities($vratCompact['by_date'], null, $vratCompact['recurring_weekday_vrats']),
-            $vratCompact['total_vrats']
+        // Totals are general catalog sizes — independent of year observed set and calendar system.
+        $this->assertSame($catalogFestivals, $combined['total_festivals']);
+        $this->assertSame($catalogVrats, $combined['total_vrats']);
+        $this->assertSame($catalogFestivals, $festivalOnly['total_festivals']);
+        $this->assertSame($catalogVrats, $vratCompact['total_vrats']);
+        $this->assertSame($catalogFestivals, $selectedTotals['total_festivals']);
+        $this->assertSame($catalogVrats, $selectedTotals['total_vrats']);
+        $this->assertSame($catalogFestivals, $purnimantaCombined['total_festivals']);
+        $this->assertSame($catalogVrats, $purnimantaCombined['total_vrats']);
+
+        // Observed unique keys in a given year may be fewer than the catalog.
+        // PHPUnit: assertLessThanOrEqual($expected, $actual) => $actual <= $expected
+        $this->assertLessThanOrEqual(
+            $catalogFestivals,
+            $this->countUniqueIdentities($combined['by_date'], false)
         );
-
+        // total_* is always smaller than dated entry volume for a full year.
         $this->assertLessThan($combined['festival_entry_count'], $combined['total_festivals']);
         $this->assertLessThan($vratCompact['vrat_entry_count'] + 365, $vratCompact['total_vrats']);
     }

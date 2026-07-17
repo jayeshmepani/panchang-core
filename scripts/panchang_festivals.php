@@ -14,6 +14,7 @@ declare(strict_types=1);
  */
 
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
@@ -71,43 +72,9 @@ $calendar = match ($scope) {
     ),
 };
 
-$countUniqueIdentities = static function (array $byDate, ?bool $fasting = null, array $extraEntries = []): int {
-    $identities = [];
-
-    foreach ($byDate as $entries) {
-        foreach ((array) $entries as $entry) {
-            if (! is_array($entry)) {
-                continue;
-            }
-
-            if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
-                continue;
-            }
-
-            $name = trim((string) ($entry['name_key'] ?? $entry['name'] ?? ''));
-            if ($name !== '') {
-                $identities[$name] = true;
-            }
-        }
-    }
-
-    foreach ($extraEntries as $entry) {
-        if (! is_array($entry)) {
-            continue;
-        }
-
-        if ($fasting !== null && (($entry['fasting'] ?? null) !== $fasting)) {
-            continue;
-        }
-
-        $name = trim((string) ($entry['name_key'] ?? $entry['name'] ?? ''));
-        if ($name !== '') {
-            $identities[$name] = true;
-        }
-    }
-
-    return count($identities);
-};
+// Catalog totals are year/calendar-independent (definitions always count, even if not observed).
+$catalogFestivalCount = FestivalService::getCatalogFestivalCount();
+$catalogVratCount = FestivalService::getCatalogVratCount();
 
 $output = [
     'meta' => [
@@ -138,7 +105,7 @@ $output = [
                 'locale' => $locale,
                 'festival_day_count' => $calendar['festival_day_count'],
                 'festival_entry_count' => $calendar['festival_entry_count'],
-                'total_festivals' => $countUniqueIdentities($calendar['by_date']),
+                'total_festivals' => $catalogFestivalCount,
                 'by_date' => $calendar['by_date'],
             ],
         ],
@@ -151,8 +118,8 @@ $output = [
                 'locale' => $locale,
                 'festival_day_count' => $calendar['festival_day_count'],
                 'festival_entry_count' => $calendar['festival_entry_count'],
-                'total_festivals' => $countUniqueIdentities($calendar['by_date'], false),
-                'total_vrats' => $countUniqueIdentities($calendar['by_date'], true),
+                'total_festivals' => $catalogFestivalCount,
+                'total_vrats' => $catalogVratCount,
                 'by_date' => $calendar['by_date'],
             ],
         ],

@@ -58,6 +58,9 @@ class PanchangService
     private const array YEARLY_SINGLE_OBSERVANCE_FESTIVALS = [
         'Ganga Dussehra',
         'Samaveda Upakarma',
+        'Yashoda Jayanti',
+        'Shabari Jayanti',
+        'Janaki Jayanti',
     ];
 
     private const int BODY_LONGITUDE_CACHE_MAX = 20000;
@@ -500,6 +503,7 @@ class PanchangService
 
         $punyaKaal = null;
         $sankrantiRashi = null;
+        $sankrantiJd = null;
         if ($civilStartSign !== $civilEndSign) {
             // Sun crossed a sign boundary during this civil day
             $nextSign = ($civilStartSign + 1) % 12;
@@ -511,6 +515,8 @@ class PanchangService
                 $sankrantiRashi = $nextSign;
                 $punyaKaal = $kalaEngine->calculatePunyaKaal($sankrantiName, $sankrantiJd, $jdSunrise, $jdSunset, $jdNextSunrise, $jdPrevSunset);
                 $punyaKaal['sankranti_name'] = Rasi::from($nextSign)->getName();
+            } else {
+                $sankrantiJd = null;
             }
         }
 
@@ -543,6 +549,9 @@ class PanchangService
             'Nakshatra' => [
                 'name' => $nakName,
             ],
+            'Sun_Sign' => Rasi::from($currentSunSign)->getName(),
+            'Sun_Sign_Index' => $currentSunSign,
+            'sun_sunrise_lon' => $sunLon,
             'Moonrise_JD' => $moonrise instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonrise, $tz) : null,
             'Moonset_JD' => $moonset instanceof CarbonImmutable ? $this->toJulianDayFromCarbon($moonset, $tz) : null,
             'Moonrise' => $moonrise instanceof CarbonImmutable ? AstroCore::formatTime($moonrise) : null,
@@ -574,7 +583,12 @@ class PanchangService
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
+                'sankranti_jd' => $sankrantiJd,
             ],
+            'Nakshatra_Windows' => array_map(
+                fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz),
+                $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)
+            ),
             'Ekadashi_Observance' => $snapshotEkadashiObservance,
         ];
 
@@ -1199,8 +1213,16 @@ class PanchangService
         $currentSign = (int) floor($sunLonCivilStart / 30.0);
         $nextSunriseSign = (int) floor($sunLonCivilEnd / 30.0);
         $sankrantiRashi = null;
+        $sankrantiJd = null;
         if ($currentSign !== $nextSunriseSign) {
-            $sankrantiRashi = ($currentSign + 1) % 12;
+            $nextSign = ($currentSign + 1) % 12;
+            $targetAngle = $nextSign * 30.0;
+            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+            if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
+                $sankrantiRashi = $nextSign;
+            } else {
+                $sankrantiJd = null;
+            }
         }
 
         $lagnaTable = $includeExtended
@@ -1242,6 +1264,13 @@ class PanchangService
             $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
             (string) ($tithi['paksha'] ?? '')
         );
+        $samvat = $this->panchanga->getSamvat($date->year, $date->month);
+        $vikram = $samvat['Vikram_Samvat'];
+        $saka = $samvat['Saka_Samvat'];
+        $kali = $this->panchanga->getKaliSamvat($vikram);
+        $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
+        $samvatsara = $this->panchanga->getSamvatsara($vikram);
+        $samvatsaraNorth = $this->panchanga->getSamvatsaraNorth($vikram);
 
         return $this->festivalSnapshotCache[$snapshotCacheKey] = [
             'Tithi' => $tithi,
@@ -1263,6 +1292,12 @@ class PanchangService
                 'Ritu' => $this->panchanga->getRitu($sunLon),
                 'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
                 'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
+                'Vikram_Samvat' => $vikram,
+                'Gujarati_Samvat' => $gujarati,
+                'Saka_Samvat' => $saka,
+                'Kali_Samvat' => $kali,
+                'Samvatsara' => $samvatsara,
+                'Samvatsara_North' => $samvatsaraNorth,
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -1321,6 +1356,7 @@ class PanchangService
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                 'sankranti_rashi' => $sankrantiRashi,
+                'sankranti_jd' => $sankrantiJd,
             ],
             'Bhadra' => $includeExtended ? $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']) : [],
             'Tithi_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $this->intervalTracker->collectTithiIntervals($jdSunrise, $jdNextSunrise)),

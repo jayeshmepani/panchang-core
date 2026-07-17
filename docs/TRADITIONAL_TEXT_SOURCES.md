@@ -19,7 +19,7 @@ Some package components are architectural helpers and are intentionally **not** 
 - `OutputGeneratorService` (output assembly wrapper around package services)
 - `CliBootstrap` (standalone bootstrap helper for env/config/container wiring)
 
-Currently, the generated yearly Panchang contract reports **324 unique festival identities** and **122 unique vrat identities**. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity. Recent festival-module updates also cleaned up overlapping identities, merged some alias-only observances into their canonical families, added the generic monthly Vratni Purnima identity, refreshed the vrat catalog, and corrected a set of rule-specific decision paths.
+Currently, the generated yearly Panchang contract reports **335 unique festival identities** and **123 unique vrat identities**. These identity totals are distinct from dated occurrence counts; repeated observances such as monthly vrats are counted once per canonical identity. Recent festival-module updates also cleaned up overlapping identities, merged some alias-only observances into their canonical families, added the generic monthly Vratni Purnima identity, refreshed the vrat catalog, and corrected a set of rule-specific decision paths.
 - Localization: user-facing outputs support `en`, `hi`, `gu`.
 - Calendar conventions: both `amanta` and `purnimanta` are supported.
 - Muhurta devata enum source classification: [MUHURTA_TEXT_SOURCES.md](MUHURTA_TEXT_SOURCES.md).

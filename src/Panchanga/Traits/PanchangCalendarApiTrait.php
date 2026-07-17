@@ -666,12 +666,22 @@ trait PanchangCalendarApiTrait
 
         $rangeStart = $start->subDays(3);
         $rangeEnd = $end->addDays(3);
+        $fetchHistoricalSnapshot = fn (CarbonImmutable $targetDate): array => $this->getFestivalSnapshot(
+            $targetDate,
+            $lat,
+            $lon,
+            $tz,
+            $elevation,
+            $calculationAt,
+            $calendarType,
+            false
+        );
 
         for ($date = $rangeStart; $date->lessThanOrEqualTo($rangeEnd); $date = $date->addDay()) {
             $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, null, false, $selection);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, $fetchHistoricalSnapshot, false, $selection);
 
             foreach ($festivals as $festival) {
                 $festival = $this->withFestivalTimingWindow($festival, $tz);
@@ -683,6 +693,16 @@ trait PanchangCalendarApiTrait
                     'festival' => $festival,
                 ];
             }
+        }
+
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+        $festivalFlat = $this->consolidateYearlySingleObservanceFestivals($festivalFlat);
+        $festivalFlat = $this->consolidateAdjacentFestivalsByWinningScore($festivalFlat, $tz);
+
+        $festivalsByDate = [];
+        foreach ($festivalFlat as $entry) {
+            $festivalsByDate[$entry['date']] ??= [];
+            $festivalsByDate[$entry['date']][] = $entry['festival'];
         }
 
         $this->appendRelativeDayFestivals($start, $end, $tz, $festivalsByDate, $festivalFlat, $selection);
@@ -1043,6 +1063,10 @@ trait PanchangCalendarApiTrait
                         continue;
                     }
 
+                    if ($daysAfter > 0 && $this->isWeakerAdjacentRelativeParent($festivalsByDate, $observanceDate, $observedFestival, $parentName, $parentDisplayName, $tz)) {
+                        continue;
+                    }
+
                     $relativeDate = CarbonImmutable::parse($observanceDate, $tz)->addDays($daysAfter);
                     if ($relativeDate->lessThan($start) || $relativeDate->greaterThan($end)) {
                         continue;
@@ -1077,6 +1101,53 @@ trait PanchangCalendarApiTrait
                 }
             }
         }
+    }
+
+    /**
+     * Avoid deriving relatives from the weaker day in an adjacent duplicate parent cluster.
+     *
+     * @param array<string, array<int, array<string, mixed>>> $festivalsByDate
+     * @param array<string, mixed> $observedFestival
+     */
+    private function isWeakerAdjacentRelativeParent(
+        array $festivalsByDate,
+        string $observanceDate,
+        array $observedFestival,
+        string $parentName,
+        string $parentDisplayName,
+        string $tz
+    ): bool {
+        $currentReason = (string) (
+            $observedFestival['rules_applied']['winning_reason_key']
+            ?? $observedFestival['rules_applied']['winning_reason']
+            ?? $observedFestival['resolution']['decision']['winning_reason']
+            ?? ''
+        );
+        if (!in_array($currentReason, ['target_at_sunrise', 'target tithi at sunrise', 'nakshatra_match'], true)) {
+            return false;
+        }
+
+        $previousDate = CarbonImmutable::parse($observanceDate, $tz)->subDay()->toDateString();
+        $previousFestivals = $festivalsByDate[$previousDate] ?? [];
+        foreach ($previousFestivals as $previousFestival) {
+            $rawPreviousName = (string) ($previousFestival['resolution']['festival_name'] ?? '');
+            $displayPreviousName = (string) ($previousFestival['name'] ?? '');
+            if ($rawPreviousName !== $parentName && $displayPreviousName !== $parentDisplayName) {
+                continue;
+            }
+
+            $previousReason = (string) (
+                $previousFestival['rules_applied']['winning_reason_key']
+                ?? $previousFestival['rules_applied']['winning_reason']
+                ?? $previousFestival['resolution']['decision']['winning_reason']
+                ?? ''
+            );
+            if (in_array($previousReason, ['target_at_karmakala', 'target tithi at karmakala', 'target_covers_full_karmakala'], true)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -1314,7 +1385,7 @@ trait PanchangCalendarApiTrait
 
         // Bahukala-purva: when either candidate carries prefer_first_karmakala,
         // keep the earlier civil day even if the later day scored higher alone.
-        if ($preferFirstKarmakala || (bool) ($best['prefer_first_karmakala'] ?? false)) {
+        if ($preferFirstKarmakala || ($best['prefer_first_karmakala'] ?? false)) {
             return strcmp($date, $best['date']) < 0;
         }
 
@@ -1328,6 +1399,10 @@ trait PanchangCalendarApiTrait
 
         $isChandraDarshanaReason = static fn (string $r): bool => str_starts_with($r, 'chandra_darshana_');
         if ($isChandraDarshanaReason($reasonKey) && $isChandraDarshanaReason($best['reason_key'])) {
+            return strcmp($date, $best['date']) < 0;
+        }
+
+        if ($reasonKey === 'same_day_linked_parent_festival' && $best['reason_key'] === 'same_day_linked_parent_festival') {
             return strcmp($date, $best['date']) < 0;
         }
 

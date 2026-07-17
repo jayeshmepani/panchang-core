@@ -82,9 +82,38 @@ final class DynamicDayNightPeriodsTest extends TestCase
         self::assertSame('Usha', $nightFivefold[3]['name_key']);
         self::assertSame('Arunodaya', $nightFivefold[4]['name_key']);
         self::assertSame(7380.0, $nightFivefold[0]['duration_seconds']);
+        self::assertSame(9840.0, $nightFivefold[1]['duration_seconds']);
+        self::assertSame(2460.0, $nightFivefold[2]['duration_seconds']);
+        self::assertSame(12300.0, $nightFivefold[3]['duration_seconds']);
+        self::assertSame(4920.0, $nightFivefold[4]['duration_seconds']);
+        self::assertSame([1, 3, 3], [
+            $nightFivefold[0]['muhurta_start'],
+            $nightFivefold[0]['muhurta_end'],
+            $nightFivefold[0]['muhurta_count'],
+        ]);
+        self::assertSame([4, 7, 4], [
+            $nightFivefold[1]['muhurta_start'],
+            $nightFivefold[1]['muhurta_end'],
+            $nightFivefold[1]['muhurta_count'],
+        ]);
+        self::assertSame([8, 8, 1], [
+            $nightFivefold[2]['muhurta_start'],
+            $nightFivefold[2]['muhurta_end'],
+            $nightFivefold[2]['muhurta_count'],
+        ]);
+        self::assertSame([9, 13, 5], [
+            $nightFivefold[3]['muhurta_start'],
+            $nightFivefold[3]['muhurta_end'],
+            $nightFivefold[3]['muhurta_count'],
+        ]);
+        self::assertSame([14, 15, 2], [
+            $nightFivefold[4]['muhurta_start'],
+            $nightFivefold[4]['muhurta_end'],
+            $nightFivefold[4]['muhurta_count'],
+        ]);
         self::assertSame('20/06/2026 07:30:00 PM', $nightFivefold[0]['start_iso']);
         self::assertSame('20/06/2026 09:33:00 PM', $nightFivefold[0]['end_iso']);
-        self::assertSame('21/06/2026 03:42:00 AM', $nightFivefold[4]['start_iso']);
+        self::assertSame('21/06/2026 04:23:00 AM', $nightFivefold[4]['start_iso']);
         self::assertSame('21/06/2026 05:45:00 AM', $nightFivefold[4]['end_iso']);
     }
 }

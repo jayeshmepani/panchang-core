@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  * Usage:
  *   php scripts/panchang_compact_events.php --from=02-2025 --to=05-2027 --amanta --en
- *   php scripts/panchang_compact_events.php --from=02-2025 --to=05-2027 --purnimanta --gu --output=compact.json
+ *   php scripts/panchang_compact_events.php --from=02-2025 --to=05-2027 --purnimanta --gu --output-dir=scripts/output/compact
  *
  * Output item shape:
  *   {"name": "...", "aliases": ["..."], "dates": ["YYYY-MM-DD"]}
@@ -24,7 +24,7 @@ $parseOptions = static function (array $args): array {
         'to' => null,
         'calendar_type' => 'amanta',
         'locale' => 'en',
-        'output' => null,
+        'output_dir' => null,
     ];
 
     foreach (array_slice($args, 1) as $arg) {
@@ -38,8 +38,8 @@ $parseOptions = static function (array $args): array {
             continue;
         }
 
-        if (str_starts_with($arg, '--output=')) {
-            $options['output'] = substr($arg, 9);
+        if (str_starts_with($arg, '--output-dir=')) {
+            $options['output_dir'] = substr($arg, 13);
             continue;
         }
 
@@ -68,7 +68,8 @@ Options:
   --amanta            Use Amanta calendar rules (default)
   --purnimanta        Use Purnimanta calendar rules
   --en|--hi|--gu      Output locale (default: --en)
-  --output=PATH       Write JSON to PATH instead of stdout
+  --output-dir=PATH   Directory for the three JSON files
+                     Default: scripts/output/{calendar_type}/{locale}
 
 TEXT;
 };
@@ -271,17 +272,49 @@ for ($year = $startYear; $year <= $endYear; $year++) {
     }
 }
 
-$output = [
-    'festivals' => $compactObservances($festivalByDate),
-    'vrats' => $compactObservances($vratByDate),
-    'eclipses' => $compactEclipses($eclipseEvents),
-];
+$outputDir = is_string($options['output_dir']) && $options['output_dir'] !== ''
+    ? $options['output_dir']
+    : panchang_script_output_dir($baseDir, $options['calendar_type'], $options['locale']);
 
-$json = panchang_script_encode_json($output);
-
-if (is_string($options['output']) && $options['output'] !== '') {
-    file_put_contents($options['output'], $json);
-    exit(0);
+if (! is_dir($outputDir)) {
+    mkdir($outputDir, 0777, true);
 }
 
-echo $json;
+$rangeSlug = $rangeStart->format('Y_m') . '_to_' . $rangeEnd->format('Y_m');
+$files = [
+    'festivals' => $outputDir . DIRECTORY_SEPARATOR . "compact_festivals_{$rangeSlug}.json",
+    'vrats' => $outputDir . DIRECTORY_SEPARATOR . "compact_vrats_{$rangeSlug}.json",
+    'eclipses' => $outputDir . DIRECTORY_SEPARATOR . "compact_eclipses_{$rangeSlug}.json",
+];
+
+$meta = [
+    'calendar_type' => $options['calendar_type'],
+    'from' => $options['from'],
+    'to' => $options['to'],
+    'location' => [
+        'city' => 'Bhuj',
+        'country' => 'IN',
+        'latitude' => $latitude,
+        'longitude' => $longitude,
+        'timezone' => $timezone,
+        'elevation' => $elevation,
+    ],
+];
+
+panchang_script_write_json($files['festivals'], [
+    'meta' => $meta,
+    'festivals' => $compactObservances($festivalByDate),
+]);
+panchang_script_write_json($files['vrats'], [
+    'meta' => $meta,
+    'vrats' => $compactObservances($vratByDate),
+]);
+panchang_script_write_json($files['eclipses'], [
+    'meta' => $meta,
+    'eclipses' => $compactEclipses($eclipseEvents),
+]);
+
+echo 'Written:' . PHP_EOL;
+foreach ($files as $file) {
+    echo $file . PHP_EOL;
+}

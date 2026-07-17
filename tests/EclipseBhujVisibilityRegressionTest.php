@@ -20,10 +20,11 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
 
     /** @var array<string, array{sutak_start:string, relaxed_start:string, sutak_end:string}> */
     private const array EXPECTED_SUTAK_TIMES = [
+        // Grastodaya: 4-prahar vedha counted from astronomical sparsha (partial begin).
         '2018-01-31|Lunar|Total' => [
-            'sutak_start' => '31/01/2018 10:18:00 AM',
-            'relaxed_start' => '31/01/2018 03:25:00 PM',
-            'sutak_end' => '31/01/2018 08:41:00 PM',
+            'sutak_start' => '31/01/2018 04:17:49 AM',
+            'relaxed_start' => '31/01/2018 02:31:55 PM',
+            'sutak_end' => '31/01/2018 08:41:59 PM',
         ],
         '2018-07-28|Lunar|Total' => [
             'sutak_start' => '27/07/2018 12:58:00 PM',
@@ -50,10 +51,11 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             'relaxed_start' => '25/10/2022 01:44:16 PM',
             'sutak_end' => '25/10/2022 06:18:00 PM',
         ],
+        // Grastodaya: naked-eye window uses literal moonrise; ~13 min umbral visibility.
         '2022-11-08|Lunar|Partial' => [
-            'sutak_start' => '08/11/2022 09:48:00 AM',
-            'relaxed_start' => '08/11/2022 02:59:05 PM',
-            'sutak_end' => '08/11/2022 06:18:00 PM',
+            'sutak_start' => '08/11/2022 12:35:10 AM',
+            'relaxed_start' => '08/11/2022 11:52:06 AM',
+            'sutak_end' => '08/11/2022 06:19:56 PM',
         ],
         '2023-10-29|Lunar|Partial' => [
             'sutak_start' => '28/10/2023 03:25:00 PM',
@@ -83,7 +85,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
         $visible = array_values(array_filter($all, static fn (array $event): bool => (bool) ($event['visibility']['visible'] ?? false)));
         $sutakApplicable = array_values(array_filter($all, static fn (array $event): bool => (bool) ($event['sutak']['applicable'] ?? false)));
 
-        self::assertCount(9, $visible, 'Expected exactly 9 visible eclipses in Bhuj from 2018-01-01 to 2025-12-31.');
+        self::assertCount(9, $visible, 'Expected exactly 9 ritually visible eclipses in Bhuj from 2018-01-01 to 2025-12-31.');
         self::assertCount(9, $sutakApplicable, 'Expected sutak applicable only for those 9 visible eclipses.');
 
         $visibleKeySet = [];
@@ -176,7 +178,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
         $sutak = (array) ($event['sutak'] ?? []);
         $contacts = (array) ($event['contacts'] ?? []);
         $isVisible = (bool) ($event['visibility']['visible'] ?? false);
-        $astroVisible = (bool) ($event['visibility']['astronomical_visible'] ?? false);
+        $astroVisible = (bool) ($event['visibility']['astronomically_visible'] ?? $event['visibility']['astronomical_visible'] ?? false);
 
         if ($isVisible) {
             $this->assertTrue($astroVisible, $this->eventKey($event) . ' visible eclipse must also be astronomically visible');
@@ -189,7 +191,9 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             $this->assertIsFloat($windowEnd, $this->eventKey($event) . ' lunar visibility.window.end_jd');
             $this->assertIsFloat($partialEnd, $this->eventKey($event) . ' lunar contacts.partial_end_jd');
             $this->assertLessThanOrEqual($partialEnd + 1e-6, $windowEnd, $this->eventKey($event) . ' lunar visibility window should not extend beyond partial end');
-            $this->assertEqualsWithDelta($windowEnd, $sutak['end_jd'] ?? null, 1e-6, $this->eventKey($event) . ' lunar sutak end should equal visibility window end');
+            // Sutak ends at astronomical moksha (partial end), which may be after local moonset for grastasta.
+            $this->assertEqualsWithDelta($partialEnd, $sutak['end_jd'] ?? null, 1e-6, $this->eventKey($event) . ' lunar sutak end should equal astronomical moksha (partial end)');
+            $this->assertLessThanOrEqual($windowEnd + 1e-6, $sutak['end_jd'] ?? 0.0, $this->eventKey($event) . ' lunar sutak end should not precede local visibility end');
         }
 
         if (($event['type'] ?? null) === 'Solar' && $isVisible) {

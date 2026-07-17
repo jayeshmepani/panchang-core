@@ -220,12 +220,18 @@ final readonly class AstroCore
             $hours = (int) floor($minutes / 60.0);
             $mins = (int) floor(fmod($minutes, 60.0));
             $secs = fmod($minutes * 60.0, 60.0);
+            $locale = (string) self::getConfig('panchang.defaults.locale', 'en');
+            [$hourUnit, $minuteUnit, $secondUnit] = match ($locale) {
+                'hi' => ['घं', 'मि', 'से'],
+                'gu' => ['ક', 'મિ', 'સે'],
+                default => ['h', 'm', 's'],
+            };
 
             if ($hours > 0) {
-                return sprintf('%dh %dm %ss', $hours, $mins, $secs);
+                return Localization::localizeNumber(sprintf('%d%s %d%s %s%s', $hours, $hourUnit, $mins, $minuteUnit, $secs, $secondUnit), $locale);
             }
 
-            return sprintf('%dm %ss', $mins, $secs);
+            return Localization::localizeNumber(sprintf('%d%s %s%s', $mins, $minuteUnit, $secs, $secondUnit), $locale);
         }
 
         if ($format === 'hours') {

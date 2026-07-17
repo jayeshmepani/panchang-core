@@ -6,6 +6,10 @@ declare(strict_types=1);
 // Usage: php regenerate_all_json.php [year] [month]
 // Default month output: current month.
 
+use Spatie\Fork\Fork;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
 function runPhpScript(string $label, string $command, string $workingDir): int
 {
     $descriptors = [
@@ -156,6 +160,105 @@ function capturePhpScript(string $label, string $command, string $workingDir): a
     ];
 }
 
+function generateCalendarLocale(
+    string $calendarType,
+    string $locale,
+    string $scriptsDir,
+    string $outputBaseDir,
+    int $monthYear,
+    int $month,
+    string $monthFile,
+): array {
+    $targetDir = $outputBaseDir . DIRECTORY_SEPARATOR . $calendarType . DIRECTORY_SEPARATOR . $locale;
+    $jobLabel = "{$calendarType}/{$locale}";
+    $startedAt = hrtime(true);
+
+    if (! is_dir($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+
+    putenv("PANCHANG_CALENDAR_TYPE={$calendarType}");
+    putenv("PANCHANG_LOCALE={$locale}");
+    $_ENV['PANCHANG_CALENDAR_TYPE'] = $calendarType;
+    $_ENV['PANCHANG_LOCALE'] = $locale;
+    $_SERVER['PANCHANG_CALENDAR_TYPE'] = $calendarType;
+    $_SERVER['PANCHANG_LOCALE'] = $locale;
+
+    echo "--- Generating for Calendar: {$calendarType}, Locale: {$locale} ---" . PHP_EOL;
+    if (getenv('PANCHANG_DEBUG')) {
+        echo "[{$jobLabel}] Debug enabled: PANCHANG_DEBUG=" . getenv('PANCHANG_DEBUG') . PHP_EOL;
+    }
+
+    $steps = [
+        [
+            'label' => 'panchang_today.php',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_today.php'),
+        ],
+        [
+            'label' => 'panchang_festivals.php',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026',
+        ],
+        [
+            'label' => 'panchang_festivals.php festivals',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 festivals',
+        ],
+        [
+            'label' => 'panchang_festivals.php vrats',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 vrats',
+        ],
+        [
+            'label' => 'panchang_eclipses.php',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_eclipses.php') . ' 2026 2035',
+        ],
+    ];
+
+    foreach ($steps as $step) {
+        echo "[{$jobLabel}] Running {$step['label']}..." . PHP_EOL;
+        $exitCode = runPhpScript(
+            "{$jobLabel} {$step['label']}",
+            $step['command'],
+            __DIR__,
+        );
+        if ($exitCode !== 0) {
+            throw new RuntimeException("[{$jobLabel}] {$step['label']} failed with exit code {$exitCode}");
+        }
+    }
+
+    echo "[{$jobLabel}] Running panchang_month_output.php..." . PHP_EOL;
+    $monthResult = capturePhpScript(
+        "{$jobLabel} panchang_month_output.php",
+        'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_month_output.php') . ' ' . $monthYear . ' ' . $month,
+        __DIR__,
+    );
+    if ($monthResult['exit_code'] !== 0) {
+        throw new RuntimeException("[{$jobLabel}] panchang_month_output.php failed with exit code {$monthResult['exit_code']}");
+    }
+    file_put_contents($targetDir . DIRECTORY_SEPARATOR . $monthFile, (string) $monthResult['stdout']);
+    $monthDecoded = json_decode((string) $monthResult['stdout'], true);
+    $monthDayCount = is_array($monthDecoded['calendar'] ?? null) ? count($monthDecoded['calendar']) : 0;
+    echo "[{$jobLabel}] Written {$monthFile} — {$monthDayCount} calendar days." . PHP_EOL;
+
+    echo "[{$jobLabel}] Running panchang_raw_output.php..." . PHP_EOL;
+    $rawResult = capturePhpScript(
+        "{$jobLabel} panchang_raw_output.php",
+        'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'),
+        __DIR__,
+    );
+    if ($rawResult['exit_code'] !== 0) {
+        throw new RuntimeException("[{$jobLabel}] panchang_raw_output.php failed with exit code {$rawResult['exit_code']}");
+    }
+    file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'raw_output_2026_2032.json', (string) $rawResult['stdout']);
+
+    $elapsedSeconds = number_format((hrtime(true) - $startedAt) / 1_000_000_000, 6, '.', '');
+
+    return [
+        'calendar_type' => $calendarType,
+        'locale' => $locale,
+        'elapsed_s' => $elapsedSeconds,
+        'output_dir' => $targetDir,
+    ];
+}
+
 $calendarTypes = ['amanta', 'purnimanta'];
 $locales = ['en', 'hi', 'gu'];
 $scriptsDir = __DIR__ . DIRECTORY_SEPARATOR . 'scripts';
@@ -171,115 +274,39 @@ if ($month < 1 || $month > 12) {
 $monthFile = sprintf('month_%04d_%02d.json', $monthYear, $month);
 
 // Ensure output base directory exists
-if (!is_dir($outputBaseDir)) {
+if (! is_dir($outputBaseDir)) {
     mkdir($outputBaseDir, 0777, true);
 }
 
+$jobs = [];
 foreach ($calendarTypes as $type) {
     foreach ($locales as $lang) {
-        $targetDir = $outputBaseDir . DIRECTORY_SEPARATOR . $type . DIRECTORY_SEPARATOR . $lang;
-        echo "--- Generating for Calendar: $type, Locale: $lang ---\n";
-        if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0777, true);
-        }
-
-        // Set environment variables for the current process
-        putenv("PANCHANG_CALENDAR_TYPE=$type");
-        putenv("PANCHANG_LOCALE=$lang");
-
-        echo "Running panchang_today.php...\n";
-        if (getenv('PANCHANG_DEBUG')) {
-            echo 'Debug enabled: PANCHANG_DEBUG=' . getenv('PANCHANG_DEBUG') . "\n";
-        }
-        $exitCode = runPhpScript(
-            'panchang_today.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_today.php'),
-            __DIR__
+        $jobs[] = static fn (): array => generateCalendarLocale(
+            $type,
+            $lang,
+            $scriptsDir,
+            $outputBaseDir,
+            $monthYear,
+            $month,
+            $monthFile,
         );
-        if ($exitCode !== 0) {
-            throw new RuntimeException("panchang_today.php failed with exit code {$exitCode}");
-        }
-        if (file_exists('today_panchang.json')) {
-            rename('today_panchang.json', $targetDir . DIRECTORY_SEPARATOR . 'today.json');
-        }
-
-        echo "Running panchang_festivals.php...\n";
-        $exitCode = runPhpScript(
-            'panchang_festivals.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026',
-            __DIR__
-        );
-        if ($exitCode !== 0) {
-            throw new RuntimeException("panchang_festivals.php failed with exit code {$exitCode}");
-        }
-        if (file_exists('festivals_2026.json')) {
-            rename('festivals_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'festivals_2026.json');
-        }
-
-        echo "Running panchang_festivals.php for festival-only output...\n";
-        $exitCode = runPhpScript(
-            'panchang_festivals.php festivals',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 festivals',
-            __DIR__
-        );
-        if ($exitCode !== 0) {
-            throw new RuntimeException("panchang_festivals.php festivals failed with exit code {$exitCode}");
-        }
-        if (file_exists('festivals_only_2026.json')) {
-            rename('festivals_only_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'festivals_only_2026.json');
-        }
-
-        echo "Running panchang_festivals.php for vrat-only output...\n";
-        $exitCode = runPhpScript(
-            'panchang_festivals.php vrats',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 vrats',
-            __DIR__
-        );
-        if ($exitCode !== 0) {
-            throw new RuntimeException("panchang_festivals.php vrats failed with exit code {$exitCode}");
-        }
-        if (file_exists('vrats_2026.json')) {
-            rename('vrats_2026.json', $targetDir . DIRECTORY_SEPARATOR . 'vrats_2026.json');
-        }
-
-        echo "Running panchang_eclipses.php...\n";
-        $exitCode = runPhpScript(
-            'panchang_eclipses.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_eclipses.php') . ' 2026 2032',
-            __DIR__
-        );
-        if ($exitCode !== 0) {
-            throw new RuntimeException("panchang_eclipses.php failed with exit code {$exitCode}");
-        }
-        if (file_exists('eclipses_2026_2032.json')) {
-            rename('eclipses_2026_2032.json', $targetDir . DIRECTORY_SEPARATOR . 'eclipses_2026_2032.json');
-        }
-
-        echo "Running panchang_month_output.php...\n";
-        $monthResult = capturePhpScript(
-            'panchang_month_output.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_month_output.php') . ' ' . $monthYear . ' ' . $month,
-            __DIR__
-        );
-        if ($monthResult['exit_code'] !== 0) {
-            throw new RuntimeException('panchang_month_output.php failed with exit code ' . $monthResult['exit_code']);
-        }
-        file_put_contents($targetDir . DIRECTORY_SEPARATOR . $monthFile, (string) $monthResult['stdout']);
-        $monthDecoded = json_decode((string) $monthResult['stdout'], true);
-        $monthDayCount = is_array($monthDecoded['calendar'] ?? null) ? count($monthDecoded['calendar']) : 0;
-        echo "Written {$monthFile} — {$monthDayCount} calendar days.\n";
-
-        echo "Running panchang_raw_output.php...\n";
-        $rawResult = capturePhpScript(
-            'panchang_raw_output.php',
-            'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'),
-            __DIR__
-        );
-        if ($rawResult['exit_code'] !== 0) {
-            throw new RuntimeException('panchang_raw_output.php failed with exit code ' . $rawResult['exit_code']);
-        }
-        file_put_contents($targetDir . DIRECTORY_SEPARATOR . 'raw_output_2026_2032.json', (string) $rawResult['stdout']);
     }
+}
+
+echo 'Starting ' . count($jobs) . ' parallel generation jobs...' . PHP_EOL;
+
+$results = Fork::new()
+    ->concurrent(count($jobs))
+    ->run(...$jobs);
+
+foreach ($results as $result) {
+    echo sprintf(
+        '[runner] completed %s/%s elapsed_s=%s output=%s',
+        $result['calendar_type'],
+        $result['locale'],
+        $result['elapsed_s'],
+        $result['output_dir'],
+    ) . PHP_EOL;
 }
 
 echo "Bulk generation complete! Files are located in $outputBaseDir\n";

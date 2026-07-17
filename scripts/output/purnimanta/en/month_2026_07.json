@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-15T09:18:38+00:00",
+        "generated_at": "2026-07-17T11:49:39+00:00",
         "year": 2026,
         "month": 7,
         "calendar_type": "purnimanta",
@@ -240,6 +240,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -266,7 +272,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -516,6 +522,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -543,7 +555,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -783,6 +795,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -807,12 +825,12 @@
                         "Sankashti Chaturthi",
                         "Krishnapingala Sankashti"
                     ],
-                    "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring moonrise presence, it is celebrated on 2026-07-03.",
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring Moonrise presence, it is celebrated on 2026-07-03.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "family": "Sankashti Chaturthi family",
                         "family_key": "sankashti_chaturthi",
@@ -844,12 +862,15 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "moonrise",
-                        "karmakala_type_name": "moonrise",
+                        "karmakala_type_name": "Moonrise",
                         "sankashti_truth_table": true,
                         "source_evidence": [
                             {
                                 "kind": "inherited_rule",
+                                "kind_name": "inherited rule",
+                                "locator_key": "Generic Sankashti Chaturthi section",
                                 "locator": "Generic Sankashti Chaturthi section",
+                                "supports_key": "The named monthly Sankashti identity inherits the generic moonrise-vyapini Sankashti Chaturthi rule.",
                                 "supports": "The named monthly Sankashti identity inherits the generic moonrise-vyapini Sankashti Chaturthi rule."
                             }
                         ]
@@ -871,7 +892,7 @@
                         "target_tithi_end_jd": 2461225.798878582,
                         "standard_date": "2026-07-04",
                         "observance_date": "2026-07-03",
-                        "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring moonrise presence, it is celebrated on 2026-07-03.",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 4 falls on 2026-07-04 at sunrise, but due to tradition/ritual requiring Moonrise presence, it is celebrated on 2026-07-03.",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
@@ -896,7 +917,7 @@
                         "festival_name_key": "Krishnapingala Sankashti Chaturthi",
                         "festival_name_localized": "Krishnapingala Sankashti Chaturthi",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "moonrise"
+                        "karmakala_type_name": "Moonrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -942,7 +963,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -1192,6 +1213,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -1218,7 +1245,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -1468,6 +1495,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -1479,35 +1512,6 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
-                {
-                    "name": "Bonalu (Ashadha Sunday)",
-                    "name_key": "Bonalu (Ashadha Sunday)",
-                    "description": "Sunday Bonalu observance in Ashadha month",
-                    "deity": "Durga",
-                    "fasting": false,
-                    "regions": [
-                        "Telangana"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "weekday_in_month",
-                        "type_name": "weekday in lunar month",
-                        "basis": "weekday_in_lunar_month",
-                        "basis_name": "weekday in lunar month",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Ashadha",
-                            "value_key": "Ashadha",
-                            "name": "Ashadha"
-                        },
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
-                    }
-                },
                 {
                     "name": "Ravivar Vrat",
                     "name_key": "Ravivar Vrat",
@@ -1524,7 +1528,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -1774,6 +1778,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -1801,7 +1811,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -2051,6 +2061,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -2077,7 +2093,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -2097,12 +2113,12 @@
                         "Pan-India"
                     ],
                     "aliases": [],
-                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring Nishitha presence, it is celebrated on 2026-07-07.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "family": "Masik Krishna Janmashtami family",
                         "family_key": "masik_krishna_janmashtami",
@@ -2126,11 +2142,14 @@
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type": "nishitha",
-                        "karmakala_type_name": "nishitha",
+                        "karmakala_type_name": "Nishitha",
                         "strict_karmakala": true,
                         "masik_janmashtami_truth_table": true,
                         "tradition_profile": "Monthly Krishna Janmashtami Nishitha Ashtami decision",
-                        "tradition_profile_key": "Monthly Krishna Janmashtami Nishitha Ashtami decision"
+                        "tradition_profile_key": "Monthly Krishna Janmashtami Nishitha Ashtami decision",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Masik Krishna Janmashtami",
@@ -2149,7 +2168,7 @@
                         "target_tithi_end_jd": 2461229.786186537,
                         "standard_date": "2026-07-08",
                         "observance_date": "2026-07-07",
-                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-07.",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 8 falls on 2026-07-08 at sunrise, but due to tradition/ritual requiring Nishitha presence, it is celebrated on 2026-07-07.",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
@@ -2171,7 +2190,7 @@
                         "festival_name_key": "Masik Krishna Janmashtami",
                         "festival_name_localized": "Masik Krishna Janmashtami",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "nishitha"
+                        "karmakala_type_name": "Nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -2439,6 +2458,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -2465,7 +2490,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -2487,11 +2512,10 @@
                     "aliases": [],
                     "observance_note": null,
                     "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
+                        "type": "kalashtami",
+                        "type_name": "Kalashtami",
                         "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
+                        "basis_name": "Tithi",
                         "tithi": {
                             "numbers": [
                                 8
@@ -2508,72 +2532,7 @@
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Kalashtami",
-                        "required_tithi": 8,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461228.8300981633,
-                        "target_tithi_end_jd": 2461229.786186537,
-                        "standard_date": "2026-07-08",
-                        "observance_date": "2026-07-08",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Kalashtami",
-                        "festival_name_localized": "Kalashtami",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "karmakala_type_name": "Sunrise"
                     }
                 }
             ],
@@ -2816,6 +2775,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -2843,7 +2808,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -3146,6 +3111,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -3172,7 +3143,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -3180,6 +3151,66 @@
                             "name": "Friday",
                             "english_name": "Friday"
                         }
+                    }
+                },
+                {
+                    "name": "Masik Karthigai",
+                    "name_key": "Masik Karthigai",
+                    "description": "Monthly Krittika Nakshatra fasting for Lord Murugan",
+                    "deity": "Murugan",
+                    "fasting": true,
+                    "regions": [
+                        "Tamil Nadu"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "nakshatra",
+                        "basis_name": "Nakshatra",
+                        "nakshatra": "Krittika",
+                        "nakshatra_key": "Krittika",
+                        "nakshatra_only": true,
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "Sunrise",
+                        "preferred_nakshatra": "Krittika",
+                        "preferred_nakshatra_key": "Krittika",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Masik Karthigai",
+                        "required_nakshatra": "Krittika",
+                        "karmakala_type": "sunrise",
+                        "standard_date": "2026-07-10",
+                        "observance_date": "2026-07-10",
+                        "decision": {
+                            "nakshatra_based": true,
+                            "nakshatra_name": "Krittika",
+                            "winning_reason": "Nakshatra entry civil date",
+                            "winning_nakshatra_window_overlap_seconds": 0,
+                            "winning_reason_key": "nakshatra_entry_civil_date",
+                            "winning_reason_name": "Nakshatra entry civil date",
+                            "nakshatra_name_key": "Krittika",
+                            "nakshatra_name_localized": "Krittika"
+                        },
+                        "festival_name_key": "Masik Karthigai",
+                        "festival_name_localized": "Masik Karthigai",
+                        "karmakala_type_name": "Sunrise",
+                        "required_nakshatra_key": "Krittika",
+                        "required_nakshatra_name": "Krittika"
+                    },
+                    "rules_applied": {
+                        "nakshatra_based": true,
+                        "nakshatra_name": "Krittika",
+                        "winning_reason": "Nakshatra entry civil date",
+                        "winning_nakshatra_window_overlap_seconds": 0,
+                        "winning_reason_key": "nakshatra_entry_civil_date",
+                        "winning_reason_name": "Nakshatra entry civil date",
+                        "nakshatra_name_key": "Krittika",
+                        "nakshatra_name_localized": "Krittika"
                     }
                 }
             ],
@@ -3422,6 +3453,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -3446,12 +3483,12 @@
                         "Anasara Ekadashi",
                         "Khalilagi Ekadashi"
                     ],
-                    "observance_note": "Exception: Dark Half (waning) tithi 11 is Kshaya (no sunrise). Observance shifts to 2026-07-11 due to sunrise rules.",
+                    "observance_note": "Exception: Dark Half (waning) tithi 11 is Kshaya (no sunrise). Observance shifts to 2026-07-11 due to Sunrise rules.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -3475,7 +3512,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Yogini Ekadashi",
@@ -3494,7 +3531,7 @@
                         "target_tithi_end_jd": 2461232.4952033563,
                         "standard_date": "2026-07-10",
                         "observance_date": "2026-07-11",
-                        "observance_note": "Exception: Dark Half (waning) tithi 11 is Kshaya (no sunrise). Observance shifts to 2026-07-11 due to sunrise rules.",
+                        "observance_note": "Exception: Dark Half (waning) tithi 11 is Kshaya (no sunrise). Observance shifts to 2026-07-11 due to Sunrise rules.",
                         "decision": {
                             "strict_karmakala": false,
                             "vriddhi_preference": "first",
@@ -3516,7 +3553,7 @@
                         "festival_name_key": "Yogini Ekadashi",
                         "festival_name_localized": "Yogini Ekadashi",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -3557,9 +3594,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -3583,7 +3620,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Krishna Ramalakshmana Dwadashi",
@@ -3623,7 +3660,7 @@
                         "festival_name_key": "Krishna Ramalakshmana Dwadashi",
                         "festival_name_localized": "Krishna Ramalakshmana Dwadashi",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -3666,7 +3703,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -3677,60 +3714,42 @@
                     }
                 },
                 {
-                    "name": "Masik Karthigai",
-                    "name_key": "Masik Karthigai",
-                    "description": "Monthly Krittika Nakshatra fasting for Lord Murugan",
-                    "deity": "Murugan",
+                    "name": "ISKCON Ekadashi",
+                    "name_key": "ISKCON Ekadashi",
+                    "description": "Vaishnava / ISKCON Ekadashi fasting day observed with devotion to Lord Vishnu",
+                    "deity": "Vishnu",
                     "fasting": true,
                     "regions": [
-                        "Tamil Nadu"
+                        "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Vaishnava Ekadashi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
-                        "basis": "nakshatra",
-                        "basis_name": "nakshatra",
-                        "nakshatra": "Krittika",
-                        "nakshatra_key": "Krittika",
-                        "nakshatra_only": true,
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "preferred_nakshatra": "Krittika",
-                        "preferred_nakshatra_key": "Krittika"
+                        "type": "derived_vaishnava_ekadashi",
+                        "type_name": "derived Vaishnava observance",
+                        "basis": "derived_observance",
+                        "basis_name": "derived observance"
                     },
                     "resolution": {
-                        "festival_name": "Masik Karthigai",
-                        "required_nakshatra": "Krittika",
-                        "karmakala_type": "sunrise",
+                        "festival_name": "ISKCON Ekadashi",
                         "standard_date": "2026-07-11",
                         "observance_date": "2026-07-11",
                         "decision": {
-                            "nakshatra_based": true,
-                            "nakshatra_name": "Krittika",
-                            "winning_reason": "nakshatra match",
-                            "winning_nakshatra_window_overlap_seconds": 0,
-                            "winning_reason_key": "nakshatra_match",
-                            "winning_reason_name": "nakshatra match",
-                            "nakshatra_name_key": "Krittika",
-                            "nakshatra_name_localized": "Krittika"
+                            "winning_reason": "Vaishnava Ekadashi from named Ekadashi",
+                            "winning_score": 1000,
+                            "winning_reason_key": "vaishnava_ekadashi_from_named_ekadashi",
+                            "winning_reason_name": "Vaishnava Ekadashi from named Ekadashi"
                         },
-                        "festival_name_key": "Masik Karthigai",
-                        "festival_name_localized": "Masik Karthigai",
-                        "karmakala_type_name": "sunrise",
-                        "required_nakshatra_key": "Krittika",
-                        "required_nakshatra_name": "Krittika"
+                        "festival_name_key": "ISKCON Ekadashi",
+                        "festival_name_localized": "ISKCON Ekadashi"
                     },
                     "rules_applied": {
-                        "nakshatra_based": true,
-                        "nakshatra_name": "Krittika",
-                        "winning_reason": "nakshatra match",
-                        "winning_nakshatra_window_overlap_seconds": 0,
-                        "winning_reason_key": "nakshatra_match",
-                        "winning_reason_name": "nakshatra match",
-                        "nakshatra_name_key": "Krittika",
-                        "nakshatra_name_localized": "Krittika"
+                        "winning_reason": "Vaishnava Ekadashi from named Ekadashi",
+                        "winning_score": 1000,
+                        "winning_reason_key": "vaishnava_ekadashi_from_named_ekadashi",
+                        "winning_reason_name": "Vaishnava Ekadashi from named Ekadashi"
                     }
                 }
             ],
@@ -3993,6 +4012,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -4004,35 +4029,6 @@
                 "Calendar_Type": "purnimanta"
             },
             "festivals": [
-                {
-                    "name": "Bonalu (Ashadha Sunday)",
-                    "name_key": "Bonalu (Ashadha Sunday)",
-                    "description": "Sunday Bonalu observance in Ashadha month",
-                    "deity": "Durga",
-                    "fasting": false,
-                    "regions": [
-                        "Telangana"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "weekday_in_month",
-                        "type_name": "weekday in lunar month",
-                        "basis": "weekday_in_lunar_month",
-                        "basis_name": "weekday in lunar month",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Ashadha",
-                            "value_key": "Ashadha",
-                            "name": "Ashadha"
-                        },
-                        "weekday": {
-                            "number": 0,
-                            "name": "Sunday",
-                            "english_name": "Sunday"
-                        }
-                    }
-                },
                 {
                     "name": "Ravi Pradosh Vrat",
                     "name_key": "Ravi Pradosh Vrat",
@@ -4048,9 +4044,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "family": "Pradosh Vrat family",
                         "family_key": "pradosh_vrat",
@@ -4072,7 +4068,7 @@
                         "paksha": "Both",
                         "paksha_name": "Both",
                         "karmakala_type": "pradosha",
-                        "karmakala_type_name": "pradosha",
+                        "karmakala_type_name": "Pradosha",
                         "strict_karmakala": true,
                         "pradosh_truth_table": true,
                         "weekday_classifier_after_resolution": true,
@@ -4118,7 +4114,7 @@
                         "festival_name_key": "Pradosh Vrat",
                         "festival_name_localized": "Pradosh Vrat",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "pradosha"
+                        "karmakala_type_name": "Pradosha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -4156,12 +4152,12 @@
                         "Pan-India"
                     ],
                     "aliases": [],
-                    "observance_note": "Exception: Standard Dark Half (waning) tithi 14 falls on 2026-07-13 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-12.",
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 14 falls on 2026-07-13 at sunrise, but due to tradition/ritual requiring Nishitha presence, it is celebrated on 2026-07-12.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -4179,8 +4175,11 @@
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type": "nishitha",
-                        "karmakala_type_name": "nishitha",
-                        "strict_karmakala": true
+                        "karmakala_type_name": "Nishitha",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Masik Shivaratri",
@@ -4189,7 +4188,7 @@
                         "karmakala_type": "nishitha",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 2524.266654253006,
+                        "tithi_coverage_seconds_today": 2524.266694486141,
                         "tithi_coverage_seconds_tomorrow": 0,
                         "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": true,
@@ -4199,7 +4198,7 @@
                         "target_tithi_end_jd": 2461235.0554826334,
                         "standard_date": "2026-07-13",
                         "observance_date": "2026-07-12",
-                        "observance_note": "Exception: Standard Dark Half (waning) tithi 14 falls on 2026-07-13 at sunrise, but due to tradition/ritual requiring nishitha presence, it is celebrated on 2026-07-12.",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 14 falls on 2026-07-13 at sunrise, but due to tradition/ritual requiring Nishitha presence, it is celebrated on 2026-07-12.",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
@@ -4208,7 +4207,7 @@
                             "prefer_growth_before_score": false,
                             "winning_reason": "Mahashivaratri Day 1 full Nishitha over Day 2 partial",
                             "winning_score": 20000,
-                            "winning_window_overlap_seconds": 2524.266654253006,
+                            "winning_window_overlap_seconds": 2524.266694486141,
                             "winning_window_coverage_ratio": 1,
                             "bhadra_decision": {
                                 "applicable": false,
@@ -4221,7 +4220,7 @@
                         "festival_name_key": "Masik Shivaratri",
                         "festival_name_localized": "Masik Shivaratri",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "nishitha"
+                        "karmakala_type_name": "Nishitha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -4233,7 +4232,7 @@
                         "preferred_nakshatra": null,
                         "winning_reason": "Mahashivaratri Day 1 full Nishitha over Day 2 partial",
                         "winning_score": 20000,
-                        "winning_window_overlap_seconds": 2524.266654253006,
+                        "winning_window_overlap_seconds": 2524.266694486141,
                         "winning_window_coverage_ratio": 1,
                         "bhadra_decision": {
                             "applicable": false,
@@ -4262,16 +4261,19 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "nakshatra",
-                        "basis_name": "nakshatra",
+                        "basis_name": "Nakshatra",
                         "nakshatra": "Rohini",
                         "nakshatra_key": "Rohini",
                         "nakshatra_only": true,
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "preferred_nakshatra": "Rohini",
-                        "preferred_nakshatra_key": "Rohini"
+                        "preferred_nakshatra_key": "Rohini",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Rohini Vrat",
@@ -4291,7 +4293,7 @@
                         },
                         "festival_name_key": "Rohini Vrat",
                         "festival_name_localized": "Rohini Vrat",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "required_nakshatra_key": "Rohini",
                         "required_nakshatra_name": "Rohini"
                     },
@@ -4322,7 +4324,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -4582,6 +4584,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -4609,7 +4617,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -4869,6 +4877,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Jyeshtha",
                 "Month_Amanta_En": "Jyeshtha",
                 "Month_Purnimanta": "Ashadha",
@@ -4881,21 +4895,24 @@
             },
             "festivals": [
                 {
-                    "name": "Jyeshtha Amavasya",
-                    "name_key": "Jyeshtha Amavasya",
-                    "description": "Amavasya falling in the month of Jyeshtha",
+                    "name": "Ashadha Amavasya",
+                    "name_key": "Ashadha Amavasya",
+                    "description": "Amavasya falling in the month of Ashadha; observed as Deep Puja in some regions",
                     "deity": "Pitrus",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Deep Puja",
+                        "Divaso"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -4919,12 +4936,12 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first"
                     },
                     "resolution": {
-                        "festival_name": "Jyeshtha Amavasya",
+                        "festival_name": "Ashadha Amavasya",
                         "required_tithi": 15,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -4958,10 +4975,10 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Jyeshtha Amavasya",
-                        "festival_name_localized": "Jyeshtha Amavasya",
+                        "festival_name_key": "Ashadha Amavasya",
+                        "festival_name_localized": "Ashadha Amavasya",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -5004,7 +5021,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -5012,6 +5029,26 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Anvadhan",
+                    "name_key": "Anvadhan",
+                    "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
+                    "deity": "Agni",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "anvadhan",
+                        "type_name": "Anvadhan",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "Sunrise"
                     }
                 },
                 {
@@ -5027,9 +5064,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -5047,8 +5084,11 @@
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type": "aparahna",
-                        "karmakala_type_name": "afternoon",
-                        "vriddhi_preference": "first"
+                        "karmakala_type_name": "Afternoon",
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Darsha Amavasya",
@@ -5088,7 +5128,7 @@
                         "festival_name_key": "Darsha Amavasya",
                         "festival_name_localized": "Darsha Amavasya",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "afternoon"
+                        "karmakala_type_name": "Afternoon"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -5135,9 +5175,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -5155,7 +5195,7 @@
                         "paksha": "Krishna",
                         "paksha_name": "Dark Half (waning)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
@@ -5163,6 +5203,9 @@
                             "allow_adhika": true
                         },
                         "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
                         ]
                     },
@@ -5204,7 +5247,7 @@
                         "festival_name_key": "Amavasya",
                         "festival_name_localized": "Amavasya",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -5482,6 +5525,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -5506,9 +5555,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -5532,9 +5581,9 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "noon",
+                        "karmakala_type_name": "Noon",
                         "strict_karmakala": true,
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -5575,7 +5624,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 1 (Ghatasthapana)",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 1 (Ghatasthapana)",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "noon"
+                        "karmakala_type_name": "Noon"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -5622,9 +5671,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -5648,13 +5697,16 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
                         "source_evidence": [
                             {
                                 "kind": "heading_only",
+                                "kind_name": "heading-only evidence",
+                                "locator_key": "Kachchhi and Halari Ashadhi Varsharambh heading",
                                 "locator": "Kachchhi and Halari Ashadhi Varsharambh heading",
+                                "supports_key": "The observance identity and tithi are listed; the sunrise-vyapini handling is inherited from the general Pratipada/new-year style resolver.",
                                 "supports": "The observance identity and tithi are listed; the sunrise-vyapini handling is inherited from the general Pratipada/new-year style resolver."
                             }
                         ]
@@ -5697,7 +5749,7 @@
                         "festival_name_key": "Kachchhi Halari Ashadhi Varsharambh",
                         "festival_name_localized": "Kachchhi & Halari Ashadhi New Year",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -5740,7 +5792,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -5763,9 +5815,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "nakshatra",
-                        "basis_name": "nakshatra",
+                        "basis_name": "Nakshatra",
                         "resolver": "classical",
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
@@ -5773,7 +5825,7 @@
                         "nakshatra_key": "Pushya",
                         "nakshatra_only": true,
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true,
                         "sect_specific": true,
                         "ritual_profile": "Satsangi Rathyatra ritual profile",
@@ -5781,6 +5833,9 @@
                         "preferred_nakshatra": "Pushya",
                         "preferred_nakshatra_key": "Pushya",
                         "source_refs": [
+                            "Satsangi Jeevan 4.61"
+                        ],
+                        "source_ref_keys": [
                             "Satsangi Jeevan 4.61"
                         ]
                     },
@@ -5802,7 +5857,7 @@
                         },
                         "festival_name_key": "Swaminarayan Rathyatra",
                         "festival_name_localized": "Swaminarayan Rathyatra",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "required_nakshatra_key": "Pushya",
                         "required_nakshatra_name": "Pushya"
                     },
@@ -5818,6 +5873,26 @@
                     }
                 },
                 {
+                    "name": "Ishti",
+                    "name_key": "Ishti",
+                    "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
+                    "deity": "Agni",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "day_after_anvadhan",
+                        "type_name": "Day after Anvadhan (Ishti)",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "Sunrise"
+                    }
+                },
+                {
                     "name": "Chandra Darshana",
                     "name_key": "Chandra Darshana",
                     "description": "First sighting of the moon after Amavasya",
@@ -5830,9 +5905,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -5895,7 +5970,7 @@
                                 "sthula_threshold_muhurtas": 9,
                                 "sthula_threshold_seconds": 29069.40000861883,
                                 "day_muhurta_seconds": 3229.9333342909813,
-                                "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "reason": "Dwitiya fallback active at local sunset",
                                 "basis": "classical_textual_rule_sthula_chandra_darshana",
                                 "modern_visibility": {
                                     "model": "simplified_modern_crescent_visibility",
@@ -5912,7 +5987,9 @@
                                     "passes_hard_elongation_floor": true,
                                     "passes_illumination": true,
                                     "basis": "modern_astronomical_heuristic_not_classical"
-                                }
+                                },
+                                "reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                                "reason_name": "Dwitiya fallback active at local sunset"
                             },
                             "bhadra_decision": {
                                 "applicable": false,
@@ -5951,7 +6028,7 @@
                             "sthula_threshold_muhurtas": 9,
                             "sthula_threshold_seconds": 29069.40000861883,
                             "day_muhurta_seconds": 3229.9333342909813,
-                            "reason": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "reason": "Dwitiya fallback active at local sunset",
                             "basis": "classical_textual_rule_sthula_chandra_darshana",
                             "modern_visibility": {
                                 "model": "simplified_modern_crescent_visibility",
@@ -5968,7 +6045,9 @@
                                 "passes_hard_elongation_floor": true,
                                 "passes_illumination": true,
                                 "basis": "modern_astronomical_heuristic_not_classical"
-                            }
+                            },
+                            "reason_key": "chandra_darshana_dwitiya_fallback_at_local_sunset",
+                            "reason_name": "Dwitiya fallback active at local sunset"
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -6249,6 +6328,12 @@
                 "Ritu": "Summer",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -6273,9 +6358,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "solar_sankranti",
-                        "type_name": "solar sankranti",
+                        "type_name": "Solar Sankranti",
                         "basis": "solar",
-                        "basis_name": "solar",
+                        "basis_name": "Solar",
                         "solar_rashi": {
                             "index": 3,
                             "number": 4,
@@ -6299,9 +6384,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -6325,7 +6410,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Ashadhi Bij",
@@ -6365,7 +6450,7 @@
                         "festival_name_key": "Ashadhi Bij",
                         "festival_name_localized": "Ashadhi Bij",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -6406,9 +6491,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -6432,8 +6517,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -6474,7 +6559,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 2",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 2",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -6515,9 +6600,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -6541,7 +6626,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
                         "adhika": {
@@ -6586,7 +6671,7 @@
                         "festival_name_key": "Jagannath Rath Yatra",
                         "festival_name_localized": "Jagannath Rath Yatra",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -6630,7 +6715,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -6653,9 +6738,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -6679,7 +6764,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true
                     },
                     "resolution": {
@@ -6720,7 +6805,7 @@
                         "festival_name_key": "Jagannath Ratha Yatra",
                         "festival_name_localized": "Jagannath Ratha Yatra",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -7031,6 +7116,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -7055,9 +7146,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -7075,12 +7166,20 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "madhyahna",
-                        "karmakala_type_name": "noon",
+                        "karmakala_type_name": "Noon",
                         "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "prefer_first_karmakala": true,
                         "prefer_full_karmakala_coverage": true,
                         "vinayaki_chaturthi_truth_table": true,
                         "gujarati_special_case": "prefer_full_madhyahna_chaturthi_coverage_over_partial_previous_overlap",
+                        "adhika": {
+                            "allow_adhika": true
+                        },
                         "source_refs": [
+                            "Satsangi Jeevan 4.56"
+                        ],
+                        "source_ref_keys": [
                             "Satsangi Jeevan 4.56"
                         ]
                     },
@@ -7103,9 +7202,9 @@
                         "observance_date": "2026-07-17",
                         "decision": {
                             "strict_karmakala": true,
-                            "vriddhi_preference": "last",
+                            "vriddhi_preference": "first",
                             "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
+                            "prefer_first_karmakala": true,
                             "prefer_growth_before_score": false,
                             "winning_reason": "Vinayaki Chaturthi: full Madhyahna coverage on day 1",
                             "winning_score": 20000,
@@ -7122,14 +7221,14 @@
                         "festival_name_key": "Vinayaki Chaturthi",
                         "festival_name_localized": "Vinayaki Chaturthi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "noon"
+                        "karmakala_type_name": "Noon"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
                         "require_karmakala_match": null,
-                        "vriddhi_preference": "last",
+                        "vriddhi_preference": "first",
                         "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
+                        "prefer_first_karmakala": true,
                         "prefer_growth_before_score": false,
                         "preferred_nakshatra": null,
                         "winning_reason": "Vinayaki Chaturthi: full Madhyahna coverage on day 1",
@@ -7163,9 +7262,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -7189,8 +7288,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -7231,7 +7330,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 3",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 3",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -7272,9 +7371,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -7298,8 +7397,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -7340,7 +7439,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 4",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 4",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -7383,7 +7482,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -7406,9 +7505,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -7432,7 +7531,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Aniruddha Chaturthi",
@@ -7472,7 +7571,7 @@
                         "festival_name_key": "Aniruddha Chaturthi",
                         "festival_name_localized": "Aniruddha Chaturthi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -7740,6 +7839,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -7764,9 +7869,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -7790,8 +7895,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -7832,7 +7937,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 5",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 5",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -7875,7 +7980,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -8115,6 +8220,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -8168,9 +8279,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -8194,8 +8305,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -8236,7 +8347,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 6",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 6",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -8280,7 +8391,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -8530,6 +8641,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -8554,9 +8671,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -8580,8 +8697,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -8622,7 +8739,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 7",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 7",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -8666,7 +8783,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -8916,6 +9033,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -8940,9 +9063,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -8966,8 +9089,8 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "karmakala_type_name": "Sunrise",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -9008,7 +9131,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 8",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 8",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -9051,7 +9174,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -9074,9 +9197,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -9094,11 +9217,17 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
+                        "adhika": {
+                            "allow_adhika": true
+                        },
                         "resolution_policy": {
                             "vriddhi_preference": "first"
                         },
                         "source_refs": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
                         ]
                     },
@@ -9140,7 +9269,7 @@
                         "festival_name_key": "Masik Durgashtami",
                         "festival_name_localized": "Masik Durgashtami",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -9388,6 +9517,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -9412,9 +9547,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -9432,7 +9567,7 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
                         "tradition_profile": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
@@ -9459,18 +9594,21 @@
                         "ritual_layers": [
                             {
                                 "key": "hari_jayanti_puja",
-                                "name": "hari_jayanti_puja"
+                                "name": "Hari Jayanti puja"
                             },
                             {
                                 "key": "swaminarayan_navami",
-                                "name": "swaminarayan_navami"
+                                "name": "Swaminarayan Navami"
                             },
                             {
                                 "key": "monthly_sud9",
-                                "name": "monthly_sud9"
+                                "name": "Monthly Shukla Navami observance"
                             }
                         ],
                         "source_refs": [
+                            "Satsangi Jeevan 5.61"
+                        ],
+                        "source_ref_keys": [
                             "Satsangi Jeevan 5.61"
                         ]
                     },
@@ -9512,7 +9650,7 @@
                         "festival_name_key": "Hari Jayanti",
                         "festival_name_localized": "Hari Jayanti",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -9555,7 +9693,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -9795,6 +9933,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -9819,9 +9963,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -9845,9 +9989,9 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "vriddhi_preference": "last",
-                        "worship_profile": "gupta_mahavidya_custom",
+                        "worship_profile": "Gupta Mahavidya worship profile",
                         "worship_profile_key": "gupta_mahavidya_custom"
                     },
                     "resolution": {
@@ -9888,7 +10032,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Day 9",
                         "festival_name_localized": "Ashadha Gupt Navaratri Day 9",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -9932,7 +10076,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -10182,6 +10326,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -10206,9 +10356,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -10232,7 +10382,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Ashadha Gupt Navaratri Parana (Dashami)",
@@ -10272,7 +10422,7 @@
                         "festival_name_key": "Ashadha Gupt Navaratri Parana (Dashami)",
                         "festival_name_localized": "Ashadha Gupt Navaratri Parana (Dashami)",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -10313,9 +10463,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -10339,7 +10489,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Bahuda Yatra",
@@ -10379,7 +10529,7 @@
                         "festival_name_key": "Bahuda Yatra",
                         "festival_name_localized": "Bahuda Yatra",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -10422,7 +10572,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -10445,9 +10595,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -10471,7 +10621,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Raivata Manvadi",
@@ -10511,7 +10661,7 @@
                         "festival_name_key": "Raivata Manvadi",
                         "festival_name_localized": "Raivata Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -10759,6 +10909,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -10790,9 +10946,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -10816,7 +10972,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Devshayani Ekadashi",
@@ -10856,7 +11012,7 @@
                         "festival_name_key": "Devshayani Ekadashi",
                         "festival_name_localized": "Devshayani Ekadashi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -10902,9 +11058,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -10928,12 +11084,15 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "source_evidence": [
                             {
                                 "kind": "inherited_rule",
+                                "kind_name": "inherited rule",
+                                "locator_key": "Pandharpur Yatra heading and Ekadashi Vrat section",
                                 "locator": "Pandharpur Yatra heading and Ekadashi Vrat section",
+                                "supports_key": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic.",
                                 "supports": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic."
                             }
                         ]
@@ -10976,7 +11135,7 @@
                         "festival_name_key": "Pandharpur Yatra",
                         "festival_name_localized": "Pandharpur Yatra",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -11017,9 +11176,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -11043,17 +11202,23 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "fasting_guidance": "chaturmas_no_shak",
                         "fasting_guidance_key": "chaturmas_no_shak",
                         "source_refs": [
                             "Nirnaya Sindhu / Dharma Sindhu"
                         ],
+                        "source_ref_keys": [
+                            "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
                         "source_evidence": [
                             {
                                 "kind": "inherited_rule",
+                                "kind_name": "inherited rule",
+                                "locator_key": "Shaka Vrata heading and Ekadashi Vrat section",
                                 "locator": "Shaka Vrata heading and Ekadashi Vrat section",
+                                "supports_key": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic.",
                                 "supports": "The heading identifies the observance with Ashadha Shukla Ekadashi; date selection inherits Ekadashi vrata logic."
                             }
                         ]
@@ -11096,7 +11261,7 @@
                         "festival_name_key": "Shaka Vrata Begins",
                         "festival_name_localized": "Shaka Vrata Begins",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -11137,9 +11302,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -11163,7 +11328,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Gauri Vrat (Molakat) Begins",
@@ -11203,7 +11368,7 @@
                         "festival_name_key": "Gauri Vrat (Molakat) Begins",
                         "festival_name_localized": "Gauri Vrat (Molakat) Begins",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -11247,9 +11412,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -11273,12 +11438,15 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "require_sunrise_vyapini": true,
                         "source_evidence": [
                             {
                                 "kind": "inherited_rule",
+                                "kind_name": "inherited rule",
+                                "locator_key": "Chaturmasa Prarambh heading under Ashadha Shukla Ekadashi Vrat",
                                 "locator": "Chaturmasa Prarambh heading under Ashadha Shukla Ekadashi Vrat",
+                                "supports_key": "Chaturmasa begins with the Ashadha Shukla Ekadashi vrat observance.",
                                 "supports": "Chaturmasa begins with the Ashadha Shukla Ekadashi vrat observance."
                             }
                         ]
@@ -11321,7 +11489,7 @@
                         "festival_name_key": "Chaturmasa Begins",
                         "festival_name_localized": "Chaturmasa Begins",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -11364,7 +11532,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -11653,6 +11821,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -11705,12 +11879,12 @@
                     "aliases": [
                         "Pradosh Vrat"
                     ],
-                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-07-26.",
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring Pradosha presence, it is celebrated on 2026-07-26.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "family": "Pradosh Vrat family",
                         "family_key": "pradosh_vrat",
@@ -11732,7 +11906,7 @@
                         "paksha": "Both",
                         "paksha_name": "Both",
                         "karmakala_type": "pradosha",
-                        "karmakala_type_name": "pradosha",
+                        "karmakala_type_name": "Pradosha",
                         "strict_karmakala": true,
                         "pradosh_truth_table": true,
                         "weekday_classifier_after_resolution": true,
@@ -11757,7 +11931,7 @@
                         "target_tithi_end_jd": 2461248.948138817,
                         "standard_date": "2026-07-27",
                         "observance_date": "2026-07-26",
-                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring pradosha presence, it is celebrated on 2026-07-26.",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 13 falls on 2026-07-27 at sunrise, but due to tradition/ritual requiring Pradosha presence, it is celebrated on 2026-07-26.",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
@@ -11779,7 +11953,7 @@
                         "festival_name_key": "Pradosh Vrat",
                         "festival_name_localized": "Pradosh Vrat",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "pradosha"
+                        "karmakala_type_name": "Pradosha"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -11823,7 +11997,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -12063,6 +12237,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -12087,9 +12267,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -12113,7 +12293,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Jaya Parvati Vrat Begins",
@@ -12153,7 +12333,7 @@
                         "festival_name_key": "Jaya Parvati Vrat Begins",
                         "festival_name_localized": "Jaya Parvati Vrat Begins",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -12197,7 +12377,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -12437,6 +12617,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -12458,12 +12644,12 @@
                         "Pan-India"
                     ],
                     "aliases": [],
-                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-07-28.",
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring Sunset presence, it is celebrated on 2026-07-28.",
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -12481,7 +12667,7 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunset",
-                        "karmakala_type_name": "sunset",
+                        "karmakala_type_name": "Sunset",
                         "strict_karmakala": true,
                         "adhika": {
                             "allow_adhika": true
@@ -12504,7 +12690,7 @@
                         "target_tithi_end_jd": 2461251.108069732,
                         "standard_date": "2026-07-29",
                         "observance_date": "2026-07-28",
-                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring sunset presence, it is celebrated on 2026-07-28.",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-07-29 at sunrise, but due to tradition/ritual requiring Sunset presence, it is celebrated on 2026-07-28.",
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "last",
@@ -12526,7 +12712,7 @@
                         "festival_name_key": "Shri Satyanarayana Vrat",
                         "festival_name_localized": "Shri Satyanarayana Vrat",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunset"
+                        "karmakala_type_name": "Sunset"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -12569,7 +12755,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -12819,6 +13005,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Ashadha",
@@ -12843,9 +13035,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -12863,12 +13055,18 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        },
                         "source_evidence": [
                             {
                                 "kind": "date_rule",
+                                "kind_name": "date-rule evidence",
+                                "locator_key": "Monthly Purnima Vrat rule",
                                 "locator": "Monthly Purnima Vrat rule",
+                                "supports_key": "Generic Vratni Purnima follows the 18 daytime-ghadi Chaturdashi condition rather than plain sunrise-only Purnima.",
                                 "supports": "Generic Vratni Purnima follows the 18 daytime-ghadi Chaturdashi condition rather than plain sunrise-only Purnima."
                             }
                         ]
@@ -12911,7 +13109,7 @@
                         "festival_name_key": "Vratni Purnima",
                         "festival_name_localized": "Vratni Purnima",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -12952,9 +13150,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -12978,12 +13176,15 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true,
                         "source_evidence": [
                             {
                                 "kind": "inherited_rule",
+                                "kind_name": "inherited rule",
+                                "locator_key": "Vratni Poonam section",
                                 "locator": "Vratni Poonam section",
+                                "supports_key": "This Purnima Vrat inherits the generic Purnima-vrat 18 daytime-ghadi Chaturdashi condition; the sunrise field is only the resolver anchor for that table.",
                                 "supports": "This Purnima Vrat inherits the generic Purnima-vrat 18 daytime-ghadi Chaturdashi condition; the sunrise field is only the resolver anchor for that table."
                             }
                         ]
@@ -13026,7 +13227,7 @@
                         "festival_name_key": "Ashadha Purnima Vrat",
                         "festival_name_localized": "Ashadha Purnima Vrat",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -13070,9 +13271,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -13096,7 +13297,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true
                     },
                     "resolution": {
@@ -13137,7 +13338,7 @@
                         "festival_name_key": "Ashadha Purnima",
                         "festival_name_localized": "Ashadha Purnima",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -13180,7 +13381,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -13203,9 +13404,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -13229,7 +13430,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Vaivaswata Manvadi",
@@ -13269,7 +13470,7 @@
                         "festival_name_key": "Vaivaswata Manvadi",
                         "festival_name_localized": "Vaivaswata Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -13310,9 +13511,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -13336,7 +13537,7 @@
                             "name": "Ashadha"
                         },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "resolution": {
                         "festival_name": "Chakshusha Manvadi",
@@ -13376,7 +13577,7 @@
                         "festival_name_key": "Chakshusha Manvadi",
                         "festival_name_localized": "Chakshusha Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": false,
@@ -13416,93 +13617,12 @@
                     "aliases": [],
                     "observance_note": null,
                     "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "tithi",
+                        "type": "anvadhan",
+                        "type_name": "Anvadhan",
                         "basis": "tithi",
-                        "basis_name": "tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
+                        "basis_name": "Tithi",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Anvadhan",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461250.0342799416,
-                        "target_tithi_end_jd": 2461251.108069732,
-                        "standard_date": "2026-07-29",
-                        "observance_date": "2026-07-29",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Anvadhan",
-                        "festival_name_localized": "Anvadhan",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "karmakala_type_name": "Sunrise"
                     }
                 },
                 {
@@ -13520,9 +13640,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
@@ -13540,7 +13660,7 @@
                         "paksha": "Shukla",
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise",
+                        "karmakala_type_name": "Sunrise",
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first"
@@ -13583,7 +13703,7 @@
                         "festival_name_key": "Mukutotsav Purnima",
                         "festival_name_localized": "Mukutotsav Purnima",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,
@@ -13841,6 +13961,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Shravana",
@@ -13853,68 +13979,60 @@
             },
             "festivals": [
                 {
-                    "name": "Guruvar Vrat",
-                    "name_key": "Guruvar Vrat",
-                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
-                    "deity": "Vishnu",
-                    "fasting": true,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Brihaspativar Vrat",
-                        "Thursday Vrat"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "weekday",
-                        "type_name": "weekday recurrence",
-                        "basis": "weekday_recurrence",
-                        "basis_name": "weekday recurrence",
-                        "weekday": {
-                            "number": 4,
-                            "name": "Thursday",
-                            "english_name": "Thursday"
-                        }
-                    }
-                },
-                {
-                    "name": "Ishti",
-                    "name_key": "Ishti",
-                    "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
-                    "deity": "Agni",
+                    "name": "Shravana Maas Begins",
+                    "name_key": "Shravana Maas Begins",
+                    "description": "Shravana Maas Begins marks the start of the sacred Shravana month and the beginning of the month-long Shiva worship period.",
+                    "deity": "Shiva",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shravana Masarambh",
+                        "Shravan Maas Begins",
+                        "Shiva Puja Begins",
+                        "Shravan Shivpujan"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
                                 1
                             ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
                             "absolute_numbers": [
-                                16
+                                1
                             ],
                             "names": [
-                                "First Lunar Day of Dark Half"
+                                "First Lunar Day of Bright Half"
                             ]
                         },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "paksha_amanta": "Shukla",
+                        "paksha_amanta_name": "Bright Half (waxing)",
+                        "paksha_purnimanta": "Krishna",
+                        "paksha_purnimanta_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
                         "karmakala_type": "sunrise",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise",
+                        "strict_karmakala": true,
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first"
                     },
                     "resolution": {
-                        "festival_name": "Ishti",
+                        "festival_name": "Shravana Maas Begins",
                         "required_tithi": 1,
                         "paksha": "Krishna",
                         "karmakala_type": "sunrise",
@@ -13931,7 +14049,7 @@
                         "standard_date": "2026-07-30",
                         "observance_date": "2026-07-30",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
                             "kshaya_preference": "first",
                             "prefer_first_karmakala": false,
@@ -13948,13 +14066,13 @@
                             "winning_reason_key": "target_at_karmakala",
                             "winning_reason_name": "target tithi at karmakala"
                         },
-                        "festival_name_key": "Ishti",
-                        "festival_name_localized": "Ishti",
+                        "festival_name_key": "Shravana Maas Begins",
+                        "festival_name_localized": "Shravana Maas Begins",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sunrise"
+                        "karmakala_type_name": "Sunrise"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
@@ -13977,6 +14095,52 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Guruvar Vrat",
+                    "name_key": "Guruvar Vrat",
+                    "description": "Weekly Thursday fast dedicated to Brihaspati and Lord Vishnu",
+                    "deity": "Vishnu",
+                    "fasting": true,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Brihaspativar Vrat",
+                        "Thursday Vrat"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "weekday",
+                        "type_name": "Weekday",
+                        "basis": "weekday_recurrence",
+                        "basis_name": "weekday recurrence",
+                        "weekday": {
+                            "number": 4,
+                            "name": "Thursday",
+                            "english_name": "Thursday"
+                        }
+                    }
+                },
+                {
+                    "name": "Ishti",
+                    "name_key": "Ishti",
+                    "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
+                    "deity": "Agni",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "day_after_anvadhan",
+                        "type_name": "Day after Anvadhan (Ishti)",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "Sunrise"
                     }
                 }
             ],
@@ -14219,6 +14383,12 @@
                 "Ritu": "Monsoon",
                 "Sayana_Ayana": "Southward Course",
                 "Sayana_Ritu": "Monsoon",
+                "Vikram_Samvat": 2083,
+                "Gujarati_Samvat": 2082,
+                "Saka_Samvat": 1948,
+                "Kali_Samvat": 5127,
+                "Samvatsara": "Parabhava",
+                "Samvatsara_North": "Siddharthi",
                 "Month_Amanta": "Ashadha",
                 "Month_Amanta_En": "Ashadha",
                 "Month_Purnimanta": "Shravana",
@@ -14245,7 +14415,7 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "weekday",
-                        "type_name": "weekday recurrence",
+                        "type_name": "Weekday",
                         "basis": "weekday_recurrence",
                         "basis_name": "weekday recurrence",
                         "weekday": {
@@ -14268,9 +14438,9 @@
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
-                        "type_name": "tithi",
+                        "type_name": "Tithi",
                         "basis": "tithi",
-                        "basis_name": "tithi",
+                        "basis_name": "Tithi",
                         "resolver": "classical",
                         "family": "Hindola period family",
                         "family_key": "hindola_period",
@@ -14301,22 +14471,32 @@
                             "name": "Shravana"
                         },
                         "karmakala_type": "sayankala",
-                        "karmakala_type_name": "sayankala",
+                        "karmakala_type_name": "Sayankala",
                         "sect_specific": true,
                         "ritual_profile": "Satsangi Hindola ritual profile",
                         "ritual_profile_key": "hindola_satsangi",
                         "source_refs": [
                             "Satsangi Jeevan 4.61"
                         ],
+                        "source_ref_keys": [
+                            "Satsangi Jeevan 4.61"
+                        ],
                         "source_evidence": [
                             {
                                 "kind": "date_rule",
+                                "kind_name": "date-rule evidence",
+                                "source_key": "Satsangi Jeevan",
                                 "source": "Satsangi Jeevan",
+                                "locator_key": "4.61.17-18",
                                 "locator": "4.61.17-18",
+                                "supports_key": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi.",
                                 "supports": "Start on Ashadha Krishna Pratipada or Dwitiya when the Moon has strength in Taurus; every evening seat Balakrishna, arati, and swing for two ghadi."
                             }
                         ],
                         "unresolved_conditions": [
+                            "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
+                        ],
+                        "unresolved_condition_keys": [
                             "Moon strength in Taurus (वृषराशि चन्द्रबल) is stated in SJ 4.61.17 but not yet enforced as a hard executable filter."
                         ]
                     },
@@ -14358,7 +14538,7 @@
                         "festival_name_key": "Hindola Festival Begins",
                         "festival_name_localized": "Hindola Festival Begins",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "sayankala"
+                        "karmakala_type_name": "Sayankala"
                     },
                     "rules_applied": {
                         "strict_karmakala": true,

@@ -293,8 +293,10 @@ final class NirnayVerifiedRulesTest extends TestCase
 
         self::assertTrue($payload['applicable']);
         self::assertSame('after_next_sunrise_bathe_see_pure_sun_disc_then_eat', $payload['ritual_completion_requirement_key']);
-        self::assertEqualsWithDelta($expectedNextSunriseJd, $payload['starts_after_jd'], 1e-9);
-        self::assertGreaterThan($visibleEndJd, $payload['starts_after_jd']);
+        self::assertArrayNotHasKey('starts_after_jd', $payload);
+        self::assertEqualsWithDelta($expectedNextSunriseJd, $payload['snana_homa_after_jd'], 1e-9);
+        self::assertEqualsWithDelta($expectedNextSunriseJd, $payload['food_allowed_after_jd'], 1e-9);
+        self::assertGreaterThan($visibleEndJd, $payload['food_allowed_after_jd']);
     }
 
     public function testLunarGrastastaPostEclipseRitualWaitsForMoonriseAgain(): void
@@ -307,6 +309,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         $buildPostEclipseRitualPayload = $reflection->getMethod('buildPostEclipseRitualPayload');
 
         $visibleEndJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2022-11-08 18:18:00', 'Asia/Kolkata'));
+        $mokshaJd = $carbonToJd->invoke($service, CarbonImmutable::parse('2022-11-08 19:40:00', 'Asia/Kolkata'));
         $expectedNextMoonriseJd = $nextMoonriseAfter->invoke($service, $visibleEndJd, 23.2472446, 69.668339, 'Asia/Kolkata');
         $payload = $buildPostEclipseRitualPayload->invoke(
             $service,
@@ -316,13 +319,121 @@ final class NirnayVerifiedRulesTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             true,
-            ['grast_ast' => true]
+            ['grast_ast' => true, 'type' => 'grast_ast'],
+            $mokshaJd
         );
 
         self::assertTrue($payload['applicable']);
         self::assertSame('after_moonrise_again_then_eat', $payload['ritual_completion_requirement_key']);
-        self::assertEqualsWithDelta($expectedNextMoonriseJd, $payload['starts_after_jd'], 1e-9);
-        self::assertGreaterThan($visibleEndJd, $payload['starts_after_jd']);
+        self::assertSame('next_local_moonrise', $payload['food_allowed_after_key']);
+        self::assertArrayNotHasKey('starts_after_jd', $payload);
+        self::assertEqualsWithDelta($mokshaJd, $payload['snana_homa_after_jd'], 1e-9);
+        self::assertEqualsWithDelta($mokshaJd, $payload['astronomical_moksha_jd'], 1e-9);
+        self::assertEqualsWithDelta($expectedNextMoonriseJd, $payload['food_allowed_after_jd'], 1e-9);
+        self::assertGreaterThan($visibleEndJd, $payload['food_allowed_after_jd']);
+        self::assertGreaterThan($visibleEndJd, $payload['astronomical_moksha_jd'] - 1e-6);
+    }
+
+    public function testAugust2035PartialLunarIsGrastastaNotGrastodaya(): void
+    {
+        CliBootstrap::init(dirname(__DIR__));
+        $service = CliBootstrap::makeEclipseService();
+        $events = $service->getEclipsesForDateRange(
+            CarbonImmutable::parse('2035-08-18', 'Asia/Kolkata'),
+            CarbonImmutable::parse('2035-08-20', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata'
+        );
+
+        $event = null;
+        foreach ($events as $candidate) {
+            if (($candidate['date'] ?? null) === '2035-08-19' && ($candidate['type'] ?? null) === 'Lunar') {
+                $event = $candidate;
+                break;
+            }
+        }
+
+        self::assertIsArray($event, 'Expected 2035-08-19 lunar eclipse for Bhuj.');
+        self::assertTrue((bool) ($event['visibility']['visible'] ?? false));
+        self::assertTrue((bool) ($event['magnitudes']['meets_ritual_minimum'] ?? false));
+        self::assertFalse((bool) ($event['ritual_boundary']['grast_uday'] ?? true), 'Must not classify as grastodaya');
+        self::assertTrue((bool) ($event['ritual_boundary']['grast_ast'] ?? false), 'Must classify as grastasta (moonset during partial)');
+        self::assertSame('grast_ast', $event['ritual_boundary']['type'] ?? null);
+        self::assertSame('lunar_grastasta', $event['ritual_boundary']['instruction_key'] ?? null);
+        self::assertSame(3, $event['sutak']['standard_prahars_before'] ?? null);
+        self::assertFalse((bool) ($event['ritual_boundary']['is_chudamani_yoga'] ?? true));
+
+        $partialEnd = $event['contacts']['partial_end_jd']['jd'] ?? null;
+        $windowEnd = $event['visibility']['window']['end_jd'] ?? null;
+        self::assertIsFloat($partialEnd);
+        self::assertIsFloat($windowEnd);
+        self::assertLessThan($partialEnd, $windowEnd, 'Local visibility ends at moonset before astronomical moksha');
+        self::assertEqualsWithDelta($partialEnd, $event['sutak']['end_jd'] ?? null, 1e-6);
+        self::assertEqualsWithDelta($partialEnd, $event['post_eclipse_ritual']['astronomical_moksha_jd'] ?? null, 1e-6);
+        self::assertEqualsWithDelta($partialEnd, $event['post_eclipse_ritual']['snana_homa_after_jd'] ?? null, 1e-6);
+        self::assertSame('next_local_moonrise', $event['post_eclipse_ritual']['food_allowed_after_key'] ?? null);
+        self::assertArrayNotHasKey('starts_after', $event['post_eclipse_ritual']);
+        self::assertGreaterThan(
+            $windowEnd,
+            $event['post_eclipse_ritual']['food_allowed_after_jd'] ?? 0.0
+        );
+
+        // One horizon definition: moonset, window end, penumbral end, punya end, local_visible_end must match.
+        $moonsetJd = $event['ritual_boundary']['moonset_jd'] ?? null;
+        $punyaEnd = $event['punya_kaal']['end_jd'] ?? null;
+        $localVisibleEnd = $event['post_eclipse_ritual']['local_visible_end_jd'] ?? null;
+        $penumbralEnd = $event['visibility']['penumbral_window']['end_jd'] ?? null;
+        self::assertIsFloat($moonsetJd);
+        self::assertEqualsWithDelta($moonsetJd, $windowEnd, 1e-9, 'visibility.window.end must equal ritual moonset');
+        self::assertEqualsWithDelta($moonsetJd, $punyaEnd, 1e-9, 'punya_kaal.end must equal ritual moonset');
+        self::assertEqualsWithDelta($moonsetJd, $localVisibleEnd, 1e-9, 'local_visible_end must equal ritual moonset');
+        self::assertEqualsWithDelta($moonsetJd, $penumbralEnd, 1e-9, 'penumbral_window.end must equal literal moonset');
+        self::assertSame(
+            'literally_visible_geometric_above_horizon',
+            $event['literally_visible']['meaning_key'] ?? null
+        );
+        self::assertArrayHasKey('potentially_visible_to_unaided_eye', $event['literally_visible']);
+        self::assertArrayHasKey('ritually_visible_by_horizon_and_magnitude_rules', $event['visibility']);
+        self::assertArrayNotHasKey('unaided_eye_ritual_visible', $event['visibility']);
+        self::assertSame(
+            'snana_homa_after_moksha_food_after_next_moonrise',
+            $event['sutak']['end_scope_key'] ?? null
+        );
+
+        // Separated concepts: literally_visible vs ritual sparsha/madhya/moksha + sutak pair.
+        self::assertTrue((bool) ($event['literally_visible']['in_sky'] ?? false));
+        self::assertEqualsWithDelta($windowEnd, $event['literally_visible']['window']['end_jd'] ?? null, 1e-9);
+        self::assertTrue((bool) ($event['ritual']['applicable'] ?? false));
+        self::assertEqualsWithDelta(
+            $event['contacts']['partial_begin_jd']['jd'] ?? null,
+            $event['ritual']['sparsha']['jd'] ?? null,
+            1e-9
+        );
+        self::assertEqualsWithDelta($event['jd'] ?? null, $event['ritual']['madhya']['jd'] ?? null, 1e-9);
+        self::assertSame('ritual_madhya', $event['ritual']['madhya']['meaning_key'] ?? null);
+        self::assertEqualsWithDelta($partialEnd, $event['ritual']['moksha']['jd'] ?? null, 1e-9);
+        self::assertEqualsWithDelta($event['sutak']['start_jd'] ?? null, $event['ritual']['sutak']['start_jd'] ?? null, 1e-9);
+        self::assertEqualsWithDelta($event['sutak']['relaxed_start_jd'] ?? null, $event['ritual']['relaxed_sutak']['start_jd'] ?? null, 1e-9);
+        self::assertEqualsWithDelta($partialEnd, $event['ritual']['sutak']['end_jd'] ?? null, 1e-9);
+        self::assertEqualsWithDelta($partialEnd, $event['ritual']['relaxed_sutak']['end_jd'] ?? null, 1e-9);
+        // Literally visible end (moonset) is not the same as moksha.
+        self::assertLessThan($event['ritual']['moksha']['jd'], $event['literally_visible']['window']['end_jd']);
+
+        // Horizon event through eclipse must be exported (grastasta ⇒ moonset).
+        self::assertTrue((bool) ($event['horizon_events']['has_rise_or_set_through_eclipse'] ?? false));
+        self::assertTrue((bool) ($event['horizon_events']['grast_ast'] ?? false));
+        self::assertNotNull($event['horizon_events']['moonset'] ?? null);
+        self::assertSame('moonset', $event['horizon_events']['moonset']['type'] ?? null);
+        self::assertSame('grast_ast', $event['horizon_events']['moonset']['role'] ?? null);
+        self::assertEqualsWithDelta(
+            $moonsetJd,
+            $event['horizon_events']['moonset']['jd'] ?? null,
+            1e-9
+        );
+        self::assertNull($event['horizon_events']['moonrise']);
+        self::assertNull($event['horizon_events']['sunrise']);
+        self::assertNull($event['horizon_events']['sunset']);
     }
 
     public function testGujaratiParanaNakshatraRestrictionsAreMonthPakshaSpecific(): void
@@ -790,8 +901,10 @@ final class NirnayVerifiedRulesTest extends TestCase
             'vijaya_kaal' => [100.25 + (10.0 * $dayMuhurta), 100.25 + (11.0 * $dayMuhurta)],
             'sayankala' => [100.25 + ($dayDuration * 4.0 / 5.0), 100.85],
             'sunset' => [100.85 - (24.0 / 1440.0), 100.85 + (48.0 / 1440.0)],
-            'nishitha' => [100.85 + ($nightDuration / 2.0) - ($nightMuhurta / 2.0), 100.85 + ($nightDuration / 2.0) + ($nightMuhurta / 2.0)],
             'pradosha' => [100.85, 100.85 + (3.0 * $nightMuhurta)],
+            'ratri' => [100.85 + (3.0 * $nightMuhurta), 100.85 + (7.0 * $nightMuhurta)],
+            'nishitha' => [100.85 + (7.0 * $nightMuhurta), 100.85 + (8.0 * $nightMuhurta)],
+            'usha' => [100.85 + (8.0 * $nightMuhurta), 100.85 + (13.0 * $nightMuhurta)],
         ];
 
         foreach ($windows as $type => [$expectedStart, $expectedEnd]) {
@@ -1423,6 +1536,18 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('bhai_beej', FestivalService::FESTIVALS['Bhai Dooj']['deepotsav_sequence']);
         self::assertContains('Chaitra Navratri Ghatasthapana', FestivalService::FESTIVALS['Chaitra (Vasant) Navaratri Day 1 (Shailaputri Puja)']['aliases']);
         self::assertContains('Sharad Navratri Ghatasthapana', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 1 (Shailaputri Puja)']['aliases']);
+        self::assertArrayHasKey('Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)', FestivalService::FESTIVALS);
+        self::assertArrayHasKey('Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)', FestivalService::FESTIVALS);
+        self::assertContains('Durga Ashtami', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)']['aliases']);
+        self::assertContains('Durga Ashtami (Mahagauri Puja)', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)']['aliases']);
+        self::assertContains('Ashvina Sharad Navaratri Day 8', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)']['aliases']);
+        self::assertContains('Maha Navami', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)']['aliases']);
+        self::assertContains('Maha Navami (Siddhidatri Puja)', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)']['aliases']);
+        self::assertContains('Ashvina Sharad Navaratri Day 9', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)']['aliases']);
+        self::assertSame(8, FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)']['tithi']);
+        self::assertSame(9, FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)']['tithi']);
+        self::assertSame('sharad', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)']['navratri_type']);
+        self::assertSame('sharad', FestivalService::FESTIVALS['Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)']['navratri_type']);
         self::assertContains('Diwali Lakshmi Puja', FestivalService::FESTIVALS['Lakshmi Puja (Deepavali)']['aliases']);
         self::assertContains('Chhath Puja (Surya Shashthi)', FestivalService::FESTIVALS['Chhath Puja (Sandhya Arghya)']['aliases']);
         self::assertContains('Kanda Sashti (Soorasamharam)', FestivalService::FESTIVALS['Skanda Sashti']['aliases']);
@@ -1680,7 +1805,14 @@ final class NirnayVerifiedRulesTest extends TestCase
             'paksha' => 'Shukla',
             'tithi' => 3,
             'karmakala_type' => 'madhyahna',
-            'source_evidence' => ['foo'],
+            'source_evidence' => [
+                [
+                    'kind' => 'date_rule',
+                    'source' => 'Satsangi Jeevan',
+                    'locator' => 'foo',
+                    'supports' => 'bar',
+                ],
+            ],
             'textual_variants' => ['bar'],
             'resolver_compatibility' => 'partial',
             'unresolved_conditions' => ['baz'],
@@ -1692,10 +1824,15 @@ final class NirnayVerifiedRulesTest extends TestCase
             'strict_dashami_vedha' => true,
         ], null);
 
-        self::assertSame(['foo'], $basis['source_evidence']);
+        self::assertSame('date_rule', $basis['source_evidence'][0]['kind']);
+        self::assertSame('date-rule evidence', $basis['source_evidence'][0]['kind_name']);
+        self::assertSame('Satsangi Jeevan', $basis['source_evidence'][0]['source']);
+        self::assertSame('foo', $basis['source_evidence'][0]['locator']);
+        self::assertSame('bar', $basis['source_evidence'][0]['supports']);
         self::assertSame(['bar'], $basis['textual_variants']);
         self::assertSame('partial', $basis['resolver_compatibility']);
         self::assertSame(['baz'], $basis['unresolved_conditions']);
+        self::assertSame(['baz'], $basis['unresolved_condition_keys']);
         self::assertSame('sankashti_chaturthi', $basis['family_key']);
         self::assertSame('Bhalachandra Sankashti Chaturthi', $basis['name_classifier_key']);
         self::assertSame('Sankashti Chaturthi', $basis['inherit_decision_from_key']);

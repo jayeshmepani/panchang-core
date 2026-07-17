@@ -110,8 +110,8 @@ class FestivalFamilyOrchestrator
                 ['name' => 'Day 4', 'offset' => 3, 'rule_key' => 'navratri_day_4', 'time_of_day' => 'day'],
                 ['name' => 'Day 5', 'offset' => 4, 'rule_key' => 'navratri_day_5', 'time_of_day' => 'day'],
                 ['name' => 'Day 6', 'offset' => 5, 'rule_key' => 'navratri_day_6', 'time_of_day' => 'day'],
-                ['name' => 'Durga Ashtami', 'offset' => 6, 'rule_key' => 'durga_ashtami', 'time_of_day' => 'tithi_transition'],
-                ['name' => 'Maha Navami', 'offset' => 7, 'rule_key' => 'maha_navami', 'time_of_day' => 'tithi_transition'],
+                ['name' => 'Ashvina Sharad Navaratri Day 8 (Mahagauri Puja)', 'offset' => 6, 'rule_key' => 'durga_ashtami', 'time_of_day' => 'tithi_transition', 'aliases' => ['Durga Ashtami', 'Maha Ashtami']],
+                ['name' => 'Ashvina Sharad Navaratri Day 9 (Siddhidatri Puja)', 'offset' => 7, 'rule_key' => 'maha_navami', 'time_of_day' => 'tithi_transition', 'aliases' => ['Maha Navami']],
                 ['name' => 'Vijayadashami', 'offset' => 8, 'rule_key' => 'vijayadashami', 'time_of_day' => 'aparahna'],
             ],
             'exception_logic' => 'navratri_sequence',
@@ -473,17 +473,7 @@ class FestivalFamilyOrchestrator
     /** Check tithi match */
     private function checkTithiMatch(array $rule, int $tithiNum, string $paksha): bool
     {
-        $ruleTithi = $rule['tithi'] ?? null;
-        $rulePaksha = $rule['paksha'] ?? null;
-
-        if ($ruleTithi !== null && $ruleTithi !== $tithiNum) {
-            return false;
-        }
-
-        if ($rulePaksha !== null && $rulePaksha !== $paksha) {
-            return false;
-        }
-
-        return true;
+        return ($rule['tithi'] ?? $tithiNum) === $tithiNum
+            && ($rule['paksha'] ?? $paksha) === $paksha;
     }
 }

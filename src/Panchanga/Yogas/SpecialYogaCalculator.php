@@ -299,10 +299,11 @@ class SpecialYogaCalculator
 
         $rules = array_map(function (array $rule): array {
             $rule['combination'] = sprintf(
-                '%s + %s + %s Lagna',
+                '%s + %s + %s %s',
                 Vara::from($rule['weekday_index'])->getName(),
-                Localization::translate('Nakshatra', $rule['nakshatra_index'], config('panchang.defaults.locale', 'en')),
-                Rasi::from($rule['lagna_sign_index'])->getName()
+                Localization::translate('Nakshatra', $rule['nakshatra_index'], AstroCore::getConfig('panchang.defaults.locale', 'en')),
+                Rasi::from($rule['lagna_sign_index'])->getName(),
+                Localization::translate('String', 'Lagna')
             );
             return $rule;
         }, $rawRules);

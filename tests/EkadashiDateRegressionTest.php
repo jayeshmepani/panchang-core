@@ -22,7 +22,7 @@ class EkadashiDateRegressionTest extends TestCase
         foreach ([
             '2026-05-27' => 'Padmini Ekadashi',
             '2026-08-23' => 'Shravana Putrada Ekadashi',
-            '2026-11-20' => 'Devutthana (Prabodhini) Ekadashi',
+            '2026-11-21' => 'Devutthana (Prabodhini) Ekadashi',
         ] as $date => $expectedFestival) {
             $details = $service->getDayDetails(
                 CarbonImmutable::parse($date, 'Asia/Kolkata'),

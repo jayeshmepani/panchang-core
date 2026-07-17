@@ -312,7 +312,8 @@ class DailyPeriodsCalculator
             $nextSunrise,
             'night',
             'NightFivefold',
-            ['Pradosha', 'Ratri', 'Nishitha', 'Usha', 'Arunodaya']
+            ['Pradosha', 'Ratri', 'Nishitha', 'Usha', 'Arunodaya'],
+            [3, 4, 1, 5, 2]
         );
     }
 
@@ -383,6 +384,7 @@ class DailyPeriodsCalculator
     /**
      * @param 'day'|'night' $period
      * @param list<string> $englishNames
+     * @param list<int>|null $muhurtaSpans
      *
      * @return list<array<string, mixed>>
      */
@@ -391,20 +393,29 @@ class DailyPeriodsCalculator
         CarbonImmutable $end,
         string $period,
         string $localizationDomain,
-        array $englishNames
+        array $englishNames,
+        ?array $muhurtaSpans = null
     ): array {
-        $duration = ($end->getTimestamp() - $start->getTimestamp()) / 5.0;
+        $totalSeconds = $end->getTimestamp() - $start->getTimestamp();
+        $muhurtaSpans ??= array_fill(0, count($englishNames), 3);
+        $muhurtaDuration = $totalSeconds / 15.0;
         $rows = [];
+        $elapsedMuhurtas = 0;
 
         foreach (array_keys($englishNames) as $index) {
-            $divisionStart = $this->addFloatSeconds($start, $index * $duration);
-            $rows[] = $this->buildTimedRow($divisionStart, $duration, [
+            $span = $muhurtaSpans[$index];
+            $divisionStart = $this->addFloatSeconds($start, $elapsedMuhurtas * $muhurtaDuration);
+            $rows[] = $this->buildTimedRow($divisionStart, $span * $muhurtaDuration, [
                 'period' => Localization::translate('String', $period === 'day' ? 'Day' : 'Night'),
                 'period_key' => $period,
                 'name' => Localization::translate($localizationDomain, $index),
                 'name_key' => $englishNames[$index],
                 'division_number' => $index + 1,
+                'muhurta_start' => $elapsedMuhurtas + 1,
+                'muhurta_end' => $elapsedMuhurtas + $span,
+                'muhurta_count' => $span,
             ]);
+            $elapsedMuhurtas += $span;
         }
 
         return $rows;

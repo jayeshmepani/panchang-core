@@ -366,7 +366,8 @@ final class ElectionalEvaluator
 
             if (isset($result['has_dosha']) && $result['has_dosha'] === true) {
                 $rejection = [
-                    'dosha_name' => $factor,
+                    'dosha_name' => Localization::translate('String', (string) $factor),
+                    'dosha_name_key' => (string) $factor,
                     'severity' => $result['severity'] ?? 'medium',
                     'source' => Localization::translate('Source', 'Rule engine'),
                     'description' => $result['description'] ?? Localization::translate('Common', 'Inauspicious combination'),
