@@ -23,7 +23,16 @@ enum Ritu: int
     case Hemanta = 4;
     case Shishira = 5;
 
-    /** Get Sanskrit name */
+    /**
+     * Stable English machine key (Vasanta, Grishma, Varsha, Sharad, Hemanta, Shishira).
+     * Locale-independent — use for rule matching and identity keys.
+     */
+    public function getKey(): string
+    {
+        return $this->name;
+    }
+
+    /** Localized display name (may include Sanskrit + gloss depending on locale). */
     public function getName(?string $locale = null): string
     {
         return Localization::translate('Ritu', $this->value, $locale);

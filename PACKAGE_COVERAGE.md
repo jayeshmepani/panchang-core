@@ -528,7 +528,7 @@ The package covers:
 - daily festival snapshots
 - month calendar festival embedding
 - daily observances in addition to named festivals
-- current generated output reporting 335 unique festival identities and 123 unique vrat identities
+- current generated output reporting 335 unique festival identities and 124 unique vrat identities
 - multi-rule observance resolution
 - location-aware and timezone-aware output
 
@@ -564,7 +564,7 @@ Generated `today`, `month`, and `raw` outputs expose
 - amanta and purnimanta lunar-month windows
 
 When day-detail payloads are included, `today` and `raw` output also expose
-localized `Sayana_Ayana`, `Sayana_Ritu`, and `Mahadiksha_Guidance` branches.
+localized nirayana/sayana ayana–ṛtu branches (`Ayana`/`Ritu` + explicit `Nirayana_*` / `Sayana_*` with `*_Key` and system labels) and `Mahadiksha_Guidance`.
 
 ### Festival Resolution Dimensions
 
@@ -929,7 +929,7 @@ This dual style matters because the package often exposes both:
 
 If someone asks what this package covers, the shortest accurate answer is:
 
-It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, sidereal and Sayana calendar-period windows, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine whose current generated output reports 335 unique festival identities and 123 unique vrat identities, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
+It covers the full daily panchanga, location-aware astronomical timings, both amanta and purnimanta Hindu calendar layers, sidereal and Sayana calendar-period windows, a deep set of muhurta and karmakala windows, special-yoga and vaasa/direction checks, electional screening logic, a large yearly festival and vrata engine whose current generated output reports 335 unique festival identities and 124 unique vrat identities, multi-day festival family handling, and solar/lunar eclipse output with sutak support.
 
 If someone asks what kind of use cases it supports, the package is suitable for:
 

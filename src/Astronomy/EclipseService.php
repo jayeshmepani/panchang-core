@@ -24,7 +24,7 @@ class EclipseService
 
     /**
      * JME-native lunar tret indices from jpl-ephemeris `src/events.c`
-     * (`jme_lun_eclipse_when` / `jme_lun_eclipse_when_loc`). Not Swiss Ephemeris.
+     * (`jme_lun_eclipse_when` / `jme_lun_eclipse_when_loc`).
      *
      * Global when:
      *   tret[0]=maximum, [1]=maximum,
@@ -57,7 +57,7 @@ class EclipseService
 
     /**
      * JME-native solar attr from `jme_sol_eclipse_how` / `jme_sol_eclipse_when_loc`
-     * (jpl-ephemeris `src/events.c`). Not Swiss Ephemeris.
+     * (jpl-ephemeris `src/events.c`).
      *
      *   attr[0] = magnitude = (sun_r + moon_r - sep) / (2 * sun_r)
      *   attr[1] = 1.0 (total) | (moon_r/sun_r)^2 (annular/hybrid) | same as [0] (partial)

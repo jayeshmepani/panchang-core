@@ -21,7 +21,7 @@ class FestivalParityFingerprintTest extends TestCase
     public function testCatalogTotalsRemainGeneralAndStable(): void
     {
         $this->assertSame(335, FestivalService::getCatalogFestivalCount());
-        $this->assertSame(123, FestivalService::getCatalogVratCount());
+        $this->assertSame(124, FestivalService::getCatalogVratCount());
         $this->assertSame(
             454,
             FestivalService::getFestivalCount(),

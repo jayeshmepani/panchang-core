@@ -551,6 +551,13 @@ trait PanchangCalendarApiTrait
         $nextSunrise = $this->toDecimalHoursFromBase($nextSunriseDt, $midnight);
         $currentTime = $this->toDecimalHoursFromBase($at, $midnight);
 
+        $currentYoga = $this->panchanga->calculateYoga((float) ($sunMoon['Sun'] ?? 0.0), $moonLongitude);
+        $nityaYogaObservations = ElectionalEvaluator::calculateNityaYogaObservations(
+            (int) ($currentYoga['index'] ?? 1),
+            (string) ($currentYoga['name'] ?? '')
+        );
+        $varaTithiDoshas = ElectionalEvaluator::calculateVaraTithiDoshas($varaNumber, $tithiNumber);
+
         $evaluationResults = [
             'panchaka_dosha' => ElectionalEvaluator::calculatePanchakaDosha($tithiNumber, $varaNumber, $nakshatraNumber, $lagnaNumber),
             'dagdha_tithi' => ElectionalEvaluator::calculateDagdhaTithi($tithiNumber, $moonSignIdx),
@@ -567,6 +574,22 @@ trait PanchangCalendarApiTrait
                 Localization::translate('Source', 'Classical Panchanga Calculation Texts')
             ),
             'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
+            // Normalize newer electional payloads so generateRejectionReport() can read has_dosha.
+            'vara_tithi_doshas' => [
+                ...$varaTithiDoshas,
+                'has_dosha' => $varaTithiDoshas['has_any_dosha'] ?? false,
+                'severity' => ($varaTithiDoshas['has_any_dosha'] ?? false) ? 'high' : 'none',
+                'description' => ($varaTithiDoshas['has_any_dosha'] ?? false)
+                    ? Localization::translate('String', 'Vara-Tithi dosha present')
+                    : Localization::translate('String', 'No Vara-Tithi dosha'),
+            ],
+            'nitya_yoga_observations' => [
+                ...$nityaYogaObservations,
+                'has_dosha' => ($nityaYogaObservations['is_marriage_prohibited'] ?? false)
+                    || ($nityaYogaObservations['is_kranti_dosha'] ?? false),
+                'severity' => (string) ($nityaYogaObservations['severity'] ?? 'none'),
+                'description' => (string) ($nityaYogaObservations['description'] ?? ''),
+            ],
         ];
 
         $rejectionReport = ElectionalEvaluator::generateRejectionReport($evaluationResults);
@@ -1473,8 +1496,10 @@ trait PanchangCalendarApiTrait
     {
         if ($fields === []) {
             $fields = [
+                // Nirayana (sidereal) — default short keys
                 'ayana',
                 'ritu',
+                // Sayana (tropical)
                 'sayana_ayana',
                 'sayana_ritu',
                 'vikram_samvat',
@@ -1492,10 +1517,24 @@ trait PanchangCalendarApiTrait
         foreach ($fields as $field) {
             $key = strtolower(str_replace([' ', '-'], '_', trim($field)));
             $key = match ($key) {
-                'ayana_windows' => 'ayana',
-                'ritu_windows' => 'ritu',
-                'sayana_ayana_windows', 'tropical_ayana', 'tropical_ayana_windows' => 'sayana_ayana',
-                'sayana_ritu_windows', 'tropical_ritu', 'tropical_ritu_windows' => 'sayana_ritu',
+                // Nirayana / sidereal aliases (constellation-based)
+                'ayana_windows',
+                'nirayana_ayana',
+                'nirayana_ayana_windows',
+                'sidereal_ayana',
+                'sidereal_ayana_windows' => 'ayana',
+                'ritu_windows',
+                'nirayana_ritu',
+                'nirayana_ritu_windows',
+                'sidereal_ritu',
+                'sidereal_ritu_windows' => 'ritu',
+                // Sayana / tropical aliases (seasonal)
+                'sayana_ayana_windows',
+                'tropical_ayana',
+                'tropical_ayana_windows' => 'sayana_ayana',
+                'sayana_ritu_windows',
+                'tropical_ritu',
+                'tropical_ritu_windows' => 'sayana_ritu',
                 'vikram', 'vikram_samvat_windows' => 'vikram_samvat',
                 'gujarati', 'gujarati_samvat_windows' => 'gujarati_samvat',
                 'saka', 'saka_samvat_windows' => 'saka_samvat',
@@ -1508,10 +1547,10 @@ trait PanchangCalendarApiTrait
             };
 
             match ($key) {
-                'ayana',
-                'ritu',
-                'sayana_ayana',
-                'sayana_ritu',
+                'ayana', // nirayana / sidereal
+                'ritu', // nirayana / sidereal
+                'sayana_ayana', // tropical
+                'sayana_ritu', // tropical
                 'vikram_samvat',
                 'gujarati_samvat',
                 'saka_samvat',

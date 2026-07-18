@@ -124,8 +124,14 @@ class MonthFieldsSelectiveTest extends TestCase
             ['festival_scope' => 'month']
         );
 
+        $this->assertArrayHasKey('Ayana', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Ritu', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Nirayana_Ayana', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Nirayana_Ritu', $full['2026-07-01']['hindu_calendar']);
         $this->assertArrayHasKey('Sayana_Ayana', $full['2026-07-01']['hindu_calendar']);
         $this->assertArrayHasKey('Sayana_Ritu', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Ayana_Key', $full['2026-07-01']['hindu_calendar']);
+        $this->assertArrayHasKey('Sayana_Ayana_Key', $full['2026-07-01']['hindu_calendar']);
     }
 
     public function testCalendarPeriodWindowsRangePreservesTrueWindowBoundariesAcrossRangeFilters(): void

@@ -309,11 +309,13 @@ trait PanchangSelectiveApiTrait
 
             $punyaKaal = null;
             $sankrantiRashi = null;
+            $resolvedSankrantiJd = null;
             if ($civilStartSign !== $civilEndSign) {
                 $nextSign = ($civilStartSign + 1) % 12;
                 $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $nextSign * 30.0, 1, fn (float $jd): float => $this->getSunLongitude($jd));
                 if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                     $sankrantiRashi = $nextSign;
+                    $resolvedSankrantiJd = $sankrantiJd;
                     $kalaEngine = new KalaNirnayaEngine($lat, $lon);
                     $nameMap = ['Mesha', 'Vrishabha', 'Mithuna', 'Karka', 'Simha', 'Kanya', 'Tula', 'Vrischika', 'Dhanu', 'Makara', 'Kumbha', 'Meena'];
                     $punyaKaal = $kalaEngine->calculatePunyaKaal(
@@ -330,6 +332,7 @@ trait PanchangSelectiveApiTrait
 
             $ctx['sankranti'] = [
                 'rashi' => $sankrantiRashi,
+                'jd' => $resolvedSankrantiJd,
                 'punya_kaal' => $punyaKaal,
             ];
         };
@@ -437,10 +440,7 @@ trait PanchangSelectiveApiTrait
                 'Tithi' => $tithi,
                 'Nakshatra' => ['name' => $ctx['panchanga']['nakshatra']['name']],
                 'Hindu_Calendar' => [
-                    'Ayana' => $this->panchanga->getAyana($sunLon),
-                    'Ritu' => $this->panchanga->getRitu($sunLon),
-                    'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
-                    'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
+                    ...$this->panchanga->buildAyanaRituCalendarFields($sunLon, $sayanaSunLon),
                     'Month_Amanta' => $hinduMonth['Month_Amanta'],
                     'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                     'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -467,6 +467,7 @@ trait PanchangSelectiveApiTrait
                     'sunset_iso' => AstroCore::formatDateTime($sunset),
                     'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
                     'sankranti_rashi' => $ctx['sankranti']['rashi'],
+                    'sankranti_jd' => $ctx['sankranti']['jd'] ?? null,
                 ],
             ];
 
@@ -583,10 +584,7 @@ trait PanchangSelectiveApiTrait
                 ],
                 'Panchanga' => $panchanga,
                 'Hindu_Calendar' => [
-                    'Ayana' => $this->panchanga->getAyana($sunLon),
-                    'Ritu' => $this->panchanga->getRitu($sunLon),
-                    'Sayana_Ayana' => $this->panchanga->getAyana($sayanaSunLon),
-                    'Sayana_Ritu' => $this->panchanga->getRitu($sayanaSunLon),
+                    ...$this->panchanga->buildAyanaRituCalendarFields($sunLon, $sayanaSunLon),
                     'Vikram_Samvat' => $vikram,
                     'Gujarati_Samvat' => $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']),
                     'Saka_Samvat' => $saka,
@@ -661,6 +659,7 @@ trait PanchangSelectiveApiTrait
                 'Day_Night_Measures' => $this->buildDayNightMeasures($relSunrise, $sunset, $ctx['sun']['next_sunrise']),
                 'Festivals' => $festivals,
                 'Daily_Observances' => $this->festivalService->getDailyObservances($todaySnapshot),
+                'Units' => $this->buildDayDetailsUnits(),
             ];
 
             return $ctx['basic'];
@@ -858,9 +857,36 @@ trait PanchangSelectiveApiTrait
                         'at_sunrise' => $this->buildVrataParanaProfile((int) $ctx['panchanga']['tithi']['index'], (string) ($ctx['panchanga']['tithi']['paksha'] ?? ''), $ctx['crossings']['tithi_start_jd'], $ctx['crossings']['tithi_end_jd'], $ctx['jds']['sunrise'], $ctx['jds']['sunset'], $ctx['jds']['next_sunrise'], $ctx['basic']['Panchanga']['Moonrise']['jd'], $ctx['periods']['pradosha'], $ctx['periods']['nishitha'], $tz),
                     ];
                 })(),
+                'Hora' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
+                    $ensureTimeContext(); $ensurePanchanga();
+                    return $this->muhurta->calculateHora(
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['sun']['sunset'],
+                        $ctx['sun']['next_sunrise'],
+                        $ctx['time']['calculation_at'],
+                        (int) $ctx['panchanga']['vara']['index']
+                    );
+                })(),
                 'Hora_Full_Day' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
                     $ensureTimeContext(); $ensurePanchanga();
                     return $this->muhurta->calculateHoraTable($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise'], (int) $ctx['panchanga']['vara']['index']);
+                })(),
+                'Chogadiya' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
+                    $ensureTimeContext(); $ensurePanchanga();
+                    return $this->muhurta->calculateChogadiya(
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['sun']['sunset'],
+                        $ctx['sun']['next_sunrise'],
+                        $ctx['time']['calculation_at'],
+                        (int) $ctx['panchanga']['vara']['index']
+                    );
+                })(),
+                'Chogadiya_Duration' => (function () use (&$ctx, $ensureTimeContext): array {
+                    $ensureTimeContext();
+                    return [
+                        'day_each_seconds' => ($ctx['sun']['sunset']->getTimestamp() - $ctx['time']['rel_sunrise']->getTimestamp()) / 8.0,
+                        'night_each_seconds' => ($ctx['sun']['next_sunrise']->getTimestamp() - $ctx['sun']['sunset']->getTimestamp()) / 8.0,
+                    ];
                 })(),
                 'Chogadiya_Full_Day' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
                     $ensureTimeContext(); $ensurePanchanga();
@@ -870,9 +896,69 @@ trait PanchangSelectiveApiTrait
                     $ensureTimeContext();
                     return $this->muhurta->calculateMuhurtaTable($ctx['time']['rel_sunrise'], $ctx['sun']['sunset'], $ctx['sun']['next_sunrise']);
                 })(),
+                'Lagna' => (function () use (&$ctx, $ensureTimeContext, $ensureLongitudes, $ensureAyanamsa, $lat, $lon): array {
+                    $ensureTimeContext(); $ensureLongitudes(); $ensureAyanamsa();
+                    return $this->muhurta->calculateLagna(
+                        $ctx['time']['calculation_at'],
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['longitudes']['sun'],
+                        $ctx['ayanamsa']['degree'],
+                        $lat,
+                        $lon,
+                        $this->jme
+                    );
+                })(),
                 'Lagna_Full_Day' => (function () use (&$ctx, $ensureLagnaTable): array {
                     $ensureLagnaTable();
                     return $ctx['lagna_table'];
+                })(),
+                'Transitions' => (function () use (&$ctx, $ensureJds, $ensurePanchanga, $ensureLongitudes, $ensureSankranti, $tz): array {
+                    $ensureJds(); $ensurePanchanga(); $ensureLongitudes(); $ensureSankranti();
+                    return $this->buildTransitionSignals(
+                        $ctx['jds']['sunrise'],
+                        $ctx['jds']['next_sunrise'],
+                        $ctx['longitudes']['sun'],
+                        $ctx['longitudes']['moon'],
+                        $ctx['longitudes']['current_sun'],
+                        $ctx['longitudes']['current_moon'],
+                        (int) $ctx['panchanga']['tithi']['index'],
+                        (int) $ctx['panchanga']['current_tithi']['index'],
+                        (int) $ctx['panchanga']['nak_index'],
+                        (int) $ctx['panchanga']['current_nak_index'],
+                        (int) $ctx['panchanga']['yoga']['index'],
+                        (int) $ctx['panchanga']['current_yoga']['index'],
+                        (int) $ctx['panchanga']['karana']['index'],
+                        (int) $ctx['panchanga']['current_karana']['index'],
+                        $tz,
+                        $ctx['sankranti']['rashi'] ?? null
+                    );
+                })(),
+                'Units' => $this->buildDayDetailsUnits(),
+                'Mahadiksha_Guidance' => (function () use (&$ctx, $ensureHinduMonth, $ensureLongitudes): array {
+                    $ensureHinduMonth(); $ensureLongitudes();
+                    return $this->buildMahadikshaGuidance($ctx['hindu_month'], $ctx['longitudes']['sun']);
+                })(),
+                'Festivals' => (fn (): array => $ensureBasic()['Festivals'])(),
+                'Daily_Observances' => (fn (): array => $ensureBasic()['Daily_Observances'])(),
+                'Ekadashi_Observance' => (function () use (&$ctx, $ensureCrossings, $ensureJds, $ensurePanchanga, $ensureHinduMonth, $tz, $lat, $lon): ?array {
+                    $ensureCrossings(); $ensureJds(); $ensurePanchanga(); $ensureHinduMonth();
+                    $tithiNum = (int) $ctx['panchanga']['tithi']['index'];
+                    $month = (string) ($ctx['hindu_month']['Month_Amanta_En'] ?? $ctx['hindu_month']['Month_Amanta'] ?? '');
+                    $paksha = (string) ($ctx['panchanga']['tithi']['paksha'] ?? '');
+                    return $this->buildEkadashiObservance(
+                        $tithiNum,
+                        $ctx['crossings']['tithi_start_jd'],
+                        $ctx['crossings']['tithi_end_jd'],
+                        $ctx['jds']['sunrise'],
+                        $ctx['jds']['sunset'],
+                        $ctx['jds']['next_sunrise'],
+                        $tz,
+                        $lat,
+                        $lon,
+                        $ctx['jds']['previous_sunrise'],
+                        $month,
+                        $paksha
+                    );
                 })(),
                 'Rahu_Kaal_Gulika_Yamaganda' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga): array {
                     $ensureTimeContext(); $ensurePanchanga();
@@ -1333,6 +1419,70 @@ trait PanchangSelectiveApiTrait
         ];
     }
 
+    /**
+     * Unit metadata map shared by full getDayDetails() and selective Units section.
+     *
+     * @return array<string, string>
+     */
+    private function buildDayDetailsUnits(): array
+    {
+        return [
+            'Ayanamsa_Degree' => 'degree',
+            'Ayanamsa_JD' => 'julian_day',
+            'sun_sunrise_lon' => 'degree',
+            'moon_sunrise_lon' => 'degree',
+            'Hora.hora_duration_seconds' => 'second',
+            'Hora.hora_duration_minutes' => 'minute',
+            'Chogadiya.division_duration_minutes' => 'minute',
+            'Rahu_Kaal_Gulika_Yamaganda.Rahu_Kaal.duration_min' => 'minute',
+            'Rahu_Kaal_Gulika_Yamaganda.Gulika.duration_min' => 'minute',
+            'Rahu_Kaal_Gulika_Yamaganda.Yamaganda.duration_min' => 'minute',
+            'Abhijit_Muhurta.muhurta_duration_minutes' => 'minute',
+            'Day_Types.civil_day_length_seconds' => 'second',
+            'Day_Types.mean_solar_day_seconds' => 'second',
+            'Day_Types.apparent_solar_day_seconds' => 'second',
+            'Dharma_Sindhu.Punya_Kaal.duration_minutes' => 'minute',
+            'Dharma_Sindhu.Punya_Kaal.duration_ghatikas' => 'ghatika',
+            'Dharma_Sindhu.Punya_Kaal.sankranti_jd' => 'julian_day',
+            'Dharma_Sindhu.Punya_Kaal.punya_kaal_start_jd' => 'julian_day',
+            'Dharma_Sindhu.Punya_Kaal.punya_kaal_end_jd' => 'julian_day',
+            'Prahara.duration_seconds' => 'second',
+            'Prahara.duration_hours' => 'hour',
+            'Daylight_Fivefold_Division.duration_seconds' => 'second',
+            'Daylight_Fivefold_Division.duration_hours' => 'hour',
+            'Nighttime_Fivefold_Division.duration_seconds' => 'second',
+            'Nighttime_Fivefold_Division.duration_hours' => 'hour',
+            'DayNight_Tenfold_Kala_Division.duration_seconds' => 'second',
+            'DayNight_Tenfold_Kala_Division.duration_hours' => 'hour',
+            'Brahma_Muhurta.duration_minutes' => 'minute',
+            'Brahma_Muhurta.duration_seconds' => 'second',
+            'Dur_Muhurta.duration_seconds' => 'second',
+            'Nishita_Muhurta.muhurta_duration_seconds' => 'second',
+            'Nishita_Muhurta.muhurta_duration_minutes' => 'minute',
+            'Vijaya_Muhurta.muhurta_duration_seconds' => 'second',
+            'Vijaya_Muhurta.muhurta_duration_minutes' => 'minute',
+            'Godhuli_Muhurta.duration_seconds' => 'second',
+            'Godhuli_Muhurta.duration_minutes' => 'minute',
+            'Sandhya.Pratah_Sandhya.duration_seconds' => 'second',
+            'Sandhya.Pratah_Sandhya.duration_minutes' => 'minute',
+            'Sandhya.Madhyahna_Sandhya.duration_seconds' => 'second',
+            'Sandhya.Madhyahna_Sandhya.duration_minutes' => 'minute',
+            'Sandhya.Sayahna_Sandhya.duration_seconds' => 'second',
+            'Sandhya.Sayahna_Sandhya.duration_minutes' => 'minute',
+            'Gowri_Panchangam.division_duration_seconds' => 'second',
+            'Gowri_Panchangam.division_duration_minutes' => 'minute',
+            'Kala_Vela.division_duration_seconds' => 'second',
+            'Kala_Vela.division_duration_minutes' => 'minute',
+            'Varjyam.duration_minutes' => 'minute',
+            'Amrita_Kaal.duration_minutes' => 'minute',
+            'Pradosha_Kaal.duration_minutes' => 'minute',
+            'Lagna.lagna_longitude_nirayana' => 'degree',
+            'Lagna.lagna_longitude_sayana' => 'degree',
+            'Lagna.degree_in_sign' => 'degree',
+            'Lagna.ayanamsa_applied' => 'degree',
+        ];
+    }
+
     private function sectionForFieldPath(string $field): string
     {
         $firstSegment = strtok($field, '.');
@@ -1359,10 +1509,20 @@ trait PanchangSelectiveApiTrait
             'Vara_Tithi_Doshas',
             'Tithi_Observance_Analysis',
             'Vrata_Parana',
+            'Hora',
             'Hora_Full_Day',
+            'Chogadiya',
+            'Chogadiya_Duration',
             'Chogadiya_Full_Day',
             'Muhurta_Full_Day',
+            'Lagna',
             'Lagna_Full_Day',
+            'Transitions',
+            'Units',
+            'Mahadiksha_Guidance',
+            'Festivals',
+            'Daily_Observances',
+            'Ekadashi_Observance',
             'Rahu_Kaal_Gulika_Yamaganda',
             'Abhijit_Muhurta',
             'Prahara_Full_Day',

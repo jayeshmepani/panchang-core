@@ -88,7 +88,7 @@ final class CliBootstrap
             new LagnaTableCalculator
         );
 
-        $ruleEngine = new FestivalRuleEngine;
+        $ruleEngine = new FestivalRuleEngine($transitEngine);
         $festivalService = new FestivalService($ruleEngine);
 
         return new PanchangService(

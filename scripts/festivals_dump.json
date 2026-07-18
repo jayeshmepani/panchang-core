@@ -887,10 +887,7 @@
             "paksha": "Shukla",
             "tithi": 2,
             "month_amanta": "Chaitra",
-            "allowed_months_purnimanta": [
-                "Phalguna",
-                "Chaitra"
-            ],
+            "month_purnimanta": "Chaitra",
             "description": "Sindhi Hindu New Year; birth of Jhulelal (Ishta-Devta)",
             "deity": "Jhulelal\/Varuna",
             "regions": [
@@ -4843,7 +4840,7 @@
                 "Phalguna",
                 "Chaitra"
             ],
-            "require_sayana_ritu": "Spring",
+            "require_sayana_ritu": "Vasanta",
             "description": "Birth anniversary of Maharishi Dayanand Saraswati, founder of Arya Samaj",
             "deity": "Dayanand Saraswati",
             "karmakala_type": "sunrise"
@@ -5633,6 +5630,35 @@
             "description": "Beginning of the fortnight of ancestors",
             "deity": "Pitrus"
         },
+        "Avidhava Navami": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Krishna",
+            "tithi": 9,
+            "month_amanta": "Bhadrapada",
+            "month_purnimanta": "Ashvina",
+            "aliases": [
+                "Saubhagyavati Navami",
+                "Saubhagyavati (Vidhwa) Navami",
+                "Navami Shraddha",
+                "Matru Navami",
+                "Matra Navami",
+                "Avidhava Shraddha",
+                "Avidha Navami",
+                "Adukha Navami",
+                "Naumi Shraddha"
+            ],
+            "description": "Pitru Paksha Avidhava (Saubhagyavati) Navami: ancestral rites for married women (sumangali) who died before their husbands; also the principal Navami Shraddha \/ Matru Navami of the fortnight",
+            "deity": "Pitrus",
+            "regions": [
+                "North India",
+                "Gujarat",
+                "Maharashtra",
+                "Karnataka",
+                "Andhra Pradesh"
+            ],
+            "karmakala_type": "aparahna"
+        },
         "Indira Ekadashi": {
             "type": "tithi",
             "resolver": "classical",
@@ -5873,7 +5899,8 @@
             "month_purnimanta": "Kartika",
             "aliases": [
                 "Kali Chaudas",
-                "Hanuman Puja"
+                "Hanuman Puja",
+                "Deepavali Hanuman Puja"
             ],
             "description": "Kali Chaudas worship of Goddess Kali and Hanuman during Sangava or Arunodaya",
             "deity": "Kali\/Hanuman",
@@ -6410,7 +6437,7 @@
                 "Pausha",
                 "Magha"
             ],
-            "require_ayana": "Northward Course",
+            "require_ayana": "Uttarayana",
             "sun_sign": 9,
             "nakshatra": "Pushya",
             "prefer_nakshatra": true,
@@ -6994,11 +7021,8 @@
             "tithi": 4,
             "month_amanta": "Shravana",
             "month_purnimanta": "Shravana",
-            "identity_key": "Varaha Jayanti",
-            "display_name": "Swaminarayan Varaha Jayanti",
             "aliases": [
-                "Swaminarayan Varaha Jayanti",
-                "Shri Varaha Jayanti"
+                "Shree Varaha Jayanti"
             ],
             "description": "Swaminarayan Varaha Jayanti celebrates Lord Vishnu's Varaha appearance with midday worship in the Swaminarayan tradition.",
             "deity": "Vishnu (Varaha)",
@@ -7463,6 +7487,29 @@
             "deity": "Vishnu (Matsya)",
             "karmakala_type": "sunrise"
         },
+        "Akhand Dwadashi": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Shukla",
+            "tithi": 12,
+            "month_amanta": "Margashirsha",
+            "month_purnimanta": "Margashirsha",
+            "aliases": [
+                "Akhanda Dwadashi",
+                "Akhand Dwadashi Vrat",
+                "Margashirsha Akhand Dwadashi",
+                "Agahan Akhand Dwadashi",
+                "Magshar Akhand Dwadashi"
+            ],
+            "description": "Akhand Dwadashi vrat on Margashirsha Shukla Dwadashi (the day after Mokshada Ekadashi): Vishnu \/ Lakshmi-Narayana worship that completes incomplete or broken vows; milk- and curd-based observance described in Bhavishya Purana tradition",
+            "deity": "Vishnu (Lakshmi-Narayana)",
+            "fasting": true,
+            "regions": [
+                "North India",
+                "Gujarat"
+            ],
+            "karmakala_type": "sunrise"
+        },
         "Vamana Dwadashi": {
             "type": "tithi",
             "resolver": "classical",
@@ -7902,7 +7949,7 @@
                 "Phalguna",
                 "Chaitra"
             ],
-            "require_sayana_ritu": "Spring",
+            "require_sayana_ritu": "Vasanta",
             "description": "Birth anniversary of Mother Yashoda",
             "deity": "Yashoda",
             "karmakala_type": "sunrise"
@@ -7920,7 +7967,7 @@
                 "Phalguna",
                 "Chaitra"
             ],
-            "require_sayana_ritu": "Spring",
+            "require_sayana_ritu": "Vasanta",
             "description": "Birth anniversary of Shabari",
             "deity": "Shabari",
             "karmakala_type": "sunrise"
@@ -7938,7 +7985,7 @@
                 "Phalguna",
                 "Chaitra"
             ],
-            "require_sayana_ritu": "Spring",
+            "require_sayana_ritu": "Vasanta",
             "aliases": [
                 "Sita Ashtami"
             ],
@@ -8187,22 +8234,21 @@
             ]
         },
         "Hanuman Puja": {
+            "resolution_alias_of": "Kali Chaudas (Naraka Chaturdashi)",
             "type": "tithi",
             "resolver": "classical",
             "paksha": "Krishna",
             "tithi": 14,
             "month_amanta": "Ashvina",
             "month_purnimanta": "Kartika",
-            "identity_key": "Kali Chaudas (Naraka Chaturdashi)",
-            "display_name": "Hanuman Puja",
             "aliases": [
                 "Hanuman Puja",
                 "Kali Chaudas",
-                "Naraka Chaturdashi"
+                "Deepavali Hanuman Puja"
             ],
-            "description": "Worship of Lord Hanuman during Diwali period",
+            "description": "Worship of Lord Hanuman during Diwali period (resolved with Kali Chaudas)",
             "deity": "Hanuman",
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sangava"
         },
         "Kedar Gauri Vrat": {
             "type": "tithi",
@@ -8270,7 +8316,7 @@
                 "Pausha",
                 "Magha"
             ],
-            "require_ayana": "Northward Course",
+            "require_ayana": "Uttarayana",
             "sun_sign": 9,
             "nakshatra": "Pushya",
             "prefer_nakshatra": true,

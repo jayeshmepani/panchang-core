@@ -125,20 +125,12 @@ class FestivalService
                 continue;
             }
 
-            if (isset($rules['require_ayana'])) {
-                $requiredAyana = (string) $rules['require_ayana'];
-                $actualAyana = (string) ($todayDetails['Hindu_Calendar']['Ayana'] ?? '');
-                if ($requiredAyana !== '' && $actualAyana !== $requiredAyana) {
-                    continue;
-                }
+            if (isset($rules['require_ayana']) && !$this->calendarAyanaMatches((array) ($todayDetails['Hindu_Calendar'] ?? []), (string) $rules['require_ayana'])) {
+                continue;
             }
 
-            if (isset($rules['require_sayana_ritu'])) {
-                $requiredRitu = (string) $rules['require_sayana_ritu'];
-                $actualRitu = (string) ($todayDetails['Hindu_Calendar']['Sayana_Ritu'] ?? '');
-                if ($requiredRitu !== '' && $actualRitu !== $requiredRitu) {
-                    continue;
-                }
+            if (isset($rules['require_sayana_ritu']) && !$this->calendarSayanaRituMatches((array) ($todayDetails['Hindu_Calendar'] ?? []), (string) $rules['require_sayana_ritu'])) {
+                continue;
             }
 
             if (isset($rules['sun_sign']) && !$this->sunSignRuleMatches((int) $rules['sun_sign'], $todayDetails)) {
@@ -161,7 +153,7 @@ class FestivalService
             }
 
             if ($isClassical) {
-                $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
+                $resolved = $this->ruleEngine->resolveMajorFestival($name, $rules, $date, $todayDetails, $tomorrowDetails, $fetchHistoricalSnapshot);
                 if ($resolved !== null
                     && $resolved['observance_date'] === $date->toDateString()
                     && !$this->previousDayAlreadyWonSameTargetInterval($name, $rules, $date, $todayDetails, $yesterdayDetails, $resolved)
@@ -178,7 +170,7 @@ class FestivalService
                 } elseif ($yesterdayDetails !== null && !(bool) ($rules['prefer_growth_before_score'] ?? false) && !isset($addedFestivalKeys[$name])) {
                     // Back-fill festivals whose resolved observance date is today but
                     // whose tithi decision was derived from yesterday->today.
-                    $resolvedYesterday = $this->ruleEngine->resolveMajorFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails);
+                    $resolvedYesterday = $this->ruleEngine->resolveMajorFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails, $fetchHistoricalSnapshot);
                     if ($resolvedYesterday !== null
                         && $resolvedYesterday['observance_date'] === $date->toDateString()
                         && !$this->rejectResolvedFestivalForDay($rules, $todayDetails)
@@ -597,11 +589,9 @@ class FestivalService
                 }
 
                 $effectiveRules['merged_tradition_key'] = (string) $traditionKey;
-                // Rama Navami DOC lists one identity; Smarta/Vaishnava are display variants.
-                // Other tradition families (Janmashtami, Parashurama, ...) keep distinct identity keys.
-                if (($baseRules['family'] ?? null) === 'rama_navami'
-                    || (bool) ($traditionRules['share_parent_identity'] ?? false)
-                ) {
+                // Distinct tradition variants keep distinct identity keys (e.g. Rama Navami Smarta vs Vaishnava
+                // can fall on adjacent civil days). Opt-in collapse only via share_parent_identity.
+                if ((bool) ($traditionRules['share_parent_identity'] ?? false)) {
                     $effectiveRules['identity_key'] = $name;
                     $effectiveRules['display_name'] = $variantName;
                 }
@@ -694,20 +684,12 @@ class FestivalService
             return false;
         }
 
-        if (isset($rules['require_ayana'])) {
-            $requiredAyana = (string) $rules['require_ayana'];
-            $actualAyana = (string) ($panchangDetails['Hindu_Calendar']['Ayana'] ?? '');
-            if ($requiredAyana !== '' && $actualAyana !== $requiredAyana) {
-                return false;
-            }
+        if (isset($rules['require_ayana']) && !$this->calendarAyanaMatches((array) ($panchangDetails['Hindu_Calendar'] ?? []), (string) $rules['require_ayana'])) {
+            return false;
         }
 
-        if (isset($rules['require_sayana_ritu'])) {
-            $requiredRitu = (string) $rules['require_sayana_ritu'];
-            $actualRitu = (string) ($panchangDetails['Hindu_Calendar']['Sayana_Ritu'] ?? '');
-            if ($requiredRitu !== '' && $actualRitu !== $requiredRitu) {
-                return false;
-            }
+        if (isset($rules['require_sayana_ritu']) && !$this->calendarSayanaRituMatches((array) ($panchangDetails['Hindu_Calendar'] ?? []), (string) $rules['require_sayana_ritu'])) {
+            return false;
         }
 
         if (isset($rules['sun_sign']) && !$this->sunSignRuleMatches((int) $rules['sun_sign'], $panchangDetails)) {
@@ -738,6 +720,128 @@ class FestivalService
 
         // weekday_in_month / nth_weekday_in_month handled in resolveFestivalsForDate.
         return !in_array((string) ($rules['type'] ?? ''), ['weekday_in_month', 'nth_weekday_in_month'], true);
+    }
+
+    /**
+     * Match require_ayana against nirayana ayana (sidereal) keys/names.
+     * Accepts stable keys (Uttarayana/Dakshinayana) and legacy English/localized labels.
+     */
+    private function calendarAyanaMatches(array $calendar, string $required): bool
+    {
+        $required = trim($required);
+        if ($required === '') {
+            return true;
+        }
+
+        $candidates = array_filter([
+            (string) ($calendar['Ayana_Key'] ?? ''),
+            (string) ($calendar['Nirayana_Ayana_Key'] ?? ''),
+            (string) ($calendar['Ayana'] ?? ''),
+            (string) ($calendar['Nirayana_Ayana'] ?? ''),
+        ], static fn (string $v): bool => $v !== '');
+
+        return $this->ayanaLabelMatches($required, $candidates);
+    }
+
+    /**
+     * Match require_sayana_ritu against tropical (sayana) ṛtu keys/names.
+     * Accepts stable keys (Vasanta…) and English glosses (Spring…).
+     */
+    private function calendarSayanaRituMatches(array $calendar, string $required): bool
+    {
+        $required = trim($required);
+        if ($required === '') {
+            return true;
+        }
+
+        $candidates = array_filter([
+            (string) ($calendar['Sayana_Ritu_Key'] ?? ''),
+            (string) ($calendar['Sayana_Ritu'] ?? ''),
+        ], static fn (string $v): bool => $v !== '');
+
+        return $this->rituLabelMatches($required, $candidates);
+    }
+
+    /** @param list<string> $candidates */
+    private function ayanaLabelMatches(string $required, array $candidates): bool
+    {
+        $requiredNorm = $this->normalizeAyanaRituToken($required);
+        $aliases = match (true) {
+            str_contains($requiredNorm, 'uttar') || str_contains($requiredNorm, 'north') => [
+                'uttarayana', 'northwardcourse', 'uttarayananorthwardcourse',
+            ],
+            str_contains($requiredNorm, 'dakshin') || str_contains($requiredNorm, 'south') => [
+                'dakshinayana', 'southwardcourse', 'dakshinayanasouthwardcourse',
+            ],
+            default => [$requiredNorm],
+        };
+
+        foreach ($candidates as $candidate) {
+            $candNorm = $this->normalizeAyanaRituToken($candidate);
+            if ($candNorm === $requiredNorm || in_array($candNorm, $aliases, true)) {
+                return true;
+            }
+
+            foreach ($aliases as $alias) {
+                if ($alias !== '' && str_contains($candNorm, $alias)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /** @param list<string> $candidates */
+    private function rituLabelMatches(string $required, array $candidates): bool
+    {
+        $requiredNorm = $this->normalizeAyanaRituToken($required);
+        $map = [
+            'vasanta' => ['vasanta', 'spring', 'vasantaspring'],
+            'grishma' => ['grishma', 'summer', 'grishmasummer'],
+            'varsha' => ['varsha', 'monsoon', 'varshamonsoon', 'rainy'],
+            'sharad' => ['sharad', 'autumn', 'sharadautumn', 'fall'],
+            'hemanta' => ['hemanta', 'prewinter', 'hemantaprewinter'],
+            'shishira' => ['shishira', 'winter', 'shishirawinter'],
+        ];
+
+        $aliases = [$requiredNorm];
+        foreach ($map as $group) {
+            foreach ($group as $token) {
+                if ($requiredNorm === $token || str_contains($requiredNorm, $token)) {
+                    $aliases = array_values(array_unique(array_merge($aliases, $group)));
+                    break 2;
+                }
+            }
+        }
+
+        foreach ($candidates as $candidate) {
+            $candNorm = $this->normalizeAyanaRituToken($candidate);
+            if ($candNorm === $requiredNorm) {
+                return true;
+            }
+
+            foreach ($aliases as $alias) {
+                if ($alias !== '' && ($candNorm === $alias || str_contains($candNorm, $alias))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private function normalizeAyanaRituToken(string $value): string
+    {
+        $value = strtolower(trim($value));
+        $value = strtr($value, [
+            'ā' => 'a', 'ī' => 'i', 'ū' => 'u', 'ṛ' => 'ri',
+            'ś' => 'sh', 'ṣ' => 'sh', 'ñ' => 'n', 'ṅ' => 'n', 'ṇ' => 'n',
+            '(' => ' ', ')' => ' ', '-' => ' ', '_' => ' ', '/' => ' ',
+        ]);
+        $value = preg_replace('/\s+/', '', $value) ?? $value;
+
+        return $value;
     }
 
 }

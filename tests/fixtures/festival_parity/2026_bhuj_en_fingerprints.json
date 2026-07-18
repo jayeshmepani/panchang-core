@@ -1,107 +1,96 @@
 {
-  "generated_at": "2026-07-17T13:04:18+00:00",
-  "contract": {
-    "allowed": "Intentional reorganization, restructuring, refactorization, reshaping of festival module code layout only.",
-    "forbidden": [
-      "Change algorithms, classifiers, formulas, calculations, logics, or conditions for any festival/vrat",
-      "Date drift for any observance",
-      "Remove any festival/vrat identity that currently generates",
-      "Introduce same-day same-identity duplicates",
-      "Change entry counts or decision keys without intentional catalog/rule change"
-    ],
-    "parity_fields": "date|name_key|fasting|calculation_basis.type|winning_reason_key",
-    "catalog_totals": {
-      "total_festivals": 335,
-      "total_vrats": 123,
-      "registry_keys": 454,
-      "note": "Catalog totals are year-independent. unique_identity_count per file is year-observed keys in that dump only (not catalog size)."
+    "generated_at": "2026-07-18T04:24:26+00:00",
+    "contract": {
+        "allowed": "Intentional reorganization, restructuring, refactorization, reshaping of festival module code layout only.",
+        "forbidden": [
+            "Change algorithms, classifiers, formulas, calculations, logics, or conditions for any festival/vrat",
+            "Date drift for any observance",
+            "Remove any festival/vrat identity that currently generates",
+            "Introduce same-day same-identity duplicates",
+            "Change entry counts or decision keys without intentional catalog/rule change"
+        ],
+        "parity_fields": "date|name_key|fasting|calculation_basis.type|winning_reason_key"
     },
-    "year_observed_2026_bhuj_en": {
-      "amanta_festivals_only_unique": 324,
-      "purnimanta_festivals_only_unique": 325,
-      "vrats_unique": 123
+    "location": "Bhuj 23.2472446,69.668339 Asia/Kolkata",
+    "year": 2026,
+    "fingerprints": {
+        "amanta_en_festivals": {
+            "source": "festivals_2026.json",
+            "entry_count": 1061,
+            "unique_identity_count": 449,
+            "recurring_weekday_count": 0,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": 335,
+            "total_vrats_field": 124,
+            "events_sha256": "83f759881fef0d3be021023108ea20ac02473088a180a90afb6b555dd8791ce9",
+            "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "identities_sha256": "165b1283e6e6a71d592ab4c8cb1db1aca51f8a7af81f2dcfd25a3eb3a10f81dc",
+            "identity_dates_sha256": "13b88ac1180f459a1a45e52240d5edd162b8d56b03d2501185c4982fc3901f88"
+        },
+        "amanta_en_festivals_only": {
+            "source": "festivals_only_2026.json",
+            "entry_count": 398,
+            "unique_identity_count": 324,
+            "recurring_weekday_count": 0,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": 335,
+            "total_vrats_field": null,
+            "events_sha256": "3e542dad134e716859f439e0c08613467328cc2dfc217ad5111b16cc6f1b69e3",
+            "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "identities_sha256": "11a98ece1ffdef1a497aec7a0b296cf4ff12aae653503c6f5f9ed91a7d853091",
+            "identity_dates_sha256": "c9745dc497fd6226dd584da9858f29fc2f7a18748077e1ff36334740a7047a7f"
+        },
+        "amanta_en_vrats": {
+            "source": "vrats_2026.json",
+            "entry_count": 299,
+            "unique_identity_count": 125,
+            "recurring_weekday_count": 7,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": null,
+            "total_vrats_field": 124,
+            "events_sha256": "cf0d9cbd627ddf2a3a4c86f8cd79bb12be63b4ebc55a3b4bc5287d8caf56d825",
+            "recurring_sha256": "b4560d8b27ec83f623083eb76ee2b6be7aa63ca575700b78c8279948dd9374bb",
+            "identities_sha256": "e156e3441fabec1ab72cab8f5933f877ba38819019eb7d9bfe5cb829e0802350",
+            "identity_dates_sha256": "18d924c2266b746eb66c69d45374a2ad5b2dc77a668bb474e56077868aa09454"
+        },
+        "purnimanta_en_festivals": {
+            "source": "festivals_2026.json",
+            "entry_count": 1062,
+            "unique_identity_count": 450,
+            "recurring_weekday_count": 0,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": 335,
+            "total_vrats_field": 124,
+            "events_sha256": "6093caafba112ad7a02dbc34e4dd0f325002a1792b53a57f5e538b301d2e49af",
+            "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "identities_sha256": "65c94377171fde1ac2073ce2148d27d77783c2065ac6e07f2d8e284262b2be94",
+            "identity_dates_sha256": "05e2f21e0ccc532fe58d2dfba4f4bdab6fa51c4d30d1ec8f5ef0716703200050"
+        },
+        "purnimanta_en_festivals_only": {
+            "source": "festivals_only_2026.json",
+            "entry_count": 399,
+            "unique_identity_count": 325,
+            "recurring_weekday_count": 0,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": 335,
+            "total_vrats_field": null,
+            "events_sha256": "8d854dbb73ebe1a8a89f4f94925c94005168ad5c9b060cf6b38502a7c1de5349",
+            "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "identities_sha256": "56485f5a425d1e8edcee91f06b82bc203becd86a99afd351097382ff7cdf9ad1",
+            "identity_dates_sha256": "bd27e5922c84d915b2a78522b33c795b9bfe9a23ebe1dfec97b0a264ba233b2a"
+        },
+        "purnimanta_en_vrats": {
+            "source": "vrats_2026.json",
+            "entry_count": 299,
+            "unique_identity_count": 125,
+            "recurring_weekday_count": 7,
+            "duplicate_same_day_identity_count": 0,
+            "total_festivals_field": null,
+            "total_vrats_field": 124,
+            "events_sha256": "2dd0b7711fd3c360cd27e842f0519c301c08bb40c7efbe7b54afeed5ef419eb9",
+            "recurring_sha256": "b4560d8b27ec83f623083eb76ee2b6be7aa63ca575700b78c8279948dd9374bb",
+            "identities_sha256": "e156e3441fabec1ab72cab8f5933f877ba38819019eb7d9bfe5cb829e0802350",
+            "identity_dates_sha256": "850c9aba1a6a97fe1d34f13d7478e6cc533e98abf06bfd7e9fbd7162bbf7fccc"
+        }
     }
-  },
-  "location": "Bhuj 23.2472446,69.668339 Asia/Kolkata",
-  "year": 2026,
-  "fingerprints": {
-    "amanta_en_festivals": {
-      "source": "festivals_2026.json",
-      "entry_count": 1062,
-      "unique_identity_count": 447,
-      "recurring_weekday_count": 0,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": 335,
-      "total_vrats_field": 123,
-      "events_sha256": "7f4c89571c88f57260c208ceca1f7c45133c82b61fece76ef488d4cb28177fba",
-      "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "identities_sha256": "df649c22fbcd0ecd448363d07694cd7ea5f1aa7ad43ce4b59f2d9e088522a139",
-      "identity_dates_sha256": "96e4e653918feb1162ae35b950e1e0b02d19e9ddc4c3c5b87c38f45a6ec36b76"
-    },
-    "amanta_en_festivals_only": {
-      "source": "festivals_only_2026.json",
-      "entry_count": 399,
-      "unique_identity_count": 324,
-      "recurring_weekday_count": 0,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": 335,
-      "total_vrats_field": null,
-      "events_sha256": "5274e9975d1b0785bbc9b515fb7ea77a5c0d4602911d6ae638af9c767ffa8b45",
-      "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "identities_sha256": "11a98ece1ffdef1a497aec7a0b296cf4ff12aae653503c6f5f9ed91a7d853091",
-      "identity_dates_sha256": "8ea4a804b480d5d75a2847fd7aa1810d1dbb9d272dda43781c8c2b4afce86ed6"
-    },
-    "amanta_en_vrats": {
-      "source": "vrats_2026.json",
-      "entry_count": 299,
-      "unique_identity_count": 123,
-      "recurring_weekday_count": 7,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": null,
-      "total_vrats_field": 123,
-      "events_sha256": "d1a58ba217831cb507d7312be53bfa50c56d77b2fb4678e2fb0a287d37f35337",
-      "recurring_sha256": "b4560d8b27ec83f623083eb76ee2b6be7aa63ca575700b78c8279948dd9374bb",
-      "identities_sha256": "07ec980695c669f9b0d964cbbf01343f63bf09360b03ef42a930c8669821bb34",
-      "identity_dates_sha256": "e339ae7124903243ef870d3512563d5d447588738c57538be4af61bf741eb02c"
-    },
-    "purnimanta_en_festivals": {
-      "source": "festivals_2026.json",
-      "entry_count": 1064,
-      "unique_identity_count": 448,
-      "recurring_weekday_count": 0,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": 335,
-      "total_vrats_field": 123,
-      "events_sha256": "e31696252bc11c65801dd9d53145f813d9e1c169b07b1d40bac96c41074439a2",
-      "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "identities_sha256": "aad63cbf6f843e64591c85b8e9b0dd8c937b0b317333ef6f23ad2a679a971341",
-      "identity_dates_sha256": "ec1cd966709f89558a0db674f922cf9b555765ee14bf5a7f3c5b0871c45851aa"
-    },
-    "purnimanta_en_festivals_only": {
-      "source": "festivals_only_2026.json",
-      "entry_count": 401,
-      "unique_identity_count": 325,
-      "recurring_weekday_count": 0,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": 335,
-      "total_vrats_field": null,
-      "events_sha256": "dde776ea098f4b5048d528dd3467e8bac41bc89c3db378ea1b19e23854c67b82",
-      "recurring_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "identities_sha256": "56485f5a425d1e8edcee91f06b82bc203becd86a99afd351097382ff7cdf9ad1",
-      "identity_dates_sha256": "cc54c31f4a915def2758ed95e841ed69f9edc2a63b5bf815672e91200aa6038d"
-    },
-    "purnimanta_en_vrats": {
-      "source": "vrats_2026.json",
-      "entry_count": 299,
-      "unique_identity_count": 123,
-      "recurring_weekday_count": 7,
-      "duplicate_same_day_identity_count": 0,
-      "total_festivals_field": null,
-      "total_vrats_field": 123,
-      "events_sha256": "87549730d447277a3563dc863fe9456a7ff328bf51945fabb00a28391b604f86",
-      "recurring_sha256": "b4560d8b27ec83f623083eb76ee2b6be7aa63ca575700b78c8279948dd9374bb",
-      "identities_sha256": "07ec980695c669f9b0d964cbbf01343f63bf09360b03ef42a930c8669821bb34",
-      "identity_dates_sha256": "50d4189163dc1d6e06eb386311b559c1bb1327f25690a3f4d16be096ab066d26"
-    }
-  }
 }

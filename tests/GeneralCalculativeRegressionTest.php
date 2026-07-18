@@ -66,8 +66,18 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertArrayHasKey('Vrata_Parana', $details);
         self::assertArrayHasKey('Nakshatra_Tyajya', $details);
         self::assertArrayHasKey('Mahadiksha_Guidance', $details);
+        self::assertArrayHasKey('Ayana', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Ritu', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Nirayana_Ayana', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Nirayana_Ritu', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Ayana_Key', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Ritu_Key', $details['Hindu_Calendar']);
         self::assertArrayHasKey('Sayana_Ayana', $details['Hindu_Calendar']);
         self::assertArrayHasKey('Sayana_Ritu', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Sayana_Ayana_Key', $details['Hindu_Calendar']);
+        self::assertArrayHasKey('Sayana_Ritu_Key', $details['Hindu_Calendar']);
+        self::assertSame($details['Hindu_Calendar']['Ayana'], $details['Hindu_Calendar']['Nirayana_Ayana']);
+        self::assertSame($details['Hindu_Calendar']['Ritu'], $details['Hindu_Calendar']['Nirayana_Ritu']);
 
         self::assertArrayHasKey('all', $details['Vara_Tithi_Doshas']);
         self::assertArrayHasKey('dagdha', $details['Vara_Tithi_Doshas']['all']);
@@ -129,7 +139,13 @@ class GeneralCalculativeRegressionTest extends TestCase
         self::assertNotEmpty($result['calendar_period_windows']['sayana_ayana_windows'] ?? []);
         self::assertNotEmpty($result['calendar_period_windows']['sayana_ritu_windows'] ?? []);
         self::assertArrayHasKey('Mahadiksha_Guidance', $result['todays_complete_details']['details']);
-        self::assertArrayHasKey('Sayana_Ayana', $result['todays_complete_details']['details']['Hindu_Calendar']);
+        $hindu = $result['todays_complete_details']['details']['Hindu_Calendar'];
+        self::assertArrayHasKey('Ayana', $hindu);
+        self::assertArrayHasKey('Nirayana_Ayana', $hindu);
+        self::assertArrayHasKey('Sayana_Ayana', $hindu);
+        self::assertArrayHasKey('Ayana_Key', $hindu);
+        self::assertArrayHasKey('Sayana_Ayana_Key', $hindu);
+        self::assertSame($hindu['Ayana'], $hindu['Nirayana_Ayana']);
     }
 
     public function testNewUserFacingGeneralLayersAreLocalizedForGujarati(): void

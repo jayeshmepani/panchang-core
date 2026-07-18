@@ -138,7 +138,7 @@ class PanchangServiceProvider extends ServiceProvider
             $app->make(LagnaTableCalculator::class)
         ));
 
-        $this->app->singleton(FestivalRuleEngine::class);
+        $this->app->singleton(FestivalRuleEngine::class, fn ($app): FestivalRuleEngine => new FestivalRuleEngine($app->make(TransitEngine::class)));
 
         $this->app->singleton(FestivalFamilyOrchestrator::class);
 

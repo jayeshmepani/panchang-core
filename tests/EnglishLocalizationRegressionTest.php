@@ -27,8 +27,20 @@ class EnglishLocalizationRegressionTest extends TestCase
 
         $this->assertSame('Taurus', $details['Chart_Auxiliary']['Sun_Sign'] ?? null);
         $this->assertSame('Sagittarius', $details['Chart_Auxiliary']['Moon_Sign'] ?? null);
-        $this->assertSame('Northward Course', $details['Hindu_Calendar']['Ayana'] ?? null);
-        $this->assertSame('Summer', $details['Hindu_Calendar']['Ritu'] ?? null);
+        // Nirayana (sidereal) is the default Ayana/Ritu; keys are locale-stable.
+        $this->assertSame('Uttarayana (Northward Course)', $details['Hindu_Calendar']['Ayana'] ?? null);
+        $this->assertSame('Uttarayana (Northward Course)', $details['Hindu_Calendar']['Nirayana_Ayana'] ?? null);
+        $this->assertSame('Uttarayana', $details['Hindu_Calendar']['Ayana_Key'] ?? null);
+        $this->assertSame('Uttarayana', $details['Hindu_Calendar']['Nirayana_Ayana_Key'] ?? null);
+        $this->assertSame('Grishma (Summer)', $details['Hindu_Calendar']['Ritu'] ?? null);
+        $this->assertSame('Grishma (Summer)', $details['Hindu_Calendar']['Nirayana_Ritu'] ?? null);
+        $this->assertSame('Grishma', $details['Hindu_Calendar']['Ritu_Key'] ?? null);
+        $this->assertArrayHasKey('Sayana_Ayana', $details['Hindu_Calendar']);
+        $this->assertArrayHasKey('Sayana_Ritu', $details['Hindu_Calendar']);
+        $this->assertArrayHasKey('Sayana_Ayana_Key', $details['Hindu_Calendar']);
+        $this->assertArrayHasKey('Sayana_Ritu_Key', $details['Hindu_Calendar']);
+        $this->assertSame('Nirayana (Sidereal)', $details['Hindu_Calendar']['Ayana_System'] ?? null);
+        $this->assertSame('Sayana (Tropical)', $details['Hindu_Calendar']['Sayana_Ayana_System'] ?? null);
         $this->assertSame('Second Lunar Day of Dark Half', $details['Tithi']['name'] ?? null);
         $this->assertSame('Dark Half (waning)', $details['Tithi']['paksha_name'] ?? null);
         $this->assertSame('Jyeshtha (Intercalary)', $details['Hindu_Calendar']['Month_Amanta_En'] ?? null);
@@ -100,8 +112,8 @@ class EnglishLocalizationRegressionTest extends TestCase
         $this->assertMatchesRegularExpression('/^\\d{2}\\/\\d{2}\\/2026 \\d{2}:\\d{2}:\\d{2} (AM|PM)$/', $chandraDarshana['visibility_window']['start_iso'] ?? '');
         $this->assertMatchesRegularExpression('/^1h 3\\dm \\d+s$/', $chandraDarshana['visibility_window']['duration_min'] ?? '');
         $this->assertIsFloat($chandraDarshana['visibility_window']['duration_minutes'] ?? null);
-        $this->assertSame('classical Sthula Chandra Darshana 9-muhurta rule', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_model_name'] ?? null);
-        $this->assertSame('classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_basis_name'] ?? null);
+        $this->assertSame('source-sensitive monthly Chandra Darshana first-crescent model', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_model_name'] ?? null);
+        $this->assertSame('application-defined earliest classical first-crescent date', $chandraDarshana['calculation_basis']['chandra_darshana_visibility_basis_name'] ?? null);
     }
 
     public function test_english_sankranti_day_details_use_translated_runtime_labels(): void

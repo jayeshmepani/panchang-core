@@ -21,7 +21,7 @@ trait FestivalRuleTruthTables
     private function usesExclusiveTruthTable(array $rule): bool
     {
         foreach (['janmashtami_truth_table', 'masik_janmashtami_truth_table', 'vijayadashami_truth_table', 'govatsa_truth_table', 'mahashivaratri_truth_table', 'diwali_truth_table', 'ekadashi_nirnay_table', 'purnima_vrat_18_ghadi_rule', 'pradosh_truth_table', 'sankashti_truth_table', 'vinayaki_chaturthi_truth_table', 'narasimha_jayanti_truth_table', 'raksha_bandhan_truth_table', 'govardhan_annakut_truth_table', 'nag_panchami_paraviddha_table', 'durgashtami_paraviddha_table', 'akshaya_tritiya_purvahna_table', 'anant_chaturdashi_paraviddha_table', 'navratri_pratipada_table', 'durva_ashtami_purvaviddha_table', 'lalita_panchami_aparahna_table', 'akshaya_navami_purvahna_table', 'naraka_chaturdashi_abhyanga_table', 'darsha_amavasya_aparahna_table', 'gauri_tritiya_parayuta_table', 'madhyahna_purvatithi_vedha_rejection', 'panchami_viddha_allowed', 'ashtami_viddha_rejection', 'trayodashi_viddha_rejection', 'previous_tithi_viddha_rejection', 'tithi_boundary_rule'] as $flag) {
-            if ((bool) ($rule[$flag] ?? false)) {
+            if (($rule[$flag] ?? false) === true) {
                 return true;
             }
         }
@@ -1524,7 +1524,7 @@ trait FestivalRuleTruthTables
         $day1Present = (bool) ($day1['target_during_observance'] ?? false);
         $day2Present = (bool) ($day2['target_during_observance'] ?? false);
         if ($bothDaysPreferNavamiYuta && $day1Present && $day2Present) {
-            if ($day1ShuddhaVyapti && !$day2ShuddhaVyapti) { // @phpstan-ignore booleanNot.alwaysTrue
+            if ($day1ShuddhaVyapti) {
                 return $this->markSpecialWinner($day1, 'madhyahna_shuddha_purva_vedha_free_day1');
             }
 
@@ -1532,7 +1532,7 @@ trait FestivalRuleTruthTables
         }
 
         // Navami-yukta observance on the standalone shuddha udaya day (para day of the pair).
-        if ($bothDaysPreferNavamiYuta && $day1AtSunrise && !$day2AtSunrise && $day1ShuddhaVyapti && !$day1Viddha) { // @phpstan-ignore booleanNot.alwaysTrue
+        if ($bothDaysPreferNavamiYuta && $day1AtSunrise && !$day2AtSunrise && $day1ShuddhaVyapti) {
             return $this->markSpecialWinner($day1, 'madhyahna_shuddha_navami_yuta_day2');
         }
 

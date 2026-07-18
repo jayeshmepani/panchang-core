@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-17T13:02:51+00:00",
+        "generated_at": "2026-07-18T13:55:22+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -20,7 +20,7 @@
         "calendar_type": "purnimanta",
         "locale": "en",
         "festival_day_count": 195,
-        "festival_entry_count": 401,
+        "festival_entry_count": 399,
         "total_festivals": 335,
         "by_date": {
             "2026-01-03": [
@@ -4642,115 +4642,6 @@
                 }
             ],
             "2026-02-19": [
-                {
-                    "name": "Cheti Chand",
-                    "name_key": "Cheti Chand",
-                    "description": "Sindhi Hindu New Year; birth of Jhulelal (Ishta-Devta)",
-                    "deity": "Jhulelal/Varuna",
-                    "fasting": false,
-                    "regions": [
-                        "Sindhi",
-                        "Gujarat",
-                        "Rajasthan"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                2
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                2
-                            ],
-                            "names": [
-                                "Second Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Chaitra",
-                            "value_key": "Chaitra",
-                            "name": "Chaitra"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Cheti Chand",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461089.9777463675,
-                        "target_tithi_end_jd": 2461090.9368880903,
-                        "standard_date": "2026-02-19",
-                        "observance_date": "2026-02-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Cheti Chand",
-                        "festival_name_localized": "Cheti Chand",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
                 {
                     "name": "Phulera Dooj",
                     "name_key": "Phulera Dooj",
@@ -14037,10 +13928,10 @@
                         "paksha_name": "Bright Half (waxing)",
                         "karmakala_type": "chandra_darshana_visibility",
                         "karmakala_type_name": "sunset to moonset visibility",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "classical Sthula Chandra Darshana 9-muhurta rule",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "classical textual rule (Sthula Chandra Darshana Sud 1 or Sud 2)",
+                        "chandra_darshana_visibility_model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                        "chandra_darshana_visibility_model_name": "source-sensitive monthly Chandra Darshana first-crescent model",
+                        "chandra_darshana_visibility_basis": "application_definition_first_visible_crescent",
+                        "chandra_darshana_visibility_basis_name": "application-defined earliest classical first-crescent date",
                         "location_sensitive": true,
                         "adhika": {
                             "adhika_only": true
@@ -14066,8 +13957,8 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)",
-                            "winning_score": 1500,
+                            "winning_reason": "Application first-crescent candidate by the 12-degree proxy",
+                            "winning_score": 1623,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
                             "target_tithi_daylight_overlap_seconds": 42326.35054439306,
@@ -14075,43 +13966,87 @@
                             "moon_visibility_end_jd": 2461179.1673726854,
                             "moon_visibility_seconds": 7398.0000257492065,
                             "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 55962.20367997885,
-                                "pratipada_post_sunrise_minutes": 932.7033946663141,
-                                "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 28787.99998998642,
-                                "day_muhurta_seconds": 3198.6666655540466,
-                                "reason": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana",
-                                "modern_visibility": {
-                                    "model": "simplified_modern_crescent_visibility",
-                                    "visible": true,
-                                    "lag_minutes": 123.30000042915344,
-                                    "elongation_degrees": 24.92867127973163,
-                                    "illumination_percent": 4.658339452623384,
-                                    "min_lag_minutes": 38,
-                                    "min_elongation_degrees": 9,
-                                    "hard_elongation_floor_degrees": 7,
-                                    "min_illumination_percent": 0.8,
-                                    "passes_lag": true,
-                                    "passes_elongation": true,
-                                    "passes_hard_elongation_floor": true,
-                                    "passes_illumination": true,
-                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                "model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                                "operational_candidate": true,
+                                "geometrically_supported_by_engine_proxy": true,
+                                "actual_observation": "UNKNOWN",
+                                "classification": "APPLICATION_CRESCENT_CANDIDATE",
+                                "summary_classification": "APPLICATION_CRESCENT_CANDIDATE",
+                                "strict_source_only_result": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                "strict_source_only_reason_key": "no_explicit_monthly_scriptural_date_command_in_seven_sources",
+                                "date_selection_basis": "application_definition_first_visible_crescent",
+                                "date_selection_is_explicit_monthly_scriptural_rule": false,
+                                "astronomical_basis": "modern_proxy_for_surya_siddhanta_12_bhaga_rule",
+                                "astronomical_computation_basis": "engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold",
+                                "application_evaluation_epoch": "local_sunset",
+                                "evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1": false,
+                                "modern_proxy_for_surya_siddhanta_12_bhaga_rule": true,
+                                "claims_full_surya_siddhanta_chapter_10_recomputation": false,
+                                "tithi_corroboration_basis": "nibandha_tithi_visibility_indication",
+                                "tithi_indication_original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                "tithi_indication_monthly_use": "application_level_analogy",
+                                "pradosha_basis": "satsangijivan_childhood_samskara_analogy_only",
+                                "pradosha_muhurta_basis": "dynamic_ratrimana_muhurta",
+                                "modern_longitudinal_separation_degrees": 24.92867127973163,
+                                "modern_longitudinal_separation_at_local_sunset_degrees": 24.92867127973163,
+                                "proxy_threshold_degrees": 12,
+                                "moonset_lag_seconds": 7398.0000257492065,
+                                "moonset_lag_minutes": 123.30000042915344,
+                                "illumination_percent": 4.658339452623384,
+                                "horizon": {
+                                    "status": "POST_SUNSET_HORIZON_WINDOW",
+                                    "method": "rise_set_window_proxy",
+                                    "requires_moonrise_before_sunset": true,
+                                    "requires_moonset_after_sunset": true,
+                                    "note": "Rise/set proxy; not an apparent upper-limb altitude and next-set search."
                                 },
-                                "reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "reason_name": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)"
+                                "surya_siddhanta_visibility": {
+                                    "status": "TWELVE_BHAGA_PROXY_PASSED",
+                                    "method": "modern_longitudinal_separation_proxy",
+                                    "threshold_degrees": 12,
+                                    "claims_exact_siddhantic_recomputation": false
+                                },
+                                "nibandha_tithi_indication": {
+                                    "status": "FULL_APARAHNA_INDICATION_NOT_ESTABLISHED",
+                                    "applicable": false,
+                                    "original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                    "monthly_use": "application_level_analogy"
+                                },
+                                "stronger_six_muhurta_indication": {
+                                    "status": "SIX_MUHURTA_INTERVAL_NOT_COVERED",
+                                    "requires_dvitiya_start_at_or_before_aparahna_start": true,
+                                    "requires_dvitiya_end_at_or_after_sunset": true
+                                },
+                                "pradosha": {
+                                    "status": "PRADOSHA_OVERLAP_PRESENT",
+                                    "basis": "satsangijivan_childhood_samskara_analogy_only",
+                                    "muhurta_basis": "dynamic_ratrimana_muhurta",
+                                    "used_as_rejection_rule": false
+                                },
+                                "monthly_observance": {
+                                    "strict_source_only_status": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                    "application_status": "APPLICATION_FIRST_CRESCENT_CANDIDATE",
+                                    "date_selection_basis": "application_definition_first_visible_crescent",
+                                    "date_selection_is_explicit_monthly_scriptural_rule": false
+                                },
+                                "has_post_sunset_horizon_window": true,
+                                "tithi_proxy_applicable": false,
+                                "dvitiya_covers_full_aparahna_3_muhurtas": false,
+                                "dvitiya_covers_aparahna_through_sunset_6_muhurtas": false,
+                                "visibility_during_pradosha": true,
+                                "forbidden_modern_thresholds_applied": false,
+                                "reason": "Application first-crescent candidate by the 12-degree proxy",
+                                "basis": "application_definition_first_visible_crescent",
+                                "reason_key": "chandra_darshana_application_crescent_candidate",
+                                "reason_name": "Application first-crescent candidate by the 12-degree proxy"
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)"
+                            "winning_reason_key": "chandra_darshana_application_crescent_candidate",
+                            "winning_reason_name": "Application first-crescent candidate by the 12-degree proxy"
                         },
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "Adhika Chandra Darshana",
@@ -14124,8 +14059,8 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)",
-                        "winning_score": 1500,
+                        "winning_reason": "Application first-crescent candidate by the 12-degree proxy",
+                        "winning_score": 1623,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
                         "target_tithi_daylight_overlap_seconds": 42326.35054439306,
@@ -14133,35 +14068,83 @@
                         "moon_visibility_end_jd": 2461179.1673726854,
                         "moon_visibility_seconds": 7398.0000257492065,
                         "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 55962.20367997885,
-                            "pratipada_post_sunrise_minutes": 932.7033946663141,
-                            "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 28787.99998998642,
-                            "day_muhurta_seconds": 3198.6666655540466,
-                            "reason": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana",
-                            "modern_visibility": {
-                                "model": "simplified_modern_crescent_visibility",
-                                "visible": true,
-                                "lag_minutes": 123.30000042915344,
-                                "elongation_degrees": 24.92867127973163,
-                                "illumination_percent": 4.658339452623384,
-                                "min_lag_minutes": 38,
-                                "min_elongation_degrees": 9,
-                                "hard_elongation_floor_degrees": 7,
-                                "min_illumination_percent": 0.8,
-                                "passes_lag": true,
-                                "passes_elongation": true,
-                                "passes_hard_elongation_floor": true,
-                                "passes_illumination": true,
-                                "basis": "modern_astronomical_heuristic_not_classical"
+                            "model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                            "operational_candidate": true,
+                            "geometrically_supported_by_engine_proxy": true,
+                            "actual_observation": "UNKNOWN",
+                            "classification": "APPLICATION_CRESCENT_CANDIDATE",
+                            "summary_classification": "APPLICATION_CRESCENT_CANDIDATE",
+                            "strict_source_only_result": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                            "strict_source_only_reason_key": "no_explicit_monthly_scriptural_date_command_in_seven_sources",
+                            "date_selection_basis": "application_definition_first_visible_crescent",
+                            "date_selection_is_explicit_monthly_scriptural_rule": false,
+                            "astronomical_basis": "modern_proxy_for_surya_siddhanta_12_bhaga_rule",
+                            "astronomical_computation_basis": "engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold",
+                            "application_evaluation_epoch": "local_sunset",
+                            "evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1": false,
+                            "modern_proxy_for_surya_siddhanta_12_bhaga_rule": true,
+                            "claims_full_surya_siddhanta_chapter_10_recomputation": false,
+                            "tithi_corroboration_basis": "nibandha_tithi_visibility_indication",
+                            "tithi_indication_original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                            "tithi_indication_monthly_use": "application_level_analogy",
+                            "pradosha_basis": "satsangijivan_childhood_samskara_analogy_only",
+                            "pradosha_muhurta_basis": "dynamic_ratrimana_muhurta",
+                            "modern_longitudinal_separation_degrees": 24.92867127973163,
+                            "modern_longitudinal_separation_at_local_sunset_degrees": 24.92867127973163,
+                            "surya_siddhanta_longitudinal_separation_degrees": null,
+                            "proxy_threshold_degrees": 12,
+                            "moonset_lag_seconds": 7398.0000257492065,
+                            "moonset_lag_minutes": 123.30000042915344,
+                            "illumination_percent": 4.658339452623384,
+                            "horizon": {
+                                "status": "POST_SUNSET_HORIZON_WINDOW",
+                                "method": "rise_set_window_proxy",
+                                "requires_moonrise_before_sunset": true,
+                                "requires_moonset_after_sunset": true,
+                                "note": "Rise/set proxy; not an apparent upper-limb altitude and next-set search."
                             },
-                            "reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "reason_name": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)"
+                            "surya_siddhanta_visibility": {
+                                "status": "TWELVE_BHAGA_PROXY_PASSED",
+                                "method": "modern_longitudinal_separation_proxy",
+                                "threshold_degrees": 12,
+                                "claims_exact_siddhantic_recomputation": false
+                            },
+                            "nibandha_tithi_indication": {
+                                "status": "FULL_APARAHNA_INDICATION_NOT_ESTABLISHED",
+                                "applicable": false,
+                                "original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                "monthly_use": "application_level_analogy"
+                            },
+                            "stronger_six_muhurta_indication": {
+                                "status": "SIX_MUHURTA_INTERVAL_NOT_COVERED",
+                                "requires_dvitiya_start_at_or_before_aparahna_start": true,
+                                "requires_dvitiya_end_at_or_after_sunset": true
+                            },
+                            "pradosha": {
+                                "status": "PRADOSHA_OVERLAP_PRESENT",
+                                "basis": "satsangijivan_childhood_samskara_analogy_only",
+                                "muhurta_basis": "dynamic_ratrimana_muhurta",
+                                "used_as_rejection_rule": false
+                            },
+                            "monthly_observance": {
+                                "strict_source_only_status": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                "application_status": "APPLICATION_FIRST_CRESCENT_CANDIDATE",
+                                "date_selection_basis": "application_definition_first_visible_crescent",
+                                "date_selection_is_explicit_monthly_scriptural_rule": false
+                            },
+                            "has_post_sunset_horizon_window": true,
+                            "tithi_proxy_applicable": false,
+                            "dvitiya_covers_full_aparahna_3_muhurtas": false,
+                            "dvitiya_covers_aparahna_through_sunset_6_muhurtas": false,
+                            "pratipada_post_sunrise_muhurtas": null,
+                            "dvitiya_start_jd": null,
+                            "dvitiya_end_jd": null,
+                            "visibility_during_pradosha": true,
+                            "forbidden_modern_thresholds_applied": false,
+                            "reason": "Application first-crescent candidate by the 12-degree proxy",
+                            "basis": "application_definition_first_visible_crescent",
+                            "reason_key": "chandra_darshana_application_crescent_candidate",
+                            "reason_name": "Application first-crescent candidate by the 12-degree proxy"
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -14170,8 +14153,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "Long Shukla Pratipada (no Sthula darshana on Sud 1, deferred to Sud 2)"
+                        "winning_reason_key": "chandra_darshana_application_crescent_candidate",
+                        "winning_reason_name": "Application first-crescent candidate by the 12-degree proxy"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -30902,7 +30885,8 @@
                     ],
                     "aliases": [
                         "Kali Chaudas",
-                        "Hanuman Puja"
+                        "Hanuman Puja",
+                        "Deepavali Hanuman Puja"
                     ],
                     "observance_note": "Exception: Standard Dark Half (waning) tithi 14 falls on 2026-11-08 at sunrise, but due to tradition/ritual requiring Sangava presence, it is celebrated on 2026-11-07.",
                     "calculation_basis": {
@@ -31513,118 +31497,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
                         "winning_reason_name": "Darsha Amavasya on the day before sunrise aparahna"
-                    }
-                },
-                {
-                    "name": "Hanuman Puja",
-                    "name_key": "Kali Chaudas (Naraka Chaturdashi)",
-                    "description": "Worship of Lord Hanuman during Diwali period",
-                    "deity": "Hanuman",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Kali Chaudas (Naraka Chaturdashi)",
-                        "Hanuman Puja",
-                        "Kali Chaudas",
-                        "Naraka Chaturdashi"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                14
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                29
-                            ],
-                            "names": [
-                                "Fourteenth Lunar Day of Dark Half"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Kartika",
-                            "value_key": "Kartika",
-                            "name": "Kartika"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Hanuman Puja",
-                        "required_tithi": 14,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461351.7210407574,
-                        "target_tithi_end_jd": 2461352.748800463,
-                        "standard_date": "2026-11-08",
-                        "observance_date": "2026-11-08",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Hanuman Puja",
-                        "festival_name_localized": "Hanuman Puja",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 },
                 {

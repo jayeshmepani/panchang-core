@@ -356,7 +356,7 @@ class FestivalDateCorrectionsTest extends TestCase
         self::assertSame(['2027-01-18'], $this->datesForName($purnimantaVrats, 'Pausha Putrada Ekadashi'));
     }
 
-    public function test_chandra_darshana_uses_sthula_nine_muhurta_rule_not_visibility_selection(): void
+    public function test_chandra_darshana_uses_source_sensitive_first_crescent_algorithm(): void
     {
         /** @var PanchangService $service */
         $service = $this->app->make(PanchangService::class);
@@ -375,13 +375,23 @@ class FestivalDateCorrectionsTest extends TestCase
         self::assertIsArray($entry);
         self::assertSame(2, $entry['resolution']['required_tithi'] ?? null);
         self::assertSame(
-            'chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1',
+            'chandra_darshana_application_crescent_candidate',
             $entry['resolution']['decision']['winning_reason_key'] ?? null
         );
-        self::assertArrayHasKey(
-            'modern_visibility',
-            $entry['resolution']['decision']['visibility_assessment'] ?? [],
-            'Modern/physical visibility must remain diagnostic metadata, not the date-selection rule.'
+        self::assertSame(
+            'application_definition_first_visible_crescent',
+            $entry['resolution']['decision']['visibility_assessment']['date_selection_basis'] ?? null
+        );
+        self::assertSame(
+            'modern_proxy_for_surya_siddhanta_12_bhaga_rule',
+            $entry['resolution']['decision']['visibility_assessment']['astronomical_basis'] ?? null
+        );
+        self::assertSame(
+            'UNKNOWN',
+            $entry['resolution']['decision']['visibility_assessment']['actual_observation'] ?? null
+        );
+        self::assertFalse(
+            $entry['resolution']['decision']['visibility_assessment']['forbidden_modern_thresholds_applied'] ?? true
         );
     }
 

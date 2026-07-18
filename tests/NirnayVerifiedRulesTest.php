@@ -636,9 +636,9 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame(1, FestivalService::FESTIVALS['Chandra Darshana']['tithi']);
         self::assertSame('chandra_darshana_visibility', FestivalService::FESTIVALS['Chandra Darshana']['karmakala_type']);
         self::assertTrue(FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility']);
-        self::assertSame('classical_sthula_chandra_darshana_9_muhurta', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_model']);
-        self::assertSame('classical_textual_rule_sthula_chandra_darshana', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_basis']);
-        self::assertSame(9, FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_sthula_muhurta_threshold']);
+        self::assertSame('source_sensitive_monthly_chandra_darshana_first_crescent', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_model']);
+        self::assertSame('application_definition_first_visible_crescent', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_basis']);
+        self::assertArrayNotHasKey('chandra_darshana_sthula_muhurta_threshold', FestivalService::FESTIVALS['Chandra Darshana']);
     }
 
     public function testGujaratiFestivalRegistryCorrectionsAreEncoded(): void
@@ -774,8 +774,8 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'sharad_purnima_rasa',
                 'alankar_marjan_satsangi',
                 'pushpa_dolotsav_satsangi',
-                'classical_sthula_chandra_darshana_9_muhurta',
-                'classical_textual_rule_sthula_chandra_darshana',
+                'source_sensitive_monthly_chandra_darshana_first_crescent',
+                'application_definition_first_visible_crescent',
                 'Uddhav/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion',
                 'Swaminarayan/Uddhav Janmashtami morning and midnight observance',
             ],

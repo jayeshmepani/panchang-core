@@ -100,16 +100,113 @@ class PanchangaEngine
         ];
     }
 
+    /**
+     * Stable machine key for solar ayana from ecliptic longitude.
+     *
+     * Uttarayana: Sun in Capricorn→Gemini sector (0°–90° and 270°–360°).
+     * Dakshinayana: Sun in Cancer→Sagittarius sector (90°–270°).
+     *
+     * Works for both nirayana (sidereal) and sayana (tropical) longitudes.
+     */
+    public function getAyanaKey(float $sunLon): string
+    {
+        $normalized = fmod($sunLon, 360.0);
+        if ($normalized < 0.0) {
+            $normalized += 360.0;
+        }
+
+        return ($normalized >= 90.0 && $normalized < 270.0)
+            ? 'Dakshinayana'
+            : 'Uttarayana';
+    }
+
+    /** Localized ayana display name (Uttarayana / Dakshinayana). */
     public function getAyana(float $sunLon): string
     {
-        return ($sunLon >= 90.0 && $sunLon < 270.0)
+        return $this->getAyanaKey($sunLon) === 'Dakshinayana'
             ? Localization::translate('Ayana', 1)
             : Localization::translate('Ayana', 0);
     }
 
+    /** Stable machine key for ṛtu (Vasanta…Shishira) from solar longitude. */
+    public function getRituKey(float $sunLon): string
+    {
+        return Ritu::fromSunLongitude($sunLon)->name;
+    }
+
+    /** Localized ṛtu display name. */
     public function getRitu(float $sunLon): string
     {
         return Ritu::fromSunLongitude($sunLon)->getName();
+    }
+
+    /**
+     * Nirayana (sidereal / constellation-based) and Sayana (tropical / seasonal)
+     * ayana + ṛtu payload block for Hindu_Calendar.
+     *
+     * BC short keys Ayana / Ritu remain the nirayana values.
+     * Explicit Nirayana_* / Sayana_* keys make the dual systems unambiguous.
+     * *_Key fields are locale-stable machine identifiers for matching/rules.
+     *
+     * @return array{
+     *   Ayana:string,
+     *   Ritu:string,
+     *   Ayana_Key:string,
+     *   Ritu_Key:string,
+     *   Nirayana_Ayana:string,
+     *   Nirayana_Ritu:string,
+     *   Nirayana_Ayana_Key:string,
+     *   Nirayana_Ritu_Key:string,
+     *   Sayana_Ayana:string,
+     *   Sayana_Ritu:string,
+     *   Sayana_Ayana_Key:string,
+     *   Sayana_Ritu_Key:string,
+     *   Ayana_System:string,
+     *   Ritu_System:string,
+     *   Sayana_Ayana_System:string,
+     *   Sayana_Ritu_System:string
+     * }
+     */
+    public function buildAyanaRituCalendarFields(float $nirayanaSunLon, float $sayanaSunLon): array
+    {
+        $nirayanaAyanaKey = $this->getAyanaKey($nirayanaSunLon);
+        $nirayanaRituKey = $this->getRituKey($nirayanaSunLon);
+        $sayanaAyanaKey = $this->getAyanaKey($sayanaSunLon);
+        $sayanaRituKey = $this->getRituKey($sayanaSunLon);
+
+        $nirayanaAyana = $this->getAyana($nirayanaSunLon);
+        $nirayanaRitu = $this->getRitu($nirayanaSunLon);
+        $sayanaAyana = $this->getAyana($sayanaSunLon);
+        $sayanaRitu = $this->getRitu($sayanaSunLon);
+
+        $nirayanaSystem = Localization::translate('String', 'Nirayana (Sidereal)');
+        $sayanaSystem = Localization::translate('String', 'Sayana (Tropical)');
+
+        return [
+            // BC short keys = nirayana (sidereal / constellation-based)
+            'Ayana' => $nirayanaAyana,
+            'Ritu' => $nirayanaRitu,
+            'Ayana_Key' => $nirayanaAyanaKey,
+            'Ritu_Key' => $nirayanaRituKey,
+
+            // Explicit nirayana naming
+            'Nirayana_Ayana' => $nirayanaAyana,
+            'Nirayana_Ritu' => $nirayanaRitu,
+            'Nirayana_Ayana_Key' => $nirayanaAyanaKey,
+            'Nirayana_Ritu_Key' => $nirayanaRituKey,
+
+            // Sayana (tropical / seasonal)
+            'Sayana_Ayana' => $sayanaAyana,
+            'Sayana_Ritu' => $sayanaRitu,
+            'Sayana_Ayana_Key' => $sayanaAyanaKey,
+            'Sayana_Ritu_Key' => $sayanaRituKey,
+
+            // System labels (localized)
+            'Ayana_System' => $nirayanaSystem,
+            'Ritu_System' => $nirayanaSystem,
+            'Sayana_Ayana_System' => $sayanaSystem,
+            'Sayana_Ritu_System' => $sayanaSystem,
+        ];
     }
 
     public function getSamvat(int $year, int $month): array

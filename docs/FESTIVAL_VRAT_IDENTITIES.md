@@ -7,7 +7,7 @@ Canonical catalog of festival and vrat identities defined by `FestivalService::F
 | Field | Source | Count |
 |---|---|---:|
 | `total_festivals` | Non-vrat (`fasting` unset/false) first-level `FESTIVALS` keys | **335** |
-| `total_vrats` | Fasting keys with `identity_key` collapse + Pradosh expanded to 7 weekday identities | **123** |
+| `total_vrats` | Fasting keys with `identity_key` collapse + Pradosh expanded to 7 weekday identities | **124** |
 
 These totals are what generated JSON reports in `total_festivals` / `total_vrats`. They do **not** shrink when a definition does not fire in a given year or calendar system. Dated occurrence volume remains separate (`festival_entry_count` / `vrat_entry_count`).
 
@@ -15,18 +15,19 @@ These totals are what generated JSON reports in `total_festivals` / `total_vrats
 
 | Layer | What it is | Current value |
 |---|---|---|
-| **Catalog totals** | `total_festivals` / `total_vrats` in generated JSON | **335** / **123** |
-| **Year-observed unique keys** | Distinct `name_key`s that actually fire in a given year/calendar `by_date` dump | Always ≤ catalog; varies by year (never the catalog total itself) |
+| **Catalog totals** | `total_festivals` / `total_vrats` in generated JSON | **335** / **124** |
+| **Year-observed unique keys** | Distinct `name_key`s that actually fire in a given year/calendar `by_date` dump | Always ≤ catalog; varies by year |
 | **Table `#` column below** | Reading serial only (1…N) | Not a package identity total |
 
-A given year may still emit fewer unique `name_key`s in `by_date` than the catalog because not every definition occurs every year; those rows still count toward the catalog total. For reference, **2026 English Bhuj** year-observed unique keys (not catalog totals) were about **324 Amanta / 325 Purnimanta** in `festivals_only_*` and **123** in `vrats_*` after including Avidhava Navami and Akhand Dwadashi. Cross-file identity equality for the **observed** set still holds: `festivals_only` unique keys ≡ non-vrat slice of `festivals_*`; `vrats_*` (dated + `recurring_weekday_vrats`) ≡ fasting slice of `festivals_*`.
+A given year may still emit fewer unique `name_key`s in `by_date` than the catalog because not every definition occurs every year; those rows still count toward the catalog total.
 
 Runtime notes:
 
-- **Pradosh Vrat** is one registry family rule and expands to seven weekday identities (`Ravi` … `Shani` Pradosh Vrat).
-- Some rows use `identity_key` / `display_name` (for example Akshaya Tritiya → Treta Yuga Diwas; Vat Purnima → Jyeshtha Purnima; Swaminarayan Varaha Jayanti → Varaha Jayanti). Festival catalog totals count first-level non-vrat keys (335); vrat catalog totals count unique identities after those remaps (123).
-- **Avidhava Navami** (aliases include Saubhagyavati Navami / સૌભાગ્યવતી નવમી) is the Pitru Paksha Krishna Navami shraddha for sumangali women — distinct from Labh Panchami’s Saubhagya Panchami.
-- **Akhand Dwadashi** (અખંડ દ્વાદશી) is Margashirsha Shukla 12 (after Mokshada Ekadashi), a dedicated Vishnu vrat identity separate from derived Mahadwadashi and from Matsya Dwadashi (avatar day on the same tithi).
+- **Pradosh Vrat** expands to seven weekday identities.
+- **Rama Navami (Smarta)** and **Rama Navami (Vaishnava)** are distinct identities when dual-day rules differ.
+- **Swaminarayan Varaha Jayanti** (Shravana Shukla Chaturthi) is distinct from generic **Varaha Jayanti** (Bhadrapada Tritiya).
+- **Kali Chaudas** (sangava / Hanuman) is distinct from **Naraka Chaturdashi Abhyanga Snan** (moonrise bath).
+- **Cheti Chand** is Chaitra Shukla Dwitiya under both Amanta and Purnimanta.
 
 ## Festival Identities (Catalog: 335)
 
@@ -150,7 +151,7 @@ Runtime notes:
 | 116 | Gunatitanand Swami Diksha Day | - |
 | 117 | Gunatitanand Swami Jayanti | - |
 | 118 | Guru Nanak Jayanti (Kartika Purnima) | - |
-| 119 | Hanuman Puja | Kali Chaudas, Naraka Chaturdashi |
+| 119 | Hanuman Puja | Deepavali Hanuman Puja, Kali Chaudas |
 | 120 | Hariyali Teej | - |
 | 121 | Hartalika Teej | Kevada Trij |
 | 122 | Hindola Festival Begins | - |
@@ -173,7 +174,7 @@ Runtime notes:
 | 139 | Kachchhi Halari Ashadhi Varsharambh | Ashadhi Beej Varsharambh, Halari Nutan Varsh, Kachchhi Nutan Varsh |
 | 140 | Kajari Teej | - |
 | 141 | Kalabhairav Jayanti | - |
-| 142 | Kali Chaudas (Naraka Chaturdashi) | Hanuman Puja, Kali Chaudas |
+| 142 | Kali Chaudas (Naraka Chaturdashi) | Deepavali Hanuman Puja, Hanuman Puja, Kali Chaudas |
 | 143 | Kali Puja | Diwali, Kali Puja (Shyama Puja) |
 | 144 | Kali Yuga Diwas | - |
 | 145 | Kalparambha | - |
@@ -368,7 +369,7 @@ Runtime notes:
 | 334 | Yashoda Jayanti | - |
 | 335 | Yogi Maharaj Jayanti | - |
 
-## Vrat Identities (Catalog: 123)
+## Vrat Identities (Catalog: 124)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -476,22 +477,23 @@ Runtime notes:
 | 102 | Soma Pradosh Vrat | Pradosh Vrat |
 | 103 | Somwar Vrat | Deities Weekdays Fasting, Monday Vrat |
 | 104 | Swaminarayan Jayanti (Hari-Nom) | - |
-| 105 | Tamil Hanumath Jayanthi | - |
-| 106 | Thai Pusam | - |
-| 107 | Third Mangala Gauri Vrat | - |
-| 108 | Utpanna Ekadashi | Utpatti Ekadashi |
-| 109 | Vaikasi Visakam | - |
-| 110 | Vaikuntha Chaturdashi | - |
-| 111 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
-| 112 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
-| 113 | Varaha Jayanti | Shri Varaha Jayanti, Swaminarayan Varaha Jayanti |
-| 114 | Varalakshmi Vratam | - |
-| 115 | Varuthini Ekadashi | Baruthani Ekadashi |
-| 116 | Vibhuvana Sankashti Chaturthi | Sankashti Chaturthi, Vibhuvana Sankashti |
-| 117 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
-| 118 | Vijaya Ekadashi | - |
-| 119 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
-| 120 | Vinayaki Chaturthi | - |
-| 121 | Vratni Purnima | - |
-| 122 | Yamuna Chhath | - |
-| 123 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |
+| 105 | Swaminarayan Varaha Jayanti | Shree Varaha Jayanti |
+| 106 | Tamil Hanumath Jayanthi | - |
+| 107 | Thai Pusam | - |
+| 108 | Third Mangala Gauri Vrat | - |
+| 109 | Utpanna Ekadashi | Utpatti Ekadashi |
+| 110 | Vaikasi Visakam | - |
+| 111 | Vaikuntha Chaturdashi | - |
+| 112 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
+| 113 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
+| 114 | Varaha Jayanti | - |
+| 115 | Varalakshmi Vratam | - |
+| 116 | Varuthini Ekadashi | Baruthani Ekadashi |
+| 117 | Vibhuvana Sankashti Chaturthi | Sankashti Chaturthi, Vibhuvana Sankashti |
+| 118 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
+| 119 | Vijaya Ekadashi | - |
+| 120 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
+| 121 | Vinayaki Chaturthi | - |
+| 122 | Vratni Purnima | - |
+| 123 | Yamuna Chhath | - |
+| 124 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |

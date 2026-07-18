@@ -7,8 +7,8 @@ namespace JayeshMepani\PanchangCore\Festivals;
 /**
  * Classical festival-rule numeric thresholds.
  *
- * Kept as a dedicated constants holder so truth-table and Chandra Darshana traits can share
- * values without scattering magic numbers or orphaning documentary comments on the façade.
+ * Kept as a dedicated constants holder so truth-table traits can share values without scattering
+ * magic numbers or orphaning documentary comments on the façade.
  *
  * Values are unchanged from the original FestivalRuleEngine constants.
  *
@@ -26,18 +26,8 @@ final class FestivalRuleConstants
      * Govardhan/Annakut "Sthula Chandra Darshana" threshold: if Kartika Shukla Pratipada
      * persists at least 9 muhurtas past sunrise the day is treated as free of Sthula
      * Chandra Darshana; otherwise the observance shifts to the previous (Amavasya-viddha) day.
-     *
-     * Also used by the classical Chandra Darshana Sthula assessment path.
      */
     public const float GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS = 9.0;
-
-    public const float CHANDRA_DARSHANA_CRESCENT_MIN_LAG_MINUTES = 38.0;
-
-    public const float CHANDRA_DARSHANA_CRESCENT_MIN_ELONGATION_DEGREES = 9.0;
-
-    public const float CHANDRA_DARSHANA_CRESCENT_HARD_ELONGATION_FLOOR_DEGREES = 7.0;
-
-    public const float CHANDRA_DARSHANA_CRESCENT_MIN_ILLUMINATION_PERCENT = 0.8;
 
     /**
      * Nag Panchami (Shravana Krishna Panchami) is paraviddha: the reference keeps the Panchami

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Localization;
 
@@ -28,13 +29,18 @@ class FestivalRuleEngine
     use FestivalRuleChandraDarshana;
     use FestivalRuleNakshatra;
 
+    public function __construct(private readonly ?TransitEngine $transitEngine = null)
+    {
+    }
+
     /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
         string $festivalName,
         array $rule,
         CarbonImmutable $date,
         array $today,
-        array $tomorrow
+        array $tomorrow,
+        ?callable $fetchHistoricalSnapshot = null
     ): ?array {
         $this->assertValidFestivalRule($festivalName, $rule);
         if (!$this->isExecutableResolverProfile($rule)) {
@@ -79,7 +85,7 @@ class FestivalRuleEngine
         }
 
         if ((bool) ($rule['chandra_darshana_visibility'] ?? false)) {
-            return $this->resolveChandraDarshanaFestival($festivalName, $rule, $date, $today, $tomorrow);
+            return $this->resolveChandraDarshanaFestival($festivalName, $rule, $date, $today, $tomorrow, $fetchHistoricalSnapshot);
         }
 
         $rulePaksha = $this->resolveRulePaksha($rule, (array) ($today['Hindu_Calendar'] ?? []), $currentPaksha = (string) ($today['Tithi']['paksha'] ?? 'Shukla'));

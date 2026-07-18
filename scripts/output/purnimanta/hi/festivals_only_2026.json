@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-17T13:03:25+00:00",
+        "generated_at": "2026-07-18T13:55:28+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -19,8 +19,8 @@
         "year": 2026,
         "calendar_type": "purnimanta",
         "locale": "hi",
-        "festival_day_count": 193,
-        "festival_entry_count": 395,
+        "festival_day_count": 195,
+        "festival_entry_count": 398,
         "total_festivals": 335,
         "by_date": {
             "2026-01-03": [
@@ -3641,6 +3641,124 @@
                     }
                 },
                 {
+                    "name": "थाई पूसम",
+                    "name_key": "Thai Poosam",
+                    "description": "भगवान मुरुगन को समर्पित तमिल त्योहार; यह तब मनाया जाता है जब तमिल महीने थाई (जनवरी-फरवरी) में पुष्य नक्षत्र पूर्णिमा के साथ मेल खाता है",
+                    "deity": "मुरुगन",
+                    "fasting": false,
+                    "regions": [
+                        "तमिलनाडु",
+                        "केरल",
+                        "कर्नाटक",
+                        "आंध्र प्रदेश",
+                        "तेलंगाना",
+                        "श्रीलंका",
+                        "मलेशिया",
+                        "सिंगापुर"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "nakshatra": "पुष्य",
+                        "nakshatra_key": "Pushya",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "prefer_nakshatra": true,
+                        "preferred_nakshatra": "पुष्य",
+                        "preferred_nakshatra_key": "Pushya"
+                    },
+                    "resolution": {
+                        "festival_name": "थाई पूसम",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461072.51595816,
+                        "target_tithi_end_jd": 2461073.423017729,
+                        "standard_date": "2026-02-01",
+                        "observance_date": "2026-02-01",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "preferred_nakshatra": "पुष्य",
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                            "preferred_nakshatra_key": "Pushya",
+                            "preferred_nakshatra_name": "पुष्य"
+                        },
+                        "festival_name_key": "Thai Poosam",
+                        "festival_name_localized": "थाई पूसम",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": "पुष्य",
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में",
+                        "preferred_nakshatra_key": "Pushya",
+                        "preferred_nakshatra_name": "पुष्य"
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -4524,115 +4642,6 @@
                 }
             ],
             "2026-02-19": [
-                {
-                    "name": "चेटी चंड",
-                    "name_key": "Cheti Chand",
-                    "description": "सिंधी हिंदू नव वर्ष; झूलेलाल (इष्ट-देवता) का जन्म",
-                    "deity": "झूलेलाल/वरुण",
-                    "fasting": false,
-                    "regions": [
-                        "सिंधी",
-                        "गुजरात",
-                        "राजस्थान"
-                    ],
-                    "aliases": [],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                2
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                2
-                            ],
-                            "names": [
-                                "शुक्ल द्वितीया"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "चैत्र",
-                            "value_key": "Chaitra",
-                            "name": "चैत्र"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "चेटी चंड",
-                        "required_tithi": 2,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461089.9777463675,
-                        "target_tithi_end_jd": 2461090.9368880903,
-                        "standard_date": "2026-02-19",
-                        "observance_date": "2026-02-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Cheti Chand",
-                        "festival_name_localized": "चेटी चंड",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
                 {
                     "name": "फुलेरा दूज",
                     "name_key": "Phulera Dooj",
@@ -6368,6 +6377,212 @@
                     }
                 }
             ],
+            "2026-03-09": [
+                {
+                    "name": "यशोदा जयंती",
+                    "name_key": "Yashoda Jayanti",
+                    "description": "माता यशोदा की जयंती",
+                    "deity": "यशोदा",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                6
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                21
+                            ],
+                            "names": [
+                                "कृष्ण षष्ठी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "यशोदा जयंती",
+                        "required_tithi": 6,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461108.1537946956,
+                        "target_tithi_end_jd": 2461109.24827048,
+                        "standard_date": "2026-03-09",
+                        "observance_date": "2026-03-09",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Yashoda Jayanti",
+                        "festival_name_localized": "यशोदा जयंती",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
+            "2026-03-10": [
+                {
+                    "name": "शबरी जयंती",
+                    "name_key": "Shabari Jayanti",
+                    "description": "शबरी की जयंती",
+                    "deity": "शबरी",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                22
+                            ],
+                            "names": [
+                                "कृष्ण सप्तमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "शबरी जयंती",
+                        "required_tithi": 7,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461109.24827048,
+                        "target_tithi_end_jd": 2461110.3504961757,
+                        "standard_date": "2026-03-10",
+                        "observance_date": "2026-03-10",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Shabari Jayanti",
+                        "festival_name_localized": "शबरी जयंती",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                }
+            ],
             "2026-03-11": [
                 {
                     "name": "शीतला अष्टमी",
@@ -6413,6 +6628,109 @@
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "सूर्योदय"
                     }
+                },
+                {
+                    "name": "जानकी जयंती",
+                    "name_key": "Janaki Jayanti",
+                    "description": "देवी सीता की जयंती (कुछ क्षेत्रीय पंचांगों के अनुसार)",
+                    "deity": "सीता",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "सीता अष्टमी"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "जानकी जयंती",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461110.3504961757,
+                        "target_tithi_end_jd": 2461111.4512963546,
+                        "standard_date": "2026-03-11",
+                        "observance_date": "2026-03-11",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Janaki Jayanti",
+                        "festival_name_localized": "जानकी जयंती",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
                 }
             ],
             "2026-03-13": [
@@ -6432,6 +6750,107 @@
                         "type_name": "चपचार कुट",
                         "basis": "tithi",
                         "basis_name": "तिथि"
+                    }
+                },
+                {
+                    "name": "दयानंद सरस्वती जयंती",
+                    "name_key": "Dayanand Saraswati Jayanti",
+                    "description": "आर्य समाज के संस्थापक महर्षि दयानंद सरस्वती की जयंती",
+                    "deity": "दयानंद सरस्वती",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                10
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                25
+                            ],
+                            "names": [
+                                "कृष्ण दशमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "resolution": {
+                        "festival_name": "दयानंद सरस्वती जयंती",
+                        "required_tithi": 10,
+                        "paksha": "Krishna",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": true,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461112.5412488487,
+                        "target_tithi_end_jd": 2461113.6120471954,
+                        "standard_date": "2026-03-13",
+                        "observance_date": "2026-03-13",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Dayanand Saraswati Jayanti",
+                        "festival_name_localized": "दयानंद सरस्वती जयंती",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -13471,10 +13890,10 @@
                         "paksha_name": "शुक्ल",
                         "karmakala_type": "chandra_darshana_visibility",
                         "karmakala_type_name": "सूर्यास्त से चंद्रास्त तक दर्शन काल",
-                        "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-                        "chandra_darshana_visibility_model_name": "शास्त्रीय स्थूल चंद्रदर्शन ९-मुहूर्त नियम",
-                        "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-                        "chandra_darshana_visibility_basis_name": "शास्त्रीय पाठ्य नियम (स्थूल चंद्रदर्शन सुद १ या सुद २)",
+                        "chandra_darshana_visibility_model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                        "chandra_darshana_visibility_model_name": "स्रोत-संवेदी मासिक चंद्र दर्शन प्रथम चंद्ररेखा मॉडल",
+                        "chandra_darshana_visibility_basis": "application_definition_first_visible_crescent",
+                        "chandra_darshana_visibility_basis_name": "अनुप्रयोग-परिभाषित प्रथम शास्त्रीय चंद्ररेखा तिथि",
                         "location_sensitive": true,
                         "adhika": {
                             "adhika_only": true
@@ -13500,8 +13919,8 @@
                         "decision": {
                             "strict_karmakala": true,
                             "require_karmakala_match": true,
-                            "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
-                            "winning_score": 1500,
+                            "winning_reason": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार",
+                            "winning_score": 1623,
                             "winning_window_overlap_seconds": 0,
                             "winning_window_coverage_ratio": 0,
                             "target_tithi_daylight_overlap_seconds": 42326.35054439306,
@@ -13509,43 +13928,87 @@
                             "moon_visibility_end_jd": 2461179.1673726854,
                             "moon_visibility_seconds": 7398.0000257492065,
                             "visibility_assessment": {
-                                "model": "classical_sthula_chandra_darshana_9_muhurta",
-                                "visible": true,
-                                "evening_tithi": "shukla_dwitiya",
-                                "pratipada_post_sunrise_seconds": 55962.20367997885,
-                                "pratipada_post_sunrise_minutes": 932.7033946663141,
-                                "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                                "sthula_threshold_muhurtas": 9,
-                                "sthula_threshold_seconds": 28787.99998998642,
-                                "day_muhurta_seconds": 3198.6666655540466,
-                                "reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
-                                "basis": "classical_textual_rule_sthula_chandra_darshana",
-                                "modern_visibility": {
-                                    "model": "simplified_modern_crescent_visibility",
-                                    "visible": true,
-                                    "lag_minutes": 123.30000042915344,
-                                    "elongation_degrees": 24.92867127973163,
-                                    "illumination_percent": 4.658339452623384,
-                                    "min_lag_minutes": 38,
-                                    "min_elongation_degrees": 9,
-                                    "hard_elongation_floor_degrees": 7,
-                                    "min_illumination_percent": 0.8,
-                                    "passes_lag": true,
-                                    "passes_elongation": true,
-                                    "passes_hard_elongation_floor": true,
-                                    "passes_illumination": true,
-                                    "basis": "modern_astronomical_heuristic_not_classical"
+                                "model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                                "operational_candidate": true,
+                                "geometrically_supported_by_engine_proxy": true,
+                                "actual_observation": "UNKNOWN",
+                                "classification": "APPLICATION_CRESCENT_CANDIDATE",
+                                "summary_classification": "APPLICATION_CRESCENT_CANDIDATE",
+                                "strict_source_only_result": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                "strict_source_only_reason_key": "no_explicit_monthly_scriptural_date_command_in_seven_sources",
+                                "date_selection_basis": "application_definition_first_visible_crescent",
+                                "date_selection_is_explicit_monthly_scriptural_rule": false,
+                                "astronomical_basis": "modern_proxy_for_surya_siddhanta_12_bhaga_rule",
+                                "astronomical_computation_basis": "engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold",
+                                "application_evaluation_epoch": "local_sunset",
+                                "evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1": false,
+                                "modern_proxy_for_surya_siddhanta_12_bhaga_rule": true,
+                                "claims_full_surya_siddhanta_chapter_10_recomputation": false,
+                                "tithi_corroboration_basis": "nibandha_tithi_visibility_indication",
+                                "tithi_indication_original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                "tithi_indication_monthly_use": "application_level_analogy",
+                                "pradosha_basis": "satsangijivan_childhood_samskara_analogy_only",
+                                "pradosha_muhurta_basis": "dynamic_ratrimana_muhurta",
+                                "modern_longitudinal_separation_degrees": 24.92867127973163,
+                                "modern_longitudinal_separation_at_local_sunset_degrees": 24.92867127973163,
+                                "proxy_threshold_degrees": 12,
+                                "moonset_lag_seconds": 7398.0000257492065,
+                                "moonset_lag_minutes": 123.30000042915344,
+                                "illumination_percent": 4.658339452623384,
+                                "horizon": {
+                                    "status": "POST_SUNSET_HORIZON_WINDOW",
+                                    "method": "rise_set_window_proxy",
+                                    "requires_moonrise_before_sunset": true,
+                                    "requires_moonset_after_sunset": true,
+                                    "note": "Rise/set proxy; not an apparent upper-limb altitude and next-set search."
                                 },
-                                "reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                                "reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
+                                "surya_siddhanta_visibility": {
+                                    "status": "TWELVE_BHAGA_PROXY_PASSED",
+                                    "method": "modern_longitudinal_separation_proxy",
+                                    "threshold_degrees": 12,
+                                    "claims_exact_siddhantic_recomputation": false
+                                },
+                                "nibandha_tithi_indication": {
+                                    "status": "FULL_APARAHNA_INDICATION_NOT_ESTABLISHED",
+                                    "applicable": false,
+                                    "original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                    "monthly_use": "application_level_analogy"
+                                },
+                                "stronger_six_muhurta_indication": {
+                                    "status": "SIX_MUHURTA_INTERVAL_NOT_COVERED",
+                                    "requires_dvitiya_start_at_or_before_aparahna_start": true,
+                                    "requires_dvitiya_end_at_or_after_sunset": true
+                                },
+                                "pradosha": {
+                                    "status": "PRADOSHA_OVERLAP_PRESENT",
+                                    "basis": "satsangijivan_childhood_samskara_analogy_only",
+                                    "muhurta_basis": "dynamic_ratrimana_muhurta",
+                                    "used_as_rejection_rule": false
+                                },
+                                "monthly_observance": {
+                                    "strict_source_only_status": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                    "application_status": "APPLICATION_FIRST_CRESCENT_CANDIDATE",
+                                    "date_selection_basis": "application_definition_first_visible_crescent",
+                                    "date_selection_is_explicit_monthly_scriptural_rule": false
+                                },
+                                "has_post_sunset_horizon_window": true,
+                                "tithi_proxy_applicable": false,
+                                "dvitiya_covers_full_aparahna_3_muhurtas": false,
+                                "dvitiya_covers_aparahna_through_sunset_6_muhurtas": false,
+                                "visibility_during_pradosha": true,
+                                "forbidden_modern_thresholds_applied": false,
+                                "reason": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार",
+                                "basis": "application_definition_first_visible_crescent",
+                                "reason_key": "chandra_darshana_application_crescent_candidate",
+                                "reason_name": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार"
                             },
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
+                            "winning_reason_key": "chandra_darshana_application_crescent_candidate",
+                            "winning_reason_name": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार"
                         },
                         "festival_name_key": "Adhika Chandra Darshana",
                         "festival_name_localized": "अधिक चन्द्र दर्शन",
@@ -13558,8 +14021,8 @@
                         "vriddhi_preference": null,
                         "kshaya_preference": null,
                         "preferred_nakshatra": null,
-                        "winning_reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
-                        "winning_score": 1500,
+                        "winning_reason": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार",
+                        "winning_score": 1623,
                         "winning_window_overlap_seconds": 0,
                         "winning_window_coverage_ratio": 0,
                         "target_tithi_daylight_overlap_seconds": 42326.35054439306,
@@ -13567,35 +14030,83 @@
                         "moon_visibility_end_jd": 2461179.1673726854,
                         "moon_visibility_seconds": 7398.0000257492065,
                         "visibility_assessment": {
-                            "model": "classical_sthula_chandra_darshana_9_muhurta",
-                            "visible": true,
-                            "evening_tithi": "shukla_dwitiya",
-                            "pratipada_post_sunrise_seconds": 55962.20367997885,
-                            "pratipada_post_sunrise_minutes": 932.7033946663141,
-                            "pratipada_post_sunrise_muhurtas": 17.495478438759275,
-                            "sthula_threshold_muhurtas": 9,
-                            "sthula_threshold_seconds": 28787.99998998642,
-                            "day_muhurta_seconds": 3198.6666655540466,
-                            "reason": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)",
-                            "basis": "classical_textual_rule_sthula_chandra_darshana",
-                            "modern_visibility": {
-                                "model": "simplified_modern_crescent_visibility",
-                                "visible": true,
-                                "lag_minutes": 123.30000042915344,
-                                "elongation_degrees": 24.92867127973163,
-                                "illumination_percent": 4.658339452623384,
-                                "min_lag_minutes": 38,
-                                "min_elongation_degrees": 9,
-                                "hard_elongation_floor_degrees": 7,
-                                "min_illumination_percent": 0.8,
-                                "passes_lag": true,
-                                "passes_elongation": true,
-                                "passes_hard_elongation_floor": true,
-                                "passes_illumination": true,
-                                "basis": "modern_astronomical_heuristic_not_classical"
+                            "model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+                            "operational_candidate": true,
+                            "geometrically_supported_by_engine_proxy": true,
+                            "actual_observation": "UNKNOWN",
+                            "classification": "APPLICATION_CRESCENT_CANDIDATE",
+                            "summary_classification": "APPLICATION_CRESCENT_CANDIDATE",
+                            "strict_source_only_result": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                            "strict_source_only_reason_key": "no_explicit_monthly_scriptural_date_command_in_seven_sources",
+                            "date_selection_basis": "application_definition_first_visible_crescent",
+                            "date_selection_is_explicit_monthly_scriptural_rule": false,
+                            "astronomical_basis": "modern_proxy_for_surya_siddhanta_12_bhaga_rule",
+                            "astronomical_computation_basis": "engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold",
+                            "application_evaluation_epoch": "local_sunset",
+                            "evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1": false,
+                            "modern_proxy_for_surya_siddhanta_12_bhaga_rule": true,
+                            "claims_full_surya_siddhanta_chapter_10_recomputation": false,
+                            "tithi_corroboration_basis": "nibandha_tithi_visibility_indication",
+                            "tithi_indication_original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                            "tithi_indication_monthly_use": "application_level_analogy",
+                            "pradosha_basis": "satsangijivan_childhood_samskara_analogy_only",
+                            "pradosha_muhurta_basis": "dynamic_ratrimana_muhurta",
+                            "modern_longitudinal_separation_degrees": 24.92867127973163,
+                            "modern_longitudinal_separation_at_local_sunset_degrees": 24.92867127973163,
+                            "surya_siddhanta_longitudinal_separation_degrees": null,
+                            "proxy_threshold_degrees": 12,
+                            "moonset_lag_seconds": 7398.0000257492065,
+                            "moonset_lag_minutes": 123.30000042915344,
+                            "illumination_percent": 4.658339452623384,
+                            "horizon": {
+                                "status": "POST_SUNSET_HORIZON_WINDOW",
+                                "method": "rise_set_window_proxy",
+                                "requires_moonrise_before_sunset": true,
+                                "requires_moonset_after_sunset": true,
+                                "note": "Rise/set proxy; not an apparent upper-limb altitude and next-set search."
                             },
-                            "reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                            "reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
+                            "surya_siddhanta_visibility": {
+                                "status": "TWELVE_BHAGA_PROXY_PASSED",
+                                "method": "modern_longitudinal_separation_proxy",
+                                "threshold_degrees": 12,
+                                "claims_exact_siddhantic_recomputation": false
+                            },
+                            "nibandha_tithi_indication": {
+                                "status": "FULL_APARAHNA_INDICATION_NOT_ESTABLISHED",
+                                "applicable": false,
+                                "original_context": "darsa_anvadhana_and_govardhana_adjudication",
+                                "monthly_use": "application_level_analogy"
+                            },
+                            "stronger_six_muhurta_indication": {
+                                "status": "SIX_MUHURTA_INTERVAL_NOT_COVERED",
+                                "requires_dvitiya_start_at_or_before_aparahna_start": true,
+                                "requires_dvitiya_end_at_or_after_sunset": true
+                            },
+                            "pradosha": {
+                                "status": "PRADOSHA_OVERLAP_PRESENT",
+                                "basis": "satsangijivan_childhood_samskara_analogy_only",
+                                "muhurta_basis": "dynamic_ratrimana_muhurta",
+                                "used_as_rejection_rule": false
+                            },
+                            "monthly_observance": {
+                                "strict_source_only_status": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
+                                "application_status": "APPLICATION_FIRST_CRESCENT_CANDIDATE",
+                                "date_selection_basis": "application_definition_first_visible_crescent",
+                                "date_selection_is_explicit_monthly_scriptural_rule": false
+                            },
+                            "has_post_sunset_horizon_window": true,
+                            "tithi_proxy_applicable": false,
+                            "dvitiya_covers_full_aparahna_3_muhurtas": false,
+                            "dvitiya_covers_aparahna_through_sunset_6_muhurtas": false,
+                            "pratipada_post_sunrise_muhurtas": null,
+                            "dvitiya_start_jd": null,
+                            "dvitiya_end_jd": null,
+                            "visibility_during_pradosha": true,
+                            "forbidden_modern_thresholds_applied": false,
+                            "reason": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार",
+                            "basis": "application_definition_first_visible_crescent",
+                            "reason_key": "chandra_darshana_application_crescent_candidate",
+                            "reason_name": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार"
                         },
                         "bhadra_decision": {
                             "applicable": false,
@@ -13604,8 +14115,8 @@
                             "reason": null
                         },
                         "rule_rejection_reason": null,
-                        "winning_reason_key": "chandra_darshana_sud2_long_pratipada_no_sthula_on_sud1",
-                        "winning_reason_name": "दीर्घ शुक्ल प्रतिपदा (सुद १ पर स्थूल चंद्रदर्शन अनुपस्थित, सुद २ पर स्थगित)"
+                        "winning_reason_key": "chandra_darshana_application_crescent_candidate",
+                        "winning_reason_name": "12-अंश संकेत से अनुप्रयोग प्रथम चंद्ररेखा उम्मीदवार"
                     },
                     "visibility_window": {
                         "type": "moon_visibility",
@@ -30308,7 +30819,8 @@
                     ],
                     "aliases": [
                         "काली चौदस",
-                        "हनुमान पूजा"
+                        "हनुमान पूजा",
+                        "Deepavali Hanuman Puja"
                     ],
                     "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 14 सूर्योदय पर 2026-11-08 को होती है, किंतु संगव की उपस्थिति की परंपरा/विधि के कारण 2026-11-07 को मनाई जाती है।",
                     "calculation_basis": {
@@ -30910,118 +31422,6 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
                         "winning_reason_name": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन"
-                    }
-                },
-                {
-                    "name": "हनुमान पूजा",
-                    "name_key": "Kali Chaudas (Naraka Chaturdashi)",
-                    "description": "दिवाली काल के दौरान भगवान हनुमान की पूजा",
-                    "deity": "हनुमान",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "aliases": [
-                        "काली चौदस (नरक चतुर्दशी)",
-                        "हनुमान पूजा",
-                        "काली चौदस",
-                        "नरक चतुर्दशी"
-                    ],
-                    "observance_note": null,
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                14
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "कृष्ण",
-                            "absolute_numbers": [
-                                29
-                            ],
-                            "names": [
-                                "कृष्ण चतुर्दशी"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "कृष्ण",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "कार्तिक",
-                            "value_key": "Kartika",
-                            "name": "कार्तिक"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "हनुमान पूजा",
-                        "required_tithi": 14,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0,
-                        "tithi_coverage_seconds_tomorrow": 0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461351.7210407574,
-                        "target_tithi_end_jd": 2461352.748800463,
-                        "standard_date": "2026-11-08",
-                        "observance_date": "2026-11-08",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0,
-                            "winning_window_coverage_ratio": 0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Hanuman Puja",
-                        "festival_name_localized": "हनुमान पूजा",
-                        "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "require_karmakala_match": null,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "preferred_nakshatra": null,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0,
-                        "winning_window_coverage_ratio": 0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false,
-                            "reason": null
-                        },
-                        "rule_rejection_reason": null,
-                        "raksha_bandhan_selection": null,
-                        "ekadashi_selection": null,
-                        "sankashti_selection": null,
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 },
                 {

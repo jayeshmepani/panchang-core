@@ -45,19 +45,20 @@ These five elements are calculated daily based on the positions of the Sun and t
 
 # 3. Calendar Eras & Chronology (Samvat)
 
-*   **Ayana:** The two half-year paths of the Sun:
+*   **Ayana:** The two half-year paths of the Sun. Both Nirayana and Sayana frameworks use the same pair of names; they differ only in whether the solar course is measured against the fixed stars or against the seasons:
     *   *Uttarayana:* The northern course of the Sun (from winter solstice to summer solstice).
     *   *Dakshinayana:* The southern course of the Sun (from summer solstice to winter solstice).
-*   **Ritu:** The six traditional seasons:
+    *   *Nirayana Ayana:* Sidereal (constellation-based) course of the Sun, measured with ayanamsa applied — the standard classical Hindu calendar layer.
+    *   *Sayana Ayana:* Tropical (seasonal) course of the Sun, measured without ayanamsa — aligned to the actual solstices and equinoxes of the year.
+*   **Ritu:** The six traditional seasons. As with Ayana, both Nirayana and Sayana readings use the same six names; Nirayana follows the sidereal solar path, while Sayana follows the tropical seasonal path:
     *   *Vasanta:* Spring (Chaitra to Vaishakha)
     *   *Grishma:* Summer (Jyeshtha to Ashadha)
     *   *Varsha:* Monsoon (Shravana to Bhadrapada)
     *   *Sharad:* Autumn (Ashvina to Kartika)
-    *   *Hemant:* Pre-winter (Margashirsha to Pausha)
-    *   *Shishir:* Winter (Magha to Phalguna)
-*   **Sayana Ayana and Sayana Ritu:** The tropical or seasonal course of the Sun, used to show the solstice/equinox-based half-year and season alongside the sidereal Hindu calendar layers.
-    *   *Sayana Ayana:* Tropical Uttarayana / Dakshinayana.
-    *   *Sayana Ritu:* Tropical seasonal division such as Vasanta, Grishma, Varsha, Sharad, Hemant, and Shishir according to the Sayana solar course.
+    *   *Hemanta:* Pre-winter (Margashirsha to Pausha)
+    *   *Shishira:* Winter (Magha to Phalguna)
+    *   *Nirayana Ritu:* Sidereal season according to the constellation-based solar course.
+    *   *Sayana Ritu:* Tropical season according to the seasonal solar course.
 *   **Regional Month Systems:**
     *   *Month (Amanta):* Month-tracking system where the month ends on the New Moon (Amavasya); common in South and West India.
     *   *Month (Purnimanta):* Month-tracking system where the month ends on the Full Moon (Purnima); common in North India.
@@ -69,7 +70,7 @@ These five elements are calculated daily based on the positions of the Sun and t
 *   **60-Year Jovian Cycle (Samvatsara):**
     *   *Samvatsara (South):* **Parabhava** (The 40th year of the continuous sequence).
     *   *Samvatsara (North):* **Siddharthi** (The 53rd year, calculated using Jupiter's actual transits).
-*   **Calendar Period Windows:** The package can expose the start and end windows for larger calendar periods, including Ayana, Ritu, Sayana Ayana, Sayana Ritu, Vikram Samvat, Gujarati Samvat, Saka Samvat, Kali Samvat, Samvatsara, Amanta months, and Purnimanta months.
+*   **Calendar Period Windows:** Larger chronological spans with their start and end moments — Nirayana and Sayana Ayana, Nirayana and Sayana Ritu, Vikram Samvat, Gujarati Samvat, Saka Samvat, Kali Samvat, Samvatsara, Amanta months, and Purnimanta months.
 
 ### Note on the 13-Year Samvatsara Gap
 The difference in Samvatsara names between North and South India is a result of different mathematical calculation systems rather than differences in month-tracking (Amanta or Purnimanta):
@@ -320,33 +321,6 @@ Specific divisions used to schedule actions based on religious injunctions:
 
 # 9. Festival and Vrat Identities
 
-Canonical catalog from `FestivalService::FESTIVALS`. **Identity** is the catalog key; aliases are alternate public names. See also `docs/FESTIVAL_VRAT_IDENTITIES.md` (same lists).
-
-## Catalog totals (general — year-independent)
-
-| Field | Source | Count |
-|---|---|---:|
-| `total_festivals` | Non-vrat (`fasting` unset/false) first-level `FESTIVALS` keys | **335** |
-| `total_vrats` | Fasting keys with `identity_key` collapse + Pradosh expanded to 7 weekday identities | **123** |
-
-These totals are what generated JSON reports in `total_festivals` / `total_vrats`. They do **not** shrink when a definition does not fire in a given year or calendar system. Dated occurrence volume remains separate (`festival_entry_count` / `vrat_entry_count`).
-
-**Do not confuse these layers:**
-
-| Layer | What it is | Current value |
-|---|---|---|
-| **Catalog totals** | `total_festivals` / `total_vrats` in generated JSON | **335** / **123** |
-| **Year-observed unique keys** | Distinct `name_key`s that actually fire in a given year/calendar `by_date` dump | Always ≤ catalog; varies by year (never the catalog total itself) |
-| **Table `#` column below** | Reading serial only (1…N) | Not a package identity total |
-
-A given year may still emit fewer unique `name_key`s in `by_date` than the catalog because not every definition occurs every year; those rows still count toward the catalog total. For reference, **2026 English Bhuj** year-observed unique keys (not catalog totals) were about **324 Amanta / 325 Purnimanta** in `festivals_only_*` and **123** in `vrats_*` after including Avidhava Navami and Akhand Dwadashi. Cross-file identity equality for the **observed** set still holds: `festivals_only` unique keys ≡ non-vrat slice of `festivals_*`; `vrats_*` (dated + `recurring_weekday_vrats`) ≡ fasting slice of `festivals_*`.
-
-Runtime notes:
-
-- **Pradosh Vrat** is one registry family rule and expands to seven weekday identities (`Ravi` … `Shani` Pradosh Vrat).
-- Some rows use `identity_key` / `display_name` (for example Akshaya Tritiya → Treta Yuga Diwas; Vat Purnima → Jyeshtha Purnima; Swaminarayan Varaha Jayanti → Varaha Jayanti). Festival catalog totals count first-level non-vrat keys (335); vrat catalog totals count unique identities after those remaps (123).
-- **Avidhava Navami** (aliases include Saubhagyavati Navami / સૌભાગ્યવતી નવમી) is the Pitru Paksha Krishna Navami shraddha for sumangali women — distinct from Labh Panchami’s Saubhagya Panchami.
-- **Akhand Dwadashi** (અખંડ દ્વાદશી) is Margashirsha Shukla 12 (after Mokshada Ekadashi), a dedicated Vishnu vrat identity separate from derived Mahadwadashi and from Matsya Dwadashi (avatar day on the same tithi).
 
 ## Festival Identities (Catalog: 335)
 
@@ -470,7 +444,7 @@ Runtime notes:
 | 116 | Gunatitanand Swami Diksha Day | - |
 | 117 | Gunatitanand Swami Jayanti | - |
 | 118 | Guru Nanak Jayanti (Kartika Purnima) | - |
-| 119 | Hanuman Puja | Kali Chaudas, Naraka Chaturdashi |
+| 119 | Hanuman Puja | Deepavali Hanuman Puja, Kali Chaudas |
 | 120 | Hariyali Teej | - |
 | 121 | Hartalika Teej | Kevada Trij |
 | 122 | Hindola Festival Begins | - |
@@ -493,7 +467,7 @@ Runtime notes:
 | 139 | Kachchhi Halari Ashadhi Varsharambh | Ashadhi Beej Varsharambh, Halari Nutan Varsh, Kachchhi Nutan Varsh |
 | 140 | Kajari Teej | - |
 | 141 | Kalabhairav Jayanti | - |
-| 142 | Kali Chaudas (Naraka Chaturdashi) | Hanuman Puja, Kali Chaudas |
+| 142 | Kali Chaudas (Naraka Chaturdashi) | Deepavali Hanuman Puja, Hanuman Puja, Kali Chaudas |
 | 143 | Kali Puja | Diwali, Kali Puja (Shyama Puja) |
 | 144 | Kali Yuga Diwas | - |
 | 145 | Kalparambha | - |
@@ -688,7 +662,7 @@ Runtime notes:
 | 334 | Yashoda Jayanti | - |
 | 335 | Yogi Maharaj Jayanti | - |
 
-## Vrat Identities (Catalog: 123)
+## Vrat Identities (Catalog: 124)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -796,22 +770,23 @@ Runtime notes:
 | 102 | Soma Pradosh Vrat | Pradosh Vrat |
 | 103 | Somwar Vrat | Deities Weekdays Fasting, Monday Vrat |
 | 104 | Swaminarayan Jayanti (Hari-Nom) | - |
-| 105 | Tamil Hanumath Jayanthi | - |
-| 106 | Thai Pusam | - |
-| 107 | Third Mangala Gauri Vrat | - |
-| 108 | Utpanna Ekadashi | Utpatti Ekadashi |
-| 109 | Vaikasi Visakam | - |
-| 110 | Vaikuntha Chaturdashi | - |
-| 111 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
-| 112 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
-| 113 | Varaha Jayanti | Shri Varaha Jayanti, Swaminarayan Varaha Jayanti |
-| 114 | Varalakshmi Vratam | - |
-| 115 | Varuthini Ekadashi | Baruthani Ekadashi |
-| 116 | Vibhuvana Sankashti Chaturthi | Sankashti Chaturthi, Vibhuvana Sankashti |
-| 117 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
-| 118 | Vijaya Ekadashi | - |
-| 119 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
-| 120 | Vinayaki Chaturthi | - |
-| 121 | Vratni Purnima | - |
-| 122 | Yamuna Chhath | - |
-| 123 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |
+| 105 | Swaminarayan Varaha Jayanti | Shree Varaha Jayanti |
+| 106 | Tamil Hanumath Jayanthi | - |
+| 107 | Thai Pusam | - |
+| 108 | Third Mangala Gauri Vrat | - |
+| 109 | Utpanna Ekadashi | Utpatti Ekadashi |
+| 110 | Vaikasi Visakam | - |
+| 111 | Vaikuntha Chaturdashi | - |
+| 112 | Vaishakha Purnima | Buddha Purnima, Chitra Pournami, Vaishakha Purnima Vrat |
+| 113 | Vakratunda Sankashti Chaturthi | Sankashti Chaturthi, Vakratunda Sankashti |
+| 114 | Varaha Jayanti | - |
+| 115 | Varalakshmi Vratam | - |
+| 116 | Varuthini Ekadashi | Baruthani Ekadashi |
+| 117 | Vibhuvana Sankashti Chaturthi | Sankashti Chaturthi, Vibhuvana Sankashti |
+| 118 | Vighnaraja Sankashti Chaturthi | Sankashti Chaturthi, Vighnaraja Sankashti |
+| 119 | Vijaya Ekadashi | - |
+| 120 | Vikata Sankashti Chaturthi | Sankashti Chaturthi, Vikata Sankashti |
+| 121 | Vinayaki Chaturthi | - |
+| 122 | Vratni Purnima | - |
+| 123 | Yamuna Chhath | - |
+| 124 | Yogini Ekadashi | Anasara Ekadashi, Khalilagi Ekadashi |
