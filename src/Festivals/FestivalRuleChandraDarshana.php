@@ -12,8 +12,9 @@ use JayeshMepani\PanchangCore\Core\Localization;
  *
  * Source boundary:
  *  - strict source-only mode does not itself declare a universal monthly date;
- *  - production calendar mode explicitly selects the earliest post-Amavasya local evening
- *    satisfying the engine's modern proxy for the traditional 12-bhaga indication;
+ *  - production calendar mode explicitly selects the earliest Shukla Pratipada/Dvitiya
+ *    post-Amavasya local evening satisfying the engine's modern proxy for the traditional
+ *    12-bhaga indication;
  *  - the Dvitiya Aparahna condition is retained only as a contextual nibandha
  *    visibility indication, not as a universal monthly date command.
  */
@@ -22,6 +23,9 @@ trait FestivalRuleChandraDarshana
     private const float CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES = 12.0;
 
     private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 8;
+
+    /** @var list<int> */
+    private const array CHANDRA_DARSHANA_SOURCE_ATTESTED_CANDIDATE_TITHIS = [1, 2];
 
     private function resolveChandraDarshanaFestival(
         string $festivalName,
@@ -124,6 +128,11 @@ trait FestivalRuleChandraDarshana
                 continue;
             }
 
+            $absTithi = (int) ($ctx['tithi_index_abs'] ?? 0);
+            if (!in_array($absTithi, self::CHANDRA_DARSHANA_SOURCE_ATTESTED_CANDIDATE_TITHIS, true)) {
+                continue;
+            }
+
             $candidate = $this->evaluateChandraDarshanaEvening($date, $details);
             if ($candidate === null) {
                 continue;
@@ -159,8 +168,9 @@ trait FestivalRuleChandraDarshana
             ? ['start_jd' => $sunset, 'end_jd' => $moonset]
             : null;
 
-        $elongation = $this->smallestArcDegrees((float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0));
-        $twelveBhagaProxyPassed = $elongation >= self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES;
+        $directedSeparation = $this->normalizeDegrees((float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0));
+        $waxingHalf = $directedSeparation > 0.0 && $directedSeparation < 180.0;
+        $twelveBhagaProxyPassed = $waxingHalf && $directedSeparation >= self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES;
         $proxy = $this->computeChandraDarshanaTithiProxy($details);
 
         $classification = $this->classifyChandraDarshanaEvening([
@@ -222,20 +232,29 @@ trait FestivalRuleChandraDarshana
                 'strict_source_only_reason_key' => 'no_explicit_monthly_scriptural_date_command_in_seven_sources',
                 'date_selection_basis' => 'application_definition_first_visible_crescent',
                 'date_selection_is_explicit_monthly_scriptural_rule' => false,
-                'astronomical_basis' => 'modern_proxy_for_surya_siddhanta_12_bhaga_rule',
-                'astronomical_computation_basis' => 'engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold',
+                'source_attested_tithi_scope' => 'SHUKLA_PRATIPADA_DVITIYA_TRANSITION',
+                'operational_candidate_scope' => 'SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY',
+                'search_beyond_dvitiya' => false,
+                'astronomical_basis' => 'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
+                'astronomical_computation_basis' => 'directed_moon_minus_sun_ecliptic_longitude_separation_at_local_sunset_checked_against_12_degree_proxy_threshold',
                 'application_evaluation_epoch' => 'local_sunset',
                 'evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1' => false,
                 'modern_proxy_for_surya_siddhanta_12_bhaga_rule' => true,
+                'modern_proxy_for_surya_siddhanta_12_bhaga_indication' => true,
                 'claims_full_surya_siddhanta_chapter_10_recomputation' => false,
+                'claims_modern_great_circle_elongation' => false,
                 'tithi_corroboration_basis' => 'nibandha_tithi_visibility_indication',
                 'tithi_indication_original_context' => 'darsa_anvadhana_and_govardhana_adjudication',
                 'tithi_indication_monthly_use' => 'application_level_analogy',
                 'pradosha_basis' => 'satsangijivan_childhood_samskara_analogy_only',
                 'pradosha_muhurta_basis' => 'dynamic_ratrimana_muhurta',
-                'modern_longitudinal_separation_degrees' => $elongation,
-                'modern_longitudinal_separation_at_local_sunset_degrees' => $elongation,
-                'surya_siddhanta_longitudinal_separation_degrees' => null,
+                'modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees' => $directedSeparation,
+                'modern_longitude_separation_normalization' => 'zero_to_360_directed_moon_minus_sun',
+                'visibility_proxy_requires_waxing_half' => true,
+                'visibility_proxy_waxing_half_passed' => $waxingHalf,
+                'surya_siddhanta_oblique_ascensional_interval' => null,
+                'surya_siddhanta_oblique_ascensional_interval_unit' => null,
+                'surya_siddhanta_oblique_ascensional_interval_computed' => false,
                 'proxy_threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
                 'moonset_lag_seconds' => $moonVisibilitySeconds,
                 'moonset_lag_minutes' => $moonVisibilitySeconds / 60.0,
@@ -252,9 +271,12 @@ trait FestivalRuleChandraDarshana
                 ],
                 'surya_siddhanta_visibility' => [
                     'status' => $twelveBhagaProxyPassed ? 'TWELVE_BHAGA_PROXY_PASSED' : 'TWELVE_BHAGA_PROXY_NOT_PASSED',
-                    'method' => 'modern_longitudinal_separation_proxy',
+                    'method' => 'modern_directed_ecliptic_longitude_separation_proxy',
                     'threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
+                    'requires_waxing_half' => true,
+                    'waxing_half_passed' => $waxingHalf,
                     'claims_exact_siddhantic_recomputation' => false,
+                    'claims_modern_great_circle_elongation' => false,
                 ],
                 'nibandha_tithi_indication' => [
                     'status' => $proxy['aparahna_3'] ? 'FULL_APARAHNA_INDICATION_PRESENT' : 'FULL_APARAHNA_INDICATION_NOT_ESTABLISHED',
@@ -278,6 +300,9 @@ trait FestivalRuleChandraDarshana
                     'application_status' => $operationalCandidate ? 'APPLICATION_FIRST_CRESCENT_CANDIDATE' : 'NOT_SELECTED_BY_APPLICATION_MODEL',
                     'date_selection_basis' => 'application_definition_first_visible_crescent',
                     'date_selection_is_explicit_monthly_scriptural_rule' => false,
+                    'source_attested_tithi_scope' => 'SHUKLA_PRATIPADA_DVITIYA_TRANSITION',
+                    'operational_candidate_scope' => 'SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY',
+                    'search_beyond_dvitiya' => false,
                 ],
                 'has_post_sunset_horizon_window' => $hasWindow,
                 'tithi_proxy_applicable' => $proxy['applicable'],
@@ -455,14 +480,14 @@ trait FestivalRuleChandraDarshana
         };
     }
 
-    private function smallestArcDegrees(float $degrees): float
+    private function normalizeDegrees(float $degrees): float
     {
         $d = fmod($degrees, 360.0);
         if ($d < 0.0) {
             $d += 360.0;
         }
 
-        return min($d, 360.0 - $d);
+        return $d;
     }
 
     private function moonVisibleAfterSunset(array $details): bool

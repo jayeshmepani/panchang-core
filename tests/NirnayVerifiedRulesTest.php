@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
+use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalRuleEngine;
@@ -639,6 +640,77 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame('source_sensitive_monthly_chandra_darshana_first_crescent', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_model']);
         self::assertSame('application_definition_first_visible_crescent', FestivalService::FESTIVALS['Chandra Darshana']['chandra_darshana_visibility_basis']);
         self::assertArrayNotHasKey('chandra_darshana_sthula_muhurta_threshold', FestivalService::FESTIVALS['Chandra Darshana']);
+    }
+
+    public function testChandraDarshanaDoesNotSearchBeyondPratipadaDvitiyaWindow(): void
+    {
+        /** @var MockObject&TransitEngine $transitEngine */
+        $transitEngine = $this->getMockBuilder(TransitEngine::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['findAngleCrossing', 'getMoonSunAngle'])
+            ->getMock();
+        $transitEngine->method('findAngleCrossing')->willReturn(102.30);
+        $transitEngine->method('getMoonSunAngle')->willReturn(18.0);
+
+        $engine = new FestivalRuleEngine($transitEngine);
+        $date = CarbonImmutable::parse('2026-01-03');
+
+        $snapshots = [
+            '2025-12-31' => $this->festivalSnapshot(30, 'Krishna', 100.25, 100.75, 101.25, 100.10, 100.60, 'Mula', 100.50, 100.20),
+            '2026-01-01' => $this->festivalSnapshot(1, 'Shukla', 101.25, 101.75, 102.25, 100.60, 101.90, 'Purva Ashadha', 101.50, 101.10),
+            '2026-01-02' => $this->festivalSnapshot(2, 'Shukla', 102.25, 102.75, 103.25, 101.90, 102.95, 'Uttara Ashadha', 102.50, 102.10),
+            '2026-01-03' => $this->festivalSnapshot(3, 'Shukla', 103.25, 103.75, 104.25, 102.95, 103.95, 'Shravana', 104.10, 103.50),
+            '2026-01-04' => $this->festivalSnapshot(4, 'Shukla', 104.25, 104.75, 105.25, 103.95, 104.95, 'Dhanishta', 105.10, 104.50),
+        ];
+
+        $fetchHistoricalSnapshot = static fn (CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
+
+        $resolved = $engine->resolveMajorFestival(
+            'Chandra Darshana',
+            FestivalService::FESTIVALS['Chandra Darshana'],
+            $date,
+            $snapshots['2026-01-03'],
+            $snapshots['2026-01-04'],
+            $fetchHistoricalSnapshot,
+        );
+
+        self::assertNull($resolved, 'Chandra Darshana must not fall through to Tritiya or later when Pratipada and Dvitiya do not pass.');
+    }
+
+    public function testChandraDarshanaUsesDirectedWaxingLongitudeSeparation(): void
+    {
+        /** @var MockObject&TransitEngine $transitEngine */
+        $transitEngine = $this->getMockBuilder(TransitEngine::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['findAngleCrossing', 'getMoonSunAngle'])
+            ->getMock();
+        $transitEngine->method('findAngleCrossing')->willReturn(102.30);
+        $transitEngine->method('getMoonSunAngle')->willReturn(18.0);
+
+        $engine = new FestivalRuleEngine($transitEngine);
+        $date = CarbonImmutable::parse('2026-01-02');
+
+        $snapshots = [
+            '2025-12-31' => $this->festivalSnapshot(30, 'Krishna', 100.25, 100.75, 101.25, 100.10, 100.60, 'Mula', 100.50, 100.20),
+            '2026-01-01' => $this->festivalSnapshot(1, 'Shukla', 101.25, 101.75, 102.25, 100.60, 101.90, 'Purva Ashadha', 101.50, 101.10, 350.0),
+            '2026-01-02' => $this->festivalSnapshot(2, 'Shukla', 102.25, 102.75, 103.25, 101.90, 102.95, 'Uttara Ashadha', 102.50, 102.10, 350.0),
+        ];
+
+        $fetchHistoricalSnapshot = static fn (CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
+
+        $resolved = $engine->resolveMajorFestival(
+            'Chandra Darshana',
+            FestivalService::FESTIVALS['Chandra Darshana'],
+            $date,
+            $snapshots['2026-01-02'],
+            [],
+            $fetchHistoricalSnapshot,
+        );
+
+        self::assertNull(
+            $resolved,
+            'A 350-degree directed Moon-Sun separation is waning-side/wrong-side for first crescent and must not pass as a 10-degree smallest arc.',
+        );
     }
 
     public function testGujaratiFestivalRegistryCorrectionsAreEncoded(): void
@@ -1907,7 +1979,8 @@ final class NirnayVerifiedRulesTest extends TestCase
         float $tithiEndJd,
         string $nakshatra,
         ?float $moonsetJd = null,
-        ?float $moonriseJd = null
+        ?float $moonriseJd = null,
+        float $moonSunElongationAtSunsetDegrees = 12.0
     ): array {
         $snapshot = [
             'Tithi' => [
@@ -1925,7 +1998,7 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'sunrise_jd' => $sunriseJd,
                 'sunset_jd' => $sunsetJd,
                 'next_sunrise_jd' => $nextSunriseJd,
-                'moon_sun_elongation_at_sunset_degrees' => 12.0,
+                'moon_sun_elongation_at_sunset_degrees' => $moonSunElongationAtSunsetDegrees,
                 'moon_illumination_at_sunset_percent' => 1.1,
             ],
         ];

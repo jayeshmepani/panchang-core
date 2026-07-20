@@ -383,7 +383,7 @@ class FestivalDateCorrectionsTest extends TestCase
             $entry['resolution']['decision']['visibility_assessment']['date_selection_basis'] ?? null
         );
         self::assertSame(
-            'modern_proxy_for_surya_siddhanta_12_bhaga_rule',
+            'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
             $entry['resolution']['decision']['visibility_assessment']['astronomical_basis'] ?? null
         );
         self::assertSame(

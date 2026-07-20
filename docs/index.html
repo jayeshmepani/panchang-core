@@ -4969,25 +4969,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.5.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.5.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.5.0 is a substantial minor release over v10.4.1: it corrects Amanta and Purnimanta festival and vrat dates, adds new observances, reshapes the festival engine for maintainability under parity gates, makes Nirayana (sidereal) and Sayana (tropical) ayana and ṛtu explicit in day payloads, hardens localization, improves the eclipse module, and finishes night fivefold divisions on true dynamic rātrimāna muhūrta spans. Catalog totals are <strong>335 festival identities</strong> and <strong>124 vrat identities</strong>. Earlier 10.4.x timing work and prior 10.x corrections remain the base of this line.</p>
+            <p>Review the version-specific notes below before upgrading. v10.5.1 is a patch release over v10.5.0 that tightens monthly Chandra Darshana selection to the source-attested Shukla Pratipada-Dvitiya window, prevents fallback into Tritiya or later tithis, and replaces unsigned smallest-arc crescent checks with directed Moon-minus-Sun ecliptic-longitude separation in the waxing half. v10.5.0 remains the substantial minor release base for Amanta/Purnimanta date corrections, catalog reshaping, Nirayana/Sayana ayana-ṛtu clarity, localization hardening, eclipse refinements, and dynamic rātrimāna night divisions. Catalog totals remain <strong>335 festival identities</strong> and <strong>124 vrat identities</strong>.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for v10.5.0: 335 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati.</p>
+            <p>This documentation is refreshed from the latest generated 2026 outputs for the v10.5.x line: 335 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. v10.5.1 adds the Chandra Darshana Pratipada-Dvitiya scope correction and directed waxing-longitude proxy metadata on top of the v10.5.0 generated-output baseline.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.5.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Chandra Darshana Directed Longitude and Pratipada-Dvitiya Scope Correction</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release tightening monthly Chandra Darshana and Adhika Chandra Darshana selection to the source-attested Shukla Pratipada-Dvitiya field. The resolver still keeps strict source-only status as textually undetermined and uses the 12-degree first-crescent check as a modern proxy, but it no longer searches into Tritiya or later tithis when Pratipada and Dvitiya fail. The proxy now uses directed Moon-minus-Sun ecliptic-longitude separation normalized as 0-360 degrees and requires the waxing half, so a waning-side value such as 350 degrees is not treated as a 10-degree crescent. The decision payload records <code>source_attested_tithi_scope</code>, <code>operational_candidate_scope</code>, <code>search_beyond_dvitiya = false</code>, <code>modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees</code>, <code>modern_longitude_separation_normalization</code>, and <code>visibility_proxy_requires_waxing_half</code> for auditability.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.5.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Festival Module Reshape, Nirayana/Sayana Ayana-Ritu Clarity, Date Corrections, and Eclipse Hardening</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Festival Module Reshape, Nirayana/Sayana Ayana-Ritu Clarity, Date Corrections, and Eclipse Hardening</span></div>
                 <p class="release-note">Minor release over v10.4.1 covering Amanta and Purnimanta festival and vrat date corrections, new festival and vrat identities (including Avidhava Navami and Akhand Dwadashi), distinct tradition identities where dual-day rules differ (Rama Navami Smarta/Vaishnava, Swaminarayan vs generic Varaha Jayanti, Kali Chaudas vs Naraka Chaturdashi Abhyanga Snan), modular festival engine reshape with parity fingerprints, explicit Nirayana (sidereal) and Sayana (tropical) ayana/ṛtu naming and keys, localization and leak hardening across English, Hindi, and Gujarati, eclipse module refinements, and night fivefold divisions built from dynamic rātrimāna muhūrta spans rather than five equal night fifths. Regenerated Bhuj-range compact and yearly festival/vrat outputs for both calendars.</p>
               </div>
             </li>
@@ -5307,6 +5314,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.5.1 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This patch release corrects the monthly Chandra Darshana operational scope and crescent proxy so the engine evaluates only the source-attested Shukla Pratipada-Dvitiya field after Amavasya and requires directed waxing Moon-minus-Sun ecliptic-longitude separation instead of unsigned smallest-arc distance.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Chandra Darshana selection is narrower:</strong> monthly Chandra Darshana and Adhika Chandra Darshana now try Pratipada first and Dvitiya second. If both fail the post-sunset Moon-window and 12-degree proxy checks, no date is returned for that lunation instead of falling through to Tritiya, Chaturthi, or later tithis.</li>
+              <li><strong>The 12-degree proxy is direction-aware:</strong> the Chandra Darshana proxy now uses directed Moon-minus-Sun ecliptic-longitude separation normalized from 0 to 360 degrees, requires <code>12° ≤ separation &lt; 180°</code>, and no longer uses an unsigned smallest-arc value that could confuse a waning-side separation with a young waxing crescent.</li>
+              <li><strong>Textual provenance is clearer:</strong> the resolver continues to mark strict source-only monthly date selection as <code>MONTHLY_DATE_TEXTUALLY_UNDETERMINED</code>, while the operational calendar layer is explicitly scoped to <code>SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY</code>.</li>
+              <li><strong>Audit metadata expanded:</strong> Chandra Darshana <code>visibility_assessment</code> and nested <code>monthly_observance</code> include <code>source_attested_tithi_scope</code>, <code>operational_candidate_scope</code>, <code>search_beyond_dvitiya</code>, <code>modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees</code>, <code>modern_longitude_separation_normalization</code>, and <code>visibility_proxy_requires_waxing_half</code>.</li>
+              <li><strong>No catalog count change:</strong> festival and vrat identity totals remain <strong>335 festivals</strong> and <strong>124 vrats</strong>.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, month, today, and raw JSON if your outputs include Chandra Darshana dates or visibility-assessment metadata.</li>
+            <li>Rebaseline snapshots that asserted an open-ended post-Amavasya search or expected Chandra Darshana to appear on Tritiya or later when Pratipada/Dvitiya failed.</li>
+            <li>Prefer the new scope fields over inferring scope from date position alone.</li>
+          </ul>
 
           <h3>v10.5.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This minor release corrects Amanta and Purnimanta festival and vrat dates, expands and splits observances, clarifies Nirayana vs Sayana ayana and ṛtu, hardens localization and eclipses, and finishes dynamic night fivefold divisions.</p>

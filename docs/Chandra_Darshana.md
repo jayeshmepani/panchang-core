@@ -22,7 +22,7 @@ Production therefore keeps two layers separate:
 | Layer | Result |
 |---|---|
 | Strict source-only | `MONTHLY_DATE_TEXTUALLY_UNDETERMINED` |
-| Operational calendar | Select the earliest post-Amavasya local evening that passes the engine's modern proxy for the traditional 12-bhaga first-crescent indication |
+| Operational calendar | Within the Shukla Pratipada-Dvitiya field only, select the earliest post-Amavasya local evening that passes the engine's modern proxy for the traditional 12-bhaga first-crescent indication |
 
 The public date is an application definition, not a claim that the sources state
 a universal monthly date-selection command.
@@ -55,10 +55,13 @@ procedure.
 Production records the engine quantity as:
 
 ```text
-astronomical_basis = modern_proxy_for_surya_siddhanta_12_bhaga_rule
+astronomical_basis = modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication
 modern_proxy_for_surya_siddhanta_12_bhaga_rule = true
-modern_longitudinal_separation_at_local_sunset_degrees = ...
-surya_siddhanta_longitudinal_separation_degrees = null
+modern_proxy_for_surya_siddhanta_12_bhaga_indication = true
+modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees = ...
+modern_longitude_separation_normalization = zero_to_360_directed_moon_minus_sun
+visibility_proxy_requires_waxing_half = true
+surya_siddhanta_oblique_ascensional_interval_computed = false
 claims_full_surya_siddhanta_chapter_10_recomputation = false
 ```
 
@@ -99,6 +102,9 @@ later nibandha literature. Production therefore labels this layer as:
 tithi_corroboration_basis = nibandha_tithi_visibility_indication
 tithi_indication_original_context = darsa_anvadhana_and_govardhana_adjudication
 tithi_indication_monthly_use = application_level_analogy
+source_attested_tithi_scope = SHUKLA_PRATIPADA_DVITIYA_TRANSITION
+operational_candidate_scope = SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY
+search_beyond_dvitiya = false
 ```
 
 The indication is one-way:
@@ -254,8 +260,8 @@ The resolver needs historical snapshots. If either the transit engine or the
 historical snapshot callback is unavailable, monthly Chandra Darshana returns no
 candidate instead of falling back to the retired rule.
 
-For each civil date, production searches back up to eight post-Amavasya evenings
-and reconstructs the current lunation from:
+For each civil date, production searches back up to eight days and reconstructs
+the current lunation from:
 
 - an Amavasya snapshot with `tithi_index_abs == 30` and `tithi_end_jd`, or
 - a Pratipada snapshot with `tithi_index_abs == 1` and `tithi_start_jd`.
@@ -264,84 +270,60 @@ The latest Amavasya end before the current sunset is used as the season anchor.
 
 ## Evening Evaluation
 
-Each candidate evening after Amavasya is evaluated chronologically.
+Only Shukla Pratipada and Shukla Dvitiya evenings are candidate evenings. They
+are evaluated chronologically.
 
 ## Production Decision Tree
 
-This tree is a lossless map of the production resolver. It is written in plain
-terms, but each branch corresponds to code in
-`FestivalRuleChandraDarshana::resolveChandraDarshanaFestival()`,
-`chandraDarshanaSeasonForDate()`, `selectOperationalChandraDarshanaCandidate()`,
-and `evaluateChandraDarshanaEvening()`.
+This tree intentionally shows only the operational path from Amavasya to the
+monthly Chandra Darshana date, in decision-maker language. It is still a
+lossless map of the production date selector in
+`FestivalRuleChandraDarshana.php`: after Amavasya ends, the resolver checks
+Pratipada first and Dvitiya second. It selects the first of those two evenings
+where the Moon can be treated as the first visible crescent by the engine model.
+If both fail, production returns no monthly Chandra Darshana date for that
+lunation instead of falling through to Tritiya or later.
+
+The Dvitiya-Aparahna nibandha indication, six-muhurta indication, Pradosha
+overlap, strict-source boundary, and diagnostic fields are still computed by
+production, but they are evidence attached to the chosen evening. They do not
+move the date away from the first passing Pratipada/Dvitiya evening.
 
 ```mermaid
 flowchart TD
-    A["Request Chandra Darshana for this civil date"] --> B{"Transit engine and historical snapshot callback available?"}
-    B -- "No" --> Z0["Return no festival for this date"]
-    B -- "Yes" --> C["Search back up to 8 days for the latest Amavasya end before today's sunset"]
+    A["Amavasya ends"] --> B["Begin the new lunar month"]
+    B --> C["First check the Pratipada evening"]
 
-    C --> C1{"Find Amavasya-at-sunrise day with tithi_end_jd?"}
-    C1 -- "Yes" --> C2["Record that Amavasya end as a possible season anchor"]
-    C1 -- "No" --> C3["Also check Pratipada-at-sunrise days"]
-    C2 --> C3
-    C3 --> C4{"Find Pratipada-at-sunrise day with tithi_start_jd?"}
-    C4 -- "Yes" --> C5["Record tithi_start_jd as Amavasya end; if before sunrise, anchor previous civil date"]
-    C4 -- "No" --> C6["No additional anchor from this day"]
-    C5 --> C7["Choose the latest recorded Amavasya end"]
-    C6 --> C7
-    C7 --> C8{"Any season anchor found?"}
-    C8 -- "No" --> Z0
-    C8 -- "Yes" --> D["From the season anchor, evaluate evenings in chronological order, up to 8 evenings"]
+    C --> D{"At sunset, has Amavasya<br/>already ended?"}
+    D -- "No" --> E["Do not celebrate yet"]
+    E --> F["Check the next evening"]
 
-    D --> E{"Is evening after Amavasya end?"}
-    E -- "No" --> DNext["Try next evening"]
-    E -- "Yes" --> F{"Sunrise, sunset, next sunrise valid?"}
-    F -- "No" --> DNext
-    F -- "Yes" --> G["Build independent evidence record"]
+    D -- "Yes" --> G{"Can the Moon remain visible<br/>after sunset?"}
+    G -- "No" --> H["No Chandra Darshana<br/>on this evening"]
+    H --> F
 
-    G --> H{"Horizon proxy passes? moonrise < sunset < moonset"}
-    H -- "Yes" --> H1["horizon.status = POST_SUNSET_HORIZON_WINDOW; window = sunset to moonset"]
-    H -- "No" --> H2["horizon.status = NO_POST_SUNSET_HORIZON_WINDOW"]
+    G -- "Yes" --> I{"Is the Moon far enough<br/>from the Sun for first-crescent sighting?<br/>(12-degree engine check)"}
+    I -- "No" --> J["First crescent is not accepted<br/>for this evening"]
+    J --> F
 
-    G --> I{"Modern 12-bhaga proxy passes? normalized engine Sun-Moon separation at local sunset >= 12 degrees"}
-    I -- "Yes" --> I1["surya_siddhanta_visibility.status = TWELVE_BHAGA_PROXY_PASSED"]
-    I -- "No" --> I2["surya_siddhanta_visibility.status = TWELVE_BHAGA_PROXY_NOT_PASSED"]
+    I -- "Yes" --> K["Celebrate Chandra Darshana<br/>on this evening"]
+    K --> L["Stop searching;<br/>this is the selected date"]
 
-    G --> J{"Pratipada active at sunrise?"}
-    J -- "No" --> J1["nibandha_tithi_indication.applicable = false"]
-    J -- "Yes" --> K["Compute dynamic daylight muhurtas: Aparahna = sunrise + 9/15 day to sunrise + 12/15 day"]
-    K --> L{"Dvitiya starts by Aparahna start and ends after Aparahna end?"}
-    L -- "Yes" --> L1["nibandha_tithi_indication.status = FULL_APARAHNA_INDICATION_PRESENT"]
-    L -- "No" --> L2["nibandha_tithi_indication.status = FULL_APARAHNA_INDICATION_NOT_ESTABLISHED"]
-    K --> M{"Dvitiya starts by Aparahna start and ends after sunset?"}
-    M -- "Yes" --> M1["stronger_six_muhurta_indication.status = SIX_MUHURTA_INTERVAL_COVERED"]
-    M -- "No" --> M2["stronger_six_muhurta_indication.status = SIX_MUHURTA_INTERVAL_NOT_COVERED"]
-
-    G --> N{"Moon horizon window overlaps dynamic Pradosha?"}
-    N -- "Yes" --> N1["pradosha.status = PRADOSHA_OVERLAP_PRESENT; metadata only"]
-    N -- "No" --> N2["pradosha.status = NO_PRADOSHA_OVERLAP; not a rejection"]
-
-    H1 --> O{"Horizon passed AND 12-bhaga proxy passed?"}
-    H2 --> O
-    I1 --> O
-    I2 --> O
-    O -- "Yes" --> P["operational_candidate = true; monthly_observance.application_status = APPLICATION_FIRST_CRESCENT_CANDIDATE"]
-    O -- "No" --> Q["operational_candidate = false; keep evidence record but do not select this evening"]
-
-    P --> R{"Was this selected evening the requested civil date?"}
-    R -- "Yes" --> S["Return Chandra Darshana / Adhika Chandra Darshana result"]
-    R -- "No" --> Z0
-    Q --> DNext
-    DNext --> D
-
-    S --> T["Always attach strict_source_only_result = MONTHLY_DATE_TEXTUALLY_UNDETERMINED"]
-    T --> U["actual_observation = UNKNOWN; no 38-min, 7-degree, 9-degree, or 0.8% threshold applied"]
+    F --> M{"Was this Pratipada?"}
+    M -- "Yes" --> N["Now check the Dvitiya evening"]
+    M -- "No" --> Q["No Chandra Darshana date<br/>is returned"]
+    N --> D
 ```
 
-In simple words: the database date is the first evening after Amavasya where the
-Moon remains above the horizon after sunset and the engine's modern 12-degree
-proxy passes. The Dvitiya Aparahna rule and Pradosha overlap travel with the
-result as evidence, but neither can replace the first passing evening.
+In simple words: after Amavasya, the resolver first tries the Pratipada evening.
+If the Moon cannot remain visible after sunset, or if the first-crescent
+12-degree check does not pass, the resolver does not celebrate on Pratipada and
+tries the Dvitiya evening. If Dvitiya also fails, production returns no Chandra
+Darshana date for that lunation. It does not continue to Tritiya, Chaturthi,
+Panchami, or later tithis.
+
+The Dvitiya Aparahna rule and Pradosha overlap travel with the result as
+evidence, but neither can replace the first passing Pratipada/Dvitiya evening.
 
 ### Horizon Window
 
@@ -366,18 +348,22 @@ window, not actual naked-eye observation.
 Production computes:
 
 ```text
-modern_longitudinal_separation_at_local_sunset_degrees
+modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees
 ```
 
-from `moon_sun_elongation_at_sunset_degrees`, normalized to the smallest arc.
+from `moon_sun_elongation_at_sunset_degrees`. Despite the legacy field name,
+that source value is already the directed Moon-minus-Sun ecliptic-longitude
+separation normalized to `0..360`, not modern great-circle elongation.
 
 ```text
-separation < 12.0  -> TWELVE_BHAGA_PROXY_NOT_PASSED
-separation >= 12.0 -> TWELVE_BHAGA_PROXY_PASSED
+separation < 12.0              -> TWELVE_BHAGA_PROXY_NOT_PASSED
+12.0 <= separation < 180.0     -> TWELVE_BHAGA_PROXY_PASSED
+separation >= 180.0            -> TWELVE_BHAGA_PROXY_NOT_PASSED
 ```
 
 This is intentionally named as a modern proxy. It must not be presented as a
-full Surya Siddhanta chapter 10 recomputation.
+full Surya Siddhanta chapter 10 recomputation, the chapter's local oblique
+ascensional interval, or modern apparent great-circle elongation.
 
 ### Dvitiya Aparahna Indication
 
@@ -426,7 +412,7 @@ must not be treated as a single mutually exclusive truth source:
   },
   "surya_siddhanta_visibility": {
     "status": "TWELVE_BHAGA_PROXY_PASSED",
-    "method": "modern_longitudinal_separation_proxy",
+    "method": "modern_directed_ecliptic_longitude_separation_proxy",
     "claims_exact_siddhantic_recomputation": false
   },
   "nibandha_tithi_indication": {
@@ -459,7 +445,8 @@ label for display and testing:
 | `NO_POST_SUNSET_HORIZON_WINDOW` | `moonrise < sunset < moonset` is false |
 | `TWELVE_BHAGA_PROXY_NOT_PASSED` | Horizon window exists, but the 12-degree proxy does not pass |
 
-The operational selector accepts the first chronological evening where:
+Within the Shukla Pratipada-Dvitiya scope, the operational selector accepts the
+first chronological evening where:
 
 ```text
 horizon.status = POST_SUNSET_HORIZON_WINDOW
@@ -468,7 +455,7 @@ surya_siddhanta_visibility.status = TWELVE_BHAGA_PROXY_PASSED
 ```
 
 The Dvitiya indication is attached as metadata. It never displaces an earlier
-astronomical-proxy candidate.
+astronomical-proxy candidate, and it does not create a Tritiya fallback.
 
 ## Output Fields
 
@@ -485,18 +472,25 @@ The decision payload includes:
     "summary_classification": "APPLICATION_CRESCENT_CANDIDATE",
     "strict_source_only_result": "MONTHLY_DATE_TEXTUALLY_UNDETERMINED",
     "date_selection_basis": "application_definition_first_visible_crescent",
-    "astronomical_basis": "modern_proxy_for_surya_siddhanta_12_bhaga_rule",
-    "astronomical_computation_basis": "engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold",
+    "source_attested_tithi_scope": "SHUKLA_PRATIPADA_DVITIYA_TRANSITION",
+    "operational_candidate_scope": "SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY",
+    "search_beyond_dvitiya": false,
+    "astronomical_basis": "modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication",
+    "astronomical_computation_basis": "directed_moon_minus_sun_ecliptic_longitude_separation_at_local_sunset_checked_against_12_degree_proxy_threshold",
     "application_evaluation_epoch": "local_sunset",
     "modern_proxy_for_surya_siddhanta_12_bhaga_rule": true,
+    "modern_proxy_for_surya_siddhanta_12_bhaga_indication": true,
     "claims_full_surya_siddhanta_chapter_10_recomputation": false,
+    "claims_modern_great_circle_elongation": false,
     "tithi_corroboration_basis": "nibandha_tithi_visibility_indication",
     "tithi_indication_original_context": "darsa_anvadhana_and_govardhana_adjudication",
     "tithi_indication_monthly_use": "application_level_analogy",
     "pradosha_basis": "satsangijivan_childhood_samskara_analogy_only",
     "pradosha_muhurta_basis": "dynamic_ratrimana_muhurta",
-    "modern_longitudinal_separation_at_local_sunset_degrees": 12.0,
-    "surya_siddhanta_longitudinal_separation_degrees": null,
+    "modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees": 12.0,
+    "modern_longitude_separation_normalization": "zero_to_360_directed_moon_minus_sun",
+    "visibility_proxy_requires_waxing_half": true,
+    "surya_siddhanta_oblique_ascensional_interval_computed": false,
     "proxy_threshold_degrees": 12.0,
     "moonset_lag_seconds": 0.0,
     "moonset_lag_minutes": 0.0,

@@ -82,11 +82,11 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
                 $row['date_selection_basis'],
             );
             self::assertSame(
-                'modern_proxy_for_surya_siddhanta_12_bhaga_rule',
+                'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
                 $row['astronomical_basis'],
             );
             self::assertSame(
-                'engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold',
+                'directed_moon_minus_sun_ecliptic_longitude_separation_at_local_sunset_checked_against_12_degree_proxy_threshold',
                 $row['astronomical_computation_basis'],
             );
             self::assertFalse($row['claims_full_surya_siddhanta_chapter_10_recomputation']);
@@ -164,6 +164,273 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
         if ($opOnly !== []) {
             fwrite(STDOUT, '  operational_only: ' . implode(', ', $opOnly) . "\n");
         }
+    }
+
+    public function test_probe_if_all_contextual_witnesses_are_used_as_hard_gates(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $seasons = $this->discoverPostAmavasyaSeasons($service);
+        self::assertCount(18, $seasons, 'Expected every post-Amavasya season in the Oct 2025-Mar 2027 window.');
+
+        $rows = [];
+        foreach ($seasons as $season) {
+            $evenings = $this->scanEveningsAfterAmavasya($service, $season, 8);
+            $selected = null;
+
+            foreach ($evenings as $eve) {
+                $allContextualGatesPass = $eve['has_post_sunset_horizon_window'] === true
+                    && $eve['twelve_bhaga_proxy_passed'] === true
+                    && $eve['tithi_proxy_applicable'] === true
+                    && $eve['dvitiya_covers_full_aparahna_3_muhurtas'] === true
+                    && $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas'] === true
+                    && $eve['visibility_during_pradosha'] === true;
+
+                if ($allContextualGatesPass) {
+                    $selected = $eve;
+                    break;
+                }
+            }
+
+            $rows[] = [
+                'amavasya_anchor_date' => $season['anchor_date'],
+                'selected_date' => $selected['date'] ?? null,
+                'selected_classification' => $selected['classification'] ?? null,
+                'trail' => array_map(
+                    static fn (array $e): array => [
+                        'date' => $e['date'],
+                        'tithi_proxy_applicable' => $e['tithi_proxy_applicable'],
+                        'horizon' => $e['has_post_sunset_horizon_window'],
+                        'twelve_bhaga' => $e['twelve_bhaga_proxy_passed'],
+                        'aparahna_3' => $e['dvitiya_covers_full_aparahna_3_muhurtas'],
+                        'six_muhurta' => $e['dvitiya_covers_aparahna_through_sunset_6_muhurtas'],
+                        'pradosha' => $e['visibility_during_pradosha'],
+                        'classification' => $e['classification'],
+                    ],
+                    $evenings,
+                ),
+            ];
+        }
+
+        $selectedDates = array_values(array_filter(
+            array_map(
+                static fn (array $r): ?string => $r['selected_date'],
+                $rows,
+            ),
+            static fn (?string $date): bool => $date !== null,
+        ));
+
+        fwrite(STDOUT, "\n=== Strict all-contextual-witness gates probe (Bhuj, Oct 2025-Mar 2027) ===\n");
+        fwrite(STDOUT, "Hard gates used: Pratipada/Dvitiya scope + post-sunset horizon + 12-degree proxy + Dvitiya full Aparahna + Dvitiya Aparahna-to-sunset + Pradosha overlap.\n");
+        fwrite(STDOUT, "Important: strict source-only mode remains no-date; this is only a what-if operational probe.\n");
+        foreach ($rows as $row) {
+            fwrite(STDOUT, sprintf(
+                "  after Amavasya≈%s → strict_all_gates=%s [%s]\n",
+                $row['amavasya_anchor_date'],
+                $row['selected_date'] ?? 'NONE',
+                $row['selected_classification'] ?? 'n/a',
+            ));
+        }
+
+        fwrite(STDOUT, sprintf(
+            "Totals: seasons=%d strict_all_gates_dates=%d\n",
+            count($rows),
+            count($selectedDates),
+        ));
+
+        if ($selectedDates !== []) {
+            fwrite(STDOUT, 'Dates: ' . implode(', ', $selectedDates) . "\n");
+        }
+
+        self::assertCount(18, $rows);
+    }
+
+    public function test_probe_strict_contextual_gate_failure_reasons(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $seasons = $this->discoverPostAmavasyaSeasons($service);
+        self::assertCount(18, $seasons, 'Expected every post-Amavasya season in the Oct 2025-Mar 2027 window.');
+
+        $gateLabels = [
+            'has_post_sunset_horizon_window' => 'post-sunset Moon window',
+            'twelve_bhaga_proxy_passed' => '12-degree proxy',
+            'dvitiya_covers_full_aparahna_3_muhurtas' => 'Dvitiya full Aparahna 3-muhurta',
+            'dvitiya_covers_aparahna_through_sunset_6_muhurtas' => 'Dvitiya Aparahna-to-sunset 6-muhurta',
+            'visibility_during_pradosha' => 'Pradosha overlap',
+        ];
+        $failureCounts = array_fill_keys(array_keys($gateLabels), 0);
+        $candidateCounts = array_fill_keys(array_keys($gateLabels), 0);
+        $seasonRows = [];
+
+        foreach ($seasons as $season) {
+            $evenings = array_values(array_filter(
+                $this->scanEveningsAfterAmavasya($service, $season, 8),
+                static fn (array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
+            ));
+
+            $seasonPasses = false;
+            $seasonFailures = [];
+            foreach ($gateLabels as $gate => $_label) {
+                $seasonFailures[$gate] = true;
+            }
+
+            foreach ($evenings as $eve) {
+                $allPass = true;
+                foreach (array_keys($gateLabels) as $gate) {
+                    if ((bool) ($eve[$gate] ?? false)) {
+                        $seasonFailures[$gate] = false;
+                    } else {
+                        $allPass = false;
+                    }
+                }
+
+                if ($allPass) {
+                    $seasonPasses = true;
+                }
+            }
+
+            foreach (array_keys($gateLabels) as $gate) {
+                foreach ($evenings as $eve) {
+                    if ((bool) ($eve[$gate] ?? false)) {
+                        $candidateCounts[$gate]++;
+                    }
+                }
+
+                if ($seasonFailures[$gate]) {
+                    $failureCounts[$gate]++;
+                }
+            }
+
+            $seasonRows[] = [
+                'anchor' => $season['anchor_date'],
+                'passes' => $seasonPasses,
+                'failing_gates' => array_keys(array_filter($seasonFailures)),
+                'candidate_trail' => array_map(
+                    static fn (array $eve): string => sprintf(
+                        '%s(tithi=%d horizon=%s 12deg=%s ap3=%s six=%s pradosha=%s)',
+                        $eve['date'],
+                        (int) ($eve['tithi_index_abs'] ?? 0),
+                        (bool) $eve['has_post_sunset_horizon_window'] ? 'Y' : 'N',
+                        (bool) $eve['twelve_bhaga_proxy_passed'] ? 'Y' : 'N',
+                        (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas'] ? 'Y' : 'N',
+                        (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas'] ? 'Y' : 'N',
+                        (bool) $eve['visibility_during_pradosha'] ? 'Y' : 'N',
+                    ),
+                    $evenings,
+                ),
+            ];
+        }
+
+        fwrite(STDOUT, "\n=== Strict contextual gate failure analysis (Bhuj, Oct 2025-Mar 2027) ===\n");
+        fwrite(STDOUT, "Per-gate candidate pass counts across Pratipada/Dvitiya evenings:\n");
+        foreach ($gateLabels as $gate => $label) {
+            fwrite(STDOUT, sprintf(
+                "  %-45s candidates_pass=%2d | seasons_with_no_passing_candidate=%2d\n",
+                $label,
+                $candidateCounts[$gate],
+                $failureCounts[$gate],
+            ));
+        }
+
+        fwrite(STDOUT, "Per-season failing gates when all contextual gates are required:\n");
+        foreach ($seasonRows as $row) {
+            fwrite(STDOUT, sprintf(
+                "  after Amavasya≈%s → %s | failing=%s\n",
+                $row['anchor'],
+                $row['passes'] ? 'PASS' : 'NONE',
+                $row['failing_gates'] === [] ? 'none' : implode(', ', $row['failing_gates']),
+            ));
+            fwrite(STDOUT, '    ' . implode(' ; ', $row['candidate_trail']) . "\n");
+        }
+
+        self::assertCount(18, $seasonRows);
+    }
+
+    public function test_probe_aparahna_three_vs_six_muhurta_gate_impact(): void
+    {
+        /** @var PanchangService $service */
+        $service = $this->app->make(PanchangService::class);
+
+        $seasons = $this->discoverPostAmavasyaSeasons($service);
+        self::assertCount(18, $seasons, 'Expected every post-Amavasya season in the Oct 2025-Mar 2027 window.');
+
+        $baseDates = [];
+        $threeMuhurtaDates = [];
+        $sixMuhurtaDates = [];
+        $threeOnlyDates = [];
+        $sixOnlyDates = [];
+
+        foreach ($seasons as $season) {
+            $evenings = array_values(array_filter(
+                $this->scanEveningsAfterAmavasya($service, $season, 8),
+                static fn (array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
+            ));
+
+            $base = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+                && (bool) $eve['twelve_bhaga_proxy_passed']
+                && (bool) $eve['visibility_during_pradosha']);
+            $three = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+                && (bool) $eve['twelve_bhaga_proxy_passed']
+                && (bool) $eve['visibility_during_pradosha']
+                && (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas']);
+            $six = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+                && (bool) $eve['twelve_bhaga_proxy_passed']
+                && (bool) $eve['visibility_during_pradosha']
+                && (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas']);
+            $threeOnly = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas']);
+            $sixOnly = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas']);
+
+            if ($base !== null) {
+                $baseDates[] = $base['date'];
+            }
+
+            if ($three !== null) {
+                $threeMuhurtaDates[] = $three['date'];
+            }
+
+            if ($six !== null) {
+                $sixMuhurtaDates[] = $six['date'];
+            }
+
+            if ($threeOnly !== null) {
+                $threeOnlyDates[] = $threeOnly['date'];
+            }
+
+            if ($sixOnly !== null) {
+                $sixOnlyDates[] = $sixOnly['date'];
+            }
+        }
+
+        fwrite(STDOUT, "\n=== Dvitiya Aparahna 3-muhurta vs 6-muhurta gate impact (Bhuj, Oct 2025-Mar 2027) ===\n");
+        fwrite(STDOUT, sprintf(
+            "Base gates only (scope + horizon + 12-degree + Pradosha): %d dates\n",
+            count($baseDates),
+        ));
+        fwrite(STDOUT, sprintf(
+            "Add 3-muhurta Aparahna gate: %d dates | cancelled=%d\n",
+            count($threeMuhurtaDates),
+            count($baseDates) - count($threeMuhurtaDates),
+        ));
+        fwrite(STDOUT, sprintf(
+            "Add 6-muhurta Aparahna-to-sunset gate: %d dates | cancelled=%d\n",
+            count($sixMuhurtaDates),
+            count($baseDates) - count($sixMuhurtaDates),
+        ));
+        fwrite(STDOUT, sprintf(
+            "3-muhurta-only seasons=%d dates=%s\n",
+            count($threeOnlyDates),
+            $threeOnlyDates === [] ? 'NONE' : implode(', ', $threeOnlyDates),
+        ));
+        fwrite(STDOUT, sprintf(
+            "6-muhurta-only seasons=%d dates=%s\n",
+            count($sixOnlyDates),
+            $sixOnlyDates === [] ? 'NONE' : implode(', ', $sixOnlyDates),
+        ));
+
+        self::assertCount(18, $baseDates);
     }
 
     public function test_operational_mode_against_provided_drikpanchang_dates_apr2024_to_feb2028(): void
@@ -321,6 +588,23 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
         return [PanchangServiceProvider::class];
     }
 
+    /**
+     * @param list<array<string, mixed>> $evenings
+     * @param callable(array<string, mixed>): bool $predicate
+     *
+     * @return array<string, mixed>|null
+     */
+    private function firstEveningPassing(array $evenings, callable $predicate): ?array
+    {
+        foreach ($evenings as $evening) {
+            if ($predicate($evening)) {
+                return $evening;
+            }
+        }
+
+        return null;
+    }
+
     // -------------------------------------------------------------------------
     // Strict / operational modes
     // -------------------------------------------------------------------------
@@ -382,22 +666,22 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
             'operational_selected_date' => $selected['date'] ?? null,
             'operational_classification' => $selected['classification'] ?? null,
             'tithi_proxy_on_selected' => $selected['tithi_proxy_aparahna_3'] ?? null,
-            'selected_elongation_deg' => $selected['modern_longitudinal_separation_degrees'] ?? null,
+            'selected_elongation_deg' => $selected['modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees'] ?? null,
             'selected_lag_minutes' => $selected['lag_minutes'] ?? null,
             'pradosha_overlap_on_selected' => $selected['visibility_during_pradosha'] ?? null,
             'evening_trail' => array_map(
                 static fn (array $e): array => [
                     'date' => $e['date'],
                     'classification' => $e['classification'],
-                    'elong' => $e['modern_longitudinal_separation_degrees'],
+                    'elong' => $e['modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees'],
                     'proxy3' => $e['tithi_proxy_aparahna_3'],
                 ],
                 $evenings,
             ),
             'package_cd_date' => $packageNear,
             'date_selection_basis' => 'application_definition_first_visible_crescent',
-            'astronomical_basis' => 'modern_proxy_for_surya_siddhanta_12_bhaga_rule',
-            'astronomical_computation_basis' => 'engine_longitudinal_separation_at_application_epoch_checked_against_12_degree_proxy_threshold',
+            'astronomical_basis' => 'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
+            'astronomical_computation_basis' => 'directed_moon_minus_sun_ecliptic_longitude_separation_at_local_sunset_checked_against_12_degree_proxy_threshold',
             'claims_full_surya_siddhanta_chapter_10_recomputation' => false,
             'tithi_corroboration_basis' => 'nibandha_tithi_visibility_indication',
             'pradosha_basis' => 'satsangijivan_childhood_samskara_analogy_only',
@@ -509,7 +793,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
         $moonset = is_float($day['moonset_jd']) || is_int($day['moonset_jd'])
             ? (float) $day['moonset_jd']
             : null;
-        $elong = (float) $day['elongation_deg'];
+        $elong = (float) $day['directed_longitude_separation_deg'];
 
         // §9 Pradoṣa: record overlap as supportive Satsangijivan analogy only — never reject.
         // Approximate local pradoṣa as the first three rātri-muhūrtas after sunset.
@@ -525,7 +809,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
                 && min($moonset, $pradoshaEnd) > $sunset;
         }
 
-        $twelveBhagaProxy = $elong >= self::PROXY_12_BHAGA_SEPARATION_DEG;
+        $twelveBhagaProxy = $elong >= self::PROXY_12_BHAGA_SEPARATION_DEG && $elong < 180.0;
 
         // Tithi proxy only when Pratipada is udaya-vyāpinī and Dvitīyā follows before/at sunset path.
         $proxy = $this->computeTithiProxy($service, $day, $cache);
@@ -541,10 +825,11 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
 
         return [
             'date' => $day['date'],
+            'tithi_index_abs' => (int) $day['tithi_index_abs'],
             'classification' => $classification,
             'has_post_sunset_horizon_window' => $hasWindow,
             'twelve_bhaga_proxy_passed' => $twelveBhagaProxy,
-            'modern_longitudinal_separation_degrees' => $elong,
+            'modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees' => $elong,
             'modern_topocentric_elongation_degrees' => null,
             'lag_minutes' => $lagMinutes,
             'illumination_percent' => (float) $day['illumination_percent'],
@@ -732,23 +1017,21 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
             'night_muhurta_seconds' => $nightMuhurtaSeconds,
             'moonrise_jd' => $moonrise,
             'moonset_jd' => $moonset,
-            // Package field may be a 0–360° difference; SS 10.1 needs gross *separation*
-            // (smallest arc from Sun). Not a full Sūrya Siddhānta computational rewrite.
-            'elongation_deg' => $this->smallestArcDegrees(
-                (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0),
-            ),
+            // Package field is a 0-360 directed Moon-minus-Sun longitude separation.
+            // Not a full Surya Siddhanta computational rewrite.
+            'directed_longitude_separation_deg' => $this->normalizeDegrees((float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0)),
             'illumination_percent' => (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0),
         ];
     }
 
-    private function smallestArcDegrees(float $degrees): float
+    private function normalizeDegrees(float $degrees): float
     {
         $d = fmod($degrees, 360.0);
         if ($d < 0.0) {
             $d += 360.0;
         }
 
-        return min($d, 360.0 - $d);
+        return $d;
     }
 
     /** @return list<string> */
