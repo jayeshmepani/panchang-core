@@ -14,6 +14,7 @@ declare(strict_types=1);
  *   {"name": "...", "aliases": ["..."], "dates": ["YYYY-MM-DD"]}
  */
 
+use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $args = $_SERVER['argv'] ?? [];
@@ -202,14 +203,16 @@ $compactEclipses = static function (array $events) use ($dateIsInRange): array {
             continue;
         }
 
-        $type = trim((string) ($event['type'] ?? 'Eclipse'));
+        $type = trim((string) ($event['type'] ?? Localization::translate('String', 'Eclipse')));
         $eclipseType = trim((string) ($event['eclipse_type'] ?? ''));
         $localType = trim((string) ($event['local_eclipse_type'] ?? ''));
-        $name = trim($eclipseType . ' ' . $type . ' Eclipse');
+        $eclipseWord = Localization::translate('String', 'Eclipse');
+        $localWord = Localization::translate('String', 'local');
+        $name = trim($eclipseType . ' ' . $type . ' ' . $eclipseWord);
         $aliases = [];
 
         if ($localType !== '' && $localType !== $eclipseType) {
-            $aliases[] = trim($localType . ' local ' . $type . ' Eclipse');
+            $aliases[] = trim($localType . ' ' . $localWord . ' ' . $type . ' ' . $eclipseWord);
         }
 
         $key = $name;

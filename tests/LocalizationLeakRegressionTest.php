@@ -77,6 +77,8 @@ class LocalizationLeakRegressionTest extends TestCase
             'Maha Ashtami',
             'Ashvina Sharad Navaratri Day 8',
             'Ashvina Sharad Navaratri Day 9',
+            'Shree Varaha Jayanti',
+            'Deepavali Hanuman Puja',
         ];
 
         foreach ($festivalKeys as $key) {
@@ -85,6 +87,26 @@ class LocalizationLeakRegressionTest extends TestCase
             $this->assertMatchesRegularExpression('/[\x{0900}-\x{097F}]/u', $hi, 'hi Festival missing Devanagari: ' . $key);
             $this->assertMatchesRegularExpression('/[\x{0A80}-\x{0AFF}]/u', $gu, 'gu Festival missing Gujarati: ' . $key);
         }
+
+        $publicStringKeys = [
+            'Eclipse',
+            'local',
+            'time_range_to',
+            'Vara-Tithi dosha present',
+            'No Vara-Tithi dosha',
+            'Rise/set proxy; not an apparent upper-limb altitude and next-set search.',
+        ];
+        foreach ($publicStringKeys as $key) {
+            $hi = Localization::translate('String', $key, 'hi');
+            $gu = Localization::translate('String', $key, 'gu');
+            $this->assertMatchesRegularExpression('/[\x{0900}-\x{097F}]/u', $hi, 'hi String missing Devanagari: ' . $key);
+            $this->assertMatchesRegularExpression('/[\x{0A80}-\x{0AFF}]/u', $gu, 'gu String missing Gujarati: ' . $key);
+        }
+
+        $hiDeity = Localization::translate('Deity', 'Vishnu (Lakshmi-Narayana)', 'hi');
+        $guDeity = Localization::translate('Deity', 'Vishnu (Lakshmi-Narayana)', 'gu');
+        $this->assertMatchesRegularExpression('/[\x{0900}-\x{097F}]/u', $hiDeity, 'hi Deity missing Devanagari: Vishnu (Lakshmi-Narayana)');
+        $this->assertMatchesRegularExpression('/[\x{0A80}-\x{0AFF}]/u', $guDeity, 'gu Deity missing Gujarati: Vishnu (Lakshmi-Narayana)');
 
         $desc = 'Birth anniversary of Lord Ganesha (Magha)';
         $this->assertMatchesRegularExpression(

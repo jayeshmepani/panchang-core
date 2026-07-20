@@ -791,7 +791,7 @@ trait PanchangCalendarApiTrait
         $window = [
             'type' => 'moon_visibility',
             'type_name' => Localization::translate('String', 'chandra_darshana_visibility'),
-            'display' => $startDisplay . ' to ' . $endDisplay,
+            'display' => $startDisplay . Localization::translate('String', 'time_range_to') . $endDisplay,
             'start' => $startDisplay,
             'end' => $endDisplay,
             'start_iso' => AstroCore::formatDateTime($start),

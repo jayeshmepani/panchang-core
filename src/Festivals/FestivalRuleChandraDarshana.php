@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Core\Localization;
 
 /**
  * Monthly Chandra Darshana first-crescent resolver.
@@ -244,7 +245,10 @@ trait FestivalRuleChandraDarshana
                     'method' => 'rise_set_window_proxy',
                     'requires_moonrise_before_sunset' => true,
                     'requires_moonset_after_sunset' => true,
-                    'note' => 'Rise/set proxy; not an apparent upper-limb altitude and next-set search.',
+                    'note' => Localization::translate(
+                        'String',
+                        'Rise/set proxy; not an apparent upper-limb altitude and next-set search.',
+                    ),
                 ],
                 'surya_siddhanta_visibility' => [
                     'status' => $twelveBhagaProxyPassed ? 'TWELVE_BHAGA_PROXY_PASSED' : 'TWELVE_BHAGA_PROXY_NOT_PASSED',
