@@ -4969,25 +4969,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.5.1 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.6.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.5.1 is a patch release over v10.5.0 that tightens monthly Chandra Darshana selection to the source-attested Shukla Pratipada-Dvitiya window, prevents fallback into Tritiya or later tithis, and replaces unsigned smallest-arc crescent checks with directed Moon-minus-Sun ecliptic-longitude separation in the waxing half. v10.5.0 remains the substantial minor release base for Amanta/Purnimanta date corrections, catalog reshaping, Nirayana/Sayana ayana-ṛtu clarity, localization hardening, eclipse refinements, and dynamic rātrimāna night divisions. Catalog totals remain <strong>335 festival identities</strong> and <strong>124 vrat identities</strong>.</p>
+            <p>Review the version-specific notes below before upgrading. v10.6.0 is a minor release that aligns Vaishnava Ekadashi nirnay with the Satsangijivan decision profile, including second-day Ekadashi-vriddhi handling, Dwadashi-vriddhi and Dwadashi-kshaya Mahadwadashi cases, and localized dynamic Mahadwadashi subtype output. v10.5.1 remains the Chandra Darshana patch release over v10.5.0. Catalog totals remain <strong>335 festival identities</strong> and <strong>124 vrat identities</strong>; Mahadwadashi is emitted as a derived observance, so dated occurrence counts can change without adding a new catalog row.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for the v10.5.x line: 335 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. v10.5.1 adds the Chandra Darshana Pratipada-Dvitiya scope correction and directed waxing-longitude proxy metadata on top of the v10.5.0 generated-output baseline.</p>
+            <p>This documentation is refreshed from the latest generated 2026 outputs for the v10.6.x line: 335 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. v10.6.0 adds the Satsangijivan Ekadashi nirnay refresh, dynamic Mahadwadashi subtype emission, localized Mahadwadashi public strings, and refreshed generated output on top of the v10.5.x Chandra Darshana baseline.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.6.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Satsangijivan Ekadashi Nirnay and Dynamic Mahadwadashi Observances</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release aligning Vaishnava Ekadashi observance decisions with the Satsangijivan profile documented in <code>docs/EKADASHI.md</code>. The engine now handles Ekadashi-vriddhi by selecting the later Ekadashi sunrise day, applies Dwadashi-vriddhi, Dwadashi-kshaya, Dashami-kshaya, and related Mahadwadashi decisions, emits dynamic Mahadwadashi subtype aliases such as Vanjuli, Unmilini, Trisparsha, Pakshavarddhini, and Vijaya, and localizes those user-facing names and notes in English, Hindi, and Gujarati. Generated Amanta and Purnimanta outputs are refreshed; catalog totals remain 335 festivals and 124 vrats because Mahadwadashi is a derived observance rather than a new registry identity.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.5.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Chandra Darshana Directed Longitude and Pratipada-Dvitiya Scope Correction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Chandra Darshana Directed Longitude and Pratipada-Dvitiya Scope Correction</span></div>
                 <p class="release-note">Patch release tightening monthly Chandra Darshana and Adhika Chandra Darshana selection to the source-attested Shukla Pratipada-Dvitiya field. The resolver still keeps strict source-only status as textually undetermined and uses the 12-degree first-crescent check as a modern proxy, but it no longer searches into Tritiya or later tithis when Pratipada and Dvitiya fail. The proxy now uses directed Moon-minus-Sun ecliptic-longitude separation normalized as 0-360 degrees and requires the waxing half, so a waning-side value such as 350 degrees is not treated as a 10-degree crescent. The decision payload records <code>source_attested_tithi_scope</code>, <code>operational_candidate_scope</code>, <code>search_beyond_dvitiya = false</code>, <code>modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees</code>, <code>modern_longitude_separation_normalization</code>, and <code>visibility_proxy_requires_waxing_half</code> for auditability.</p>
               </div>
             </li>
@@ -5314,6 +5321,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.6.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This minor release updates Vaishnava Ekadashi observance selection to follow the Satsangijivan Ekadashi nirnay profile and adds dynamic Mahadwadashi subtype output without increasing catalog identity totals.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Vaishnava Ekadashi dates can shift:</strong> Ekadashi-vriddhi now selects the later Ekadashi sunrise day, while Dashami-vedha remains tied to the first civil Ekadashi day before the vriddhi selection is applied.</li>
+              <li><strong>Mahadwadashi is emitted dynamically:</strong> Vanjuli, Unmilini, Trisparsha, Pakshavarddhini, and Vijaya Mahadwadashi subtypes are calculated from the observance decision and Dwadashi/Nakshatra state rather than from hardcoded dates.</li>
+              <li><strong>Derived observance counts may change:</strong> <code>festival_entry_count</code>, <code>vrat_entry_count</code>, and day counts can change when a Mahadwadashi is newly emitted. <code>total_festivals</code> and <code>total_vrats</code> remain <strong>335</strong> and <strong>124</strong>.</li>
+              <li><strong>Localization expanded:</strong> Mahadwadashi names, subtype aliases, decision statuses, and shifted-Dwadashi notes are localized in English, Hindi, and Gujarati.</li>
+              <li><strong>Reference documentation added:</strong> <code>docs/EKADASHI.md</code> records the Satsangijivan Ekadashi and parana decision text used for the Vaishnava profile.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate cached festival, vrat, compact-vrat, today, month, and raw JSON if your application displays Ekadashi, Vaishnava Ekadashi, Mahadwadashi, or parana metadata.</li>
+            <li>Rebaseline snapshots that assert exact Ekadashi dates around Ekadashi-vriddhi, Dwadashi-vriddhi, Dwadashi-kshaya, Dashami-kshaya, or Shravana-Dwadashi cases.</li>
+            <li>Use <code>name_key</code> and localized aliases for Mahadwadashi display; do not infer subtype from a fixed date list.</li>
+          </ul>
 
           <h3>v10.5.1 Upgrade &amp; Release Notes</h3>
           <p class="lead">This patch release corrects the monthly Chandra Darshana operational scope and crescent proxy so the engine evaluates only the source-attested Shukla Pratipada-Dvitiya field after Amavasya and requires directed waxing Moon-minus-Sun ecliptic-longitude separation instead of unsigned smallest-arc distance.</p>

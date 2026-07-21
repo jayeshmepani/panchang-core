@@ -184,6 +184,32 @@ class FestivalService
                         $addedFestivalKeys[$name] = true;
                     }
                 }
+
+                if ($yesterdayDetails !== null
+                    && !isset($addedFestivalKeys[$name])
+                    && $this->matchesShiftedVaishnavaEkadashiName($rules, $todayDetails, $yesterdayDetails)) {
+                    $resolvedShifted = [
+                        'festival_name' => $name,
+                        'required_tithi' => (int) ($rules['tithi'] ?? 11),
+                        'paksha' => (string) ($rules['paksha'] ?? ($yesterdayDetails['Tithi']['paksha'] ?? 'Shukla')),
+                        'calendar_type' => (string) ($todayDetails['Hindu_Calendar']['Calendar_Type'] ?? 'amanta'),
+                        'karmakala_type' => (string) ($rules['karmakala_type'] ?? 'arunodaya'),
+                        'standard_date' => $date->subDay()->toDateString(),
+                        'observance_date' => $date->toDateString(),
+                        'observance_note' => Localization::translate('String', 'observance_note_shifted_to_dwadashi_satsangijivan'),
+                        'decision' => [
+                            'winning_reason' => 'vaishnava_satsangijivan_shifted_named_ekadashi',
+                            'ekadashi_selection' => (array) ($yesterdayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []),
+                        ],
+                    ];
+                    $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedShifted);
+                    $festivalMeta[] = [
+                        'raw_name' => $name,
+                        'adhika_only' => $adhikaOnly,
+                        'is_ekadashi' => str_contains($name, 'Ekadashi'),
+                    ];
+                    $addedFestivalKeys[$name] = true;
+                }
             } elseif ($isNakshatra) {
                 // Handle nakshatra-based festivals
                 $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
@@ -612,6 +638,48 @@ class FestivalService
         }
 
         return false;
+    }
+
+    private function matchesShiftedVaishnavaEkadashiName(array $rules, array $todayDetails, array $yesterdayDetails): bool
+    {
+        if ((int) ($rules['tithi'] ?? 0) !== 11 || !(bool) ($rules['require_vaishnava_ekadashi_today'] ?? false)) {
+            return false;
+        }
+
+        $yesterdayVaishnava = (array) (($yesterdayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
+        if ((string) ($yesterdayVaishnava['fasting_day'] ?? '') !== 'Tomorrow_Mahadvadashi') {
+            return false;
+        }
+
+        $todayPhaseTithi = (int) (($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? $todayDetails['Tithi']['index'] ?? 0));
+        $yesterdayPhaseTithi = (int) (($yesterdayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? $yesterdayDetails['Tithi']['index'] ?? 0));
+        if ($todayPhaseTithi !== 12 || $yesterdayPhaseTithi !== 11) {
+            return false;
+        }
+
+        $yesterdayPaksha = (string) ($yesterdayDetails['Tithi']['paksha'] ?? '');
+        if (isset($rules['paksha']) || isset($rules['paksha_amanta']) || isset($rules['paksha_purnimanta'])) {
+            $rulePaksha = $this->resolveRulePakshaForCalendar($rules, (array) ($yesterdayDetails['Hindu_Calendar'] ?? []), 'Shukla');
+            $rulePakshas = $rulePaksha === 'Both' ? ['Shukla', 'Krishna'] : (is_array($rulePaksha) ? $rulePaksha : [$rulePaksha]);
+            if (!in_array($yesterdayPaksha, $rulePakshas, true)) {
+                return false;
+            }
+        }
+
+        if ($this->hasMonthRule($rules)
+            && !$this->monthRuleMatches($rules, (array) ($yesterdayDetails['Hindu_Calendar'] ?? []))
+            && !$this->monthRuleMatches($rules, (array) ($todayDetails['Hindu_Calendar'] ?? []))) {
+            return false;
+        }
+
+        if ((bool) ($rules['adhika_only'] ?? false)) {
+            $todayAdhika = (bool) ($todayDetails['Hindu_Calendar']['Is_Adhika'] ?? false);
+            $yesterdayAdhika = (bool) ($yesterdayDetails['Hindu_Calendar']['Is_Adhika'] ?? false);
+
+            return $todayAdhika || $yesterdayAdhika;
+        }
+
+        return true;
     }
 
     /**

@@ -50,6 +50,12 @@ class LocalizationLeakRegressionTest extends TestCase
             'inherited_rule',
             'gupta_mahavidya_custom',
             'north_navadurga_bhadrakali_kalpa',
+            'Pakshavarddhini_Mahadvadashi',
+            'Trisparsha_Mahadvadashi',
+            'Vijaya_Mahadvadashi',
+            'vaishnava_pakshavarddhini_mahadvadashi',
+            'vaishnava_trisparsha_dwadashi_kshaya',
+            'observance_note_shifted_to_dwadashi_satsangijivan',
             'Lagna',
             'No natal or person-specific inputs are used.',
             'Evaluation is derived only from current Panchang and transit state for the configured location/time.',
@@ -79,6 +85,11 @@ class LocalizationLeakRegressionTest extends TestCase
             'Ashvina Sharad Navaratri Day 9',
             'Shree Varaha Jayanti',
             'Deepavali Hanuman Puja',
+            'Vanjuli Mahadwadashi',
+            'Unmilini Mahadwadashi',
+            'Trisparsha Mahadwadashi',
+            'Pakshavarddhini Mahadwadashi',
+            'Vijaya Mahadwadashi',
         ];
 
         foreach ($festivalKeys as $key) {
@@ -108,15 +119,29 @@ class LocalizationLeakRegressionTest extends TestCase
         $this->assertMatchesRegularExpression('/[\x{0900}-\x{097F}]/u', $hiDeity, 'hi Deity missing Devanagari: Vishnu (Lakshmi-Narayana)');
         $this->assertMatchesRegularExpression('/[\x{0A80}-\x{0AFF}]/u', $guDeity, 'gu Deity missing Gujarati: Vishnu (Lakshmi-Narayana)');
 
-        $desc = 'Birth anniversary of Lord Ganesha (Magha)';
-        $this->assertMatchesRegularExpression(
-            '/[\x{0900}-\x{097F}]/u',
-            Localization::translate('FestivalDesc', $desc, 'hi')
-        );
-        $this->assertMatchesRegularExpression(
-            '/[\x{0A80}-\x{0AFF}]/u',
-            Localization::translate('FestivalDesc', $desc, 'gu')
-        );
+        $descKeys = [
+            'Birth anniversary of Lord Ganesha (Magha)',
+            'Vanjuli Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+            'Unmilini Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+            'Trisparsha Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+            'Pakshavarddhini Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+            'Vijaya Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+            'Unmilini Mahadwadashi occurs when Ekadashi extends to a second sunrise and Dwadashi begins on the selected fasting day.',
+            'Trisparsha Mahadwadashi occurs when Ekadashi, a lost Dwadashi and Trayodashi meet within the same sunrise-to-sunrise day.',
+            'Vijaya Mahadwadashi occurs when Shukla Dwadashi coincides with Shravana nakshatra.',
+        ];
+        foreach ($descKeys as $desc) {
+            $this->assertMatchesRegularExpression(
+                '/[\x{0900}-\x{097F}]/u',
+                Localization::translate('FestivalDesc', $desc, 'hi'),
+                'hi FestivalDesc missing Devanagari: ' . $desc
+            );
+            $this->assertMatchesRegularExpression(
+                '/[\x{0A80}-\x{0AFF}]/u',
+                Localization::translate('FestivalDesc', $desc, 'gu'),
+                'gu FestivalDesc missing Gujarati: ' . $desc
+            );
+        }
 
         foreach (['Satsangi Jeevan', 'Garga Samhita', 'Nirnaya Sindhu / Dharma Sindhu'] as $source) {
             $this->assertMatchesRegularExpression('/[\x{0900}-\x{097F}]/u', Localization::translate('Source', $source, 'hi'));

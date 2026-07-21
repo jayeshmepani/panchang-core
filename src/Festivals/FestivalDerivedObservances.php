@@ -58,12 +58,13 @@ trait FestivalDerivedObservances
 
         if (($yesterdayVaishnava['fasting_day'] ?? null) === 'Tomorrow_Mahadvadashi') {
             $status = (string) ($yesterdayVaishnava['status'] ?? 'Mahadvadashi');
+            $mahadvadashi = $this->mahadvadashiSubtypeForVaishnavaDecision($yesterdayVaishnava);
             $rules = [
                 'type' => 'derived_mahadvadashi',
-                'description' => 'Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+                'description' => $mahadvadashi['description'],
                 'deity' => 'Vishnu',
                 'fasting' => true,
-                'aliases' => ['Vaishnava Mahadwadashi'],
+                'aliases' => $mahadvadashi['aliases'],
             ];
             if ($this->shouldIncludeFestivalRules($rules, $selection)) {
                 $this->appendDerivedFestival(
@@ -71,6 +72,75 @@ trait FestivalDerivedObservances
                     rules: $rules,
                     observanceDate: $date->toDateString(),
                     reason: $status,
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        if (
+            ($yesterdayVaishnava['fasting_day'] ?? null) === 'Tomorrow'
+            && ($yesterdayVaishnava['case_key'] ?? null) === 'vaishnava_satsangijivan_ekadashi_vriddhi_second_day'
+        ) {
+            $rules = [
+                'type' => 'derived_mahadvadashi',
+                'description' => 'Unmilini Mahadwadashi occurs when Ekadashi extends to a second sunrise and Dwadashi begins on the selected fasting day.',
+                'deity' => 'Vishnu',
+                'fasting' => true,
+                'aliases' => ['Unmilini Mahadwadashi', 'Vaishnava Mahadwadashi'],
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Mahadwadashi',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'Unmilini_Mahadwadashi',
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        if (
+            ($todayVaishnava['fasting_day'] ?? null) === 'Today'
+            && ($todayVaishnava['case_key'] ?? null) === 'vaishnava_trisparsha_dwadashi_kshaya'
+        ) {
+            $rules = [
+                'type' => 'derived_mahadvadashi',
+                'description' => 'Trisparsha Mahadwadashi occurs when Ekadashi, a lost Dwadashi and Trayodashi meet within the same sunrise-to-sunrise day.',
+                'deity' => 'Vishnu',
+                'fasting' => true,
+                'aliases' => ['Trisparsha Mahadwadashi', 'Vaishnava Mahadwadashi'],
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Mahadwadashi',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'Trisparsha_Mahadvadashi',
+                    festivals: $festivals,
+                    festivalMeta: $festivalMeta,
+                    addedFestivalKeys: $addedFestivalKeys,
+                );
+            }
+        }
+
+        if ($this->isVijayaMahadvadashi($todayDetails)) {
+            $rules = [
+                'type' => 'derived_mahadvadashi',
+                'description' => 'Vijaya Mahadwadashi occurs when Shukla Dwadashi coincides with Shravana nakshatra.',
+                'deity' => 'Vishnu',
+                'fasting' => true,
+                'aliases' => ['Vijaya Mahadwadashi', 'Vaishnava Mahadwadashi'],
+            ];
+            if ($this->shouldIncludeFestivalRules($rules, $selection)) {
+                $this->appendDerivedFestival(
+                    name: 'Mahadwadashi',
+                    rules: $rules,
+                    observanceDate: $date->toDateString(),
+                    reason: 'Vijaya_Mahadvadashi',
                     festivals: $festivals,
                     festivalMeta: $festivalMeta,
                     addedFestivalKeys: $addedFestivalKeys,
@@ -241,6 +311,55 @@ trait FestivalDerivedObservances
                 );
             }
         }
+    }
+
+    /**
+     * @param array<string, mixed> $vaishnavaDecision
+     * @return array{aliases: array<int, string>, description: string}
+     */
+    private function mahadvadashiSubtypeForVaishnavaDecision(array $vaishnavaDecision): array
+    {
+        $caseKey = (string) ($vaishnavaDecision['case_key'] ?? '');
+        $status = (string) ($vaishnavaDecision['status'] ?? '');
+
+        $subtype = match ($caseKey) {
+            'vaishnava_satsangijivan_dwadashi_vriddhi_mahadvadashi' => 'Vanjuli Mahadwadashi',
+            'vaishnava_kshaya_mahadvadashi', 'vaishnava_unmillani_mahadvadashi' => 'Unmilini Mahadwadashi',
+            'vaishnava_satsangijivan_ekadashi_vriddhi_dwadashi_kshaya', 'vaishnava_pakshavarddhini_mahadvadashi' => 'Pakshavarddhini Mahadwadashi',
+            'vaishnava_satsangijivan_dashami_kshaya_mahadvadashi' => 'Vijaya Mahadwadashi',
+            'vaishnava_dashami_55_ghati_vedha', 'vaishnava_trisparsha_dwadashi_kshaya' => 'Trisparsha Mahadwadashi',
+            default => match ($status) {
+                'Dvadashi_Vriddhi_Mahadvadashi' => 'Vanjuli Mahadwadashi',
+                'Kshaya_Ekadashi', 'Unmillani_Mahadvadashi' => 'Unmilini Mahadwadashi',
+                'Vriddhi_Ekadashi_Dvadashi_Kshaya', 'Pakshavarddhini_Mahadvadashi' => 'Pakshavarddhini Mahadwadashi',
+                'Dashami_Kshaya' => 'Vijaya Mahadwadashi',
+                'Viddha_Ekadashi', 'Trisparsha_Mahadvadashi' => 'Trisparsha Mahadwadashi',
+                default => null,
+            },
+        };
+
+        $aliases = ['Vaishnava Mahadwadashi'];
+        if ($subtype !== null) {
+            array_unshift($aliases, $subtype);
+        }
+
+        return [
+            'aliases' => $aliases,
+            'description' => $subtype !== null
+                ? $subtype . ' fasting day observed in the Vaishnava Ekadashi tradition'
+                : 'Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
+        ];
+    }
+
+    /** @param array<string, mixed> $todayDetails */
+    private function isVijayaMahadvadashi(array $todayDetails): bool
+    {
+        $tithiIndex = (int) ($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? $todayDetails['Tithi']['index'] ?? 0);
+        $phaseTithi = (($tithiIndex - 1) % 15) + 1;
+        $paksha = (string) ($todayDetails['Tithi']['paksha'] ?? '');
+        $nakshatra = (string) ($todayDetails['Nakshatra']['name'] ?? '');
+
+        return $phaseTithi === 12 && $paksha === 'Shukla' && $nakshatra === 'Shravana';
     }
 
     /**

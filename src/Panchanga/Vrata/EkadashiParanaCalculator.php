@@ -48,6 +48,29 @@ class EkadashiParanaCalculator
             return null;
         }
 
+        $dvadashiEndJd = null;
+        $thirdSunriseJd = null;
+        $dashamiStartJd = null;
+        $followingPakshaEndVriddhi = null;
+        if ($phaseTithi === 11) {
+            $dashamiStartAngle = ($tithiNumber - 2) * 12.0;
+            $dashamiStartJd = $this->transitEngine->findAngleCrossing(
+                $tithiStartJd - 1.2,
+                $dashamiStartAngle,
+                1,
+                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            );
+            $dvadashiEndAngle = ($tithiNumber + 1) * 12.0;
+            $dvadashiEndJd = $this->transitEngine->findAngleCrossing(
+                $tithiEndJd + 0.000001,
+                $dvadashiEndAngle,
+                1,
+                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            );
+            $thirdSunriseJd = $this->calculateSunriseForJdDate($nextSunriseJd + 1.0, $tz, $lat, $lon);
+            $followingPakshaEndVriddhi = $this->followingPakshaEndTithiHasVriddhi($tithiNumber, $tithiEndJd, $sunriseJd, $tz, $lat, $lon);
+        }
+
         $kalaEngine = new KalaNirnayaEngine($lat, $lon);
         $report = $kalaEngine->generateKalaNirnayaReport(
             $tithiNumber,
@@ -57,7 +80,11 @@ class EkadashiParanaCalculator
             $sunriseJd,
             $sunsetJd,
             $nextSunriseJd,
-            $previousSunriseJd
+            $previousSunriseJd,
+            $dvadashiEndJd,
+            $thirdSunriseJd,
+            $dashamiStartJd,
+            $followingPakshaEndVriddhi
         );
 
         $payload = [
@@ -71,13 +98,6 @@ class EkadashiParanaCalculator
         ];
 
         if ($phaseTithi === 11) {
-            $dvadashiEndAngle = ($tithiNumber + 1) * 12.0;
-            $dvadashiEndJd = $this->transitEngine->findAngleCrossing(
-                $tithiEndJd + 0.000001,
-                $dvadashiEndAngle,
-                1,
-                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
-            );
             $paranaSunsetJd = $this->calculateSunsetForJdDate($nextSunriseJd, $tz, $lat, $lon);
             $payload['parana'] = $this->buildParanaPayload($tithiEndJd, $dvadashiEndJd, $nextSunriseJd, $tz, true, $monthAmanta, $paksha, $paranaSunsetJd);
         } else {
@@ -87,6 +107,55 @@ class EkadashiParanaCalculator
         $payload = $this->localizeEkadashiObservancePayload($payload);
 
         return $payload;
+    }
+
+    private function calculateSunriseForJdDate(float $jd, string $tz, float $lat, float $lon): float
+    {
+        $date = $this->sunService->jdToCarbonPublic($jd, $tz);
+        [$sunrise] = $this->sunService->getSunriseSunset([
+            'year' => $date->year,
+            'month' => $date->month,
+            'day' => $date->day,
+            'hour' => 12,
+            'minute' => 0,
+            'second' => 0,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'timezone' => $tz,
+            'elevation' => 0.0,
+        ]);
+
+        return AstroCore::toJulianDay($sunrise);
+    }
+
+    private function followingPakshaEndTithiHasVriddhi(int $ekadashiTithiNumber, float $searchFromJd, float $sunriseJd, string $tz, float $lat, float $lon): bool
+    {
+        $pakshaEndTithiNumber = $ekadashiTithiNumber <= 15 ? 15 : 30;
+        $pakshaEndStartAngle = ($pakshaEndTithiNumber - 1) * 12.0;
+        $pakshaEndEndAngle = $pakshaEndTithiNumber * 12.0;
+
+        $pakshaEndStartJd = $this->transitEngine->findAngleCrossing(
+            $searchFromJd + 0.000001,
+            $pakshaEndStartAngle,
+            1,
+            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+        );
+        $pakshaEndEndJd = $this->transitEngine->findAngleCrossing(
+            $pakshaEndStartJd + 0.000001,
+            $pakshaEndEndAngle,
+            1,
+            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+        );
+
+        $sunrisesInPakshaEnd = 0;
+        for ($i = 1; $i <= 7; $i++) {
+            $futureSunriseJd = $this->calculateSunriseForJdDate($sunriseJd + $i, $tz, $lat, $lon);
+            if ($pakshaEndStartJd <= $futureSunriseJd && $futureSunriseJd < $pakshaEndEndJd) {
+                $sunrisesInPakshaEnd++;
+            }
+        }
+
+        return $sunrisesInPakshaEnd >= 2;
     }
 
     public function buildParanaPayload(

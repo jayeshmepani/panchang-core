@@ -71,6 +71,105 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue($viddha['dashami_pierces_nirnay_vedha']);
     }
 
+    public function testSatsangijivanVaishnavaEkadashiVriddhiUsesSecondEkadashiDay(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->determineEkadashi(
+            101.0,
+            102.02,
+            100.90,
+            102.02,
+            101.0,
+            102.0,
+            'Vaishnava',
+            100.0,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            101.50,
+            103.10,
+            103.0
+        );
+
+        self::assertSame('Vriddhi_Ekadashi', $result['status']);
+        self::assertSame('vaishnava_satsangijivan_ekadashi_vriddhi_second_day', $result['case_key']);
+        self::assertSame('Tomorrow', $result['fasting_day']);
+    }
+
+    public function testSatsangijivanVaishnavaSecondVriddhiSunriseIsAcceptedToday(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->determineEkadashi(
+            100.96,
+            102.02,
+            100.96,
+            102.02,
+            102.0,
+            103.0,
+            'Vaishnava',
+            101.0,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            102.50,
+            103.20,
+            104.0,
+            99.90
+        );
+
+        self::assertTrue($result['ekadashi_at_previous_sunrise']);
+        self::assertSame('Vriddhi_Ekadashi', $result['status']);
+        self::assertSame('vaishnava_satsangijivan_ekadashi_vriddhi_second_day', $result['case_key']);
+        self::assertSame('Today', $result['fasting_day']);
+    }
+
+    public function testSatsangijivanVaishnavaDwadashiVriddhiUsesDwadashiFast(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->determineEkadashi(
+            101.0,
+            101.98,
+            100.90,
+            101.98,
+            101.0,
+            102.0,
+            'Vaishnava',
+            100.0,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            101.50,
+            103.02,
+            103.0
+        );
+
+        self::assertSame('Dvadashi_Vriddhi_Mahadvadashi', $result['status']);
+        self::assertSame('vaishnava_satsangijivan_dwadashi_vriddhi_mahadvadashi', $result['case_key']);
+        self::assertSame('Tomorrow_Mahadvadashi', $result['fasting_day']);
+    }
+
+    public function testSatsangijivanVaishnavaDashamiKshayaUsesDwadashiFast(): void
+    {
+        $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
+
+        $result = $engine->determineEkadashi(
+            100.90,
+            101.88,
+            100.90,
+            101.88,
+            101.0,
+            102.0,
+            'Vaishnava',
+            100.0,
+            KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
+            101.50,
+            102.80,
+            103.0,
+            100.05
+        );
+
+        self::assertSame('Dashami_Kshaya', $result['status']);
+        self::assertSame('vaishnava_satsangijivan_dashami_kshaya_mahadvadashi', $result['case_key']);
+        self::assertSame('Tomorrow_Mahadvadashi', $result['fasting_day']);
+    }
+
     public function testSmartaEkadashiRejectsDashamiAtSunriseButToleratesArunodayaOnlyDashami(): void
     {
         $engine = new KalaNirnayaEngine(23.2472446, 69.668339);
