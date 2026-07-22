@@ -315,6 +315,7 @@ trait FestivalDerivedObservances
 
     /**
      * @param array<string, mixed> $vaishnavaDecision
+     *
      * @return array{aliases: array<int, string>, description: string}
      */
     private function mahadvadashiSubtypeForVaishnavaDecision(array $vaishnavaDecision): array

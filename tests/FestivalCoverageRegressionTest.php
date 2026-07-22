@@ -172,6 +172,54 @@ class FestivalCoverageRegressionTest extends TestCase
         $this->assertContains('Hari Jayanti', $vaishakhaNames, 'Monthly Hari Jayanti should emit outside Chaitra on the verified Vaishakha Sud 9 date (2026-04-25).');
         $this->assertContains('Swaminarayan Jayanti (Hari-Nom)', $chaitraNames, 'Annual Chaitra Hari-Nom should stay on the annual Chaitra observance date (2026-03-27).');
         $this->assertNotContains('Hari Jayanti', $chaitraNames, 'Monthly Hari Jayanti must not duplicate the annual Chaitra Hari-Nom observance.');
+
+        // Adhika Jyeshtha Sud 9 (2026-05-24) must also emit monthly Hari Jayanti.
+        $adhikaDetails = $service->getDayDetails(
+            CarbonImmutable::parse('2026-05-24', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+        $adhikaNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $adhikaDetails['Festivals'] ?? []
+        );
+        $this->assertContains('Hari Jayanti', $adhikaNames, 'Monthly Hari Jayanti must emit in Adhika Masa (2026-05-24 Adhik Jyeshtha Sud 9).');
+        $this->assertTrue((bool) ($adhikaDetails['Hindu_Calendar']['Is_Adhika'] ?? false));
+
+        // Shree Hari Antardhan: Jyeshtha Sud 10 nija (2026-06-24), not Adhik Sud 10 (2026-05-25).
+        $antardhanNija = $service->getDayDetails(
+            CarbonImmutable::parse('2026-06-24', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+        $antardhanNijaNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $antardhanNija['Festivals'] ?? []
+        );
+        $this->assertContains('Shree Hari Antardhan', $antardhanNijaNames, 'Shree Hari Antardhan on nija Jyeshtha Sud 10 (2026-06-24).');
+
+        $antardhanAdhika = $service->getDayDetails(
+            CarbonImmutable::parse('2026-05-25', 'Asia/Kolkata'),
+            23.2472446,
+            69.668339,
+            'Asia/Kolkata',
+            0.0,
+            null,
+            'amanta',
+        );
+        $antardhanAdhikaNames = array_map(
+            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            $antardhanAdhika['Festivals'] ?? []
+        );
+        $this->assertNotContains('Shree Hari Antardhan', $antardhanAdhikaNames, 'Antardhan is nija-only; not on Adhik Jyeshtha Sud 10.');
     }
 
     public function test_gujarat_2026_festival_dates_match_verified_public_baselines(): void

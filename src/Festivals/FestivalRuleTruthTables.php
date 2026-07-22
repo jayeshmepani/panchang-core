@@ -1790,7 +1790,22 @@ trait FestivalRuleTruthTables
             }
         }
 
-        if ($kshayaPreference === 'first') {
+        $preference = strtolower(trim($kshayaPreference));
+        if (in_array($preference, ['merged_host_day', 'merged_day', 'host_day', 'merged'], true)) {
+            $day1Host = (bool) ($day1['target_during_observance'] ?? false);
+            $day2Host = (bool) ($day2['target_during_observance'] ?? false);
+            if ($day1Host && ! $day2Host) {
+                return $this->markSpecialWinner($day1, 'generic_kshaya_merged_host_day1');
+            }
+
+            if ($day2Host && ! $day1Host) {
+                return $this->markSpecialWinner($day2, 'generic_kshaya_merged_host_day2');
+            }
+
+            return $this->markSpecialWinner($day1, 'generic_kshaya_merged_host_fallback_day1');
+        }
+
+        if ($preference === 'first') {
             return $this->markSpecialWinner($day1, 'generic_kshaya_fallback_first');
         }
 

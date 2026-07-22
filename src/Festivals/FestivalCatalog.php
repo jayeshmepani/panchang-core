@@ -3468,8 +3468,12 @@ final class FestivalCatalog
             'require_sunrise_vyapini' => true,
             'vriddhi_preference' => 'first',
             'kshaya_preference' => 'first',
+            // Monthly Sud 9 continues in Adhika Masa (not nija-only).
+            'allow_adhika' => true,
+            'allows_adhika' => true,
             'excluded_months_amanta' => ['Chaitra'],
             'excluded_months_purnimanta' => ['Chaitra'],
+            'aliases' => ['Shree Hari Jayanti', 'Shri Hari Jayanti', 'Shree Hari Navmi'],
             'resolution_policy' => [
                 'monthly_excluding_annual' => true,
                 'inherit_swaminarayan_navami' => true,
@@ -3489,6 +3493,47 @@ final class FestivalCatalog
                 'monthly_sud9',
             ],
             'source_refs' => ['Satsangi Jeevan 5.61'],
+        ],
+        // Annual Swadhaam Gaman / Antardhan Leela (VS 1886 Jyeshtha Sud 10 / 1 June 1830, Gadhada).
+        // Nija Jyeshtha only when an Adhika Jyeshtha exists (default nija-only unless allow_adhika).
+        'Shree Hari Antardhan' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 10,
+            // Jyeshtha Shukla Paksha has the same month name in both Amanta and Purnimanta systems.
+            'month_amanta' => 'Jyeshtha',
+            'month_purnimanta' => 'Jyeshtha',
+            'description' => 'Swadhaam Gaman (Antardhan Leela) of Bhagwan Swaminarayan at Gadhada, observed on Jyeshtha Shukla Dashami. The original event occurred on Vikram Samvat 1886 Jyeshtha Sud 10, corresponding to 1 June 1830.',
+            'deity' => 'Bhagwan Swaminarayan',
+            // Commemorative Antardhan Tithi / utsav, not a mandatory vrata.
+            'fasting' => false,
+            // Traditional udaya-tithi day when no separate ritual karmakala is prescribed.
+            'karmakala_type' => 'sunrise',
+            'require_sunrise_vyapini' => true,
+            // Dashami at two consecutive sunrises → first/purva sunrise day.
+            'vriddhi_preference' => 'first',
+            // Kshaya has no sunrise occurrence → civil day that hosts the skipped Dashami.
+            'kshaya_preference' => 'merged_host_day',
+            'aliases' => [
+                'Hari Antardhan',
+                'Shri Hari Antardhan',
+                'Shree Hari Antardhan Tithi',
+                'Shri Hari Antardhan Tithi',
+                'Hari Antardhan Tithi',
+                'Shree Hari Tirodhan',
+                'Hari Tirodhan',
+                'Swadhaam Gaman',
+                'Swadham Gaman',
+                'Antardhan Leela',
+            ],
+            'tradition_profile' => 'Satsangi Jyeshtha Sud 10 Antardhan / Swadhaam Gaman',
+            'ritual_profile' => 'hari_antardhan',
+            'source_refs' => [
+                'Shree Hari Antardhaan Leela — Swaminarayan Sampraday tradition',
+                'Vikram Samvat 1886 Jyeshtha Sud 10',
+                '1 June 1830 CE — Gadhada',
+            ],
         ],
         'Naga Panchami (Telugu)' => [
             'type' => 'tithi',

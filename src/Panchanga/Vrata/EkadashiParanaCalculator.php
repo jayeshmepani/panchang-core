@@ -109,55 +109,6 @@ class EkadashiParanaCalculator
         return $payload;
     }
 
-    private function calculateSunriseForJdDate(float $jd, string $tz, float $lat, float $lon): float
-    {
-        $date = $this->sunService->jdToCarbonPublic($jd, $tz);
-        [$sunrise] = $this->sunService->getSunriseSunset([
-            'year' => $date->year,
-            'month' => $date->month,
-            'day' => $date->day,
-            'hour' => 12,
-            'minute' => 0,
-            'second' => 0,
-            'latitude' => $lat,
-            'longitude' => $lon,
-            'timezone' => $tz,
-            'elevation' => 0.0,
-        ]);
-
-        return AstroCore::toJulianDay($sunrise);
-    }
-
-    private function followingPakshaEndTithiHasVriddhi(int $ekadashiTithiNumber, float $searchFromJd, float $sunriseJd, string $tz, float $lat, float $lon): bool
-    {
-        $pakshaEndTithiNumber = $ekadashiTithiNumber <= 15 ? 15 : 30;
-        $pakshaEndStartAngle = ($pakshaEndTithiNumber - 1) * 12.0;
-        $pakshaEndEndAngle = $pakshaEndTithiNumber * 12.0;
-
-        $pakshaEndStartJd = $this->transitEngine->findAngleCrossing(
-            $searchFromJd + 0.000001,
-            $pakshaEndStartAngle,
-            1,
-            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
-        );
-        $pakshaEndEndJd = $this->transitEngine->findAngleCrossing(
-            $pakshaEndStartJd + 0.000001,
-            $pakshaEndEndAngle,
-            1,
-            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
-        );
-
-        $sunrisesInPakshaEnd = 0;
-        for ($i = 1; $i <= 7; $i++) {
-            $futureSunriseJd = $this->calculateSunriseForJdDate($sunriseJd + $i, $tz, $lat, $lon);
-            if ($pakshaEndStartJd <= $futureSunriseJd && $futureSunriseJd < $pakshaEndEndJd) {
-                $sunrisesInPakshaEnd++;
-            }
-        }
-
-        return $sunrisesInPakshaEnd >= 2;
-    }
-
     public function buildParanaPayload(
         float $dvadashiStartJd,
         float $dvadashiEndJd,
@@ -231,6 +182,55 @@ class EkadashiParanaCalculator
             'parana_windows' => $allowedWindows,
             'preferred_parana_windows' => $preferredWindows,
         ];
+    }
+
+    private function calculateSunriseForJdDate(float $jd, string $tz, float $lat, float $lon): float
+    {
+        $date = $this->sunService->jdToCarbonPublic($jd, $tz);
+        [$sunrise] = $this->sunService->getSunriseSunset([
+            'year' => $date->year,
+            'month' => $date->month,
+            'day' => $date->day,
+            'hour' => 12,
+            'minute' => 0,
+            'second' => 0,
+            'latitude' => $lat,
+            'longitude' => $lon,
+            'timezone' => $tz,
+            'elevation' => 0.0,
+        ]);
+
+        return AstroCore::toJulianDay($sunrise);
+    }
+
+    private function followingPakshaEndTithiHasVriddhi(int $ekadashiTithiNumber, float $searchFromJd, float $sunriseJd, string $tz, float $lat, float $lon): bool
+    {
+        $pakshaEndTithiNumber = $ekadashiTithiNumber <= 15 ? 15 : 30;
+        $pakshaEndStartAngle = ($pakshaEndTithiNumber - 1) * 12.0;
+        $pakshaEndEndAngle = $pakshaEndTithiNumber * 12.0;
+
+        $pakshaEndStartJd = $this->transitEngine->findAngleCrossing(
+            $searchFromJd + 0.000001,
+            $pakshaEndStartAngle,
+            1,
+            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+        );
+        $pakshaEndEndJd = $this->transitEngine->findAngleCrossing(
+            $pakshaEndStartJd + 0.000001,
+            $pakshaEndEndAngle,
+            1,
+            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+        );
+
+        $sunrisesInPakshaEnd = 0;
+        for ($i = 1; $i <= 7; $i++) {
+            $futureSunriseJd = $this->calculateSunriseForJdDate($sunriseJd + $i, $tz, $lat, $lon);
+            if ($pakshaEndStartJd <= $futureSunriseJd && $futureSunriseJd < $pakshaEndEndJd) {
+                $sunrisesInPakshaEnd++;
+            }
+        }
+
+        return $sunrisesInPakshaEnd >= 2;
     }
 
     /** @return list<array{nakshatra:string, pada:int, start_jd:float, end_jd:float, start:string, end:string}> */

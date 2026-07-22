@@ -273,7 +273,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
 
             $seasonPasses = false;
             $seasonFailures = [];
-            foreach ($gateLabels as $gate => $_label) {
+            foreach (array_keys($gateLabels) as $gate) {
                 $seasonFailures[$gate] = true;
             }
 

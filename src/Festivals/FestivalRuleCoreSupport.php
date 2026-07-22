@@ -51,10 +51,14 @@ trait FestivalRuleCoreSupport
             throw new LogicException(sprintf("Unknown karmakala_type '%s' for %s", $kala, $name));
         }
 
-        foreach (['vriddhi_preference', 'kshaya_preference'] as $field) {
-            if (isset($rule[$field]) && !in_array($rule[$field], ['first', 'last'], true)) {
-                throw new LogicException(sprintf('Invalid %s for %s', $field, $name));
-            }
+        if (isset($rule['vriddhi_preference']) && ! in_array($rule['vriddhi_preference'], ['first', 'last'], true)) {
+            throw new LogicException(sprintf('Invalid vriddhi_preference for %s', $name));
+        }
+
+        // kshaya: first | last | merged_host_day (host civil day of the skipped tithi interval)
+        $allowedKshaya = ['first', 'last', 'merged_host_day', 'merged_day', 'host_day', 'merged'];
+        if (isset($rule['kshaya_preference']) && ! in_array($rule['kshaya_preference'], $allowedKshaya, true)) {
+            throw new LogicException(sprintf('Invalid kshaya_preference for %s', $name));
         }
     }
 

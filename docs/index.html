@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 335 festival identities, 124 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, calendar-period windows, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 336 festival identities, 124 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, calendar-period windows, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,7 +490,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>335 Festivals + 124 Vrats</h3>
+              <h3>336 Festivals + 124 Vrats</h3>
               <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -2391,7 +2391,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 335 unique festival identities and 124 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+            <p>Calculates 336 unique festival identities and 124 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
             <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
               <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
               and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
@@ -2539,7 +2539,7 @@ foreach ($festivals as $festival) {
                   <li><code>total_vrats</code> aliases: <code>unique_vrat_count</code>, <code>vrat_identity_count</code></li>
                 </ul>
               </div>
-              <p class="method-description"><code>festival_entry_count</code> counts dated occurrences in the returned calendar. <code>total_festivals</code> / <code>total_vrats</code> are <strong>year-independent catalog totals</strong> from <code>FestivalService::getCatalogFestivalCount()</code> (335) and <code>getCatalogVratCount()</code> (124), not “how many fired this year.”</p>
+              <p class="method-description"><code>festival_entry_count</code> counts dated occurrences in the returned calendar. <code>total_festivals</code> / <code>total_vrats</code> are <strong>year-independent catalog totals</strong> from <code>FestivalService::getCatalogFestivalCount()</code> (336) and <code>getCatalogVratCount()</code> (124), not “how many fired this year.”</p>
             </div>
 
             <div class="method">
@@ -2562,7 +2562,7 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">generateFestivalsOnlySelected() / generateVratsSelected()</h4>
-              <p class="method-description">Selective branch readers for the dedicated festival-only and vrat-only yearly pipelines (resolver filters at catalog scope instead of slicing a combined year). Section names match <code>generateFestivalsSelected()</code>: <code>by_date</code>, <code>flat</code>, <code>festival_day_count</code>, <code>festival_entry_count</code>, <code>total_festivals</code> (catalog 335), <code>total_vrats</code> (catalog 124). Note: selective keys keep the shared name <code>festival_entry_count</code> even on the vrat-only pipeline (occurrence count of returned rows); the compact CLI contract renames the dated count to <code>vrat_entry_count</code>.</p>
+              <p class="method-description">Selective branch readers for the dedicated festival-only and vrat-only yearly pipelines (resolver filters at catalog scope instead of slicing a combined year). Section names match <code>generateFestivalsSelected()</code>: <code>by_date</code>, <code>flat</code>, <code>festival_day_count</code>, <code>festival_entry_count</code>, <code>total_festivals</code> (catalog 336), <code>total_vrats</code> (catalog 124). Note: selective keys keep the shared name <code>festival_entry_count</code> even on the vrat-only pipeline (occurrence count of returned rows); the compact CLI contract renames the dated count to <code>vrat_entry_count</code>.</p>
               <div class="method-signature">
                 <code>public function generateFestivalsOnlySelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code><br>
                 <code>public function generateVratsSelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
@@ -2705,7 +2705,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified yearly catalog currently reports <code>335</code> unique festival identities and <code>124</code> unique vrat identities. Distinct observances that fall on the same tithi remain separate entries (for example Kali Chaudas vs Abhyanga Snan, or Smarta vs Vaishnava Rama Navami).</li>
+              <li>The verified yearly catalog currently reports <code>336</code> unique festival identities and <code>124</code> unique vrat identities. Distinct observances that fall on the same tithi remain separate entries (for example Kali Chaudas vs Abhyanga Snan, or Smarta vs Vaishnava Rama Navami).</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -4969,26 +4969,33 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.6.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.7.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. v10.6.0 is a minor release that aligns Vaishnava Ekadashi nirnay with the Satsangijivan decision profile, including second-day Ekadashi-vriddhi handling, Dwadashi-vriddhi and Dwadashi-kshaya Mahadwadashi cases, and localized dynamic Mahadwadashi subtype output. v10.5.1 remains the Chandra Darshana patch release over v10.5.0. Catalog totals remain <strong>335 festival identities</strong> and <strong>124 vrat identities</strong>; Mahadwadashi is emitted as a derived observance, so dated occurrence counts can change without adding a new catalog row.</p>
+            <p>Review the version-specific notes below before upgrading. v10.7.0 is a minor release that completes monthly Shri Hari Jayanti coverage in intercalary (Adhika) months and adds the annual Shree Hari Antardhan (Swadhaam Gaman) observance on Jyeshtha Shukla Dashami, with clearer handling when a lunar day does not touch either sunrise. Catalog totals are now <strong>336 festival identities</strong> and <strong>124 vrat identities</strong>. v10.6.0 remains the Satsangijivan Ekadashi and dynamic Mahadwadashi release; v10.5.1 remains the Chandra Darshana patch over v10.5.0.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026 outputs for the v10.6.x line: 335 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. v10.6.0 adds the Satsangijivan Ekadashi nirnay refresh, dynamic Mahadwadashi subtype emission, localized Mahadwadashi public strings, and refreshed generated output on top of the v10.5.x Chandra Darshana baseline.</p>
+            <p>This documentation is refreshed from the latest generated 2026–2027 outputs for the v10.7.x line: 336 festival identities and 124 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. v10.7.0 adds Shree Hari Antardhan, Adhika-month Hari Jayanti, refined kshaya host-day selection for selected observances, localized public strings, and refreshed generated calendar output on top of the v10.6.x Ekadashi baseline.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.7.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Shree Hari Antardhan, Adhika Hari Jayanti, and Refined Kshaya Host-Day Observance</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release focused on Satsangi calendar completeness. Monthly Hari Jayanti (Shukla Navami outside Chaitra) is now also published in intercalary (Adhika) months, so the monthly remembrance is not skipped when an extra lunar month appears. A new annual identity, Shree Hari Antardhan (Swadhaam Gaman), marks Jyeshtha Shukla Dashami and commemorates the traditional Gadhada event of Vikram Samvat 1886 (1 June 1830), with English, Hindi, and Gujarati labels. When a lunar day is missing at sunrise (kshaya), selected rules can place the observance on the civil host day of that skipped tithi rather than treating “first sunrise day” as the only option. Catalog totals are <strong>336 festivals</strong> and <strong>124 vrats</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.6.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Satsangijivan Ekadashi Nirnay and Dynamic Mahadwadashi Observances</span><span class="release-meta">Latest Release</span></div>
-                <p class="release-note">Minor release aligning Vaishnava Ekadashi observance decisions with the Satsangijivan profile documented in <code>docs/EKADASHI.md</code>. The engine now handles Ekadashi-vriddhi by selecting the later Ekadashi sunrise day, applies Dwadashi-vriddhi, Dwadashi-kshaya, Dashami-kshaya, and related Mahadwadashi decisions, emits dynamic Mahadwadashi subtype aliases such as Vanjuli, Unmilini, Trisparsha, Pakshavarddhini, and Vijaya, and localizes those user-facing names and notes in English, Hindi, and Gujarati. Generated Amanta and Purnimanta outputs are refreshed; catalog totals remain 335 festivals and 124 vrats because Mahadwadashi is a derived observance rather than a new registry identity.</p>
+                <div class="release-heading"><span class="release-title">Satsangijivan Ekadashi Nirnay and Dynamic Mahadwadashi Observances</span></div>
+                <p class="release-note">Minor release aligning Vaishnava Ekadashi observance decisions with the Satsangijivan profile documented in <code>docs/EKADASHI.md</code>. The engine now handles Ekadashi-vriddhi by selecting the later Ekadashi sunrise day, applies Dwadashi-vriddhi, Dwadashi-kshaya, Dashami-kshaya, and related Mahadwadashi decisions, emits dynamic Mahadwadashi subtype aliases such as Vanjuli, Unmilini, Trisparsha, Pakshavarddhini, and Vijaya, and localizes those user-facing names and notes in English, Hindi, and Gujarati. Generated Amanta and Purnimanta outputs are refreshed; catalog totals for that line were 335 festivals and 124 vrats because Mahadwadashi is a derived observance rather than a new registry identity.</p>
               </div>
             </li>
             <li class="release-row">
@@ -5321,6 +5328,27 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v10.7.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This minor release completes monthly Shri Hari Jayanti coverage in intercalary months, adds the annual Shree Hari Antardhan (Swadhaam Gaman) observance, and refines how selected rules place an observance when a lunar day never appears at sunrise.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Monthly Hari Jayanti in Adhika months:</strong> Shukla Navami Hari Jayanti outside Chaitra is now also published during intercalary (Adhika) lunar months, so calendars that include an extra month will show the monthly remembrance there as well.</li>
+              <li><strong>New annual identity — Shree Hari Antardhan:</strong> Jyeshtha Shukla Dashami is published as the commemorative Antardhan / Swadhaam Gaman day (traditional anchor: Vikram Samvat 1886, 1 June 1830 at Gadhada). This is a remembrance observance, not a mandatory fast day.</li>
+              <li><strong>Kshaya host-day placement:</strong> for selected rules, when the target lunar day is missing at both sunrises, the observance can be placed on the civil day that hosts that skipped tithi, which better matches classical “merged host day” practice.</li>
+              <li><strong>Catalog totals changed:</strong> generated identity totals are now <strong>336 festivals</strong> and <strong>124 vrats</strong> (Antardhan is counted as a festival identity, not a vrat).</li>
+              <li><strong>Localization expanded:</strong> public names and descriptions for the new and updated observances are available in English, Hindi, and Gujarati.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Regenerate festival, vrat, compact, today, month, and raw outputs if you display monthly Hari Jayanti, Jyeshtha-season observances, or full-year festival lists.</li>
+            <li>Rebaseline snapshots that assumed monthly Hari Jayanti never appears in Adhika months, or that did not expect Shree Hari Antardhan on Jyeshtha Shukla Dashami.</li>
+            <li>Treat Shree Hari Antardhan as a commemorative festival identity (not a fasting vrat) in product copy and filters.</li>
+          </ul>
 
           <h3>v10.6.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This minor release updates Vaishnava Ekadashi observance selection to follow the Satsangijivan Ekadashi nirnay profile and adds dynamic Mahadwadashi subtype output without increasing catalog identity totals.</p>
@@ -7267,7 +7295,7 @@ const FESTIVAL_RULES
                 style="color: inherit; text-decoration: underline;">docs/TRADITIONAL_TEXT_SOURCES.md</a> for complete
               source-integrity map with confidence tiers, and <a href="FESTIVAL_VRAT_IDENTITIES.md"
                 style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_IDENTITIES.md</a> for the
-              canonical 335 festival and 123 vrat identity lists, <a href="MUHURTA_TEXT_SOURCES.md"
+              canonical 336 festival and 124 vrat identity lists, <a href="MUHURTA_TEXT_SOURCES.md"
                 style="color: inherit; text-decoration: underline;">docs/MUHURTA_TEXT_SOURCES.md</a> for Muhurta
               source classification, and <a href="FESTIVAL_VRAT_DUPLICATE_AUDIT.md"
                 style="color: inherit; text-decoration: underline;">docs/FESTIVAL_VRAT_DUPLICATE_AUDIT.md</a> for

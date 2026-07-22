@@ -828,8 +828,17 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Hari Jayanti']['require_sunrise_vyapini']);
         self::assertSame('first', FestivalService::FESTIVALS['Hari Jayanti']['vriddhi_preference']);
         self::assertSame('first', FestivalService::FESTIVALS['Hari Jayanti']['kshaya_preference']);
+        self::assertTrue(FestivalService::FESTIVALS['Hari Jayanti']['allow_adhika']);
+        self::assertTrue(FestivalService::FESTIVALS['Hari Jayanti']['allows_adhika']);
         self::assertSame(['Chaitra'], FestivalService::FESTIVALS['Hari Jayanti']['excluded_months_amanta']);
         self::assertSame(['Chaitra'], FestivalService::FESTIVALS['Hari Jayanti']['excluded_months_purnimanta']);
+        self::assertArrayHasKey('Shree Hari Antardhan', FestivalService::FESTIVALS);
+        self::assertSame(10, FestivalService::FESTIVALS['Shree Hari Antardhan']['tithi']);
+        self::assertSame('Shukla', FestivalService::FESTIVALS['Shree Hari Antardhan']['paksha']);
+        self::assertSame('Jyeshtha', FestivalService::FESTIVALS['Shree Hari Antardhan']['month_amanta']);
+        self::assertFalse((bool) FestivalService::FESTIVALS['Shree Hari Antardhan']['fasting']);
+        self::assertSame('merged_host_day', FestivalService::FESTIVALS['Shree Hari Antardhan']['kshaya_preference']);
+        self::assertSame('first', FestivalService::FESTIVALS['Shree Hari Antardhan']['vriddhi_preference']);
         self::assertSame('abhijit', FestivalService::FESTIVALS['Vamana Jayanti']['karmakala_type']);
         self::assertSame('Shravana', FestivalService::FESTIVALS['Vamana Jayanti']['nakshatra']);
         self::assertSame('aparahna', FestivalService::FESTIVALS['Samaveda Upakarma']['karmakala_type']);

@@ -20,10 +20,11 @@ class FestivalParityFingerprintTest extends TestCase
 {
     public function testCatalogTotalsRemainGeneralAndStable(): void
     {
-        $this->assertSame(335, FestivalService::getCatalogFestivalCount());
+        // Antardhan is commemorative (fasting=false) → catalog festival, not vrat.
+        $this->assertSame(336, FestivalService::getCatalogFestivalCount());
         $this->assertSame(124, FestivalService::getCatalogVratCount());
         $this->assertSame(
-            454,
+            455,
             FestivalService::getFestivalCount(),
             'First-level FESTIVALS registry size must stay stable unless catalog intentionally changes'
         );

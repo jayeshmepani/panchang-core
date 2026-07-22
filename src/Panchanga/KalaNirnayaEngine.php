@@ -298,7 +298,8 @@ class KalaNirnayaEngine
                 $result['fasting_day'] = 'Tomorrow_Mahadvadashi';
                 $result['capable_devotee_fast_option'] = 'Today_And_Tomorrow';
                 $result['primary_fast_day'] = 'Tomorrow_Mahadvadashi';
-            } elseif ($ekadashiAtSunrise && !$dashamiPiercesNirnayVedha) {
+            } elseif ($ekadashiAtSunrise) {
+                // $dashamiPiercesNirnayVedha is already false here (handled above as Viddha_Ekadashi).
                 $result['status'] = 'Shuddha_Ekadashi';
                 $result['case_key'] = 'vaishnava_shuddha_clean';
                 $result['fasting_day'] = 'Today';

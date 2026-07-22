@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-21T13:14:46+00:00",
+        "generated_at": "2026-07-22T06:24:59+00:00",
         "type": "vrats",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -18,8 +18,8 @@
         "title": "व्रत 2026 - पूरे वर्ष के सभी व्रत और उपवास",
         "year": 2026,
         "calendar_type": "purnimanta",
-        "vrat_day_count": 196,
-        "vrat_entry_count": 299,
+        "vrat_day_count": 197,
+        "vrat_entry_count": 300,
         "total_vrats": 124,
         "recurring_weekday_vrats": [
             {
@@ -2199,7 +2199,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -2230,6 +2234,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -4682,7 +4690,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -4713,6 +4725,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -10289,7 +10305,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -10320,6 +10340,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -12421,6 +12445,160 @@
                         "sankashti_selection": null,
                         "winning_reason_key": "durgashtami_navami_viddha_3_muhurta_day1",
                         "winning_reason_name": "दुर्गाष्टमी नवमी-विद्धा तीन-मुहूर्त नियम से दिन 1"
+                    }
+                }
+            ],
+            "2026-05-24": [
+                {
+                    "name": "हरि जयंती",
+                    "name_key": "Hari Jayanti",
+                    "description": "मासिक श्री हरि जयंती वार्षिक चैत्र उत्सव से भिन्न भगवान स्वामीनारायण की शुक्ल नवमी स्मृति है।",
+                    "deity": "स्वामीनारायण/विष्णु",
+                    "fasting": true,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                9
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                9
+                            ],
+                            "names": [
+                                "शुक्ल नवमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "सूर्योदय",
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "चैत्र के बाहर स्वामीनारायण जयंती (हरि-नोम) की सूर्योदय-व्यापिनी नवमी परंपरा का अनुसरण करने वाली मासिक श्री हरि जयंती।",
+                        "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
+                        "ritual_profile": "मासिक हरि जयंती विधि",
+                        "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
+                        "calendar_rule": {
+                            "tithi": {
+                                "numbers": [
+                                    9
+                                ],
+                                "paksha": "Shukla",
+                                "paksha_name": "शुक्ल",
+                                "absolute_numbers": [
+                                    9
+                                ],
+                                "names": [
+                                    "शुक्ल नवमी"
+                                ]
+                            },
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल"
+                        },
+                        "ritual_layers": [
+                            {
+                                "key": "hari_jayanti_puja",
+                                "name": "हरि जयंती पूजा"
+                            },
+                            {
+                                "key": "swaminarayan_navami",
+                                "name": "स्वामीनारायण नवमी"
+                            },
+                            {
+                                "key": "monthly_sud9",
+                                "name": "मासिक शुक्ल नवमी परंपरा"
+                            }
+                        ],
+                        "source_refs": [
+                            "सत्संगी जीवन 5.61"
+                        ],
+                        "source_ref_keys": [
+                            "Satsangi Jeevan 5.61"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "हरि जयंती",
+                        "required_tithi": 9,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461184.456603974,
+                        "target_tithi_end_jd": 2461185.459124407,
+                        "standard_date": "2026-05-24",
+                        "observance_date": "2026-05-24",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "first",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Hari Jayanti",
+                        "festival_name_localized": "हरि जयंती",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "सूर्योदय"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -14724,7 +14902,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -14755,6 +14937,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -16916,7 +17102,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -16947,6 +17137,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -19834,7 +20028,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -19865,6 +20063,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -23253,7 +23455,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -23284,6 +23490,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -25727,7 +25937,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -25758,6 +25972,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -28375,7 +28593,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -28406,6 +28628,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [
@@ -31141,7 +31367,11 @@
                     "regions": [
                         "संपूर्ण भारत"
                     ],
-                    "aliases": [],
+                    "aliases": [
+                        "Shree Hari Jayanti",
+                        "Shri Hari Jayanti",
+                        "Shree Hari Navmi"
+                    ],
                     "observance_note": null,
                     "calculation_basis": {
                         "type": "tithi",
@@ -31172,6 +31402,10 @@
                         "tradition_profile_key": "Monthly Shri Hari Jayanti inheriting the Swaminarayan Jayanti (Hari-Nom) sunrise-vyapini Navami rule outside Chaitra",
                         "ritual_profile": "मासिक हरि जयंती विधि",
                         "ritual_profile_key": "hari_jayanti_monthly",
+                        "adhika": {
+                            "allow_adhika": true,
+                            "allows_adhika": true
+                        },
                         "calendar_rule": {
                             "tithi": {
                                 "numbers": [

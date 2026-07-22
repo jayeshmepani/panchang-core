@@ -294,11 +294,7 @@ trait FestivalRuleCandidates
         }
 
         if ($kshaya) {
-            if ($kshayaPreference === 'last') {
-                return $right['day_offset'] <=> $left['day_offset'];
-            }
-
-            return $left['day_offset'] <=> $right['day_offset'];
+            return $this->compareKshayaPreference($left, $right, $kshayaPreference);
         }
 
         if ($left['target_at_karmakala'] !== $right['target_at_karmakala']) {
@@ -329,14 +325,42 @@ trait FestivalRuleCandidates
         }
 
         if ($kshaya) {
-            if ($kshayaPreference === 'last') {
-                return $right['day_offset'] <=> $left['day_offset'];
-            }
-
-            return $left['day_offset'] <=> $right['day_offset'];
+            return $this->compareKshayaPreference($left, $right, $kshayaPreference);
         }
 
         return 0;
+    }
+
+    /**
+     * Kshaya tithi touches neither sunrise. Prefer:
+     * - merged_host_day / merged_day / host_day: civil day hosting the skipped tithi interval
+     * - last: later candidate day
+     * - first (default): earlier candidate day
+     */
+    private function compareKshayaPreference(array $left, array $right, string $kshayaPreference): int
+    {
+        $preference = strtolower(trim($kshayaPreference));
+
+        if (in_array($preference, ['merged_host_day', 'merged_day', 'host_day', 'merged'], true)) {
+            if (($left['target_during_observance'] ?? false) !== ($right['target_during_observance'] ?? false)) {
+                return ((int) ($right['target_during_observance'] ?? false)) <=> ((int) ($left['target_during_observance'] ?? false));
+            }
+
+            $leftOverlap = (float) ($left['target_window_overlap_seconds'] ?? $left['winning_window_overlap_seconds'] ?? 0.0);
+            $rightOverlap = (float) ($right['target_window_overlap_seconds'] ?? $right['winning_window_overlap_seconds'] ?? 0.0);
+            if ($leftOverlap !== $rightOverlap) {
+                return $rightOverlap <=> $leftOverlap;
+            }
+
+            // Stable fallback: earlier civil day of the host pair.
+            return $left['day_offset'] <=> $right['day_offset'];
+        }
+
+        if ($preference === 'last') {
+            return $right['day_offset'] <=> $left['day_offset'];
+        }
+
+        return $left['day_offset'] <=> $right['day_offset'];
     }
 
     private function compareResolvedFestivalOutcome(array $left, array $right, bool $preferHigherTithi = false): int

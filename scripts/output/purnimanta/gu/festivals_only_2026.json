@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-21T13:14:29+00:00",
+        "generated_at": "2026-07-22T06:24:33+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -19,9 +19,9 @@
         "year": 2026,
         "calendar_type": "purnimanta",
         "locale": "gu",
-        "festival_day_count": 195,
-        "festival_entry_count": 398,
-        "total_festivals": 335,
+        "festival_day_count": 196,
+        "festival_entry_count": 399,
+        "total_festivals": 336,
         "by_date": {
             "2026-01-03": [
                 {
@@ -16240,6 +16240,142 @@
                         "require_karmakala_match": null,
                         "vriddhi_preference": "first",
                         "kshaya_preference": "first",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "preferred_nakshatra": null,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1000,
+                        "winning_window_overlap_seconds": 0,
+                        "winning_window_coverage_ratio": 0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false,
+                            "reason": null
+                        },
+                        "rule_rejection_reason": null,
+                        "raksha_bandhan_selection": null,
+                        "ekadashi_selection": null,
+                        "sankashti_selection": null,
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                }
+            ],
+            "2026-06-24": [
+                {
+                    "name": "શ્રી હરિ અંતર્ધાન",
+                    "name_key": "Shree Hari Antardhan",
+                    "description": "ભગવાન સ્વામિનારાયણનું ગઢડામાં સ્વધામ ગમન (અંતર્ધાન લીલા), જ્યેષ્ઠ શુક્લ દશમીને મનાય છે. મૂળ ઘટના વિક્રમ સંવત ૧૮૮૬ જ્યેષ્ઠ સુદ ૧૦, ૧ જૂન ૧૮૩૦ના રોજ થઈ.",
+                    "deity": "Bhagwan Swaminarayan",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "Hari Antardhan",
+                        "Shri Hari Antardhan",
+                        "Shree Hari Antardhan Tithi",
+                        "Shri Hari Antardhan Tithi",
+                        "Hari Antardhan Tithi",
+                        "Shree Hari Tirodhan",
+                        "Hari Tirodhan",
+                        "Swadhaam Gaman",
+                        "Swadham Gaman",
+                        "Antardhan Leela"
+                    ],
+                    "observance_note": null,
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                10
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "શુક્લ",
+                            "absolute_numbers": [
+                                10
+                            ],
+                            "names": [
+                                "સુદ દશમ"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "શુક્લ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "જેઠ",
+                            "value_key": "Jyeshtha",
+                            "name": "જેઠ"
+                        },
+                        "karmakala_type": "sunrise",
+                        "karmakala_type_name": "સૂર્યોદય",
+                        "require_sunrise_vyapini": true,
+                        "vriddhi_preference": "first",
+                        "tradition_profile": "Satsangi Jyeshtha Sud 10 Antardhan / Swadhaam Gaman",
+                        "tradition_profile_key": "Satsangi Jyeshtha Sud 10 Antardhan / Swadhaam Gaman",
+                        "ritual_profile": "hari_antardhan",
+                        "ritual_profile_key": "hari_antardhan",
+                        "source_refs": [
+                            "Shree Hari Antardhaan Leela — Swaminarayan Sampraday tradition",
+                            "Vikram Samvat 1886 Jyeshtha Sud 10",
+                            "1 June 1830 CE — Gadhada"
+                        ],
+                        "source_ref_keys": [
+                            "Shree Hari Antardhaan Leela — Swaminarayan Sampraday tradition",
+                            "Vikram Samvat 1886 Jyeshtha Sud 10",
+                            "1 June 1830 CE — Gadhada"
+                        ]
+                    },
+                    "resolution": {
+                        "festival_name": "શ્રી હરિ અંતર્ધાન",
+                        "required_tithi": 10,
+                        "paksha": "Shukla",
+                        "karmakala_type": "sunrise",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 0,
+                        "tithi_coverage_seconds_tomorrow": 0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461214.9653305244,
+                        "target_tithi_end_jd": 2461216.0296706213,
+                        "standard_date": "2026-06-24",
+                        "observance_date": "2026-06-24",
+                        "decision": {
+                            "strict_karmakala": false,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1000,
+                            "winning_window_overlap_seconds": 0,
+                            "winning_window_coverage_ratio": 0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Shree Hari Antardhan",
+                        "festival_name_localized": "શ્રી હરિ અંતર્ધાન",
+                        "paksha_name": "શુક્લ",
+                        "karmakala_type_name": "સૂર્યોદય"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": false,
+                        "require_karmakala_match": null,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "preferred_nakshatra": null,
