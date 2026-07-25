@@ -165,7 +165,8 @@ These source families are useful for attribution and future rule-hardening, but 
 | Mahashivaratri | Source basis for Nishitha-vyapini Chaturdashi rule | Dharma Sindhu OCR preserving Nishitha selector. |
 | Vamana Jayanti | Source basis for Dwadashi-Abhijit-Shravana priority | Śrīmad Bhāgavatam 8.18.5: Vamanadeva's appearance on Shravana Dwadashi in Abhijit Muhurta. |
 | Narasimha Jayanti | Source basis for evening / Pradosha Chaturdashi | Dharma Sindhu-style Vaishakha Shukla Chaturdashi evening rule and ISKCON public observance notes. |
-| Govardhan Puja / Annakuta | Source basis for worship and offerings metadata | Śrīmad Bhāgavatam 10.24.25-26 and ISKCON public Govardhan Puja / Annakuta observance summaries. |
+| Govardhan Puja / Annakuta | Implemented as Kartika Shukla Pratipada with Satsangi sayahna-vyapini selection, madhyahna Annakut offering metadata, and Dharma Sindhu 10/9-muhurta Pratipada fallback handling | Satsangi Jeevan 4.58.1-14; Skanda Purana 2.4.10.59-64; Dharma Sindhu Bali Puja Nirnaya; Śrīmad Bhāgavatam 10.24.25-26 for Govardhan worship background. |
+| Bali Pratipada / Bali Puja | Separate festival identity for worship of King Bali, but its Kartika Shukla Pratipada conflict handling shares the Dharma Sindhu Govardhan/Gokrida/Bali fallback group | Skanda Purana 2.4.10.9-14; Dharma Sindhu Bali Puja Nirnaya. |
 | Phuldolotsava profile split | Source basis for tradition-profile variants | BAPS and Swaminarayan.org public Fuldol/Pushpadolotsav pages for Fagun Vad 1 presentation; Satsangi Jivan volume 3 for Nar-Narayan / Phalguni-at-sunrise rationale. |
 | Samavedi Shravani / Upakarma | Source basis for Hasta-priority rule family | Yājñavalkya Smṛti 1.142 as quoted in modern summaries, Samskaaram.com Sāma Veda Upākarmā procedure, and Saṃskāra-ratnamālā Upakarma material. |
 

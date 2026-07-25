@@ -1,0 +1,2508 @@
+{
+    "generated_at": "2026-07-25T09:27:15+05:30",
+    "model": "yallop_1997_q_full_precision_modern_only",
+    "description": "First-crescent civil date = earliest post-Amāvasyā evening with raw binary64 Yallop q above min category. WGS84 ellipsoidal topocentric Sun+Moon; ARCL/ARCV/DAZ/W recomputed at T_best=sunset+(4/9)lag from JME HIGH_PRECISION. No 10°/39 min, no classical gates, no decision rounding.",
+    "range": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+    },
+    "observer": {
+        "latitude": 23.2472446,
+        "longitude": 69.668339,
+        "elevation_m": 0.0,
+        "ellipsoid": "WGS84",
+        "timezone": "Asia/Kolkata"
+    },
+    "calendar_type": "amanta",
+    "gates": {
+        "post_conjunction_sunset_strict": true,
+        "positive_moonset_lag_strict": true,
+        "waxing_from_jme_pheno_elongation": true,
+        "yallop_q_raw_binary64": true,
+        "min_category": "B",
+        "min_q": -0.014,
+        "best_time": "sunset + (4/9)*lag exact rational in binary64",
+        "selection": "earliest_evening_passing_yallop",
+        "topocentric": "WGS84_ellipsoidal_sun_and_moon",
+        "reference": "Yallop_HMNAO_TN_69_1997",
+        "decision_rounding": false,
+        "removed_heuristics": [
+            "fixed_10_deg_elongation",
+            "fixed_39_min_lag",
+            "score_0_75_0_25_as_date_gate",
+            "snapshot_elong_as_date_gate",
+            "spherical_earth_parallax_only"
+        ],
+        "not_used": [
+            "surya_siddhanta_12_bhaga",
+            "ss10_lagnantara",
+            "classical_six_muhurta_aparahna",
+            "drik_empirical_10_39"
+        ]
+    },
+    "counts": {
+        "seasons_in_output": 12,
+        "resolved_dates": 12
+    },
+    "dates": [
+        "2023-01-23",
+        "2023-02-21",
+        "2023-03-22",
+        "2023-04-21",
+        "2023-05-20",
+        "2023-06-19",
+        "2023-07-19",
+        "2023-08-17",
+        "2023-09-16",
+        "2023-10-16",
+        "2023-11-15",
+        "2023-12-14"
+    ],
+    "rows": [
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-01-23",
+            "amavasya_end_jd": 2459966.370267826,
+            "anchor_date": "2023-01-21",
+            "selected": {
+                "date": "2023-01-23",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=1.8476576711070165 category A (EASILY_VISIBLE) > min B; ARCL=23.851040951741467° ARCV=22.498339666698005° W=1.4244387211735579′ lag=106.9166661053896 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-01-23",
+                    "illumination_percent_snapshot": 4.285205683648297,
+                    "snapshot_elong_deg": 23.89406934427501,
+                    "lunar_age_hours_at_sunset": 40.16134995594621,
+                    "ok": true,
+                    "best_time_jd": 2459968.076656379,
+                    "sunset_jd": 2459968.0436574076,
+                    "moonset_jd": 2459968.1179050924,
+                    "lag_days": 0.07424768479540944,
+                    "lag_minutes": 106.9166661053896,
+                    "lst_deg": 39.90859678891519,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 305.5751014564271,
+                        "dec_deg": -19.423547732517545,
+                        "dist_au": 0.9843043677645725,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 331.52624967694925,
+                        "dec_deg": -16.746378762404216,
+                        "dist_au": 0.002402765807269767,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 305.5726892306473,
+                        "dec_deg": -19.424408479112422,
+                        "dist_km": 147251087.5044808,
+                        "dist_au": 0.9843127232724765,
+                        "parallax_horizontal_deg": 0.0024817706931288042,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 330.6132397787331,
+                        "dec_deg": -17.227218659147393,
+                        "dist_km": 358155.2244973892,
+                        "dist_au": 0.002394119801448412,
+                        "parallax_horizontal_deg": 1.016722450828219,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -11.348373599181164,
+                    "sun_az_deg": 253.56353151225264,
+                    "moon_alt_deg": 11.149966067516841,
+                    "moon_az_deg": 245.59386717376825,
+                    "arcl_deg": 23.851040951741467,
+                    "arcl_geo_deg": 24.79039350576921,
+                    "arcl_from_arcv_daz_deg": 23.79891190338625,
+                    "arcv_deg": 22.498339666698005,
+                    "daz_deg": 7.969664338484392,
+                    "width_arcmin": 1.4244387211735579,
+                    "sd_topocentric_arcmin": 16.67957389636433,
+                    "sd_geocentric_arcmin": 16.619554389635393,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 155.15684508675815,
+                        "illuminated_fraction": 0.04626935413854183,
+                        "elongation_deg": 24.784393241761148,
+                        "diameter_arcsec": 1993.9750929987867,
+                        "semi_diameter_arcmin": 16.616459108323223,
+                        "apparent_magnitude": -6.377760189633866
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 1.8476576711070165,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 4.021762955627838,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-01-21",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-01-21",
+                        "sunset_jd": 2459966.042673611,
+                        "amavasya_end_jd": 2459966.370267826
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2023-01-22",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-0.24407416597941226 category E (NOT_VISIBLE) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-01-22",
+                        "illumination_percent_snapshot": 0.7086724021799273,
+                        "snapshot_elong_deg": 9.658055140331385,
+                        "lunar_age_hours_at_sunset": 16.14968328550458,
+                        "ok": true,
+                        "best_time_jd": 2459967.054801955,
+                        "sunset_jd": 2459967.0431712964,
+                        "moonset_jd": 2459967.069340278,
+                        "lag_days": 0.026168981567025185,
+                        "lag_minutes": 37.683333456516266,
+                        "lst_deg": 31.033816052051577,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 304.5006854852399,
+                            "dec_deg": -19.66102588249,
+                            "dist_au": 0.9842096181809847,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 316.02202668583396,
+                            "dec_deg": -21.96731609165472,
+                            "dist_au": 0.002386677025157811,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 304.4982669688224,
+                            "dec_deg": -19.661989122827254,
+                            "dist_km": 147236171.22204137,
+                            "dist_au": 0.9842130140829697,
+                            "parallax_horizontal_deg": 0.00248200961249673,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 315.03755701090984,
+                            "dec_deg": -22.428301829275284,
+                            "dist_km": 356628.08699438826,
+                            "dist_au": 0.0023839115177619187,
+                            "parallax_horizontal_deg": 1.0235769855659167,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -4.618407768574868,
+                        "sun_az_deg": 250.56765394894637,
+                        "moon_alt_deg": 3.148940966022398,
+                        "moon_az_deg": 243.92793369089117,
+                        "arcl_deg": 10.214830308121567,
+                        "arcl_geo_deg": 11.010344547267591,
+                        "arcl_from_arcv_daz_deg": 10.205241168773668,
+                        "arcv_deg": 7.767348734597267,
+                        "daz_deg": 6.639720258055206,
+                        "width_arcmin": 0.26550770989513905,
+                        "sd_topocentric_arcmin": 16.750999016609423,
+                        "sd_geocentric_arcmin": 16.731589026410866,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 168.96812949868536,
+                            "illuminated_fraction": 0.009239552496627279,
+                            "elongation_deg": 11.005283565629902,
+                            "diameter_arcsec": 2007.416892824053,
+                            "semi_diameter_arcmin": 16.728474106867107,
+                            "apparent_magnitude": -5.076366378037426
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "COMPUTED",
+                        "q": -0.24407416597941226,
+                        "category": "E",
+                        "label": "NOT_VISIBLE",
+                        "yallop_poly_arcv_threshold_deg": 10.20809039439139,
+                        "yallop_poly_coeffs": {
+                            "c0": 11.8371,
+                            "c1": -6.3226,
+                            "c2": 0.7319,
+                            "c3": -0.1018,
+                            "W_unit": "arcmin"
+                        }
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-02-21",
+            "amavasya_end_jd": 2459995.7956755105,
+            "anchor_date": "2023-02-20",
+            "selected": {
+                "date": "2023-02-21",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.94253253183953345 category A (EASILY_VISIBLE) > min B; ARCL=17.347646589534541° ARCV=16.883335951343682° W=0.75109085507018158′ lag=76.300000548362732 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-02-21",
+                    "illumination_percent_snapshot": 2.3524482338019457,
+                    "snapshot_elong_deg": 17.645351150300144,
+                    "lunar_age_hours_at_sunset": 30.25406552106142,
+                    "ok": true,
+                    "best_time_jd": 2459997.079810957,
+                    "sunset_jd": 2459997.056261574,
+                    "moonset_jd": 2459997.1092476854,
+                    "lag_days": 0.052986111491918564,
+                    "lag_minutes": 76.30000054836273,
+                    "lst_deg": 69.63112799069876,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 334.6187926345188,
+                        "dec_deg": -10.52736063101227,
+                        "dist_au": 0.9889655097959826,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 352.8156998769897,
+                        "dec_deg": -7.026299734973729,
+                        "dist_au": 0.0024248376428868063,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 334.61649188586887,
+                        "dec_deg": -10.52827697646281,
+                        "dist_km": 147948095.3650949,
+                        "dist_au": 0.9889719330416573,
+                        "parallax_horizontal_deg": 0.002470073737489134,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 351.9038722516442,
+                        "dec_deg": -7.44458240930811,
+                        "dist_km": 361783.9979194422,
+                        "dist_au": 0.0024183766535350974,
+                        "parallax_horizontal_deg": 1.007466880843616,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -8.689585118036444,
+                    "sun_az_deg": 262.2112322393227,
+                    "moon_alt_deg": 8.193750833307236,
+                    "moon_az_deg": 258.2099651822828,
+                    "arcl_deg": 17.34764658953454,
+                    "arcl_geo_deg": 18.316752189463674,
+                    "arcl_from_arcv_daz_deg": 17.337558352434854,
+                    "arcv_deg": 16.883335951343682,
+                    "daz_deg": 4.001267057039911,
+                    "width_arcmin": 0.7510908550701816,
+                    "sd_topocentric_arcmin": 16.512272792323202,
+                    "sd_geocentric_arcmin": 16.46827544009839,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 161.64475632087343,
+                        "illuminated_fraction": 0.025438855079628953,
+                        "elongation_deg": 18.31100450163509,
+                        "diameter_arcsec": 1975.8249500432676,
+                        "semi_diameter_arcmin": 16.46520791702723,
+                        "apparent_magnitude": -5.796332076361228
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.9425325318395334,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 7.458010632948347,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-02-20",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-99 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-02-20",
+                        "illumination_percent_snapshot": 0.1028542224232376,
+                        "snapshot_elong_deg": 3.675683994239307,
+                        "lunar_age_hours_at_sunset": 6.245454411953688,
+                        "ok": true,
+                        "best_time_jd": 2459996.0594675927,
+                        "sunset_jd": 2459996.0559027777,
+                        "moonset_jd": 2459996.0639236113,
+                        "lag_days": 0.008020833600312471,
+                        "lag_minutes": 11.550000384449959,
+                        "lst_deg": 61.30181811788151,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 333.641109975857,
+                            "dec_deg": -10.895578469468683,
+                            "dist_au": 0.9887468951170506,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 338.8323216538995,
+                            "dec_deg": -13.644298500211038,
+                            "dist_au": 0.002403674683353875,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 333.63879899005667,
+                            "dec_deg": -10.896547642251022,
+                            "dist_km": 147914668.2060042,
+                            "dist_au": 0.9887484862844657,
+                            "parallax_horizontal_deg": 0.002470619877638915,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 337.8772098859299,
+                            "dec_deg": -14.058878351587197,
+                            "dist_km": 359484.55954118026,
+                            "dist_au": 0.002403005857363318,
+                            "parallax_horizontal_deg": 1.0163379679872397,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -2.167558810929138,
+                        "sun_az_deg": 259.0688950478526,
+                        "moon_alt_deg": 0.354199781860554,
+                        "moon_az_deg": 254.51150501239076,
+                        "arcl_deg": 5.207735779563143,
+                        "arcl_geo_deg": 5.768934377189204,
+                        "arcl_from_arcv_daz_deg": 5.2072691098988635,
+                        "arcv_deg": 2.521758592789692,
+                        "daz_deg": 4.55739003546185,
+                        "width_arcmin": 0.06859612789894512,
+                        "sd_topocentric_arcmin": 16.617894153706242,
+                        "sd_geocentric_arcmin": 16.613270164390674,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 174.22064747053645,
+                            "illuminated_fraction": 0.0025414692416422247,
+                            "elongation_deg": 5.765326571127641,
+                            "diameter_arcsec": 1993.2212081443954,
+                            "semi_diameter_arcmin": 16.61017673453663,
+                            "apparent_magnitude": -4.515085037212861
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "BELOW_DANJON",
+                        "q": -99.0,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-03-22",
+            "amavasya_end_jd": 2460025.224357196,
+            "anchor_date": "2023-03-21",
+            "selected": {
+                "date": "2023-03-22",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.036454933060621461 category B (PERFECT_CONDITIONS) > min B; ARCL=10.656963524027589° ARCV=10.48895457835515° W=0.27958109782201379′ lag=46.733333319425583 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-03-22",
+                    "illumination_percent_snapshot": 0.9666511357686369,
+                    "snapshot_elong_deg": 11.284691465196602,
+                    "lunar_age_hours_at_sunset": 20.177371736615896,
+                    "ok": true,
+                    "best_time_jd": 2460026.0795048866,
+                    "sunset_jd": 2460026.0650810185,
+                    "moonset_jd": 2460026.097534722,
+                    "lag_days": 0.032453703694045544,
+                    "lag_minutes": 46.73333331942558,
+                    "lst_deg": 98.10441476424256,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 1.5333703989509784,
+                        "dec_deg": 0.6645579512160752,
+                        "dist_au": 0.9963467287932518,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 12.82733700862184,
+                        "dec_deg": 3.4612127788657694,
+                        "dist_au": 0.0024674206814773374,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 1.531131173630266,
+                        "dec_deg": 0.6635932899698997,
+                        "dist_km": 149051991.1517411,
+                        "dist_au": 0.9963510206013988,
+                        "parallax_horizontal_deg": 0.002451774731048813,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 11.91753069684877,
+                        "dec_deg": 3.077055064055366,
+                        "dist_km": 368542.5359883391,
+                        "dist_au": 0.002463554690075807,
+                        "parallax_horizontal_deg": 0.9900781519871055,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -5.7738087031371625,
+                    "sun_az_deg": 273.2163115986072,
+                    "moon_alt_deg": 4.715145875217988,
+                    "moon_az_deg": 271.32872965824845,
+                    "arcl_deg": 10.656963524027589,
+                    "arcl_geo_deg": 11.626854233162408,
+                    "arcl_from_arcv_daz_deg": 10.65557315354513,
+                    "arcv_deg": 10.48895457835515,
+                    "daz_deg": 1.887581940358757,
+                    "width_arcmin": 0.2795810978220138,
+                    "sd_topocentric_arcmin": 16.209459281946483,
+                    "sd_geocentric_arcmin": 16.184061872418106,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 168.35006854858486,
+                        "illuminated_fraction": 0.010300177685279244,
+                        "elongation_deg": 11.621279195571901,
+                        "diameter_arcsec": 1941.7256547125382,
+                        "semi_diameter_arcmin": 16.181047122604486,
+                        "apparent_magnitude": -5.139880047579977
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.03645493306062146,
+                    "category": "B",
+                    "label": "PERFECT_CONDITIONS",
+                    "yallop_poly_arcv_threshold_deg": 10.124405247748935,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-03-21",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-03-21",
+                        "sunset_jd": 2460025.064814815,
+                        "amavasya_end_jd": 2460025.224357196
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-04-21",
+            "amavasya_end_jd": 2460054.675321187,
+            "anchor_date": "2023-04-20",
+            "selected": {
+                "date": "2023-04-21",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.91545983212913984 category A (EASILY_VISIBLE) > min B; ARCL=16.983789852910675° ARCV=16.978828242452494° W=0.6836446309120241′ lag=79.066666290163994 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-04-21",
+                    "illumination_percent_snapshot": 2.3337909873956897,
+                    "snapshot_elong_deg": 17.574683219662234,
+                    "lunar_age_hours_at_sunset": 33.54729151725769,
+                    "ok": true,
+                    "best_time_jd": 2460056.0975282923,
+                    "sunset_jd": 2460056.073125,
+                    "moonset_jd": 2460056.1280324073,
+                    "lag_days": 0.05490740714594722,
+                    "lag_minutes": 79.066666290164,
+                    "lst_deg": 134.1800266717657,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 29.077900006276007,
+                        "dec_deg": 11.898073156470193,
+                        "dist_au": 1.0048578837318012,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 46.244837029448846,
+                        "dec_deg": 18.820913585533184,
+                        "dist_au": 0.002553870771583838,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 29.075695039668172,
+                        "dec_deg": 11.897020005278419,
+                        "dist_km": 150325578.89499953,
+                        "dist_au": 1.0048644288290631,
+                        "parallax_horizontal_deg": 0.0024310081779264393,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 45.31599236606903,
+                        "dec_deg": 18.472820957243016,
+                        "dist_km": 381098.5177895997,
+                        "dist_au": 0.0025474862443319504,
+                        "parallax_horizontal_deg": 0.9565602312808591,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -8.795590815717576,
+                    "sun_az_deg": 287.0680898737197,
+                    "moon_alt_deg": 8.18323742673492,
+                    "moon_az_deg": 286.65607251390367,
+                    "arcl_deg": 16.983789852910675,
+                    "arcl_geo_deg": 17.92759567578138,
+                    "arcl_from_arcv_daz_deg": 16.983679469213243,
+                    "arcv_deg": 16.978828242452494,
+                    "daz_deg": 0.4120173598160477,
+                    "width_arcmin": 0.6836446309120241,
+                    "sd_topocentric_arcmin": 15.675405485250606,
+                    "sd_geocentric_arcmin": 15.636217619663746,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 162.03324000413608,
+                        "illuminated_fraction": 0.02438218416121829,
+                        "elongation_deg": 17.92184177899667,
+                        "diameter_arcsec": 1875.9965556647674,
+                        "semi_diameter_arcmin": 15.633304630539728,
+                        "apparent_magnitude": -5.759883786937831
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.9154598321291398,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 7.824229921161094,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-04-20",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-99 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-04-20",
+                        "illumination_percent_snapshot": 0.19480408906863422,
+                        "snapshot_elong_deg": 5.0593271988527135,
+                        "lunar_age_hours_at_sunset": 9.540347065776587,
+                        "ok": true,
+                        "best_time_jd": 2460055.0787255657,
+                        "sunset_jd": 2460055.072835648,
+                        "moonset_jd": 2460055.086087963,
+                        "lag_days": 0.013252315111458302,
+                        "lag_minutes": 19.083333760499954,
+                        "lst_deg": 126.40686485162968,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 28.12561092532254,
+                            "dec_deg": 11.550542978823934,
+                            "dist_au": 1.0045794289437957,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 33.022595445045624,
+                            "dec_deg": 13.425937454234633,
+                            "dist_au": 0.0025235846574744912,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 28.12335310221078,
+                            "dec_deg": 11.549543963490054,
+                            "dist_km": 150283270.1032455,
+                            "dist_au": 1.0045816120245454,
+                            "parallax_horizontal_deg": 0.002431682017990975,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 32.11025748790223,
+                            "dec_deg": 13.04257129491622,
+                            "dist_km": 377332.42179693736,
+                            "dist_au": 0.002522311447558173,
+                            "parallax_horizontal_deg": 0.9680412144191162,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -2.9043695221883095,
+                        "sun_az_deg": 283.8854527546224,
+                        "moon_alt_deg": 1.2613353289702949,
+                        "moon_az_deg": 283.66340788339215,
+                        "arcl_deg": 4.171614671438422,
+                        "arcl_geo_deg": 5.13548996655039,
+                        "arcl_from_arcv_daz_deg": 4.171608074431259,
+                        "arcv_deg": 4.165704851158605,
+                        "daz_deg": 0.22204487123025274,
+                        "width_arcmin": 0.04194432426349308,
+                        "sd_topocentric_arcmin": 15.831860360757865,
+                        "sd_geocentric_arcmin": 15.82387274522744,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 174.85710618356862,
+                            "illuminated_fraction": 0.0020128816904057545,
+                            "elongation_deg": 5.129991811534492,
+                            "diameter_arcsec": 1898.5110143612544,
+                            "semi_diameter_arcmin": 15.82092511967712,
+                            "apparent_magnitude": -4.444390884451655
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "BELOW_DANJON",
+                        "q": -99.0,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-05-20",
+            "amavasya_end_jd": 2460084.161947204,
+            "anchor_date": "2023-05-19",
+            "selected": {
+                "date": "2023-05-20",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.046292869574460126 category B (PERFECT_CONDITIONS) > min B; ARCL=10.674712100471497° ARCV=10.673556540102496° W=0.26508165988059412′ lag=52.400000095367432 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-05-20",
+                    "illumination_percent_snapshot": 0.9173185187877131,
+                    "snapshot_elong_deg": 10.992055956766421,
+                    "lunar_age_hours_at_sunset": 22.089100442826748,
+                    "ok": true,
+                    "best_time_jd": 2460085.0984992282,
+                    "sunset_jd": 2460085.082326389,
+                    "moonset_jd": 2460085.118715278,
+                    "lag_days": 0.03638888895511627,
+                    "lag_minutes": 52.40000009536743,
+                    "lst_deg": 163.11429436775887,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 57.112582654174744,
+                        "dec_deg": 20.00435760956078,
+                        "dist_au": 1.0118694908139347,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 68.40721217755136,
+                        "dec_deg": 25.10532640088796,
+                        "dist_au": 0.0026107803510241794,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 57.11031238090173,
+                        "dec_deg": 20.003258462174145,
+                        "dist_km": 151374184.31520504,
+                        "dist_au": 1.0118739231173097,
+                        "parallax_horizontal_deg": 0.0024141628492334232,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 67.46190384696443,
+                        "dec_deg": 24.739484499952862,
+                        "dist_km": 389992.9704264509,
+                        "dist_au": 0.0026069419878878724,
+                        "parallax_horizontal_deg": 0.9357073339733597,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -5.913187633165699,
+                    "sun_az_deg": 294.7578747134407,
+                    "moon_alt_deg": 4.760368906936796,
+                    "moon_az_deg": 294.91517484043743,
+                    "arcl_deg": 10.674712100471497,
+                    "arcl_geo_deg": 11.604263906594042,
+                    "arcl_from_arcv_daz_deg": 10.674702134186758,
+                    "arcv_deg": 10.673556540102496,
+                    "daz_deg": 0.1573001269967449,
+                    "width_arcmin": 0.2650816598805941,
+                    "sd_topocentric_arcmin": 15.317898823042327,
+                    "sd_geocentric_arcmin": 15.295378335479146,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 168.37129033497138,
+                        "illuminated_fraction": 0.010262814565569822,
+                        "elongation_deg": 11.598911382599445,
+                        "diameter_arcsec": 1835.1035153192765,
+                        "semi_diameter_arcmin": 15.292529294327304,
+                        "apparent_magnitude": -5.137707874799311
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.046292869574460126,
+                    "category": "B",
+                    "label": "PERFECT_CONDITIONS",
+                    "yallop_poly_arcv_threshold_deg": 10.210627844357894,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-05-19",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-05-19",
+                        "sunset_jd": 2460084.0819907407,
+                        "amavasya_end_jd": 2460084.161947204
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-06-19",
+            "amavasya_end_jd": 2460113.6924161427,
+            "anchor_date": "2023-06-18",
+            "selected": {
+                "date": "2023-06-19",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.7132834282307261 category A (EASILY_VISIBLE) > min B; ARCL=15.944299768543679° ARCV=15.560090376176355° W=0.57445903106667107′ lag=78.199999630451202 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-06-19",
+                    "illumination_percent_snapshot": 1.9052636323926841,
+                    "snapshot_elong_deg": 15.867882626922096,
+                    "lunar_age_hours_at_sunset": 33.555623687803745,
+                    "ok": true,
+                    "best_time_jd": 2460115.114702932,
+                    "sunset_jd": 2460115.0905671297,
+                    "moonset_jd": 2460115.144872685,
+                    "lag_days": 0.054305555298924446,
+                    "lag_minutes": 78.1999996304512,
+                    "lst_deg": 198.53302002084473,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 87.90368324821348,
+                        "dec_deg": 23.42443466550967,
+                        "dist_au": 1.0161115348211343,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 106.00987233224085,
+                        "dec_deg": 27.47040244835842,
+                        "dist_au": 0.002680105163377683,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 87.90142916952513,
+                        "dec_deg": 23.423259802505157,
+                        "dist_km": 152009023.0617093,
+                        "dist_au": 1.0161175580269093,
+                        "parallax_horizontal_deg": 0.0024040842459481845,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 105.06717880058876,
+                        "dec_deg": 27.132249601890695,
+                        "dist_km": 400062.665663596,
+                        "dist_au": 0.0026742537429952605,
+                        "parallax_horizontal_deg": 0.9115018356730613,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -8.057655689710009,
+                    "sun_az_deg": 299.85289196572506,
+                    "moon_alt_deg": 7.502434686466347,
+                    "moon_az_deg": 296.36297431689206,
+                    "arcl_deg": 15.94429976854368,
+                    "arcl_geo_deg": 16.824865527684018,
+                    "arcl_from_arcv_daz_deg": 15.937219237717558,
+                    "arcv_deg": 15.560090376176355,
+                    "daz_deg": 3.489917648833,
+                    "width_arcmin": 0.5744590310666711,
+                    "sd_topocentric_arcmin": 14.932340337685645,
+                    "sd_geocentric_arcmin": 14.899738651184911,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 163.13671263892567,
+                        "illuminated_fraction": 0.021500171537665813,
+                        "elongation_deg": 16.81944798968827,
+                        "diameter_arcsec": 1787.635693183906,
+                        "semi_diameter_arcmin": 14.896964109865882,
+                        "apparent_magnitude": -5.655313417097286
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.7132834282307261,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 8.427256093869094,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-06-18",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-99 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-06-18",
+                        "illumination_percent_snapshot": 0.15756294846675512,
+                        "snapshot_elong_deg": 4.549815558227351,
+                        "lunar_age_hours_at_sunset": 9.551457021385431,
+                        "ok": true,
+                        "best_time_jd": 2460114.098433642,
+                        "sunset_jd": 2460114.0903935186,
+                        "moonset_jd": 2460114.1084837965,
+                        "lag_days": 0.018090277910232544,
+                        "lag_minutes": 26.050000190734863,
+                        "lst_deg": 191.67439250686238,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 86.84617833770719,
+                            "dec_deg": 23.406734205238966,
+                            "dist_au": 1.0160323406633724,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 91.96953231044604,
+                            "dec_deg": 27.78708922370435,
+                            "dist_au": 0.002661395526753895,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 86.84385015347559,
+                            "dec_deg": 23.405643990988498,
+                            "dist_km": 151996658.04069152,
+                            "dist_au": 1.0160349029666471,
+                            "parallax_horizontal_deg": 0.002404271631151921,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 91.03212335872189,
+                            "dec_deg": 27.398841252045138,
+                            "dist_km": 397898.1387775316,
+                            "dist_au": 0.002659784774446871,
+                            "parallax_horizontal_deg": 0.9179102488593902,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -3.3846080173814355,
+                        "sun_az_deg": 297.2904277016195,
+                        "moon_alt_deg": 1.7756061141295125,
+                        "moon_az_deg": 299.1940523173794,
+                        "arcl_deg": 5.499857387642209,
+                        "arcl_geo_deg": 6.365261495524806,
+                        "arcl_from_arcv_daz_deg": 5.499253828582503,
+                        "arcv_deg": 5.160214131510948,
+                        "daz_deg": 1.9036246157598953,
+                        "width_arcmin": 0.06911592249017162,
+                        "sd_topocentric_arcmin": 15.013571320990438,
+                        "sd_geocentric_arcmin": 15.00448462267398,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 173.62202832367254,
+                            "illuminated_fraction": 0.00309464909306828,
+                            "elongation_deg": 6.36129970170677,
+                            "diameter_arcsec": 1800.2028389620184,
+                            "semi_diameter_arcmin": 15.001690324683487,
+                            "apparent_magnitude": -4.581037524243534
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "BELOW_DANJON",
+                        "q": -99.0,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-07-19",
+            "amavasya_end_jd": 2460143.2720574485,
+            "anchor_date": "2023-07-17",
+            "selected": {
+                "date": "2023-07-19",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=1.1024891932428218 category A (EASILY_VISIBLE) > min B; ARCL=20.004556879361758° ARCV=17.743986892688483° W=0.88978395052766857′ lag=84.733333066105843 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-07-19",
+                    "illumination_percent_snapshot": 3.0086232764113205,
+                    "snapshot_elong_deg": 19.977386775393256,
+                    "lunar_age_hours_at_sunset": 43.63728790730238,
+                    "ok": true,
+                    "best_time_jd": 2460145.1164300414,
+                    "sunset_jd": 2460145.090277778,
+                    "moonset_jd": 2460145.1491203704,
+                    "lag_days": 0.058842592407017946,
+                    "lag_minutes": 84.73333306610584,
+                    "lst_deg": 228.72590283109838,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 118.72101438771031,
+                        "dec_deg": 20.816811552849398,
+                        "dist_au": 1.0162786782615971,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 140.93922872249635,
+                        "dec_deg": 20.294253131166894,
+                        "dist_au": 0.00271466740500554,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 118.71879304979991,
+                        "dec_deg": 20.815661574871687,
+                        "dist_km": 152034112.2240063,
+                        "dist_au": 1.0162852687181083,
+                        "parallax_horizontal_deg": 0.0024036888554702955,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 140.05745093996077,
+                        "dec_deg": 19.971236897746152,
+                        "dist_km": 405077.037155366,
+                        "dist_au": 0.002707772746095416,
+                        "parallax_horizontal_deg": 0.8998959372637326,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -8.834370961862263,
+                    "sun_az_deg": 297.26928778592287,
+                    "moon_alt_deg": 8.909615930826222,
+                    "moon_az_deg": 287.9944732283629,
+                    "arcl_deg": 20.004556879361758,
+                    "arcl_geo_deg": 20.793816222041777,
+                    "arcl_from_arcv_daz_deg": 19.952410828141,
+                    "arcv_deg": 17.743986892688483,
+                    "daz_deg": 9.274814557559978,
+                    "width_arcmin": 0.8897839505276686,
+                    "sd_topocentric_arcmin": 14.747494599653175,
+                    "sd_geocentric_arcmin": 14.71003897388516,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 159.1573430881542,
+                        "illuminated_fraction": 0.03271948052879181,
+                        "elongation_deg": 20.788202119376972,
+                        "diameter_arcsec": 1764.876106859906,
+                        "semi_diameter_arcmin": 14.707300890499218,
+                        "apparent_magnitude": -6.025258705411259
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 1.1024891932428218,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 6.719094960260265,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-07-17",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-07-17",
+                        "sunset_jd": 2460143.090671296,
+                        "amavasya_end_jd": 2460143.2720574485
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2023-07-18",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-0.11808093771223049 category C (OPTICAL_AID_FIRST) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-07-18",
+                        "illumination_percent_snapshot": 0.6191352899199587,
+                        "snapshot_elong_deg": 9.025984293750753,
+                        "lunar_age_hours_at_sunset": 19.642287902534008,
+                        "ok": true,
+                        "best_time_jd": 2460144.1045910493,
+                        "sunset_jd": 2460144.090486111,
+                        "moonset_jd": 2460144.1222222224,
+                        "lag_days": 0.031736111268401146,
+                        "lag_minutes": 45.70000022649765,
+                        "lst_deg": 223.4665492232054,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 117.70553803370602,
+                            "dec_deg": 20.998421539883772,
+                            "dist_au": 1.016344218493331,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 128.56108352163162,
+                            "dec_deg": 23.859038877386965,
+                            "dist_au": 0.002708659474164249,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 117.70326032376364,
+                            "dec_deg": 20.997326260425044,
+                            "dist_km": 152043521.4505032,
+                            "dist_au": 1.0163481655123798,
+                            "parallax_horizontal_deg": 0.002403533850579404,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 127.65916356905723,
+                            "dec_deg": 23.503757071724078,
+                            "dist_km": 404706.0734698075,
+                            "dist_au": 0.002705293007020103,
+                            "parallax_horizontal_deg": 0.9018921123815176,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -5.2557867938135265,
+                        "sun_az_deg": 295.54058112587535,
+                        "moon_alt_deg": 4.137702582357253,
+                        "moon_az_deg": 293.83519837192824,
+                        "arcl_deg": 9.546684110080268,
+                        "arcl_geo_deg": 10.430542963475522,
+                        "arcl_from_arcv_daz_deg": 9.545672697726888,
+                        "arcv_deg": 9.39348937617078,
+                        "daz_deg": 1.7053827539471058,
+                        "width_arcmin": 0.20442829270316876,
+                        "sd_topocentric_arcmin": 14.76101260423504,
+                        "sd_geocentric_arcmin": 14.742666714231916,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 169.5465848975899,
+                            "illuminated_fraction": 0.008298624531326793,
+                            "elongation_deg": 10.425709989446144,
+                            "diameter_arcsec": 1768.7906588579237,
+                            "semi_diameter_arcmin": 14.739922157149364,
+                            "apparent_magnitude": -5.016448506476971
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "COMPUTED",
+                        "q": -0.1180809377122305,
+                        "category": "C",
+                        "label": "OPTICAL_AID_FIRST",
+                        "yallop_poly_arcv_threshold_deg": 10.574298753293085,
+                        "yallop_poly_coeffs": {
+                            "c0": 11.8371,
+                            "c1": -6.3226,
+                            "c2": 0.7319,
+                            "c3": -0.1018,
+                            "W_unit": "arcmin"
+                        }
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-08-17",
+            "amavasya_end_jd": 2460172.901467355,
+            "anchor_date": "2023-08-16",
+            "selected": {
+                "date": "2023-08-17",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.13802170848309725 category B (PERFECT_CONDITIONS) > min B; ARCL=12.746130471900015° ARCV=11.014123229779178° W=0.36294212032500145′ lag=49.983333796262741 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-08-17",
+                    "illumination_percent_snapshot": 1.24482597219997,
+                    "snapshot_elong_deg": 12.811858241692107,
+                    "lunar_age_hours_at_sunset": 28.255061253905296,
+                    "ok": true,
+                    "best_time_jd": 2460174.0941885286,
+                    "sunset_jd": 2460174.078761574,
+                    "moonset_jd": 2460174.1134722224,
+                    "lag_days": 0.034710648469626904,
+                    "lag_minutes": 49.98333379626274,
+                    "lst_deg": 249.28080970971877,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 146.7288673163543,
+                        "dec_deg": 13.378823364639018,
+                        "dist_au": 1.0125237544522283,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 160.5644308946356,
+                        "dec_deg": 12.348617869473559,
+                        "dist_au": 0.0027154352091866784,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 146.72664207300102,
+                        "dec_deg": 13.37779114093758,
+                        "dist_km": 151472058.5913309,
+                        "dist_au": 1.0125281722431019,
+                        "parallax_horizontal_deg": 0.0024126028868491716,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 159.7178414185658,
+                        "dec_deg": 12.006037248918414,
+                        "dist_km": 405609.5170894352,
+                        "dist_au": 0.0027113321546055618,
+                        "parallax_horizontal_deg": 0.8996414658415817,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -5.910439115160929,
+                    "sun_az_deg": 287.31549331990084,
+                    "moon_alt_deg": 5.1036841146182494,
+                    "moon_az_deg": 280.8903688848988,
+                    "arcl_deg": 12.746130471900015,
+                    "arcl_geo_deg": 13.52577030195883,
+                    "arcl_from_arcv_daz_deg": 12.731180117309822,
+                    "arcv_deg": 11.014123229779178,
+                    "daz_deg": 6.425124435002033,
+                    "width_arcmin": 0.36294212032500145,
+                    "sd_topocentric_arcmin": 14.728134124373009,
+                    "sd_geocentric_arcmin": 14.705879604405734,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 166.44355973779184,
+                        "illuminated_fraction": 0.013930255495965826,
+                        "elongation_deg": 13.520422170225563,
+                        "diameter_arcsec": 1764.3771627025956,
+                        "semi_diameter_arcmin": 14.70314302252163,
+                        "apparent_magnitude": -5.332540978043926
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.13802170848309725,
+                    "category": "B",
+                    "label": "PERFECT_CONDITIONS",
+                    "yallop_poly_arcv_threshold_deg": 9.633906144948206,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-08-16",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-99 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-08-16",
+                        "illumination_percent_snapshot": 0.028543319056756333,
+                        "snapshot_elong_deg": 1.9360899322666683,
+                        "lunar_age_hours_at_sunset": 4.268394593149424,
+                        "ok": true,
+                        "best_time_jd": 2460173.0844560186,
+                        "sunset_jd": 2460173.0793171297,
+                        "moonset_jd": 2460173.09087963,
+                        "lag_days": 0.011562500149011612,
+                        "lag_minutes": 16.65000021457672,
+                        "lst_deg": 244.78186592870424,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 145.78647474897213,
+                            "dec_deg": 13.69994526419929,
+                            "dist_au": 1.012713245905211,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 149.2766815402285,
+                            "dec_deg": 17.207313729603875,
+                            "dist_au": 0.0027181659000468698,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 145.7842204326838,
+                            "dec_deg": 13.698943866200478,
+                            "dist_km": 151500043.49019566,
+                            "dist_au": 1.0127152397376715,
+                            "parallax_horizontal_deg": 0.002412151458343997,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 148.41710242789136,
+                            "dec_deg": 16.845155783312453,
+                            "dist_km": 406478.96283297165,
+                            "dist_au": 0.0027171440404263167,
+                            "parallax_horizontal_deg": 0.8987376047734604,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -2.64432297645044,
+                        "sun_az_deg": 286.1326058785924,
+                        "moon_alt_deg": 0.967876672710596,
+                        "moon_az_deg": 287.94961329991645,
+                        "arcl_deg": 4.043229099989138,
+                        "arcl_geo_deg": 4.859392236975733,
+                        "arcl_from_arcv_daz_deg": 4.042910672424194,
+                        "arcv_deg": 3.612199649161036,
+                        "daz_deg": 1.8170074213240355,
+                        "width_arcmin": 0.03657791913839819,
+                        "sd_topocentric_arcmin": 14.696630915619542,
+                        "sd_geocentric_arcmin": 14.691105872011981,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 175.12978343693447,
+                            "illuminated_fraction": 0.0018052185402496201,
+                            "elongation_deg": 4.857160413848904,
+                            "diameter_arcsec": 1762.604597599589,
+                            "semi_diameter_arcmin": 14.68837164666324,
+                            "apparent_magnitude": -4.413921814651261
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "BELOW_DANJON",
+                        "q": -99.0,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-09-16",
+            "amavasya_end_jd": 2460202.569261077,
+            "anchor_date": "2023-09-15",
+            "selected": {
+                "date": "2023-09-16",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.30627253638099566 category A (EASILY_VISIBLE) > min B; ARCL=16.015377440952985° ARCV=11.464925341303157° W=0.57894937998086637′ lag=50.583333224058151 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-09-16",
+                    "illumination_percent_snapshot": 2.045962568032272,
+                    "snapshot_elong_deg": 16.447262493633104,
+                    "lunar_age_hours_at_sunset": 35.75578970834613,
+                    "ok": true,
+                    "best_time_jd": 2460204.074697788,
+                    "sunset_jd": 2460204.059085648,
+                    "moonset_jd": 2460204.094212963,
+                    "lag_days": 0.03512731473892927,
+                    "lag_minutes": 50.58333322405815,
+                    "lst_deg": 271.81435319027895,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 173.9772271894219,
+                        "dec_deg": 2.6046680909982176,
+                        "dist_au": 1.0054898426319527,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 189.77664553057073,
+                        "dec_deg": -2.742503519473819,
+                        "dist_au": 0.0026813559414699257,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 173.97501237746965,
+                        "dec_deg": 2.6037022455831855,
+                        "dist_km": 150419824.5910367,
+                        "dist_au": 1.0054944223951225,
+                        "parallax_horizontal_deg": 0.0024294802686526057,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 188.9446322344539,
+                        "dec_deg": -3.1053052002061055,
+                        "dist_km": 400483.72203140374,
+                        "dist_au": 0.0026770683309692575,
+                        "parallax_horizontal_deg": 0.9110766095282382,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -6.157520327639715,
+                    "sun_az_deg": 275.5131014170902,
+                    "moon_alt_deg": 5.307405013663443,
+                    "moon_az_deg": 264.3115841317151,
+                    "arcl_deg": 16.015377440952985,
+                    "arcl_geo_deg": 16.674293585057008,
+                    "arcl_from_arcv_daz_deg": 15.976078805365319,
+                    "arcv_deg": 11.464925341303157,
+                    "daz_deg": 11.201517285375076,
+                    "width_arcmin": 0.5789493799808664,
+                    "sd_topocentric_arcmin": 14.916640832014902,
+                    "sd_geocentric_arcmin": 14.892788293341818,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 163.2874375675406,
+                        "illuminated_fraction": 0.021120266820018385,
+                        "elongation_deg": 16.66862400969462,
+                        "diameter_arcsec": 1786.8021481029305,
+                        "semi_diameter_arcmin": 14.890017900857753,
+                        "apparent_magnitude": -5.640909723783093
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.30627253638099566,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 8.4021999774932,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-09-15",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-99 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-09-15",
+                        "illumination_percent_snapshot": 0.2212197538881744,
+                        "snapshot_elong_deg": 5.391689014604481,
+                        "lunar_age_hours_at_sunset": 11.77273415029049,
+                        "ok": true,
+                        "best_time_jd": 2460203.066010802,
+                        "sunset_jd": 2460203.0597916665,
+                        "moonset_jd": 2460203.073784722,
+                        "lag_days": 0.013993055559694767,
+                        "lag_minutes": 20.150000005960464,
+                        "lst_deg": 267.69282861883784,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 173.07286376525192,
+                            "dec_deg": 2.993345749541657,
+                            "dist_au": 1.0057632093839113,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 179.03542726208286,
+                            "dec_deg": 3.011063971916611,
+                            "dist_au": 0.0026960483803501185,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 173.07063519711366,
+                            "dec_deg": 2.9923849242126876,
+                            "dist_km": 150460375.66462636,
+                            "dist_au": 1.0057654895794341,
+                            "parallax_horizontal_deg": 0.0024288199351623864,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 178.20133517559594,
+                            "dec_deg": 2.656649191727964,
+                            "dist_km": 403104.80321671185,
+                            "dist_au": 0.002694589176506988,
+                            "parallax_horizontal_deg": 0.9061111732179029,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -3.057423250218982,
+                        "sun_az_deg": 274.5794850678823,
+                        "moon_alt_deg": 1.5150921644150643,
+                        "moon_az_deg": 272.2409473280029,
+                        "arcl_deg": 5.135441681522572,
+                        "arcl_geo_deg": 5.954398957318218,
+                        "arcl_from_arcv_daz_deg": 5.134689839425442,
+                        "arcv_deg": 4.572515414634046,
+                        "daz_deg": 2.3385377398793707,
+                        "width_arcmin": 0.05948774251189454,
+                        "sd_topocentric_arcmin": 14.819648761202707,
+                        "sd_geocentric_arcmin": 14.811627754446448,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 174.03468099668,
+                            "illuminated_fraction": 0.0027075079993830187,
+                            "elongation_deg": 5.949357221771928,
+                            "diameter_arcsec": 1777.0646589282092,
+                            "semi_diameter_arcmin": 14.808872157735076,
+                            "apparent_magnitude": -4.535629510841855
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "BELOW_DANJON",
+                        "q": -99.0,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-10-16",
+            "amavasya_end_jd": 2460232.246581263,
+            "anchor_date": "2023-10-14",
+            "selected": {
+                "date": "2023-10-16",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.65061364072303507 category A (EASILY_VISIBLE) > min B; ARCL=20.359285786043714° ARCV=12.880832591183118° W=0.95560845555527552′ lag=59.200000092387199 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-10-16",
+                    "illumination_percent_snapshot": 3.2197607924303426,
+                    "snapshot_elong_deg": 20.67392732007704,
+                    "lunar_age_hours_at_sunset": 43.013716354966164,
+                    "ok": true,
+                    "best_time_jd": 2460234.0570910494,
+                    "sunset_jd": 2460234.0388194444,
+                    "moonset_jd": 2460234.0799305555,
+                    "lag_days": 0.04111111117526889,
+                    "lag_minutes": 59.2000000923872,
+                    "lst_deg": 295.02799443892235,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 201.19878052362841,
+                        "dec_deg": -8.90965553301239,
+                        "dist_au": 0.9969920355533676,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 220.8075548561086,
+                        "dec_deg": -17.621903155878123,
+                        "dist_au": 0.002615265746149957,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 201.19650567687538,
+                        "dec_deg": -8.91058174272494,
+                        "dist_km": 149148660.0900877,
+                        "dist_au": 0.9969972125417941,
+                        "parallax_horizontal_deg": 0.0024501878108400535,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 219.93690113729633,
+                        "dec_deg": -18.040660540424717,
+                        "dist_km": 390527.2447776705,
+                        "dist_au": 0.0026105133913357933,
+                        "parallax_horizontal_deg": 0.9341023768762545,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -6.995543954506644,
+                    "sun_az_deg": 263.2733493862242,
+                    "moon_alt_deg": 5.885288636676473,
+                    "moon_az_deg": 247.4726473428359,
+                    "arcl_deg": 20.359285786043714,
+                    "arcl_geo_deg": 20.955913731980512,
+                    "arcl_from_arcv_daz_deg": 20.28143184209532,
+                    "arcv_deg": 12.880832591183118,
+                    "daz_deg": 15.800702043388299,
+                    "width_arcmin": 0.9556084555552755,
+                    "sd_topocentric_arcmin": 15.29694250151476,
+                    "sd_geocentric_arcmin": 15.269145335228439,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 158.99605543586122,
+                        "illuminated_fraction": 0.0332221238915647,
+                        "elongation_deg": 20.95007362591507,
+                        "diameter_arcsec": 1831.95665437052,
+                        "semi_diameter_arcmin": 15.266305453087666,
+                        "apparent_magnitude": -6.0398403993332055
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.6506136407230351,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 6.374696183952768,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-10-14",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-10-14",
+                        "sunset_jd": 2460232.040023148,
+                        "amavasya_end_jd": 2460232.246581263
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2023-10-15",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-0.56271680580805683 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-10-15",
+                        "illumination_percent_snapshot": 0.6246875324418089,
+                        "snapshot_elong_deg": 9.066449574233332,
+                        "lunar_age_hours_at_sunset": 19.027883023023605,
+                        "ok": true,
+                        "best_time_jd": 2460233.04657536,
+                        "sunset_jd": 2460233.039409722,
+                        "moonset_jd": 2460233.0555324075,
+                        "lag_days": 0.01612268527969718,
+                        "lag_minutes": 23.21666680276394,
+                        "lst_deg": 290.24633412753263,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 200.25780725897357,
+                            "dec_deg": -8.536863038496179,
+                            "dist_au": 0.9972810391324052,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 208.72297499836563,
+                            "dec_deg": -12.379163829408794,
+                            "dist_au": 0.002637320313883489,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 200.25553025139652,
+                            "dec_deg": -8.537813287941812,
+                            "dist_km": 149191490.31473362,
+                            "dist_au": 0.997283514909906,
+                            "parallax_horizontal_deg": 0.002449477767212137,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 207.8588652661061,
+                            "dec_deg": -12.759845777926031,
+                            "dist_km": 394281.07891428255,
+                            "dist_au": 0.002635606222664522,
+                            "parallax_horizontal_deg": 0.9262902705461223,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -3.3509688491183764,
+                        "sun_az_deg": 262.1427840827974,
+                        "moon_alt_deg": 1.8072053007941487,
+                        "moon_az_deg": 255.28238740534508,
+                        "arcl_deg": 8.580876413416155,
+                        "arcl_geo_deg": 9.166708182132725,
+                        "arcl_from_arcv_daz_deg": 8.575806705542464,
+                        "arcv_deg": 5.158174149912525,
+                        "daz_deg": 6.860396677452314,
+                        "width_arcmin": 0.1696001149794975,
+                        "sd_topocentric_arcmin": 15.151303865501351,
+                        "sd_geocentric_arcmin": 15.141456413612616,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 170.8146696618578,
+                            "illuminated_fraction": 0.006411416139277204,
+                            "elongation_deg": 9.161143510961407,
+                            "diameter_arcsec": 1816.6368244643638,
+                            "semi_diameter_arcmin": 15.138640203869699,
+                            "apparent_magnitude": -4.883477230520258
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "COMPUTED",
+                        "q": -0.5627168058080568,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON",
+                        "yallop_poly_arcv_threshold_deg": 10.785342207993093,
+                        "yallop_poly_coeffs": {
+                            "c0": 11.8371,
+                            "c1": -6.3226,
+                            "c2": 0.7319,
+                            "c3": -0.1018,
+                            "W_unit": "arcmin"
+                        }
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-11-15",
+            "amavasya_end_jd": 2460261.8939763308,
+            "anchor_date": "2023-11-13",
+            "selected": {
+                "date": "2023-11-15",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=1.5087943478771193 category A (EASILY_VISIBLE) > min B; ARCL=26.269121035733185° ARCV=18.116541866073696° W=1.6313435276248134′ lag=90.116666704416275 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-11-15",
+                    "illumination_percent_snapshot": 5.161933648412492,
+                    "snapshot_elong_deg": 26.26442937908473,
+                    "lunar_age_hours_at_sunset": 51.16873472929001,
+                    "ok": true,
+                    "best_time_jd": 2460264.0538207307,
+                    "sunset_jd": 2460264.0260069445,
+                    "moonset_jd": 2460264.088587963,
+                    "lag_days": 0.06258101854473352,
+                    "lag_minutes": 90.11666670441628,
+                    "lst_deg": 323.41687745499456,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 230.5019435928928,
+                        "dec_deg": -18.496962739592565,
+                        "dist_au": 0.9892322411125133,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 258.21984451720266,
+                        "dec_deg": -27.274429465492805,
+                        "dist_au": 0.0025346178031614946,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 230.4995529335453,
+                        "dec_deg": -18.497844708247353,
+                        "dist_km": 147988113.53792757,
+                        "dist_au": 0.9892394380044313,
+                        "parallax_horizontal_deg": 0.0024694077199525484,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 257.308400737005,
+                        "dec_deg": -27.7791628755078,
+                        "dist_km": 378186.02183737414,
+                        "dist_au": 0.0025280174113960444,
+                        "parallax_horizontal_deg": 0.9638269500409781,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -9.762979579205522,
+                    "sun_az_deg": 253.95075492332379,
+                    "moon_alt_deg": 8.353562286868176,
+                    "moon_az_deg": 234.8466791055067,
+                    "arcl_deg": 26.269121035733185,
+                    "arcl_geo_deg": 26.92960307099133,
+                    "arcl_from_arcv_daz_deg": 26.092925959372423,
+                    "arcv_deg": 18.116541866073696,
+                    "daz_deg": 19.10407581781709,
+                    "width_arcmin": 1.6313435276248134,
+                    "sd_topocentric_arcmin": 15.796126168903854,
+                    "sd_geocentric_arcmin": 15.754991228613829,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 153.00983217175084,
+                        "illuminated_fraction": 0.054457791224989005,
+                        "elongation_deg": 26.92354271962055,
+                        "diameter_arcsec": 1890.2472921642225,
+                        "semi_diameter_arcmin": 15.752060768035188,
+                        "apparent_magnitude": -6.559255750337252
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 1.5087943478771193,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 3.0285983873025035,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-11-13",
+                    "status_code": "REJECTED_NO_POSITIVE_LAG",
+                    "reason": "Moonset not after sunset.",
+                    "metrics": {
+                        "date": "2023-11-13",
+                        "lag_days": -0.0042361109517514706,
+                        "lag_minutes": -6.099999770522118
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2023-11-14",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-0.11798902080707707 category C (OPTICAL_AID_FIRST) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-11-14",
+                        "illumination_percent_snapshot": 1.444440874274966,
+                        "snapshot_elong_deg": 13.805546905336428,
+                        "lunar_age_hours_at_sunset": 27.174290288239717,
+                        "ok": true,
+                        "best_time_jd": 2460263.0381468623,
+                        "sunset_jd": 2460263.026238426,
+                        "moonset_jd": 2460263.0530324075,
+                        "lag_days": 0.026793981436640024,
+                        "lag_minutes": 38.583333268761635,
+                        "lst_deg": 316.77318856763685,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 229.45979151955586,
+                            "dec_deg": -18.235263274568883,
+                            "dist_au": 0.9894615383440886,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 243.27518489940078,
+                            "dec_deg": -24.657338310460354,
+                            "dist_au": 0.0025563614216459036,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 229.45740456081134,
+                            "dec_deg": -18.236216340705674,
+                            "dist_km": 148021861.27557033,
+                            "dist_au": 0.9894650276968838,
+                            "parallax_horizontal_deg": 0.0024688354608679622,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 242.3440252707952,
+                            "dec_deg": -25.09973011782084,
+                            "dist_km": 382009.2808430213,
+                            "dist_au": 0.0025535743193102903,
+                            "parallax_horizontal_deg": 0.9556281729919613,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -4.740765022278095,
+                        "sun_az_deg": 252.17375550776416,
+                        "moon_alt_deg": 3.2054505874173085,
+                        "moon_az_deg": 240.89180882181276,
+                        "arcl_deg": 13.791209387956329,
+                        "arcl_geo_deg": 14.360749073391279,
+                        "arcl_from_arcv_daz_deg": 13.769729319853713,
+                        "arcv_deg": 7.946215609695403,
+                        "daz_deg": 11.281946685951397,
+                        "width_arcmin": 0.4508309533873978,
+                        "sd_topocentric_arcmin": 15.638032888637616,
+                        "sd_geocentric_arcmin": 15.620983226661476,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 165.6080027481436,
+                            "illuminated_fraction": 0.015691056366251843,
+                            "elongation_deg": 14.355203988112304,
+                            "diameter_arcsec": 1874.1693561376508,
+                            "semi_diameter_arcmin": 15.618077967813756,
+                            "apparent_magnitude": -5.415447704477353
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "COMPUTED",
+                        "q": -0.11798902080707707,
+                        "category": "C",
+                        "label": "OPTICAL_AID_FIRST",
+                        "yallop_poly_arcv_threshold_deg": 9.126105817766174,
+                        "yallop_poly_coeffs": {
+                            "c0": 11.8371,
+                            "c1": -6.3226,
+                            "c2": 0.7319,
+                            "c3": -0.1018,
+                            "W_unit": "arcmin"
+                        }
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2023-12-14",
+            "amavasya_end_jd": 2460291.4805261316,
+            "anchor_date": "2023-12-12",
+            "selected": {
+                "date": "2023-12-14",
+                "status_code": "SUCCESS_YALLOP_Q",
+                "reason": "Yallop q=0.94263960756557508 category A (EASILY_VISIBLE) > min B; ARCL=20.377692988653699° ARCV=15.510142723960787° W=1.0117951515644201′ lag=78.883333280682564 min (full-precision, no 10°/39 min).",
+                "metrics": {
+                    "date": "2023-12-14",
+                    "illumination_percent_snapshot": 3.0859671301516736,
+                    "snapshot_elong_deg": 20.235208660769786,
+                    "lunar_age_hours_at_sunset": 37.10403950884938,
+                    "ok": true,
+                    "best_time_jd": 2460293.0508744856,
+                    "sunset_jd": 2460293.026527778,
+                    "moonset_jd": 2460293.0813078703,
+                    "lag_days": 0.05478009255602956,
+                    "lag_minutes": 78.88333328068256,
+                    "lst_deg": 350.93709905902887,
+                    "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                    "observer": {
+                        "latitude_deg": 23.2472446,
+                        "longitude_deg": 69.668339,
+                        "elevation_m": 0.0,
+                        "ellipsoid": "WGS84"
+                    },
+                    "sun_geocentric": {
+                        "ra_deg": 261.57949767885606,
+                        "dec_deg": -23.212628049202326,
+                        "dist_au": 0.9844169581817098,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "moon_geocentric": {
+                        "ra_deg": 284.4729078786823,
+                        "dec_deg": -27.780878040726964,
+                        "dist_au": 0.002475653196852592,
+                        "ok": true,
+                        "error": ""
+                    },
+                    "sun_topocentric": {
+                        "ra_deg": 261.5770156955874,
+                        "dec_deg": -23.213532700149777,
+                        "dist_km": 147267606.6536234,
+                        "dist_au": 0.9844231469641059,
+                        "parallax_horizontal_deg": 0.0024814868463345872,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "moon_topocentric": {
+                        "ra_deg": 283.52624738713916,
+                        "dec_deg": -28.290128240930635,
+                        "dist_km": 369500.9533480642,
+                        "dist_au": 0.0024699613144163837,
+                        "parallax_horizontal_deg": 0.9867854286930576,
+                        "rho_cos_phi_p": 0.9192896826354959,
+                        "rho_sin_phi_p": 0.392261999897888
+                    },
+                    "sun_alt_deg": -8.403503829181806,
+                    "sun_az_deg": 248.27308991311654,
+                    "moon_alt_deg": 7.10663889477898,
+                    "moon_az_deg": 235.0147164954482,
+                    "arcl_deg": 20.3776929886537,
+                    "arcl_geo_deg": 21.128530345291985,
+                    "arcl_from_arcv_daz_deg": 20.298247366001412,
+                    "arcv_deg": 15.510142723960787,
+                    "daz_deg": 13.258373417668338,
+                    "width_arcmin": 1.0117951515644201,
+                    "sd_topocentric_arcmin": 16.167414622221013,
+                    "sd_geocentric_arcmin": 16.130243139742074,
+                    "is_waxing": true,
+                    "pheno": {
+                        "phase_angle_deg": 158.82520017972485,
+                        "illuminated_fraction": 0.03375861851995793,
+                        "elongation_deg": 21.12275245082507,
+                        "diameter_arcsec": 1935.2690928171412,
+                        "semi_diameter_arcmin": 16.127242440142844,
+                        "apparent_magnitude": -6.05525265253009
+                    },
+                    "model": "yallop_1997_q_full_precision",
+                    "reference": "Yallop_HMNAO_TN_69_1997",
+                    "precision_notes": {
+                        "binary64_throughout": true,
+                        "no_decision_rounding": true,
+                        "wgs84_ellipsoidal_parallax": true,
+                        "topocentric_sun_and_moon": true,
+                        "angular_sep_atan2_cross_dot": true,
+                        "best_time_exact_4_over_9_lag": true,
+                        "ephemeris_recomputed_at_best_time": true,
+                        "yallop_poly_coefficients_published": true,
+                        "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                    },
+                    "status": "COMPUTED",
+                    "q": 0.9426396075655751,
+                    "category": "A",
+                    "label": "EASILY_VISIBLE",
+                    "yallop_poly_arcv_threshold_deg": 6.083746648305036,
+                    "yallop_poly_coeffs": {
+                        "c0": 11.8371,
+                        "c1": -6.3226,
+                        "c2": 0.7319,
+                        "c3": -0.1018,
+                        "W_unit": "arcmin"
+                    }
+                },
+                "selection_mode": "YALLOP_Q_FULL_PRECISION"
+            },
+            "rejected": [
+                {
+                    "date": "2023-12-12",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset at or before Amāvasyā end.",
+                    "metrics": {
+                        "date": "2023-12-12",
+                        "sunset_jd": 2460291.0260532405,
+                        "amavasya_end_jd": 2460291.4805261316
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2023-12-13",
+                    "status_code": "REJECTED_YALLOP_BELOW_MIN_CATEGORY",
+                    "reason": "Yallop q=-0.7705546114556856 category F (IMPOSSIBLE_DANJON) does not meet min category B (require q>-0.014).",
+                    "metrics": {
+                        "date": "2023-12-13",
+                        "illumination_percent_snapshot": 0.38076830771731074,
+                        "snapshot_elong_deg": 7.075530703441871,
+                        "lunar_age_hours_at_sunset": 13.098206173628569,
+                        "ok": true,
+                        "best_time_jd": 2460292.0311972736,
+                        "sunset_jd": 2460292.026284722,
+                        "moonset_jd": 2460292.037337963,
+                        "lag_days": 0.011053240858018398,
+                        "lag_minutes": 15.916666835546494,
+                        "lst_deg": 342.84826057675326,
+                        "lst_source": "jme_sidereal_time_hours_x15_plus_east_longitude",
+                        "observer": {
+                            "latitude_deg": 23.2472446,
+                            "longitude_deg": 69.668339,
+                            "elevation_m": 0.0,
+                            "ellipsoid": "WGS84"
+                        },
+                        "sun_geocentric": {
+                            "ra_deg": 260.4532003295286,
+                            "dec_deg": -23.148182583460002,
+                            "dist_au": 0.9845265334002299,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "moon_geocentric": {
+                            "ra_deg": 268.15675424851895,
+                            "dec_deg": -28.029251535340382,
+                            "dist_au": 0.002494639606433413,
+                            "ok": true,
+                            "error": ""
+                        },
+                        "sun_topocentric": {
+                            "ra_deg": 260.45074146828085,
+                            "dec_deg": -23.149196155668694,
+                            "dist_km": 147283343.21035916,
+                            "dist_au": 0.9845283393486106,
+                            "parallax_horizontal_deg": 0.0024812106633629893,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "moon_topocentric": {
+                            "ra_deg": 267.1685840849639,
+                            "dec_deg": -28.476645156076383,
+                            "dist_km": 373056.4450660977,
+                            "dist_au": 0.0024937283085680827,
+                            "parallax_horizontal_deg": 0.9792743862843881,
+                            "rho_cos_phi_p": 0.9192896826354959,
+                            "rho_sin_phi_p": 0.392261999897888
+                        },
+                        "sun_alt_deg": -2.4872102439708224,
+                        "sun_az_deg": 245.81973490252125,
+                        "moon_alt_deg": 0.6630445115263877,
+                        "moon_az_deg": 238.40317557109765,
+                        "arcl_deg": 8.056154884100648,
+                        "arcl_geo_deg": 8.487416168739681,
+                        "arcl_from_arcv_daz_deg": 8.05443704520943,
+                        "arcv_deg": 3.15025475549721,
+                        "daz_deg": 7.416559331423599,
+                        "width_arcmin": 0.15803245665434978,
+                        "sd_topocentric_arcmin": 16.013326608711196,
+                        "sd_geocentric_arcmin": 16.00747685959096,
+                        "is_waxing": true,
+                        "pheno": {
+                            "phase_angle_deg": 171.49584203569898,
+                            "illuminated_fraction": 0.005497432898024512,
+                            "elongation_deg": 8.482688749180545,
+                            "diameter_arcsec": 1920.5399565942812,
+                            "semi_diameter_arcmin": 16.004499638285676,
+                            "apparent_magnitude": -4.811121872332704
+                        },
+                        "model": "yallop_1997_q_full_precision",
+                        "reference": "Yallop_HMNAO_TN_69_1997",
+                        "precision_notes": {
+                            "binary64_throughout": true,
+                            "no_decision_rounding": true,
+                            "wgs84_ellipsoidal_parallax": true,
+                            "topocentric_sun_and_moon": true,
+                            "angular_sep_atan2_cross_dot": true,
+                            "best_time_exact_4_over_9_lag": true,
+                            "ephemeris_recomputed_at_best_time": true,
+                            "yallop_poly_coefficients_published": true,
+                            "jme_topocentric_flag_unused": "JME_CALC_TOPOCENTRIC does not alter RA/Dec in this library build; analytical WGS84 reduction used instead"
+                        },
+                        "status": "COMPUTED",
+                        "q": -0.7705546114556856,
+                        "category": "F",
+                        "label": "IMPOSSIBLE_DANJON",
+                        "yallop_poly_arcv_threshold_deg": 10.855800870054066,
+                        "yallop_poly_coeffs": {
+                            "c0": 11.8371,
+                            "c1": -6.3226,
+                            "c2": 0.7319,
+                            "c3": -0.1018,
+                            "W_unit": "arcmin"
+                        }
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_YALLOP_Q",
+            "selection_mode": "YALLOP_Q_FULL_PRECISION"
+        }
+    ]
+}

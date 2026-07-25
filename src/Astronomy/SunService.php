@@ -29,11 +29,28 @@ class SunService
 
     private const float STANDARD_ATMOSPHERIC_TEMPERATURE_C = 15.0;
 
+    private const int CACHE_MAX = 2000;
+
+    private const int CACHE_TRIM_TO = 1000;
+
     /** @var array<string, array{0: CarbonImmutable, 1: CarbonImmutable}> */
     private array $sunriseSunsetCache = [];
 
     /** @var array<string, array{0: ?CarbonImmutable, 1: ?CarbonImmutable}> */
     private array $moonriseMoonsetCache = [];
+
+    public function clearCaches(): void
+    {
+        $this->sunriseSunsetCache = [];
+        $this->moonriseMoonsetCache = [];
+    }
+
+    private function trimCache(array &$cache): void
+    {
+        if (count($cache) >= self::CACHE_MAX) {
+            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
+        }
+    }
 
     public function __construct(private JmeEphFFI $jme)
     {
@@ -92,6 +109,8 @@ class SunService
             'sunset' => $sunset->toIso8601String(),
         ]);
 
+        $this->trimCache($this->sunriseSunsetCache);
+
         return $this->sunriseSunsetCache[$cacheKey] = [$sunrise, $sunset];
     }
 
@@ -124,6 +143,8 @@ class SunService
             $birth['timezone'],
             false
         );
+
+        $this->trimCache($this->moonriseMoonsetCache);
 
         return $this->moonriseMoonsetCache[$cacheKey] = [$moonrise, $moonset];
     }

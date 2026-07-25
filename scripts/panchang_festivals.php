@@ -37,11 +37,11 @@ $panchangService = CliBootstrap::makePanchangService();
 $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 
 if (! in_array($scope, ['all', 'festivals', 'vrats'], true)) {
-    fwrite(STDERR, "Unknown scope: {$scope}. Allowed: all, festivals, vrats" . PHP_EOL);
+    fwrite(STDERR, sprintf('Unknown scope: %s. Allowed: all, festivals, vrats', $scope) . PHP_EOL);
     exit(1);
 }
 
-echo "Building {$scope} output for {$festivalYear}..." . PHP_EOL;
+echo sprintf('Building %s output for %d...', $scope, $festivalYear) . PHP_EOL;
 
 $calendar = match ($scope) {
     'festivals' => $outputGen->generateFestivalsOnlySelected(
@@ -127,20 +127,20 @@ $output = [
 ];
 
 $filename = match ($scope) {
-    'festivals' => "festivals_only_{$festivalYear}.json",
-    'vrats' => "vrats_{$festivalYear}.json",
-    default => "festivals_{$festivalYear}.json",
+    'festivals' => sprintf('festivals_only_%d.json', $festivalYear),
+    'vrats' => sprintf('vrats_%d.json', $festivalYear),
+    default => sprintf('festivals_%d.json', $festivalYear),
 };
 $outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
 try {
     panchang_script_write_json($outputPath, $output);
-} catch (RuntimeException $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+} catch (RuntimeException $runtimeException) {
+    fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
     exit(1);
 }
 
 $payload = $scope === 'vrats' ? $output['vrats'] : $output['festivals'];
 $dayCount = $scope === 'vrats' ? $payload['vrat_day_count'] : $payload['festival_day_count'];
 $entryCount = $scope === 'vrats' ? $payload['vrat_entry_count'] : $payload['festival_entry_count'];
-echo "Written {$outputPath} — {$dayCount} days, {$entryCount} entries." . PHP_EOL;
+echo sprintf('Written %s — %s days, %s entries.', $outputPath, $dayCount, $entryCount) . PHP_EOL;

@@ -77,11 +77,11 @@ $outputPath = $outputDir . DIRECTORY_SEPARATOR . 'today.json';
 
 try {
     panchang_script_write_json($outputPath, $output);
-} catch (RuntimeException $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+} catch (RuntimeException $runtimeException) {
+    fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
     exit(1);
 }
 
 DebugTrace::log('script.today', 'today.json written', ['date' => $todayDate, 'path' => $outputPath]);
 
-echo "Written {$outputPath} — {$todayDate} for {$city}, {$country}." . PHP_EOL;
+echo sprintf('Written %s — %s for %s, %s.', $outputPath, $todayDate, $city, $country) . PHP_EOL;

@@ -80,13 +80,13 @@ $outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
 try {
     $json = panchang_script_write_json($outputPath, $output);
-} catch (RuntimeException $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+} catch (RuntimeException $runtimeException) {
+    fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
     exit(1);
 }
 
 if (panchang_stdout_is_interactive()) {
-    fwrite(STDERR, "Written {$outputPath}" . PHP_EOL);
+    fwrite(STDERR, 'Written ' . $outputPath . PHP_EOL);
 } else {
     fwrite(STDOUT, $json);
 }

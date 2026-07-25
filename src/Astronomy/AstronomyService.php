@@ -23,6 +23,10 @@ class AstronomyService
 {
     use ConfiguresEphemeris;
 
+    private const int CACHE_MAX = 2000;
+
+    private const int CACHE_TRIM_TO = 1000;
+
     /** @var array<string, float> */
     private array $julianDayCache = [];
 
@@ -34,6 +38,21 @@ class AstronomyService
 
     /** @var array<string, float> */
     private array $ayanamsaCache = [];
+
+    public function clearCaches(): void
+    {
+        $this->julianDayCache = [];
+        $this->planetLongitudeCache = [];
+        $this->ascendantCache = [];
+        $this->ayanamsaCache = [];
+    }
+
+    private function trimCache(array &$cache): void
+    {
+        if (count($cache) >= self::CACHE_MAX) {
+            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
+        }
+    }
 
     private readonly CData $xxBuffer;
 
@@ -92,6 +111,8 @@ class AstronomyService
             + ((int) $utc->format('i')) / 60.0
             + ((int) $utc->format('s')) / 3600.0;
 
+        $this->trimCache($this->julianDayCache);
+
         return $this->julianDayCache[$cacheKey] = $this->jme->jme_julian_day(
             $utc->year,
             $utc->month,
@@ -146,6 +167,8 @@ class AstronomyService
             $out[$name] = $lon;
         }
 
+        $this->trimCache($this->planetLongitudeCache);
+
         return $this->planetLongitudeCache[$cacheKey] = $out;
     }
 
@@ -170,6 +193,8 @@ class AstronomyService
             $this->ascmcBuffer
         );
 
+        $this->trimCache($this->ascendantCache);
+
         return $this->ascendantCache[$cacheKey] = AstroCore::normalize($this->ascmcBuffer[0] - $ayanamsa);
     }
 
@@ -178,7 +203,13 @@ class AstronomyService
         $this->setAyanamsa($jd);
         $cacheKey = sprintf('%.17g', $jd);
 
-        return $this->ayanamsaCache[$cacheKey] ?? $this->ayanamsaCache[$cacheKey] = $this->jme->jme_get_ayanamsa_ut($jd);
+        if (isset($this->ayanamsaCache[$cacheKey])) {
+            return $this->ayanamsaCache[$cacheKey];
+        }
+
+        $this->trimCache($this->ayanamsaCache);
+
+        return $this->ayanamsaCache[$cacheKey] = $this->jme->jme_get_ayanamsa_ut($jd);
     }
 
     private function birthCacheKey(array $birth): string

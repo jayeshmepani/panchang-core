@@ -18,8 +18,8 @@ use LogicException;
 trait FestivalRelativeDaySupport
 {
     /**
-     * Govardhan / Bali Pratipada belong to the Deepotsav window immediately after Deepavali.
-     * Reject stray Kartika Pratipada resolutions that lack a preceding Lakshmi Puja civil day.
+     * Govardhan / Annakut belong to the Deepotsav window around Deepavali.
+     * Reject stray Kartika Pratipada resolutions that lack a same-day or preceding Lakshmi Puja civil day.
      */
     private function rejectDeepotsavGovardhanWithoutPrecedingDiwali(
         array $rules,
@@ -33,7 +33,7 @@ trait FestivalRelativeDaySupport
 
         $lookbackDays = (int) ($rules['deepotsav_preceding_diwali_days'] ?? 4);
 
-        for ($offset = 1; $offset <= $lookbackDays; $offset++) {
+        for ($offset = 0; $offset <= $lookbackDays; $offset++) {
             $priorDate = $date->subDays($offset);
             $priorDetails = $fetchHistoricalSnapshot($priorDate);
             $priorTomorrowDetails = $fetchHistoricalSnapshot($priorDate->addDay());

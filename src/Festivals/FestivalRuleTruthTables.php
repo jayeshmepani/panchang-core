@@ -353,20 +353,20 @@ trait FestivalRuleTruthTables
             return $this->markSpecialWinner($day2, 'janmashtami_saptami_viddha_choose_day2');
         }
 
-        if ($day1['nakshatra_matches'] && !$day2['nakshatra_matches']) {
-            return $this->markSpecialWinner($day1, 'janmashtami_shuddha_rohini_day1');
-        }
-
-        if (!$day1['nakshatra_matches'] && $day2['nakshatra_matches']) {
+        if (!$day1['nakshatra_matches'] && $day2['nakshatra_matches'] && ($day2['target_during_observance'] || $day2['target_at_karmakala'])) {
             return $this->markSpecialWinner($day2, 'janmashtami_shuddha_rohini_day2');
         }
 
-        if ($day1['nakshatra_matches']) {
+        if ($day1['nakshatra_matches'] && ($day2['target_during_observance'] || $day2['target_at_karmakala'])) {
             return $this->markSpecialWinner($day2, 'janmashtami_rohini_both_days_choose_day2');
         }
 
         if ($day1['target_at_karmakala'] && !$day2['target_at_karmakala']) {
             return $this->markSpecialWinner($day1, 'janmashtami_nishitha_only_day1');
+        }
+
+        if ($day1['target_during_observance']) {
+            return $this->markSpecialWinner($day1, 'janmashtami_shuddha_sunrise_ashtami_day1');
         }
 
         if ($day2['target_during_observance']) {
@@ -559,15 +559,19 @@ trait FestivalRuleTruthTables
     }
 
     /**
-     * Govardhan Puja / Annakut / Gokrida / Bali Puja (Satsangi Jeevan 4.58).
+     * Govardhan Puja / Annakut / Gokrida (Satsangi Jeevan 4.58 + Dharma Sindhu).
      *
-     * Kartika Shukla Pratipada for these festivals must:
-     *  - be sayahna-vyapini (still present at local sunset), and
-     *  - not invite Sthula Chandra Darshana risk (Pratipada lasts ≥ 9 muhurtas after sunrise).
+     * Satsangi Jeevan first asks for Kartika Shukla Pratipada to be sayahna-vyapini, while
+     * also preferring Amavasya-viddha Pratipada over Dvitiya-viddha Pratipada. Dharma Sindhu
+     * further distinguishes the sunrise Pratipada day:
+     *  - 10 muhurtas after sunrise: all Pratipada rites stay on the later/audayika day.
+     *  - below 9 muhurtas after sunrise: Govardhan/Gokrida/Bali rites use the previous
+     *    Amavasya-viddha day.
+     *  - 6 muhurtas of Dvitiya-entry is the gross Chandra-darshana warning context, not an
+     *    independent monthly Chandra Darshana selector.
      *
-     * If the pure udaya Pratipada day fails either test (e.g. Pratipada ends before sunset so
-     * evening is Dwitiya / CD night), use the previous Amavasya-viddha day — matching Bhuj
-     * Mandir Nirnay (Bestu Varas stays on sunrise Pratipada separately).
+     * Bali Pratipada remains its own festival identity, but Dharma Sindhu groups Bali Puja
+     * with Govardhan/Gokrida for this Pratipada fallback decision.
      */
     private function resolveGovardhanAnnakutTruthTable(array $candidates, array $targetInterval): ?array
     {
@@ -620,38 +624,42 @@ trait FestivalRuleTruthTables
     private function isGovardhanSafeUdayaPratipadaDay(array $day, array $targetInterval): array
     {
         $sunriseJd = (float) ($day['sunrise_jd'] ?? 0.0);
-        $sunsetJd = (float) ($day['sunset_jd'] ?? 0.0);
-        $targetStartJd = (float) ($targetInterval['start_jd'] ?? 0.0);
         $targetEndJd = (float) ($targetInterval['end_jd'] ?? 0.0);
         $dayMuhurtaSeconds = (float) ($day['day_muhurta_seconds'] ?? 0.0);
-        $thresholdSeconds = FestivalRuleConstants::GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS * $dayMuhurtaSeconds;
+        $fallbackThresholdSeconds = FestivalRuleConstants::GOVARDHAN_PREVIOUS_VIDDHA_FALLBACK_BELOW_MUHURTAS * $dayMuhurtaSeconds;
+        $fullRitesThresholdSeconds = FestivalRuleConstants::GOVARDHAN_LATER_PRATIPADA_FULL_RITES_MUHURTAS * $dayMuhurtaSeconds;
         $postSunriseSeconds = max(0.0, ($targetEndJd - $sunriseJd) * 86400.0);
 
-        // SJ 4.58: reject if evening is already Dwitiya-linked (Pratipada ends before sunset).
-        // Sayahna-vyapini = Pratipada still running at local sunset.
-        $sayahnaVyapini = $sunsetJd > 0.0
-            && $targetStartJd < $sunsetJd
-            && $targetEndJd > $sunsetJd;
+        // SJ 4.58: sayahna-vyapini means overlap with the local sayankala window,
+        // not necessarily survival until the exact sunset instant.
+        $sayahnaVyapini = (float) ($day['target_window_overlap_seconds'] ?? 0.0) > 0.0;
 
         if (!$sayahnaVyapini) {
             return [
                 'safe' => false,
-                'reason' => 'govardhan_pratipada_not_sayahna_or_dwitiya_evening_use_amavasya_viddha_prev_day',
+                'reason' => 'govardhan_pratipada_not_sayahna_use_amavasya_viddha_prev_day',
             ];
         }
 
-        // SJ sthula Chandra Darshana: if Pratipada does not last 9 muhurtas past sunrise,
-        // assume CD risk and use previous (Amavasya-viddha) day.
-        if ($thresholdSeconds <= 0.0 || $postSunriseSeconds < $thresholdSeconds) {
+        // Dharma Sindhu: if even 9 muhurtas of sunrise Pratipada are unavailable, fall back
+        // to the previous Amavasya-viddha day for Govardhan/Gokrida/Bali-group rites.
+        if ($fallbackThresholdSeconds <= 0.0 || $postSunriseSeconds < $fallbackThresholdSeconds) {
             return [
                 'safe' => false,
-                'reason' => 'govardhan_below_9_muhurta_sthula_chandra_darshana_amavasya_viddha_prev_day',
+                'reason' => 'govardhan_pratipada_below_9_muhurta_use_amavasya_viddha_prev_day',
+            ];
+        }
+
+        if ($fullRitesThresholdSeconds > 0.0 && $postSunriseSeconds >= $fullRitesThresholdSeconds) {
+            return [
+                'safe' => true,
+                'reason' => 'govardhan_pratipada_10_muhurta_sayahna_later_day',
             ];
         }
 
         return [
             'safe' => true,
-            'reason' => 'govardhan_pratipada_9_muhurta_sayahna_no_sthula_chandra_darshana_same_day',
+            'reason' => 'govardhan_pratipada_9_plus_muhurta_sayahna_later_day',
         ];
     }
 
@@ -1322,7 +1330,7 @@ trait FestivalRuleTruthTables
         return null;
     }
 
-    private function resolveSankashtiTruthTable(array $candidates): ?array
+    private function resolveSankashtiTruthTable(array $candidates, array $rule = []): ?array
     {
         $day1 = $candidates[0] ?? null;
         $day2 = $candidates[1] ?? null;
@@ -1344,16 +1352,18 @@ trait FestivalRuleTruthTables
             return $this->markSankashtiWinner($day2, 'sankashti_only_day2_moonrise_vyapini');
         }
 
-        if (!(bool) ($day1['target_during_observance'] ?? false) && (bool) ($day2['target_during_observance'] ?? false)) {
-            return $this->markSankashtiWinner($day2, 'sankashti_neither_moonrise_vyapini_choose_day2');
-        }
+        if (!(bool) ($rule['strict_karmakala'] ?? false)) {
+            if (!(bool) ($day1['target_during_observance'] ?? false) && (bool) ($day2['target_during_observance'] ?? false)) {
+                return $this->markSankashtiWinner($day2, 'sankashti_neither_moonrise_vyapini_choose_day2');
+            }
 
-        if (!$day1Moonrise && !$day2Moonrise && (bool) ($day1['target_at_sunrise'] ?? false)) {
-            return $this->markSankashtiWinner($day1, 'sankashti_no_moonrise_vyapini_sunrise_chaturthi_day1');
-        }
+            if (!$day1Moonrise && !$day2Moonrise && (bool) ($day1['target_at_sunrise'] ?? false)) {
+                return $this->markSankashtiWinner($day1, 'sankashti_no_moonrise_vyapini_sunrise_chaturthi_day1');
+            }
 
-        if (!$day1Moonrise && !$day2Moonrise && (bool) ($day2['target_at_sunrise'] ?? false)) {
-            return $this->markSankashtiWinner($day2, 'sankashti_no_moonrise_vyapini_sunrise_chaturthi_day2');
+            if (!$day1Moonrise && !$day2Moonrise && (bool) ($day2['target_at_sunrise'] ?? false)) {
+                return $this->markSankashtiWinner($day2, 'sankashti_no_moonrise_vyapini_sunrise_chaturthi_day2');
+            }
         }
 
         return null;

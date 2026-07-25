@@ -36,7 +36,7 @@ $eclipseService = CliBootstrap::makeEclipseService();
 $eclipsesByYear = [];
 $eclipsesFlat = [];
 
-echo "Building eclipses for {$startYear}-{$endYear}..." . PHP_EOL;
+echo sprintf('Building eclipses for %d-%d...', $startYear, $endYear) . PHP_EOL;
 
 for ($year = $startYear; $year <= $endYear; $year++) {
     $events = $eclipseService->getEclipsesForYear($year, $latitude, $longitude, $timezone);
@@ -77,14 +77,14 @@ $output = [
     ],
 ];
 
-$filename = "eclipses_{$startYear}_{$endYear}.json";
+$filename = sprintf('eclipses_%d_%d.json', $startYear, $endYear);
 $outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
 try {
     panchang_script_write_json($outputPath, $output);
-} catch (RuntimeException $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+} catch (RuntimeException $runtimeException) {
+    fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
     exit(1);
 }
 
-echo "Written {$outputPath} — " . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;
+echo sprintf('Written %s — ', $outputPath) . count($eclipsesFlat) . ' eclipses across ' . ($endYear - $startYear + 1) . ' years.' . PHP_EOL;

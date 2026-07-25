@@ -63,9 +63,17 @@ class PanchangService
         'Janaki Jayanti',
     ];
 
-    private const int BODY_LONGITUDE_CACHE_MAX = 20000;
+    private const int BODY_LONGITUDE_CACHE_MAX = 5000;
 
-    private const int BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
+    private const int BODY_LONGITUDE_CACHE_TRIM_TO = 2500;
+
+    private const int FESTIVAL_SNAPSHOT_CACHE_MAX = 500;
+
+    private const int FESTIVAL_SNAPSHOT_CACHE_TRIM_TO = 250;
+
+    private const int MONTH_CACHE_MAX = 200;
+
+    private const int MONTH_CACHE_TRIM_TO = 100;
 
     private static string $ephePath = '';
 
@@ -76,6 +84,15 @@ class PanchangService
 
     /** @var array<string, float> */
     private array $bodyLongitudeCache = [];
+
+    public function clearCaches(): void
+    {
+        $this->monthCache = [];
+        $this->festivalSnapshotCache = [];
+        $this->bodyLongitudeCache = [];
+        $this->astronomy->clearCaches();
+        $this->sunService->clearCaches();
+    }
 
     private readonly CData $calcBodyBuffer;
 
@@ -1214,6 +1231,15 @@ class PanchangService
         $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
         $samvatsara = $this->panchanga->getSamvatsara($vikram);
         $samvatsaraNorth = $this->panchanga->getSamvatsaraNorth($vikram);
+
+        if (count($this->festivalSnapshotCache) >= self::FESTIVAL_SNAPSHOT_CACHE_MAX) {
+            $this->festivalSnapshotCache = array_slice(
+                $this->festivalSnapshotCache,
+                -self::FESTIVAL_SNAPSHOT_CACHE_TRIM_TO,
+                null,
+                true
+            );
+        }
 
         return $this->festivalSnapshotCache[$snapshotCacheKey] = [
             'Tithi' => $tithi,

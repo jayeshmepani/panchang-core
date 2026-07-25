@@ -221,7 +221,7 @@ class SpecialYogaRegressionTest extends TestCase
         $aadalWindow = $aadal['windows'][0];
         $vidaalWindow = $vidaal['windows'][0];
 
-        $this->assertSame('Dhanishta', $aadalWindow['nakshatra'] ?? null);
+        $this->assertSame('Dhanishtha', $aadalWindow['nakshatra'] ?? null);
         $this->assertSame(23, $aadalWindow['count_with_abhijit'] ?? null);
         $this->assertSame('Shatabhisha', $vidaalWindow['nakshatra'] ?? null);
         $this->assertSame(24, $vidaalWindow['count_with_abhijit'] ?? null);

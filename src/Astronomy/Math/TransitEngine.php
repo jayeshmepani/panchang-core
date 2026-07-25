@@ -11,9 +11,9 @@ use JmeEph\FFI\JmeEphFFI;
 /** Transit Engine - Handles astronomical crossing and low-level math. */
 class TransitEngine
 {
-    private const int DEFAULT_BODY_LONGITUDE_CACHE_MAX = 20000;
+    private const int DEFAULT_BODY_LONGITUDE_CACHE_MAX = 5000;
 
-    private const int DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO = 10000;
+    private const int DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO = 2500;
 
     private readonly CData $xxBuffer;
 
@@ -21,6 +21,11 @@ class TransitEngine
 
     /** @var array<string, float> */
     private array $bodyLongitudeCache = [];
+
+    public function clearCache(): void
+    {
+        $this->bodyLongitudeCache = [];
+    }
 
     public function __construct(
         private readonly JmeEphFFI $jme,

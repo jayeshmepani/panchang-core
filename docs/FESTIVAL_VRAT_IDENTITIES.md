@@ -85,7 +85,7 @@ Runtime notes:
 | 48 | Ayudha Puja (Saraswati Puja) | - |
 | 49 | Bagalamukhi Jayanti | - |
 | 50 | Bahuda Yatra | - |
-| 51 | Bali Pratipada | Annakut |
+| 51 | Bali Pratipada | Bali Puja |
 | 52 | Bathukamma (Saddula) | - |
 | 53 | Bestu Varas | - |
 | 54 | Bhadrapada Amavasya | Mahalaya Amavasya, Sarva Pitru Amavasya |
@@ -148,7 +148,7 @@ Runtime notes:
 | 111 | Goga Navami | Gugga Naumi, Shri Goga Navami |
 | 112 | Goga Pancham | Goga Panchami (Nag Panchami - Gujarat) |
 | 113 | Gopashtami | - |
-| 114 | Govardhan Puja | Annakut, Bali Puja, Govardhan Utsav |
+| 114 | Govardhan Puja | Annakut, Govardhan Utsav |
 | 115 | Gowri Habba (Swarna Gauri Vrata) | - |
 | 116 | Gunatitanand Swami Diksha Day | - |
 | 117 | Gunatitanand Swami Jayanti | - |

@@ -23,11 +23,19 @@ final class FestivalRuleConstants
     public const float RAKSHA_BANDHAN_UDAYA_PURNIMA_THRESHOLD_MUHURTAS = 3.0;
 
     /**
-     * Govardhan/Annakut "Sthula Chandra Darshana" threshold: if Kartika Shukla Pratipada
-     * persists at least 9 muhurtas past sunrise the day is treated as free of Sthula
-     * Chandra Darshana; otherwise the observance shifts to the previous (Amavasya-viddha) day.
+     * Govardhan/Annakut Pratipada thresholds from the Bali-puja nirnaya tradition.
+     *
+     * Dharma Sindhu says a sunrise Pratipada lasting 10 dinamana-muhurtas carries all rites
+     * on the later Pratipada day, while Govardhan/Gokrida/Bali rites fall back to the previous
+     * Amavasya-viddha Pratipada when even 9 muhurtas are unavailable. The same passage treats
+     * 6 muhurtas of Dvitiya-entry as the gross Chandra-darshana concern, but that is explanatory
+     * context rather than a standalone monthly Chandra Darshana selector.
      */
-    public const float GOVARDHAN_STHULA_CHANDRA_DARSHANA_MUHURTAS = 9.0;
+    public const float GOVARDHAN_LATER_PRATIPADA_FULL_RITES_MUHURTAS = 10.0;
+
+    public const float GOVARDHAN_PREVIOUS_VIDDHA_FALLBACK_BELOW_MUHURTAS = 9.0;
+
+    public const float GOVARDHAN_GROSS_DWITIYA_ENTRY_MUHURTAS = 6.0;
 
     /**
      * Nag Panchami (Shravana Krishna Panchami) is paraviddha: the reference keeps the Panchami

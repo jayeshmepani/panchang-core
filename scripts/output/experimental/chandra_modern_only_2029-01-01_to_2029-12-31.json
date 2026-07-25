@@ -1,0 +1,1221 @@
+{
+    "generated_at": "2026-07-24T18:07:03+05:30",
+    "model": "modern_ephemeris_drik_aligned_gates",
+    "preset": "drik_bhuj_2024_2028",
+    "description": "Ephemeris first-crescent: earliest evening with elong≥min and lag≥min (default 10° / 39 min calibrated to Drik at Bhuj 2024–2028). Not Yallop; not full Sūrya Siddhānta.",
+    "range": {
+        "from": "2029-01-01",
+        "to": "2029-12-31"
+    },
+    "observer": {
+        "latitude": 23.2472446,
+        "longitude": 69.668339,
+        "elevation": 0,
+        "timezone": "Asia/Kolkata"
+    },
+    "calendar_type": "amanta",
+    "gates": {
+        "post_conjunction_sunset": true,
+        "waxing_half": true,
+        "moonset_after_sunset": true,
+        "min_lag_minutes": 39,
+        "min_illumination_percent": 0.5,
+        "min_elongation_deg": 10,
+        "min_visibility_proxy_score": -0.5,
+        "max_lunar_age_hours": 72,
+        "selection": "earliest_evening_passing_all_gates",
+        "score_formula": "0.75*((elong-10)/20)+0.25*((lag_min-20)/60)",
+        "calibration": "drik_panchang_bhuj_2024_2028_elong_ge_10_lag_ge_39",
+        "use_drik_overrides": false,
+        "not_used_for_date": [
+            "surya_siddhanta_12_bhaga_hard_gate",
+            "ss10_lagnantara_oa_date_gate",
+            "classical_six_muhurta_aparahna_date",
+            "yallop_q"
+        ]
+    },
+    "drik_alignment": {
+        "targets_in_range": 0,
+        "resolved": 12,
+        "exact_matches": 0,
+        "mismatches": [],
+        "perfect_match": false
+    },
+    "counts": {
+        "seasons_in_output": 12,
+        "resolved_dates": 12
+    },
+    "dates": [
+        "2029-01-16",
+        "2029-02-14",
+        "2029-03-16",
+        "2029-04-15",
+        "2029-05-14",
+        "2029-06-13",
+        "2029-07-13",
+        "2029-08-11",
+        "2029-09-10",
+        "2029-10-09",
+        "2029-11-07",
+        "2029-12-06"
+    ],
+    "rows": [
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-01-16",
+            "amavasya_end_jd": 2462151.2252729787,
+            "anchor_date": "2029-01-14",
+            "selected": {
+                "date": "2029-01-16",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 21.08°, lag 96.7 min, illum 3.346%, age 43.6h, score 0.7353 (HIGH).",
+                "metrics": {
+                    "date": "2029-01-16",
+                    "elongation_deg": 21.0803,
+                    "illumination_percent": 3.3461,
+                    "lag_minutes": 96.75,
+                    "lunar_age_hours": 43.57,
+                    "visibility_proxy_score": 0.7353,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-01-14",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset is still at or before Amāvasyā end (conjunction not finished).",
+                    "metrics": null,
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-01-15",
+                    "status_code": "REJECTED_ELONGATION_BELOW_FLOOR",
+                    "reason": "Elongation 9.56° < modern floor 10.0°.",
+                    "metrics": {
+                        "date": "2029-01-15",
+                        "elongation_deg": 9.5551,
+                        "illumination_percent": 0.6937,
+                        "lag_minutes": 42.57,
+                        "lunar_age_hours": 19.55,
+                        "visibility_proxy_score": 0.0773,
+                        "score_band": "MEDIUM",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-01-18",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 91.6h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-01-18",
+                        "elongation_deg": 43.5101,
+                        "illumination_percent": 13.7374,
+                        "lag_minutes": 198.53,
+                        "lunar_age_hours": 91.59,
+                        "visibility_proxy_score": 2.0005,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-01-17",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 32.39°, lag 148.5 min, illum 7.779%, age 67.6h, score 1.3752 (HIGH).",
+                    "metrics": {
+                        "date": "2029-01-17",
+                        "elongation_deg": 32.3895,
+                        "illumination_percent": 7.7787,
+                        "lag_minutes": 148.55,
+                        "lunar_age_hours": 67.58,
+                        "visibility_proxy_score": 1.3752,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-02-14",
+            "amavasya_end_jd": 2462180.938470077,
+            "anchor_date": "2029-02-13",
+            "selected": {
+                "date": "2029-02-14",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 12.45°, lag 53.5 min, illum 1.176%, age 26.8h, score 0.2315 (HIGH).",
+                "metrics": {
+                    "date": "2029-02-14",
+                    "elongation_deg": 12.451,
+                    "illumination_percent": 1.176,
+                    "lag_minutes": 53.5,
+                    "lunar_age_hours": 26.77,
+                    "visibility_proxy_score": 0.2315,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-02-13",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 2.8 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-02-13",
+                        "elongation_deg": 1.2914,
+                        "illumination_percent": 0.0127,
+                        "lag_minutes": 2.85,
+                        "lunar_age_hours": 2.76,
+                        "visibility_proxy_score": -0.398,
+                        "score_band": "REJECT",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-02-16",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 74.8h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-02-16",
+                        "elongation_deg": 34.4207,
+                        "illumination_percent": 8.7545,
+                        "lag_minutes": 152.05,
+                        "lunar_age_hours": 74.79,
+                        "visibility_proxy_score": 1.466,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-02-17",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 98.8h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-02-17",
+                        "elongation_deg": 45.2876,
+                        "illumination_percent": 14.8226,
+                        "lag_minutes": 201.42,
+                        "lunar_age_hours": 98.8,
+                        "visibility_proxy_score": 2.0792,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-02-15",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 23.49°, lag 103.0 min, illum 4.142%, age 50.8h, score 0.8515 (HIGH).",
+                    "metrics": {
+                        "date": "2029-02-15",
+                        "elongation_deg": 23.4863,
+                        "illumination_percent": 4.1422,
+                        "lag_minutes": 102.98,
+                        "lunar_age_hours": 50.78,
+                        "visibility_proxy_score": 0.8515,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-03-16",
+            "amavasya_end_jd": 2462210.67995214,
+            "anchor_date": "2029-03-15",
+            "selected": {
+                "date": "2029-03-16",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 15.08°, lag 64.1 min, illum 1.722%, age 33.2h, score 0.3742 (HIGH).",
+                "metrics": {
+                    "date": "2029-03-16",
+                    "elongation_deg": 15.0811,
+                    "illumination_percent": 1.7221,
+                    "lag_minutes": 64.07,
+                    "lunar_age_hours": 33.21,
+                    "visibility_proxy_score": 0.3742,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-03-15",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 14.7 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-03-15",
+                        "elongation_deg": 4.1876,
+                        "illumination_percent": 0.1335,
+                        "lag_minutes": 14.72,
+                        "lunar_age_hours": 9.2,
+                        "visibility_proxy_score": -0.24,
+                        "score_band": "REJECT",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-03-18",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 81.2h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-03-18",
+                        "elongation_deg": 36.8182,
+                        "illumination_percent": 9.9729,
+                        "lag_minutes": 165.38,
+                        "lunar_age_hours": 81.22,
+                        "visibility_proxy_score": 1.6114,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-03-19",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 105.2h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-03-19",
+                        "elongation_deg": 47.7292,
+                        "illumination_percent": 16.3682,
+                        "lag_minutes": 217.77,
+                        "lunar_age_hours": 105.23,
+                        "visibility_proxy_score": 2.2389,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-03-17",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 25.95°, lag 114.1 min, illum 5.041%, age 57.2h, score 0.9904 (HIGH).",
+                    "metrics": {
+                        "date": "2029-03-17",
+                        "elongation_deg": 25.9484,
+                        "illumination_percent": 5.0406,
+                        "lag_minutes": 114.15,
+                        "lunar_age_hours": 57.22,
+                        "visibility_proxy_score": 0.9904,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-04-15",
+            "amavasya_end_jd": 2462240.4028150626,
+            "anchor_date": "2029-04-13",
+            "selected": {
+                "date": "2029-04-15",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 18.24°, lag 83.0 min, illum 2.512%, age 40.1h, score 0.5713 (HIGH).",
+                "metrics": {
+                    "date": "2029-04-15",
+                    "elongation_deg": 18.2387,
+                    "illumination_percent": 2.512,
+                    "lag_minutes": 82.97,
+                    "lunar_age_hours": 40.05,
+                    "visibility_proxy_score": 0.5713,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-04-13",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset is still at or before Amāvasyā end (conjunction not finished).",
+                    "metrics": null,
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-04-14",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 30.8 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-04-14",
+                        "elongation_deg": 7.2912,
+                        "illumination_percent": 0.4043,
+                        "lag_minutes": 30.82,
+                        "lunar_age_hours": 16.04,
+                        "visibility_proxy_score": -0.0565,
+                        "score_band": "LOW",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-04-17",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 88.1h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-04-17",
+                        "elongation_deg": 40.3745,
+                        "illumination_percent": 11.9087,
+                        "lag_minutes": 189.08,
+                        "lunar_age_hours": 88.06,
+                        "visibility_proxy_score": 1.8436,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-04-16",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 29.26°, lag 136.0 min, illum 6.377%, age 64.1h, score 1.2053 (HIGH).",
+                    "metrics": {
+                        "date": "2029-04-16",
+                        "elongation_deg": 29.2553,
+                        "illumination_percent": 6.3774,
+                        "lag_minutes": 135.98,
+                        "lunar_age_hours": 64.06,
+                        "visibility_proxy_score": 1.2053,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-05-14",
+            "amavasya_end_jd": 2462270.070850307,
+            "anchor_date": "2029-05-13",
+            "selected": {
+                "date": "2029-05-14",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 11.29°, lag 52.5 min, illum 0.968%, age 24.2h, score 0.1841 (MEDIUM).",
+                "metrics": {
+                    "date": "2029-05-14",
+                    "elongation_deg": 11.2939,
+                    "illumination_percent": 0.9682,
+                    "lag_minutes": 52.55,
+                    "lunar_age_hours": 24.23,
+                    "visibility_proxy_score": 0.1841,
+                    "score_band": "MEDIUM",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-05-13",
+                    "status_code": "REJECTED_NO_POST_SUNSET_WINDOW",
+                    "reason": "Moon not after sunset (or moonrise after sunset when known).",
+                    "metrics": {
+                        "date": "2029-05-13",
+                        "elongation_deg": 0.104,
+                        "illumination_percent": 0.0001,
+                        "lag_minutes": -0.92,
+                        "lunar_age_hours": 0.22,
+                        "visibility_proxy_score": -0.4544,
+                        "score_band": "REJECT",
+                        "horizon_ok": false,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-05-16",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 72.2h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-05-16",
+                        "elongation_deg": 34.1168,
+                        "illumination_percent": 8.6052,
+                        "lag_minutes": 156.05,
+                        "lunar_age_hours": 72.25,
+                        "visibility_proxy_score": 1.4713,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-05-17",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 96.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-05-17",
+                        "elongation_deg": 45.8055,
+                        "illumination_percent": 15.1452,
+                        "lag_minutes": 203.87,
+                        "lunar_age_hours": 96.26,
+                        "visibility_proxy_score": 2.1088,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-05-15",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 22.62°, lag 105.3 min, illum 3.847%, age 48.2h, score 0.8288 (HIGH).",
+                    "metrics": {
+                        "date": "2029-05-15",
+                        "elongation_deg": 22.6231,
+                        "illumination_percent": 3.8472,
+                        "lag_minutes": 105.3,
+                        "lunar_age_hours": 48.24,
+                        "visibility_proxy_score": 0.8288,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-06-13",
+            "amavasya_end_jd": 2462299.660015505,
+            "anchor_date": "2029-06-12",
+            "selected": {
+                "date": "2029-06-13",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 16.81°, lag 69.5 min, illum 2.136%, age 34.3h, score 0.4614 (HIGH).",
+                "metrics": {
+                    "date": "2029-06-13",
+                    "elongation_deg": 16.8078,
+                    "illumination_percent": 2.136,
+                    "lag_minutes": 69.47,
+                    "lunar_age_hours": 34.31,
+                    "visibility_proxy_score": 0.4614,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-06-12",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 19.8 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-06-12",
+                        "elongation_deg": 5.0007,
+                        "illumination_percent": 0.1903,
+                        "lag_minutes": 19.8,
+                        "lunar_age_hours": 10.3,
+                        "visibility_proxy_score": -0.1883,
+                        "score_band": "BORDERLINE",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-06-15",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 82.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-06-15",
+                        "elongation_deg": 41.093,
+                        "illumination_percent": 12.3178,
+                        "lag_minutes": 158.62,
+                        "lunar_age_hours": 82.32,
+                        "visibility_proxy_score": 1.7436,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-06-16",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 106.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-06-16",
+                        "elongation_deg": 53.5773,
+                        "illumination_percent": 20.3131,
+                        "lag_minutes": 198.68,
+                        "lunar_age_hours": 106.32,
+                        "visibility_proxy_score": 2.3787,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-06-14",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 28.84°, lag 115.7 min, illum 6.200%, age 58.3h, score 1.1053 (HIGH).",
+                    "metrics": {
+                        "date": "2029-06-14",
+                        "elongation_deg": 28.8371,
+                        "illumination_percent": 6.2003,
+                        "lag_minutes": 115.75,
+                        "lunar_age_hours": 58.31,
+                        "visibility_proxy_score": 1.1053,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-07-13",
+            "amavasya_end_jd": 2462329.160372572,
+            "anchor_date": "2029-07-11",
+            "selected": {
+                "date": "2029-07-13",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 24.25°, lag 76.2 min, illum 4.412%, age 46.3h, score 0.7685 (HIGH).",
+                "metrics": {
+                    "date": "2029-07-13",
+                    "elongation_deg": 24.2502,
+                    "illumination_percent": 4.412,
+                    "lag_minutes": 76.2,
+                    "lunar_age_hours": 46.34,
+                    "visibility_proxy_score": 0.7685,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-07-11",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset is still at or before Amāvasyā end (conjunction not finished).",
+                    "metrics": null,
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-07-12",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 33.9 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-07-12",
+                        "elongation_deg": 11.5709,
+                        "illumination_percent": 1.0161,
+                        "lag_minutes": 33.87,
+                        "lunar_age_hours": 22.34,
+                        "visibility_proxy_score": 0.1167,
+                        "score_band": "MEDIUM",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-07-15",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 94.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-07-15",
+                        "elongation_deg": 50.2279,
+                        "illumination_percent": 18.0132,
+                        "lag_minutes": 154.98,
+                        "lunar_age_hours": 94.33,
+                        "visibility_proxy_score": 2.071,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-07-14",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 37.15°, lag 116.2 min, illum 10.148%, age 70.3h, score 1.4191 (HIGH).",
+                    "metrics": {
+                        "date": "2029-07-14",
+                        "elongation_deg": 37.1523,
+                        "illumination_percent": 10.1484,
+                        "lag_minutes": 116.22,
+                        "lunar_age_hours": 70.34,
+                        "visibility_proxy_score": 1.4191,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-08-11",
+            "amavasya_end_jd": 2462358.580320297,
+            "anchor_date": "2029-08-10",
+            "selected": {
+                "date": "2029-08-11",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 19.96°, lag 46.2 min, illum 3.004%, age 36.0h, score 0.4828 (HIGH).",
+                "metrics": {
+                    "date": "2029-08-11",
+                    "elongation_deg": 19.9608,
+                    "illumination_percent": 3.0037,
+                    "lag_minutes": 46.22,
+                    "lunar_age_hours": 36.03,
+                    "visibility_proxy_score": 0.4828,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-08-10",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 5.4 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-08-10",
+                        "elongation_deg": 6.6092,
+                        "illumination_percent": 0.3323,
+                        "lag_minutes": 5.43,
+                        "lunar_age_hours": 12.04,
+                        "visibility_proxy_score": -0.1879,
+                        "score_band": "BORDERLINE",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-08-13",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 84.0h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-08-13",
+                        "elongation_deg": 47.061,
+                        "illumination_percent": 15.939,
+                        "lag_minutes": 127.77,
+                        "lunar_age_hours": 84.01,
+                        "visibility_proxy_score": 1.8388,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-08-14",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 108.0h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-08-14",
+                        "elongation_deg": 60.6003,
+                        "illumination_percent": 25.455,
+                        "lag_minutes": 171.1,
+                        "lunar_age_hours": 107.99,
+                        "visibility_proxy_score": 2.5271,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-08-12",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 33.48°, lag 86.6 min, illum 8.296%, age 60.0h, score 1.1580 (HIGH).",
+                    "metrics": {
+                        "date": "2029-08-12",
+                        "elongation_deg": 33.4806,
+                        "illumination_percent": 8.2964,
+                        "lag_minutes": 86.58,
+                        "lunar_age_hours": 60.02,
+                        "visibility_proxy_score": 1.158,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-09-10",
+            "amavasya_end_jd": 2462387.9473992586,
+            "anchor_date": "2029-09-08",
+            "selected": {
+                "date": "2029-09-10",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 29.52°, lag 71.1 min, illum 6.492%, age 50.8h, score 0.9448 (HIGH).",
+                "metrics": {
+                    "date": "2029-09-10",
+                    "elongation_deg": 29.5222,
+                    "illumination_percent": 6.4917,
+                    "lag_minutes": 71.05,
+                    "lunar_age_hours": 50.77,
+                    "visibility_proxy_score": 0.9448,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-09-08",
+                    "status_code": "REJECTED_NO_POST_SUNSET_WINDOW",
+                    "reason": "Moon not after sunset (or moonrise after sunset when known).",
+                    "metrics": {
+                        "date": "2029-09-08",
+                        "elongation_deg": 1.6171,
+                        "illumination_percent": 0.0199,
+                        "lag_minutes": -15.27,
+                        "lunar_age_hours": 2.81,
+                        "visibility_proxy_score": -0.3977,
+                        "score_band": "REJECT",
+                        "horizon_ok": false,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-09-09",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 27.0 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-09-09",
+                        "elongation_deg": 15.5355,
+                        "illumination_percent": 1.8268,
+                        "lag_minutes": 26.95,
+                        "lunar_age_hours": 26.79,
+                        "visibility_proxy_score": 0.2365,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-09-11",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 74.8h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-09-11",
+                        "elongation_deg": 43.4244,
+                        "illumination_percent": 13.6859,
+                        "lag_minutes": 118.22,
+                        "lunar_age_hours": 74.76,
+                        "visibility_proxy_score": 1.6627,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-09-12",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 98.7h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-09-12",
+                        "elongation_deg": 57.1156,
+                        "illumination_percent": 22.8527,
+                        "lag_minutes": 169.35,
+                        "lunar_age_hours": 98.74,
+                        "visibility_proxy_score": 2.3891,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-10-09",
+            "amavasya_end_jd": 2462417.301685322,
+            "anchor_date": "2029-10-07",
+            "selected": {
+                "date": "2029-10-09",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 24.79°, lag 65.4 min, illum 4.609%, age 41.8h, score 0.7437 (HIGH).",
+                "metrics": {
+                    "date": "2029-10-09",
+                    "elongation_deg": 24.7943,
+                    "illumination_percent": 4.609,
+                    "lag_minutes": 65.35,
+                    "lunar_age_hours": 41.79,
+                    "visibility_proxy_score": 0.7437,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-10-07",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset is still at or before Amāvasyā end (conjunction not finished).",
+                    "metrics": null,
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-10-08",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 14.5 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-10-08",
+                        "elongation_deg": 10.5858,
+                        "illumination_percent": 0.851,
+                        "lag_minutes": 14.5,
+                        "lunar_age_hours": 17.8,
+                        "visibility_proxy_score": -0.0009,
+                        "score_band": "MEDIUM",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-10-11",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 89.8h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-10-11",
+                        "elongation_deg": 52.4459,
+                        "illumination_percent": 19.5245,
+                        "lag_minutes": 180.48,
+                        "lunar_age_hours": 89.76,
+                        "visibility_proxy_score": 2.2604,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-10-10",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 38.79°, lag 120.9 min, illum 11.027%, age 65.8h, score 1.4999 (HIGH).",
+                    "metrics": {
+                        "date": "2029-10-10",
+                        "elongation_deg": 38.7896,
+                        "illumination_percent": 11.0274,
+                        "lag_minutes": 120.87,
+                        "lunar_age_hours": 65.77,
+                        "visibility_proxy_score": 1.4999,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-11-07",
+            "amavasya_end_jd": 2462446.683330723,
+            "anchor_date": "2029-11-06",
+            "selected": {
+                "date": "2029-11-07",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 19.07°, lag 61.9 min, illum 2.745%, age 32.3h, score 0.5149 (HIGH).",
+                "metrics": {
+                    "date": "2029-11-07",
+                    "elongation_deg": 19.0747,
+                    "illumination_percent": 2.7453,
+                    "lag_minutes": 61.9,
+                    "lunar_age_hours": 32.27,
+                    "visibility_proxy_score": 0.5149,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-11-06",
+                    "status_code": "REJECTED_LAG_TOO_SHORT",
+                    "reason": "Lag 3.1 min < hard floor 39.0 min.",
+                    "metrics": {
+                        "date": "2029-11-06",
+                        "elongation_deg": 4.9244,
+                        "illumination_percent": 0.1846,
+                        "lag_minutes": 3.13,
+                        "lunar_age_hours": 8.28,
+                        "visibility_proxy_score": -0.2606,
+                        "score_band": "REJECT",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-11-09",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 80.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-11-09",
+                        "elongation_deg": 46.4047,
+                        "illumination_percent": 15.522,
+                        "lag_minutes": 189.08,
+                        "lunar_age_hours": 80.26,
+                        "visibility_proxy_score": 2.0697,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-11-10",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 104.3h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-11-10",
+                        "elongation_deg": 59.4193,
+                        "illumination_percent": 24.5624,
+                        "lag_minutes": 252.43,
+                        "lunar_age_hours": 104.25,
+                        "visibility_proxy_score": 2.8217,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-11-08",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 32.94°, lag 124.7 min, illum 8.037%, age 56.3h, score 1.2964 (HIGH).",
+                    "metrics": {
+                        "date": "2029-11-08",
+                        "elongation_deg": 32.938,
+                        "illumination_percent": 8.037,
+                        "lag_minutes": 124.7,
+                        "lunar_age_hours": 56.27,
+                        "visibility_proxy_score": 1.2964,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        },
+        {
+            "status": "RESOLVED",
+            "canonical_date": "2029-12-06",
+            "amavasya_end_jd": 2462476.119445216,
+            "anchor_date": "2029-12-05",
+            "selected": {
+                "date": "2029-12-06",
+                "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                "reason": "Modern accept: elong 12.52°, lag 50.2 min, illum 1.189%, age 21.7h, score 0.2205 (HIGH).",
+                "metrics": {
+                    "date": "2029-12-06",
+                    "elongation_deg": 12.5195,
+                    "illumination_percent": 1.1889,
+                    "lag_minutes": 50.23,
+                    "lunar_age_hours": 21.74,
+                    "visibility_proxy_score": 0.2205,
+                    "score_band": "HIGH",
+                    "horizon_ok": true,
+                    "claims_yallop": false,
+                    "model": "modern_elong_lag_illum_score"
+                },
+                "selection_mode": "MODERN_SCIENCE"
+            },
+            "rejected": [
+                {
+                    "date": "2029-12-05",
+                    "status_code": "REJECTED_BEFORE_CONJUNCTION_END",
+                    "reason": "Sunset is still at or before Amāvasyā end (conjunction not finished).",
+                    "metrics": null,
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-12-09",
+                    "status_code": "REJECTED_LUNAR_AGE_TOO_OLD",
+                    "reason": "Lunar age 93.7h exceeds 72h first-crescent window.",
+                    "metrics": {
+                        "date": "2029-12-09",
+                        "elongation_deg": 51.9088,
+                        "illumination_percent": 19.1542,
+                        "lag_minutes": 239.02,
+                        "lunar_age_hours": 93.75,
+                        "visibility_proxy_score": 2.4841,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": null
+                },
+                {
+                    "date": "2029-12-07",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 26.05°, lag 115.4 min, illum 5.081%, age 45.7h, score 0.9994 (HIGH).",
+                    "metrics": {
+                        "date": "2029-12-07",
+                        "elongation_deg": 26.0543,
+                        "illumination_percent": 5.0811,
+                        "lag_minutes": 115.37,
+                        "lunar_age_hours": 45.74,
+                        "visibility_proxy_score": 0.9994,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                },
+                {
+                    "date": "2029-12-08",
+                    "status_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+                    "reason": "Modern accept: elong 39.20°, lag 178.8 min, illum 11.252%, age 69.7h, score 1.7566 (HIGH).",
+                    "metrics": {
+                        "date": "2029-12-08",
+                        "elongation_deg": 39.1992,
+                        "illumination_percent": 11.2523,
+                        "lag_minutes": 178.8,
+                        "lunar_age_hours": 69.74,
+                        "visibility_proxy_score": 1.7566,
+                        "score_band": "HIGH",
+                        "horizon_ok": true,
+                        "claims_yallop": false,
+                        "model": "modern_elong_lag_illum_score"
+                    },
+                    "selection_mode": "MODERN_SCIENCE",
+                    "outranked": "later_than_earliest_modern_accept"
+                }
+            ],
+            "reason_code": "SUCCESS_MODERN_VISIBILITY_PROXY",
+            "selection_mode": "MODERN_SCIENCE"
+        }
+    ]
+}

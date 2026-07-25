@@ -633,8 +633,14 @@ class FestivalService
     {
         if ((bool) ($rules['require_vaishnava_ekadashi_today'] ?? false)) {
             $vaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
+            if ((string) ($vaishnava['fasting_day'] ?? '') === 'Today') {
+                return false;
+            }
+            if (!empty($todayDetails['Ekadashi_Observance']['parana']) && ((int) ($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? 0)) === 12) {
+                return false;
+            }
 
-            return (string) ($vaishnava['fasting_day'] ?? '') !== 'Today';
+            return true;
         }
 
         return false;
@@ -642,7 +648,8 @@ class FestivalService
 
     private function matchesShiftedVaishnavaEkadashiName(array $rules, array $todayDetails, array $yesterdayDetails): bool
     {
-        if ((int) ($rules['tithi'] ?? 0) !== 11 || !(bool) ($rules['require_vaishnava_ekadashi_today'] ?? false)) {
+        $isEkadashiRule = ((int) ($rules['tithi'] ?? 0) === 11) && ((bool) ($rules['fasting'] ?? false) || (bool) ($rules['ekadashi_nirnay_table'] ?? false) || (bool) ($rules['require_vaishnava_ekadashi_today'] ?? false));
+        if (!$isEkadashiRule) {
             return false;
         }
 

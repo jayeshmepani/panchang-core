@@ -12,14 +12,25 @@ use JayeshMepani\PanchangCore\Core\Localization;
  *
  * Source boundary:
  *  - strict source-only mode does not itself declare a universal monthly date;
- *  - production calendar mode explicitly selects the earliest Shukla Pratipada/Dvitiya
- *    post-Amavasya local evening satisfying the engine's modern proxy for the traditional
- *    12-bhaga indication;
+ *  - production calendar mode selects the earliest Shukla Pratipada/Dvitiya
+ *    post-Amavasya local evening satisfying a modern proxy for SS 10.1’s traditional
+ *    twelve-bhāga indication;
+ *  - SS 10.1 `द्वादशभिः भागैः` is textually disputed (ecliptic arc vs ascensional time);
+ *    production operationalizes Reading A as a modern Δλ≥12° proxy only — not full ch.10;
+ *  - SS 10.2–10.4 describe iterated lagnāntarāsavaḥ (setting interval in prāṇa/asu);
+ *    they do not state a secondary final_asu≥720 visibility boolean, and production
+ *    does not invent one;
+ *  - exact dṛkkarma / oblique-ascension tables are not implemented;
  *  - the Dvitiya Aparahna condition is retained only as a contextual nibandha
  *    visibility indication, not as a universal monthly date command.
  */
 trait FestivalRuleChandraDarshana
 {
+    /**
+     * Modern operational proxy threshold (degrees of directed ecliptic separation).
+     * Implements a practical Reading-A-style stand-in for disputed SS 10.1 twelve-bhāga;
+     * not a claim that 10.1 is settled as spatial-only, nor a full ch.10 recomputation.
+     */
     private const float CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES = 12.0;
 
     private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 8;
@@ -243,6 +254,29 @@ trait FestivalRuleChandraDarshana
                 'modern_proxy_for_surya_siddhanta_12_bhaga_indication' => true,
                 'claims_full_surya_siddhanta_chapter_10_recomputation' => false,
                 'claims_modern_great_circle_elongation' => false,
+                // Scholarly-safe SS 10.1–10.5 / 2.57 / 7.9 / 7.11 encoding (proxy ≠ full recompute).
+                'surya_siddhanta_basis' => [
+                    'SS_10_1',
+                    'SS_10_2',
+                    'SS_10_3',
+                    'SS_10_4',
+                    'SS_10_5',
+                    'SS_2_57',
+                    'SS_7_9',
+                    'SS_7_11',
+                ],
+                'twelve_bhaga_interpretation' => 'textually_disputed_between_angular_arc_and_ascensional_time',
+                'angular_separation_reading_supported' => true,
+                'ascensional_time_reading_supported' => true,
+                'modern_proxy' => 'directed_moon_sun_ecliptic_longitude_separation_at_local_sunset',
+                'modern_proxy_threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
+                'classical_computed_output' => 'iterated_local_setting_or_rising_interval_in_asu_prana',
+                // SS 10.2–10.4 do not state final_asu >= 720; do not invent that gate.
+                'classical_visibility_threshold_in_asu' => null,
+                'fabricated_final_asu_720_gate' => false,
+                'exact_drikkarma_implemented' => false,
+                'exact_oblique_ascension_implemented' => false,
+                'claims_full_surya_siddhanta_recomputation' => false,
                 'tithi_corroboration_basis' => 'nibandha_tithi_visibility_indication',
                 'tithi_indication_original_context' => 'darsa_anvadhana_and_govardhana_adjudication',
                 'tithi_indication_monthly_use' => 'application_level_analogy',
@@ -275,8 +309,17 @@ trait FestivalRuleChandraDarshana
                     'threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
                     'requires_waxing_half' => true,
                     'waxing_half_passed' => $waxingHalf,
+                    'twelve_bhaga_interpretation' => 'textually_disputed_between_angular_arc_and_ascensional_time',
+                    'angular_separation_reading_supported' => true,
+                    'ascensional_time_reading_supported' => true,
+                    'classical_visibility_threshold_in_asu' => null,
+                    'fabricated_final_asu_720_gate' => false,
+                    'exact_drikkarma_implemented' => false,
+                    'exact_oblique_ascension_implemented' => false,
                     'claims_exact_siddhantic_recomputation' => false,
+                    'claims_full_surya_siddhanta_recomputation' => false,
                     'claims_modern_great_circle_elongation' => false,
+                    'note' => 'Operational Δλ≥12° is a modern proxy for disputed SS 10.1 twelve-bhāga; not iterated lagnāntarāsavaḥ and not final_asu≥720.',
                 ],
                 'nibandha_tithi_indication' => [
                     'status' => $proxy['aparahna_3'] ? 'FULL_APARAHNA_INDICATION_PRESENT' : 'FULL_APARAHNA_INDICATION_NOT_ESTABLISHED',

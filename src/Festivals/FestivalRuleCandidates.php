@@ -424,7 +424,9 @@ trait FestivalRuleCandidates
             }
         }
 
-        if ((bool) ($rule['ekadashi_nirnay_table'] ?? false) || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false)) {
+        if ((bool) ($rule['ekadashi_nirnay_table'] ?? false)
+            || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false)
+            || ((int) ($rule['tithi'] ?? 0) === 11 && (bool) ($rule['fasting'] ?? false))) {
             return $this->resolveEkadashiNirnayTruthTable($candidates, $targetInterval);
         }
 
@@ -437,7 +439,7 @@ trait FestivalRuleCandidates
         }
 
         if ((bool) ($rule['sankashti_truth_table'] ?? false) || $this->isSankashtiRule($rule)) {
-            return $this->resolveSankashtiTruthTable($candidates);
+            return $this->resolveSankashtiTruthTable($candidates, $rule);
         }
 
         if ((bool) ($rule['vinayaki_chaturthi_truth_table'] ?? false)) {

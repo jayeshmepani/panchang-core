@@ -44,7 +44,7 @@ $rows = [];
 foreach ($modes as $mode => $ephePath) {
     foreach ($calendarTypes as $calendarType) {
         foreach ($locales as $locale) {
-            echo "--- Benchmark mode={$mode}, calendar={$calendarType}, locale={$locale} ---" . PHP_EOL;
+            echo sprintf('--- Benchmark mode=%s, calendar=%s, locale=%s ---', $mode, $calendarType, $locale) . PHP_EOL;
 
             foreach ($tasks as $taskName => $task) {
                 $scriptPath = $scriptsDir . DIRECTORY_SEPARATOR . $task['label'];
@@ -59,7 +59,7 @@ foreach ($modes as $mode => $ephePath) {
                     $env['PANCHANG_EPHE_PATH'] = $ephePath;
                 }
 
-                echo "Running {$task['label']}..." . PHP_EOL;
+                echo sprintf('Running %s...', $task['label']) . PHP_EOL;
                 $result = runBenchCommand($command, $baseDir, $env, (bool) ($task['capture_stdout'] ?? false));
                 $row = [
                     'mode' => $mode,
@@ -85,7 +85,7 @@ foreach ($modes as $mode => $ephePath) {
                 );
 
                 if ($result['exit_code'] !== 0) {
-                    throw new RuntimeException("{$task['label']} failed for mode={$mode}, calendar={$calendarType}, locale={$locale}");
+                    throw new RuntimeException(sprintf('%s failed for mode=%s, calendar=%s, locale=%s', $task['label'], $mode, $calendarType, $locale));
                 }
             }
         }
@@ -133,12 +133,12 @@ function runBenchCommand(string $command, string $workingDir, array $env, bool $
 
     $childEnv = array_filter(
         array_merge($_ENV, $_SERVER, $env),
-        static fn (mixed $value): bool => is_string($value)
+        is_string(...)
     );
     $start = hrtime(true);
     $process = proc_open($command, $descriptors, $pipes, $workingDir, $childEnv);
     if (! is_resource($process)) {
-        throw new RuntimeException("Failed to start benchmark command: {$command}");
+        throw new RuntimeException('Failed to start benchmark command: ' . $command);
     }
 
     fclose($pipes[0]);
@@ -216,7 +216,7 @@ function writeCsv(string $path, array $rows): void
 {
     $handle = fopen($path, 'w');
     if ($handle === false) {
-        throw new RuntimeException("Failed to open CSV for writing: {$path}");
+        throw new RuntimeException('Failed to open CSV for writing: ' . $path);
     }
 
     $headers = array_keys($rows[0] ?? []);

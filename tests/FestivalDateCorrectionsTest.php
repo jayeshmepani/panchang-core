@@ -84,6 +84,8 @@ class FestivalDateCorrectionsTest extends TestCase
             $cases[] = [$calendar, '2027-01-16', 'Mattu Pongal'];
             $cases[] = [$calendar, '2027-01-16', 'Vasi Uttarayan'];
             $cases[] = [$calendar, '2027-03-22', 'Dhuleti'];
+            $cases[] = [$calendar, '2027-10-30', 'Bali Pratipada'];
+            $cases[] = [$calendar, '2027-10-30', 'Govardhan Puja'];
         }
 
         foreach ($cases as [$calendar, $date, $expected]) {
@@ -200,6 +202,18 @@ class FestivalDateCorrectionsTest extends TestCase
                 null,
                 $calendar,
             );
+            $festival2027Deepotsav = $service->getFestivalRangeCalendarOnlyFestivals(
+                2027,
+                10,
+                2027,
+                10,
+                self::LAT,
+                self::LON,
+                self::TZ,
+                0.0,
+                null,
+                $calendar,
+            );
 
             self::assertSame(
                 ['2025-10-22'],
@@ -210,6 +224,22 @@ class FestivalDateCorrectionsTest extends TestCase
                 ['2025-10-22'],
                 $this->datesForName($festival2025, 'Govardhan Puja'),
                 sprintf('Govardhan Puja 2025 export (%s)', $calendar)
+            );
+            self::assertSame(
+                ['2027-10-30'],
+                $this->datesForName(
+                    $festival2027Deepotsav,
+                    'Bali Pratipada',
+                ),
+                sprintf('Bali Pratipada 2027 export (%s)', $calendar)
+            );
+            self::assertSame(
+                ['2027-10-30'],
+                $this->datesForName(
+                    $festival2027Deepotsav,
+                    'Govardhan Puja',
+                ),
+                sprintf('Govardhan Puja 2027 export (%s)', $calendar)
             );
             self::assertSame(
                 ['2026-08-28'],
@@ -305,12 +335,12 @@ class FestivalDateCorrectionsTest extends TestCase
         $expectedVrats = [
             'ISKCON Ekadashi' => [
                 '2025-10-03', '2025-10-17', '2025-11-02', '2025-11-15', '2025-12-01', '2025-12-15',
-                '2025-12-31', '2026-01-14', '2026-01-29', '2026-02-13', '2026-02-27', '2026-03-15',
+                '2026-01-14', '2026-01-29', '2026-02-13', '2026-02-27', '2026-03-15',
                 '2026-03-29', '2026-04-13', '2026-04-27', '2026-05-13', '2026-05-27', '2026-06-11',
                 '2026-06-25', '2026-07-11', '2026-07-25', '2026-08-09', '2026-08-23', '2026-09-07',
                 '2026-09-22', '2026-10-06', '2026-10-22', '2026-11-05', '2026-11-21', '2026-12-04',
                 '2026-12-20', '2027-01-03', '2027-01-19', '2027-02-02', '2027-02-17', '2027-03-04',
-                '2027-03-18',
+                '2027-03-19',
             ],
             'Thai Pusam' => ['2026-02-01', '2027-01-22'],
             'Dwijapriya Sankashti Chaturthi' => ['2026-02-05', '2027-02-24'],
@@ -353,7 +383,7 @@ class FestivalDateCorrectionsTest extends TestCase
         }
 
         $purnimantaVrats = $service->getVratRangeCalendar(2027, 1, 2027, 1, self::LAT, self::LON, self::TZ, 0.0, null, 'purnimanta');
-        self::assertSame(['2027-01-18'], $this->datesForName($purnimantaVrats, 'Pausha Putrada Ekadashi'));
+        self::assertSame(['2027-01-19'], $this->datesForName($purnimantaVrats, 'Pausha Putrada Ekadashi'));
     }
 
     public function test_chandra_darshana_uses_source_sensitive_first_crescent_algorithm(): void

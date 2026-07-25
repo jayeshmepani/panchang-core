@@ -7,7 +7,12 @@ use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRect
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 
 return RectorConfig::configure()
-    ->withPaths([__DIR__ . '/src', __DIR__ . '/config', __DIR__ . '/tests'])
+    ->withPaths([
+        __DIR__ . '/src',
+        __DIR__ . '/config',
+        __DIR__ . '/tests',
+        __DIR__ . '/scripts',
+    ])
     ->withSkip([
         __DIR__ . '/vendor',
         __DIR__ . '/node_modules',

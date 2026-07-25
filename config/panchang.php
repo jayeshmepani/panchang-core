@@ -78,8 +78,8 @@ return [
     */
 
     'festivals' => [
-        'default_tradition' => 'Smarta',
-        'default_region' => 'North',
+        'default_tradition' => 'Vaishnava',
+        'default_region' => 'Gujarat',
         'supported_traditions' => ['Smarta', 'Vaishnava'],
         'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
     ],

@@ -35,7 +35,15 @@ function panchang_script_output_dir(string $baseDir, ?string $calendarType = nul
  */
 function panchang_script_encode_json(array $payload): string
 {
-    $json = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    // PRESERVE_ZERO_FRACTION keeps full float form; no intentional numeric rounding.
+    $json = json_encode(
+        $payload,
+        JSON_PRETTY_PRINT
+        | JSON_UNESCAPED_UNICODE
+        | JSON_UNESCAPED_SLASHES
+        | JSON_PRESERVE_ZERO_FRACTION
+        | JSON_INVALID_UTF8_SUBSTITUTE,
+    );
     if ($json === false) {
         throw new RuntimeException('JSON encoding failed: ' . json_last_error_msg());
     }

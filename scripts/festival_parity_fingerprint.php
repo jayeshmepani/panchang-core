@@ -101,7 +101,7 @@ function festival_parity_analyze_file(string $path): array
                 ?? ''
             );
             $type = (string) ($entry['calculation_basis']['type'] ?? '');
-            $fasting = !empty($entry['fasting']) ? '1' : '0';
+            $fasting = empty($entry['fasting']) ? '0' : '1';
             $dateStr = (string) $date;
 
             $events[] = implode('|', [$dateStr, $nameKey, $fasting, $type, $reasonKey]);
@@ -217,8 +217,8 @@ function festival_parity_build(array $targets): array
 
 try {
     $built = festival_parity_build($targets);
-} catch (Throwable $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+} catch (Throwable $throwable) {
+    fwrite(STDERR, $throwable->getMessage() . PHP_EOL);
     exit(1);
 }
 
@@ -227,7 +227,7 @@ $analyses = $built['analyses'];
 
 if ($command === 'write') {
     if (!is_dir($identitiesDir) && !mkdir($identitiesDir, 0777, true) && !is_dir($identitiesDir)) {
-        fwrite(STDERR, "Cannot create fixture directory: {$identitiesDir}" . PHP_EOL);
+        fwrite(STDERR, 'Cannot create fixture directory: ' . $identitiesDir . PHP_EOL);
         exit(1);
     }
 
@@ -243,7 +243,7 @@ if ($command === 'write') {
         );
     }
 
-    echo "Wrote {$fixturePath}" . PHP_EOL;
+    echo 'Wrote ' . $fixturePath . PHP_EOL;
     foreach ($current['fingerprints'] as $label => $fp) {
         echo sprintf(
             "  %s entries=%d identities=%d dupes=%d events=%s dates=%s\n",
@@ -259,18 +259,18 @@ if ($command === 'write') {
 }
 
 if ($command !== 'verify') {
-    fwrite(STDERR, "Unknown command: {$command}. Use write|verify" . PHP_EOL);
+    fwrite(STDERR, sprintf('Unknown command: %s. Use write|verify', $command) . PHP_EOL);
     exit(1);
 }
 
 if (!is_file($fixturePath)) {
-    fwrite(STDERR, "Golden fixture missing: {$fixturePath}. Run: php scripts/festival_parity_fingerprint.php write" . PHP_EOL);
+    fwrite(STDERR, sprintf('Golden fixture missing: %s. Run: php scripts/festival_parity_fingerprint.php write', $fixturePath) . PHP_EOL);
     exit(1);
 }
 
 $golden = json_decode((string) file_get_contents($fixturePath), true);
 if (!is_array($golden) || !isset($golden['fingerprints']) || !is_array($golden['fingerprints'])) {
-    fwrite(STDERR, "Invalid golden fixture: {$fixturePath}" . PHP_EOL);
+    fwrite(STDERR, 'Invalid golden fixture: ' . $fixturePath . PHP_EOL);
     exit(1);
 }
 
@@ -291,36 +291,36 @@ $compareFields = [
 foreach ($golden['fingerprints'] as $label => $expected) {
     $actual = $current['fingerprints'][$label] ?? null;
     if (!is_array($actual)) {
-        $mismatches[] = "{$label}: missing current fingerprint";
+        $mismatches[] = $label . ': missing current fingerprint';
         continue;
     }
 
     // Hard fail if any same-day duplicates appear after reshape.
     if ((int) ($actual['duplicate_same_day_identity_count'] ?? 0) !== 0) {
         $dupes = $analyses[$label]['duplicates'] ?? [];
-        $mismatches[] = "{$label}: introduced same-day identity duplicates: " . json_encode($dupes, JSON_UNESCAPED_UNICODE);
+        $mismatches[] = $label . ': introduced same-day identity duplicates: ' . json_encode($dupes, JSON_UNESCAPED_UNICODE);
     }
 
     foreach ($compareFields as $field) {
         $exp = $expected[$field] ?? null;
         $act = $actual[$field] ?? null;
         if ($exp !== $act) {
-            $mismatches[] = "{$label}.{$field}: expected " . json_encode($exp) . ' got ' . json_encode($act);
+            $mismatches[] = sprintf('%s.%s: expected ', $label, $field) . json_encode($exp) . ' got ' . json_encode($act);
         }
     }
 
     // Explicit identity set diff (removals / additions).
     $goldenIdsPath = $identitiesDir . '/' . $label . '_identities.txt';
     if (is_file($goldenIdsPath)) {
-        $goldenIds = array_values(array_filter(array_map('trim', explode("\n", (string) file_get_contents($goldenIdsPath))), static fn (string $s): bool => $s !== ''));
+        $goldenIds = array_values(array_filter(array_map(trim(...), explode("\n", (string) file_get_contents($goldenIdsPath))), static fn (string $s): bool => $s !== ''));
         $currentIds = $analyses[$label]['identities'] ?? [];
         $removed = array_values(array_diff($goldenIds, $currentIds));
         $added = array_values(array_diff($currentIds, $goldenIds));
         if ($removed !== []) {
-            $mismatches[] = "{$label}: REMOVED identities (" . count($removed) . '): ' . implode(', ', array_slice($removed, 0, 20));
+            $mismatches[] = $label . ': REMOVED identities (' . count($removed) . '): ' . implode(', ', array_slice($removed, 0, 20));
         }
         if ($added !== []) {
-            $mismatches[] = "{$label}: ADDED identities (" . count($added) . '): ' . implode(', ', array_slice($added, 0, 20));
+            $mismatches[] = $label . ': ADDED identities (' . count($added) . '): ' . implode(', ', array_slice($added, 0, 20));
         }
     }
 }

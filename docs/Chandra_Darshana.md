@@ -29,11 +29,19 @@ a universal monthly date-selection command.
 
 ## Sanskrit Witnesses
 
-### Surya Siddhanta 10.1-10.5
+### Surya Siddhanta 10.1-10.5 (philologically constrained)
 
-The astronomical layer is based on the traditional 12-bhaga crescent indication,
-but production does not claim to recompute the entire Siddhantic chapter 10
-procedure.
+The astronomical layer cites the traditional twelve-bhāga crescent indication
+in SS 10.1, but production **does not** claim a full Siddhāntic chapter 10
+recomputation. Three classical errors of computational retrojection are
+explicitly avoided:
+
+1. **Dogmatic resolution of textual ambiguity** — SS 10.1 alone does not settle
+   whether `bhāga` is an ecliptic spatial arc or an ascensional time-degree.
+2. **Fabrication of an unstated gate** — SS 10.2–10.4 do **not** state
+   `final_asu ≥ 720` as a visibility boolean; production does not invent one.
+3. **Proxies labeled as full recomputation** — modern Δλ and rise/set windows
+   are proxies; exact dṛkkarma and lagnāntarāsavaḥ tables are unimplemented.
 
 ```text
 उदयास्तविधिः प्राग्वत् कर्तव्यः शीतगोरपि ।
@@ -52,20 +60,74 @@ procedure.
 तैः प्राणैः कृष्णपक्षे तु शीतांशुरुदयं व्रजेत् ॥ १०.५ ॥
 ```
 
-Production records the engine quantity as:
+#### Status of the twelve-bhāga rule (SS 10.1)
 
 ```text
+                         12 bhāga (SS 10.1)
+                                │
+         ┌──────────────────────┴──────────────────────┐
+         ▼                                             ▼
+Reading A: Ecliptic angular separation       Reading B: Oblique ascensional time
+(Δλ ≥ 12° spatial arc)                       (12 time-degrees = 48 min = 720 asu)
+• Supported by 10.2 angular terminology      • Supported by Burgess-style commentary
+  (rāśi, vivara-liptikā)                     • Supported by 10.2–10.4 focus on
+• Stated in ecliptic units (bhāga)             lagnāntara / asu calculations
+```
+
+Scholarly resolution: **textually disputed**. Software must not treat either
+reading as the sole “settled” meaning of 10.1.
+
+#### What SS 10.2–10.4 actually compute
+
+Verses 10.2–10.4 prescribe an **iterated** local setting/rising interval in
+*asu/prāṇa* (`sthirībhūtā` convergence) after a 180° (`ṣaḍbha`) shift to the
+descendant horizon. Their output statement is the converged prāṇa interval for
+moonset after sunset in the bright fortnight — **not** an extra
+`final_asu ≥ 720` acceptance gate.
+
+Exact classical steps require:
+
+- table-based **dṛkkarma** (SS 2.57, 7.9, 7.11; not simplified modern β·sinλ·tanε proxies),
+- latitude-dependent **lagnāntarāsavaḥ** via rāśimāna / cara (not flat `Δλ × 60`).
+
+Production implements **neither** exact layer.
+
+#### Standardized production metadata (scholarly-safe)
+
+```text
+surya_siddhanta_basis = [SS_10_1, SS_10_2, SS_10_3, SS_10_4, SS_10_5, SS_2_57, SS_7_9, SS_7_11]
+twelve_bhaga_interpretation = textually_disputed_between_angular_arc_and_ascensional_time
+angular_separation_reading_supported = true
+ascensional_time_reading_supported = true
+modern_proxy = directed_moon_sun_ecliptic_longitude_separation_at_local_sunset
+modern_proxy_threshold_degrees = 12.0
+classical_computed_output = iterated_local_setting_or_rising_interval_in_asu_prana
+classical_visibility_threshold_in_asu = null
+fabricated_final_asu_720_gate = false
+exact_drikkarma_implemented = false
+exact_oblique_ascension_implemented = false
+claims_full_surya_siddhanta_recomputation = false
+claims_full_surya_siddhanta_chapter_10_recomputation = false
+
 astronomical_basis = modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication
-modern_proxy_for_surya_siddhanta_12_bhaga_rule = true
 modern_proxy_for_surya_siddhanta_12_bhaga_indication = true
 modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees = ...
 modern_longitude_separation_normalization = zero_to_360_directed_moon_minus_sun
 visibility_proxy_requires_waxing_half = true
 surya_siddhanta_oblique_ascensional_interval_computed = false
-claims_full_surya_siddhanta_chapter_10_recomputation = false
 ```
 
-Local sunset is the application evaluation epoch for first-crescent visibility:
+**Defensible summary:**
+
+1. SS 10.1 supplies a traditional twelve-bhāga lunar visibility *indication*,
+   disputed between ecliptic arc and ascensional time (720 asu).
+2. SS 10.2–10.4 prescribe iterated asu/prāṇa setting intervals; they do **not**
+   declare `final_asu ≥ 720` as a secondary boolean.
+3. Production’s `Δλ ≥ 12°` at local sunset is a **practical modern proxy**
+   (Reading-A-style operationalization). It does not reproduce full chapter 10
+   horizon mechanics.
+
+Local sunset is the application evaluation epoch for this proxy:
 
 ```text
 application_evaluation_epoch = local_sunset
@@ -73,7 +135,7 @@ evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1 = false
 ```
 
 Moonset lag and illuminated fraction are diagnostic metadata only. They are not
-used as rejection thresholds.
+used as classical rejection thresholds.
 
 ### Nirnayamrita, Smriti-vacana, and Variant Attribution
 
@@ -204,7 +266,17 @@ concern:
 
 This belongs to Govardhana / Gokrida. It is not imported into the generic
 monthly Chandra Darshana selector. Govardhana / Annakut keeps its own separate
-Sthula Chandra Darshana 9-muhurta truth-table logic.
+Pratipada conflict logic from Satsangi Jeevan / Dharma Sindhu:
+
+- Satsangi Jeevan requires Kartika Shukla Pratipada to be `sayahna-vyapini`
+  for Govardhan Utsav and says Annakut is offered at `madhyahna`.
+- Dharma Sindhu says that when the sunrise Pratipada lasts 10 daytime muhurtas,
+  all Pratipada rites are done on that later Pratipada day.
+- If even 9 daytime muhurtas of sunrise Pratipada are not available, the
+  Govardhan/Gokrida/Bali group falls back to the previous Amavasya-viddha
+  Pratipada day.
+- The 6-muhurta Dvitiya-entry statement explains the gross moon-visibility
+  concern; it is not a standalone monthly Chandra Darshana selector.
 
 ### Optional Surya Siddhanta Astronomy Apparatus
 
@@ -302,8 +374,8 @@ flowchart TD
     G -- "No" --> H["No Chandra Darshana<br/>on this evening"]
     H --> F
 
-    G -- "Yes" --> I{"Is the Moon far enough<br/>from the Sun for first-crescent sighting?<br/>(12-degree engine check)"}
-    I -- "No" --> J["First crescent is not accepted<br/>for this evening"]
+    G -- "Yes" --> I{"Modern proxy for disputed SS 10.1<br/>twelve-bhāga: Δλ ≥ 12° at sunset?<br/>(not full ch.10; not asu≥720 gate)"}
+    I -- "No" --> J["First crescent not accepted<br/>on this proxy for this evening"]
     J --> F
 
     I -- "Yes" --> K["Celebrate Chandra Darshana<br/>on this evening"]
@@ -395,9 +467,9 @@ dvitiya_end   >= sunset
 ```
 
 Production computes the actual Dvitiya end with the transit engine. It does not
-infer the full indication from only `Pratipada <= 9 muhurtas`; that shortcut is
-only the first half of the interval test and would be lossy in Dvitiya-kshaya
-cases.
+turn `Pratipada < 9 muhurtas`, `Pratipada >= 10 muhurtas`, or Dvitiya-entry
+thresholds into monthly Chandra Darshana rules. Those thresholds belong only to
+the Govardhan/Gokrida/Bali Pratipada adjudication context.
 
 ## Orthogonal Evidence Fields
 
@@ -512,7 +584,7 @@ The decision payload includes:
 
 The production monthly resolver must not contain:
 
-- `Pratipada < 9 muhurtas -> Sud 1` / `Pratipada >= 9 muhurtas -> Sud 2`,
+- `Pratipada < 9 muhurtas -> Sud 1` / `Pratipada >= 10 muhurtas -> Sud 2`,
 - kshaya-Pratipada Amavasya-day fallback,
 - separate Adhika-month date-selection branch,
 - one-ghati-after-sunset rule,

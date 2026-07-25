@@ -29,18 +29,18 @@ $parseOptions = static function (array $args): array {
     ];
 
     foreach (array_slice($args, 1) as $arg) {
-        if (str_starts_with($arg, '--from=')) {
-            $options['from'] = substr($arg, 7);
+        if (str_starts_with((string) $arg, '--from=')) {
+            $options['from'] = substr((string) $arg, 7);
             continue;
         }
 
-        if (str_starts_with($arg, '--to=')) {
-            $options['to'] = substr($arg, 5);
+        if (str_starts_with((string) $arg, '--to=')) {
+            $options['to'] = substr((string) $arg, 5);
             continue;
         }
 
-        if (str_starts_with($arg, '--output-dir=')) {
-            $options['output_dir'] = substr($arg, 13);
+        if (str_starts_with((string) $arg, '--output-dir=')) {
+            $options['output_dir'] = substr((string) $arg, 13);
             continue;
         }
 
@@ -51,15 +51,14 @@ $parseOptions = static function (array $args): array {
             '--hi' => $options['locale'] = 'hi',
             '--gu' => $options['locale'] = 'gu',
             '-h', '--help' => $options['help'] = true,
-            default => throw new InvalidArgumentException("Unknown option: {$arg}"),
+            default => throw new InvalidArgumentException('Unknown option: ' . $arg),
         };
     }
 
     return $options;
 };
 
-$usage = static function (): string {
-    return <<<TEXT
+$usage = (static fn (): string => <<<TEXT
 Usage:
   php scripts/panchang_compact_events.php --from=02-2025 --to=05-2027 --amanta --en
 
@@ -72,16 +71,15 @@ Options:
   --output-dir=PATH   Directory for the three JSON files
                      Default: scripts/output/{calendar_type}/{locale}
 
-TEXT;
-};
+TEXT);
 
 $parseMonth = static function (?string $value, string $option): DateTimeImmutable {
     if ($value === null || $value === '') {
-        throw new InvalidArgumentException("Missing required {$option}=MM-YYYY option.");
+        throw new InvalidArgumentException(sprintf('Missing required %s=MM-YYYY option.', $option));
     }
 
-    if (! preg_match('/^(0[1-9]|1[0-2])-([0-9]{4})$/', $value, $matches)) {
-        throw new InvalidArgumentException("Invalid {$option} value: {$value}. Expected MM-YYYY, e.g. 02-2025.");
+    if (! preg_match('/^(0[1-9]|1[0-2])-(\d{4})$/', $value, $matches)) {
+        throw new InvalidArgumentException(sprintf('Invalid %s value: %s. Expected MM-YYYY, e.g. 02-2025.', $option, $value));
     }
 
     return new DateTimeImmutable(sprintf('%04d-%02d-01', (int) $matches[2], (int) $matches[1]));
@@ -89,7 +87,7 @@ $parseMonth = static function (?string $value, string $option): DateTimeImmutabl
 
 try {
     $options = $parseOptions($args);
-    if (($options['help'] ?? false) === true) {
+    if ($options['help'] ?? false) {
         echo $usage();
         exit(0);
     }
@@ -102,8 +100,8 @@ try {
     if ($rangeStart > $rangeEnd) {
         throw new InvalidArgumentException('--from must be before or equal to --to.');
     }
-} catch (InvalidArgumentException $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL . $usage());
+} catch (InvalidArgumentException $invalidArgumentException) {
+    fwrite(STDERR, $invalidArgumentException->getMessage() . PHP_EOL . $usage());
     exit(1);
 }
 
@@ -131,7 +129,7 @@ $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 $eclipseService = CliBootstrap::makeEclipseService();
 
 $dateIsInRange = static function (string $date) use ($rangeStart, $rangeEnd): bool {
-    if (! preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
+    if (! preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
         return false;
     }
 
@@ -285,9 +283,9 @@ if (! is_dir($outputDir)) {
 
 $rangeSlug = $rangeStart->format('Y_m') . '_to_' . $rangeEnd->format('Y_m');
 $files = [
-    'festivals' => $outputDir . DIRECTORY_SEPARATOR . "compact_festivals_{$rangeSlug}.json",
-    'vrats' => $outputDir . DIRECTORY_SEPARATOR . "compact_vrats_{$rangeSlug}.json",
-    'eclipses' => $outputDir . DIRECTORY_SEPARATOR . "compact_eclipses_{$rangeSlug}.json",
+    'festivals' => $outputDir . DIRECTORY_SEPARATOR . sprintf('compact_festivals_%s.json', $rangeSlug),
+    'vrats' => $outputDir . DIRECTORY_SEPARATOR . sprintf('compact_vrats_%s.json', $rangeSlug),
+    'eclipses' => $outputDir . DIRECTORY_SEPARATOR . sprintf('compact_eclipses_%s.json', $rangeSlug),
 ];
 
 $meta = [
