@@ -373,9 +373,7 @@ trait FestivalRuleTruthTables
             return $this->markSpecialWinner($day2, $day2['target_at_karmakala'] ? 'janmashtami_nishitha_day2_or_both' : 'janmashtami_no_rohini_default_day2');
         }
 
-        return $day1['target_during_observance']
-            ? $this->markSpecialWinner($day1, 'janmashtami_no_rohini_fallback_day1')
-            : null;
+        return null;
     }
 
     private function resolveMasikJanmashtamiTruthTable(array $candidates): ?array
@@ -1431,6 +1429,13 @@ trait FestivalRuleTruthTables
         }
 
         if ($day1Sunrise) {
+            // If Chaturdashi started on the previous day before that day's sunset, the previous day already won Pradosha vyapti.
+            $targetStartJd = (float) ($day1['target_interval_start_jd'] ?? 0.0);
+            $day1SunriseJd = (float) ($day1['sunrise_jd'] ?? 0.0);
+            if ($targetStartJd > 0.0 && $targetStartJd < ($day1SunriseJd - 0.25)) {
+                return null;
+            }
+
             return $this->markSpecialWinner($day1, 'narasimha_sunrise_fallback_day1');
         }
 

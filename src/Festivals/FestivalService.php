@@ -73,7 +73,8 @@ class FestivalService
         ?array $yesterdayDetails = null,
         ?callable $fetchHistoricalSnapshot = null,
         bool $includeExtraWinners = false,
-        string $selection = 'all'
+        string $selection = 'all',
+        ?string $tradition = null
     ): array
     {
         $festivals = [];
@@ -631,16 +632,28 @@ class FestivalService
 
     private function rejectResolvedFestivalForDay(array $rules, array $todayDetails): bool
     {
+        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta';
+        $isVaishnavaMode = strcasecmp((string) $tradition, 'Vaishnava') === 0;
+
+        $isEkadashiRule = ((int) ($rules['tithi'] ?? 0) === 11) && ((bool) ($rules['fasting'] ?? false) || (bool) ($rules['ekadashi_nirnay_table'] ?? false));
+        $todayTithi = (int) ($todayDetails['Tithi']['index'] ?? 0);
+
+        if ($isVaishnavaMode && $isEkadashiRule && $todayTithi === 11) {
+            $vaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
+            if ((string) ($vaishnava['fasting_day'] ?? '') !== 'Today') {
+                return true;
+            }
+        }
+
         if ((bool) ($rules['require_vaishnava_ekadashi_today'] ?? false)) {
             $vaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
             if ((string) ($vaishnava['fasting_day'] ?? '') === 'Today') {
                 return false;
             }
-            if (!empty($todayDetails['Ekadashi_Observance']['parana']) && ((int) ($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? 0)) === 12) {
-                return false;
-            }
 
-            return true;
+            $parana = $todayDetails['Ekadashi_Observance']['parana'] ?? null;
+
+            return $parana === null || $parana === [] || (int) ($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? 0) !== 12;
         }
 
         return false;

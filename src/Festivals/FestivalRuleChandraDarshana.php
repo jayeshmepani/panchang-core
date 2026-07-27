@@ -5,38 +5,36 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
-use JayeshMepani\PanchangCore\Core\Localization;
+
+use function chandra_yallop_evaluate_evening;
+use function chandra_yallop_passes;
 
 /**
- * Monthly Chandra Darshana first-crescent resolver.
+ * Monthly Chandra Darshana hybrid resolver.
  *
- * Source boundary:
- *  - strict source-only mode does not itself declare a universal monthly date;
- *  - production calendar mode selects the earliest Shukla Pratipada/Dvitiya
- *    post-Amavasya local evening satisfying a modern proxy for SS 10.1’s traditional
- *    twelve-bhāga indication;
- *  - SS 10.1 `द्वादशभिः भागैः` is textually disputed (ecliptic arc vs ascensional time);
- *    production operationalizes Reading A as a modern Δλ≥12° proxy only — not full ch.10;
- *  - SS 10.2–10.4 describe iterated lagnāntarāsavaḥ (setting interval in prāṇa/asu);
- *    they do not state a secondary final_asu≥720 visibility boolean, and production
- *    does not invent one;
- *  - exact dṛkkarma / oblique-ascension tables are not implemented;
- *  - the Dvitiya Aparahna condition is retained only as a contextual nibandha
- *    visibility indication, not as a universal monthly date command.
+ * Production mirrors scripts/chandra_hybrid_scripture_modern_resolver.php:
+ * - Yallop TN69 q-criterion, default minimum category B;
+ * - Danjon guard enabled;
+ * - SS 10.1 waxing ecliptic separation >= 12 degrees at local sunset;
+ * - Dharma Sindhu Pratipada early exception: Dvitiya covers either
+ *   3 daylight muhurtas of Aparahna or 6 night muhurtas of Pradosha;
+ * - Dvitiya-at-sunrise remains the default path after a failed Pratipada
+ *   early exception;
+ * - Nirnayamrita kshaya-Pratipada day-2 deferral is a hard gate.
  */
 trait FestivalRuleChandraDarshana
 {
-    /**
-     * Modern operational proxy threshold (degrees of directed ecliptic separation).
-     * Implements a practical Reading-A-style stand-in for disputed SS 10.1 twelve-bhāga;
-     * not a claim that 10.1 is settled as spatial-only, nor a full ch.10 recomputation.
-     */
-    private const float CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES = 12.0;
+    private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 5;
 
-    private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 8;
+    private const float CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG = 12.0;
 
-    /** @var list<int> */
-    private const array CHANDRA_DARSHANA_SOURCE_ATTESTED_CANDIDATE_TITHIS = [1, 2];
+    private const float CHANDRA_DARSHANA_DHARMA_SINDHU_APARAHNA_MIN_MUHURTAS = 3.0;
+
+    private const float CHANDRA_DARSHANA_DHARMA_SINDHU_PRADOSHA_MIN_MUHURTAS = 6.0;
+
+    private const string CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY = 'B';
+
+    private const bool CHANDRA_DARSHANA_APPLY_DANJON_GUARD = true;
 
     private function resolveChandraDarshanaFestival(
         string $festivalName,
@@ -77,34 +75,27 @@ trait FestivalRuleChandraDarshana
         $seasons = [];
         for ($d = $date->subDays(self::CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS); $d->lessThanOrEqualTo($date); $d = $d->addDay()) {
             $details = $d->isSameDay($date) ? $today : $fetchHistoricalSnapshot($d);
-            $ctx = (array) ($details['Resolution_Context'] ?? []);
-            if ($ctx === []) {
+            $day = $this->chandraDarshanaDayBundle($d, $details);
+            if ($day === null) {
                 continue;
             }
 
-            $abs = (int) ($ctx['tithi_index_abs'] ?? 0);
-            if ($abs === 30) {
-                $endJd = (float) ($ctx['tithi_end_jd'] ?? 0.0);
-                if ($endJd > 0.0 && $endJd <= $todaySunset + 1e-9) {
-                    $seasons[sprintf('%.5F', $endJd)] = [
-                        'amavasya_end_jd' => $endJd,
-                        'anchor_date' => $d->toDateString(),
-                    ];
-                }
+            $abs = (int) $day['tithi_index_abs'];
+            if ($abs === 30 && (float) $day['tithi_end_jd'] > 0.0 && (float) $day['tithi_end_jd'] <= $todaySunset + 1e-9) {
+                $seasons[sprintf('%.5F', (float) $day['tithi_end_jd'])] = [
+                    'amavasya_end_jd' => (float) $day['tithi_end_jd'],
+                    'anchor_date' => $d->toDateString(),
+                ];
             }
 
-            if ($abs === 1) {
-                $endJd = (float) ($ctx['tithi_start_jd'] ?? 0.0);
-                $sunriseJd = (float) ($ctx['sunrise_jd'] ?? 0.0);
-                if ($endJd > 0.0 && $endJd <= $todaySunset + 1e-9) {
-                    $anchor = $sunriseJd > 0.0 && $endJd < $sunriseJd
-                        ? $d->subDay()->toDateString()
-                        : $d->toDateString();
-                    $seasons[sprintf('%.5F', $endJd)] = [
-                        'amavasya_end_jd' => $endJd,
-                        'anchor_date' => $anchor,
-                    ];
-                }
+            if ($abs === 1 && (float) $day['tithi_start_jd'] > 0.0 && (float) $day['tithi_start_jd'] <= $todaySunset + 1e-9) {
+                $anchor = (float) $day['tithi_start_jd'] < (float) $day['sunrise_jd']
+                    ? $d->subDay()->toDateString()
+                    : $d->toDateString();
+                $seasons[sprintf('%.5F', (float) $day['tithi_start_jd'])] = [
+                    'amavasya_end_jd' => (float) $day['tithi_start_jd'],
+                    'anchor_date' => $anchor,
+                ];
             }
         }
 
@@ -134,21 +125,20 @@ trait FestivalRuleChandraDarshana
             }
 
             $details = $fetchHistoricalSnapshot($date);
-            $ctx = (array) ($details['Resolution_Context'] ?? []);
-            if ((float) ($ctx['sunset_jd'] ?? 0.0) + 1e-9 < $season['amavasya_end_jd']) {
+            $day = $this->chandraDarshanaDayBundle($date, $details);
+            if ($day === null) {
                 continue;
             }
 
-            $absTithi = (int) ($ctx['tithi_index_abs'] ?? 0);
-            if (!in_array($absTithi, self::CHANDRA_DARSHANA_SOURCE_ATTESTED_CANDIDATE_TITHIS, true)) {
+            $prevDetails = $fetchHistoricalSnapshot($date->subDay());
+            $nextDetails = $fetchHistoricalSnapshot($date->addDay());
+            $prevDay = $this->chandraDarshanaDayBundle($date->subDay(), $prevDetails);
+            $nextDay = $this->chandraDarshanaDayBundle($date->addDay(), $nextDetails);
+            if ($prevDay === null || $nextDay === null) {
                 continue;
             }
 
-            $candidate = $this->evaluateChandraDarshanaEvening($date, $details);
-            if ($candidate === null) {
-                continue;
-            }
-
+            $candidate = $this->evaluateChandraDarshanaEvening($date, $day, $prevDay, $nextDay, $season['amavasya_end_jd'], $details);
             if ((bool) ($candidate['operational_candidate'] ?? false)) {
                 return $candidate;
             }
@@ -158,305 +148,404 @@ trait FestivalRuleChandraDarshana
     }
 
     /** @return array<string, mixed>|null */
-    private function evaluateChandraDarshanaEvening(CarbonImmutable $date, array $details): ?array
+    private function chandraDarshanaDayBundle(CarbonImmutable $date, array $details): ?array
     {
         $ctx = (array) ($details['Resolution_Context'] ?? []);
-        $sunrise = (float) ($ctx['sunrise_jd'] ?? 0.0);
-        $sunset = (float) ($ctx['sunset_jd'] ?? 0.0);
-        $nextSunrise = (float) ($ctx['next_sunrise_jd'] ?? 0.0);
-        $moonrise = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? null));
-        $moonset = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null));
-
-        if ($sunrise <= 0.0 || $sunset <= $sunrise || $nextSunrise <= $sunset) {
+        if ($ctx === []) {
             return null;
         }
 
-        $hasWindow = $moonrise !== null
-            && $moonset !== null
-            && $moonrise < $sunset
-            && $sunset < $moonset;
-        $visibilityWindow = $hasWindow
-            ? ['start_jd' => $sunset, 'end_jd' => $moonset]
-            : null;
+        return [
+            'date' => $date->toDateString(),
+            'details' => $details,
+            'tithi_index_abs' => (int) ($ctx['tithi_index_abs'] ?? 0),
+            'tithi_start_jd' => (float) ($ctx['tithi_start_jd'] ?? 0.0),
+            'tithi_end_jd' => (float) ($ctx['tithi_end_jd'] ?? 0.0),
+            'sunrise_jd' => (float) ($ctx['sunrise_jd'] ?? 0.0),
+            'sunset_jd' => (float) ($ctx['sunset_jd'] ?? 0.0),
+            'next_sunrise_jd' => (float) ($ctx['next_sunrise_jd'] ?? 0.0),
+            'moonrise_jd' => $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? null)),
+            'moonset_jd' => $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? null)),
+            'snapshot_elong_deg' => $this->normalizeDegrees((float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0)),
+            'illumination_percent' => (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0),
+            'observer_latitude' => (float) ($ctx['observer_latitude'] ?? $details['Observer']['latitude'] ?? 0.0),
+            'observer_longitude' => (float) ($ctx['observer_longitude'] ?? $details['Observer']['longitude'] ?? 0.0),
+            'observer_elevation_m' => (float) ($ctx['observer_elevation_m'] ?? $details['Observer']['elevation_m'] ?? $details['Observer']['elevation'] ?? 0.0),
+        ];
+    }
 
-        $directedSeparation = $this->normalizeDegrees((float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0));
-        $waxingHalf = $directedSeparation > 0.0 && $directedSeparation < 180.0;
-        $twelveBhagaProxyPassed = $waxingHalf && $directedSeparation >= self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES;
-        $proxy = $this->computeChandraDarshanaTithiProxy($details);
+    /**
+     * @param array<string, mixed> $day
+     * @param array<string, mixed> $prevDay
+     * @param array<string, mixed> $nextDay
+     * @param array<string, mixed> $details
+     *
+     * @return array<string, mixed>
+     */
+    private function evaluateChandraDarshanaEvening(
+        CarbonImmutable $date,
+        array $day,
+        array $prevDay,
+        array $nextDay,
+        float $amavasyaEndJd,
+        array $details
+    ): array {
+        $sunrise = (float) $day['sunrise_jd'];
+        $sunset = (float) $day['sunset_jd'];
+        $nextSunrise = (float) $day['next_sunrise_jd'];
+        $moonset = $day['moonset_jd'];
 
-        $classification = $this->classifyChandraDarshanaEvening([
-            'has_post_sunset_horizon_window' => $hasWindow,
-            'twelve_bhaga_proxy_passed' => $twelveBhagaProxyPassed,
-            'tithi_proxy_aparahna_3' => $proxy['aparahna_3'],
-            'tithi_proxy_applicable' => $proxy['applicable'],
-        ]);
-        $operationalCandidate = $hasWindow && $twelveBhagaProxyPassed;
-
-        $nightMuhurtaSeconds = (($nextSunrise - $sunset) * 86400.0) / 15.0;
-        $pradoshaEnd = $sunset + (3.0 * $nightMuhurtaSeconds) / 86400.0;
-        $visibilityDuringPradosha = $hasWindow
-            && min($moonset, $pradoshaEnd) > $sunset;
-
-        $targetTithi = (int) ($ctx['tithi_index_abs'] ?? 0);
-        if ($targetTithi !== 1 && $targetTithi !== 2) {
-            $targetTithi = $proxy['applicable'] ? 1 : 2;
+        if ($sunrise <= 0.0 || $sunset <= $sunrise || $nextSunrise <= $sunset) {
+            return $this->chandraDarshanaRejectedCandidate($date, $day, 'REJECTED_MALFORMED_CANDIDATE', 'Required sunrise/sunset context is malformed.', null);
         }
 
-        $targetInterval = $this->deriveSnapshotTithiInterval($targetTithi, 'Shukla', $details, null);
-        if ($targetInterval === null) {
-            $targetInterval = [
-                'start_jd' => (float) ($ctx['tithi_start_jd'] ?? $sunset),
-                'end_jd' => (float) ($ctx['tithi_end_jd'] ?? $sunset),
-            ];
+        if ($sunset <= $amavasyaEndJd) {
+            return $this->chandraDarshanaRejectedCandidate($date, $day, 'REJECTED_BEFORE_CONJUNCTION', 'Sunset occurred before Amavasya end.', null);
         }
 
-        $moonVisibilitySeconds = $visibilityWindow === null
-            ? 0.0
-            : max(0.0, ($visibilityWindow['end_jd'] - $visibilityWindow['start_jd']) * 86400.0);
-        $targetWindowOverlapSeconds = $visibilityWindow === null
-            ? 0.0
-            : $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
+        if ($moonset === null || !is_finite((float) $moonset)) {
+            return $this->chandraDarshanaRejectedCandidate($date, $day, 'REJECTED_MOONSET_UNAVAILABLE', 'Moonset JD unavailable.', null);
+        }
+
+        $moonsetF = (float) $moonset;
+        $lagDays = $moonsetF - $sunset;
+        if ($lagDays <= 0.0) {
+            return $this->chandraDarshanaRejectedCandidate($date, $day, 'REJECTED_NO_POSITIVE_LAG', 'Moon sets before or simultaneously with sunset.', null);
+        }
+
+        $yallop = $this->chandraDarshanaYallopMetrics($details, $sunset, $moonsetF, (float) $day['observer_latitude'], (float) $day['observer_longitude'], (float) $day['observer_elevation_m']);
+        if (!(bool) ($yallop['ok'] ?? false)) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'REJECTED_MODERN_YALLOP_COMPUTE_FAILED',
+                (string) ($yallop['status'] ?? 'Yallop calculation failed'),
+                $yallop
+            );
+        }
+
+        $q = (float) ($yallop['q'] ?? -99.0);
+        $belowDanjon = (bool) ($yallop['danjon_guard_condition_met'] ?? false);
+        $rejectDanjon = $belowDanjon;
+        $passesModernYallop = $this->chandraDarshanaYallopPasses($q, self::CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY, $rejectDanjon)
+            && (($yallop['is_waxing'] ?? false) === true);
+
+        $waxingSepDeg = (float) $day['snapshot_elong_deg'];
+        $ss10Passed = (($yallop['is_waxing'] ?? false) === true)
+            && $waxingSepDeg >= self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG;
+
+        $classicalGates = $this->evaluateChandraDarshanaClassicalHybridGates($date, $day, $prevDay, $nextDay);
+        $ds3AparahnaPassed = (bool) $classicalGates['dharma_sindhu']['ds_3_muhurta_aparahna_passed'];
+        $ds6PradoshaPassed = (bool) $classicalGates['dharma_sindhu']['ds_6_muhurta_pradosha_passed'];
+        $isKsayaPratipada = (bool) $classicalGates['nirnayamrita']['is_ksaya_pratipada'];
+        $tithiAtSunrise = (int) $day['tithi_index_abs'];
+
+        $metrics = array_merge([
+            'date' => (string) $day['date'],
+            'tithi_index_abs' => $tithiAtSunrise,
+            'modern_yallop' => $yallop,
+            'ss10_1' => [
+                'waxing_ecliptic_separation_deg' => round($waxingSepDeg, 4),
+                'threshold_deg' => self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG,
+                'passed' => $ss10Passed,
+            ],
+            'dharma_sindhu' => $classicalGates['dharma_sindhu'],
+            'nirnayamrita' => $classicalGates['nirnayamrita'],
+        ], $yallop);
+
+        if (!$passesModernYallop) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                $rejectDanjon ? 'REJECTED_DANJON_GUARD' : 'REJECTED_MODERN_YALLOP_Q_BELOW_THRESHOLD',
+                sprintf('Modern Yallop q=%.4f (cat %s) failed threshold or Danjon guard.', $q, $yallop['q_category'] ?? '?'),
+                $metrics
+            );
+        }
+
+        if (!$ss10Passed) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'REJECTED_SS10_1_BELOW_12_DEG',
+                sprintf('SS 10.1 failed: Waxing ecliptic separation %.2f deg < 12.0 deg floor.', $waxingSepDeg),
+                $metrics
+            );
+        }
+
+        if ($isKsayaPratipada) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA',
+                'Nirnayamrita mandate: Kshaya Pratipada detected on Day 1; observation deferred to Day 2.',
+                $metrics
+            );
+        }
+
+        $pratipadaEarlyExceptionPassed = $ds3AparahnaPassed || $ds6PradoshaPassed;
+        if ($tithiAtSunrise === 1 && !$pratipadaEarlyExceptionPassed) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'DEFERRED_PRATIPADA_EARLY_EXCEPTION_NOT_MET',
+                'Pratipada early Chandra Darshana exception not met; continue to the Dvitiya civil-day default path.',
+                $metrics
+            );
+        }
+
+        $statusCode = match ($tithiAtSunrise) {
+            1 => 'SUCCESS_PRATIPADA_EARLY_EXCEPTION',
+            2 => $pratipadaEarlyExceptionPassed
+                ? 'SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION'
+                : 'SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY',
+            default => 'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY',
+        };
+
+        return $this->chandraDarshanaAcceptedCandidate($date, $day, $statusCode, sprintf(
+            'Hybrid Engine Success: Modern Yallop q=%.4f (cat %s) + SS 10.1 (%.2f deg >= 12 deg). Tithi at sunrise=%d. Pratipada early-exception/Dvitiya corroboration: Aparahna=%s, Pradosha=%s.',
+            $q,
+            $yallop['q_category'] ?? '?',
+            $waxingSepDeg,
+            $tithiAtSunrise,
+            $ds3AparahnaPassed ? 'YES' : 'NO',
+            $ds6PradoshaPassed ? 'YES' : 'NO'
+        ), $metrics);
+    }
+
+    /** @return array<string, mixed> */
+    private function chandraDarshanaYallopMetrics(
+        array $details,
+        float $sunsetJd,
+        float $moonsetJd,
+        float $lat,
+        float $lon,
+        float $elevationM
+    ): array {
+        $ctx = (array) ($details['Resolution_Context'] ?? []);
+        if (isset($ctx['chandra_yallop']) && is_array($ctx['chandra_yallop'])) {
+            return $ctx['chandra_yallop'];
+        }
+
+        if (!function_exists('chandra_yallop_evaluate_evening')) {
+            require_once dirname(__DIR__, 2) . '/scripts/lib/chandra_yallop.php';
+        }
+
+        return chandra_yallop_evaluate_evening($this->transitEngine->jme(), $sunsetJd, $moonsetJd, $lat, $lon, $elevationM);
+    }
+
+    private function chandraDarshanaYallopPasses(float $q, string $minCategory, bool $danjonRejected): bool
+    {
+        if (!function_exists('chandra_yallop_passes')) {
+            require_once dirname(__DIR__, 2) . '/scripts/lib/chandra_yallop.php';
+        }
+
+        return chandra_yallop_passes($q, $minCategory, $danjonRejected);
+    }
+
+    /**
+     * @param array<string, mixed> $day
+     * @param array<string, mixed> $nextDay
+     *
+     * @return array{start_jd: float, end_jd: float}
+     */
+    private function chandraDarshanaDvitiyaInterval(array $day, array $nextDay): array
+    {
+        $absTithi = (int) $day['tithi_index_abs'];
+        $dvitiyaStartJd = 0.0;
+        $dvitiyaEndJd = 0.0;
+
+        if ($absTithi === 2) {
+            $dvitiyaStartJd = (float) $day['tithi_start_jd'];
+            $dvitiyaEndJd = (float) $day['tithi_end_jd'];
+        } elseif ($absTithi === 1) {
+            $dvitiyaStartJd = (float) $day['tithi_end_jd'];
+            $nextAbs = (int) $nextDay['tithi_index_abs'];
+            if ($nextAbs === 2) {
+                $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
+            } else {
+                $dvitiyaEndJd = max($dvitiyaStartJd, (float) $nextDay['tithi_start_jd']);
+            }
+        } elseif ($absTithi === 30) {
+            $nextAbs = (int) $nextDay['tithi_index_abs'];
+            if ($nextAbs === 2) {
+                $dvitiyaStartJd = (float) $nextDay['tithi_start_jd'];
+                $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
+            } elseif ($nextAbs === 1) {
+                $dvitiyaStartJd = (float) $nextDay['tithi_end_jd'];
+                $dvitiyaEndJd = $dvitiyaStartJd + 0.9;
+            }
+        }
+
+        return [
+            'start_jd' => $dvitiyaStartJd,
+            'end_jd' => $dvitiyaEndJd,
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $day
+     * @param array<string, mixed> $prevDay
+     * @param array<string, mixed> $nextDay
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function evaluateChandraDarshanaClassicalHybridGates(CarbonImmutable $date, array $day, array $prevDay, array $nextDay): array
+    {
+        unset($date, $prevDay);
+
+        $sunrise = (float) $day['sunrise_jd'];
+        $sunset = (float) $day['sunset_jd'];
+        $nextSunrise = (float) $day['next_sunrise_jd'];
+
+        $daylightDuration = $sunset - $sunrise;
+        $dayMuhurta = $daylightDuration > 0.0 ? $daylightDuration / 15.0 : 0.0;
+        $nightDuration = $nextSunrise - $sunset;
+        $nightMuhurta = $nightDuration > 0.0 ? $nightDuration / 15.0 : 0.0;
+
+        $aparahnaStart = $sunrise + (9.0 * $dayMuhurta);
+        $aparahnaEnd = $sunrise + (12.0 * $dayMuhurta);
+
+        $dvitiya = $this->chandraDarshanaDvitiyaInterval($day, $nextDay);
+        $dvitiyaStartJd = $dvitiya['start_jd'];
+        $dvitiyaEndJd = $dvitiya['end_jd'];
+
+        $aparahnaOverlapJd = 0.0;
+        if ($dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd) {
+            $aparahnaOverlapJd = max(0.0, min($aparahnaEnd, $dvitiyaEndJd) - max($aparahnaStart, $dvitiyaStartJd));
+        }
+
+        $aparahnaMuhurtas = $dayMuhurta > 0.0 ? $aparahnaOverlapJd / $dayMuhurta : 0.0;
+        $ds3MuhurtaAparahnaPassed = $aparahnaMuhurtas >= self::CHANDRA_DARSHANA_DHARMA_SINDHU_APARAHNA_MIN_MUHURTAS - 1e-6;
+
+        $pradoshaStart = $sunset;
+        $pradoshaEnd = $sunset + (6.0 * $nightMuhurta);
+        $pradoshaOverlapJd = 0.0;
+        if ($dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd) {
+            $pradoshaOverlapJd = max(0.0, min($pradoshaEnd, $dvitiyaEndJd) - max($pradoshaStart, $dvitiyaStartJd));
+        }
+
+        $pradoshaMuhurtas = $nightMuhurta > 0.0 ? $pradoshaOverlapJd / $nightMuhurta : 0.0;
+        $ds6MuhurtaPradoshaPassed = $pradoshaMuhurtas >= self::CHANDRA_DARSHANA_DHARMA_SINDHU_PRADOSHA_MIN_MUHURTAS - 1e-6;
+
+        $absTithi = (int) $day['tithi_index_abs'];
+        $isKsayaPratipada = false;
+        if ($absTithi === 30) {
+            $amavasyaEnd = (float) $day['tithi_end_jd'];
+            if ((int) $nextDay['tithi_index_abs'] === 2 && $amavasyaEnd > $sunrise && $amavasyaEnd < $nextSunrise) {
+                $isKsayaPratipada = true;
+            }
+        } elseif ($absTithi === 1) {
+            $pratipadaStart = (float) $day['tithi_start_jd'];
+            $pratipadaEnd = (float) $day['tithi_end_jd'];
+            if ($pratipadaStart > $sunrise && $pratipadaEnd < $nextSunrise) {
+                $isKsayaPratipada = true;
+            }
+        }
+
+        return [
+            'dharma_sindhu' => [
+                'aparahna_start_jd' => $aparahnaStart,
+                'aparahna_end_jd' => $aparahnaEnd,
+                'aparahna_dvitiya_muhurtas' => round($aparahnaMuhurtas, 4),
+                'ds_3_muhurta_aparahna_passed' => $ds3MuhurtaAparahnaPassed,
+                'pradosha_start_jd' => $pradoshaStart,
+                'pradosha_end_jd' => $pradoshaEnd,
+                'pradosha_dvitiya_muhurtas' => round($pradoshaMuhurtas, 4),
+                'ds_6_muhurta_pradosha_passed' => $ds6MuhurtaPradoshaPassed,
+            ],
+            'nirnayamrita' => [
+                'is_ksaya_pratipada' => $isKsayaPratipada,
+                'day2_deferral_enforced' => $isKsayaPratipada,
+            ],
+        ];
+    }
+
+    /** @param array<string, mixed> $day */
+    private function chandraDarshanaRejectedCandidate(CarbonImmutable $date, array $day, string $statusCode, string $reason, ?array $metrics): array
+    {
+        return $this->chandraDarshanaCandidate($date, $day, false, $statusCode, $reason, $metrics);
+    }
+
+    /** @param array<string, mixed> $day */
+    private function chandraDarshanaAcceptedCandidate(CarbonImmutable $date, array $day, string $statusCode, string $reason, array $metrics): array
+    {
+        return $this->chandraDarshanaCandidate($date, $day, true, $statusCode, $reason, $metrics);
+    }
+
+    /** @param array<string, mixed> $day */
+    private function chandraDarshanaCandidate(CarbonImmutable $date, array $day, bool $accepted, string $statusCode, string $reason, ?array $metrics): array
+    {
+        $sunrise = (float) $day['sunrise_jd'];
+        $sunset = (float) $day['sunset_jd'];
+        $moonset = is_numeric($day['moonset_jd']) ? (float) $day['moonset_jd'] : $sunset;
+        $targetTithi = (int) $day['tithi_index_abs'];
+        $targetInterval = [
+            'start_jd' => (float) $day['tithi_start_jd'],
+            'end_jd' => (float) $day['tithi_end_jd'],
+        ];
+        $visibilityWindow = [
+            'start_jd' => $sunset,
+            'end_jd' => max($sunset, $moonset),
+        ];
+        $moonVisibilitySeconds = max(0.0, ($visibilityWindow['end_jd'] - $visibilityWindow['start_jd']) * 86400.0);
+        $targetWindowOverlapSeconds = $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
         $daylightOverlapSeconds = $this->intervalOverlapSeconds($targetInterval, ['start_jd' => $sunrise, 'end_jd' => $sunset]);
+        $classification = $statusCode;
+        $metricsArray = $metrics ?? [];
+        $reasonKey = $this->chandraDarshanaReasonForStatus($statusCode);
 
         return [
             'date' => $date->toDateString(),
             'day_offset' => 0,
             'required_tithi' => $targetTithi,
             'target_interval' => $targetInterval,
-            'visibility_window' => $visibilityWindow ?? ['start_jd' => $sunset, 'end_jd' => $sunset],
+            'visibility_window' => $visibilityWindow,
             'target_at_sunrise' => $this->isTargetAtPoint($sunrise, $targetInterval),
             'target_at_karmakala' => $targetWindowOverlapSeconds > 0.0,
             'target_window_overlap_seconds' => $targetWindowOverlapSeconds,
             'target_daylight_overlap_seconds' => $daylightOverlapSeconds,
             'moon_visibility_seconds' => $moonVisibilitySeconds,
             'classification' => $classification,
-            'operational_candidate' => $operationalCandidate,
-            'reason' => $this->chandraDarshanaReasonForClassification($classification),
+            'operational_candidate' => $accepted,
+            'reason' => $reasonKey,
             'visibility_assessment' => [
-                'model' => 'source_sensitive_monthly_chandra_darshana_first_crescent',
-                'operational_candidate' => $operationalCandidate,
-                'geometrically_supported_by_engine_proxy' => $operationalCandidate,
+                'model' => 'chandra_darshana_hybrid_engine',
+                'description' => 'chandra_darshana_hybrid_engine_description',
+                'operational_candidate' => $accepted,
                 'actual_observation' => 'UNKNOWN',
                 'classification' => $classification,
                 'summary_classification' => $classification,
+                'status_code' => $statusCode,
+                // Public reason is a localization key; keep English diagnostic prose under reason_detail.
+                'reason' => $reasonKey,
+                'reason_detail' => $reason,
+                'selection_mode' => $accepted ? 'HYBRID_MODERN_PLUS_CLASSICAL' : null,
                 'strict_source_only_result' => 'MONTHLY_DATE_TEXTUALLY_UNDETERMINED',
-                'strict_source_only_reason_key' => 'no_explicit_monthly_scriptural_date_command_in_seven_sources',
-                'date_selection_basis' => 'application_definition_first_visible_crescent',
+                'date_selection_basis' => 'hybrid_scripture_modern_first_crescent',
                 'date_selection_is_explicit_monthly_scriptural_rule' => false,
-                'source_attested_tithi_scope' => 'SHUKLA_PRATIPADA_DVITIYA_TRANSITION',
-                'operational_candidate_scope' => 'SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY',
-                'search_beyond_dvitiya' => false,
-                'astronomical_basis' => 'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
-                'astronomical_computation_basis' => 'directed_moon_minus_sun_ecliptic_longitude_separation_at_local_sunset_checked_against_12_degree_proxy_threshold',
-                'application_evaluation_epoch' => 'local_sunset',
-                'evaluation_epoch_is_explicitly_commanded_by_surya_siddhanta_10_1' => false,
-                'modern_proxy_for_surya_siddhanta_12_bhaga_rule' => true,
-                'modern_proxy_for_surya_siddhanta_12_bhaga_indication' => true,
-                'claims_full_surya_siddhanta_chapter_10_recomputation' => false,
-                'claims_modern_great_circle_elongation' => false,
-                // Scholarly-safe SS 10.1–10.5 / 2.57 / 7.9 / 7.11 encoding (proxy ≠ full recompute).
-                'surya_siddhanta_basis' => [
-                    'SS_10_1',
-                    'SS_10_2',
-                    'SS_10_3',
-                    'SS_10_4',
-                    'SS_10_5',
-                    'SS_2_57',
-                    'SS_7_9',
-                    'SS_7_11',
+                'gates_included' => [
+                    'modern_layer' => 'chandra_darshana_gate_modern_yallop_tn69',
+                    'danjon_guard' => self::CHANDRA_DARSHANA_APPLY_DANJON_GUARD,
+                    'ss10_1' => 'chandra_darshana_gate_ss10_1',
+                    'dharma_sindhu_aparahna' => 'chandra_darshana_gate_dharma_sindhu_aparahna',
+                    'dharma_sindhu_pradosha' => 'chandra_darshana_gate_dharma_sindhu_pradosha',
+                    'nirnayamrita' => 'chandra_darshana_gate_nirnayamrita_kshaya',
                 ],
-                'twelve_bhaga_interpretation' => 'textually_disputed_between_angular_arc_and_ascensional_time',
-                'angular_separation_reading_supported' => true,
-                'ascensional_time_reading_supported' => true,
-                'modern_proxy' => 'directed_moon_sun_ecliptic_longitude_separation_at_local_sunset',
-                'modern_proxy_threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
-                'classical_computed_output' => 'iterated_local_setting_or_rising_interval_in_asu_prana',
-                // SS 10.2–10.4 do not state final_asu >= 720; do not invent that gate.
-                'classical_visibility_threshold_in_asu' => null,
-                'fabricated_final_asu_720_gate' => false,
-                'exact_drikkarma_implemented' => false,
-                'exact_oblique_ascension_implemented' => false,
-                'claims_full_surya_siddhanta_recomputation' => false,
-                'tithi_corroboration_basis' => 'nibandha_tithi_visibility_indication',
-                'tithi_indication_original_context' => 'darsa_anvadhana_and_govardhana_adjudication',
-                'tithi_indication_monthly_use' => 'application_level_analogy',
-                'pradosha_basis' => 'satsangijivan_childhood_samskara_analogy_only',
-                'pradosha_muhurta_basis' => 'dynamic_ratrimana_muhurta',
-                'modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees' => $directedSeparation,
-                'modern_longitude_separation_normalization' => 'zero_to_360_directed_moon_minus_sun',
-                'visibility_proxy_requires_waxing_half' => true,
-                'visibility_proxy_waxing_half_passed' => $waxingHalf,
-                'surya_siddhanta_oblique_ascensional_interval' => null,
-                'surya_siddhanta_oblique_ascensional_interval_unit' => null,
-                'surya_siddhanta_oblique_ascensional_interval_computed' => false,
-                'proxy_threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
+                'metrics' => $metricsArray,
+                'modern_yallop' => is_array($metricsArray['modern_yallop'] ?? null) ? $metricsArray['modern_yallop'] : $metricsArray,
+                'ss10_1' => $metricsArray['ss10_1'] ?? null,
+                'dharma_sindhu' => $metricsArray['dharma_sindhu'] ?? null,
+                'nirnayamrita' => $metricsArray['nirnayamrita'] ?? null,
                 'moonset_lag_seconds' => $moonVisibilitySeconds,
                 'moonset_lag_minutes' => $moonVisibilitySeconds / 60.0,
-                'illumination_percent' => (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0),
-                'horizon' => [
-                    'status' => $hasWindow ? 'POST_SUNSET_HORIZON_WINDOW' : 'NO_POST_SUNSET_HORIZON_WINDOW',
-                    'method' => 'rise_set_window_proxy',
-                    'requires_moonrise_before_sunset' => true,
-                    'requires_moonset_after_sunset' => true,
-                    'note' => Localization::translate(
-                        'String',
-                        'Rise/set proxy; not an apparent upper-limb altitude and next-set search.',
-                    ),
+                'illumination_percent' => (float) $day['illumination_percent'],
+                'observer' => [
+                    'latitude' => (float) $day['observer_latitude'],
+                    'longitude' => (float) $day['observer_longitude'],
+                    'elevation_m' => (float) $day['observer_elevation_m'],
                 ],
-                'surya_siddhanta_visibility' => [
-                    'status' => $twelveBhagaProxyPassed ? 'TWELVE_BHAGA_PROXY_PASSED' : 'TWELVE_BHAGA_PROXY_NOT_PASSED',
-                    'method' => 'modern_directed_ecliptic_longitude_separation_proxy',
-                    'threshold_degrees' => self::CHANDRA_DARSHANA_12_BHAGA_PROXY_DEGREES,
-                    'requires_waxing_half' => true,
-                    'waxing_half_passed' => $waxingHalf,
-                    'twelve_bhaga_interpretation' => 'textually_disputed_between_angular_arc_and_ascensional_time',
-                    'angular_separation_reading_supported' => true,
-                    'ascensional_time_reading_supported' => true,
-                    'classical_visibility_threshold_in_asu' => null,
-                    'fabricated_final_asu_720_gate' => false,
-                    'exact_drikkarma_implemented' => false,
-                    'exact_oblique_ascension_implemented' => false,
-                    'claims_exact_siddhantic_recomputation' => false,
-                    'claims_full_surya_siddhanta_recomputation' => false,
-                    'claims_modern_great_circle_elongation' => false,
-                    'note' => 'Operational Δλ≥12° is a modern proxy for disputed SS 10.1 twelve-bhāga; not iterated lagnāntarāsavaḥ and not final_asu≥720.',
-                ],
-                'nibandha_tithi_indication' => [
-                    'status' => $proxy['aparahna_3'] ? 'FULL_APARAHNA_INDICATION_PRESENT' : 'FULL_APARAHNA_INDICATION_NOT_ESTABLISHED',
-                    'applicable' => $proxy['applicable'],
-                    'original_context' => 'darsa_anvadhana_and_govardhana_adjudication',
-                    'monthly_use' => 'application_level_analogy',
-                ],
-                'stronger_six_muhurta_indication' => [
-                    'status' => $proxy['to_sunset_6'] ? 'SIX_MUHURTA_INTERVAL_COVERED' : 'SIX_MUHURTA_INTERVAL_NOT_COVERED',
-                    'requires_dvitiya_start_at_or_before_aparahna_start' => true,
-                    'requires_dvitiya_end_at_or_after_sunset' => true,
-                ],
-                'pradosha' => [
-                    'status' => $visibilityDuringPradosha ? 'PRADOSHA_OVERLAP_PRESENT' : 'NO_PRADOSHA_OVERLAP',
-                    'basis' => 'satsangijivan_childhood_samskara_analogy_only',
-                    'muhurta_basis' => 'dynamic_ratrimana_muhurta',
-                    'used_as_rejection_rule' => false,
-                ],
-                'monthly_observance' => [
-                    'strict_source_only_status' => 'MONTHLY_DATE_TEXTUALLY_UNDETERMINED',
-                    'application_status' => $operationalCandidate ? 'APPLICATION_FIRST_CRESCENT_CANDIDATE' : 'NOT_SELECTED_BY_APPLICATION_MODEL',
-                    'date_selection_basis' => 'application_definition_first_visible_crescent',
-                    'date_selection_is_explicit_monthly_scriptural_rule' => false,
-                    'source_attested_tithi_scope' => 'SHUKLA_PRATIPADA_DVITIYA_TRANSITION',
-                    'operational_candidate_scope' => 'SHUKLA_PRATIPADA_AND_SHUKLA_DVITIYA_ONLY',
-                    'search_beyond_dvitiya' => false,
-                ],
-                'has_post_sunset_horizon_window' => $hasWindow,
-                'tithi_proxy_applicable' => $proxy['applicable'],
-                'dvitiya_covers_full_aparahna_3_muhurtas' => $proxy['aparahna_3'],
-                'dvitiya_covers_aparahna_through_sunset_6_muhurtas' => $proxy['to_sunset_6'],
-                'pratipada_post_sunrise_muhurtas' => $proxy['pratipada_post_sunrise_muhurtas'],
-                'dvitiya_start_jd' => $proxy['dvitiya_start_jd'],
-                'dvitiya_end_jd' => $proxy['dvitiya_end_jd'],
-                'visibility_during_pradosha' => $visibilityDuringPradosha,
-                'forbidden_modern_thresholds_applied' => false,
-                'reason' => $this->chandraDarshanaReasonForClassification($classification),
-                'basis' => 'application_definition_first_visible_crescent',
             ],
-        ];
-    }
-
-    /** @param array<string, bool> $flags */
-    private function classifyChandraDarshanaEvening(array $flags): string
-    {
-        if ($flags['has_post_sunset_horizon_window']
-            && $flags['twelve_bhaga_proxy_passed']
-            && $flags['tithi_proxy_applicable']
-            && $flags['tithi_proxy_aparahna_3']) {
-            return 'APPLICATION_CRESCENT_CANDIDATE_WITH_NIBANDHA_INDICATION';
-        }
-
-        if ($flags['has_post_sunset_horizon_window'] && $flags['twelve_bhaga_proxy_passed']) {
-            return 'APPLICATION_CRESCENT_CANDIDATE';
-        }
-
-        if ($flags['tithi_proxy_applicable'] && $flags['tithi_proxy_aparahna_3']) {
-            return 'NIBANDHA_TITHI_INDICATION_ASTRONOMICAL_PROXY_DIVERGENCE';
-        }
-
-        if (!$flags['has_post_sunset_horizon_window']) {
-            return 'NO_POST_SUNSET_HORIZON_WINDOW';
-        }
-
-        return 'TWELVE_BHAGA_PROXY_NOT_PASSED';
-    }
-
-    /**
-     * @return array{
-     *   applicable: bool,
-     *   aparahna_3: bool,
-     *   to_sunset_6: bool,
-     *   pratipada_post_sunrise_muhurtas: ?float,
-     *   dvitiya_start_jd: ?float,
-     *   dvitiya_end_jd: ?float
-     * }
-     */
-    private function computeChandraDarshanaTithiProxy(array $details): array
-    {
-        $ctx = (array) ($details['Resolution_Context'] ?? []);
-        $abs = (int) ($ctx['tithi_index_abs'] ?? 0);
-        $sunrise = (float) ($ctx['sunrise_jd'] ?? 0.0);
-        $sunset = (float) ($ctx['sunset_jd'] ?? 0.0);
-        $dayMuhurtaSeconds = $sunset > $sunrise ? (($sunset - $sunrise) * 86400.0) / 15.0 : 0.0;
-
-        if ($dayMuhurtaSeconds <= 0.0 || $abs !== 1 || $this->transitEngine === null) {
-            return [
-                'applicable' => false,
-                'aparahna_3' => false,
-                'to_sunset_6' => false,
-                'pratipada_post_sunrise_muhurtas' => null,
-                'dvitiya_start_jd' => null,
-                'dvitiya_end_jd' => null,
-            ];
-        }
-
-        $aparahnaStart = $sunrise + (9.0 * $dayMuhurtaSeconds) / 86400.0;
-        $aparahnaEnd = $sunrise + (12.0 * $dayMuhurtaSeconds) / 86400.0;
-        $pratipadaEnd = (float) ($ctx['tithi_end_jd'] ?? 0.0);
-        if ($pratipadaEnd <= 0.0) {
-            return [
-                'applicable' => false,
-                'aparahna_3' => false,
-                'to_sunset_6' => false,
-                'pratipada_post_sunrise_muhurtas' => null,
-                'dvitiya_start_jd' => null,
-                'dvitiya_end_jd' => null,
-            ];
-        }
-
-        $dvitiyaStart = $pratipadaEnd;
-        $transitEngine = $this->transitEngine;
-        $dvitiyaEnd = $transitEngine->findAngleCrossing(
-            $dvitiyaStart + 1e-5,
-            24.0,
-            1,
-            static fn (float $jd): float => $transitEngine->getMoonSunAngle($jd),
-        );
-
-        if ($dvitiyaEnd <= $dvitiyaStart) {
-            return [
-                'applicable' => true,
-                'aparahna_3' => false,
-                'to_sunset_6' => false,
-                'pratipada_post_sunrise_muhurtas' => null,
-                'dvitiya_start_jd' => $dvitiyaStart,
-                'dvitiya_end_jd' => null,
-            ];
-        }
-
-        return [
-            'applicable' => true,
-            'aparahna_3' => $dvitiyaStart <= $aparahnaStart + 1e-9 && $dvitiyaEnd >= $aparahnaEnd - 1e-9,
-            'to_sunset_6' => $dvitiyaStart <= $aparahnaStart + 1e-9 && $dvitiyaEnd >= $sunset - 1e-9,
-            'pratipada_post_sunrise_muhurtas' => max(0.0, ($pratipadaEnd - $sunrise) * 86400.0) / $dayMuhurtaSeconds,
-            'dvitiya_start_jd' => $dvitiyaStart,
-            'dvitiya_end_jd' => $dvitiyaEnd,
         ];
     }
 
@@ -472,13 +561,13 @@ trait FestivalRuleChandraDarshana
             'festival_name' => $festivalName,
             'required_tithi' => (int) $winner['required_tithi'],
             'paksha' => 'Shukla',
-            'karmakala_type' => (string) ($rule['karmakala_type'] ?? 'moonrise'),
-            'tithi_at_karmakala_today' => $winner['day_offset'] === 0 && $overlapSeconds > 0.0,
-            'tithi_at_karmakala_tomorrow' => $winner['day_offset'] === 1 && $overlapSeconds > 0.0,
-            'tithi_coverage_seconds_today' => $winner['day_offset'] === 0 ? $overlapSeconds : 0.0,
-            'tithi_coverage_seconds_tomorrow' => $winner['day_offset'] === 1 ? $overlapSeconds : 0.0,
-            'tithi_at_sunrise_today' => $winner['day_offset'] === 0 && (bool) $winner['target_at_sunrise'],
-            'tithi_at_sunrise_tomorrow' => $winner['day_offset'] === 1 && (bool) $winner['target_at_sunrise'],
+            'karmakala_type' => (string) ($rule['karmakala_type'] ?? 'chandra_darshana_visibility'),
+            'tithi_at_karmakala_today' => $overlapSeconds > 0.0,
+            'tithi_at_karmakala_tomorrow' => false,
+            'tithi_coverage_seconds_today' => $overlapSeconds,
+            'tithi_coverage_seconds_tomorrow' => 0.0,
+            'tithi_at_sunrise_today' => (bool) $winner['target_at_sunrise'],
+            'tithi_at_sunrise_tomorrow' => false,
             'is_tithi_vriddhi' => false,
             'is_tithi_kshaya' => false,
             'target_tithi_start_jd' => (float) $targetInterval['start_jd'],
@@ -512,14 +601,14 @@ trait FestivalRuleChandraDarshana
         ];
     }
 
-    private function chandraDarshanaReasonForClassification(string $classification): string
+    private function chandraDarshanaReasonForStatus(string $statusCode): string
     {
-        return match ($classification) {
-            'APPLICATION_CRESCENT_CANDIDATE_WITH_NIBANDHA_INDICATION' => 'chandra_darshana_application_crescent_candidate_with_nibandha_indication',
-            'APPLICATION_CRESCENT_CANDIDATE' => 'chandra_darshana_application_crescent_candidate',
-            'NIBANDHA_TITHI_INDICATION_ASTRONOMICAL_PROXY_DIVERGENCE' => 'chandra_darshana_nibandha_tithi_indication_astronomical_proxy_divergence',
-            'NO_POST_SUNSET_HORIZON_WINDOW' => 'chandra_darshana_no_post_sunset_horizon_window',
-            default => 'chandra_darshana_twelve_bhaga_proxy_not_passed',
+        return match ($statusCode) {
+            'SUCCESS_PRATIPADA_EARLY_EXCEPTION' => 'chandra_darshana_success_pratipada_early_exception',
+            'SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION' => 'chandra_darshana_success_dvitiya_with_dharma_sindhu_corroboration',
+            'SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY' => 'chandra_darshana_success_dvitiya_modern_ss10_only',
+            'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY' => 'chandra_darshana_success_hybrid_modern_ss10_only',
+            default => 'chandra_darshana_hybrid_candidate_rejected',
         };
     }
 
@@ -538,13 +627,10 @@ trait FestivalRuleChandraDarshana
         $ctx = (array) ($details['Resolution_Context'] ?? []);
         $sunsetJd = (float) ($ctx['sunset_jd'] ?? 0.0);
         $panchanga = (array) ($details['Panchanga'] ?? []);
-        $moonriseJd = $this->extractJd($details['Moonrise_JD'] ?? ($details['Moonrise'] ?? ($panchanga['Moonrise'] ?? null)));
         $moonsetJd = $this->extractJd($details['Moonset_JD'] ?? ($details['Moonset'] ?? ($panchanga['Moonset'] ?? null)));
 
         return $sunsetJd > 0.0
-            && $moonriseJd !== null
             && $moonsetJd !== null
-            && $moonriseJd < $sunsetJd
             && $sunsetJd < $moonsetJd;
     }
 

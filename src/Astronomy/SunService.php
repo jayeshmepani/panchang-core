@@ -39,22 +39,15 @@ class SunService
     /** @var array<string, array{0: ?CarbonImmutable, 1: ?CarbonImmutable}> */
     private array $moonriseMoonsetCache = [];
 
+    public function __construct(private JmeEphFFI $jme)
+    {
+        $this->initializeEphemerisPath($this->jme);
+    }
+
     public function clearCaches(): void
     {
         $this->sunriseSunsetCache = [];
         $this->moonriseMoonsetCache = [];
-    }
-
-    private function trimCache(array &$cache): void
-    {
-        if (count($cache) >= self::CACHE_MAX) {
-            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
-        }
-    }
-
-    public function __construct(private JmeEphFFI $jme)
-    {
-        $this->initializeEphemerisPath($this->jme);
     }
 
     /**
@@ -235,6 +228,13 @@ class SunService
         }
 
         return [$interval, $start, $isDay];
+    }
+
+    private function trimCache(array &$cache): void
+    {
+        if (count($cache) >= self::CACHE_MAX) {
+            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
+        }
     }
 
     private function getRiseSetWithFlag(array $birth, int $twilightFlag): array

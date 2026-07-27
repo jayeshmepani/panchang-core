@@ -4,6 +4,8 @@ parameters:
         - src/
         - config/
         - tests/
+    bootstrapFiles:
+        - scripts/lib/chandra_yallop.php
     excludePaths:
         - vendor/*
 

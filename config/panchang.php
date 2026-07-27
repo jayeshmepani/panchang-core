@@ -78,8 +78,8 @@ return [
     */
 
     'festivals' => [
-        'default_tradition' => 'Vaishnava',
-        'default_region' => 'Gujarat',
+        'default_tradition' => env('PANCHANG_DEFAULT_TRADITION', 'Vaishnava'),
+        'default_region' => env('PANCHANG_DEFAULT_REGION', 'Gujarat'),
         'supported_traditions' => ['Smarta', 'Vaishnava'],
         'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
     ],

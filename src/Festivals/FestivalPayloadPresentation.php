@@ -122,7 +122,7 @@ trait FestivalPayloadPresentation
             $payload['rules_applied'] = $this->localizeDecisionMetadata($resolved['decision']);
         }
 
-        return $payload;
+        return $this->stripEnglishCompanionFields($payload);
     }
 
     private function buildCalculationBasis(array $rules, ?array $resolved = null): array
@@ -394,7 +394,7 @@ trait FestivalPayloadPresentation
             $out['decision'] = $this->localizeDecisionMetadata($out['decision']);
         }
 
-        return $this->filterEmptyMetadata($out);
+        return $this->stripEnglishCompanionFields($this->filterEmptyMetadata($out));
     }
 
     private function inferFestivalBasis(array $rules): string
@@ -480,13 +480,19 @@ trait FestivalPayloadPresentation
         }
 
         $sign = Rasi::from($index);
-        return [
+        $payload = [
             'index' => $index,
             'number' => $index + 1,
             'name' => $sign->getName(),
-            'english_name' => $sign->getEnglishName(),
             'symbol' => $sign->getSymbol(),
         ];
+
+        // Keep English companion only for the English locale; localized `name` is the public field.
+        if ($this->currentLocale() === 'en') {
+            $payload['english_name'] = $sign->getEnglishName();
+        }
+
+        return $payload;
     }
 
     private function formatFixedDateRule(array $rules): ?array
@@ -513,11 +519,17 @@ trait FestivalPayloadPresentation
         }
 
         $vara = Vara::from($number);
-        return [
+        $payload = [
             'number' => $number,
             'name' => $vara->getName(),
-            'english_name' => $vara->getEnglishName(),
         ];
+
+        // Keep English companion only for the English locale; localized `name` is the public field.
+        if ($this->currentLocale() === 'en') {
+            $payload['english_name'] = $vara->getEnglishName();
+        }
+
+        return $payload;
     }
 
     private function formatAdhikaRule(array $rules): ?array
@@ -552,7 +564,7 @@ trait FestivalPayloadPresentation
         if (isset($decision['winning_reason'])) {
             $reasonRaw = (string) $decision['winning_reason'];
             $decision['winning_reason_key'] = $reasonRaw;
-            $decision['winning_reason'] = $this->localizedString($reasonRaw);
+            $decision['winning_reason'] = $this->localizedDisplayOrNull('String', $reasonRaw);
             $decision['winning_reason_name'] = $decision['winning_reason'];
         }
 
@@ -591,7 +603,7 @@ trait FestivalPayloadPresentation
         if (isset($decision['reason'])) {
             $reasonRaw = (string) $decision['reason'];
             $decision['reason_key'] = $reasonRaw;
-            $decision['reason'] = $this->localizedString($reasonRaw);
+            $decision['reason'] = $this->localizedDisplayOrNull('String', $reasonRaw);
             $decision['reason_name'] = $decision['reason'];
         }
 
@@ -600,10 +612,42 @@ trait FestivalPayloadPresentation
         }
 
         if (isset($decision['visibility_assessment']) && is_array($decision['visibility_assessment'])) {
-            $decision['visibility_assessment'] = $this->localizeNamedPayloadFields($decision['visibility_assessment']);
+            $decision['visibility_assessment'] = $this->localizeVisibilityAssessment($decision['visibility_assessment']);
         }
 
-        return $decision;
+        return $this->filterEmptyMetadata($decision);
+    }
+
+    /**
+     * Localize Chandra Darshana visibility assessment for public payloads.
+     * Diagnostic English (reason_detail, script paths, gate prose keys) stays under *_key
+     * or is omitted in non-English locales when no translation exists.
+     *
+     * @param array<string, mixed> $assessment
+     *
+     * @return array<string, mixed>
+     */
+    private function localizeVisibilityAssessment(array $assessment): array
+    {
+        $assessment = $this->localizeNamedPayloadFields($assessment);
+
+        // Keep machine diagnostic English out of public localized payloads.
+        if ($this->currentLocale() !== 'en' && array_key_exists('reason_detail', $assessment)) {
+            unset($assessment['reason_detail'], $assessment['reason_detail_key']);
+
+        }
+
+        if (isset($assessment['gates_included']) && is_array($assessment['gates_included'])) {
+            foreach ($assessment['gates_included'] as $gateKey => $gateValue) {
+                if (!is_string($gateValue) || $gateValue === '') {
+                    continue;
+                }
+
+                $assessment['gates_included'][$gateKey] = $this->localizedDisplayOrNull('String', $gateValue);
+            }
+        }
+
+        return $this->filterEmptyMetadata($assessment);
     }
 
     /**
@@ -624,15 +668,25 @@ trait FestivalPayloadPresentation
         if (isset($payload['reason']) && is_string($payload['reason']) && $payload['reason'] !== '') {
             $raw = $payload['reason'];
             $payload['reason_key'] = $raw;
-            $payload['reason'] = $this->localizedString($raw) ?? $raw;
+            $payload['reason'] = $this->localizedDisplayOrNull('String', $raw);
             $payload['reason_name'] = $payload['reason'];
         }
 
         if (isset($payload['winning_reason']) && is_string($payload['winning_reason']) && $payload['winning_reason'] !== '') {
             $raw = $payload['winning_reason'];
             $payload['winning_reason_key'] = $raw;
-            $payload['winning_reason'] = $this->localizedString($raw) ?? $raw;
+            $payload['winning_reason'] = $this->localizedDisplayOrNull('String', $raw);
             $payload['winning_reason_name'] = $payload['winning_reason'];
+        }
+
+        foreach (['label', 'label_from_q', 'q_label', 'description'] as $field) {
+            if (!isset($payload[$field]) || !is_string($payload[$field]) || $payload[$field] === '') {
+                continue;
+            }
+
+            $raw = $payload[$field];
+            $payload[$field . '_key'] ??= $raw;
+            $payload[$field] = $this->localizedDisplayOrNull('String', $raw);
         }
 
         foreach ($payload as $key => $value) {
@@ -641,7 +695,35 @@ trait FestivalPayloadPresentation
             }
         }
 
-        return $payload;
+        return $this->filterEmptyMetadata($payload);
+    }
+
+    /**
+     * Remove English companion fields from non-English localized payloads.
+     *
+     * @param array<string, mixed> $payload
+     *
+     * @return array<string, mixed>
+     */
+    private function stripEnglishCompanionFields(array $payload): array
+    {
+        foreach ($payload as $key => $value) {
+            if (is_array($value)) {
+                $payload[$key] = $this->stripEnglishCompanionFields($value);
+                continue;
+            }
+
+            if ($this->currentLocale() !== 'en' && $key === 'english_name') {
+                unset($payload[$key]);
+            }
+        }
+
+        return $this->filterEmptyMetadata($payload);
+    }
+
+    private function currentLocale(): string
+    {
+        return (string) AstroCore::getConfig('panchang.defaults.locale', 'en');
     }
 
     private function localizedPakshaName(mixed $paksha): ?string

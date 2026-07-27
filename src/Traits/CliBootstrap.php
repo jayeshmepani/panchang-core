@@ -191,11 +191,35 @@ final class CliBootstrap
         function config(array|string|null $key = null, mixed $default = null): mixed {
             static $store = null;
             if ($store === null) {
-                $configPath = "' . addslashes($baseDir) . '/config/panchang.php";
+                $configPath = "' . addslashes($baseDir) . ('/config/panchang.php";
                 $store = ["panchang" => file_exists($configPath) ? require $configPath : []];
             }
             if ($key === null) { return $store; }
-            if (is_array($key)) { return true; }
+            if (is_array($key)) {
+                foreach ($key as $k => $v) {
+                    $keys = explode(".", $k);
+                    $ptr = &$store;
+                    foreach ($keys as $segment) {
+                        if (!isset($ptr[$segment]) || !is_array($ptr[$segment])) {
+                            $ptr[$segment] = [];
+                        }
+                        $ptr = &$ptr[$segment];
+                    }
+                    $ptr = $v;
+                }
+                if (class_exists(' . Container::class . '::class)) {
+                    try {
+                        $c = ' . Container::class . '::getInstance();
+                        if ($c->bound("config")) {
+                            $repo = $c->make("config");
+                            foreach ($key as $k => $v) {
+                                $repo->set($k, $v);
+                            }
+                        }
+                    } catch (\Throwable) {}
+                }
+                return true;
+            }
             $segments = explode(".", $key);
             $value = $store;
             foreach ($segments as $s) {
@@ -204,7 +228,7 @@ final class CliBootstrap
             }
             return $value;
         }
-        ');
+        '));
         // phpcs:enable
     }
 

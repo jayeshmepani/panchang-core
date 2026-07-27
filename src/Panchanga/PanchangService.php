@@ -71,28 +71,13 @@ class PanchangService
 
     private const int FESTIVAL_SNAPSHOT_CACHE_TRIM_TO = 250;
 
-    private const int MONTH_CACHE_MAX = 200;
-
-    private const int MONTH_CACHE_TRIM_TO = 100;
-
     private static string $ephePath = '';
-
-    private array $monthCache = [];
 
     /** @var array<string, array<string, mixed>> */
     private array $festivalSnapshotCache = [];
 
     /** @var array<string, float> */
     private array $bodyLongitudeCache = [];
-
-    public function clearCaches(): void
-    {
-        $this->monthCache = [];
-        $this->festivalSnapshotCache = [];
-        $this->bodyLongitudeCache = [];
-        $this->astronomy->clearCaches();
-        $this->sunService->clearCaches();
-    }
 
     private readonly CData $calcBodyBuffer;
 
@@ -171,6 +156,14 @@ class PanchangService
 
         // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
         $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
+    }
+
+    public function clearCaches(): void
+    {
+        $this->festivalSnapshotCache = [];
+        $this->bodyLongitudeCache = [];
+        $this->astronomy->clearCaches();
+        $this->sunService->clearCaches();
     }
 
     public static function configure(string $ephePath = ''): void
@@ -599,6 +592,10 @@ class PanchangService
                 'previous_sunrise_iso' => AstroCore::formatDateTime($previousSunrise),
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
+                'observer_latitude' => $lat,
+                'observer_longitude' => $lon,
+                'observer_elevation_m' => $elevation,
+                'observer_timezone' => $tz,
                 'sankranti_rashi' => $sankrantiRashi,
                 'sankranti_jd' => $sankrantiJd,
             ],
@@ -1321,6 +1318,10 @@ class PanchangService
                 'previous_sunrise_iso' => AstroCore::formatDateTime($previousSunrise),
                 'sunset_iso' => AstroCore::formatDateTime($sunset),
                 'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
+                'observer_latitude' => $lat,
+                'observer_longitude' => $lon,
+                'observer_elevation_m' => $elevation,
+                'observer_timezone' => $tz,
                 'sankranti_rashi' => $sankrantiRashi,
                 'sankranti_jd' => $sankrantiJd,
             ],

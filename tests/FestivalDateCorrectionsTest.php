@@ -321,7 +321,6 @@ class FestivalDateCorrectionsTest extends TestCase
                 '2027-03-22',
             ],
             'Nand Mahotsav' => ['2026-09-05'],
-            'Thai Poosam' => ['2026-02-01', '2027-01-22'],
             'Dayanand Saraswati Jayanti' => ['2026-03-13', '2027-03-02'],
             'Brahma Savarni Manvadi' => ['2025-12-30', '2027-02-13'],
             'Yashoda Jayanti' => ['2026-03-09', '2027-02-26'],
@@ -335,14 +334,14 @@ class FestivalDateCorrectionsTest extends TestCase
         $expectedVrats = [
             'ISKCON Ekadashi' => [
                 '2025-10-03', '2025-10-17', '2025-11-02', '2025-11-15', '2025-12-01', '2025-12-15',
-                '2026-01-14', '2026-01-29', '2026-02-13', '2026-02-27', '2026-03-15',
+                '2025-12-31', '2026-01-14', '2026-01-29', '2026-02-13', '2026-02-27', '2026-03-15',
                 '2026-03-29', '2026-04-13', '2026-04-27', '2026-05-13', '2026-05-27', '2026-06-11',
                 '2026-06-25', '2026-07-11', '2026-07-25', '2026-08-09', '2026-08-23', '2026-09-07',
                 '2026-09-22', '2026-10-06', '2026-10-22', '2026-11-05', '2026-11-21', '2026-12-04',
                 '2026-12-20', '2027-01-03', '2027-01-19', '2027-02-02', '2027-02-17', '2027-03-04',
                 '2027-03-19',
             ],
-            'Thai Pusam' => ['2026-02-01', '2027-01-22'],
+            'Thai Poosam' => ['2026-02-01', '2027-01-22'],
             'Dwijapriya Sankashti Chaturthi' => ['2026-02-05', '2027-02-24'],
             'Bhanu Saptami' => ['2026-01-25', '2026-06-21', '2026-10-18', '2027-03-14'],
             'Kalashtami' => [
@@ -351,9 +350,9 @@ class FestivalDateCorrectionsTest extends TestCase
                 '2026-11-02', '2026-12-01', '2026-12-31', '2027-01-29', '2027-02-28', '2027-03-29',
             ],
             'Chandra Darshana' => [
-                '2025-10-23', '2025-11-21', '2025-12-21', '2026-01-20', '2026-02-18', '2026-03-20',
+                '2025-10-23', '2025-11-22', '2025-12-21', '2026-01-20', '2026-02-18', '2026-03-20',
                 '2026-04-18', '2026-06-16', '2026-07-15', '2026-08-14', '2026-09-12', '2026-10-12',
-                '2026-11-10', '2026-12-10', '2027-01-09', '2027-02-08', '2027-03-09',
+                '2026-11-11', '2026-12-10', '2027-01-09', '2027-02-08', '2027-03-09',
             ],
             'Masik Karthigai' => [
                 '2025-10-10', '2025-11-06', '2025-12-04', '2025-12-31', '2026-01-27', '2026-02-23',
@@ -405,11 +404,11 @@ class FestivalDateCorrectionsTest extends TestCase
         self::assertIsArray($entry);
         self::assertSame(2, $entry['resolution']['required_tithi'] ?? null);
         self::assertSame(
-            'chandra_darshana_application_crescent_candidate',
+            'chandra_darshana_success_dvitiya_with_dharma_sindhu_corroboration',
             $entry['resolution']['decision']['winning_reason_key'] ?? null
         );
         self::assertSame(
-            'application_definition_first_visible_crescent',
+            'hybrid_scripture_modern_first_crescent',
             $entry['resolution']['decision']['visibility_assessment']['date_selection_basis'] ?? null
         );
         self::assertSame(

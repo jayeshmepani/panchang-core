@@ -29,6 +29,7 @@ class FestivalCoverageRegressionTest extends TestCase
             ['2026-05-27', 'Mahadwadashi'],
             ['2026-06-11', 'ISKCON Ekadashi'],
             ['2026-06-15', 'Purushottam Maas Ends'],
+            ['2026-07-19', 'Kasumba Chhath'],
             ['2026-07-25', 'Chaturmasa Begins'],
             ['2026-11-21', 'Chaturmasa Ends'],
         ] as [$date, $expectedFestival]) {

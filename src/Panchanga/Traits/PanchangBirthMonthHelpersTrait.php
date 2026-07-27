@@ -175,17 +175,6 @@ trait PanchangBirthMonthHelpersTrait
             'Is_Kshaya' => $isKshaya,
         ];
 
-        $this->monthCache[] = [
-            'start' => $startAmavasya,
-            'end' => $endAmavasya,
-            'data' => $data,
-        ];
-
-        // Keep cache manageable (LRU-ish)
-        if (count($this->monthCache) > 3) {
-            array_shift($this->monthCache);
-        }
-
         return $data;
     }
 

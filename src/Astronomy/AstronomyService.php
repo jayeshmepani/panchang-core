@@ -39,21 +39,6 @@ class AstronomyService
     /** @var array<string, float> */
     private array $ayanamsaCache = [];
 
-    public function clearCaches(): void
-    {
-        $this->julianDayCache = [];
-        $this->planetLongitudeCache = [];
-        $this->ascendantCache = [];
-        $this->ayanamsaCache = [];
-    }
-
-    private function trimCache(array &$cache): void
-    {
-        if (count($cache) >= self::CACHE_MAX) {
-            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
-        }
-    }
-
     private readonly CData $xxBuffer;
 
     private readonly CData $serrBuffer;
@@ -70,6 +55,14 @@ class AstronomyService
         $this->serrBuffer = $ffi->new('char[256]');
         $this->cuspsBuffer = $ffi->new('double[13]');
         $this->ascmcBuffer = $ffi->new('double[10]');
+    }
+
+    public function clearCaches(): void
+    {
+        $this->julianDayCache = [];
+        $this->planetLongitudeCache = [];
+        $this->ascendantCache = [];
+        $this->ayanamsaCache = [];
     }
 
     /**
@@ -210,6 +203,13 @@ class AstronomyService
         $this->trimCache($this->ayanamsaCache);
 
         return $this->ayanamsaCache[$cacheKey] = $this->jme->jme_get_ayanamsa_ut($jd);
+    }
+
+    private function trimCache(array &$cache): void
+    {
+        if (count($cache) >= self::CACHE_MAX) {
+            $cache = array_slice($cache, -self::CACHE_TRIM_TO, null, true);
+        }
     }
 
     private function birthCacheKey(array $birth): string

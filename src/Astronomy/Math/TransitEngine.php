@@ -22,11 +22,6 @@ class TransitEngine
     /** @var array<string, float> */
     private array $bodyLongitudeCache = [];
 
-    public function clearCache(): void
-    {
-        $this->bodyLongitudeCache = [];
-    }
-
     public function __construct(
         private readonly JmeEphFFI $jme,
         private readonly int $bodyLongitudeCacheMax = self::DEFAULT_BODY_LONGITUDE_CACHE_MAX,
@@ -35,6 +30,16 @@ class TransitEngine
         $ffi = $this->jme->getFFI();
         $this->xxBuffer = $ffi->new('double[6]');
         $this->serrBuffer = $ffi->new('char[256]');
+    }
+
+    public function clearCache(): void
+    {
+        $this->bodyLongitudeCache = [];
+    }
+
+    public function jme(): JmeEphFFI
+    {
+        return $this->jme;
     }
 
     public function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float

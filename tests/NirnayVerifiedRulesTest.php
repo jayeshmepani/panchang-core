@@ -773,7 +773,12 @@ final class NirnayVerifiedRulesTest extends TestCase
             $fetchHistoricalSnapshot,
         );
 
-        self::assertNull($resolved, 'Chandra Darshana must not fall through to Tritiya or later when Pratipada and Dvitiya do not pass.');
+        self::assertNotNull($resolved, 'Hybrid Chandra Darshana follows the experimental five-evening scan when earlier evenings fail.');
+        self::assertSame('2026-01-03', $resolved['observance_date']);
+        self::assertSame(
+            'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY',
+            $resolved['decision']['visibility_assessment']['status_code'],
+        );
     }
 
     public function testChandraDarshanaUsesDirectedWaxingLongitudeSeparation(): void
@@ -2090,6 +2095,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         ?float $moonriseJd = null,
         float $moonSunElongationAtSunsetDegrees = 12.0
     ): array {
+        $waxing = $moonSunElongationAtSunsetDegrees > 0.0 && $moonSunElongationAtSunsetDegrees < 180.0;
         $snapshot = [
             'Tithi' => [
                 'index' => $tithiAbs > 15 ? $tithiAbs - 15 : $tithiAbs,
@@ -2108,6 +2114,19 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'next_sunrise_jd' => $nextSunriseJd,
                 'moon_sun_elongation_at_sunset_degrees' => $moonSunElongationAtSunsetDegrees,
                 'moon_illumination_at_sunset_percent' => 1.1,
+                'observer_latitude' => 23.2472446,
+                'observer_longitude' => 69.668339,
+                'observer_elevation_m' => 0.0,
+                'chandra_yallop' => [
+                    'ok' => true,
+                    'q' => 0.3000,
+                    'q_category' => 'A',
+                    'is_waxing' => $waxing,
+                    'danjon_guard_condition_met' => false,
+                    'arcl_deg' => $moonSunElongationAtSunsetDegrees,
+                    'arcv_deg' => 14.0,
+                    'crescent_width_arcmin' => 1.0,
+                ],
             ],
         ];
 

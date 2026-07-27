@@ -4,16 +4,17 @@
 declare(strict_types=1);
 
 /**
- * Chandra Darśana Hybrid Resolver Engine
+ * Chandra Darśana Hybrid Resolver Engine.
  *
  * Combines:
  *  1) Modern Astronomical Layer (100% Untouched Yallop TN69 q-criterion).
  *  2) SS 10.1: Waxing ecliptic separation ≥ 12.0° at local sunset.
- *  3) Dharma Sindhu: 3-muhūrta Aparāhṇa Dvitīyā rule.
- *  4) Dharma Sindhu: 6-muhūrta Pradoṣa Dvitīyā rule.
+ *  3) Pratipadā early-exception path: Dvitīyā must substantively enter
+ *     Aparāhṇa/Pradoṣa to permit first-crescent selection on Pratipadā.
+ *  4) Dvitīyā default path: Dvitīyā-at-sunrise can be selected by the
+ *     astronomical gates even when the Pratipadā early exception did not apply.
  *  5) Nirṇayāmṛta: Kṣaya Pratipadā Day-2 deferral mandate.
  */
-
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
 require __DIR__ . '/output_helpers.php';
@@ -83,13 +84,13 @@ $parseOptions = static function (array $argv): array {
 
 $usage = static fn (): string => <<<TEXT
 Usage:
-  php scripts/chandra_hybrid_resolver.php --from=2024-01-01 --to=2028-12-31 --amanta
+  php scripts/chandra_hybrid_scripture_modern_resolver.php --from=2023-01-01 --to=2029-12-31 --amanta
 
 Chandra Darśana Hybrid Engine:
   - 100% Modern Yallop q TN69 Astronomical Model
   - SS 10.1: Ecliptic Separation ≥ 12°
-  - Dharma Sindhu: 3-Muhūrta Aparāhṇa Dvitīyā
-  - Dharma Sindhu: 6-Muhūrta Pradoṣa Dvitīyā
+  - Pratipadā early exception: Dvitīyā 3-Muhūrta Aparāhṇa / 6-Muhūrta Pradoṣa
+  - Dvitīyā default path after failed Pratipadā early exception
   - Nirṇayāmṛta: Kṣaya Pratipadā Day-2 Deferral
 
 Options:
@@ -129,7 +130,7 @@ putenv('PANCHANG_CALENDAR_TYPE=' . (string) $options['calendar_type']);
 CliBootstrap::init($baseDir);
 $service = CliBootstrap::makePanchangService();
 
-$jme = new JmeEphFFI();
+$jme = new JmeEphFFI;
 $configureJme = new ReflectionMethod(CliBootstrap::class, 'configureJme');
 $configureJme->invoke(null, $jme);
 
@@ -179,10 +180,47 @@ $dayBundle = static function (CarbonImmutable $date) use (&$dayBundleCache, $ser
     ];
 };
 
-/**
- * Evaluates the Dharma Sindhu and Nirṇayāmṛta classical rules for a given day.
- */
-$evaluateClassicalHybridGates = static function (CarbonImmutable $date, array $day, array $prevDay, array $nextDay) use ($dayBundle): array {
+/** Robustly extracts the start and end Julian Days of Shukla Dvitīyā (Tithi 2) for a given day. */
+$getDvitiyaInterval = static function (array $day, array $nextDay): array {
+    $absTithi = (int) $day['tithi_index_abs'];
+    $dvitiyaStartJd = 0.0;
+    $dvitiyaEndJd = 0.0;
+
+    if ($absTithi === 2) {
+        $dvitiyaStartJd = (float) $day['tithi_start_jd'];
+        $dvitiyaEndJd = (float) $day['tithi_end_jd'];
+    } elseif ($absTithi === 1) {
+        $dvitiyaStartJd = (float) $day['tithi_end_jd'];
+        $nextAbs = (int) $nextDay['tithi_index_abs'];
+        if ($nextAbs === 2) {
+            $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
+        } else {
+            $dvitiyaEndJd = max($dvitiyaStartJd, (float) $nextDay['tithi_start_jd']);
+        }
+    } elseif ($absTithi === 30) {
+        $nextAbs = (int) $nextDay['tithi_index_abs'];
+        if ($nextAbs === 2) {
+            $dvitiyaStartJd = (float) $nextDay['tithi_start_jd'];
+            $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
+        } elseif ($nextAbs === 1) {
+            $dvitiyaStartJd = (float) $nextDay['tithi_end_jd'];
+            $dvitiyaEndJd = $dvitiyaStartJd + 0.9;
+        }
+    }
+
+    return [
+        'start_jd' => $dvitiyaStartJd,
+        'end_jd' => $dvitiyaEndJd,
+    ];
+};
+
+/** Evaluates the Dharma Sindhu and Nirṇayāmṛta classical rules for a given day. */
+$evaluateClassicalHybridGates = static function (
+    CarbonImmutable $date,
+    array $day,
+    array $prevDay,
+    array $nextDay
+) use ($getDvitiyaInterval): array {
     $sunrise = (float) $day['sunrise_jd'];
     $sunset = (float) $day['sunset_jd'];
     $nextSunrise = (float) $day['next_sunrise_jd'];
@@ -198,25 +236,14 @@ $evaluateClassicalHybridGates = static function (CarbonImmutable $date, array $d
     $aparahnaStart = $sunrise + (9.0 * $dayMuhurta);
     $aparahnaEnd = $sunrise + (12.0 * $dayMuhurta);
 
-    // Determine Dvitīyā boundaries for the civil day
-    $absTithi = (int) $day['tithi_index_abs'];
-    $dvitiyaStartJd = 0.0;
-    $dvitiyaEndJd = 0.0;
+    $dvitiya = $getDvitiyaInterval($day, $nextDay);
+    $dvitiyaStartJd = $dvitiya['start_jd'];
+    $dvitiyaEndJd = $dvitiya['end_jd'];
 
-    if ($absTithi === 2) {
-        $dvitiyaStartJd = (float) $day['tithi_start_jd'];
-        $dvitiyaEndJd = (float) $day['tithi_end_jd'];
-    } elseif ($absTithi === 1) {
-        $dvitiyaStartJd = (float) $day['tithi_end_jd'];
-        $dvitiyaEndJd = (int) $nextDay['tithi_index_abs'] === 2 ? (float) $nextDay['tithi_end_jd'] : $dvitiyaStartJd;
-    } elseif ($absTithi === 30) {
-        if ((int) $nextDay['tithi_index_abs'] === 2) {
-            $dvitiyaStartJd = (float) $nextDay['tithi_start_jd'];
-            $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
-        }
+    $aparahnaOverlapJd = 0.0;
+    if ($dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd) {
+        $aparahnaOverlapJd = max(0.0, min($aparahnaEnd, $dvitiyaEndJd) - max($aparahnaStart, $dvitiyaStartJd));
     }
-
-    $aparahnaOverlapJd = max(0.0, min($aparahnaEnd, $dvitiyaEndJd) - max($aparahnaStart, $dvitiyaStartJd));
     $aparahnaMuhurtas = $dayMuhurta > 0.0 ? $aparahnaOverlapJd / $dayMuhurta : 0.0;
     $ds3MuhurtaAparahnaPassed = $aparahnaMuhurtas >= HYBRID_DHARMA_SINDHU_APARAHNA_MIN_MUHURTAS - 1e-6;
 
@@ -225,18 +252,21 @@ $evaluateClassicalHybridGates = static function (CarbonImmutable $date, array $d
     $pradoshaStart = $sunset;
     $pradoshaEnd = $sunset + (6.0 * $nightMuhurta);
 
-    $pradoshaOverlapJd = max(0.0, min($pradoshaEnd, $dvitiyaEndJd) - max($pradoshaStart, $dvitiyaStartJd));
+    $pradoshaOverlapJd = 0.0;
+    if ($dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd) {
+        $pradoshaOverlapJd = max(0.0, min($pradoshaEnd, $dvitiyaEndJd) - max($pradoshaStart, $dvitiyaStartJd));
+    }
     $pradoshaMuhurtas = $nightMuhurta > 0.0 ? $pradoshaOverlapJd / $nightMuhurta : 0.0;
     $ds6MuhurtaPradoshaPassed = $pradoshaMuhurtas >= HYBRID_DHARMA_SINDHU_PRADOSHA_MIN_MUHURTAS - 1e-6;
 
     // --- 3. Nirṇayāmṛta: Kṣaya Pratipadā Day-2 Deferral ---
     // Shukla Pratipadā (index 1) is kṣaya if it starts after sunrise of Day 1 and ends before sunrise of Day 2.
+    $absTithi = (int) $day['tithi_index_abs'];
     $isKsayaPratipada = false;
+
     if ($absTithi === 30) {
         $amavasyaEnd = (float) $day['tithi_end_jd'];
-        $pratipadaEnd = (float) $nextDay['tithi_start_jd']; // or tithi_end_jd of Pratipadā
         if ((int) $nextDay['tithi_index_abs'] === 2 && $amavasyaEnd > $sunrise && $amavasyaEnd < $nextSunrise) {
-            // Pratipadā was completely contained between sunrise 1 and sunrise 2 (Kṣaya)
             $isKsayaPratipada = true;
         }
     } elseif ($absTithi === 1) {
@@ -247,7 +277,6 @@ $evaluateClassicalHybridGates = static function (CarbonImmutable $date, array $d
         }
     }
 
-    // Deferral mandate per Nirṇayāmṛta: If Pratipadā is Kṣaya on Day 1, observation must defer to Day 2.
     $nirnayamritaDay2DeferralEnforced = $isKsayaPratipada;
 
     return [
@@ -270,7 +299,10 @@ $evaluateClassicalHybridGates = static function (CarbonImmutable $date, array $d
 
 $discoverConjunctionSeasons = static function () use ($rangeStart, $rangeEnd, $dayBundle): array {
     $seasons = [];
-    for ($d = $rangeStart->subDays(3); $d->lessThanOrEqualTo($rangeEnd->addDays(7)); $d = $d->addDay()) {
+    $padStart = $rangeStart->subDays(3);
+    $padEnd = $rangeEnd->addDays(7);
+
+    for ($d = $padStart; $d->lessThanOrEqualTo($padEnd); $d = $d->addDay()) {
         $day = $dayBundle($d);
         $abs = (int) $day['tithi_index_abs'];
 
@@ -350,14 +382,13 @@ $evaluateEveningHybrid = static function (
     }
 
     $q = (float) ($y['q'] ?? -99.0);
-    $arcl = (float) ($y['arcl_deg'] ?? 0.0);
     $belowDanjon = (bool) ($y['danjon_guard_condition_met'] ?? false);
     $rejectDanjon = $applyDanjonGuard && $belowDanjon;
     $passesModernYallop = chandra_yallop_passes($q, $minCat, $rejectDanjon) && (($y['is_waxing'] ?? false) === true);
 
     // --- Classical Gate 1: SS 10.1 Ecliptic Separation ≥ 12° ---
     $waxingSepDeg = (float) $day['snapshot_elong_deg'];
-    $ss10_1_Passed = $waxingSepDeg >= HYBRID_SS10_1_ECLIPTIC_MIN_DEG;
+    $ss10_1_Passed = (($y['is_waxing'] ?? false) === true) && ($waxingSepDeg >= HYBRID_SS10_1_ECLIPTIC_MIN_DEG);
 
     // --- Classical Gates 2, 3, 4: Dharma Sindhu & Nirṇayāmṛta ---
     $classicalGates = $evaluateClassicalHybridGates($date, $day, $prevDay, $nextDay);
@@ -365,8 +396,11 @@ $evaluateEveningHybrid = static function (
     $ds6PradoshaPassed = $classicalGates['dharma_sindhu']['ds_6_muhurta_pradosha_passed'];
     $isKsayaPratipada = $classicalGates['nirnayamrita']['is_ksaya_pratipada'];
 
+    $tithiAtSunrise = (int) $day['tithi_index_abs'];
+
     $metrics = array_merge([
         'date' => (string) $day['date'],
+        'tithi_index_abs' => $tithiAtSunrise,
         'modern_yallop' => $y,
         'ss10_1' => [
             'waxing_ecliptic_separation_deg' => round($waxingSepDeg, 4),
@@ -405,24 +439,33 @@ $evaluateEveningHybrid = static function (
         ];
     }
 
-    $classicalDharmaSindhuPassed = $ds3AparahnaPassed || $ds6PradoshaPassed;
-    if (!$classicalDharmaSindhuPassed) {
+    $pratipadaEarlyExceptionPassed = $ds3AparahnaPassed || $ds6PradoshaPassed;
+    if ($tithiAtSunrise === 1 && !$pratipadaEarlyExceptionPassed) {
         return [
             'allowed' => false,
-            'status_code' => 'REJECTED_DHARMA_SINDHU_GATES',
-            'reason' => 'Dharma Sindhu failed: Neither 3-muhūrta Aparāhṇa nor 6-muhūrta Pradoṣa Dvitīyā criteria met.',
+            'status_code' => 'DEFERRED_PRATIPADA_EARLY_EXCEPTION_NOT_MET',
+            'reason' => 'Pratipadā early Chandra Darśana exception not met; continue to the Dvitīyā civil-day default path.',
             'metrics' => $metrics,
         ];
     }
 
+    $statusCode = match ($tithiAtSunrise) {
+        1 => 'SUCCESS_PRATIPADA_EARLY_EXCEPTION',
+        2 => $pratipadaEarlyExceptionPassed
+            ? 'SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION'
+            : 'SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY',
+        default => 'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY',
+    };
+
     return [
         'allowed' => true,
-        'status_code' => 'SUCCESS_HYBRID_RESOLVED',
+        'status_code' => $statusCode,
         'reason' => sprintf(
-            'Hybrid Engine Success: Modern Yallop q=%.4f (cat %s) + SS 10.1 (%.2f° ≥ 12°) + Dharma Sindhu (Aparāhṇa: %s, Pradoṣa: %s) passed.',
+            'Hybrid Engine Success: Modern Yallop q=%.4f (cat %s) + SS 10.1 (%.2f° ≥ 12°). Tithi at sunrise=%d. Pratipadā early-exception/Dvitīyā corroboration: Aparāhṇa=%s, Pradoṣa=%s.',
             $q,
             $y['q_category'] ?? '?',
             $waxingSepDeg,
+            $tithiAtSunrise,
             $ds3AparahnaPassed ? 'YES' : 'NO',
             $ds6PradoshaPassed ? 'YES' : 'NO'
         ),
@@ -505,9 +548,12 @@ foreach ($seasons as $season) {
     $resolved = $resolveSeasonHybrid($season);
     $can = $resolved['canonical_date'] ?? null;
     if ($can !== null) {
-        $dates[] = (string) $can;
+        $canDate = CarbonImmutable::parse($can, (string) $options['tz']);
+        if ($canDate->greaterThanOrEqualTo($rangeStart) && $canDate->lessThanOrEqualTo($rangeEnd)) {
+            $dates[] = (string) $can;
+            $rows[] = $resolved;
+        }
     }
-    $rows[] = $resolved;
 }
 
 $dates = array_values(array_unique($dates));
@@ -516,7 +562,7 @@ sort($dates);
 $payload = [
     'generated_at' => CarbonImmutable::now((string) $options['tz'])->toIso8601String(),
     'engine' => 'chandra_darshana_hybrid_engine',
-    'description' => 'Combines 100% Modern Yallop TN69 Astronomical Model + SS 10.1 (≥12°) + Dharma Sindhu (3-muhūrta Aparāhṇa & 6-muhūrta Pradoṣa) + Nirṇayāmṛta (Kṣaya Pratipadā Day-2 Deferral).',
+    'description' => 'Combines 100% Modern Yallop TN69 Astronomical Model + SS 10.1 (≥12°). Pratipadā selection is only an early-exception path when Dvitīyā substantively reaches Aparāhṇa/Pradoṣa; otherwise the resolver continues to the Dvitīyā civil-day default path. Nirṇayāmṛta Kṣaya Pratipadā Day-2 Deferral remains a hard deferral.',
     'range' => [
         'from' => $rangeStart->toDateString(),
         'to' => $rangeEnd->toDateString(),
@@ -530,8 +576,8 @@ $payload = [
     'gates_included' => [
         'modern_layer' => '100% Yallop TN69 (ARCL/ARCV geocentric, W′ topocentric, binary64 q)',
         'ss10_1' => 'Ecliptic waxing separation ≥ 12.0° at local sunset',
-        'dharma_sindhu_aparahna' => 'Dvitīyā presence in Aparāhṇa window ≥ 3 muhūrtas',
-        'dharma_sindhu_pradosha' => 'Dvitīyā presence in Pradoṣa window ≥ 6 muhūrtas',
+        'dharma_sindhu_aparahna' => 'Pratipadā early-exception/corroboration: Dvitīyā presence in Aparāhṇa window ≥ 3 muhūrtas',
+        'dharma_sindhu_pradosha' => 'Pratipadā early-exception/corroboration: Dvitīyā presence in Pradoṣa window ≥ 6 muhūrtas',
         'nirnayamrita' => 'Strict Kṣaya Pratipadā Day-2 deferral mandate',
     ],
     'counts' => [

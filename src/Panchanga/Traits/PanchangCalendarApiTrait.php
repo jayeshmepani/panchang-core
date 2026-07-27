@@ -669,7 +669,8 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta,
-        string $selection = 'all'
+        string $selection = 'all',
+        ?string $tradition = null
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -704,7 +705,7 @@ trait PanchangCalendarApiTrait
             $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, $fetchHistoricalSnapshot, false, $selection);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, $fetchHistoricalSnapshot, false, $selection, $tradition);
 
             foreach ($festivals as $festival) {
                 $festival = $this->withFestivalTimingWindow($festival, $tz);

@@ -1611,6 +1611,21 @@ final class FestivalCatalog
             'regions' => ['Kutch', 'Gujarat'],
         ],
 
+        'Kasumba Chhath' => [
+            'type' => 'tithi',
+            'resolver' => 'classical',
+            'paksha' => 'Shukla',
+            'tithi' => 6,
+            'month_amanta' => 'Ashadha',
+            'month_purnimanta' => 'Ashadha',
+            'aliases' => ['Kasumbha Chhath'],
+            'description' => 'Pushtimarg Ashadha Shukla Shashthi festival welcoming Varsha Ritu with kasumba-colored seva and seasonal manoraths',
+            'deity' => 'Krishna',
+            'regions' => ['Gujarat', 'Rajasthan'],
+            'sampradaya' => 'Pushtimarg',
+            'karmakala_type' => 'sunrise',
+        ],
+
         'Ravechi Mata Fair' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -2285,7 +2300,6 @@ final class FestivalCatalog
             'karmakala_type' => 'arunodaya',
             'strict_dashami_vedha' => true,
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Ugadi' => [
             'type' => 'tithi',
@@ -2462,7 +2476,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Mahavir Jayanti' => [
             'type' => 'tithi',
@@ -2490,7 +2503,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Parashurama Jayanti' => [
             'type' => 'tithi',
@@ -2659,7 +2671,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Narasimha Jayanti' => [
             'type' => 'tithi',
@@ -2674,7 +2685,6 @@ final class FestivalCatalog
             'fasting' => true,
             // SJ 4.60.54–55: shuddha Chaturdashi free of Trayodashi vedha; ritual at pradosha.
             // When Chaturdashi covers pradosha on both civil days, prefer the sunrise-vyapini day
-            // (Bhuj 2026-04-30) over the trayodashi-yukta earlier evening.
             'karmakala_type' => 'pradosha',
             'strict_karmakala' => true,
             'require_karmakala_match' => true,
@@ -2729,7 +2739,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Yogi Maharaj Jayanti' => [
             'type' => 'tithi',
@@ -2813,7 +2822,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Vat Purnima' => [
             'type' => 'tithi',
@@ -2844,7 +2852,6 @@ final class FestivalCatalog
             'karmakala_type' => 'sunrise',
             'kshaya_preference' => 'last',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Jagannath Rath Yatra' => [
             'type' => 'tithi',
@@ -2886,7 +2893,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Kachchhi Halari Ashadhi Varsharambh' => [
             'type' => 'tithi',
@@ -4459,7 +4465,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Aadi Amavasya (Karkidaka Vavu)' => [
             'type' => 'tithi',
@@ -4527,7 +4532,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Avani Avittam (Yajur Upakarma)' => [
             'type' => 'tithi',
@@ -4575,7 +4579,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Goga Pancham' => [
             'type' => 'tithi',
@@ -5016,7 +5019,6 @@ final class FestivalCatalog
             'fasting_guidance_key' => 'satsangi_ekadashi_standard_fast_guidance',
             'source_refs' => ['Satsangi Jeevan 3.32.160-168', 'Satsangi Jeevan 4.56.80-87'],
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Mahant Swami Maharaj Janma Jayanti' => [
             'type' => 'tithi',
@@ -5053,6 +5055,7 @@ final class FestivalCatalog
         ],
         'Vamana Jayanti' => [
             'type' => 'tithi',
+            'aliases' => ['Vamana Dwadashi'],
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 12,
@@ -5150,7 +5153,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Lalita Panchami' => [
             'type' => 'tithi',
@@ -5217,7 +5219,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Gunatitanand Swami Jayanti' => [
             'type' => 'tithi',
@@ -5242,10 +5243,10 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Karva Chauth' => [
             'type' => 'tithi',
+            'aliases' => ['Karwa Chauth', 'Karak Chaturthi'],
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 4,
@@ -5564,7 +5565,6 @@ final class FestivalCatalog
             'kshaya_preference' => 'last',
             'fasting_guidance_key' => 'satsangi_prabodhini_strict_fast_guidance',
             'source_refs' => ['Satsangi Jeevan 3.32.147-175', 'Satsangi Jeevan 4.58.45-99'],
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Dharmadev Janmotsav' => [
             'type' => 'tithi',
@@ -5702,7 +5702,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Vachanamrut Jayanti' => [
             'type' => 'tithi',
@@ -5747,7 +5746,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Dattatreya Jayanti' => [
             'type' => 'tithi',
@@ -5772,7 +5770,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Pausha Putrada Ekadashi' => [
             'type' => 'tithi',
@@ -5788,11 +5785,11 @@ final class FestivalCatalog
             'ekadashi_nirnay_table' => true,
             'kshaya_preference' => 'first',
             'prefer_tithi_entry_before_madhyahna' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
 
         'Thai Poosam' => [
             'type' => 'tithi',
+            'aliases' => ['Thai Pusam', 'Thaipusam'],
             'resolver' => 'classical',
             'paksha' => 'Shukla',
             'tithi' => 15,
@@ -5802,8 +5799,9 @@ final class FestivalCatalog
             'sun_sign' => 9,
             'nakshatra' => 'Pushya',
             'prefer_nakshatra' => true,
-            'description' => 'Tamil festival dedicated to Lord Murugan; observed when Pushya nakshatra coincides with Purnima in Tamil month Thai (Jan-Feb)',
+            'description' => 'Tamil Murugan festival in solar month Thai when Pushya nakshatra coincides with Purnima (Jan-Feb); also known as Thai Pusam / Thaipusam',
             'deity' => 'Murugan',
+            'fasting' => true,
             'regions' => ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana', 'Sri Lanka', 'Malaysia', 'Singapore'],
             'karmakala_type' => 'sunrise',
         ],
@@ -5840,7 +5838,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Vasant Panchami' => [
             'type' => 'tithi',
@@ -5913,7 +5910,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Vijaya Ekadashi' => [
             'type' => 'tithi',
@@ -5927,7 +5923,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Maha Shivaratri' => [
             'type' => 'tithi',
@@ -5970,7 +5965,6 @@ final class FestivalCatalog
             'fasting' => true,
             'karmakala_type' => 'sunrise',
             'ekadashi_nirnay_table' => true,
-            'require_vaishnava_ekadashi_today' => true,
         ],
         'Holashtak Prarambh' => [
             'type' => 'tithi',
@@ -6337,7 +6331,6 @@ final class FestivalCatalog
             'vriddhi_preference' => 'last',
             'kshaya_preference' => 'last',
             'prefer_growth_before_score' => true,
-            'require_vaishnava_ekadashi_today' => true,
             'ekadashi_nirnay_table' => true,
         ],
         'Parama Ekadashi' => [
@@ -6350,7 +6343,6 @@ final class FestivalCatalog
             'deity' => 'Vishnu',
             'fasting' => true,
             'adhika_only' => true,
-            'require_vaishnava_ekadashi_today' => true,
             'ekadashi_nirnay_table' => true,
         ],
         'Skanda Sashti' => [
@@ -6380,19 +6372,6 @@ final class FestivalCatalog
             'deity' => 'Saraswati',
             'regions' => ['Kerala', 'South India'],
             'karmakala_type' => 'sunrise',
-        ],
-        'Karwa Chauth' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Krishna',
-            'tithi' => 4,
-            'month_amanta' => 'Ashvina',
-            'month_purnimanta' => 'Kartika',
-            'aliases' => ['Karak Chaturthi'],
-            'description' => 'Fasting by married women for the longevity of husbands',
-            'deity' => 'Gauri/Shiva',
-            'regions' => ['North India'],
-            'karmakala_type' => 'moonrise',
         ],
         'Yama Deepam' => [
             'type' => 'tithi',
@@ -6719,20 +6698,6 @@ final class FestivalCatalog
             'fasting' => true,
             'regions' => ['North India', 'Gujarat'],
             'karmakala_type' => 'sunrise',
-        ],
-        'Vamana Dwadashi' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 12,
-            'month_amanta' => 'Bhadrapada',
-            'month_purnimanta' => 'Bhadrapada',
-            'description' => 'Appearance day of Vamana avatar',
-            'deity' => 'Vishnu (Vamana)',
-            'karmakala_type' => 'madhyahna',
-            'strict_karmakala' => true,
-            'nakshatra' => 'Shravana',
-            'prefer_nakshatra' => true,
         ],
         'Varaha Dwadashi' => [
             'type' => 'tithi',
@@ -7391,18 +7356,6 @@ final class FestivalCatalog
             'regions' => ['South India'],
             'karmakala_type' => 'pradosha',
         ],
-        'Jagannath Ratha Yatra' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 2,
-            'month_amanta' => 'Ashadha',
-            'month_purnimanta' => 'Ashadha',
-            'description' => 'Chariot festival of Jagannath, Balabhadra and Subhadra',
-            'deity' => 'Jagannath',
-            'karmakala_type' => 'sunrise',
-            'require_sunrise_vyapini' => true,
-        ],
         'Kannada Hanuman Vratam' => [
             'type' => 'tithi',
             'resolver' => 'classical',
@@ -7428,23 +7381,6 @@ final class FestivalCatalog
             'fasting' => true,
             'nakshatra' => 'Mula',
             'prefer_nakshatra' => true,
-            'karmakala_type' => 'sunrise',
-        ],
-        'Thai Pusam' => [
-            'type' => 'tithi',
-            'resolver' => 'classical',
-            'paksha' => 'Shukla',
-            'tithi' => 15,
-            'allowed_months_amanta' => ['Pausha', 'Magha'],
-            'allowed_months_purnimanta' => ['Pausha', 'Magha'],
-            'require_ayana' => 'Uttarayana',
-            'sun_sign' => 9,
-            'nakshatra' => 'Pushya',
-            'prefer_nakshatra' => true,
-            'description' => 'Murugan festival in the solar month Thai under Pushya Nakshatra',
-            'deity' => 'Skanda-Murugan',
-            'fasting' => true,
-            'regions' => ['Tamil Nadu'],
             'karmakala_type' => 'sunrise',
         ],
         'Vaikasi Visakam' => [
