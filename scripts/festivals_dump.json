@@ -1635,7 +1635,10 @@
             "allow_adhika": true,
             "karmakala_type": "nishitha",
             "strict_karmakala": true,
-            "mahashivaratri_truth_table": true
+            "mahashivaratri_truth_table": true,
+            "excluded_months_amanta": [
+                "Magha"
+            ]
         },
         "Lakshmi Puja (Deepavali)": {
             "type": "tithi",
@@ -1804,6 +1807,25 @@
                 "Kutch",
                 "Gujarat"
             ]
+        },
+        "Kasumba Chhath": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Shukla",
+            "tithi": 6,
+            "month_amanta": "Ashadha",
+            "month_purnimanta": "Ashadha",
+            "aliases": [
+                "Kasumbha Chhath"
+            ],
+            "description": "Pushtimarg Ashadha Shukla Shashthi festival welcoming Varsha Ritu with kasumba-colored seva and seasonal manoraths",
+            "deity": "Krishna",
+            "regions": [
+                "Gujarat",
+                "Rajasthan"
+            ],
+            "sampradaya": "Pushtimarg",
+            "karmakala_type": "sunrise"
         },
         "Ravechi Mata Fair": {
             "type": "tithi",
@@ -2716,7 +2738,8 @@
             "description": "Fasting for Kamada Ekadashi (Fulfiller of Desires)",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Mahavir Jayanti": {
             "type": "tithi",
@@ -2746,7 +2769,8 @@
             "description": "Fasting for Varuthini Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Parashurama Jayanti": {
             "type": "tithi",
@@ -2936,7 +2960,8 @@
             "description": "Fasting for Mohini Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Narasimha Jayanti": {
             "type": "tithi",
@@ -2953,6 +2978,7 @@
             "strict_karmakala": true,
             "require_karmakala_match": true,
             "narasimha_jayanti_truth_table": true,
+            "trayodashi_viddha_rejection": true,
             "kshaya_accept_previous_tithi_vedha": true,
             "vriddhi_preference": "first",
             "kshaya_preference": "first",
@@ -3005,7 +3031,8 @@
             "description": "Fasting for Apara Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Yogi Maharaj Jayanti": {
             "type": "tithi",
@@ -3097,7 +3124,8 @@
             "description": "Toughest Ekadashi vrat (observed without water) \/ Gayatri Jayanti",
             "deity": "Vishnu\/Gayatri",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Vat Purnima": {
             "type": "tithi",
@@ -3131,7 +3159,8 @@
             "deity": "Vishnu",
             "fasting": true,
             "karmakala_type": "sunrise",
-            "kshaya_preference": "last"
+            "kshaya_preference": "last",
+            "ekadashi_nirnay_table": true
         },
         "Jagannath Rath Yatra": {
             "type": "tithi",
@@ -3180,7 +3209,8 @@
             "description": "Chaturmas begins, Lord Vishnu sleeps",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Kachchhi Halari Ashadhi Varsharambh": {
             "type": "tithi",
@@ -3892,11 +3922,18 @@
             "require_sunrise_vyapini": true,
             "vriddhi_preference": "first",
             "kshaya_preference": "first",
+            "allow_adhika": true,
+            "allows_adhika": true,
             "excluded_months_amanta": [
                 "Chaitra"
             ],
             "excluded_months_purnimanta": [
                 "Chaitra"
+            ],
+            "aliases": [
+                "Shree Hari Jayanti",
+                "Shri Hari Jayanti",
+                "Shree Hari Navmi"
             ],
             "resolution_policy": {
                 "monthly_excluding_annual": true,
@@ -3918,6 +3955,40 @@
             ],
             "source_refs": [
                 "Satsangi Jeevan 5.61"
+            ]
+        },
+        "Shree Hari Antardhan": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Shukla",
+            "tithi": 10,
+            "month_amanta": "Jyeshtha",
+            "month_purnimanta": "Jyeshtha",
+            "description": "Swadhaam Gaman (Antardhan Leela) of Bhagwan Swaminarayan at Gadhada, observed on Jyeshtha Shukla Dashami. The original event occurred on Vikram Samvat 1886 Jyeshtha Sud 10, corresponding to 1 June 1830.",
+            "deity": "Bhagwan Swaminarayan",
+            "fasting": false,
+            "karmakala_type": "sunrise",
+            "require_sunrise_vyapini": true,
+            "vriddhi_preference": "first",
+            "kshaya_preference": "merged_host_day",
+            "aliases": [
+                "Hari Antardhan",
+                "Shri Hari Antardhan",
+                "Shree Hari Antardhan Tithi",
+                "Shri Hari Antardhan Tithi",
+                "Hari Antardhan Tithi",
+                "Shree Hari Tirodhan",
+                "Hari Tirodhan",
+                "Swadhaam Gaman",
+                "Swadham Gaman",
+                "Antardhan Leela"
+            ],
+            "tradition_profile": "Satsangi Jyeshtha Sud 10 Antardhan \/ Swadhaam Gaman",
+            "ritual_profile": "hari_antardhan",
+            "source_refs": [
+                "Shree Hari Antardhaan Leela — Swaminarayan Sampraday tradition",
+                "Vikram Samvat 1886 Jyeshtha Sud 10",
+                "1 June 1830 CE — Gadhada"
             ]
         },
         "Naga Panchami (Telugu)": {
@@ -3984,13 +4055,46 @@
             "paksha": "Krishna",
             "tithi": 15,
             "month_amanta": "Vaishakha",
-            "month_purnimanta": "Vaishakha",
+            "month_purnimanta": "Jyeshtha",
+            "description": "Amavasya falling on Amanta Vaishakha \/ Purnimanta Jyeshtha",
+            "deity": "Pitrus",
+            "karmakala_type": "sunrise",
+            "require_sunrise_vyapini": true,
+            "vriddhi_preference": "first",
+            "kshaya_preference": "first"
+        },
+        "Vat Savitri Vrat": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Krishna",
+            "tithi": 15,
+            "month_amanta": "Vaishakha",
+            "month_purnimanta": "Jyeshtha",
             "aliases": [
-                "Shani Jayanti",
-                "Vat Savitri Vrat"
+                "Vat Savitri Amavasya",
+                "North Indian Vat Savitri Vrat"
             ],
-            "description": "Amavasya falling in the month of Vaishakha; coincides with Shani Jayanti",
-            "deity": "Pitrus\/Shani",
+            "description": "Vat Savitri Vrat observed on Jyeshtha Amavasya (Purnimanta) \/ Vaishakha Amavasya (Amanta) by married women in North India.",
+            "deity": "Savitri\/Brahma\/Satyavan",
+            "fasting": true,
+            "karmakala_type": "sunrise",
+            "require_sunrise_vyapini": true,
+            "vriddhi_preference": "first",
+            "kshaya_preference": "first"
+        },
+        "Shani Jayanti": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Krishna",
+            "tithi": 15,
+            "month_amanta": "Vaishakha",
+            "month_purnimanta": "Jyeshtha",
+            "aliases": [
+                "Shani Dev Jayanti"
+            ],
+            "description": "Birth anniversary of Lord Shani (Saturn) observed on Jyeshtha Amavasya (Purnimanta) \/ Vaishakha Amavasya (Amanta).",
+            "deity": "Shani",
+            "fasting": true,
             "karmakala_type": "sunrise",
             "require_sunrise_vyapini": true,
             "vriddhi_preference": "first",
@@ -4002,8 +4106,8 @@
             "paksha": "Krishna",
             "tithi": 15,
             "month_amanta": "Jyeshtha",
-            "month_purnimanta": "Jyeshtha",
-            "description": "Amavasya falling in the month of Jyeshtha",
+            "month_purnimanta": "Ashadha",
+            "description": "Amavasya falling in the month of Jyeshtha (Amanta) \/ Ashadha (Purnimanta)",
             "deity": "Pitrus",
             "karmakala_type": "sunrise",
             "require_sunrise_vyapini": true,
@@ -4055,13 +4159,33 @@
             "month_amanta": "Bhadrapada",
             "month_purnimanta": "Bhadrapada",
             "aliases": [
-                "Mahalaya Amavasya",
-                "Sarva Pitru Amavasya"
+                "Pithori Amavasya",
+                "Kushagrahani Amavasya"
             ],
-            "description": "Amavasya falling in the month of Bhadrapada; conclusion of Pitru Paksha",
+            "description": "Amavasya falling in the month of Bhadrapada (Pithori Amavasya \/ Kushagrahani Amavasya)",
             "deity": "Pitrus",
             "karmakala_type": "sunrise",
             "require_sunrise_vyapini": true,
+            "vriddhi_preference": "first",
+            "kshaya_preference": "first"
+        },
+        "Mahalaya Amavasya": {
+            "type": "tithi",
+            "resolver": "classical",
+            "paksha": "Krishna",
+            "tithi": 15,
+            "month_amanta": "Bhadrapada",
+            "month_purnimanta": "Ashvina",
+            "aliases": [
+                "Sarva Pitru Amavasya",
+                "Sarvapitra Moksha Amavasya",
+                "Pitru Amavasya",
+                "Peddala Amavasya"
+            ],
+            "description": "Mahalaya Amavasya (Sarva Pitru Amavasya) marks the conclusion of Pitru Paksha and the eve of Sharad Navratri.",
+            "deity": "Pitrus",
+            "karmakala_type": "aparahna",
+            "darsha_amavasya_aparahna_table": true,
             "vriddhi_preference": "first",
             "kshaya_preference": "first"
         },
@@ -4138,8 +4262,8 @@
             "adhika_only": true,
             "karmakala_type": "chandra_darshana_visibility",
             "chandra_darshana_visibility": true,
-            "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-            "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
+            "chandra_darshana_visibility_model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+            "chandra_darshana_visibility_basis": "application_definition_first_visible_crescent",
             "location_sensitive": true
         },
         "Adhika Darsha Amavasya": {
@@ -4676,7 +4800,8 @@
             "deity": "Vishnu",
             "fasting": true,
             "karmakala_type": "madhyahna",
-            "strict_karmakala": true
+            "strict_karmakala": true,
+            "vriddhi_preference": "last"
         },
         "Kalki Jayanti": {
             "type": "tithi",
@@ -4855,7 +4980,8 @@
             "description": "Fasting for Kamika Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Aadi Amavasya (Karkidaka Vavu)": {
             "type": "tithi",
@@ -4933,7 +5059,8 @@
             "description": "Fasting to be blessed with a son",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Avani Avittam (Yajur Upakarma)": {
             "type": "tithi",
@@ -4984,7 +5111,8 @@
             "description": "Fasting for Aja Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Goga Pancham": {
             "type": "tithi",
@@ -5238,7 +5366,7 @@
                         "Krishna Janmashtami (Swaminarayan-Uddhav)",
                         "Gokulashtami"
                     ],
-                    "vriddhi_preference": "last",
+                    "vriddhi_preference": "first",
                     "prefer_nakshatra_window": false,
                     "tradition_profile": "Uddhav\/Swaminarayan Janmashtami with Vitthalesh Goswami accepted opinion",
                     "ritual_profile": "janmashtami_uddhav",
@@ -5519,7 +5647,8 @@
             "source_refs": [
                 "Satsangi Jeevan 3.32.160-168",
                 "Satsangi Jeevan 4.56.80-87"
-            ]
+            ],
+            "ekadashi_nirnay_table": true
         },
         "Mahant Swami Maharaj Janma Jayanti": {
             "type": "tithi",
@@ -5566,6 +5695,9 @@
         },
         "Vamana Jayanti": {
             "type": "tithi",
+            "aliases": [
+                "Vamana Dwadashi"
+            ],
             "resolver": "classical",
             "paksha": "Shukla",
             "tithi": 12,
@@ -5673,7 +5805,8 @@
             "description": "Fasting for Indira Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Lalita Panchami": {
             "type": "tithi",
@@ -5751,7 +5884,8 @@
             "description": "Fasting for Papankusha Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Gunatitanand Swami Jayanti": {
             "type": "tithi",
@@ -5777,10 +5911,15 @@
             "description": "Fasting for Rama Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Karva Chauth": {
             "type": "tithi",
+            "aliases": [
+                "Karwa Chauth",
+                "Karak Chaturthi"
+            ],
             "resolver": "classical",
             "paksha": "Krishna",
             "tithi": 4,
@@ -5989,8 +6128,7 @@
             "month_purnimanta": "Kartika",
             "aliases": [
                 "Annakut",
-                "Govardhan Utsav",
-                "Bali Puja"
+                "Govardhan Utsav"
             ],
             "description": "Govardhan Puja and Annakut celebrate Shri Krishna's Govardhan lila with cow worship, Govardhan worship and abundant food offerings.",
             "deity": "Krishna",
@@ -6005,12 +6143,16 @@
                 "sayahna_vyapini_pratipada": true,
                 "amavasya_viddha_pratipada_preferred": true,
                 "dwitiya_viddha_pratipada_rejected": true,
-                "sthula_chandra_darshana_muhurta_threshold": 9,
+                "later_pratipada_full_rites_muhurta_threshold": 10,
+                "previous_viddha_fallback_below_muhurta_threshold": 9,
+                "gross_dwitiya_entry_chandra_warning_muhurta_threshold": 6,
                 "annakut_solar_eclipse_fallback_navami": true
             },
             "rule_convention": "Govardhan Puja is resolved for the configured location; city-specific public almanacs can differ by one civil date.",
             "source_refs": [
-                "Satsangi Jeevan 4.58.19-21"
+                "Satsangi Jeevan 4.58.1-14",
+                "Skanda Purana 2.4.10.59-64",
+                "Dharma Sindhu Bali Puja Nirnaya"
             ]
         },
         "Bestu Varas": {
@@ -6336,7 +6478,8 @@
             "description": "Fasting for Utpanna Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Vachanamrut Jayanti": {
             "type": "tithi",
@@ -6384,7 +6527,8 @@
             "description": "Fasting for Mokshada Ekadashi and celebration of Bhagavad Gita (Geeta Jayanti); known as the Gateway to Heaven",
             "deity": "Krishna\/Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Dattatreya Jayanti": {
             "type": "tithi",
@@ -6407,7 +6551,8 @@
             "description": "Fasting for Saphala Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Pausha Putrada Ekadashi": {
             "type": "tithi",
@@ -6426,6 +6571,10 @@
         },
         "Thai Poosam": {
             "type": "tithi",
+            "aliases": [
+                "Thai Pusam",
+                "Thaipusam"
+            ],
             "resolver": "classical",
             "paksha": "Shukla",
             "tithi": 15,
@@ -6441,8 +6590,9 @@
             "sun_sign": 9,
             "nakshatra": "Pushya",
             "prefer_nakshatra": true,
-            "description": "Tamil festival dedicated to Lord Murugan; observed when Pushya nakshatra coincides with Purnima in Tamil month Thai (Jan-Feb)",
+            "description": "Tamil Murugan festival in solar month Thai when Pushya nakshatra coincides with Purnima (Jan-Feb); also known as Thai Pusam \/ Thaipusam",
             "deity": "Murugan",
+            "fasting": true,
             "regions": [
                 "Tamil Nadu",
                 "Kerala",
@@ -6496,7 +6646,8 @@
             "description": "Fasting for Shattila Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Vasant Panchami": {
             "type": "tithi",
@@ -6584,7 +6735,8 @@
             "description": "Fasting for Jaya Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Vijaya Ekadashi": {
             "type": "tithi",
@@ -6596,7 +6748,8 @@
             "description": "Fasting for Vijaya Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Maha Shivaratri": {
             "type": "tithi",
@@ -6642,7 +6795,8 @@
             "description": "Fasting for Amalaki Ekadashi",
             "deity": "Vishnu",
             "fasting": true,
-            "karmakala_type": "sunrise"
+            "karmakala_type": "sunrise",
+            "ekadashi_nirnay_table": true
         },
         "Holashtak Prarambh": {
             "type": "tithi",
@@ -7084,7 +7238,7 @@
             "vriddhi_preference": "last",
             "kshaya_preference": "last",
             "prefer_growth_before_score": true,
-            "require_vaishnava_ekadashi_today": true
+            "ekadashi_nirnay_table": true
         },
         "Parama Ekadashi": {
             "type": "tithi",
@@ -7098,7 +7252,7 @@
             "deity": "Vishnu",
             "fasting": true,
             "adhika_only": true,
-            "require_vaishnava_ekadashi_today": true
+            "ekadashi_nirnay_table": true
         },
         "Skanda Sashti": {
             "type": "tithi",
@@ -7138,23 +7292,6 @@
                 "South India"
             ],
             "karmakala_type": "sunrise"
-        },
-        "Karwa Chauth": {
-            "type": "tithi",
-            "resolver": "classical",
-            "paksha": "Krishna",
-            "tithi": 4,
-            "month_amanta": "Ashvina",
-            "month_purnimanta": "Kartika",
-            "aliases": [
-                "Karak Chaturthi"
-            ],
-            "description": "Fasting by married women for the longevity of husbands",
-            "deity": "Gauri\/Shiva",
-            "regions": [
-                "North India"
-            ],
-            "karmakala_type": "moonrise"
         },
         "Yama Deepam": {
             "type": "tithi",
@@ -7201,26 +7338,28 @@
             "month_amanta": "Kartika",
             "month_purnimanta": "Kartika",
             "aliases": [
-                "Annakut"
+                "Bali Puja"
             ],
-            "description": "Worship of King Bali and Govardhan Hill",
-            "deity": "Bali\/Krishna",
+            "description": "Worship of King Bali on Kartika Shukla Pratipada",
+            "deity": "Bali",
             "karmakala_type": "sayankala",
             "strict_karmakala": true,
             "govardhan_annakut_truth_table": true,
-            "force_amanta_month": true,
             "chandradarshan_nishedh": true,
             "chandradarshan_nishedh_mode": "metadata",
             "deepotsav_sequence": "govardhan_annakut",
-            "location_sensitive": true,
+            "vriddhi_preference": "first",
+            "force_amanta_month": true,
             "resolution_policy": {
-                "sayahna_vyapini_pratipada": true,
-                "amavasya_viddha_pratipada_preferred": true,
-                "dwitiya_viddha_pratipada_rejected": true,
-                "sthula_chandra_darshana_muhurta_threshold": 9
+                "kartika_shukla_pratipada": true,
+                "shares_dharma_sindhu_govardhan_gokridana_fallback": true,
+                "later_pratipada_full_rites_muhurta_threshold": 10,
+                "previous_viddha_fallback_below_muhurta_threshold": 9,
+                "gross_dwitiya_entry_chandra_warning_muhurta_threshold": 6
             },
             "source_refs": [
-                "Satsangi Jeevan 4.58"
+                "Skanda Purana 2.4.10.9-14",
+                "Dharma Sindhu Bali Puja Nirnaya"
             ]
         },
         "Sata Yuga Diwas": {
@@ -7510,20 +7649,6 @@
             ],
             "karmakala_type": "sunrise"
         },
-        "Vamana Dwadashi": {
-            "type": "tithi",
-            "resolver": "classical",
-            "paksha": "Shukla",
-            "tithi": 12,
-            "month_amanta": "Bhadrapada",
-            "month_purnimanta": "Bhadrapada",
-            "description": "Appearance day of Vamana avatar",
-            "deity": "Vishnu (Vamana)",
-            "karmakala_type": "madhyahna",
-            "strict_karmakala": true,
-            "nakshatra": "Shravana",
-            "prefer_nakshatra": true
-        },
         "Varaha Dwadashi": {
             "type": "tithi",
             "resolver": "classical",
@@ -7808,9 +7933,8 @@
             "fasting": true,
             "karmakala_type": "chandra_darshana_visibility",
             "chandra_darshana_visibility": true,
-            "chandra_darshana_visibility_model": "classical_sthula_chandra_darshana_9_muhurta",
-            "chandra_darshana_visibility_basis": "classical_textual_rule_sthula_chandra_darshana",
-            "chandra_darshana_sthula_muhurta_threshold": 9,
+            "chandra_darshana_visibility_model": "source_sensitive_monthly_chandra_darshana_first_crescent",
+            "chandra_darshana_visibility_basis": "application_definition_first_visible_crescent",
             "location_sensitive": true
         },
         "Bhogi Pandigai": {
@@ -8264,18 +8388,6 @@
             ],
             "karmakala_type": "pradosha"
         },
-        "Jagannath Ratha Yatra": {
-            "type": "tithi",
-            "resolver": "classical",
-            "paksha": "Shukla",
-            "tithi": 2,
-            "month_amanta": "Ashadha",
-            "month_purnimanta": "Ashadha",
-            "description": "Chariot festival of Jagannath, Balabhadra and Subhadra",
-            "deity": "Jagannath",
-            "karmakala_type": "sunrise",
-            "require_sunrise_vyapini": true
-        },
         "Kannada Hanuman Vratam": {
             "type": "tithi",
             "resolver": "classical",
@@ -8301,31 +8413,6 @@
             "fasting": true,
             "nakshatra": "Mula",
             "prefer_nakshatra": true,
-            "karmakala_type": "sunrise"
-        },
-        "Thai Pusam": {
-            "type": "tithi",
-            "resolver": "classical",
-            "paksha": "Shukla",
-            "tithi": 15,
-            "allowed_months_amanta": [
-                "Pausha",
-                "Magha"
-            ],
-            "allowed_months_purnimanta": [
-                "Pausha",
-                "Magha"
-            ],
-            "require_ayana": "Uttarayana",
-            "sun_sign": 9,
-            "nakshatra": "Pushya",
-            "prefer_nakshatra": true,
-            "description": "Murugan festival in the solar month Thai under Pushya Nakshatra",
-            "deity": "Skanda-Murugan",
-            "fasting": true,
-            "regions": [
-                "Tamil Nadu"
-            ],
             "karmakala_type": "sunrise"
         },
         "Vaikasi Visakam": {

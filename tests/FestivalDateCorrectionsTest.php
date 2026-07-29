@@ -128,6 +128,12 @@ class FestivalDateCorrectionsTest extends TestCase
             ['purnimanta', '2027-03-13', 'Attukal Pongal'],
             ['amanta', '2027-01-21', 'Arudra Darshan'],
             ['purnimanta', '2027-01-21', 'Arudra Darshan'],
+            // Drik Bhuj: no Arudra in civil 2024; 2024-12-16 loses to 2025-01-13 in same Dhanu window.
+            ['amanta', '2024-12-16', 'Arudra Darshan'],
+            ['purnimanta', '2024-12-16', 'Arudra Darshan'],
+            // Vriddhi last: 2029-12-21 first sunrise, 2029-12-22 wins (drik).
+            ['amanta', '2029-12-21', 'Arudra Darshan'],
+            ['purnimanta', '2029-12-21', 'Arudra Darshan'],
             ['amanta', '2025-11-20', 'Bali Pratipada'],
             ['amanta', '2025-11-20', 'Govardhan Puja'],
             ['purnimanta', '2025-11-20', 'Bali Pratipada'],

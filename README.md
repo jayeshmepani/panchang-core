@@ -138,7 +138,6 @@ Notes:
 - Traditional source attribution: [docs/TRADITIONAL_TEXT_SOURCES.md](docs/TRADITIONAL_TEXT_SOURCES.md)
 - Muhurta text source classification: [docs/MUHURTA_TEXT_SOURCES.md](docs/MUHURTA_TEXT_SOURCES.md)
 - Festival and vrat identity catalog: [docs/FESTIVAL_VRAT_IDENTITIES.md](docs/FESTIVAL_VRAT_IDENTITIES.md)
-- Latest release notes: [docs/RELEASE_v10.7.0.md](docs/RELEASE_v10.7.0.md)
 
 ## Development
 

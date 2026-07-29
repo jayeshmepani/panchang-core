@@ -417,7 +417,17 @@ trait FestivalRuleCandidates
             return $this->resolveDiwaliTruthTable($candidates);
         }
 
-        if ((bool) ($rule['prefer_tithi_entry_before_madhyahna'] ?? false)) {
+        $isEkadashiRule = ((int) ($rule['tithi'] ?? 0) === 11)
+            && ((bool) ($rule['fasting'] ?? false)
+                || (bool) ($rule['ekadashi_nirnay_table'] ?? false)
+                || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false));
+
+        // Vaishnava default_tradition: never let madhyahna entry prefer override
+        // Vaishnava Ekadashi nirnay (named must match ISKCON fasting day).
+        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Vaishnava') : 'Vaishnava';
+        $isVaishnavaMode = strcasecmp((string) $tradition, 'Vaishnava') === 0;
+        if ((bool) ($rule['prefer_tithi_entry_before_madhyahna'] ?? false)
+            && (!$isVaishnavaMode || !$isEkadashiRule)) {
             $winner = $this->resolveTithiEntryBeforeMadhyahna($candidates);
             if ($winner !== null) {
                 return $winner;
@@ -426,7 +436,7 @@ trait FestivalRuleCandidates
 
         if ((bool) ($rule['ekadashi_nirnay_table'] ?? false)
             || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false)
-            || ((int) ($rule['tithi'] ?? 0) === 11 && (bool) ($rule['fasting'] ?? false))) {
+            || $isEkadashiRule) {
             return $this->resolveEkadashiNirnayTruthTable($candidates, $targetInterval);
         }
 

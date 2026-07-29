@@ -4393,10 +4393,22 @@ final class FestivalCatalog
         'Arudra Darshan' => [
             'nakshatra_only' => true,
             'nakshatra' => 'Ardra',
+            // Tamil Maargazhi = solar Dhanu (Sun in Sagittarius, sidereal index 8).
+            // Flowchart: start at Dhanus sankranti, scan Ardra days in Margazhi, prefer
+            // Ardra+Purnima at sunrise (drik / Arunodaya convention). Amanta Margashirsha
+            // alone is not enough (e.g. 2027-12-15 Sun still Scorpio → no Arudra).
+            'sun_sign' => 8,
             'allowed_months_amanta' => ['Margashirsha', 'Pausha'],
+            // Pausha Arudra often on Shukla 14 with Purnima next day (e.g. Bhuj 2028-01-11).
             'purnima_required_months_amanta' => ['Pausha'],
+            'allow_shukla_chaturdashi_purnima_eve' => true,
+            // One winner per continuous Dhanu window: best Purnima affinity, then vriddhi last.
+            // Suppresses e.g. 2024-12-16 (day after Purnima) when 2025-01-13 is exact Purnima.
+            'prefer_best_purnima_affinity_in_sun_sign' => true,
+            // Two-sunrise Ardra (vriddhi): keep last day (drik 2029-12-22, not 21).
+            'vriddhi_preference' => 'last',
             'aliases' => ['Thiruvadhirai', 'Arudra Darshanam', 'Ardra Utsav'],
-            'description' => 'Cosmic dance of Lord Shiva as Nataraja; celebrated during Margashirsha Ardra Nakshatra',
+            'description' => 'Cosmic dance of Lord Shiva as Nataraja; celebrated on Ardra (Thiruvadhirai) in Tamil Maargazhi (Sun in Dhanu)',
             'deity' => 'Shiva (Nataraja)',
             'regions' => ['Tamil Nadu', 'South India'],
             'karmakala_type' => 'sunrise',

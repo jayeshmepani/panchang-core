@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-27T10:39:32+00:00",
+        "generated_at": "2026-07-29T08:44:05+00:00",
         "year": 2026,
         "month": 7,
         "calendar_type": "amanta",
@@ -6060,19 +6060,19 @@
                     },
                     "resolution": {
                         "festival_name": "Chandra Darshana",
-                        "required_tithi": 1,
+                        "required_tithi": 2,
                         "paksha": "Shukla",
                         "karmakala_type": "chandra_darshana_visibility",
-                        "tithi_at_karmakala_today": false,
+                        "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 3838.999977707863,
                         "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_today": false,
                         "tithi_at_sunrise_tomorrow": false,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461235.9052164834,
-                        "target_tithi_end_jd": 2461236.764870608,
+                        "target_tithi_start_jd": 2461236.764870608,
+                        "target_tithi_end_jd": 2461237.6412273804,
                         "standard_date": "2026-07-15",
                         "observance_date": "2026-07-15",
                         "decision": {
@@ -6080,9 +6080,9 @@
                             "require_karmakala_match": true,
                             "winning_reason": "Hybrid Chandra Darshana selected by the Pratipada early-exception path",
                             "winning_score": 1563,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "target_tithi_daylight_overlap_seconds": 20273.820550739765,
+                            "winning_window_overlap_seconds": 3838.999977707863,
+                            "winning_window_coverage_ratio": 1.0,
+                            "target_tithi_daylight_overlap_seconds": 28175.179463624954,
                             "moon_visibility_start_jd": 2461237.0909722224,
                             "moon_visibility_end_jd": 2461237.1354050925,
                             "moon_visibility_seconds": 3838.999977707863,
@@ -6250,11 +6250,19 @@
                                         "q_label_key": "EASILY_VISIBLE"
                                     },
                                     "ss10_1": {
-                                        "waxing_ecliptic_separation_deg": 16.4969,
+                                        "waxing_ecliptic_separation_deg": 16.4971,
                                         "threshold_deg": 12.0,
-                                        "passed": true
+                                        "passed": true,
+                                        "is_waxing_at_sunset": true,
+                                        "sun_ecliptic_longitude_deg": 113.11249786764951,
+                                        "moon_ecliptic_longitude_deg": 129.60959348715141,
+                                        "calculation_time_jd": 2461237.0909722224,
+                                        "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                     },
                                     "dharma_sindhu": {
+                                        "dvitiya_start_jd": 2461236.764870608,
+                                        "dvitiya_end_jd": 2461237.6412273804,
+                                        "dvitiya_interval_available": true,
                                         "aparahna_start_jd": 2461236.8666712963,
                                         "aparahna_end_jd": 2461236.9788217596,
                                         "aparahna_dvitiya_muhurtas": 3.0,
@@ -6266,6 +6274,8 @@
                                     },
                                     "nirnayamrita": {
                                         "is_ksaya_pratipada": false,
+                                        "day1_sunrise_tithi_abs": 1,
+                                        "day2_sunrise_tithi_abs": 2,
                                         "day2_deferral_enforced": false
                                     },
                                     "ok": true,
@@ -6544,11 +6554,19 @@
                                     "q_label_key": "EASILY_VISIBLE"
                                 },
                                 "ss10_1": {
-                                    "waxing_ecliptic_separation_deg": 16.4969,
+                                    "waxing_ecliptic_separation_deg": 16.4971,
                                     "threshold_deg": 12.0,
-                                    "passed": true
+                                    "passed": true,
+                                    "is_waxing_at_sunset": true,
+                                    "sun_ecliptic_longitude_deg": 113.11249786764951,
+                                    "moon_ecliptic_longitude_deg": 129.60959348715141,
+                                    "calculation_time_jd": 2461237.0909722224,
+                                    "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                 },
                                 "dharma_sindhu": {
+                                    "dvitiya_start_jd": 2461236.764870608,
+                                    "dvitiya_end_jd": 2461237.6412273804,
+                                    "dvitiya_interval_available": true,
                                     "aparahna_start_jd": 2461236.8666712963,
                                     "aparahna_end_jd": 2461236.9788217596,
                                     "aparahna_dvitiya_muhurtas": 3.0,
@@ -6560,6 +6578,8 @@
                                 },
                                 "nirnayamrita": {
                                     "is_ksaya_pratipada": false,
+                                    "day1_sunrise_tithi_abs": 1,
+                                    "day2_sunrise_tithi_abs": 2,
                                     "day2_deferral_enforced": false
                                 },
                                 "moonset_lag_seconds": 3838.999977707863,
@@ -6592,9 +6612,9 @@
                         "require_karmakala_match": true,
                         "winning_reason": "Hybrid Chandra Darshana selected by the Pratipada early-exception path",
                         "winning_score": 1563,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "target_tithi_daylight_overlap_seconds": 20273.820550739765,
+                        "winning_window_overlap_seconds": 3838.999977707863,
+                        "winning_window_coverage_ratio": 1.0,
+                        "target_tithi_daylight_overlap_seconds": 28175.179463624954,
                         "moon_visibility_start_jd": 2461237.0909722224,
                         "moon_visibility_end_jd": 2461237.1354050925,
                         "moon_visibility_seconds": 3838.999977707863,
@@ -6762,11 +6782,19 @@
                                     "q_label_key": "EASILY_VISIBLE"
                                 },
                                 "ss10_1": {
-                                    "waxing_ecliptic_separation_deg": 16.4969,
+                                    "waxing_ecliptic_separation_deg": 16.4971,
                                     "threshold_deg": 12.0,
-                                    "passed": true
+                                    "passed": true,
+                                    "is_waxing_at_sunset": true,
+                                    "sun_ecliptic_longitude_deg": 113.11249786764951,
+                                    "moon_ecliptic_longitude_deg": 129.60959348715141,
+                                    "calculation_time_jd": 2461237.0909722224,
+                                    "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                 },
                                 "dharma_sindhu": {
+                                    "dvitiya_start_jd": 2461236.764870608,
+                                    "dvitiya_end_jd": 2461237.6412273804,
+                                    "dvitiya_interval_available": true,
                                     "aparahna_start_jd": 2461236.8666712963,
                                     "aparahna_end_jd": 2461236.9788217596,
                                     "aparahna_dvitiya_muhurtas": 3.0,
@@ -6778,6 +6806,8 @@
                                 },
                                 "nirnayamrita": {
                                     "is_ksaya_pratipada": false,
+                                    "day1_sunrise_tithi_abs": 1,
+                                    "day2_sunrise_tithi_abs": 2,
                                     "day2_deferral_enforced": false
                                 },
                                 "ok": true,
@@ -7056,11 +7086,19 @@
                                 "q_label_key": "EASILY_VISIBLE"
                             },
                             "ss10_1": {
-                                "waxing_ecliptic_separation_deg": 16.4969,
+                                "waxing_ecliptic_separation_deg": 16.4971,
                                 "threshold_deg": 12.0,
-                                "passed": true
+                                "passed": true,
+                                "is_waxing_at_sunset": true,
+                                "sun_ecliptic_longitude_deg": 113.11249786764951,
+                                "moon_ecliptic_longitude_deg": 129.60959348715141,
+                                "calculation_time_jd": 2461237.0909722224,
+                                "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                             },
                             "dharma_sindhu": {
+                                "dvitiya_start_jd": 2461236.764870608,
+                                "dvitiya_end_jd": 2461237.6412273804,
+                                "dvitiya_interval_available": true,
                                 "aparahna_start_jd": 2461236.8666712963,
                                 "aparahna_end_jd": 2461236.9788217596,
                                 "aparahna_dvitiya_muhurtas": 3.0,
@@ -7072,6 +7110,8 @@
                             },
                             "nirnayamrita": {
                                 "is_ksaya_pratipada": false,
+                                "day1_sunrise_tithi_abs": 1,
+                                "day2_sunrise_tithi_abs": 2,
                                 "day2_deferral_enforced": false
                             },
                             "moonset_lag_seconds": 3838.999977707863,

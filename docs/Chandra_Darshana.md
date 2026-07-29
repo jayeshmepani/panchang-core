@@ -1,8 +1,12 @@
 # Chandra Darshana Hybrid Resolver & Textual Specification
 
-This document provides the complete, unified specification for the **Chandra Darśana** and **Adhika Chandra Darśana** hybrid resolution engine, implemented in production within `src/Festivals/FestivalRuleChandraDarshana.php` and audited via `scripts/chandra_hybrid_scripture_modern_resolver.php`.
+This document provides the complete, unified specification for the **monthly Chandra Darśana** hybrid resolution engine implemented in production within `src/Festivals/FestivalRuleChandraDarshana.php`.
 
-It combines the **100% modern astronomical Yallop TN69 model**, **Sūrya Siddhānta 10.1 ecliptic separation**, and the **classical Śāstric gates** (*Dharma Sindhu*, *Nirṇayāmṛta*, *Viramitrodaya*, *Śabdakalpadruma*, and *Skanda Purāṇa*).
+**Adhika Chandra Darśana** is registered as a separate festival identity in the catalogue (`FestivalCatalog`), but this trait contains **no separate Adhika-month branch, identifier, or distinct rule**. Adhika Chandra Darśana uses the **same resolver**; distinction is only by upstream month/festival registration (Adhika lunar month context).
+
+It combines the **modern astronomical Yallop TN69 model**, **Sūrya Siddhānta 10.1 ecliptic separation**, and the **classical Śāstric gates** (*Dharma Sindhu*, *Nirṇayāmṛta*, *Viramitrodaya*, *Śabdakalpadruma*, and *Skanda Purāṇa*).
+
+> **Audit tooling note:** Production logic is defined by `FestivalRuleChandraDarshana.php` (and shared Yallop helpers in `scripts/lib/chandra_yallop.php`). The CLI `scripts/chandra_hybrid_scripture_modern_resolver.php` is a related experimental bulk resolver; it is **not guaranteed** to mirror the production trait until explicitly compared and updated (historically it has differed on evening-scan count and outside-Pratipadā/Dvitīyā handling). Do not treat that script as authoritative for production behavior.
 
 ---
 
@@ -33,15 +37,38 @@ Chandra Darśana is the monthly observance of the first visible waxing crescent 
 
 Because no single ancient text contains a standalone universal calendar command covering all modern edge cases, the resolver implements an **operational hybrid engine**:
 
-1. **Modern Astronomical Precision:** Uses exact topocentric/geocentric ephemeris calculations (Yallop 1997 TN69 $q$-criterion) for local visibility.
-2. **Siddhāntic Separation Floor:** Enforces Sūrya Siddhānta 10.1 waxing ecliptic separation ($\Delta\lambda \ge 12.0^\circ$) at local sunset.
-3. **Śāstric Edge-Case Safeguards:** Implements *Nirṇayāmṛta* Kṣaya Pratipadā Day-2 deferral and *Dharma Sindhu* Dvitīyā time-window corroborations (*Aparāhṇa* and *Sthūla-Pradoṣa*).
+1. **Modern Astronomical Precision:** Uses the **Yallop TN69 coordinate convention**: geocentric ARCL/ARCV/DAZ and topocentrically corrected crescent width ($W'$). Observer elevation appears in an audit path, not in the core $q$ decision. (Not a fully topocentric ARCL/ARCV stack.)
+2. **Siddhāntic Separation Floor:** Enforces Sūrya Siddhānta 10.1 directed waxing ecliptic separation ($\Delta\lambda \ge 12.0^\circ$) at local sunset.
+3. **Śāstric Edge-Case Safeguards:** Implements *Nirṇayāmṛta* Kṣaya Pratipadā Day-1 deferral and *Dharma Sindhu* Dvitīyā time-window corroborations (*Aparāhṇa* and a **six-muhūrta post-sunset Sthūla-darśana window**).
+
+### Mandatory cumulative order
+
+```text
+post-conjunction
+→ positive moonset lag
+→ Yallop B
+→ Danjon
+→ SS 10.1 ≥ 12°
+→ kṣaya deferral
+→ Pratipadā/Dvitīyā day selection
+```
+
+Production constants (trait):
+
+| Constant | Value |
+|---|---|
+| `CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS` | `6` |
+| `CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY` | `B` |
+| `CHANDRA_DARSHANA_APPLY_DANJON_GUARD` | `true` (default) |
+| `CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG` | `12.0` |
+| Aparāhṇa min muhūrtas | `3.0` |
+| Post-sunset night window min muhūrtas | `6.0` |
 
 ---
 
 ## Sequential Gate Table
 
-For each post-Amāvāsyā season, the engine scans up to **five local evenings** starting from the Amāvāsyā anchor. The first evening that passes all mandatory gates is selected.
+For each post-Amāvāsyā season, the engine scans up to **six local evenings** starting from the Amāvāsyā anchor (`CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 6`). The first evening that passes all mandatory gates is selected.
 
 | Gate | Rule | Failure / Deferral Code | Type |
 |---|---|---|---|
@@ -51,8 +78,11 @@ For each post-Amāvāsyā season, the engine scans up to **five local evenings**
 | **4** | Yallop TN69 $q$-model must satisfy minimum category (Default: `B`, $q > -0.014$) | `REJECTED_MODERN_YALLOP_Q_BELOW_THRESHOLD` | Hard Veto |
 | **5** | Application Danjon Guard ($\text{ARCL}_{\text{geo}} \ge 7.0^\circ$) | `REJECTED_DANJON_GUARD` | Hard Veto |
 | **6** | Waxing ecliptic separation at local sunset must be $\ge 12.0^\circ$ (SS 10.1) | `REJECTED_SS10_1_BELOW_12_DEG` | Hard Veto |
-| **7** | *Nirṇayāmṛta* Kṣaya Pratipadā detection (Pratipadā starts & ends between sunrises) | `DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA` | Hard Deferral |
-| **8** | If sunrise tithi is Pratipadā, Dharma Sindhu early exception must pass | `DEFERRED_PRATIPADA_EARLY_EXCEPTION_NOT_MET` | Deferral to Dvitīyā |
+| **7** | *Nirṇayāmṛta* Kṣaya Pratipadā (operational sunrise-transition detector; see below) | `DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA` | Hard Deferral (Day 1 ineligible; scan continues) |
+| **8** | Sunrise tithi must be Śukla Pratipadā (1) or Dvitīyā (2) | `REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD` | Hard Veto |
+| **9** | If sunrise tithi is Pratipadā, Dharma Sindhu early exception must pass | `DEFERRED_PRATIPADA_EARLY_EXCEPTION_NOT_MET` | Deferral to next evening / Dvitīyā path |
+
+There is **no** success path for sunrise tithis other than 1 or 2. Status `SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY` is **not** emitted by the updated production selection logic.
 
 ---
 
@@ -60,7 +90,7 @@ For each post-Amāvāsyā season, the engine scans up to **five local evenings**
 
 ```mermaid
 flowchart TD
-    A["Start Post-Amāvasyā Season"] --> B["Scan up to 5 Local Evenings from Anchor"]
+    A["Start Post-Amāvasyā Season"] --> B["Scan up to 6 Local Evenings from Anchor"]
     B --> C{"Candidate Evening Available?"}
     C -- "No" --> Z["UNRESOLVED: No Date Meets Criteria"]
     C -- "Yes" --> D{"Sunset After Amāvasyā End?"}
@@ -79,20 +109,20 @@ flowchart TD
     H -- "Yes" --> I{"SS 10.1 Waxing Separation >= 12.0° at Sunset?"}
 
     I -- "No" --> I1["Reject: REJECTED_SS10_1_BELOW_12_DEG"] --> N
-    I -- "Yes" --> J{"Kṣaya Pratipadā Detected?"}
+    I -- "Yes" --> J{"Kṣaya Pratipadā Detected? (operational)"}
 
-    J -- "Yes" --> J1["Defer: DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA"] --> N
-    J -- "No" --> K{"Sunrise Tithi is Pratipadā?"}
+    J -- "Yes" --> J1["Defer Day 1: DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA"] --> N
+    J -- "No" --> K{"Sunrise Tithi is Pratipadā (1)?"}
 
-    K -- "No" --> L{"Sunrise Tithi is Dvitīyā?"}
-    L -- "Yes" --> L1{"Dharma Sindhu Corroborates? (Aparāhṇa 3 OR Pradoṣa 6)"}
-    L1 -- "Yes" --> S2["Select: SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION"]
-    L1 -- "No" --> S3["Select: SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY"]
-    L -- "No" --> S4["Select: SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY"]
-
-    K -- "Yes" --> M{"Dharma Sindhu Early Exception Passes? (Aparāhṇa 3 OR Pradoṣa 6)"}
+    K -- "Yes" --> M{"Dharma Sindhu Early Exception? (full Aparāhṇa 3 OR full 6 post-sunset night muhūrtas)"}
     M -- "Yes" --> S1["Select: SUCCESS_PRATIPADA_EARLY_EXCEPTION"]
     M -- "No" --> M1["Defer: DEFERRED_PRATIPADA_EARLY_EXCEPTION_NOT_MET"] --> N
+
+    K -- "No" --> L{"Sunrise Tithi is Dvitīyā (2)?"}
+    L -- "No" --> S4["Reject: REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD"] --> N
+    L -- "Yes" --> L1{"Dharma Sindhu Corroborates? (Aparāhṇa 3 OR 6 post-sunset night muhūrtas)"}
+    L1 -- "Yes" --> S2["Select: SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION"]
+    L1 -- "No" --> S3["Select: SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY"]
 
     N --> C
 ```
@@ -111,19 +141,37 @@ The modern layer calculates the crescent visibility parameter $q$ at $T_b = T_{\
   $$P(W') = 11.8371 - 6.3226 W' + 0.7319 W'^2 - 0.1018 W'^3$$
   $$q = \frac{\text{ARCV}_{\text{geo}} - P(W')}{10}$$
 * **Category Floor:** Default Category `B` ($q > -0.014$).
-* **Danjon Guard:** Hard guard requiring $\text{ARCL}_{\text{geo}} \ge 7.0^\circ$.
+* **Danjon Guard:** Configurable hard guard (enabled by default) requiring $\text{ARCL}_{\text{geo}} \ge 7.0^\circ$.
 
 ### 2. Siddhāntic Ecliptic Gate (SS 10.1)
-Requires directed waxing ecliptic separation at local sunset to satisfy Sūrya Siddhānta 10.1:
+Requires **directed** waxing ecliptic separation at local sunset to satisfy Sūrya Siddhānta 10.1:
 $$\Delta\lambda_{\text{waxing}} = (\lambda_{\text{Moon}} - \lambda_{\text{Sun}}) \pmod{360} \ge 12.0^\circ$$
 
-### 3. Nirṇayāmṛta Kṣaya Pratipadā Gate
-*Shukla Pratipadā* (Tithi 1) is classified as **Kṣaya** if it begins *after* Sunrise 1 and ends *before* Sunrise 2 (never touching any sunrise). 
+Only the waxing half counts; a large waning-side residual is not treated as a small crescent elongation.
 
-When Kṣaya Pratipadā occurs:
-* Day 1's morning belongs to *Amāvāsyā* sunrise.
-* Per *Nirṇayāmṛta* (*parataḥ soma-darśanāt*), observing the bright-fortnight crescent on Day 1 evening is prohibited.
-* Day 1 receives `DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA`, forcing the engine to select **Day 2 (Dvitīyā)**.
+### 3. Nirṇayāmṛta Kṣaya Pratipadā Gate
+
+**Abstract definition (astronomy):** Śukla Pratipadā is *kṣaya* when it starts after Sunrise 1 and ends before Sunrise 2 (never occupies a sunrise).
+
+**Production operational detector** (what the trait actually codes):
+
+```php
+$absTithi === 30
+&& $nextAbsTithi === 2
+&& $day['tithi_end_jd'] > $sunrise
+&& $day['tithi_end_jd'] < $nextSunrise
+```
+
+In words:
+
+> Production detects Kṣaya Pratipadā when the candidate sunrise is **Amāvāsyā**, the next sunrise is **Dvitīyā**, and the Amāvāsyā-to-Pratipadā transition occurs between those two sunrises. This sunrise-transition pattern means Pratipadā does not occupy either sunrise.
+
+When that pattern is detected on a candidate evening:
+* That evening receives `DEFERRED_NIRNAYAMRITA_KSAYA_PRATIPADA` (Day 1 is made **ineligible**).
+* Evaluation **continues from the next candidate** (typically Day 2).
+* **Day 2 is not forced.** It is selected only if it still passes the remaining mandatory gates: positive moonset lag, Yallop category B, Danjon (if enabled), SS 10.1 ≥ 12°, and the Dvitīyā-at-sunrise (or valid Pratipadā early) field.
+
+Exact Dvitīyā start/end intervals are retrieved from Day+1 and Day+2 snapshots (no fabricated `+0.9 day` duration).
 
 ### 4. Dharma Sindhu Disjunctive Corroboration Gates
 Dharma Sindhu corroboration is disjunctive (`OR`):
@@ -131,11 +179,34 @@ Dharma Sindhu corroboration is disjunctive (`OR`):
 $dharmaSindhuCorroborated = $ds3AparahnaPassed || $ds6PradoshaPassed;
 ```
 
-* **3-Muhūrta Aparāhṇa (`ds3AparahnaPassed`):** Daylight is divided into 15 Muhūrtas. *Aparāhṇa* spans Muhūrtas 10–12 (approx. 1:12 PM – 3:36 PM). Dvitīyā must overlap this window for at least 3 Muhūrtas (144 mins).
-* **6-Muhūrta Pradoṣa (`ds6PradoshaPassed`):** Night is divided into 15 Muhūrtas. *Pradoṣa* spans the first 6 night Muhūrtas after sunset (approx. 6:00 PM – 10:48 PM). Dvitīyā must overlap this window for at least 6 night Muhūrtas (288 mins).
+Muhūrta lengths are **not** fixed civil-clock spans. Production derives them from local ephemeris:
+
+```php
+$dayMuhurta = ($sunset - $sunrise) / 15;
+$nightMuhurta = ($nextSunrise - $sunset) / 15;
+```
+
+* **3-Muhūrta Aparāhṇa (`ds_3_muhurta_aparahna_passed`):** Daylight is divided into 15 daytime muhūrtas. *Aparāhṇa* is muhūrtas 10–12 (`sunrise + 9·dayMuhurta` … `sunrise + 12·dayMuhurta`). Because Aparāhṇa itself is exactly three daytime muhūrtas, production requires Dvitīyā to cover **effectively the complete three-muhūrta Aparāhṇa window**, subject to numerical tolerance (`>= 3.0 - 1e-6`).
+
+* **Six-muhūrta post-sunset Sthūla-darśana window (`ds_6_muhurta_pradosha_passed`):** Night is divided into 15 night muhūrtas. Production evaluates Dvitīyā coverage of `sunset … sunset + 6·nightMuhurta` and requires **effectively complete coverage** of that six-muhūrta window (`>= 6.0 - 1e-6`).
+
+> **Terminology (Pradoṣa vs production label):**  
+> Classical *Dharma Sindhu* defines Pradoṣa as **three** muhūrtas after sunset (*sūryāstottaraṃ tri-muhūrtaṃ pradoṣaḥ* — see §B2). Production’s internal identifier `ds_6_muhurta_pradosha_passed` is retained for compatibility, but the **metric evaluated is the six-night-muhūrta post-sunset Sthūla-darśana window**, not the narrower three-muhūrta Pradoṣa definition. In prose, prefer “six-muhūrta post-sunset Sthūla-darśana window” over unqualified “six-muhūrta Pradoṣa.”
+
+> **Illustrative civil times only:** Clock ranges such as “1:12 PM – 3:36 PM” or “6:00 PM – 10:48 PM” assume an idealized 12-hour day/night. **Production times vary by date and location.**
 
 > **Śāstric Reconciliation Note (*Dharma Sindhu*):**  
-> The 3-muhūrta Aparāhṇa rule applies to **Sūkṣma-darśana** (astronomical calculation for Vedic *Iṣṭi* sacrifices). For actual human naked-eye visual sighting (**Sthūla-darśana**), *Dharma Sindhu* specifies the 6-muhūrta Pradoṣa presence. The hybrid engine evaluates both as corroboration metrics.
+> The 3-muhūrta Aparāhṇa rule applies to **Sūkṣma-darśana** (astronomical calculation for Vedic *Iṣṭi* sacrifices). For actual human naked-eye visual sighting (**Sthūla-darśana**), *Dharma Sindhu* emphasizes multi-muhūrta Dvitīyā presence after sunset. The hybrid engine evaluates the 3-muhūrta Aparāhṇa and 6-muhūrta post-sunset windows as corroboration metrics.
+
+**Pratipadā early acceptance** when sunrise tithi is 1 and either window passes fully:
+
+```text
+3 Aparāhṇa muhūrtas
+OR
+6 post-sunset night muhūrtas
+```
+
+**Dvitīyā-at-sunrise** remains the default civil-day selection path when Pratipadā early exception is not used.
 
 ---
 
@@ -143,10 +214,14 @@ $dharmaSindhuCorroborated = $ds3AparahnaPassed || $ds6PradoshaPassed;
 
 | Sunrise Tithi | Active Conditions | Status Code | Resolution Mode |
 |---|---|---|---|
-| **Pratipadā** | Aparāhṇa 3-Muhūrta **OR** Pradoṣa 6-Muhūrta Passed | `SUCCESS_PRATIPADA_EARLY_EXCEPTION` | Early Exception |
-| **Dvitīyā** | Aparāhṇa 3-Muhūrta **OR** Pradoṣa 6-Muhūrta Passed | `SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION` | Default Dvitīyā (Corroborated) |
-| **Dvitīyā** | Modern Yallop + SS 10.1 Passed; Dharma Sindhu False | `SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY` | Default Dvitīyā (Astronomical) |
-| **Other** | Modern Yallop + SS 10.1 Passed within 5-evening scan | `SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY` | General Hybrid Fallback |
+| **Pratipadā (1)** | Full Aparāhṇa 3-Muhūrta **OR** full 6 post-sunset night-Muhūrta window | `SUCCESS_PRATIPADA_EARLY_EXCEPTION` | Early Exception |
+| **Dvitīyā (2)** | Same Dharma Sindhu corroboration true | `SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION` | Default Dvitīyā (Corroborated) |
+| **Dvitīyā (2)** | Modern Yallop + SS 10.1 passed; Dharma Sindhu false | `SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY` | Default Dvitīyā (Astronomical) |
+| **Other (≠ 1, 2)** | Any (after modern + SS gates) | `REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD` | Hard reject — no hybrid “other tithi” success |
+
+Removed from production emission paths:
+
+* `SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY` (legacy / non-production path; may still appear only as a leftover localization map key, not as a successful selection result from the updated trait).
 
 ---
 
@@ -162,7 +237,7 @@ $dharmaSindhuCorroborated = $ds3AparahnaPassed || $ds6PradoshaPassed;
 | **4** | Viramitrodaya | Explicit | *Candra-darśanābhāve* & *parataḥ soma-darśanāt* |
 | **5** | Śabdakalpadruma / Hari-bhakti-vilāsa | Explicit | 3-muhūrta & **6-muhūrta** *sāmbhavya* |
 | **6** | Dharma Sindhu (Day Divisions) | Implicit | 5-fold day division (Prātaḥ, Saṅgava, Madhyāhna, Aparāhṇa, Sāyāhna) |
-| **7** | Dharma Sindhu (Bali-pūjā Nirṇaya) | Explicit | *Sūkṣma* (3-muhūrta) vs. *Sthūla* (6-muhūrta) *candra-darśana* |
+| **7** | Dharma Sindhu (Bali-pūjā Nirṇaya) | Explicit | *Sūkṣma* (3-muhūrta) vs. *Sthūla* (multi-muhūrta) *candra-darśana* |
 | **8** | Satsangi Jeevan (Kārtika 4.58) | Explicit | Govardhan / Gokrīḍā night-moon prohibition (*rātrau dṛśyet candramāḥ*) |
 | **9** | Skanda Purāṇa (2.4.10) | Explicit | Same Gokrīḍā night-moon prohibition (*Somo rājā paśūn hanti*) |
 | **10** | Satsangi Jeevan (Bhakti-devī) | Implicit | *Candrodaya* worship timing |
@@ -208,7 +283,7 @@ Probability of Moon-sighting when Dvitīyā covers 3 Muhūrtas of Aparāhṇa, a
 अन्वाधानं चतुर्दश्यां परतः सोमदर्शनात् ॥
 ```
 
-* **Translation:** When Dvitīyā pervades 3 Muhūrtas of Aparāhṇa on Pratipadā, moon-sighting is probable (*candra-darśanaṃ saṃbhāvyate*). If Dvitīyā is 3 Muhūrtas in Aparāhṇa, Vedic *Anvāधान* occurs on Caturdaśī, because moon-sighting happens thereafter (*parataḥ soma-darśanāt*).
+* **Translation:** When Dvitīyā pervades 3 Muhūrtas of Aparāhṇa on Pratipadā, moon-sighting is probable (*candra-darśanaṃ saṃbhāvyate*). If Dvitīyā is 3 Muhūrtas in Aparāhṇa, Vedic *Anvādhāna* occurs on Caturdaśī, because moon-sighting happens thereafter (*parataḥ soma-darśanāt*).
 
 ---
 
@@ -317,13 +392,14 @@ Prohibition against observing the Moon on Govardhan / Gokrīḍā night.
 सूर्यास्तोत्तरं त्रिमुहूर्तं प्रदोषः ।
 ```
 
-* **Day Divisions:**
-  1. **Prātaḥ:** 1st–3rd Muhūrtas (Sunrise to ~8:24 AM)
-  2. **Saṅgava:** 4th–6th Muhūrtas (~8:24 AM to ~10:48 AM)
-  3. **Madhyāhna:** 7th–9th Muhūrtas (~10:48 AM to ~1:12 PM)
-  4. **Aparāhṇa:** 10th–12th Muhūrtas (~1:12 PM to ~3:36 PM)
-  5. **Sāyāhna:** 13th–15th Muhūrtas (~3:36 PM to Sunset)
-* **Pradoṣa:** The 3 Muhūrtas immediately following sunset.
+* **Day Divisions** (proportional muhūrtas from actual local sunrise/sunset; civil times below are **illustrative only** for an idealized 12-hour day):
+  1. **Prātaḥ:** 1st–3rd Muhūrtas (illustrative: Sunrise to ~8:24 AM)
+  2. **Saṅgava:** 4th–6th Muhūrtas (illustrative: ~8:24 AM to ~10:48 AM)
+  3. **Madhyāhna:** 7th–9th Muhūrtas (illustrative: ~10:48 AM to ~1:12 PM)
+  4. **Aparāhṇa:** 10th–12th Muhūrtas (illustrative: ~1:12 PM to ~3:36 PM)
+  5. **Sāyāhna:** 13th–15th Muhūrtas (illustrative: ~3:36 PM to Sunset)
+* **Conventional Pradoṣa (textual):** The **3** muhūrtas immediately following sunset (*sūryāstottaraṃ tri-muhūrtaṃ pradoṣaḥ*).
+* **Production metric (operational):** The **6** night muhūrtas after sunset used as the Sthūla-darśana corroboration window (see §4). Internal key: `ds_6_muhurta_pradosha_passed`.
 
 ---
 
@@ -355,7 +431,9 @@ Prohibition against observing the Moon on Govardhan / Gokrīḍā night.
 ## Output Contract & Audit Tooling
 
 ### Production Integration (`FestivalRuleChandraDarshana.php`)
-The production festival service emits `decision.visibility_assessment` inside the snapshot output payload:
+The production festival service emits `decision.visibility_assessment` inside the snapshot output payload.
+
+> **Illustrative output shape; numerical values are examples, not a validated regression fixture.**
 
 ```json
 {
@@ -389,8 +467,9 @@ The production festival service emits `decision.visibility_assessment` inside th
 }
 ```
 
-### Audit CLI Command
-Bulk generation across date ranges is executed via:
+### Related CLI (not production source of truth)
+
+Bulk experimental generation may use:
 
 ```bash
 php scripts/chandra_hybrid_scripture_modern_resolver.php \
@@ -401,3 +480,13 @@ php scripts/chandra_hybrid_scripture_modern_resolver.php \
   --tz=Asia/Kolkata \
   --amanta
 ```
+
+As of the latest production-trait alignment pass, this script still required independent verification for:
+
+* six-evening scan (script historically used `HYBRID_MAX_POST_AMAVASYA_EVENINGS = 5`);
+* rejection outside Pratipadā/Dvitīyā (script historically emitted `SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY`);
+* exact Day+2 Dvitīyā intervals;
+* sunset-directed ecliptic calculation;
+* revised kṣaya sunrise-transition detector.
+
+Until that comparison is complete, **authoritative behavior is only the production trait**.

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Festivals;
 
+use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
-
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Festivals\Support\FestivalShared;
 
@@ -75,6 +75,164 @@ trait FestivalMonthTithiSupport
         }
 
         return (int) floor($normalizedLongitude / 30.0) === $requiredSunSign;
+    }
+
+    /**
+     * Score how closely a civil day matches Purnima for Tamil Arudra-style rules.
+     * Higher is better: exact Shukla 15 > Shukla 14 eve > day-after-Purnima.
+     */
+    private function purnimaAffinityScore(array $details, array $rules): int
+    {
+        $tithi = (array) ($details['Tithi'] ?? []);
+        $paksha = (string) ($tithi['paksha'] ?? '');
+        $index = (int) ($tithi['index'] ?? 0);
+        $phase = $index > 15 ? $index - 15 : $index;
+
+        if ($paksha === 'Shukla' && $phase === 15) {
+            return 100;
+        }
+
+        if ($paksha === 'Shukla' && $phase === 14 && (bool) ($rules['allow_shukla_chaturdashi_purnima_eve'] ?? false)) {
+            return 90;
+        }
+
+        // Day after Purnima (Krishna Pratipada): absolute 16 or phase 1 in Krishna.
+        if ($paksha === 'Krishna' && $phase === 1) {
+            return 50;
+        }
+
+        if ($paksha === 'Krishna' && $phase === 2) {
+            return 40;
+        }
+
+        return 10;
+    }
+
+    private function snapshotHasRequiredNakshatraAtSunrise(array $details, string $requiredNakshatra): bool
+    {
+        $name = (string) (($details['Nakshatra']['name'] ?? $details['Nakshatra_At_Sunrise']['name'] ?? ''));
+        if ($name === '') {
+            return false;
+        }
+
+        return strcasecmp($name, $requiredNakshatra) === 0;
+    }
+
+    /**
+     * Tamil Arudra (flowchart): one winner per continuous solar Dhanu window.
+     * Collapse consecutive Ardra sunrises (vriddhi), then keep highest Purnima affinity.
+     *
+     * @param callable(CarbonImmutable): array<string, mixed>|null $fetchHistoricalSnapshot
+     */
+    private function shouldSuppressNakshatraForBetterSunSignCandidate(
+        array $rules,
+        CarbonImmutable $date,
+        array $todayDetails,
+        ?callable $fetchHistoricalSnapshot
+    ): bool {
+        if (!(bool) ($rules['prefer_best_purnima_affinity_in_sun_sign'] ?? false)) {
+            return false;
+        }
+
+        if ($fetchHistoricalSnapshot === null || !isset($rules['sun_sign'])) {
+            return false;
+        }
+
+        $requiredSunSign = (int) $rules['sun_sign'];
+        if (!$this->sunSignRuleMatches($requiredSunSign, $todayDetails)) {
+            return false;
+        }
+
+        $requiredNakshatra = (string) ($rules['nakshatra'] ?? '');
+        if ($requiredNakshatra === '') {
+            return false;
+        }
+
+        $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? '');
+        $candidates = [];
+
+        // Walk backward/forward while Sun stays in the required sign (Margazhi/Dhanu ~30d).
+        foreach ([-1, 1] as $direction) {
+            for ($offset = $direction === -1 ? 0 : 1; $offset <= 40; $offset++) {
+                $dayOffset = $direction === -1 ? -$offset : $offset;
+                $candidateDate = $date->addDays($dayOffset);
+                $snapshot = $dayOffset === 0
+                    ? $todayDetails
+                    : $fetchHistoricalSnapshot($candidateDate);
+                if (!is_array($snapshot) || $snapshot === []) {
+                    break;
+                }
+
+                if (!$this->sunSignRuleMatches($requiredSunSign, $snapshot)) {
+                    if ($dayOffset === 0) {
+                        return false;
+                    }
+
+                    break;
+                }
+
+                if (!$this->snapshotHasRequiredNakshatraAtSunrise($snapshot, $requiredNakshatra)) {
+                    if ($dayOffset === 0) {
+                        // Today is not a sunrise-nakshatra candidate; nothing to suppress.
+                        return false;
+                    }
+
+                    continue;
+                }
+
+                $candidates[$candidateDate->toDateString()] = [
+                    'date' => $candidateDate->toDateString(),
+                    'score' => $this->purnimaAffinityScore($snapshot, $rules),
+                ];
+            }
+        }
+
+        if ($candidates === []) {
+            return false;
+        }
+
+        // Collapse consecutive civil-day runs (vriddhi) to first/last per preference.
+        ksort($candidates);
+        $dates = array_keys($candidates);
+        $collapsed = [];
+        $run = [];
+        $flushRun = static function () use (&$run, &$collapsed, $candidates, $vriddhiPreference): void {
+            if ($run === []) {
+                return;
+            }
+
+            $pick = $vriddhiPreference === 'last' ? $run[array_key_last($run)] : $run[0];
+            $collapsed[$pick] = $candidates[$pick];
+            $run = [];
+        };
+
+        $prev = null;
+        foreach ($dates as $ymd) {
+            if ($prev !== null) {
+                $prevDt = CarbonImmutable::parse($prev);
+                $curDt = CarbonImmutable::parse($ymd);
+                if ($prevDt->addDay()->toDateString() !== $curDt->toDateString()) {
+                    $flushRun();
+                }
+            }
+
+            $run[] = $ymd;
+            $prev = $ymd;
+        }
+
+        $flushRun();
+
+        $bestScore = null;
+        $bestDate = null;
+        foreach ($collapsed as $ymd => $row) {
+            $score = (int) $row['score'];
+            if ($bestScore === null || $score > $bestScore || ($score === $bestScore && $ymd > (string) $bestDate)) {
+                $bestScore = $score;
+                $bestDate = $ymd;
+            }
+        }
+
+        return $bestDate !== null && $bestDate !== $date->toDateString();
     }
 
     private function intervalCoversFullKarmakala(float $startJd, float $endJd, array $details, string $karmakalaType): bool

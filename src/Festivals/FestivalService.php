@@ -215,23 +215,42 @@ class FestivalService
                 // Handle nakshatra-based festivals
                 $resolved = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date, $todayDetails, $tomorrowDetails);
                 if ($resolved !== null && $resolved['observance_date'] === $date->toDateString() && !isset($addedFestivalKeys[$name])) {
-                    $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
-                    $festivalMeta[] = [
-                        'raw_name' => $name,
-                        'adhika_only' => $adhikaOnly,
-                        'is_ekadashi' => str_contains($name, 'Ekadashi'),
-                    ];
-                    $addedFestivalKeys[$name] = true;
-                } elseif ($yesterdayDetails !== null && !isset($addedFestivalKeys[$name])) {
-                    $resolvedYesterday = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails);
-                    if ($resolvedYesterday !== null && $resolvedYesterday['observance_date'] === $date->toDateString()) {
-                        $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedYesterday);
+                    if (!$this->shouldSuppressNakshatraForBetterSunSignCandidate(
+                        $rules,
+                        $date,
+                        $todayDetails,
+                        $fetchHistoricalSnapshot
+                    )) {
+                        $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
                         $festivalMeta[] = [
                             'raw_name' => $name,
                             'adhika_only' => $adhikaOnly,
                             'is_ekadashi' => str_contains($name, 'Ekadashi'),
                         ];
                         $addedFestivalKeys[$name] = true;
+                    }
+                } elseif ($yesterdayDetails !== null && !isset($addedFestivalKeys[$name])) {
+                    // Yesterday→today backfill: do not apply when today's own resolve already
+                    // chose a different day (e.g. vriddhi_preference=last → tomorrow).
+                    if ($resolved !== null && $resolved['observance_date'] !== $date->toDateString()) {
+                        // skip backfill
+                    } else {
+                        $resolvedYesterday = $this->ruleEngine->resolveNakshatraBasedFestival($name, $rules, $date->subDay(), $yesterdayDetails, $todayDetails);
+                        if ($resolvedYesterday !== null && $resolvedYesterday['observance_date'] === $date->toDateString()
+                            && !$this->shouldSuppressNakshatraForBetterSunSignCandidate(
+                                $rules,
+                                $date,
+                                $todayDetails,
+                                $fetchHistoricalSnapshot
+                            )) {
+                            $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedYesterday);
+                            $festivalMeta[] = [
+                                'raw_name' => $name,
+                                'adhika_only' => $adhikaOnly,
+                                'is_ekadashi' => str_contains($name, 'Ekadashi'),
+                            ];
+                            $addedFestivalKeys[$name] = true;
+                        }
                     }
                 }
             } elseif ($type === 'solar_sankranti') {
@@ -630,17 +649,41 @@ class FestivalService
         return $expanded;
     }
 
+    /**
+     * Phase tithi 1..15 from snapshot (handles Krishna absolute 16..30).
+     *
+     * @param array<string, mixed> $details
+     */
+    private function phaseTithiNumberFromDetails(array $details): int
+    {
+        $phase = (int) (($details['Ekadashi_Observance']['phase_tithi_number'] ?? 0));
+        if ($phase >= 1 && $phase <= 15) {
+            return $phase;
+        }
+
+        $abs = (int) (($details['Tithi']['index'] ?? 0));
+        if ($abs <= 0) {
+            return 0;
+        }
+
+        return (($abs - 1) % 15) + 1;
+    }
+
     private function rejectResolvedFestivalForDay(array $rules, array $todayDetails): bool
     {
-        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta';
+        // Config default is Vaishnava (config/panchang.php festivals.default_tradition).
+        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Vaishnava') : 'Vaishnava';
         $isVaishnavaMode = strcasecmp((string) $tradition, 'Vaishnava') === 0;
 
         $isEkadashiRule = ((int) ($rules['tithi'] ?? 0) === 11) && ((bool) ($rules['fasting'] ?? false) || (bool) ($rules['ekadashi_nirnay_table'] ?? false));
-        $todayTithi = (int) ($todayDetails['Tithi']['index'] ?? 0);
 
-        if ($isVaishnavaMode && $isEkadashiRule && $todayTithi === 11) {
+        // Named Ekadashi must land on the same civil day as ISKCON / Vaishnava fasting.
+        // Only enforce when the snapshot has an explicit Vaishnava decision for the day
+        // (kshaya windows may leave Ekadashi_Observance empty — then classical nirnay applies).
+        if ($isVaishnavaMode && $isEkadashiRule) {
             $vaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
-            if ((string) ($vaishnava['fasting_day'] ?? '') !== 'Today') {
+            $fastingDay = (string) ($vaishnava['fasting_day'] ?? '');
+            if ($fastingDay !== '' && $fastingDay !== 'Today') {
                 return true;
             }
         }
@@ -653,7 +696,7 @@ class FestivalService
 
             $parana = $todayDetails['Ekadashi_Observance']['parana'] ?? null;
 
-            return $parana === null || $parana === [] || (int) ($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? 0) !== 12;
+            return $parana === null || $parana === [] || $this->phaseTithiNumberFromDetails($todayDetails) !== 12;
         }
 
         return false;
@@ -667,14 +710,28 @@ class FestivalService
         }
 
         $yesterdayVaishnava = (array) (($yesterdayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
-        if ((string) ($yesterdayVaishnava['fasting_day'] ?? '') !== 'Tomorrow_Mahadvadashi') {
+        $yesterdayFasting = (string) ($yesterdayVaishnava['fasting_day'] ?? '');
+        // Mahadvadashi / "Tomorrow" shifts place the named fast on the following civil day
+        // (same day ISKCON / derived Vaishnava uses).
+        if ($yesterdayFasting !== 'Tomorrow_Mahadvadashi' && $yesterdayFasting !== 'Tomorrow') {
             return false;
         }
 
-        $todayPhaseTithi = (int) (($todayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? $todayDetails['Tithi']['index'] ?? 0));
-        $yesterdayPhaseTithi = (int) (($yesterdayDetails['Ekadashi_Observance']['phase_tithi_number'] ?? $yesterdayDetails['Tithi']['index'] ?? 0));
-        if ($todayPhaseTithi !== 12 || $yesterdayPhaseTithi !== 11) {
+        $todayPhaseTithi = $this->phaseTithiNumberFromDetails($todayDetails);
+        $yesterdayPhaseTithi = $this->phaseTithiNumberFromDetails($yesterdayDetails);
+        // Typical: yesterday Ekadashi (11) → today Dwadashi (12). Vriddhi second day may stay on 11.
+        if ($yesterdayPhaseTithi !== 11 || ($todayPhaseTithi !== 12 && $todayPhaseTithi !== 11)) {
             return false;
+        }
+
+        // For pure "Tomorrow" (not Mahadvadashi): allow second vriddhi day when Vaishnava is Today,
+        // otherwise require classic Dwadashi (phase 12) shift shape.
+        if ($yesterdayFasting === 'Tomorrow') {
+            $todayVaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
+            $todayIsVaishnavaFast = (string) ($todayVaishnava['fasting_day'] ?? '') === 'Today';
+            if (!$todayIsVaishnavaFast && $todayPhaseTithi !== 12) {
+                return false;
+            }
         }
 
         $yesterdayPaksha = (string) ($yesterdayDetails['Tithi']['paksha'] ?? '');

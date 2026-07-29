@@ -227,6 +227,12 @@ trait FestivalRuleNakshatra
             return null;
         }
 
+        // Vriddhi (two sunrises): prefer last day when rule asks for it (Arudra Darshan).
+        $vriddhiPreference = (string) ($rule['vriddhi_preference'] ?? '');
+        if ($nakshatraTodayMatch && $nakshatraTomorrowMatch && $vriddhiPreference === 'last') {
+            $nakshatraTodayMatch = false;
+        }
+
         // Simple nakshatra-only match (at least one match is guaranteed here due to early returns above)
         if ($nakshatraTodayMatch) {
             return $this->buildNakshatraResult(

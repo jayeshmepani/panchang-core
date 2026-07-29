@@ -6,25 +6,31 @@ namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
 
+use function chandra_yallop_directed_waxing;
 use function chandra_yallop_evaluate_evening;
 use function chandra_yallop_passes;
 
 /**
- * Monthly Chandra Darshana hybrid resolver.
+ * Monthly Chandra Darshana hybrid resolver (production source of truth).
  *
- * Production mirrors scripts/chandra_hybrid_scripture_modern_resolver.php:
+ * Spec: docs/Chandra_Darshana.md. Related CLI scripts may lag this trait.
+ *
  * - Yallop TN69 q-criterion, default minimum category B;
- * - Danjon guard enabled;
- * - SS 10.1 waxing ecliptic separation >= 12 degrees at local sunset;
- * - Dharma Sindhu Pratipada early exception: Dvitiya covers either
- *   3 daylight muhurtas of Aparahna or 6 night muhurtas of Pradosha;
+ * - Danjon guard enabled by default;
+ * - SS 10.1 directed waxing ecliptic separation >= 12 degrees at local sunset;
+ * - Scan up to 6 post-Amavasya local evenings;
+ * - Reject sunrise tithis outside Shukla Pratipada/Dvitiya;
+ * - Dharma Sindhu Pratipada early exception: Dvitiya covers either the full
+ *   3 daylight muhurtas of Aparahna or the full 6 night muhurtas after sunset
+ *   (Sthula-darsana window; internal key still uses "pradosha");
  * - Dvitiya-at-sunrise remains the default path after a failed Pratipada
  *   early exception;
- * - Nirnayamrita kshaya-Pratipada day-2 deferral is a hard gate.
+ * - Nirnayamrita kshaya-Pratipada: Day-1 deferral via Amavasya→Dvitiya
+ *   sunrise-transition pattern (does not force Day-2 acceptance).
  */
 trait FestivalRuleChandraDarshana
 {
-    private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 5;
+    private const int CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS = 6;
 
     private const float CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG = 12.0;
 
@@ -132,13 +138,23 @@ trait FestivalRuleChandraDarshana
 
             $prevDetails = $fetchHistoricalSnapshot($date->subDay());
             $nextDetails = $fetchHistoricalSnapshot($date->addDay());
+            $nextNextDetails = $fetchHistoricalSnapshot($date->addDays(2));
             $prevDay = $this->chandraDarshanaDayBundle($date->subDay(), $prevDetails);
             $nextDay = $this->chandraDarshanaDayBundle($date->addDay(), $nextDetails);
-            if ($prevDay === null || $nextDay === null) {
+            $nextNextDay = $this->chandraDarshanaDayBundle($date->addDays(2), $nextNextDetails);
+            if ($prevDay === null || $nextDay === null || $nextNextDay === null) {
                 continue;
             }
 
-            $candidate = $this->evaluateChandraDarshanaEvening($date, $day, $prevDay, $nextDay, $season['amavasya_end_jd'], $details);
+            $candidate = $this->evaluateChandraDarshanaEvening(
+                $date,
+                $day,
+                $prevDay,
+                $nextDay,
+                $nextNextDay,
+                $season['amavasya_end_jd'],
+                $details
+            );
             if ((bool) ($candidate['operational_candidate'] ?? false)) {
                 return $candidate;
             }
@@ -187,6 +203,7 @@ trait FestivalRuleChandraDarshana
         array $day,
         array $prevDay,
         array $nextDay,
+        array $nextNextDay,
         float $amavasyaEndJd,
         array $details
     ): array {
@@ -224,17 +241,47 @@ trait FestivalRuleChandraDarshana
             );
         }
 
-        $q = (float) ($yallop['q'] ?? -99.0);
-        $belowDanjon = (bool) ($yallop['danjon_guard_condition_met'] ?? false);
-        $rejectDanjon = $belowDanjon;
-        $passesModernYallop = $this->chandraDarshanaYallopPasses($q, self::CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY, $rejectDanjon)
-            && (($yallop['is_waxing'] ?? false) === true);
+        if (($yallop['q'] ?? null) === null || !is_finite((float) $yallop['q'])) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'REJECTED_MODERN_YALLOP_NO_Q',
+                'Modern Yallop calculation did not return a finite q value.',
+                $yallop
+            );
+        }
 
-        $waxingSepDeg = (float) $day['snapshot_elong_deg'];
-        $ss10Passed = (($yallop['is_waxing'] ?? false) === true)
+        $q = (float) $yallop['q'];
+        $belowDanjon = (bool) ($yallop['danjon_guard_condition_met'] ?? false);
+        $rejectDanjon = self::CHANDRA_DARSHANA_APPLY_DANJON_GUARD && $belowDanjon;
+        $passesModernYallop = $this->chandraDarshanaYallopPasses(
+            $q,
+            self::CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY,
+            $rejectDanjon
+        ) && (($yallop['is_waxing'] ?? false) === true);
+
+        $sunsetWaxing = $this->chandraDarshanaDirectedWaxingAtSunset($sunset);
+        if (!(bool) ($sunsetWaxing['ok'] ?? false)) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'REJECTED_SS10_1_ECLIPTIC_COMPUTE_FAILED',
+                'Unable to compute directed Moon-minus-Sun ecliptic separation at local sunset.',
+                $yallop
+            );
+        }
+
+        $waxingSepDeg = (float) $sunsetWaxing['directed_sep_deg'];
+        $ss10Passed = (bool) $sunsetWaxing['is_waxing']
             && $waxingSepDeg >= self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG;
 
-        $classicalGates = $this->evaluateChandraDarshanaClassicalHybridGates($date, $day, $prevDay, $nextDay);
+        $classicalGates = $this->evaluateChandraDarshanaClassicalHybridGates(
+            $date,
+            $day,
+            $prevDay,
+            $nextDay,
+            $nextNextDay
+        );
         $ds3AparahnaPassed = (bool) $classicalGates['dharma_sindhu']['ds_3_muhurta_aparahna_passed'];
         $ds6PradoshaPassed = (bool) $classicalGates['dharma_sindhu']['ds_6_muhurta_pradosha_passed'];
         $isKsayaPratipada = (bool) $classicalGates['nirnayamrita']['is_ksaya_pratipada'];
@@ -248,6 +295,11 @@ trait FestivalRuleChandraDarshana
                 'waxing_ecliptic_separation_deg' => round($waxingSepDeg, 4),
                 'threshold_deg' => self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG,
                 'passed' => $ss10Passed,
+                'is_waxing_at_sunset' => (bool) $sunsetWaxing['is_waxing'],
+                'sun_ecliptic_longitude_deg' => (float) $sunsetWaxing['sun_lon_deg'],
+                'moon_ecliptic_longitude_deg' => (float) $sunsetWaxing['moon_lon_deg'],
+                'calculation_time_jd' => $sunset,
+                'calculation_basis' => 'directed_moon_minus_sun_ecliptic_longitude_at_local_sunset',
             ],
             'dharma_sindhu' => $classicalGates['dharma_sindhu'],
             'nirnayamrita' => $classicalGates['nirnayamrita'],
@@ -283,6 +335,19 @@ trait FestivalRuleChandraDarshana
             );
         }
 
+        if (!in_array($tithiAtSunrise, [1, 2], true)) {
+            return $this->chandraDarshanaRejectedCandidate(
+                $date,
+                $day,
+                'REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD',
+                sprintf(
+                    'Candidate sunrise tithi %d is outside the permitted Shukla Pratipada/Dvitiya observance field.',
+                    $tithiAtSunrise
+                ),
+                $metrics
+            );
+        }
+
         $pratipadaEarlyExceptionPassed = $ds3AparahnaPassed || $ds6PradoshaPassed;
         if ($tithiAtSunrise === 1 && !$pratipadaEarlyExceptionPassed) {
             return $this->chandraDarshanaRejectedCandidate(
@@ -294,13 +359,11 @@ trait FestivalRuleChandraDarshana
             );
         }
 
-        $statusCode = match ($tithiAtSunrise) {
-            1 => 'SUCCESS_PRATIPADA_EARLY_EXCEPTION',
-            2 => $pratipadaEarlyExceptionPassed
+        $statusCode = $tithiAtSunrise === 1
+            ? 'SUCCESS_PRATIPADA_EARLY_EXCEPTION'
+            : ($pratipadaEarlyExceptionPassed
                 ? 'SUCCESS_DVITIYA_DEFAULT_WITH_DHARMA_SINDHU_CORROBORATION'
-                : 'SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY',
-            default => 'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY',
-        };
+                : 'SUCCESS_DVITIYA_DEFAULT_MODERN_SS10_ONLY');
 
         return $this->chandraDarshanaAcceptedCandidate($date, $day, $statusCode, sprintf(
             'Hybrid Engine Success: Modern Yallop q=%.4f (cat %s) + SS 10.1 (%.2f deg >= 12 deg). Tithi at sunrise=%d. Pratipada early-exception/Dvitiya corroboration: Aparahna=%s, Pradosha=%s.',
@@ -343,44 +406,76 @@ trait FestivalRuleChandraDarshana
         return chandra_yallop_passes($q, $minCategory, $danjonRejected);
     }
 
+    /** @return array{directed_sep_deg: float, is_waxing: bool, sun_lon_deg: float, moon_lon_deg: float, ok: bool} */
+    private function chandraDarshanaDirectedWaxingAtSunset(float $sunsetJd): array
+    {
+        if (!function_exists('chandra_yallop_directed_waxing')) {
+            require_once dirname(__DIR__, 2) . '/scripts/lib/chandra_yallop.php';
+        }
+
+        return chandra_yallop_directed_waxing($this->transitEngine->jme(), $sunsetJd);
+    }
+
     /**
      * @param array<string, mixed> $day
      * @param array<string, mixed> $nextDay
      *
      * @return array{start_jd: float, end_jd: float}
      */
-    private function chandraDarshanaDvitiyaInterval(array $day, array $nextDay): array
-    {
+    private function chandraDarshanaDvitiyaInterval(
+        array $day,
+        array $nextDay,
+        array $nextNextDay
+    ): array {
         $absTithi = (int) $day['tithi_index_abs'];
-        $dvitiyaStartJd = 0.0;
-        $dvitiyaEndJd = 0.0;
 
         if ($absTithi === 2) {
-            $dvitiyaStartJd = (float) $day['tithi_start_jd'];
-            $dvitiyaEndJd = (float) $day['tithi_end_jd'];
-        } elseif ($absTithi === 1) {
+            return [
+                'start_jd' => (float) $day['tithi_start_jd'],
+                'end_jd' => (float) $day['tithi_end_jd'],
+            ];
+        }
+
+        if ($absTithi === 1) {
             $dvitiyaStartJd = (float) $day['tithi_end_jd'];
             $nextAbs = (int) $nextDay['tithi_index_abs'];
+
             if ($nextAbs === 2) {
-                $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
-            } else {
-                $dvitiyaEndJd = max($dvitiyaStartJd, (float) $nextDay['tithi_start_jd']);
+                return [
+                    'start_jd' => $dvitiyaStartJd,
+                    'end_jd' => (float) $nextDay['tithi_end_jd'],
+                ];
             }
-        } elseif ($absTithi === 30) {
+
+            if ($nextAbs === 1 && (int) $nextNextDay['tithi_index_abs'] === 2) {
+                return [
+                    'start_jd' => (float) $nextDay['tithi_end_jd'],
+                    'end_jd' => (float) $nextNextDay['tithi_end_jd'],
+                ];
+            }
+
+            return ['start_jd' => 0.0, 'end_jd' => 0.0];
+        }
+
+        if ($absTithi === 30) {
             $nextAbs = (int) $nextDay['tithi_index_abs'];
+
             if ($nextAbs === 2) {
-                $dvitiyaStartJd = (float) $nextDay['tithi_start_jd'];
-                $dvitiyaEndJd = (float) $nextDay['tithi_end_jd'];
-            } elseif ($nextAbs === 1) {
-                $dvitiyaStartJd = (float) $nextDay['tithi_end_jd'];
-                $dvitiyaEndJd = $dvitiyaStartJd + 0.9;
+                return [
+                    'start_jd' => (float) $nextDay['tithi_start_jd'],
+                    'end_jd' => (float) $nextDay['tithi_end_jd'],
+                ];
+            }
+
+            if ($nextAbs === 1 && (int) $nextNextDay['tithi_index_abs'] === 2) {
+                return [
+                    'start_jd' => (float) $nextDay['tithi_end_jd'],
+                    'end_jd' => (float) $nextNextDay['tithi_end_jd'],
+                ];
             }
         }
 
-        return [
-            'start_jd' => $dvitiyaStartJd,
-            'end_jd' => $dvitiyaEndJd,
-        ];
+        return ['start_jd' => 0.0, 'end_jd' => 0.0];
     }
 
     /**
@@ -390,8 +485,13 @@ trait FestivalRuleChandraDarshana
      *
      * @return array<string, array<string, mixed>>
      */
-    private function evaluateChandraDarshanaClassicalHybridGates(CarbonImmutable $date, array $day, array $prevDay, array $nextDay): array
-    {
+    private function evaluateChandraDarshanaClassicalHybridGates(
+        CarbonImmutable $date,
+        array $day,
+        array $prevDay,
+        array $nextDay,
+        array $nextNextDay
+    ): array {
         unset($date, $prevDay);
 
         $sunrise = (float) $day['sunrise_jd'];
@@ -406,7 +506,7 @@ trait FestivalRuleChandraDarshana
         $aparahnaStart = $sunrise + (9.0 * $dayMuhurta);
         $aparahnaEnd = $sunrise + (12.0 * $dayMuhurta);
 
-        $dvitiya = $this->chandraDarshanaDvitiyaInterval($day, $nextDay);
+        $dvitiya = $this->chandraDarshanaDvitiyaInterval($day, $nextDay, $nextNextDay);
         $dvitiyaStartJd = $dvitiya['start_jd'];
         $dvitiyaEndJd = $dvitiya['end_jd'];
 
@@ -429,22 +529,17 @@ trait FestivalRuleChandraDarshana
         $ds6MuhurtaPradoshaPassed = $pradoshaMuhurtas >= self::CHANDRA_DARSHANA_DHARMA_SINDHU_PRADOSHA_MIN_MUHURTAS - 1e-6;
 
         $absTithi = (int) $day['tithi_index_abs'];
-        $isKsayaPratipada = false;
-        if ($absTithi === 30) {
-            $amavasyaEnd = (float) $day['tithi_end_jd'];
-            if ((int) $nextDay['tithi_index_abs'] === 2 && $amavasyaEnd > $sunrise && $amavasyaEnd < $nextSunrise) {
-                $isKsayaPratipada = true;
-            }
-        } elseif ($absTithi === 1) {
-            $pratipadaStart = (float) $day['tithi_start_jd'];
-            $pratipadaEnd = (float) $day['tithi_end_jd'];
-            if ($pratipadaStart > $sunrise && $pratipadaEnd < $nextSunrise) {
-                $isKsayaPratipada = true;
-            }
-        }
+        $nextAbsTithi = (int) $nextDay['tithi_index_abs'];
+        $isKsayaPratipada = $absTithi === 30
+            && $nextAbsTithi === 2
+            && (float) $day['tithi_end_jd'] > $sunrise
+            && (float) $day['tithi_end_jd'] < $nextSunrise;
 
         return [
             'dharma_sindhu' => [
+                'dvitiya_start_jd' => $dvitiyaStartJd,
+                'dvitiya_end_jd' => $dvitiyaEndJd,
+                'dvitiya_interval_available' => $dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd,
                 'aparahna_start_jd' => $aparahnaStart,
                 'aparahna_end_jd' => $aparahnaEnd,
                 'aparahna_dvitiya_muhurtas' => round($aparahnaMuhurtas, 4),
@@ -456,6 +551,8 @@ trait FestivalRuleChandraDarshana
             ],
             'nirnayamrita' => [
                 'is_ksaya_pratipada' => $isKsayaPratipada,
+                'day1_sunrise_tithi_abs' => $absTithi,
+                'day2_sunrise_tithi_abs' => $nextAbsTithi,
                 'day2_deferral_enforced' => $isKsayaPratipada,
             ],
         ];
@@ -479,11 +576,23 @@ trait FestivalRuleChandraDarshana
         $sunrise = (float) $day['sunrise_jd'];
         $sunset = (float) $day['sunset_jd'];
         $moonset = is_numeric($day['moonset_jd']) ? (float) $day['moonset_jd'] : $sunset;
-        $targetTithi = (int) $day['tithi_index_abs'];
-        $targetInterval = [
-            'start_jd' => (float) $day['tithi_start_jd'],
-            'end_jd' => (float) $day['tithi_end_jd'],
-        ];
+        $metricsArray = $metrics ?? [];
+        $dharmaSindhu = is_array($metricsArray['dharma_sindhu'] ?? null)
+            ? $metricsArray['dharma_sindhu']
+            : [];
+        $dvitiyaStartJd = (float) ($dharmaSindhu['dvitiya_start_jd'] ?? 0.0);
+        $dvitiyaEndJd = (float) ($dharmaSindhu['dvitiya_end_jd'] ?? 0.0);
+        $hasExactDvitiyaInterval = $dvitiyaStartJd > 0.0 && $dvitiyaEndJd > $dvitiyaStartJd;
+
+        $targetTithi = $accepted && $hasExactDvitiyaInterval
+            ? 2
+            : (int) $day['tithi_index_abs'];
+        $targetInterval = $accepted && $hasExactDvitiyaInterval
+            ? ['start_jd' => $dvitiyaStartJd, 'end_jd' => $dvitiyaEndJd]
+            : [
+                'start_jd' => (float) $day['tithi_start_jd'],
+                'end_jd' => (float) $day['tithi_end_jd'],
+            ];
         $visibilityWindow = [
             'start_jd' => $sunset,
             'end_jd' => max($sunset, $moonset),
@@ -492,7 +601,6 @@ trait FestivalRuleChandraDarshana
         $targetWindowOverlapSeconds = $this->intervalOverlapSeconds($targetInterval, $visibilityWindow);
         $daylightOverlapSeconds = $this->intervalOverlapSeconds($targetInterval, ['start_jd' => $sunrise, 'end_jd' => $sunset]);
         $classification = $statusCode;
-        $metricsArray = $metrics ?? [];
         $reasonKey = $this->chandraDarshanaReasonForStatus($statusCode);
 
         return [

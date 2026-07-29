@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-07-27T10:38:27+00:00",
+        "generated_at": "2026-07-29T08:43:19+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "amanta",
@@ -242,7 +242,7 @@
                 {
                     "name": "Arudra Darshan",
                     "name_key": "Arudra Darshan",
-                    "description": "Cosmic dance of Lord Shiva as Nataraja; celebrated during Margashirsha Ardra Nakshatra",
+                    "description": "Cosmic dance of Lord Shiva as Nataraja; celebrated on Ardra (Thiruvadhirai) in Tamil Maargazhi (Sun in Dhanu)",
                     "deity": "Shiva (Nataraja)",
                     "fasting": false,
                     "regions": [
@@ -264,6 +264,7 @@
                         "nakshatra_only": true,
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "Sunrise",
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": "Ardra",
                         "preferred_nakshatra_key": "Ardra"
                     },
@@ -12925,11 +12926,19 @@
                                         "q_label_key": "EASILY_VISIBLE"
                                     },
                                     "ss10_1": {
-                                        "waxing_ecliptic_separation_deg": 24.9287,
+                                        "waxing_ecliptic_separation_deg": 24.9292,
                                         "threshold_deg": 12.0,
-                                        "passed": true
+                                        "passed": true,
+                                        "is_waxing_at_sunset": true,
+                                        "sun_ecliptic_longitude_deg": 57.640780193406755,
+                                        "moon_ecliptic_longitude_deg": 82.56998555046816,
+                                        "calculation_time_jd": 2461179.081747685,
+                                        "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                     },
                                     "dharma_sindhu": {
+                                        "dvitiya_start_jd": 2461178.1744236536,
+                                        "dvitiya_end_jd": 2461179.0163119277,
+                                        "dvitiya_interval_available": true,
                                         "aparahna_start_jd": 2461178.8596180556,
                                         "aparahna_end_jd": 2461178.97068287,
                                         "aparahna_dvitiya_muhurtas": 3.0,
@@ -12941,6 +12950,8 @@
                                     },
                                     "nirnayamrita": {
                                         "is_ksaya_pratipada": false,
+                                        "day1_sunrise_tithi_abs": 2,
+                                        "day2_sunrise_tithi_abs": 3,
                                         "day2_deferral_enforced": false
                                     },
                                     "ok": true,
@@ -13219,11 +13230,19 @@
                                     "q_label_key": "EASILY_VISIBLE"
                                 },
                                 "ss10_1": {
-                                    "waxing_ecliptic_separation_deg": 24.9287,
+                                    "waxing_ecliptic_separation_deg": 24.9292,
                                     "threshold_deg": 12.0,
-                                    "passed": true
+                                    "passed": true,
+                                    "is_waxing_at_sunset": true,
+                                    "sun_ecliptic_longitude_deg": 57.640780193406755,
+                                    "moon_ecliptic_longitude_deg": 82.56998555046816,
+                                    "calculation_time_jd": 2461179.081747685,
+                                    "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                 },
                                 "dharma_sindhu": {
+                                    "dvitiya_start_jd": 2461178.1744236536,
+                                    "dvitiya_end_jd": 2461179.0163119277,
+                                    "dvitiya_interval_available": true,
                                     "aparahna_start_jd": 2461178.8596180556,
                                     "aparahna_end_jd": 2461178.97068287,
                                     "aparahna_dvitiya_muhurtas": 3.0,
@@ -13235,6 +13254,8 @@
                                 },
                                 "nirnayamrita": {
                                     "is_ksaya_pratipada": false,
+                                    "day1_sunrise_tithi_abs": 2,
+                                    "day2_sunrise_tithi_abs": 3,
                                     "day2_deferral_enforced": false
                                 },
                                 "moonset_lag_seconds": 7398.0000257492065,
@@ -13437,11 +13458,19 @@
                                     "q_label_key": "EASILY_VISIBLE"
                                 },
                                 "ss10_1": {
-                                    "waxing_ecliptic_separation_deg": 24.9287,
+                                    "waxing_ecliptic_separation_deg": 24.9292,
                                     "threshold_deg": 12.0,
-                                    "passed": true
+                                    "passed": true,
+                                    "is_waxing_at_sunset": true,
+                                    "sun_ecliptic_longitude_deg": 57.640780193406755,
+                                    "moon_ecliptic_longitude_deg": 82.56998555046816,
+                                    "calculation_time_jd": 2461179.081747685,
+                                    "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                                 },
                                 "dharma_sindhu": {
+                                    "dvitiya_start_jd": 2461178.1744236536,
+                                    "dvitiya_end_jd": 2461179.0163119277,
+                                    "dvitiya_interval_available": true,
                                     "aparahna_start_jd": 2461178.8596180556,
                                     "aparahna_end_jd": 2461178.97068287,
                                     "aparahna_dvitiya_muhurtas": 3.0,
@@ -13453,6 +13482,8 @@
                                 },
                                 "nirnayamrita": {
                                     "is_ksaya_pratipada": false,
+                                    "day1_sunrise_tithi_abs": 2,
+                                    "day2_sunrise_tithi_abs": 3,
                                     "day2_deferral_enforced": false
                                 },
                                 "ok": true,
@@ -13731,11 +13762,19 @@
                                 "q_label_key": "EASILY_VISIBLE"
                             },
                             "ss10_1": {
-                                "waxing_ecliptic_separation_deg": 24.9287,
+                                "waxing_ecliptic_separation_deg": 24.9292,
                                 "threshold_deg": 12.0,
-                                "passed": true
+                                "passed": true,
+                                "is_waxing_at_sunset": true,
+                                "sun_ecliptic_longitude_deg": 57.640780193406755,
+                                "moon_ecliptic_longitude_deg": 82.56998555046816,
+                                "calculation_time_jd": 2461179.081747685,
+                                "calculation_basis": "directed_moon_minus_sun_ecliptic_longitude_at_local_sunset"
                             },
                             "dharma_sindhu": {
+                                "dvitiya_start_jd": 2461178.1744236536,
+                                "dvitiya_end_jd": 2461179.0163119277,
+                                "dvitiya_interval_available": true,
                                 "aparahna_start_jd": 2461178.8596180556,
                                 "aparahna_end_jd": 2461178.97068287,
                                 "aparahna_dvitiya_muhurtas": 3.0,
@@ -13747,6 +13786,8 @@
                             },
                             "nirnayamrita": {
                                 "is_ksaya_pratipada": false,
+                                "day1_sunrise_tithi_abs": 2,
+                                "day2_sunrise_tithi_abs": 3,
                                 "day2_deferral_enforced": false
                             },
                             "moonset_lag_seconds": 7398.0000257492065,
@@ -34034,7 +34075,7 @@
                 {
                     "name": "Arudra Darshan",
                     "name_key": "Arudra Darshan",
-                    "description": "Cosmic dance of Lord Shiva as Nataraja; celebrated during Margashirsha Ardra Nakshatra",
+                    "description": "Cosmic dance of Lord Shiva as Nataraja; celebrated on Ardra (Thiruvadhirai) in Tamil Maargazhi (Sun in Dhanu)",
                     "deity": "Shiva (Nataraja)",
                     "fasting": false,
                     "regions": [
@@ -34056,6 +34097,7 @@
                         "nakshatra_only": true,
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "Sunrise",
+                        "vriddhi_preference": "last",
                         "preferred_nakshatra": "Ardra",
                         "preferred_nakshatra_key": "Ardra"
                     },
