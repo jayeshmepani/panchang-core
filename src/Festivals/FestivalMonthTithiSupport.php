@@ -148,7 +148,7 @@ trait FestivalMonthTithiSupport
             return false;
         }
 
-        $vriddhiPreference = (string) ($rules['vriddhi_preference'] ?? '');
+        /** @var array<string, array{date: string, score: int}> $candidates */
         $candidates = [];
 
         // Walk backward/forward while Sun stays in the required sign (Margazhi/Dhanu ~30d).
@@ -156,10 +156,11 @@ trait FestivalMonthTithiSupport
             for ($offset = $direction === -1 ? 0 : 1; $offset <= 40; $offset++) {
                 $dayOffset = $direction === -1 ? -$offset : $offset;
                 $candidateDate = $date->addDays($dayOffset);
+                /** @var array<string, mixed> $snapshot */
                 $snapshot = $dayOffset === 0
                     ? $todayDetails
                     : $fetchHistoricalSnapshot($candidateDate);
-                if (!is_array($snapshot) || $snapshot === []) {
+                if ($snapshot === []) {
                     break;
                 }
 
@@ -180,8 +181,9 @@ trait FestivalMonthTithiSupport
                     continue;
                 }
 
-                $candidates[$candidateDate->toDateString()] = [
-                    'date' => $candidateDate->toDateString(),
+                $ymd = $candidateDate->toDateString();
+                $candidates[$ymd] = [
+                    'date' => $ymd,
                     'score' => $this->purnimaAffinityScore($snapshot, $rules),
                 ];
             }
@@ -191,48 +193,62 @@ trait FestivalMonthTithiSupport
             return false;
         }
 
-        // Collapse consecutive civil-day runs (vriddhi) to first/last per preference.
-        ksort($candidates);
-        $dates = array_keys($candidates);
-        $collapsed = [];
-        $run = [];
-        $flushRun = static function () use (&$run, &$collapsed, $candidates, $vriddhiPreference): void {
-            if ($run === []) {
-                return;
-            }
+        $collapsed = $this->collapseConsecutiveNakshatraCandidateDays(
+            $candidates,
+            (string) ($rules['vriddhi_preference'] ?? '')
+        );
 
-            $pick = $vriddhiPreference === 'last' ? $run[array_key_last($run)] : $run[0];
-            $collapsed[$pick] = $candidates[$pick];
-            $run = [];
-        };
-
-        $prev = null;
-        foreach ($dates as $ymd) {
-            if ($prev !== null) {
-                $prevDt = CarbonImmutable::parse($prev);
-                $curDt = CarbonImmutable::parse($ymd);
-                if ($prevDt->addDay()->toDateString() !== $curDt->toDateString()) {
-                    $flushRun();
-                }
-            }
-
-            $run[] = $ymd;
-            $prev = $ymd;
-        }
-
-        $flushRun();
-
-        $bestScore = null;
         $bestDate = null;
+        $bestScore = PHP_INT_MIN;
         foreach ($collapsed as $ymd => $row) {
-            $score = (int) $row['score'];
-            if ($bestScore === null || $score > $bestScore || ($score === $bestScore && $ymd > (string) $bestDate)) {
+            $score = $row['score'];
+            if ($score > $bestScore || ($score === $bestScore && ($bestDate === null || $ymd > $bestDate))) {
                 $bestScore = $score;
                 $bestDate = $ymd;
             }
         }
 
         return $bestDate !== null && $bestDate !== $date->toDateString();
+    }
+
+    /**
+     * Collapse consecutive civil-day runs (vriddhi) to first/last per preference.
+     *
+     * @param array<string, array{date: string, score: int}> $candidates
+     *
+     * @return array<string, array{date: string, score: int}>
+     */
+    private function collapseConsecutiveNakshatraCandidateDays(array $candidates, string $vriddhiPreference): array
+    {
+        if ($candidates === []) {
+            return [];
+        }
+
+        ksort($candidates);
+        $dates = array_keys($candidates);
+        $collapsed = [];
+        /** @var list<string> $run */
+        $run = [];
+
+        foreach ($dates as $ymd) {
+            if ($run !== []) {
+                $prev = $run[array_key_last($run)];
+                $prevNext = CarbonImmutable::parse($prev)->addDay()->toDateString();
+                if ($prevNext !== $ymd) {
+                    $pick = $vriddhiPreference === 'last' ? $run[array_key_last($run)] : $run[0];
+                    $collapsed[$pick] = $candidates[$pick];
+                    $run = [];
+                }
+            }
+
+            $run[] = $ymd;
+        }
+
+        // $dates is non-empty when called, so $run always has at least one day.
+        $pick = $vriddhiPreference === 'last' ? $run[array_key_last($run)] : $run[0];
+        $collapsed[$pick] = $candidates[$pick];
+
+        return $collapsed;
     }
 
     private function intervalCoversFullKarmakala(float $startJd, float $endJd, array $details, string $karmakalaType): bool

@@ -4975,26 +4975,33 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.8.1 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.8.2 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v10.8.1</strong> is a patch release that hardens the hybrid Chandra Darshana production resolver (six-evening scan, strict Pratipada/Dvitiya field, sunset-directed SS 10.1 separation, exact Dvitīyā intervals, operational kṣaya deferral) and regenerates published Amanta/Purnimanta outputs. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. v10.8.0 remains the minor hybrid architecture / localization / catalog-cleanup release; v10.7.0 remains the Shree Hari Antardhan and Adhika Hari Jayanti release; v10.6.0 remains the Satsangijivan Ekadashi and dynamic Mahadwadashi release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v10.8.2</strong> is a small patch focused on bug fixes and code-quality improvements; it does not intentionally change festival or vrat dates. <strong>v10.8.1</strong> is the accuracy patch that hardens hybrid Chandra Darśana, aligns Arudra Darshan with Maargazhi practice, and refines a few named Vaishnava Ekadashi dates. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. v10.8.0 remains the minor hybrid architecture / localization / catalog-cleanup release; v10.7.0 remains the Shree Hari Antardhan and Adhika Hari Jayanti release; v10.6.0 remains the Satsangijivan Ekadashi and dynamic Mahadwadashi release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026–2027 outputs for the v10.8.x line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. <strong>v10.8.1</strong> tightens the production hybrid Chandra Darshana gates and decision payload and regenerates calendar JSON on top of the v10.8.0 baseline (Yallop hybrid architecture, localization hardening, catalog alias cleanup, and rule/truth-table refinements).</p>
+            <p>This documentation is refreshed from the latest generated 2026–2027 outputs for the v10.8.x line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. <strong>v10.8.1</strong> tightens hybrid Chandra Darśana gates, aligns Arudra Darshan, and refreshes calendar JSON on top of the v10.8.0 baseline (Yallop hybrid architecture, localization hardening, catalog alias cleanup, and rule/truth-table refinements). <strong>v10.8.2</strong> is a follow-up code-quality patch only.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.8.2</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Bug Fixes and Code-Quality Improvements</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Patch release over <strong>v10.8.1</strong> with bug fixes and code-quality improvements in the festival module. No new festival or vrat identities. No intentional calendar date changes. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.8.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Chandra Darshana Hybrid Gate Hardening, Exact Dvitīyā Intervals, and Spec Alignment</span><span class="release-meta">Latest Release</span></div>
-                <p class="release-note">Patch release over v10.8.0 that hardens the production hybrid Chandra Darshana resolver in <code>FestivalRuleChandraDarshana.php</code>. The post-Amāvāsyā scan extends to <strong>six</strong> local evenings. Sunrise tithis outside Śukla Pratipadā/Dvitīyā are hard-rejected (<code>REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD</code>); the legacy Other-tithi success path is no longer emitted. SS 10.1 uses directed Moon-minus-Sun ecliptic separation at local sunset (≥ 12°, waxing half). Dvitīyā start/end are taken from exact Day+1/Day+2 snapshots (no fabricated +0.9 day duration). Kṣaya Pratipadā is detected operationally via the Amāvāsyā→Dvitīyā sunrise-transition pattern and only defers Day 1—Day 2 still must pass the remaining gates. Yallop remains minimum category B with Danjon enabled by default. Decision payloads enrich <code>ss10_1</code>, <code>dharma_sindhu</code>, and <code>nirnayamrita</code> audit fields. <code>docs/Chandra_Darshana.md</code> is realigned to production, and Amanta/Purnimanta generated outputs are refreshed. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
+                <div class="release-heading"><span class="release-title">Chandra Darśana Accuracy, Arudra Darshan Alignment, and Named Ekadashi Refinements</span></div>
+                <p class="release-note">Patch release over v10.8.0 that hardens hybrid Chandra Darśana date selection (stricter multi-layer visibility and traditional checks, up to six evenings after Amāvāsyā, clearer Pratipadā/Dvitīyā and Kṣaya handling, richer audit detail) and aligns <code>docs/Chandra_Darshana.md</code> with production. Also aligns <strong>Arudra Darshan</strong> (Thiruvathirai) with Tamil Maargazhi practice—Sun in Dhanu, Ardra with preferred full-moon connection, later day when Ardra spans two sunrises—and removes occasional invalid mid-season candidates. Brings a few <strong>named Ekadashis</strong> (for example Pausha Putrada, Rama, and Vijaya) into closer agreement with Vaishnava fasting days, typically by one civil day in sample multi-year calendars. Multilingual Arudra descriptions are clarified in English, Hindi, and Gujarati. Most festival and vrat dates are unchanged; catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>. Amanta/Purnimanta generated outputs are refreshed.</p>
               </div>
             </li>
             <li class="release-row">
@@ -5349,30 +5356,55 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
-          <h3>v10.8.1 Upgrade &amp; Release Notes</h3>
-          <p class="lead">This patch release hardens the production hybrid Chandra Darshana resolver against the documented gate sequence, removes the Other-tithi success fallback, and regenerates Amanta/Purnimanta outputs without changing catalog identity totals.</p>
+          <h3>v10.8.2 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This patch release is limited to bug fixes and code-quality improvements. It does not change festival or vrat identity counts and does not intentionally change published calendar dates.</p>
 
           <div class="info-box is-danger">
             <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
             <ul>
-              <li><strong>Six-evening scan:</strong> <code>CHANDRA_DARSHANA_MAX_POST_AMAVASYA_EVENINGS</code> is <strong>6</strong> (was 5 in the pre-hardening hybrid). Consumers that assumed a five-evening bound should rebaseline.</li>
-              <li><strong>No Other-tithi success:</strong> sunrise tithis outside Śukla Pratipadā (1) and Dvitīyā (2) are rejected with <code>REJECTED_OUTSIDE_PRATIPADA_DVITIYA_FIELD</code>. Status <code>SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY</code> is no longer emitted by production selection.</li>
-              <li><strong>SS 10.1 is sunset-directed:</strong> waxing ecliptic separation is computed as directed Moon-minus-Sun longitude at local sunset (not a generic unsigned elongation proxy). Audit fields include <code>calculation_basis</code>, solar/lunar longitudes, and <code>is_waxing_at_sunset</code>.</li>
-              <li><strong>Exact Dvitīyā intervals:</strong> Dvitīyā start/end use Day+1 and Day+2 snapshots. Fabricated <code>+0.9 day</code> durations are removed; when the interval cannot be resolved exactly, the corroboration windows do not invent coverage.</li>
-              <li><strong>Kṣaya defers Day 1 only:</strong> operational detector is Amāvāsyā-at-sunrise → Dvitīyā-at-next-sunrise with Amāvāsyā ending between those sunrises. Day 2 still must pass lag, Yallop B, Danjon, SS 10.1, and tithi-field gates.</li>
-              <li><strong>Richer <code>visibility_assessment</code>:</strong> nested <code>modern_yallop</code>, <code>ss10_1</code>, <code>dharma_sindhu</code> (including exact <code>dvitiya_start_jd</code> / <code>dvitiya_end_jd</code>), and <code>nirnayamrita</code> (<code>day1_sunrise_tithi_abs</code> / <code>day2_sunrise_tithi_abs</code>) are emitted for auditability.</li>
-              <li><strong>Spec aligned:</strong> <code>docs/Chandra_Darshana.md</code> matches production (six evenings, reject outside field, Pradoṣa terminology vs six-muhūrta post-sunset Sthūla window, Adhika uses the same resolver via catalogue registration).</li>
+              <li><strong>Bug fixes and code quality:</strong> small internal fixes and cleanups in the festival module for more reliable maintenance.</li>
+              <li><strong>No intentional date changes:</strong> regenerated calendars are not required solely for this patch unless your pipeline always rebuilds on every version bump.</li>
               <li><strong>Catalog totals unchanged:</strong> <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
-              <li><strong>Generated outputs refreshed:</strong> Amanta/Purnimanta festival, vrat, month, today, raw, and related JSON are regenerated for English, Hindi, and Gujarati.</li>
+              <li><strong>Product accuracy work:</strong> Chandra Darśana, Arudra Darshan, and named Ekadashi refinements remain those of <strong>v10.8.1</strong>.</li>
             </ul>
           </div>
 
           <h4>Upgrade Actions</h4>
           <ul>
-            <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached JSON that includes Chandra Darshana or <code>visibility_assessment</code>.</li>
-            <li>Rebaseline snapshots that asserted five-evening search, Other-tithi hybrid success, or previous SS 10.1 / Dvitīyā-interval approximations.</li>
-            <li>Do not treat <code>SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY</code> as a live production selection code; prefer the three success paths: Pratipada early exception, Dvitīyā with Dharma Sindhu corroboration, or Dvitīyā modern+SS10 only.</li>
-            <li>Read <code>docs/Chandra_Darshana.md</code> for the mandatory cumulative gate order and operational kṣaya wording.</li>
+            <li>Upgrade to <strong>10.8.2</strong> if you are already on <strong>10.8.1</strong> and want these bug fixes and quality improvements.</li>
+            <li>If you are upgrading from before <strong>10.8.1</strong>, apply the <strong>v10.8.1</strong> upgrade actions below (accuracy and regenerated calendars), then take <strong>10.8.2</strong>.</li>
+            <li>No special calendar rebaseline is required for this code-quality-only patch.</li>
+          </ul>
+
+          <h3>v10.8.1 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This patch release improves Chandra Darśana calculation accuracy, aligns Arudra Darshan with Maargazhi practice, refines a few named Vaishnava Ekadashi dates, and regenerates Amanta/Purnimanta outputs without changing catalog identity totals.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Chandra Darśana — more accurate selection:</strong> modern lunar visibility (Yallop, reliable category B or better, crescent safety checks), traditional Sūrya Siddhānta separation at local sunset, and Dharma Sindhu / Nirṇayāmṛta timing rules are applied together before a date is finalized.</li>
+              <li><strong>Extended search window:</strong> up to <strong>six evenings after Amāvāsyā</strong> are considered; the first evening that satisfies all conditions is selected. Helps months where the first visible crescent is delayed.</li>
+              <li><strong>Pratipadā and Dvitīyā field:</strong> final Chandra Darśana is restricted to Śukla Pratipadā and Śukla Dvitīyā. Other tithis are not selected as the final date.</li>
+              <li><strong>Kṣaya Pratipadā:</strong> when Pratipadā is skipped between two sunrises, the first day is not selected and the calculation moves to the next eligible day, which must still pass all checks.</li>
+              <li><strong>Dvitīyā timing:</strong> Dvitīyā is taken from the actual tithi transition interval rather than approximate durations, so traditional timing checks use the real beginning and ending.</li>
+              <li><strong>Pratipadā early exception:</strong> Pratipadā may be accepted early only when the following Dvitīyā sufficiently covers Aparāhṇa or the extended evening observation period; otherwise observance moves to Dvitīyā.</li>
+              <li><strong>Clearer audit information:</strong> modern visibility, Moon–Sun separation, traditional verification, Dharma Sindhu timing, and Kṣaya handling are easier to inspect.</li>
+              <li><strong>Documentation:</strong> <code>docs/Chandra_Darshana.md</code> matches the production method (modern checks, traditional reference, Dharma Sindhu timing, Nirṇayāmṛta special cases, final selection process).</li>
+              <li><strong>Arudra Darshan (Thiruvathirai):</strong> kept within solar Maargazhi (Sun in Dhanu), prefers the day that best matches the full-moon connection with Ardra, prefers the later day when Ardra spans two sunrises, and no longer lists occasional invalid mid-season candidates. Only a very small number of Arudra dates change in sample multi-year calendars.</li>
+              <li><strong>Named Ekadashis:</strong> a few observances (for example Pausha Putrada, Rama, and Vijaya Ekadashi) may move by one civil day to match Vaishnava fasting-day practice. Most other festival and vrat dates are unchanged.</li>
+              <li><strong>Localization:</strong> Arudra Darshan descriptions are clarified in English, Hindi, and Gujarati.</li>
+              <li><strong>Catalog totals unchanged:</strong> <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
+              <li><strong>Generated outputs refreshed:</strong> Amanta/Purnimanta festival, vrat, compact, month, today, raw, and related JSON are regenerated for English, Hindi, and Gujarati.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Update to version <strong>10.8.1</strong> (or later <strong>10.8.2</strong> for code-quality cleanup only).</li>
+            <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached calendar data.</li>
+            <li>Recheck previously stored Chandra Darśana dates if you rely on them for display or notifications.</li>
+            <li>Spot-check Arudra Darshan and named Ekadashi lists for years you publish.</li>
+            <li>Read <code>docs/Chandra_Darshana.md</code> for the Chandra Darśana selection process and traditional checks.</li>
           </ul>
 
           <h3>v10.8.0 Upgrade &amp; Release Notes</h3>
@@ -5388,7 +5420,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>Caching and generator fixes:</strong> caching behavior and related output-generation issues are corrected so regenerated payloads more reliably reflect the current rule engine and localization layer.</li>
               <li><strong>Catalog totals remain stable:</strong> generated identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>; this release is primarily about correctness, architecture, alias cleanup, and payload quality rather than adding a large number of new identities.</li>
               <li><strong>Generated outputs refreshed:</strong> Amanta and Purnimanta outputs across English, Hindi, and Gujarati are regenerated to reflect the new Chandra Darshana logic, localization hardening, catalog cleanup, and rule refinements.</li>
-              <li><strong>Superseded gate details:</strong> for the final production hybrid gate sequence (six evenings, reject outside Pratipada/Dvitiya, sunset-directed SS 10.1, exact Dvitīyā intervals), see <strong>v10.8.1</strong>.</li>
+              <li><strong>Superseded accuracy details:</strong> for Chandra Darśana, Arudra Darshan, and named-Ekadashi refinements after this release, see <strong>v10.8.1</strong>. For later bug fixes and code-quality improvements only, see <strong>v10.8.2</strong>.</li>
             </ul>
           </div>
 
@@ -5397,7 +5429,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached JSON if your application surfaces Chandra Darshana, localized rule metadata, or full-year observance lists.</li>
             <li>Rebaseline snapshots and parity fixtures that assert exact Chandra Darshana dates, merged/de-merged identity sets, or previous localized payload strings in Hindi and Gujarati.</li>
             <li>Prefer canonical <code>name_key</code> identities and aliases instead of assuming every formerly duplicated observance remains a standalone published identity.</li>
-            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> Chandra Darshana gate-hardening upgrade actions.</li>
+            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> accuracy upgrade actions (and <strong>v10.8.2</strong> if you want the later code-quality cleanup).</li>
           </ul>
 
           <h3>v10.7.0 Upgrade &amp; Release Notes</h3>

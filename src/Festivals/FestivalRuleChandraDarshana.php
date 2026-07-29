@@ -253,7 +253,8 @@ trait FestivalRuleChandraDarshana
 
         $q = (float) $yallop['q'];
         $belowDanjon = (bool) ($yallop['danjon_guard_condition_met'] ?? false);
-        $rejectDanjon = self::CHANDRA_DARSHANA_APPLY_DANJON_GUARD && $belowDanjon;
+        // CHANDRA_DARSHANA_APPLY_DANJON_GUARD is currently always enabled.
+        $rejectDanjon = $belowDanjon;
         $passesModernYallop = $this->chandraDarshanaYallopPasses(
             $q,
             self::CHANDRA_DARSHANA_YALLOP_MIN_CATEGORY,
@@ -261,7 +262,7 @@ trait FestivalRuleChandraDarshana
         ) && (($yallop['is_waxing'] ?? false) === true);
 
         $sunsetWaxing = $this->chandraDarshanaDirectedWaxingAtSunset($sunset);
-        if (!(bool) ($sunsetWaxing['ok'] ?? false)) {
+        if ($sunsetWaxing['ok'] !== true) {
             return $this->chandraDarshanaRejectedCandidate(
                 $date,
                 $day,
@@ -271,8 +272,8 @@ trait FestivalRuleChandraDarshana
             );
         }
 
-        $waxingSepDeg = (float) $sunsetWaxing['directed_sep_deg'];
-        $ss10Passed = (bool) $sunsetWaxing['is_waxing']
+        $waxingSepDeg = $sunsetWaxing['directed_sep_deg'];
+        $ss10Passed = $sunsetWaxing['is_waxing']
             && $waxingSepDeg >= self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG;
 
         $classicalGates = $this->evaluateChandraDarshanaClassicalHybridGates(
@@ -295,9 +296,9 @@ trait FestivalRuleChandraDarshana
                 'waxing_ecliptic_separation_deg' => round($waxingSepDeg, 4),
                 'threshold_deg' => self::CHANDRA_DARSHANA_SS10_1_ECLIPTIC_MIN_DEG,
                 'passed' => $ss10Passed,
-                'is_waxing_at_sunset' => (bool) $sunsetWaxing['is_waxing'],
-                'sun_ecliptic_longitude_deg' => (float) $sunsetWaxing['sun_lon_deg'],
-                'moon_ecliptic_longitude_deg' => (float) $sunsetWaxing['moon_lon_deg'],
+                'is_waxing_at_sunset' => $sunsetWaxing['is_waxing'],
+                'sun_ecliptic_longitude_deg' => $sunsetWaxing['sun_lon_deg'],
+                'moon_ecliptic_longitude_deg' => $sunsetWaxing['moon_lon_deg'],
                 'calculation_time_jd' => $sunset,
                 'calculation_basis' => 'directed_moon_minus_sun_ecliptic_longitude_at_local_sunset',
             ],
