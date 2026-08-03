@@ -1970,7 +1970,7 @@ echo $vara->getRulingPlanet();  // "Maṅgala (Mars)"</code></pre>
           </div>
           <div class="method">
             <h3 class="method-name">Samvatsara (60-Year Cycle)</h3>
-            <p class="method-description">Represents the 60 years in the Jupiter cycle.</p>
+            <p class="method-description">Represents the 60 traditional year-names of the Jovian cycle. The same names are used across India, but southern continuous, northern Chaitradi Vikram, mean-Bṛhaspati, and Gujarati Kartika systems attach them by different rules—so several correct names may appear on one civil day.</p>
             <div class="enum-cases">
               <div class="case-grid">
                 <div class="case-item"><code>Prabhava</code></div>
@@ -1982,7 +1982,7 @@ echo $vara->getRulingPlanet();  // "Maṅgala (Mars)"</code></pre>
               </div>
             </div>
             <div class="method-returns">
-              <strong>Usage:</strong><code>PanchangaEngine::getSamvatsara($vikramSamvat)</code>
+              <strong>Usage:</strong><code>PanchangaEngine::getSamvatsara($vikramSamvat)</code> (southern continuous); also <code>getSamvatsaraNorth()</code>, <code>getSamvatsaraGujarati()</code>, <code>getSamvatsaraBrihaspati()</code>. Day payloads publish the full regional set under <code>Hindu_Calendar</code>.
             </div>
           </div>
           <div class="method">
@@ -2332,7 +2332,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
                   <li><code>vara</code> (alias: <code>weekday</code>) returns <code>vara</code></li>
                   <li><code>sun</code> returns <code>sun_sign</code>, <code>sunrise</code>, <code>sunset</code></li>
                   <li><code>moon</code> returns <code>moon_sign</code>, <code>moon_phase</code>, moonrise/moonset + <code>*_iso</code>/<code>*_date</code> fields, and <code>moon_visibility</code></li>
-                  <li><code>hindu_calendar</code> returns the day <code>Hindu_Calendar</code> block (Amanta/Purnimanta months, dual Nirayana/Sayana ayana–ṛtu with <code>*_Key</code> companions, samvat, etc.)</li>
+                  <li><code>hindu_calendar</code> returns the day <code>Hindu_Calendar</code> block (Amanta/Purnimanta months, dual Nirayana/Sayana ayana–ṛtu with <code>*_Key</code> companions, samvat years, and regional Saṃvatsara names: southern continuous, northern Chaitradi Vikram, mean-Bṛhaspati, Gujarati Kartika)</li>
                   <li><code>festivals</code> returns resolved <code>festivals</code>, <code>daily_observances</code>, and <code>sankranti</code> (skipped unless this group is requested)</li>
                 </ul>
               </div>
@@ -2363,8 +2363,10 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
                   <li><code>gujarati_samvat</code> returns <code>gujarati_samvat_windows</code></li>
                   <li><code>saka_samvat</code> returns <code>saka_samvat_windows</code></li>
                   <li><code>kali_samvat</code> returns <code>kali_samvat_windows</code></li>
-                  <li><code>samvatsara</code> returns <code>samvatsara_windows</code></li>
-                  <li><code>samvatsara_north</code> returns <code>samvatsara_north_windows</code></li>
+                  <li><code>samvatsara</code> / <code>samvatsara_south</code> returns southern continuous Saṃvatsara windows</li>
+                  <li><code>samvatsara_north</code> returns northern Chaitradi Vikram-linked Saṃvatsara windows</li>
+                  <li><code>samvatsara_brihaspati</code> returns mean-Bṛhaspati (mean-Jovian) Saṃvatsara windows</li>
+                  <li><code>samvatsara_gujarati</code> returns Gujarati Kartika Saṃvatsara name windows</li>
                   <li><code>amanta_month</code> returns <code>amanta_month_windows</code></li>
                   <li><code>purnimanta_month</code> returns <code>purnimanta_month_windows</code></li>
                 </ul>
@@ -2704,7 +2706,11 @@ foreach ($festivals as $festival) {
                 <code>Is_Adhika</code>, <code>Is_Kshaya</code>, indexes) plus dual ayana/ṛtu systems:
                 short <code>Ayana</code>/<code>Ritu</code> are Nirayana (sidereal); explicit
                 <code>Nirayana_*</code> and <code>Sayana_*</code> companions, locale-stable <code>*_Key</code> fields,
-                and system labels are also present.</li>
+                and system labels are also present. Samvat years (Vikram, Gujarati, Saka, Kali) and regional
+                Saṃvatsara names are published together: <code>Samvatsara</code> / <code>Samvatsara_South</code>
+                (southern continuous), <code>Samvatsara_North</code> (Chaitradi Vikram),
+                <code>Samvatsara_Brihaspati</code> (mean-Bṛhaspati), <code>Samvatsara_Gujarati</code>,
+                <code>Samvatsara_North_Display</code>, and <code>Samvatsara_Systems</code>.</li>
               <li>Service-level month resolution uses exact solar transit boundaries between amavasyas for final day
                 output.</li>
               <li>Saṅkrānti tagging is mapped to civil-day ingress (00:00-24:00 local date), so pre-sunrise ingress
@@ -2942,17 +2948,18 @@ echo $tithi['name']; // "Twelfth Lunar Day of Bright Half"
             </div>
 
             <div class="method">
-              <h4 class="method-name">getSamvatsara()</h4>
-              <p class="method-description">Identify the Samvatsara name in the 60-year Jupiter cycle.</p>
+              <h4 class="method-name">getSamvatsara() / getSamvatsaraSouth()</h4>
+              <p class="method-description">Southern continuous 60-name Saṃvatsara (Shaka / Ugadi-linked). <code>getSamvatsara()</code> remains the canonical bare-name helper used by older clients and festival rules; it returns the same name as <code>getSamvatsaraSouth()</code>.</p>
               <div class="method-signature">
-                <code>public function getSamvatsara(int $vikramSamvat): string</code>
+                <code>public function getSamvatsara(int $vikramSamvat): string</code><br>
+                <code>public function getSamvatsaraSouth(int $vikramSamvat): string</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
-                  <li><code>$vikramSamvat</code>(int) — Vikram Samvat year.</li>
+                  <li><code>$vikramSamvat</code>(int) — Vikram Samvat year (southern index is consistent with Saka + offset).</li>
                 </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Samvatsara name.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Southern continuous Saṃvatsara name (for example Parabhava for Vikram 2083 / Shaka 1948).</div>
             </div>
 
             <div class="method">
@@ -2981,7 +2988,7 @@ echo $tithi['name']; // "Twelfth Lunar Day of Bright Half"
 
             <div class="method">
               <h4 class="method-name">getSamvatsaraNorth()</h4>
-              <p class="method-description">Calculate North Indian Samvatsara name (variant cycle).</p>
+              <p class="method-description">Northern Chaitradi Vikram era-linked Saṃvatsara name (fixed mapping from the Vikram year number, without mid-year mean-Jovian shift).</p>
               <div class="method-signature">
                 <code>public function getSamvatsaraNorth(int $vikramSamvat): string</code>
               </div>
@@ -2990,7 +2997,44 @@ echo $tithi['name']; // "Twelfth Lunar Day of Bright Half"
                   <li><code>$vikramSamvat</code>(int) — Vikram Samvat year.</li>
                 </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>string</code> — North Samvatsara name.</div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code> — North Chaitradi Vikram-linked name (for example Siddharthi for Vikram 2083).</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getSamvatsaraGujarati()</h4>
+              <p class="method-description">Gujarati Kartika New Year Saṃvatsara name from the Gujarati Vikram year number.</p>
+              <div class="method-signature">
+                <code>public function getSamvatsaraGujarati(int $gujaratiSamvat): string</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$gujaratiSamvat</code>(int) — Gujarati Vikram Samvat year.</li>
+                </ul>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Gujarati year-name (for example Pingala for Gujarati Samvat 2082).</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">getSamvatsaraBrihaspati()</h4>
+              <p class="method-description">Mean-Bṛhaspati (mean-Jovian) Saṃvatsara name for a civil date. Distinct from the Chaitradi Vikram era mapping and from Jupiter’s true sidereal rāśi ingress. Approximate mid-year transition is around 21 April.</p>
+              <div class="method-signature">
+                <code>public function getSamvatsaraBrihaspati(\DateTimeInterface $date): string</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$date</code>(DateTimeInterface) — Civil date used for the mean-Jovian year boundary.</li>
+                </ul>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Mean-Bṛhaspati name (for example Raudri after the 2026 mid-year transition).</div>
+            </div>
+
+            <div class="method">
+              <h4 class="method-name">buildSamvatsaraCalendarFields()</h4>
+              <p class="method-description">Build the full regional Saṃvatsara block merged into day-detail <code>Hindu_Calendar</code> (southern name and prefix, northern Chaitradi, mean-Bṛhaspati, dual northern display, Gujarati name, and systems summary). Public day APIs call this automatically; direct use is optional.</p>
+              <div class="method-signature">
+                <code>public function buildSamvatsaraCalendarFields(int $vikramSamvat, int $sakaSamvat, int $gujaratiSamvat, ?\DateTimeInterface $date = null): array</code>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Additive Saṃvatsara keys for <code>Hindu_Calendar</code> (see v10.9.0 upgrade notes).</div>
             </div>
 
             <div class="method">
@@ -4975,25 +5019,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.8.2 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.9.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v10.8.2</strong> is a small patch focused on bug fixes and code-quality improvements; it does not intentionally change festival or vrat dates. <strong>v10.8.1</strong> is the accuracy patch that hardens hybrid Chandra Darśana, aligns Arudra Darshan with Maargazhi practice, and refines a few named Vaishnava Ekadashi dates. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. v10.8.0 remains the minor hybrid architecture / localization / catalog-cleanup release; v10.7.0 remains the Shree Hari Antardhan and Adhika Hari Jayanti release; v10.6.0 remains the Satsangijivan Ekadashi and dynamic Mahadwadashi release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v10.9.0</strong> is a minor release that clarifies regional Saṃvatsara (year-name) systems in day and calendar output—South continuous, North Chaitradi Vikram, mean Bṛhaspati, and Gujarati Kartika—without changing public method signatures or festival/vrat identity counts. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. <strong>v10.8.2</strong> remains the prior code-quality patch; <strong>v10.8.1</strong> remains the Chandra Darśana / Arudra / named-Ekadashi accuracy patch; v10.8.0 remains the hybrid Chandra architecture / localization release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed from the latest generated 2026–2027 outputs for the v10.8.x line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. <strong>v10.8.1</strong> tightens hybrid Chandra Darśana gates, aligns Arudra Darshan, and refreshes calendar JSON on top of the v10.8.0 baseline (Yallop hybrid architecture, localization hardening, catalog alias cleanup, and rule/truth-table refinements). <strong>v10.8.2</strong> is a follow-up code-quality patch only.</p>
-            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>.</p>
+            <p>This documentation is refreshed for the <strong>v10.9.0</strong> line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail <code>Hindu_Calendar</code> blocks now expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, mean-Bṛhaspati, and Gujarati Kartika reckoning (existing <code>Samvatsara</code> and <code>Samvatsara_North</code> keys keep their previous meanings). Calendar-period windows can request the matching regional Saṃvatsara spans. Prior v10.8.x accuracy and quality work (hybrid Chandra Darśana, Arudra Darshan, named Ekadashi refinements, festival-module cleanup) remains in effect.</p>
+            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">10.9.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Regional Saṃvatsara Clarity (South, North, Gujarati, and Mean Bṛhaspati)</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release over <strong>v10.8.2</strong> that publishes parallel traditional year-names so the same civil day can correctly show southern continuous Saṃvatsara (for example Parabhava with Shaka-linked reckoning), northern Chaitradi Vikram (for example Siddharthi), mean-Bṛhaspati / mean-Jovian (for example Raudri after the mid-year transition), and Gujarati Kartika year-name (for example Pingala for Gujarati Samvat 2082). Existing public methods are unchanged; day and selective payloads gain additive <code>Hindu_Calendar</code> fields, and calendar-period windows accept additional optional Saṃvatsara field names. No new festival or vrat identities. No intentional festival or vrat date changes. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.8.2</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Bug Fixes and Code-Quality Improvements</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Bug Fixes and Code-Quality Improvements</span></div>
                 <p class="release-note">Patch release over <strong>v10.8.1</strong> with bug fixes and code-quality improvements in the festival module. No new festival or vrat identities. No intentional calendar date changes. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
               </div>
             </li>
@@ -5356,6 +5407,31 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v10.9.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This minor release clarifies regional Saṃvatsara (60-name year) systems in public day and calendar output. Public method signatures are unchanged; consumers receive additional fields under the existing Hindu calendar block.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>No new public methods and no removed methods:</strong> callers of <code>getDayDetails()</code>, <code>getSelectedDetails()</code>, month calendars, festival calendars, and <code>getCalendarPeriodWindowsRange()</code> keep the same entry points and parameters.</li>
+              <li><strong>Backward-compatible year-name keys:</strong> <code>Hindu_Calendar.Samvatsara</code> remains the southern continuous name (for example Parabhava). <code>Hindu_Calendar.Samvatsara_North</code> remains the northern Chaitradi Vikram-linked name (for example Siddharthi for Vikram 2083).</li>
+              <li><strong>Additive Hindu calendar fields:</strong> day and selective payloads also publish southern prefix metadata, mean-Bṛhaspati name, dual northern display when names differ (for example Siddharthi / Raudri), Gujarati Kartika year-name (for example Pingala for Gujarati Samvat 2082), and a structured systems summary. Existing clients that ignore unknown keys continue to work.</li>
+              <li><strong>Optional calendar-period fields:</strong> period-window requests may include southern, mean-Bṛhaspati, and Gujarati Saṃvatsara spans in addition to the previous <code>samvatsara</code> and <code>samvatsara_north</code> options.</li>
+              <li><strong>Independent coordinates:</strong> era year numbers (Vikram, Gujarati Vikram, Saka, Kali) and Saṃvatsara names are separate; several correct names may appear on the same civil day under different regional rules. Mean-Bṛhaspati is not the same as Jupiter’s true sidereal rāśi transit.</li>
+              <li><strong>No intentional festival or vrat date changes:</strong> catalog identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
+              <li><strong>Documentation:</strong> user-facing chronology wording for eras and Saṃvatsara systems is updated in <code>MASTER.md</code>.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Upgrade to version <strong>10.9.0</strong>.</li>
+            <li>If your app shows only one year-name today, decide which regional system you intend (South, North Chaitradi Vikram, mean Bṛhaspati, or Gujarati) and map display to the matching field; do not assume a single universal Saṃvatsara for all India.</li>
+            <li>Regenerate today, month, raw, and any cached day-detail JSON if you persist full <code>Hindu_Calendar</code> blocks or calendar-period windows.</li>
+            <li>Rebaseline snapshots that assert the full shape of <code>Hindu_Calendar</code> or default calendar-period field sets.</li>
+            <li>No festival or vrat calendar rebaseline is required solely for Saṃvatsara enrichment.</li>
+          </ul>
+
           <h3>v10.8.2 Upgrade &amp; Release Notes</h3>
           <p class="lead">This patch release is limited to bug fixes and code-quality improvements. It does not change festival or vrat identity counts and does not intentionally change published calendar dates.</p>
 
@@ -5366,6 +5442,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>No intentional date changes:</strong> regenerated calendars are not required solely for this patch unless your pipeline always rebuilds on every version bump.</li>
               <li><strong>Catalog totals unchanged:</strong> <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
               <li><strong>Product accuracy work:</strong> Chandra Darśana, Arudra Darshan, and named Ekadashi refinements remain those of <strong>v10.8.1</strong>.</li>
+              <li><strong>Later chronology work:</strong> for regional Saṃvatsara output fields, see <strong>v10.9.0</strong>.</li>
             </ul>
           </div>
 
@@ -5373,6 +5450,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <ul>
             <li>Upgrade to <strong>10.8.2</strong> if you are already on <strong>10.8.1</strong> and want these bug fixes and quality improvements.</li>
             <li>If you are upgrading from before <strong>10.8.1</strong>, apply the <strong>v10.8.1</strong> upgrade actions below (accuracy and regenerated calendars), then take <strong>10.8.2</strong>.</li>
+            <li>Prefer <strong>10.9.0</strong> (or later) if you also want regional Saṃvatsara clarity in public day output.</li>
             <li>No special calendar rebaseline is required for this code-quality-only patch.</li>
           </ul>
 
@@ -5400,7 +5478,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 
           <h4>Upgrade Actions</h4>
           <ul>
-            <li>Update to version <strong>10.8.1</strong> (or later <strong>10.8.2</strong> for code-quality cleanup only).</li>
+            <li>Update to version <strong>10.8.1</strong> (or later <strong>10.8.2</strong> for code-quality cleanup, or <strong>10.9.0</strong> for regional Saṃvatsara fields as well).</li>
             <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached calendar data.</li>
             <li>Recheck previously stored Chandra Darśana dates if you rely on them for display or notifications.</li>
             <li>Spot-check Arudra Darshan and named Ekadashi lists for years you publish.</li>
@@ -5420,7 +5498,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>Caching and generator fixes:</strong> caching behavior and related output-generation issues are corrected so regenerated payloads more reliably reflect the current rule engine and localization layer.</li>
               <li><strong>Catalog totals remain stable:</strong> generated identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>; this release is primarily about correctness, architecture, alias cleanup, and payload quality rather than adding a large number of new identities.</li>
               <li><strong>Generated outputs refreshed:</strong> Amanta and Purnimanta outputs across English, Hindi, and Gujarati are regenerated to reflect the new Chandra Darshana logic, localization hardening, catalog cleanup, and rule refinements.</li>
-              <li><strong>Superseded accuracy details:</strong> for Chandra Darśana, Arudra Darshan, and named-Ekadashi refinements after this release, see <strong>v10.8.1</strong>. For later bug fixes and code-quality improvements only, see <strong>v10.8.2</strong>.</li>
+              <li><strong>Superseded accuracy details:</strong> for Chandra Darśana, Arudra Darshan, and named-Ekadashi refinements after this release, see <strong>v10.8.1</strong>. For later bug fixes and code-quality improvements only, see <strong>v10.8.2</strong>. For regional Saṃvatsara output fields, see <strong>v10.9.0</strong>.</li>
             </ul>
           </div>
 
@@ -5429,7 +5507,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached JSON if your application surfaces Chandra Darshana, localized rule metadata, or full-year observance lists.</li>
             <li>Rebaseline snapshots and parity fixtures that assert exact Chandra Darshana dates, merged/de-merged identity sets, or previous localized payload strings in Hindi and Gujarati.</li>
             <li>Prefer canonical <code>name_key</code> identities and aliases instead of assuming every formerly duplicated observance remains a standalone published identity.</li>
-            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> accuracy upgrade actions (and <strong>v10.8.2</strong> if you want the later code-quality cleanup).</li>
+            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> accuracy upgrade actions, <strong>v10.8.2</strong> for code-quality cleanup, and <strong>v10.9.0</strong> for regional Saṃvatsara fields.</li>
           </ul>
 
           <h3>v10.7.0 Upgrade &amp; Release Notes</h3>

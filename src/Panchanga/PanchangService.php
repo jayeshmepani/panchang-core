@@ -535,8 +535,12 @@ class PanchangService
         $saka = $samvat['Saka_Samvat'];
         $kali = $this->panchanga->getKaliSamvat($vikram);
         $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
-        $samvatsara = $this->panchanga->getSamvatsara($vikram);
-        $samvatsaraNorth = $this->panchanga->getSamvatsaraNorth($vikram);
+        $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
+            $vikram,
+            $saka,
+            $gujarati,
+            $date
+        );
 
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
         $snapshotEkadashiObservance = $this->buildEkadashiObservance(
@@ -928,8 +932,7 @@ class PanchangService
                 'Gujarati_Samvat' => $gujarati,
                 'Saka_Samvat' => $saka,
                 'Kali_Samvat' => $kali,
-                'Samvatsara' => $samvatsara,
-                'Samvatsara_North' => $samvatsaraNorth,
+                ...$samvatsaraFields,
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
@@ -1226,8 +1229,12 @@ class PanchangService
         $saka = $samvat['Saka_Samvat'];
         $kali = $this->panchanga->getKaliSamvat($vikram);
         $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
-        $samvatsara = $this->panchanga->getSamvatsara($vikram);
-        $samvatsaraNorth = $this->panchanga->getSamvatsaraNorth($vikram);
+        $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
+            $vikram,
+            $saka,
+            $gujarati,
+            $date
+        );
 
         if (count($this->festivalSnapshotCache) >= self::FESTIVAL_SNAPSHOT_CACHE_MAX) {
             $this->festivalSnapshotCache = array_slice(
@@ -1259,8 +1266,7 @@ class PanchangService
                 'Gujarati_Samvat' => $gujarati,
                 'Saka_Samvat' => $saka,
                 'Kali_Samvat' => $kali,
-                'Samvatsara' => $samvatsara,
-                'Samvatsara_North' => $samvatsaraNorth,
+                ...$samvatsaraFields,
                 'Month_Amanta' => $hinduMonth['Month_Amanta'],
                 'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                 'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],

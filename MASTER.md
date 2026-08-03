@@ -67,17 +67,22 @@ These five elements are calculated daily based on the positions of the Sun and t
     *   *Gujarati Samvat:* Variant of Vikram Samvat starting from the day after Diwali (Kartika Shukla Pratipada).
     *   *Saka Samvat:* National civil calendar era starting in 78 CE.
     *   *Kali Samvat:* Chronological era starting from the departure of Lord Krishna (3102 BCE).
-*   **60-Year Jovian Cycle (Samvatsara):**
-    *   *Samvatsara (South):* **Parabhava** (The 40th year of the continuous sequence).
-    *   *Samvatsara (North):* **Siddharthi** (The 53rd year, calculated using Jupiter's actual transits).
-*   **Calendar Period Windows:** Larger chronological spans with their start and end moments — Nirayana and Sayana Ayana, Nirayana and Sayana Ritu, Vikram Samvat, Gujarati Samvat, Saka Samvat, Kali Samvat, Samvatsara, Amanta months, and Purnimanta months.
+*   **60-Year Jovian Cycle (Samvatsara):** The same sixty traditional year-names appear across India, but different regions attach them by different rules. The *year number* (Vikram, Gujarati Vikram, Saka, or Kali) and the *year-name* (Parabhava, Pingala, Siddharthi, Raudri, and so on) are independent coordinates and may legitimately differ on the same civil day.
+    *   *Samvatsara (South):* Continuous sixty-name cycle used with many southern and Shaka-linked panchangas (for example Ugadi reckoning). In the mid-2026 period this name is **Parabhava** (the 40th of the sixty). India’s National Civil Calendar uses the Saka *year number* but does not officially assign a Samvatsara name such as Parabhava.
+    *   *Samvatsara (North — Chaitradi Vikram):* Year-name linked to the northern Chaitradi Vikram year count. For Vikram Samvat 2083 this is **Siddharthi** (the 53rd of the sixty).
+    *   *Samvatsara (North — Mean Brihaspati):* Northern mean-Jovian (mean Brihaspati) year-name, which can change mid-year (commonly around late April). After the 2026 transition this becomes **Raudri / Raudra**. It is *not* the same moment as Jupiter’s actual physical entry into the next sidereal rashi (true Guru gochar).
+    *   *Samvatsara (Gujarati):* Year-name for the Gujarati Kartika New Year cycle. Gujarati Samvat 2082 is **Pingala** until Bestu Varash / Kartak Sud Padvo; the following Gujarati year takes the next name in sequence (Kalayukta / Kalayukti).
+    *   On many northern almanacs both northern names may be shown together when they differ — for example **Siddharthi / Raudri** — because one follows the Vikram year and the other follows the mean Brihaspati reckoning.
+*   **Calendar Period Windows:** Larger chronological spans with their start and end moments — Nirayana and Sayana Ayana, Nirayana and Sayana Ritu, Vikram Samvat, Gujarati Samvat, Saka Samvat, Kali Samvat, southern and northern Samvatsara spans, Gujarati Samvatsara spans, Amanta months, and Purnimanta months.
 
-### Note on the 13-Year Samvatsara Gap
-The difference in Samvatsara names between North and South India is a result of different mathematical calculation systems rather than differences in month-tracking (Amanta or Purnimanta):
-1.  **Southern Calculation:** The 60-year cycle functions as a continuous sequence. The year name progresses by exactly one step with each solar/lunar year. Under this system, the current year is **Parabhava** (#40).
-2.  **Northern Calculation:** The cycle is adjusted to align with the actual transit speed of Jupiter (*Brihaspati*). Since a true Jovian transit takes approximately 361 days (slightly shorter than a solar year), Northern astronomy drops (skips) one Samvatsara name about every 85 years to keep pace with the physical planet. 
+### Note on the regional Samvatsara difference
+The difference in Samvatsara names between regions is not mainly about Amanta versus Purnimanta month-tracking; it comes from which calendar rule names the year:
 
-Over centuries, this practice of skipping years in the North while maintaining continuous tracking in the South has created a 13-year divergence, resulting in the North currently observing **Siddharthi** (#53).
+1. **Southern continuous cycle:** The sixty names advance one step with each traditional southern year. Under this system the mid-2026 name is **Parabhava**.
+2. **Northern Chaitradi Vikram link:** The name is read from the Vikram year number (for Vikram 2083, **Siddharthi**).
+3. **Northern mean Brihaspati cycle:** A calculated mean-Jovian year that can shift mid civil year and historically required occasional omitted names to stay aligned with Jupiter’s average motion. This is distinct from watching Jupiter’s true rashi transit in the sky.
+4. **Gujarati Kartika year:** The name follows the Gujarati New Year (after Diwali), so Gujarat may still be in **Pingala** while Chaitradi Vikram has already moved to 2083 Siddharthi.
+5. **Kali Samvat** is only a linear year count. It does not itself “adopt” Pingala, Parabhava, Siddharthi, or Raudri; those names come from the regional systems above and may be recited *alongside* the Kali year in sankalpa, according to local priestly custom.
 
 ---
 

@@ -117,12 +117,23 @@ trait PanchangCalendarApiTrait
                 }),
                 'samvatsara' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
                     $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
-                    return $this->panchanga->getSamvatsara($vikram);
+                    return $this->panchanga->getSamvatsaraSouth($vikram);
+                }),
+                'samvatsara_south' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
+                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
+                    return $this->panchanga->getSamvatsaraSouth($vikram);
                 }),
                 'samvatsara_north' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
                     $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
                     return $this->panchanga->getSamvatsaraNorth($vikram);
                 }),
+                'samvatsara_brihaspati' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): string => $this->panchanga->getSamvatsaraBrihaspati($date)),
+                'samvatsara_gujarati' => $this->buildGujaratiSamvatsaraWindows(
+                    $startJd,
+                    $endJd,
+                    $tz,
+                    $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')
+                ),
                 'gujarati_samvat' => $this->buildGujaratiSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')),
                 default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
             };
@@ -1508,7 +1519,10 @@ trait PanchangCalendarApiTrait
                 'saka_samvat',
                 'kali_samvat',
                 'samvatsara',
+                'samvatsara_south',
                 'samvatsara_north',
+                'samvatsara_brihaspati',
+                'samvatsara_gujarati',
                 'amanta_month',
                 'purnimanta_month',
             ];
@@ -1541,7 +1555,10 @@ trait PanchangCalendarApiTrait
                 'saka', 'saka_samvat_windows' => 'saka_samvat',
                 'kali', 'kali_samvat_windows' => 'kali_samvat',
                 'samvatsara_windows' => 'samvatsara',
+                'samvatsara_south_windows', 'south_samvatsara' => 'samvatsara_south',
                 'samvatsara_north_windows' => 'samvatsara_north',
+                'samvatsara_brihaspati_windows', 'brihaspati_samvatsara', 'mean_jovian_samvatsara' => 'samvatsara_brihaspati',
+                'samvatsara_gujarati_windows', 'gujarati_samvatsara' => 'samvatsara_gujarati',
                 'amanta', 'month_amanta', 'amanta_month_windows' => 'amanta_month',
                 'purnimanta', 'month_purnimanta', 'purnimanta_month_windows' => 'purnimanta_month',
                 default => $key,
@@ -1557,7 +1574,10 @@ trait PanchangCalendarApiTrait
                 'saka_samvat',
                 'kali_samvat',
                 'samvatsara',
+                'samvatsara_south',
                 'samvatsara_north',
+                'samvatsara_brihaspati',
+                'samvatsara_gujarati',
                 'amanta_month',
                 'purnimanta_month' => true,
                 default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
@@ -1710,6 +1730,29 @@ trait PanchangCalendarApiTrait
      *
      * @return array<int, array<string, mixed>>
      */
+    /**
+     * Gujarati Saṃvatsara name windows derived from Gujarati Vikram year windows.
+     *
+     * @param array<int, array<string, mixed>> $amantaWindows
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildGujaratiSamvatsaraWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $yearWindows = $this->buildGujaratiSamvatWindows($startJd, $endJd, $tz, $amantaWindows);
+        $named = [];
+        foreach ($yearWindows as $window) {
+            $year = (int) $window['value'];
+            $named[] = [
+                ...$window,
+                'value' => $this->panchanga->getSamvatsaraGujarati($year),
+                'era_year' => $year,
+            ];
+        }
+
+        return $this->mergeAdjacentPeriodWindows($named);
+    }
+
     private function buildGujaratiSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
     {
         $windows = array_map(fn (array $window): array => $this->gujaratiSamvatWindowFromAmantaWindow($window, $tz), $amantaWindows);

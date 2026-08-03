@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga;
 
 use Carbon\CarbonImmutable;
+use DateTimeInterface;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
@@ -219,8 +220,26 @@ class PanchangaEngine
         ];
     }
 
+    /**
+     * Southern continuous 60-name Saṃvatsara (Shaka / Ugadi-linked).
+     *
+     * Advances exactly one name per traditional southern year. For Vikram 2083 /
+     * Shaka 1948 this is Parabhava (#40). Prefer {@see getSamvatsaraSouth()} in
+     * new code; this method remains the canonical bare-name API used by festival
+     * rules and older clients.
+     */
     public function getSamvatsara(int $vikramSamvat): string
     {
+        return $this->getSamvatsaraSouth($vikramSamvat);
+    }
+
+    /**
+     * Southern continuous 60-name cycle (same as {@see getSamvatsara()}).
+     * Explicit regional alias for Shaka / Telugu-Kannada / Tamil-style year names.
+     */
+    public function getSamvatsaraSouth(int $vikramSamvat): string
+    {
+        // Equivalent to (Saka + 11) % 60 because Vikram − Saka = 135.
         $idx = (($vikramSamvat - 135 + 11) % 60 + 60) % 60;
         return Samvatsara::from($idx)->getName();
     }
@@ -248,10 +267,128 @@ class PanchangaEngine
         return $monthIndex < 7 ? $vikramSamvat - 1 : $vikramSamvat;
     }
 
+    /**
+     * Northern Chaitradi Vikram era-linked Saṃvatsara name.
+     *
+     * Fixed mapping from the Vikram year number (no mid-year mean-Jovian shift).
+     * For Vikram 2083 this is Siddharthi (#53).
+     */
     public function getSamvatsaraNorth(int $vikramSamvat): string
     {
         $idx = (($vikramSamvat + 9) % 60 + 60) % 60;
         return Samvatsara::from($idx)->getName();
+    }
+
+    /**
+     * Gujarati Kartika-New-Year Saṃvatsara name from Gujarati Vikram year.
+     *
+     * For Gujarati Samvat 2082 (until Bestu Varash / Kartak Sud Padvo) this is
+     * Pingala (#51); Gujarati 2083 becomes Kalayukti.
+     */
+    public function getSamvatsaraGujarati(int $gujaratiSamvat): string
+    {
+        $idx = (($gujaratiSamvat + 8) % 60 + 60) % 60;
+        return Samvatsara::from($idx)->getName();
+    }
+
+    /**
+     * Mean-Bṛhaspati (northern mean-Jovian) Saṃvatsara name for a civil date.
+     *
+     * Distinct from the Chaitradi Vikram era mapping and from Jupiter's true
+     * sidereal rāśi ingress. Approximate transition day-of-year is 21 April
+     * (md = 421), matching common panchanga listings (e.g. 2026-04-21
+     * Siddharthi → Raudri).
+     *
+     * Epoch: Gregorian year Y after 21 April maps to index (Y − 1973) mod 60
+     * (2026 → Raudri, 2025 → Siddharthi).
+     */
+    public function getSamvatsaraBrihaspati(DateTimeInterface $date): string
+    {
+        $year = (int) $date->format('Y');
+        $monthDay = (int) $date->format('md');
+        // Mean-Jovian year boundary ≈ 21 April (not true Guru gochar).
+        $effectiveYear = $monthDay >= 421 ? $year : $year - 1;
+        $idx = (($effectiveYear - 1973) % 60 + 60) % 60;
+        return Samvatsara::from($idx)->getName();
+    }
+
+    /**
+     * Full regional Saṃvatsara block for Hindu_Calendar payloads.
+     *
+     * @return array{
+     *   Samvatsara: string,
+     *   Samvatsara_South: string,
+     *   Samvatsara_South_Prefix: string,
+     *   Samvatsara_North: string,
+     *   Samvatsara_Brihaspati: string,
+     *   Samvatsara_North_Display: string,
+     *   Samvatsara_Gujarati: string,
+     *   Samvatsara_Systems: array<string, array<string, mixed>>
+     * }
+     */
+    public function buildSamvatsaraCalendarFields(
+        int $vikramSamvat,
+        int $sakaSamvat,
+        int $gujaratiSamvat,
+        ?DateTimeInterface $date = null
+    ): array {
+        $south = $this->getSamvatsaraSouth($vikramSamvat);
+        $north = $this->getSamvatsaraNorth($vikramSamvat);
+        $gujarati = $this->getSamvatsaraGujarati($gujaratiSamvat);
+        $brihaspati = $date instanceof DateTimeInterface
+            ? $this->getSamvatsaraBrihaspati($date)
+            : $this->getSamvatsaraNorth($vikramSamvat);
+        $northDisplay = $north === $brihaspati
+            ? $north
+            : $north . ' / ' . $brihaspati;
+
+        return [
+            // Bare southern name kept for festival matchers and older clients.
+            'Samvatsara' => $south,
+            'Samvatsara_South' => $south,
+            'Samvatsara_South_Prefix' => 'South',
+            // Chaitradi Vikram era-linked northern name.
+            'Samvatsara_North' => $north,
+            // Mean-Bṛhaspati / mean-Jovian northern name (date-aware when possible).
+            'Samvatsara_Brihaspati' => $brihaspati,
+            // Drik-style dual label when era-linked and mean-Jovian differ.
+            'Samvatsara_North_Display' => $northDisplay,
+            'Samvatsara_Gujarati' => $gujarati,
+            'Samvatsara_Systems' => [
+                'south_shaka' => [
+                    'region' => 'South',
+                    'era' => 'Shaka',
+                    'era_year' => $sakaSamvat,
+                    'name' => $south,
+                    'system' => 'continuous_60',
+                    'note' => 'Southern continuous 60-name cycle (Ugadi / Shaka-linked traditional panchanga). Not an official National Civil Calendar year-name.',
+                ],
+                'north_vikram' => [
+                    'region' => 'North',
+                    'era' => 'Vikram_Chaitradi',
+                    'era_year' => $vikramSamvat,
+                    'name' => $north,
+                    'system' => 'vikram_era_linked_60',
+                    'note' => 'Chaitradi Vikram era-linked 60-name mapping (e.g. VS 2083 → Siddharthi).',
+                ],
+                'north_brihaspati' => [
+                    'region' => 'North',
+                    'era' => 'Mean_Brihaspati',
+                    'era_year' => null,
+                    'name' => $brihaspati,
+                    'system' => 'mean_jovian_60',
+                    'note' => 'Mean-Bṛhaspati (mean-Jovian) name; mid-year transition ≈ 21 April. Distinct from true Guru rāśi transit.',
+                ],
+                'gujarati_vikram' => [
+                    'region' => 'Gujarat',
+                    'era' => 'Gujarati_Vikram',
+                    'era_year' => $gujaratiSamvat,
+                    'name' => $gujarati,
+                    'system' => 'gujarati_kartika_60',
+                    'note' => 'Gujarati Kartika New Year year-name (e.g. Gujarati 2082 → Pingala until Bestu Varash).',
+                ],
+            ],
+        ];
     }
 
     public function calculatePanchakaRahita(int $tithiNum, int $varaNum, int $nakNum, int $lagnaNum): array

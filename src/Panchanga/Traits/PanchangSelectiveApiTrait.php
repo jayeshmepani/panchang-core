@@ -422,6 +422,13 @@ trait PanchangSelectiveApiTrait
             $vikram = $samvat['Vikram_Samvat'];
             $saka = $samvat['Saka_Samvat'];
             $hinduMonth = $ctx['hindu_month'];
+            $gujaratiSamvat = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
+            $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
+                $vikram,
+                $saka,
+                $gujaratiSamvat,
+                $date
+            );
             $tithi = $ctx['panchanga']['tithi'];
             $currentTithi = $ctx['panchanga']['current_tithi'];
             $vara = $ctx['panchanga']['vara'];
@@ -586,11 +593,10 @@ trait PanchangSelectiveApiTrait
                 'Hindu_Calendar' => [
                     ...$this->panchanga->buildAyanaRituCalendarFields($sunLon, $sayanaSunLon),
                     'Vikram_Samvat' => $vikram,
-                    'Gujarati_Samvat' => $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']),
+                    'Gujarati_Samvat' => $gujaratiSamvat,
                     'Saka_Samvat' => $saka,
                     'Kali_Samvat' => $this->panchanga->getKaliSamvat($vikram),
-                    'Samvatsara' => $this->panchanga->getSamvatsara($vikram),
-                    'Samvatsara_North' => $this->panchanga->getSamvatsaraNorth($vikram),
+                    ...$samvatsaraFields,
                     'Month_Amanta' => $hinduMonth['Month_Amanta'],
                     'Month_Amanta_En' => $hinduMonth['Month_Amanta_En'],
                     'Month_Purnimanta' => $hinduMonth['Month_Purnimanta'],
