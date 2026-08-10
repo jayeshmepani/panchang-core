@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Panchanga;
 use Carbon\CarbonImmutable;
 use DateTimeInterface;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
+use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Karana;
@@ -292,24 +293,35 @@ class PanchangaEngine
     }
 
     /**
-     * Mean-Bṛhaspati (northern mean-Jovian) Saṃvatsara name for a civil date.
+     * Bārhaspatya Saṃvatsara name for a civil date.
      *
-     * Distinct from the Chaitradi Vikram era mapping and from Jupiter's true
-     * sidereal rāśi ingress. Approximate transition day-of-year is 21 April
-     * (md = 421), matching common panchanga listings (e.g. 2026-04-21
-     * Siddharthi → Raudri).
+     * Default: classical Sūrya-Siddhānta / Sewell-Dīkṣit model.
      *
-     * Epoch: Gregorian year Y after 21 April maps to index (Y − 1973) mod 60
-     * (2026 → Raudri, 2025 → Siddharthi).
+     * For the modern ephemeris timing projection, pass
+     * BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS together with the
+     * configured AstronomyService instance.
      */
-    public function getSamvatsaraBrihaspati(DateTimeInterface $date): string
-    {
-        $year = (int) $date->format('Y');
-        $monthDay = (int) $date->format('md');
-        // Mean-Jovian year boundary ≈ 21 April (not true Guru gochar).
-        $effectiveYear = $monthDay >= 421 ? $year : $year - 1;
-        $idx = (($effectiveYear - 1973) % 60 + 60) % 60;
-        return Samvatsara::from($idx)->getName();
+    public function getSamvatsaraBrihaspati(
+        DateTimeInterface $date,
+        string $model = BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
+        ?AstronomyService $astronomy = null
+    ): string {
+        return (new BrihaspatiSamvatsaraService($astronomy))
+            ->getSamvatsaraBrihaspati($date, $model);
+    }
+
+    /**
+     * Compare classical Bārhaspatya timing with the modern sidereal-Jupiter
+     * ephemeris projection at one civil date.
+     *
+     * @return array<string, mixed>
+     */
+    public function compareSamvatsaraBrihaspatiModels(
+        DateTimeInterface $date,
+        AstronomyService $astronomy
+    ): array {
+        return (new BrihaspatiSamvatsaraService($astronomy))
+            ->compareModels($date);
     }
 
     /**
@@ -320,7 +332,7 @@ class PanchangaEngine
      *   Samvatsara_South: string,
      *   Samvatsara_South_Prefix: string,
      *   Samvatsara_North: string,
-     *   Samvatsara_Brihaspati: string,
+     *   Samvatsara_Brihaspati: ?string,
      *   Samvatsara_North_Display: string,
      *   Samvatsara_Gujarati: string,
      *   Samvatsara_Systems: array<string, array<string, mixed>>
@@ -337,10 +349,10 @@ class PanchangaEngine
         $gujarati = $this->getSamvatsaraGujarati($gujaratiSamvat);
         $brihaspati = $date instanceof DateTimeInterface
             ? $this->getSamvatsaraBrihaspati($date)
-            : $this->getSamvatsaraNorth($vikramSamvat);
-        $northDisplay = $north === $brihaspati
-            ? $north
-            : $north . ' / ' . $brihaspati;
+            : null;
+        $northDisplay = ($brihaspati !== null && $north !== $brihaspati)
+            ? $north . ' / ' . $brihaspati
+            : $north;
 
         return [
             // Bare southern name kept for festival matchers and older clients.
@@ -349,7 +361,7 @@ class PanchangaEngine
             'Samvatsara_South_Prefix' => 'South',
             // Chaitradi Vikram era-linked northern name.
             'Samvatsara_North' => $north,
-            // Mean-Bṛhaspati / mean-Jovian northern name (date-aware when possible).
+            // Mean-Bṛhaspati / mean-Jovian name (date-aware, null if no date supplied).
             'Samvatsara_Brihaspati' => $brihaspati,
             // Drik-style dual label when era-linked and mean-Jovian differ.
             'Samvatsara_North_Display' => $northDisplay,
@@ -360,31 +372,31 @@ class PanchangaEngine
                     'era' => 'Shaka',
                     'era_year' => $sakaSamvat,
                     'name' => $south,
-                    'system' => 'continuous_60',
-                    'note' => 'Southern continuous 60-name cycle (Ugadi / Shaka-linked traditional panchanga). Not an official National Civil Calendar year-name.',
+                    'system' => 'south_lunisolar_continuous',
+                    'note' => 'Southern continuous 60-name cycle (Ugadi / Shaka-linked traditional panchanga).',
                 ],
                 'north_vikram' => [
                     'region' => 'North',
                     'era' => 'Vikram_Chaitradi',
                     'era_year' => $vikramSamvat,
                     'name' => $north,
-                    'system' => 'vikram_era_linked_60',
+                    'system' => 'north_lunisolar',
                     'note' => 'Chaitradi Vikram era-linked 60-name mapping (e.g. VS 2083 → Siddharthi).',
                 ],
                 'north_brihaspati' => [
-                    'region' => 'North',
-                    'era' => 'Mean_Brihaspati',
+                    'region' => 'North/Classical',
+                    'era' => 'Barhaspatya_Mean_Sign',
                     'era_year' => null,
                     'name' => $brihaspati,
-                    'system' => 'mean_jovian_60',
-                    'note' => 'Mean-Bṛhaspati (mean-Jovian) name; mid-year transition ≈ 21 April. Distinct from true Guru rāśi transit.',
+                    'system' => 'barhaspatya_mean_sign',
+                    'note' => 'Continuous ≈361.0267-day mean-Jupiter cycle (madhyama-guru transit).',
                 ],
                 'gujarati_vikram' => [
                     'region' => 'Gujarat',
                     'era' => 'Gujarati_Vikram',
                     'era_year' => $gujaratiSamvat,
                     'name' => $gujarati,
-                    'system' => 'gujarati_kartika_60',
+                    'system' => 'gujarati_lunisolar',
                     'note' => 'Gujarati Kartika New Year year-name (e.g. Gujarati 2082 → Pingala until Bestu Varash).',
                 ],
             ],

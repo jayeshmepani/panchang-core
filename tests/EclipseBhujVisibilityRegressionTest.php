@@ -82,8 +82,8 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             }
         }
 
-        $visible = array_values(array_filter($all, static fn (array $event): bool => (bool) ($event['visibility']['visible'] ?? false)));
-        $sutakApplicable = array_values(array_filter($all, static fn (array $event): bool => (bool) ($event['sutak']['applicable'] ?? false)));
+        $visible = array_values(array_filter($all, static fn(array $event): bool => (bool) ($event['visibility']['visible'] ?? false)));
+        $sutakApplicable = array_values(array_filter($all, static fn(array $event): bool => (bool) ($event['sutak']['applicable'] ?? false)));
 
         self::assertCount(9, $visible, 'Expected exactly 9 ritually visible eclipses in Bhuj from 2018-01-01 to 2025-12-31.');
         self::assertCount(9, $sutakApplicable, 'Expected sutak applicable only for those 9 visible eclipses.');

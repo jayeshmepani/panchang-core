@@ -223,7 +223,7 @@ function writeCsv(string $path, array $rows): void
     fputcsv($handle, $headers);
     foreach ($rows as $row) {
         fputcsv($handle, array_map(
-            static fn (mixed $value): string => $value === null ? '' : (string) $value,
+            static fn(mixed $value): string => $value === null ? '' : (string) $value,
             $row
         ));
     }

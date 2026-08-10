@@ -82,8 +82,8 @@ class GowriPanchangamCalculator
             'source' => Localization::translate('Source', 'Published Gowri/Pambu table convention'),
             'day' => $dayRows,
             'night' => $nightRows,
-            'auspicious_labels' => array_map(fn (string $l): string => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
-            'inauspicious_labels' => array_map(fn (string $l): string => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
+            'auspicious_labels' => array_map(fn(string $l): string => Localization::translate('Gowri', $l), ['Amirdha', 'Dhanam', 'Uthi', 'Laabam', 'Sugam']),
+            'inauspicious_labels' => array_map(fn(string $l): string => Localization::translate('Gowri', $l), ['Rogam', 'Soram', 'Visham']),
         ];
     }
 

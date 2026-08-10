@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
+use DateTimeInterface;
 use InvalidArgumentException;
+use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\CalendarType;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
@@ -16,6 +18,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
+use Throwable;
 
 trait PanchangCalendarApiTrait
 {
@@ -102,46 +105,195 @@ trait PanchangCalendarApiTrait
         $result = [];
 
         foreach ($requested as $field) {
-            $windows = match ($field) {
-                'ayana' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn (float $sunLon): string => $this->panchanga->getAyana($sunLon)),
-                'ritu' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn (float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName()),
-                'sayana_ayana' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn (float $sunLon): string => $this->panchanga->getAyana($sunLon), tropical: true),
-                'sayana_ritu' => $this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn (float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName(), tropical: true),
-                'amanta_month' => $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta'),
-                'purnimanta_month' => $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 180.0, 'Month_Purnimanta'),
-                'vikram_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): int => $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat']),
-                'saka_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): int => $this->panchanga->getSamvat($date->year, $date->month)['Saka_Samvat']),
-                'kali_samvat' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): int {
-                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
-                    return $this->panchanga->getKaliSamvat($vikram);
-                }),
-                'samvatsara' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
-                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
-                    return $this->panchanga->getSamvatsaraSouth($vikram);
-                }),
-                'samvatsara_south' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
-                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
-                    return $this->panchanga->getSamvatsaraSouth($vikram);
-                }),
-                'samvatsara_north' => $this->buildCivilCalendarValueWindows($start, $endDay, function (CarbonImmutable $date): string {
-                    $vikram = $this->panchanga->getSamvat($date->year, $date->month)['Vikram_Samvat'];
-                    return $this->panchanga->getSamvatsaraNorth($vikram);
-                }),
-                'samvatsara_brihaspati' => $this->buildCivilCalendarValueWindows($start, $endDay, fn (CarbonImmutable $date): string => $this->panchanga->getSamvatsaraBrihaspati($date)),
-                'samvatsara_gujarati' => $this->buildGujaratiSamvatsaraWindows(
-                    $startJd,
-                    $endJd,
-                    $tz,
-                    $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')
-                ),
-                'gujarati_samvat' => $this->buildGujaratiSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')),
-                default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
-            };
+            try {
+                [$windows, $rule] = match ($field) {
+                    'ayana' => [$this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn(float $sunLon): string => $this->panchanga->getAyana($sunLon)), 'continuous_astronomical'],
+                    'ritu' => [$this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn(float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName()), 'continuous_astronomical'],
+                    'sayana_ayana' => [$this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [90.0, 270.0], fn(float $sunLon): string => $this->panchanga->getAyana($sunLon), tropical: true), 'continuous_astronomical'],
+                    'sayana_ritu' => [$this->buildSolarLongitudePeriodWindows($startJd, $endJd, $tz, [30.0, 90.0, 150.0, 210.0, 270.0, 330.0], fn(float $sunLon): string => Ritu::fromSunLongitude($sunLon)->getName(), tropical: true), 'continuous_astronomical'],
+                    'amanta_month' => [$amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta'), 'lunar_month_at_sunrise'],
+                    'purnimanta_month' => [$this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 180.0, 'Month_Purnimanta'), 'lunar_month_at_sunrise'],
+                    'vikram_samvat' => [$this->buildChaitradiVikramSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
+                    // Śālivāhana Śaka lunisolar year (Ugadi / Panchanga reckoning) — distinct from the
+                    // Indian National Calendar (Saka Era) whose civil year begins on 22 March.
+                    'shalivahana_saka_samvat' => [$this->buildSakaSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
+                    'kali_samvat' => [$this->buildKaliSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
+                    'samvatsara', 'samvatsara_south' => [$this->buildSamvatsaraSouthWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
+                    'samvatsara_north' => [$this->buildSamvatsaraNorthWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
+                    // Classical Bārhaspatya: genuine Sūrya-Siddhānta / Sewell-Dīkṣit mean-motion model.
+                    // Existing key remains the backwards-compatible classical default.
+                    'samvatsara_brihaspati', 'samvatsara_brihaspati_classical' => [
+                        $this->buildSamvatsaraBrihaspatiWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+                        ),
+                        'continuous_barhaspatya_mean_transit',
+                    ],
+                    // Modern physical-astronomy comparison: classical 60-name phase projected onto
+                    // the nearest prograde sidereal Jupiter rāśi ingress from AstronomyService.
+                    // This is deliberately NOT labelled as a Drik-Panchang compatibility model.
+                    'samvatsara_brihaspati_modern' => [
+                        $this->buildSamvatsaraBrihaspatiWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                        ),
+                        'continuous_barhaspatya_modern_jupiter_ingress',
+                    ],
+                    'samvatsara_gujarati' => [
+                        $this->buildGujaratiSamvatsaraWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')
+                        ),
+                        'kartika_shukla_pratipada_at_sunrise',
+                    ],
+                    'gujarati_samvat' => [$this->buildGujaratiSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'kartika_shukla_pratipada_at_sunrise'],
+                    default => throw new InvalidArgumentException('Unknown calendar period field: ' . $field),
+                };
 
-            $result[$field . '_windows'] = $this->publicCalendarPeriodWindows($windows);
+                $result[$field . '_windows'] = $this->publicCalendarPeriodWindows(
+                    $this->attachCivilObservanceDates($windows, $lat, $lon, $tz, $elevation, $rule)
+                );
+            } catch (Throwable $e) {
+                // Optional modern Bārhaspatya comparison must not fail the whole
+                // calendar-periods payload (classical + civil windows still useful).
+                if ($field === 'samvatsara_brihaspati_modern') {
+                    $result[$field . '_windows'] = [];
+                    $result[$field . '_error'] = $e->getMessage();
+                    continue;
+                }
+
+                throw $e;
+            }
         }
 
         return $result;
+    }
+
+    /**
+     * Compare classical Sūrya-Siddhānta Bārhaspatya timing with the modern
+     * physical sidereal-Jupiter-ingress projection over a month range.
+     *
+     * This method intentionally compares the SAME 60-name classical sequence.
+     * The modern side changes only the timing basis; it does not invent a
+     * separate 60-name phase from Jupiter's 12 physical rāśis.
+     *
+     * @return array{
+     *   models: array<string, array<string, mixed>>,
+     *   from: string,
+     *   to: string,
+     *   timezone: string,
+     *   comparisons: array<int, array<string, mixed>>
+     * }
+     */
+    public function getBrihaspatiSamvatsaraComparisonRange(
+        int $fromYear,
+        int $fromMonth,
+        int $toYear,
+        int $toMonth,
+        string $tz
+    ): array {
+        [$start, $endDay] = $this->resolveMonthRangeBounds(
+            $fromYear,
+            $fromMonth,
+            $toYear,
+            $toMonth,
+            $tz
+        );
+
+        $rangeStartJd = $this->toJulianDayFromCarbon($start, $tz);
+        $rangeEndJd = $this->toJulianDayFromCarbon($endDay->addDay(), $tz);
+
+        $service = new BrihaspatiSamvatsaraService($this->astronomy);
+        $comparisons = [];
+        $cursorJd = $rangeStartJd;
+        $seen = [];
+
+        while ($cursorJd < $rangeEndJd) {
+            $comparison = $service->compareModelsFromJd($cursorJd);
+            $sameName = (array) ($comparison['same_name_timing'] ?? []);
+            $classical = (array) ($sameName['classical'] ?? []);
+            $modern = (array) ($sameName['modern'] ?? []);
+            $difference = (array) ($sameName['difference'] ?? []);
+
+            $classicalStartJd = (float) ($classical['start_jd'] ?? 0.0);
+            $classicalEndJd = (float) ($classical['end_jd'] ?? 0.0);
+
+            if ($classicalStartJd <= 0.0 || $classicalEndJd <= $classicalStartJd) {
+                throw new InvalidArgumentException(
+                    'Brihaspati comparison returned an invalid classical window.'
+                );
+            }
+
+            $key = sprintf(
+                '%d|%.8F',
+                (int) ($sameName['index'] ?? -1),
+                $classicalStartJd
+            );
+
+            if (!isset($seen[$key])) {
+                $seen[$key] = true;
+
+                $modernStartJd = (float) ($modern['start_jd'] ?? 0.0);
+                $modernEndJd = (float) ($modern['end_jd'] ?? 0.0);
+
+                $comparisons[] = [
+                    'name' => (string) ($sameName['name'] ?? ''),
+                    'index' => (int) ($sameName['index'] ?? -1),
+                    'classical' => [
+                        'model' => (string) ($classical['model'] ?? BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS),
+                        'variant' => (string) ($classical['variant'] ?? ''),
+                        'start_jd' => $classicalStartJd,
+                        'end_jd' => $classicalEndJd,
+                        'start_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($classicalStartJd, $tz)
+                        ),
+                        'end_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($classicalEndJd, $tz)
+                        ),
+                    ],
+                    'modern' => [
+                        'model' => (string) ($modern['model'] ?? BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS),
+                        'variant' => (string) ($modern['variant'] ?? ''),
+                        'start_jd' => $modernStartJd,
+                        'end_jd' => $modernEndJd,
+                        'start_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($modernStartJd, $tz)
+                        ),
+                        'end_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($modernEndJd, $tz)
+                        ),
+                        'start_rashi_index' => isset($modern['start_rashi_index'])
+                            ? (int) $modern['start_rashi_index']
+                            : null,
+                        'end_rashi_index' => isset($modern['end_rashi_index'])
+                            ? (int) $modern['end_rashi_index']
+                            : null,
+                    ],
+                    'difference' => [
+                        'start_seconds' => (float) ($difference['start_seconds'] ?? 0.0),
+                        'end_seconds' => (float) ($difference['end_seconds'] ?? 0.0),
+                        'start_days' => (float) ($difference['start_days'] ?? 0.0),
+                        'end_days' => (float) ($difference['end_days'] ?? 0.0),
+                    ],
+                ];
+            }
+
+            $cursorJd = $classicalEndJd + (0.1 / 86400.0);
+        }
+
+        return [
+            'models' => BrihaspatiSamvatsaraService::supportedModels(),
+            'from' => $start->toDateString(),
+            'to' => $endDay->toDateString(),
+            'timezone' => $tz,
+            'comparisons' => $comparisons,
+        ];
     }
 
     public function getFestivalYearCalendar(
@@ -701,7 +853,7 @@ trait PanchangCalendarApiTrait
 
         $rangeStart = $start->subDays(3);
         $rangeEnd = $end->addDays(3);
-        $fetchHistoricalSnapshot = fn (CarbonImmutable $targetDate): array => $this->getFestivalSnapshot(
+        $fetchHistoricalSnapshot = fn(CarbonImmutable $targetDate): array => $this->getFestivalSnapshot(
             $targetDate,
             $lat,
             $lon,
@@ -916,7 +1068,7 @@ trait PanchangCalendarApiTrait
             }
         }
 
-        $displayParts = array_map(static fn (int $index): string => (string) $index, $indexes);
+        $displayParts = array_map(static fn(int $index): string => (string) $index, $indexes);
 
         return [
             'display' => implode('/', $displayParts),
@@ -1213,7 +1365,7 @@ trait PanchangCalendarApiTrait
 
         $remove = [];
         foreach ($grouped as $items) {
-            usort($items, static fn (array $a, array $b): int => strcmp($a['entry']['date'], $b['entry']['date']));
+            usort($items, static fn(array $a, array $b): int => strcmp($a['entry']['date'], $b['entry']['date']));
 
             $clusters = [];
             $current = [];
@@ -1426,13 +1578,13 @@ trait PanchangCalendarApiTrait
 
         // Sankashti / Vinayaki: same Chaturthi often resolves on Tritiya-yuta day and again on
         // the sunrise-host day (equal score). Keep the earlier observance.
-        $isPurvaChaturthiFamily = static fn (string $r): bool => str_starts_with($r, 'sankashti_')
+        $isPurvaChaturthiFamily = static fn(string $r): bool => str_starts_with($r, 'sankashti_')
             || str_starts_with($r, 'vinayaki_');
         if ($isPurvaChaturthiFamily($reasonKey) && $isPurvaChaturthiFamily($best['reason_key'])) {
             return strcmp($date, $best['date']) < 0;
         }
 
-        $isChandraDarshanaReason = static fn (string $r): bool => str_starts_with($r, 'chandra_darshana_');
+        $isChandraDarshanaReason = static fn(string $r): bool => str_starts_with($r, 'chandra_darshana_');
         if ($isChandraDarshanaReason($reasonKey) && $isChandraDarshanaReason($best['reason_key'])) {
             return strcmp($date, $best['date']) < 0;
         }
@@ -1441,7 +1593,7 @@ trait PanchangCalendarApiTrait
             return strcmp($date, $best['date']) < 0;
         }
 
-        $reasonRank = static fn (string $r): int => match (true) {
+        $reasonRank = static fn(string $r): int => match (true) {
             str_starts_with($r, 'masik_janmashtami_') && !str_contains($r, '_no_nishitha_') => 3,
             str_starts_with($r, 'masik_janmashtami_no_nishitha_') => 1,
             default => match ($r) {
@@ -1516,11 +1668,14 @@ trait PanchangCalendarApiTrait
                 'sayana_ritu',
                 'vikram_samvat',
                 'gujarati_samvat',
-                'saka_samvat',
+                // Śālivāhana Śaka lunisolar (Ugadi / Panchanga) — NOT the Indian National Calendar
+                'shalivahana_saka_samvat',
                 'kali_samvat',
                 'samvatsara',
                 'samvatsara_south',
                 'samvatsara_north',
+                // Classical Bārhaspatya remains in the default payload. The explicit classical
+                // alias and modern ephemeris comparison are opt-in to avoid duplicate/expensive work.
                 'samvatsara_brihaspati',
                 'samvatsara_gujarati',
                 'amanta_month',
@@ -1552,12 +1707,24 @@ trait PanchangCalendarApiTrait
                 'tropical_ritu_windows' => 'sayana_ritu',
                 'vikram', 'vikram_samvat_windows' => 'vikram_samvat',
                 'gujarati', 'gujarati_samvat_windows' => 'gujarati_samvat',
-                'saka', 'saka_samvat_windows' => 'saka_samvat',
+                // Accept old 'saka_samvat' key for backwards compatibility → canonical name
+                'saka', 'saka_samvat', 'saka_samvat_windows',
+                'shalivahana_saka_samvat_windows' => 'shalivahana_saka_samvat',
                 'kali', 'kali_samvat_windows' => 'kali_samvat',
                 'samvatsara_windows' => 'samvatsara',
                 'samvatsara_south_windows', 'south_samvatsara' => 'samvatsara_south',
                 'samvatsara_north_windows' => 'samvatsara_north',
-                'samvatsara_brihaspati_windows', 'brihaspati_samvatsara', 'mean_jovian_samvatsara' => 'samvatsara_brihaspati',
+                'samvatsara_brihaspati_windows',
+                'brihaspati_samvatsara',
+                'mean_jovian_samvatsara' => 'samvatsara_brihaspati',
+                'samvatsara_brihaspati_classical_windows',
+                'brihaspati_classical',
+                'brihaspati_classical_windows' => 'samvatsara_brihaspati_classical',
+                'samvatsara_brihaspati_modern_windows',
+                'brihaspati_modern',
+                'brihaspati_modern_windows',
+                'true_jupiter_samvatsara',
+                'true_astronomical_samvatsara' => 'samvatsara_brihaspati_modern',
                 'samvatsara_gujarati_windows', 'gujarati_samvatsara' => 'samvatsara_gujarati',
                 'amanta', 'month_amanta', 'amanta_month_windows' => 'amanta_month',
                 'purnimanta', 'month_purnimanta', 'purnimanta_month_windows' => 'purnimanta_month',
@@ -1571,12 +1738,14 @@ trait PanchangCalendarApiTrait
                 'sayana_ritu', // tropical
                 'vikram_samvat',
                 'gujarati_samvat',
-                'saka_samvat',
+                'shalivahana_saka_samvat',
                 'kali_samvat',
                 'samvatsara',
                 'samvatsara_south',
                 'samvatsara_north',
                 'samvatsara_brihaspati',
+                'samvatsara_brihaspati_classical',
+                'samvatsara_brihaspati_modern',
                 'samvatsara_gujarati',
                 'amanta_month',
                 'purnimanta_month' => true,
@@ -1606,8 +1775,8 @@ trait PanchangCalendarApiTrait
         sort($boundaries);
         $sampleJd = $startJd + 1e-7;
         $longitudeResolver = $tropical
-            ? fn (float $jd): float => $this->getTropicalSunLongitude($jd)
-            : fn (float $jd): float => $this->getSunLongitude($jd);
+            ? fn(float $jd): float => $this->getTropicalSunLongitude($jd)
+            : fn(float $jd): float => $this->getSunLongitude($jd);
         $sunLon = $longitudeResolver($sampleJd);
         $cursor = $this->findAngleCrossing(
             $startJd,
@@ -1659,11 +1828,11 @@ trait PanchangCalendarApiTrait
     /** @return array<int, array<string, mixed>> */
     private function buildLunarMonthPeriodWindows(float $startJd, float $endJd, string $tz, float $boundaryAngle, string $monthKey): array
     {
-        $periodStart = $this->findAngleCrossing($startJd, $boundaryAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $periodStart = $this->findAngleCrossing($startJd, $boundaryAngle, -1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         $windows = [];
 
         while ($periodStart < $endJd - 1e-8) {
-            $periodEnd = $this->findAngleCrossing($periodStart + 1.0, $boundaryAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+            $periodEnd = $this->findAngleCrossing($periodStart + 1.0, $boundaryAngle, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
             if ($periodEnd <= $startJd) {
                 $periodStart = $periodEnd;
                 continue;
@@ -1725,11 +1894,254 @@ trait PanchangCalendarApiTrait
         return $windows;
     }
 
+    /** @return array<int, array<string, mixed>> */
     /**
-     * @param array<int, array<string, mixed>> $amantaWindows
+     * @param array<int, array<string, mixed>> $windows
+     * @param callable(int): string $samvatsaraResolver
      *
      * @return array<int, array<string, mixed>>
      */
+    private function mapCivilWindowsWithSamvatsara(array $windows, callable $samvatsaraResolver): array
+    {
+        return array_map(function (array $window) use ($samvatsaraResolver): array {
+            $year = (int) $window['value'];
+            return [
+                'name' => $samvatsaraResolver($year),
+                'value' => $year,
+                'year' => $year,
+                'era_year' => $year,
+                'start_date' => $window['start_date'],
+                'end_date' => $window['end_date'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $windows);
+    }
+
+    private function resolveChaitradiVikramSamvatFromAmantaWindow(array $window, string $tz): int
+    {
+        $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
+        $monthIndex = (int) ($window['index'] ?? 0);
+
+        if ($monthIndex >= 9 && $start->month <= 3) {
+            return $start->year + 56;
+        }
+
+        return $start->year + 57;
+    }
+
+    private function buildChaitradiVikramSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = array_map(function (array $window) use ($tz): array {
+            $vikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+            $name = $this->panchanga->getSamvatsaraNorth($vikram);
+
+            return [
+                'name' => $name,
+                'value' => $vikram,
+                'year' => $vikram,
+                'era_year' => $vikram,
+                'start_jd' => (float) $window['start_jd'],
+                'end_jd' => (float) $window['end_jd'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $amantaWindows);
+
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
+
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): int => $this->resolveChaitradiVikramSamvatFromAmantaWindow($w, $tz));
+    }
+
+    private function buildSakaSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = array_map(function (array $window) use ($tz): array {
+            $vikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+            $saka = $vikram - 135;
+            $name = $this->panchanga->getSamvatsaraSouth($vikram);
+
+            return [
+                'name' => $name,
+                'value' => $saka,
+                'year' => $saka,
+                'era_year' => $saka,
+                'start_jd' => (float) $window['start_jd'],
+                'end_jd' => (float) $window['end_jd'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $amantaWindows);
+
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
+
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): int => $this->resolveChaitradiVikramSamvatFromAmantaWindow($w, $tz) - 135);
+    }
+
+    private function buildKaliSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = array_map(function (array $window) use ($tz): array {
+            $vikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+            $kali = $vikram + 3044;
+
+            return [
+                'name' => (string) $kali,
+                'value' => $kali,
+                'year' => $kali,
+                'era_year' => $kali,
+                'start_jd' => (float) $window['start_jd'],
+                'end_jd' => (float) $window['end_jd'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $amantaWindows);
+
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
+
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): int => $this->resolveChaitradiVikramSamvatFromAmantaWindow($w, $tz) + 3044);
+    }
+
+    private function buildSamvatsaraSouthWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = array_map(function (array $window) use ($tz): array {
+            $vikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+            $name = $this->panchanga->getSamvatsaraSouth($vikram);
+
+            return [
+                'name' => $name,
+                'value' => $name,
+                'year' => $vikram - 135,
+                'era_year' => $vikram - 135,
+                'start_jd' => (float) $window['start_jd'],
+                'end_jd' => (float) $window['end_jd'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $amantaWindows);
+
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
+
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): string => $this->panchanga->getSamvatsaraSouth($this->resolveChaitradiVikramSamvatFromAmantaWindow($w, $tz)));
+    }
+
+    private function buildSamvatsaraNorthWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
+    {
+        $windows = array_map(function (array $window) use ($tz): array {
+            $vikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+            $name = $this->panchanga->getSamvatsaraNorth($vikram);
+
+            return [
+                'name' => $name,
+                'value' => $name,
+                'year' => $vikram,
+                'era_year' => $vikram,
+                'start_jd' => (float) $window['start_jd'],
+                'end_jd' => (float) $window['end_jd'],
+                'start_iso' => $window['start_iso'],
+                'end_iso' => $window['end_iso'],
+            ];
+        }, $amantaWindows);
+
+        $windows = $this->mergeAdjacentPeriodWindows($windows);
+
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): string => $this->panchanga->getSamvatsaraNorth($this->resolveChaitradiVikramSamvatFromAmantaWindow($w, $tz)));
+    }
+
+    private function buildSamvatsaraBrihaspatiWindows(
+        float $startJd,
+        float $endJd,
+        string $tz,
+        string $model = BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+    ): array {
+        $service = new BrihaspatiSamvatsaraService($this->astronomy);
+
+        $windows = [];
+        $currentJd = $startJd;
+
+        while ($currentJd < $endJd) {
+            $info = $service->getBrihaspatiSamvatsaraInfoFromJd(
+                $currentJd,
+                $model
+            );
+
+            $wStartJd = (float) $info['start_jd'];
+            $wEndJd = (float) $info['end_jd'];
+
+            $window = [
+                'name' => (string) $info['name'],
+                'value' => (string) $info['name'],
+                'start_jd' => $wStartJd,
+                'end_jd' => $wEndJd,
+                'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($wStartJd, $tz)),
+                'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($wEndJd, $tz)),
+                'brihaspati_model' => (string) ($info['model'] ?? $model),
+                'brihaspati_model_family' => (string) ($info['model_family'] ?? $model),
+                'brihaspati_model_variant' => (string) ($info['variant'] ?? $info['model'] ?? $model),
+                'brihaspati_timing_basis' => (string) ($info['timing_basis'] ?? ''),
+            ];
+
+            if (array_key_exists('name_phase_source', $info)) {
+                $window['brihaspati_name_phase_source'] = (string) $info['name_phase_source'];
+            }
+
+            if (array_key_exists('start_rashi_index', $info)) {
+                $window['brihaspati_start_rashi_index'] = (int) $info['start_rashi_index'];
+            }
+
+            if (array_key_exists('end_rashi_index', $info)) {
+                $window['brihaspati_end_rashi_index'] = (int) $info['end_rashi_index'];
+            }
+
+            if (array_key_exists('classical_reference_start_jd', $info)) {
+                $window['brihaspati_classical_reference_start_jd'] = (float) $info['classical_reference_start_jd'];
+            }
+
+            if (array_key_exists('classical_reference_end_jd', $info)) {
+                $window['brihaspati_classical_reference_end_jd'] = (float) $info['classical_reference_end_jd'];
+            }
+
+            $windows[] = $window;
+
+            $currentJd = $wEndJd + (0.1 / 86400.0);
+        }
+
+        return $windows;
+    }
+
+    private function expandPeriodWindowsToRangeBoundaries(array $windows, string $tz, callable $valueResolver): array
+    {
+        if ($windows === []) {
+            return [];
+        }
+
+        while (true) {
+            $firstIndex = array_key_first($windows);
+            $firstWindow = $windows[$firstIndex];
+            $previousWindow = $this->buildAdjacentAmantaMonthWindow((float) $firstWindow['start_jd'], -1, $tz);
+            $prevVal = $valueResolver($previousWindow);
+            if ($prevVal !== $firstWindow['value'] && $prevVal !== ($firstWindow['year'] ?? null)) {
+                break;
+            }
+
+            $windows[$firstIndex]['start_jd'] = $previousWindow['start_jd'];
+            $windows[$firstIndex]['start_iso'] = $previousWindow['start_iso'];
+        }
+
+        while (true) {
+            $lastIndex = array_key_last($windows);
+            $lastWindow = $windows[$lastIndex];
+            $nextWindow = $this->buildAdjacentAmantaMonthWindow((float) $lastWindow['end_jd'], 1, $tz);
+            $nextVal = $valueResolver($nextWindow);
+            if ($nextVal !== $lastWindow['value'] && $nextVal !== ($lastWindow['year'] ?? null)) {
+                break;
+            }
+
+            $windows[$lastIndex]['end_jd'] = $nextWindow['end_jd'];
+            $windows[$lastIndex]['end_iso'] = $nextWindow['end_iso'];
+        }
+
+        return $windows;
+    }
+
     /**
      * Gujarati Saṃvatsara name windows derived from Gujarati Vikram year windows.
      *
@@ -1745,7 +2157,9 @@ trait PanchangCalendarApiTrait
             $year = (int) $window['value'];
             $named[] = [
                 ...$window,
+                'name' => $this->panchanga->getSamvatsaraGujarati($year),
                 'value' => $this->panchanga->getSamvatsaraGujarati($year),
+                'year' => $year,
                 'era_year' => $year,
             ];
         }
@@ -1753,56 +2167,37 @@ trait PanchangCalendarApiTrait
         return $this->mergeAdjacentPeriodWindows($named);
     }
 
+    private function resolveGujaratiSamvatFromAmantaWindow(array $window, string $tz): int
+    {
+        $chaitradiVikram = $this->resolveChaitradiVikramSamvatFromAmantaWindow($window, $tz);
+        $monthIndex = (int) ($window['index'] ?? 0);
+
+        return $monthIndex >= 7 ? $chaitradiVikram : $chaitradiVikram - 1;
+    }
+
     private function buildGujaratiSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array
     {
-        $windows = array_map(fn (array $window): array => $this->gujaratiSamvatWindowFromAmantaWindow($window, $tz), $amantaWindows);
+        $windows = array_map(fn(array $window): array => $this->gujaratiSamvatWindowFromAmantaWindow($window, $tz), $amantaWindows);
         $windows = $this->mergeAdjacentPeriodWindows($windows);
 
         if ($windows === []) {
             return [];
         }
 
-        while (true) {
-            $firstIndex = array_key_first($windows);
-            $firstWindow = $windows[$firstIndex];
-            $previousWindow = $this->buildAdjacentAmantaMonthWindow((float) $firstWindow['start_jd'], -1, $tz);
-            $previousGujaratiWindow = $this->gujaratiSamvatWindowFromAmantaWindow($previousWindow, $tz);
-
-            if ($previousGujaratiWindow['value'] !== $firstWindow['value']) {
-                break;
-            }
-
-            $windows[$firstIndex]['start_jd'] = $previousGujaratiWindow['start_jd'];
-            $windows[$firstIndex]['start_iso'] = $previousGujaratiWindow['start_iso'];
-        }
-
-        while (true) {
-            $lastIndex = array_key_last($windows);
-            $lastWindow = $windows[$lastIndex];
-            $nextWindow = $this->buildAdjacentAmantaMonthWindow((float) $lastWindow['end_jd'], 1, $tz);
-            $nextGujaratiWindow = $this->gujaratiSamvatWindowFromAmantaWindow($nextWindow, $tz);
-
-            if ($nextGujaratiWindow['value'] !== $lastWindow['value']) {
-                break;
-            }
-
-            $windows[$lastIndex]['end_jd'] = $nextGujaratiWindow['end_jd'];
-            $windows[$lastIndex]['end_iso'] = $nextGujaratiWindow['end_iso'];
-        }
-
-        return $windows;
+        return $this->expandPeriodWindowsToRangeBoundaries($windows, $tz, fn(array $w): int => $this->resolveGujaratiSamvatFromAmantaWindow($w, $tz));
     }
 
     /** @param array<string, mixed> $window */
     private function gujaratiSamvatWindowFromAmantaWindow(array $window, string $tz): array
     {
-        $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
-        $vikram = $this->panchanga->getSamvat($start->year, $start->month)['Vikram_Samvat'];
-        $value = $this->panchanga->getGujaratiSamvat($vikram, (int) $window['index']);
+        $value = $this->resolveGujaratiSamvatFromAmantaWindow($window, $tz);
+        $name = $this->panchanga->getSamvatsaraGujarati($value);
 
         return [
-            'name' => (string) $value,
+            'name' => $name,
             'value' => $value,
+            'year' => $value,
+            'era_year' => $value,
             'start_jd' => (float) $window['start_jd'],
             'end_jd' => (float) $window['end_jd'],
             'start_iso' => $window['start_iso'],
@@ -1818,7 +2213,7 @@ trait PanchangCalendarApiTrait
         }
 
         if ($direction === -1) {
-            $startJd = $this->findAngleCrossing($boundaryJd - 1.0, 0.0, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+            $startJd = $this->findAngleCrossing($boundaryJd - 1.0, 0.0, -1, fn(float $jd): float => $this->getMoonSunAngle($jd));
             $sampleJd = ($startJd + $boundaryJd) / 2.0;
             $month = $this->getTrueHinduMonth($sampleJd);
 
@@ -1828,7 +2223,7 @@ trait PanchangCalendarApiTrait
             ];
         }
 
-        $endJd = $this->findAngleCrossing($boundaryJd + 1.0, 0.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $endJd = $this->findAngleCrossing($boundaryJd + 1.0, 0.0, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         $sampleJd = ($boundaryJd + $endJd) / 2.0;
         $month = $this->getTrueHinduMonth($sampleJd);
 
@@ -1863,10 +2258,154 @@ trait PanchangCalendarApiTrait
         ];
     }
 
+    private function resolveCivilSunriseDate(array $window, float $latitude, float $longitude, string $tz, float $elevation): CarbonImmutable
+    {
+        $startIso = (string) ($window['start_iso'] ?? '');
+        $parsed = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', $startIso, $tz);
+        $carbon = $parsed instanceof CarbonImmutable ? $parsed : null;
+        if (!$carbon instanceof CarbonImmutable) {
+            try {
+                $carbon = CarbonImmutable::parse($startIso, $tz);
+            } catch (Throwable) {
+                $carbon = null;
+            }
+        }
+
+        if (!$carbon instanceof CarbonImmutable) {
+            return CarbonImmutable::now($tz)->startOfDay();
+        }
+
+        $birth = [
+            'year' => (int) $carbon->format('Y'),
+            'month' => (int) $carbon->format('m'),
+            'day' => (int) $carbon->format('d'),
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'timezone' => $tz,
+            'elevation' => $elevation,
+        ];
+
+        [$sunrise] = $this->sunService->getSunriseSunset($birth);
+
+        $sunriseCarbon = null;
+        if ($sunrise instanceof DateTimeInterface) {
+            $sunriseCarbon = CarbonImmutable::instance($sunrise)->setTimezone($tz);
+        } elseif (is_string($sunrise) && trim($sunrise) !== '') {
+            try {
+                $sunriseCarbon = CarbonImmutable::parse($sunrise, $tz);
+            } catch (Throwable) {
+                $sunriseCarbon = null;
+            }
+        }
+
+        if ($sunriseCarbon instanceof CarbonImmutable) {
+            if ($carbon->greaterThanOrEqualTo($sunriseCarbon)) {
+                return $carbon->startOfDay()->addDay();
+            }
+
+            return $carbon->startOfDay();
+        }
+
+        return $carbon->startOfDay();
+    }
+
     /**
      * @param array<int, array<string, mixed>> $windows
      *
-     * @return array<int, array{name: string, start_iso: string, end_iso: string, index?: int}>
+     * @return array<int, array<string, mixed>>
+     */
+    private function attachCivilObservanceDates(
+        array $windows,
+        float $latitude,
+        float $longitude,
+        string $tz,
+        float $elevation,
+        string $assignmentRule = 'lunar_month_at_sunrise'
+    ): array {
+        $count = count($windows);
+        if ($count === 0) {
+            return [];
+        }
+
+        // Periods where the boundary is the astronomical instant itself — no civil-day window
+        // is manufactured. This covers both nirayana/tropical seasons and the Bārhaspatya
+        // mean-sign transit (which changes continuously at the exact transit instant).
+        $isContinuous = str_starts_with($assignmentRule, 'continuous_');
+
+        $result = [];
+        for ($i = 0; $i < $count; $i++) {
+            $window = $windows[$i];
+
+            $window['astronomical_start_iso'] = $window['start_iso'];
+            $window['astronomical_end_iso'] = $window['end_iso'];
+            $window['assignment_rule'] = $assignmentRule;
+
+            if ($isContinuous) {
+                // For continuous periods, the civil_* fields are meaningless (the state does not
+                // change at midnight). Only the exact astronomical ISO strings are exposed.
+                unset($window['civil_start_date'], $window['civil_end_date'], $window['civil_start_iso'], $window['civil_end_iso']);
+                $result[] = $window;
+                continue;
+            }
+
+            $civilStart = $this->resolveCivilSunriseDate($window, $latitude, $longitude, $tz, $elevation);
+
+            if ($i + 1 < $count) {
+                $nextCivilStart = $this->resolveCivilSunriseDate($windows[$i + 1], $latitude, $longitude, $tz, $elevation);
+                $civilEnd = $nextCivilStart->subDay();
+            } else {
+                $endCarbon = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['end_iso'], $tz);
+                $endBirth = [
+                    'year' => $endCarbon->year,
+                    'month' => $endCarbon->month,
+                    'day' => $endCarbon->day,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'timezone' => $tz,
+                    'elevation' => $elevation,
+                ];
+                [$endSunrise] = $this->sunService->getSunriseSunset($endBirth);
+                $endSunriseCarbon = null;
+                if ($endSunrise instanceof DateTimeInterface) {
+                    $endSunriseCarbon = CarbonImmutable::instance($endSunrise)->setTimezone($tz);
+                } elseif (is_string($endSunrise) && trim($endSunrise) !== '') {
+                    try {
+                        $endSunriseCarbon = CarbonImmutable::parse($endSunrise, $tz);
+                    } catch (Throwable) {
+                        $endSunriseCarbon = null;
+                    }
+                }
+
+                $civilEnd = ($endSunriseCarbon instanceof CarbonImmutable && $endCarbon->greaterThanOrEqualTo($endSunriseCarbon))
+                    ? $endCarbon->startOfDay()
+                    : $endCarbon->startOfDay()->subDay();
+
+                if ($civilEnd->lessThan($civilStart)) {
+                    $civilEnd = $civilStart;
+                }
+            }
+
+            // calendar_effective_date      = inclusive first civil day of this era/year
+            // calendar_effective_end_date  = inclusive last civil day of this era/year
+            // (civil_end_date is identical; treat as the day on which this era is still in effect,
+            //  not as an exclusive upper bound — the next era begins on calendar_effective_date + 1)
+            $window['calendar_effective_date'] = $civilStart->toDateString();
+            $window['calendar_effective_end_date'] = $civilEnd->toDateString();
+            $window['civil_start_date'] = $civilStart->toDateString();
+            $window['civil_end_date'] = $civilEnd->toDateString();
+            $window['civil_start_iso'] = AstroCore::formatDateTime($civilStart->startOfDay());
+            $window['civil_end_iso'] = AstroCore::formatDateTime($civilEnd->endOfDay());
+
+            $result[] = $window;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $windows
+     *
+     * @return array<int, array<string, mixed>>
      */
     private function publicCalendarPeriodWindows(array $windows): array
     {
@@ -1877,8 +2416,88 @@ trait PanchangCalendarApiTrait
                 'end_iso' => (string) $window['end_iso'],
             ];
 
+            if (array_key_exists('astronomical_start_iso', $window)) {
+                $public['astronomical_start_iso'] = (string) $window['astronomical_start_iso'];
+            }
+
+            if (array_key_exists('astronomical_end_iso', $window)) {
+                $public['astronomical_end_iso'] = (string) $window['astronomical_end_iso'];
+            }
+
+            if (array_key_exists('calendar_effective_date', $window)) {
+                $public['calendar_effective_date'] = (string) $window['calendar_effective_date'];
+            }
+
+            if (array_key_exists('calendar_effective_end_date', $window)) {
+                $public['calendar_effective_end_date'] = (string) $window['calendar_effective_end_date'];
+            }
+
+            if (array_key_exists('assignment_rule', $window)) {
+                $public['assignment_rule'] = (string) $window['assignment_rule'];
+            }
+
+            if (array_key_exists('civil_start_date', $window)) {
+                $public['civil_start_date'] = (string) $window['civil_start_date'];
+            }
+
+            if (array_key_exists('civil_end_date', $window)) {
+                $public['civil_end_date'] = (string) $window['civil_end_date'];
+            }
+
+            if (array_key_exists('civil_start_iso', $window)) {
+                $public['civil_start_iso'] = (string) $window['civil_start_iso'];
+            }
+
+            if (array_key_exists('civil_end_iso', $window)) {
+                $public['civil_end_iso'] = (string) $window['civil_end_iso'];
+            }
+
+            if (array_key_exists('year', $window)) {
+                $public['year'] = (int) $window['year'];
+            }
+
+            if (array_key_exists('era_year', $window)) {
+                $public['era_year'] = (int) $window['era_year'];
+            }
+
             if (array_key_exists('index', $window)) {
                 $public['index'] = (int) $window['index'];
+            }
+
+            if (array_key_exists('brihaspati_model', $window)) {
+                $public['brihaspati_model'] = (string) $window['brihaspati_model'];
+            }
+
+            if (array_key_exists('brihaspati_model_family', $window)) {
+                $public['brihaspati_model_family'] = (string) $window['brihaspati_model_family'];
+            }
+
+            if (array_key_exists('brihaspati_model_variant', $window)) {
+                $public['brihaspati_model_variant'] = (string) $window['brihaspati_model_variant'];
+            }
+
+            if (array_key_exists('brihaspati_timing_basis', $window)) {
+                $public['brihaspati_timing_basis'] = (string) $window['brihaspati_timing_basis'];
+            }
+
+            if (array_key_exists('brihaspati_name_phase_source', $window)) {
+                $public['brihaspati_name_phase_source'] = (string) $window['brihaspati_name_phase_source'];
+            }
+
+            if (array_key_exists('brihaspati_start_rashi_index', $window)) {
+                $public['brihaspati_start_rashi_index'] = (int) $window['brihaspati_start_rashi_index'];
+            }
+
+            if (array_key_exists('brihaspati_end_rashi_index', $window)) {
+                $public['brihaspati_end_rashi_index'] = (int) $window['brihaspati_end_rashi_index'];
+            }
+
+            if (array_key_exists('brihaspati_classical_reference_start_jd', $window)) {
+                $public['brihaspati_classical_reference_start_jd'] = (float) $window['brihaspati_classical_reference_start_jd'];
+            }
+
+            if (array_key_exists('brihaspati_classical_reference_end_jd', $window)) {
+                $public['brihaspati_classical_reference_end_jd'] = (float) $window['brihaspati_classical_reference_end_jd'];
             }
 
             return $public;
@@ -1934,7 +2553,7 @@ trait PanchangCalendarApiTrait
     {
         return array_values(array_filter(
             $festivals,
-            fn (array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
+            fn(array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
         ));
     }
 }

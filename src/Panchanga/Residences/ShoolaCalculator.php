@@ -80,9 +80,7 @@ class ShoolaCalculator
 
     private const array YATRA_AUSPICIOUS_TITHIS = [2, 3, 5, 7, 10, 11, 13];
 
-    public function __construct(private readonly SunService $sunService)
-    {
-    }
+    public function __construct(private readonly SunService $sunService) {}
 
     public function calculateDishaShool(int $weekdayIndex): array
     {
@@ -175,7 +173,7 @@ class ShoolaCalculator
                 ],
                 'matching_rules' => [
                     'tithis' => $rules['tithis'],
-                    'weekdays' => array_map(static fn (int $idx): string => Vara::from($idx)->getName(), $rules['weekdays']),
+                    'weekdays' => array_map(static fn(int $idx): string => Vara::from($idx)->getName(), $rules['weekdays']),
                     'nakshatras' => array_map($this->localizeNakshatraName(...), $rules['nakshatras']),
                     'lagnas' => array_map($this->localizeRasiName(...), $rules['lagnas']),
                 ],

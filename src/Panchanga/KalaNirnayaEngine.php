@@ -127,9 +127,7 @@ class KalaNirnayaEngine
         ],
     ];
 
-    public function __construct(public float $latitude, public float $longitude)
-    {
-    }
+    public function __construct(public float $latitude, public float $longitude) {}
 
     /**
      * Configure service (optional, for standalone usage).

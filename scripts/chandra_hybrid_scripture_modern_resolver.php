@@ -82,7 +82,7 @@ $parseOptions = static function (array $argv): array {
     return $options;
 };
 
-$usage = static fn (): string => <<<TEXT
+$usage = static fn(): string => <<<TEXT
 Usage:
   php scripts/chandra_hybrid_scripture_modern_resolver.php --from=2023-01-01 --to=2029-12-31 --amanta
 
@@ -525,7 +525,7 @@ $resolveSeasonHybrid = static function (array $season) use (
         ];
     }
 
-    usort($allowed, static fn (array $a, array $b): int => strcmp((string) $a['date'], (string) $b['date']));
+    usort($allowed, static fn(array $a, array $b): int => strcmp((string) $a['date'], (string) $b['date']));
     $selected = $allowed[0];
 
     return [

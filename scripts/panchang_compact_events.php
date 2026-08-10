@@ -58,7 +58,7 @@ $parseOptions = static function (array $args): array {
     return $options;
 };
 
-$usage = (static fn (): string => <<<TEXT
+$usage = (static fn(): string => <<<TEXT
 Usage:
   php scripts/panchang_compact_events.php --from=02-2025 --to=05-2027 --amanta --en
 
@@ -178,7 +178,7 @@ $compactObservances = static function (array $byDate) use ($dateIsInRange): arra
     ksort($grouped, SORT_NATURAL | SORT_FLAG_CASE);
 
     return array_map(
-        static fn (array $entry): array => [
+        static fn(array $entry): array => [
             'name' => $entry['name'],
             'aliases' => array_values(array_keys($entry['aliases'])),
             'dates' => array_values(array_keys($entry['dates'])),
@@ -230,7 +230,7 @@ $compactEclipses = static function (array $events) use ($dateIsInRange): array {
     ksort($grouped, SORT_NATURAL | SORT_FLAG_CASE);
 
     return array_map(
-        static fn (array $entry): array => [
+        static fn(array $entry): array => [
             'name' => $entry['name'],
             'aliases' => array_values(array_keys($entry['aliases'])),
             'dates' => array_values(array_keys($entry['dates'])),

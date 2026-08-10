@@ -92,7 +92,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 $currentNakStartJd + 1e-6,
                 $targetAngle,
                 1,
-                fn (float $jd): float => $this->getMoonLongitude($jd)
+                fn(float $jd): float => $this->getMoonLongitude($jd)
             );
 
             if ($currentNakEndJd <= $currentNakStartJd) {
@@ -102,7 +102,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
         usort(
             $windows,
-            static fn (array $a, array $b): int => $a['window_start_jd'] <=> $b['window_start_jd']
+            static fn(array $a, array $b): int => $a['window_start_jd'] <=> $b['window_start_jd']
         );
 
         return $windows;
@@ -191,10 +191,10 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $cursor = $nextCursor;
         }
 
-        $trayodashiDurationMinutes =
-            array_reduce(
+        $trayodashiDurationMinutes
+            = array_reduce(
                 $trayodashiOverlaps,
-                static fn (float $carry, array $row): float => $carry + $row['duration_minutes'],
+                static fn(float $carry, array $row): float => $carry + $row['duration_minutes'],
                 0.0
             );
 
@@ -358,26 +358,26 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 'current' => Tithi::from($currentTithiNumber)->getName(),
                 'current_at_input_now' => Tithi::from($currentTithiNumber)->getName(),
                 'current_at_sunrise' => Tithi::from($tithiNumber)->getName(),
-                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $tithiIntervals),
+                'windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $tithiIntervals),
             ],
             'nakshatra' => [
                 'current' => Nakshatra::from($currentNakshatraIndex % 27)->getName(),
                 'current_at_input_now' => Nakshatra::from($currentNakshatraIndex % 27)->getName(),
                 'current_at_sunrise' => Nakshatra::from($nakshatraIndex % 27)->getName(),
-                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $nakshatraIntervals),
-                'padas' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $padaIntervals),
+                'windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $nakshatraIntervals),
+                'padas' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $padaIntervals),
             ],
             'yoga' => [
                 'current' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
                 'current_at_input_now' => Localization::translate('Yoga', max(0, $currentYogaIndex - 1)),
                 'current_at_sunrise' => Localization::translate('Yoga', max(0, $yogaIndex - 1)),
-                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $yogaIntervals),
+                'windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $yogaIntervals),
             ],
             'karana' => [
                 'current' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
                 'current_at_input_now' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($currentKaranaIndex)),
                 'current_at_sunrise' => Localization::translate('Karana', $this->normalizeKaranaLocalizationIndex($karanaIndex)),
-                'windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $karanaIntervals),
+                'windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $karanaIntervals),
             ],
             'moon_sign' => [
                 'current' => Rasi::from(AstroCore::getSign($currentMoonLongitude))->getName(),

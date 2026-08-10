@@ -126,11 +126,11 @@ class MonthCalendarTest extends TestCase
             );
 
             $monthFestivals = array_map(
-                static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['name'] ?? ''),
                 $day['festivals'] ?? []
             );
             $detailFestivals = array_map(
-                static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['name'] ?? ''),
                 $details['Festivals'] ?? []
             );
 
@@ -184,7 +184,7 @@ class MonthCalendarTest extends TestCase
         }
 
         $marchNineteenthNames = array_map(
-            static fn (array $festival): string => (string) ($festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['name'] ?? ''),
             $marchNineteenth['Festivals'] ?? []
         );
 

@@ -66,7 +66,7 @@ class PanchangServiceProvider extends ServiceProvider
                 $jme->jme_set_ephemeris_path($ephePath);
             }
 
-            // For any authentic Hindu Panchanga, Lahiri is the only absolute standard.
+            // Configure project default sidereal reference (PanchangCore uses Lahiri/Chitrapaksha by default).
             $jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
 
             $engineMode = strtoupper((string) config('panchang.jme_settings.mode', 'auto'));
@@ -82,15 +82,15 @@ class PanchangServiceProvider extends ServiceProvider
         });
 
         // Astronomy layer
-        $this->app->singleton(AstronomyService::class, fn ($app): AstronomyService => new AstronomyService($app->make(JmeEphFFI::class)));
+        $this->app->singleton(AstronomyService::class, fn($app): AstronomyService => new AstronomyService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(SunService::class, fn ($app): SunService => new SunService($app->make(JmeEphFFI::class)));
+        $this->app->singleton(SunService::class, fn($app): SunService => new SunService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(EclipseService::class, fn ($app): EclipseService => new EclipseService($app->make(JmeEphFFI::class)));
+        $this->app->singleton(EclipseService::class, fn($app): EclipseService => new EclipseService($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(TransitEngine::class, fn ($app): TransitEngine => new TransitEngine($app->make(JmeEphFFI::class)));
+        $this->app->singleton(TransitEngine::class, fn($app): TransitEngine => new TransitEngine($app->make(JmeEphFFI::class)));
 
-        $this->app->singleton(IntervalTracker::class, fn ($app): IntervalTracker => new IntervalTracker(
+        $this->app->singleton(IntervalTracker::class, fn($app): IntervalTracker => new IntervalTracker(
             $app->make(TransitEngine::class),
             $app->make(SunService::class)
         ));
@@ -98,25 +98,25 @@ class PanchangServiceProvider extends ServiceProvider
         // Panchanga layer
         $this->app->singleton(PanchangaEngine::class);
 
-        $this->app->singleton(VaasaCalculator::class, fn ($app): VaasaCalculator => new VaasaCalculator($app->make(SunService::class)));
+        $this->app->singleton(VaasaCalculator::class, fn($app): VaasaCalculator => new VaasaCalculator($app->make(SunService::class)));
 
-        $this->app->singleton(ShoolaCalculator::class, fn ($app): ShoolaCalculator => new ShoolaCalculator($app->make(SunService::class)));
+        $this->app->singleton(ShoolaCalculator::class, fn($app): ShoolaCalculator => new ShoolaCalculator($app->make(SunService::class)));
 
-        $this->app->singleton(SpecialYogaCalculator::class, fn ($app): SpecialYogaCalculator => new SpecialYogaCalculator(
+        $this->app->singleton(SpecialYogaCalculator::class, fn($app): SpecialYogaCalculator => new SpecialYogaCalculator(
             $app->make(SunService::class),
             $app->make(IntervalTracker::class)
         ));
 
-        $this->app->singleton(PanchakCalculator::class, fn ($app): PanchakCalculator => new PanchakCalculator($app->make(IntervalTracker::class)));
+        $this->app->singleton(PanchakCalculator::class, fn($app): PanchakCalculator => new PanchakCalculator($app->make(IntervalTracker::class)));
 
-        $this->app->singleton(BhadraCalculator::class, fn ($app): BhadraCalculator => new BhadraCalculator(
+        $this->app->singleton(BhadraCalculator::class, fn($app): BhadraCalculator => new BhadraCalculator(
             $app->make(TransitEngine::class),
             $app->make(BhadraEngine::class)
         ));
 
-        $this->app->singleton(VarjyamWindowCalculator::class, fn ($app): VarjyamWindowCalculator => new VarjyamWindowCalculator($app->make(TransitEngine::class)));
+        $this->app->singleton(VarjyamWindowCalculator::class, fn($app): VarjyamWindowCalculator => new VarjyamWindowCalculator($app->make(TransitEngine::class)));
 
-        $this->app->singleton(EkadashiParanaCalculator::class, fn ($app): EkadashiParanaCalculator => new EkadashiParanaCalculator(
+        $this->app->singleton(EkadashiParanaCalculator::class, fn($app): EkadashiParanaCalculator => new EkadashiParanaCalculator(
             $app->make(TransitEngine::class),
             $app->make(SunService::class)
         ));
@@ -129,7 +129,7 @@ class PanchangServiceProvider extends ServiceProvider
         $this->app->singleton(GowriPanchangamCalculator::class);
         $this->app->singleton(LagnaTableCalculator::class);
 
-        $this->app->singleton(MuhurtaService::class, fn ($app): MuhurtaService => new MuhurtaService(
+        $this->app->singleton(MuhurtaService::class, fn($app): MuhurtaService => new MuhurtaService(
             $app->make(HoraCalculator::class),
             $app->make(ChogadiyaCalculator::class),
             $app->make(DailyPeriodsCalculator::class),
@@ -138,16 +138,16 @@ class PanchangServiceProvider extends ServiceProvider
             $app->make(LagnaTableCalculator::class)
         ));
 
-        $this->app->singleton(FestivalRuleEngine::class, fn ($app): FestivalRuleEngine => new FestivalRuleEngine($app->make(TransitEngine::class)));
+        $this->app->singleton(FestivalRuleEngine::class, fn($app): FestivalRuleEngine => new FestivalRuleEngine($app->make(TransitEngine::class)));
 
         $this->app->singleton(FestivalFamilyOrchestrator::class);
 
-        $this->app->singleton(FestivalService::class, fn ($app): FestivalService => new FestivalService(
+        $this->app->singleton(FestivalService::class, fn($app): FestivalService => new FestivalService(
             $app->make(FestivalRuleEngine::class)
         ));
 
         // Main Panchang service
-        $this->app->singleton(PanchangService::class, fn ($app): PanchangService => new PanchangService(
+        $this->app->singleton(PanchangService::class, fn($app): PanchangService => new PanchangService(
             $app->make(JmeEphFFI::class),
             $app->make(SunService::class),
             $app->make(AstronomyService::class),
@@ -166,7 +166,7 @@ class PanchangServiceProvider extends ServiceProvider
             $app->make(EkadashiParanaCalculator::class)
         ));
 
-        $this->app->singleton(OutputGeneratorService::class, fn ($app): OutputGeneratorService => new OutputGeneratorService(
+        $this->app->singleton(OutputGeneratorService::class, fn($app): OutputGeneratorService => new OutputGeneratorService(
             $app->make(PanchangService::class),
             $app->make(EclipseService::class)
         ));

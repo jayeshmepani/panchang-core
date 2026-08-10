@@ -27,8 +27,7 @@ class OutputGeneratorService
     public function __construct(
         private readonly PanchangService $panchangService,
         private readonly EclipseService $eclipseService,
-    ) {
-    }
+    ) {}
 
     /**
      * Generate only selected festival output branches.

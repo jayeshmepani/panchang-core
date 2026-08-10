@@ -100,7 +100,7 @@ class FestivalDateCorrectionsTest extends TestCase
             );
 
             $names = array_map(
-                static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
                 $details['Festivals'] ?? []
             );
 
@@ -158,7 +158,7 @@ class FestivalDateCorrectionsTest extends TestCase
             );
 
             $names = array_map(
-                static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
                 $details['Festivals'] ?? []
             );
 

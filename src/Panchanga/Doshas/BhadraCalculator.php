@@ -13,8 +13,7 @@ class BhadraCalculator
     public function __construct(
         private readonly TransitEngine $transitEngine,
         private readonly BhadraEngine $bhadraEngine
-    ) {
-    }
+    ) {}
 
     public function findBhadraPeriods(float $jdStart, float $jdEnd, int $sunriseTithi, string $paksha): array
     {
@@ -31,8 +30,8 @@ class BhadraCalculator
                 $vStartAngle = ($karanaNum - 1) * 6.0;
                 $vEndAngle = $karanaNum * 6.0;
 
-                $vStartJd = $this->transitEngine->findAngleCrossing($currentJd, $vStartAngle, -1, fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
-                $vEndJd = $this->transitEngine->findAngleCrossing($currentJd, $vEndAngle, 1, fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
+                $vStartJd = $this->transitEngine->findAngleCrossing($currentJd, $vStartAngle, -1, fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
+                $vEndJd = $this->transitEngine->findAngleCrossing($currentJd, $vEndAngle, 1, fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
 
                 // Constrain to the day
                 $actualStart = max($jdStart, $vStartJd);
@@ -54,7 +53,7 @@ class BhadraCalculator
             } else {
                 // Find next Karana crossing
                 $nextKaranaAngle = ceil(($angle + 0.0001) / 6.0) * 6.0;
-                $nextKaranaJd = $this->transitEngine->findAngleCrossing($currentJd, $nextKaranaAngle, 1, fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
+                $nextKaranaJd = $this->transitEngine->findAngleCrossing($currentJd, $nextKaranaAngle, 1, fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd));
                 $currentJd = $nextKaranaJd + 0.001;
             }
         }

@@ -36,7 +36,7 @@ class EkadashiDateRegressionTest extends TestCase
             );
 
             $festivalNames = array_map(
-                static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
                 $details['Festivals'] ?? []
             );
 
@@ -60,7 +60,7 @@ class EkadashiDateRegressionTest extends TestCase
         );
 
         $festivalNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $details['Festivals'] ?? []
         );
 
@@ -83,7 +83,7 @@ class EkadashiDateRegressionTest extends TestCase
         );
 
         $festivalNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $details['Festivals'] ?? []
         );
 

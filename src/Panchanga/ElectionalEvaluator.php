@@ -106,7 +106,7 @@ final class ElectionalEvaluator
         $dagdhaTithis = self::DAGDHA_TITHI_MAP[$moonSignIdx] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
 
-        $names = array_map(fn ($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
+        $names = array_map(fn($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
 
         return [
             'source' => Localization::translate('Source', 'Muhurta Chintamani'),
@@ -133,7 +133,7 @@ final class ElectionalEvaluator
     {
         $dagdhaTithis = self::DAGDHA_YOGA_MAP[$varaNumber] ?? [];
         $isDagdha = in_array($tithiNumber, $dagdhaTithis, true);
-        $names = array_map(fn ($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
+        $names = array_map(fn($idx) => Tithi::from($idx)->getName(), $dagdhaTithis);
 
         return [
             'source' => Localization::translate('Source', 'Classical Muhurta texts'),

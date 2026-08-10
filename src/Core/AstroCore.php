@@ -166,7 +166,7 @@ final readonly class AstroCore
     {
         $format = self::getConfig('panchang.defaults.date_time_format', 'indian_12h');
 
-        return match($format) {
+        return match ($format) {
             'indian_12h' => $time->format('d/m/Y h:i:s A'),
             'indian_24h' => $time->format('d/m/Y H:i:s'),
             'iso8601' => $time->toIso8601String(),

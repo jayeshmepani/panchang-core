@@ -261,14 +261,14 @@ trait PanchangSelectiveApiTrait
             $currentTithiNum = (int) $ctx['panchanga']['current_tithi']['index'];
 
             $ctx['crossings'] = [
-                'tithi_start_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], ($tithiNum - 1) * 12.0, -1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
-                'tithi_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $tithiNum * 12.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
-                'nakshatra_start_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $nakIdx * (360.0 / 27.0), -1, fn (float $jd): float => $this->getMoonLongitude($jd)),
-                'nakshatra_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], ($nakIdx + 1) * (360.0 / 27.0), 1, fn (float $jd): float => $this->getMoonLongitude($jd)),
-                'yoga_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $yogaIdx * (360.0 / 27.0), 1, fn (float $jd): float => $this->getSunMoonSum($jd)),
-                'karana_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $karanaIdx * 6.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
-                'current_tithi_start_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], ($currentTithiNum - 1) * 12.0, -1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
-                'current_tithi_end_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], $currentTithiNum * 12.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd)),
+                'tithi_start_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], ($tithiNum - 1) * 12.0, -1, fn(float $jd): float => $this->getMoonSunAngle($jd)),
+                'tithi_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $tithiNum * 12.0, 1, fn(float $jd): float => $this->getMoonSunAngle($jd)),
+                'nakshatra_start_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $nakIdx * (360.0 / 27.0), -1, fn(float $jd): float => $this->getMoonLongitude($jd)),
+                'nakshatra_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], ($nakIdx + 1) * (360.0 / 27.0), 1, fn(float $jd): float => $this->getMoonLongitude($jd)),
+                'yoga_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $yogaIdx * (360.0 / 27.0), 1, fn(float $jd): float => $this->getSunMoonSum($jd)),
+                'karana_end_jd' => $this->findAngleCrossing($ctx['jds']['sunrise'], $karanaIdx * 6.0, 1, fn(float $jd): float => $this->getMoonSunAngle($jd)),
+                'current_tithi_start_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], ($currentTithiNum - 1) * 12.0, -1, fn(float $jd): float => $this->getMoonSunAngle($jd)),
+                'current_tithi_end_jd' => $this->findAngleCrossing($ctx['jds']['calculation_at'], $currentTithiNum * 12.0, 1, fn(float $jd): float => $this->getMoonSunAngle($jd)),
             ];
         };
 
@@ -312,7 +312,7 @@ trait PanchangSelectiveApiTrait
             $resolvedSankrantiJd = null;
             if ($civilStartSign !== $civilEndSign) {
                 $nextSign = ($civilStartSign + 1) % 12;
-                $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $nextSign * 30.0, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+                $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $nextSign * 30.0, 1, fn(float $jd): float => $this->getSunLongitude($jd));
                 if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                     $sankrantiRashi = $nextSign;
                     $resolvedSankrantiJd = $sankrantiJd;
@@ -486,7 +486,7 @@ trait PanchangSelectiveApiTrait
                 $todaySnapshot,
                 $tomorrowSnapshot,
                 $yesterdaySnapshot,
-                fn (CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot($historicalDate, $lat, $lon, $tz, $elevation, null, $calendarType, false)
+                fn(CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot($historicalDate, $lat, $lon, $tz, $elevation, null, $calendarType, false)
             );
             $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
 
@@ -944,8 +944,8 @@ trait PanchangSelectiveApiTrait
                     $ensureHinduMonth(); $ensureLongitudes();
                     return $this->buildMahadikshaGuidance($ctx['hindu_month'], $ctx['longitudes']['sun']);
                 })(),
-                'Festivals' => (fn (): array => $ensureBasic()['Festivals'])(),
-                'Daily_Observances' => (fn (): array => $ensureBasic()['Daily_Observances'])(),
+                'Festivals' => (fn(): array => $ensureBasic()['Festivals'])(),
+                'Daily_Observances' => (fn(): array => $ensureBasic()['Daily_Observances'])(),
                 'Ekadashi_Observance' => (function () use (&$ctx, $ensureCrossings, $ensureJds, $ensurePanchanga, $ensureHinduMonth, $tz, $lat, $lon): ?array {
                     $ensureCrossings(); $ensureJds(); $ensurePanchanga(); $ensureHinduMonth();
                     $tithiNum = (int) $ctx['panchanga']['tithi']['index'];
@@ -1088,7 +1088,7 @@ trait PanchangSelectiveApiTrait
                         'Shiva_Vaasa' => $buildShivaVaasa(),
                         'Agni_Vaasa' => $buildAgniVaasa(),
                         'Yogini_Vaasa' => $buildYoginiVaasa(),
-                    ], static fn (?array $v): bool => $v !== null);
+                    ], static fn(?array $v): bool => $v !== null);
                 })(),
                 default => throw new InvalidArgumentException('Unknown Panchang selected section: ' . $requestedSection),
             };

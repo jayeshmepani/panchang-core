@@ -23,7 +23,7 @@ print_r($res);
 $transitEngine = $refl->getProperty('transitEngine')->getValue($panchangService);
 $transitEngineRefl = new ReflectionClass($transitEngine);
 $pAm = $transitEngineRefl->getMethod('findAngleCrossing');
-$angleFn = fn (float $t): float => $transitEngine->getMoonSunAngle($t);
+$angleFn = fn(float $t): float => $transitEngine->getMoonSunAngle($t);
 
 $prev = $pAm->invoke($transitEngine, $jd, 0.0, -1, $angleFn);
 $next = $pAm->invoke($transitEngine, $jd, 0.0, 1, $angleFn);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 use JayeshMepani\PanchangCore\Core\Localization;
+use ValueError;
 
 /**
  * Saṃvatsara (60-Year Jupiter Cycle) Enumeration.
@@ -82,7 +83,7 @@ enum Samvatsara: int
     }
 
     /**
-     * Get saṃvatsara from year number.
+     * Get saṃvatsara from year number (1-60).
      *
      * @param int $year Year number (1-60)
      *
@@ -90,11 +91,17 @@ enum Samvatsara: int
      */
     public static function fromYear(int $year): self
     {
-        return self::from(($year - 1) % 60);
+        if ($year < 1 || $year > 60) {
+            throw new ValueError('Samvatsara year must be between 1 and 60.');
+        }
+
+        return self::from($year - 1);
     }
 
     /**
      * Get current saṃvatsara from Gregorian year.
+     *
+     * @deprecated a Gregorian year alone cannot identify a Saṃvatsara correctly across mid-year boundaries
      *
      * @param int $gregorianYear Gregorian year
      *

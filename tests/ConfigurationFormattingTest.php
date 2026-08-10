@@ -55,7 +55,7 @@ class ConfigurationFormattingTest extends TestCase
 
         $this->assertStringNotContainsString('AM', $detailsAlt['Sunrise']); // 24h check
         $this->assertStringNotContainsString('PM', $detailsAlt['Sunrise']); // 24h check
-        $this->assertStringContainsString('°', (string)$detailsAlt['sun_sunrise_lon']); // dms angle check
+        $this->assertStringContainsString('°', (string) $detailsAlt['sun_sunrise_lon']); // dms angle check
         $this->assertIsFloat($detailsAlt['Hora']['hora_duration_minutes']); // duration minutes check (should be float)
 
         // Verify ISO8601

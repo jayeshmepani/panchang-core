@@ -312,7 +312,7 @@ foreach ($golden['fingerprints'] as $label => $expected) {
     // Explicit identity set diff (removals / additions).
     $goldenIdsPath = $identitiesDir . '/' . $label . '_identities.txt';
     if (is_file($goldenIdsPath)) {
-        $goldenIds = array_values(array_filter(array_map(trim(...), explode("\n", (string) file_get_contents($goldenIdsPath))), static fn (string $s): bool => $s !== ''));
+        $goldenIds = array_values(array_filter(array_map(trim(...), explode("\n", (string) file_get_contents($goldenIdsPath))), static fn(string $s): bool => $s !== ''));
         $currentIds = $analyses[$label]['identities'] ?? [];
         $removed = array_values(array_diff($goldenIds, $currentIds));
         $added = array_values(array_diff($currentIds, $goldenIds));

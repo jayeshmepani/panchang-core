@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Astronomy;
 
 use Carbon\CarbonImmutable;
+use FFI;
 use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\Concerns\ConfiguresEphemeris;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JmeEph\FFI\JmeEphFFI;
+use RuntimeException;
 
 /**
  * Astronomy Service.
@@ -117,8 +119,60 @@ class AstronomyService
 
     public function setAyanamsa(float $jd): void
     {
-        // For any authentic Hindu Panchanga, Lahiri is the only absolute standard.
+        // Configure project default sidereal reference (PanchangCore uses Lahiri/Chitrapaksha by default).
         $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
+    }
+
+    /**
+     * Canonical geocentric planet body IDs for DE/JPL kernels.
+     *
+     * Lossless reference: astrology JME_PLANET_IDS / jme_compat.py body map
+     * and jpl-ephemeris metadata.c NAIF mapping.
+     *
+     * Mars/Jupiter/Saturn MUST use planetary barycenters (NAIF 4/5/6).
+     * Planet-center IDs (499/599/699) are not reliably available from
+     * de440.bsp alone under CALCEPH.
+     *
+     * @return array<string, int>
+     */
+    public static function jmePlanetBodyIds(): array
+    {
+        return [
+            'Sun' => JmeEphFFI::JME_BODY_SUN,
+            'Moon' => JmeEphFFI::JME_BODY_MOON,
+            'Mars' => JmeEphFFI::JME_BODY_MARS_BARYCENTER,
+            'Mercury' => JmeEphFFI::JME_BODY_MERCURY,
+            'Jupiter' => JmeEphFFI::JME_BODY_JUPITER_BARYCENTER,
+            'Venus' => JmeEphFFI::JME_BODY_VENUS,
+            'Saturn' => JmeEphFFI::JME_BODY_SATURN_BARYCENTER,
+            'Rahu' => JmeEphFFI::JME_BODY_MEAN_NODE,
+        ];
+    }
+
+    /**
+     * Sidereal geocentric apparent flags matching astrology jme_compat.calc_ut().
+     *
+     * astrology uses HIGH_PRECISION|SIDEREAL, then auto-ORs NO_ABERRATION for
+     * apparent positions (JPL double-aberration compensation), unless true /
+     * heliocentric / barycentric vector flags are set.
+     */
+    public static function jmeSiderealApparentFlags(int $extraFlags = 0): int
+    {
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION
+            | JmeEphFFI::JME_CALC_SIDEREAL
+            | $extraFlags;
+
+        $skipNoAberration = (bool) ($flags & (
+            JmeEphFFI::JME_CALC_TRUE_POSITION
+            | JmeEphFFI::JME_CALC_HELIOCENTRIC
+            | JmeEphFFI::JME_CALC_BARYCENTRIC
+        ));
+
+        if (!$skipNoAberration) {
+            $flags |= JmeEphFFI::JME_CALC_NO_ABERRATION;
+        }
+
+        return $flags;
     }
 
     public function getPlanets(array $birth): array
@@ -131,38 +185,48 @@ class AstronomyService
         $jd = $this->toJulianDayUtc($birth);
         $this->setAyanamsa($jd);
 
-        // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
-        // applies annual aberration twice (~20.5" Sun error). With this flag the longitudes
-        // become the correct single-aberration apparent positions (verified against the
-        // published 2026 equinox/solstice instants).
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
-        $planets = [
-            'Sun' => JmeEphFFI::JME_BODY_SUN,
-            'Moon' => JmeEphFFI::JME_BODY_MOON,
-            'Mars' => JmeEphFFI::JME_BODY_MARS,
-            'Mercury' => JmeEphFFI::JME_BODY_MERCURY,
-            'Jupiter' => JmeEphFFI::JME_BODY_JUPITER,
-            'Venus' => JmeEphFFI::JME_BODY_VENUS,
-            'Saturn' => JmeEphFFI::JME_BODY_SATURN,
-            'Rahu' => JmeEphFFI::JME_BODY_MEAN_NODE,
-        ];
-
+        $flags = self::jmeSiderealApparentFlags();
         $out = [];
-        foreach ($planets as $name => $pid) {
-            $this->jme->jme_calc_ut($jd, $pid, $flags, $this->xxBuffer, $this->serrBuffer);
-            $out[$name] = AstroCore::normalize($this->xxBuffer[0]);
+        foreach (self::jmePlanetBodyIds() as $name => $pid) {
+            $out[$name] = $this->calcBodyLongitudeAtJd($jd, $pid, $flags);
         }
 
         $out['Ketu'] = AstroCore::normalize($out['Rahu'] + 180.0);
 
-        // Ensure all planet longitudes use configured precision
-        foreach ($out as $name => $lon) {
-            $out[$name] = $lon;
-        }
-
         $this->trimCache($this->planetLongitudeCache);
 
         return $this->planetLongitudeCache[$cacheKey] = $out;
+    }
+
+    /**
+     * Sidereal body longitude at JD via the configured JME engine (JPL when enabled).
+     *
+     * Throws on native calculation failure. No Moshier fallback — keep ENGINE=JPL
+     * and use barycenter body IDs for outer planets (astrology lossless path).
+     */
+    public function calcBodyLongitudeAtJd(float $jd, int $bodyId, ?int $flags = null): float
+    {
+        $flags ??= self::jmeSiderealApparentFlags();
+
+        $this->setAyanamsa($jd);
+
+        $rc = $this->jme->jme_calc_ut($jd, $bodyId, $flags, $this->xxBuffer, $this->serrBuffer);
+        $lon = AstroCore::normalize((float) $this->xxBuffer[0]);
+        $err = FFI::string($this->serrBuffer);
+
+        if ($rc < 0 || !is_finite($lon)) {
+            throw new RuntimeException(
+                sprintf(
+                    'Unable to compute body %d longitude at JD %.8F (rc=%d, err=%s).',
+                    $bodyId,
+                    $jd,
+                    $rc,
+                    $err !== '' ? $err : 'empty'
+                )
+            );
+        }
+
+        return $lon;
     }
 
     public function getAscendant(array $birth): float

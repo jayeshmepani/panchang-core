@@ -180,7 +180,7 @@ class MonthFieldsSelectiveTest extends TestCase
             $key = $field . '_windows';
             $expected = array_values(array_filter(
                 $expanded[$key],
-                fn (array $window): bool => $this->windowOverlapsRange($window, $rangeStart, $rangeEndExclusive)
+                fn(array $window): bool => $this->windowOverlapsRange($window, $rangeStart, $rangeEndExclusive)
             ));
 
             $this->assertSame(
@@ -214,7 +214,7 @@ class MonthFieldsSelectiveTest extends TestCase
 
         $jyeshthaWindows = array_values(array_filter(
             $selected['purnimanta_month_windows'],
-            static fn (array $window): bool => str_starts_with((string) $window['name'], 'Jyeshtha')
+            static fn(array $window): bool => str_starts_with((string) $window['name'], 'Jyeshtha')
         ));
 
         $this->assertCount(2, $jyeshthaWindows);

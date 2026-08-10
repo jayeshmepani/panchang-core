@@ -91,7 +91,7 @@ class GovardhanSourceLosslessUnionProbeTest extends TestCase
 
         // Range coverage: Diwali seasons 2025 and 2026 fall inside Oct 2025–Mar 2027.
         $seasonDates = array_map(
-            static fn (array $r): string => (string) ($r['shared_facts']['d1']['date'] ?? ''),
+            static fn(array $r): string => (string) ($r['shared_facts']['d1']['date'] ?? ''),
             $report,
         );
         self::assertTrue(
@@ -328,7 +328,7 @@ class GovardhanSourceLosslessUnionProbeTest extends TestCase
 
         usort(
             $overlapping,
-            static fn (array $a, array $b): int => ((float) $a['sunrise_jd']) <=> ((float) $b['sunrise_jd']),
+            static fn(array $a, array $b): int => ((float) $a['sunrise_jd']) <=> ((float) $b['sunrise_jd']),
         );
 
         $d1 = $overlapping[0];
@@ -410,7 +410,7 @@ class GovardhanSourceLosslessUnionProbeTest extends TestCase
             'moon_sun_elongation_at_sunset_degrees' => (float) ($ctx['moon_sun_elongation_at_sunset_degrees'] ?? 0.0),
             'moon_illumination_at_sunset_percent' => (float) ($ctx['moon_illumination_at_sunset_percent'] ?? 0.0),
             'festivals' => array_values(array_map(
-                static fn (array $f): string => (string) ($f['name_key'] ?? $f['name'] ?? ''),
+                static fn(array $f): string => (string) ($f['name_key'] ?? $f['name'] ?? ''),
                 (array) ($details['Festivals'] ?? []),
             )),
         ];
@@ -803,7 +803,7 @@ class GovardhanSourceLosslessUnionProbeTest extends TestCase
             }
 
             // Within 2 days of either candidate.
-            foreach (array_filter([$d1, $d2], static fn (?string $c): bool => $c !== null) as $cand) {
+            foreach (array_filter([$d1, $d2], static fn(?string $c): bool => $c !== null) as $cand) {
                 $delta = abs(CarbonImmutable::parse($pkg)->diffInDays(CarbonImmutable::parse($cand)));
                 if ($delta <= 2) {
                     return $pkg;
@@ -827,7 +827,7 @@ class GovardhanSourceLosslessUnionProbeTest extends TestCase
             'Chopda Pujan',
             'Bestu Varas',
         ];
-        foreach (array_filter([$d1, $d2], static fn (?array $day): bool => $day !== null) as $day) {
+        foreach (array_filter([$d1, $d2], static fn(?array $day): bool => $day !== null) as $day) {
             foreach ((array) ($day['festivals'] ?? []) as $name) {
                 if (in_array((string) $name, $needles, true)) {
                     return true;

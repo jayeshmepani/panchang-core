@@ -114,8 +114,7 @@ class SpecialYogaCalculator
     public function __construct(
         private readonly SunService $sunService,
         private readonly IntervalTracker $intervalTracker
-    ) {
-    }
+    ) {}
 
     public function calculateSpecialYogas(
         CarbonImmutable $date,
@@ -195,7 +194,7 @@ class SpecialYogaCalculator
         $payload['summary'] = [
             'active_yoga_keys' => array_keys(array_filter(
                 $payload,
-                static fn (array $node): bool => (($node['is_present'] ?? false) === true)
+                static fn(array $node): bool => (($node['is_present'] ?? false) === true)
             )),
             'sunrise_tithi' => Tithi::from($tithiNumber)->getName(),
             'weekday' => Vara::from($weekdayIndex)->getName(),

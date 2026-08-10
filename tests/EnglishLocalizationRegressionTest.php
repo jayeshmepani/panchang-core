@@ -97,7 +97,7 @@ class EnglishLocalizationRegressionTest extends TestCase
         $sankranti = $calendar['2026-06-15']['festivals'][0] ?? [];
         $chandraDarshana = array_values(array_filter(
             $calendar['2026-06-16']['festivals'] ?? [],
-            static fn (array $festival): bool => ($festival['name_key'] ?? '') === 'Chandra Darshana'
+            static fn(array $festival): bool => ($festival['name_key'] ?? '') === 'Chandra Darshana'
         ))[0] ?? [];
 
         $this->assertSame('Mithuna Sankranti', $sankranti['name'] ?? null);

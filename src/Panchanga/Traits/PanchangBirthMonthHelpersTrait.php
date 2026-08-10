@@ -106,10 +106,10 @@ trait PanchangBirthMonthHelpersTrait
     private function getTrueHinduMonth(float $jd): array
     {
         // Find the Amavasya that STARTS the current lunar month (most recent new moon)
-        $startAmavasya = $this->findAngleCrossing($jd, 0.0, -1, fn (float $t): float => $this->getMoonSunAngle($t));
+        $startAmavasya = $this->findAngleCrossing($jd, 0.0, -1, fn(float $t): float => $this->getMoonSunAngle($t));
         // Find the Amavasya that ENDS the current lunar month (next new moon)
         // Start from slightly after the start Amavasya to ensure we find the NEXT one
-        $endAmavasya = $this->findAngleCrossing($startAmavasya + 1.0, 0.0, 1, fn (float $t): float => $this->getMoonSunAngle($t));
+        $endAmavasya = $this->findAngleCrossing($startAmavasya + 1.0, 0.0, 1, fn(float $t): float => $this->getMoonSunAngle($t));
 
         // Sun's sidereal longitude at both Amavasyas
         $sunAtStart = $this->getSunLongitude($startAmavasya);

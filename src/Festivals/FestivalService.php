@@ -42,8 +42,7 @@ class FestivalService
 
     public function __construct(
         private readonly FestivalRuleEngine $ruleEngine
-    ) {
-    }
+    ) {}
 
     public static function getFestivalCount(): int
     {
@@ -297,7 +296,7 @@ class FestivalService
                         $yesterdayDetails,
                         $todayDetails,
                         is_array($dayBeforeYesterday) ? $dayBeforeYesterday : null,
-                        static fn (CarbonImmutable $lookupDate): ?array => $lookupDate->isSameDay($date->addDay())
+                        static fn(CarbonImmutable $lookupDate): ?array => $lookupDate->isSameDay($date->addDay())
                             ? (is_array($dayAfterToday) ? $dayAfterToday : null)
                             : null
                     )
@@ -538,7 +537,7 @@ class FestivalService
         if ($hasVinayaka) {
             return array_values(array_filter(
                 $mergedFestivals,
-                static fn (array $fest): bool => (string) ($fest['name_key'] ?? $fest['resolution']['festival_name'] ?? $fest['name'] ?? '') !== 'Vinayaki Chaturthi'
+                static fn(array $fest): bool => (string) ($fest['name_key'] ?? $fest['resolution']['festival_name'] ?? $fest['name'] ?? '') !== 'Vinayaki Chaturthi'
             ));
         }
 
@@ -622,7 +621,7 @@ class FestivalService
 
                 $variantName = $traditionRules['variant_name'];
                 $variantAliases = array_map(
-                    static fn (mixed $alias): string => (string) $alias,
+                    static fn(mixed $alias): string => (string) $alias,
                     (array) ($traditionRules['aliases'] ?? [])
                 );
 
@@ -883,7 +882,7 @@ class FestivalService
             (string) ($calendar['Nirayana_Ayana_Key'] ?? ''),
             (string) ($calendar['Ayana'] ?? ''),
             (string) ($calendar['Nirayana_Ayana'] ?? ''),
-        ], static fn (string $v): bool => $v !== '');
+        ], static fn(string $v): bool => $v !== '');
 
         return $this->ayanaLabelMatches($required, $candidates);
     }
@@ -902,7 +901,7 @@ class FestivalService
         $candidates = array_filter([
             (string) ($calendar['Sayana_Ritu_Key'] ?? ''),
             (string) ($calendar['Sayana_Ritu'] ?? ''),
-        ], static fn (string $v): bool => $v !== '');
+        ], static fn(string $v): bool => $v !== '');
 
         return $this->rituLabelMatches($required, $candidates);
     }

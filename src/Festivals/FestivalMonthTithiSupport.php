@@ -375,21 +375,21 @@ trait FestivalMonthTithiSupport
             }
 
             $allowedAmanta = array_values(array_filter(array_map(
-                fn ($month): string => $this->normalizeMonthName((string) $month),
+                fn($month): string => $this->normalizeMonthName((string) $month),
                 (array) ($rules['allowed_months_amanta'] ?? [])
-            ), fn (string $value): bool => $value !== ''));
+            ), fn(string $value): bool => $value !== ''));
 
             return $allowedAmanta !== [] && $amanta !== '' && in_array($amanta, $allowedAmanta, true);
         }
 
         $allowedAmanta = array_values(array_filter(array_map(
-            fn ($month): string => $this->normalizeMonthName((string) $month),
+            fn($month): string => $this->normalizeMonthName((string) $month),
             (array) ($rules['allowed_months_amanta'] ?? [])
-        ), fn (string $value): bool => $value !== ''));
+        ), fn(string $value): bool => $value !== ''));
         $allowedPurnimanta = array_values(array_filter(array_map(
-            fn ($month): string => $this->normalizeMonthName((string) $month),
+            fn($month): string => $this->normalizeMonthName((string) $month),
             (array) ($rules['allowed_months_purnimanta'] ?? [])
-        ), fn (string $value): bool => $value !== ''));
+        ), fn(string $value): bool => $value !== ''));
 
         if ((string) ($rules['family'] ?? '') === 'phuldolotsava' && $allowedAmanta !== []) {
             return $amanta !== '' && in_array($amanta, $allowedAmanta, true);
@@ -451,8 +451,8 @@ trait FestivalMonthTithiSupport
         $purnimanta = $this->normalizeMonthName($dynamicPurnimanta);
         $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
 
-        $excludedAmanta = array_map(fn ($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_amanta'] ?? []));
-        $excludedPurnimanta = array_map(fn ($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_purnimanta'] ?? []));
+        $excludedAmanta = array_map(fn($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_amanta'] ?? []));
+        $excludedPurnimanta = array_map(fn($month): string => $this->normalizeMonthName((string) $month), (array) ($rules['excluded_months_purnimanta'] ?? []));
 
         if ($calendarType === 'purnimanta' && $excludedPurnimanta !== []) {
             return in_array($purnimanta, $excludedPurnimanta, true);

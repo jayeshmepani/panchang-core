@@ -115,10 +115,10 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
 
         $selected = array_values(array_filter(
             array_map(
-                static fn (array $r): ?string => $r['operational_selected_date'],
+                static fn(array $r): ?string => $r['operational_selected_date'],
                 $operational,
             ),
-            static fn (?string $d): bool => $d !== null,
+            static fn(?string $d): bool => $d !== null,
         ));
 
         self::assertNotEmpty($selected, 'Operational mode should find at least some first-crescent evenings.');
@@ -198,7 +198,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
                 'selected_date' => $selected['date'] ?? null,
                 'selected_classification' => $selected['classification'] ?? null,
                 'trail' => array_map(
-                    static fn (array $e): array => [
+                    static fn(array $e): array => [
                         'date' => $e['date'],
                         'tithi_proxy_applicable' => $e['tithi_proxy_applicable'],
                         'horizon' => $e['has_post_sunset_horizon_window'],
@@ -215,10 +215,10 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
 
         $selectedDates = array_values(array_filter(
             array_map(
-                static fn (array $r): ?string => $r['selected_date'],
+                static fn(array $r): ?string => $r['selected_date'],
                 $rows,
             ),
-            static fn (?string $date): bool => $date !== null,
+            static fn(?string $date): bool => $date !== null,
         ));
 
         fwrite(STDOUT, "\n=== Strict all-contextual-witness gates probe (Bhuj, Oct 2025-Mar 2027) ===\n");
@@ -268,7 +268,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
         foreach ($seasons as $season) {
             $evenings = array_values(array_filter(
                 $this->scanEveningsAfterAmavasya($service, $season, 8),
-                static fn (array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
+                static fn(array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
             ));
 
             $seasonPasses = false;
@@ -309,7 +309,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
                 'passes' => $seasonPasses,
                 'failing_gates' => array_keys(array_filter($seasonFailures)),
                 'candidate_trail' => array_map(
-                    static fn (array $eve): string => sprintf(
+                    static fn(array $eve): string => sprintf(
                         '%s(tithi=%d horizon=%s 12deg=%s ap3=%s six=%s pradosha=%s)',
                         $eve['date'],
                         (int) ($eve['tithi_index_abs'] ?? 0),
@@ -366,22 +366,22 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
         foreach ($seasons as $season) {
             $evenings = array_values(array_filter(
                 $this->scanEveningsAfterAmavasya($service, $season, 8),
-                static fn (array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
+                static fn(array $eve): bool => in_array((int) ($eve['tithi_index_abs'] ?? 0), [1, 2], true),
             ));
 
-            $base = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+            $base = $this->firstEveningPassing($evenings, static fn(array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
                 && (bool) $eve['twelve_bhaga_proxy_passed']
                 && (bool) $eve['visibility_during_pradosha']);
-            $three = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+            $three = $this->firstEveningPassing($evenings, static fn(array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
                 && (bool) $eve['twelve_bhaga_proxy_passed']
                 && (bool) $eve['visibility_during_pradosha']
                 && (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas']);
-            $six = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
+            $six = $this->firstEveningPassing($evenings, static fn(array $eve): bool => (bool) $eve['has_post_sunset_horizon_window']
                 && (bool) $eve['twelve_bhaga_proxy_passed']
                 && (bool) $eve['visibility_during_pradosha']
                 && (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas']);
-            $threeOnly = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas']);
-            $sixOnly = $this->firstEveningPassing($evenings, static fn (array $eve): bool => (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas']);
+            $threeOnly = $this->firstEveningPassing($evenings, static fn(array $eve): bool => (bool) $eve['dvitiya_covers_full_aparahna_3_muhurtas']);
+            $sixOnly = $this->firstEveningPassing($evenings, static fn(array $eve): bool => (bool) $eve['dvitiya_covers_aparahna_through_sunset_6_muhurtas']);
 
             if ($base !== null) {
                 $baseDates[] = $base['date'];
@@ -670,7 +670,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
             'selected_lag_minutes' => $selected['lag_minutes'] ?? null,
             'pradosha_overlap_on_selected' => $selected['visibility_during_pradosha'] ?? null,
             'evening_trail' => array_map(
-                static fn (array $e): array => [
+                static fn(array $e): array => [
                     'date' => $e['date'],
                     'classification' => $e['classification'],
                     'elong' => $e['modern_directed_moon_sun_longitude_separation_at_local_sunset_degrees'],
@@ -939,7 +939,7 @@ class MonthlyChandraDarshanaRefinedTreeProbeTest extends TestCase
             $dvitiyaStart + 1e-5,
             24.0,
             1,
-            static fn (float $jd): float => $transit->getMoonSunAngle($jd),
+            static fn(float $jd): float => $transit->getMoonSunAngle($jd),
         );
 
         if ($dvitiyaEnd <= $dvitiyaStart) {

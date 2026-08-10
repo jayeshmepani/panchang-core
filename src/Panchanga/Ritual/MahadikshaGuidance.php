@@ -44,7 +44,7 @@ final class MahadikshaGuidance
         if ($hasEclipseException) {
             $blocking = array_values(array_filter(
                 $blocking,
-                static fn (string $key): bool => $key !== 'guru_asta' && $key !== 'shukra_asta'
+                static fn(string $key): bool => $key !== 'guru_asta' && $key !== 'shukra_asta'
             ));
         }
 

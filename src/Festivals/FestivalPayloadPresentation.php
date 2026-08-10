@@ -95,7 +95,7 @@ trait FestivalPayloadPresentation
 
         $regions = $rules['regions'] ?? ['Pan-India'];
         $localizedAliases = array_map(
-            static fn (string $alias): string => Localization::translate('Festival', $alias),
+            static fn(string $alias): string => Localization::translate('Festival', $alias),
             array_map(strval(...), (array) ($rules['aliases'] ?? []))
         );
         $aliases = array_values(array_unique($localizedAliases));
@@ -107,7 +107,7 @@ trait FestivalPayloadPresentation
             'description' => Localization::translate('FestivalDesc', $rules['description'] ?? ''),
             'deity' => $deity === null ? null : Localization::translate('Deity', (string) $deity),
             'fasting' => (bool) ($rules['fasting'] ?? false),
-            'regions' => array_map(static fn ($r): string => Localization::translate('Region', (string) $r), $regions),
+            'regions' => array_map(static fn($r): string => Localization::translate('Region', (string) $r), $regions),
             'aliases' => $aliases,
             'observance_note' => $resolved['observance_note'] ?? null,
             'calculation_basis' => $this->buildCalculationBasis($rules, $resolved),

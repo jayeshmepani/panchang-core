@@ -1,8 +1,8 @@
 {
-    "preset": "empty",
+    "preset": "per",
     "rules": {
-        "@PSR12": true,
-        "declare_strict_types": true,
+        "@PER-CS": true,
+        "declare_strict_types": false,
         "yoda_style": false,
         "new_with_parentheses": {
             "anonymous_class": false,
@@ -133,7 +133,6 @@
             "sort_algorithm": "alpha"
         }
     },
-    "indentation_type": true,
     "exclude": [
         "vendor",
         "node_modules",

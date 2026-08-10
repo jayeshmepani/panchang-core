@@ -415,17 +415,17 @@ class PanchangService
         $tithiNum = (int) $tithi['index'];
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
         $tithiEndAngle = $tithiNum * 12.0;
-        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
-        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn(float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         DebugTrace::log('panchang.day', 'tithi crossings resolved', [
             'tithi_start_jd' => $tithiStartJd,
             'tithi_end_jd' => $tithiEndJd,
         ]);
 
         $nakEndAngle = ($nakIdx + 1) * (360.0 / 27.0);
-        $nakEndJd = $this->findAngleCrossing($jdSunrise, $nakEndAngle, 1, fn (float $jd): float => $this->getMoonLongitude($jd));
+        $nakEndJd = $this->findAngleCrossing($jdSunrise, $nakEndAngle, 1, fn(float $jd): float => $this->getMoonLongitude($jd));
         $nakStartAngle = $nakIdx * (360.0 / 27.0);
-        $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn (float $jd): float => $this->getMoonLongitude($jd));
+        $nakStartJd = $this->findAngleCrossing($jdSunrise, $nakStartAngle, -1, fn(float $jd): float => $this->getMoonLongitude($jd));
         DebugTrace::log('panchang.day', 'nakshatra crossings resolved', [
             'nakshatra_start_jd' => $nakStartJd,
             'nakshatra_end_jd' => $nakEndJd,
@@ -461,14 +461,14 @@ class PanchangService
 
         $yogaIdx = (int) $yoga['index'];
         $yogaEndAngle = $yogaIdx * (360.0 / 27.0);
-        $yogaEndJd = $this->findAngleCrossing($jdSunrise, $yogaEndAngle, 1, fn (float $jd): float => $this->getSunMoonSum($jd));
+        $yogaEndJd = $this->findAngleCrossing($jdSunrise, $yogaEndAngle, 1, fn(float $jd): float => $this->getSunMoonSum($jd));
 
         $karanaEndAngle = $karanaIdx * 6.0;
-        $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $karanaEndJd = $this->findAngleCrossing($jdSunrise, $karanaEndAngle, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         $currentTithiNum = (int) $currentTithi['index'];
         $currentTithiStartAngle = ($currentTithiNum - 1) * 12.0;
-        $currentTithiStartJd = $this->findAngleCrossing($jdCalculationAt, $currentTithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
-        $currentTithiEndJd = $this->findAngleCrossing($jdCalculationAt, $currentTithiNum * 12.0, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $currentTithiStartJd = $this->findAngleCrossing($jdCalculationAt, $currentTithiStartAngle, -1, fn(float $jd): float => $this->getMoonSunAngle($jd));
+        $currentTithiEndJd = $this->findAngleCrossing($jdCalculationAt, $currentTithiNum * 12.0, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         DebugTrace::log('panchang.day', 'yoga/karana crossings resolved', [
             'yoga_end_jd' => $yogaEndJd,
             'karana_end_jd' => $karanaEndJd,
@@ -519,7 +519,7 @@ class PanchangService
             $nextSign = ($civilStartSign + 1) % 12;
             $targetAngle = $nextSign * 30.0;
             // Search from civil start to find exact Sankranti moment
-            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn(float $jd): float => $this->getSunLongitude($jd));
             if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                 $sankrantiName = $sankrantiNameMap[$nextSign];
                 $sankrantiRashi = $nextSign;
@@ -604,7 +604,7 @@ class PanchangService
                 'sankranti_jd' => $sankrantiJd,
             ],
             'Nakshatra_Windows' => array_map(
-                fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz),
+                fn(array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz),
                 $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)
             ),
             'Ekadashi_Observance' => $snapshotEkadashiObservance,
@@ -621,7 +621,7 @@ class PanchangService
             $todaySnapshot,
             $tomorrowSnapshot,
             $yesterdaySnapshot,
-            fn (CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot(
+            fn(CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot(
                 $historicalDate,
                 $lat,
                 $lon,
@@ -1033,7 +1033,7 @@ class PanchangService
                 'Shiva_Vaasa' => $shivaVaasa,
                 'Agni_Vaasa' => $agniVaasa,
                 'Yogini_Vaasa' => $yoginiVaasa,
-            ], static fn (?array $v): bool => $v !== null),
+            ], static fn(?array $v): bool => $v !== null),
         ];
 
         return $this->annotateTimeOnlyFieldsWithDateTime($payload, $relSunrise, $tz);
@@ -1158,8 +1158,8 @@ class PanchangService
         $tithiNum = (int) ($tithi['index'] ?? 0);
         $tithiStartAngle = ($tithiNum - 1) * 12.0;
         $tithiEndAngle = $tithiNum * 12.0;
-        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn (float $jd): float => $this->getMoonSunAngle($jd));
-        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn (float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiStartJd = $this->findAngleCrossing($jdSunrise, $tithiStartAngle, -1, fn(float $jd): float => $this->getMoonSunAngle($jd));
+        $tithiEndJd = $this->findAngleCrossing($jdSunrise, $tithiEndAngle, 1, fn(float $jd): float => $this->getMoonSunAngle($jd));
         $prevTithiEndJd = $tithiStartJd;
 
         // Sankranti date should map to the civil date on which ingress occurs.
@@ -1177,7 +1177,7 @@ class PanchangService
         if ($currentSign !== $nextSunriseSign) {
             $nextSign = ($currentSign + 1) % 12;
             $targetAngle = $nextSign * 30.0;
-            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn (float $jd): float => $this->getSunLongitude($jd));
+            $sankrantiJd = $this->findAngleCrossing($jdCivilStart, $targetAngle, 1, fn(float $jd): float => $this->getSunLongitude($jd));
             if ($sankrantiJd >= $jdCivilStart && $sankrantiJd < $jdCivilEnd) {
                 $sankrantiRashi = $nextSign;
             } else {
@@ -1332,11 +1332,11 @@ class PanchangService
                 'sankranti_jd' => $sankrantiJd,
             ],
             'Bhadra' => $includeExtended ? $this->findBhadraPeriods($jdSunrise, $jdNextSunrise, $tithiNum, (string) $tithi['paksha']) : [],
-            'Tithi_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $this->intervalTracker->collectTithiIntervals($jdSunrise, $jdNextSunrise)),
-            'Nakshatra_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)),
-            'Nakshatra_Padas' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $this->intervalTracker->collectNakshatraPadaIntervals($jdSunrise, $jdNextSunrise)),
-            'Yoga_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)),
-            'Karana_Windows' => array_map(fn (array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $this->intervalTracker->collectKaranaIntervals($jdSunrise, $jdNextSunrise)),
+            'Tithi_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'tithi', $tz), $this->intervalTracker->collectTithiIntervals($jdSunrise, $jdNextSunrise)),
+            'Nakshatra_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz), $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)),
+            'Nakshatra_Padas' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'pada', $tz), $this->intervalTracker->collectNakshatraPadaIntervals($jdSunrise, $jdNextSunrise)),
+            'Yoga_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)),
+            'Karana_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $this->intervalTracker->collectKaranaIntervals($jdSunrise, $jdNextSunrise)),
         ];
     }
 
@@ -1362,7 +1362,7 @@ class PanchangService
         ]);
 
         $prohibitions = array_values(array_map(
-            fn (string $key): array => [
+            fn(string $key): array => [
                 'key' => $key,
                 'name' => Localization::translate('String', $key),
                 'active' => in_array($key, $guidance['blocking_conditions'], true),
@@ -1370,7 +1370,7 @@ class PanchangService
             $guidance['prohibitions']
         ));
         $exceptions = array_values(array_map(
-            fn (string $key): array => [
+            fn(string $key): array => [
                 'key' => $key,
                 'name' => Localization::translate('String', $key),
             ],
@@ -1386,7 +1386,7 @@ class PanchangService
             'eligible' => $guidance['eligible'],
             'blocking_conditions' => $guidance['blocking_conditions'],
             'blocking_condition_names' => array_map(
-                static fn (string $key): string => Localization::translate('String', $key),
+                static fn(string $key): string => Localization::translate('String', $key),
                 $guidance['blocking_conditions']
             ),
             'prohibitions' => $prohibitions,

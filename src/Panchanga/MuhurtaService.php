@@ -23,8 +23,7 @@ class MuhurtaService
         private readonly InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator,
         private readonly GowriPanchangamCalculator $gowriPanchangamCalculator,
         private readonly LagnaTableCalculator $lagnaTableCalculator
-    ) {
-    }
+    ) {}
 
     public function calculateHora(
         CarbonImmutable $sunrise,

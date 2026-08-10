@@ -19,9 +19,7 @@ class PanchakCalculator
         6 => 'Mrityu Panchaka',
     ];
 
-    public function __construct(private readonly IntervalTracker $intervalTracker)
-    {
-    }
+    public function __construct(private readonly IntervalTracker $intervalTracker) {}
 
     public function calculatePanchak(float $jdStart, float $jdEnd, string $tz): array
     {

@@ -762,7 +762,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             '2026-01-04' => $this->festivalSnapshot(4, 'Shukla', 104.25, 104.75, 105.25, 103.95, 104.95, 'Dhanishta', 105.10, 104.50),
         ];
 
-        $fetchHistoricalSnapshot = static fn (CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
+        $fetchHistoricalSnapshot = static fn(CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
 
         $resolved = $engine->resolveMajorFestival(
             'Chandra Darshana',
@@ -800,7 +800,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             '2026-01-02' => $this->festivalSnapshot(2, 'Shukla', 102.25, 102.75, 103.25, 101.90, 102.95, 'Uttara Ashadha', 102.50, 102.10, 350.0),
         ];
 
-        $fetchHistoricalSnapshot = static fn (CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
+        $fetchHistoricalSnapshot = static fn(CarbonImmutable $d): array => $snapshots[$d->toDateString()] ?? [];
 
         $resolved = $engine->resolveMajorFestival(
             'Chandra Darshana',
@@ -2072,7 +2072,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         $sunService
             ->method('jdToCarbonPublic')
             ->willReturnCallback(
-                static fn (float $jd, string $tz): CarbonImmutable => CarbonImmutable::createFromTimestampUTC((int) round($jd * 86400))
+                static fn(float $jd, string $tz): CarbonImmutable => CarbonImmutable::createFromTimestampUTC((int) round($jd * 86400))
                     ->setTimezone($tz)
             );
 

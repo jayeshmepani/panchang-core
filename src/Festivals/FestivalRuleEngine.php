@@ -29,9 +29,7 @@ class FestivalRuleEngine
     use FestivalRuleChandraDarshana;
     use FestivalRuleNakshatra;
 
-    public function __construct(private readonly ?TransitEngine $transitEngine = null)
-    {
-    }
+    public function __construct(private readonly ?TransitEngine $transitEngine = null) {}
 
     /** Resolve major Hindu/Sanatan observance day by karmakala precedence and tithi continuity. */
     public function resolveMajorFestival(
@@ -101,12 +99,12 @@ class FestivalRuleEngine
 
         $configuredTithi = (int) ($rule['tithi'] ?? 0);
         $ruleTithiOptions = array_values(array_unique(array_map(
-            static fn ($value): int => (int) $value,
-            array_filter((array) ($rule['tithi_options'] ?? []), static fn ($value): bool => (int) $value > 0)
+            static fn($value): int => (int) $value,
+            array_filter((array) ($rule['tithi_options'] ?? []), static fn($value): bool => (int) $value > 0)
         )));
         $requiredTithis = array_values(array_unique(array_filter(
             array_merge($configuredTithi > 0 ? [$configuredTithi] : [], $ruleTithiOptions),
-            static fn (int $value): bool => $value > 0
+            static fn(int $value): bool => $value > 0
         )));
 
         if ($requiredTithis === []) {
@@ -125,7 +123,7 @@ class FestivalRuleEngine
         if ($preferHigherTithi) {
             usort(
                 $targetIntervals,
-                static fn (array $left, array $right): int => $right['tithi'] <=> $left['tithi'],
+                static fn(array $left, array $right): int => $right['tithi'] <=> $left['tithi'],
             );
         }
 
@@ -166,7 +164,7 @@ class FestivalRuleEngine
                 $winner['reason'] = 'kshaya_next_day';
                 $winner['score'] = max((int) ($winner['score'] ?? 0), 1100);
             } else {
-                $eligible = array_values(array_filter($candidates, static fn (array $candidate): bool => $candidate['target_during_observance']));
+                $eligible = array_values(array_filter($candidates, static fn(array $candidate): bool => $candidate['target_during_observance']));
 
                 if ($eligible === []) {
                     continue;
@@ -174,7 +172,7 @@ class FestivalRuleEngine
 
                 $filtered = $eligible;
                 if ($strictKarmakala) {
-                    $atKarmakala = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['target_at_karmakala']));
+                    $atKarmakala = array_values(array_filter($filtered, static fn(array $candidate): bool => $candidate['target_at_karmakala']));
                     if ($atKarmakala === [] && (bool) ($rule['require_karmakala_match'] ?? false)) {
                         continue;
                     }
@@ -186,7 +184,7 @@ class FestivalRuleEngine
 
                 $forbiddenPrevTithiKarmakala = $rule['forbid_previous_tithi_at'] ?? null;
                 if (is_string($forbiddenPrevTithiKarmakala) && $forbiddenPrevTithiKarmakala !== '') {
-                    $withoutForbiddenCarry = array_values(array_filter($filtered, static fn (array $candidate): bool => !$candidate['prev_tithi_at_forbidden_karmakala']));
+                    $withoutForbiddenCarry = array_values(array_filter($filtered, static fn(array $candidate): bool => !$candidate['prev_tithi_at_forbidden_karmakala']));
                     if ($withoutForbiddenCarry !== []) {
                         $filtered = $withoutForbiddenCarry;
                     }
@@ -194,7 +192,7 @@ class FestivalRuleEngine
 
                 $requiredPrevTithiKarmakala = $rule['require_previous_tithi_at'] ?? null;
                 if (is_string($requiredPrevTithiKarmakala) && $requiredPrevTithiKarmakala !== '') {
-                    $withRequiredCarry = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['prev_tithi_at_required_point']));
+                    $withRequiredCarry = array_values(array_filter($filtered, static fn(array $candidate): bool => $candidate['prev_tithi_at_required_point']));
                     if ($withRequiredCarry === []) {
                         continue;
                     }
@@ -202,7 +200,7 @@ class FestivalRuleEngine
                     $filtered = $withRequiredCarry;
                 }
 
-                $matchingWeekday = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['weekday_matches']));
+                $matchingWeekday = array_values(array_filter($filtered, static fn(array $candidate): bool => $candidate['weekday_matches']));
                 if ($matchingWeekday !== []) {
                     $filtered = $matchingWeekday;
                 } elseif ($requiredWeekday !== null) {
@@ -210,20 +208,20 @@ class FestivalRuleEngine
                 }
 
                 if ($preferNakshatra) {
-                    $matchingNakshatra = array_values(array_filter($filtered, static fn (array $candidate): bool => $candidate['nakshatra_matches']));
+                    $matchingNakshatra = array_values(array_filter($filtered, static fn(array $candidate): bool => $candidate['nakshatra_matches']));
                     if ($matchingNakshatra !== []) {
                         $filtered = $matchingNakshatra;
                     }
                 }
 
-                $filtered = array_values(array_filter($filtered, static fn (array $candidate): bool => !$candidate['rule_rejected']));
+                $filtered = array_values(array_filter($filtered, static fn(array $candidate): bool => !$candidate['rule_rejected']));
                 if ($filtered === []) {
                     continue;
                 }
 
                 usort(
                     $filtered,
-                    fn (array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala, $preferGrowthBeforeScore)
+                    fn(array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala, $preferGrowthBeforeScore)
                 );
                 $winner = $filtered[0];
             }

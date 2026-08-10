@@ -479,7 +479,7 @@ trait FestivalRelativeDaySupport
             }
         }
 
-        return array_values(array_unique(array_filter($names, static fn (string $value): bool => $value !== '')));
+        return array_values(array_unique(array_filter($names, static fn(string $value): bool => $value !== '')));
     }
 
     /** True when the current day pass already resolved the parent festival. */

@@ -97,7 +97,7 @@ trait FestivalRuleNakshatra
             $monthTomorrow = (string) ($calendarTomorrow['Month_Amanta_En'] ?? $calendarTomorrow['Month_Amanta'] ?? '');
             $monthTodayNorm = $this->normalizeMonthName($monthToday);
             $monthTomorrowNorm = $this->normalizeMonthName($monthTomorrow);
-            $allowedMonthsNorm = array_map(fn ($m): string => $this->normalizeMonthName((string) $m), $allowedMonths);
+            $allowedMonthsNorm = array_map(fn($m): string => $this->normalizeMonthName((string) $m), $allowedMonths);
             $monthTodayMatch = in_array($monthTodayNorm, $allowedMonthsNorm, true);
             $monthTomorrowMatch = in_array($monthTomorrowNorm, $allowedMonthsNorm, true);
 
@@ -193,9 +193,9 @@ trait FestivalRuleNakshatra
         // Check if purnima is also required (e.g., Thai Poosam = Pushya + Purnima)
         $requiresPurnima = (bool) ($rule['requires_purnima'] ?? false);
         $purnimaRequiredMonths = array_values(array_filter(array_map(
-            fn ($month): string => $this->normalizeMonthName((string) $month),
+            fn($month): string => $this->normalizeMonthName((string) $month),
             (array) ($rule['purnima_required_months_amanta'] ?? [])
-        ), fn (string $value): bool => $value !== ''));
+        ), fn(string $value): bool => $value !== ''));
         $amantaMonth = $this->normalizeMonthName((string) (($today['Hindu_Calendar']['Month_Amanta_En'] ?? $today['Hindu_Calendar']['Month_Amanta'] ?? '')));
         if ($purnimaRequiredMonths !== [] && $amantaMonth !== '' && in_array($amantaMonth, $purnimaRequiredMonths, true)) {
             $requiresPurnima = true;

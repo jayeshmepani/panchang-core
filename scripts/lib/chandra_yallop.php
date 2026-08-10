@@ -475,8 +475,8 @@ function chandra_yallop_evaluate_evening(
     // Audit only (does not affect q): exact spherical separation from horizontal
     // coords — cos c = sin h⊙ sin h☽ + cos h⊙ cos h☽ cos(DAZ)
     // (not the approximate cos ARCL ≟ cos ARCV · cos DAZ relation).
-    $cosArclHorizontal =
-        sin(deg2rad((float) $sunHz['alt_deg'])) * sin(deg2rad((float) $moonHz['alt_deg']))
+    $cosArclHorizontal
+        = sin(deg2rad((float) $sunHz['alt_deg'])) * sin(deg2rad((float) $moonHz['alt_deg']))
         + cos(deg2rad((float) $sunHz['alt_deg'])) * cos(deg2rad((float) $moonHz['alt_deg']))
         * cos(deg2rad($daz));
     if ($cosArclHorizontal > 1.0) {

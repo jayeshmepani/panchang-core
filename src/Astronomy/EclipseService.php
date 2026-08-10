@@ -171,7 +171,7 @@ class EclipseService
             }
         }
 
-        usort($events, static fn (array $a, array $b): int => $a['jd'] <=> $b['jd']);
+        usort($events, static fn(array $a, array $b): int => $a['jd'] <=> $b['jd']);
 
         return $events;
     }
@@ -903,7 +903,7 @@ class EclipseService
             ]);
         };
 
-        $format = fn (?float $jd, string $zone): ?array => $this->formatInstant($jd, $zone);
+        $format = fn(?float $jd, string $zone): ?array => $this->formatInstant($jd, $zone);
 
         if ($eclipseKind === 'Lunar') {
             if ($grastUday) {

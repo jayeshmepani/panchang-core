@@ -110,7 +110,7 @@ trait PanchangAstronomyHelpersTrait
                 $isoKey = $key . '_iso';
                 if (array_key_exists($isoKey, $node)) {
                     try {
-                        $lastResolvedDt = CarbonImmutable::parse((string)$node[$isoKey], $tz);
+                        $lastResolvedDt = CarbonImmutable::parse((string) $node[$isoKey], $tz);
                     } catch (Throwable) {}
 
                     continue;

@@ -58,14 +58,14 @@ class EkadashiParanaCalculator
                 $tithiStartJd - 1.2,
                 $dashamiStartAngle,
                 1,
-                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
             );
             $dvadashiEndAngle = ($tithiNumber + 1) * 12.0;
             $dvadashiEndJd = $this->transitEngine->findAngleCrossing(
                 $tithiEndJd + 0.000001,
                 $dvadashiEndAngle,
                 1,
-                fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
             );
             $thirdSunriseJd = $this->calculateSunriseForJdDate($nextSunriseJd + 1.0, $tz, $lat, $lon);
             $followingPakshaEndVriddhi = $this->followingPakshaEndTithiHasVriddhi($tithiNumber, $tithiEndJd, $sunriseJd, $tz, $lat, $lon);
@@ -213,13 +213,13 @@ class EkadashiParanaCalculator
             $searchFromJd + 0.000001,
             $pakshaEndStartAngle,
             1,
-            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
         );
         $pakshaEndEndJd = $this->transitEngine->findAngleCrossing(
             $pakshaEndStartJd + 0.000001,
             $pakshaEndEndAngle,
             1,
-            fn (float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
         );
 
         $sunrisesInPakshaEnd = 0;
@@ -378,7 +378,7 @@ class EkadashiParanaCalculator
             'profile' => 'satsangi_jeevan_ekadashi',
             'guidance_keys' => $guidanceKeys,
             'guidance' => array_map(
-                static fn (string $key): string => Localization::translate('String', $key),
+                static fn(string $key): string => Localization::translate('String', $key),
                 $guidanceKeys
             ),
             'source_refs' => ['Satsangi Jeevan 3.32.84-87', 'Satsangi Jeevan 3.32.160-175'],

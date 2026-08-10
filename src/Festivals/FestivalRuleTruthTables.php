@@ -222,11 +222,11 @@ trait FestivalRuleTruthTables
         $calendarType = strtolower((string) ($calendar['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta')));
 
         $allowedAmanta = array_map(
-            fn ($month): string => $this->normalizeMonthName((string) $month),
+            fn($month): string => $this->normalizeMonthName((string) $month),
             (array) ($rule['allowed_months_amanta'] ?? (isset($rule['month_amanta']) ? [$rule['month_amanta']] : []))
         );
         $allowedPurnimanta = array_map(
-            fn ($month): string => $this->normalizeMonthName((string) $month),
+            fn($month): string => $this->normalizeMonthName((string) $month),
             (array) ($rule['allowed_months_purnimanta'] ?? (isset($rule['month_purnimanta']) ? [$rule['month_purnimanta']] : []))
         );
 

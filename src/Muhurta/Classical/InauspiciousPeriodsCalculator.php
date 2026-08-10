@@ -136,7 +136,7 @@ class InauspiciousPeriodsCalculator
             );
         }
 
-        return array_values(array_filter($windows, static fn (?array $window): bool => $window !== null));
+        return array_values(array_filter($windows, static fn(?array $window): bool => $window !== null));
     }
 
     public function calculateAmritaKaal(CarbonImmutable $sunrise, array $varjyam): array

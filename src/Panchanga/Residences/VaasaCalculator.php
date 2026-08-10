@@ -99,9 +99,7 @@ class VaasaCalculator
         7 => 'South-East',
     ];
 
-    public function __construct(private readonly SunService $sunService)
-    {
-    }
+    public function __construct(private readonly SunService $sunService) {}
 
     public function calculateShivaVaasa(int $tithiNumber, float $tithiEndJd, string $tz): array
     {

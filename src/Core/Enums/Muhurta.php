@@ -194,7 +194,7 @@ enum Muhurta: int
     {
         $indexes = self::getWeekdayDurMuhurtaIndexes($varaIndex);
         return array_map(
-            fn (int $idx): string => self::from($idx)->getName(),
+            fn(int $idx): string => self::from($idx)->getName(),
             $indexes
         );
     }

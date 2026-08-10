@@ -281,7 +281,7 @@ if (! is_dir($outputBaseDir)) {
 $jobs = [];
 foreach ($calendarTypes as $type) {
     foreach ($locales as $lang) {
-        $jobs[] = static fn (): array => generateCalendarLocale(
+        $jobs[] = static fn(): array => generateCalendarLocale(
             $type,
             $lang,
             $scriptsDir,

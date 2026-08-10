@@ -19,9 +19,7 @@ class VarjyamWindowCalculator
         25 => 30.00, 26 => 50.00,
     ];
 
-    public function __construct(private readonly TransitEngine $transitEngine)
-    {
-    }
+    public function __construct(private readonly TransitEngine $transitEngine) {}
 
     public function calculateVarjyamWindows(
         float $jdSunrise,
@@ -62,7 +60,7 @@ class VarjyamWindowCalculator
                 $currentNakStartJd + 1e-6,
                 $targetAngle,
                 1,
-                fn (float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
             );
 
             if ($currentNakEndJd <= $currentNakStartJd) {

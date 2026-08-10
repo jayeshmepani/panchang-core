@@ -44,7 +44,7 @@ class FestivalCoverageRegressionTest extends TestCase
             );
 
             $festivalNames = array_map(
-                static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+                static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
                 $details['Festivals'] ?? []
             );
 
@@ -151,7 +151,7 @@ class FestivalCoverageRegressionTest extends TestCase
         );
 
         $vaishakhaNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $vaishakhaDetails['Festivals'] ?? []
         );
 
@@ -166,7 +166,7 @@ class FestivalCoverageRegressionTest extends TestCase
         );
 
         $chaitraNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $chaitraDetails['Festivals'] ?? []
         );
 
@@ -185,7 +185,7 @@ class FestivalCoverageRegressionTest extends TestCase
             'amanta',
         );
         $adhikaNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $adhikaDetails['Festivals'] ?? []
         );
         $this->assertContains('Hari Jayanti', $adhikaNames, 'Monthly Hari Jayanti must emit in Adhika Masa (2026-05-24 Adhik Jyeshtha Sud 9).');
@@ -202,7 +202,7 @@ class FestivalCoverageRegressionTest extends TestCase
             'amanta',
         );
         $antardhanNijaNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $antardhanNija['Festivals'] ?? []
         );
         $this->assertContains('Shree Hari Antardhan', $antardhanNijaNames, 'Shree Hari Antardhan on nija Jyeshtha Sud 10 (2026-06-24).');
@@ -217,7 +217,7 @@ class FestivalCoverageRegressionTest extends TestCase
             'amanta',
         );
         $antardhanAdhikaNames = array_map(
-            static fn (array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
+            static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
             $antardhanAdhika['Festivals'] ?? []
         );
         $this->assertNotContains('Shree Hari Antardhan', $antardhanAdhikaNames, 'Antardhan is nija-only; not on Adhik Jyeshtha Sud 10.');
