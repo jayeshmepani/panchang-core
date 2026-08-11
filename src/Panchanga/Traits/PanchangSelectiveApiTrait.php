@@ -418,11 +418,11 @@ trait PanchangSelectiveApiTrait
             $solarTransitsNext = $this->sunService->getSolarTransits($ctx['sun']['next_birth']);
             $civilDayStart = $date->setTime(0, 0, 0);
             $civilDayEnd = $civilDayStart->addDay();
-            $samvat = $this->panchanga->getSamvat($date->year, $date->month);
-            $vikram = $samvat['Vikram_Samvat'];
-            $saka = $samvat['Saka_Samvat'];
             $hinduMonth = $ctx['hindu_month'];
-            $gujaratiSamvat = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
+            $eraYears = $this->resolveEraYearsForHinduMonth($hinduMonth, $tz);
+            $vikram = $eraYears['Vikram_Samvat'];
+            $saka = $eraYears['Saka_Samvat'];
+            $gujaratiSamvat = $eraYears['Gujarati_Samvat'];
             $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
                 $vikram,
                 $saka,

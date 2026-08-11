@@ -173,6 +173,9 @@ trait PanchangBirthMonthHelpersTrait
             'Purnimanta_Index' => $purnimantaIdx,
             'Is_Adhika' => $isAdhika,
             'Is_Kshaya' => $isKshaya,
+            // Lunar-month boundaries used for Chaitradi / Gujarati era-year assignment.
+            'Amanta_Start_JD' => $startAmavasya,
+            'Amanta_End_JD' => $endAmavasya,
         ];
 
         return $data;

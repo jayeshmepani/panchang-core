@@ -35,6 +35,7 @@ use JayeshMepani\PanchangCore\Panchanga\Vrata\EkadashiParanaCalculator;
 use JayeshMepani\PanchangCore\Panchanga\Yogas\SpecialYogaCalculator;
 use JayeshMepani\PanchangCore\Support\DebugTrace;
 use JmeEph\FFI\JmeEphFFI;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -530,11 +531,11 @@ class PanchangService
             }
         }
 
-        $samvat = $this->panchanga->getSamvat($date->year, $date->month);
-        $vikram = $samvat['Vikram_Samvat'];
-        $saka = $samvat['Saka_Samvat'];
-        $kali = $this->panchanga->getKaliSamvat($vikram);
-        $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
+        $eraYears = $this->resolveEraYearsForHinduMonth($hinduMonth, $tz);
+        $vikram = $eraYears['Vikram_Samvat'];
+        $saka = $eraYears['Saka_Samvat'];
+        $kali = $eraYears['Kali_Samvat'];
+        $gujarati = $eraYears['Gujarati_Samvat'];
         $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
             $vikram,
             $saka,
@@ -1224,11 +1225,11 @@ class PanchangService
             $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
             (string) ($tithi['paksha'] ?? '')
         );
-        $samvat = $this->panchanga->getSamvat($date->year, $date->month);
-        $vikram = $samvat['Vikram_Samvat'];
-        $saka = $samvat['Saka_Samvat'];
-        $kali = $this->panchanga->getKaliSamvat($vikram);
-        $gujarati = $this->panchanga->getGujaratiSamvat($vikram, $hinduMonth['Amanta_Index']);
+        $eraYears = $this->resolveEraYearsForHinduMonth($hinduMonth, $tz);
+        $vikram = $eraYears['Vikram_Samvat'];
+        $saka = $eraYears['Saka_Samvat'];
+        $kali = $eraYears['Kali_Samvat'];
+        $gujarati = $eraYears['Gujarati_Samvat'];
         $samvatsaraFields = $this->panchanga->buildSamvatsaraCalendarFields(
             $vikram,
             $saka,
@@ -1349,6 +1350,38 @@ class PanchangService
             'dinamana' => $this->buildTraditionalDurationPayload($daySeconds),
             'ratrimana' => $this->buildTraditionalDurationPayload($nightSeconds),
         ];
+    }
+
+    /**
+     * Era years for Hindu_Calendar: Chaitradi Vikram / Śaka / Kali / Gujarati
+     * from the current Amānta month start — same rule as calendar-period windows.
+     *
+     * @param array<string, mixed> $hinduMonth from {@see getTrueHinduMonth()}
+     *
+     * @return array{
+     *   Vikram_Samvat: int,
+     *   Saka_Samvat: int,
+     *   Kali_Samvat: int,
+     *   Gujarati_Samvat: int
+     * }
+     */
+    private function resolveEraYearsForHinduMonth(array $hinduMonth, string $tz): array
+    {
+        $amantaIndex = (int) ($hinduMonth['Amanta_Index'] ?? 0);
+        $startJd = $hinduMonth['Amanta_Start_JD'] ?? null;
+
+        if (!is_numeric($startJd)) {
+            throw new RuntimeException(
+                'Hindu month context is missing Amanta_Start_JD; cannot resolve Chaitradi era years.'
+            );
+        }
+
+        $monthStartLocal = $this->sunService->jdToCarbonPublic((float) $startJd, $tz);
+
+        return $this->panchanga->resolveEraYearsFromAmantaContext(
+            $monthStartLocal,
+            $amantaIndex
+        );
     }
 
     /** @param array<string, mixed> $hinduMonth */

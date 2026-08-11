@@ -2030,11 +2030,11 @@ trait PanchangCalendarApiTrait
         $start = CarbonImmutable::createFromFormat('d/m/Y h:i:s A', (string) $window['start_iso'], $tz);
         $monthIndex = (int) ($window['index'] ?? 0);
 
-        if ($monthIndex >= 9 && $start->month <= 3) {
-            return $start->year + 56;
+        if (!$start instanceof CarbonImmutable) {
+            throw new InvalidArgumentException('Unable to parse Amānta month start for Vikram Samvat resolution.');
         }
 
-        return $start->year + 57;
+        return $this->panchanga->resolveChaitradiVikramSamvat($start, $monthIndex);
     }
 
     private function buildChaitradiVikramSamvatWindows(float $startJd, float $endJd, string $tz, array $amantaWindows): array

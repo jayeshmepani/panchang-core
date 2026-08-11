@@ -211,6 +211,12 @@ class PanchangaEngine
         ];
     }
 
+    /**
+     * Civil Gregorian approximation of Vikram/Śaka years (month ≥ April).
+     *
+     * Prefer {@see resolveEraYearsFromAmantaContext()} for day/month Hindu_Calendar
+     * payloads so era years match Chaitra/Kartika Śukla Pratipadā calendar-period windows.
+     */
     public function getSamvat(int $year, int $month): array
     {
         $adj = $month >= 4 ? 0 : -1;
@@ -218,6 +224,52 @@ class PanchangaEngine
         return [
             'Vikram_Samvat' => $year + 57 + $adj,
             'Saka_Samvat' => $year - 78 + $adj,
+        ];
+    }
+
+    /**
+     * Chaitradi Vikram Samvat from the current Amānta month start (local).
+     *
+     * Same rule as calendar-period windows: for Māgha–Phālguna (index ≥ 9) whose
+     * lunar-month start falls in Jan–Mar of the civil year, use year+56; otherwise
+     * year+57. Chaitra Śukla Pratipadā therefore opens the new Vikram year.
+     */
+    public function resolveChaitradiVikramSamvat(
+        DateTimeInterface $amantaMonthStartLocal,
+        int $amantaIndex
+    ): int {
+        $start = $amantaMonthStartLocal instanceof CarbonImmutable
+            ? $amantaMonthStartLocal
+            : CarbonImmutable::instance($amantaMonthStartLocal);
+
+        if ($amantaIndex >= 9 && $start->month <= 3) {
+            return $start->year + 56;
+        }
+
+        return $start->year + 57;
+    }
+
+    /**
+     * Full era-year block for day/month Hindu_Calendar (period-window parity).
+     *
+     * @return array{
+     *   Vikram_Samvat: int,
+     *   Saka_Samvat: int,
+     *   Kali_Samvat: int,
+     *   Gujarati_Samvat: int
+     * }
+     */
+    public function resolveEraYearsFromAmantaContext(
+        DateTimeInterface $amantaMonthStartLocal,
+        int $amantaIndex
+    ): array {
+        $vikram = $this->resolveChaitradiVikramSamvat($amantaMonthStartLocal, $amantaIndex);
+
+        return [
+            'Vikram_Samvat' => $vikram,
+            'Saka_Samvat' => $vikram - 135,
+            'Kali_Samvat' => $this->getKaliSamvat($vikram),
+            'Gujarati_Samvat' => $this->getGujaratiSamvat($vikram, $amantaIndex),
         ];
     }
 
