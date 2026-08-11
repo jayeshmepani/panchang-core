@@ -66,6 +66,24 @@ return [
 
         // 'mixed' (e.g. '1h 30m 0s'), 'minutes' (90), 'seconds' (5400), 'hours' (1.5)
         'duration_format' => 'mixed',
+
+        /*
+        | Bārhaspatya (Brihaspati) Saṃvatsara timing strategy.
+        |
+        | Package default is always classical_ss (Sewell–Dīkṣit / Sūrya-Siddhānta).
+        | Other keys are opt-in comparison strategies — do not set them as default
+        | merely to match a media almanac over a subset of years.
+        |
+        | Supported:
+        |   classical_ss      — canonical traditional Bārhaspatya (default)
+        |   makaranda         — experimental mean-Jupiter research model
+        |   grahalaghava      — experimental Graha-lāghava research model
+        |   modern_ephemeris  — physical geocentric sidereal Jupiter ingress (needs AstronomyService/JPL)
+        */
+        'brihaspati_samvatsara_model' => env(
+            'PANCHANG_BRIHASPATI_SAMVATSARA_MODEL',
+            'classical_ss'
+        ),
     ],
 
     /*

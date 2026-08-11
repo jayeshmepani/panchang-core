@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
 use JayeshMepani\PanchangCore\Panchanga\PanchangaEngine;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
 use Orchestra\Testbench\TestCase;
@@ -32,13 +33,18 @@ class SamvatsaraRegionalTest extends TestCase
         $this->assertSame('Siddharthi', $engine->getSamvatsaraNorth($vikram));
         $this->assertSame('Pingala', $engine->getSamvatsaraGujarati($gujarati));
         $this->assertSame('Raudri', $engine->getSamvatsaraBrihaspati($date));
+        // Classical transition is ~2026-04-21 17:37 UTC (23:07 IST); civil midnight still Siddharthi.
         $this->assertSame(
             'Siddharthi',
             $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 20))
         );
         $this->assertSame(
-            'Raudri',
+            'Siddharthi',
             $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 21))
+        );
+        $this->assertSame(
+            'Raudri',
+            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 22))
         );
 
         $fields = $engine->buildSamvatsaraCalendarFields($vikram, $saka, $gujarati, $date);
@@ -47,6 +53,14 @@ class SamvatsaraRegionalTest extends TestCase
         $this->assertSame('South', $fields['Samvatsara_South_Prefix']);
         $this->assertSame('Siddharthi', $fields['Samvatsara_North']);
         $this->assertSame('Raudri', $fields['Samvatsara_Brihaspati']);
+        $this->assertSame(
+            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
+            $fields['Samvatsara_Brihaspati_Model']
+        );
+        $this->assertSame(
+            BrihaspatiSamvatsaraService::STATUS_CANONICAL,
+            $fields['Samvatsara_Brihaspati_Model_Status']
+        );
         $this->assertSame('Siddharthi / Raudri', $fields['Samvatsara_North_Display']);
         $this->assertSame('Pingala', $fields['Samvatsara_Gujarati']);
         $this->assertSame('Parabhava', $fields['Samvatsara_Systems']['south_shaka']['name']);

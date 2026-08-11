@@ -104,6 +104,19 @@ trait PanchangCalendarApiTrait
         $amantaWindows = null;
         $result = [];
 
+        $defaultBrihaspatiModel = BrihaspatiSamvatsaraService::defaultModel();
+
+        // Explicit non-canonical models soft-fail. If the configured package default
+        // is itself a projection model (e.g. modern_ephemeris), the generic key soft-fails too.
+        $optionalProjectionFields = [
+            'samvatsara_brihaspati_grahalaghava',
+            'samvatsara_brihaspati_makaranda',
+            'samvatsara_brihaspati_modern',
+        ];
+        if ($defaultBrihaspatiModel !== BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS) {
+            $optionalProjectionFields[] = 'samvatsara_brihaspati';
+        }
+
         foreach ($requested as $field) {
             try {
                 [$windows, $rule] = match ($field) {
@@ -120,20 +133,57 @@ trait PanchangCalendarApiTrait
                     'kali_samvat' => [$this->buildKaliSamvatWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
                     'samvatsara', 'samvatsara_south' => [$this->buildSamvatsaraSouthWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
                     'samvatsara_north' => [$this->buildSamvatsaraNorthWindows($startJd, $endJd, $tz, $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')), 'chaitra_shukla_pratipada_at_sunrise'],
-                    // Classical Bārhaspatya: genuine Sūrya-Siddhānta / Sewell-Dīkṣit mean-motion model.
-                    // Existing key remains the backwards-compatible classical default.
-                    'samvatsara_brihaspati', 'samvatsara_brihaspati_classical' => [
+                    // Configured / package default strategy (classical_ss unless config overrides).
+                    'samvatsara_brihaspati' => [
+                        $this->buildSamvatsaraBrihaspatiWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            $defaultBrihaspatiModel
+                        ),
+                        BrihaspatiSamvatsaraService::assignmentRuleForModel($defaultBrihaspatiModel),
+                    ],
+                    // Explicit Sewell–Dīkṣit / Sūrya-Siddhānta Bārhaspatya (always classical_ss).
+                    'samvatsara_brihaspati_classical' => [
                         $this->buildSamvatsaraBrihaspatiWindows(
                             $startJd,
                             $endJd,
                             $tz,
                             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
                         ),
-                        'continuous_barhaspatya_mean_transit',
+                        BrihaspatiSamvatsaraService::assignmentRuleForModel(
+                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+                        ),
+                    ],
+                    // Historical Graha-lāghava comparison (experimental): classical 60-name phase projected
+                    // onto Gaṇeśa Daivajña's mean-Jupiter 30° ingress timing.
+                    'samvatsara_brihaspati_grahalaghava' => [
+                        $this->buildSamvatsaraBrihaspatiWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                        ),
+                        BrihaspatiSamvatsaraService::assignmentRuleForModel(
+                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                        ),
+                    ],
+                    // Historical Makaranda comparison (experimental): classical 60-name phase projected
+                    // onto the Saurapakṣa bīja mean-Jupiter 30° ingress timing.
+                    'samvatsara_brihaspati_makaranda' => [
+                        $this->buildSamvatsaraBrihaspatiWindows(
+                            $startJd,
+                            $endJd,
+                            $tz,
+                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                        ),
+                        BrihaspatiSamvatsaraService::assignmentRuleForModel(
+                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                        ),
                     ],
                     // Modern physical-astronomy comparison: classical 60-name phase projected onto
                     // the nearest prograde sidereal Jupiter rāśi ingress from AstronomyService.
-                    // This is deliberately NOT labelled as a Drik-Panchang compatibility model.
+                    // Deliberately NOT a Drik-Panchang compatibility model and not package default.
                     'samvatsara_brihaspati_modern' => [
                         $this->buildSamvatsaraBrihaspatiWindows(
                             $startJd,
@@ -141,7 +191,9 @@ trait PanchangCalendarApiTrait
                             $tz,
                             BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
                         ),
-                        'continuous_barhaspatya_modern_jupiter_ingress',
+                        BrihaspatiSamvatsaraService::assignmentRuleForModel(
+                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                        ),
                     ],
                     'samvatsara_gujarati' => [
                         $this->buildGujaratiSamvatsaraWindows(
@@ -160,9 +212,8 @@ trait PanchangCalendarApiTrait
                     $this->attachCivilObservanceDates($windows, $lat, $lon, $tz, $elevation, $rule)
                 );
             } catch (Throwable $e) {
-                // Optional modern Bārhaspatya comparison must not fail the whole
-                // calendar-periods payload (classical + civil windows still useful).
-                if ($field === 'samvatsara_brihaspati_modern') {
+                // Opt-in projection models must not fail the whole calendar-periods payload.
+                if (in_array($field, $optionalProjectionFields, true)) {
                     $result[$field . '_windows'] = [];
                     $result[$field . '_error'] = $e->getMessage();
                     continue;
@@ -176,12 +227,12 @@ trait PanchangCalendarApiTrait
     }
 
     /**
-     * Compare classical Sūrya-Siddhānta Bārhaspatya timing with the modern
-     * physical sidereal-Jupiter-ingress projection over a month range.
+     * Compare classical Sūrya-Siddhānta Bārhaspatya timing with historical
+     * Graha-lāghava, historical Makaranda, and modern physical Jupiter timing
+     * projections over a month range.
      *
-     * This method intentionally compares the SAME 60-name classical sequence.
-     * The modern side changes only the timing basis; it does not invent a
-     * separate 60-name phase from Jupiter's 12 physical rāśis.
+     * All projected sides retain the SAME 60-name classical sequence and change
+     * only the timing basis; no independent 60-name phase is invented.
      *
      * @return array{
      *   models: array<string, array<string, mixed>>,
@@ -218,8 +269,11 @@ trait PanchangCalendarApiTrait
             $comparison = $service->compareModelsFromJd($cursorJd);
             $sameName = (array) ($comparison['same_name_timing'] ?? []);
             $classical = (array) ($sameName['classical'] ?? []);
+            $grahalaghava = (array) ($sameName['grahalaghava'] ?? []);
+            $makaranda = (array) ($sameName['makaranda'] ?? []);
             $modern = (array) ($sameName['modern'] ?? []);
-            $difference = (array) ($sameName['difference'] ?? []);
+            $legacyModernDifference = (array) ($sameName['difference'] ?? []);
+            $differences = (array) ($sameName['differences_from_classical'] ?? []);
 
             $classicalStartJd = (float) ($classical['start_jd'] ?? 0.0);
             $classicalEndJd = (float) ($classical['end_jd'] ?? 0.0);
@@ -239,49 +293,90 @@ trait PanchangCalendarApiTrait
             if (!isset($seen[$key])) {
                 $seen[$key] = true;
 
-                $modernStartJd = (float) ($modern['start_jd'] ?? 0.0);
-                $modernEndJd = (float) ($modern['end_jd'] ?? 0.0);
+                $formatProjection = function (array $timing, string $fallbackModel) use ($tz): array {
+                    $startJd = (float) ($timing['start_jd'] ?? 0.0);
+                    $endJd = (float) ($timing['end_jd'] ?? 0.0);
 
-                $comparisons[] = [
+                    if ($startJd <= 0.0 || $endJd <= $startJd) {
+                        throw new InvalidArgumentException(
+                            sprintf("Brihaspati comparison returned an invalid '%s' window.", $fallbackModel)
+                        );
+                    }
+
+                    return [
+                        'model' => (string) ($timing['model'] ?? $fallbackModel),
+                        'variant' => (string) ($timing['variant'] ?? ''),
+                        'start_jd' => $startJd,
+                        'end_jd' => $endJd,
+                        'start_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($startJd, $tz)
+                        ),
+                        'end_iso' => AstroCore::formatDateTime(
+                            $this->sunService->jdToCarbonPublic($endJd, $tz)
+                        ),
+                        'start_rashi_index' => isset($timing['start_rashi_index'])
+                            ? (int) $timing['start_rashi_index']
+                            : null,
+                        'end_rashi_index' => isset($timing['end_rashi_index'])
+                            ? (int) $timing['end_rashi_index']
+                            : null,
+                    ];
+                };
+
+                $formatDifference = (static fn(array $difference): array => [
+                    'start_seconds' => (float) ($difference['start_seconds'] ?? 0.0),
+                    'end_seconds' => (float) ($difference['end_seconds'] ?? 0.0),
+                    'start_days' => (float) ($difference['start_days'] ?? 0.0),
+                    'end_days' => (float) ($difference['end_days'] ?? 0.0),
+                ]);
+
+                $classicalPublic = [
+                    'model' => (string) ($classical['model'] ?? BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS),
+                    'variant' => (string) ($classical['variant'] ?? ''),
+                    'start_jd' => $classicalStartJd,
+                    'end_jd' => $classicalEndJd,
+                    'start_iso' => AstroCore::formatDateTime(
+                        $this->sunService->jdToCarbonPublic($classicalStartJd, $tz)
+                    ),
+                    'end_iso' => AstroCore::formatDateTime(
+                        $this->sunService->jdToCarbonPublic($classicalEndJd, $tz)
+                    ),
+                ];
+
+                $row = [
                     'name' => (string) ($sameName['name'] ?? ''),
                     'index' => (int) ($sameName['index'] ?? -1),
-                    'classical' => [
-                        'model' => (string) ($classical['model'] ?? BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS),
-                        'variant' => (string) ($classical['variant'] ?? ''),
-                        'start_jd' => $classicalStartJd,
-                        'end_jd' => $classicalEndJd,
-                        'start_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($classicalStartJd, $tz)
-                        ),
-                        'end_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($classicalEndJd, $tz)
-                        ),
-                    ],
-                    'modern' => [
-                        'model' => (string) ($modern['model'] ?? BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS),
-                        'variant' => (string) ($modern['variant'] ?? ''),
-                        'start_jd' => $modernStartJd,
-                        'end_jd' => $modernEndJd,
-                        'start_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($modernStartJd, $tz)
-                        ),
-                        'end_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($modernEndJd, $tz)
-                        ),
-                        'start_rashi_index' => isset($modern['start_rashi_index'])
-                            ? (int) $modern['start_rashi_index']
-                            : null,
-                        'end_rashi_index' => isset($modern['end_rashi_index'])
-                            ? (int) $modern['end_rashi_index']
-                            : null,
-                    ],
-                    'difference' => [
-                        'start_seconds' => (float) ($difference['start_seconds'] ?? 0.0),
-                        'end_seconds' => (float) ($difference['end_seconds'] ?? 0.0),
-                        'start_days' => (float) ($difference['start_days'] ?? 0.0),
-                        'end_days' => (float) ($difference['end_days'] ?? 0.0),
+                    'classical' => $classicalPublic,
+                    'grahalaghava' => $formatProjection(
+                        $grahalaghava,
+                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                    ),
+                    'makaranda' => $formatProjection(
+                        $makaranda,
+                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                    ),
+                    // Backward-compatible legacy difference = modern - classical when present.
+                    'difference' => $legacyModernDifference !== []
+                        ? $formatDifference($legacyModernDifference)
+                        : null,
+                    'differences_from_classical' => [
+                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                            => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA] ?? [])),
+                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                            => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_MAKARANDA] ?? [])),
                     ],
                 ];
+
+                if ($modern !== [] && isset($modern['start_jd'])) {
+                    $row['modern'] = $formatProjection(
+                        $modern,
+                        BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                    );
+                    $row['differences_from_classical'][BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS]
+                        = $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS] ?? $legacyModernDifference));
+                }
+
+                $comparisons[] = $row;
             }
 
             $cursorJd = $classicalEndJd + (0.1 / 86400.0);
@@ -1674,8 +1769,8 @@ trait PanchangCalendarApiTrait
                 'samvatsara',
                 'samvatsara_south',
                 'samvatsara_north',
-                // Classical Bārhaspatya remains in the default payload. The explicit classical
-                // alias and modern ephemeris comparison are opt-in to avoid duplicate/expensive work.
+                // Classical Bārhaspatya remains in the default payload. Explicit classical,
+                // Graha-lāghava, Makaranda and modern comparison fields are opt-in.
                 'samvatsara_brihaspati',
                 'samvatsara_gujarati',
                 'amanta_month',
@@ -1720,6 +1815,16 @@ trait PanchangCalendarApiTrait
                 'samvatsara_brihaspati_classical_windows',
                 'brihaspati_classical',
                 'brihaspati_classical_windows' => 'samvatsara_brihaspati_classical',
+                'samvatsara_brihaspati_grahalaghava_windows',
+                'brihaspati_grahalaghava',
+                'brihaspati_grahalaghava_windows',
+                'grahalaghava_brihaspati',
+                'grahalaghava_samvatsara' => 'samvatsara_brihaspati_grahalaghava',
+                'samvatsara_brihaspati_makaranda_windows',
+                'brihaspati_makaranda',
+                'brihaspati_makaranda_windows',
+                'makaranda_brihaspati',
+                'makaranda_samvatsara' => 'samvatsara_brihaspati_makaranda',
                 'samvatsara_brihaspati_modern_windows',
                 'brihaspati_modern',
                 'brihaspati_modern_windows',
@@ -1745,6 +1850,8 @@ trait PanchangCalendarApiTrait
                 'samvatsara_north',
                 'samvatsara_brihaspati',
                 'samvatsara_brihaspati_classical',
+                'samvatsara_brihaspati_grahalaghava',
+                'samvatsara_brihaspati_makaranda',
                 'samvatsara_brihaspati_modern',
                 'samvatsara_gujarati',
                 'amanta_month',
@@ -2050,18 +2157,18 @@ trait PanchangCalendarApiTrait
         float $startJd,
         float $endJd,
         string $tz,
-        string $model = BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+        ?string $model = null
     ): array {
+        $resolvedModel = BrihaspatiSamvatsaraService::normalizeModelKey(
+            $model ?? BrihaspatiSamvatsaraService::defaultModel()
+        );
         $service = new BrihaspatiSamvatsaraService($this->astronomy);
 
         $windows = [];
         $currentJd = $startJd;
 
         while ($currentJd < $endJd) {
-            $info = $service->getBrihaspatiSamvatsaraInfoFromJd(
-                $currentJd,
-                $model
-            );
+            $info = $service->getBrihaspatiSamvatsaraInfoFromJd($currentJd, $resolvedModel);
 
             $wStartJd = (float) $info['start_jd'];
             $wEndJd = (float) $info['end_jd'];
@@ -2073,9 +2180,16 @@ trait PanchangCalendarApiTrait
                 'end_jd' => $wEndJd,
                 'start_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($wStartJd, $tz)),
                 'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic($wEndJd, $tz)),
-                'brihaspati_model' => (string) ($info['model'] ?? $model),
-                'brihaspati_model_family' => (string) ($info['model_family'] ?? $model),
-                'brihaspati_model_variant' => (string) ($info['variant'] ?? $info['model'] ?? $model),
+                'brihaspati_model' => (string) ($info['model'] ?? $resolvedModel),
+                'brihaspati_model_status' => (string) (
+                    $info['status']
+                    ?? BrihaspatiSamvatsaraService::modelStatus($resolvedModel)
+                ),
+                'brihaspati_model_family' => (string) (
+                    $info['model_family']
+                    ?? BrihaspatiSamvatsaraService::modelFamily($resolvedModel)
+                ),
+                'brihaspati_model_variant' => (string) ($info['variant'] ?? $info['model'] ?? $resolvedModel),
                 'brihaspati_timing_basis' => (string) ($info['timing_basis'] ?? ''),
             ];
 
@@ -2466,6 +2580,10 @@ trait PanchangCalendarApiTrait
 
             if (array_key_exists('brihaspati_model', $window)) {
                 $public['brihaspati_model'] = (string) $window['brihaspati_model'];
+            }
+
+            if (array_key_exists('brihaspati_model_status', $window)) {
+                $public['brihaspati_model_status'] = (string) $window['brihaspati_model_status'];
             }
 
             if (array_key_exists('brihaspati_model_family', $window)) {

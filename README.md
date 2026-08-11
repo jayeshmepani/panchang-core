@@ -98,6 +98,93 @@ $festivals = $details['Festivals'];
 - Use `Tithi_At_Sunrise`, `Nakshatra_At_Sunrise`, and `Karana_At_Sunrise` when sunrise semantics are required explicitly.
 - `Brahma_Muhurta` uses the dynamic night-muhurta convention by default: previous sunset to sunrise divided into 15 night Muhurtas.
 - The fixed 48-minute Brahma Muhurta convention is preserved under `Brahma_Muhurta.fixed_48_minute_convention`.
+
+## Bārhaspatya Saṃvatsara (Mean Jupiter Year) Models
+
+`jayeshmepani/panchang-core` supports four distinct mathematical models for the traditional 60-name **Bārhaspatya Saṃvatsara** (Brihaspati Samvatsara) cycle. The package does **not** lock users to a single model: it uses a **smart default with opt-in Strategy selection**.
+
+| Model Key | Status | Family | Calculation basis | Recommended use |
+| :--- | :--- | :--- | :--- | :--- |
+| `classical_ss` **(default)** | `canonical` | `traditional_barhaspatya` | Sewell–Dīkṣit / Sūrya-Siddhānta with bīja (Article 59) | Standard panchanga, academic baseline, zero ephemeris overhead |
+| `makaranda` | `experimental` | `traditional_mean_jupiter` | Makaranda 1478 bīja mean-Jupiter (research projection) | Research; often closer to published Drik *intraday* times — **not** Drik’s formula |
+| `grahalaghava` | `experimental` | `traditional_mean_jupiter` | Grahalāghava (Gaṇeśa Daivajña, 1520) mean-Jupiter research projection | Regional Western/Central historical comparison |
+| `modern_ephemeris` | `astronomical_comparator` | `modern_ephemeris` | Prograde geocentric sidereal Jupiter rāśi ingress (JPL when configured) | Astrology / gochara / physical transit comparison |
+
+### Why `classical_ss` is the package default
+
+1. **Zero external dependencies** for this cycle — pure PHP mean-motion math (no JPL kernel required for the name).
+2. **Source-defined Bārhaspatya rule** aligned with Sewell & Dīkṣit, *The Indian Calendar* (1896), Article 59.
+3. **Stable calendar-date alignment** with published media series on the *civil date* of transitions for most of the modern test span — without conflating traditional reckoning with physical Jupiter ingress.
+
+**Do not** change the package default to Makaranda, Graha-lāghava, or JPL merely because one series is closer to Drik Panchang over a subset of years. Drik remains an external validation reference, not the source of package constants. Projection models keep the **classical 60-name phase** and only retime boundaries.
+
+### Decision matrix
+
+| Application | Recommended model |
+| :--- | :--- |
+| Standard panchanga / general apps | `classical_ss` (default) |
+| Closer published-media *intraday* research | `makaranda` (opt-in, experimental) |
+| Western/Central historical mean-Jupiter research | `grahalaghava` (opt-in, experimental) |
+| Birth charts / physical Guru gochara | `modern_ephemeris` (opt-in; needs AstronomyService) |
+
+### Configuration (Laravel)
+
+```php
+// config/panchang.php
+return [
+    'defaults' => [
+        // Keep classical_ss unless you knowingly opt into another strategy.
+        'brihaspati_samvatsara_model' => env(
+            'PANCHANG_BRIHASPATI_SAMVATSARA_MODEL',
+            'classical_ss'
+        ),
+    ],
+];
+```
+
+### Calendar period field keys
+
+| Field | Meaning |
+| :--- | :--- |
+| `samvatsara_brihaspati` | Configured / package default strategy |
+| `samvatsara_brihaspati_classical` | Explicit `classical_ss` |
+| `samvatsara_brihaspati_makaranda` | Explicit Makaranda |
+| `samvatsara_brihaspati_grahalaghava` | Explicit Grahalāghava |
+| `samvatsara_brihaspati_modern` | Explicit modern ephemeris |
+
+Windows carry `brihaspati_model`, `brihaspati_model_status`, `brihaspati_model_family`, and `brihaspati_model_variant` so consumers can see authority, not only the timing curve.
+
+### Example usage
+
+```php
+use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
+
+$service = new BrihaspatiSamvatsaraService($astronomyService); // astronomy only required for modern_ephemeris
+
+// 1. Package default (classical_ss unless config overrides)
+$default = $service->getBrihaspatiSamvatsaraInfo($date);
+
+// 2. Explicit canonical classical
+$classical = $service->getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+);
+
+// 3. Experimental Makaranda research model
+$makaranda = $service->getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+);
+
+// 4. Physical ephemeris comparator (JPL geocentric sidereal ingress)
+$modern = $service->getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+);
+
+// Catalogue: status, family, recommended_use, requires_astronomy_service
+$catalogue = BrihaspatiSamvatsaraService::supportedModels();
+```
 - `Amrita_Kaal` is calculated independently from nakshatra-specific Amrita ghati offsets, not from Varjyam.
 - `Lagna_Full_Day` includes partial intervals that overlap the sunrise-to-next-sunrise Panchang day.
 - `Chandra_Vaasa` uses Moon-rashi direction as the primary field and preserves the older nakshatra-pada Vaasa under `nakshatra_pada_vaasa`.

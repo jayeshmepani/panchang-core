@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JayeshMepani\PanchangCore\Tests;
 
+use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
 use JayeshMepani\PanchangCore\PanchangServiceProvider;
@@ -16,11 +17,6 @@ use Orchestra\Testbench\TestCase;
  */
 final class AstronomyJplPlanetBodiesTest extends TestCase
 {
-    protected function getPackageProviders($app): array
-    {
-        return [PanchangServiceProvider::class];
-    }
-
     public function test_jme_planet_body_ids_match_astrology_barycenter_convention(): void
     {
         $ids = AstronomyService::jmePlanetBodyIds();
@@ -85,12 +81,17 @@ final class AstronomyJplPlanetBodiesTest extends TestCase
         $service = new BrihaspatiSamvatsaraService($astro);
 
         $info = $service->getBrihaspatiSamvatsaraInfo(
-            \Carbon\CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
+            CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
             BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
         );
 
         $this->assertSame(BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS, $info['model']);
         $this->assertStringContainsString('jupiter', strtolower((string) $info['timing_basis']));
         $this->assertNotEmpty($info['name']);
+    }
+
+    protected function getPackageProviders($app): array
+    {
+        return [PanchangServiceProvider::class];
     }
 }

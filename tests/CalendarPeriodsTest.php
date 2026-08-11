@@ -76,6 +76,11 @@ final class CalendarPeriodsTest extends TestCase
         $this->assertArrayNotHasKey('civil_end_date', $brihaspati);
         $this->assertArrayNotHasKey('civil_end_iso', $brihaspati);
         $this->assertSame('classical_ss', $brihaspati['brihaspati_model'] ?? null);
+        $this->assertSame('canonical', $brihaspati['brihaspati_model_status'] ?? null);
+        $this->assertSame(
+            'traditional_barhaspatya',
+            $brihaspati['brihaspati_model_family'] ?? null
+        );
 
         // Modern ephemeris comparison is opt-in (not in the empty-fields default set).
         // Wiring regression: MODEL_MODERN_EPHEMERIS must reach getModernInfoFromJd().
@@ -118,6 +123,7 @@ final class CalendarPeriodsTest extends TestCase
             $modern['assignment_rule']
         );
         $this->assertSame('modern_ephemeris', $modern['brihaspati_model'] ?? null);
+        $this->assertSame('astronomical_comparator', $modern['brihaspati_model_status'] ?? null);
         $this->assertSame('modern_ephemeris', $modern['brihaspati_model_family'] ?? null);
         $this->assertStringContainsString(
             'modern_ephemeris',

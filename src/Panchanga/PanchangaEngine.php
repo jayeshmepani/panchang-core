@@ -295,15 +295,20 @@ class PanchangaEngine
     /**
      * Bārhaspatya Saṃvatsara name for a civil date.
      *
-     * Default: classical Sūrya-Siddhānta / Sewell-Dīkṣit model.
+     * Default: package/config strategy via BrihaspatiSamvatsaraService::defaultModel()
+     * (canonical classical_ss unless config overrides).
      *
-     * For the modern ephemeris timing projection, pass
-     * BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS together with the
-     * configured AstronomyService instance.
+     * Supported timing models (opt-in Strategy):
+     * - MODEL_CLASSICAL_SS — canonical default
+     * - MODEL_GRAHALAGHAVA — experimental
+     * - MODEL_MAKARANDA — experimental
+     * - MODEL_MODERN_EPHEMERIS — astronomical comparator (needs AstronomyService)
+     *
+     * @param string|null $model null → {@see BrihaspatiSamvatsaraService::defaultModel()}
      */
     public function getSamvatsaraBrihaspati(
         DateTimeInterface $date,
-        string $model = BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
+        ?string $model = null,
         ?AstronomyService $astronomy = null
     ): string {
         return (new BrihaspatiSamvatsaraService($astronomy))
@@ -311,8 +316,8 @@ class PanchangaEngine
     }
 
     /**
-     * Compare classical Bārhaspatya timing with the modern sidereal-Jupiter
-     * ephemeris projection at one civil date.
+     * Compare classical Bārhaspatya timing with Graha-lāghava, Makaranda,
+     * and modern sidereal-Jupiter timing projections at one civil date.
      *
      * @return array<string, mixed>
      */
@@ -333,6 +338,8 @@ class PanchangaEngine
      *   Samvatsara_South_Prefix: string,
      *   Samvatsara_North: string,
      *   Samvatsara_Brihaspati: ?string,
+     *   Samvatsara_Brihaspati_Model: string,
+     *   Samvatsara_Brihaspati_Model_Status: string,
      *   Samvatsara_North_Display: string,
      *   Samvatsara_Gujarati: string,
      *   Samvatsara_Systems: array<string, array<string, mixed>>
@@ -347,12 +354,16 @@ class PanchangaEngine
         $south = $this->getSamvatsaraSouth($vikramSamvat);
         $north = $this->getSamvatsaraNorth($vikramSamvat);
         $gujarati = $this->getSamvatsaraGujarati($gujaratiSamvat);
+        $brihaspatiModel = BrihaspatiSamvatsaraService::defaultModel();
         $brihaspati = $date instanceof DateTimeInterface
-            ? $this->getSamvatsaraBrihaspati($date)
+            ? $this->getSamvatsaraBrihaspati($date, $brihaspatiModel)
             : null;
         $northDisplay = ($brihaspati !== null && $north !== $brihaspati)
             ? $north . ' / ' . $brihaspati
             : $north;
+
+        $brihaspatiCatalogue = BrihaspatiSamvatsaraService::supportedModels()[$brihaspatiModel]
+            ?? BrihaspatiSamvatsaraService::supportedModels()[BrihaspatiSamvatsaraService::DEFAULT_MODEL];
 
         return [
             // Bare southern name kept for festival matchers and older clients.
@@ -361,9 +372,11 @@ class PanchangaEngine
             'Samvatsara_South_Prefix' => 'South',
             // Chaitradi Vikram era-linked northern name.
             'Samvatsara_North' => $north,
-            // Mean-Bṛhaspati / mean-Jovian name (date-aware, null if no date supplied).
+            // Default Bārhaspatya name (config/package strategy; null if no date).
             'Samvatsara_Brihaspati' => $brihaspati,
-            // Drik-style dual label when era-linked and mean-Jovian differ.
+            'Samvatsara_Brihaspati_Model' => $brihaspatiModel,
+            'Samvatsara_Brihaspati_Model_Status' => (string) ($brihaspatiCatalogue['status'] ?? BrihaspatiSamvatsaraService::STATUS_CANONICAL),
+            // Dual label when era-linked northern and Bārhaspatya names differ.
             'Samvatsara_North_Display' => $northDisplay,
             'Samvatsara_Gujarati' => $gujarati,
             'Samvatsara_Systems' => [
@@ -389,7 +402,10 @@ class PanchangaEngine
                     'era_year' => null,
                     'name' => $brihaspati,
                     'system' => 'barhaspatya_mean_sign',
-                    'note' => 'Continuous ≈361.0267-day mean-Jupiter cycle (madhyama-guru transit).',
+                    'model' => $brihaspatiModel,
+                    'model_status' => (string) ($brihaspatiCatalogue['status'] ?? BrihaspatiSamvatsaraService::STATUS_CANONICAL),
+                    'model_family' => (string) ($brihaspatiCatalogue['model_family'] ?? BrihaspatiSamvatsaraService::FAMILY_TRADITIONAL_BARHASPATYA),
+                    'note' => 'Package-default Bārhaspatya Saṃvatsara strategy (canonical classical_ss unless config overrides).',
                 ],
                 'gujarati_vikram' => [
                     'region' => 'Gujarat',

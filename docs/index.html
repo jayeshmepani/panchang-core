@@ -1164,6 +1164,16 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
                 <td><code>mixed</code>: "1h 30m 0s"<br><code>minutes</code>: 90.0<br><code>seconds</code>:
                   5400.0<br><code>hours</code>: 1.5 </td>
               </tr>
+              <tr>
+                <td><code>brihaspati_samvatsara_model</code></td>
+                <td>Default Bārhaspatya (mean Bṛhaspati) Saṃvatsara timing strategy for day names and the generic
+                  <code>samvatsara_brihaspati</code> period field. Package canonical default remains classical
+                  Sūrya-Siddhānta / Sewell–Dīkṣit; other values are explicit opt-in strategies.</td>
+                <td><code>classical_ss</code> (default, canonical)<br>
+                  <code>makaranda</code> (experimental mean-Jupiter comparison)<br>
+                  <code>grahalaghava</code> (experimental mean-Jupiter comparison)<br>
+                  <code>modern_ephemeris</code> (physical geocentric sidereal Jupiter ingress; needs AstronomyService / JPL)</td>
+              </tr>
             </tbody>
           </table>
           <h3>Festival Calculation Settings</h3>
@@ -1982,7 +1992,7 @@ echo $vara->getRulingPlanet();  // "Maṅgala (Mars)"</code></pre>
               </div>
             </div>
             <div class="method-returns">
-              <strong>Usage:</strong><code>PanchangaEngine::getSamvatsara($vikramSamvat)</code> (southern continuous); also <code>getSamvatsaraNorth()</code>, <code>getSamvatsaraGujarati()</code>, <code>getSamvatsaraBrihaspati()</code>. Day payloads publish the full regional set under <code>Hindu_Calendar</code>.
+              <strong>Usage:</strong><code>PanchangaEngine::getSamvatsara($vikramSamvat)</code> (southern continuous); also <code>getSamvatsaraNorth()</code>, <code>getSamvatsaraGujarati()</code>, <code>getSamvatsaraBrihaspati($date, $model = null)</code> (default classical Bārhaspatya; opt-in multi-model in v11.0.0). Day payloads publish the full regional set under <code>Hindu_Calendar</code>.
             </div>
           </div>
           <div class="method">
@@ -2365,13 +2375,17 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
                   <li><code>kali_samvat</code> returns <code>kali_samvat_windows</code></li>
                   <li><code>samvatsara</code> / <code>samvatsara_south</code> returns southern continuous Saṃvatsara windows</li>
                   <li><code>samvatsara_north</code> returns northern Chaitradi Vikram-linked Saṃvatsara windows</li>
-                  <li><code>samvatsara_brihaspati</code> returns mean-Bṛhaspati (mean-Jovian) Saṃvatsara windows</li>
+                  <li><code>samvatsara_brihaspati</code> returns mean-Bṛhaspati windows for the configured / package default strategy (default <code>classical_ss</code>)</li>
+                  <li><code>samvatsara_brihaspati_classical</code> returns explicit classical Sūrya-Siddhānta / Sewell–Dīkṣit Bārhaspatya windows</li>
+                  <li><code>samvatsara_brihaspati_makaranda</code> returns experimental Makaranda mean-Jupiter comparison windows (opt-in; soft-fails if unavailable)</li>
+                  <li><code>samvatsara_brihaspati_grahalaghava</code> returns experimental Graha-lāghava mean-Jupiter comparison windows (opt-in; soft-fails if unavailable)</li>
+                  <li><code>samvatsara_brihaspati_modern</code> returns modern physical sidereal Jupiter ingress comparison windows (opt-in; requires AstronomyService / JPL; soft-fails if unavailable)</li>
                   <li><code>samvatsara_gujarati</code> returns Gujarati Kartika Saṃvatsara name windows</li>
                   <li><code>amanta_month</code> returns <code>amanta_month_windows</code></li>
                   <li><code>purnimanta_month</code> returns <code>purnimanta_month_windows</code></li>
                 </ul>
               </div>
-              <p class="method-description">Window objects intentionally return only <code>name</code>, <code>start_iso</code>, and <code>end_iso</code>. Month windows additionally include <code>index</code>. Internal calculation fields such as Julian day values are not exposed.</p>
+              <p class="method-description">Most window objects intentionally return only <code>name</code>, <code>start_iso</code>, and <code>end_iso</code>. Month windows additionally include <code>index</code>. Bṛhaspati windows also publish model metadata such as <code>brihaspati_model</code>, <code>brihaspati_model_status</code>, <code>brihaspati_model_family</code>, <code>brihaspati_model_variant</code>, and <code>brihaspati_timing_basis</code> (plus rāśi / classical-reference fields for projection models). Internal Julian day values remain non-public except where a Bṛhaspati reference field is explicitly documented.</p>
             </div>
 
             <div class="method">
@@ -2709,8 +2723,10 @@ foreach ($festivals as $festival) {
                 and system labels are also present. Samvat years (Vikram, Gujarati, Saka, Kali) and regional
                 Saṃvatsara names are published together: <code>Samvatsara</code> / <code>Samvatsara_South</code>
                 (southern continuous), <code>Samvatsara_North</code> (Chaitradi Vikram),
-                <code>Samvatsara_Brihaspati</code> (mean-Bṛhaspati), <code>Samvatsara_Gujarati</code>,
-                <code>Samvatsara_North_Display</code>, and <code>Samvatsara_Systems</code>.</li>
+                <code>Samvatsara_Brihaspati</code> (mean-Bṛhaspati under the configured default strategy),
+                <code>Samvatsara_Brihaspati_Model</code> / <code>Samvatsara_Brihaspati_Model_Status</code>,
+                <code>Samvatsara_Gujarati</code>, <code>Samvatsara_North_Display</code>, and
+                <code>Samvatsara_Systems</code>.</li>
               <li>Service-level month resolution uses exact solar transit boundaries between amavasyas for final day
                 output.</li>
               <li>Saṅkrānti tagging is mapped to civil-day ingress (00:00-24:00 local date), so pre-sunrise ingress
@@ -3016,25 +3032,27 @@ echo $tithi['name']; // "Twelfth Lunar Day of Bright Half"
 
             <div class="method">
               <h4 class="method-name">getSamvatsaraBrihaspati()</h4>
-              <p class="method-description">Mean-Bṛhaspati (mean-Jovian) Saṃvatsara name for a civil date. Distinct from the Chaitradi Vikram era mapping and from Jupiter’s true sidereal rāśi ingress. Approximate mid-year transition is around 21 April.</p>
+              <p class="method-description">Bārhaspatya / mean-Bṛhaspati Saṃvatsara name for a civil date. Distinct from the Chaitradi Vikram era mapping. The package default strategy is classical Sūrya-Siddhānta / Sewell–Dīkṣit (<code>classical_ss</code>). Optional models may retime the same traditional 60-name sequence for comparison: experimental Makaranda and Graha-lāghava mean-Jupiter projections, or modern physical geocentric sidereal Jupiter rāśi ingress. Approximate classical mid-year transition is around late April.</p>
               <div class="method-signature">
-                <code>public function getSamvatsaraBrihaspati(\DateTimeInterface $date): string</code>
+                <code>public function getSamvatsaraBrihaspati(\DateTimeInterface $date, ?string $model = null, ?AstronomyService $astronomy = null): string</code>
               </div>
               <div class="method-params"><strong>Parameters:</strong>
                 <ul>
-                  <li><code>$date</code>(DateTimeInterface) — Civil date used for the mean-Jovian year boundary.</li>
+                  <li><code>$date</code> (DateTimeInterface) — Civil date used for the Bārhaspatya year boundary.</li>
+                  <li><code>$model</code> (string|null) — Optional strategy key: <code>classical_ss</code>, <code>makaranda</code>, <code>grahalaghava</code>, or <code>modern_ephemeris</code>. When <code>null</code>, uses <code>config('panchang.defaults.brihaspati_samvatsara_model')</code> or package default <code>classical_ss</code>.</li>
+                  <li><code>$astronomy</code> (AstronomyService|null) — Required only for <code>modern_ephemeris</code>.</li>
                 </ul>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Mean-Bṛhaspati name (for example Raudri after the 2026 mid-year transition).</div>
+              <div class="method-returns"><strong>Returns:</strong><code>string</code> — Bārhaspatya name under the selected strategy (for example Raudri after the 2026 classical mid-year transition).</div>
             </div>
 
             <div class="method">
               <h4 class="method-name">buildSamvatsaraCalendarFields()</h4>
-              <p class="method-description">Build the full regional Saṃvatsara block merged into day-detail <code>Hindu_Calendar</code> (southern name and prefix, northern Chaitradi, mean-Bṛhaspati, dual northern display, Gujarati name, and systems summary). Public day APIs call this automatically; direct use is optional.</p>
+              <p class="method-description">Build the full regional Saṃvatsara block merged into day-detail <code>Hindu_Calendar</code> (southern name and prefix, northern Chaitradi, default mean-Bṛhaspati name and model/status, dual northern display, Gujarati name, and systems summary). Public day APIs call this automatically; direct use is optional.</p>
               <div class="method-signature">
                 <code>public function buildSamvatsaraCalendarFields(int $vikramSamvat, int $sakaSamvat, int $gujaratiSamvat, ?\DateTimeInterface $date = null): array</code>
               </div>
-              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Additive Saṃvatsara keys for <code>Hindu_Calendar</code> (see v10.9.0 upgrade notes).</div>
+              <div class="method-returns"><strong>Returns:</strong><code>array</code> — Additive Saṃvatsara keys for <code>Hindu_Calendar</code> (see v11.0.0 and v10.9.0 upgrade notes).</div>
             </div>
 
             <div class="method">
@@ -3953,6 +3971,12 @@ php panchang_month_output.php 2026 5 > month_2026_05.json</code></pre>
                 <td>Duration formatting mode.</td>
               </tr>
               <tr>
+                <td><code>defaults.brihaspati_samvatsara_model</code></td>
+                <td>string</td>
+                <td><code>'classical_ss'</code></td>
+                <td>Default Bārhaspatya Saṃvatsara strategy. Canonical default is <code>classical_ss</code>. Opt-in values: <code>makaranda</code>, <code>grahalaghava</code>, <code>modern_ephemeris</code>. Env: <code>PANCHANG_BRIHASPATI_SAMVATSARA_MODEL</code>.</td>
+              </tr>
+              <tr>
                 <td><code>cache.enabled</code></td>
                 <td>bool</td>
                 <td><code>true</code></td>
@@ -4322,6 +4346,12 @@ echo $details['Panchanga']['Current_Tithi_At_Input_Now']['name'];
         'coordinate_format' => 'decimal',
         'angle_unit' => 'degree',
         'duration_format' => 'mixed',
+        // Canonical default: classical Sūrya-Siddhānta / Sewell–Dīkṣit Bārhaspatya.
+        // Opt-in only: makaranda | grahalaghava | modern_ephemeris
+        'brihaspati_samvatsara_model' => env(
+            'PANCHANG_BRIHASPATI_SAMVATSARA_MODEL',
+            'classical_ss'
+        ),
     ],
     'festivals' => [
         'default_tradition' => 'Smarta',
@@ -5019,25 +5049,32 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v10.9.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v11.0.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v10.9.0</strong> is a minor release that clarifies regional Saṃvatsara (year-name) systems in day and calendar output—South continuous, North Chaitradi Vikram, mean Bṛhaspati, and Gujarati Kartika—without changing public method signatures or festival/vrat identity counts. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. <strong>v10.8.2</strong> remains the prior code-quality patch; <strong>v10.8.1</strong> remains the Chandra Darśana / Arudra / named-Ekadashi accuracy patch; v10.8.0 remains the hybrid Chandra architecture / localization release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v11.0.0</strong> is a major release that expands Bārhaspatya (mean Bṛhaspati) Saṃvatsara into a multi-model strategy surface: package-canonical <code>classical_ss</code> remains the default, with opt-in Makaranda and Graha-lāghava experimental mean-Jupiter comparisons and a modern physical Jupiter-ingress comparator. Regional Saṃvatsara fields from <strong>v10.9.0</strong> remain. Catalog totals remain <strong>334 festival identities</strong> and <strong>126 vrat identities</strong>. <strong>v10.9.0</strong> remains the prior regional year-name clarity release; <strong>v10.8.2</strong> remains the prior code-quality patch; <strong>v10.8.1</strong> remains the Chandra Darśana / Arudra / named-Ekadashi accuracy patch.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed for the <strong>v10.9.0</strong> line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail <code>Hindu_Calendar</code> blocks now expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, mean-Bṛhaspati, and Gujarati Kartika reckoning (existing <code>Samvatsara</code> and <code>Samvatsara_North</code> keys keep their previous meanings). Calendar-period windows can request the matching regional Saṃvatsara spans. Prior v10.8.x accuracy and quality work (hybrid Chandra Darśana, Arudra Darshan, named Ekadashi refinements, festival-module cleanup) remains in effect.</p>
-            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>.</p>
+            <p>This documentation is refreshed for the <strong>v11.0.0</strong> line: 334 festival identities and 126 vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail <code>Hindu_Calendar</code> blocks expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata. Calendar-period windows can request classical, Makaranda, Graha-lāghava, and modern Bṛhaspati spans as well as the earlier regional Saṃvatsara spans. Prior v10.9.0 regional clarity and v10.8.x accuracy/quality work remain in effect.</p>
+            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">11.0.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Multi-Model Bārhaspatya Saṃvatsara (Classical Default with Opt-In Strategies)</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Major release over <strong>v10.9.0</strong> that keeps classical Sūrya-Siddhānta / Sewell–Dīkṣit Bārhaspatya as the package-canonical default while exposing explicit comparison strategies: experimental Makaranda and Graha-lāghava mean-Jupiter projections (same traditional 60-name phase, retimed boundaries) and a modern geocentric sidereal Jupiter prograde rāśi-ingress comparator via AstronomyService/JPL. Day payloads gain model/status fields; calendar-period APIs accept explicit Bṛhaspati field keys; config supports <code>defaults.brihaspati_samvatsara_model</code>. Projection models are not promoted to default merely to match media almanacs. No new festival or vrat identities. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">10.9.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Regional Saṃvatsara Clarity (South, North, Gujarati, and Mean Bṛhaspati)</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Regional Saṃvatsara Clarity (South, North, Gujarati, and Mean Bṛhaspati)</span></div>
                 <p class="release-note">Minor release over <strong>v10.8.2</strong> that publishes parallel traditional year-names so the same civil day can correctly show southern continuous Saṃvatsara (for example Parabhava with Shaka-linked reckoning), northern Chaitradi Vikram (for example Siddharthi), mean-Bṛhaspati / mean-Jovian (for example Raudri after the mid-year transition), and Gujarati Kartika year-name (for example Pingala for Gujarati Samvat 2082). Existing public methods are unchanged; day and selective payloads gain additive <code>Hindu_Calendar</code> fields, and calendar-period windows accept additional optional Saṃvatsara field names. No new festival or vrat identities. No intentional festival or vrat date changes. Catalog totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</p>
               </div>
             </li>
@@ -5407,8 +5444,37 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v11.0.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This major release expands Bārhaspatya (mean Bṛhaspati) Saṃvatsara into a multi-model strategy API while keeping classical Sūrya-Siddhānta / Sewell–Dīkṣit reckoning as the package-canonical default. Regional year-name clarity from v10.9.0 remains fully in place.</p>
+
+          <div class="info-box is-danger">
+            <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
+            <ul>
+              <li><strong>Default stays classical:</strong> <code>classical_ss</code> remains the package default for day <code>Samvatsara_Brihaspati</code> and the generic <code>samvatsara_brihaspati</code> period field unless you intentionally change config.</li>
+              <li><strong>Optional model parameter:</strong> <code>getSamvatsaraBrihaspati($date, ?string $model = null, ?AstronomyService $astronomy = null)</code> accepts an explicit strategy. Callers that omit <code>$model</code> keep previous classical/default behaviour.</li>
+              <li><strong>Additive day fields:</strong> <code>Samvatsara_Brihaspati_Model</code> and <code>Samvatsara_Brihaspati_Model_Status</code> are published on <code>Hindu_Calendar</code>; existing name keys keep their meanings from v10.9.0.</li>
+              <li><strong>Opt-in period field keys:</strong> request <code>samvatsara_brihaspati_classical</code>, <code>samvatsara_brihaspati_makaranda</code>, <code>samvatsara_brihaspati_grahalaghava</code>, and/or <code>samvatsara_brihaspati_modern</code> independently. Makaranda/Graha-lāghava/modern are soft-failed when unavailable so a whole calendar-periods payload is not aborted.</li>
+              <li><strong>Model status is honest:</strong> classical is <code>canonical</code>; Makaranda and Graha-lāghava are <code>experimental</code> research projections; modern ephemeris is an <code>astronomical_comparator</code>, not a traditional Bārhaspatya substitute and not a Drik-compatibility claim.</li>
+              <li><strong>Config strategy key:</strong> <code>defaults.brihaspati_samvatsara_model</code> / <code>PANCHANG_BRIHASPATI_SAMVATSARA_MODEL</code> (default <code>classical_ss</code>). Do not set media-almanac closeness as the package default without understanding the authority change.</li>
+              <li><strong>Modern path requirements:</strong> <code>modern_ephemeris</code> needs AstronomyService with JPL-capable configuration and barycenter body IDs; it does not silently fall back to classical times.</li>
+              <li><strong>No intentional festival or vrat date changes:</strong> catalog identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
+              <li><strong>Documentation:</strong> public chronology wording remains in <code>MASTER.md</code>; developer model matrix and examples are in <code>README.md</code>.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Upgrade to version <strong>11.0.0</strong>.</li>
+            <li>Republish or merge <code>config/panchang.php</code> if you maintain a local copy, and leave <code>brihaspati_samvatsara_model</code> as <code>classical_ss</code> unless you deliberately opt into another strategy.</li>
+            <li>If you display mean Bṛhaspati only, keep using <code>Samvatsara_Brihaspati</code>; optionally surface <code>Samvatsara_Brihaspati_Model</code> / status so users know which strategy produced the name.</li>
+            <li>If you need multi-model comparison, request explicit calendar-period field keys rather than overloading a single series.</li>
+            <li>Regenerate today, month, raw, and cached day-detail / calendar-period JSON if you persist full payloads.</li>
+            <li>Rebaseline snapshots that assert the full shape of <code>Hindu_Calendar</code> or Bṛhaspati window metadata.</li>
+            <li>No festival or vrat calendar rebaseline is required solely for Bṛhaspati multi-model work.</li>
+          </ul>
+
           <h3>v10.9.0 Upgrade &amp; Release Notes</h3>
-          <p class="lead">This minor release clarifies regional Saṃvatsara (60-name year) systems in public day and calendar output. Public method signatures are unchanged; consumers receive additional fields under the existing Hindu calendar block.</p>
+          <p class="lead">This minor release clarifies regional Saṃvatsara (60-name year) systems in public day and calendar output. Public method signatures are unchanged; consumers receive additional fields under the existing Hindu calendar block. Superseded for multi-model Bṛhaspati timing by <strong>v11.0.0</strong>, which keeps these regional fields.</p>
 
           <div class="info-box is-danger">
             <h4 style="color: var(--color-danger); margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Compatibility Notes</h4>
@@ -5420,12 +5486,13 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>Independent coordinates:</strong> era year numbers (Vikram, Gujarati Vikram, Saka, Kali) and Saṃvatsara names are separate; several correct names may appear on the same civil day under different regional rules. Mean-Bṛhaspati is not the same as Jupiter’s true sidereal rāśi transit.</li>
               <li><strong>No intentional festival or vrat date changes:</strong> catalog identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
               <li><strong>Documentation:</strong> user-facing chronology wording for eras and Saṃvatsara systems is updated in <code>MASTER.md</code>.</li>
+              <li><strong>Later multi-model Bṛhaspati work:</strong> see <strong>v11.0.0</strong>.</li>
             </ul>
           </div>
 
           <h4>Upgrade Actions</h4>
           <ul>
-            <li>Upgrade to version <strong>10.9.0</strong>.</li>
+            <li>Upgrade to version <strong>10.9.0</strong> (or later <strong>11.0.0</strong> for multi-model Bṛhaspati strategies).</li>
             <li>If your app shows only one year-name today, decide which regional system you intend (South, North Chaitradi Vikram, mean Bṛhaspati, or Gujarati) and map display to the matching field; do not assume a single universal Saṃvatsara for all India.</li>
             <li>Regenerate today, month, raw, and any cached day-detail JSON if you persist full <code>Hindu_Calendar</code> blocks or calendar-period windows.</li>
             <li>Rebaseline snapshots that assert the full shape of <code>Hindu_Calendar</code> or default calendar-period field sets.</li>
@@ -5442,7 +5509,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>No intentional date changes:</strong> regenerated calendars are not required solely for this patch unless your pipeline always rebuilds on every version bump.</li>
               <li><strong>Catalog totals unchanged:</strong> <strong>334 festivals</strong> and <strong>126 vrats</strong>.</li>
               <li><strong>Product accuracy work:</strong> Chandra Darśana, Arudra Darshan, and named Ekadashi refinements remain those of <strong>v10.8.1</strong>.</li>
-              <li><strong>Later chronology work:</strong> for regional Saṃvatsara output fields, see <strong>v10.9.0</strong>.</li>
+              <li><strong>Later chronology work:</strong> for regional Saṃvatsara output fields, see <strong>v10.9.0</strong>; for multi-model Bṛhaspati strategies, see <strong>v11.0.0</strong>.</li>
             </ul>
           </div>
 
@@ -5450,7 +5517,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <ul>
             <li>Upgrade to <strong>10.8.2</strong> if you are already on <strong>10.8.1</strong> and want these bug fixes and quality improvements.</li>
             <li>If you are upgrading from before <strong>10.8.1</strong>, apply the <strong>v10.8.1</strong> upgrade actions below (accuracy and regenerated calendars), then take <strong>10.8.2</strong>.</li>
-            <li>Prefer <strong>10.9.0</strong> (or later) if you also want regional Saṃvatsara clarity in public day output.</li>
+            <li>Prefer <strong>10.9.0</strong> (or later) if you also want regional Saṃvatsara clarity in public day output; prefer <strong>11.0.0</strong> for multi-model Bṛhaspati strategies.</li>
             <li>No special calendar rebaseline is required for this code-quality-only patch.</li>
           </ul>
 
@@ -5478,7 +5545,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 
           <h4>Upgrade Actions</h4>
           <ul>
-            <li>Update to version <strong>10.8.1</strong> (or later <strong>10.8.2</strong> for code-quality cleanup, or <strong>10.9.0</strong> for regional Saṃvatsara fields as well).</li>
+            <li>Update to version <strong>10.8.1</strong> (or later <strong>10.8.2</strong> for code-quality cleanup, <strong>10.9.0</strong> for regional Saṃvatsara fields, or <strong>11.0.0</strong> for multi-model Bṛhaspati strategies).</li>
             <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached calendar data.</li>
             <li>Recheck previously stored Chandra Darśana dates if you rely on them for display or notifications.</li>
             <li>Spot-check Arudra Darshan and named Ekadashi lists for years you publish.</li>
@@ -5498,7 +5565,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>Caching and generator fixes:</strong> caching behavior and related output-generation issues are corrected so regenerated payloads more reliably reflect the current rule engine and localization layer.</li>
               <li><strong>Catalog totals remain stable:</strong> generated identity totals remain <strong>334 festivals</strong> and <strong>126 vrats</strong>; this release is primarily about correctness, architecture, alias cleanup, and payload quality rather than adding a large number of new identities.</li>
               <li><strong>Generated outputs refreshed:</strong> Amanta and Purnimanta outputs across English, Hindi, and Gujarati are regenerated to reflect the new Chandra Darshana logic, localization hardening, catalog cleanup, and rule refinements.</li>
-              <li><strong>Superseded accuracy details:</strong> for Chandra Darśana, Arudra Darshan, and named-Ekadashi refinements after this release, see <strong>v10.8.1</strong>. For later bug fixes and code-quality improvements only, see <strong>v10.8.2</strong>. For regional Saṃvatsara output fields, see <strong>v10.9.0</strong>.</li>
+              <li><strong>Superseded accuracy details:</strong> for Chandra Darśana, Arudra Darshan, and named-Ekadashi refinements after this release, see <strong>v10.8.1</strong>. For later bug fixes and code-quality improvements only, see <strong>v10.8.2</strong>. For regional Saṃvatsara output fields, see <strong>v10.9.0</strong>. For multi-model Bṛhaspati strategies, see <strong>v11.0.0</strong>.</li>
             </ul>
           </div>
 
@@ -5507,7 +5574,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <li>Regenerate festival, vrat, compact, today, month, raw, and any derived cached JSON if your application surfaces Chandra Darshana, localized rule metadata, or full-year observance lists.</li>
             <li>Rebaseline snapshots and parity fixtures that assert exact Chandra Darshana dates, merged/de-merged identity sets, or previous localized payload strings in Hindi and Gujarati.</li>
             <li>Prefer canonical <code>name_key</code> identities and aliases instead of assuming every formerly duplicated observance remains a standalone published identity.</li>
-            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> accuracy upgrade actions, <strong>v10.8.2</strong> for code-quality cleanup, and <strong>v10.9.0</strong> for regional Saṃvatsara fields.</li>
+            <li>If upgrading past 10.8.0, also apply the <strong>v10.8.1</strong> accuracy upgrade actions, <strong>v10.8.2</strong> for code-quality cleanup, <strong>v10.9.0</strong> for regional Saṃvatsara fields, and <strong>v11.0.0</strong> for multi-model Bṛhaspati strategies.</li>
           </ul>
 
           <h3>v10.7.0 Upgrade &amp; Release Notes</h3>
