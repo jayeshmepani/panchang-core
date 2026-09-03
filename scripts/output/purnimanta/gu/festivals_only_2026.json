@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-08-11T05:50:37+00:00",
+        "generated_at": "2026-09-03T04:56:35+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -20,8 +20,8 @@
         "calendar_type": "purnimanta",
         "locale": "gu",
         "festival_day_count": 195,
-        "festival_entry_count": 397,
-        "total_festivals": 334,
+        "festival_entry_count": 390,
+        "total_festivals": 336,
         "by_date": {
             "2026-01-03": [
                 {
@@ -1078,109 +1078,6 @@
             ],
             "2026-01-18": [
                 {
-                    "name": "મહા અમાસ",
-                    "name_key": "Magha Amavasya",
-                    "description": "મહા માસની શુભ અમાસ",
-                    "deity": "પિતૃ/વિષ્ણુ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "મૌની અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "મહા",
-                            "value_key": "Magha",
-                            "name": "મહા"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "મહા અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461058.273853535,
-                        "target_tithi_end_jd": 2461059.327696806,
-                        "standard_date": "2026-01-18",
-                        "observance_date": "2026-01-18",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Magha Amavasya",
-                        "festival_name_localized": "મહા અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "અન્વાધાન",
                     "name_key": "Anvadhan",
                     "description": "પૂનમ/અમાસ પર કરવામાં આવતું વ્રત; સામાન્ય રીતે ઈષ્ટિના એક દિવસ પહેલા",
@@ -1199,121 +1096,16 @@
                     }
                 },
                 {
-                    "name": "થાઈ અમાસ",
-                    "name_key": "Thai Amavasai",
-                    "description": "પિતૃ પૂજા માટે થાઈના તમિલ મહિનામાં શુભ અમાસ",
-                    "deity": "પિતૃ",
-                    "fasting": false,
-                    "regions": [
-                        "તમિલનાડુ"
-                    ],
-                    "aliases": [
-                        "થાઈ અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "પોષ",
-                            "value_key": "Pausha",
-                            "name": "પોષ"
-                        },
-                        "karmakala_type": "aparahna",
-                        "karmakala_type_name": "અપરાહ્ન"
-                    },
-                    "resolution": {
-                        "festival_name": "થાઈ અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "aparahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7866.199980676174,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461058.273853535,
-                        "target_tithi_end_jd": 2461059.327696806,
-                        "standard_date": "2026-01-18",
-                        "observance_date": "2026-01-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1131,
-                            "winning_window_overlap_seconds": 7866.199980676174,
-                            "winning_window_coverage_ratio": 1.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Thai Amavasai",
-                        "festival_name_localized": "થાઈ અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "અપરાહ્ન"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1131,
-                        "winning_window_overlap_seconds": 7866.199980676174,
-                        "winning_window_coverage_ratio": 1.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "અમાવસ્યા",
                     "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
+                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
                     "deity": "પિતૃ/ચંદ્ર",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
-                        "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -1321,6 +1113,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -1341,6 +1135,7 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -1349,6 +1144,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -3844,6 +3646,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -4055,20 +3860,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "ભૌમવતી અમાસ",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "મંગળવારે આવતી અમાસ (ભૌમવતી), હનુમાન અને મંગળ ઉપાયો સાથે સંકળાયેલ; ઋણ મુક્તિ સહિત.",
+                    "deity": "હનુમાન/મંગળ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "ભૌમ અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -4076,6 +3879,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -4096,6 +3901,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "ભૌમવતી અમાસ",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -4104,6 +3914,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -6399,6 +6216,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -6506,117 +6326,6 @@
                         "basis_name": "તિથિ",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
-                    }
-                },
-                {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "નિર્ણય સિંધુ / ધર્મ સિંધુ"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "અમાવસ્યા",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461117.622087812,
-                        "target_tithi_end_jd": 2461118.5579017187,
-                        "standard_date": "2026-03-18",
-                        "observance_date": "2026-03-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
-                            "winning_score": 300,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_during_observance",
-                            "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "અમાવસ્યા",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ ઉજવણીના દિવસે",
-                        "winning_score": 300,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_during_observance",
-                        "winning_reason_name": "લક્ષિત તિથિ ઉજવણીના દિવસે"
                     }
                 }
             ],
@@ -9570,18 +9279,14 @@
                 {
                     "name": "અમાવસ્યા",
                     "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
+                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
                     "deity": "પિતૃ/ચંદ્ર",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
-                        "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -9589,6 +9294,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -9609,6 +9316,7 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -9617,6 +9325,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -12367,6 +12082,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -12477,20 +12195,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "શનિ અમાસ",
+                    "name_key": "Shani Amavasya",
+                    "description": "શનિવારે આવતી અમાસ (શનિ/શનિચરી), ભગવાન શનિને સમર્પિત; સાઢેસાતી/ઢૈયા ઉપાય અને શનિ સંબંધી અનુશાસન માટે શ્રેષ્ઠ.",
+                    "deity": "શનિ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "શનિચરી અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -12498,6 +12214,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -12518,6 +12236,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "શનિ અમાસ",
+                        "weekday_classifier_key": "Shani Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -12526,6 +12249,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -14961,20 +14691,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "સોમવતી અમાસ",
+                    "name_key": "Somavati Amavasya",
+                    "description": "સોમવારે આવતી અમાસ (સોમવતી), શિવ-પાર્વતીને સમર્પિત; દાંપત્ય દીર્ઘાયુ, પુણ્ય સ્નાન અને પિતૃ તર્પણ માટે શુભ.",
+                    "deity": "શિવ/પાર્વતી",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "સોમવતી અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -14982,6 +14710,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -15002,6 +14732,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "સોમવતી અમાસ",
+                        "weekday_classifier_key": "Somavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -15010,6 +14745,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -16169,6 +15911,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -16271,7 +16016,8 @@
                     ],
                     "aliases": [
                         "દીપ પૂજા",
-                        "દિવાસો"
+                        "દિવાસો",
+                        "અમાવસ્યા"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -16383,20 +16129,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "ભૌમવતી અમાસ",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "મંગળવારે આવતી અમાસ (ભૌમવતી), હનુમાન અને મંગળ ઉપાયો સાથે સંકળાયેલ; ઋણ મુક્તિ સહિત.",
+                    "deity": "હનુમાન/મંગળ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "ભૌમ અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -16404,6 +16148,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -16424,6 +16170,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "ભૌમવતી અમાસ",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -16432,6 +16183,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -19443,111 +19201,6 @@
             ],
             "2026-08-12": [
                 {
-                    "name": "શ્રાવણી અમાસ",
-                    "name_key": "Shravana Amavasya",
-                    "description": "શ્રાવણ મહિનામાં આવતી અમાસ; જે હરિયાળી અમાસ તરીકે ઉજવાય છે.",
-                    "deity": "પિતૃ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "હરિયાળી અમાસ",
-                        "પિઠોરી અમાસ",
-                        "આદિ અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "શ્રાવણ",
-                            "value_key": "Shravana",
-                            "name": "શ્રાવણ"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "શ્રાવણી અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461264.3497482706,
-                        "target_tithi_end_jd": 2461265.233781376,
-                        "standard_date": "2026-08-12",
-                        "observance_date": "2026-08-12",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Shravana Amavasya",
-                        "festival_name_localized": "શ્રાવણી અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "આડી અમાસ (કર્કડાકા વાવુ)",
                     "name_key": "Aadi Amavasya (Karkidaka Vavu)",
                     "description": "દક્ષિણ ભારતમાં પિતૃ તર્પણ માટે અત્યંત શુભ દિવસ",
@@ -19556,6 +19209,9 @@
                     "regions": [
                         "તમિલનાડુ",
                         "કેરળ"
+                    ],
+                    "aliases": [
+                        "અમાવસ્યા"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -19662,117 +19318,6 @@
                         "basis_name": "તિથિ",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
-                    }
-                },
-                {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "નિર્ણય સિંધુ / ધર્મ સિંધુ"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "અમાવસ્યા",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461264.3497482706,
-                        "target_tithi_end_jd": 2461265.233781376,
-                        "standard_date": "2026-08-12",
-                        "observance_date": "2026-08-12",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "અમાવસ્યા",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
             ],
@@ -21633,110 +21178,6 @@
             ],
             "2026-09-11": [
                 {
-                    "name": "ભાદરવી અમાસ",
-                    "name_key": "Bhadrapada Amavasya",
-                    "description": "ભાદરવા મહિનામાં આવતી અમાસ (પિઠોરી અમાસ / કુશગ્રહણી અમાસ)",
-                    "deity": "પિતૃ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "પિઠોરી અમાસ",
-                        "કુશગ્રહણી અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "ભાદરવો",
-                            "value_key": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "ભાદરવી અમાસ",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461293.7109138574,
-                        "target_tithi_end_jd": 2461294.6436758693,
-                        "standard_date": "2026-09-11",
-                        "observance_date": "2026-09-11",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Bhadrapada Amavasya",
-                        "festival_name_localized": "ભાદરવી અમાસ",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
                     "name": "પોળા",
                     "name_key": "Pola",
                     "description": "ખેડૂતો અને બળદો માટે આભાર માનતો તહેવાર",
@@ -21843,6 +21284,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -21948,117 +21392,6 @@
                         "basis_name": "તિથિ",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "સૂર્યોદય"
-                    }
-                },
-                {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "aliases": [
-                        "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "કૃષ્ણ",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "અમાસ"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "નિર્ણય સિંધુ / ધર્મ સિંધુ"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "અમાવસ્યા",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461293.7109138574,
-                        "target_tithi_end_jd": 2461294.6436758693,
-                        "standard_date": "2026-09-11",
-                        "observance_date": "2026-09-11",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "અમાવસ્યા",
-                        "paksha_name": "કૃષ્ણ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 }
             ],
@@ -25264,7 +24597,8 @@
                         "સર્વપિતૃ અમાસ",
                         "સર્વપિતૃ મોક્ષ અમાસ",
                         "પિતૃ અમાસ",
-                        "પિદ્દલા અમાસ"
+                        "પિદ્દલા અમાસ",
+                        "અમાવસ્યા"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25364,6 +24698,9 @@
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "અમાવસ્યા"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25474,20 +24811,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "શનિ અમાસ",
+                    "name_key": "Shani Amavasya",
+                    "description": "શનિવારે આવતી અમાસ (શનિ/શનિચરી), ભગવાન શનિને સમર્પિત; સાઢેસાતી/ઢૈયા ઉપાય અને શનિ સંબંધી અનુશાસન માટે શ્રેષ્ઠ.",
+                    "deity": "શનિ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "શનિચરી અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25495,6 +24830,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -25515,6 +24852,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "શનિ અમાસ",
+                        "weekday_classifier_key": "Shani Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -25523,6 +24865,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -30015,6 +29364,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -30360,20 +29712,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "સોમવતી અમાસ",
+                    "name_key": "Somavati Amavasya",
+                    "description": "સોમવારે આવતી અમાસ (સોમવતી), શિવ-પાર્વતીને સમર્પિત; દાંપત્ય દીર્ઘાયુ, પુણ્ય સ્નાન અને પિતૃ તર્પણ માટે શુભ.",
+                    "deity": "શિવ/પાર્વતી",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "સોમવતી અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -30381,6 +29731,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -30401,6 +29753,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "સોમવતી અમાસ",
+                        "weekday_classifier_key": "Somavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -30409,6 +29766,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -32949,6 +32313,9 @@
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "aliases": [
+                        "અમાવસ્યા"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -33059,20 +32426,18 @@
                     }
                 },
                 {
-                    "name": "અમાવસ્યા",
-                    "name_key": "Amavasya",
-                    "description": "અમાવસ્યા માસિક અમાસનો એવો દિવસ છે જે પૂર્વજ સ્મરણ, પૂજા અને આંતરિક શુદ્ધિ સાથે જોડાયેલ છે.",
-                    "deity": "પિતૃ/ચંદ્ર",
+                    "name": "ભૌમવતી અમાસ",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "મંગળવારે આવતી અમાસ (ભૌમવતી), હનુમાન અને મંગળ ઉપાયો સાથે સંકળાયેલ; ઋણ મુક્તિ સહિત.",
+                    "deity": "હનુમાન/મંગળ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
                     "aliases": [
+                        "અમાવસ્યા",
                         "અમાસ",
-                        "અમાસ વ્રત",
-                        "સોમવતી અમાસ",
-                        "ભૌમવતી અમાસ",
-                        "શનિ અમાસ"
+                        "ભૌમ અમાસ"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -33080,6 +32445,8 @@
                         "basis": "tithi",
                         "basis_name": "તિથિ",
                         "resolver": "classical",
+                        "document_status": "વાર-વર્ગીકરણ સાથેનો સામાન્ય પરિવાર નિયમ",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -33100,6 +32467,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "ભૌમવતી અમાસ",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "વાર",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -33108,6 +32480,13 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {

@@ -7021,7 +7021,10 @@ final class FestivalCatalog
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 15,
-            'description' => 'Darsha Amavasya is the monthly Amavasya observance associated with pitru rites and ancestral remembrance.',
+            // Darsha is a technical subset of Amavasya (aparahna/evening–night activity for
+            // pitru rites). It is not always the same civil identity as broad/generic Amavasya
+            // or māsa-named Amavasya; weekday Somavati/Shani names apply only to generic Amavasya.
+            'description' => 'Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.',
             'deity' => 'Chandra/Pitrus',
             'fasting' => true,
             'allow_adhika' => true,
@@ -7035,8 +7038,11 @@ final class FestivalCatalog
             'resolver' => 'classical',
             'paksha' => 'Krishna',
             'tithi' => 15,
-            'aliases' => ['Amas', 'Amavasya Vrat', 'Somavati Amavasya', 'Bhaumavati Amavasya', 'Shani Amavasya'],
-            'description' => 'Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.',
+            // Broad lunar-day label: New Moon tithi when the Moon is not seen, ending the
+            // waning phase. Weekday names (Somavati / Bhaumavati / Shani) attach only when
+            // that weekday occurs — never as always-on aliases.
+            'aliases' => ['Amas'],
+            'description' => 'Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.',
             'deity' => 'Pitru/Chandra',
             'karmakala_type' => 'sunrise',
             'require_sunrise_vyapini' => true,
@@ -7044,7 +7050,16 @@ final class FestivalCatalog
             'allow_adhika' => true,
             'vriddhi_preference' => 'first',
             'kshaya_preference' => 'first',
+            'weekday_classifier_after_resolution' => true,
+            'document_status' => 'generic_family_rule_weekday_classifier',
             'source_refs' => ['Nirnaya Sindhu / Dharma Sindhu'],
+            'source_evidence' => [
+                [
+                    'kind' => 'naming_rule',
+                    'locator' => 'docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md',
+                    'supports' => 'Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.',
+                ],
+            ],
         ],
         'Mukutotsav Purnima' => [
             'type' => 'tithi',
@@ -7439,14 +7454,34 @@ final class FestivalCatalog
      */
     public static function getCatalogFestivalCount(): int
     {
-        $count = 0;
-        foreach (self::FESTIVALS as $definition) {
-            if (!($definition['fasting'] ?? false)) {
-                $count++;
+        $identities = [];
+
+        foreach (self::FESTIVALS as $key => $definition) {
+            if ($definition['fasting'] ?? false) {
+                continue;
             }
+
+            // Generic Amavasya expands to formal weekday identities at emit time
+            // (Mon/Tue/Sat) while remaining Amavasya on other weekdays.
+            if ($key === 'Amavasya') {
+                foreach ([
+                    'Amavasya',
+                    'Somavati Amavasya',
+                    'Bhaumavati Amavasya',
+                    'Shani Amavasya',
+                ] as $weekdayIdentity) {
+                    $identities[$weekdayIdentity] = true;
+                }
+
+                continue;
+            }
+
+            $rawIdentity = $definition['identity_key'] ?? null;
+            $identityKey = is_string($rawIdentity) ? $rawIdentity : $key;
+            $identities[$identityKey] = true;
         }
 
-        return $count;
+        return count($identities);
     }
 
     /**

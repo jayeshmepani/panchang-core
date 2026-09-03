@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-08-11T05:50:33+00:00",
+        "generated_at": "2026-09-03T04:56:33+00:00",
         "type": "festivals_only",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -20,8 +20,8 @@
         "calendar_type": "purnimanta",
         "locale": "en",
         "festival_day_count": 195,
-        "festival_entry_count": 398,
-        "total_festivals": 334,
+        "festival_entry_count": 391,
+        "total_festivals": 336,
         "by_date": {
             "2026-01-03": [
                 {
@@ -1082,109 +1082,6 @@
             ],
             "2026-01-18": [
                 {
-                    "name": "Magha Amavasya",
-                    "name_key": "Magha Amavasya",
-                    "description": "Auspicious Amavasya in the month of Magha",
-                    "deity": "Pitrus/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Mauni Amavasya"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Magha",
-                            "value_key": "Magha",
-                            "name": "Magha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "Magha Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461058.273853535,
-                        "target_tithi_end_jd": 2461059.327696806,
-                        "standard_date": "2026-01-18",
-                        "observance_date": "2026-01-18",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Magha Amavasya",
-                        "festival_name_localized": "Magha Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Anvadhan",
                     "name_key": "Anvadhan",
                     "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
@@ -1203,122 +1100,16 @@
                     }
                 },
                 {
-                    "name": "Thai Amavasai",
-                    "name_key": "Thai Amavasai",
-                    "description": "Auspicious Amavasya in Tamil month of Thai for ancestor worship",
-                    "deity": "Pitrus",
-                    "fasting": false,
-                    "regions": [
-                        "Tamil Nadu"
-                    ],
-                    "aliases": [
-                        "Thai Amavasya",
-                        "Thai Amavasai"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Pausha",
-                            "value_key": "Pausha",
-                            "name": "Pausha"
-                        },
-                        "karmakala_type": "aparahna",
-                        "karmakala_type_name": "Afternoon"
-                    },
-                    "resolution": {
-                        "festival_name": "Thai Amavasai",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "aparahna",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 7866.199980676174,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461058.273853535,
-                        "target_tithi_end_jd": 2461059.327696806,
-                        "standard_date": "2026-01-18",
-                        "observance_date": "2026-01-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "last",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1131,
-                            "winning_window_overlap_seconds": 7866.199980676174,
-                            "winning_window_coverage_ratio": 1.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Thai Amavasai",
-                        "festival_name_localized": "Thai Amavasai",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Afternoon"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "last",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1131,
-                        "winning_window_overlap_seconds": 7866.199980676174,
-                        "winning_window_coverage_ratio": 1.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Amavasya",
                     "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
+                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
                     "deity": "Pitru/Chandra",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Amas"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -1326,6 +1117,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -1346,6 +1139,7 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -1354,6 +1148,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -3850,6 +3654,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -4061,20 +3868,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Bhaumavati Amavasya",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "Amavasya falling on Tuesday (Mangalvar / Bhauma), associated with Hanuman and Mangal remedies including debt relief.",
+                    "deity": "Hanuman/Mangal",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Bhauma Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -4082,6 +3887,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -4102,6 +3909,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Bhaumavati Amavasya",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -4110,6 +3922,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -6433,6 +6255,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -6540,117 +6365,6 @@
                         "basis_name": "Tithi",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "Sunrise"
-                    }
-                },
-                {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": false,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": false,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": true,
-                        "target_tithi_start_jd": 2461117.622087812,
-                        "target_tithi_end_jd": 2461118.5579017187,
-                        "standard_date": "2026-03-18",
-                        "observance_date": "2026-03-18",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi during observance day",
-                            "winning_score": 300,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_during_observance",
-                            "winning_reason_name": "target tithi during observance day"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi during observance day",
-                        "winning_score": 300,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_during_observance",
-                        "winning_reason_name": "target tithi during observance day"
                     }
                 }
             ],
@@ -9609,18 +9323,14 @@
                 {
                     "name": "Amavasya",
                     "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
+                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
                     "deity": "Pitru/Chandra",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
-                        "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Amas"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -9628,6 +9338,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -9648,6 +9360,7 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -9656,6 +9369,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -12416,6 +12139,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -12526,20 +12252,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Shani Amavasya",
+                    "name_key": "Shani Amavasya",
+                    "description": "Amavasya falling on Saturday (Shanivar), dedicated to Lord Shani; preferred for Sade Sati / Dhaiya remedies and Saturn-related discipline.",
+                    "deity": "Shani",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Shanichari Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -12547,6 +12271,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -12567,6 +12293,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Shani Amavasya",
+                        "weekday_classifier_key": "Shani Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -12575,6 +12306,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -15021,20 +14762,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Somavati Amavasya",
+                    "name_key": "Somavati Amavasya",
+                    "description": "Amavasya falling on Monday (Somavar), dedicated to Shiva and Parvati; auspicious for marital longevity, holy baths and pitru tarpan.",
+                    "deity": "Shiva/Parvati",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Somvati Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -15042,6 +14781,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -15062,6 +14803,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Somavati Amavasya",
+                        "weekday_classifier_key": "Somavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -15070,6 +14816,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -16233,6 +15989,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -16335,7 +16094,8 @@
                     ],
                     "aliases": [
                         "Deep Puja",
-                        "Divaso"
+                        "Divaso",
+                        "Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -16447,20 +16207,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Bhaumavati Amavasya",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "Amavasya falling on Tuesday (Mangalvar / Bhauma), associated with Hanuman and Mangal remedies including debt relief.",
+                    "deity": "Hanuman/Mangal",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Bhauma Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -16468,6 +16226,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -16488,6 +16248,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Bhaumavati Amavasya",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -16496,6 +16261,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -19519,111 +19294,6 @@
             ],
             "2026-08-12": [
                 {
-                    "name": "Shravana Amavasya",
-                    "name_key": "Shravana Amavasya",
-                    "description": "Amavasya falling in the month of Shravana; celebrated as Hariyali Amavasya",
-                    "deity": "Pitrus",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Hariyali Amavasya",
-                        "Pithori Amavasya",
-                        "Aadi Amavasai"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Shravana",
-                            "value_key": "Shravana",
-                            "name": "Shravana"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "Shravana Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461264.3497482706,
-                        "target_tithi_end_jd": 2461265.233781376,
-                        "standard_date": "2026-08-12",
-                        "observance_date": "2026-08-12",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Shravana Amavasya",
-                        "festival_name_localized": "Shravana Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Aadi Amavasya (Karkidaka Vavu)",
                     "name_key": "Aadi Amavasya (Karkidaka Vavu)",
                     "description": "Highly auspicious day for ancestor worship (Tarpanam) in South India",
@@ -19632,6 +19302,9 @@
                     "regions": [
                         "Tamil Nadu",
                         "Kerala"
+                    ],
+                    "aliases": [
+                        "Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -19738,117 +19411,6 @@
                         "basis_name": "Tithi",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "Sunrise"
-                    }
-                },
-                {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461264.3497482706,
-                        "target_tithi_end_jd": 2461265.233781376,
-                        "standard_date": "2026-08-12",
-                        "observance_date": "2026-08-12",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -21714,110 +21276,6 @@
             ],
             "2026-09-11": [
                 {
-                    "name": "Bhadrapada Amavasya",
-                    "name_key": "Bhadrapada Amavasya",
-                    "description": "Amavasya falling in the month of Bhadrapada (Pithori Amavasya / Kushagrahani Amavasya)",
-                    "deity": "Pitrus",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Pithori Amavasya",
-                        "Kushagrahani Amavasya"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first"
-                    },
-                    "resolution": {
-                        "festival_name": "Bhadrapada Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461293.7109138574,
-                        "target_tithi_end_jd": 2461294.6436758693,
-                        "standard_date": "2026-09-11",
-                        "observance_date": "2026-09-11",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Bhadrapada Amavasya",
-                        "festival_name_localized": "Bhadrapada Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Pola",
                     "name_key": "Pola",
                     "description": "Thanksgiving festival for farmers and bulls",
@@ -21924,6 +21382,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -22029,117 +21490,6 @@
                         "basis_name": "Tithi",
                         "karmakala_type": "sunrise",
                         "karmakala_type_name": "Sunrise"
-                    }
-                },
-                {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "aliases": [
-                        "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Krishna",
-                            "paksha_name": "Dark Half (waning)",
-                            "absolute_numbers": [
-                                30
-                            ],
-                            "names": [
-                                "New Moon"
-                            ]
-                        },
-                        "paksha": "Krishna",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise",
-                        "strict_karmakala": true,
-                        "require_sunrise_vyapini": true,
-                        "vriddhi_preference": "first",
-                        "adhika": {
-                            "allow_adhika": true
-                        },
-                        "source_refs": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ],
-                        "source_ref_keys": [
-                            "Nirnaya Sindhu / Dharma Sindhu"
-                        ]
-                    },
-                    "resolution": {
-                        "festival_name": "Amavasya",
-                        "required_tithi": 15,
-                        "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461293.7109138574,
-                        "target_tithi_end_jd": 2461294.6436758693,
-                        "standard_date": "2026-09-11",
-                        "observance_date": "2026-09-11",
-                        "decision": {
-                            "strict_karmakala": true,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Amavasya",
-                        "festival_name_localized": "Amavasya",
-                        "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": true,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -25355,7 +24705,8 @@
                         "Sarva Pitru Amavasya",
                         "Sarvapitra Moksha Amavasya",
                         "Pitru Amavasya",
-                        "Peddala Amavasya"
+                        "Peddala Amavasya",
+                        "Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25455,6 +24806,9 @@
                     "fasting": false,
                     "regions": [
                         "Pan-India"
+                    ],
+                    "aliases": [
+                        "Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25565,20 +24919,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Shani Amavasya",
+                    "name_key": "Shani Amavasya",
+                    "description": "Amavasya falling on Saturday (Shanivar), dedicated to Lord Shani; preferred for Sade Sati / Dhaiya remedies and Saturn-related discipline.",
+                    "deity": "Shani",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Shanichari Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -25586,6 +24938,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -25606,6 +24960,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Shani Amavasya",
+                        "weekday_classifier_key": "Shani Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -25614,6 +24973,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -30116,6 +29485,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -30461,20 +29833,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Somavati Amavasya",
+                    "name_key": "Somavati Amavasya",
+                    "description": "Amavasya falling on Monday (Somavar), dedicated to Shiva and Parvati; auspicious for marital longevity, holy baths and pitru tarpan.",
+                    "deity": "Shiva/Parvati",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Somvati Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -30482,6 +29852,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -30502,6 +29874,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Somavati Amavasya",
+                        "weekday_classifier_key": "Somavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -30510,6 +29887,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {
@@ -33057,6 +32444,9 @@
                     "regions": [
                         "Pan-India"
                     ],
+                    "aliases": [
+                        "Amavasya"
+                    ],
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -33167,20 +32557,18 @@
                     }
                 },
                 {
-                    "name": "Amavasya",
-                    "name_key": "Amavasya",
-                    "description": "Amavasya is the monthly new-moon day associated with ancestral remembrance, worship and inner purification.",
-                    "deity": "Pitru/Chandra",
+                    "name": "Bhaumavati Amavasya",
+                    "name_key": "Bhaumavati Amavasya",
+                    "description": "Amavasya falling on Tuesday (Mangalvar / Bhauma), associated with Hanuman and Mangal remedies including debt relief.",
+                    "deity": "Hanuman/Mangal",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Amavasya",
                         "Amas",
-                        "Amavasya Vrat",
-                        "Somavati Amavasya",
-                        "Bhaumavati Amavasya",
-                        "Shani Amavasya"
+                        "Bhauma Amavasya"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -33188,6 +32576,8 @@
                         "basis": "tithi",
                         "basis_name": "Tithi",
                         "resolver": "classical",
+                        "document_status": "generic family rule with weekday classifier",
+                        "document_status_key": "generic_family_rule_weekday_classifier",
                         "tithi": {
                             "numbers": [
                                 15
@@ -33208,6 +32598,11 @@
                         "strict_karmakala": true,
                         "require_sunrise_vyapini": true,
                         "vriddhi_preference": "first",
+                        "weekday_classifier_after_resolution": true,
+                        "weekday_classifier": "Bhaumavati Amavasya",
+                        "weekday_classifier_key": "Bhaumavati Amavasya",
+                        "naming_basis": "vaar",
+                        "naming_basis_name": "weekday (vara)",
                         "adhika": {
                             "allow_adhika": true
                         },
@@ -33216,6 +32611,16 @@
                         ],
                         "source_ref_keys": [
                             "Nirnaya Sindhu / Dharma Sindhu"
+                        ],
+                        "source_evidence": [
+                            {
+                                "kind": "naming_rule",
+                                "kind_name": "naming_rule",
+                                "locator_key": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "locator": "docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md",
+                                "supports_key": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity.",
+                                "supports": "Formal weekday Amavasya names apply only on Monday (Somavati), Tuesday (Bhaumavati) and Saturday (Shani/Shanichari); other weekdays keep the generic or māsa-based name. Darsha Amavasya is a technical aparahna subset, not always the main Amavasya civil identity."
+                            }
                         ]
                     },
                     "resolution": {

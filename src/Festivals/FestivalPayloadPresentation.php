@@ -15,6 +15,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
 use JayeshMepani\PanchangCore\Festivals\Support\FestivalShared;
+use Throwable;
 
 /**
  * Presentation / payload building for festival emit (structure-only split).
@@ -80,6 +81,45 @@ trait FestivalPayloadPresentation
             }
 
             $rules['aliases'] = $aliases;
+        }
+
+        // Amāvāsyā naming direction (docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md):
+        // - Broad Amavasya = invisible-Moon tithi ending the waning phase.
+        // - Darsha Amavasya = technical aparahna/evening–night subset for pitru rites;
+        //   not always the same civil identity as broad/generic Amavasya.
+        // - Māsa-named Amavasya (Magha/Mauni/…) may alias → Amavasya (named → generic).
+        // - Weekday names (Mon/Tue/Sat only) elevate generic Amavasya only.
+        if ($this->isAmavasyaNamedObservance($name)) {
+            $aliases = array_map(strval(...), (array) ($rules['aliases'] ?? []));
+
+            if ($name === 'Amavasya' && isset($resolved['observance_date'])) {
+                $amavasyaWeekday = $this->amavasyaWeekdayClassifier($name, $resolved['observance_date']);
+                if ($amavasyaWeekday !== null) {
+                    $identityKey = $amavasyaWeekday['identity'];
+                    $displayName = $amavasyaWeekday['identity'];
+                    $rules['description'] = $amavasyaWeekday['description'];
+                    if ($amavasyaWeekday['deity'] !== null) {
+                        $rules['deity'] = $amavasyaWeekday['deity'];
+                    }
+
+                    $aliases = array_merge(
+                        ['Amavasya', 'Amas'],
+                        $amavasyaWeekday['extra_aliases'],
+                        $aliases
+                    );
+                    $rules['weekday_classifier'] = $amavasyaWeekday['identity'];
+                    $rules['naming_basis'] = 'vaar';
+                }
+            } elseif ($name !== 'Amavasya' && !in_array($name, ['Darsha Amavasya', 'Adhika Darsha Amavasya'], true)) {
+                // Māsa-/event-named Amavasya may be referred to as Amavasya.
+                // Darsha stays its own technical subset identity.
+                $aliases[] = 'Amavasya';
+            }
+
+            $rules['aliases'] = array_values(array_unique(array_filter(
+                $aliases,
+                static fn(string $alias): bool => $alias !== $identityKey && $alias !== $displayName
+            )));
         }
 
         $rawDisplayName = $rules['display_name'] ?? null;
@@ -188,6 +228,12 @@ trait FestivalPayloadPresentation
             'vinayaki_chaturthi_truth_table' => $rules['vinayaki_chaturthi_truth_table'] ?? null,
             'masik_janmashtami_truth_table' => $rules['masik_janmashtami_truth_table'] ?? null,
             'weekday_classifier_after_resolution' => $rules['weekday_classifier_after_resolution'] ?? null,
+            'weekday_classifier' => is_string($rules['weekday_classifier'] ?? null)
+                ? Localization::translate('Festival', $rules['weekday_classifier'])
+                : null,
+            'weekday_classifier_key' => $rules['weekday_classifier'] ?? null,
+            'naming_basis' => $rules['naming_basis'] ?? null,
+            'naming_basis_name' => $this->localizedString($rules['naming_basis'] ?? null),
             'ekadesha_coverage_allowed' => $rules['ekadesha_coverage_allowed'] ?? null,
             'deepotsav_sequence' => $rules['deepotsav_sequence'] ?? null,
             'location_sensitive' => $rules['location_sensitive'] ?? null,
@@ -530,6 +576,68 @@ trait FestivalPayloadPresentation
         }
 
         return $payload;
+    }
+
+    /**
+     * Formal weekday (vāra) Amāvāsyā classifier — Monday / Tuesday / Saturday only.
+     * Used only for generic catalog key {@see Amavasya}.
+     *
+     * @return array{
+     *   identity: string,
+     *   description: string,
+     *   deity: ?string,
+     *   extra_aliases: list<string>
+     * }|null
+     */
+    private function amavasyaWeekdayClassifier(string $name, mixed $observanceDate): ?array
+    {
+        if ($name !== 'Amavasya') {
+            return null;
+        }
+
+        try {
+            $dateObj = CarbonImmutable::parse((string) $observanceDate);
+        } catch (Throwable) {
+            return null;
+        }
+
+        // Carbon: 0=Sunday … 6=Saturday.
+        // Only these three weekdays have genuine pan-Indian Amavasya names.
+        // Do not invent Ravi/Budh/Guru/Shukra Amavasya identities.
+        return match ($dateObj->dayOfWeek) {
+            1 => [
+                'identity' => 'Somavati Amavasya',
+                'description' => 'Amavasya falling on Monday (Somavar), dedicated to Shiva and Parvati; auspicious for marital longevity, holy baths and pitru tarpan.',
+                'deity' => 'Shiva/Parvati',
+                'extra_aliases' => ['Somvati Amavasya'],
+            ],
+            2 => [
+                'identity' => 'Bhaumavati Amavasya',
+                'description' => 'Amavasya falling on Tuesday (Mangalvar / Bhauma), associated with Hanuman and Mangal remedies including debt relief.',
+                'deity' => 'Hanuman/Mangal',
+                'extra_aliases' => ['Bhauma Amavasya'],
+            ],
+            6 => [
+                'identity' => 'Shani Amavasya',
+                'description' => 'Amavasya falling on Saturday (Shanivar), dedicated to Lord Shani; preferred for Sade Sati / Dhaiya remedies and Saturn-related discipline.',
+                'deity' => 'Shani',
+                'extra_aliases' => ['Shanichari Amavasya'],
+            ],
+            default => null,
+        };
+    }
+
+    /** True for generic monthly Amavasya/Darsha and month-/event-named Amavasya keys. */
+    private function isAmavasyaNamedObservance(string $name): bool
+    {
+        if (in_array($name, ['Amavasya', 'Darsha Amavasya', 'Adhika Darsha Amavasya'], true)) {
+            return true;
+        }
+
+        // Month / regional Amavasya identities (Magha Amavasya, Thai Amavasai, …).
+        return str_ends_with($name, 'Amavasya')
+            || str_ends_with($name, 'Amavasai')
+            || $name === 'Aadi Amavasya (Karkidaka Vavu)';
     }
 
     private function formatAdhikaRule(array $rules): ?array

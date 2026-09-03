@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "title": "Amavasya / Purnima naming taxonomy",
+  "analogous_to": "Pradosh weekday_classifier_after_resolution",
+  "layers": ["vaar", "masa", "festival_event", "nakshatra_combo"],
+  "notes": [
+    "Formal weekday (vaar) names apply to generic Amavasya only — Monday, Tuesday, Saturday.",
+    "Not every Amavasya is specially named; every specially named Amavasya is still Amavasya.",
+    "Named (Magha/Mauni/Darsha/…) may alias to Amavasya; Magha must never list Somavati/Shani as aliases.",
+    "Do not invent weekday names for Sun/Wed/Thu/Fri.",
+    "Purnima identity is masa / festival / deity based — never weekday-elevated."
+  ],
+  "amavasya": {
+    "vaar": [
+      {
+        "identity": "Somavati Amavasya",
+        "aliases": ["Somvati Amavasya"],
+        "weekday": "Monday",
+        "weekday_carbon": 1,
+        "planet": "Soma / Chandra",
+        "status": "canonical",
+        "deity": "Shiva/Parvati",
+        "themes": ["marital_longevity", "holy_bath", "pitru_tarpan", "mental_peace"],
+        "elevate_generic_amavasya_identity": true
+      },
+      {
+        "identity": "Bhaumavati Amavasya",
+        "aliases": ["Bhauma Amavasya"],
+        "weekday": "Tuesday",
+        "weekday_carbon": 2,
+        "planet": "Bhauma / Mangal",
+        "status": "canonical",
+        "deity": "Hanuman/Mangal",
+        "themes": ["debt_relief", "mangal_dosha_remedy", "hanuman"],
+        "elevate_generic_amavasya_identity": true
+      },
+      {
+        "identity": "Shani Amavasya",
+        "aliases": ["Shanichari Amavasya"],
+        "weekday": "Saturday",
+        "weekday_carbon": 6,
+        "planet": "Shani",
+        "status": "canonical",
+        "deity": "Shani",
+        "themes": ["sade_sati", "dhaiya", "karma_purification", "black_dana"],
+        "elevate_generic_amavasya_identity": true
+      }
+    ],
+    "masa_or_festival": [
+      {
+        "identity": "Chaitra Amavasya",
+        "basis": "masa",
+        "catalog_key": "Chaitra Amavasya"
+      },
+      {
+        "identity": "Vaishakha Amavasya",
+        "basis": "masa",
+        "catalog_key": "Vaishakha Amavasya",
+        "related": ["Shani Jayanti", "Vat Savitri Vrat"]
+      },
+      {
+        "identity": "Jyeshtha Amavasya",
+        "basis": "masa",
+        "catalog_key": "Jyeshtha Amavasya"
+      },
+      {
+        "identity": "Ashadha Amavasya",
+        "basis": "masa",
+        "catalog_key": "Ashadha Amavasya"
+      },
+      {
+        "identity": "Shravana Amavasya",
+        "basis": "masa",
+        "catalog_key": "Shravana Amavasya",
+        "aliases": ["Hariyali Amavasya", "Aadi Amavasai", "Pithori Amavasya"]
+      },
+      {
+        "identity": "Bhadrapada Amavasya",
+        "basis": "masa",
+        "catalog_key": "Bhadrapada Amavasya",
+        "aliases": ["Pithori Amavasya", "Kushagrahani Amavasya"]
+      },
+      {
+        "identity": "Mahalaya Amavasya",
+        "basis": "festival_event",
+        "catalog_key": "Mahalaya Amavasya",
+        "aliases": ["Sarva Pitru Amavasya", "Sarvapitra Moksha Amavasya", "Pitru Amavasya", "Peddala Amavasya"]
+      },
+      {
+        "identity": "Ashwina Amavasya",
+        "basis": "masa",
+        "catalog_key": "Ashwina Amavasya",
+        "related": ["Lakshmi Puja (Deepavali)"]
+      },
+      {
+        "identity": "Kartika Amavasya",
+        "basis": "masa",
+        "catalog_key": "Kartika Amavasya"
+      },
+      {
+        "identity": "Margashirsha Amavasya",
+        "basis": "masa",
+        "catalog_key": "Margashirsha Amavasya"
+      },
+      {
+        "identity": "Thai Amavasai",
+        "basis": "masa",
+        "catalog_key": "Thai Amavasai",
+        "aliases": ["Thai Amavasya"],
+        "regions": ["Tamil Nadu"]
+      },
+      {
+        "identity": "Magha Amavasya",
+        "basis": "masa",
+        "catalog_key": "Magha Amavasya",
+        "aliases": ["Mauni Amavasya"]
+      },
+      {
+        "identity": "Phalguna Amavasya",
+        "basis": "masa",
+        "catalog_key": "Phalguna Amavasya"
+      },
+      {
+        "identity": "Darsha Amavasya",
+        "basis": "festival_event",
+        "catalog_key": "Darsha Amavasya"
+      },
+      {
+        "identity": "Adhika Darsha Amavasya",
+        "basis": "festival_event",
+        "catalog_key": "Adhika Darsha Amavasya"
+      },
+      {
+        "identity": "Amavasya",
+        "basis": "generic_monthly",
+        "catalog_key": "Amavasya",
+        "weekday_classifier_after_resolution": true
+      }
+    ]
+  },
+  "purnima": {
+    "vaar": [],
+    "masa_or_festival": [
+      {
+        "identity": "Chaitra Purnima",
+        "basis": "masa",
+        "related": ["Hanuman Jayanti"]
+      },
+      {
+        "identity": "Vaishakha Purnima",
+        "basis": "festival_event",
+        "aliases": ["Buddha Purnima", "Chitra Pournami"]
+      },
+      {
+        "identity": "Jyeshtha Purnima",
+        "basis": "festival_event",
+        "aliases": ["Vat Purnima"]
+      },
+      {
+        "identity": "Ashadha Purnima",
+        "basis": "festival_event",
+        "related": ["Guru Purnima"]
+      },
+      {
+        "identity": "Shravana Purnima",
+        "basis": "festival_event",
+        "related": ["Raksha Bandhan", "Narali Purnima"]
+      },
+      {
+        "identity": "Sharad Purnima",
+        "basis": "festival_event",
+        "aliases": ["Kojagari Purnima", "Kaumudi Purnima"]
+      },
+      {
+        "identity": "Kartika Purnima",
+        "basis": "festival_event",
+        "aliases": ["Dev Deepavali", "Tripuri Purnima"]
+      },
+      {
+        "identity": "Margashirsha Purnima",
+        "basis": "festival_event",
+        "related": ["Dattatreya Jayanti"]
+      },
+      {
+        "identity": "Pausha Purnima",
+        "basis": "masa",
+        "aliases": ["Shakambhari Purnima"]
+      },
+      {
+        "identity": "Maghi Purnima",
+        "basis": "masa",
+        "aliases": ["Magha Purnima"]
+      },
+      {
+        "identity": "Phalguna Purnima",
+        "basis": "festival_event",
+        "related": ["Holika Dahan", "Holi"]
+      },
+      {
+        "identity": "Vratni Purnima",
+        "basis": "ritual_rule",
+        "catalog_key": "Vratni Purnima"
+      }
+    ]
+  }
+}
