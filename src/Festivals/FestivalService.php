@@ -7,6 +7,9 @@ namespace JayeshMepani\PanchangCore\Festivals;
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\Enums\Paksha;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Shraddha\ShannavatiCatalog;
+use JayeshMepani\PanchangCore\Shraddha\ShannavatiResolver;
+use JayeshMepani\PanchangCore\Shraddha\ShannavatiTraditionProfile;
 use LogicException;
 
 /**
@@ -40,6 +43,9 @@ class FestivalService
 
     public const MONTHS = FestivalCatalog::MONTHS;
 
+    /** @var array<string, array<string, mixed>> */
+    private array $shannavatiResolutionCache = [];
+
     public function __construct(
         private readonly FestivalRuleEngine $ruleEngine
     ) {}
@@ -57,6 +63,86 @@ class FestivalService
     public static function getCatalogVratCount(): int
     {
         return FestivalCatalog::getCatalogVratCount();
+    }
+
+    public static function getShannavatiNominalCount(): int
+    {
+        return ShannavatiCatalog::nominalCount();
+    }
+
+    /** @return list<string> */
+    public static function getShannavatiNominalIds(): array
+    {
+        return ShannavatiCatalog::nominalCanonicalIds();
+    }
+
+    /**
+     * Resolve all Ṣaṇṇavati Śrāddha memberships applying to one civil date.
+     *
+     * @param array<int, array<string, mixed>> $resolvedFestivals
+     *
+     * @return array<string, mixed>
+     */
+    public function resolveShannavatiForDate(
+        CarbonImmutable $date,
+        array $todayDetails,
+        array $tomorrowDetails,
+        ?array $yesterdayDetails = null,
+        ?callable $fetchHistoricalSnapshot = null,
+        array $resolvedFestivals = [],
+        ShannavatiTraditionProfile|string $profile = ShannavatiTraditionProfile::DharmaSindhu,
+    ): array {
+        if (is_string($profile)) {
+            $profile = ShannavatiTraditionProfile::tryFrom(strtolower(trim($profile)))
+                ?? ShannavatiTraditionProfile::DharmaSindhu;
+        }
+
+        $ctx = (array) ($todayDetails['Resolution_Context'] ?? []);
+        $calendar = (array) ($todayDetails['Hindu_Calendar'] ?? []);
+        $resolvedSankrantiRashi = null;
+        foreach ($resolvedFestivals as $festival) {
+            $basis = (array) ($festival['calculation_basis'] ?? []);
+            if (($basis['type'] ?? null) !== 'solar_sankranti') {
+                continue;
+            }
+
+            $rashi = $basis['solar_rashi']['index'] ?? null;
+            if (is_numeric($rashi) && (int) $rashi >= 0 && (int) $rashi <= 11) {
+                $resolvedSankrantiRashi = (int) $rashi;
+                break;
+            }
+        }
+
+        $cacheKey = implode('|', [
+            $date->toDateString(),
+            $profile->value,
+            (string) ($calendar['Calendar_Type'] ?? 'amanta'),
+            (string) ($ctx['observer_latitude'] ?? ''),
+            (string) ($ctx['observer_longitude'] ?? ''),
+            (string) ($ctx['observer_elevation_m'] ?? ''),
+            (string) ($ctx['observer_timezone'] ?? ''),
+            $resolvedSankrantiRashi === null ? 'no-sankranti' : 'sankranti-' . $resolvedSankrantiRashi,
+        ]);
+
+        if (isset($this->shannavatiResolutionCache[$cacheKey])) {
+            return $this->shannavatiResolutionCache[$cacheKey];
+        }
+
+        $result = (new ShannavatiResolver($this->ruleEngine))->resolveForDate(
+            $date,
+            $todayDetails,
+            $tomorrowDetails,
+            $yesterdayDetails,
+            $fetchHistoricalSnapshot,
+            $profile,
+            $resolvedFestivals,
+        );
+
+        if (count($this->shannavatiResolutionCache) >= 512) {
+            $this->shannavatiResolutionCache = array_slice($this->shannavatiResolutionCache, -256, null, true);
+        }
+
+        return $this->shannavatiResolutionCache[$cacheKey] = $result;
     }
 
     /**
@@ -79,6 +165,7 @@ class FestivalService
         $festivals = [];
         $festivalMeta = [];
         $addedFestivalKeys = [];
+        $shannavatiMembershipIds = null;
         $tithi = $todayDetails['Tithi'] ?? null;
 
         if (!$tithi) {
@@ -252,6 +339,44 @@ class FestivalService
                         }
                     }
                 }
+            } elseif ($type === 'shannavati_membership') {
+                if ($shannavatiMembershipIds === null) {
+                    $shannavati = $this->resolveShannavatiForDate(
+                        $date,
+                        $todayDetails,
+                        $tomorrowDetails,
+                        $yesterdayDetails,
+                        $fetchHistoricalSnapshot,
+                        $festivals,
+                        (string) (($rules['shannavati_profile'] ?? null) ?: 'dharma_sindhu'),
+                    );
+                    $shannavatiMembershipIds = array_fill_keys(array_map(
+                        static fn(array $membership): string => (string) ($membership['id'] ?? ''),
+                        (array) ($shannavati['memberships'] ?? []),
+                    ), true);
+                }
+
+                $membershipId = (string) ($rules['shannavati_id'] ?? '');
+                $membershipPrefix = (string) ($rules['shannavati_id_prefix'] ?? '');
+                $matchesMembership = $membershipId !== '' && isset($shannavatiMembershipIds[$membershipId]);
+                if (!$matchesMembership && $membershipPrefix !== '') {
+                    foreach (array_keys($shannavatiMembershipIds) as $candidateMembershipId) {
+                        if (str_starts_with((string) $candidateMembershipId, $membershipPrefix)) {
+                            $matchesMembership = true;
+                            break;
+                        }
+                    }
+                }
+
+                if ($matchesMembership && !isset($addedFestivalKeys[$name])) {
+                    $festivals[] = $this->buildFestivalPayload($name, $rules);
+                    $festivalMeta[] = [
+                        'raw_name' => $name,
+                        'adhika_only' => $adhikaOnly,
+                        'is_ekadashi' => false,
+                    ];
+                    $addedFestivalKeys[$name] = true;
+                }
             } elseif ($type === 'solar_sankranti') {
                 if ($this->shouldEmitSolarSankrantiToday($rules, $todayDetails, $yesterdayDetails)
                     && !isset($addedFestivalKeys[$name])) {
@@ -300,17 +425,6 @@ class FestivalService
                             ? (is_array($dayAfterToday) ? $dayAfterToday : null)
                             : null
                     )
-                    && !isset($addedFestivalKeys[$name])) {
-                    $festivals[] = $this->buildFestivalPayload($name, $rules);
-                    $festivalMeta[] = [
-                        'raw_name' => $name,
-                        'adhika_only' => $adhikaOnly,
-                        'is_ekadashi' => str_contains($name, 'Ekadashi'),
-                    ];
-                    $addedFestivalKeys[$name] = true;
-                }
-            } elseif ($type === 'brahma_savarni_manvadi') {
-                if ($this->matchesBrahmaSavarniManvadiRule($todayDetails)
                     && !isset($addedFestivalKeys[$name])) {
                     $festivals[] = $this->buildFestivalPayload($name, $rules);
                     $festivalMeta[] = [
@@ -772,7 +886,7 @@ class FestivalService
         $type = (string) ($rules['type'] ?? 'tithi');
 
         // Dependent festivals (e.g. Holi after Holika Dahan) are resolved by orchestration layer.
-        if (in_array($type, ['day_after', 'anvadhan', 'day_after_anvadhan', 'brahma_savarni_manvadi', 'sheetala_ashtami', 'attukal_pongal', 'chapchar_kut', 'bhanu_saptami', 'kalashtami', 'solar_sankranti'], true)) {
+        if (in_array($type, ['day_after', 'anvadhan', 'day_after_anvadhan', 'sheetala_ashtami', 'attukal_pongal', 'chapchar_kut', 'bhanu_saptami', 'kalashtami', 'solar_sankranti', 'shannavati_membership'], true)) {
             return false;
         }
 

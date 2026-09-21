@@ -942,3 +942,11 @@ If someone asks what kind of use cases it supports, the package is suitable for:
 - regional and tradition-aware observance presentation
 - eclipse and sutak calendars
 - structured API or JSON export style output
+
+## Ṣaṇṇavati Śrāddha Coverage
+
+The package now exposes a first-class `Shannavati_Shraddha` branch with the complete canonical 96-fold taxonomy. Coverage includes all ten traditional categories: Amāvāsyā (12), Yugādi (4), Manvādi (14), Saṅkrānti (12), Vaidhṛti (12 nominal), Vyatīpāta (12 nominal), Mahālaya (15), Aṣṭakā (5), Anvaṣṭakā (5), and Pūrvēdhyu (5).
+
+Resolution is source-aware and defaults to the Dharma-sindhu profile. Manvādi/Yugādi use Pūrvāhṇa for Śukla and Aparāhṇa for Krishna rules; Mahālaya resolves Bhādrapada Krishna 1–15 by tithi rather than fixed civil-day offsets; the five Aṣṭakā cycles anchor Pūrvēdhyu/Anvaṣṭakā to the resolved Aṣṭamī; Vyatīpāta and Vaidhṛti reuse exact nitya-yoga windows and Aparāhṇa overlap; Saṅkrānti reuses the existing solar-ingress resolver. Kutapa, Rauhiṇa, Aparāhṇa, and the combined five-muhūrta Śrāddha span are exposed in membership metadata.
+
+The number 96 is treated as the canonical nominal taxonomy, not as a forced yearly row count. Multiple memberships can coexist on the same civil date and valid adhika/repeated-yoga manifestations are retained.

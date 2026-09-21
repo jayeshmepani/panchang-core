@@ -71,23 +71,6 @@ trait FestivalSpecialMatchers
         return !$nextAlsoDarsha;
     }
 
-    private function matchesBrahmaSavarniManvadiRule(array $todayDetails): bool
-    {
-        if ($this->tithiPaksha($todayDetails) !== 'Shukla') {
-            return false;
-        }
-
-        $calendar = (array) ($todayDetails['Hindu_Calendar'] ?? []);
-        $samvatsara = (string) ($calendar['Samvatsara'] ?? '');
-        $month = $this->normalizeMonthName((string) ($calendar['Month_Amanta_En'] ?? $calendar['Month_Amanta'] ?? ''));
-
-        if ($samvatsara === 'Parabhava') {
-            return $this->tithiPhase($todayDetails) === 7 && $month === 'magha';
-        }
-
-        return $this->tithiPhase($todayDetails) === 10 && $month === 'pausha';
-    }
-
     private function matchesSheetalaAshtamiRule(
         array $todayDetails,
         array $tomorrowDetails,

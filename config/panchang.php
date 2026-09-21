@@ -102,6 +102,12 @@ return [
         'supported_regions' => ['North', 'South', 'Bengal', 'Maharashtra', 'Tamil', 'Gujarat'],
     ],
 
+    'shraddha' => [
+        // Canonical Ṣaṇṇavati default. Other presentation profiles may be added
+        // without changing the astronomical/tithi engine.
+        'shannavati_profile' => env('PANCHANG_SHANNAVATI_PROFILE', 'dharma_sindhu'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Cache Settings

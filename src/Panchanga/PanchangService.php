@@ -608,6 +608,10 @@ class PanchangService
                 fn(array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz),
                 $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)
             ),
+            'Yoga_Windows' => array_map(
+                fn(array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz),
+                $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)
+            ),
             'Ekadashi_Observance' => $snapshotEkadashiObservance,
         ];
 
@@ -633,6 +637,24 @@ class PanchangService
             )
         );
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
+
+        $shannavatiShraddha = $this->festivalService->resolveShannavatiForDate(
+            $date,
+            $todaySnapshot,
+            $tomorrowSnapshot,
+            $yesterdaySnapshot,
+            fn(CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot(
+                $historicalDate,
+                $lat,
+                $lon,
+                $tz,
+                $elevation,
+                null,
+                $calendarType
+            ),
+            $festivals,
+            (string) AstroCore::getConfig('panchang.shraddha.shannavati_profile', 'dharma_sindhu'),
+        );
         DebugTrace::log('panchang.day', 'festival resolution completed', [
             'festival_count' => count($festivals),
             'snapshot_elapsed_s' => number_format((hrtime(true) - $festivalSnapshotStart) / 1_000_000_000, 6, '.', ''),
@@ -952,6 +974,7 @@ class PanchangService
             'Moon_Phase_At_Sunrise' => $moonPhaseAtSunrise,
             'Current_Moon_Phase_At_Input_Now' => $currentMoonPhase,
             'Festivals' => $festivals,
+            'Shannavati_Shraddha' => $shannavatiShraddha,
             'Daily_Observances' => $dailyObservances,
             'Special_Yogas' => $specialYogas,
             'Anandadi_Yoga' => $anandadiYoga,

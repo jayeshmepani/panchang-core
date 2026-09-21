@@ -242,3 +242,11 @@ MIT. See [LICENSE](LICENSE).
 ## Credits
 
 Built by [Jayesh Mepani](https://github.com/jayeshmepani).
+
+## Ṣaṇṇavati Śrāddha (96-fold canonical system)
+
+The daily Panchanga payload now includes `Shannavati_Shraddha`, resolved through a dedicated source-aware Śrāddha layer. The default profile is `dharma_sindhu` and can be changed with `PANCHANG_SHANNAVATI_PROFILE`.
+
+The canonical nominal taxonomy is 96 memberships: 12 Amāvāsyā, 4 Yugādi, 14 Manvādi, 12 Saṅkrānti, 12 Vaidhṛti, 12 Vyatīpāta, 15 Mahālaya, 5 Aṣṭakā, 5 Anvaṣṭakā, and 5 Pūrvēdhyu. Runtime occurrences are intentionally **not forced to exactly 96 physical dates**; adhika-māsa, tithi-vṛddhi/kṣaya, overlaps, and qualifying nitya-yoga manifestations are preserved.
+
+The resolver reuses the existing tithi, Saṅkrānti, and Yoga interval engines, adds Kutapa/Rauhiṇa/Śrāddha-Aparāhṇa daylight windows, supports Amānta/Pūrṇimānta month normalization, and permits multiple Ṣaṇṇavati memberships on one civil date.
