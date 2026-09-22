@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-09-03T04:57:37+00:00",
+        "generated_at": "2026-09-22T04:00:09+00:00",
         "year": 2026,
         "month": 9,
         "calendar_type": "purnimanta",
@@ -2201,6 +2201,112 @@
                     }
                 },
                 {
+                    "name": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
+                    "name_key": "Indra Savarni Manvadi",
+                    "description": "Shravana Krishna / Purnimanta Bhadrapada Krishna Ashtami Manvadi.",
+                    "deity": "બ્રહ્મા/વિષ્ણુ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "Indra Savarni Manuadi",
+                        "Bhadrapada Krishna Ashtami Manvadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "વદ આઠમ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "અપરાહ્ન",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9038.999976217747,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721125238,
+                        "target_tithi_end_jd": 2461288.280548431,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                            "winning_score": 1150,
+                            "winning_window_overlap_seconds": 9038.999976217747,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                        },
+                        "festival_name_key": "Indra Savarni Manvadi",
+                        "festival_name_localized": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "અપરાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
+                        "winning_score": 1150,
+                        "winning_window_overlap_seconds": 9038.999976217747,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
                     "name": "કાલાષ્ટમી",
                     "name_key": "Kalashtami",
                     "description": "ભગવાન ભૈરવને સમર્પિત માસિક વ્રત",
@@ -3186,6 +3292,34 @@
                             "number": 0,
                             "name": "રવિવાર"
                         }
+                    }
+                },
+                {
+                    "name": "વ્યતીપાત શ્રાદ્ધ",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "પિતૃ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "વ્યતીપાત તર્પણ",
+                        "વ્યતીપાત ષણ્ણવતિ શ્રાદ્ધ"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "અપરાહ્ન",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -5092,6 +5226,114 @@
                             "number": 4,
                             "name": "ગુરૂવાર"
                         }
+                    }
+                },
+                {
+                    "name": "દૈવ સાવર્ણિ મન્વદિ",
+                    "name_key": "Daiva Savarni Manvadi",
+                    "description": "Common modern named-Manvadi mapping for Shravana Amavasya / Purnimanta Bhadrapada Amavasya.",
+                    "deity": "બ્રહ્મા/વિષ્ણુ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "Deva Savarni Manvadi",
+                        "Daiva Savarni Manuadi"
+                    ],
+                    "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 15 સૂર્યોદયે 2026-09-11 પર આવે છે, પરંતુ અપરાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-10 પર ઉજવાય છે.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "તિથિ",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "કૃષ્ણ",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "અમાસ"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "કૃષ્ણ",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ભાદરવો",
+                            "value_key": "Bhadrapada",
+                            "name": "ભાદરવો"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "અપરાહ્ન",
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "દૈવ સાવર્ણિ મન્વદિ",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8944.80000436306,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.7109138574,
+                        "target_tithi_end_jd": 2461294.6436758693,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-10",
+                        "observance_note": "અપવાદ: માનક કૃષ્ણ પક્ષ તિથિ 15 સૂર્યોદયે 2026-09-11 પર આવે છે, પરંતુ અપરાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-10 પર ઉજવાય છે.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "દર્શ અમાસ: સૂર્યોદય-પૂર્વ અપરાહ્ન વાળો દિવસ",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8944.80000436306,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                            "winning_reason_name": "દર્શ અમાસ: સૂર્યોદય-પૂર્વ અપરાહ્ન વાળો દિવસ"
+                        },
+                        "festival_name_key": "Daiva Savarni Manvadi",
+                        "festival_name_localized": "દૈવ સાવર્ણિ મન્વદિ",
+                        "paksha_name": "કૃષ્ણ",
+                        "karmakala_type_name": "અપરાહ્ન"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "દર્શ અમાસ: સૂર્યોદય-પૂર્વ અપરાહ્ન વાળો દિવસ",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8944.80000436306,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                        "winning_reason_name": "દર્શ અમાસ: સૂર્યોદય-પૂર્વ અપરાહ્ન વાળો દિવસ"
                     }
                 },
                 {
@@ -7966,12 +8208,13 @@
                 {
                     "name": "રુદ્ર સાવર્ણિ મન્વદિ",
                     "name_key": "Rudra Savarni Manvadi",
-                    "description": "રુદ્ર સાવર્ણિ મન્વન્તરના પ્રારંભનો સ્મરણોત્સવ",
+                    "description": "Bhadrapada Shukla Tritiya Manvadi.",
                     "deity": "બ્રહ્મા/વિષ્ણુ",
                     "fasting": false,
                     "regions": [
                         "સમગ્ર ભારત"
                     ],
+                    "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-09-14 પર આવે છે, પરંતુ પૂર્વાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-13 પર ઉજવાય છે.",
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "તિથિ",
@@ -7980,15 +8223,15 @@
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
-                                2
+                                3
                             ],
                             "paksha": "Shukla",
                             "paksha_name": "શુક્લ",
                             "absolute_numbers": [
-                                2
+                                3
                             ],
                             "names": [
-                                "સુદ બીજ"
+                                "સુદ ત્રીજ"
                             ]
                         },
                         "paksha": "Shukla",
@@ -7999,36 +8242,41 @@
                             "value_key": "Bhadrapada",
                             "name": "ભાદરવો"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "પૂર્વાહ્ન",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "રુદ્ર સાવર્ણિ મન્વદિ",
-                        "required_tithi": 2,
+                        "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20302.522829174995,
+                        "tithi_coverage_seconds_tomorrow": 1835.6383234262466,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461295.59496745,
-                        "target_tithi_end_jd": 2461296.5686166342,
-                        "standard_date": "2026-09-13",
+                        "target_tithi_start_jd": 2461296.5686166342,
+                        "target_tithi_end_jd": 2461297.5676115546,
+                        "standard_date": "2026-09-14",
                         "observance_date": "2026-09-13",
+                        "observance_note": "અપવાદ: માનક શુક્લ પક્ષ તિથિ 3 સૂર્યોદયે 2026-09-14 પર આવે છે, પરંતુ પૂર્વાહ્ન ઉપસ્થિતિની પરંપરા/વિધિના કારણે 2026-09-13 પર ઉજવાય છે.",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20302.522829174995,
+                            "winning_window_coverage_ratio": 0.9127600961039963,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -8040,18 +8288,18 @@
                         "festival_name_key": "Rudra Savarni Manvadi",
                         "festival_name_localized": "રુદ્ર સાવર્ણિ મન્વદિ",
                         "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
+                        "karmakala_type_name": "પૂર્વાહ્ન"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20302.522829174995,
+                        "winning_window_coverage_ratio": 0.9127600961039963,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9157,6 +9405,35 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
+                    }
+                },
+                {
+                    "name": "વૈધૃતિ શ્રાદ્ધ",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "પિતૃ",
+                    "fasting": false,
+                    "regions": [
+                        "સમગ્ર ભારત"
+                    ],
+                    "aliases": [
+                        "વૈધૃતિ શ્રાદ્ધ",
+                        "વૈધૃતિ તર્પણ",
+                        "વૈધૃતિ ષણ્ણવતિ શ્રાદ્ધ"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "તિથિ",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "અપરાહ્ન",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -11159,104 +11436,6 @@
                         },
                         "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
                         "winning_reason_name": "પછીના શુદ્ધ દિવસે નવમી-યુક્ત દિવસની પસંદગી"
-                    }
-                },
-                {
-                    "name": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
-                    "name_key": "Indra Savarni Manvadi",
-                    "description": "ઈન્દ્ર સાવર્ણિ મન્વન્તરના પ્રારંભનો સ્મરણોત્સવ",
-                    "deity": "બ્રહ્મા/વિષ્ણુ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "સુદ આઠમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "ભાદરવો",
-                            "value_key": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Indra Savarni Manvadi",
-                        "festival_name_localized": "ઈન્દ્ર સાવર્ણિ મન્વદિ",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
                     }
                 },
                 {
@@ -15387,104 +15566,6 @@
                         "winning_score": 1144,
                         "winning_window_overlap_seconds": 8689.000023901463,
                         "winning_window_coverage_ratio": 1.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                    }
-                },
-                {
-                    "name": "દૈવ સાવર્ણિ મન્વદિ",
-                    "name_key": "Daiva Savarni Manvadi",
-                    "description": "દૈવ સાવર્ણિ મન્વન્તરના પ્રારંભનો સ્મરણોત્સવ",
-                    "deity": "બ્રહ્મા/વિષ્ણુ",
-                    "fasting": false,
-                    "regions": [
-                        "સમગ્ર ભારત"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "તિથિ",
-                        "basis": "tithi",
-                        "basis_name": "તિથિ",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "શુક્લ",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "પૂનમ"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "શુક્લ",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "ભાદરવો",
-                            "value_key": "Bhadrapada",
-                            "name": "ભાદરવો"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "resolution": {
-                        "festival_name": "દૈવ સાવર્ણિ મન્વદિ",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461309.2341748606,
-                        "target_tithi_end_jd": 2461310.200649148,
-                        "standard_date": "2026-09-26",
-                        "observance_date": "2026-09-26",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "લક્ષિત તિથિ કર્મકાળમાં"
-                        },
-                        "festival_name_key": "Daiva Savarni Manvadi",
-                        "festival_name_localized": "દૈવ સાવર્ણિ મન્વદિ",
-                        "paksha_name": "શુક્લ",
-                        "karmakala_type_name": "સૂર્યોદય"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "લક્ષિત તિથિ કર્મકાળમાં",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,

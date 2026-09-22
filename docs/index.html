@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 336 festival identities, 126 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, calendar-period windows, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 354 festival identities, 126 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, calendar-period windows, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -490,7 +490,7 @@
             </div>
             <div class="feature-card">
               <div class="feature-icon">🕉</div>
-              <h3>336 Festivals + 126 Vrats</h3>
+              <h3>354 Festivals + 126 Vrats</h3>
               <p>Comprehensive library of unique festival and vrat identities covering major and minor observances for all regions and
                 traditions.</p>
             </div>
@@ -2411,7 +2411,7 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
           <h2>FestivalService</h2>
           <p class="enum-type">Service: <code>JayeshMepani\PanchangCore\Festivals\FestivalService</code></p>
           <div class="enum-info">
-            <p>Calculates 336 unique festival identities and 126 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
+              <p>Calculates 354 unique festival identities and 126 unique vrat identities based on Tithi, Nakshatra, and complex regional traditions.</p>
             <p>Current festival output includes source-aware rule metadata such as <code>source_refs</code>,
               <code>ritual_profile</code>, localized calculation-basis labels, Chandra Darshana visibility windows,
               and Satsangi Jeevan / Swaminarayan annual observance profiles.</p>
@@ -2433,6 +2433,10 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
               <li><strong>Profile metadata:</strong> festival rows can expose <code>tradition_profile</code>,
                 <code>ritual_profile</code>, <code>ritual_profile_key</code>, <code>source_refs</code>, sect-specific
                 flags, aliases, and localized deity/description strings in English, Hindi, and Gujarati.</li>
+              <li><strong>Ṣaṇṇavati Śrāddha:</strong> the separate <code>Shannavati_Shraddha</code> layer exposes 96 nominal
+                ancestral-rite categories. The production <code>dharma_sindhu</code> profile uses 12 Vaidhṛti and 12 Vyatīpāta
+                occasions. Manvādi and Yugādi rules may resolve in both adhika and nija months, so the runtime date count is
+                not forced to equal 96.</li>
             </ul>
           </div>
           <div class="methods-section">
@@ -2561,7 +2565,7 @@ foreach ($festivals as $festival) {
                   <li><code>total_vrats</code> aliases: <code>unique_vrat_count</code>, <code>vrat_identity_count</code></li>
                 </ul>
               </div>
-              <p class="method-description"><code>festival_entry_count</code> counts dated occurrences in the returned calendar. <code>total_festivals</code> / <code>total_vrats</code> are <strong>year-independent catalog totals</strong> from <code>FestivalService::getCatalogFestivalCount()</code> (336) and <code>getCatalogVratCount()</code> (126), not “how many fired this year.”</p>
+              <p class="method-description"><code>festival_entry_count</code> counts dated occurrences in the returned calendar. <code>total_festivals</code> / <code>total_vrats</code> are <strong>year-independent catalog totals</strong> from <code>FestivalService::getCatalogFestivalCount()</code> (354) and <code>getCatalogVratCount()</code> (126), not “how many fired this year.”</p>
             </div>
 
             <div class="method">
@@ -2584,7 +2588,7 @@ foreach ($festivals as $festival) {
 
             <div class="method">
               <h4 class="method-name">generateFestivalsOnlySelected() / generateVratsSelected()</h4>
-              <p class="method-description">Selective branch readers for the dedicated festival-only and vrat-only yearly pipelines (resolver filters at catalog scope instead of slicing a combined year). Section names match <code>generateFestivalsSelected()</code>: <code>by_date</code>, <code>flat</code>, <code>festival_day_count</code>, <code>festival_entry_count</code>, <code>total_festivals</code> (catalog 336), <code>total_vrats</code> (catalog 126). Note: selective keys keep the shared name <code>festival_entry_count</code> even on the vrat-only pipeline (occurrence count of returned rows); the compact CLI contract renames the dated count to <code>vrat_entry_count</code>.</p>
+              <p class="method-description">Selective branch readers for the dedicated festival-only and vrat-only yearly pipelines (resolver filters at catalog scope instead of slicing a combined year). Section names match <code>generateFestivalsSelected()</code>: <code>by_date</code>, <code>flat</code>, <code>festival_day_count</code>, <code>festival_entry_count</code>, <code>total_festivals</code> (catalog 354), <code>total_vrats</code> (catalog 126). Note: selective keys keep the shared name <code>festival_entry_count</code> even on the vrat-only pipeline (occurrence count of returned rows); the compact CLI contract renames the dated count to <code>vrat_entry_count</code>.</p>
               <div class="method-signature">
                 <code>public function generateFestivalsOnlySelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code><br>
                 <code>public function generateVratsSelected(int $year, float $lat, float $lon, string $tz, array $sections, float $elevation=0.0, CalendarType|string $calendarType=CalendarType::Amanta): array</code>
@@ -2733,7 +2737,7 @@ foreach ($festivals as $festival) {
                 remains on that same calendar date.</li>
               <li>Empty arrays such as <code>Bhadra: []</code> or <code>Dharma_Sindhu: []</code> are valid when no
                 applicable window exists for that Panchang day.</li>
-              <li>The verified yearly catalog currently reports <code>336</code> unique festival identities and <code>126</code> unique vrat identities. Distinct observances that fall on the same tithi remain separate entries (for example Kali Chaudas vs Abhyanga Snan, or Smarta vs Vaishnava Rama Navami).</li>
+              <li>The verified yearly catalog currently reports <code>354</code> unique festival identities and <code>126</code> unique vrat identities. Distinct observances that fall on the same tithi remain separate entries (for example Kali Chaudas vs Abhyanga Snan, or Smarta vs Vaishnava Rama Navami).</li>
               <li>Named Karmakala windows are exposed directly in <code>Karmakala_Windows</code> so festival-side
                 <code>karmakala_type</code> concepts such as <code>sunrise</code>, <code>madhyahna</code>,
                 <code>aparahna</code>, <code>pradosha</code>, and <code>nishitha</code> map cleanly to daily output.
@@ -5049,22 +5053,35 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the latest v11.1.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.2.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v11.1.0</strong> is a minor release over <strong>v11.0.0</strong> that corrects Amāvāsyā public naming: weekday identities (Somavati / Bhaumavati / Shani) attach only when Monday / Tuesday / Saturday occur on generic Amavasya; named Amavasya may alias to generic Amavasya (not the reverse); Darsha Amavasya is clarified as an aparahna/evening–night technical subset, not always the main Amavasya civil identity. Catalog festival identities rise to <strong>336</strong>; vrat identities remain <strong>126</strong>. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v11.2.0</strong> adds the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. The preceding <strong>v11.1.0</strong> release corrected Amāvāsyā public naming: weekday identities (Somavati / Bhaumavati / Shani) attach only when Monday / Tuesday / Saturday occur on generic Amavasya; named Amavasya may alias to generic Amavasya (not the reverse); Darsha Amavasya is clarified as an aparahna/evening–night technical subset, not always the main Amavasya civil identity. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed for the <strong>v11.1.0</strong> line: <strong>336</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail and month <code>Hindu_Calendar</code> blocks expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
+            <p>This documentation is refreshed for <strong>v11.2.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail and month <code>Hindu_Calendar</code> blocks expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior are documented as part of this release. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
             <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>v11.2.0 Release Addition</h3>
+            <p>This release records the current <strong>354/126</strong> identity totals and adds the separate <code>Shannavati_Shraddha</code> membership layer. Its canonical nominal count is 96 under the selected Dharma Sindhu profile; actual generated dates can vary because applicable Manvādi/Yugādi rules may resolve in both adhika and nija months.</p>
+            <p>For example, Vaivaswata Manvādi can occur twice in a year when both Jyeshtha adhika and Jyeshtha nija Pūrṇimās satisfy the rule. This is an intentional runtime manifestation, not a duplicate identity or a catalogue-count error.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">11.2.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Ṣaṇṇavati Śrāddha Catalogue and Festival Calendar Expansion</span><span class="release-meta">Release</span></div>
+                <p class="release-note">Minor release adding the 96-category Ṣaṇṇavati Śrāddha membership layer, new ancestral-rite identities, Dharma Sindhu profile metadata, adhika/nija month handling, updated English/Hindi/Gujarati outputs, and synchronized calendar documentation. The catalog contains <strong>354</strong> festival identities and <strong>126</strong> vrat identities; the Ṣaṇṇavati taxonomy remains a separate nominal count of <strong>96</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">11.1.0</span>
               <div class="release-body">
                 <div class="release-heading"><span class="release-title">Amāvāsyā Weekday Naming, Alias Clarity, and Darsha Distinction</span><span class="release-meta">Latest Release</span></div>
@@ -5450,6 +5467,21 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v11.2.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This minor release adds the Ṣaṇṇavati Śrāddha catalogue and related festival-calendar expansion. Catalog festival identities increase from <strong>336</strong> to <strong>354</strong>; vrat identities remain <strong>126</strong>. The nominal Ṣaṇṇavati classification contains <strong>96</strong> ancestral-rite categories.</p>
+
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">v11.2.0 Changes</h4>
+            <ul>
+              <li><strong>Ṣaṇṇavati Śrāddha:</strong> adds the 96-category ancestral-rite classification with source/profile metadata.</li>
+              <li><strong>New identities:</strong> adds the newly represented Manvādi, Aṣṭakā, Anvaṣṭakā, Pūrvēdhyu, Vaidhṛti, Vyatīpāta, and related Śrāddha identities.</li>
+              <li><strong>Adhika and nija months:</strong> Manvādi and Yugādi observances may produce two civil dates when both applicable lunar months satisfy the rule.</li>
+              <li><strong>Dharma Sindhu profile:</strong> uses twelve Vaidhṛti and twelve Vyatīpāta occasions within the 96-category enumeration.</li>
+              <li><strong>Localization:</strong> English, Hindi, and Gujarati generated outputs are synchronized with the expanded catalogue.</li>
+              <li><strong>Documentation:</strong> updates <code>MASTER.md</code>, <code>docs/FESTIVAL_VRAT_IDENTITIES.md</code>, and the published HTML reference.</li>
+            </ul>
+          </div>
 
           <h3>v11.1.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This minor release corrects Amāvāsyā public naming and clarifies Darsha versus broad Amavasya. Catalog festival identities increase from 334 to <strong>336</strong>; vrat identities remain <strong>126</strong>. Multi-model Bārhaspatya and era-year alignment from v11.0.0 are unchanged.</p>

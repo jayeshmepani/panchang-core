@@ -326,7 +326,7 @@ Specific divisions used to schedule actions based on religious injunctions:
 
 # 9. Festival and Vrat Identities
 
-This chapter lists the festival and fasting (vrat) names used across the calendar. There are **336** festival identities and **126** vrat identities. Where the same observance is known by more than one regional or traditional name, the common alternate names appear in the Alias column.
+This chapter lists the festival and fasting (vrat) names used across the calendar. There are **354** festival identities and **126** vrat identities. Where the same observance is known by more than one regional or traditional name, the common alternate names appear in the Alias column.
 
 A few naming patterns are useful to keep in mind:
 
@@ -335,7 +335,29 @@ A few naming patterns are useful to keep in mind:
 *   When Amavasya falls on **Monday**, **Tuesday**, or **Saturday**, it is also known by its weekday name—**Somavati Amavasya**, **Bhaumavati Amavasya**, or **Shani Amavasya**. Those weekday forms are listed separately below, just as the weekday forms of Pradosh Vrat are listed among the vrats.
 *   Month-named Amavasya days (such as Magha Amavasya / Mauni Amavasya) keep their month identity; they may also be spoken of simply as Amavasya.
 
-## Festival Identities (336)
+## Ṣaṇṇavati Śrāddha (96 nominal occasions)
+
+The Ṣaṇṇavati (Śaṇṇavati) Śrāddha is the traditional classification of ninety-six ancestral-rite occasions. Its nominal enumeration is:
+
+| Category | Nominal count |
+|---|---:|
+| Amāvāsyā | 12 |
+| Yugādi | 4 |
+| Manvādi | 14 |
+| Saṅkrānti / Saṅkramaṇa | 12 |
+| Vaidhṛti | 12 |
+| Vyatīpāta | 12 |
+| Mahālaya / Pitṛ-pakṣa | 15 |
+| Aṣṭakā | 5 |
+| Anvaṣṭakā | 5 |
+| Pūrvēdhyu / Purvedyu | 5 |
+| **Total** | **96** |
+
+The number ninety-six describes the traditional categories; it does not mean that every year will contain exactly ninety-six separate civil dates. A named Manvādi or Yugādi observance may occur twice when the relevant rule applies to both the adhika and nija months. For example, in the Bhuj calendar, Vaivaswata Manvādi occurs on 2026-05-31 in Jyeshtha adhika and on 2026-06-29 in Jyeshtha nija; in 2027 it occurs once, on 2027-06-18.
+
+The Dharma Sindhu enumeration uses twelve Vaidhṛti and twelve Vyatīpāta occasions. Manvādi and Yugādi observances are considered in both adhika and nija months where the source rule prescribes both-month observance.
+
+## Festival Identities (354)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -353,7 +375,7 @@ A few naming patterns are useful to keep in mind:
 | 12 | Adhika Skanda Sashti | - |
 | 13 | Adi Shankaracharya Jayanti | - |
 | 14 | Akal Bodhon | - |
-| 15 | Akshaya Tritiya | Akshaya Tritiya (Lakshmi-Narayana), Treta Yuga Diwas |
+| 15 | Treta Yuga Diwas | Akshaya Tritiya, Akshaya Tritiya (Lakshmi-Narayana) |
 | 16 | Alankar Marjanotsav | Alankar Marjan, Alankar Marjanotsava |
 | 17 | Amavasya | Amas |
 | 18 | Anant Chaturdashi | Ganesh Visarjan |
@@ -675,6 +697,24 @@ A few naming patterns are useful to keep in mind:
 | 334 | Yaoshang | - |
 | 335 | Yashoda Jayanti | - |
 | 336 | Yogi Maharaj Jayanti | - |
+| 337 | Bhadrapada Anvashtaka Shraddha | - |
+| 338 | Bhadrapada Ashtaka Shraddha | - |
+| 339 | Bhadrapada Purvedyu Shraddha | - |
+| 340 | Dharma Savarni Manvadi | - |
+| 341 | Magha Anvashtaka Shraddha | - |
+| 342 | Magha Ashtaka Shraddha | - |
+| 343 | Magha Purvedyu Shraddha | - |
+| 344 | Margashirsha Anvashtaka Shraddha | - |
+| 345 | Margashirsha Ashtaka Shraddha | - |
+| 346 | Margashirsha Purvedyu Shraddha | - |
+| 347 | Pausha Anvashtaka Shraddha | - |
+| 348 | Pausha Ashtaka Shraddha | - |
+| 349 | Pausha Purvedyu Shraddha | - |
+| 350 | Phalguna Anvashtaka Shraddha | - |
+| 351 | Phalguna Ashtaka Shraddha | - |
+| 352 | Phalguna Purvedyu Shraddha | - |
+| 353 | Vaidhriti Shraddha | - |
+| 354 | Vyatipata Shraddha | - |
 
 ## Vrat Identities (126)
 

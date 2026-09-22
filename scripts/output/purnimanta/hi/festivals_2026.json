@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-09-03T04:56:03+00:00",
+        "generated_at": "2026-09-22T03:58:16+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "purnimanta",
@@ -20,8 +20,8 @@
         "calendar_type": "purnimanta",
         "locale": "hi",
         "festival_day_count": 365,
-        "festival_entry_count": 1055,
-        "total_festivals": 336,
+        "festival_entry_count": 1101,
+        "total_festivals": 354,
         "total_vrats": 126,
         "by_date": {
             "2026-01-01": [
@@ -1193,6 +1193,35 @@
                     }
                 },
                 {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "इष्टि",
                     "name_key": "Ishti",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",
@@ -1563,6 +1592,34 @@
                             "name": "शुक्रवार"
                         }
                     }
+                },
+                {
+                    "name": "पौष पूर्वेद्यु श्राद्ध",
+                    "name_key": "Pausha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "पौष पूर्वेद्युह श्राद्ध",
+                        "पौष पूर्वेद्यु श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-01-10": [
@@ -1587,6 +1644,34 @@
                             "number": 6,
                             "name": "शनिवार"
                         }
+                    }
+                },
+                {
+                    "name": "पौष अष्टका श्राद्ध",
+                    "name_key": "Pausha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "पौष अष्टका श्राद्ध",
+                        "पौष अष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -1720,6 +1805,34 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "पौष अन्वष्टका श्राद्ध",
+                    "name_key": "Pausha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "पौष अन्वष्टका श्राद्ध",
+                        "पौष अन्वष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -2802,7 +2915,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -2898,7 +3011,7 @@
                 {
                     "name": "अमावस्या",
                     "name_key": "Amavasya",
-                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
+                    "description": "अमावस्या वह व्यापक तिथि-नाम है जब चंद्रमा दिखाई नहीं देता और कृष्ण पक्ष समाप्त होता है—पूर्वज-स्मरण, पूजा और आन्तरिक शुद्धि से जुड़ा। दर्श अमावस्या (अपराह्न/रात्रि तकनीकी उपसमूह) तथा मास-नामित अमावस्याओं से भिन्न।",
                     "deity": "पितृ/चन्द्र",
                     "fasting": false,
                     "regions": [
@@ -4547,6 +4660,34 @@
                             "name": "बुधवार"
                         }
                     }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-01-22": [
@@ -5702,6 +5843,108 @@
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
                         "winning_score": 1103,
                         "winning_window_overlap_seconds": 6225.333322584629,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "ब्रह्म सावर्णि मन्वदि",
+                    "name_key": "Brahma Savarni Manvadi",
+                    "description": "Magha Shukla Saptami Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                7
+                            ],
+                            "names": [
+                                "शुक्ल सप्तमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "माघ",
+                            "value_key": "Magha",
+                            "name": "माघ"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "ब्रह्म सावर्णि मन्वदि",
+                        "required_tithi": 7,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 19847.500030696392,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461065.298866328,
+                        "target_tithi_end_jd": 2461066.236600871,
+                        "standard_date": "2026-01-25",
+                        "observance_date": "2026-01-25",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19847.500030696392,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Brahma Savarni Manvadi",
+                        "festival_name_localized": "ब्रह्म सावर्णि मन्वदि",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "पूर्वाह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19847.500030696392,
                         "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
@@ -6916,6 +7159,35 @@
                             "number": 5,
                             "name": "शुक्रवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -8229,6 +8501,34 @@
                             "name": "रविवार"
                         }
                     }
+                },
+                {
+                    "name": "माघ पूर्वेद्यु श्राद्ध",
+                    "name_key": "Magha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "माघ पूर्वेद्युह श्राद्ध",
+                        "माघ पूर्वेद्यु श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-02-09": [
@@ -8254,6 +8554,34 @@
                             "number": 1,
                             "name": "सोमवार"
                         }
+                    }
+                },
+                {
+                    "name": "माघ अष्टका श्राद्ध",
+                    "name_key": "Magha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "माघ अष्टका श्राद्ध",
+                        "माघ अष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -8417,6 +8745,34 @@
                             "number": 2,
                             "name": "मंगलवार"
                         }
+                    }
+                },
+                {
+                    "name": "माघ अन्वष्टका श्राद्ध",
+                    "name_key": "Magha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "माघ अन्वष्टका श्राद्ध",
+                        "माघ अन्वष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -9089,6 +9445,34 @@
                         "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
                         "winning_reason_name": "महाशिवरात्रि पहले दिन पूर्ण निशीथ, दूसरे दिन आंशिक"
                     }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-02-16": [
@@ -9346,13 +9730,15 @@
                 {
                     "name": "द्वापरयुग दिवस",
                     "name_key": "Dwapara Yuga Diwas",
-                    "description": "द्वापरयुग के आरंभ का स्मरणोत्सव",
+                    "description": "Magha Krishna Amavasya Yugadi tithi under the selected tradition profile.",
                     "deity": "विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
                     "aliases": [
+                        "Dvapara Yuga Diwas",
+                        "Dvapara Yugadi",
                         "मौनी अमावस्या"
                     ],
                     "calculation_basis": {
@@ -9382,17 +9768,24 @@
                             "value_key": "Phalguna",
                             "name": "फाल्गुन"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "vriddhi_preference": "first",
+                        "source_refs": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "द्वापरयुग दिवस",
                         "required_tithi": 15,
                         "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "aparahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 8245.799973607063,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9403,45 +9796,45 @@
                         "standard_date": "2026-02-17",
                         "observance_date": "2026-02-17",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_reason": "दर्श अमावस्या केवल पहले दिन अपराह्न में",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8245.799973607063,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                            "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                            "winning_reason_name": "दर्श अमावस्या केवल पहले दिन अपराह्न में"
                         },
                         "festival_name_key": "Dwapara Yuga Diwas",
                         "festival_name_localized": "द्वापरयुग दिवस",
                         "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "अपराह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_reason": "दर्श अमावस्या केवल पहले दिन अपराह्न में",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8245.799973607063,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
                             "preferred": false
                         },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                        "winning_reason_name": "दर्श अमावस्या केवल पहले दिन अपराह्न में"
                     }
                 },
                 {
@@ -9465,7 +9858,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -11587,6 +11980,35 @@
                     }
                 },
                 {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "मासिक दुर्गाष्टमी",
                     "name_key": "Masik Durgashtami",
                     "description": "मासिक दुर्गाष्टमी देवी को समर्पित मासिक शुक्ल अष्टमी पालन है।",
@@ -13341,7 +13763,7 @@
                 {
                     "name": "सावर्णि मन्वदि",
                     "name_key": "Savarni Manvadi",
-                    "description": "सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Phalguna Shukla Purnima Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
@@ -13374,17 +13796,21 @@
                             "value_key": "Phalguna",
                             "name": "फाल्गुन"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "सावर्णि मन्वदि",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 21157.000029087067,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -13395,15 +13821,15 @@
                         "standard_date": "2026-03-03",
                         "observance_date": "2026-03-03",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21157.000029087067,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -13415,18 +13841,18 @@
                         "festival_name_key": "Savarni Manvadi",
                         "festival_name_localized": "सावर्णि मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21157.000029087067,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -14293,6 +14719,34 @@
                     }
                 },
                 {
+                    "name": "फाल्गुन पूर्वेद्यु श्राद्ध",
+                    "name_key": "Phalguna Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "फाल्गुन पूर्वेद्युह श्राद्ध",
+                        "फाल्गुन पूर्वेद्यु श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "शबरी जयंती",
                     "name_key": "Shabari Jayanti",
                     "description": "शबरी की जयंती",
@@ -14407,6 +14861,34 @@
                             "number": 3,
                             "name": "बुधवार"
                         }
+                    }
+                },
+                {
+                    "name": "फाल्गुन अष्टका श्राद्ध",
+                    "name_key": "Phalguna Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "फाल्गुन अष्टका श्राद्ध",
+                        "फाल्गुन अष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -14710,6 +15192,62 @@
                             "number": 4,
                             "name": "गुरुवार"
                         }
+                    }
+                },
+                {
+                    "name": "फाल्गुन अन्वष्टका श्राद्ध",
+                    "name_key": "Phalguna Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "फाल्गुन अन्वष्टका श्राद्ध",
+                        "फाल्गुन अन्वष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -15655,7 +16193,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -17901,11 +18439,14 @@
                 {
                     "name": "स्वायम्भुव मन्वदि",
                     "name_key": "Swayambhuva Manvadi",
-                    "description": "स्वायम्भुव मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Chaitra Shukla Tritiya Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Swayambhu Manuadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -17934,17 +18475,21 @@
                             "value_key": "Chaitra",
                             "name": "चैत्र"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "स्वायम्भुव मन्वदि",
                         "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 21884.999983012676,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -17955,15 +18500,15 @@
                         "standard_date": "2026-03-21",
                         "observance_date": "2026-03-21",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21884.999983012676,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -17975,18 +18520,18 @@
                         "festival_name_key": "Swayambhuva Manvadi",
                         "festival_name_localized": "स्वायम्भुव मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21884.999983012676,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -18227,6 +18772,35 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -21128,6 +21702,114 @@
                     }
                 },
                 {
+                    "name": "स्वारोचिष मन्वदि",
+                    "name_key": "Swarochisha Manvadi",
+                    "description": "Chaitra Shukla Purnima Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Svarochisha Manvadi",
+                        "Swarochisha Manuadi"
+                    ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 15 सूर्योदय पर 2026-04-02 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-04-01 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "चैत्र",
+                            "value_key": "Chaitra",
+                            "name": "चैत्र"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "स्वारोचिष मन्वदि",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20926.237651705742,
+                        "tithi_coverage_seconds_tomorrow": 3575.9251222014427,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461131.5671095178,
+                        "target_tithi_end_jd": 2461132.5915732076,
+                        "standard_date": "2026-04-02",
+                        "observance_date": "2026-04-01",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 15 सूर्योदय पर 2026-04-02 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-04-01 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20926.237651705742,
+                            "winning_window_coverage_ratio": 0.9371146033915705,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Swarochisha Manvadi",
+                        "festival_name_localized": "स्वारोचिष मन्वदि",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "पूर्वाह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20926.237651705742,
+                        "winning_window_coverage_ratio": 0.9371146033915705,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -21385,104 +22067,6 @@
                             "number": 4,
                             "name": "गुरुवार"
                         }
-                    }
-                },
-                {
-                    "name": "स्वारोचिष मन्वदि",
-                    "name_key": "Swarochisha Manvadi",
-                    "description": "स्वारोचिष मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "चैत्र",
-                            "value_key": "Chaitra",
-                            "name": "चैत्र"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "स्वारोचिष मन्वदि",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461131.5671095178,
-                        "target_tithi_end_jd": 2461132.5915732076,
-                        "standard_date": "2026-04-02",
-                        "observance_date": "2026-04-02",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Swarochisha Manvadi",
-                        "festival_name_localized": "स्वारोचिष मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 },
                 {
@@ -21853,6 +22437,34 @@
                             "number": 2,
                             "name": "मंगलवार"
                         }
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -23149,6 +23761,35 @@
                     }
                 },
                 {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "रोंगाली बिहू दिन ३",
                     "name_key": "Rongali Bihu Day 3",
                     "description": "रोंगाली/बोहाग बिहू का तीसरा दिन; गृह एवं ग्राम देवताओं की पूजा",
@@ -23253,7 +23894,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -23349,7 +23990,7 @@
                 {
                     "name": "अमावस्या",
                     "name_key": "Amavasya",
-                    "description": "Amavasya is the broad lunar-day (tithi) name for the New Moon when the Moon cannot be seen, marking the end of the waning phase—associated with ancestral remembrance, worship and inner purification. Distinct from Darsha Amavasya (aparahna/evening–night technical subset for pitru rites) and from māsa-named Amavasya identities.",
+                    "description": "अमावस्या वह व्यापक तिथि-नाम है जब चंद्रमा दिखाई नहीं देता और कृष्ण पक्ष समाप्त होता है—पूर्वज-स्मरण, पूजा और आन्तरिक शुद्धि से जुड़ा। दर्श अमावस्या (अपराह्न/रात्रि तकनीकी उपसमूह) तथा मास-नामित अमावस्याओं से भिन्न।",
                     "deity": "पितृ/चन्द्र",
                     "fasting": false,
                     "regions": [
@@ -28746,6 +29387,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "इष्टि",
                     "name_key": "Ishti",
                     "description": "पूर्णिमा/अमावस्या के अगले दिन किए जाने वाले यज्ञीय अनुष्ठान",
@@ -29389,6 +30058,35 @@
                             "number": 2,
                             "name": "मंगलवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -30453,7 +31151,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -33137,6 +33835,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "इस्कॉन एकादशी",
                     "name_key": "ISKCON Ekadashi",
                     "description": "वैष्णव / इस्कॉन एकादशी उपवास दिवस, जो भगवान विष्णु की भक्ति के साथ मनाया जाता है",
@@ -33993,6 +34719,112 @@
                     }
                 },
                 {
+                    "name": "वैवस्वत मन्वदि",
+                    "name_key": "Vaivaswata Manvadi",
+                    "description": "Jyeshtha Shukla Purnima Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Vaivasvata Manvadi",
+                        "Vaivaswata Manuadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ज्येष्ठ",
+                            "value_key": "Jyeshtha",
+                            "name": "ज्येष्ठ"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "वैवस्वत मन्वदि",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 24278.499975800514,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461190.7697032625,
+                        "target_tithi_end_jd": 2461191.864656782,
+                        "standard_date": "2026-05-31",
+                        "observance_date": "2026-05-31",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 24278.499975800514,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Vaivaswata Manvadi",
+                        "festival_name_localized": "वैवस्वत मन्वदि",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "पूर्वाह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 24278.499975800514,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -34305,6 +35137,35 @@
                             "number": 6,
                             "name": "शनिवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -35654,7 +36515,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -37930,6 +38791,34 @@
                             "name": "रविवार"
                         }
                     }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-06-22": [
@@ -39302,6 +40191,112 @@
                     }
                 },
                 {
+                    "name": "वैवस्वत मन्वदि",
+                    "name_key": "Vaivaswata Manvadi",
+                    "description": "Jyeshtha Shukla Purnima Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Vaivasvata Manvadi",
+                        "Vaivaswata Manuadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "पूर्णिमा"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "ज्येष्ठ",
+                            "value_key": "Jyeshtha",
+                            "name": "ज्येष्ठ"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "वैवस्वत मन्वदि",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 24440.999999642372,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461220.40057025,
+                        "target_tithi_end_jd": 2461221.497627564,
+                        "standard_date": "2026-06-29",
+                        "observance_date": "2026-06-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 24440.999999642372,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Vaivaswata Manvadi",
+                        "festival_name_localized": "वैवस्वत मन्वदि",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "पूर्वाह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 24440.999999642372,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -39509,6 +40504,35 @@
                             "number": 4,
                             "name": "गुरुवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -40942,7 +41966,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -43308,6 +44332,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "अनिरुद्ध चतुर्थी",
                     "name_key": "Aniruddha Chaturthi",
                     "description": "भगवान कृष्ण के पौत्र अनिरुद्ध को समर्पित",
@@ -44433,6 +45485,110 @@
                             "name": "गुरुवार"
                         }
                     }
+                },
+                {
+                    "name": "रैवत मन्वदि",
+                    "name_key": "Raivata Manvadi",
+                    "description": "Ashadha Shukla Dashami Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 10 सूर्योदय पर 2026-07-24 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-07-23 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                10
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "शुक्ल",
+                            "absolute_numbers": [
+                                10
+                            ],
+                            "names": [
+                                "शुक्ल दशमी"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "शुक्ल",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "आषाढ़",
+                            "value_key": "Ashadha",
+                            "name": "आषाढ़"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "रैवत मन्वदि",
+                        "required_tithi": 10,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 21242.817708849907,
+                        "tithi_coverage_seconds_tomorrow": 10544.162884354591,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461244.5650831284,
+                        "target_tithi_end_jd": 2461245.6549787372,
+                        "standard_date": "2026-07-24",
+                        "observance_date": "2026-07-23",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 10 सूर्योदय पर 2026-07-24 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-07-23 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21242.817708849907,
+                            "winning_window_coverage_ratio": 0.883424174507789,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Raivata Manvadi",
+                        "festival_name_localized": "रैवत मन्वदि",
+                        "paksha_name": "शुक्ल",
+                        "karmakala_type_name": "पूर्वाह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21242.817708849907,
+                        "winning_window_coverage_ratio": 0.883424174507789,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
                 }
             ],
             "2026-07-24": [
@@ -44653,104 +45809,6 @@
                             "number": 5,
                             "name": "शुक्रवार"
                         }
-                    }
-                },
-                {
-                    "name": "रैवत मन्वदि",
-                    "name_key": "Raivata Manvadi",
-                    "description": "रैवत मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                10
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                10
-                            ],
-                            "names": [
-                                "शुक्ल दशमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "आषाढ़",
-                            "value_key": "Ashadha",
-                            "name": "आषाढ़"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "रैवत मन्वदि",
-                        "required_tithi": 10,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461244.5650831284,
-                        "target_tithi_end_jd": 2461245.6549787372,
-                        "standard_date": "2026-07-24",
-                        "observance_date": "2026-07-24",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Raivata Manvadi",
-                        "festival_name_localized": "रैवत मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 }
             ],
@@ -45916,6 +46974,35 @@
                             "name": "सोमवार"
                         }
                     }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-07-28": [
@@ -46380,111 +47467,16 @@
                     }
                 },
                 {
-                    "name": "वैवस्वत मन्वदि",
-                    "name_key": "Vaivaswata Manvadi",
-                    "description": "वैवस्वत मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "आषाढ़",
-                            "value_key": "Ashadha",
-                            "name": "आषाढ़"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "वैवस्वत मन्वदि",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461250.0342799416,
-                        "target_tithi_end_jd": 2461251.108069732,
-                        "standard_date": "2026-07-29",
-                        "observance_date": "2026-07-29",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Vaivaswata Manvadi",
-                        "festival_name_localized": "वैवस्वत मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "चाक्षुष मन्वदि",
                     "name_key": "Chakshusha Manvadi",
-                    "description": "चाक्षुष मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Ashadha Shukla Purnima Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Cakshusha Manvadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -46513,17 +47505,21 @@
                             "value_key": "Ashadha",
                             "name": "आषाढ़"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "चाक्षुष मन्वदि",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 23886.00003272295,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -46534,15 +47530,15 @@
                         "standard_date": "2026-07-29",
                         "observance_date": "2026-07-29",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 23886.00003272295,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -46554,18 +47550,18 @@
                         "festival_name_key": "Chakshusha Manvadi",
                         "festival_name_localized": "चाक्षुष मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 23886.00003272295,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -48417,6 +49413,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -48437,7 +49461,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -50864,6 +51888,35 @@
                             "number": 5,
                             "name": "शुक्रवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -54243,6 +55296,112 @@
                     }
                 },
                 {
+                    "name": "इन्द्र सावर्णि मन्वदि",
+                    "name_key": "Indra Savarni Manvadi",
+                    "description": "Shravana Krishna / Purnimanta Bhadrapada Krishna Ashtami Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Indra Savarni Manuadi",
+                        "Bhadrapada Krishna Ashtami Manvadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "इन्द्र सावर्णि मन्वदि",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9038.999976217747,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721125238,
+                        "target_tithi_end_jd": 2461288.280548431,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1150,
+                            "winning_window_overlap_seconds": 9038.999976217747,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Indra Savarni Manvadi",
+                        "festival_name_localized": "इन्द्र सावर्णि मन्वदि",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1150,
+                        "winning_window_overlap_seconds": 9038.999976217747,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "कालाष्टमी",
                     "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
@@ -54596,6 +55755,34 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -55241,6 +56428,114 @@
                     }
                 },
                 {
+                    "name": "दैव सावर्णि मन्वदि",
+                    "name_key": "Daiva Savarni Manvadi",
+                    "description": "Common modern named-Manvadi mapping for Shravana Amavasya / Purnimanta Bhadrapada Amavasya.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Deva Savarni Manvadi",
+                        "Daiva Savarni Manuadi"
+                    ],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 15 सूर्योदय पर 2026-09-11 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-10 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "अमावस्या"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "दैव सावर्णि मन्वदि",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8944.80000436306,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.7109138574,
+                        "target_tithi_end_jd": 2461294.6436758693,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-10",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 15 सूर्योदय पर 2026-09-11 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-10 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8944.80000436306,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                            "winning_reason_name": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन"
+                        },
+                        "festival_name_key": "Daiva Savarni Manvadi",
+                        "festival_name_localized": "दैव सावर्णि मन्वदि",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8944.80000436306,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                        "winning_reason_name": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन"
+                    }
+                },
+                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -55261,7 +56556,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -57179,12 +58474,13 @@
                 {
                     "name": "रुद्र सावर्णि मन्वदि",
                     "name_key": "Rudra Savarni Manvadi",
-                    "description": "रुद्र सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Bhadrapada Shukla Tritiya Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "तिथि",
@@ -57193,15 +58489,15 @@
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
-                                2
+                                3
                             ],
                             "paksha": "Shukla",
                             "paksha_name": "शुक्ल",
                             "absolute_numbers": [
-                                2
+                                3
                             ],
                             "names": [
-                                "शुक्ल द्वितीया"
+                                "शुक्ल तृतीया"
                             ]
                         },
                         "paksha": "Shukla",
@@ -57212,36 +58508,41 @@
                             "value_key": "Bhadrapada",
                             "name": "भाद्रपद"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "रुद्र सावर्णि मन्वदि",
-                        "required_tithi": 2,
+                        "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20302.522829174995,
+                        "tithi_coverage_seconds_tomorrow": 1835.6383234262466,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461295.59496745,
-                        "target_tithi_end_jd": 2461296.5686166342,
-                        "standard_date": "2026-09-13",
+                        "target_tithi_start_jd": 2461296.5686166342,
+                        "target_tithi_end_jd": 2461297.5676115546,
+                        "standard_date": "2026-09-14",
                         "observance_date": "2026-09-13",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20302.522829174995,
+                            "winning_window_coverage_ratio": 0.9127600961039963,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -57253,18 +58554,18 @@
                         "festival_name_key": "Rudra Savarni Manvadi",
                         "festival_name_localized": "रुद्र सावर्णि मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20302.522829174995,
+                        "winning_window_coverage_ratio": 0.9127600961039963,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -57748,6 +59049,35 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -58526,104 +59856,6 @@
                         },
                         "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
                         "winning_reason_name": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन"
-                    }
-                },
-                {
-                    "name": "इन्द्र सावर्णि मन्वदि",
-                    "name_key": "Indra Savarni Manvadi",
-                    "description": "इन्द्र सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "शुक्ल अष्टमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "इन्द्र सावर्णि मन्वदि",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Indra Savarni Manvadi",
-                        "festival_name_localized": "इन्द्र सावर्णि मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 },
                 {
@@ -60618,104 +61850,6 @@
                     }
                 },
                 {
-                    "name": "दैव सावर्णि मन्वदि",
-                    "name_key": "Daiva Savarni Manvadi",
-                    "description": "दैव सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "दैव सावर्णि मन्वदि",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461309.2341748606,
-                        "target_tithi_end_jd": 2461310.200649148,
-                        "standard_date": "2026-09-26",
-                        "observance_date": "2026-09-26",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Daiva Savarni Manvadi",
-                        "festival_name_localized": "दैव सावर्णि मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
                     "name": "अन्वाधान",
                     "name_key": "Anvadhan",
                     "description": "पूर्णिमा/अमावस्या पर किया जाने वाला व्रत; आमतौर पर इष्टि से एक दिन पहले",
@@ -61346,6 +62480,62 @@
                             "name": "शुक्रवार"
                         }
                     }
+                },
+                {
+                    "name": "भाद्रपद पूर्वेद्यु श्राद्ध",
+                    "name_key": "Bhadrapada Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "भाद्रपद पूर्वेद्युह श्राद्ध",
+                        "भाद्रपद पूर्वेद्यु श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-10-03": [
@@ -61471,6 +62661,34 @@
                         },
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "लक्षित तिथि पालन दिवस में"
+                    }
+                },
+                {
+                    "name": "भाद्रपद अष्टका श्राद्ध",
+                    "name_key": "Bhadrapada Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "भाद्रपद अष्टका श्राद्ध",
+                        "भाद्रपद अष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -61845,6 +63063,34 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "भाद्रपद अन्वष्टका श्राद्ध",
+                    "name_key": "Bhadrapada Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "भाद्रपद अन्वष्टका श्राद्ध",
+                        "भाद्रपद अन्वष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -62563,11 +63809,14 @@
                 {
                     "name": "कलियुग दिवस",
                     "name_key": "Kali Yuga Diwas",
-                    "description": "कलियुग के आरंभ का स्मरणोत्सव",
+                    "description": "Bhadrapada Krishna Trayodashi Yugadi tithi under the selected tradition profile.",
                     "deity": "शिव/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Kali Yugadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -62596,17 +63845,25 @@
                             "value_key": "Ashvina",
                             "name": "अश्विन"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "source_refs": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "कलियुग दिवस",
                         "required_tithi": 13,
                         "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "aparahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 8498.000013828278,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -62617,15 +63874,15 @@
                         "standard_date": "2026-10-08",
                         "observance_date": "2026-10-08",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1141,
+                            "winning_window_overlap_seconds": 8498.000013828278,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -62637,18 +63894,18 @@
                         "festival_name_key": "Kali Yuga Diwas",
                         "festival_name_localized": "कलियुग दिवस",
                         "paksha_name": "कृष्ण",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "अपराह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1141,
+                        "winning_window_overlap_seconds": 8498.000013828278,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -63049,7 +64306,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -63401,6 +64658,35 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -67278,7 +68564,7 @@
                 {
                     "name": "दक्ष सावर्णि मन्वदि",
                     "name_key": "Daksha Savarni Manvadi",
-                    "description": "दक्ष सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Ashvina Shukla Navami Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
@@ -67311,17 +68597,21 @@
                             "value_key": "Ashvina",
                             "name": "अश्विन"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "दक्ष सावर्णि मन्वदि",
                         "required_tithi": 9,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 20780.49999922514,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -67332,15 +68622,15 @@
                         "standard_date": "2026-10-20",
                         "observance_date": "2026-10-20",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20780.49999922514,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -67352,18 +68642,18 @@
                         "festival_name_key": "Daksha Savarni Manvadi",
                         "festival_name_localized": "दक्ष सावर्णि मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20780.49999922514,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -69111,6 +70401,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "मासिक कार्तिकेय",
                     "name_key": "Masik Karthigai",
                     "description": "भगवान मुरुगन के लिए मासिक कृत्तिका नक्षत्र व्रत",
@@ -70201,6 +71519,35 @@
                         },
                         "winning_reason_key": "govatsa_pradosha_only_day1",
                         "winning_reason_name": "गोवत्स द्वादशी प्रदोष केवल पहले दिन"
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -71628,7 +72975,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -75360,7 +76707,7 @@
                 {
                     "name": "सतयुग दिवस",
                     "name_key": "Sata Yuga Diwas",
-                    "description": "अक्षय नवमी, जो सत्ययुग स्मरण से भी जुड़ी है, कार्तिक शुक्ल नवमी का शुभ-पुण्यदायी पालन है।",
+                    "description": "Kartika Shukla Navami Yugadi tithi; commonly associated with Krita/Satya Yuga remembrance.",
                     "deity": "विष्णु",
                     "fasting": false,
                     "regions": [
@@ -75368,7 +76715,10 @@
                     ],
                     "aliases": [
                         "अक्षय नवमी",
-                        "कूष्मांडा नवमी"
+                        "कूष्मांडा नवमी",
+                        "Satya Yuga Diwas",
+                        "Krita Yuga Diwas",
+                        "Krita Yugadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -75401,18 +76751,10 @@
                         "karmakala_type_name": "पूर्वाह्न",
                         "vriddhi_preference": "first",
                         "source_refs": [
-                            "व्रत पर्व विवेक (प्रियव्रत शर्मा)"
+                            "Dharma Sindhu / Nirnaya Sindhu Yugadi tradition"
                         ],
                         "source_ref_keys": [
-                            "Vrat Parva Viveka (Priyavrat Sharma)"
-                        ],
-                        "source_evidence": [
-                            {
-                                "kind": "inherited_rule",
-                                "kind_name": "विरासत में मिला नियम",
-                                "locator_key": "General Manvadi/Yugadi purvahna rule",
-                                "supports_key": "The purvahna decision is inherited through the Akshaya Navami/Yugadi-style rule; the exact Sata Yuga Diwas name is not separately listed in the Nirnay document."
-                            }
+                            "Dharma Sindhu / Nirnaya Sindhu Yugadi tradition"
                         ]
                     },
                     "resolution": {
@@ -75435,7 +76777,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "अक्षय नवमी केवल पहले दिन पूर्वाह्न में",
@@ -75458,7 +76800,7 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "अक्षय नवमी केवल पहले दिन पूर्वाह्न में",
@@ -76334,7 +77676,7 @@
                 {
                     "name": "तामस मन्वदि",
                     "name_key": "Tamasa Manvadi",
-                    "description": "तामस मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Kartika Shukla Dwadashi Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
@@ -76367,17 +77709,21 @@
                             "value_key": "Kartika",
                             "name": "कार्तिक"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "तामस मन्वदि",
                         "required_tithi": 12,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 19732.999987900257,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -76388,15 +77734,15 @@
                         "standard_date": "2026-11-21",
                         "observance_date": "2026-11-21",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19732.999987900257,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -76408,18 +77754,18 @@
                         "festival_name_key": "Tamasa Manvadi",
                         "festival_name_localized": "तामस मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19732.999987900257,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -76598,6 +77944,34 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -77456,11 +78830,14 @@
                 {
                     "name": "उत्तम मन्वदि",
                     "name_key": "Uttama Manvadi",
-                    "description": "उत्तम मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Kartika Shukla Purnima Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Auttama Manvadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -77489,17 +78866,21 @@
                             "value_key": "Kartika",
                             "name": "कार्तिक"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "उत्तम मन्वदि",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 19659.499964118004,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -77510,15 +78891,15 @@
                         "standard_date": "2026-11-24",
                         "observance_date": "2026-11-24",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19659.499964118004,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -77530,18 +78911,18 @@
                         "festival_name_key": "Uttama Manvadi",
                         "festival_name_localized": "उत्तम मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19659.499964118004,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -78175,6 +79556,35 @@
                             "number": 1,
                             "name": "सोमवार"
                         }
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -79251,7 +80661,7 @@
                 {
                     "name": "दर्श अमावस्या",
                     "name_key": "Darsha Amavasya",
-                    "description": "Darsha Amavasya is the spiritually potent Amavasya subset where the new-moon tithi is fully active through the evening and night (aparahna-based selection)—total darkness and stillness before the next lunar cycle—used especially for pitru rites. It is not always identical to the broad monthly Amavasya civil label.",
+                    "description": "दर्श अमावस्या अमावस्या का वह विशेष/तकनीकी उपसमूह है जिसमें अमावस्या तिथि अपराह्न तथा रात्रि में पूर्ण सक्रिय रहती है—नए चंद्र चक्र से पहले पूर्ण अंधकार और शांति—विशेषकर पितृकर्म के लिए। यह सदैव व्यापक मासिक अमावस्या नाम के समान नहीं होती।",
                     "deity": "चंद्र/पितृ",
                     "fasting": true,
                     "regions": [
@@ -81507,6 +82917,34 @@
                     }
                 },
                 {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "मासिक दुर्गाष्टमी",
                     "name_key": "Masik Durgashtami",
                     "description": "मासिक दुर्गाष्टमी देवी को समर्पित मासिक शुक्ल अष्टमी पालन है।",
@@ -83450,6 +84888,35 @@
                             "name": "शनिवार"
                         }
                     }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-12-27": [
@@ -83547,6 +85014,34 @@
                             "name": "मंगलवार"
                         }
                     }
+                },
+                {
+                    "name": "मार्गशीर्ष पूर्वेद्यु श्राद्ध",
+                    "name_key": "Margashirsha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मार्गशीर्ष पूर्वेद्युह श्राद्ध",
+                        "मार्गशीर्ष पूर्वेद्यु श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-12-30": [
@@ -83571,6 +85066,34 @@
                             "number": 3,
                             "name": "बुधवार"
                         }
+                    }
+                },
+                {
+                    "name": "मार्गशीर्ष अष्टका श्राद्ध",
+                    "name_key": "Margashirsha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मार्गशीर्ष अष्टका श्राद्ध",
+                        "मार्गशीर्ष अष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -83704,6 +85227,34 @@
                             "number": 4,
                             "name": "गुरुवार"
                         }
+                    }
+                },
+                {
+                    "name": "मार्गशीर्ष अन्वष्टका श्राद्ध",
+                    "name_key": "Margashirsha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "मार्गशीर्ष अन्वष्टका श्राद्ध",
+                        "मार्गशीर्ष अन्वष्टक श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {

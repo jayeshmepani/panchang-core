@@ -6,7 +6,7 @@ Canonical catalog of festival and vrat identities defined by `FestivalService::F
 
 | Field | Source | Count |
 |---|---|---:|
-| `total_festivals` | Non-vrat keys with `identity_key` collapse + generic Amavasya expanded to weekday identities (Somavati / Bhaumavati / Shani) | **336** |
+| `total_festivals` | Non-vrat keys with `identity_key` collapse + generic Amavasya expanded to weekday identities (Somavati / Bhaumavati / Shani) | **354** |
 | `total_vrats` | Fasting keys with `identity_key` collapse + Pradosh expanded to 7 weekday identities | **126** |
 
 These totals are what generated JSON reports in `total_festivals` / `total_vrats`. They do **not** shrink when a definition does not fire in a given year or calendar system. Dated occurrence volume remains separate (`festival_entry_count` / `vrat_entry_count`).
@@ -15,7 +15,7 @@ These totals are what generated JSON reports in `total_festivals` / `total_vrats
 
 | Layer | What it is | Current value |
 |---|---|---:|
-| **Catalog totals** | `total_festivals` / `total_vrats` in generated JSON | **336** / **126** |
+| **Catalog totals** | `total_festivals` / `total_vrats` in generated JSON | **354** / **126** |
 | **Year-observed unique keys** | Distinct `name_key`s that fire in a given year `by_date` dump | Always ≤ catalog; varies by year |
 | **Table `#` column below** | Reading serial of listed identities (1…N) | Matches catalog totals |
 
@@ -33,7 +33,31 @@ Runtime notes:
 - **Monthly Hari Jayanti** (Shukla Navami outside Chaitra) is also published in intercalary (Adhika) months.
 - **Shree Hari Antardhan** (Swadhaam Gaman) is a commemorative festival on Jyeshtha Shukla Dashami (Gadhada, VS 1886 / 1 June 1830), not a fasting vrat.
 
-## Festival Identities (Catalog: 336)
+## Ṣaṇṇavati Śrāddha Catalogue (96 nominal categories)
+
+`Shannavati_Shraddha` is a separate ritual-membership layer alongside the ordinary festival and vrat identity catalogue. Its selected Dharma Sindhu profile contains these 96 nominal occasions:
+
+| Category | Nominal count |
+|---|---:|
+| Amāvāsyā | 12 |
+| Yugādi | 4 |
+| Manvādi | 14 |
+| Saṅkrānti / Saṅkramaṇa | 12 |
+| Vaidhṛti | 12 |
+| Vyatīpāta | 12 |
+| Mahālaya / Pitṛ-pakṣa | 15 |
+| Aṣṭakā | 5 |
+| Anvaṣṭakā | 5 |
+| Pūrvēdhyu / Purvedyu | 5 |
+| **Total** | **96** |
+
+The 96 is the canonical nominal taxonomy; it is not a fixed per-year output count and it is not added to `total_festivals` (**354**) or `total_vrats` (**126**). Runtime dates can be fewer, equal to, or greater than the nominal count depending on the year, calendar system, adhika/nija month structure, and the date range requested.
+
+For the current production `dharma_sindhu` profile, Vaidhṛti and Vyatīpāta are each 12 occasions. The alternative 19/15 enumeration seen in some modern transcriptions is not silently mixed into production. Manvādi and Yugādi rules may apply in both adhika and nija months; consequently a single named event can legitimately produce two dates in one year. In the current Bhuj generation, Vaivaswata Manvādi appears on 2026-05-31 (Jyeshtha adhika) and 2026-06-29 (Jyeshtha nija), while 2027 has one occurrence on 2027-06-18.
+
+Implementation surfaces: `ShannavatiCatalog` defines the nominal membership, `ShannavatiTraditionProfile` selects the textual profile, `ShannavatiResolver` resolves applicable dates, and `ShraddhaKalaCalculator` supplies the tithi/saṅkrānti/yoga timing inputs. The emitted records carry source/profile metadata so nominal identity, source rule, and runtime date are not conflated.
+
+## Festival Identities (Catalog: 354)
 
 | # | Identity | Alias(es) |
 |---:|---|---|
@@ -51,7 +75,7 @@ Runtime notes:
 | 12 | Adhika Skanda Sashti | - |
 | 13 | Adi Shankaracharya Jayanti | - |
 | 14 | Akal Bodhon | - |
-| 15 | Akshaya Tritiya | Akshaya Tritiya (Lakshmi-Narayana), Treta Yuga Diwas |
+| 15 | Treta Yuga Diwas | Akshaya Tritiya, Akshaya Tritiya (Lakshmi-Narayana) |
 | 16 | Alankar Marjanotsav | Alankar Marjan, Alankar Marjanotsava |
 | 17 | Amavasya | Amas |
 | 18 | Anant Chaturdashi | Ganesh Visarjan |
@@ -373,6 +397,24 @@ Runtime notes:
 | 334 | Yaoshang | - |
 | 335 | Yashoda Jayanti | - |
 | 336 | Yogi Maharaj Jayanti | - |
+| 337 | Bhadrapada Anvashtaka Shraddha | - |
+| 338 | Bhadrapada Ashtaka Shraddha | - |
+| 339 | Bhadrapada Purvedyu Shraddha | - |
+| 340 | Dharma Savarni Manvadi | - |
+| 341 | Magha Anvashtaka Shraddha | - |
+| 342 | Magha Ashtaka Shraddha | - |
+| 343 | Magha Purvedyu Shraddha | - |
+| 344 | Margashirsha Anvashtaka Shraddha | - |
+| 345 | Margashirsha Ashtaka Shraddha | - |
+| 346 | Margashirsha Purvedyu Shraddha | - |
+| 347 | Pausha Anvashtaka Shraddha | - |
+| 348 | Pausha Ashtaka Shraddha | - |
+| 349 | Pausha Purvedyu Shraddha | - |
+| 350 | Phalguna Anvashtaka Shraddha | - |
+| 351 | Phalguna Ashtaka Shraddha | - |
+| 352 | Phalguna Purvedyu Shraddha | - |
+| 353 | Vaidhriti Shraddha | - |
+| 354 | Vyatipata Shraddha | - |
 
 ## Vrat Identities (`total_vrats`: 126)
 

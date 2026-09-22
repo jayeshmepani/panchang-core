@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-09-03T04:56:00+00:00",
+        "generated_at": "2026-09-22T03:58:10+00:00",
         "type": "festivals",
         "year": 2026,
         "calendar_type": "amanta",
@@ -20,8 +20,8 @@
         "calendar_type": "amanta",
         "locale": "en",
         "festival_day_count": 365,
-        "festival_entry_count": 1056,
-        "total_festivals": 336,
+        "festival_entry_count": 1102,
+        "total_festivals": 354,
         "total_vrats": 126,
         "by_date": {
             "2026-01-01": [
@@ -1199,6 +1199,35 @@
                     }
                 },
                 {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Ishti",
                     "name_key": "Ishti",
                     "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
@@ -1576,6 +1605,34 @@
                             "english_name": "Friday"
                         }
                     }
+                },
+                {
+                    "name": "Pausha Purvedyu Shraddha",
+                    "name_key": "Pausha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pausha Purvedyuh Shraddha",
+                        "Pausha Purvedyu Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-01-10": [
@@ -1601,6 +1658,34 @@
                             "name": "Saturday",
                             "english_name": "Saturday"
                         }
+                    }
+                },
+                {
+                    "name": "Pausha Ashtaka Shraddha",
+                    "name_key": "Pausha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pausha Ashtaka Shraddha",
+                        "Pausha Astaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -1735,6 +1820,34 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Pausha Anvashtaka Shraddha",
+                    "name_key": "Pausha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Pausha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Pausha Anvashtaka Shraddha",
+                        "Pausha Anvastaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -4581,6 +4694,34 @@
                             "english_name": "Wednesday"
                         }
                     }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-01-22": [
@@ -5741,6 +5882,108 @@
                         "winning_reason": "target tithi at karmakala",
                         "winning_score": 1103,
                         "winning_window_overlap_seconds": 6225.333322584629,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Brahma Savarni Manvadi",
+                    "name_key": "Brahma Savarni Manvadi",
+                    "description": "Magha Shukla Saptami Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                7
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                7
+                            ],
+                            "names": [
+                                "Seventh Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Magha",
+                            "value_key": "Magha",
+                            "name": "Magha"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Brahma Savarni Manvadi",
+                        "required_tithi": 7,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 19847.500030696392,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461065.298866328,
+                        "target_tithi_end_jd": 2461066.236600871,
+                        "standard_date": "2026-01-25",
+                        "observance_date": "2026-01-25",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19847.500030696392,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Brahma Savarni Manvadi",
+                        "festival_name_localized": "Brahma Savarni Manvadi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Purvahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19847.500030696392,
                         "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
@@ -6961,6 +7204,35 @@
                             "name": "Friday",
                             "english_name": "Friday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -8287,6 +8559,34 @@
                             "english_name": "Sunday"
                         }
                     }
+                },
+                {
+                    "name": "Magha Purvedyu Shraddha",
+                    "name_key": "Magha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Magha Purvedyuh Shraddha",
+                        "Magha Purvedyu Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-02-09": [
@@ -8313,6 +8613,34 @@
                             "name": "Monday",
                             "english_name": "Monday"
                         }
+                    }
+                },
+                {
+                    "name": "Magha Ashtaka Shraddha",
+                    "name_key": "Magha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Magha Ashtaka Shraddha",
+                        "Magha Astaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -8477,6 +8805,34 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Magha Anvashtaka Shraddha",
+                    "name_key": "Magha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Magha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Magha Anvashtaka Shraddha",
+                        "Magha Anvastaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -9155,6 +9511,34 @@
                         "winning_reason_key": "mahashivaratri_day1_full_over_day2_partial",
                         "winning_reason_name": "Mahashivaratri Day 1 full Nishitha over Day 2 partial"
                     }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-02-16": [
@@ -9415,13 +9799,15 @@
                 {
                     "name": "Dwapara Yuga Diwas",
                     "name_key": "Dwapara Yuga Diwas",
-                    "description": "Commemoration of the beginning of Dwapara Yuga",
+                    "description": "Magha Krishna Amavasya Yugadi tithi under the selected tradition profile.",
                     "deity": "Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
                     "aliases": [
+                        "Dvapara Yuga Diwas",
+                        "Dvapara Yugadi",
                         "Mauni Amavasya"
                     ],
                     "calculation_basis": {
@@ -9451,17 +9837,24 @@
                             "value_key": "Magha",
                             "name": "Magha"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "vriddhi_preference": "first",
+                        "source_refs": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "Dwapara Yuga Diwas",
                         "required_tithi": 15,
                         "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "aparahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 8245.799973607063,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -9472,45 +9865,45 @@
                         "standard_date": "2026-02-17",
                         "observance_date": "2026-02-17",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_reason": "Darsha Amavasya only on the first day in aparahna",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8245.799973607063,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
                                 "preferred": false
                             },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
+                            "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                            "winning_reason_name": "Darsha Amavasya only on the first day in aparahna"
                         },
                         "festival_name_key": "Dwapara Yuga Diwas",
                         "festival_name_localized": "Dwapara Yuga Diwas",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Afternoon"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_reason": "Darsha Amavasya only on the first day in aparahna",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8245.799973607063,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
                             "preferred": false
                         },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
+                        "winning_reason_key": "darsha_amavasya_only_first_aparahna",
+                        "winning_reason_name": "Darsha Amavasya only on the first day in aparahna"
                     }
                 },
                 {
@@ -11668,6 +12061,35 @@
                     }
                 },
                 {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Masik Durgashtami",
                     "name_key": "Masik Durgashtami",
                     "description": "Masik Durgashtami is the monthly Shukla Ashtami observance dedicated to Devi.",
@@ -13432,7 +13854,7 @@
                 {
                     "name": "Savarni Manvadi",
                     "name_key": "Savarni Manvadi",
-                    "description": "Commemoration of the beginning of Savarni Manvantara",
+                    "description": "Phalguna Shukla Purnima Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
@@ -13465,17 +13887,21 @@
                             "value_key": "Phalguna",
                             "name": "Phalguna"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Savarni Manvadi",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 21157.000029087067,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -13486,15 +13912,15 @@
                         "standard_date": "2026-03-03",
                         "observance_date": "2026-03-03",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21157.000029087067,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -13506,18 +13932,18 @@
                         "festival_name_key": "Savarni Manvadi",
                         "festival_name_localized": "Savarni Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21157.000029087067,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -14420,6 +14846,34 @@
                     }
                 },
                 {
+                    "name": "Phalguna Purvedyu Shraddha",
+                    "name_key": "Phalguna Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Phalguna Purvedyuh Shraddha",
+                        "Phalguna Purvedyu Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Shabari Jayanti",
                     "name_key": "Shabari Jayanti",
                     "description": "Birth anniversary of Shabari",
@@ -14535,6 +14989,34 @@
                             "name": "Wednesday",
                             "english_name": "Wednesday"
                         }
+                    }
+                },
+                {
+                    "name": "Phalguna Ashtaka Shraddha",
+                    "name_key": "Phalguna Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Phalguna Ashtaka Shraddha",
+                        "Phalguna Astaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -14839,6 +15321,62 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Phalguna Anvashtaka Shraddha",
+                    "name_key": "Phalguna Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Phalguna Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Phalguna Anvashtaka Shraddha",
+                        "Phalguna Anvastaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -18046,11 +18584,14 @@
                 {
                     "name": "Swayambhuva Manvadi",
                     "name_key": "Swayambhuva Manvadi",
-                    "description": "Commemoration of the beginning of Swayambhuva Manvantara",
+                    "description": "Chaitra Shukla Tritiya Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
+                    ],
+                    "aliases": [
+                        "Swayambhu Manuadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -18079,17 +18620,21 @@
                             "value_key": "Chaitra",
                             "name": "Chaitra"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Swayambhuva Manvadi",
                         "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 21884.999983012676,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -18100,15 +18645,15 @@
                         "standard_date": "2026-03-21",
                         "observance_date": "2026-03-21",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21884.999983012676,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -18120,18 +18665,18 @@
                         "festival_name_key": "Swayambhuva Manvadi",
                         "festival_name_localized": "Swayambhuva Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21884.999983012676,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -18373,6 +18918,35 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -21292,6 +21866,114 @@
                     }
                 },
                 {
+                    "name": "Swarochisha Manvadi",
+                    "name_key": "Swarochisha Manvadi",
+                    "description": "Chaitra Shukla Purnima Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Svarochisha Manvadi",
+                        "Swarochisha Manuadi"
+                    ],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-04-02 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-04-01.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Chaitra",
+                            "value_key": "Chaitra",
+                            "name": "Chaitra"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Swarochisha Manvadi",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20926.237651705742,
+                        "tithi_coverage_seconds_tomorrow": 3575.9251222014427,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461131.5671095178,
+                        "target_tithi_end_jd": 2461132.5915732076,
+                        "standard_date": "2026-04-02",
+                        "observance_date": "2026-04-01",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 15 falls on 2026-04-02 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-04-01.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20926.237651705742,
+                            "winning_window_coverage_ratio": 0.9371146033915705,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Swarochisha Manvadi",
+                        "festival_name_localized": "Swarochisha Manvadi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Purvahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20926.237651705742,
+                        "winning_window_coverage_ratio": 0.9371146033915705,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Anvadhan",
                     "name_key": "Anvadhan",
                     "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
@@ -21550,104 +22232,6 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
-                    }
-                },
-                {
-                    "name": "Swarochisha Manvadi",
-                    "name_key": "Swarochisha Manvadi",
-                    "description": "Commemoration of the beginning of Swarochisha Manvantara",
-                    "deity": "Brahma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Chaitra",
-                            "value_key": "Chaitra",
-                            "name": "Chaitra"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Swarochisha Manvadi",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461131.5671095178,
-                        "target_tithi_end_jd": 2461132.5915732076,
-                        "standard_date": "2026-04-02",
-                        "observance_date": "2026-04-02",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Swarochisha Manvadi",
-                        "festival_name_localized": "Swarochisha Manvadi",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 },
                 {
@@ -22025,6 +22609,34 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -23332,6 +23944,35 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -28953,6 +29594,34 @@
                     }
                 },
                 {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Ishti",
                     "name_key": "Ishti",
                     "description": "Sacrificial rites performed on the day following Purnima/Amavasya",
@@ -29608,6 +30277,35 @@
                             "name": "Tuesday",
                             "english_name": "Tuesday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -33383,6 +34081,34 @@
                     }
                 },
                 {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "ISKCON Ekadashi",
                     "name_key": "ISKCON Ekadashi",
                     "description": "Vaishnava / ISKCON Ekadashi fasting day observed with devotion to Lord Vishnu",
@@ -34248,6 +34974,112 @@
                     }
                 },
                 {
+                    "name": "Vaivaswata Manvadi",
+                    "name_key": "Vaivaswata Manvadi",
+                    "description": "Jyeshtha Shukla Purnima Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaivasvata Manvadi",
+                        "Vaivaswata Manuadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Jyeshtha",
+                            "value_key": "Jyeshtha",
+                            "name": "Jyeshtha"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Vaivaswata Manvadi",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 24278.499975800514,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461190.7697032625,
+                        "target_tithi_end_jd": 2461191.864656782,
+                        "standard_date": "2026-05-31",
+                        "observance_date": "2026-05-31",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 24278.499975800514,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Vaivaswata Manvadi",
+                        "festival_name_localized": "Vaivaswata Manvadi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Purvahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 24278.499975800514,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Anvadhan",
                     "name_key": "Anvadhan",
                     "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
@@ -34568,6 +35400,35 @@
                             "name": "Saturday",
                             "english_name": "Saturday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -38218,6 +39079,34 @@
                             "english_name": "Sunday"
                         }
                     }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-06-22": [
@@ -39605,6 +40494,112 @@
                     }
                 },
                 {
+                    "name": "Vaivaswata Manvadi",
+                    "name_key": "Vaivaswata Manvadi",
+                    "description": "Jyeshtha Shukla Purnima Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaivasvata Manvadi",
+                        "Vaivaswata Manuadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                15
+                            ],
+                            "names": [
+                                "Full Moon"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Jyeshtha",
+                            "value_key": "Jyeshtha",
+                            "name": "Jyeshtha"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Vaivaswata Manvadi",
+                        "required_tithi": 15,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 24440.999999642372,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461220.40057025,
+                        "target_tithi_end_jd": 2461221.497627564,
+                        "standard_date": "2026-06-29",
+                        "observance_date": "2026-06-29",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 24440.999999642372,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Vaivaswata Manvadi",
+                        "festival_name_localized": "Vaivaswata Manvadi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Purvahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 24440.999999642372,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Anvadhan",
                     "name_key": "Anvadhan",
                     "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
@@ -39815,6 +40810,35 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -43534,6 +44558,34 @@
                     }
                 },
                 {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Aniruddha Chaturthi",
                     "name_key": "Aniruddha Chaturthi",
                     "description": "Dedicated to Aniruddha, grandson of Lord Krishna",
@@ -44667,6 +45719,110 @@
                             "english_name": "Thursday"
                         }
                     }
+                },
+                {
+                    "name": "Raivata Manvadi",
+                    "name_key": "Raivata Manvadi",
+                    "description": "Ashadha Shukla Dashami Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 10 falls on 2026-07-24 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-07-23.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                10
+                            ],
+                            "paksha": "Shukla",
+                            "paksha_name": "Bright Half (waxing)",
+                            "absolute_numbers": [
+                                10
+                            ],
+                            "names": [
+                                "Tenth Lunar Day of Bright Half"
+                            ]
+                        },
+                        "paksha": "Shukla",
+                        "paksha_name": "Bright Half (waxing)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Ashadha",
+                            "value_key": "Ashadha",
+                            "name": "Ashadha"
+                        },
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Raivata Manvadi",
+                        "required_tithi": 10,
+                        "paksha": "Shukla",
+                        "karmakala_type": "purvahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 21242.817708849907,
+                        "tithi_coverage_seconds_tomorrow": 10544.162884354591,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461244.5650831284,
+                        "target_tithi_end_jd": 2461245.6549787372,
+                        "standard_date": "2026-07-24",
+                        "observance_date": "2026-07-23",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 10 falls on 2026-07-24 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-07-23.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 21242.817708849907,
+                            "winning_window_coverage_ratio": 0.883424174507789,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Raivata Manvadi",
+                        "festival_name_localized": "Raivata Manvadi",
+                        "paksha_name": "Bright Half (waxing)",
+                        "karmakala_type_name": "Purvahna"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 21242.817708849907,
+                        "winning_window_coverage_ratio": 0.883424174507789,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
                 }
             ],
             "2026-07-24": [
@@ -44888,104 +46044,6 @@
                             "name": "Friday",
                             "english_name": "Friday"
                         }
-                    }
-                },
-                {
-                    "name": "Raivata Manvadi",
-                    "name_key": "Raivata Manvadi",
-                    "description": "Commemoration of the beginning of Raivata Manvantara",
-                    "deity": "Brahma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                10
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                10
-                            ],
-                            "names": [
-                                "Tenth Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Ashadha",
-                            "value_key": "Ashadha",
-                            "name": "Ashadha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Raivata Manvadi",
-                        "required_tithi": 10,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461244.5650831284,
-                        "target_tithi_end_jd": 2461245.6549787372,
-                        "standard_date": "2026-07-24",
-                        "observance_date": "2026-07-24",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Raivata Manvadi",
-                        "festival_name_localized": "Raivata Manvadi",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 }
             ],
@@ -46161,6 +47219,35 @@
                             "english_name": "Monday"
                         }
                     }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-07-28": [
@@ -46631,111 +47718,16 @@
                     }
                 },
                 {
-                    "name": "Vaivaswata Manvadi",
-                    "name_key": "Vaivaswata Manvadi",
-                    "description": "Commemoration of the beginning of Vaivaswata Manvantara",
-                    "deity": "Brahma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Ashadha",
-                            "value_key": "Ashadha",
-                            "name": "Ashadha"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Vaivaswata Manvadi",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461250.0342799416,
-                        "target_tithi_end_jd": 2461251.108069732,
-                        "standard_date": "2026-07-29",
-                        "observance_date": "2026-07-29",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Vaivaswata Manvadi",
-                        "festival_name_localized": "Vaivaswata Manvadi",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Chakshusha Manvadi",
                     "name_key": "Chakshusha Manvadi",
-                    "description": "Commemoration of the beginning of Chakshusha Manvantara",
+                    "description": "Ashadha Shukla Purnima Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
+                    ],
+                    "aliases": [
+                        "Cakshusha Manvadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -46764,17 +47756,21 @@
                             "value_key": "Ashadha",
                             "name": "Ashadha"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Chakshusha Manvadi",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 23886.00003272295,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -46785,15 +47781,15 @@
                         "standard_date": "2026-07-29",
                         "observance_date": "2026-07-29",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 23886.00003272295,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -46805,18 +47801,18 @@
                         "festival_name_key": "Chakshusha Manvadi",
                         "festival_name_localized": "Chakshusha Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 23886.00003272295,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -48525,6 +49521,34 @@
                             "name": "Wednesday",
                             "english_name": "Wednesday"
                         }
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -50993,6 +52017,35 @@
                             "name": "Friday",
                             "english_name": "Friday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -54541,6 +55594,112 @@
                     }
                 },
                 {
+                    "name": "Indra Savarni Manvadi",
+                    "name_key": "Indra Savarni Manvadi",
+                    "description": "Shravana Krishna / Purnimanta Bhadrapada Krishna Ashtami Manvadi.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Indra Savarni Manuadi",
+                        "Bhadrapada Krishna Ashtami Manvadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "Eighth Lunar Day of Dark Half"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Indra Savarni Manvadi",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9038.999976217747,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721125238,
+                        "target_tithi_end_jd": 2461288.280548431,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "target tithi at karmakala",
+                            "winning_score": 1150,
+                            "winning_window_overlap_seconds": 9038.999976217747,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "target tithi at karmakala"
+                        },
+                        "festival_name_key": "Indra Savarni Manvadi",
+                        "festival_name_localized": "Indra Savarni Manvadi",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "Afternoon"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "target tithi at karmakala",
+                        "winning_score": 1150,
+                        "winning_window_overlap_seconds": 9038.999976217747,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
                     "name": "Kalashtami",
                     "name_key": "Kalashtami",
                     "description": "Monthly fasting dedicated to Lord Bhairava",
@@ -54896,6 +56055,34 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -55570,6 +56757,114 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Daiva Savarni Manvadi",
+                    "name_key": "Daiva Savarni Manvadi",
+                    "description": "Common modern named-Manvadi mapping for Shravana Amavasya / Purnimanta Bhadrapada Amavasya.",
+                    "deity": "Brahma/Vishnu",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Deva Savarni Manvadi",
+                        "Daiva Savarni Manuadi"
+                    ],
+                    "observance_note": "Exception: Standard Dark Half (waning) tithi 15 falls on 2026-09-11 at sunrise, but due to tradition/ritual requiring Afternoon presence, it is celebrated on 2026-09-10.",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "Tithi",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "Dark Half (waning)",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "New Moon"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "Dark Half (waning)",
+                        "month": {
+                            "calendar_type": "amanta",
+                            "value": "Shravana",
+                            "value_key": "Shravana",
+                            "name": "Shravana"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "Daiva Savarni Manvadi",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8944.80000436306,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.7109138574,
+                        "target_tithi_end_jd": 2461294.6436758693,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-10",
+                        "observance_note": "Exception: Standard Dark Half (waning) tithi 15 falls on 2026-09-11 at sunrise, but due to tradition/ritual requiring Afternoon presence, it is celebrated on 2026-09-10.",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "Darsha Amavasya on the day before sunrise aparahna",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8944.80000436306,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                            "winning_reason_name": "Darsha Amavasya on the day before sunrise aparahna"
+                        },
+                        "festival_name_key": "Daiva Savarni Manvadi",
+                        "festival_name_localized": "Daiva Savarni Manvadi",
+                        "paksha_name": "Dark Half (waning)",
+                        "karmakala_type_name": "Afternoon"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "Darsha Amavasya on the day before sunrise aparahna",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8944.80000436306,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                        "winning_reason_name": "Darsha Amavasya on the day before sunrise aparahna"
                     }
                 },
                 {
@@ -57516,12 +58811,13 @@
                 {
                     "name": "Rudra Savarni Manvadi",
                     "name_key": "Rudra Savarni Manvadi",
-                    "description": "Commemoration of the beginning of Rudra Savarni Manvantara",
+                    "description": "Bhadrapada Shukla Tritiya Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
                     ],
+                    "observance_note": "Exception: Standard Bright Half (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-09-13.",
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "Tithi",
@@ -57530,15 +58826,15 @@
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
-                                2
+                                3
                             ],
                             "paksha": "Shukla",
                             "paksha_name": "Bright Half (waxing)",
                             "absolute_numbers": [
-                                2
+                                3
                             ],
                             "names": [
-                                "Second Lunar Day of Bright Half"
+                                "Third Lunar Day of Bright Half"
                             ]
                         },
                         "paksha": "Shukla",
@@ -57549,36 +58845,41 @@
                             "value_key": "Bhadrapada",
                             "name": "Bhadrapada"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Rudra Savarni Manvadi",
-                        "required_tithi": 2,
+                        "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20302.522829174995,
+                        "tithi_coverage_seconds_tomorrow": 1835.6383234262466,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461295.59496745,
-                        "target_tithi_end_jd": 2461296.5686166342,
-                        "standard_date": "2026-09-13",
+                        "target_tithi_start_jd": 2461296.5686166342,
+                        "target_tithi_end_jd": 2461297.5676115546,
+                        "standard_date": "2026-09-14",
                         "observance_date": "2026-09-13",
+                        "observance_note": "Exception: Standard Bright Half (waxing) tithi 3 falls on 2026-09-14 at sunrise, but due to tradition/ritual requiring Purvahna presence, it is celebrated on 2026-09-13.",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20302.522829174995,
+                            "winning_window_coverage_ratio": 0.9127600961039963,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -57590,18 +58891,18 @@
                         "festival_name_key": "Rudra Savarni Manvadi",
                         "festival_name_localized": "Rudra Savarni Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20302.522829174995,
+                        "winning_window_coverage_ratio": 0.9127600961039963,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -58087,6 +59388,35 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -58871,104 +60201,6 @@
                         },
                         "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
                         "winning_reason_name": "Navami-yukta day selected on the later shuddha day"
-                    }
-                },
-                {
-                    "name": "Indra Savarni Manvadi",
-                    "name_key": "Indra Savarni Manvadi",
-                    "description": "Commemoration of the beginning of Indra Savarni Manvantara",
-                    "deity": "Brahma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "Eighth Lunar Day of Bright Half"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Indra Savarni Manvadi",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Indra Savarni Manvadi",
-                        "festival_name_localized": "Indra Savarni Manvadi",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
                     }
                 },
                 {
@@ -61022,104 +62254,6 @@
                     }
                 },
                 {
-                    "name": "Daiva Savarni Manvadi",
-                    "name_key": "Daiva Savarni Manvadi",
-                    "description": "Commemoration of the beginning of Daiva Savarni Manvantara",
-                    "deity": "Brahma/Vishnu",
-                    "fasting": false,
-                    "regions": [
-                        "Pan-India"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "Tithi",
-                        "basis": "tithi",
-                        "basis_name": "Tithi",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "Bright Half (waxing)",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "Full Moon"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "Bright Half (waxing)",
-                        "month": {
-                            "calendar_type": "amanta",
-                            "value": "Bhadrapada",
-                            "value_key": "Bhadrapada",
-                            "name": "Bhadrapada"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "resolution": {
-                        "festival_name": "Daiva Savarni Manvadi",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461309.2341748606,
-                        "target_tithi_end_jd": 2461310.200649148,
-                        "standard_date": "2026-09-26",
-                        "observance_date": "2026-09-26",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "target tithi at karmakala"
-                        },
-                        "festival_name_key": "Daiva Savarni Manvadi",
-                        "festival_name_localized": "Daiva Savarni Manvadi",
-                        "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "target tithi at karmakala"
-                    }
-                },
-                {
                     "name": "Anvadhan",
                     "name_key": "Anvadhan",
                     "description": "Fasting observed on Purnima/Amavasya; typically the day before Ishti",
@@ -61758,6 +62892,62 @@
                             "english_name": "Friday"
                         }
                     }
+                },
+                {
+                    "name": "Bhadrapada Purvedyu Shraddha",
+                    "name_key": "Bhadrapada Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Bhadrapada Purvedyuh Shraddha",
+                        "Bhadrapada Purvedyu Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-10-03": [
@@ -61884,6 +63074,34 @@
                         },
                         "winning_reason_key": "target_during_observance",
                         "winning_reason_name": "target tithi during observance day"
+                    }
+                },
+                {
+                    "name": "Bhadrapada Ashtaka Shraddha",
+                    "name_key": "Bhadrapada Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Bhadrapada Ashtaka Shraddha",
+                        "Bhadrapada Astaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -62260,6 +63478,34 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "target tithi at karmakala"
+                    }
+                },
+                {
+                    "name": "Bhadrapada Anvashtaka Shraddha",
+                    "name_key": "Bhadrapada Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Bhadrapada Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Bhadrapada Anvashtaka Shraddha",
+                        "Bhadrapada Anvastaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -62982,11 +64228,14 @@
                 {
                     "name": "Kali Yuga Diwas",
                     "name_key": "Kali Yuga Diwas",
-                    "description": "Commemoration of the beginning of Kali Yuga",
+                    "description": "Bhadrapada Krishna Trayodashi Yugadi tithi under the selected tradition profile.",
                     "deity": "Shiva/Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
+                    ],
+                    "aliases": [
+                        "Kali Yugadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -63015,17 +64264,25 @@
                             "value_key": "Bhadrapada",
                             "name": "Bhadrapada"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "source_refs": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu / later nibandha Yugadi tradition"
+                        ]
                     },
                     "resolution": {
                         "festival_name": "Kali Yuga Diwas",
                         "required_tithi": 13,
                         "paksha": "Krishna",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "aparahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 8498.000013828278,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -63036,15 +64293,15 @@
                         "standard_date": "2026-10-08",
                         "observance_date": "2026-10-08",
                         "decision": {
-                            "strict_karmakala": false,
+                            "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1141,
+                            "winning_window_overlap_seconds": 8498.000013828278,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -63056,18 +64313,18 @@
                         "festival_name_key": "Kali Yuga Diwas",
                         "festival_name_localized": "Kali Yuga Diwas",
                         "paksha_name": "Dark Half (waning)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Afternoon"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
+                        "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1141,
+                        "winning_window_overlap_seconds": 8498.000013828278,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -63829,6 +65086,35 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -67721,7 +69007,7 @@
                 {
                     "name": "Daksha Savarni Manvadi",
                     "name_key": "Daksha Savarni Manvadi",
-                    "description": "Commemoration of the beginning of Daksha Savarni Manvantara",
+                    "description": "Ashvina Shukla Navami Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
@@ -67754,17 +69040,21 @@
                             "value_key": "Ashvina",
                             "name": "Ashwin"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Daksha Savarni Manvadi",
                         "required_tithi": 9,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 20780.49999922514,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -67775,15 +69065,15 @@
                         "standard_date": "2026-10-20",
                         "observance_date": "2026-10-20",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20780.49999922514,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -67795,18 +69085,18 @@
                         "festival_name_key": "Daksha Savarni Manvadi",
                         "festival_name_localized": "Daksha Savarni Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20780.49999922514,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -69565,6 +70855,34 @@
                     }
                 },
                 {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Masik Karthigai",
                     "name_key": "Masik Karthigai",
                     "description": "Monthly Krittika Nakshatra fasting for Lord Murugan",
@@ -70666,6 +71984,35 @@
                         },
                         "winning_reason_key": "govatsa_pradosha_only_day1",
                         "winning_reason_name": "Govatsa Dwadashi Pradosha only on day 1"
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -75855,7 +77202,7 @@
                 {
                     "name": "Sata Yuga Diwas",
                     "name_key": "Sata Yuga Diwas",
-                    "description": "Akshaya Navami, also connected with Sata Yuga remembrance, is a Kartika Shukla Navami observance of auspicious merit.",
+                    "description": "Kartika Shukla Navami Yugadi tithi; commonly associated with Krita/Satya Yuga remembrance.",
                     "deity": "Vishnu",
                     "fasting": false,
                     "regions": [
@@ -75863,7 +77210,10 @@
                     ],
                     "aliases": [
                         "Akshaya Navami",
-                        "Kushmanda Navami"
+                        "Kushmanda Navami",
+                        "Satya Yuga Diwas",
+                        "Krita Yuga Diwas",
+                        "Krita Yugadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -75896,20 +77246,10 @@
                         "karmakala_type_name": "Purvahna",
                         "vriddhi_preference": "first",
                         "source_refs": [
-                            "Vrat Parva Viveka (Priyavrat Sharma)"
+                            "Dharma Sindhu / Nirnaya Sindhu Yugadi tradition"
                         ],
                         "source_ref_keys": [
-                            "Vrat Parva Viveka (Priyavrat Sharma)"
-                        ],
-                        "source_evidence": [
-                            {
-                                "kind": "inherited_rule",
-                                "kind_name": "inherited rule",
-                                "locator_key": "General Manvadi/Yugadi purvahna rule",
-                                "locator": "General Manvadi/Yugadi purvahna rule",
-                                "supports_key": "The purvahna decision is inherited through the Akshaya Navami/Yugadi-style rule; the exact Sata Yuga Diwas name is not separately listed in the Nirnay document.",
-                                "supports": "The purvahna decision is inherited through the Akshaya Navami/Yugadi-style rule; the exact Sata Yuga Diwas name is not separately listed in the Nirnay document."
-                            }
+                            "Dharma Sindhu / Nirnaya Sindhu Yugadi tradition"
                         ]
                     },
                     "resolution": {
@@ -75932,7 +77272,7 @@
                         "decision": {
                             "strict_karmakala": true,
                             "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "Akshaya Navami only on the first day in purvahna",
@@ -75955,7 +77295,7 @@
                     "rules_applied": {
                         "strict_karmakala": true,
                         "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "Akshaya Navami only on the first day in purvahna",
@@ -76836,7 +78176,7 @@
                 {
                     "name": "Tamasa Manvadi",
                     "name_key": "Tamasa Manvadi",
-                    "description": "Commemoration of the beginning of Tamasa Manvantara",
+                    "description": "Kartika Shukla Dwadashi Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
@@ -76869,17 +78209,21 @@
                             "value_key": "Kartika",
                             "name": "Kartika"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Tamasa Manvadi",
                         "required_tithi": 12,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 19732.999987900257,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -76890,15 +78234,15 @@
                         "standard_date": "2026-11-21",
                         "observance_date": "2026-11-21",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19732.999987900257,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -76910,18 +78254,18 @@
                         "festival_name_key": "Tamasa Manvadi",
                         "festival_name_localized": "Tamasa Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19732.999987900257,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -77101,6 +78445,34 @@
                             "name": "Sunday",
                             "english_name": "Sunday"
                         }
+                    }
+                },
+                {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -77967,11 +79339,14 @@
                 {
                     "name": "Uttama Manvadi",
                     "name_key": "Uttama Manvadi",
-                    "description": "Commemoration of the beginning of Uttama Manvantara",
+                    "description": "Kartika Shukla Purnima Manvadi.",
                     "deity": "Brahma/Vishnu",
                     "fasting": false,
                     "regions": [
                         "Pan-India"
+                    ],
+                    "aliases": [
+                        "Auttama Manvadi"
                     ],
                     "calculation_basis": {
                         "type": "tithi",
@@ -78000,17 +79375,21 @@
                             "value_key": "Kartika",
                             "name": "Kartika"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "Purvahna",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "Uttama Manvadi",
                         "required_tithi": 15,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
                         "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
+                        "tithi_coverage_seconds_today": 19659.499964118004,
                         "tithi_coverage_seconds_tomorrow": 0.0,
                         "tithi_at_sunrise_today": true,
                         "tithi_at_sunrise_tomorrow": false,
@@ -78021,15 +79400,15 @@
                         "standard_date": "2026-11-24",
                         "observance_date": "2026-11-24",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "target tithi at karmakala",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 19659.499964118004,
+                            "winning_window_coverage_ratio": 1.0,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -78041,18 +79420,18 @@
                         "festival_name_key": "Uttama Manvadi",
                         "festival_name_localized": "Uttama Manvadi",
                         "paksha_name": "Bright Half (waxing)",
-                        "karmakala_type_name": "Sunrise"
+                        "karmakala_type_name": "Purvahna"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "target tithi at karmakala",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 19659.499964118004,
+                        "winning_window_coverage_ratio": 1.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -78694,6 +80073,35 @@
                             "name": "Monday",
                             "english_name": "Monday"
                         }
+                    }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -82049,6 +83457,34 @@
                     }
                 },
                 {
+                    "name": "Vyatipata Shraddha",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vyatipata Tarpana",
+                        "Vyatipata Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
+                },
+                {
                     "name": "Masik Durgashtami",
                     "name_key": "Masik Durgashtami",
                     "description": "Masik Durgashtami is the monthly Shukla Ashtami observance dedicated to Devi.",
@@ -84008,6 +85444,35 @@
                             "english_name": "Saturday"
                         }
                     }
+                },
+                {
+                    "name": "Vaidhriti Shraddha",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Vaidhrti Shraddha",
+                        "Vaidhriti Tarpana",
+                        "Vaidhriti Shannavati Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-12-27": [
@@ -84108,6 +85573,34 @@
                             "english_name": "Tuesday"
                         }
                     }
+                },
+                {
+                    "name": "Margashirsha Purvedyu Shraddha",
+                    "name_key": "Margashirsha Purvedyu Shraddha",
+                    "description": "Purvedyu ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Margashirsha Purvedyuh Shraddha",
+                        "Margashirsha Purvedyu Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
+                    }
                 }
             ],
             "2026-12-30": [
@@ -84133,6 +85626,34 @@
                             "name": "Wednesday",
                             "english_name": "Wednesday"
                         }
+                    }
+                },
+                {
+                    "name": "Margashirsha Ashtaka Shraddha",
+                    "name_key": "Margashirsha Ashtaka Shraddha",
+                    "description": "Ashtaka ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Margashirsha Ashtaka Shraddha",
+                        "Margashirsha Astaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {
@@ -84267,6 +85788,34 @@
                             "name": "Thursday",
                             "english_name": "Thursday"
                         }
+                    }
+                },
+                {
+                    "name": "Margashirsha Anvashtaka Shraddha",
+                    "name_key": "Margashirsha Anvashtaka Shraddha",
+                    "description": "Anvashtaka ancestral rite in the Margashirsha Ashtaka cycle of the Shannavati system.",
+                    "deity": "Pitrus",
+                    "fasting": false,
+                    "regions": [
+                        "Pan-India"
+                    ],
+                    "aliases": [
+                        "Margashirsha Anvashtaka Shraddha",
+                        "Margashirsha Anvastaka Shraddha"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "Tithi",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "Afternoon",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 },
                 {

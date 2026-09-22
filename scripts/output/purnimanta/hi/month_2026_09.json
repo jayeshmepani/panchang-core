@@ -1,6 +1,6 @@
 {
     "meta": {
-        "generated_at": "2026-09-03T04:57:41+00:00",
+        "generated_at": "2026-09-22T04:00:07+00:00",
         "year": 2026,
         "month": 9,
         "calendar_type": "purnimanta",
@@ -2201,6 +2201,112 @@
                     }
                 },
                 {
+                    "name": "इन्द्र सावर्णि मन्वदि",
+                    "name_key": "Indra Savarni Manvadi",
+                    "description": "Shravana Krishna / Purnimanta Bhadrapada Krishna Ashtami Manvadi.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Indra Savarni Manuadi",
+                        "Bhadrapada Krishna Ashtami Manvadi"
+                    ],
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                8
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                23
+                            ],
+                            "names": [
+                                "कृष्ण अष्टमी"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "इन्द्र सावर्णि मन्वदि",
+                        "required_tithi": 8,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 9038.999976217747,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": true,
+                        "tithi_at_sunrise_tomorrow": false,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461287.3721125238,
+                        "target_tithi_end_jd": 2461288.280548431,
+                        "standard_date": "2026-09-04",
+                        "observance_date": "2026-09-04",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "लक्षित तिथि कर्मकाल में",
+                            "winning_score": 1150,
+                            "winning_window_overlap_seconds": 9038.999976217747,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "target_at_karmakala",
+                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                        },
+                        "festival_name_key": "Indra Savarni Manvadi",
+                        "festival_name_localized": "इन्द्र सावर्णि मन्वदि",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "लक्षित तिथि कर्मकाल में",
+                        "winning_score": 1150,
+                        "winning_window_overlap_seconds": 9038.999976217747,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "target_at_karmakala",
+                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
                     "name": "कालाष्टमी",
                     "name_key": "Kalashtami",
                     "description": "भगवान भैरव को समर्पित मासिक व्रत",
@@ -3186,6 +3292,34 @@
                             "number": 0,
                             "name": "रविवार"
                         }
+                    }
+                },
+                {
+                    "name": "व्यतीपात श्राद्ध",
+                    "name_key": "Vyatipata Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vyatipata Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "व्यतीपात तर्पण",
+                        "व्यतीपात षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -5092,6 +5226,114 @@
                             "number": 4,
                             "name": "गुरुवार"
                         }
+                    }
+                },
+                {
+                    "name": "दैव सावर्णि मन्वदि",
+                    "name_key": "Daiva Savarni Manvadi",
+                    "description": "Common modern named-Manvadi mapping for Shravana Amavasya / Purnimanta Bhadrapada Amavasya.",
+                    "deity": "ब्रह्मा/विष्णु",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "Deva Savarni Manvadi",
+                        "Daiva Savarni Manuadi"
+                    ],
+                    "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 15 सूर्योदय पर 2026-09-11 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-10 को मनाई जाती है।",
+                    "calculation_basis": {
+                        "type": "tithi",
+                        "type_name": "तिथि",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "resolver": "classical",
+                        "tithi": {
+                            "numbers": [
+                                15
+                            ],
+                            "paksha": "Krishna",
+                            "paksha_name": "कृष्ण",
+                            "absolute_numbers": [
+                                30
+                            ],
+                            "names": [
+                                "अमावस्या"
+                            ]
+                        },
+                        "paksha": "Krishna",
+                        "paksha_name": "कृष्ण",
+                        "month": {
+                            "calendar_type": "purnimanta",
+                            "value": "भाद्रपद",
+                            "value_key": "Bhadrapada",
+                            "name": "भाद्रपद"
+                        },
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "vriddhi_preference": "first",
+                        "adhika": {
+                            "allow_adhika": true
+                        }
+                    },
+                    "resolution": {
+                        "festival_name": "दैव सावर्णि मन्वदि",
+                        "required_tithi": 15,
+                        "paksha": "Krishna",
+                        "karmakala_type": "aparahna",
+                        "tithi_at_karmakala_today": true,
+                        "tithi_at_karmakala_tomorrow": false,
+                        "tithi_coverage_seconds_today": 8944.80000436306,
+                        "tithi_coverage_seconds_tomorrow": 0.0,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
+                        "is_tithi_vriddhi": false,
+                        "is_tithi_kshaya": false,
+                        "target_tithi_start_jd": 2461293.7109138574,
+                        "target_tithi_end_jd": 2461294.6436758693,
+                        "standard_date": "2026-09-11",
+                        "observance_date": "2026-09-10",
+                        "observance_note": "अपवाद: मानक कृष्ण पक्ष तिथि 15 सूर्योदय पर 2026-09-11 को होती है, किंतु अपराह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-10 को मनाई जाती है।",
+                        "decision": {
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "first",
+                            "kshaya_preference": "merged_host_day",
+                            "prefer_first_karmakala": false,
+                            "prefer_growth_before_score": false,
+                            "winning_reason": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन",
+                            "winning_score": 20000,
+                            "winning_window_overlap_seconds": 8944.80000436306,
+                            "winning_window_coverage_ratio": 1.0,
+                            "bhadra_decision": {
+                                "applicable": false,
+                                "rejected": false,
+                                "preferred": false
+                            },
+                            "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                            "winning_reason_name": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन"
+                        },
+                        "festival_name_key": "Daiva Savarni Manvadi",
+                        "festival_name_localized": "दैव सावर्णि मन्वदि",
+                        "paksha_name": "कृष्ण",
+                        "karmakala_type_name": "अपराह्न"
+                    },
+                    "rules_applied": {
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "first",
+                        "kshaya_preference": "merged_host_day",
+                        "prefer_first_karmakala": false,
+                        "prefer_growth_before_score": false,
+                        "winning_reason": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन",
+                        "winning_score": 20000,
+                        "winning_window_overlap_seconds": 8944.80000436306,
+                        "winning_window_coverage_ratio": 1.0,
+                        "bhadra_decision": {
+                            "applicable": false,
+                            "rejected": false,
+                            "preferred": false
+                        },
+                        "winning_reason_key": "darsha_amavasya_day_before_sunrise_aparahna",
+                        "winning_reason_name": "दर्श अमावस्या: सूर्योदय-पूर्व अपराह्न वाले दिन"
                     }
                 },
                 {
@@ -7966,12 +8208,13 @@
                 {
                     "name": "रुद्र सावर्णि मन्वदि",
                     "name_key": "Rudra Savarni Manvadi",
-                    "description": "रुद्र सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
+                    "description": "Bhadrapada Shukla Tritiya Manvadi.",
                     "deity": "ब्रह्मा/विष्णु",
                     "fasting": false,
                     "regions": [
                         "संपूर्ण भारत"
                     ],
+                    "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
                     "calculation_basis": {
                         "type": "tithi",
                         "type_name": "तिथि",
@@ -7980,15 +8223,15 @@
                         "resolver": "classical",
                         "tithi": {
                             "numbers": [
-                                2
+                                3
                             ],
                             "paksha": "Shukla",
                             "paksha_name": "शुक्ल",
                             "absolute_numbers": [
-                                2
+                                3
                             ],
                             "names": [
-                                "शुक्ल द्वितीया"
+                                "शुक्ल तृतीया"
                             ]
                         },
                         "paksha": "Shukla",
@@ -7999,36 +8242,41 @@
                             "value_key": "Bhadrapada",
                             "name": "भाद्रपद"
                         },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type": "purvahna",
+                        "karmakala_type_name": "पूर्वाह्न",
+                        "strict_karmakala": true,
+                        "adhika": {
+                            "allow_adhika": true
+                        }
                     },
                     "resolution": {
                         "festival_name": "रुद्र सावर्णि मन्वदि",
-                        "required_tithi": 2,
+                        "required_tithi": 3,
                         "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
+                        "karmakala_type": "purvahna",
                         "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
+                        "tithi_at_karmakala_tomorrow": true,
+                        "tithi_coverage_seconds_today": 20302.522829174995,
+                        "tithi_coverage_seconds_tomorrow": 1835.6383234262466,
+                        "tithi_at_sunrise_today": false,
+                        "tithi_at_sunrise_tomorrow": true,
                         "is_tithi_vriddhi": false,
                         "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461295.59496745,
-                        "target_tithi_end_jd": 2461296.5686166342,
-                        "standard_date": "2026-09-13",
+                        "target_tithi_start_jd": 2461296.5686166342,
+                        "target_tithi_end_jd": 2461297.5676115546,
+                        "standard_date": "2026-09-14",
                         "observance_date": "2026-09-13",
+                        "observance_note": "अपवाद: मानक शुक्ल पक्ष तिथि 3 सूर्योदय पर 2026-09-14 को होती है, किंतु पूर्वाह्न की उपस्थिति की परंपरा/विधि के कारण 2026-09-13 को मनाई जाती है।",
                         "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
+                            "strict_karmakala": true,
+                            "vriddhi_preference": "last",
+                            "kshaya_preference": "merged_host_day",
                             "prefer_first_karmakala": false,
                             "prefer_growth_before_score": false,
                             "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
+                            "winning_score": 1240,
+                            "winning_window_overlap_seconds": 20302.522829174995,
+                            "winning_window_coverage_ratio": 0.9127600961039963,
                             "bhadra_decision": {
                                 "applicable": false,
                                 "rejected": false,
@@ -8040,18 +8288,18 @@
                         "festival_name_key": "Rudra Savarni Manvadi",
                         "festival_name_localized": "रुद्र सावर्णि मन्वदि",
                         "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
+                        "karmakala_type_name": "पूर्वाह्न"
                     },
                     "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
+                        "strict_karmakala": true,
+                        "vriddhi_preference": "last",
+                        "kshaya_preference": "merged_host_day",
                         "prefer_first_karmakala": false,
                         "prefer_growth_before_score": false,
                         "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
+                        "winning_score": 1240,
+                        "winning_window_overlap_seconds": 20302.522829174995,
+                        "winning_window_coverage_ratio": 0.9127600961039963,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
@@ -9157,6 +9405,35 @@
                         },
                         "winning_reason_key": "target_at_karmakala",
                         "winning_reason_name": "लक्षित तिथि कर्मकाल में"
+                    }
+                },
+                {
+                    "name": "वैधृति श्राद्ध",
+                    "name_key": "Vaidhriti Shraddha",
+                    "description": "Shannavati Shraddha on a qualifying Vaidhriti Nitya Yoga occurrence selected by Aparahna vyapti.",
+                    "deity": "पितृ",
+                    "fasting": false,
+                    "regions": [
+                        "संपूर्ण भारत"
+                    ],
+                    "aliases": [
+                        "वैधृति श्राद्ध",
+                        "वैधृति तर्पण",
+                        "वैधृति षण्णवति श्राद्ध"
+                    ],
+                    "calculation_basis": {
+                        "type": "shannavati_membership",
+                        "type_name": "shannavati_membership",
+                        "basis": "tithi",
+                        "basis_name": "तिथि",
+                        "karmakala_type": "aparahna",
+                        "karmakala_type_name": "अपराह्न",
+                        "source_refs": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ],
+                        "source_ref_keys": [
+                            "Dharma Sindhu Shannavati enumeration"
+                        ]
                     }
                 }
             ],
@@ -11159,104 +11436,6 @@
                         },
                         "winning_reason_key": "madhyahna_shuddha_navami_yuta_day2",
                         "winning_reason_name": "बाद वाले शुद्ध दिन पर नवमी-युक्त दिन का चयन"
-                    }
-                },
-                {
-                    "name": "इन्द्र सावर्णि मन्वदि",
-                    "name_key": "Indra Savarni Manvadi",
-                    "description": "इन्द्र सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                8
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                8
-                            ],
-                            "names": [
-                                "शुक्ल अष्टमी"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "इन्द्र सावर्णि मन्वदि",
-                        "required_tithi": 8,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461301.8135221945,
-                        "target_tithi_end_jd": 2461302.914826148,
-                        "standard_date": "2026-09-19",
-                        "observance_date": "2026-09-19",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Indra Savarni Manvadi",
-                        "festival_name_localized": "इन्द्र सावर्णि मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
                     }
                 },
                 {
@@ -15388,104 +15567,6 @@
                         "winning_score": 1144,
                         "winning_window_overlap_seconds": 8689.000023901463,
                         "winning_window_coverage_ratio": 1.0,
-                        "bhadra_decision": {
-                            "applicable": false,
-                            "rejected": false,
-                            "preferred": false
-                        },
-                        "winning_reason_key": "target_at_karmakala",
-                        "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                    }
-                },
-                {
-                    "name": "दैव सावर्णि मन्वदि",
-                    "name_key": "Daiva Savarni Manvadi",
-                    "description": "दैव सावर्णि मन्वन्तर के आरंभ का स्मरणोत्सव",
-                    "deity": "ब्रह्मा/विष्णु",
-                    "fasting": false,
-                    "regions": [
-                        "संपूर्ण भारत"
-                    ],
-                    "calculation_basis": {
-                        "type": "tithi",
-                        "type_name": "तिथि",
-                        "basis": "tithi",
-                        "basis_name": "तिथि",
-                        "resolver": "classical",
-                        "tithi": {
-                            "numbers": [
-                                15
-                            ],
-                            "paksha": "Shukla",
-                            "paksha_name": "शुक्ल",
-                            "absolute_numbers": [
-                                15
-                            ],
-                            "names": [
-                                "पूर्णिमा"
-                            ]
-                        },
-                        "paksha": "Shukla",
-                        "paksha_name": "शुक्ल",
-                        "month": {
-                            "calendar_type": "purnimanta",
-                            "value": "भाद्रपद",
-                            "value_key": "Bhadrapada",
-                            "name": "भाद्रपद"
-                        },
-                        "karmakala_type": "sunrise",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "resolution": {
-                        "festival_name": "दैव सावर्णि मन्वदि",
-                        "required_tithi": 15,
-                        "paksha": "Shukla",
-                        "karmakala_type": "sunrise",
-                        "tithi_at_karmakala_today": true,
-                        "tithi_at_karmakala_tomorrow": false,
-                        "tithi_coverage_seconds_today": 0.0,
-                        "tithi_coverage_seconds_tomorrow": 0.0,
-                        "tithi_at_sunrise_today": true,
-                        "tithi_at_sunrise_tomorrow": false,
-                        "is_tithi_vriddhi": false,
-                        "is_tithi_kshaya": false,
-                        "target_tithi_start_jd": 2461309.2341748606,
-                        "target_tithi_end_jd": 2461310.200649148,
-                        "standard_date": "2026-09-26",
-                        "observance_date": "2026-09-26",
-                        "decision": {
-                            "strict_karmakala": false,
-                            "vriddhi_preference": "first",
-                            "kshaya_preference": "first",
-                            "prefer_first_karmakala": false,
-                            "prefer_growth_before_score": false,
-                            "winning_reason": "लक्षित तिथि कर्मकाल में",
-                            "winning_score": 1000,
-                            "winning_window_overlap_seconds": 0.0,
-                            "winning_window_coverage_ratio": 0.0,
-                            "bhadra_decision": {
-                                "applicable": false,
-                                "rejected": false,
-                                "preferred": false
-                            },
-                            "winning_reason_key": "target_at_karmakala",
-                            "winning_reason_name": "लक्षित तिथि कर्मकाल में"
-                        },
-                        "festival_name_key": "Daiva Savarni Manvadi",
-                        "festival_name_localized": "दैव सावर्णि मन्वदि",
-                        "paksha_name": "शुक्ल",
-                        "karmakala_type_name": "सूर्योदय"
-                    },
-                    "rules_applied": {
-                        "strict_karmakala": false,
-                        "vriddhi_preference": "first",
-                        "kshaya_preference": "first",
-                        "prefer_first_karmakala": false,
-                        "prefer_growth_before_score": false,
-                        "winning_reason": "लक्षित तिथि कर्मकाल में",
-                        "winning_score": 1000,
-                        "winning_window_overlap_seconds": 0.0,
-                        "winning_window_coverage_ratio": 0.0,
                         "bhadra_decision": {
                             "applicable": false,
                             "rejected": false,
