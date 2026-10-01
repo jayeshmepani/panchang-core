@@ -290,13 +290,13 @@ class PanchangService
         $nityaYogaObservations = ElectionalEvaluator::calculateNityaYogaObservations((int) $currentYoga['index'], (string) $currentYoga['name']);
 
         $panchakaAtSunrise = $this->panchanga->calculatePanchakaRahita(
-            (int) $tithi['index'],
+            (int) $tithi['index'] + 1,
             (int) $vara['index'] + 1,
             $nakIdx + 1,
-            $ascSign + 1
+            $sunriseAscSign + 1
         );
         $panchakaRuntime = ElectionalEvaluator::calculatePanchakaDosha(
-            (int) $currentTithi['index'],
+            (int) $currentTithi['index'] + 1,
             (int) $vara['index'],
             $currentNakIdx + 1,
             $ascSign + 1
@@ -310,10 +310,12 @@ class PanchangService
                 ...$panchakaAtSunrise,
                 'calculated_for' => 'sunrise',
                 'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
-                'tithi' => (int) $tithi['index'],
+                'tithi' => (int) $tithi['index'] + 1,
                 'tithi_name' => Tithi::from((int) $tithi['index'])->getName(),
                 'nakshatra' => $nakIdx + 1,
                 'nakshatra_name' => Nakshatra::from($nakIdx % 27)->getName(),
+                'lagna' => $sunriseAscSign + 1,
+                'lagna_name' => Rasi::from($sunriseAscSign)->getName(),
             ],
         ];
 
@@ -444,6 +446,19 @@ class PanchangService
 
         // Pradosha Kaal: three dynamic night-muhurtas after local sunset, auspicious only when Trayodashi overlaps it.
         $pradoshaKaal = $this->calculatePradoshaKaal($sunset, $jdSunset, $nextSunrise, $jdNextSunrise, $tz);
+
+        $tithiIntervalsForPanchaka = $this->intervalTracker->collectTithiIntervals($jdSunrise, $jdNextSunrise);
+        $nakshatraIntervalsForPanchaka = $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise);
+        $panchakaRahitaTable = $this->muhurta->calculatePanchakaRahitaTable(
+            $relSunrise,
+            $sunset,
+            $nextSunrise,
+            (int) $vara['index'],
+            $lagnaTable,
+            $tithiIntervalsForPanchaka,
+            $nakshatraIntervalsForPanchaka,
+            $tz
+        );
 
         // Lagna calculation
         $lagna = $this->muhurta->calculateLagna(
@@ -997,6 +1012,9 @@ class PanchangService
             'Mahadiksha_Guidance' => $this->buildMahadikshaGuidance($hinduMonth, $sunLon),
             'Transitions' => $transitionSignals,
             'Panchaka_Rahita' => $panchaka,
+            'Panchaka_Rahita_Full_Day' => $panchakaRahitaTable,
+            'Panchak_Table' => $panchakaRahitaTable,
+            'panchak_table' => $panchakaRahitaTable,
             'Vara_Tithi_Doshas' => $varaTithiDoshas,
             'Hora' => $hora,
             'Chogadiya' => $chogadiya,

@@ -481,13 +481,13 @@ class PanchangaEngine
             2 => 'Agni Panchaka',
             4 => 'Raja Panchaka',
             6 => 'Chora Panchaka',
-            7 => 'Roga Panchaka',
+            8 => 'Roga Panchaka',
         ];
 
         if (isset($doshas[$r])) {
             $name = $doshas[$r];
             $isGood = false;
-        } elseif ($r === 0 || $r === 8) {
+        } elseif ($r === 0) {
             $name = 'Nish-Panchaka';
             $isGood = true;
         } else {

@@ -473,6 +473,10 @@ trait PanchangSelectiveApiTrait
                     'previous_sunrise_iso' => AstroCore::formatDateTime($ctx['time']['previous_sunrise']),
                     'sunset_iso' => AstroCore::formatDateTime($sunset),
                     'next_sunrise_iso' => AstroCore::formatDateTime($nextSunrise),
+                    'observer_latitude' => $lat,
+                    'observer_longitude' => $lon,
+                    'observer_elevation_m' => $elevation,
+                    'observer_timezone' => $tz,
                     'sankranti_rashi' => $ctx['sankranti']['rashi'],
                     'sankranti_jd' => $ctx['sankranti']['jd'] ?? null,
                 ],
@@ -809,13 +813,20 @@ trait PanchangSelectiveApiTrait
                     $ensurePanchanga(); $ensureLongitudes(); $ensureTimeContext();
                     $ascLon = $this->astronomy->getAscendant($ctx['time']['birth_at']);
                     $ascSign = AstroCore::getSign($ascLon);
+                    $sunriseAscLon = $this->astronomy->getAscendant($ctx['time']['sunrise_birth']);
+                    $sunriseAscSign = AstroCore::getSign($sunriseAscLon);
                     $atSunrise = $this->panchanga->calculatePanchakaRahita(
-                        (int) $ctx['panchanga']['tithi']['index'],
+                        (int) $ctx['panchanga']['tithi']['index'] + 1,
                         (int) $ctx['panchanga']['vara']['index'] + 1,
                         $ctx['panchanga']['nak_index'] + 1,
+                        $sunriseAscSign + 1
+                    );
+                    $runtime = ElectionalEvaluator::calculatePanchakaDosha(
+                        (int) $ctx['panchanga']['current_tithi']['index'] + 1,
+                        (int) $ctx['panchanga']['vara']['index'],
+                        $ctx['panchanga']['current_nak_index'] + 1,
                         $ascSign + 1
                     );
-                    $runtime = ElectionalEvaluator::calculatePanchakaDosha((int) $ctx['panchanga']['current_tithi']['index'], (int) $ctx['panchanga']['vara']['index'], $ctx['panchanga']['current_nak_index'] + 1, AstroCore::getSign($ascLon) + 1);
 
                     return [
                         ...$runtime,
@@ -826,12 +837,59 @@ trait PanchangSelectiveApiTrait
                             ...$atSunrise,
                             'calculated_for' => 'sunrise',
                             'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
-                            'tithi' => (int) $ctx['panchanga']['tithi']['index'],
+                            'tithi' => (int) $ctx['panchanga']['tithi']['index'] + 1,
                             'tithi_name' => Tithi::from((int) $ctx['panchanga']['tithi']['index'])->getName(),
                             'nakshatra' => $ctx['panchanga']['nak_index'] + 1,
                             'nakshatra_name' => Nakshatra::from($ctx['panchanga']['nak_index'] % 27)->getName(),
+                            'lagna' => $sunriseAscSign + 1,
+                            'lagna_name' => Rasi::from($sunriseAscSign)->getName(),
                         ],
                     ];
+                })(),
+                'Panchaka_Rahita_Full_Day' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga, $ensureLagnaTable, $ensureJds, $tz): array {
+                    $ensureTimeContext(); $ensurePanchanga(); $ensureLagnaTable(); $ensureJds();
+                    $tithiIntervals = $this->intervalTracker->collectTithiIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    $nakshatraIntervals = $this->intervalTracker->collectNakshatraIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    return $this->muhurta->calculatePanchakaRahitaTable(
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['sun']['sunset'],
+                        $ctx['sun']['next_sunrise'],
+                        (int) $ctx['panchanga']['vara']['index'],
+                        $ctx['lagna_table'],
+                        $tithiIntervals,
+                        $nakshatraIntervals,
+                        $tz
+                    );
+                })(),
+                'Panchak_Table' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga, $ensureLagnaTable, $ensureJds, $tz): array {
+                    $ensureTimeContext(); $ensurePanchanga(); $ensureLagnaTable(); $ensureJds();
+                    $tithiIntervals = $this->intervalTracker->collectTithiIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    $nakshatraIntervals = $this->intervalTracker->collectNakshatraIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    return $this->muhurta->calculatePanchakaRahitaTable(
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['sun']['sunset'],
+                        $ctx['sun']['next_sunrise'],
+                        (int) $ctx['panchanga']['vara']['index'],
+                        $ctx['lagna_table'],
+                        $tithiIntervals,
+                        $nakshatraIntervals,
+                        $tz
+                    );
+                })(),
+                'panchak_table' => (function () use (&$ctx, $ensureTimeContext, $ensurePanchanga, $ensureLagnaTable, $ensureJds, $tz): array {
+                    $ensureTimeContext(); $ensurePanchanga(); $ensureLagnaTable(); $ensureJds();
+                    $tithiIntervals = $this->intervalTracker->collectTithiIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    $nakshatraIntervals = $this->intervalTracker->collectNakshatraIntervals($ctx['jds']['sunrise'], $ctx['jds']['next_sunrise']);
+                    return $this->muhurta->calculatePanchakaRahitaTable(
+                        $ctx['time']['rel_sunrise'],
+                        $ctx['sun']['sunset'],
+                        $ctx['sun']['next_sunrise'],
+                        (int) $ctx['panchanga']['vara']['index'],
+                        $ctx['lagna_table'],
+                        $tithiIntervals,
+                        $nakshatraIntervals,
+                        $tz
+                    );
                 })(),
                 'Vara_Tithi_Doshas' => (function () use (&$ctx, $ensurePanchanga): array {
                     $ensurePanchanga();
@@ -1516,6 +1574,9 @@ trait PanchangSelectiveApiTrait
             'Agni_Vaasa',
             'Yogini_Vaasa',
             'Panchaka_Rahita',
+            'Panchaka_Rahita_Full_Day',
+            'Panchak_Table',
+            'panchak_table',
             'Vara_Tithi_Doshas',
             'Tithi_Observance_Analysis',
             'Vrata_Parana',

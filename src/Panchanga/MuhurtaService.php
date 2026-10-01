@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Muhurta\Classical\DailyPeriodsCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator;
+use JayeshMepani\PanchangCore\Muhurta\Panchaka\PanchakaRahitaTableCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator;
 use JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator;
@@ -22,7 +23,8 @@ class MuhurtaService
         private readonly DailyPeriodsCalculator $dailyPeriodsCalculator,
         private readonly InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator,
         private readonly GowriPanchangamCalculator $gowriPanchangamCalculator,
-        private readonly LagnaTableCalculator $lagnaTableCalculator
+        private readonly LagnaTableCalculator $lagnaTableCalculator,
+        private readonly ?PanchakaRahitaTableCalculator $panchakaRahitaTableCalculator = null
     ) {}
 
     public function calculateHora(
@@ -237,5 +239,28 @@ class MuhurtaService
         JmeEphFFI $jme
     ): array {
         return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $nextSunrise, $ayanamsaDeg, $lat, $lon, $jme);
+    }
+
+    public function calculatePanchakaRahitaTable(
+        CarbonImmutable $sunrise,
+        CarbonImmutable $sunset,
+        CarbonImmutable $nextSunrise,
+        int $varaIdx,
+        array $lagnaTable,
+        array $tithiIntervals,
+        array $nakshatraIntervals,
+        string $tz
+    ): array {
+        $calc = $this->panchakaRahitaTableCalculator ?? new PanchakaRahitaTableCalculator;
+        return $calc->calculatePanchakaRahitaTable(
+            $sunrise,
+            $sunset,
+            $nextSunrise,
+            $varaIdx,
+            $lagnaTable,
+            $tithiIntervals,
+            $nakshatraIntervals,
+            $tz
+        );
     }
 }

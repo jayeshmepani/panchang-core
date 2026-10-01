@@ -348,7 +348,7 @@ class FestivalService
                         $yesterdayDetails,
                         $fetchHistoricalSnapshot,
                         $festivals,
-                        (string) (($rules['shannavati_profile'] ?? null) ?: 'dharma_sindhu'),
+                        isset($rules['shannavati_profile']) && (string) $rules['shannavati_profile'] !== '' ? (string) $rules['shannavati_profile'] : 'dharma_sindhu',
                     );
                     $shannavatiMembershipIds = array_fill_keys(array_map(
                         static fn(array $membership): string => (string) ($membership['id'] ?? ''),
@@ -361,7 +361,7 @@ class FestivalService
                 $matchesMembership = $membershipId !== '' && isset($shannavatiMembershipIds[$membershipId]);
                 if (!$matchesMembership && $membershipPrefix !== '') {
                     foreach (array_keys($shannavatiMembershipIds) as $candidateMembershipId) {
-                        if (str_starts_with((string) $candidateMembershipId, $membershipPrefix)) {
+                        if (str_starts_with($candidateMembershipId, $membershipPrefix)) {
                             $matchesMembership = true;
                             break;
                         }

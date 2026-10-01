@@ -80,17 +80,17 @@ final readonly class ShannavatiResolver
                 $yesterday,
                 $fetchHistoricalSnapshot,
                 $rule,
-                (string) $rule['label'],
+                $rule['label'],
             );
             if ($resolution !== null) {
                 $memberships[] = $this->membership(
-                    id: (string) $rule['id'],
+                    id: $rule['id'],
                     category: ShannavatiCategory::Yugadi,
-                    label: (string) $rule['label'],
+                    label: $rule['label'],
                     resolution: $resolution,
                     today: $today,
                     profile: $profile,
-                    extra: ['aliases' => array_values((array) ($rule['aliases'] ?? []))],
+                    extra: ['aliases' => $rule['aliases']],
                 );
             }
         }
@@ -191,13 +191,13 @@ final readonly class ShannavatiResolver
                 $yesterday,
                 $fetchHistoricalSnapshot,
                 $rule,
-                (string) $rule['label'],
+                $rule['label'],
             );
             if ($resolution !== null) {
                 $memberships[] = $this->membership(
-                    id: (string) $rule['id'],
+                    id: $rule['id'],
                     category: ShannavatiCategory::Mahalaya,
-                    label: (string) $rule['label'],
+                    label: $rule['label'],
                     resolution: $resolution,
                     today: $today,
                     profile: $profile,
@@ -274,7 +274,6 @@ final readonly class ShannavatiResolver
                 continue;
             }
 
-            /** @var ShannavatiCategory $roleCategory */
             $roleCategory = $role['category'];
             $memberships[] = [
                 'id' => sprintf('shannavati.%s.%s', $role['suffix'], $monthRule['key']),

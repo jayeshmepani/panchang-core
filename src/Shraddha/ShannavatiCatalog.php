@@ -155,11 +155,11 @@ final class ShannavatiCatalog
         }
 
         foreach (self::YUGADI_DHARMA_SINDHU as $rule) {
-            $ids[] = (string) $rule['id'];
+            $ids[] = $rule['id'];
         }
 
         foreach (self::MANVADI_DHARMA_SINDHU as $rule) {
-            $ids[] = (string) $rule['id'];
+            $ids[] = $rule['id'];
         }
 
         foreach (self::SANKRANTIS as $rule) {
