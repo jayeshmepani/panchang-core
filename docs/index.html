@@ -14,7 +14,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <title>Panchang Core — Advanced Vedic Astrology Engine for PHP</title>
   <meta name="description"
-    content="High-precision Vedic Panchanga engine for Laravel & PHP. 354 festival identities, 126 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, calendar-period windows, and JME native ephemeris-backed calculations.">
+    content="High-precision Vedic Panchanga engine for Laravel & PHP. 354 festival identities, 126 vrat identities, localization in English/Hindi/Gujarati, Amanta/Purnimanta calendar types, Karmakala windows, special yogas, vaasa checks, full-day Panchaka Rahita timeline, calendar-period windows, and JME native ephemeris-backed calculations.">
   <meta name="keywords"
     content="vedic panchang, hindu calendar, tithi calculator, nakshatra, yoga karana, muhurta, jme native ephemeris, laravel package, php astrology, hindu festivals">
   <meta name="author" content="Jayesh Mepani">
@@ -2219,7 +2219,7 @@ echo $amanta->getLocalizedName('hi'); // "अमांत"</code></pre>
                   <li><strong>Festivals / ritual:</strong> <code>Festivals</code>, <code>Daily_Observances</code>, <code>Mahadiksha_Guidance</code>, <code>Ekadashi_Observance</code>, <code>Dharma_Sindhu</code> (Punya Kaal / Ekadashi / tithi analysis / vaasa bundle)</li>
                   <li><strong>Yogas / shool / vaasa:</strong> <code>Special_Yogas</code>, <code>Anandadi_Yoga</code>, <code>Amritadi_Yoga</code>, <code>Nitya_Yoga_Observations</code>, <code>Panchak</code>, <code>Maitreya_Yoga</code>, <code>Gajachchhaya_Yoga</code>, <code>Nakshatra_Shool</code>, <code>Disha_Shool</code>, <code>Yatra_Screening</code>, <code>Rahu_Vaasa</code>, <code>Chandra_Vaasa</code>, <code>Shiva_Vaasa</code>, <code>Agni_Vaasa</code>, <code>Yogini_Vaasa</code></li>
                   <li><strong>Electional / vrata analysis:</strong> <code>Panchaka_Rahita</code>, <code>Vara_Tithi_Doshas</code>, <code>Tithi_Observance_Analysis</code>, <code>Vrata_Parana</code></li>
-                  <li><strong>Current + day tables:</strong> <code>Hora</code>, <code>Hora_Full_Day</code>, <code>Chogadiya</code>, <code>Chogadiya_Duration</code>, <code>Chogadiya_Full_Day</code>, <code>Muhurta_Full_Day</code>, <code>Lagna</code>, <code>Lagna_Full_Day</code>, <code>Rahu_Kaal_Gulika_Yamaganda</code>, <code>Prahara_Full_Day</code>, <code>Dur_Muhurta_Full_Day</code></li>
+                  <li><strong>Current + day tables:</strong> <code>Hora</code>, <code>Hora_Full_Day</code>, <code>Chogadiya</code>, <code>Chogadiya_Duration</code>, <code>Chogadiya_Full_Day</code>, <code>Muhurta_Full_Day</code>, <code>Lagna</code>, <code>Lagna_Full_Day</code>, <code>Panchaka_Rahita_Full_Day</code> (or <code>Panchak_Table</code>), <code>Rahu_Kaal_Gulika_Yamaganda</code>, <code>Prahara_Full_Day</code>, <code>Dur_Muhurta_Full_Day</code></li>
                   <li><strong>Kāla divisions (dynamic night model):</strong> <code>Daylight_Fivefold_Division</code>, <code>Nighttime_Fivefold_Division</code> (weighted 3+4+1+5+2 night muhurtas), <code>DayNight_Tenfold_Kala_Division</code></li>
                   <li><strong>Named windows:</strong> <code>Abhijit_Muhurta</code>, <code>Brahma_Muhurta</code>, <code>Nishita_Muhurta</code>, <code>Vijaya_Muhurta</code>, <code>Godhuli_Muhurta</code>, <code>Sandhya</code>, <code>Day_Night_Measures</code>, <code>Gowri_Panchangam</code>, <code>Kala_Vela</code>, <code>Karmakala_Windows</code>, <code>Varjyam</code>, <code>Nakshatra_Tyajya</code>, <code>Amrita_Kaal</code>, <code>Pradosha_Kaal</code>, <code>Bhadra</code></li>
                 </ul>
@@ -3524,6 +3524,25 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               </div>
               <div class="method-returns"><strong>Returns:</strong><code>array</code> — Set of bad time intervals.</div>
             </div>
+
+            <div class="method">
+              <h4 class="method-name">calculatePanchakaRahitaTable()</h4>
+              <p class="method-description">Calculate the continuous full-day Panchaka Rahita timeline from sunrise to next sunrise, evaluating each interval boundary formed by Tithi, Nakshatra, and Lagna sign changes.</p>
+              <div class="method-signature">
+                <code>public function calculatePanchakaRahitaTable(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise, int $varaIdx, array $lagnaTable, array $tithiIntervals, array $nakshatraIntervals, string $tz): array</code>
+              </div>
+              <div class="method-params"><strong>Parameters:</strong>
+                <ul>
+                  <li><code>$sunrise, $sunset, $nextSunrise</code> (CarbonImmutable) — Day boundaries.</li>
+                  <li><code>$varaIdx</code> (int) — Weekday index (0 = Sunday ... 6 = Saturday).</li>
+                  <li><code>$lagnaTable</code> (array) — Daily Lagna intervals from <code>calculateLagnaTable()</code>.</li>
+                  <li><code>$tithiIntervals</code> (array) — Day tithi intervals from <code>IntervalTracker::collectTithiIntervals()</code>.</li>
+                  <li><code>$nakshatraIntervals</code> (array) — Day nakshatra intervals from <code>IntervalTracker::collectNakshatraIntervals()</code>.</li>
+                  <li><code>$tz</code> (string) — Location timezone identifier.</li>
+                </ul>
+              </div>
+              <div class="method-returns"><strong>Returns:</strong> <code>array</code> — Continuous timeline intervals with <code>{start, end, start_jd, end_jd, duration_minutes, remainder, classification, short_name, has_dosha, is_auspicious, severity, tithi, vara, nakshatra, lagna}</code>.</div>
+            </div>
           </div>
         </section>
         <section id="eclipse-service" class="content-section">
@@ -3609,11 +3628,11 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
 
             <div class="method">
               <h4 class="method-name">calculatePanchakaDosha()</h4>
-              <p class="method-description">Calculates the 5-fold Panchaka Rahita / Panchaka Dosha classification based on Tithi, Vara, Nakshatra, and Lagna. This is the electional remainder check and is separate from active Moon-in-Panchak weekday subtype labels.</p>
+              <p class="method-description">Calculates the classical 9-fold Panchaka Rahita classification based on Tithi, Vara, Nakshatra, and Lagna according to <em>Muhurta Chintamani</em>. Remainder 0 is Nish-Panchaka (auspicious), Remainders 3, 5, 7 are Shubha Panchaka (auspicious), and Remainders 1, 2, 4, 6, 8 carry specific Panchaka doshas (Mrityu, Agni, Raja, Chora, Roga). This electional check is distinct from the 5-day Moon-in-Panchak cycle.</p>
               <div class="method-signature">
                 <code>public static function calculatePanchakaDosha(int $tithiNumber, int $varaNumber, int $nakshatraNumber, int $lagnaNumber): array</code>
               </div>
-              <div class="method-returns"><strong>Returns:</strong> <code>array{remainder: int, classification: string, is_auspicious: bool}</code></div>
+              <div class="method-returns"><strong>Returns:</strong> <code>array{source: string, tithi: int, vara: int, nakshatra: int, lagna: int, sum: int, remainder: int, panchaka_name: string, is_auspicious: bool, has_dosha: bool, severity: string, description: string}</code></div>
             </div>
 
             <div class="method">
@@ -5053,28 +5072,36 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.2.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.3.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v11.2.0</strong> adds the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. The preceding <strong>v11.1.0</strong> release corrected Amāvāsyā public naming: weekday identities (Somavati / Bhaumavati / Shani) attach only when Monday / Tuesday / Saturday occur on generic Amavasya; named Amavasya may alias to generic Amavasya (not the reverse); Darsha Amavasya is clarified as an aparahna/evening–night technical subset, not always the main Amavasya civil identity. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v11.3.0</strong> introduces the full-day continuous Panchaka Rahita timeline (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>), harmonizes remainder classifications with classical <em>Muhurta Chintamani</em> canons (identifying Remainder 8 as Roga Panchaka and Remainders 3, 5, 7 as Shubha Panchaka), refines sunrise Lagna screening, and applies micro-interval boundary smoothing. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming (Somavati / Bhaumavati / Shani). <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed for <strong>v11.2.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail and month <code>Hindu_Calendar</code> blocks expose parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior are documented as part of this release. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
-            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
+            <p>This documentation is refreshed for <strong>v11.3.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail payloads expose the full-day continuous <code>Panchaka_Rahita_Full_Day</code> timeline, dual Nirayana/Sayana Hindu calendar, parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior remain fully documented. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
+            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Panchaka Rahita electional release guide: <code>docs/RELEASE_11.3.0.md</code>. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
           </div>
 
           <div class="info-box">
-            <h3>v11.2.0 Release Addition</h3>
-            <p>This release records the current <strong>354/126</strong> identity totals and adds the separate <code>Shannavati_Shraddha</code> membership layer. Its canonical nominal count is 96 under the selected Dharma Sindhu profile; actual generated dates can vary because applicable Manvādi/Yugādi rules may resolve in both adhika and nija months.</p>
-            <p>For example, Vaivaswata Manvādi can occur twice in a year when both Jyeshtha adhika and Jyeshtha nija Pūrṇimās satisfy the rule. This is an intentional runtime manifestation, not a duplicate identity or a catalogue-count error.</p>
+            <h3>v11.3.0 Release Addition</h3>
+            <p>This release introduces the <strong>Full-Day Panchaka Rahita Timeline</strong> (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>) providing continuous sunrise-to-sunrise intervals evaluated using classical <em>Muhurta Chintamani</em> principles:</p>
+            <p>$$\text{Remainder} = (\text{Tithi} + \text{Weekday} + \text{Nakshatra} + \text{Lagna}) \pmod 9$$</p>
+            <p>where Remainder 0 is <strong>Nish-Panchaka</strong> (auspicious / defect-free), Remainders 3, 5, 7 are <strong>Shubha Panchaka</strong> (auspicious), and Remainders 1, 2, 4, 6, 8 carry specific Panchaka doshas (Mrityu, Agni, Raja, Chora, Roga). Micro-intervals occurring within 5 seconds of astronomical boundaries are smoothly unified to provide a clean, production-grade timeline for electional astrology.</p>
           </div>
 
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">11.3.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">Full-Day Panchaka Rahita Muhurta Timeline &amp; Precision Panchak Engine</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Minor release introducing the full-day continuous Panchaka Rahita timeline (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>) from local sunrise to next sunrise. Harmonizes electional remainder calculations with classical <em>Muhurta Chintamani</em> canons: correctly classifies Remainder 8 as Roga Panchaka and Remainders 3, 5, and 7 as Shubha Panchaka, alongside Remainder 0 as Nish-Panchaka. Standardizes 1-based indexing for Tithi, Weekday, Nakshatra, and Lagna, refines sunrise Lagna screening, and applies micro-interval boundary smoothing. Catalog totals remain <strong>354 festivals</strong> and <strong>126 vrats</strong>; Ṣaṇṇavati Śrāddha nominal count remains <strong>96</strong>.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">11.2.0</span>
               <div class="release-body">
                 <div class="release-heading"><span class="release-title">Ṣaṇṇavati Śrāddha Catalogue and Festival Calendar Expansion</span><span class="release-meta">Release</span></div>
@@ -5084,7 +5111,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <li class="release-row">
               <span class="release-tag">11.1.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Amāvāsyā Weekday Naming, Alias Clarity, and Darsha Distinction</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Amāvāsyā Weekday Naming, Alias Clarity, and Darsha Distinction</span><span class="release-meta">Release</span></div>
                 <p class="release-note">Minor release over <strong>v11.0.0</strong> that clarifies New Moon naming for everyday calendar use. Ordinary <strong>Amavasya</strong> is the New Moon day when the Moon is not seen. When it falls on Monday, Tuesday, or Saturday it is also known as <strong>Somavati</strong>, <strong>Bhaumavati</strong>, or <strong>Shani Amavasya</strong>—listed as their own festival identities. Month-named Amavasya days (such as Magha / Mauni) keep their month identity and may still be called Amavasya, without permanently carrying weekday names. <strong>Darsha Amavasya</strong> is the special evening-and-night New Moon observance used especially for ancestral rites; it is not always the same as the ordinary Amavasya label for the day. Festival identities: <strong>334 → 336</strong>; vrats remain <strong>126</strong>.</p>
               </div>
             </li>
@@ -5467,6 +5494,38 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v11.3.0 Upgrade &amp; Release Notes</h3>
+          <p class="lead">This minor release introduces the full-day continuous Panchaka Rahita timeline, standardizes classical remainder classifications from <em>Muhurta Chintamani</em>, refines sunrise Lagna screening, and integrates micro-interval smoothing. Catalog totals remain <strong>354 festivals</strong> and <strong>126 vrats</strong>.</p>
+
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">v11.3.0 Changes</h4>
+            <ul>
+              <li><strong>Full-Day Panchaka Rahita Timeline:</strong> New <code>calculatePanchakaRahitaTable()</code> method on <code>MuhurtaService</code> and <code>Panchaka_Rahita_Full_Day</code> section in <code>getDayDetails()</code> and <code>getSelectedDetails()</code>. Provides a continuous sunrise-to-sunrise timeline dividing the day whenever Tithi, Nakshatra, or Lagna sign changes.</li>
+              <li><strong>Classical Panchaka Remainder Standards:</strong> Strictly aligns remainder calculation $(\text{Tithi} + \text{Weekday} + \text{Nakshatra} + \text{Lagna}) \pmod 9$ with classical texts:
+                <ul>
+                  <li><strong>Remainder 0:</strong> Nish-Panchaka (Auspicious / Defect-free)</li>
+                  <li><strong>Remainder 1:</strong> Mrityu Panchaka (Inauspicious / Danger)</li>
+                  <li><strong>Remainder 2:</strong> Agni Panchaka (Inauspicious / Fire hazard)</li>
+                  <li><strong>Remainders 3, 5, 7:</strong> Shubha Panchaka (Auspicious / Favorable)</li>
+                  <li><strong>Remainder 4:</strong> Raja Panchaka (Inauspicious / Bad for government/legal matters)</li>
+                  <li><strong>Remainder 6:</strong> Chora Panchaka (Inauspicious / Theft/financial loss)</li>
+                  <li><strong>Remainder 8:</strong> Roga Panchaka (Inauspicious / Illness/delays)</li>
+                </ul>
+              </li>
+              <li><strong>Sunrise Lagna Screening:</strong> Fixed sunrise Lagna screening across electional evaluators to ensure day-start evaluations strictly evaluate the rising sign at solar sunrise.</li>
+              <li><strong>Micro-Interval Smoothing:</strong> Transitions occurring within 5 seconds of astronomical boundaries are unified to avoid spurious micro-windows.</li>
+              <li><strong>Selective API Integration:</strong> Added <code>Panchaka_Rahita_Full_Day</code> (aliases: <code>Panchak_Table</code>, <code>panchak_table</code>) to selectable day-detail sections.</li>
+              <li><strong>Documentation:</strong> Added <code>docs/RELEASE_11.3.0.md</code> and updated API reference documentation.</li>
+            </ul>
+          </div>
+
+          <h4>Upgrade Actions</h4>
+          <ul>
+            <li>Upgrade to version <strong>11.3.0</strong>.</li>
+            <li>If your application displays Muhurta election tables, integrate <code>Panchaka_Rahita_Full_Day</code> from day details or call <code>$muhurta->calculatePanchakaRahitaTable(...)</code>.</li>
+            <li>If asserting Panchaka remainder classifications, note that Remainder 8 is now correctly classified as <code>Roga Panchaka</code> and Remainder 0 is <code>Nish-Panchaka</code> (auspicious).</li>
+          </ul>
 
           <h3>v11.2.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This minor release adds the Ṣaṇṇavati Śrāddha catalogue and related festival-calendar expansion. Catalog festival identities increase from <strong>336</strong> to <strong>354</strong>; vrat identities remain <strong>126</strong>. The nominal Ṣaṇṇavati classification contains <strong>96</strong> ancestral-rite categories.</p>
@@ -7363,7 +7422,7 @@ const FESTIVAL_RULES
 - resolveFestivalDate(string $festivalName, float $tithiStartJd, float $tithiEndJd, float $sunriseJd, float $sunsetJd, float $nextSunriseJd): array
 
 ## JayeshMepani\PanchangCore\Panchanga\MuhurtaService
-- __construct(JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator $horaCalculator, JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator $chogadiyaCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\DailyPeriodsCalculator $dailyPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator $gowriPanchangamCalculator, JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator $lagnaTableCalculator): void
+- __construct(JayeshMepani\PanchangCore\Muhurta\Planetary\HoraCalculator $horaCalculator, JayeshMepani\PanchangCore\Muhurta\Planetary\ChogadiyaCalculator $chogadiyaCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\DailyPeriodsCalculator $dailyPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator, JayeshMepani\PanchangCore\Muhurta\Regional\GowriPanchangamCalculator $gowriPanchangamCalculator, JayeshMepani\PanchangCore\Muhurta\Lagna\LagnaTableCalculator $lagnaTableCalculator, ?JayeshMepani\PanchangCore\Muhurta\Panchaka\PanchakaRahitaTableCalculator $panchakaRahitaTableCalculator = null): void
 - calculateAbhijitMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
 - calculateAmritaKaal(Carbon\CarbonImmutable $sunrise, array $varjyam): array
 - calculateBadTimes(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, int $varaIdx): array
@@ -7383,12 +7442,16 @@ const FESTIVAL_RULES
 - calculateNakshatraPeriodWindows(string $type, Carbon\CarbonImmutable $timezoneReference, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd, float $scopeStartJd, float $scopeEndJd): array
 - calculateNighttimeFivefoldDivision(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculateNishitaMuhurta(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
+- calculatePanchakaRahitaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx, array $lagnaTable, array $tithiIntervals, array $nakshatraIntervals, string $tz): array
 - calculatePradoshaKaal(Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $tithiNum): array
 - calculatePrahara(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculateSandhya(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, Carbon\CarbonImmutable $solarNoon): array
 - calculateTenKalaDivision(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise): array
 - calculateVarjyam(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $nakshatraIndex, float $nakshatraStartJd, float $nakshatraEndJd): array
 - calculateVijayaMuhurta(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset): array
+
+## JayeshMepani\PanchangCore\Muhurta\Panchaka\PanchakaRahitaTableCalculator
+- calculatePanchakaRahitaTable(Carbon\CarbonImmutable $sunrise, Carbon\CarbonImmutable $sunset, Carbon\CarbonImmutable $nextSunrise, int $varaIdx, array $lagnaTable, array $tithiIntervals, array $nakshatraIntervals, string $tz): array
 
 ## JayeshMepani\PanchangCore\Panchanga\OutputGeneratorService
 - buildCalendarPeriodWindowsForMonth(Carbon\CarbonImmutable $date, float $lat, float $lon, string $tz, JayeshMepani\PanchangCore\Core\Enums\CalendarType|string $calendarType): array
