@@ -250,6 +250,42 @@ final readonly class AstroCore
         return ($time->getTimestamp() + $time->micro / 1_000_000.0) / 86400.0 + 2440587.5;
     }
 
+    /**
+     * Extract integer ghati, pala, vipala from a fractional ghati value (0 <= totalGhati < 60).
+     *
+     * @return array{ghati: int, pala: int, vipala: int, formatted: string}
+     */
+    public static function extractGhatiParts(float $totalGhati): array
+    {
+        $norm = fmod($totalGhati, 60.0);
+        if ($norm < 0.0) {
+            $norm += 60.0;
+        }
+
+        $gh = (int) floor($norm);
+        $remGh = $norm - $gh;
+        $totalPala = $remGh * 60.0;
+        $pl = (int) floor($totalPala);
+        $remPl = $totalPala - $pl;
+        $vp = (int) round($remPl * 60.0);
+        if ($vp >= 60) {
+            $vp = 0;
+            $pl++;
+        }
+
+        if ($pl >= 60) {
+            $pl = 0;
+            $gh = ($gh + 1) % 60;
+        }
+
+        return [
+            'ghati' => $gh,
+            'pala' => $pl,
+            'vipala' => $vp,
+            'formatted' => sprintf('%02d:%02d:%02d', $gh, $pl, $vp),
+        ];
+    }
+
     /** Localize display-formatted times without changing parseable date-time fields. */
     private static function localizeTimeDisplay(string $value): string
     {
@@ -263,5 +299,4 @@ final readonly class AstroCore
 
         return Localization::localizeNumber($value, $locale);
     }
-
 }

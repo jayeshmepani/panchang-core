@@ -225,6 +225,8 @@ class PanchangService
         $birthAt['second'] = (int) $calculationAt->format('s');
 
         $relSunrise = $sunrise;
+        $relSunset = $sunset;
+        $nextSr = null;
         if ($calculationAt->lessThan($sunrise)) {
             $prev = $date->subDay();
             $prevBirth = [
@@ -239,7 +241,23 @@ class PanchangService
                 'longitude' => $lon,
                 'elevation' => $elevation,
             ];
-            [$relSunrise] = $this->sunService->getSunriseSunset($prevBirth);
+            [$relSunrise, $relSunset] = $this->sunService->getSunriseSunset($prevBirth);
+            $nextSr = $sunrise;
+        } else {
+            $next = $date->addDay();
+            $nextBirth = [
+                'year' => $next->year,
+                'month' => $next->month,
+                'day' => $next->day,
+                'hour' => 0,
+                'minute' => 0,
+                'second' => 0,
+                'timezone' => $tz,
+                'latitude' => $lat,
+                'longitude' => $lon,
+                'elevation' => $elevation,
+            ];
+            [$nextSr] = $this->sunService->getSunriseSunset($nextBirth);
         }
 
         $sunriseBirth = $birthBase;
@@ -273,8 +291,7 @@ class PanchangService
         $currentNakIdx = (int) floor(($currentMoonLon * 60.0) / 800.0);
         [$currentNakName, $currentNakPada, $currentNakLord] = $this->panchanga->getNakshatraInfo($currentMoonLon);
         $vara = $this->panchanga->calculateVara($birthAt, $this->sunService);
-
-        $isth = $this->calculateIshtkaal($relSunrise, $birthAt, $tz);
+        $isth = $this->calculateIshtkaal($relSunrise, $birthAt, $tz, $relSunset, $nextSr);
 
         $ascLon = $this->astronomy->getAscendant($birthAt);
         $ascSign = AstroCore::getSign($ascLon);
@@ -869,8 +886,13 @@ class PanchangService
             'Current_Karana_At_Input_Now' => ['name' => $currentKaranaName, 'index' => $currentKaranaIdx],
             'Is_Vishti_Karana' => $this->panchanga->isVishtiKarana($sunLon, $moonLon),
             'Sunrise' => AstroCore::formatTime($relSunrise),
-            'Sunset' => AstroCore::formatTime($sunset),
-            'Ishtkaal' => $isth,
+            'Sunset' => AstroCore::formatTime($relSunset),
+            'Ishtkaal' => $isth['formatted'],
+            'Ishtkaal_30' => $isth['ishtkaal_30'],
+            'Ishtkaal_30_Parts' => $isth['ishtkaal_30_parts'],
+            'Ishtkaal_60' => $isth['ishtkaal_60'],
+            'Ishtkaal_60_Parts' => $isth['ishtkaal_60_parts'],
+            'Ishtkaal_Parts' => $isth['ishtkaal_30_parts'],
             'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
             'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
             'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
@@ -952,7 +974,12 @@ class PanchangService
                     'display' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
                     'timestamp' => $moonset instanceof CarbonImmutable ? $moonset->getTimestamp() : null,
                 ],
-                'Ishtkaal' => $isth,
+                'Ishtkaal' => $isth['formatted'],
+                'Ishtkaal_30' => $isth['ishtkaal_30'],
+                'Ishtkaal_30_Parts' => $isth['ishtkaal_30_parts'],
+                'Ishtkaal_60' => $isth['ishtkaal_60'],
+                'Ishtkaal_60_Parts' => $isth['ishtkaal_60_parts'],
+                'Ishtkaal_Parts' => $isth['ishtkaal_30_parts'],
                 'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
                 'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),

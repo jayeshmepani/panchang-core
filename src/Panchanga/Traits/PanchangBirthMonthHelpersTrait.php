@@ -56,8 +56,26 @@ trait PanchangBirthMonthHelpersTrait
         return $this->rememberBodyLongitude($jd, $planet, $flags, $value);
     }
 
-    private function calculateIshtkaal(CarbonImmutable $sunrise, array $birth, string $tz): string
-    {
+    /**
+     * Calculate dynamic Vedic Ishtakala using 30-Ghati and 60-Ghati astronomical clocks.
+     *
+     * @param array<string, mixed> $birth
+     *
+     * @return array{
+     *     formatted: string,
+     *     ishtkaal_30: string,
+     *     ishtkaal_30_parts: array{ghati: int, pala: int, vipala: int},
+     *     ishtkaal_60: string,
+     *     ishtkaal_60_parts: array{ghati: int, pala: int, vipala: int}
+     * }
+     */
+    private function calculateIshtkaal(
+        CarbonImmutable $sunrise,
+        array $birth,
+        string $tz,
+        ?CarbonImmutable $sunset = null,
+        ?CarbonImmutable $nextSunrise = null
+    ): array {
         $dt = CarbonImmutable::create(
             (int) $birth['year'],
             (int) $birth['month'],
@@ -69,17 +87,74 @@ trait PanchangBirthMonthHelpersTrait
         );
 
         $relSunrise = $sunrise;
+        $relSunset = $sunset;
+        $nextSr = $nextSunrise;
+
         if ($dt->lessThan($sunrise)) {
-            $relSunrise = $sunrise->subDay();
+            $prevDate = $sunrise->subDay();
+            $prevBirth = [
+                'year' => $prevDate->year,
+                'month' => $prevDate->month,
+                'day' => $prevDate->day,
+                'hour' => 0,
+                'minute' => 0,
+                'second' => 0,
+                'timezone' => $tz,
+                'latitude' => (float) ($birth['latitude'] ?? 0.0),
+                'longitude' => (float) ($birth['longitude'] ?? 0.0),
+                'elevation' => (float) ($birth['elevation'] ?? 0.0),
+            ];
+            [$relSunrise, $relSunset] = $this->sunService->getSunriseSunset($prevBirth);
+            $nextSr = $sunrise;
+        } else {
+            if (!$relSunset instanceof CarbonImmutable) {
+                [, $relSunset] = $this->sunService->getSunriseSunset($birth);
+            }
+
+            if (!$nextSr instanceof CarbonImmutable) {
+                $nextDate = $sunrise->addDay();
+                $nextBirth = [
+                    'year' => $nextDate->year,
+                    'month' => $nextDate->month,
+                    'day' => $nextDate->day,
+                    'hour' => 0,
+                    'minute' => 0,
+                    'second' => 0,
+                    'timezone' => $tz,
+                    'latitude' => (float) ($birth['latitude'] ?? 0.0),
+                    'longitude' => (float) ($birth['longitude'] ?? 0.0),
+                    'elevation' => (float) ($birth['elevation'] ?? 0.0),
+                ];
+                [$nextSr] = $this->sunService->getSunriseSunset($nextBirth);
+            }
         }
 
-        $sec = (int) abs($dt->diffInSeconds($relSunrise, false));
+        // 1. Dynamic 30-Ghati Clock (Dinamana = 30 Gh, Ratrimana = 30 Gh)
+        if ($dt->lessThanOrEqualTo($relSunset)) {
+            $dinamana = abs($relSunset->diffInSeconds($relSunrise, false));
+            $elapsed = abs($dt->diffInSeconds($relSunrise, false));
+            $total30 = $dinamana > 0 ? (30.0 * ($elapsed / $dinamana)) : 0.0;
+        } else {
+            $ratrimana = abs($nextSr->diffInSeconds($relSunset, false));
+            $elapsed = abs($dt->diffInSeconds($relSunset, false));
+            $total30 = $ratrimana > 0 ? (30.0 + 30.0 * ($elapsed / $ratrimana)) : 30.0;
+        }
 
-        $gh = (int) floor($sec / 1440);
-        $pl = (int) floor(($sec % 1440) / 24);
-        $vp = (int) floor((($sec % 1440) % 24) / 0.4);
+        // 2. Dynamic 60-Ghati Clock (Ahoratri = 60 Gh, Sunrise to next Sunrise)
+        $ahoratri = abs($nextSr->diffInSeconds($relSunrise, false));
+        $elapsedAhoratri = abs($dt->diffInSeconds($relSunrise, false));
+        $total60 = $ahoratri > 0 ? (60.0 * ($elapsedAhoratri / $ahoratri)) : 0.0;
 
-        return sprintf('%02d:%02d:%02d', $gh, $pl, $vp);
+        $parts30 = AstroCore::extractGhatiParts($total30);
+        $parts60 = AstroCore::extractGhatiParts($total60);
+
+        return [
+            'formatted' => $parts30['formatted'],
+            'ishtkaal_30' => $parts30['formatted'],
+            'ishtkaal_30_parts' => ['ghati' => $parts30['ghati'], 'pala' => $parts30['pala'], 'vipala' => $parts30['vipala']],
+            'ishtkaal_60' => $parts60['formatted'],
+            'ishtkaal_60_parts' => ['ghati' => $parts60['ghati'], 'pala' => $parts60['pala'], 'vipala' => $parts60['vipala']],
+        ];
     }
 
     private function normalize(float $value): float

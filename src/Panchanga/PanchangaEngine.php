@@ -537,6 +537,8 @@ class PanchangaEngine
         [$sunrise, $sunset] = $sunService->getSunriseSunset($birth);
         $dt = $sunService->getBirthDatetime($birth);
         $relSunrise = $sunrise;
+        $relSunset = $sunset;
+        $nextSr = null;
         if ($dt->lessThan($sunrise)) {
             $prev = CarbonImmutable::create($dt->year, $dt->month, $dt->day, 0, 0, 0, $birth['timezone'])->subDay();
             $prevBirth = [
@@ -550,15 +552,42 @@ class PanchangaEngine
                 'latitude' => $birth['latitude'],
                 'longitude' => $birth['longitude'],
             ];
-            [$relSunrise,] = $sunService->getSunriseSunset($prevBirth);
+            [$relSunrise, $relSunset] = $sunService->getSunriseSunset($prevBirth);
+            $nextSr = $sunrise;
+        } else {
+            $next = CarbonImmutable::create($dt->year, $dt->month, $dt->day, 0, 0, 0, $birth['timezone'])->addDay();
+            $nextBirth = [
+                'year' => $next->year,
+                'month' => $next->month,
+                'day' => $next->day,
+                'hour' => 0,
+                'minute' => 0,
+                'second' => 0,
+                'timezone' => $birth['timezone'],
+                'latitude' => $birth['latitude'],
+                'longitude' => $birth['longitude'],
+            ];
+            [$nextSr] = $sunService->getSunriseSunset($nextBirth);
         }
 
-        $sec = $dt->diffInSeconds($relSunrise, false);
-        $sec = abs($sec);
+        // 1. Dynamic 30-Ghati Clock
+        if ($dt->lessThanOrEqualTo($relSunset)) {
+            $dinamana = abs($relSunset->diffInSeconds($relSunrise, false));
+            $elapsed = abs($dt->diffInSeconds($relSunrise, false));
+            $total30 = $dinamana > 0 ? (30.0 * ($elapsed / $dinamana)) : 0.0;
+        } else {
+            $ratrimana = abs($nextSr->diffInSeconds($relSunset, false));
+            $elapsed = abs($dt->diffInSeconds($relSunset, false));
+            $total30 = $ratrimana > 0 ? (30.0 + 30.0 * ($elapsed / $ratrimana)) : 30.0;
+        }
 
-        $gh = (int) floor($sec / 1440.0);
-        $pl = (int) floor(fmod($sec, 1440.0) / 24.0);
-        $vp = (int) floor(fmod(fmod($sec, 1440.0), 24.0) / 0.4);
+        // 2. Dynamic 60-Ghati Clock
+        $ahoratri = abs($nextSr->diffInSeconds($relSunrise, false));
+        $elapsedAhoratri = abs($dt->diffInSeconds($relSunrise, false));
+        $total60 = $ahoratri > 0 ? (60.0 * ($elapsedAhoratri / $ahoratri)) : 0.0;
+
+        $parts30 = AstroCore::extractGhatiParts($total30);
+        $parts60 = AstroCore::extractGhatiParts($total60);
 
         $srBirth = [
             'year' => (int) $relSunrise->format('Y'),
@@ -582,8 +611,13 @@ class PanchangaEngine
             'Yoga' => $yoga,
             'Karana' => ['name' => $karanaName, 'index' => $karanaIdx],
             'Sunrise' => AstroCore::formatTime($relSunrise),
-            'Sunset' => AstroCore::formatTime($sunset),
-            'Ishtkaal' => sprintf('%02d:%02d:%02d', $gh, $pl, $vp),
+            'Sunset' => AstroCore::formatTime($relSunset),
+            'Ishtkaal' => $parts30['formatted'],
+            'Ishtkaal_30' => $parts30['formatted'],
+            'Ishtkaal_30_Parts' => ['ghati' => $parts30['ghati'], 'pala' => $parts30['pala'], 'vipala' => $parts30['vipala']],
+            'Ishtkaal_60' => $parts60['formatted'],
+            'Ishtkaal_60_Parts' => ['ghati' => $parts60['ghati'], 'pala' => $parts60['pala'], 'vipala' => $parts60['vipala']],
+            'Ishtkaal_Parts' => ['ghati' => $parts30['ghati'], 'pala' => $parts30['pala'], 'vipala' => $parts30['vipala']],
             'sun_sunrise_lon' => AstroCore::formatAngle($sunAtSunrise),
             'moon_sunrise_lon' => AstroCore::formatAngle($moonAtSunrise),
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],

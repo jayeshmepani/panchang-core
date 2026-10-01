@@ -498,6 +498,7 @@ trait PanchangSelectiveApiTrait
             );
             $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
 
+            $isth = $this->calculateIshtkaal($relSunrise, $ctx['time']['birth_at'], $tz, $sunset, $nextSunrise);
             $panchanga = [
                 'Tithi' => $tithi,
                 'Tithi_At_Sunrise' => $tithi,
@@ -535,7 +536,12 @@ trait PanchangSelectiveApiTrait
                     'display' => $moonset instanceof CarbonImmutable ? AstroCore::formatTime($moonset) : null,
                     'timestamp' => $moonset instanceof CarbonImmutable ? $moonset->getTimestamp() : null,
                 ],
-                'Ishtkaal' => $this->calculateIshtkaal($relSunrise, $ctx['time']['birth_at'], $tz),
+                'Ishtkaal' => $isth['formatted'],
+                'Ishtkaal_30' => $isth['ishtkaal_30'],
+                'Ishtkaal_30_Parts' => $isth['ishtkaal_30_parts'],
+                'Ishtkaal_60' => $isth['ishtkaal_60'],
+                'Ishtkaal_60_Parts' => $isth['ishtkaal_60_parts'],
+                'Ishtkaal_Parts' => $isth['ishtkaal_30_parts'],
                 'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
                 'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
@@ -574,6 +580,11 @@ trait PanchangSelectiveApiTrait
                 'Sunrise' => AstroCore::formatTime($relSunrise),
                 'Sunset' => AstroCore::formatTime($sunset),
                 'Ishtkaal' => $panchanga['Ishtkaal'],
+                'Ishtkaal_30' => $panchanga['Ishtkaal_30'],
+                'Ishtkaal_30_Parts' => $panchanga['Ishtkaal_30_Parts'],
+                'Ishtkaal_60' => $panchanga['Ishtkaal_60'],
+                'Ishtkaal_60_Parts' => $panchanga['Ishtkaal_60_Parts'],
+                'Ishtkaal_Parts' => $panchanga['Ishtkaal_Parts'],
                 'Ishtkaal_iso' => AstroCore::formatDateTime($calculationAt),
                 'sun_sunrise_lon' => AstroCore::formatAngle($sunLon),
                 'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
