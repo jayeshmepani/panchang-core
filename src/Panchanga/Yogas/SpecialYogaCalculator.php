@@ -40,7 +40,7 @@ class SpecialYogaCalculator
 
     private const array DWI_PUSHKARA_NAKSHATRAS = [4, 13, 22];
 
-    private const array TRI_PUSHKARA_NAKSHATRAS = [2, 6, 10, 15, 20, 24];
+    private const array TRI_PUSHKARA_NAKSHATRAS = [2, 6, 11, 15, 20, 24];
 
     private const array PUSHKARA_TITHIS = [2, 7, 12];
 
@@ -362,20 +362,26 @@ class SpecialYogaCalculator
 
     public function calculateGajachchhayaYoga(float $jdStart, float $jdEnd, array $hinduMonth, string $tz): array
     {
+        // Hasta = nakshatra 12, Magha = 9 (0-based).
+        // Yajnavalkya/Mitakshara: Moon in the Pitri nakshatra (Magha), Sun in Hasta, on the Yama tithi.
+        // Panchang practice also counts Krishna Amavasya when both luminaries are in Hasta.
+        // Moon in Magha cannot coincide with Sun in Hasta on Amavasya: they are about 40° apart.
         $variants = [
             'trayodashi_hasta_magha' => [
-                'rule_system' => 'trayodashi_tithi_sun_hasta_moon_magha',
-                'description' => Localization::translate('String', 'Trayodashi tithi with Sun in Hasta and Moon in Magha'),
+                'rule_system' => 'krishna_trayodashi_sun_hasta_moon_magha',
+                'description' => Localization::translate('String', 'Krishna Trayodashi with Sun in Hasta and Moon in Magha'),
                 'requires_bhadrapada_pitru_paksha' => false,
                 'tithi_phases' => [13],
-                'require_krishna_paksha' => false,
+                'require_krishna_paksha' => true,
+                'moon_nakshatra_index' => 9,
             ],
-            'amavasya_hasta_magha' => [
-                'rule_system' => 'amavasya_tithi_sun_hasta_moon_magha',
-                'description' => Localization::translate('String', 'Amavasya tithi with Sun in Hasta and Moon in Magha'),
+            'amavasya_hasta_hasta' => [
+                'rule_system' => 'krishna_amavasya_sun_hasta_moon_hasta',
+                'description' => Localization::translate('String', 'Krishna Amavasya with Sun and Moon in Hasta'),
                 'requires_bhadrapada_pitru_paksha' => false,
                 'tithi_phases' => [15],
                 'require_krishna_paksha' => true,
+                'moon_nakshatra_index' => 12,
             ],
             'pitru_paksha_bhadrapada_krishna_trayodashi' => [
                 'rule_system' => 'bhadrapada_krishna_trayodashi_sun_hasta_moon_magha',
@@ -383,6 +389,7 @@ class SpecialYogaCalculator
                 'requires_bhadrapada_pitru_paksha' => true,
                 'tithi_phases' => [13],
                 'require_krishna_paksha' => true,
+                'moon_nakshatra_index' => 9,
             ],
         ];
         $tithiIntervals = $this->intervalTracker->collectTithiIntervals($jdStart, $jdEnd);
@@ -406,6 +413,7 @@ class SpecialYogaCalculator
                     $sunNakshatraIntervals,
                     $variant['tithi_phases'],
                     $variant['require_krishna_paksha'],
+                    (int) $variant['moon_nakshatra_index'],
                     $tz
                 )
                 : [];
@@ -436,6 +444,7 @@ class SpecialYogaCalculator
         array $sunNakshatraIntervals,
         array $targetTithiPhases,
         bool $requireKrishnaPaksha,
+        int $moonNakshatraIndex,
         string $tz
     ): array {
         $windows = [];
@@ -453,7 +462,7 @@ class SpecialYogaCalculator
             }
 
             foreach ($moonNakshatraIntervals as $moonInterval) {
-                if ((int) $moonInterval['index'] !== 9) {
+                if ((int) $moonInterval['index'] !== $moonNakshatraIndex) {
                     continue;
                 }
 

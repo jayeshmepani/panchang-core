@@ -5072,17 +5072,26 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.4.0 release.</p>
+          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.4.1 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v11.4.0</strong> implements <strong>dynamic 30-Ghati (Dinamana &amp; Ratrimana) and 60-Ghati (Ahoratri) Vedic timekeeping clocks</strong> (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>) eliminating static 24-minute approximations. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>), harmonized remainder classifications with classical <em>Muhurta Chintamani</em> canons (identifying Remainder 8 as Roga Panchaka and Remainders 3, 5, 7 as Shubha Panchaka), refined sunrise Lagna screening, and applied micro-interval boundary smoothing. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming (Somavati / Bhaumavati / Shani). <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong> fixes the Pitru Paksha Gajachchhaya Amavasya timing and names Uttara Phalguni for Tripushkar. The preceding <strong>v11.4.0</strong> implements <strong>dynamic 30-Ghati (Dinamana &amp; Ratrimana) and 60-Ghati (Ahoratri) Vedic timekeeping clocks</strong> (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>) eliminating static 24-minute approximations. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>), harmonized remainder classifications with classical <em>Muhurta Chintamani</em> canons (identifying Remainder 8 as Roga Panchaka and Remainders 3, 5, 7 as Shubha Panchaka), refined sunrise Lagna screening, and applied micro-interval boundary smoothing. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming (Somavati / Bhaumavati / Shani). <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed for <strong>v11.4.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail payloads expose dynamic 30-Ghati and 60-Ghati Ishtakala (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>), the full-day continuous <code>Panchaka_Rahita_Full_Day</code> timeline, dual Nirayana/Sayana Hindu calendar, parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior remain fully documented. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
-            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Dynamic Vedic timekeeping guide: <code>docs/RELEASE_11.4.0.md</code>. Panchaka Rahita electional release guide: <code>docs/RELEASE_11.3.0.md</code>. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
+            <p>This documentation is refreshed for <strong>v11.4.1</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail payloads expose dynamic 30-Ghati and 60-Ghati Ishtakala (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>), the full-day continuous <code>Panchaka_Rahita_Full_Day</code> timeline, dual Nirayana/Sayana Hindu calendar, parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior remain fully documented. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
+            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Yoga correction notes: <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong>. Dynamic Vedic timekeeping guide: <code>docs/RELEASE_11.4.0.md</code>. Panchaka Rahita electional release guide: <code>docs/RELEASE_11.3.0.md</code>. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</h3>
+            <ul>
+              <li><strong>Gajachchhaya:</strong> On Krishna Trayodashi the Sun is in Hasta and the Moon is in Magha. On Amavasya the Sun and the Moon are both in Hasta. For Bhuj in 2026 that Amavasya window runs from the evening of 9 October through the evening of 10 October.</li>
+              <li><strong>Tripushkar:</strong> Still Dwitiya, Saptami, or Dwadashi, on Sunday, Tuesday, or Saturday. The Phalguni star is Uttara Phalguni, together with Krittika, Punarvasu, Vishakha, Uttara Ashadha, and Purva Bhadrapada. Dwipushkar is unchanged.</li>
+              <li><strong>Unchanged:</strong> Sarvartha Siddhi, Maitreya, Panchaka Rahita, and the Vedic clocks. The festival and vrat lists stay the same.</li>
+            </ul>
           </div>
 
           <div class="info-box">
@@ -5104,9 +5113,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">11.4.1</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Corrects two yoga timings. Gajachchhaya on Amavasya now needs the Sun and the Moon both in Hasta; Krishna Trayodashi still needs the Sun in Hasta and the Moon in Magha. Tripushkar keeps the same lunar days and weekdays, and names Uttara Phalguni instead of Purva Phalguni. Sarvartha Siddhi, Maitreya, and the Vedic clocks are unchanged. Festival and vrat lists stay the same.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">11.4.0</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">Dynamic Vedic Timekeeping (30-Ghati &amp; 60-Ghati Clocks)</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">Dynamic Vedic Timekeeping (30-Ghati &amp; 60-Ghati Clocks)</span><span class="release-meta">Release</span></div>
                 <p class="release-note">Minor release introducing true astronomical dynamic 30-Ghati and 60-Ghati Vedic clocks (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>). Replaces fixed 24-minute assumptions with exact location-based solar measures: the 30-Ghati clock divides Dinamana into 30 Ghati and Ratrimana into 30 Ghati (with Sunset anchored at 30:00:00) for daily rituals and Muhurta; the 60-Ghati clock divides the complete Ahoratri into 60 Ghati from sunrise to next sunrise for natal astrology and Kundali birth time. Catalog totals remain <strong>354 festivals</strong> and <strong>126 vrats</strong>; Ṣaṇṇavati Śrāddha nominal count remains <strong>96</strong>.</p>
               </div>
             </li>
@@ -5510,6 +5526,18 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</h3>
+          <p class="lead">This update corrects the Pitru Paksha Gajachchhaya Amavasya timing and the Tripushkar star list. Festival dates, vrat dates, and the Vedic clocks stay as they were.</p>
+
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">What changed</h4>
+            <ul>
+              <li><strong>Gajachchhaya:</strong> On Krishna Trayodashi the Sun is in Hasta and the Moon is in Magha. On Amavasya the Sun and the Moon are both in Hasta.</li>
+              <li><strong>Tripushkar:</strong> Still Dwitiya, Saptami, or Dwadashi, on Sunday, Tuesday, or Saturday. The six stars are Krittika, Punarvasu, Uttara Phalguni, Vishakha, Uttara Ashadha, and Purva Bhadrapada.</li>
+              <li><strong>Unchanged:</strong> Dwipushkar, Sarvartha Siddhi, Maitreya, and Panchaka Rahita.</li>
+            </ul>
+          </div>
 
           <h3>v11.4.0 Upgrade &amp; Release Notes</h3>
           <p class="lead">This minor release introduces <strong>true astronomical dynamic Vedic timekeeping clocks</strong> (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>), eliminating static 24-minute approximations. Catalog totals remain <strong>354 festivals</strong> and <strong>126 vrats</strong>.</p>
