@@ -239,6 +239,8 @@ composer lint:check
 
 MIT. See [LICENSE](LICENSE).
 
+This package contains only PHP code. Its dependency [jpl-moshier-ephemeris-php](https://github.com/jayeshmepani/jpl-moshier-ephemeris-php) ships native runtime binaries and is distributed as `MIT AND CeCILL-B` (CALCEPH); if you redistribute your application with those binaries, keep that package's `LICENSE`, `LICENSES/` and `THIRD_PARTY_NOTICES.md`.
+
 ## Credits
 
 Built by [Jayesh Mepani (Jayesh Patel)](https://github.com/jayeshmepani).
