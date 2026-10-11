@@ -241,7 +241,20 @@ MIT. See [LICENSE](LICENSE).
 
 ## Credits
 
-Built by [Jayesh Mepani](https://github.com/jayeshmepani).
+Built by [Jayesh Mepani (Jayesh Patel)](https://github.com/jayeshmepani).
+
+Astronomical calculations run on [JPL Moshier Ephemeris (JME)](https://github.com/jayeshmepani/jpl-ephemeris) through [jpl-moshier-ephemeris-php](https://github.com/jayeshmepani/jpl-moshier-ephemeris-php). This project does not use the Swiss Ephemeris.
+
+JME and its bindings build on third-party work, credited here briefly:
+
+- JPL DE440 / DE441 planetary and lunar ephemerides (NASA/JPL; Park et al. 2021)
+- CALCEPH (CNRS, Observatoire de Paris, Observatoire de la Côte d'Azur), CeCILL-B, bundled in the binding as a runtime library
+- Stephen L. Moshier's plan404 / Astronomical Almanac analytical theories
+- ELP2000-82B lunar theory (M. Chapront-Touzé and J. Chapront); C implementation by Serhii Tsyba
+- VSOP87 planetary theory (P. Bretagnon and G. Francou); C code by Greg A. Miller (VSOP87-Multilang)
+- Jean Meeus, *Astronomical Algorithms*; Espenak and Meeus ΔT polynomials (NASA); ERFA (BSD 3-Clause); Yale Bright Star Catalogue
+
+Full credits, license terms, and required notices: [JME THIRD_PARTY_NOTICES.md](https://github.com/jayeshmepani/jpl-ephemeris/blob/main/THIRD_PARTY_NOTICES.md).
 
 ## Ṣaṇṇavati Śrāddha (96-fold canonical system)
 
