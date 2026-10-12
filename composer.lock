@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a1f3826edfe8737c7bd8d90539682c0",
+    "content-hash": "32263d30a029b5263df2ef8b4d76430e",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -77,16 +77,16 @@
         },
         {
             "name": "jayeshmepani/jpl-moshier-ephemeris-php",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jayeshmepani/jpl-moshier-ephemeris-php.git",
-                "reference": "09f7c6930684224dae70a40ca15a3a758fcf4379"
+                "reference": "71ab3c690a1ae79abc3ecf564449dc87e8087ba3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jayeshmepani/jpl-moshier-ephemeris-php/zipball/09f7c6930684224dae70a40ca15a3a758fcf4379",
-                "reference": "09f7c6930684224dae70a40ca15a3a758fcf4379",
+                "url": "https://api.github.com/repos/jayeshmepani/jpl-moshier-ephemeris-php/zipball/71ab3c690a1ae79abc3ecf564449dc87e8087ba3",
+                "reference": "71ab3c690a1ae79abc3ecf564449dc87e8087ba3",
                 "shasum": ""
             },
             "require": {
@@ -97,14 +97,15 @@
                 "php": "<8.3"
             },
             "require-dev": {
+                "driftingly/rector-laravel": "^2.5",
                 "laravel/pint": "^1.29",
                 "mockery/mockery": "^1.6",
-                "nunomaduro/collision": "^8.0",
+                "nunomaduro/collision": "^8.9",
                 "orchestra/testbench": "^9.0 || ^10.0",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^11.0",
-                "rector/rector": "^2.0"
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^11.5",
+                "rector/rector": "2.5.9"
             },
             "type": "library",
             "extra": {
@@ -176,11 +177,11 @@
                 ]
             },
             "license": [
-                "MIT"
+                "MIT AND CECILL-B"
             ],
             "authors": [
                 {
-                    "name": "Jayesh Patel",
+                    "name": "Jayesh Mepani (Jayesh Patel)",
                     "email": "jayeshmepani777@gmail.com",
                     "homepage": "https://github.com/jayeshmepani",
                     "role": "Developer"
@@ -220,7 +221,7 @@
                     "url": "https://github.com/sponsors/jayeshmepani"
                 }
             ],
-            "time": "2026-07-09T07:03:23+00:00"
+            "time": "2026-10-12T07:38:51+00:00"
         },
         {
             "name": "nesbot/carbon",
