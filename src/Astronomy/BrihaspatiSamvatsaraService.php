@@ -249,7 +249,7 @@ final class BrihaspatiSamvatsaraService
     private array $ingressByClassicalBoundaryCache = [];
 
     public function __construct(
-        private readonly ?AstronomyService $astronomy = null
+        private readonly ?AstronomyService $astronomy = null,
     ) {}
 
     /**
@@ -265,10 +265,8 @@ final class BrihaspatiSamvatsaraService
                 'status' => self::STATUS_CANONICAL,
                 'model_family' => self::FAMILY_TRADITIONAL_BARHASPATYA,
                 'type' => 'classical_mean_motion',
-                'description'
-                    => 'Classical Sūrya-Siddhānta / Sewell-Dīkṣit Bārhaspatya reckoning (package default).',
-                'recommended_use'
-                    => 'Standard panchanga, academic baseline, zero ephemeris overhead.',
+                'description' => 'Classical Sūrya-Siddhānta / Sewell-Dīkṣit Bārhaspatya reckoning (package default).',
+                'recommended_use' => 'Standard panchanga, academic baseline, zero ephemeris overhead.',
                 'requires_astronomy_service' => false,
                 'is_default' => true,
                 'implementation_scope' => 'source_defined_barhaspatya_mean_motion',
@@ -278,47 +276,38 @@ final class BrihaspatiSamvatsaraService
                 'status' => self::STATUS_EXPERIMENTAL,
                 'model_family' => self::FAMILY_TRADITIONAL_MEAN_JUPITER,
                 'type' => 'historical_mean_jupiter_projection',
-                'description'
-                    => 'Graha-lāghava 1520 mean-Jupiter timing projected onto the classical 60-name sequence.',
-                'recommended_use'
-                    => 'Regional Western/Central research comparison (not full ahargaṇa machinery).',
+                'description' => 'Graha-lāghava 1520 mean-Jupiter timing projected onto the classical 60-name sequence.',
+                'recommended_use' => 'Regional Western/Central research comparison (not full ahargaṇa machinery).',
                 'requires_astronomy_service' => false,
                 'is_default' => false,
                 'name_phase_source' => self::MODEL_CLASSICAL_SS,
                 'implementation_scope' => 'mean_motion_research_model',
                 'epoch_jd' => self::GRAHALAGHAVA_EPOCH_JD,
-                'reference_meridian_degrees_east'
-                    => self::UJJAIN_REFERENCE_LONGITUDE_DEGREES,
+                'reference_meridian_degrees_east' => self::UJJAIN_REFERENCE_LONGITUDE_DEGREES,
             ],
             self::MODEL_MAKARANDA => [
                 'model' => self::MODEL_MAKARANDA,
                 'status' => self::STATUS_EXPERIMENTAL,
                 'model_family' => self::FAMILY_TRADITIONAL_MEAN_JUPITER,
                 'type' => 'historical_mean_jupiter_projection',
-                'description'
-                    => 'Makaranda 1478 Saurapakṣa bīja mean-Jupiter timing projected onto the classical 60-name sequence.',
-                'recommended_use'
-                    => "Research comparison often closer to published Drik intraday times; not Drik's formula.",
+                'description' => 'Makaranda 1478 Saurapakṣa bīja mean-Jupiter timing projected onto the classical 60-name sequence.',
+                'recommended_use' => "Research comparison often closer to published Drik intraday times; not Drik's formula.",
                 'requires_astronomy_service' => false,
                 'is_default' => false,
                 'name_phase_source' => self::MODEL_CLASSICAL_SS,
                 'implementation_scope' => 'mean_motion_research_model',
-                'jupiter_revolutions_per_mahayuga'
-                    => self::MAKARANDA_JUPITER_REVOLUTIONS_PER_MAHAYUGA,
+                'jupiter_revolutions_per_mahayuga' => self::MAKARANDA_JUPITER_REVOLUTIONS_PER_MAHAYUGA,
                 'mahayuga_civil_days' => self::MAHAYUGA_CIVIL_DAYS,
                 'jovian_sign_year_days' => self::MAKARANDA_JOVIAN_YEAR_DAYS,
-                'reference_meridian_degrees_east'
-                    => self::UJJAIN_REFERENCE_LONGITUDE_DEGREES,
+                'reference_meridian_degrees_east' => self::UJJAIN_REFERENCE_LONGITUDE_DEGREES,
             ],
             self::MODEL_MODERN_EPHEMERIS => [
                 'model' => self::MODEL_MODERN_EPHEMERIS,
                 'status' => self::STATUS_ASTRONOMICAL_COMPARATOR,
                 'model_family' => self::FAMILY_MODERN_EPHEMERIS,
                 'type' => 'modern_physical_ephemeris',
-                'description'
-                    => 'Nearest prograde geocentric sidereal Jupiter rāśi ingress from AstronomyService (JPL when enabled).',
-                'recommended_use'
-                    => 'Astrology / gochara / physical transit comparison — not traditional Bārhaspatya default.',
+                'description' => 'Nearest prograde geocentric sidereal Jupiter rāśi ingress from AstronomyService (JPL when enabled).',
+                'recommended_use' => 'Astrology / gochara / physical transit comparison — not traditional Bārhaspatya default.',
                 'requires_astronomy_service' => true,
                 'is_default' => false,
                 'name_phase_source' => self::MODEL_CLASSICAL_SS,
@@ -385,14 +374,11 @@ final class BrihaspatiSamvatsaraService
 
         return match ($resolved) {
             self::MODEL_CLASSICAL_SS => 'continuous_barhaspatya_mean_transit',
-            self::MODEL_GRAHALAGHAVA
-                => 'continuous_barhaspatya_grahalaghava_mean_jupiter_ingress',
-            self::MODEL_MAKARANDA
-                => 'continuous_barhaspatya_makaranda_mean_jupiter_ingress',
-            self::MODEL_MODERN_EPHEMERIS
-                => 'continuous_barhaspatya_modern_jupiter_ingress',
+            self::MODEL_GRAHALAGHAVA => 'continuous_barhaspatya_grahalaghava_mean_jupiter_ingress',
+            self::MODEL_MAKARANDA => 'continuous_barhaspatya_makaranda_mean_jupiter_ingress',
+            self::MODEL_MODERN_EPHEMERIS => 'continuous_barhaspatya_modern_jupiter_ingress',
             default => throw new InvalidArgumentException(
-                sprintf("Unknown Brihaspati Samvatsara model '%s'.", $resolved)
+                sprintf("Unknown Brihaspati Samvatsara model '%s'.", $resolved),
             ),
         };
     }
@@ -406,7 +392,7 @@ final class BrihaspatiSamvatsaraService
      */
     public function getBrihaspatiSamvatsaraInfoFromJd(
         float $jd,
-        ?string $model = null
+        ?string $model = null,
     ): array {
         if (!is_finite($jd)) {
             throw new InvalidArgumentException('Julian Day must be finite.');
@@ -420,7 +406,7 @@ final class BrihaspatiSamvatsaraService
             self::MODEL_MAKARANDA,
             self::MODEL_MODERN_EPHEMERIS => $this->getProjectedInfoFromJd($jd, $model),
             default => throw new InvalidArgumentException(
-                sprintf("Unknown Brihaspati Samvatsara model '%s'.", $model)
+                sprintf("Unknown Brihaspati Samvatsara model '%s'.", $model),
             ),
         };
     }
@@ -434,11 +420,11 @@ final class BrihaspatiSamvatsaraService
      */
     public function getBrihaspatiSamvatsaraInfo(
         DateTimeInterface $date,
-        ?string $model = null
+        ?string $model = null,
     ): array {
         return $this->getBrihaspatiSamvatsaraInfoFromJd(
             $this->dateTimeToJulianDay($date),
-            $model
+            $model,
         );
     }
 
@@ -449,7 +435,7 @@ final class BrihaspatiSamvatsaraService
      */
     public function getSamvatsaraBrihaspati(
         DateTimeInterface $date,
-        ?string $model = null
+        ?string $model = null,
     ): string {
         return $this->getBrihaspatiSamvatsaraInfo($date, $model)['name'];
     }
@@ -480,11 +466,11 @@ final class BrihaspatiSamvatsaraService
         $classical = $this->getClassicalInfoFromJd($jd);
         $grahalaghavaCurrent = $this->getProjectedInfoFromJd(
             $jd,
-            self::MODEL_GRAHALAGHAVA
+            self::MODEL_GRAHALAGHAVA,
         );
         $makarandaCurrent = $this->getProjectedInfoFromJd(
             $jd,
-            self::MODEL_MAKARANDA
+            self::MODEL_MAKARANDA,
         );
 
         // Modern ephemeris is optional: historical mean models must still
@@ -493,7 +479,7 @@ final class BrihaspatiSamvatsaraService
         if ($this->astronomy instanceof AstronomyService) {
             $modernCurrent = $this->getProjectedInfoFromJd(
                 $jd,
-                self::MODEL_MODERN_EPHEMERIS
+                self::MODEL_MODERN_EPHEMERIS,
             );
         }
 
@@ -531,7 +517,7 @@ final class BrihaspatiSamvatsaraService
                 $classicalStartJd,
                 $classicalEndJd,
                 $timing['start_jd'],
-                $timing['end_jd']
+                $timing['end_jd'],
             );
         }
 
@@ -636,7 +622,7 @@ final class BrihaspatiSamvatsaraService
 
         $boundaries = $this->collectClassicalBoundaries(
             $approximateK - 3,
-            $approximateK + 3
+            $approximateK + 3,
         );
 
         [$startBoundary, $endBoundary] = $this->findBoundingBoundaries($jd, $boundaries);
@@ -644,7 +630,7 @@ final class BrihaspatiSamvatsaraService
         if ($startBoundary === null || $endBoundary === null) {
             $boundaries = $this->collectClassicalBoundaries(
                 $approximateK - 10,
-                $approximateK + 10
+                $approximateK + 10,
             );
             [$startBoundary, $endBoundary] = $this->findBoundingBoundaries($jd, $boundaries);
         }
@@ -652,7 +638,7 @@ final class BrihaspatiSamvatsaraService
         if ($startBoundary === null || $endBoundary === null) {
             throw new RuntimeException(
                 'Unable to determine a complete classical Bārhaspatya window around JD '
-                . sprintf('%.12F', $jd)
+                . sprintf('%.12F', $jd),
             );
         }
 
@@ -695,7 +681,7 @@ final class BrihaspatiSamvatsaraService
         $boundaries = $this->collectProjectedBoundaries(
             $approximateK - 3,
             $approximateK + 3,
-            $model
+            $model,
         );
 
         [$startBoundary, $endBoundary] = $this->findBoundingBoundaries($jd, $boundaries);
@@ -704,7 +690,7 @@ final class BrihaspatiSamvatsaraService
             $boundaries = $this->collectProjectedBoundaries(
                 $approximateK - 10,
                 $approximateK + 10,
-                $model
+                $model,
             );
             [$startBoundary, $endBoundary] = $this->findBoundingBoundaries($jd, $boundaries);
         }
@@ -714,8 +700,8 @@ final class BrihaspatiSamvatsaraService
                 sprintf(
                     "Unable to determine a complete '%s' Bārhaspatya projection window around JD %.12F.",
                     $model,
-                    $jd
-                )
+                    $jd,
+                ),
             );
         }
 
@@ -740,10 +726,8 @@ final class BrihaspatiSamvatsaraService
             'name_phase_source' => self::MODEL_CLASSICAL_SS,
             'start_rashi_index' => (int) $startBoundary['rashi_index'],
             'end_rashi_index' => (int) $endBoundary['rashi_index'],
-            'classical_reference_start_jd'
-                => (float) $startBoundary['classical_reference_jd'],
-            'classical_reference_end_jd'
-                => (float) $endBoundary['classical_reference_jd'],
+            'classical_reference_start_jd' => (float) $startBoundary['classical_reference_jd'],
+            'classical_reference_end_jd' => (float) $endBoundary['classical_reference_jd'],
         ];
     }
 
@@ -752,7 +736,7 @@ final class BrihaspatiSamvatsaraService
     {
         return (int) floor(
             ($jd - self::KALI_EPOCH_JD)
-            / self::SURYA_SIDDHANTA_SOLAR_YEAR_DAYS
+            / self::SURYA_SIDDHANTA_SOLAR_YEAR_DAYS,
         );
     }
 
@@ -771,7 +755,7 @@ final class BrihaspatiSamvatsaraService
 
             $advanceCount = $this->forwardIndexDistance(
                 (int) $state['index'],
-                (int) $nextState['index']
+                (int) $nextState['index'],
             );
 
             if ($advanceCount < 1 || $advanceCount > 2) {
@@ -780,8 +764,8 @@ final class BrihaspatiSamvatsaraService
                         'Unexpected Bārhaspatya advancement of %d names between expired Kali years %d and %d.',
                         $advanceCount,
                         $k,
-                        $k + 1
-                    )
+                        $k + 1,
+                    ),
                 );
             }
 
@@ -797,8 +781,8 @@ final class BrihaspatiSamvatsaraService
                             'Derived Bārhaspatya boundary %.12F does not fall before the next mean Meṣa-saṅkrānti %.12F for expired Kali year %d.',
                             $boundaryJd,
                             (float) $nextState['mesha_jd'],
-                            $k
-                        )
+                            $k,
+                        ),
                     );
                 }
 
@@ -816,7 +800,7 @@ final class BrihaspatiSamvatsaraService
         $boundaries = array_values($boundaries);
         usort(
             $boundaries,
-            static fn(array $a, array $b): int => $a['jd'] <=> $b['jd']
+            static fn(array $a, array $b): int => $a['jd'] <=> $b['jd'],
         );
 
         return $boundaries;
@@ -830,7 +814,7 @@ final class BrihaspatiSamvatsaraService
     private function collectProjectedBoundaries(
         int $fromK,
         int $toK,
-        string $model
+        string $model,
     ): array {
         $this->assertProjectionModel($model);
 
@@ -840,7 +824,7 @@ final class BrihaspatiSamvatsaraService
         foreach ($classicalBoundaries as $classicalBoundary) {
             $mapped = $this->mapClassicalBoundaryToIngress(
                 $classicalBoundary,
-                $model
+                $model,
             );
 
             $key = sprintf('%.7F', (float) $mapped['jd']);
@@ -851,8 +835,8 @@ final class BrihaspatiSamvatsaraService
                     sprintf(
                         "Two different Samvatsara transitions mapped to the same '%s' Jupiter ingress near JD %s.",
                         $model,
-                        $key
-                    )
+                        $key,
+                    ),
                 );
             }
 
@@ -862,7 +846,7 @@ final class BrihaspatiSamvatsaraService
         $projected = array_values($projected);
         usort(
             $projected,
-            static fn(array $a, array $b): int => $a['jd'] <=> $b['jd']
+            static fn(array $a, array $b): int => $a['jd'] <=> $b['jd'],
         );
 
         return $projected;
@@ -878,7 +862,7 @@ final class BrihaspatiSamvatsaraService
      */
     private function mapClassicalBoundaryToIngress(
         array $classicalBoundary,
-        string $model
+        string $model,
     ): array {
         $classicalJd = (float) $classicalBoundary['jd'];
         $cacheKey = implode('|', [
@@ -972,7 +956,7 @@ final class BrihaspatiSamvatsaraService
      */
     private function findNearestModelJupiterIngress(
         float $referenceJd,
-        string $model
+        string $model,
     ): array {
         $this->assertProjectionModel($model);
 
@@ -983,14 +967,14 @@ final class BrihaspatiSamvatsaraService
         $candidates = $this->scanModelJupiterIngresses(
             $referenceJd - self::PROJECTION_PRIMARY_SEARCH_HALF_DAYS,
             $referenceJd + self::PROJECTION_PRIMARY_SEARCH_HALF_DAYS,
-            $model
+            $model,
         );
 
         if ($candidates === []) {
             $candidates = $this->scanModelJupiterIngresses(
                 $referenceJd - self::PROJECTION_FALLBACK_SEARCH_HALF_DAYS,
                 $referenceJd + self::PROJECTION_FALLBACK_SEARCH_HALF_DAYS,
-                $model
+                $model,
             );
         }
 
@@ -999,15 +983,14 @@ final class BrihaspatiSamvatsaraService
                 sprintf(
                     "No prograde Jupiter rāśi ingress found for model '%s' around JD %.12F.",
                     $model,
-                    $referenceJd
-                )
+                    $referenceJd,
+                ),
             );
         }
 
         usort(
             $candidates,
-            static fn(array $a, array $b): int
-                => abs($a['jd'] - $referenceJd) <=> abs($b['jd'] - $referenceJd)
+            static fn(array $a, array $b): int => abs($a['jd'] - $referenceJd) <=> abs($b['jd'] - $referenceJd),
         );
 
         return $candidates[0];
@@ -1021,7 +1004,7 @@ final class BrihaspatiSamvatsaraService
     private function scanModelJupiterIngresses(
         float $fromJd,
         float $toJd,
-        string $model
+        string $model,
     ): array {
         if ($toJd <= $fromJd) {
             return [];
@@ -1053,7 +1036,7 @@ final class BrihaspatiSamvatsaraService
                     $leftJd,
                     $rightJd,
                     $targetLongitude,
-                    $model
+                    $model,
                 );
 
                 $beforeJd = $rootJd - (2.0 / self::SECONDS_PER_DAY);
@@ -1090,15 +1073,15 @@ final class BrihaspatiSamvatsaraService
         float $leftJd,
         float $rightJd,
         float $targetLongitude,
-        string $model
+        string $model,
     ): float {
         $leftValue = $this->signedLongitudeFromTarget(
             $this->jupiterLongitudeForModel($leftJd, $model),
-            $targetLongitude
+            $targetLongitude,
         );
         $rightValue = $this->signedLongitudeFromTarget(
             $this->jupiterLongitudeForModel($rightJd, $model),
-            $targetLongitude
+            $targetLongitude,
         );
 
         if ($leftValue > 0.0 || $rightValue < 0.0) {
@@ -1108,8 +1091,8 @@ final class BrihaspatiSamvatsaraService
                     $model,
                     $leftValue,
                     $rightValue,
-                    $targetLongitude
-                )
+                    $targetLongitude,
+                ),
             );
         }
 
@@ -1117,7 +1100,7 @@ final class BrihaspatiSamvatsaraService
             $midJd = ($leftJd + $rightJd) / 2.0;
             $midValue = $this->signedLongitudeFromTarget(
                 $this->jupiterLongitudeForModel($midJd, $model),
-                $targetLongitude
+                $targetLongitude,
             );
 
             if ($midValue >= 0.0) {
@@ -1140,7 +1123,7 @@ final class BrihaspatiSamvatsaraService
             self::MODEL_MAKARANDA => $this->makarandaMeanJupiterLongitude($jd),
             self::MODEL_MODERN_EPHEMERIS => $this->modernJupiterSiderealLongitude($jd),
             default => throw new InvalidArgumentException(
-                sprintf("Model '%s' does not provide a projected Jupiter longitude.", $model)
+                sprintf("Model '%s' does not provide a projected Jupiter longitude.", $model),
             ),
         };
     }
@@ -1231,12 +1214,12 @@ final class BrihaspatiSamvatsaraService
 
         $longitude = $astronomy->calcBodyLongitudeAtJd(
             $jd,
-            JmeEphFFI::JME_BODY_JUPITER_BARYCENTER
+            JmeEphFFI::JME_BODY_JUPITER_BARYCENTER,
         );
 
         if (!is_finite($longitude)) {
             throw new RuntimeException(
-                'AstronomyService returned a non-finite Jupiter longitude.'
+                'AstronomyService returned a non-finite Jupiter longitude.',
             );
         }
 
@@ -1249,7 +1232,7 @@ final class BrihaspatiSamvatsaraService
         float $classicalStartJd,
         float $classicalEndJd,
         float $otherStartJd,
-        float $otherEndJd
+        float $otherEndJd,
     ): array {
         return [
             'start_seconds' => ($otherStartJd - $classicalStartJd)
@@ -1268,7 +1251,7 @@ final class BrihaspatiSamvatsaraService
             self::MODEL_MAKARANDA => self::MAKARANDA_VARIANT,
             self::MODEL_MODERN_EPHEMERIS => self::MODERN_VARIANT,
             default => throw new InvalidArgumentException(
-                sprintf("Model '%s' is not a projection model.", $model)
+                sprintf("Model '%s' is not a projection model.", $model),
             ),
         };
     }
@@ -1276,14 +1259,11 @@ final class BrihaspatiSamvatsaraService
     private function projectionTimingBasis(string $model): string
     {
         return match ($model) {
-            self::MODEL_GRAHALAGHAVA
-                => 'nearest_prograde_grahalaghava_mean_jupiter_rashi_ingress',
-            self::MODEL_MAKARANDA
-                => 'nearest_prograde_makaranda_bija_mean_jupiter_rashi_ingress',
-            self::MODEL_MODERN_EPHEMERIS
-                => 'nearest_prograde_sidereal_jupiter_rashi_ingress_from_astronomy_service',
+            self::MODEL_GRAHALAGHAVA => 'nearest_prograde_grahalaghava_mean_jupiter_rashi_ingress',
+            self::MODEL_MAKARANDA => 'nearest_prograde_makaranda_bija_mean_jupiter_rashi_ingress',
+            self::MODEL_MODERN_EPHEMERIS => 'nearest_prograde_sidereal_jupiter_rashi_ingress_from_astronomy_service',
             default => throw new InvalidArgumentException(
-                sprintf("Model '%s' is not a projection model.", $model)
+                sprintf("Model '%s' is not a projection model.", $model),
             ),
         };
     }
@@ -1296,7 +1276,7 @@ final class BrihaspatiSamvatsaraService
             self::MODEL_MODERN_EPHEMERIS,
         ], true)) {
             throw new InvalidArgumentException(
-                sprintf("Model '%s' is not a Jupiter-ingress projection model.", $model)
+                sprintf("Model '%s' is not a Jupiter-ingress projection model.", $model),
             );
         }
     }
@@ -1306,7 +1286,7 @@ final class BrihaspatiSamvatsaraService
         if (!$this->astronomy instanceof AstronomyService) {
             throw new RuntimeException(
                 'The modern_ephemeris Bārhaspatya model requires an AstronomyService instance. '
-                . 'Construct BrihaspatiSamvatsaraService with the project AstronomyService.'
+                . 'Construct BrihaspatiSamvatsaraService with the project AstronomyService.',
             );
         }
 
@@ -1437,7 +1417,7 @@ final class BrihaspatiSamvatsaraService
 
         $wholeSeconds = (int) floor($unixSeconds);
         $microseconds = (int) round(
-            ($unixSeconds - $wholeSeconds) * 1_000_000.0
+            ($unixSeconds - $wholeSeconds) * 1_000_000.0,
         );
 
         if ($microseconds >= 1_000_000) {

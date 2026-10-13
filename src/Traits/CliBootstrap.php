@@ -8,6 +8,7 @@ use Illuminate\Config\Repository;
 use Illuminate\Container\Container;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
 use JayeshMepani\PanchangCore\Astronomy\EclipseService;
+use JayeshMepani\PanchangCore\Astronomy\JmeRuntime;
 use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
 use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
@@ -85,7 +86,7 @@ final class CliBootstrap
             new DailyPeriodsCalculator,
             new InauspiciousPeriodsCalculator,
             new GowriPanchangamCalculator,
-            new LagnaTableCalculator
+            new LagnaTableCalculator,
         );
 
         $ruleEngine = new FestivalRuleEngine($transitEngine);
@@ -107,7 +108,7 @@ final class CliBootstrap
             new PanchakCalculator($intervalTracker),
             new BhadraCalculator($transitEngine, $bhadraEngine),
             new VarjyamWindowCalculator($transitEngine),
-            new EkadashiParanaCalculator($transitEngine, $sunService)
+            new EkadashiParanaCalculator($transitEngine, $sunService),
         );
     }
 
@@ -117,6 +118,7 @@ final class CliBootstrap
         self::ensureInitialized();
         $jme = new JmeEphFFI;
         self::configureJme($jme);
+
         return new EclipseService($jme);
     }
 
@@ -125,6 +127,7 @@ final class CliBootstrap
         PanchangService $panchang,
     ): OutputGeneratorService {
         self::ensureInitialized();
+
         return new OutputGeneratorService(
             $panchang,
             self::makeEclipseService(),
@@ -290,17 +293,14 @@ final class CliBootstrap
             $jme->jme_set_ephemeris_path($ephePath);
         }
 
-        $jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
-        $engineMode = strtoupper((string) self::configValue('panchang.jme_settings.mode', 'auto'));
-        $nativeEngine = match ($engineMode) {
-            'JPL' => 'JPL',
-            'MOSHIER' => 'MOSHIER',
-            'VSOP_ELP_MEEUS' => 'VSOP_ELP_MEEUS',
-            default => 'AUTO',
-        };
+        $nativeEngine = JmeRuntime::nativeEngineName((string) self::configValue('panchang.jme_settings.mode', 'jpl'));
         $jme->configureEngine($nativeEngine, is_string($ephePath) && $ephePath !== '' ? $ephePath : null);
+        $resolved = JmeRuntime::assertSunMoonEngine($jme, $nativeEngine);
+        JmeRuntime::setTrueCitra($jme);
         DebugTrace::log('cli.jme', 'configured JME runtime', [
             'engine' => $nativeEngine,
+            'resolved_sun' => $resolved['sun'],
+            'resolved_moon' => $resolved['moon'],
             'ephe_path' => is_string($ephePath) ? $ephePath : '',
         ]);
     }

@@ -175,5 +175,4 @@ class CoreTest extends TestCase
         $this->assertNotContains('Masik Shivaratri', FestivalService::FESTIVALS['Maha Shivaratri']['aliases'] ?? []);
         $this->assertArrayNotHasKey('Navratri Begins', FestivalService::FESTIVALS);
     }
-
 }

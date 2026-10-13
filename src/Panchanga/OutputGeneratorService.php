@@ -645,7 +645,7 @@ class OutputGeneratorService
                     Localization::translate('String', 'Eclipses %d-%d - All eclipses for %d years'),
                     $startYear,
                     $endYear,
-                    $endYear - $startYear + 1
+                    $endYear - $startYear + 1,
                 ),
                 'from_year' => $startYear,
                 'to_year' => $endYear,
@@ -736,7 +736,7 @@ class OutputGeneratorService
             $elevation,
             $options,
             $calculationAt,
-            $calendarType
+            $calendarType,
         );
     }
 
@@ -830,7 +830,7 @@ class OutputGeneratorService
             $elevation,
             $options,
             $calculationAt,
-            $calendarType
+            $calendarType,
         );
     }
 
@@ -895,7 +895,7 @@ class OutputGeneratorService
                         tz: $tz,
                         currentAt: $now,
                         elevation: $elevation,
-                    )
+                    ),
                 ),
                 'calendar_period_windows' => $this->buildCalendarPeriodWindowsForMonth($todayDate, $lat, $lon, $tz, $calendarType),
                 default => throw new InvalidArgumentException('Unknown today output section: ' . $section),
@@ -964,7 +964,7 @@ class OutputGeneratorService
                         Localization::translate('String', 'Evaluation is derived only from current Panchang and transit state for the configured location/time.'),
                     ],
                 ],
-                $dailyMuhurtaEvaluation
+                $dailyMuhurtaEvaluation,
             ),
             'calendar_period_windows' => $this->buildCalendarPeriodWindowsForMonth($todayDate, $lat, $lon, $tz, $calendarType),
         ];
@@ -1023,7 +1023,7 @@ class OutputGeneratorService
                 Localization::translate('String', 'Eclipses %d-%d - All eclipses for %d years'),
                 $eclipseStartYear,
                 $eclipseEndYear,
-                $eclipseEndYear - $eclipseStartYear + 1
+                $eclipseEndYear - $eclipseStartYear + 1,
             ),
             ...$eclipseOutput['eclipses'],
         ];
@@ -1043,7 +1043,7 @@ class OutputGeneratorService
         float $lat,
         float $lon,
         string $tz,
-        CalendarType|string $calendarType
+        CalendarType|string $calendarType,
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -1061,7 +1061,7 @@ class OutputGeneratorService
             lon: $lon,
             tz: $tz,
             fields: [],
-            calendarType: $calendarType
+            calendarType: $calendarType,
         );
     }
 
@@ -1211,7 +1211,7 @@ class OutputGeneratorService
         float $lat,
         float $lon,
         string $tz,
-        CalendarType $calendarType
+        CalendarType $calendarType,
     ): array {
         return [
             'generated_at' => date('c'),
@@ -1233,7 +1233,7 @@ class OutputGeneratorService
         int $toYear,
         int $toMonth,
         string $tz,
-        bool $endInclusive = false
+        bool $endInclusive = false,
     ): array {
         $start = CarbonImmutable::create($fromYear, $fromMonth, 1, 0, 0, 0, $tz)->startOfDay();
         $endBase = CarbonImmutable::create($toYear, $toMonth, 1, 0, 0, 0, $tz);
@@ -1252,7 +1252,7 @@ class OutputGeneratorService
         float $lat,
         float $lon,
         string $tz,
-        CalendarType $calendarType
+        CalendarType $calendarType,
     ): array {
         return [
             'generated_at' => date('c'),

@@ -49,7 +49,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
         '2022-10-25|Solar|Partial' => [
             'sutak_start' => '25/10/2022 03:44:00 AM',
             'relaxed_start' => '25/10/2022 01:44:16 PM',
-            'sutak_end' => '25/10/2022 06:18:00 PM',
+            'sutak_end' => '25/10/2022 06:30:36 PM',
         ],
         // Grastodaya: naked-eye window uses literal moonrise; ~13 min umbral visibility.
         '2022-11-08|Lunar|Partial' => [
@@ -124,7 +124,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
             '%s|%s|%s',
             (string) ($event['date'] ?? ''),
             (string) ($event['type'] ?? ''),
-            (string) (($event['visibility']['visible'] ?? false) ? ($event['local_eclipse_type'] ?? $event['eclipse_type'] ?? '') : ($event['eclipse_type'] ?? ''))
+            (string) (($event['visibility']['visible'] ?? false) ? ($event['local_eclipse_type'] ?? $event['eclipse_type'] ?? '') : ($event['eclipse_type'] ?? '')),
         );
     }
 
@@ -138,7 +138,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
 
             $this->assertOrderedJdFields(
                 $event[$contactGroup],
-                $this->eventKey($event) . ' ' . $contactGroup
+                $this->eventKey($event) . ' ' . $contactGroup,
             );
         }
 
@@ -203,7 +203,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
                 $this->extractJd($contacts['maximum_jd'] ?? null),
                 $this->extractJd($event['jd'] ?? null),
                 1e-9,
-                $this->eventKey($event) . ' solar jd should match contacts.maximum_jd'
+                $this->eventKey($event) . ' solar jd should match contacts.maximum_jd',
             );
             $windowStart = $window['start_jd'] ?? null;
             $windowEnd = $window['end_jd'] ?? null;
@@ -240,7 +240,7 @@ final class EclipseBhujVisibilityRegressionTest extends TestCase
         $this->assertLessThanOrEqual(
             $deltaSeconds,
             abs($actualTime->diffInSeconds($expectedTime, false)),
-            $label
+            $label,
         );
     }
 

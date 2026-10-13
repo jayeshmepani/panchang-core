@@ -233,13 +233,13 @@ if ($command === 'write') {
 
     file_put_contents(
         $fixturePath,
-        json_encode($current, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n"
+        json_encode($current, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n",
     );
 
     foreach ($analyses as $label => $analysis) {
         file_put_contents(
             $identitiesDir . '/' . $label . '_identities.txt',
-            implode("\n", $analysis['identities']) . "\n"
+            implode("\n", $analysis['identities']) . "\n",
         );
     }
 
@@ -252,7 +252,7 @@ if ($command === 'write') {
             $fp['unique_identity_count'],
             $fp['duplicate_same_day_identity_count'],
             $fp['events_sha256'],
-            $fp['identity_dates_sha256']
+            $fp['identity_dates_sha256'],
         );
     }
     exit(0);
@@ -337,7 +337,7 @@ foreach ($current['fingerprints'] as $label => $fp) {
         $label,
         $fp['entry_count'],
         $fp['unique_identity_count'],
-        $fp['duplicate_same_day_identity_count']
+        $fp['duplicate_same_day_identity_count'],
     );
 }
 exit(0);

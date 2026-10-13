@@ -53,6 +53,7 @@ enum Ritu: int
         }
 
         $index = (int) floor(fmod($normalized + 30.0, 360.0) / 60.0);
+
         return self::from($index);
     }
 

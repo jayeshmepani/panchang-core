@@ -31,7 +31,7 @@ class ConfigurationFormattingTest extends TestCase
             date: $date,
             lat: 23.2472446,
             lon: 69.668339,
-            tz: 'Asia/Kolkata'
+            tz: 'Asia/Kolkata',
         );
 
         $this->assertStringContainsString('AM', $details['Sunrise']); // 12h check
@@ -50,7 +50,7 @@ class ConfigurationFormattingTest extends TestCase
             date: $date,
             lat: 23.2472446,
             lon: 69.668339,
-            tz: 'Asia/Kolkata'
+            tz: 'Asia/Kolkata',
         );
 
         $this->assertStringNotContainsString('AM', $detailsAlt['Sunrise']); // 24h check
@@ -67,7 +67,7 @@ class ConfigurationFormattingTest extends TestCase
             date: $date,
             lat: 23.2472446,
             lon: 69.668339,
-            tz: 'Asia/Kolkata'
+            tz: 'Asia/Kolkata',
         );
         // Expect a smaller float since it's hours instead of minutes
         $this->assertIsFloat($detailsHours['Hora']['hora_duration_minutes']);

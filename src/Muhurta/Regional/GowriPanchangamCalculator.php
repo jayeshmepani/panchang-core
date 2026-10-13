@@ -18,7 +18,7 @@ class GowriPanchangamCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 8.0;
         $nightDuration = ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0;
@@ -91,7 +91,7 @@ class GowriPanchangamCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 8.0;
         $nightDuration = ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 8.0;
@@ -157,7 +157,7 @@ class GowriPanchangamCalculator
     {
         return match ($name) {
             'Sun' => 0, 'Moon' => 1, 'Mars' => 2, 'Rahu' => 3, 'Jupiter' => 4, 'Saturn' => 5, 'Mercury' => 6, 'Ketu' => 7, 'Venus' => 8,
-            default => 0
+            default => 0,
         };
     }
 

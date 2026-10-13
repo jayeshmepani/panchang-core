@@ -23,10 +23,11 @@ class TransitEngine
     private array $bodyLongitudeCache = [];
 
     public function __construct(
-        private readonly JmeEphFFI $jme,
+        private ?JmeEphFFI $jme = null,
         private readonly int $bodyLongitudeCacheMax = self::DEFAULT_BODY_LONGITUDE_CACHE_MAX,
         private readonly int $bodyLongitudeCacheTrimTo = self::DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO,
     ) {
+        $this->jme ??= new JmeEphFFI;
         $ffi = $this->jme->getFFI();
         $this->xxBuffer = $ffi->new('double[6]');
         $this->serrBuffer = $ffi->new('char[256]');
@@ -39,17 +40,39 @@ class TransitEngine
 
     public function jme(): JmeEphFFI
     {
-        return $this->jme;
+        return $this->jme ??= new JmeEphFFI;
     }
 
     public function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float
     {
-        $step = 0.25 * $direction;
-        // 0.25 day step with 100 steps only scans 25 days, which is insufficient
-        // for month-boundary searches (e.g. next Amavasya ~29.5 days away).
-        $maxSteps = 500;
-        $jd1 = $jd0;
+        $curAngle = $angleFn($jd0);
+        $f0 = $this->signedDiff($curAngle, $targetAngle);
+        if ($f0 === 0.0) {
+            return $jd0;
+        }
+
+        // Fast-forward starting point when crossing is far away in search direction.
+        $dist = $direction > 0
+            ? AstroCore::normalize($targetAngle - $curAngle)
+            : AstroCore::normalize($curAngle - $targetAngle);
+        if ($dist === 0.0) {
+            $dist = 360.0;
+        }
+
+        // Bound lunar motion at 15.5 deg/day. Estimate slower solar motion so
+        // sign transitions do not require a quarter-day scan over many weeks.
+        $speedBound = 15.5;
+        $probeAngle = $angleFn($jd0 + ($direction * 0.25));
+        $estimatedRate = $this->signedDiff($probeAngle, $curAngle) / ($direction * 0.25);
+        if ($estimatedRate > 0.0 && $estimatedRate < 10.0) {
+            $speedBound = max(0.25, ($estimatedRate * 1.35) + 0.05);
+        }
+        $safeJumpDays = max(0.0, ($dist / $speedBound) * 0.75);
+        $jd1 = $jd0 + $direction * $safeJumpDays;
         $f0 = $this->signedDiff($angleFn($jd1), $targetAngle);
+
+        $step = 0.25 * $direction;
+        $maxSteps = 500;
         $jd2 = $jd1;
         $f1 = $f0;
 
@@ -73,10 +96,24 @@ class TransitEngine
         $fLow = $this->signedDiff($angleFn($low), $targetAngle);
         $fHigh = $this->signedDiff($angleFn($high), $targetAngle);
 
-        for ($i = 0; $i < 80; $i++) {
-            $mid = ($low + $high) / 2.0;
+        // Secant interpolation converges quickly for smooth longitude motion;
+        // midpoint fallback keeps the bracket safe when progress stalls.
+        for ($i = 0; $i < 20; $i++) {
+            $range = $high - $low;
+            if ($range < 1e-6) {
+                break;
+            }
+
+            $denominator = $fHigh - $fLow;
+            $mid = $denominator === 0.0
+                ? ($low + $high) / 2.0
+                : $low - ($fLow * $range / $denominator);
+            $margin = $range * 0.05;
+            if ($mid <= $low + $margin || $mid >= $high - $margin) {
+                $mid = ($low + $high) / 2.0;
+            }
             $fMid = $this->signedDiff($angleFn($mid), $targetAngle);
-            if ($fMid === 0.0) {
+            if (abs($fMid) < 1e-6) {
                 return $mid;
             }
 
@@ -116,7 +153,7 @@ class TransitEngine
                 $this->bodyLongitudeCache,
                 -$this->bodyLongitudeCacheTrimTo,
                 null,
-                true
+                true,
             );
         }
 
@@ -134,6 +171,7 @@ class TransitEngine
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
+
         return AstroCore::normalize($moon - $sun);
     }
 
@@ -144,6 +182,7 @@ class TransitEngine
         // become the correct single-aberration apparent positions (verified against the
         // published 2026 equinox/solstice instants).
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
@@ -154,6 +193,7 @@ class TransitEngine
         // become the correct single-aberration apparent positions (verified against the
         // published 2026 equinox/solstice instants).
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
     }
 
@@ -166,6 +206,7 @@ class TransitEngine
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
+
         return AstroCore::normalize($sun + $moon);
     }
 }

@@ -17,7 +17,7 @@ class IntervalTracker
 {
     public function __construct(
         private readonly TransitEngine $transitEngine,
-        private readonly SunService $sunService
+        private readonly SunService $sunService,
     ) {}
 
     public function collectTithiIntervals(float $jdStart, float $jdEnd): array
@@ -83,13 +83,13 @@ class IntervalTracker
                 $cursor,
                 $startAngle,
                 -1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
 
             $intervals[] = [
@@ -118,7 +118,7 @@ class IntervalTracker
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
             $segmentEnd = min($endJd, $jdEnd);
 
@@ -161,13 +161,13 @@ class IntervalTracker
                 $cursor,
                 $startAngle,
                 -1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
 
             $intervals[] = [
@@ -197,7 +197,7 @@ class IntervalTracker
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getSunLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getSunLongitude($jd),
             );
 
             $intervals[] = [
@@ -228,13 +228,13 @@ class IntervalTracker
                 $cursor,
                 $startAngle,
                 -1,
-                fn(float $jd): float => $this->transitEngine->getSunMoonSum($jd)
+                fn(float $jd): float => $this->transitEngine->getSunMoonSum($jd),
             );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getSunMoonSum($jd)
+                fn(float $jd): float => $this->transitEngine->getSunMoonSum($jd),
             );
 
             $intervals[] = [
@@ -265,13 +265,13 @@ class IntervalTracker
                 $cursor,
                 $startAngle,
                 -1,
-                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
             );
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
             );
 
             $tithiIndex = (int) floor($diff / 12.0) + 1;
@@ -299,7 +299,7 @@ class IntervalTracker
             $jdStart,
             $targetAngle,
             1,
-            fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+            fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
         );
 
         if ($transitionJd >= $jdEnd) {
@@ -327,7 +327,7 @@ class IntervalTracker
                 $cursor,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
 
             $segmentEnd = min($endJd, $jdEnd);
@@ -352,7 +352,7 @@ class IntervalTracker
         float $jdEnd,
         float $rangeStart,
         float $rangeEnd,
-        string $tz
+        string $tz,
     ): array {
         $windows = [];
         $cursor = $jdStart;
@@ -365,13 +365,13 @@ class IntervalTracker
                     $cursor,
                     $rangeStart,
                     -1,
-                    fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                    fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
                 );
                 $endJd = $this->transitEngine->findAngleCrossing(
                     $cursor,
                     $rangeEnd,
                     1,
-                    fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                    fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
                 );
                 $segmentEnd = min($endJd, $jdEnd);
                 $windows[] = [
@@ -394,7 +394,7 @@ class IntervalTracker
                 $cursor,
                 $target,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
             if ($nextJd <= $cursor || $nextJd >= $jdEnd) {
                 break;
@@ -404,7 +404,7 @@ class IntervalTracker
                 $nextJd,
                 $rangeEnd,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
             $segmentEnd = min($endJd, $jdEnd);
             $windows[] = [

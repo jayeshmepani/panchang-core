@@ -34,6 +34,7 @@ trait PanchangAstronomyHelpersTrait
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
+
         return AstroCore::normalize($moon - $sun);
     }
 
@@ -44,12 +45,14 @@ trait PanchangAstronomyHelpersTrait
         // become the correct single-aberration apparent positions (verified against the
         // published 2026 equinox/solstice instants).
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
     private function getTropicalSunLongitude(float $jd): float
     {
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_NO_ABERRATION;
+
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
@@ -60,6 +63,7 @@ trait PanchangAstronomyHelpersTrait
         // become the correct single-aberration apparent positions (verified against the
         // published 2026 equinox/solstice instants).
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
     }
 
@@ -77,6 +81,7 @@ trait PanchangAstronomyHelpersTrait
         $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
+
         return AstroCore::normalize($sun + $moon);
     }
 
@@ -193,7 +198,7 @@ trait PanchangAstronomyHelpersTrait
                 '%s %s %s',
                 (string) ($interval['nakshatra'] ?? ''),
                 Localization::translate('String', 'Pada', $locale),
-                Localization::localizeNumber((int) ($interval['pada'] ?? 0), $locale)
+                Localization::localizeNumber((int) ($interval['pada'] ?? 0), $locale),
             );
         }
 
@@ -208,5 +213,4 @@ trait PanchangAstronomyHelpersTrait
             'end_iso' => AstroCore::formatDateTime($this->sunService->jdToCarbonPublic((float) $interval['end_jd'], $tz)),
         ];
     }
-
 }

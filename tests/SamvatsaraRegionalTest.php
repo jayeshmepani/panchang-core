@@ -37,15 +37,15 @@ class SamvatsaraRegionalTest extends TestCase
         // Classical transition is ~2026-04-21 17:37 UTC (23:07 IST); civil midnight still Siddharthi.
         $this->assertSame(
             'Siddharthi',
-            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 20))
+            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 20)),
         );
         $this->assertSame(
             'Siddharthi',
-            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 21))
+            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 21)),
         );
         $this->assertSame(
             'Raudri',
-            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 22))
+            $engine->getSamvatsaraBrihaspati(CarbonImmutable::create(2026, 4, 22)),
         );
 
         $fields = $engine->buildSamvatsaraCalendarFields($vikram, $saka, $gujarati, $date);
@@ -56,11 +56,11 @@ class SamvatsaraRegionalTest extends TestCase
         $this->assertSame('Raudri', $fields['Samvatsara_Brihaspati']);
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $fields['Samvatsara_Brihaspati_Model']
+            $fields['Samvatsara_Brihaspati_Model'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_CANONICAL,
-            $fields['Samvatsara_Brihaspati_Model_Status']
+            $fields['Samvatsara_Brihaspati_Model_Status'],
         );
         $this->assertSame('Siddharthi / Raudri', $fields['Samvatsara_North_Display']);
         $this->assertSame('Pingala', $fields['Samvatsara_Gujarati']);
@@ -111,7 +111,7 @@ class SamvatsaraRegionalTest extends TestCase
                 CarbonImmutable::parse($day, $tz)->setTime(12, 0, 0),
                 $lat,
                 $lon,
-                $tz
+                $tz,
             );
             $hc = $details['Hindu_Calendar'];
 
@@ -141,7 +141,7 @@ class SamvatsaraRegionalTest extends TestCase
             $lon,
             $tz,
             ['hindu_calendar'],
-            0.0
+            0.0,
         );
 
         $this->assertArrayHasKey('2026-03-18', $month);

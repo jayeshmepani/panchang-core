@@ -83,5 +83,4 @@ trait FestivalRuleCoreSupport
     {
         return FestivalShared::normalizeLabel($label);
     }
-
 }

@@ -98,7 +98,7 @@ class DailyPeriodsCalculator
     public function calculateMuhurtaTable(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         $rows = [];
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 15.0;
@@ -151,7 +151,7 @@ class DailyPeriodsCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $badIndexes = Muhurta::getWeekdayDurMuhurtaIndexes($varaIdx);
 
@@ -170,7 +170,7 @@ class DailyPeriodsCalculator
 
     public function calculateNishitaMuhurta(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
         $nightMuhurta = $nightDuration / 15.0;
@@ -195,7 +195,7 @@ class DailyPeriodsCalculator
 
     public function calculateVijayaMuhurta(
         CarbonImmutable $sunrise,
-        CarbonImmutable $sunset
+        CarbonImmutable $sunset,
     ): array {
         $dayDuration = $sunset->getTimestamp() - $sunrise->getTimestamp();
         $muhurtaDuration = $dayDuration / 15.0;
@@ -215,7 +215,7 @@ class DailyPeriodsCalculator
 
     public function calculateGodhuliMuhurta(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         $nightDuration = $nextSunrise->getTimestamp() - $sunset->getTimestamp();
         $duration = $nightDuration / 30.0;
@@ -236,7 +236,7 @@ class DailyPeriodsCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        CarbonImmutable $solarNoon
+        CarbonImmutable $solarNoon,
     ): array {
         if ($sunset <= $sunrise) {
             throw new InvalidArgumentException('Sunset must be after sunrise for Sandhya calculation.');
@@ -292,20 +292,20 @@ class DailyPeriodsCalculator
 
     public function calculateDaylightFivefoldDivision(
         CarbonImmutable $sunrise,
-        CarbonImmutable $sunset
+        CarbonImmutable $sunset,
     ): array {
         return $this->buildFivefoldDivision(
             $sunrise,
             $sunset,
             'day',
             'Fivefold',
-            ['Pratah', 'Sangava', 'Madhyahna', 'Aparahna', 'Sayahna']
+            ['Pratah', 'Sangava', 'Madhyahna', 'Aparahna', 'Sayahna'],
         );
     }
 
     public function calculateNighttimeFivefoldDivision(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->buildFivefoldDivision(
             $sunset,
@@ -313,14 +313,14 @@ class DailyPeriodsCalculator
             'night',
             'NightFivefold',
             ['Pradosha', 'Ratri', 'Nishitha', 'Usha', 'Arunodaya'],
-            [3, 4, 1, 5, 2]
+            [3, 4, 1, 5, 2],
         );
     }
 
     public function calculateTenKalaDivision(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return [
             ...$this->calculateDaylightFivefoldDivision($sunrise, $sunset),
@@ -331,7 +331,7 @@ class DailyPeriodsCalculator
     public function calculatePrahara(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 4.0;
         $nightDuration = ($nextSunrise->getTimestamp() - $sunset->getTimestamp()) / 4.0;
@@ -394,7 +394,7 @@ class DailyPeriodsCalculator
         string $period,
         string $localizationDomain,
         array $englishNames,
-        ?array $muhurtaSpans = null
+        ?array $muhurtaSpans = null,
     ): array {
         $totalSeconds = $end->getTimestamp() - $start->getTimestamp();
         $muhurtaSpans ??= array_fill(0, count($englishNames), 3);

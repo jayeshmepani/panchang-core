@@ -114,14 +114,14 @@ class EclipseService
             $startUtc->month,
             $startUtc->day,
             ((int) $startUtc->format('H')) + ((int) $startUtc->format('i')) / 60.0 + (((int) $startUtc->format('s')) + ((int) $startUtc->format('u') / 1_000_000)) / 3600.0,
-            JmeEphFFI::JME_CALENDAR_GREGORIAN
+            JmeEphFFI::JME_CALENDAR_GREGORIAN,
         );
         $endJd = $this->jme->jme_julian_day(
             $endUtc->year,
             $endUtc->month,
             $endUtc->day,
             ((int) $endUtc->format('H')) + ((int) $endUtc->format('i')) / 60.0 + (((int) $endUtc->format('s')) + ((int) $endUtc->format('u') / 1_000_000)) / 3600.0,
-            JmeEphFFI::JME_CALENDAR_GREGORIAN
+            JmeEphFFI::JME_CALENDAR_GREGORIAN,
         );
 
         return $this->getEclipsesForJdRange($startJd, $endJd, $lat, $lon, $tz);
@@ -167,7 +167,7 @@ class EclipseService
                     $seen[$hash] = true;
                 }
 
-                $cursor = (float) $pick['jd'] + 0.01;
+                $cursor = (float) $pick['jd'] + 25.0;
             }
         }
 
@@ -187,7 +187,7 @@ class EclipseService
             0,
             $tret,
             0,
-            $serr
+            $serr,
         );
 
         if ($retFlag <= 0 || $tret[0] <= $startJd) {
@@ -208,7 +208,7 @@ class EclipseService
             0,
             $tret,
             0,
-            $serr
+            $serr,
         );
 
         if ($retFlag <= 0 || $tret[0] <= $startJd) {
@@ -295,7 +295,7 @@ class EclipseService
             $astronomicalPartialEndJd ?? $jdMax,
             $lat,
             $lon,
-            $tz
+            $tz,
         );
         // Also search moonrise/moonset that may fall just outside partial but still
         // clip the visible window (e.g. moonset during partial is the critical case).
@@ -304,19 +304,19 @@ class EclipseService
             ($astronomicalPartialEndJd ?? $jdMax) + 0.5,
             $lat,
             $lon,
-            $tz
+            $tz,
         );
         $ritualMoonriseJd = $this->resolveRitualLunarHorizonJd(
             $astronomicalPartialBeginJd,
             $astronomicalPartialEndJd,
             $visibilityStartJd,
-            $sunHorizon['moonrise_jd'] ?? $sunHorizonWide['moonrise_jd']
+            $sunHorizon['moonrise_jd'] ?? $sunHorizonWide['moonrise_jd'],
         );
         $ritualMoonsetJd = $this->resolveRitualLunarHorizonJd(
             $astronomicalPartialBeginJd,
             $astronomicalPartialEndJd,
             $visibilityEndJd,
-            $sunHorizon['moonset_jd'] ?? $sunHorizonWide['moonset_jd']
+            $sunHorizon['moonset_jd'] ?? $sunHorizonWide['moonset_jd'],
         );
 
         // Local ritual window = umbral (partial) ∩ same literal horizon markers.
@@ -351,7 +351,7 @@ class EclipseService
             $hasRitualPhase,
             $hasValidRitualIntersection,
             $meetsRitualMagnitude,
-            $meetsDurationThreshold
+            $meetsDurationThreshold,
         );
 
         // Vedh/sutak always from sparsha (partial begin), never from grastodaya moonrise.
@@ -370,7 +370,7 @@ class EclipseService
             $astronomicalPartialBeginJd,
             $astronomicalPartialEndJd,
             $ritualMoonriseJd,
-            $ritualMoonsetJd
+            $ritualMoonsetJd,
         );
         $sutakPraharCount = $this->resolveSutakPraharCount('Lunar', $ritualBoundary);
         $isGrastAst = (bool) ($ritualBoundary['grast_ast'] ?? false);
@@ -383,7 +383,7 @@ class EclipseService
             $lon,
             $tz,
             $isVisible,
-            $isGrastAst ? 'lunar' : null
+            $isGrastAst ? 'lunar' : null,
         );
         $horizonEvents = $this->buildHorizonEventsPayload(
             'Lunar',
@@ -398,7 +398,7 @@ class EclipseService
             $ritualMoonsetJd,
             null,
             null,
-            $tz
+            $tz,
         );
 
         // Local penumbral sky window: geometric penumbral ∩ moon above horizon
@@ -408,17 +408,17 @@ class EclipseService
             $globalContacts['penumbral_end_jd'] ?? ($astronomicalPartialEndJd ?? $jdMax),
             $lat,
             $lon,
-            $tz
+            $tz,
         );
         $localPenumbralMoonriseJd = $penumbralHorizon['moonrise_jd'] ?? $ritualMoonriseJd;
         $localPenumbralMoonsetJd = $penumbralHorizon['moonset_jd'] ?? $ritualMoonsetJd;
         $localPenumbralStartJd = $this->maxJd(
             $globalContacts['penumbral_begin_jd'],
-            $localPenumbralMoonriseJd
+            $localPenumbralMoonriseJd,
         );
         $localPenumbralEndJd = $this->minJd(
             $globalContacts['penumbral_end_jd'],
-            $localPenumbralMoonsetJd
+            $localPenumbralMoonsetJd,
         );
         $hasLocalPenumbralWindow = $localPenumbralStartJd !== null
             && $localPenumbralEndJd !== null
@@ -451,7 +451,7 @@ class EclipseService
                 $ritualVisibleStartJd,
                 $ritualVisibleEndJd,
                 $tz,
-                $horizonEvents
+                $horizonEvents,
             ),
             // Sun/Moon rise-set that fall through the eclipse (grastodaya / grastasta).
             'horizon_events' => $horizonEvents,
@@ -462,7 +462,7 @@ class EclipseService
                 $jdMax,
                 $astronomicalMokshaJd,
                 $sutakPayload,
-                $tz
+                $tz,
             ),
             'visibility' => [
                 'visible' => $isVisible,
@@ -484,7 +484,7 @@ class EclipseService
                 'penumbral_window' => $this->formatVisibilityWindow(
                     $showPenumbralWindow ? $localPenumbralStartJd : null,
                     $showPenumbralWindow ? $localPenumbralEndJd : null,
-                    $tz
+                    $tz,
                 ),
             ],
             'sutak' => $sutakPayload,
@@ -494,7 +494,7 @@ class EclipseService
                 $ritualVisibleStartJd,
                 $ritualVisibleEndJd,
                 (bool) ($ritualBoundary['grast_uday'] ?? false),
-                $tz
+                $tz,
             ),
             'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload(
                 $ritualVisibleEndJd,
@@ -504,7 +504,7 @@ class EclipseService
                 $tz,
                 $isVisible,
                 $ritualBoundary,
-                $astronomicalMokshaJd
+                $astronomicalMokshaJd,
             ),
             'retflag' => $retFlag,
         ];
@@ -555,9 +555,9 @@ class EclipseService
         // JME-native solar: attrLoc[8]=VISIBLE, attrLoc[0]=magnitude (diameter fraction).
         $jmeVisibilityFlag = $contactsFromSameEvent
             && (int) $attrLoc[self::JME_LOCAL_ATTR_VISIBILITY] === JmeEphFFI::JME_ECLIPSE_VISIBLE;
-        $localDiskMagnitude = (float) $attrLoc[0];
+        $localDiskMagnitude = $contactsFromSameEvent ? (float) $attrLoc[0] : 0.0;
         $hasVisibleDiskMagnitude = $localDiskMagnitude > 0.0;
-        $meetsRitualMagnitude = $localDiskMagnitude >= self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE;
+        $meetsRitualMagnitude = $contactsFromSameEvent && $localDiskMagnitude >= self::NIRNAY_SOLAR_ECLIPSE_MINIMUM_MAGNITUDE;
         // JME sol when_loc: tret[2]/[3]=outer contacts, [4]/[5]=inner if total/annular/hybrid.
         // Clip the visible window to sun-above-horizon (sunrise/sunset).
         $visibilityWindowStartJd = $this->maxJd($localContacts['first_contact_jd'], $localSunriseJd);
@@ -589,7 +589,7 @@ class EclipseService
             $hasVisibleDiskMagnitude,
             $hasVisibleWindow,
             $meetsRitualMagnitude,
-            $meetsDurationThreshold
+            $meetsDurationThreshold,
         );
 
         // Vedh always from sparsha (first contact), even for grastodaya — never from sunrise.
@@ -612,7 +612,7 @@ class EclipseService
             $tz,
             $isVisible,
             $localContacts['first_contact_jd'],
-            $localContacts['fourth_contact_jd']
+            $localContacts['fourth_contact_jd'],
         );
         $isGrastAst = (bool) ($ritualBoundary['grast_ast'] ?? false);
         $isGrastUday = (bool) ($ritualBoundary['grast_uday'] ?? false);
@@ -624,7 +624,7 @@ class EclipseService
             $lon,
             $tz,
             $isVisible,
-            $isGrastAst ? 'solar' : null
+            $isGrastAst ? 'solar' : null,
         );
 
         // Sunrise/sunset during sparsha→moksha (grastodaya / grastasta for solar).
@@ -633,7 +633,7 @@ class EclipseService
             $localContacts['fourth_contact_jd'] ?? $localMaximumJd,
             $lat,
             $lon,
-            $tz
+            $tz,
         );
         $horizonEvents = $this->buildHorizonEventsPayload(
             'Solar',
@@ -648,7 +648,7 @@ class EclipseService
             null,
             $solarHorizon['sunrise_jd'],
             $solarHorizon['sunset_jd'],
-            $tz
+            $tz,
         );
 
         return [
@@ -678,7 +678,7 @@ class EclipseService
                 $visibilityWindowStartJd,
                 $visibilityWindowEndJd,
                 $tz,
-                $horizonEvents
+                $horizonEvents,
             ),
             // Sun/Moon rise-set that fall through the eclipse (grastodaya / grastasta).
             'horizon_events' => $horizonEvents,
@@ -689,7 +689,7 @@ class EclipseService
                 $localMaximumJd,
                 $localContacts['fourth_contact_jd'],
                 $sutakPayload,
-                $tz
+                $tz,
             ),
             'visibility' => [
                 'visible' => $isVisible,
@@ -710,7 +710,7 @@ class EclipseService
                 'window' => $this->formatVisibilityWindow(
                     $isVisible ? $visibilityWindowStartJd : null,
                     $isVisible ? $visibilityWindowEndJd : null,
-                    $tz
+                    $tz,
                 ),
             ],
             'sutak' => $sutakPayload,
@@ -720,7 +720,7 @@ class EclipseService
                 $visibilityWindowStartJd,
                 $visibilityWindowEndJd,
                 (bool) ($ritualBoundary['grast_uday'] ?? false),
-                $tz
+                $tz,
             ),
             'post_eclipse_ritual' => $this->buildPostEclipseRitualPayload(
                 $visibilityWindowEndJd,
@@ -730,7 +730,7 @@ class EclipseService
                 $tz,
                 $isVisible,
                 $ritualBoundary,
-                $localContacts['fourth_contact_jd']
+                $localContacts['fourth_contact_jd'],
             ),
             'retflag' => $retFlag,
         ];
@@ -825,7 +825,7 @@ class EclipseService
         ?float $startJd,
         ?float $endJd,
         string $tz,
-        ?array $horizonEvents = null
+        ?array $horizonEvents = null,
     ): array {
         $hasWindow = $inSky && $startJd !== null && $endJd !== null && $endJd > $startJd;
 
@@ -838,7 +838,7 @@ class EclipseService
             'window' => $this->formatVisibilityWindow(
                 $hasWindow ? $startJd : null,
                 $hasWindow ? $endJd : null,
-                $tz
+                $tz,
             ),
             'duration_seconds' => $hasWindow ? $this->durationSeconds($startJd, $endJd) : 0.0,
         ];
@@ -868,7 +868,7 @@ class EclipseService
         ?float $moonsetJd,
         ?float $sunriseJd,
         ?float $sunsetJd,
-        string $tz
+        string $tz,
     ): array {
         $events = [];
 
@@ -880,7 +880,7 @@ class EclipseService
             ?float $literalStart,
             ?float $literalEnd,
             string $tz,
-            callable $formatInstant
+            callable $formatInstant,
         ): void {
             if ($jd === null) {
                 return;
@@ -983,7 +983,7 @@ class EclipseService
         ?float $madhyaJd,
         ?float $mokshaJd,
         array $sutakPayload,
-        string $tz
+        string $tz,
     ): array {
         if (!$applicable || $sparshaJd === null || $mokshaJd === null) {
             return [
@@ -1056,7 +1056,7 @@ class EclipseService
         float $lon,
         string $tz,
         bool $isVisible,
-        ?string $grastAstKind = null
+        ?string $grastAstKind = null,
     ): array {
         if (!$isVisible || $eclipseStartJd === null || $eclipseEndJd === null) {
             return [
@@ -1138,7 +1138,7 @@ class EclipseService
         bool $hasRitualPhase,
         bool $hasValidIntersection,
         bool $meetsMagnitude,
-        bool $meetsDuration
+        bool $meetsDuration,
     ): string {
         if ($isVisible) {
             return 'ritually_applicable_visible_umbral';
@@ -1172,7 +1172,7 @@ class EclipseService
         ?float $visibleStartJd,
         ?float $visibleEndJd,
         bool $isGrastUday,
-        string $tz
+        string $tz,
     ): array {
         if (!$isVisible || $visibleStartJd === null || $visibleEndJd === null) {
             return [
@@ -1217,7 +1217,7 @@ class EclipseService
         ?float $phaseBeginJd = null,
         ?float $phaseEndJd = null,
         ?float $moonriseJd = null,
-        ?float $moonsetJd = null
+        ?float $moonsetJd = null,
     ): array {
         if (!$isVisible || $visibleStartJd === null || $visibleEndJd === null) {
             return [
@@ -1332,7 +1332,7 @@ class EclipseService
         string $tz,
         bool $isVisible,
         array $ritualBoundary = [],
-        ?float $astronomicalMokshaJd = null
+        ?float $astronomicalMokshaJd = null,
     ): array {
         if (!$isVisible || $visibleEndJd === null) {
             return [
@@ -1467,7 +1467,7 @@ class EclipseService
         float $phaseEndJd,
         float $lat,
         float $lon,
-        string $tz
+        string $tz,
     ): array {
         $center = $this->jdToCarbon(($phaseBeginJd + $phaseEndJd) / 2.0, $tz)->startOfDay();
         $sunriseJd = null;
@@ -1503,7 +1503,7 @@ class EclipseService
         float $phaseEndJd,
         float $lat,
         float $lon,
-        string $tz
+        string $tz,
     ): array {
         $center = $this->jdToCarbon(($phaseBeginJd + $phaseEndJd) / 2.0, $tz)->startOfDay();
         $moonriseJd = null;
@@ -1555,7 +1555,7 @@ class EclipseService
         ?float $partialBeginJd,
         ?float $partialEndJd,
         ?float $jmeVisibilityBoundJd,
-        ?float $sunServiceHorizonJd
+        ?float $sunServiceHorizonJd,
     ): ?float {
         if ($partialBeginJd === null || $partialEndJd === null) {
             return $sunServiceHorizonJd ?? $jmeVisibilityBoundJd;
@@ -1623,7 +1623,7 @@ class EclipseService
         $segmentDurationSeconds = max(
             0.0,
             ($segmentEnd->getTimestamp() - $segmentStart->getTimestamp())
-            + (((int) $segmentEnd->format('u')) - ((int) $segmentStart->format('u'))) / 1_000_000
+            + (((int) $segmentEnd->format('u')) - ((int) $segmentStart->format('u'))) / 1_000_000,
         );
         $relaxedStart = $segmentDurationSeconds > 0.0
             ? $this->addFloatSeconds($eventStart, -$segmentDurationSeconds)
@@ -1704,7 +1704,7 @@ class EclipseService
             $utc->month,
             $utc->day,
             $hourDecimal,
-            JmeEphFFI::JME_CALENDAR_GREGORIAN
+            JmeEphFFI::JME_CALENDAR_GREGORIAN,
         );
     }
 
@@ -1742,6 +1742,7 @@ class EclipseService
         $geo[0] = $lon;
         $geo[1] = $lat;
         $geo[2] = 0.0;
+
         return $geo;
     }
 

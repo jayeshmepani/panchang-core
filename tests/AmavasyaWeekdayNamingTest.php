@@ -43,7 +43,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
 
         self::assertSame(
             count($withoutExpansion) + 3,
-            FestivalCatalog::getCatalogFestivalCount()
+            FestivalCatalog::getCatalogFestivalCount(),
         );
     }
 
@@ -51,7 +51,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
     public function testGenericAmavasyaElevatesFormalWeekdayIdentity(
         string $observanceDate,
         string $expectedIdentity,
-        array $mustNotAppearAsSiblingWeekdayAlias
+        array $mustNotAppearAsSiblingWeekdayAlias,
     ): void {
         $payload = $this->payload('Amavasya', FestivalService::FESTIVALS['Amavasya'], $observanceDate);
 
@@ -65,7 +65,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
 
         self::assertSame(
             $expectedIdentity,
-            $payload['calculation_basis']['weekday_classifier_key'] ?? null
+            $payload['calculation_basis']['weekday_classifier_key'] ?? null,
         );
         self::assertSame('vaar', $payload['calculation_basis']['naming_basis'] ?? null);
     }
@@ -90,7 +90,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
         $payload = $this->payload(
             'Magha Amavasya',
             FestivalService::FESTIVALS['Magha Amavasya'],
-            '2026-04-20'
+            '2026-04-20',
         );
 
         self::assertSame('Magha Amavasya', $payload['name_key']);
@@ -109,7 +109,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
         $payload = $this->payload(
             'Darsha Amavasya',
             FestivalService::FESTIVALS['Darsha Amavasya'],
-            '2026-04-20' // Monday
+            '2026-04-20', // Monday
         );
 
         self::assertSame('Darsha Amavasya', $payload['name_key']);
@@ -151,7 +151,7 @@ final class AmavasyaWeekdayNamingTest extends TestCase
             $service,
             $name,
             $rules,
-            ['observance_date' => $observanceDate]
+            ['observance_date' => $observanceDate],
         );
     }
 }

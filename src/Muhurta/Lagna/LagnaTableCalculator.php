@@ -20,7 +20,7 @@ class LagnaTableCalculator
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        JmeEphFFI $jme
+        JmeEphFFI $jme,
     ): array {
         $jd = $this->carbonToJulianDayUtc($jme, $current);
         $cusp = $jme->getFFI()->new('double[13]');
@@ -48,7 +48,7 @@ class LagnaTableCalculator
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        JmeEphFFI $jme
+        JmeEphFFI $jme,
     ): array {
         $jdStart = $this->carbonToJulianDayUtc($jme, $sunrise);
         $jdSunset = $this->carbonToJulianDayUtc($jme, $sunset);
@@ -146,7 +146,7 @@ class LagnaTableCalculator
         int $currentSign,
         float $lat,
         float $lon,
-        float $ayanamsa
+        float $ayanamsa,
     ): float {
         $step = 120.0 / 86400.0;
         $high = $jd;
@@ -171,7 +171,7 @@ class LagnaTableCalculator
         int $currentSign,
         float $lat,
         float $lon,
-        float $ayanamsa
+        float $ayanamsa,
     ): array {
         $step = 120.0 / 86400.0;
         $low = $jd;
@@ -200,7 +200,7 @@ class LagnaTableCalculator
         int $targetSign,
         float $lat,
         float $lon,
-        float $ayanamsa
+        float $ayanamsa,
     ): float {
         $targetAngle = $targetSign * 30.0;
 

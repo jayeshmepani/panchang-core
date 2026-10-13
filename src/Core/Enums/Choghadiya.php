@@ -86,7 +86,7 @@ enum Choghadiya: int
         float $jdSunset,
         float $jdNextSunrise,
         float $jdCurrent,
-        Vara $vara
+        Vara $vara,
     ): self
     {
         $isDay = $jdCurrent >= $jdSunrise && $jdCurrent < $jdSunset;
@@ -107,6 +107,7 @@ enum Choghadiya: int
         }
 
         $sequence = $isDay ? self::getDaySequence($vara) : self::getNightSequence($vara);
+
         return $sequence[$divIdx];
     }
 

@@ -46,7 +46,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Vaishnava',
             $previousSunriseJd,
             KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
-            $sunsetJd
+            $sunsetJd,
         );
 
         $viddha = $engine->determineEkadashi(
@@ -59,7 +59,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Vaishnava',
             $previousSunriseJd,
             KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
-            $sunsetJd
+            $sunsetJd,
         );
 
         self::assertSame(55.0, $clean['dashami_vedha_threshold_ghatikas_from_previous_sunrise']);
@@ -87,7 +87,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
             101.50,
             103.10,
-            103.0
+            103.0,
         );
 
         self::assertSame('Vriddhi_Ekadashi', $result['status']);
@@ -112,7 +112,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             102.50,
             103.20,
             104.0,
-            99.90
+            99.90,
         );
 
         self::assertTrue($result['ekadashi_at_previous_sunrise']);
@@ -137,7 +137,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             KalaNirnayaEngine::ARUNODAYA_GHATIKAS,
             101.50,
             103.02,
-            103.0
+            103.0,
         );
 
         self::assertSame('Dvadashi_Vriddhi_Mahadvadashi', $result['status']);
@@ -162,7 +162,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             101.50,
             102.80,
             103.0,
-            100.05
+            100.05,
         );
 
         self::assertSame('Dashami_Kshaya', $result['status']);
@@ -187,7 +187,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             $sunriseJd,
             $nextSunriseJd,
             'Smarta',
-            100.0
+            100.0,
         );
 
         $arunodayaOnlyDashami = $engine->determineEkadashi(
@@ -198,7 +198,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             $sunriseJd,
             $nextSunriseJd,
             'Smarta',
-            100.0
+            100.0,
         );
 
         self::assertSame('smarta_dashami_at_sunrise_rejected', $sunriseDashami['case_key']);
@@ -221,7 +221,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Smarta',
             100.0,
             5.0,
-            101.60
+            101.60,
         );
 
         self::assertSame(5.0, $result['arunodaya_ghatikas']);
@@ -241,7 +241,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             100.0,
             100.75,
             101.25,
-            99.5
+            99.5,
         );
 
         self::assertSame('dynamic_dinamana_30_ghati_day', $result['ghati_basis']);
@@ -262,7 +262,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             100.0,
             100.75,
             101.25,
-            99.5
+            99.5,
         );
 
         self::assertSame('dynamic_segmental_ghati_by_day_night', $result['ghati_basis']);
@@ -293,7 +293,7 @@ final class NirnayVerifiedRulesTest extends TestCase
 
         self::assertSame(
             JmeEphFFI::JME_ECLIPSE_LUNAR_PENUMBRAL,
-            $method->invoke($service)
+            $method->invoke($service),
         );
     }
 
@@ -323,7 +323,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            3
+            3,
         );
 
         self::assertIsArray($expectedAnchors);
@@ -331,13 +331,13 @@ final class NirnayVerifiedRulesTest extends TestCase
             $expectedAnchors['start_jd'],
             $event['sutak']['start_jd'] ?? null,
             1e-9,
-            'Sutak start should align to dynamic prahara boundary.'
+            'Sutak start should align to dynamic prahara boundary.',
         );
         self::assertEqualsWithDelta(
             $expectedAnchors['relaxed_start_jd'],
             $event['sutak']['relaxed_start_jd'] ?? null,
             1e-9,
-            'Relaxed sutak should begin one variable prahara before local eclipse contact.'
+            'Relaxed sutak should begin one variable prahara before local eclipse contact.',
         );
     }
 
@@ -388,7 +388,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             true,
-            ['grast_ast' => true]
+            ['grast_ast' => true],
         );
 
         self::assertTrue($payload['applicable']);
@@ -420,7 +420,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             'Asia/Kolkata',
             true,
             ['grast_ast' => true, 'type' => 'grast_ast'],
-            $mokshaJd
+            $mokshaJd,
         );
 
         self::assertTrue($payload['applicable']);
@@ -443,7 +443,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             CarbonImmutable::parse('2035-08-20', 'Asia/Kolkata'),
             23.2472446,
             69.668339,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         $event = null;
@@ -476,7 +476,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertArrayNotHasKey('starts_after', $event['post_eclipse_ritual']);
         self::assertGreaterThan(
             $windowEnd,
-            $event['post_eclipse_ritual']['food_allowed_after_jd'] ?? 0.0
+            $event['post_eclipse_ritual']['food_allowed_after_jd'] ?? 0.0,
         );
 
         // One horizon definition: moonset, window end, penumbral end, punya end, local_visible_end must match.
@@ -491,14 +491,14 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta($moonsetJd, $penumbralEnd, 1e-9, 'penumbral_window.end must equal literal moonset');
         self::assertSame(
             'literally_visible_geometric_above_horizon',
-            $event['literally_visible']['meaning_key'] ?? null
+            $event['literally_visible']['meaning_key'] ?? null,
         );
         self::assertArrayHasKey('potentially_visible_to_unaided_eye', $event['literally_visible']);
         self::assertArrayHasKey('ritually_visible_by_horizon_and_magnitude_rules', $event['visibility']);
         self::assertArrayNotHasKey('unaided_eye_ritual_visible', $event['visibility']);
         self::assertSame(
             'snana_homa_after_moksha_food_after_next_moonrise',
-            $event['sutak']['end_scope_key'] ?? null
+            $event['sutak']['end_scope_key'] ?? null,
         );
 
         // Separated concepts: literally_visible vs ritual sparsha/madhya/moksha + sutak pair.
@@ -508,7 +508,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta(
             $event['contacts']['partial_begin_jd']['jd'] ?? null,
             $event['ritual']['sparsha']['jd'] ?? null,
-            1e-9
+            1e-9,
         );
         self::assertEqualsWithDelta($event['jd'] ?? null, $event['ritual']['madhya']['jd'] ?? null, 1e-9);
         self::assertSame('ritual_madhya', $event['ritual']['madhya']['meaning_key'] ?? null);
@@ -529,7 +529,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta(
             $moonsetJd,
             $event['horizon_events']['moonset']['jd'] ?? null,
-            1e-9
+            1e-9,
         );
         self::assertNull($event['horizon_events']['moonrise']);
         self::assertNull($event['horizon_events']['sunrise']);
@@ -619,7 +619,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             100.7,
             [],
             100.1,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         self::assertSame([], $resolved['restricted_windows']);
@@ -645,7 +645,7 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'end_jd' => 100.18,
             ]],
             null,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         self::assertSame([], $resolved['restricted_windows']);
@@ -671,7 +671,7 @@ final class NirnayVerifiedRulesTest extends TestCase
                 'end_jd' => 100.2,
             ]],
             100.1,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         self::assertCount(1, $resolved['restricted_windows']);
@@ -773,12 +773,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             $fetchHistoricalSnapshot,
         );
 
-        self::assertNotNull($resolved, 'Hybrid Chandra Darshana follows the experimental five-evening scan when earlier evenings fail.');
-        self::assertSame('2026-01-03', $resolved['observance_date']);
-        self::assertSame(
-            'SUCCESS_HYBRID_RESOLVED_MODERN_SS10_ONLY',
-            $resolved['decision']['visibility_assessment']['status_code'],
-        );
+        self::assertNull($resolved, 'Chandra Darshana must not fall through to Tritiya or later when Pratipada and Dvitiya do not pass.');
     }
 
     public function testChandraDarshanaUsesDirectedWaxingLongitudeSeparation(): void
@@ -1118,7 +1113,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta(172.8, $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'], 1e-6);
         self::assertGreaterThanOrEqual(
             $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'],
-            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes']
+            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes'],
         );
     }
 
@@ -1141,7 +1136,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta(172.8, $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'], 1e-6);
         self::assertLessThan(
             $resolved['decision']['raksha_bandhan_selection']['minimum_post_sunrise_purnima_minutes'],
-            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes']
+            $resolved['decision']['raksha_bandhan_selection']['post_sunrise_purnima_minutes'],
         );
     }
 
@@ -1761,14 +1756,14 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertTrue(FestivalService::FESTIVALS['Phuldolotsava']['require_sunrise_nakshatra']);
         self::assertSame(
             'if_purnima_and_pratipada_both_have_sunrise_uttara_phalguni_choose_purnima',
-            FestivalService::FESTIVALS['Phuldolotsava']['dual_day_rule']
+            FestivalService::FESTIVALS['Phuldolotsava']['dual_day_rule'],
         );
         self::assertSame(
             [
                 ['paksha' => 'Shukla', 'tithi' => 15],
                 ['paksha' => 'Krishna', 'tithi' => 1],
             ],
-            FestivalService::FESTIVALS['Phuldolotsava']['candidate_tithis']
+            FestivalService::FESTIVALS['Phuldolotsava']['candidate_tithis'],
         );
         self::assertSame('Satsangi Jeevan 4.60', FestivalService::FESTIVALS['Phuldolotsava']['source_refs'][0]);
         self::assertSame(['Satsangi Jeevan 4.59'], FestivalService::FESTIVALS['Phuldolotsava']['context_refs']);
@@ -1872,7 +1867,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame(15, $resolved['required_tithi']);
         self::assertSame(
             'phuldolotsava_both_have_sunrise_uttara_phalguni_choose_purnima',
-            $resolved['decision']['winning_reason']
+            $resolved['decision']['winning_reason'],
         );
     }
 
@@ -1898,7 +1893,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertSame(1, $resolved['required_tithi']);
         self::assertSame(
             'phuldolotsava_fallback_pratipada_without_sunrise_uttara_phalguni',
-            $resolved['decision']['winning_reason']
+            $resolved['decision']['winning_reason'],
         );
     }
 
@@ -2038,12 +2033,12 @@ final class NirnayVerifiedRulesTest extends TestCase
         self::assertEqualsWithDelta(
             1.0 / 16.0,
             $lunarMinimum->getValue(),
-            1e-12
+            1e-12,
         );
         self::assertEqualsWithDelta(
             1.0 / 12.0,
             $solarMinimum->getValue(),
-            1e-12
+            1e-12,
         );
     }
 
@@ -2073,7 +2068,7 @@ final class NirnayVerifiedRulesTest extends TestCase
             ->method('jdToCarbonPublic')
             ->willReturnCallback(
                 static fn(float $jd, string $tz): CarbonImmutable => CarbonImmutable::createFromTimestampUTC((int) round($jd * 86400))
-                    ->setTimezone($tz)
+                    ->setTimezone($tz),
             );
 
         $sunServiceProperty = $reflection->getProperty('sunService');
@@ -2093,7 +2088,7 @@ final class NirnayVerifiedRulesTest extends TestCase
         string $nakshatra,
         ?float $moonsetJd = null,
         ?float $moonriseJd = null,
-        float $moonSunElongationAtSunsetDegrees = 12.0
+        float $moonSunElongationAtSunsetDegrees = 12.0,
     ): array {
         $waxing = $moonSunElongationAtSunsetDegrees > 0.0 && $moonSunElongationAtSunsetDegrees < 180.0;
         $snapshot = [

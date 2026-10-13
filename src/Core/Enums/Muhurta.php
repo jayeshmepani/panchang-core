@@ -135,6 +135,7 @@ enum Muhurta: int
     public function getBaseQuality(?string $locale = null): string
     {
         $key = $this->getBaseQualityKey();
+
         return Localization::translate('Common', $key, $locale);
     }
 
@@ -181,6 +182,7 @@ enum Muhurta: int
             5 => [8, 3],    // Friday: Brahma + Pitri (9th, 4th)
             6 => [1, 15],   // Saturday: Ahi + Isha (2nd, 16th overall)
         ];
+
         return $map[$varaIndex] ?? [];
     }
 
@@ -193,9 +195,10 @@ enum Muhurta: int
     public static function getWeekdayDurMuhurtaNames(int $varaIndex): array
     {
         $indexes = self::getWeekdayDurMuhurtaIndexes($varaIndex);
+
         return array_map(
             fn(int $idx): string => self::from($idx)->getName(),
-            $indexes
+            $indexes,
         );
     }
 

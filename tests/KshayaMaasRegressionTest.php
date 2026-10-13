@@ -24,7 +24,7 @@ class KshayaMaasRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $before = $calendar['2123-12-17']['hindu_calendar'] ?? [];
@@ -55,7 +55,7 @@ class KshayaMaasRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $amavasyaDay = $calendar['2124-02-15']['hindu_calendar'] ?? [];
@@ -83,7 +83,7 @@ class KshayaMaasRegressionTest extends TestCase
             0.0,
             ['festival_scope' => 'month'],
             null,
-            'purnimanta'
+            'purnimanta',
         );
 
         $february = Panchang::getMonthCalendar(
@@ -95,7 +95,7 @@ class KshayaMaasRegressionTest extends TestCase
             0.0,
             ['festival_scope' => 'month'],
             null,
-            'purnimanta'
+            'purnimanta',
         );
 
         $purnimaDay = $january['2124-01-31']['hindu_calendar'] ?? [];
@@ -121,7 +121,7 @@ class KshayaMaasRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $juneAmanta = Panchang::getMonthCalendar(
@@ -131,7 +131,7 @@ class KshayaMaasRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $junePurnimanta = Panchang::getMonthCalendar(
@@ -143,7 +143,7 @@ class KshayaMaasRegressionTest extends TestCase
             0.0,
             ['festival_scope' => 'month'],
             null,
-            'purnimanta'
+            'purnimanta',
         );
 
         $before = $may['2026-05-16']['hindu_calendar'] ?? [];

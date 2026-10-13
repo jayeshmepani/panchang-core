@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Festivals;
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\Constants\ClassicalTimeConstants;
 use LogicException;
+use Throwable;
 
 /**
  * Candidate construction, scoring, karmakala windows, and Bhadra decision helpers.
@@ -104,7 +105,7 @@ trait FestivalRuleCandidates
         array $targetInterval,
         string $karmakalaType,
         int $dayOffset,
-        array $rule
+        array $rule,
     ): array {
         $ctx = (array) ($details['Resolution_Context'] ?? []);
         $panchanga = (array) ($details['Panchanga'] ?? []);
@@ -264,7 +265,7 @@ trait FestivalRuleCandidates
         string $vriddhiPreference,
         string $kshayaPreference,
         bool $preferFirstKarmakala = false,
-        bool $preferGrowthBeforeScore = false
+        bool $preferGrowthBeforeScore = false,
     ): int
     {
         if ($preferGrowthBeforeScore) {
@@ -314,7 +315,7 @@ trait FestivalRuleCandidates
         bool $vriddhi,
         bool $kshaya,
         string $vriddhiPreference,
-        string $kshayaPreference
+        string $kshayaPreference,
     ): int {
         if ($vriddhi) {
             if ($vriddhiPreference === 'last') {
@@ -383,7 +384,7 @@ trait FestivalRuleCandidates
         array $rule,
         array $candidates,
         array $today,
-        array $targetInterval
+        array $targetInterval,
     ): ?array {
         if (isset($rule['tithi_boundary_rule'])) {
             return $this->resolveTithiBoundaryTruthTable($date, $rule, $candidates, $targetInterval);
@@ -422,9 +423,15 @@ trait FestivalRuleCandidates
                 || (bool) ($rule['ekadashi_nirnay_table'] ?? false)
                 || (bool) ($rule['require_vaishnava_ekadashi_today'] ?? false));
 
-        // Vaishnava default_tradition: never let madhyahna entry prefer override
-        // Vaishnava Ekadashi nirnay (named must match ISKCON fasting day).
-        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Vaishnava') : 'Vaishnava';
+        $tradition = 'Vaishnava';
+        if (function_exists('config')) {
+            try {
+                $tradition = config('panchang.festivals.default_tradition', 'Vaishnava');
+            } catch (Throwable) {
+                $tradition = 'Vaishnava';
+            }
+        }
+
         $isVaishnavaMode = strcasecmp((string) $tradition, 'Vaishnava') === 0;
         if ((bool) ($rule['prefer_tithi_entry_before_madhyahna'] ?? false)
             && (!$isVaishnavaMode || !$isEkadashiRule)) {
@@ -535,7 +542,7 @@ trait FestivalRuleCandidates
                 $candidates,
                 (bool) ($rule['kshaya_accept_previous_tithi_vedha'] ?? false),
                 (string) ($rule['vriddhi_preference'] ?? 'last'),
-                (string) ($rule['kshaya_preference'] ?? 'first')
+                (string) ($rule['kshaya_preference'] ?? 'first'),
             );
         }
 
@@ -815,5 +822,4 @@ trait FestivalRuleCandidates
 
         return false;
     }
-
 }

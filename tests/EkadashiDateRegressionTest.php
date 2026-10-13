@@ -37,7 +37,7 @@ class EkadashiDateRegressionTest extends TestCase
 
             $festivalNames = array_map(
                 static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
-                $details['Festivals'] ?? []
+                $details['Festivals'] ?? [],
             );
 
             $this->assertContains($expectedFestival, $festivalNames, $expectedFestival . ' should be present on ' . $date);
@@ -61,7 +61,7 @@ class EkadashiDateRegressionTest extends TestCase
 
         $festivalNames = array_map(
             static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
-            $details['Festivals'] ?? []
+            $details['Festivals'] ?? [],
         );
 
         $this->assertNotContains('Padmini Ekadashi', $festivalNames, 'Padmini Ekadashi should not be emitted on the previous kshaya day.');
@@ -84,7 +84,7 @@ class EkadashiDateRegressionTest extends TestCase
 
         $festivalNames = array_map(
             static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
-            $details['Festivals'] ?? []
+            $details['Festivals'] ?? [],
         );
 
         $this->assertNotContains('Padmini Ekadashi', $festivalNames, 'Padmini Ekadashi must stay on the second Ekadashi sunrise and not shift to Dwadashi.');
@@ -186,7 +186,7 @@ class EkadashiDateRegressionTest extends TestCase
             self::assertNotContains('Unmilini Mahadwadashi', (array) ($mahadvadashi['aliases'] ?? []));
             self::assertNotSame(
                 'Unmilini Mahadwadashi fasting day observed in the Vaishnava Ekadashi tradition',
-                $mahadvadashi['description'] ?? null
+                $mahadvadashi['description'] ?? null,
             );
         }
     }

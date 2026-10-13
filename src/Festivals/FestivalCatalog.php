@@ -808,14 +808,12 @@ final class FestivalCatalog
      * Based on traditional texts and regional variations.
      */
     public const array FESTIVALS = [
-        'Mesha Sankranti'
-        => [
+        'Mesha Sankranti' => [
             'type' => 'solar_sankranti',
             'rashi' => 0,
             'aliases' => ['Baisakhi', 'Puthandu', 'Mesha Vishu'],
             'description' => 'Solar New Year',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -823,8 +821,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 1,
             'description' => 'Sun enters Vrishabha',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -832,8 +829,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 2,
             'description' => 'Sun enters Mithuna',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -841,8 +837,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 3,
             'description' => 'Sun enters Karka',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -850,8 +845,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 4,
             'description' => 'Sun enters Simha',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -859,8 +853,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 5,
             'description' => 'Worship of divine architect Vishwakarma',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
             'deity' => 'Vishwakarma',
@@ -869,8 +862,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 6,
             'description' => 'Sun enters Tula',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -878,8 +870,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 7,
             'description' => 'Sun enters Vrischika',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -887,8 +878,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 8,
             'description' => "Dhanu Sankranti marks the Sun's entry into sidereal Sagittarius and the beginning of Dhanurmasa observances.",
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
             'aliases' => [
@@ -945,8 +935,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 10,
             'description' => 'Sun enters Kumbha',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -954,8 +943,7 @@ final class FestivalCatalog
             'type' => 'solar_sankranti',
             'rashi' => 11,
             'description' => 'Sun enters Meena',
-            'regions'
-            => [
+            'regions' => [
                 0 => 'Pan-India',
             ],
         ],
@@ -6443,8 +6431,7 @@ final class FestivalCatalog
         'Varalakshmi Vratam' => [
             'type' => 'weekday_tithi',
             'paksha' => 'Shukla',
-            'tithi'
-            => [
+            'tithi' => [
                 0 => 12,
                 1 => 13,
                 2 => 14,

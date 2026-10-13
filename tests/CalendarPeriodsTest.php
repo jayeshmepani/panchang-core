@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JayeshMepani\PanchangCore\Tests;
 
 use JayeshMepani\PanchangCore\Panchanga\PanchangService;
@@ -22,7 +24,7 @@ final class CalendarPeriodsTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             [],
-            0.0
+            0.0,
         );
 
         // ── Key presence ───────────────────────────────────────────────────────
@@ -36,7 +38,7 @@ final class CalendarPeriodsTest extends TestCase
         // Astronomical: 21 Oct 2025 17:55 (after sunrise) → civil 22 Oct 2025 (BAPS / Drik)
         $g2082 = array_values(array_filter($res['gujarati_samvat_windows'], fn(array $w): bool => ($w['year'] ?? null) === 2082))[0];
         $this->assertSame('Pingala', $g2082['name']);
-        $this->assertSame('21/10/2025 05:55:04 PM', $g2082['astronomical_start_iso']);
+        $this->assertSame('21/10/2025 05:55:10 PM', $g2082['astronomical_start_iso']);
         $this->assertSame('2025-10-22', $g2082['civil_start_date']);
         // calendar_effective_end_date is inclusive last civil day (day before 2083 starts)
         $this->assertSame('2026-11-09', $g2082['calendar_effective_end_date']);
@@ -46,7 +48,7 @@ final class CalendarPeriodsTest extends TestCase
         // Astronomical: 09 Nov 2026 12:32 (after sunrise) → civil 10 Nov 2026 (BAPS)
         $g2083 = array_values(array_filter($res['gujarati_samvat_windows'], fn(array $w): bool => ($w['year'] ?? null) === 2083))[0];
         $this->assertSame('Kalayukti', $g2083['name']);
-        $this->assertSame('09/11/2026 12:32:00 PM', $g2083['astronomical_start_iso']);
+        $this->assertSame('09/11/2026 12:32:06 PM', $g2083['astronomical_start_iso']);
         $this->assertSame('2026-11-10', $g2083['civil_start_date']);
 
         // ── Samvatsara Gujarati 2083 mirrors Gujarati Samvat ──────────────────
@@ -79,7 +81,7 @@ final class CalendarPeriodsTest extends TestCase
         $this->assertSame('canonical', $brihaspati['brihaspati_model_status'] ?? null);
         $this->assertSame(
             'traditional_barhaspatya',
-            $brihaspati['brihaspati_model_family'] ?? null
+            $brihaspati['brihaspati_model_family'] ?? null,
         );
 
         // Modern ephemeris comparison is opt-in (not in the empty-fields default set).
@@ -98,7 +100,7 @@ final class CalendarPeriodsTest extends TestCase
                     'samvatsara_brihaspati',
                     'samvatsara_brihaspati_modern',
                 ],
-                0.0
+                0.0,
             );
         } catch (Throwable $throwable) {
             $message = $throwable->getMessage();
@@ -107,7 +109,7 @@ final class CalendarPeriodsTest extends TestCase
                     || str_contains($message, 'modern')
                     || str_contains($message, 'ephemeris')
                     || str_contains($message, 'Astronomy'),
-                'Modern path must be selected; unexpected error: ' . $message
+                'Modern path must be selected; unexpected error: ' . $message,
             );
 
             return;
@@ -120,33 +122,33 @@ final class CalendarPeriodsTest extends TestCase
         $this->assertNotNull($modern);
         $this->assertSame(
             'continuous_barhaspatya_modern_jupiter_ingress',
-            $modern['assignment_rule']
+            $modern['assignment_rule'],
         );
         $this->assertSame('modern_ephemeris', $modern['brihaspati_model'] ?? null);
         $this->assertSame('astronomical_comparator', $modern['brihaspati_model_status'] ?? null);
         $this->assertSame('modern_ephemeris', $modern['brihaspati_model_family'] ?? null);
         $this->assertStringContainsString(
             'modern_ephemeris',
-            (string) ($modern['brihaspati_model_variant'] ?? '')
+            (string) ($modern['brihaspati_model_variant'] ?? ''),
         );
         $this->assertStringContainsString(
             'jupiter',
-            strtolower((string) ($modern['brihaspati_timing_basis'] ?? ''))
+            strtolower((string) ($modern['brihaspati_timing_basis'] ?? '')),
         );
         $this->assertArrayHasKey('brihaspati_name_phase_source', $modern);
 
         $classicalStarts = array_map(
             static fn(array $w): string => (string) ($w['astronomical_start_iso'] ?? $w['start_iso'] ?? ''),
-            $both['samvatsara_brihaspati_windows']
+            $both['samvatsara_brihaspati_windows'],
         );
         $modernStarts = array_map(
             static fn(array $w): string => (string) ($w['astronomical_start_iso'] ?? $w['start_iso'] ?? ''),
-            $both['samvatsara_brihaspati_modern_windows']
+            $both['samvatsara_brihaspati_modern_windows'],
         );
         $this->assertNotSame(
             $classicalStarts,
             $modernStarts,
-            'Modern Brihaspati windows must not be identical to classical (model was likely discarded).'
+            'Modern Brihaspati windows must not be identical to classical (model was likely discarded).',
         );
     }
 

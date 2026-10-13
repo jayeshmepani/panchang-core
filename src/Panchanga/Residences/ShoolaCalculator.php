@@ -143,7 +143,7 @@ class ShoolaCalculator
         int $tithiNumber,
         int $weekdayIndex,
         int $nakshatraIndex,
-        int $lagnaSignIndex
+        int $lagnaSignIndex,
     ): array {
         $tithiName = Tithi::from($this->normalizeTithiNumber($tithiNumber))->getName();
         $weekdayName = Vara::from($weekdayIndex)->getName();

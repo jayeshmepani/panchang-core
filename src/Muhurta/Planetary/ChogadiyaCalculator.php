@@ -18,7 +18,7 @@ class ChogadiyaCalculator
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
         CarbonImmutable $current,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $vara = Vara::from($varaIdx);
         $isDay = ($current >= $sunrise) && ($current < $sunset);
@@ -53,7 +53,7 @@ class ChogadiyaCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $vara = Vara::from($varaIdx);
         $rows = [];

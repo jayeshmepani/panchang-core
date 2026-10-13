@@ -22,7 +22,7 @@ trait FestivalRuleNakshatra
         array $rule,
         CarbonImmutable $date,
         array $today,
-        array $tomorrow
+        array $tomorrow,
     ): ?array {
         $ctxToday = (array) ($today['Resolution_Context'] ?? []);
         $ctxTomorrow = (array) ($tomorrow['Resolution_Context'] ?? []);
@@ -194,7 +194,7 @@ trait FestivalRuleNakshatra
         $requiresPurnima = (bool) ($rule['requires_purnima'] ?? false);
         $purnimaRequiredMonths = array_values(array_filter(array_map(
             fn($month): string => $this->normalizeMonthName((string) $month),
-            (array) ($rule['purnima_required_months_amanta'] ?? [])
+            (array) ($rule['purnima_required_months_amanta'] ?? []),
         ), fn(string $value): bool => $value !== ''));
         $amantaMonth = $this->normalizeMonthName((string) (($today['Hindu_Calendar']['Month_Amanta_En'] ?? $today['Hindu_Calendar']['Month_Amanta'] ?? '')));
         if ($purnimaRequiredMonths !== [] && $amantaMonth !== '' && in_array($amantaMonth, $purnimaRequiredMonths, true)) {
@@ -242,7 +242,7 @@ trait FestivalRuleNakshatra
                 $karmakalaType,
                 $requiredNakshatra,
                 $todayNakshatraWindow > 0.0 ? 'nakshatra_overlaps_karmakala_window' : 'nakshatra_match',
-                $todayNakshatraWindow
+                $todayNakshatraWindow,
             );
         }
 
@@ -254,7 +254,7 @@ trait FestivalRuleNakshatra
             $karmakalaType,
             $requiredNakshatra,
             $tomorrowNakshatraWindow > 0.0 ? 'nakshatra_overlaps_karmakala_window' : 'nakshatra_match',
-            $tomorrowNakshatraWindow
+            $tomorrowNakshatraWindow,
         );
     }
 
@@ -294,7 +294,7 @@ trait FestivalRuleNakshatra
         string $karmakalaType,
         string $nakshatraName,
         string $reason,
-        float $nakshatraWindowOverlapSeconds = 0.0
+        float $nakshatraWindowOverlapSeconds = 0.0,
     ): array {
         return [
             'festival_name' => $festivalName,
@@ -461,5 +461,4 @@ trait FestivalRuleNakshatra
 
         return $this->resolveNakshatraNumber($name);
     }
-
 }

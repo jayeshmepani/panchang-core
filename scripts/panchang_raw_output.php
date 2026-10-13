@@ -13,6 +13,7 @@ declare(strict_types=1);
  */
 
 use JayeshMepani\PanchangCore\Traits\CliBootstrap;
+use JayeshMepani\PanchangCore\Core\Localization;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';
@@ -32,20 +33,91 @@ $outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
 $festivalYear = isset($argv[1]) ? (int) $argv[1] : 2026;
 $eclipseStartYear = isset($argv[2]) ? (int) $argv[2] : 2026;
 $eclipseEndYear = isset($argv[3]) ? (int) $argv[3] : 2032;
+$reuseGenerated = in_array('--reuse-generated', $argv, true);
 
-$panchangService = CliBootstrap::makePanchangService();
-$outputGen = CliBootstrap::makeOutputGenerator($panchangService);
+if ($reuseGenerated) {
+    $readJson = static function (string $path): array {
+        if (! is_file($path)) {
+            throw new RuntimeException('Required generated JSON is missing: ' . $path);
+        }
 
-$result = $outputGen->generateAll(
-    festivalYear: $festivalYear,
-    eclipseStartYear: $eclipseStartYear,
-    eclipseEndYear: $eclipseEndYear,
-    lat: $latitude,
-    lon: $longitude,
-    tz: $timezone,
-    elevation: $elevation,
-    calendarType: $calendarType,
-);
+        $decoded = json_decode((string) file_get_contents($path), true);
+        if (! is_array($decoded)) {
+            throw new RuntimeException('Generated JSON is invalid: ' . $path);
+        }
+
+        return $decoded;
+    };
+
+    $festivalDocument = $readJson($outputDir . DIRECTORY_SEPARATOR . sprintf('festivals_%d.json', $festivalYear));
+    $todayDocument = $readJson($outputDir . DIRECTORY_SEPARATOR . 'today.json');
+    $eclipseDocument = null;
+    foreach (glob($outputDir . DIRECTORY_SEPARATOR . 'eclipses_*.json') ?: [] as $eclipsePath) {
+        $candidate = $readJson($eclipsePath);
+        $from = (int) ($candidate['eclipses']['from_year'] ?? PHP_INT_MAX);
+        $to = (int) ($candidate['eclipses']['to_year'] ?? PHP_INT_MIN);
+        if ($from <= $eclipseStartYear && $to >= $eclipseEndYear) {
+            $eclipseDocument = $candidate;
+            break;
+        }
+    }
+    if ($eclipseDocument === null) {
+        throw new RuntimeException(sprintf(
+            'No generated eclipse file covers %d-%d in %s.',
+            $eclipseStartYear,
+            $eclipseEndYear,
+            $outputDir,
+        ));
+    }
+
+    $festivalPayload = $festivalDocument['festivals'] ?? [];
+    unset($festivalPayload['locale']);
+    $sourceByYear = $eclipseDocument['eclipses']['by_year'] ?? [];
+    $eclipsesByYear = [];
+    foreach ($sourceByYear as $year => $events) {
+        if ((int) $year >= $eclipseStartYear && (int) $year <= $eclipseEndYear) {
+            $eclipsesByYear[(string) $year] = $events;
+        }
+    }
+    $eclipsesFlat = [];
+    foreach ($eclipsesByYear as $events) {
+        array_push($eclipsesFlat, ...$events);
+    }
+
+    $result = [
+        'festivals_' . $festivalYear => $festivalPayload,
+        'eclipses_' . $eclipseStartYear . '_' . $eclipseEndYear => [
+            'title' => sprintf(
+                Localization::translate('String', 'Eclipses %d-%d - All eclipses for %d years'),
+                $eclipseStartYear,
+                $eclipseEndYear,
+                $eclipseEndYear - $eclipseStartYear + 1,
+            ),
+            'from_year' => $eclipseStartYear,
+            'to_year' => $eclipseEndYear,
+            'total_eclipse_count' => count($eclipsesFlat),
+            'by_year' => $eclipsesByYear,
+            'flat' => $eclipsesFlat,
+        ],
+        'todays_complete_details' => $todayDocument['today'] ?? [],
+        'muhurta_evaluation' => $todayDocument['muhurta_evaluation'] ?? [],
+        'calendar_period_windows' => $todayDocument['calendar_period_windows'] ?? [],
+    ];
+} else {
+    $panchangService = CliBootstrap::makePanchangService();
+    $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
+
+    $result = $outputGen->generateAll(
+        festivalYear: $festivalYear,
+        eclipseStartYear: $eclipseStartYear,
+        eclipseEndYear: $eclipseEndYear,
+        lat: $latitude,
+        lon: $longitude,
+        tz: $timezone,
+        elevation: $elevation,
+        calendarType: $calendarType,
+    );
+}
 
 $output = [
     'meta' => [

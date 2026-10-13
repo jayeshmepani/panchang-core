@@ -39,7 +39,7 @@ class OptimizationRegressionTest extends TestCase
 
         $this->assertSame(
             json_encode($first, JSON_THROW_ON_ERROR),
-            json_encode($second, JSON_THROW_ON_ERROR)
+            json_encode($second, JSON_THROW_ON_ERROR),
         );
     }
 

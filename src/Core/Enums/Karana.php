@@ -55,6 +55,7 @@ enum Karana: int
 
         if ($index >= 2 && $index <= 57) {
             $enumIdx = ($index - 2) % 7;
+
             return [self::from($enumIdx)->getName(), $index];
         }
 

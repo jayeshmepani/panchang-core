@@ -27,7 +27,7 @@ class FestivalParityFingerprintTest extends TestCase
         $this->assertSame(
             455,
             FestivalService::getFestivalCount(),
-            'First-level FESTIVALS registry size must stay stable unless catalog intentionally changes'
+            'First-level FESTIVALS registry size must stay stable unless catalog intentionally changes',
         );
     }
 
@@ -46,7 +46,7 @@ class FestivalParityFingerprintTest extends TestCase
         $this->assertSame(
             0,
             $exit,
-            "Festival/vrat parity failure (dates/identities/duplicates/algorithms).\n" . implode("\n", $output)
+            "Festival/vrat parity failure (dates/identities/duplicates/algorithms).\n" . implode("\n", $output),
         );
     }
 
@@ -59,7 +59,7 @@ class FestivalParityFingerprintTest extends TestCase
             $this->assertSame(
                 0,
                 (int) ($fp['duplicate_same_day_identity_count'] ?? -1),
-                (string) $label . ' baseline must have zero same-day identity duplicates'
+                (string) $label . ' baseline must have zero same-day identity duplicates',
             );
         }
     }

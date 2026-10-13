@@ -144,6 +144,7 @@ $extractJd = static function (mixed $value): ?float {
     if (is_array($value) && isset($value['jd'])) {
         return (float) $value['jd'];
     }
+
     return null;
 };
 
@@ -161,7 +162,7 @@ $dayBundle = static function (CarbonImmutable $date) use (&$dayBundleCache, $ser
         (float) $options['elevation'],
         null,
         (string) $options['calendar_type'],
-        false
+        false,
     );
     $ctx = (array) ($details['Resolution_Context'] ?? []);
 
@@ -219,7 +220,7 @@ $evaluateClassicalHybridGates = static function (
     CarbonImmutable $date,
     array $day,
     array $prevDay,
-    array $nextDay
+    array $nextDay,
 ) use ($getDvitiyaInterval): array {
     $sunrise = (float) $day['sunrise_jd'];
     $sunset = (float) $day['sunset_jd'];
@@ -323,6 +324,7 @@ $discoverConjunctionSeasons = static function () use ($rangeStart, $rangeEnd, $d
         }
     }
     ksort($seasons);
+
     return array_values($seasons);
 };
 
@@ -331,7 +333,7 @@ $evaluateEveningHybrid = static function (
     array $prevDay,
     array $nextDay,
     float $amavasyaEndJd,
-    CarbonImmutable $date
+    CarbonImmutable $date,
 ) use ($jme, $options, $evaluateClassicalHybridGates): array {
     $sunset = (float) $day['sunset_jd'];
     $moonset = $day['moonset_jd'];
@@ -467,7 +469,7 @@ $evaluateEveningHybrid = static function (
             $waxingSepDeg,
             $tithiAtSunrise,
             $ds3AparahnaPassed ? 'YES' : 'NO',
-            $ds6PradoshaPassed ? 'YES' : 'NO'
+            $ds6PradoshaPassed ? 'YES' : 'NO',
         ),
         'metrics' => $metrics,
         'selection_mode' => 'HYBRID_MODERN_PLUS_CLASSICAL',
@@ -596,7 +598,7 @@ $outputPath = $options['output'] ?? sprintf(
     '%s/chandra_hybrid_%s_to_%s.json',
     $outDir,
     $rangeStart->toDateString(),
-    $rangeEnd->toDateString()
+    $rangeEnd->toDateString(),
 );
 
 panchang_script_write_json($outputPath, $payload);
@@ -607,7 +609,7 @@ echo sprintf(
     count($dates),
     count($rows),
     $rangeStart->toDateString(),
-    $rangeEnd->toDateString()
+    $rangeEnd->toDateString(),
 );
 
 $n = 0;
@@ -628,6 +630,6 @@ foreach ($rows as $row) {
         isset($m['ss10_1']['waxing_ecliptic_separation_deg']) ? sprintf('%.2f', (float) $m['ss10_1']['waxing_ecliptic_separation_deg']) : 'n/a',
         ($m['dharma_sindhu']['ds_3_muhurta_aparahna_passed'] ?? false) ? 'YES' : 'NO',
         ($m['dharma_sindhu']['ds_6_muhurta_pradosha_passed'] ?? false) ? 'YES' : 'NO',
-        (string) ($row['reason_code'] ?? 'OK')
+        (string) ($row['reason_code'] ?? 'OK'),
     );
 }

@@ -38,7 +38,7 @@ class FestivalRuleEngine
         CarbonImmutable $date,
         array $today,
         array $tomorrow,
-        ?callable $fetchHistoricalSnapshot = null
+        ?callable $fetchHistoricalSnapshot = null,
     ): ?array {
         $this->assertValidFestivalRule($festivalName, $rule);
         if (!$this->isExecutableResolverProfile($rule)) {
@@ -100,11 +100,11 @@ class FestivalRuleEngine
         $configuredTithi = (int) ($rule['tithi'] ?? 0);
         $ruleTithiOptions = array_values(array_unique(array_map(
             static fn($value): int => (int) $value,
-            array_filter((array) ($rule['tithi_options'] ?? []), static fn($value): bool => (int) $value > 0)
+            array_filter((array) ($rule['tithi_options'] ?? []), static fn($value): bool => (int) $value > 0),
         )));
         $requiredTithis = array_values(array_unique(array_filter(
             array_merge($configuredTithi > 0 ? [$configuredTithi] : [], $ruleTithiOptions),
-            static fn(int $value): bool => $value > 0
+            static fn(int $value): bool => $value > 0,
         )));
 
         if ($requiredTithis === []) {
@@ -221,7 +221,7 @@ class FestivalRuleEngine
 
                 usort(
                     $filtered,
-                    fn(array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala, $preferGrowthBeforeScore)
+                    fn(array $left, array $right): int => $this->compareCandidates($left, $right, $vriddhi, $kshaya, $vriddhiPreference, $kshayaPreference, $preferFirstKarmakala, $preferGrowthBeforeScore),
                 );
                 $winner = $filtered[0];
             }
@@ -341,7 +341,7 @@ class FestivalRuleEngine
         array $rule,
         CarbonImmutable $date,
         array $today,
-        array $tomorrow
+        array $tomorrow,
     ): ?array {
         return $this->resolveNakshatraFestival($festivalName, $rule, $date, $today, $tomorrow);
     }

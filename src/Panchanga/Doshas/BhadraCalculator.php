@@ -12,7 +12,7 @@ class BhadraCalculator
 {
     public function __construct(
         private readonly TransitEngine $transitEngine,
-        private readonly BhadraEngine $bhadraEngine
+        private readonly BhadraEngine $bhadraEngine,
     ) {}
 
     public function findBhadraPeriods(float $jdStart, float $jdEnd, int $sunriseTithi, string $paksha): array
@@ -45,7 +45,7 @@ class BhadraCalculator
                         $vEndJd,
                         $moonRasi,
                         $sunriseTithi,
-                        $paksha
+                        $paksha,
                     );
                 }
 

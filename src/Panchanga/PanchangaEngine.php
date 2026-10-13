@@ -36,6 +36,7 @@ class PanchangaEngine
     public function getKarana(float $sunLon, float $moonLon): array
     {
         $angle = AstroCore::normalize($moonLon - $sunLon);
+
         return $this->getKaranaAtAngle($angle);
     }
 
@@ -59,6 +60,7 @@ class PanchangaEngine
     public function calculateTithiAtAngle(float $angle): array
     {
         $tithi = Tithi::fromAngle($angle);
+
         return [
             'index' => $tithi->value,
             'name' => $tithi->getName(),
@@ -76,6 +78,7 @@ class PanchangaEngine
     public function calculateYogaAtAngle(float $angle): array
     {
         $yoga = Yoga::fromAngle($angle);
+
         return [
             'index' => $yoga->value + 1, // original code used 1-based index
             'name' => $yoga->getName(),
@@ -84,7 +87,7 @@ class PanchangaEngine
 
     public function calculateVara(array $birth, SunService $sunService): array
     {
-        [$sunrise,] = $sunService->getSunriseSunset($birth);
+        [$sunrise] = $sunService->getSunriseSunset($birth);
         $dt = $sunService->getBirthDatetime($birth);
 
         $actual = $dt;
@@ -96,6 +99,7 @@ class PanchangaEngine
 
         $vIdx = ((int) $actual->format('N')) % 7;
         $vara = Vara::from($vIdx);
+
         return [
             'index' => $vara->value,
             'name' => $vara->getName(),
@@ -236,7 +240,7 @@ class PanchangaEngine
      */
     public function resolveChaitradiVikramSamvat(
         DateTimeInterface $amantaMonthStartLocal,
-        int $amantaIndex
+        int $amantaIndex,
     ): int {
         $start = $amantaMonthStartLocal instanceof CarbonImmutable
             ? $amantaMonthStartLocal
@@ -261,7 +265,7 @@ class PanchangaEngine
      */
     public function resolveEraYearsFromAmantaContext(
         DateTimeInterface $amantaMonthStartLocal,
-        int $amantaIndex
+        int $amantaIndex,
     ): array {
         $vikram = $this->resolveChaitradiVikramSamvat($amantaMonthStartLocal, $amantaIndex);
 
@@ -294,6 +298,7 @@ class PanchangaEngine
     {
         // Equivalent to (Saka + 11) % 60 because Vikram − Saka = 135.
         $idx = (($vikramSamvat - 135 + 11) % 60 + 60) % 60;
+
         return Samvatsara::from($idx)->getName();
     }
 
@@ -329,6 +334,7 @@ class PanchangaEngine
     public function getSamvatsaraNorth(int $vikramSamvat): string
     {
         $idx = (($vikramSamvat + 9) % 60 + 60) % 60;
+
         return Samvatsara::from($idx)->getName();
     }
 
@@ -341,6 +347,7 @@ class PanchangaEngine
     public function getSamvatsaraGujarati(int $gujaratiSamvat): string
     {
         $idx = (($gujaratiSamvat + 8) % 60 + 60) % 60;
+
         return Samvatsara::from($idx)->getName();
     }
 
@@ -361,7 +368,7 @@ class PanchangaEngine
     public function getSamvatsaraBrihaspati(
         DateTimeInterface $date,
         ?string $model = null,
-        ?AstronomyService $astronomy = null
+        ?AstronomyService $astronomy = null,
     ): string {
         return (new BrihaspatiSamvatsaraService($astronomy))
             ->getSamvatsaraBrihaspati($date, $model);
@@ -375,7 +382,7 @@ class PanchangaEngine
      */
     public function compareSamvatsaraBrihaspatiModels(
         DateTimeInterface $date,
-        AstronomyService $astronomy
+        AstronomyService $astronomy,
     ): array {
         return (new BrihaspatiSamvatsaraService($astronomy))
             ->compareModels($date);
@@ -401,7 +408,7 @@ class PanchangaEngine
         int $vikramSamvat,
         int $sakaSamvat,
         int $gujaratiSamvat,
-        ?DateTimeInterface $date = null
+        ?DateTimeInterface $date = null,
     ): array {
         $south = $this->getSamvatsaraSouth($vikramSamvat);
         $north = $this->getSamvatsaraNorth($vikramSamvat);
@@ -526,7 +533,7 @@ class PanchangaEngine
         float $moonLon,
         array $birth,
         SunService $sunService,
-        AstronomyService $astronomy
+        AstronomyService $astronomy,
     ): array {
         $tithi = $this->calculateTithi($sunLon, $moonLon);
         $vara = $this->calculateVara($birth, $sunService);
@@ -628,6 +635,7 @@ class PanchangaEngine
     public function isVishtiKarana(float $sunLon, float $moonLon): bool
     {
         [, $idx] = $this->getKarana($sunLon, $moonLon);
+
         return in_array($idx, [8, 15, 22, 29, 36, 43, 50, 57], true); // Vishti/Bhadra occurs in these specific 1-60 indices
     }
 }

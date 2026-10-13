@@ -22,7 +22,7 @@ class MonthFieldsSelectiveTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
         $selected = Panchang::getMonthFields(
             2026,
@@ -32,7 +32,7 @@ class MonthFieldsSelectiveTest extends TestCase
             'Asia/Kolkata',
             ['tithi'],
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $this->assertCount(30, $selected);
@@ -55,7 +55,7 @@ class MonthFieldsSelectiveTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
         $selected = Panchang::getMonthFields(
             2026,
@@ -65,7 +65,7 @@ class MonthFieldsSelectiveTest extends TestCase
             'Asia/Kolkata',
             ['moon', 'festivals'],
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         foreach (['moon_sign', 'moon_phase', 'moonrise', 'moonset', 'moonrise_date', 'moonset_date', 'moonrise_iso', 'moonset_iso', 'moonset_day_relation', 'moon_visibility', 'festivals', 'daily_observances', 'sankranti'] as $key) {
@@ -88,12 +88,12 @@ class MonthFieldsSelectiveTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            ['ayana', 'ritu', 'sayana_ayana', 'sayana_ritu', 'amanta_month', 'purnimanta_month']
+            ['ayana', 'ritu', 'sayana_ayana', 'sayana_ritu', 'amanta_month', 'purnimanta_month'],
         );
 
         $this->assertSame(
             ['ayana_windows', 'ritu_windows', 'sayana_ayana_windows', 'sayana_ritu_windows', 'amanta_month_windows', 'purnimanta_month_windows'],
-            array_keys($selected)
+            array_keys($selected),
         );
         $this->assertNotEmpty($selected['ayana_windows']);
         $this->assertNotEmpty($selected['ritu_windows']);
@@ -121,7 +121,7 @@ class MonthFieldsSelectiveTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $this->assertArrayHasKey('Ayana', $full['2026-07-01']['hindu_calendar']);
@@ -159,7 +159,7 @@ class MonthFieldsSelectiveTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            $fields
+            $fields,
         );
 
         $expanded = Panchang::getCalendarPeriodWindowsRange(
@@ -170,7 +170,7 @@ class MonthFieldsSelectiveTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            $fields
+            $fields,
         );
 
         $rangeStart = CarbonImmutable::create(2026, 4, 1, 0, 0, 0, 'Asia/Kolkata')->startOfDay();
@@ -180,13 +180,13 @@ class MonthFieldsSelectiveTest extends TestCase
             $key = $field . '_windows';
             $expected = array_values(array_filter(
                 $expanded[$key],
-                fn(array $window): bool => $this->windowOverlapsRange($window, $rangeStart, $rangeEndExclusive)
+                fn(array $window): bool => $this->windowOverlapsRange($window, $rangeStart, $rangeEndExclusive),
             ));
 
             $this->assertSame(
                 json_encode($expected, JSON_THROW_ON_ERROR),
                 json_encode($selected[$key], JSON_THROW_ON_ERROR),
-                $key
+                $key,
             );
         }
 
@@ -209,12 +209,12 @@ class MonthFieldsSelectiveTest extends TestCase
             23.2472446,
             69.668339,
             'Asia/Kolkata',
-            ['purnimanta_month']
+            ['purnimanta_month'],
         );
 
         $jyeshthaWindows = array_values(array_filter(
             $selected['purnimanta_month_windows'],
-            static fn(array $window): bool => str_starts_with((string) $window['name'], 'Jyeshtha')
+            static fn(array $window): bool => str_starts_with((string) $window['name'], 'Jyeshtha'),
         ));
 
         $this->assertCount(2, $jyeshthaWindows);
@@ -233,7 +233,7 @@ class MonthFieldsSelectiveTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
         $selected = Panchang::getMonthFields(
             2026,
@@ -243,12 +243,12 @@ class MonthFieldsSelectiveTest extends TestCase
             'Asia/Kolkata',
             ['tithi', 'nakshatra', 'yoga', 'karana', 'vara', 'sun', 'moon', 'hindu_calendar', 'festivals'],
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $this->assertSame(
             json_encode($full, JSON_THROW_ON_ERROR),
-            json_encode($selected, JSON_THROW_ON_ERROR)
+            json_encode($selected, JSON_THROW_ON_ERROR),
         );
     }
 

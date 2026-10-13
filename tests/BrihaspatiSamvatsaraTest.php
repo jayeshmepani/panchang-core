@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JayeshMepani\PanchangCore\Tests;
 
 use Carbon\CarbonImmutable;
@@ -67,15 +69,15 @@ final class BrihaspatiSamvatsaraTest extends TestCase
     {
         $classical = $this->service->getBrihaspatiSamvatsaraInfo(
             CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
-            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $classical['model']
+            $classical['model'],
         );
         $this->assertStringContainsString(
             'surya_siddhanta',
-            (string) ($classical['variant'] ?? '')
+            (string) ($classical['variant'] ?? ''),
         );
 
         // Engine wrapper must forward $model (regression for silent classical default).
@@ -83,8 +85,8 @@ final class BrihaspatiSamvatsaraTest extends TestCase
             'Raudri',
             $this->engine->getSamvatsaraBrihaspati(
                 CarbonImmutable::create(2026, 4, 22),
-                BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
-            )
+                BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
+            ),
         );
     }
 
@@ -94,15 +96,15 @@ final class BrihaspatiSamvatsaraTest extends TestCase
 
         $classical = $this->service->getBrihaspatiSamvatsaraInfo(
             $date,
-            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
         );
         $grahalaghava = $this->service->getBrihaspatiSamvatsaraInfo(
             $date,
-            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA,
         );
         $makaranda = $this->service->getBrihaspatiSamvatsaraInfo(
             $date,
-            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+            BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
         );
 
         // No AstronomyService required for historical mean models.
@@ -110,11 +112,11 @@ final class BrihaspatiSamvatsaraTest extends TestCase
         $this->assertSame(BrihaspatiSamvatsaraService::MODEL_MAKARANDA, $makaranda['model']);
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $grahalaghava['name_phase_source']
+            $grahalaghava['name_phase_source'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $makaranda['name_phase_source']
+            $makaranda['name_phase_source'],
         );
 
         // Projection retains classical 60-name phase at this civil date.
@@ -147,11 +149,11 @@ final class BrihaspatiSamvatsaraTest extends TestCase
         $this->assertNull($same['difference']);
         $this->assertArrayHasKey(
             BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA,
-            $same['differences_from_classical']
+            $same['differences_from_classical'],
         );
         $this->assertArrayHasKey(
             BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
-            $same['differences_from_classical']
+            $same['differences_from_classical'],
         );
     }
 
@@ -172,60 +174,60 @@ final class BrihaspatiSamvatsaraTest extends TestCase
     {
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            BrihaspatiSamvatsaraService::DEFAULT_MODEL
+            BrihaspatiSamvatsaraService::DEFAULT_MODEL,
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            BrihaspatiSamvatsaraService::defaultModel()
+            BrihaspatiSamvatsaraService::defaultModel(),
         );
 
         $models = BrihaspatiSamvatsaraService::supportedModels();
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_CANONICAL,
-            $models[BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS]['status']
+            $models[BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS]['status'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_EXPERIMENTAL,
-            $models[BrihaspatiSamvatsaraService::MODEL_MAKARANDA]['status']
+            $models[BrihaspatiSamvatsaraService::MODEL_MAKARANDA]['status'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_EXPERIMENTAL,
-            $models[BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA]['status']
+            $models[BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA]['status'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_ASTRONOMICAL_COMPARATOR,
-            $models[BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS]['status']
+            $models[BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS]['status'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::FAMILY_TRADITIONAL_BARHASPATYA,
-            $models[BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS]['model_family']
+            $models[BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS]['model_family'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::FAMILY_TRADITIONAL_MEAN_JUPITER,
-            $models[BrihaspatiSamvatsaraService::MODEL_MAKARANDA]['model_family']
+            $models[BrihaspatiSamvatsaraService::MODEL_MAKARANDA]['model_family'],
         );
     }
 
     public function test_info_payload_includes_status_and_family_metadata(): void
     {
         $classical = $this->service->getBrihaspatiSamvatsaraInfo(
-            CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata')
+            CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
         );
         $this->assertSame(BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS, $classical['model']);
         $this->assertSame(BrihaspatiSamvatsaraService::STATUS_CANONICAL, $classical['status']);
         $this->assertSame(
             BrihaspatiSamvatsaraService::FAMILY_TRADITIONAL_BARHASPATYA,
-            $classical['model_family']
+            $classical['model_family'],
         );
 
         $makaranda = $this->service->getBrihaspatiSamvatsaraInfo(
             CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
-            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+            BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
         );
         $this->assertSame(BrihaspatiSamvatsaraService::STATUS_EXPERIMENTAL, $makaranda['status']);
         $this->assertSame(
             BrihaspatiSamvatsaraService::FAMILY_TRADITIONAL_MEAN_JUPITER,
-            $makaranda['model_family']
+            $makaranda['model_family'],
         );
     }
 
@@ -235,20 +237,20 @@ final class BrihaspatiSamvatsaraTest extends TestCase
             2083,
             1948,
             2082,
-            CarbonImmutable::create(2026, 8, 3)
+            CarbonImmutable::create(2026, 8, 3),
         );
 
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $fields['Samvatsara_Brihaspati_Model']
+            $fields['Samvatsara_Brihaspati_Model'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::STATUS_CANONICAL,
-            $fields['Samvatsara_Brihaspati_Model_Status']
+            $fields['Samvatsara_Brihaspati_Model_Status'],
         );
         $this->assertSame(
             BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
-            $fields['Samvatsara_Systems']['north_brihaspati']['model']
+            $fields['Samvatsara_Systems']['north_brihaspati']['model'],
         );
     }
 }

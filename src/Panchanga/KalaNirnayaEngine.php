@@ -142,7 +142,7 @@ class KalaNirnayaEngine
         float $tithiEndJd,
         float $sunriseDay1Jd,
         float $sunriseDay2Jd,
-        float $prevTithiEndJd
+        float $prevTithiEndJd,
     ): array {
         $result = [
             'tithi_number' => $tithiNumber,
@@ -188,7 +188,7 @@ class KalaNirnayaEngine
         ?float $dvadashiEndJd = null,
         ?float $thirdSunriseJd = null,
         ?float $dashamiStartJd = null,
-        ?bool $followingPakshaEndVriddhi = null
+        ?bool $followingPakshaEndVriddhi = null,
     ): array {
         $arunodayaGhatikas = max(self::ARUNODAYA_MIN_GHATIKAS, min(self::ARUNODAYA_MAX_GHATIKAS, $arunodayaGhatikas));
         $nightGhatiJd = $this->nightGhatiJd($sunriseJd, $nextSunriseJd, $sunsetJd);
@@ -339,7 +339,7 @@ class KalaNirnayaEngine
         float $sunriseJd,
         float $sunsetJd,
         float $nextSunriseJd,
-        ?float $previousSunsetJd = null
+        ?float $previousSunsetJd = null,
     ): array
     {
         if (!isset(self::SANKRANTI_PUNYA_KAAL[$sankrantiName])) {
@@ -402,7 +402,7 @@ class KalaNirnayaEngine
         float $tithiEndJd,
         float $sunriseJd,
         float $sunsetJd,
-        float $nextSunriseJd
+        float $nextSunriseJd,
     ): array {
         if (!isset(self::FESTIVAL_RULES[$festivalName])) {
             return ['error' => 'Unknown festival: ' . $festivalName];
@@ -465,7 +465,7 @@ class KalaNirnayaEngine
         ?float $dvadashiEndJd = null,
         ?float $thirdSunriseJd = null,
         ?float $dashamiStartJd = null,
-        ?bool $followingPakshaEndVriddhi = null
+        ?bool $followingPakshaEndVriddhi = null,
     ): array {
         $viddha = $this->determineViddhaTithi(
             $tithiNumber,
@@ -473,7 +473,7 @@ class KalaNirnayaEngine
             $tithiEndJd,
             $sunriseJd,
             $nextSunriseJd,
-            $prevTithiEndJd
+            $prevTithiEndJd,
         );
 
         $ekadashiSmarta = null;
@@ -497,7 +497,7 @@ class KalaNirnayaEngine
                 $dvadashiEndJd,
                 $thirdSunriseJd,
                 $dashamiStartJd,
-                $followingPakshaEndVriddhi
+                $followingPakshaEndVriddhi,
             );
 
             $ekadashiVaishnava = $this->determineEkadashi(
@@ -514,7 +514,7 @@ class KalaNirnayaEngine
                 $dvadashiEndJd,
                 $thirdSunriseJd,
                 $dashamiStartJd,
-                $followingPakshaEndVriddhi
+                $followingPakshaEndVriddhi,
             );
         }
 

@@ -144,6 +144,7 @@ final readonly class AstroCore
         $d = (int) floor($deg);
         $m = (int) floor(($deg - $d) * 60.0);
         $s = ($deg - $d - $m / 60.0) * 3600.0;
+
         return sprintf('%d° %d\' %s"', $d, $m, $s);
     }
 

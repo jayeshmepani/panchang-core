@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
-
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
@@ -26,7 +25,8 @@ use Throwable;
  * @see docs/FESTIVAL_REFACTOR_PARITY_CONTRACT.md
  */
 trait FestivalPayloadPresentation
-{    /**
+{
+    /**
      * Build a complete, localized festival payload while preserving the
      * calculation basis from the registry and resolver decision context.
      *
@@ -105,7 +105,7 @@ trait FestivalPayloadPresentation
                     $aliases = array_merge(
                         ['Amavasya', 'Amas'],
                         $amavasyaWeekday['extra_aliases'],
-                        $aliases
+                        $aliases,
                     );
                     $rules['weekday_classifier'] = $amavasyaWeekday['identity'];
                     $rules['naming_basis'] = 'vaar';
@@ -118,7 +118,7 @@ trait FestivalPayloadPresentation
 
             $rules['aliases'] = array_values(array_unique(array_filter(
                 $aliases,
-                static fn(string $alias): bool => $alias !== $identityKey && $alias !== $displayName
+                static fn(string $alias): bool => $alias !== $identityKey && $alias !== $displayName,
             )));
         }
 
@@ -136,7 +136,7 @@ trait FestivalPayloadPresentation
         $regions = $rules['regions'] ?? ['Pan-India'];
         $localizedAliases = array_map(
             static fn(string $alias): string => Localization::translate('Festival', $alias),
-            array_map(strval(...), (array) ($rules['aliases'] ?? []))
+            array_map(strval(...), (array) ($rules['aliases'] ?? [])),
         );
         $aliases = array_values(array_unique($localizedAliases));
         $deity = $rules['deity'] ?? null;

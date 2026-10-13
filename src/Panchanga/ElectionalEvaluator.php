@@ -400,7 +400,7 @@ final class ElectionalEvaluator
             'remedies_available' => false,
             'recommendation' => match ($overallVerdict) {
                 'accepted' => Localization::translate('String', 'Muhurta is auspicious. Proceed with confidence.'),
-                'rejected_but_can_try_remedies' => Localization::translate('String', 'Muhurta has significant doshas. Remedies may help but alternative preferred.')
+                'rejected_but_can_try_remedies' => Localization::translate('String', 'Muhurta has significant doshas. Remedies may help but alternative preferred.'),
             },
         ];
     }
@@ -408,6 +408,7 @@ final class ElectionalEvaluator
     private static function normalizeTithiNumber(int $tithiNumber): int
     {
         $normalized = $tithiNumber % 30;
+
         return $normalized === 0 ? 30 : $normalized;
     }
 }

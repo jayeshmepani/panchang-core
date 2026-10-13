@@ -26,6 +26,7 @@ trait FestivalMonthTithiSupport
         }
 
         $tithiPaksha = $details['Tithi']['paksha'] ?? null;
+
         return is_string($tithiPaksha) && $tithiPaksha !== '' ? $tithiPaksha : null;
     }
 
@@ -42,6 +43,7 @@ trait FestivalMonthTithiSupport
         }
 
         $index = (int) $index;
+
         return (($index - 1) % 15) + 1;
     }
 
@@ -128,7 +130,7 @@ trait FestivalMonthTithiSupport
         array $rules,
         CarbonImmutable $date,
         array $todayDetails,
-        ?callable $fetchHistoricalSnapshot
+        ?callable $fetchHistoricalSnapshot,
     ): bool {
         if (!(bool) ($rules['prefer_best_purnima_affinity_in_sun_sign'] ?? false)) {
             return false;
@@ -195,7 +197,7 @@ trait FestivalMonthTithiSupport
 
         $collapsed = $this->collapseConsecutiveNakshatraCandidateDays(
             $candidates,
-            (string) ($rules['vriddhi_preference'] ?? '')
+            (string) ($rules['vriddhi_preference'] ?? ''),
         );
 
         $bestDate = null;
@@ -346,7 +348,7 @@ trait FestivalMonthTithiSupport
     private function namedAmavasyaAttributedMonthMatches(
         array $rules,
         array $todayDetails,
-        array $tomorrowDetails
+        array $tomorrowDetails,
     ): bool {
         if (!$this->isKrishnaAmavasyaRule($rules)) {
             return false;
@@ -376,7 +378,7 @@ trait FestivalMonthTithiSupport
 
             $allowedAmanta = array_values(array_filter(array_map(
                 fn($month): string => $this->normalizeMonthName((string) $month),
-                (array) ($rules['allowed_months_amanta'] ?? [])
+                (array) ($rules['allowed_months_amanta'] ?? []),
             ), fn(string $value): bool => $value !== ''));
 
             return $allowedAmanta !== [] && $amanta !== '' && in_array($amanta, $allowedAmanta, true);
@@ -384,11 +386,11 @@ trait FestivalMonthTithiSupport
 
         $allowedAmanta = array_values(array_filter(array_map(
             fn($month): string => $this->normalizeMonthName((string) $month),
-            (array) ($rules['allowed_months_amanta'] ?? [])
+            (array) ($rules['allowed_months_amanta'] ?? []),
         ), fn(string $value): bool => $value !== ''));
         $allowedPurnimanta = array_values(array_filter(array_map(
             fn($month): string => $this->normalizeMonthName((string) $month),
-            (array) ($rules['allowed_months_purnimanta'] ?? [])
+            (array) ($rules['allowed_months_purnimanta'] ?? []),
         ), fn(string $value): bool => $value !== ''));
 
         if ((string) ($rules['family'] ?? '') === 'phuldolotsava' && $allowedAmanta !== []) {

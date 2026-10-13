@@ -33,7 +33,7 @@ class PanchakaRahitaTableCalculator
         array $lagnaTable,
         array $tithiIntervals,
         array $nakshatraIntervals,
-        string $tz
+        string $tz,
     ): array {
         $tzObj = new DateTimeZone($tz);
         $jdSunrise = $this->carbonToJd($sunrise);

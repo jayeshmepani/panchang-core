@@ -82,7 +82,7 @@ return [
         */
         'brihaspati_samvatsara_model' => env(
             'PANCHANG_BRIHASPATI_SAMVATSARA_MODEL',
-            'classical_ss'
+            'classical_ss',
         ),
     ],
 

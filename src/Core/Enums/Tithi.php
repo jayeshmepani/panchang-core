@@ -89,6 +89,7 @@ enum Tithi: int
         }
 
         $index = (int) floor($normalized / 12.0) + 1;
+
         return self::from($index);
     }
 

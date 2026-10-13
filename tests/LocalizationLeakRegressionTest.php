@@ -134,12 +134,12 @@ class LocalizationLeakRegressionTest extends TestCase
             $this->assertMatchesRegularExpression(
                 '/[\x{0900}-\x{097F}]/u',
                 Localization::translate('FestivalDesc', $desc, 'hi'),
-                'hi FestivalDesc missing Devanagari: ' . $desc
+                'hi FestivalDesc missing Devanagari: ' . $desc,
             );
             $this->assertMatchesRegularExpression(
                 '/[\x{0A80}-\x{0AFF}]/u',
                 Localization::translate('FestivalDesc', $desc, 'gu'),
-                'gu FestivalDesc missing Gujarati: ' . $desc
+                'gu FestivalDesc missing Gujarati: ' . $desc,
             );
         }
 

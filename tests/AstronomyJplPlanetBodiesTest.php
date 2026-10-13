@@ -41,7 +41,7 @@ final class AstronomyJplPlanetBodiesTest extends TestCase
     {
         $this->assertSame(
             'jpl',
-            strtolower((string) config('panchang.jme_settings.mode'))
+            strtolower((string) config('panchang.jme_settings.mode')),
         );
 
         /** @var AstronomyService $astro */
@@ -64,7 +64,7 @@ final class AstronomyJplPlanetBodiesTest extends TestCase
             $this->assertIsFloat($planets[$name]);
             $this->assertTrue(
                 is_finite($planets[$name]),
-                $name . ' longitude must be finite under JPL'
+                $name . ' longitude must be finite under JPL',
             );
         }
 
@@ -82,7 +82,7 @@ final class AstronomyJplPlanetBodiesTest extends TestCase
 
         $info = $service->getBrihaspatiSamvatsaraInfo(
             CarbonImmutable::create(2026, 8, 3, 12, 0, 0, 'Asia/Kolkata'),
-            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS,
         );
 
         $this->assertSame(BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS, $info['model']);

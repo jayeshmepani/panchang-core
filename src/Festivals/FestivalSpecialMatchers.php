@@ -20,7 +20,7 @@ trait FestivalSpecialMatchers
         array $todayDetails,
         array $tomorrowDetails,
         ?array $yesterdayDetails,
-        ?callable $fetchHistoricalSnapshot
+        ?callable $fetchHistoricalSnapshot,
     ): bool
     {
         if ($this->isAnvadhanLatePurnimaTransitionDay($todayDetails, $tomorrowDetails)) {
@@ -75,7 +75,7 @@ trait FestivalSpecialMatchers
         array $todayDetails,
         array $tomorrowDetails,
         ?array $yesterdayDetails,
-        array $rules
+        array $rules,
     ): bool {
         if (!$this->monthRuleMatches($rules, (array) ($todayDetails['Hindu_Calendar'] ?? []))) {
             return false;
@@ -193,7 +193,7 @@ trait FestivalSpecialMatchers
     private function matchesChapcharKutRule(
         CarbonImmutable $date,
         array $todayDetails,
-        ?callable $fetchHistoricalSnapshot
+        ?callable $fetchHistoricalSnapshot,
     ): bool
     {
         if ($date->month !== 3 || $date->dayOfWeek !== CarbonImmutable::FRIDAY) {

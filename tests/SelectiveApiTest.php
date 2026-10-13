@@ -86,7 +86,7 @@ class SelectiveApiTest extends TestCase
             $this->assertSame(
                 json_encode($full[$section], JSON_THROW_ON_ERROR),
                 json_encode($selected[$section], JSON_THROW_ON_ERROR),
-                sprintf('Selected section %s should match full day details.', $section)
+                sprintf('Selected section %s should match full day details.', $section),
             );
         }
     }
@@ -110,7 +110,7 @@ class SelectiveApiTest extends TestCase
             $this->assertSame(
                 json_encode($full[$key] ?? null, JSON_THROW_ON_ERROR),
                 json_encode($value, JSON_THROW_ON_ERROR),
-                sprintf('Basic detail key %s should match full day details.', $key)
+                sprintf('Basic detail key %s should match full day details.', $key),
             );
         }
     }
@@ -135,35 +135,35 @@ class SelectiveApiTest extends TestCase
 
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Panchanga'], 0.0, $at)['Panchanga'],
-            $service->getPanchanga($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getPanchanga($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Basic_Details'], 0.0, $at)['Basic_Details'],
-            $service->getBasicDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getBasicDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Special_Yogas'], 0.0, $at)['Special_Yogas'],
-            $service->getSpecialYogas($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getSpecialYogas($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Muhurta_Full_Day'], 0.0, $at)['Muhurta_Full_Day'],
-            $service->getMuhurtaFullDay($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getMuhurtaFullDay($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Abhijit_Muhurta'], 0.0, $at)['Abhijit_Muhurta'],
-            $service->getAbhijitMuhurta($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getAbhijitMuhurta($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Varjyam'], 0.0, $at)['Varjyam'],
-            $service->getVarjyam($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getVarjyam($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Dharma_Sindhu'], 0.0, $at)['Dharma_Sindhu'],
-            $service->getDharmaSindhu($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at)
+            $service->getDharmaSindhu($date, 23.2472446, 69.668339, 'Asia/Kolkata', 0.0, $at),
         );
         $this->assertSame(
             $service->getSelectedDetails($date, 23.2472446, 69.668339, 'Asia/Kolkata', ['Lagna_Full_Day'], 0.0, $at)['Lagna_Full_Day'],
-            $service->getSection($date, 23.2472446, 69.668339, 'Asia/Kolkata', 'Lagna_Full_Day', 0.0, $at)
+            $service->getSection($date, 23.2472446, 69.668339, 'Asia/Kolkata', 'Lagna_Full_Day', 0.0, $at),
         );
     }
 
@@ -203,7 +203,7 @@ class SelectiveApiTest extends TestCase
 
         $this->assertSame(
             $full['Panchanga']['Current_Tithi_At_Input_Now']['name'],
-            $fields['Panchanga']['Current_Tithi_At_Input_Now']['name']
+            $fields['Panchanga']['Current_Tithi_At_Input_Now']['name'],
         );
         $this->assertSame($full['Abhijit_Muhurta']['abhijit_start'], $fields['Abhijit_Muhurta']['abhijit_start']);
         $this->assertSame($full['Sunrise'], $fields['Sunrise']);

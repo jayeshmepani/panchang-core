@@ -113,7 +113,7 @@ class SpecialYogaCalculator
 
     public function __construct(
         private readonly SunService $sunService,
-        private readonly IntervalTracker $intervalTracker
+        private readonly IntervalTracker $intervalTracker,
     ) {}
 
     public function calculateSpecialYogas(
@@ -122,7 +122,7 @@ class SpecialYogaCalculator
         float $jdEnd,
         int $tithiNumber,
         int $weekdayIndex,
-        string $tz
+        string $tz,
     ): array {
         $nakshatraIntervals = $this->intervalTracker->collectNakshatraIntervals($jdStart, $jdEnd);
         $tithiIntervals = $this->intervalTracker->collectTithiIntervals($jdStart, $jdEnd);
@@ -132,69 +132,69 @@ class SpecialYogaCalculator
             'sarvartha_siddhi' => $this->buildSpecialYogaPayload(
                 'Sarvartha Siddhi Yoga',
                 'weekday_nakshatra',
-                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::SARVARTHA_SIDDHI_RULES, $tz)
+                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::SARVARTHA_SIDDHI_RULES, $tz),
             ),
             'amrit_siddhi' => $this->buildSpecialYogaPayload(
                 'Amrit Siddhi Yoga',
                 'weekday_nakshatra',
-                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::AMRIT_SIDDHI_RULES, $tz)
+                $this->matchWeekdayNakshatraWindows($nakshatraIntervals, $weekdayIndex, self::AMRIT_SIDDHI_RULES, $tz),
             ),
             'ravi_pushya' => $this->buildSpecialYogaPayload(
                 'Ravi Pushya Yoga',
                 'weekday_nakshatra',
-                $weekdayIndex === 0 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : []
+                $weekdayIndex === 0 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : [],
             ),
             'guru_pushya' => $this->buildSpecialYogaPayload(
                 'Guru Pushya Yoga',
                 'weekday_nakshatra',
-                $weekdayIndex === 4 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : []
+                $weekdayIndex === 4 ? $this->filterNakshatraWindows($nakshatraIntervals, [7], $tz) : [],
             ),
             'dwipushkar' => $this->buildSpecialYogaPayload(
                 'Dwipushkar Yoga',
                 'weekday_tithi_nakshatra',
-                $this->matchPushkaraWindows($tithiIntervals, $nakshatraIntervals, $weekdayIndex, self::PUSHKARA_TITHIS, self::DWI_PUSHKARA_NAKSHATRAS, $tz)
+                $this->matchPushkaraWindows($tithiIntervals, $nakshatraIntervals, $weekdayIndex, self::PUSHKARA_TITHIS, self::DWI_PUSHKARA_NAKSHATRAS, $tz),
             ),
             'tripushkar' => $this->buildSpecialYogaPayload(
                 'Tripushkar Yoga',
                 'weekday_tithi_nakshatra',
-                $this->matchPushkaraWindows($tithiIntervals, $nakshatraIntervals, $weekdayIndex, self::PUSHKARA_TITHIS, self::TRI_PUSHKARA_NAKSHATRAS, $tz)
+                $this->matchPushkaraWindows($tithiIntervals, $nakshatraIntervals, $weekdayIndex, self::PUSHKARA_TITHIS, self::TRI_PUSHKARA_NAKSHATRAS, $tz),
             ),
             'ganda_mula' => $this->buildSpecialYogaPayload(
                 'Ganda Mula',
                 'nakshatra',
-                $this->filterNakshatraWindows($nakshatraIntervals, [0, 8, 9, 17, 18, 26], $tz)
+                $this->filterNakshatraWindows($nakshatraIntervals, [0, 8, 9, 17, 18, 26], $tz),
             ),
             'vinchhudo' => $this->buildSpecialYogaPayload(
                 'Vinchhudo',
                 'moon_sign',
-                $this->intervalTracker->collectMoonSignWindows($jdStart, $jdEnd, 7, $tz)
+                $this->intervalTracker->collectMoonSignWindows($jdStart, $jdEnd, 7, $tz),
             ),
             'ravi_yoga' => $this->buildSpecialYogaPayload(
                 'Ravi Yoga',
                 'sun_moon_nakshatra_distance',
-                $this->matchRaviYogaWindows($nakshatraIntervals, $sunNakshatraIntervals, $tz)
+                $this->matchRaviYogaWindows($nakshatraIntervals, $sunNakshatraIntervals, $tz),
             ),
             'aadal' => $this->buildSpecialYogaPayload(
                 'Aadal Yoga',
                 'sun_moon_nakshatra_count_with_abhijit',
-                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::AADAL_COUNTS, $tz, 'Aadal')
+                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::AADAL_COUNTS, $tz, 'Aadal'),
             ),
             'vidaal' => $this->buildSpecialYogaPayload(
                 'Vidaal Yoga',
                 'sun_moon_nakshatra_count_with_abhijit',
-                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::VIDAAL_COUNTS, $tz, 'Vidaal')
+                $this->matchAadalVidaalWindows($nakshatraIntervals, $sunNakshatraIntervals, self::VIDAAL_COUNTS, $tz, 'Vidaal'),
             ),
             'jwalamukhi' => $this->buildSpecialYogaPayload(
                 'Jwalamukhi Yoga',
                 'tithi_nakshatra',
-                $this->matchJwalamukhiWindows($tithiIntervals, $nakshatraIntervals, $tz)
+                $this->matchJwalamukhiWindows($tithiIntervals, $nakshatraIntervals, $tz),
             ),
         ];
 
         $payload['summary'] = [
             'active_yoga_keys' => array_keys(array_filter(
                 $payload,
-                static fn(array $node): bool => (($node['is_present'] ?? false) === true)
+                static fn(array $node): bool => (($node['is_present'] ?? false) === true),
             )),
             'sunrise_tithi' => Tithi::from($tithiNumber)->getName(),
             'weekday' => Vara::from($weekdayIndex)->getName(),
@@ -280,7 +280,7 @@ class SpecialYogaCalculator
         float $jdEnd,
         int $weekdayIndex,
         array $lagnaTable,
-        string $tz
+        string $tz,
     ): array {
         $windows = [];
         $rawRules = [
@@ -302,8 +302,9 @@ class SpecialYogaCalculator
                 Vara::from($rule['weekday_index'])->getName(),
                 Localization::translate('Nakshatra', $rule['nakshatra_index'], AstroCore::getConfig('panchang.defaults.locale', 'en')),
                 Rasi::from($rule['lagna_sign_index'])->getName(),
-                Localization::translate('String', 'Lagna')
+                Localization::translate('String', 'Lagna'),
             );
+
             return $rule;
         }, $rawRules);
 
@@ -413,8 +414,8 @@ class SpecialYogaCalculator
                     $sunNakshatraIntervals,
                     $variant['tithi_phases'],
                     $variant['require_krishna_paksha'],
-                    (int) $variant['moon_nakshatra_index'],
-                    $tz
+                    $variant['moon_nakshatra_index'],
+                    $tz,
                 )
                 : [];
 
@@ -445,7 +446,7 @@ class SpecialYogaCalculator
         array $targetTithiPhases,
         bool $requireKrishnaPaksha,
         int $moonNakshatraIndex,
-        string $tz
+        string $tz,
     ): array {
         $windows = [];
 
@@ -500,7 +501,7 @@ class SpecialYogaCalculator
         int $weekdayIndex,
         array $targetTithis,
         array $targetNakshatras,
-        string $tz
+        string $tz,
     ): array {
         if (!in_array($weekdayIndex, self::PUSHKARA_WEEKDAYS, true)) {
             return [];
@@ -573,7 +574,7 @@ class SpecialYogaCalculator
         array $sunNakshatraIntervals,
         array $targetCounts,
         string $tz,
-        string $label
+        string $label,
     ): array {
         $windows = [];
         foreach ($moonNakshatraIntervals as $moonInterval) {

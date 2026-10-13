@@ -56,6 +56,7 @@ enum Yoga: int
         }
 
         $index = (int) floor($normalized / 13.3333333333);
+
         return self::from($index);
     }
 

@@ -194,7 +194,7 @@ final class EclipseCrossLocationRegressionTest extends TestCase
         self::assertLessThanOrEqual(
             $deltaSeconds,
             abs($actualTime->diffInSeconds($expectedTime, false)),
-            $label
+            $label,
         );
     }
 }

@@ -25,8 +25,14 @@ trait FestivalRuleTruthTables
                 return true;
             }
         }
+        if ($this->isEkadashiNirnayRule($rule)) {
+            return true;
+        }
+        if ($this->isPradoshRule($rule)) {
+            return true;
+        }
 
-        return $this->isEkadashiNirnayRule($rule) || $this->isPradoshRule($rule) || $this->isSankashtiRule($rule);
+        return $this->isSankashtiRule($rule);
     }
 
     private function isEkadashiNirnayRule(array $rule): bool
@@ -64,7 +70,7 @@ trait FestivalRuleTruthTables
         array $rule,
         CarbonImmutable $date,
         array $today,
-        array $tomorrow
+        array $tomorrow,
     ): ?array {
         $requiredNakshatra = (string) ($rule['nakshatra'] ?? 'Uttara Phalguni');
         $karmakalaType = $this->normalizeKarmakalaType((string) ($rule['karmakala_type'] ?? 'sunrise'));
@@ -223,11 +229,11 @@ trait FestivalRuleTruthTables
 
         $allowedAmanta = array_map(
             fn($month): string => $this->normalizeMonthName((string) $month),
-            (array) ($rule['allowed_months_amanta'] ?? (isset($rule['month_amanta']) ? [$rule['month_amanta']] : []))
+            (array) ($rule['allowed_months_amanta'] ?? (isset($rule['month_amanta']) ? [$rule['month_amanta']] : [])),
         );
         $allowedPurnimanta = array_map(
             fn($month): string => $this->normalizeMonthName((string) $month),
-            (array) ($rule['allowed_months_purnimanta'] ?? (isset($rule['month_purnimanta']) ? [$rule['month_purnimanta']] : []))
+            (array) ($rule['allowed_months_purnimanta'] ?? (isset($rule['month_purnimanta']) ? [$rule['month_purnimanta']] : [])),
         );
 
         if ((string) ($rule['family'] ?? '') === 'phuldolotsava' && $allowedAmanta !== []) {
@@ -1212,6 +1218,7 @@ trait FestivalRuleTruthTables
             }
 
             $winner = $day1Overlap > $day2Overlap ? $day1 : $day2;
+
             return (bool) ($winner['target_during_observance'] ?? false)
                 ? $this->markSpecialWinner($winner, 'darsha_amavasya_longer_aparahna_overlap')
                 : null;
@@ -1251,7 +1258,7 @@ trait FestivalRuleTruthTables
             (float) ($day1['sunrise_jd'] ?? 0.0),
             (float) ($day2['sunrise_jd'] ?? ($day1['next_sunrise_jd'] ?? 0.0)),
             'Vaishnava',
-            (float) ($day1['previous_sunrise_jd'] ?? 0.0)
+            (float) ($day1['previous_sunrise_jd'] ?? 0.0),
         );
 
         $fastingDay = (string) ($ekadashiDecision['fasting_day'] ?? '');
@@ -1768,7 +1775,7 @@ trait FestivalRuleTruthTables
         array $candidates,
         bool $kshayaAcceptViddha,
         string $vriddhiPreference,
-        string $kshayaPreference
+        string $kshayaPreference,
     ): array {
         $day1 = $candidates[0];
         $day2 = $candidates[1];
@@ -1826,5 +1833,4 @@ trait FestivalRuleTruthTables
 
         return $this->markSpecialWinner($day2, 'generic_kshaya_fallback_last');
     }
-
 }

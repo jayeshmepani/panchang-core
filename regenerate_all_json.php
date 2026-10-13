@@ -58,9 +58,9 @@ function runPhpScript(string $label, string $command, string $workingDir): int
                     continue;
                 }
 
-                if ($stream !== $pipes[1]) {
-                    fwrite(STDERR, $chunk);
-                }
+                $destination = $stream === $pipes[1] ? STDOUT : STDERR;
+                fwrite($destination, $chunk);
+                fflush($destination);
             }
         }
 
@@ -160,6 +160,62 @@ function capturePhpScript(string $label, string $command, string $workingDir): a
     ];
 }
 
+function generateSharedEclipses(string $scriptsDir, string $outputBaseDir, array $locales): void
+{
+    $jobs = [];
+    foreach ($locales as $locale) {
+        $jobs[] = static function () use ($scriptsDir, $locale): array {
+            $command = sprintf(
+                'PANCHANG_CALENDAR_TYPE=amanta PANCHANG_LOCALE=%s php %s 2026 2035',
+                escapeshellarg($locale),
+                escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_eclipses.php'),
+            );
+            echo "[runner] Generating shared amanta/{$locale} eclipse data..." . PHP_EOL;
+            $exitCode = runPhpScript("shared eclipses {$locale}", $command, dirname($scriptsDir));
+            if ($exitCode !== 0) {
+                throw new RuntimeException("Shared eclipse generation failed for locale {$locale} (exit {$exitCode}).");
+            }
+
+            return ['locale' => $locale];
+        };
+    }
+
+    echo '[runner] Generating shared eclipse data for ' . count($jobs) . ' locales in parallel.' . PHP_EOL;
+    $results = Fork::new()
+        ->concurrent(count($jobs))
+        ->run(...$jobs);
+
+    foreach ($results as $result) {
+        $locale = $result['locale'];
+        $sourcePath = $outputBaseDir . DIRECTORY_SEPARATOR . 'amanta' . DIRECTORY_SEPARATOR . $locale
+            . DIRECTORY_SEPARATOR . 'eclipses_2026_2035.json';
+        $targetPath = $outputBaseDir . DIRECTORY_SEPARATOR . 'purnimanta' . DIRECTORY_SEPARATOR . $locale
+            . DIRECTORY_SEPARATOR . 'eclipses_2026_2035.json';
+        $targetDir = dirname($targetPath);
+        if (! is_dir($targetDir) && ! mkdir($targetDir, 0777, true) && ! is_dir($targetDir)) {
+            throw new RuntimeException('Could not create output directory: ' . $targetDir);
+        }
+        $payload = json_decode((string) file_get_contents($sourcePath), true);
+        if (! is_array($payload)) {
+            throw new RuntimeException('Generated eclipse JSON is invalid: ' . $sourcePath);
+        }
+
+        // Eclipse geometry is location and locale dependent, but independent of
+        // Amanta versus Purnimanta. Only the calendar metadata changes.
+        $payload['meta']['calendar_type'] = 'purnimanta';
+        $payload['eclipses']['calendar_type'] = 'purnimanta';
+        $json = json_encode(
+            $payload,
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+                | JSON_PRESERVE_ZERO_FRACTION | JSON_INVALID_UTF8_SUBSTITUTE,
+        );
+        if ($json === false || file_put_contents($targetPath, $json . PHP_EOL) === false) {
+            throw new RuntimeException('Could not write shared eclipse JSON: ' . $targetPath);
+        }
+        echo "[runner] Reused {$locale} eclipse calculations for purnimanta." . PHP_EOL;
+    }
+}
+
 function generateCalendarLocale(
     string $calendarType,
     string $locale,
@@ -195,20 +251,8 @@ function generateCalendarLocale(
             'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_today.php'),
         ],
         [
-            'label' => 'panchang_festivals.php',
-            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026',
-        ],
-        [
-            'label' => 'panchang_festivals.php festivals',
-            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 festivals',
-        ],
-        [
-            'label' => 'panchang_festivals.php vrats',
-            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 vrats',
-        ],
-        [
-            'label' => 'panchang_eclipses.php',
-            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_eclipses.php') . ' 2026 2035',
+            'label' => 'panchang_festivals.php bundle',
+            'command' => 'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_festivals.php') . ' 2026 bundle',
         ],
     ];
 
@@ -241,7 +285,7 @@ function generateCalendarLocale(
     echo "[{$jobLabel}] Running panchang_raw_output.php..." . PHP_EOL;
     $rawResult = capturePhpScript(
         "{$jobLabel} panchang_raw_output.php",
-        'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php'),
+        'php ' . escapeshellarg($scriptsDir . DIRECTORY_SEPARATOR . 'panchang_raw_output.php') . ' 2026 2026 2032 --reuse-generated',
         __DIR__,
     );
     if ($rawResult['exit_code'] !== 0) {
@@ -294,6 +338,8 @@ foreach ($calendarTypes as $type) {
 }
 
 echo 'Starting ' . count($jobs) . ' parallel generation jobs...' . PHP_EOL;
+
+generateSharedEclipses($scriptsDir, $outputBaseDir, $locales);
 
 $results = Fork::new()
     ->concurrent(count($jobs))

@@ -21,7 +21,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdNextSunrise,
         int $nakIdxAtSunrise,
         float $nakStartJdAtSunrise,
-        float $nakEndJdAtSunrise
+        float $nakEndJdAtSunrise,
     ): array {
         return $this->calculateNakshatraPeriodWindowsForScope(
             'varjyam',
@@ -30,7 +30,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $jdNextSunrise,
             $nakIdxAtSunrise,
             $nakStartJdAtSunrise,
-            $nakEndJdAtSunrise
+            $nakEndJdAtSunrise,
         );
     }
 
@@ -40,7 +40,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdNextSunrise,
         int $nakIdxAtSunrise,
         float $nakStartJdAtSunrise,
-        float $nakEndJdAtSunrise
+        float $nakEndJdAtSunrise,
     ): array {
         return $this->calculateNakshatraPeriodWindowsForScope(
             'amrita_kaal',
@@ -49,7 +49,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $jdNextSunrise,
             $nakIdxAtSunrise,
             $nakStartJdAtSunrise,
-            $nakEndJdAtSunrise
+            $nakEndJdAtSunrise,
         );
     }
 
@@ -60,7 +60,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdNextSunrise,
         int $nakIdxAtSunrise,
         float $nakStartJdAtSunrise,
-        float $nakEndJdAtSunrise
+        float $nakEndJdAtSunrise,
     ): array {
         $windows = [];
         $nakshatraSpan = 360.0 / 27.0;
@@ -81,7 +81,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 $currentNakStartJd,
                 $currentNakEndJd,
                 $jdSunrise,
-                $jdNextSunrise
+                $jdNextSunrise,
             );
             array_push($windows, ...$periodWindows);
 
@@ -92,7 +92,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
                 $currentNakStartJd + 1e-6,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->getMoonLongitude($jd)
+                fn(float $jd): float => $this->getMoonLongitude($jd),
             );
 
             if ($currentNakEndJd <= $currentNakStartJd) {
@@ -102,7 +102,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
         usort(
             $windows,
-            static fn(array $a, array $b): int => $a['window_start_jd'] <=> $b['window_start_jd']
+            static fn(array $a, array $b): int => $a['window_start_jd'] <=> $b['window_start_jd'],
         );
 
         return $windows;
@@ -156,7 +156,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdSunset,
         CarbonImmutable $nextSunrise,
         float $jdNextSunrise,
-        string $tz
+        string $tz,
     ): array {
         $nightDurationJd = $jdNextSunrise - $jdSunset;
         $nightMuhurtaJd = $nightDurationJd / 15.0;
@@ -195,7 +195,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             = array_reduce(
                 $trayodashiOverlaps,
                 static fn(float $carry, array $row): float => $carry + $row['duration_minutes'],
-                0.0
+                0.0,
             );
 
         $hasTrayodashiOverlap = $trayodashiOverlaps !== [];
@@ -246,7 +246,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdEnd,
         int $sunriseTithi,
         int $weekdayIndex,
-        string $tz
+        string $tz,
     ): array {
         return $this->specialYogaCalculator->calculateSpecialYogas($date, $jdStart, $jdEnd, $sunriseTithi, $weekdayIndex, $tz);
     }
@@ -271,7 +271,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $jdEnd,
         int $weekdayIndex,
         array $lagnaTable,
-        string $tz
+        string $tz,
     ): array {
         return $this->specialYogaCalculator->calculateMaitreyaYoga($jdStart, $jdEnd, $weekdayIndex, $lagnaTable, $tz);
     }
@@ -285,7 +285,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
     {
         return $this->shoolaCalculator->calculateNakshatraShool(
             $this->collectNakshatraIntervals($jdStart, $jdEnd),
-            $tz
+            $tz,
         );
     }
 
@@ -310,7 +310,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $this->collectNakshatraPadaIntervals($jdStart, $jdEnd),
             $tz,
             $moonLongitude,
-            $currentJd
+            $currentJd,
         );
     }
 
@@ -345,7 +345,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         int $karanaIndex,
         int $currentKaranaIndex,
         string $tz,
-        ?int $sankrantiRashi
+        ?int $sankrantiRashi,
     ): array {
         $tithiIntervals = $this->collectTithiIntervals($jdStart, $jdEnd);
         $nakshatraIntervals = $this->collectNakshatraIntervals($jdStart, $jdEnd);
@@ -407,7 +407,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
         float $lon,
         ?float $previousSunriseJd = null,
         ?string $monthAmanta = null,
-        ?string $paksha = null
+        ?string $paksha = null,
     ): ?array {
         return $this->ekadashiParanaCalculator->buildEkadashiObservance(
             $tithiNumber,
@@ -421,7 +421,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $lon,
             $previousSunriseJd,
             $monthAmanta,
-            $paksha
+            $paksha,
         );
     }
 
@@ -498,12 +498,33 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
     private function findAngleCrossing(float $jd0, float $targetAngle, int $direction, callable $angleFn): float
     {
-        $step = 0.25 * $direction;
-        // 0.25 day step with 100 steps only scans 25 days, which is insufficient
-        // for month-boundary searches (e.g. next Amavasya ~29.5 days away).
-        $maxSteps = 500;
-        $jd1 = $jd0;
+        $angle = $angleFn($jd0);
+        $f0 = $this->signedDiff($angle, $targetAngle);
+        if ($f0 === 0.0) {
+            return $jd0;
+        }
+
+        $distance = $direction > 0
+            ? AstroCore::normalize($targetAngle - $angle)
+            : AstroCore::normalize($angle - $targetAngle);
+        if ($distance === 0.0) {
+            $distance = 360.0;
+        }
+
+        // 15.5 degrees/day bounds lunar motion. For slower solar motion, use
+        // a conservative local rate estimate to avoid dozens of daily probes.
+        $speedBound = 15.5;
+        $probeAngle = $angleFn($jd0 + ($direction * 0.25));
+        $estimatedRate = $this->signedDiff($probeAngle, $angle) / ($direction * 0.25);
+        if ($estimatedRate > 0.0 && $estimatedRate < 10.0) {
+            $speedBound = max(0.25, ($estimatedRate * 1.35) + 0.05);
+        }
+        $safeJumpDays = max(0.0, ($distance / $speedBound) * 0.75);
+        $jd1 = $jd0 + ($direction * $safeJumpDays);
         $f0 = $this->signedDiff($angleFn($jd1), $targetAngle);
+
+        $step = 0.25 * $direction;
+        $maxSteps = 500;
         $jd2 = $jd1;
         $f1 = $f0;
 
@@ -527,10 +548,24 @@ trait PanchangMuhurtaYogaDelegatesTrait
         $fLow = $this->signedDiff($angleFn($low), $targetAngle);
         $fHigh = $this->signedDiff($angleFn($high), $targetAngle);
 
-        for ($i = 0; $i < 80; $i++) {
-            $mid = ($low + $high) / 2.0;
+        // Secant interpolation converges quickly for smooth longitude motion;
+        // midpoint fallback keeps the bracket safe when progress stalls.
+        for ($i = 0; $i < 20; $i++) {
+            $range = $high - $low;
+            if ($range < 1e-6) {
+                break;
+            }
+
+            $denominator = $fHigh - $fLow;
+            $mid = $denominator === 0.0
+                ? ($low + $high) / 2.0
+                : $low - ($fLow * $range / $denominator);
+            $margin = $range * 0.05;
+            if ($mid <= $low + $margin || $mid >= $high - $margin) {
+                $mid = ($low + $high) / 2.0;
+            }
             $fMid = $this->signedDiff($angleFn($mid), $targetAngle);
-            if ($fMid === 0.0) {
+            if (abs($fMid) < 1e-6) {
                 return $mid;
             }
 

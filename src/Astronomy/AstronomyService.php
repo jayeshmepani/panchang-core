@@ -49,6 +49,12 @@ class AstronomyService
 
     private readonly CData $ascmcBuffer;
 
+    private readonly CData $ayanBuffer;
+
+    private readonly CData $rateBuffer;
+
+    private bool $isSiderealModeSet = false;
+
     public function __construct(private JmeEphFFI $jme)
     {
         $this->initializeEphemerisPath($this->jme);
@@ -57,6 +63,8 @@ class AstronomyService
         $this->serrBuffer = $ffi->new('char[256]');
         $this->cuspsBuffer = $ffi->new('double[13]');
         $this->ascmcBuffer = $ffi->new('double[10]');
+        $this->ayanBuffer = $ffi->new('double');
+        $this->rateBuffer = $ffi->new('double');
     }
 
     public function clearCaches(): void
@@ -98,7 +106,7 @@ class AstronomyService
             $birth['hour'],
             $birth['minute'],
             $birth['second'],
-            $birth['timezone']
+            $birth['timezone'],
         );
 
         $utc = $local->setTimezone('UTC');
@@ -113,14 +121,27 @@ class AstronomyService
             $utc->month,
             $utc->day,
             $hourDecimal,
-            JmeEphFFI::JME_CALENDAR_GREGORIAN
+            JmeEphFFI::JME_CALENDAR_GREGORIAN,
         );
     }
 
     public function setAyanamsa(float $jd): void
     {
-        // Configure project default sidereal reference (PanchangCore uses Lahiri/Chitrapaksha by default).
-        $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
+        if ($this->isSiderealModeSet) {
+            return;
+        }
+
+        $rc = $this->jme->jme_set_sidereal_mode_checked(
+            JmeEphFFI::JME_SIDEREAL_TRUE_CITRA,
+            0.0,
+            0.0,
+            $this->serrBuffer,
+        );
+        if ($rc !== JmeEphFFI::JME_OK) {
+            throw new RuntimeException(FFI::string($this->serrBuffer));
+        }
+
+        $this->isSiderealModeSet = true;
     }
 
     /**
@@ -168,7 +189,7 @@ class AstronomyService
             | JmeEphFFI::JME_CALC_BARYCENTRIC
         ));
 
-        if (!$skipNoAberration) {
+        if (! $skipNoAberration) {
             $flags |= JmeEphFFI::JME_CALC_NO_ABERRATION;
         }
 
@@ -214,15 +235,15 @@ class AstronomyService
         $lon = AstroCore::normalize((float) $this->xxBuffer[0]);
         $err = FFI::string($this->serrBuffer);
 
-        if ($rc < 0 || !is_finite($lon)) {
+        if ($rc < 0 || ! is_finite($lon)) {
             throw new RuntimeException(
                 sprintf(
                     'Unable to compute body %d longitude at JD %.8F (rc=%d, err=%s).',
                     $bodyId,
                     $jd,
                     $rc,
-                    $err !== '' ? $err : 'empty'
-                )
+                    $err !== '' ? $err : 'empty',
+                ),
             );
         }
 
@@ -247,7 +268,7 @@ class AstronomyService
             (float) $birth['longitude'],
             ord('W'),
             $this->cuspsBuffer,
-            $this->ascmcBuffer
+            $this->ascmcBuffer,
         );
 
         $this->trimCache($this->ascendantCache);
@@ -266,7 +287,19 @@ class AstronomyService
 
         $this->trimCache($this->ayanamsaCache);
 
-        return $this->ayanamsaCache[$cacheKey] = $this->jme->jme_get_ayanamsa_ut($jd);
+        $rc = $this->jme->jme_get_ayanamsa_ex2_ut(
+            $jd,
+            JmeEphFFI::JME_SIDEREAL_TRUE_CITRA,
+            JmeEphFFI::JME_AYANAMSA_TRUE,
+            FFI::addr($this->ayanBuffer),
+            FFI::addr($this->rateBuffer),
+            $this->serrBuffer,
+        );
+        if ($rc !== JmeEphFFI::JME_OK) {
+            throw new RuntimeException(FFI::string($this->serrBuffer));
+        }
+
+        return $this->ayanamsaCache[$cacheKey] = (float) $this->ayanBuffer->cdata;
     }
 
     private function trimCache(array &$cache): void

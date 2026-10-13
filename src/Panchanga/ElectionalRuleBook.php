@@ -114,5 +114,4 @@ final class ElectionalRuleBook
             3 => [1],
         ],
     ];
-
 }

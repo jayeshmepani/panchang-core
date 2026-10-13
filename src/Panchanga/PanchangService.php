@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Panchanga;
 use Carbon\CarbonImmutable;
 use FFI\CData;
 use JayeshMepani\PanchangCore\Astronomy\AstronomyService;
+use JayeshMepani\PanchangCore\Astronomy\JmeRuntime;
 use JayeshMepani\PanchangCore\Astronomy\Math\IntervalTracker;
 use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Astronomy\SunService;
@@ -146,17 +147,13 @@ class PanchangService
             $this->jme->jme_set_ephemeris_path($ephePath);
         }
 
-        $engineMode = strtoupper((string) (function_exists('config') ? config('panchang.jme_settings.mode', 'auto') : 'auto'));
-        $nativeEngine = match ($engineMode) {
-            'JPL' => 'JPL',
-            'MOSHIER' => 'MOSHIER',
-            'VSOP_ELP_MEEUS', 'ANALYTICAL' => 'VSOP_ELP_MEEUS',
-            default => 'AUTO',
-        };
+        $configuredMode = function_exists('config')
+            ? config('panchang.jme_settings.mode', 'jpl')
+            : ($_ENV['PANCHANG_JME_MODE'] ?? 'jpl');
+        $nativeEngine = JmeRuntime::nativeEngineName((string) $configuredMode);
         $this->jme->configureEngine($nativeEngine, $ephePath !== '' ? $ephePath : null);
-
-        // Enforce Lahiri globally for all Panchang calculations, including lightweight snapshots.
-        $this->jme->jme_set_sidereal_mode(JmeEphFFI::JME_SIDEREAL_LAHIRI, 0.0, 0.0);
+        JmeRuntime::assertSunMoonEngine($this->jme, $nativeEngine);
+        JmeRuntime::setTrueCitra($this->jme);
     }
 
     public function clearCaches(): void
@@ -180,9 +177,8 @@ class PanchangService
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta,
-        array $options = []
-    ): array
-    {
+        array $options = [],
+    ): array {
         // Normalize calendar_type from string to enum
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -310,17 +306,17 @@ class PanchangService
             (int) $tithi['index'] + 1,
             (int) $vara['index'] + 1,
             $nakIdx + 1,
-            $sunriseAscSign + 1
+            $sunriseAscSign + 1,
         );
         $panchakaRuntime = ElectionalEvaluator::calculatePanchakaDosha(
             (int) $currentTithi['index'] + 1,
             (int) $vara['index'],
             $currentNakIdx + 1,
-            $ascSign + 1
+            $ascSign + 1,
         );
         $panchaka = [
             ...$panchakaRuntime,
-            'is_auspicious' => !$panchakaRuntime['has_dosha'],
+            'is_auspicious' => ! $panchakaRuntime['has_dosha'],
             'calculated_for' => 'input_now',
             'input_now_iso' => AstroCore::formatDateTime($calculationAt),
             'at_sunrise' => [
@@ -417,7 +413,7 @@ class PanchangService
             $ayanamsaDeg,
             $lat,
             $lon,
-            $this->jme
+            $this->jme,
         );
         DebugTrace::log('panchang.day', 'lagna table completed', [
             'lagna_rows' => count($lagnaTable),
@@ -474,7 +470,7 @@ class PanchangService
             $lagnaTable,
             $tithiIntervalsForPanchaka,
             $nakshatraIntervalsForPanchaka,
-            $tz
+            $tz,
         );
 
         // Lagna calculation
@@ -485,7 +481,7 @@ class PanchangService
             $ayanamsaDeg,
             $lat,
             $lon,
-            $this->jme
+            $this->jme,
         );
         DebugTrace::log('panchang.day', 'instant lagna resolved', [
             'sign_index' => $lagna['sign_index'] ?? null,
@@ -572,7 +568,7 @@ class PanchangService
             $vikram,
             $saka,
             $gujarati,
-            $date
+            $date,
         );
 
         [$moonrise, $moonset] = $this->sunService->getMoonriseMoonset($birthBase);
@@ -588,7 +584,7 @@ class PanchangService
             $lon,
             $jdPreviousSunrise,
             $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
-            (string) ($tithi['paksha'] ?? '')
+            (string) ($tithi['paksha'] ?? ''),
         );
 
         $todaySnapshot = [
@@ -638,11 +634,11 @@ class PanchangService
             ],
             'Nakshatra_Windows' => array_map(
                 fn(array $interval): array => $this->formatTransitionWindow($interval, 'nakshatra', $tz),
-                $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise)
+                $this->intervalTracker->collectNakshatraIntervals($jdSunrise, $jdNextSunrise),
             ),
             'Yoga_Windows' => array_map(
                 fn(array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz),
-                $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)
+                $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise),
             ),
             'Ekadashi_Observance' => $snapshotEkadashiObservance,
         ];
@@ -665,8 +661,8 @@ class PanchangService
                 $tz,
                 $elevation,
                 null,
-                $calendarType
-            )
+                $calendarType,
+            ),
         );
         $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
 
@@ -682,7 +678,7 @@ class PanchangService
                 $tz,
                 $elevation,
                 null,
-                $calendarType
+                $calendarType,
             ),
             $festivals,
             (string) AstroCore::getConfig('panchang.shraddha.shannavati_profile', 'dharma_sindhu'),
@@ -764,7 +760,7 @@ class PanchangService
             (int) $karanaIdx,
             (int) $currentKaranaIdx,
             $tz,
-            $sankrantiRashi
+            $sankrantiRashi,
         );
         $ekadashiObservance = $this->buildEkadashiObservance(
             $tithiNum,
@@ -778,7 +774,7 @@ class PanchangService
             $lon,
             $jdPreviousSunrise,
             $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
-            (string) ($tithi['paksha'] ?? '')
+            (string) ($tithi['paksha'] ?? ''),
         );
         $tithiObservanceAnalysis = [
             'rule_system' => 'smarta_udaya_tithi_structural_analysis',
@@ -845,7 +841,7 @@ class PanchangService
         ];
 
         $defaultConfig = function_exists('config') ? config('panchang.defaults', []) : [];
-        if (!is_array($defaultConfig)) {
+        if (! is_array($defaultConfig)) {
             $defaultConfig = [];
         }
 
@@ -898,7 +894,7 @@ class PanchangService
             'moon_sunrise_lon' => AstroCore::formatAngle($moonLon),
             'sunrise_hm' => [(int) $relSunrise->format('H'), (int) $relSunrise->format('i')],
             'sunrise_dt' => AstroCore::formatDateTime($relSunrise),
-            'Ayanamsa' => 'LAHIRI (Chitra Paksha)',
+            'Ayanamsa' => 'True Chitra',
             'Ayanamsa_Degree' => AstroCore::formatAngle($ayanamsaDeg),
             'Ayanamsa_At' => AstroCore::formatDateTime($calculationAt),
             'Ayanamsa_JD' => $ayanamsaJd,
@@ -1120,7 +1116,7 @@ class PanchangService
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta,
-        bool $includeExtended = true
+        bool $includeExtended = true,
     ): array {
         // Normalize calendar_type from string to enum
         if (is_string($calendarType)) {
@@ -1263,7 +1259,7 @@ class PanchangService
                 $ayanamsaDeg,
                 $lat,
                 $lon,
-                $this->jme
+                $this->jme,
             )
             : [];
         $specialYogas = $includeExtended ? $this->calculateSpecialYogas($date, $jdSunrise, $jdNextSunrise, $tithiNum, (int) $vara['index'], $tz) : [];
@@ -1291,7 +1287,7 @@ class PanchangService
             $lon,
             $jdPreviousSunrise,
             $hinduMonth['Month_Amanta_En'] ?? $hinduMonth['Month_Amanta'] ?? null,
-            (string) ($tithi['paksha'] ?? '')
+            (string) ($tithi['paksha'] ?? ''),
         );
         $eraYears = $this->resolveEraYearsForHinduMonth($hinduMonth, $tz);
         $vikram = $eraYears['Vikram_Samvat'];
@@ -1302,7 +1298,7 @@ class PanchangService
             $vikram,
             $saka,
             $gujarati,
-            $date
+            $date,
         );
 
         if (count($this->festivalSnapshotCache) >= self::FESTIVAL_SNAPSHOT_CACHE_MAX) {
@@ -1310,7 +1306,7 @@ class PanchangService
                 $this->festivalSnapshotCache,
                 -self::FESTIVAL_SNAPSHOT_CACHE_TRIM_TO,
                 null,
-                true
+                true,
             );
         }
 
@@ -1438,9 +1434,9 @@ class PanchangService
         $amantaIndex = (int) ($hinduMonth['Amanta_Index'] ?? 0);
         $startJd = $hinduMonth['Amanta_Start_JD'] ?? null;
 
-        if (!is_numeric($startJd)) {
+        if (! is_numeric($startJd)) {
             throw new RuntimeException(
-                'Hindu month context is missing Amanta_Start_JD; cannot resolve Chaitradi era years.'
+                'Hindu month context is missing Amanta_Start_JD; cannot resolve Chaitradi era years.',
             );
         }
 
@@ -1448,7 +1444,7 @@ class PanchangService
 
         return $this->panchanga->resolveEraYearsFromAmantaContext(
             $monthStartLocal,
-            $amantaIndex
+            $amantaIndex,
         );
     }
 
@@ -1468,14 +1464,14 @@ class PanchangService
                 'name' => Localization::translate('String', $key),
                 'active' => in_array($key, $guidance['blocking_conditions'], true),
             ],
-            $guidance['prohibitions']
+            $guidance['prohibitions'],
         ));
         $exceptions = array_values(array_map(
             fn(string $key): array => [
                 'key' => $key,
                 'name' => Localization::translate('String', $key),
             ],
-            $guidance['exceptions']
+            $guidance['exceptions'],
         ));
 
         return [
@@ -1488,7 +1484,7 @@ class PanchangService
             'blocking_conditions' => $guidance['blocking_conditions'],
             'blocking_condition_names' => array_map(
                 static fn(string $key): string => Localization::translate('String', $key),
-                $guidance['blocking_conditions']
+                $guidance['blocking_conditions'],
             ),
             'prohibitions' => $prohibitions,
             'exceptions' => $exceptions,
@@ -1508,7 +1504,7 @@ class PanchangService
         float $sunriseJd,
         float $nextSunriseJd,
         float $prevTithiEndJd,
-        string $tz
+        string $tz,
     ): array {
         $analysis = $kalaEngine->determineViddhaTithi(
             $tithiNumber,
@@ -1516,7 +1512,7 @@ class PanchangService
             $tithiEndJd,
             $sunriseJd,
             $nextSunriseJd,
-            $prevTithiEndJd
+            $prevTithiEndJd,
         );
         $phaseTithiNumber = (($tithiNumber - 1) % 15) + 1;
         $phaseTithiName = $phaseTithiNumber === 15 ? 'Purnima/Amavasya' : KalaNirnayaEngine::TITHI_NAMES[$phaseTithiNumber - 1];
@@ -1542,7 +1538,7 @@ class PanchangService
             'tithi_at_sunrise_tomorrow' => $tithiAtSunriseTomorrow,
             'previous_tithi_pierces_today_sunrise' => $prevTithiPiercesTodaySunrise,
             'is_tithi_vriddhi' => $tithiAtSunriseToday && $tithiAtSunriseTomorrow,
-            'is_tithi_kshaya' => !$tithiAtSunriseToday && !$tithiAtSunriseTomorrow,
+            'is_tithi_kshaya' => ! $tithiAtSunriseToday && ! $tithiAtSunriseTomorrow,
         ];
     }
 
@@ -1609,7 +1605,7 @@ class PanchangService
         ?float $moonriseJd,
         array $pradoshaKaal,
         array $nishitaMuhurta,
-        string $tz
+        string $tz,
     ): ?array {
         $phaseTithiNumber = (($tithiNumber - 1) % 15) + 1;
         $paksha = $paksha === '' ? 'Any' : $paksha;
@@ -1705,7 +1701,7 @@ class PanchangService
             if ($family['family_key'] === 'skanda_shashthi') {
                 $tithiAtSunrise = $tithiStartJd <= $sunriseJd && $tithiEndJd > $sunriseJd;
                 $tithiBeginsBeforeSunset = $tithiStartJd > $sunriseJd && $tithiStartJd < $sunsetJd;
-                if (!$tithiAtSunrise && !$tithiBeginsBeforeSunset) {
+                if (! $tithiAtSunrise && ! $tithiBeginsBeforeSunset) {
                     continue;
                 }
 
@@ -1825,7 +1821,7 @@ class PanchangService
                 $this->bodyLongitudeCache,
                 -self::BODY_LONGITUDE_CACHE_TRIM_TO,
                 null,
-                true
+                true,
             );
         }
 
@@ -1834,5 +1830,4 @@ class PanchangService
 
         return $value;
     }
-
 }

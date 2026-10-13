@@ -114,7 +114,7 @@ trait PanchangRuntimeEvaluationTrait
         string $startKey,
         string $endKey,
         string $label,
-        string $source
+        string $source,
     ): array {
         $start = $this->resolveNamedWindowBoundary($window, $startKey, $at->timezoneName);
         $end = $this->resolveNamedWindowBoundary($window, $endKey, $at->timezoneName);

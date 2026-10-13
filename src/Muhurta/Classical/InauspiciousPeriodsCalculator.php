@@ -79,7 +79,7 @@ class InauspiciousPeriodsCalculator
         int $nakshatraIndex,
         float $nakshatraStartJd,
         float $nakshatraEndJd,
-        CarbonImmutable $sunrise
+        CarbonImmutable $sunrise,
     ): array {
         $windows = $this->calculateNakshatraPeriodWindows(
             'varjyam',
@@ -88,7 +88,7 @@ class InauspiciousPeriodsCalculator
             $nakshatraEndJd,
             $sunrise,
             $nakshatraStartJd,
-            $nakshatraEndJd
+            $nakshatraEndJd,
         );
 
         return $windows[0] ?? ['is_available' => false];
@@ -102,7 +102,7 @@ class InauspiciousPeriodsCalculator
         CarbonImmutable $timezoneReference,
         float $scopeStartJd,
         float $scopeEndJd,
-        bool $includePartialWindows = true
+        bool $includePartialWindows = true,
     ): array
     {
         if ($type !== 'amrita_kaal' && $type !== 'varjyam') {
@@ -132,7 +132,7 @@ class InauspiciousPeriodsCalculator
                 $timezoneReference,
                 $scopeStartJd,
                 $scopeEndJd,
-                $includePartialWindows
+                $includePartialWindows,
             );
         }
 
@@ -205,7 +205,7 @@ class InauspiciousPeriodsCalculator
         CarbonImmutable $timezoneReference,
         float $scopeStartJd,
         float $scopeEndJd,
-        bool $includePartialWindows
+        bool $includePartialWindows,
     ): ?array {
         if ($offsetGhati < 0 || $offsetGhati > 60) {
             throw new InvalidArgumentException('Nakshatra period offset must be between 0 and 60 ghatis.');

@@ -48,3 +48,9 @@ parameters:
             message: '#Call to method PHPUnit\\Framework\\Assert::assertIs(Float|Int|Array)\(\) with .* will always evaluate to true#'
             paths:
                 - tests/
+
+        # Dynamic scalar property access on FFI CData primitive wrappers
+        -
+            message: '#Access to an undefined property FFI\\CData::\$cdata#'
+            paths:
+                - src/

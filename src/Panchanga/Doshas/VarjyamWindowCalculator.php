@@ -26,7 +26,7 @@ class VarjyamWindowCalculator
         float $jdNextSunrise,
         int $nakIdxAtSunrise,
         float $nakStartJdAtSunrise,
-        float $nakEndJdAtSunrise
+        float $nakEndJdAtSunrise,
     ): array {
         $windows = [];
         $nakshatraSpan = 360.0 / 27.0;
@@ -60,7 +60,7 @@ class VarjyamWindowCalculator
                 $currentNakStartJd + 1e-6,
                 $targetAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonLongitude($jd),
             );
 
             if ($currentNakEndJd <= $currentNakStartJd) {

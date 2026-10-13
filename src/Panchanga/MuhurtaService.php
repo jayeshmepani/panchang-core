@@ -24,7 +24,7 @@ class MuhurtaService
         private readonly InauspiciousPeriodsCalculator $inauspiciousPeriodsCalculator,
         private readonly GowriPanchangamCalculator $gowriPanchangamCalculator,
         private readonly LagnaTableCalculator $lagnaTableCalculator,
-        private readonly ?PanchakaRahitaTableCalculator $panchakaRahitaTableCalculator = null
+        private readonly ?PanchakaRahitaTableCalculator $panchakaRahitaTableCalculator = null,
     ) {}
 
     public function calculateHora(
@@ -32,7 +32,7 @@ class MuhurtaService
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
         CarbonImmutable $current,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->horaCalculator->calculateHora($sunrise, $sunset, $nextSunrise, $current, $varaIdx);
     }
@@ -42,7 +42,7 @@ class MuhurtaService
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
         CarbonImmutable $current,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->chogadiyaCalculator->calculateChogadiya($sunrise, $sunset, $nextSunrise, $current, $varaIdx);
     }
@@ -61,7 +61,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->horaCalculator->calculateHoraTable($sunrise, $sunset, $nextSunrise, $varaIdx);
     }
@@ -70,7 +70,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->chogadiyaCalculator->calculateChogadiyaTable($sunrise, $sunset, $nextSunrise, $varaIdx);
     }
@@ -78,21 +78,21 @@ class MuhurtaService
     public function calculateMuhurtaTable(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculateMuhurtaTable($sunrise, $sunset, $nextSunrise);
     }
 
     public function calculateDaylightFivefoldDivision(
         CarbonImmutable $sunrise,
-        CarbonImmutable $sunset
+        CarbonImmutable $sunset,
     ): array {
         return $this->dailyPeriodsCalculator->calculateDaylightFivefoldDivision($sunrise, $sunset);
     }
 
     public function calculateNighttimeFivefoldDivision(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculateNighttimeFivefoldDivision($sunset, $nextSunrise);
     }
@@ -100,28 +100,28 @@ class MuhurtaService
     public function calculateTenKalaDivision(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculateTenKalaDivision($sunrise, $sunset, $nextSunrise);
     }
 
     public function calculateNishitaMuhurta(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculateNishitaMuhurta($sunset, $nextSunrise);
     }
 
     public function calculateVijayaMuhurta(
         CarbonImmutable $sunrise,
-        CarbonImmutable $sunset
+        CarbonImmutable $sunset,
     ): array {
         return $this->dailyPeriodsCalculator->calculateVijayaMuhurta($sunrise, $sunset);
     }
 
     public function calculateGodhuliMuhurta(
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculateGodhuliMuhurta($sunset, $nextSunrise);
     }
@@ -130,7 +130,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        CarbonImmutable $solarNoon
+        CarbonImmutable $solarNoon,
     ): array {
         return $this->dailyPeriodsCalculator->calculateSandhya($sunrise, $sunset, $nextSunrise, $solarNoon);
     }
@@ -139,7 +139,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->gowriPanchangamCalculator->calculateGowriPanchangam($sunrise, $sunset, $nextSunrise, $varaIdx);
     }
@@ -148,7 +148,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->gowriPanchangamCalculator->calculateKalaVela($sunrise, $sunset, $nextSunrise, $varaIdx);
     }
@@ -156,7 +156,7 @@ class MuhurtaService
     public function calculatePrahara(
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
-        CarbonImmutable $nextSunrise
+        CarbonImmutable $nextSunrise,
     ): array {
         return $this->dailyPeriodsCalculator->calculatePrahara($sunrise, $sunset, $nextSunrise);
     }
@@ -170,7 +170,7 @@ class MuhurtaService
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         return $this->dailyPeriodsCalculator->calculateDurMuhurta($sunrise, $sunset, $nextSunrise, $varaIdx);
     }
@@ -181,7 +181,7 @@ class MuhurtaService
         CarbonImmutable $nextSunrise,
         int $nakshatraIndex,
         float $nakshatraStartJd,
-        float $nakshatraEndJd
+        float $nakshatraEndJd,
     ): array {
         return $this->inauspiciousPeriodsCalculator->calculateVarjyam($nakshatraIndex, $nakshatraStartJd, $nakshatraEndJd, $sunrise);
     }
@@ -198,7 +198,7 @@ class MuhurtaService
         float $nakshatraStartJd,
         float $nakshatraEndJd,
         float $scopeStartJd,
-        float $scopeEndJd
+        float $scopeEndJd,
     ): array {
         return $this->inauspiciousPeriodsCalculator->calculateNakshatraPeriodWindows(
             $type,
@@ -207,7 +207,7 @@ class MuhurtaService
             $nakshatraEndJd,
             $timezoneReference,
             $scopeStartJd,
-            $scopeEndJd
+            $scopeEndJd,
         );
     }
 
@@ -223,7 +223,7 @@ class MuhurtaService
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        JmeEphFFI $jme
+        JmeEphFFI $jme,
     ): array {
         return $this->lagnaTableCalculator->calculateLagna($current, $ayanamsaDeg, $lat, $lon, $jme);
     }
@@ -236,7 +236,7 @@ class MuhurtaService
         float $ayanamsaDeg,
         float $lat,
         float $lon,
-        JmeEphFFI $jme
+        JmeEphFFI $jme,
     ): array {
         return $this->lagnaTableCalculator->calculateLagnaTable($sunrise, $sunset, $nextSunrise, $ayanamsaDeg, $lat, $lon, $jme);
     }
@@ -249,9 +249,10 @@ class MuhurtaService
         array $lagnaTable,
         array $tithiIntervals,
         array $nakshatraIntervals,
-        string $tz
+        string $tz,
     ): array {
         $calc = $this->panchakaRahitaTableCalculator ?? new PanchakaRahitaTableCalculator;
+
         return $calc->calculatePanchakaRahitaTable(
             $sunrise,
             $sunset,
@@ -260,7 +261,7 @@ class MuhurtaService
             $lagnaTable,
             $tithiIntervals,
             $nakshatraIntervals,
-            $tz
+            $tz,
         );
     }
 }

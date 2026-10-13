@@ -101,7 +101,7 @@ class FestivalDateCorrectionsTest extends TestCase
 
             $names = array_map(
                 static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
-                $details['Festivals'] ?? []
+                $details['Festivals'] ?? [],
             );
 
             self::assertContains($expected, $names, $expected . ' on ' . $date . ' (' . $calendar . ')');
@@ -159,7 +159,7 @@ class FestivalDateCorrectionsTest extends TestCase
 
             $names = array_map(
                 static fn(array $festival): string => (string) ($festival['resolution']['festival_name'] ?? $festival['name'] ?? ''),
-                $details['Festivals'] ?? []
+                $details['Festivals'] ?? [],
             );
 
             self::assertNotContains($unexpected, $names, $unexpected . ' must not appear on ' . $date . ' (' . $calendar . ')');
@@ -224,12 +224,12 @@ class FestivalDateCorrectionsTest extends TestCase
             self::assertSame(
                 ['2025-10-22'],
                 $this->datesForName($festival2025, 'Bali Pratipada'),
-                sprintf('Bali Pratipada 2025 export (%s)', $calendar)
+                sprintf('Bali Pratipada 2025 export (%s)', $calendar),
             );
             self::assertSame(
                 ['2025-10-22'],
                 $this->datesForName($festival2025, 'Govardhan Puja'),
-                sprintf('Govardhan Puja 2025 export (%s)', $calendar)
+                sprintf('Govardhan Puja 2025 export (%s)', $calendar),
             );
             self::assertSame(
                 ['2027-10-30'],
@@ -237,7 +237,7 @@ class FestivalDateCorrectionsTest extends TestCase
                     $festival2027Deepotsav,
                     'Bali Pratipada',
                 ),
-                sprintf('Bali Pratipada 2027 export (%s)', $calendar)
+                sprintf('Bali Pratipada 2027 export (%s)', $calendar),
             );
             self::assertSame(
                 ['2027-10-30'],
@@ -245,42 +245,42 @@ class FestivalDateCorrectionsTest extends TestCase
                     $festival2027Deepotsav,
                     'Govardhan Puja',
                 ),
-                sprintf('Govardhan Puja 2027 export (%s)', $calendar)
+                sprintf('Govardhan Puja 2027 export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-08-28'],
                 $this->datesForName($festival2026, 'Gayatri Japam'),
-                sprintf('Gayatri Japam export (%s)', $calendar)
+                sprintf('Gayatri Japam export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-04-19'],
                 $this->datesForName($festival2026, 'Chandan Yatra Begins'),
-                sprintf('Chandan Yatra Begins export (%s)', $calendar)
+                sprintf('Chandan Yatra Begins export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-04-19'],
                 $this->datesForName($festival2026, 'Parashurama Jayanti'),
-                sprintf('Parashurama Jayanti export (%s)', $calendar)
+                sprintf('Parashurama Jayanti export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-08-18'],
                 $this->datesForName($vrat2026, 'First Mangala Gauri Vrat'),
-                sprintf('First Mangala Gauri Vrat export (%s)', $calendar)
+                sprintf('First Mangala Gauri Vrat export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-08-25'],
                 $this->datesForName($vrat2026, 'Second Mangala Gauri Vrat'),
-                sprintf('Second Mangala Gauri Vrat export (%s)', $calendar)
+                sprintf('Second Mangala Gauri Vrat export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-09-01'],
                 $this->datesForName($vrat2026, 'Third Mangala Gauri Vrat'),
-                sprintf('Third Mangala Gauri Vrat export (%s)', $calendar)
+                sprintf('Third Mangala Gauri Vrat export (%s)', $calendar),
             );
             self::assertSame(
                 ['2026-09-08'],
                 $this->datesForName($vrat2026, 'Fourth Mangala Gauri Vrat'),
-                sprintf('Fourth Mangala Gauri Vrat export (%s)', $calendar)
+                sprintf('Fourth Mangala Gauri Vrat export (%s)', $calendar),
             );
         }
 
@@ -288,17 +288,17 @@ class FestivalDateCorrectionsTest extends TestCase
             ['2026-08-17', '2026-08-24', '2026-08-31', '2026-09-07'],
             $this->datesForName(
                 $service->getVratRangeCalendar(2026, 8, 2026, 9, self::LAT, self::LON, self::TZ, 0.0, null, 'amanta'),
-                'Shravana Somvar (Monday Fasting)'
+                'Shravana Somvar (Monday Fasting)',
             ),
-            'Amanta Shravana Somvar export'
+            'Amanta Shravana Somvar export',
         );
         self::assertSame(
             ['2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24'],
             $this->datesForName(
                 $service->getVratRangeCalendar(2026, 8, 2026, 9, self::LAT, self::LON, self::TZ, 0.0, null, 'purnimanta'),
-                'Shravana Somvar (Monday Fasting)'
+                'Shravana Somvar (Monday Fasting)',
             ),
-            'Purnimanta Shravana Somvar export'
+            'Purnimanta Shravana Somvar export',
         );
     }
 
@@ -411,22 +411,22 @@ class FestivalDateCorrectionsTest extends TestCase
         self::assertSame(2, $entry['resolution']['required_tithi'] ?? null);
         self::assertSame(
             'chandra_darshana_success_dvitiya_with_dharma_sindhu_corroboration',
-            $entry['resolution']['decision']['winning_reason_key'] ?? null
+            $entry['resolution']['decision']['winning_reason_key'] ?? null,
         );
         self::assertSame(
             'hybrid_scripture_modern_first_crescent',
-            $entry['resolution']['decision']['visibility_assessment']['date_selection_basis'] ?? null
+            $entry['resolution']['decision']['visibility_assessment']['date_selection_basis'] ?? null,
         );
         self::assertSame(
             'modern_ecliptic_longitude_proxy_for_surya_siddhanta_12_bhaga_indication',
-            $entry['resolution']['decision']['visibility_assessment']['astronomical_basis'] ?? null
+            $entry['resolution']['decision']['visibility_assessment']['astronomical_basis'] ?? null,
         );
         self::assertSame(
             'UNKNOWN',
-            $entry['resolution']['decision']['visibility_assessment']['actual_observation'] ?? null
+            $entry['resolution']['decision']['visibility_assessment']['actual_observation'] ?? null,
         );
         self::assertFalse(
-            $entry['resolution']['decision']['visibility_assessment']['forbidden_modern_thresholds_applied'] ?? true
+            $entry['resolution']['decision']['visibility_assessment']['forbidden_modern_thresholds_applied'] ?? true,
         );
     }
 

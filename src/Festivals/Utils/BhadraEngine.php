@@ -53,7 +53,7 @@ class BhadraEngine
         float $vishtiEndJd,
         int $moonRasiIndex,
         int $tithiIndex,
-        string $paksha
+        string $paksha,
     ): array {
         $durationJd = $vishtiEndJd - $vishtiStartJd;
         $durationGhatis = $durationJd * 60.0; // 1 day = 60 ghatis
@@ -79,6 +79,7 @@ class BhadraEngine
             $minutes = (int) floor(fmod(abs($seconds), 3600) / 60);
             $secs = (int) floor(fmod(abs($seconds), 60));
             $sign = $seconds < 0 ? '-' : '';
+
             return sprintf('%s%02d:%02d:%02d', $sign, $hours, $minutes, $secs);
         };
 

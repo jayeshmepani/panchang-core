@@ -36,111 +36,115 @@ $outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
 $panchangService = CliBootstrap::makePanchangService();
 $outputGen = CliBootstrap::makeOutputGenerator($panchangService);
 
-if (! in_array($scope, ['all', 'festivals', 'vrats'], true)) {
-    fwrite(STDERR, sprintf('Unknown scope: %s. Allowed: all, festivals, vrats', $scope) . PHP_EOL);
+if (! in_array($scope, ['all', 'festivals', 'vrats', 'bundle'], true)) {
+    fwrite(STDERR, sprintf('Unknown scope: %s. Allowed: all, festivals, vrats, bundle', $scope) . PHP_EOL);
     exit(1);
 }
 
-echo sprintf('Building %s output for %d...', $scope, $festivalYear) . PHP_EOL;
-
-$calendar = match ($scope) {
-    'festivals' => $outputGen->generateFestivalsOnlySelected(
-        year: $festivalYear,
-        lat: $latitude,
-        lon: $longitude,
-        tz: $timezone,
-        sections: ['by_date', 'festival_day_count', 'festival_entry_count'],
-        elevation: $elevation,
-        calendarType: $calendarType,
-    ),
-    'vrats' => $outputGen->generateVratsByDateCompact(
-        year: $festivalYear,
-        lat: $latitude,
-        lon: $longitude,
-        tz: $timezone,
-        elevation: $elevation,
-        calendarType: $calendarType,
-    ),
-    default => $outputGen->generateFestivalsSelected(
-        year: $festivalYear,
-        lat: $latitude,
-        lon: $longitude,
-        tz: $timezone,
-        sections: ['by_date', 'festival_day_count', 'festival_entry_count'],
-        elevation: $elevation,
-        calendarType: $calendarType,
-    ),
-};
+$scopesToRun = $scope === 'bundle' ? ['all', 'festivals', 'vrats'] : [$scope];
 
 // Catalog totals are year/calendar-independent (definitions always count, even if not observed).
 $catalogFestivalCount = FestivalService::getCatalogFestivalCount();
 $catalogVratCount = FestivalService::getCatalogVratCount();
 
-$output = [
-    'meta' => [
-        'generated_at' => date('c'),
-        'type' => match ($scope) {
-            'festivals' => 'festivals_only',
-            'vrats' => 'vrats',
-            default => 'festivals',
+foreach ($scopesToRun as $currentScope) {
+    echo sprintf('Building %s output for %d...', $currentScope, $festivalYear) . PHP_EOL;
+
+    $calendar = match ($currentScope) {
+        'festivals' => $outputGen->generateFestivalsOnlySelected(
+            year: $festivalYear,
+            lat: $latitude,
+            lon: $longitude,
+            tz: $timezone,
+            sections: ['by_date', 'festival_day_count', 'festival_entry_count'],
+            elevation: $elevation,
+            calendarType: $calendarType,
+        ),
+        'vrats' => $outputGen->generateVratsByDateCompact(
+            year: $festivalYear,
+            lat: $latitude,
+            lon: $longitude,
+            tz: $timezone,
+            elevation: $elevation,
+            calendarType: $calendarType,
+        ),
+        default => $outputGen->generateFestivalsSelected(
+            year: $festivalYear,
+            lat: $latitude,
+            lon: $longitude,
+            tz: $timezone,
+            sections: ['by_date', 'festival_day_count', 'festival_entry_count'],
+            elevation: $elevation,
+            calendarType: $calendarType,
+        ),
+    };
+
+    $output = [
+        'meta' => [
+            'generated_at' => date('c'),
+            'type' => match ($currentScope) {
+                'festivals' => 'festivals_only',
+                'vrats' => 'vrats',
+                default => 'festivals',
+            },
+            'year' => $festivalYear,
+            'calendar_type' => $calendarType,
+            'locale' => $locale,
+            'location' => [
+                'city' => 'Bhuj',
+                'country' => 'IN',
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'timezone' => $timezone,
+                'elevation' => $elevation,
+            ],
+        ],
+        ...match ($currentScope) {
+            'festivals' => [
+                'festivals' => [
+                    'title' => sprintf(Localization::translate('String', 'Festivals %d - Named festivals excluding vrat observances'), $festivalYear),
+                    'year' => $festivalYear,
+                    'calendar_type' => $calendarType,
+                    'locale' => $locale,
+                    'festival_day_count' => $calendar['festival_day_count'],
+                    'festival_entry_count' => $calendar['festival_entry_count'],
+                    'total_festivals' => $catalogFestivalCount,
+                    'by_date' => $calendar['by_date'],
+                ],
+            ],
+            'vrats' => $calendar,
+            default => [
+                'festivals' => [
+                    'title' => sprintf(Localization::translate('String', 'Festivals %d - All festivals for the entire year'), $festivalYear),
+                    'year' => $festivalYear,
+                    'calendar_type' => $calendarType,
+                    'locale' => $locale,
+                    'festival_day_count' => $calendar['festival_day_count'],
+                    'festival_entry_count' => $calendar['festival_entry_count'],
+                    'total_festivals' => $catalogFestivalCount,
+                    'total_vrats' => $catalogVratCount,
+                    'by_date' => $calendar['by_date'],
+                ],
+            ],
         },
-        'year' => $festivalYear,
-        'calendar_type' => $calendarType,
-        'locale' => $locale,
-        'location' => [
-            'city' => 'Bhuj',
-            'country' => 'IN',
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-            'timezone' => $timezone,
-            'elevation' => $elevation,
-        ],
-    ],
-    ...match ($scope) {
-        'festivals' => [
-            'festivals' => [
-                'title' => sprintf(Localization::translate('String', 'Festivals %d - Named festivals excluding vrat observances'), $festivalYear),
-                'year' => $festivalYear,
-                'calendar_type' => $calendarType,
-                'locale' => $locale,
-                'festival_day_count' => $calendar['festival_day_count'],
-                'festival_entry_count' => $calendar['festival_entry_count'],
-                'total_festivals' => $catalogFestivalCount,
-                'by_date' => $calendar['by_date'],
-            ],
-        ],
-        'vrats' => $calendar,
-        default => [
-            'festivals' => [
-                'title' => sprintf(Localization::translate('String', 'Festivals %d - All festivals for the entire year'), $festivalYear),
-                'year' => $festivalYear,
-                'calendar_type' => $calendarType,
-                'locale' => $locale,
-                'festival_day_count' => $calendar['festival_day_count'],
-                'festival_entry_count' => $calendar['festival_entry_count'],
-                'total_festivals' => $catalogFestivalCount,
-                'total_vrats' => $catalogVratCount,
-                'by_date' => $calendar['by_date'],
-            ],
-        ],
-    },
-];
+    ];
 
-$filename = match ($scope) {
-    'festivals' => sprintf('festivals_only_%d.json', $festivalYear),
-    'vrats' => sprintf('vrats_%d.json', $festivalYear),
-    default => sprintf('festivals_%d.json', $festivalYear),
-};
-$outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
+    $filename = match ($currentScope) {
+        'festivals' => sprintf('festivals_only_%d.json', $festivalYear),
+        'vrats' => sprintf('vrats_%d.json', $festivalYear),
+        default => sprintf('festivals_%d.json', $festivalYear),
+    };
+    $outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
-try {
-    panchang_script_write_json($outputPath, $output);
-} catch (RuntimeException $runtimeException) {
-    fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
-    exit(1);
+    try {
+        panchang_script_write_json($outputPath, $output);
+    } catch (RuntimeException $runtimeException) {
+        fwrite(STDERR, $runtimeException->getMessage() . PHP_EOL);
+        exit(1);
+    }
+
+    $payload = $currentScope === 'vrats' ? $output['vrats'] : $output['festivals'];
+    $dayCount = $currentScope === 'vrats' ? $payload['vrat_day_count'] : $payload['festival_day_count'];
+    $entryCount = $currentScope === 'vrats' ? $payload['vrat_entry_count'] : $payload['festival_entry_count'];
+    echo sprintf('Written %s — %s days, %s entries.', $outputPath, $dayCount, $entryCount) . PHP_EOL;
 }
-
-$payload = $scope === 'vrats' ? $output['vrats'] : $output['festivals'];
-$dayCount = $scope === 'vrats' ? $payload['vrat_day_count'] : $payload['festival_day_count'];
-$entryCount = $scope === 'vrats' ? $payload['vrat_entry_count'] : $payload['festival_entry_count'];
-echo sprintf('Written %s — %s days, %s entries.', $outputPath, $dayCount, $entryCount) . PHP_EOL;

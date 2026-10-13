@@ -17,7 +17,7 @@ class HoraCalculator
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
         CarbonImmutable $current,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $seq = Hora::getSequence(Vara::from($varaIdx));
         $isDay = ($current >= $sunrise) && ($current < $sunset);
@@ -55,7 +55,7 @@ class HoraCalculator
         CarbonImmutable $sunrise,
         CarbonImmutable $sunset,
         CarbonImmutable $nextSunrise,
-        int $varaIdx
+        int $varaIdx,
     ): array {
         $seq = Hora::getSequence(Vara::from($varaIdx));
         $dayDuration = ($sunset->getTimestamp() - $sunrise->getTimestamp()) / 12.0;

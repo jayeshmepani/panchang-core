@@ -132,6 +132,7 @@ enum Rasi: int
         }
 
         $index = (int) floor($normalized / 30.0);
+
         return self::from($index);
     }
 }

@@ -88,14 +88,14 @@ class SunService
             $geopos,
             JmeEphFFI::JME_BODY_SUN,
             JmeEphFFI::JME_RISE_RISE | self::PANCHANGA_VISIBLE_UPPER_LIMB_FLAGS,
-            $tz
+            $tz,
         );
         $sunset = $this->runRiseTransit(
             $jd,
             $geopos,
             JmeEphFFI::JME_BODY_SUN,
             JmeEphFFI::JME_RISE_SET | self::PANCHANGA_VISIBLE_UPPER_LIMB_FLAGS,
-            $tz
+            $tz,
         );
         DebugTrace::log('sun.sunrise_sunset', 'completed rise/set calculation', [
             'sunrise' => $sunrise->toIso8601String(),
@@ -134,7 +134,7 @@ class SunService
             JmeEphFFI::JME_BODY_MOON,
             JmeEphFFI::JME_RISE_SET,
             $birth['timezone'],
-            false
+            false,
         );
 
         $this->trimCache($this->moonriseMoonsetCache);
@@ -180,7 +180,7 @@ class SunService
             (int) $birth['hour'],
             (int) $birth['minute'],
             (int) $birth['second'],
-            $birth['timezone']
+            $birth['timezone'],
         );
     }
 
@@ -213,7 +213,7 @@ class SunService
                 0,
                 0,
                 0,
-                $birth['timezone']
+                $birth['timezone'],
             )->addDay();
 
             $nextBirth = $birth;
@@ -262,7 +262,7 @@ class SunService
             0,
             0,
             0,
-            (string) $birth['timezone']
+            (string) $birth['timezone'],
         );
     }
 
@@ -279,7 +279,7 @@ class SunService
             $utc->month,
             $utc->day,
             $hourDecimal,
-            JmeEphFFI::JME_CALENDAR_GREGORIAN
+            JmeEphFFI::JME_CALENDAR_GREGORIAN,
         );
     }
 
@@ -297,7 +297,7 @@ class SunService
             self::STANDARD_ATMOSPHERIC_PRESSURE_HPA,
             self::STANDARD_ATMOSPHERIC_TEMPERATURE_C,
             $tret,
-            $serr
+            $serr,
         );
         $error = FFI::string($serr);
         DebugTrace::log('sun.rise_transit', 'native rise/transit returned', [
@@ -327,6 +327,7 @@ class SunService
         $geopos[0] = (float) $birth['longitude'];
         $geopos[1] = (float) $birth['latitude'];
         $geopos[2] = (float) ($birth['elevation'] ?? 0.0);
+
         return $geopos;
     }
 
@@ -348,7 +349,7 @@ class SunService
             $d,
             $h,
             $mi,
-            $s
+            $s,
         );
 
         $sInt = (int) $s[0];
@@ -361,7 +362,7 @@ class SunService
             (int) $h[0],
             (int) $mi[0],
             $sInt,
-            'UTC'
+            'UTC',
         )
             ->addMicroseconds($micro)
             ->setTimezone($timezone);

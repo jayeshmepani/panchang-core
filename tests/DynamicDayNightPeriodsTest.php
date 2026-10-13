@@ -25,7 +25,7 @@ final class DynamicDayNightPeriodsTest extends TestCase
             $sunrise,
             $sunset,
             $nextSunrise,
-            $solarNoon
+            $solarNoon,
         );
 
         self::assertSame('dynamic_ratrimana_30_ghati_sandhya', $sandhya['calculation_basis']);

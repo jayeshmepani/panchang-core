@@ -21,7 +21,7 @@ if (! is_dir($benchmarkDir)) {
 
 file_put_contents(
     $memoryFooter,
-    "<?php fwrite(STDERR, \"\\n__PANCHANG_BENCH_PEAK_MEMORY__=\" . memory_get_peak_usage(true) . \"\\n\");\n"
+    "<?php fwrite(STDERR, \"\\n__PANCHANG_BENCH_PEAK_MEMORY__=\" . memory_get_peak_usage(true) . \"\\n\");\n",
 );
 
 $modes = [
@@ -81,7 +81,7 @@ foreach ($modes as $mode => $ephePath) {
                     $task['label'],
                     $result['exit_code'],
                     $result['elapsed_s'],
-                    $row['peak_memory_mb'] === null ? 'n/a' : number_format((float) $row['peak_memory_mb'], 3, '.', '')
+                    $row['peak_memory_mb'] === null ? 'n/a' : number_format((float) $row['peak_memory_mb'], 3, '.', ''),
                 );
 
                 if ($result['exit_code'] !== 0) {
@@ -95,7 +95,7 @@ foreach ($modes as $mode => $ephePath) {
 writeCsv($benchmarkDir . DIRECTORY_SEPARATOR . 'regenerate_modes.csv', $rows);
 file_put_contents(
     $benchmarkDir . DIRECTORY_SEPARATOR . 'regenerate_modes.json',
-    json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL
+    json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL,
 );
 if (is_file($memoryFooter)) {
     unlink($memoryFooter);
@@ -133,7 +133,7 @@ function runBenchCommand(string $command, string $workingDir, array $env, bool $
 
     $childEnv = array_filter(
         array_merge($_ENV, $_SERVER, $env),
-        is_string(...)
+        is_string(...),
     );
     $start = hrtime(true);
     $process = proc_open($command, $descriptors, $pipes, $workingDir, $childEnv);
@@ -224,7 +224,7 @@ function writeCsv(string $path, array $rows): void
     foreach ($rows as $row) {
         fputcsv($handle, array_map(
             static fn(mixed $value): string => $value === null ? '' : (string) $value,
-            $row
+            $row,
         ));
     }
     fclose($handle);

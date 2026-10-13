@@ -73,7 +73,7 @@ class SpecialYogaRegressionTest extends TestCase
             100.10,
             100.25,
             100.75,
-            101.25
+            101.25,
         );
 
         $this->assertIsArray($report['ekadashi_smarta'] ?? null);
@@ -142,7 +142,7 @@ class SpecialYogaRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            CarbonImmutable::parse('2026-05-29 10:44:41', 'Asia/Kolkata')
+            CarbonImmutable::parse('2026-05-29 10:44:41', 'Asia/Kolkata'),
         );
 
         $this->assertSame('Swati', $day['Nakshatra_At_Sunrise']['name'] ?? null);
@@ -183,7 +183,7 @@ class SpecialYogaRegressionTest extends TestCase
                 23.2472446,
                 69.668339,
                 'Asia/Kolkata',
-                includeExtended: false
+                includeExtended: false,
             );
 
             $this->assertTimeWithinSeconds($moonrise, $snapshot['Moonrise'] ?? null, 120, $date . ' moonrise');
@@ -248,7 +248,7 @@ class SpecialYogaRegressionTest extends TestCase
             CarbonImmutable::parse($date, $tz),
             $lat,
             $lon,
-            $tz
+            $tz,
         );
     }
 
@@ -270,7 +270,7 @@ class SpecialYogaRegressionTest extends TestCase
         $this->assertLessThanOrEqual(
             $toleranceSeconds,
             abs($expectedTime->diffInSeconds($actualTime, true)),
-            $message
+            $message,
         );
     }
 }

@@ -71,7 +71,7 @@ class MonthCalendarTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $day = $calendar['2026-06-15'];
@@ -122,16 +122,16 @@ class MonthCalendarTest extends TestCase
                 $tz,
                 0.0,
                 null,
-                'purnimanta'
+                'purnimanta',
             );
 
             $monthFestivals = array_map(
                 static fn(array $festival): string => (string) ($festival['name'] ?? ''),
-                $day['festivals'] ?? []
+                $day['festivals'] ?? [],
             );
             $detailFestivals = array_map(
                 static fn(array $festival): string => (string) ($festival['name'] ?? ''),
-                $details['Festivals'] ?? []
+                $details['Festivals'] ?? [],
             );
 
             sort($monthFestivals);
@@ -142,7 +142,7 @@ class MonthCalendarTest extends TestCase
             $this->assertSame(
                 [],
                 $missingFestivals,
-                $date . ' month-calendar festivals should all be present in day-detail view for purnimanta.'
+                $date . ' month-calendar festivals should all be present in day-detail view for purnimanta.',
             );
         }
     }
@@ -162,7 +162,7 @@ class MonthCalendarTest extends TestCase
             $tz,
             0.0,
             null,
-            'purnimanta'
+            'purnimanta',
         );
 
         $marchNineteenth = Panchang::getDayDetails(
@@ -172,7 +172,7 @@ class MonthCalendarTest extends TestCase
             $tz,
             0.0,
             null,
-            'purnimanta'
+            'purnimanta',
         );
 
         $marchFourthFestival = null;
@@ -185,7 +185,7 @@ class MonthCalendarTest extends TestCase
 
         $marchNineteenthNames = array_map(
             static fn(array $festival): string => (string) ($festival['name'] ?? ''),
-            $marchNineteenth['Festivals'] ?? []
+            $marchNineteenth['Festivals'] ?? [],
         );
 
         $this->assertIsArray($marchFourthFestival);

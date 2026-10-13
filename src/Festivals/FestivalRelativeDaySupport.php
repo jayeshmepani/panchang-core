@@ -24,7 +24,7 @@ trait FestivalRelativeDaySupport
     private function rejectDeepotsavGovardhanWithoutPrecedingDiwali(
         array $rules,
         CarbonImmutable $date,
-        ?callable $fetchHistoricalSnapshot
+        ?callable $fetchHistoricalSnapshot,
     ): bool {
         if ($fetchHistoricalSnapshot === null
             || (string) ($rules['deepotsav_sequence'] ?? '') !== 'govardhan_annakut') {
@@ -58,7 +58,7 @@ trait FestivalRelativeDaySupport
                         $diwaliRules,
                         $priorTomorrowCalendar,
                         self::usesClassicalResolver($diwaliRules),
-                        $priorDetails
+                        $priorDetails,
                     );
                 if (!$monthOk) {
                     continue;
@@ -69,7 +69,7 @@ trait FestivalRelativeDaySupport
                     $diwaliRules,
                     $priorDate,
                     $priorDetails,
-                    $priorTomorrowDetails
+                    $priorTomorrowDetails,
                 );
                 if ($resolved !== null
                     && (string) ($resolved['observance_date'] ?? '') === $priorDate->toDateString()) {
@@ -94,7 +94,7 @@ trait FestivalRelativeDaySupport
         CarbonImmutable $date,
         array $todayDetails,
         ?array $yesterdayDetails,
-        array $resolved
+        array $resolved,
     ): bool {
         if ($yesterdayDetails === null) {
             return false;
@@ -140,7 +140,7 @@ trait FestivalRelativeDaySupport
         ?array $yesterdayDetails,
         ?callable $fetchHistoricalSnapshot,
         array $addedFestivalKeys,
-        string $selection = 'all'
+        string $selection = 'all',
     ): array {
         $results = [];
 
@@ -174,7 +174,7 @@ trait FestivalRelativeDaySupport
                         $tomorrowDetails,
                         $yesterdayDetails,
                         $fetchHistoricalSnapshot,
-                        true
+                        true,
                     ) !== null;
                 $parentObservanceDate = $date->toDateString();
             } else {
@@ -185,7 +185,7 @@ trait FestivalRelativeDaySupport
                     $tomorrowDetails,
                     $yesterdayDetails,
                     $fetchHistoricalSnapshot,
-                    true
+                    true,
                 );
                 $parentFound = $parentObservanceDate === $expectedParentDate->toDateString();
             }
@@ -203,12 +203,12 @@ trait FestivalRelativeDaySupport
             $observanceNote = $daysAfter === 0
                 ? sprintf(
                     Localization::translate('String', 'observance_note_same_day_parent'),
-                    $parentLabel
+                    $parentLabel,
                 )
                 : sprintf(
                     Localization::translate('String', 'observance_note_day_after'),
                     $daysAfter,
-                    $parentLabel
+                    $parentLabel,
                 );
 
             $resolved = [
@@ -244,7 +244,7 @@ trait FestivalRelativeDaySupport
         array $tomorrowDetails,
         ?array $yesterdayDetails,
         ?callable $fetchHistoricalSnapshot,
-        bool $rejectWeakerAdjacentDuplicate = true
+        bool $rejectWeakerAdjacentDuplicate = true,
     ): ?string {
         if ($fetchHistoricalSnapshot === null) {
             return null;
@@ -316,7 +316,7 @@ trait FestivalRelativeDaySupport
     private function shouldEmitSolarSankrantiToday(
         array $rules,
         array $todayDetails,
-        ?array $yesterdayDetails
+        ?array $yesterdayDetails,
     ): bool {
         $targetRashi = (int) ($rules['rashi'] ?? -1);
         if ($targetRashi < 0) {
@@ -364,7 +364,7 @@ trait FestivalRelativeDaySupport
         CarbonImmutable $date,
         array $rules,
         array $todayDetails,
-        ?callable $fetchHistoricalSnapshot
+        ?callable $fetchHistoricalSnapshot,
     ): bool {
         if (!isset($rules['weekday']) || $date->dayOfWeek !== (int) $rules['weekday']) {
             return false;
@@ -423,7 +423,7 @@ trait FestivalRelativeDaySupport
         CarbonImmutable $candidateDate,
         array $parentYesterday,
         array $parentSnapshot,
-        array $resolved
+        array $resolved,
     ): bool {
         $currentReason = (string) (
             $resolved['decision']['winning_reason_key']

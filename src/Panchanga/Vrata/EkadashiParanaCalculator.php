@@ -24,7 +24,7 @@ class EkadashiParanaCalculator
 
     public function __construct(
         private readonly TransitEngine $transitEngine,
-        private readonly SunService $sunService
+        private readonly SunService $sunService,
     ) {
         $this->intervalTracker = new IntervalTracker($this->transitEngine, $this->sunService);
     }
@@ -41,7 +41,7 @@ class EkadashiParanaCalculator
         float $lon,
         ?float $previousSunriseJd = null,
         ?string $monthAmanta = null,
-        ?string $paksha = null
+        ?string $paksha = null,
     ): ?array {
         $phaseTithi = (($tithiNumber - 1) % 15) + 1;
         if (!in_array($phaseTithi, [11, 12], true)) {
@@ -58,14 +58,14 @@ class EkadashiParanaCalculator
                 $tithiStartJd - 1.2,
                 $dashamiStartAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
             );
             $dvadashiEndAngle = ($tithiNumber + 1) * 12.0;
             $dvadashiEndJd = $this->transitEngine->findAngleCrossing(
                 $tithiEndJd + 0.000001,
                 $dvadashiEndAngle,
                 1,
-                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+                fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
             );
             $thirdSunriseJd = $this->calculateSunriseForJdDate($nextSunriseJd + 1.0, $tz, $lat, $lon);
             $followingPakshaEndVriddhi = $this->followingPakshaEndTithiHasVriddhi($tithiNumber, $tithiEndJd, $sunriseJd, $tz, $lat, $lon);
@@ -84,7 +84,7 @@ class EkadashiParanaCalculator
             $dvadashiEndJd,
             $thirdSunriseJd,
             $dashamiStartJd,
-            $followingPakshaEndVriddhi
+            $followingPakshaEndVriddhi,
         );
 
         $payload = [
@@ -117,7 +117,7 @@ class EkadashiParanaCalculator
         bool $startsTomorrow,
         ?string $monthAmanta = null,
         ?string $paksha = null,
-        ?float $paranaDaySunsetJd = null
+        ?float $paranaDaySunsetJd = null,
     ): array {
         $hariVasaraEndJd = $dvadashiStartJd + (($dvadashiEndJd - $dvadashiStartJd) / 4.0);
         $paranaStartJd = max($sunriseJd, $hariVasaraEndJd);
@@ -136,7 +136,7 @@ class EkadashiParanaCalculator
             $dvadashiEndJd,
             $restrictedWindows,
             $daytimePreferenceRule['preferred_end_jd'] ?? null,
-            $tz
+            $tz,
         );
         $restrictedWindows = $resolvedWindows['restricted_windows'];
         $allowedWindows = $resolvedWindows['allowed_windows'];
@@ -213,13 +213,13 @@ class EkadashiParanaCalculator
             $searchFromJd + 0.000001,
             $pakshaEndStartAngle,
             1,
-            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
         );
         $pakshaEndEndJd = $this->transitEngine->findAngleCrossing(
             $pakshaEndStartJd + 0.000001,
             $pakshaEndEndAngle,
             1,
-            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd)
+            fn(float $jd): float => $this->transitEngine->getMoonSunAngle($jd),
         );
 
         $sunrisesInPakshaEnd = 0;
@@ -301,7 +301,7 @@ class EkadashiParanaCalculator
         float $rawParanaEndJd,
         array $restrictedWindows,
         ?float $preferredEndJd,
-        string $tz
+        string $tz,
     ): array {
         $activeRestrictedWindows = $this->filterRestrictedWindowsAtParanaStart($rawParanaStartJd, $restrictedWindows);
         $windowStartJd = $rawParanaStartJd;
@@ -379,7 +379,7 @@ class EkadashiParanaCalculator
             'guidance_keys' => $guidanceKeys,
             'guidance' => array_map(
                 static fn(string $key): string => Localization::translate('String', $key),
-                $guidanceKeys
+                $guidanceKeys,
             ),
             'source_refs' => ['Satsangi Jeevan 3.32.84-87', 'Satsangi Jeevan 3.32.160-175'],
         ];
@@ -520,11 +520,11 @@ class EkadashiParanaCalculator
         if (isset($payload['viddha_tithi_analysis']) && is_array($payload['viddha_tithi_analysis'])) {
             $payload['viddha_tithi_analysis']['status_label'] = Localization::translate(
                 'String',
-                (string) ($payload['viddha_tithi_analysis']['status'] ?? '')
+                (string) ($payload['viddha_tithi_analysis']['status'] ?? ''),
             );
             $payload['viddha_tithi_analysis']['tithi_name_label'] = Localization::translate(
                 'String',
-                (string) ($payload['viddha_tithi_analysis']['tithi_name'] ?? '')
+                (string) ($payload['viddha_tithi_analysis']['tithi_name'] ?? ''),
             );
         }
 
@@ -541,13 +541,13 @@ class EkadashiParanaCalculator
         if (isset($payload['parana']) && is_array($payload['parana'])) {
             $payload['parana']['hari_vasara_classification_label'] = Localization::translate(
                 'String',
-                (string) ($payload['parana']['hari_vasara_classification'] ?? '')
+                (string) ($payload['parana']['hari_vasara_classification'] ?? ''),
             );
 
             if (isset($payload['parana']['daytime_preference_rule']) && is_array($payload['parana']['daytime_preference_rule'])) {
                 $payload['parana']['daytime_preference_rule']['rule_label'] = Localization::translate(
                     'String',
-                    (string) ($payload['parana']['daytime_preference_rule']['rule_key'] ?? '')
+                    (string) ($payload['parana']['daytime_preference_rule']['rule_key'] ?? ''),
                 );
             }
         }

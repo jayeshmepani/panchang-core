@@ -132,7 +132,7 @@ class GeneralCalculativeRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            CalendarType::Amanta
+            CalendarType::Amanta,
         );
 
         self::assertArrayHasKey('calendar_period_windows', $result);

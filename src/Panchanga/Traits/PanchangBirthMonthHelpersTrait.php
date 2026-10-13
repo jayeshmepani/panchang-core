@@ -23,9 +23,9 @@ trait PanchangBirthMonthHelpersTrait
                 (int) $birth['hour'],
                 (int) $birth['minute'],
                 (int) $birth['second'],
-                $birth['timezone']
+                $birth['timezone'],
             ),
-            $birth['timezone']
+            $birth['timezone'],
         );
 
         // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
@@ -74,7 +74,7 @@ trait PanchangBirthMonthHelpersTrait
         array $birth,
         string $tz,
         ?CarbonImmutable $sunset = null,
-        ?CarbonImmutable $nextSunrise = null
+        ?CarbonImmutable $nextSunrise = null,
     ): array {
         $dt = CarbonImmutable::create(
             (int) $birth['year'],
@@ -83,7 +83,7 @@ trait PanchangBirthMonthHelpersTrait
             (int) $birth['hour'],
             (int) $birth['minute'],
             (int) $birth['second'],
-            $tz
+            $tz,
         );
 
         $relSunrise = $sunrise;
@@ -261,7 +261,7 @@ trait PanchangBirthMonthHelpersTrait
         float $lat,
         float $lon,
         string $tz,
-        float $elevation = 0.0
+        float $elevation = 0.0,
     ): array {
         return [
             'year' => (int) $dt->format('Y'),

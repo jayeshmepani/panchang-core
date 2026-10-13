@@ -62,6 +62,7 @@ enum Paksha: int
     public function containsTithi(int $tithiIndex): bool
     {
         $range = $this->getTithiRange();
+
         return $tithiIndex >= $range['start'] && $tithiIndex <= $range['end'];
     }
 

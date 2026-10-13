@@ -65,6 +65,7 @@ enum Vara: int
     public static function fromJulianDay(float $jd): self
     {
         $weekday = (int) floor($jd + 1.5) % 7;
+
         return self::from($weekday);
     }
 

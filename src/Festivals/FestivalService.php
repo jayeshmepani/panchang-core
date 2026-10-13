@@ -11,6 +11,7 @@ use JayeshMepani\PanchangCore\Shraddha\ShannavatiCatalog;
 use JayeshMepani\PanchangCore\Shraddha\ShannavatiResolver;
 use JayeshMepani\PanchangCore\Shraddha\ShannavatiTraditionProfile;
 use LogicException;
+use Throwable;
 
 /**
  * Hindu Festival Calculation Service
@@ -47,7 +48,7 @@ class FestivalService
     private array $shannavatiResolutionCache = [];
 
     public function __construct(
-        private readonly FestivalRuleEngine $ruleEngine
+        private readonly FestivalRuleEngine $ruleEngine,
     ) {}
 
     public static function getFestivalCount(): int
@@ -159,7 +160,7 @@ class FestivalService
         ?callable $fetchHistoricalSnapshot = null,
         bool $includeExtraWinners = false,
         string $selection = 'all',
-        ?string $tradition = null
+        ?string $tradition = null,
     ): array
     {
         $festivals = [];
@@ -232,7 +233,7 @@ class FestivalService
                             $rules,
                             (array) ($tomorrowDetails['Hindu_Calendar'] ?? []),
                             $isClassical,
-                            $todayDetails
+                            $todayDetails,
                         ));
                 if (!$monthOk) {
                     continue; // Skip this festival for this month
@@ -305,7 +306,7 @@ class FestivalService
                         $rules,
                         $date,
                         $todayDetails,
-                        $fetchHistoricalSnapshot
+                        $fetchHistoricalSnapshot,
                     )) {
                         $festivals[] = $this->buildFestivalPayload($name, $rules, $resolved);
                         $festivalMeta[] = [
@@ -327,7 +328,7 @@ class FestivalService
                                 $rules,
                                 $date,
                                 $todayDetails,
-                                $fetchHistoricalSnapshot
+                                $fetchHistoricalSnapshot,
                             )) {
                             $festivals[] = $this->buildFestivalPayload($name, $rules, $resolvedYesterday);
                             $festivalMeta[] = [
@@ -423,7 +424,7 @@ class FestivalService
                         is_array($dayBeforeYesterday) ? $dayBeforeYesterday : null,
                         static fn(CarbonImmutable $lookupDate): ?array => $lookupDate->isSameDay($date->addDay())
                             ? (is_array($dayAfterToday) ? $dayAfterToday : null)
-                            : null
+                            : null,
                     )
                     && !isset($addedFestivalKeys[$name])) {
                     $festivals[] = $this->buildFestivalPayload($name, $rules);
@@ -508,7 +509,7 @@ class FestivalService
             $festivals,
             $festivalMeta,
             $addedFestivalKeys,
-            $selection
+            $selection,
         );
 
         // During Adhika Maas, if special Adhika Ekadashi(s) are present on a date,
@@ -550,7 +551,7 @@ class FestivalService
             $yesterdayDetails,
             $fetchHistoricalSnapshot,
             $addedFestivalKeys,
-            $selection
+            $selection,
         );
         foreach ($dayAfterFestivals as $item) {
             $festivals[] = $item['festival'];
@@ -651,7 +652,7 @@ class FestivalService
         if ($hasVinayaka) {
             return array_values(array_filter(
                 $mergedFestivals,
-                static fn(array $fest): bool => (string) ($fest['name_key'] ?? $fest['resolution']['festival_name'] ?? $fest['name'] ?? '') !== 'Vinayaki Chaturthi'
+                static fn(array $fest): bool => (string) ($fest['name_key'] ?? $fest['resolution']['festival_name'] ?? $fest['name'] ?? '') !== 'Vinayaki Chaturthi',
             ));
         }
 
@@ -736,7 +737,7 @@ class FestivalService
                 $variantName = $traditionRules['variant_name'];
                 $variantAliases = array_map(
                     static fn(mixed $alias): string => (string) $alias,
-                    (array) ($traditionRules['aliases'] ?? [])
+                    (array) ($traditionRules['aliases'] ?? []),
                 );
 
                 $effectiveTraditionRules = $traditionRules;
@@ -784,8 +785,15 @@ class FestivalService
 
     private function rejectResolvedFestivalForDay(array $rules, array $todayDetails): bool
     {
-        // Config default is Vaishnava (config/panchang.php festivals.default_tradition).
-        $tradition = function_exists('config') ? config('panchang.festivals.default_tradition', 'Vaishnava') : 'Vaishnava';
+        $tradition = 'Vaishnava';
+        if (function_exists('config')) {
+            try {
+                $tradition = config('panchang.festivals.default_tradition', 'Vaishnava');
+            } catch (Throwable) {
+                $tradition = 'Vaishnava';
+            }
+        }
+
         $isVaishnavaMode = strcasecmp((string) $tradition, 'Vaishnava') === 0;
 
         $isEkadashiRule = ((int) ($rules['tithi'] ?? 0) === 11) && ((bool) ($rules['fasting'] ?? false) || (bool) ($rules['ekadashi_nirnay_table'] ?? false));
@@ -881,7 +889,7 @@ class FestivalService
         array $rules,
         int $tithiNum,
         string $paksha,
-        array $panchangDetails
+        array $panchangDetails,
     ): bool {
         $type = (string) ($rules['type'] ?? 'tithi');
 
@@ -1101,5 +1109,4 @@ class FestivalService
 
         return $value;
     }
-
 }

@@ -30,6 +30,8 @@ $longitude = 69.668339;
 $calendarType = panchang_script_calendar_type();
 $locale = panchang_script_locale();
 $outputDir = panchang_script_output_dir($baseDir, $calendarType, $locale);
+$filename = sprintf('eclipses_%d_%d.json', $startYear, $endYear);
+$outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
 $eclipseService = CliBootstrap::makeEclipseService();
 
@@ -39,11 +41,21 @@ $eclipsesFlat = [];
 echo sprintf('Building eclipses for %d-%d...', $startYear, $endYear) . PHP_EOL;
 
 for ($year = $startYear; $year <= $endYear; $year++) {
+    echo sprintf('  Calculating eclipses for %d...', $year) . PHP_EOL;
+    if (function_exists('ob_flush')) {
+        @ob_flush();
+    }
+    flush();
     $events = $eclipseService->getEclipsesForYear($year, $latitude, $longitude, $timezone);
     $eclipsesByYear[(string) $year] = $events;
     foreach ($events as $event) {
         $eclipsesFlat[] = $event;
     }
+    echo sprintf('  Finished %d (%d eclipses).', $year, count($events)) . PHP_EOL;
+    if (function_exists('ob_flush')) {
+        @ob_flush();
+    }
+    flush();
 }
 
 $output = [
@@ -65,7 +77,7 @@ $output = [
             Localization::translate('String', 'Eclipses %d-%d - All eclipses for %d years'),
             $startYear,
             $endYear,
-            $endYear - $startYear + 1
+            $endYear - $startYear + 1,
         ),
         'from_year' => $startYear,
         'to_year' => $endYear,
@@ -76,9 +88,6 @@ $output = [
         'flat' => $eclipsesFlat,
     ],
 ];
-
-$filename = sprintf('eclipses_%d_%d.json', $startYear, $endYear);
-$outputPath = $outputDir . DIRECTORY_SEPARATOR . $filename;
 
 try {
     panchang_script_write_json($outputPath, $output);

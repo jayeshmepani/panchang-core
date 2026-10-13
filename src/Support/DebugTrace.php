@@ -38,6 +38,7 @@ final class DebugTrace
 
         if (is_string($file) && $file !== '') {
             file_put_contents($file, $line, FILE_APPEND);
+
             return;
         }
 

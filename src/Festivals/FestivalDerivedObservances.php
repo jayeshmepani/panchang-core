@@ -28,7 +28,7 @@ trait FestivalDerivedObservances
         array &$festivals,
         array &$festivalMeta,
         array &$addedFestivalKeys,
-        string $selection = 'all'
+        string $selection = 'all',
     ): void {
         $todayVaishnava = (array) (($todayDetails['Ekadashi_Observance']['ekadashi_vaishnava'] ?? []));
         $yesterdayVaishnava = is_array($yesterdayDetails)
@@ -375,7 +375,7 @@ trait FestivalDerivedObservances
         string $reason,
         array &$festivals,
         array &$festivalMeta,
-        array &$addedFestivalKeys
+        array &$addedFestivalKeys,
     ): void {
         if (isset($addedFestivalKeys[$name])) {
             return;

@@ -6,6 +6,7 @@ namespace JayeshMepani\PanchangCore\Festivals;
 
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
+use Throwable;
 
 /**
  * Festival Family Orchestrator.
@@ -197,10 +198,20 @@ class FestivalFamilyOrchestrator
         array $baseDate,
         array $panchangData,
         ?string $tradition = null,
-        ?string $region = null
+        ?string $region = null,
     ): ?array {
-        $tradition ??= function_exists('config') ? config('panchang.festivals.default_tradition', 'Smarta') : 'Smarta';
-        $region ??= function_exists('config') ? config('panchang.festivals.default_region', 'North') : 'North';
+        if (function_exists('config')) {
+            try {
+                $tradition ??= config('panchang.festivals.default_tradition', 'Smarta');
+                $region ??= config('panchang.festivals.default_region', 'North');
+            } catch (Throwable) {
+                $tradition ??= 'Smarta';
+                $region ??= 'North';
+            }
+        } else {
+            $tradition ??= 'Smarta';
+            $region ??= 'North';
+        }
 
         $family = self::FESTIVAL_FAMILIES[$familyName] ?? null;
         if ($family === null) {
@@ -246,7 +257,7 @@ class FestivalFamilyOrchestrator
         array $eventDate,
         array $panchangData,
         string $tradition,
-        string $region
+        string $region,
     ): ?array {
         $ruleKey = $event['rule_key'];
         $timeOfDay = $event['time_of_day'] ?? 'day';
@@ -363,7 +374,7 @@ class FestivalFamilyOrchestrator
         int $tomorrowTithi,
         string $paksha,
         array $ctxToday,
-        array $ctxTomorrow
+        array $ctxTomorrow,
     ): bool {
         // Purnima = tithi 15 in Shukla paksha
         if ($paksha !== 'Shukla') {
@@ -451,6 +462,7 @@ class FestivalFamilyOrchestrator
     private function getPanchangForOffset(array $panchangData, int $offset): ?array
     {
         $index = $offset >= 0 ? $offset : count($panchangData) + $offset;
+
         return $panchangData[$index] ?? null;
     }
 

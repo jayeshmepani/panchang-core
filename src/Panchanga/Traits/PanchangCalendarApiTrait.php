@@ -32,7 +32,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
 
@@ -49,7 +49,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
 
@@ -66,7 +66,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
 
@@ -93,7 +93,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         array $fields = [],
         float $elevation = 0.0,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $endDay] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
         $end = $endDay->addDay();
@@ -139,7 +139,7 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            $defaultBrihaspatiModel
+                            $defaultBrihaspatiModel,
                         ),
                         BrihaspatiSamvatsaraService::assignmentRuleForModel($defaultBrihaspatiModel),
                     ],
@@ -149,10 +149,10 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
                         ),
                         BrihaspatiSamvatsaraService::assignmentRuleForModel(
-                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+                            BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS,
                         ),
                     ],
                     // Historical Graha-lāghava comparison (experimental): classical 60-name phase projected
@@ -162,10 +162,10 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA,
                         ),
                         BrihaspatiSamvatsaraService::assignmentRuleForModel(
-                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                            BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA,
                         ),
                     ],
                     // Historical Makaranda comparison (experimental): classical 60-name phase projected
@@ -175,10 +175,10 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
                         ),
                         BrihaspatiSamvatsaraService::assignmentRuleForModel(
-                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                            BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
                         ),
                     ],
                     // Modern physical-astronomy comparison: classical 60-name phase projected onto
@@ -189,10 +189,10 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS,
                         ),
                         BrihaspatiSamvatsaraService::assignmentRuleForModel(
-                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                            BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS,
                         ),
                     ],
                     'samvatsara_gujarati' => [
@@ -200,7 +200,7 @@ trait PanchangCalendarApiTrait
                             $startJd,
                             $endJd,
                             $tz,
-                            $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta')
+                            $amantaWindows ??= $this->buildLunarMonthPeriodWindows($startJd, $endJd, $tz, 0.0, 'Month_Amanta'),
                         ),
                         'kartika_shukla_pratipada_at_sunrise',
                     ],
@@ -209,7 +209,7 @@ trait PanchangCalendarApiTrait
                 };
 
                 $result[$field . '_windows'] = $this->publicCalendarPeriodWindows(
-                    $this->attachCivilObservanceDates($windows, $lat, $lon, $tz, $elevation, $rule)
+                    $this->attachCivilObservanceDates($windows, $lat, $lon, $tz, $elevation, $rule),
                 );
             } catch (Throwable $e) {
                 // Opt-in projection models must not fail the whole calendar-periods payload.
@@ -247,14 +247,14 @@ trait PanchangCalendarApiTrait
         int $fromMonth,
         int $toYear,
         int $toMonth,
-        string $tz
+        string $tz,
     ): array {
         [$start, $endDay] = $this->resolveMonthRangeBounds(
             $fromYear,
             $fromMonth,
             $toYear,
             $toMonth,
-            $tz
+            $tz,
         );
 
         $rangeStartJd = $this->toJulianDayFromCarbon($start, $tz);
@@ -280,14 +280,14 @@ trait PanchangCalendarApiTrait
 
             if ($classicalStartJd <= 0.0 || $classicalEndJd <= $classicalStartJd) {
                 throw new InvalidArgumentException(
-                    'Brihaspati comparison returned an invalid classical window.'
+                    'Brihaspati comparison returned an invalid classical window.',
                 );
             }
 
             $key = sprintf(
                 '%d|%.8F',
                 (int) ($sameName['index'] ?? -1),
-                $classicalStartJd
+                $classicalStartJd,
             );
 
             if (!isset($seen[$key])) {
@@ -299,7 +299,7 @@ trait PanchangCalendarApiTrait
 
                     if ($startJd <= 0.0 || $endJd <= $startJd) {
                         throw new InvalidArgumentException(
-                            sprintf("Brihaspati comparison returned an invalid '%s' window.", $fallbackModel)
+                            sprintf("Brihaspati comparison returned an invalid '%s' window.", $fallbackModel),
                         );
                     }
 
@@ -309,10 +309,10 @@ trait PanchangCalendarApiTrait
                         'start_jd' => $startJd,
                         'end_jd' => $endJd,
                         'start_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($startJd, $tz)
+                            $this->sunService->jdToCarbonPublic($startJd, $tz),
                         ),
                         'end_iso' => AstroCore::formatDateTime(
-                            $this->sunService->jdToCarbonPublic($endJd, $tz)
+                            $this->sunService->jdToCarbonPublic($endJd, $tz),
                         ),
                         'start_rashi_index' => isset($timing['start_rashi_index'])
                             ? (int) $timing['start_rashi_index']
@@ -336,10 +336,10 @@ trait PanchangCalendarApiTrait
                     'start_jd' => $classicalStartJd,
                     'end_jd' => $classicalEndJd,
                     'start_iso' => AstroCore::formatDateTime(
-                        $this->sunService->jdToCarbonPublic($classicalStartJd, $tz)
+                        $this->sunService->jdToCarbonPublic($classicalStartJd, $tz),
                     ),
                     'end_iso' => AstroCore::formatDateTime(
-                        $this->sunService->jdToCarbonPublic($classicalEndJd, $tz)
+                        $this->sunService->jdToCarbonPublic($classicalEndJd, $tz),
                     ),
                 ];
 
@@ -349,28 +349,26 @@ trait PanchangCalendarApiTrait
                     'classical' => $classicalPublic,
                     'grahalaghava' => $formatProjection(
                         $grahalaghava,
-                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
+                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA,
                     ),
                     'makaranda' => $formatProjection(
                         $makaranda,
-                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA,
                     ),
                     // Backward-compatible legacy difference = modern - classical when present.
                     'difference' => $legacyModernDifference !== []
                         ? $formatDifference($legacyModernDifference)
                         : null,
                     'differences_from_classical' => [
-                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA
-                            => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA] ?? [])),
-                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA
-                            => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_MAKARANDA] ?? [])),
+                        BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_GRAHALAGHAVA] ?? [])),
+                        BrihaspatiSamvatsaraService::MODEL_MAKARANDA => $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_MAKARANDA] ?? [])),
                     ],
                 ];
 
                 if ($modern !== [] && isset($modern['start_jd'])) {
                     $row['modern'] = $formatProjection(
                         $modern,
-                        BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+                        BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS,
                     );
                     $row['differences_from_classical'][BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS]
                         = $formatDifference((array) ($differences[BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS] ?? $legacyModernDifference));
@@ -398,7 +396,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all');
     }
@@ -410,7 +408,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'festivals');
     }
@@ -422,7 +420,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         return $this->buildFestivalYearCalendar($year, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'vrats');
     }
@@ -440,7 +438,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         array $options = [],
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
         $months = [];
@@ -457,7 +455,7 @@ trait PanchangCalendarApiTrait
                 $elevation,
                 $options,
                 $calculationAt,
-                $calendarType
+                $calendarType,
             );
         }
 
@@ -476,7 +474,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         array $options = [],
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         [$start, $end] = $this->resolveMonthRangeBounds($fromYear, $fromMonth, $toYear, $toMonth, $tz);
         $months = [];
@@ -492,7 +490,7 @@ trait PanchangCalendarApiTrait
                 $elevation,
                 $options,
                 $calculationAt,
-                $calendarType
+                $calendarType,
             );
         }
 
@@ -514,7 +512,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         array $options = [],
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         // Normalize calendar_type from string to enum
         if (is_string($calendarType)) {
@@ -528,7 +526,9 @@ trait PanchangCalendarApiTrait
         $daysInMonth = $start->daysInMonth;
 
         $festivalScope = (string) ($options['festival_scope'] ?? 'year');
-        if ($festivalScope === 'month') {
+        if (isset($options['festivals_by_date']) && is_array($options['festivals_by_date'])) {
+            $festivalsByDate = $options['festivals_by_date'];
+        } elseif ($festivalScope === 'month') {
             $festivalsByDate = $this->getFestivalCalendarForDateRange(
                 start: $start,
                 end: $start->addDays($daysInMonth - 1),
@@ -540,18 +540,32 @@ trait PanchangCalendarApiTrait
                 calendarType: $calendarType,
             );
         } else {
-            // Use the same year-level festival orchestration/consolidation pipeline
-            // that powers scripts/panchang_festivals.php so month view never diverges.
-            $yearFestivalCalendar = $this->getFestivalYearCalendar(
-                year: $year,
-                lat: $lat,
-                lon: $lon,
-                tz: $tz,
-                elevation: $elevation,
-                calculationAt: $calculationAt,
-                calendarType: $calendarType,
-            );
-            $festivalsByDate = $yearFestivalCalendar['by_date'];
+            // Check if pre-generated festivals_{year}.json exists for the current calendar/locale
+            $calTypeStr = $calendarType instanceof CalendarType ? $calendarType->value : (string) $calendarType;
+            $locale = function_exists('panchang_script_locale') ? panchang_script_locale() : 'en';
+            $candidatePath = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'scripts' . DIRECTORY_SEPARATOR . 'output'
+                . DIRECTORY_SEPARATOR . $calTypeStr . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . "festivals_{$year}.json";
+
+            if (file_exists($candidatePath)) {
+                $decoded = json_decode((string) file_get_contents($candidatePath), true);
+                if (is_array($decoded) && isset($decoded['festivals']['by_date']) && is_array($decoded['festivals']['by_date'])) {
+                    $festivalsByDate = $decoded['festivals']['by_date'];
+                }
+            }
+
+            if (!isset($festivalsByDate)) {
+                // Fallback: Use the same year-level festival orchestration pipeline
+                $yearFestivalCalendar = $this->getFestivalYearCalendar(
+                    year: $year,
+                    lat: $lat,
+                    lon: $lon,
+                    tz: $tz,
+                    elevation: $elevation,
+                    calculationAt: $calculationAt,
+                    calendarType: $calendarType,
+                );
+                $festivalsByDate = $yearFestivalCalendar['by_date'];
+            }
         }
 
         $snapshots = [];
@@ -644,7 +658,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         array $options = [],
         ?CarbonImmutable $calculationAt = null,
-        CalendarType|string $calendarType = CalendarType::Amanta
+        CalendarType|string $calendarType = CalendarType::Amanta,
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -721,7 +735,7 @@ trait PanchangCalendarApiTrait
         float $lon,
         string $tz,
         float $elevation = 0.0,
-        array $options = []
+        array $options = [],
     ): array {
         $dayDetails = $this->getSelectedDetails($date, $lat, $lon, $tz, ['Basic_Details'], $elevation, null, CalendarType::Amanta, $options)['Basic_Details'];
         $sunrise = $this->parseDisplayDateTime((string) $dayDetails['sunrise_dt'], $tz);
@@ -733,6 +747,7 @@ trait PanchangCalendarApiTrait
         $nakIndex = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
         $moonSign = (int) floor($moonLongitude / 30.0);
         $ascLongitude = $this->astronomy->getAscendant($sunriseBirth);
+
         return [
             'day_details' => $dayDetails,
             'sunrise_context' => [
@@ -757,7 +772,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         ?CarbonImmutable $currentAt = null,
         float $elevation = 0.0,
-        array $options = []
+        array $options = [],
     ): array {
         $at = $currentAt instanceof CarbonImmutable ? $currentAt->setTimezone($tz) : CarbonImmutable::now($tz);
         $selectedDetails = $this->getSelectedDetails(
@@ -769,7 +784,7 @@ trait PanchangCalendarApiTrait
             $elevation,
             $at,
             CalendarType::Amanta,
-            $options
+            $options,
         );
         $dayDetails = [
             ...$selectedDetails['Basic_Details'],
@@ -812,7 +827,7 @@ trait PanchangCalendarApiTrait
         $currentYoga = $this->panchanga->calculateYoga((float) ($sunMoon['Sun'] ?? 0.0), $moonLongitude);
         $nityaYogaObservations = ElectionalEvaluator::calculateNityaYogaObservations(
             (int) ($currentYoga['index'] ?? 1),
-            (string) ($currentYoga['name'] ?? '')
+            (string) ($currentYoga['name'] ?? ''),
         );
         $varaTithiDoshas = ElectionalEvaluator::calculateVaraTithiDoshas($varaNumber, $tithiNumber);
 
@@ -829,7 +844,7 @@ trait PanchangCalendarApiTrait
                 'amrita_kaal_start',
                 'amrita_kaal_end',
                 Localization::translate('String', 'Amrita Kaal'),
-                Localization::translate('Source', 'Classical Panchanga Calculation Texts')
+                Localization::translate('Source', 'Classical Panchanga Calculation Texts'),
             ),
             'abhijit_cancellation' => ElectionalEvaluator::calculateAbhijitCancellation($sunrise, $sunset, $varaNumber, $currentTime),
             // Normalize newer electional payloads so generateRejectionReport() can read has_dosha.
@@ -903,7 +918,7 @@ trait PanchangCalendarApiTrait
         float $elevation = 0.0,
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta,
-        string $selection = 'all'
+        string $selection = 'all',
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -928,7 +943,7 @@ trait PanchangCalendarApiTrait
         ?CarbonImmutable $calculationAt = null,
         CalendarType|string $calendarType = CalendarType::Amanta,
         string $selection = 'all',
-        ?string $tradition = null
+        ?string $tradition = null,
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -956,7 +971,7 @@ trait PanchangCalendarApiTrait
             $elevation,
             $calculationAt,
             $calendarType,
-            false
+            false,
         );
 
         for ($date = $rangeStart; $date->lessThanOrEqualTo($rangeEnd); $date = $date->addDay()) {
@@ -1153,7 +1168,7 @@ trait PanchangCalendarApiTrait
                     'paksha' => $paksha,
                     'paksha_name' => Localization::translate(
                         'String',
-                        $paksha === 'Shukla' ? 'Shukla Paksha (waxing)' : 'Krishna Paksha (waning)'
+                        $paksha === 'Shukla' ? 'Shukla Paksha (waxing)' : 'Krishna Paksha (waning)',
                     ),
                     'start_jd' => $windowStartJd,
                     'end_jd' => $windowEndJd,
@@ -1318,7 +1333,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         array &$festivalsByDate,
         array &$festivalFlat,
-        string $selection = 'all'
+        string $selection = 'all',
     ): void {
         foreach (FestivalService::FESTIVALS as $festName => $rules) {
             if ((string) ($rules['type'] ?? '') !== 'day_after') {
@@ -1397,7 +1412,7 @@ trait PanchangCalendarApiTrait
         array $observedFestival,
         string $parentName,
         string $parentDisplayName,
-        string $tz
+        string $tz,
     ): bool {
         $currentReason = (string) (
             $observedFestival['rules_applied']['winning_reason_key']
@@ -1741,7 +1756,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         float $elevation,
         ?CarbonImmutable $calculationAt,
-        CalendarType $calendarType
+        CalendarType $calendarType,
     ): array {
         return $this->buildFestivalRangeCalendar($start, $end, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, 'all')['by_date'];
     }
@@ -1877,7 +1892,7 @@ trait PanchangCalendarApiTrait
         string $tz,
         array $boundaries,
         callable $nameResolver,
-        bool $tropical = false
+        bool $tropical = false,
     ): array {
         sort($boundaries);
         $sampleJd = $startJd + 1e-7;
@@ -1889,7 +1904,7 @@ trait PanchangCalendarApiTrait
             $startJd,
             $this->previousSolarBoundary($sunLon, $boundaries),
             -1,
-            $longitudeResolver
+            $longitudeResolver,
         );
         $windows = [];
 
@@ -2012,6 +2027,7 @@ trait PanchangCalendarApiTrait
     {
         return array_map(function (array $window) use ($samvatsaraResolver): array {
             $year = (int) $window['value'];
+
             return [
                 'name' => $samvatsaraResolver($year),
                 'value' => $year,
@@ -2157,10 +2173,10 @@ trait PanchangCalendarApiTrait
         float $startJd,
         float $endJd,
         string $tz,
-        ?string $model = null
+        ?string $model = null,
     ): array {
         $resolvedModel = BrihaspatiSamvatsaraService::normalizeModelKey(
-            $model ?? BrihaspatiSamvatsaraService::defaultModel()
+            $model ?? BrihaspatiSamvatsaraService::defaultModel(),
         );
         $service = new BrihaspatiSamvatsaraService($this->astronomy);
 
@@ -2434,7 +2450,7 @@ trait PanchangCalendarApiTrait
         float $longitude,
         string $tz,
         float $elevation,
-        string $assignmentRule = 'lunar_month_at_sunrise'
+        string $assignmentRule = 'lunar_month_at_sunrise',
     ): array {
         $count = count($windows);
         if ($count === 0) {
@@ -2650,7 +2666,7 @@ trait PanchangCalendarApiTrait
         int $fromMonth,
         int $toYear,
         int $toMonth,
-        string $tz
+        string $tz,
     ): array {
         $start = CarbonImmutable::create($fromYear, $fromMonth, 1, 0, 0, 0, $tz)->startOfDay();
         $end = CarbonImmutable::create($toYear, $toMonth, 1, 0, 0, 0, $tz)->endOfMonth()->startOfDay();
@@ -2671,7 +2687,7 @@ trait PanchangCalendarApiTrait
     {
         return array_values(array_filter(
             $festivals,
-            fn(array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey
+            fn(array $festival): bool => $this->festivalObservanceDate($festival, $dateKey) === $dateKey,
         ));
     }
 }

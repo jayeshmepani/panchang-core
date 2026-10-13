@@ -41,6 +41,7 @@ if (!function_exists('config')) {
             if (!is_array($value) || !array_key_exists($segment, $value)) { return $default; }
             $value = $value[$segment];
         }
+
         return $value;
     }
 }

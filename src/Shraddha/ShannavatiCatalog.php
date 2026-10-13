@@ -199,7 +199,7 @@ final class ShannavatiCatalog
                 ...$rule,
             ],
             self::MANVADI_MODERN_NAMED,
-            array_keys(self::MANVADI_MODERN_NAMED)
+            array_keys(self::MANVADI_MODERN_NAMED),
         );
     }
 }

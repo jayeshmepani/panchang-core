@@ -22,7 +22,7 @@ class EnglishLocalizationRegressionTest extends TestCase
             CarbonImmutable::parse('2026-06-02', 'Asia/Kolkata'),
             23.2472446,
             69.668339,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         $this->assertSame('Taurus', $details['Chart_Auxiliary']['Sun_Sign'] ?? null);
@@ -84,7 +84,7 @@ class EnglishLocalizationRegressionTest extends TestCase
             69.668339,
             'Asia/Kolkata',
             0.0,
-            ['festival_scope' => 'month']
+            ['festival_scope' => 'month'],
         );
 
         $firstDay = $calendar['2026-06-01'] ?? [];
@@ -97,7 +97,7 @@ class EnglishLocalizationRegressionTest extends TestCase
         $sankranti = $calendar['2026-06-15']['festivals'][0] ?? [];
         $chandraDarshana = array_values(array_filter(
             $calendar['2026-06-16']['festivals'] ?? [],
-            static fn(array $festival): bool => ($festival['name_key'] ?? '') === 'Chandra Darshana'
+            static fn(array $festival): bool => ($festival['name_key'] ?? '') === 'Chandra Darshana',
         ))[0] ?? [];
 
         $this->assertSame('Mithuna Sankranti', $sankranti['name'] ?? null);
@@ -124,7 +124,7 @@ class EnglishLocalizationRegressionTest extends TestCase
             CarbonImmutable::parse('2026-06-15', 'Asia/Kolkata'),
             23.2472446,
             69.668339,
-            'Asia/Kolkata'
+            'Asia/Kolkata',
         );
 
         $this->assertSame('Gemini', $details['Dharma_Sindhu']['Punya_Kaal']['sankranti_name'] ?? null);
