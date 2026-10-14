@@ -12,8 +12,8 @@ declare(strict_types=1);
  * If stdout is piped or redirected, JSON is also emitted to stdout.
  */
 
-use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Traits\CliBootstrap;
 
 $baseDir = is_file(__DIR__ . '/../vendor/autoload.php') ? dirname(__DIR__) : __DIR__;
 require $baseDir . '/vendor/autoload.php';

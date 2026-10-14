@@ -25,9 +25,11 @@ trait FestivalRuleTruthTables
                 return true;
             }
         }
+
         if ($this->isEkadashiNirnayRule($rule)) {
             return true;
         }
+
         if ($this->isPradoshRule($rule)) {
             return true;
         }

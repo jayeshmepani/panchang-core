@@ -67,6 +67,7 @@ class TransitEngine
         if ($estimatedRate > 0.0 && $estimatedRate < 10.0) {
             $speedBound = max(0.25, ($estimatedRate * 1.35) + 0.05);
         }
+
         $safeJumpDays = max(0.0, ($dist / $speedBound) * 0.75);
         $jd1 = $jd0 + $direction * $safeJumpDays;
         $f0 = $this->signedDiff($angleFn($jd1), $targetAngle);
@@ -112,6 +113,7 @@ class TransitEngine
             if ($mid <= $low + $margin || $mid >= $high - $margin) {
                 $mid = ($low + $high) / 2.0;
             }
+
             $fMid = $this->signedDiff($angleFn($mid), $targetAngle);
             if (abs($fMid) < 1e-6) {
                 return $mid;

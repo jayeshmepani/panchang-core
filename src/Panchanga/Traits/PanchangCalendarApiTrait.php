@@ -541,10 +541,10 @@ trait PanchangCalendarApiTrait
             );
         } else {
             // Check if pre-generated festivals_{year}.json exists for the current calendar/locale
-            $calTypeStr = $calendarType instanceof CalendarType ? $calendarType->value : (string) $calendarType;
+            $calTypeStr = $calendarType->value;
             $locale = function_exists('panchang_script_locale') ? panchang_script_locale() : 'en';
             $candidatePath = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'scripts' . DIRECTORY_SEPARATOR . 'output'
-                . DIRECTORY_SEPARATOR . $calTypeStr . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . "festivals_{$year}.json";
+                . DIRECTORY_SEPARATOR . $calTypeStr . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . sprintf('festivals_%d.json', $year);
 
             if (file_exists($candidatePath)) {
                 $decoded = json_decode((string) file_get_contents($candidatePath), true);
