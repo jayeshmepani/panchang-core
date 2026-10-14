@@ -998,9 +998,9 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
               </tr>
               <tr>
                 <td><strong>Ayanamsa</strong></td>
-                <td><code>JME_SIDEREAL_LAHIRI</code></td>
-                <td>Lahiri/Chitra Paksha is hardcoded for Panchanga calculations. Dynamic True Citra is not used for
-                  the five limbs.</td>
+                <td>True Citra Lahiri with true-of-date correction</td>
+                <td>Sidereal values use the ayanamsa evaluated at the requested instant. Tithi and Karana remain
+                  based on the Sun–Moon angular separation.</td>
               </tr>
               <tr>
                 <td><strong>Panchanga Moon</strong></td>
@@ -5072,17 +5072,28 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Current release history and compatibility notes from v1.0.0 through the v11.4.1 release.</p>
+          <p class="lead">Release history and compatibility notes from v1.0.0 through the prepared v11.5.0 release.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong> fixes the Pitru Paksha Gajachchhaya Amavasya timing and names Uttara Phalguni for Tripushkar. The preceding <strong>v11.4.0</strong> implements <strong>dynamic 30-Ghati (Dinamana &amp; Ratrimana) and 60-Ghati (Ahoratri) Vedic timekeeping clocks</strong> (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>) eliminating static 24-minute approximations. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline (<code>Panchaka_Rahita_Full_Day</code> / <code>calculatePanchakaRahitaTable()</code>), harmonized remainder classifications with classical <em>Muhurta Chintamani</em> canons (identifying Remainder 8 as Roga Panchaka and Remainders 3, 5, 7 as Shubha Panchaka), refined sunrise Lagna screening, and applied micro-interval boundary smoothing. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming (Somavati / Bhaumavati / Shani). <strong>v11.0.0</strong> remains the multi-model Bārhaspatya + era-year alignment major release.</p>
+            <p>Review the version-specific notes below before upgrading. The prepared <strong>v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</strong> update evaluates true-of-date ayanamsa at the requested instant, refines generation work, and corrects local eclipse visibility results. Sidereal values and generated JSON can differ from earlier mean Lahiri results. The published <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong> fixes the Pitru Paksha Gajachchhaya Amavasya timing and names Uttara Phalguni for Tripushkar. The preceding <strong>v11.4.0</strong> implements dynamic 30-Ghati and 60-Ghati Vedic timekeeping. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline and harmonized its remainder classifications with classical <em>Muhurta Chintamani</em> canons. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya and era-year alignment major release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation is refreshed for <strong>v11.4.1</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. Day-detail payloads expose dynamic 30-Ghati and 60-Ghati Ishtakala (<code>Ishtkaal_30</code>, <code>Ishtkaal_60</code>), the full-day continuous <code>Panchaka_Rahita_Full_Day</code> timeline, dual Nirayana/Sayana Hindu calendar, parallel Saṃvatsara names for southern continuous, northern Chaitradi Vikram, default mean-Bṛhaspati, and Gujarati Kartika reckoning, plus Bṛhaspati model/status metadata, with <strong>era years aligned to Chaitra Śukla Pratipadā (Vikram/Śaka/Kali) and Kartika (Gujarati)</strong> so they match calendar-period windows. Amāvāsyā naming distinguishes broad Amavasya, māsa-named forms, genuine weekday forms (Mon/Tue/Sat only), and Darsha as an aparahna technical subset. The separate 96-category <code>Shannavati_Shraddha</code> layer and its adhika/nija date behavior remain fully documented. Prior v11.0.0 multi-model Bṛhaspati work and v10.9.0 regional clarity remain in effect.</p>
-            <p>Generated today, month, and raw output include <code>calendar_period_windows</code> with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields (with stable keys and system labels), <code>Nighttime_Fivefold_Division</code> / <code>DayNight_Tenfold_Kala_Division</code>, and <code>Mahadiksha_Guidance</code> where included. Yoga correction notes: <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong>. Dynamic Vedic timekeeping guide: <code>docs/RELEASE_11.4.0.md</code>. Panchaka Rahita electional release guide: <code>docs/RELEASE_11.3.0.md</code>. Chandra Darshana textual and gate specification: <code>docs/Chandra_Darshana.md</code>. Amāvāsyā/Pūrṇimā naming taxonomy: <code>docs/AMAVASYA_PURNIMA_NAMING_TAXONOMY.md</code>. Chronology wording for eras and year-names: <code>MASTER.md</code>. Developer decision matrix for Bṛhaspati models: package <code>README.md</code>.</p>
+            <p>This documentation is prepared for <strong>v11.5.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. The current sidereal convention is True Citra Lahiri with a true-of-date correction evaluated at the requested instant. Generated sidereal values can differ from the mean Lahiri results used in earlier releases. The existing calendar, observance, and timekeeping coverage remains documented below.</p>
+            <p>Generated today, month, and raw output includes calendar-period windows with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields, nighttime divisions, and Mahadiksha guidance where included. The prepared v11.5.0 summary appears below. Published yoga correction notes: <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong>. Chandra Darshana textual and gate specification: <a href="Chandra_Darshana.md">Chandra Darshana</a>. Amāvāsyā/Pūrṇimā naming taxonomy: <a href="AMAVASYA_PURNIMA_NAMING_TAXONOMY.md">naming taxonomy</a>. Chronology wording for eras and year-names: <a href="../MASTER.md">MASTER</a>. Developer decision matrix for Bṛhaspati models: package <a href="../README.md">README</a>.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>Prepared v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</h3>
+            <ul>
+              <li>Sidereal calculations use True Citra Lahiri with a true-of-date ayanamsa evaluated for the requested instant.</li>
+              <li>Sidereal values and generated calendar times may differ from earlier mean Lahiri results. The calculation does not use a rounded daily or fixed-interval ayanamsa value.</li>
+              <li>Repeated astronomical work is reduced through exact-input result reuse, reusable calculation buffers, and a shared annual festival-generation pass.</li>
+              <li>Amanta and Purnimanta outputs for the same locale reuse eclipse geometry. Local eclipse magnitude is reported only when the local contacts belong to the event being evaluated.</li>
+              <li>Existing calculation calls remain available, and no new required inputs are introduced. Regenerate stored calendar files to receive the new astronomical results.</li>
+            </ul>
           </div>
 
           <div class="info-box">
@@ -5110,8 +5121,15 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             <p>where Remainder 0 is <strong>Nish-Panchaka</strong> (auspicious / defect-free), Remainders 3, 5, 7 are <strong>Shubha Panchaka</strong> (auspicious), and Remainders 1, 2, 4, 6, 8 carry specific Panchaka doshas (Mrityu, Agni, Raja, Chora, Roga). Micro-intervals occurring within 5 seconds of astronomical boundaries are smoothly unified to provide a clean, production-grade timeline for electional astrology.</p>
           </div>
 
-          <h3>Published Releases</h3>
-          <ol class="release-list" aria-label="Published package releases">
+          <h3>Prepared and Published Releases</h3>
+          <ol class="release-list" aria-label="Prepared and published package releases">
+            <li class="release-row">
+              <span class="release-tag">11.5.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</span><span class="release-meta">Prepared</span></div>
+                <p class="release-note">Updates sidereal calculations to True Citra Lahiri with a true-of-date value at the requested instant, improves repeated calculation and annual output work, and corrects local eclipse magnitude handling. Generated sidereal values may differ from earlier mean Lahiri results.</p>
+              </div>
+            </li>
             <li class="release-row is-latest">
               <span class="release-tag">11.4.1</span>
               <div class="release-body">
@@ -5527,6 +5545,19 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
             </li>
           </ol>
 
+          <h3>v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</h3>
+          <p class="lead">Prepared release focused on true-of-date sidereal astronomy, precise calculation-time handling, and reduced repeated work during calendar generation.</p>
+
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">What changes</h4>
+            <ul>
+              <li><strong>Sidereal convention:</strong> Uses True Citra Lahiri with true-of-date ayanamsa evaluated at the requested instant. Values can differ from earlier mean Lahiri calculations.</li>
+              <li><strong>Calculation reuse:</strong> Reuses results only for identical calculation inputs and reduces repeated native allocations and duplicate annual output work.</li>
+              <li><strong>Eclipse handling:</strong> Shares the same locale’s eclipse geometry between Amanta and Purnimanta output and prevents a different event’s local magnitude from being attributed to an invisible eclipse.</li>
+              <li><strong>Compatibility:</strong> Existing calculation calls remain available; generated astronomical values and JSON contents may change. Refresh saved output files after upgrading.</li>
+            </ul>
+          </div>
+
           <h3>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</h3>
           <p class="lead">This update corrects the Pitru Paksha Gajachchhaya Amavasya timing and the Tripushkar star list. Festival dates, vrat dates, and the Vedic clocks stay as they were.</p>
 
@@ -5553,7 +5584,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </li>
               <li><strong>Selective API &amp; Payloads:</strong> Exposes <code>Ishtkaal_30</code>, <code>Ishtkaal_30_Parts</code>, <code>Ishtkaal_60</code>, and <code>Ishtkaal_60_Parts</code> across core Panchang calculation engines and selectable API field lists.</li>
               <li><strong>AstroCore Helper:</strong> Added <code>extractGhatiParts(float $totalGhati)</code> in <code>AstroCore</code> for exact decomposition into Ghati, Pala, and Vipala.</li>
-              <li><strong>Documentation:</strong> Added <code>docs/RELEASE_11.4.0.md</code> dedicated to dynamic Vedic timekeeping.</li>
+              <li><strong>Documentation:</strong> Added a dedicated guide to dynamic Vedic timekeeping.</li>
             </ul>
           </div>
 
@@ -5584,7 +5615,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               <li><strong>Sunrise Lagna Screening:</strong> Fixed sunrise Lagna screening across electional evaluators to ensure day-start evaluations strictly evaluate the rising sign at solar sunrise.</li>
               <li><strong>Micro-Interval Smoothing:</strong> Transitions occurring within 5 seconds of astronomical boundaries are unified to avoid spurious micro-windows.</li>
               <li><strong>Selective API Integration:</strong> Added <code>Panchaka_Rahita_Full_Day</code> (aliases: <code>Panchak_Table</code>, <code>panchak_table</code>) to selectable day-detail sections.</li>
-              <li><strong>Documentation:</strong> Added <code>docs/RELEASE_11.3.0.md</code> and updated API reference documentation.</li>
+              <li><strong>Documentation:</strong> Added an electional guide and updated API reference documentation.</li>
             </ul>
           </div>
 
@@ -6407,7 +6438,7 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
 
           <h4>Verified Engine Conventions</h4>
           <ul>
-            <li><strong>Ayanamsa:</strong> Panchanga limb calculations continue to use Lahiri / Chitra Paksha via <code>JME_SIDEREAL_LAHIRI</code>; the package does not switch Panchanga limbs to dynamic True Citra.</li>
+            <li><strong>Ayanamsa at v9.0.0:</strong> Panchanga limb calculations used Lahiri / Chitra Paksha; True Citra was not yet the package convention.</li>
             <li><strong>Sunrise and sunset:</strong> Rise/set calculations use visible upper limb with standard atmospheric refraction, standard pressure, and standard temperature.</li>
             <li><strong>Panchanga Moon:</strong> Tithi, Nakshatra, Yoga, Karana, moon sign, and transition searches use geocentric sidereal Sun/Moon longitudes. Moonrise/moonset remains topocentric for the observer location.</li>
             <li><strong>Moonrise/moonset daily semantics:</strong> The civil-day moon visibility interval starts only from a moonrise inside that civil date. If no moonrise occurs inside the date, both moonrise and moonset are returned as <code>null</code> for that daily output.</li>

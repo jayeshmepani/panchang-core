@@ -187,7 +187,7 @@ This gives the package support for day-boundary awareness beyond only sunrise an
 The package covers:
 
 - ishtkaal
-- ayanamsa at the evaluation moment
+- True Citra Lahiri ayanamsa, evaluated at the requested moment
 - sun longitude at sunrise context
 - moon longitude at sunrise context
 

@@ -22,6 +22,10 @@ It calculates Panchanga limbs, festivals, Muhurta windows, Karmakala timings, Ch
 - Calendar types: Amanta and Purnimanta
 - Works standalone or inside Laravel
 
+## Current Astronomical Convention
+
+Sidereal calculations use True Citra Lahiri with a true-of-date correction evaluated for the requested instant. The engine does not replace that value with a rounded daily or fixed-interval value. Results can differ from releases that used mean Lahiri values.
+
 ## Install
 
 ```bash
