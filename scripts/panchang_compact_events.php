@@ -241,13 +241,21 @@ $compactEclipses = static function (array $events) use ($dateIsInRange): array {
 
 $startYear = (int) $rangeStart->format('Y');
 $endYear = (int) $rangeEnd->format('Y');
+$fromMonth = (int) $rangeStart->format('n');
+$toMonth = (int) $rangeEnd->format('n');
 $festivalByDate = [];
 $vratByDate = [];
 $eclipseEvents = [];
 
 for ($year = $startYear; $year <= $endYear; $year++) {
-    $festivalCalendar = $outputGen->generateFestivalsOnlySelected(
-        year: $year,
+    $yearFromMonth = $year === $startYear ? $fromMonth : 1;
+    $yearToMonth = $year === $endYear ? $toMonth : 12;
+
+    $festivalCalendar = $outputGen->generateFestivalsOnlyRangeSelected(
+        fromYear: $year,
+        fromMonth: $yearFromMonth,
+        toYear: $year,
+        toMonth: $yearToMonth,
         lat: $latitude,
         lon: $longitude,
         tz: $timezone,
@@ -255,18 +263,33 @@ for ($year = $startYear; $year <= $endYear; $year++) {
         elevation: $elevation,
         calendarType: $options['calendar_type'],
     );
+    $festivalByDate += (array) ($festivalCalendar['by_date'] ?? []);
 
-    $vratCalendar = $outputGen->generateVratsByDateCompact(
-        year: $year,
+    $vratCalendar = $outputGen->generateVratsRangeSelected(
+        fromYear: $year,
+        fromMonth: $yearFromMonth,
+        toYear: $year,
+        toMonth: $yearToMonth,
         lat: $latitude,
         lon: $longitude,
         tz: $timezone,
+        sections: ['by_date'],
         elevation: $elevation,
         calendarType: $options['calendar_type'],
     );
+    foreach ((array) ($vratCalendar['by_date'] ?? []) as $date => $entries) {
+        $datedVrats = array_values(array_filter(
+            (array) $entries,
+            static fn(array $entry): bool => !(
+                is_array($entry['calculation_basis'] ?? null)
+                && ($entry['calculation_basis']['type'] ?? null) === 'weekday'
+            ),
+        ));
 
-    $festivalByDate += (array) ($festivalCalendar['by_date'] ?? []);
-    $vratByDate += (array) ($vratCalendar['vrats']['by_date'] ?? []);
+        if ($datedVrats !== []) {
+            $vratByDate[(string) $date] = $datedVrats;
+        }
+    }
 
     foreach ($eclipseService->getEclipsesForYear($year, $latitude, $longitude, $timezone) as $event) {
         $eclipseEvents[] = $event;
