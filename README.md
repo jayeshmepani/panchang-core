@@ -36,7 +36,7 @@ Requirements:
 
 - PHP 8.3+
 - PHP FFI extension enabled
-- `jayeshmepani/jpl-moshier-ephemeris-php`
+- `jayeshmepani/jpl-moshier-ephemeris-php` 2.0.0 or later in the 2.x series
 - `nesbot/carbon`
 
 Enable FFI in `php.ini`:
@@ -249,7 +249,7 @@ This package contains only PHP code. Its dependency [jpl-moshier-ephemeris-php](
 
 Built by [Jayesh Mepani (Jayesh Patel)](https://github.com/jayeshmepani).
 
-Astronomical calculations run on [JPL Moshier Ephemeris (JME)](https://github.com/jayeshmepani/jpl-ephemeris) through [jpl-moshier-ephemeris-php](https://github.com/jayeshmepani/jpl-moshier-ephemeris-php). This project does not use the Swiss Ephemeris.
+Astronomical calculations run on [JPL Moshier Ephemeris (JME)](https://github.com/jayeshmepani/jpl-ephemeris) through [jpl-moshier-ephemeris-php](https://github.com/jayeshmepani/jpl-moshier-ephemeris-php).
 
 JME and its bindings build on third-party work, credited here briefly:
 
