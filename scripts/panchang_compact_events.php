@@ -280,10 +280,7 @@ for ($year = $startYear; $year <= $endYear; $year++) {
     foreach ((array) ($vratCalendar['by_date'] ?? []) as $date => $entries) {
         $datedVrats = array_values(array_filter(
             (array) $entries,
-            static fn(array $entry): bool => !(
-                is_array($entry['calculation_basis'] ?? null)
-                && ($entry['calculation_basis']['type'] ?? null) === 'weekday'
-            ),
+            static fn(array $entry): bool => !is_array($entry['calculation_basis'] ?? null) || ($entry['calculation_basis']['type'] ?? null) !== 'weekday',
         ));
 
         if ($datedVrats !== []) {

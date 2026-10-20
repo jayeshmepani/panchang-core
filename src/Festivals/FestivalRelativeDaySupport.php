@@ -219,7 +219,7 @@ trait FestivalRelativeDaySupport
                 'decision' => [
                     'winning_reason' => $daysAfter === 0 ? 'same_day_linked_parent_festival' : 'day_after_parent_festival',
                     'parent_festival' => $parentName,
-                    'parent_observance_date' => $parentObservanceDate ?? $expectedParentDate->toDateString(),
+                    'parent_observance_date' => $parentObservanceDate,
                     'days_after' => $daysAfter,
                     'winning_score' => 1000,
                 ],

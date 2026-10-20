@@ -31,9 +31,9 @@ final class PanchangaAstronomyConventionTest extends TestCase
     public function testPanchangaCoreLongitudesStayGeocentricSidereal(): void
     {
         $sourceFiles = [
-            dirname(__DIR__) . '/src/Panchanga/Traits/PanchangAstronomyHelpersTrait.php',
-            dirname(__DIR__) . '/src/Panchanga/Traits/PanchangBirthMonthHelpersTrait.php',
-            dirname(__DIR__) . '/src/Astronomy/Math/TransitEngine.php',
+            __DIR__ . '/../src/Panchanga/Traits/PanchangAstronomyHelpersTrait.php',
+            __DIR__ . '/../src/Panchanga/Traits/PanchangBirthMonthHelpersTrait.php',
+            __DIR__ . '/../src/Astronomy/Math/TransitEngine.php',
         ];
 
         foreach ($sourceFiles as $sourceFile) {

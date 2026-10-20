@@ -156,7 +156,7 @@ trait FestivalRuleTruthTables
             'paksha' => $winner['paksha'],
             'calendar_type' => strtolower((string) ($today['Hindu_Calendar']['Calendar_Type'] ?? AstroCore::getConfig('panchang.defaults.calendar_type', 'amanta'))),
             'karmakala_type' => $karmakalaType,
-            'tithi_at_karmakala_today' => $purnimaMatch || ($pratipadaDay !== null && $pratipadaDay['day_offset'] === 0 && $pratipadaMatch),
+            'tithi_at_karmakala_today' => $purnimaMatch || ($pratipadaDay['day_offset'] === 0 && $pratipadaMatch),
             'tithi_at_karmakala_tomorrow' => ($purnimaDay !== null && $purnimaDay['day_offset'] === 1 && $purnimaMatch)
                 || ($pratipadaDay !== null && $pratipadaDay['day_offset'] === 1 && $pratipadaMatch),
             'tithi_coverage_seconds_today' => 0.0,

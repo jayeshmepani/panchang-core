@@ -871,10 +871,7 @@ final class BrihaspatiSamvatsaraService
             (string) ((int) $classicalBoundary['new_index']),
         ]);
 
-        if (!isset($this->ingressByClassicalBoundaryCache[$cacheKey])) {
-            $this->ingressByClassicalBoundaryCache[$cacheKey]
-                = $this->findNearestModelJupiterIngress($classicalJd, $model);
-        }
+        $this->ingressByClassicalBoundaryCache[$cacheKey] ??= $this->findNearestModelJupiterIngress($classicalJd, $model);
 
         $ingress = $this->ingressByClassicalBoundaryCache[$cacheKey];
 

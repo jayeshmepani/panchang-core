@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
-use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -36,10 +34,6 @@ return RectorConfig::configure()
         instanceOf: false,
         earlyReturn: true,
     )
-    ->withSkip([
-        ChangeOrIfContinueToMultiContinueRector::class,
-        ChangeNestedForeachIfsToEarlyContinueRector::class,
-    ])
     ->withParallel()
     ->withImportNames(
         importNames: true,
