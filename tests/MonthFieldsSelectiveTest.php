@@ -101,12 +101,12 @@ class MonthFieldsSelectiveTest extends TestCase
         $this->assertNotEmpty($selected['sayana_ritu_windows']);
         $this->assertNotEmpty($selected['amanta_month_windows']);
         $this->assertNotEmpty($selected['purnimanta_month_windows']);
-        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['ayana_windows'][0]));
-        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['ritu_windows'][0]));
-        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['sayana_ayana_windows'][0]));
-        $this->assertSame(['name', 'start_iso', 'end_iso'], array_keys($selected['sayana_ritu_windows'][0]));
-        $this->assertSame(['name', 'start_iso', 'end_iso', 'index'], array_keys($selected['amanta_month_windows'][0]));
-        $this->assertSame(['name', 'start_iso', 'end_iso', 'index'], array_keys($selected['purnimanta_month_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'assignment_rule'], array_keys($selected['ayana_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'assignment_rule'], array_keys($selected['ritu_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'assignment_rule'], array_keys($selected['sayana_ayana_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'assignment_rule'], array_keys($selected['sayana_ritu_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'calendar_effective_date', 'calendar_effective_end_date', 'assignment_rule', 'civil_start_date', 'civil_end_date', 'civil_start_iso', 'civil_end_iso', 'index'], array_keys($selected['amanta_month_windows'][0]));
+        $this->assertSame(['name', 'start_iso', 'end_iso', 'astronomical_start_iso', 'astronomical_end_iso', 'calendar_effective_date', 'calendar_effective_end_date', 'assignment_rule', 'civil_start_date', 'civil_end_date', 'civil_start_iso', 'civil_end_iso', 'index'], array_keys($selected['purnimanta_month_windows'][0]));
         $this->assertArrayNotHasKey('vikram_samvat_windows', $selected);
     }
 
@@ -143,7 +143,7 @@ class MonthFieldsSelectiveTest extends TestCase
             'ritu',
             'vikram_samvat',
             'gujarati_samvat',
-            'saka_samvat',
+            'shalivahana_saka_samvat',
             'kali_samvat',
             'samvatsara',
             'samvatsara_north',

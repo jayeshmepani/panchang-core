@@ -22,10 +22,10 @@ class FestivalParityFingerprintTest extends TestCase
     {
         // Antardhan is commemorative (fasting=false) → catalog festival, not vrat.
         // Thai Poosam absorbs former duplicate Thai Pusam as aliases (single fasting identity).
-        $this->assertSame(334, FestivalService::getCatalogFestivalCount());
+        $this->assertSame(354, FestivalService::getCatalogFestivalCount());
         $this->assertSame(126, FestivalService::getCatalogVratCount());
         $this->assertSame(
-            455,
+            473,
             FestivalService::getFestivalCount(),
             'First-level FESTIVALS registry size must stay stable unless catalog intentionally changes',
         );
@@ -52,7 +52,7 @@ class FestivalParityFingerprintTest extends TestCase
 
     public function testGoldenBaselineHasZeroSameDayDuplicates(): void
     {
-        $path = dirname(__DIR__) . '/tests/fixtures/festival_parity/2026_bhuj_en_fingerprints.json';
+        $path = __DIR__ . '/../tests/fixtures/festival_parity/2026_bhuj_en_fingerprints.json';
         $golden = json_decode((string) file_get_contents($path), true);
         $this->assertIsArray($golden);
         foreach ($golden['fingerprints'] ?? [] as $label => $fp) {
