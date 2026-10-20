@@ -170,30 +170,12 @@ class AstronomyService
         ];
     }
 
-    /**
-     * Sidereal geocentric apparent flags matching astrology jme_compat.calc_ut().
-     *
-     * astrology uses HIGH_PRECISION|SIDEREAL, then auto-ORs NO_ABERRATION for
-     * apparent positions (JPL double-aberration compensation), unless true /
-     * heliocentric / barycentric vector flags are set.
-     */
+    /** Sidereal geocentric apparent flags matching astrology jme_compat.calc_ut(). */
     public static function jmeSiderealApparentFlags(int $extraFlags = 0): int
     {
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION
+        return JmeEphFFI::JME_CALC_HIGH_PRECISION
             | JmeEphFFI::JME_CALC_SIDEREAL
             | $extraFlags;
-
-        $skipNoAberration = (bool) ($flags & (
-            JmeEphFFI::JME_CALC_TRUE_POSITION
-            | JmeEphFFI::JME_CALC_HELIOCENTRIC
-            | JmeEphFFI::JME_CALC_BARYCENTRIC
-        ));
-
-        if (! $skipNoAberration) {
-            $flags |= JmeEphFFI::JME_CALC_NO_ABERRATION;
-        }
-
-        return $flags;
     }
 
     public function getPlanets(array $birth): array

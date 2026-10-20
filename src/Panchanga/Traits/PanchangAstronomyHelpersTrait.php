@@ -27,11 +27,7 @@ trait PanchangAstronomyHelpersTrait
 
     private function getMoonSunAngle(float $jd): float
     {
-        // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
-        // applies annual aberration twice (~20.5" Sun error). With this flag the longitudes
-        // become the correct single-aberration apparent positions (verified against the
-        // published 2026 equinox/solstice instants).
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
 
@@ -40,29 +36,21 @@ trait PanchangAstronomyHelpersTrait
 
     private function getSunLongitude(float $jd): float
     {
-        // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
-        // applies annual aberration twice (~20.5" Sun error). With this flag the longitudes
-        // become the correct single-aberration apparent positions (verified against the
-        // published 2026 equinox/solstice instants).
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
 
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
     private function getTropicalSunLongitude(float $jd): float
     {
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION;
 
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
     }
 
     private function getMoonLongitude(float $jd): float
     {
-        // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
-        // applies annual aberration twice (~20.5" Sun error). With this flag the longitudes
-        // become the correct single-aberration apparent positions (verified against the
-        // published 2026 equinox/solstice instants).
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
 
         return $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
     }
@@ -74,11 +62,7 @@ trait PanchangAstronomyHelpersTrait
 
     private function getSunMoonSum(float $jd): float
     {
-        // NOTE: JME_CALC_NO_ABERRATION compensates a JME JPL-mode quirk that otherwise
-        // applies annual aberration twice (~20.5" Sun error). With this flag the longitudes
-        // become the correct single-aberration apparent positions (verified against the
-        // published 2026 equinox/solstice instants).
-        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL | JmeEphFFI::JME_CALC_NO_ABERRATION;
+        $flags = JmeEphFFI::JME_CALC_HIGH_PRECISION | JmeEphFFI::JME_CALC_SIDEREAL;
         $sun = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_SUN, $flags);
         $moon = $this->calcBodyAtJd($jd, JmeEphFFI::JME_BODY_MOON, $flags);
 
