@@ -839,13 +839,13 @@ trait PanchangSelectiveApiTrait
                     $sunriseAscLon = $this->astronomy->getAscendant($ctx['time']['sunrise_birth']);
                     $sunriseAscSign = AstroCore::getSign($sunriseAscLon);
                     $atSunrise = $this->panchanga->calculatePanchakaRahita(
-                        (int) $ctx['panchanga']['tithi']['index'] + 1,
+                        (int) $ctx['panchanga']['tithi']['index'],
                         (int) $ctx['panchanga']['vara']['index'] + 1,
                         $ctx['panchanga']['nak_index'] + 1,
                         $sunriseAscSign + 1,
                     );
                     $runtime = ElectionalEvaluator::calculatePanchakaDosha(
-                        (int) $ctx['panchanga']['current_tithi']['index'] + 1,
+                        (int) $ctx['panchanga']['current_tithi']['index'],
                         (int) $ctx['panchanga']['vara']['index'],
                         $ctx['panchanga']['current_nak_index'] + 1,
                         $ascSign + 1,
@@ -860,7 +860,7 @@ trait PanchangSelectiveApiTrait
                             ...$atSunrise,
                             'calculated_for' => 'sunrise',
                             'sunrise_iso' => AstroCore::formatDateTime($ctx['time']['rel_sunrise']),
-                            'tithi' => (int) $ctx['panchanga']['tithi']['index'] + 1,
+                            'tithi' => (int) $ctx['panchanga']['tithi']['index'],
                             'tithi_name' => Tithi::from((int) $ctx['panchanga']['tithi']['index'])->getName(),
                             'nakshatra' => $ctx['panchanga']['nak_index'] + 1,
                             'nakshatra_name' => Nakshatra::from($ctx['panchanga']['nak_index'] % 27)->getName(),

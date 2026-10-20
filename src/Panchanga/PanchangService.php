@@ -303,13 +303,13 @@ class PanchangService
         $nityaYogaObservations = ElectionalEvaluator::calculateNityaYogaObservations((int) $currentYoga['index'], (string) $currentYoga['name']);
 
         $panchakaAtSunrise = $this->panchanga->calculatePanchakaRahita(
-            (int) $tithi['index'] + 1,
+            (int) $tithi['index'],
             (int) $vara['index'] + 1,
             $nakIdx + 1,
             $sunriseAscSign + 1,
         );
         $panchakaRuntime = ElectionalEvaluator::calculatePanchakaDosha(
-            (int) $currentTithi['index'] + 1,
+            (int) $currentTithi['index'],
             (int) $vara['index'],
             $currentNakIdx + 1,
             $ascSign + 1,
@@ -323,7 +323,7 @@ class PanchangService
                 ...$panchakaAtSunrise,
                 'calculated_for' => 'sunrise',
                 'sunrise_iso' => AstroCore::formatDateTime($relSunrise),
-                'tithi' => (int) $tithi['index'] + 1,
+                'tithi' => (int) $tithi['index'],
                 'tithi_name' => Tithi::from((int) $tithi['index'])->getName(),
                 'nakshatra' => $nakIdx + 1,
                 'nakshatra_name' => Nakshatra::from($nakIdx % 27)->getName(),
