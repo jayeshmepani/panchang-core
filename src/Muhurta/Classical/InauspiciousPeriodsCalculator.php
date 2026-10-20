@@ -37,7 +37,7 @@ class InauspiciousPeriodsCalculator
         15 => ['name' => 'Vishakha', 'amrita' => [38], 'varjyam' => [14]],
         16 => ['name' => 'Anuradha', 'amrita' => [34], 'varjyam' => [10]],
         17 => ['name' => 'Jyeshtha', 'amrita' => [38], 'varjyam' => [14]],
-        18 => ['name' => 'Mula', 'amrita' => [44], 'varjyam' => [21]],
+        18 => ['name' => 'Mula', 'amrita' => [44], 'varjyam' => [20, 56]],
         19 => ['name' => 'Purva Ashadha', 'amrita' => [48], 'varjyam' => [24]],
         20 => ['name' => 'Uttara Ashadha', 'amrita' => [44], 'varjyam' => [20]],
         21 => ['name' => 'Shravana', 'amrita' => [34], 'varjyam' => [10]],
@@ -207,14 +207,17 @@ class InauspiciousPeriodsCalculator
         float $scopeEndJd,
         bool $includePartialWindows,
     ): ?array {
-        if ($offsetGhati < 0 || $offsetGhati > 60) {
-            throw new InvalidArgumentException('Nakshatra period offset must be between 0 and 60 ghatis.');
+        $endGhati = $offsetGhati + self::PERIOD_GHATIS;
+        if ($offsetGhati < 0 || $endGhati > 60) {
+            throw new InvalidArgumentException('Nakshatra period must lie within the 60 ghatis of its Nakshatra.');
         }
 
         $nakshatraDurationJd = $nakshatraEndJd - $nakshatraStartJd;
         $periodDurationJd = $nakshatraDurationJd * self::PERIOD_GHATIS / 60.0;
         $windowStartJd = $nakshatraStartJd + ($nakshatraDurationJd * $offsetGhati / 60.0);
-        $windowEndJd = $windowStartJd + $periodDurationJd;
+        $windowEndJd = $endGhati === 60
+            ? $nakshatraEndJd
+            : $nakshatraStartJd + ($nakshatraDurationJd * $endGhati / 60.0);
 
         if ($windowStartJd < $nakshatraStartJd || $windowStartJd > $nakshatraEndJd || $windowEndJd < $windowStartJd || $windowEndJd > $nakshatraEndJd) {
             throw new RuntimeException('Nakshatra period window exceeds its Nakshatra bounds.');
