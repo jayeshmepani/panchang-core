@@ -1074,29 +1074,41 @@
                         </div>
 
                         <h3 style="margin-top: 2rem">1. Enable FFI Extension</h3>
-                        <div class="platform-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0">
-                            <div class="platform-card" style="background: var(--color-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border)">
-                                <h4 style="margin-top: 0">Linux (Ubuntu/Debian)</h4>
+                        <div class="platform-grid">
+                            <div class="platform-card">
+                                <h4>
+                                    <span>Linux (Ubuntu / Debian)</span>
+                                    <span class="platform-badge">APT</span>
+                                </h4>
                                 <pre><code class="language-bash">sudo apt install php8.3-ffi</code></pre>
+                                <p>Standard package for Ubuntu 22.04 / 24.04 and Debian 11 / 12.</p>
                             </div>
-                            <div class="platform-card" style="background: var(--color-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border)">
-                                <h4 style="margin-top: 0">Linux (RHEL/CentOS)</h4>
+                            <div class="platform-card">
+                                <h4>
+                                    <span>Linux (RHEL / CentOS / Fedora)</span>
+                                    <span class="platform-badge">DNF</span>
+                                </h4>
                                 <pre><code class="language-bash">sudo dnf install php-ffi</code></pre>
+                                <p>Standard package from Fedora / EPEL repository.</p>
                             </div>
-                            <div class="platform-card" style="background: var(--color-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border)">
-                                <h4 style="margin-top: 0">macOS (Homebrew)</h4>
-                                <p style="font-size: 0.875rem">
-                                    Included by default in
-                                    <code>brew install php</code>
-                                    .
-                                </p>
+                            <div class="platform-card">
+                                <h4>
+                                    <span>macOS (Homebrew)</span>
+                                    <span class="platform-badge">Homebrew</span>
+                                </h4>
+                                <pre><code class="language-bash">brew install php</code></pre>
+                                <p>Compiled and included by default in Homebrew PHP binaries.</p>
                             </div>
-                            <div class="platform-card" style="background: var(--color-surface); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border)">
-                                <h4 style="margin-top: 0">Windows</h4>
-                                <p style="font-size: 0.875rem">
-                                    Included with PHP 8.3+. Enable in
+                            <div class="platform-card">
+                                <h4>
+                                    <span>Windows</span>
+                                    <span class="platform-badge">php.ini</span>
+                                </h4>
+                                <pre><code class="language-ini">extension=ffi</code></pre>
+                                <p>
+                                    Bundled with official PHP 8.3+ for Windows. Enable in
                                     <code>php.ini</code>
-                                    as shown below.
+                                    .
                                 </p>
                             </div>
                         </div>
@@ -1125,7 +1137,18 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled' : 'FFI not enabled';"</code><
                             <code>.bsp</code>
                             kernel from the native JME release page:
                         </p>
-                        <div class="info-box" style="display: flex; align-items: center; justify-content: space-between; background: var(--color-primary-bg); border-color: var(--color-primary)">
+                        <div
+                            class="info-box"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                gap: var(--space-4);
+                                flex-wrap: wrap;
+                                background: var(--color-primary-bg);
+                                border-color: var(--color-primary);
+                            "
+                        >
                             <div>
                                 <h4 style="margin: 0; color: var(--color-primary)">Download JPL Kernels</h4>
                                 <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem">
@@ -1140,14 +1163,7 @@ php -r "echo ini_get('ffi.enable') ? 'FFI enabled' : 'FFI not enabled';"</code><
                                     .
                                 </p>
                             </div>
-                            <a
-                                href="https://github.com/jayeshmepani/jpl-ephemeris/releases/tag/jpl-kernels"
-                                target="_blank"
-                                class="nav-link"
-                                style="background: var(--color-primary); color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600"
-                            >
-                                Download Kernels
-                            </a>
+                            <a href="https://github.com/jayeshmepani/jpl-ephemeris/releases/tag/jpl-kernels" target="_blank" class="btn-primary">Download Kernels</a>
                         </div>
                     </section>
 
