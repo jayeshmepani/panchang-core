@@ -15,8 +15,6 @@ use RuntimeException;
 /** Inauspicious Periods Calculator - Handles Rahu Kaal, Gulika, Yamaganda, Varjyam, Amrita Kaal, Pradosha Kaal. */
 class InauspiciousPeriodsCalculator
 {
-    private const int PERIOD_GHATIS = 4;
-
     /** @var array<int, array{name:string, amrita:int[], varjyam:int[]}> */
     public const array NAKSHATRA_AMRITA_VARJYAM_OFFSETS = [
         0 => ['name' => 'Ashwini', 'amrita' => [42], 'varjyam' => [50]],
@@ -47,6 +45,8 @@ class InauspiciousPeriodsCalculator
         25 => ['name' => 'Uttara Bhadrapada', 'amrita' => [48], 'varjyam' => [24]],
         26 => ['name' => 'Revati', 'amrita' => [54], 'varjyam' => [30]],
     ];
+
+    private const int PERIOD_GHATIS = 4;
 
     public function calculateBadTimes(CarbonImmutable $sunrise, CarbonImmutable $sunset, int $varaIdx): array
     {
