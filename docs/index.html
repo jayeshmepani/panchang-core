@@ -1096,6 +1096,31 @@ echo "Current Tithi: " . $details['Current_Tithi_At_Input_Now']['name']; // Guar
               </tr>
             </tbody>
           </table>
+          <div class="info-box">
+            <h3>Output Semantics</h3>
+            <ul>
+              <li>Sidereal calculations use True Citra Lahiri with a true-of-date correction evaluated for the requested instant. The engine does not replace that value with a rounded daily or fixed-interval value. Results can differ from releases that used mean Lahiri values.</li>
+              <li><code>Tithi</code> and <code>Karana</code> are sunrise-based compatibility fields.</li>
+              <li>Use <code>Current_Tithi_At_Input_Now</code>, <code>Current_Nakshatra_At_Input_Now</code>, <code>Current_Yoga_At_Input_Now</code>, and <code>Current_Karana_At_Input_Now</code> for runtime/current values.</li>
+              <li>Use <code>Tithi_At_Sunrise</code>, <code>Nakshatra_At_Sunrise</code>, and <code>Karana_At_Sunrise</code> when sunrise semantics are required explicitly.</li>
+              <li><code>Brahma_Muhurta</code> uses the dynamic night-muhurta convention by default: previous sunset to sunrise divided into 15 night Muhurtas. The fixed 48-minute convention is preserved under <code>Brahma_Muhurta.fixed_48_minute_convention</code>.</li>
+              <li><code>Amrita_Kaal</code> is calculated independently from nakshatra-specific Amrita ghati offsets, not from Varjyam.</li>
+              <li><code>Varjyam</code> gives Mula its two windows, at 20 and 56 ghatis; electional Visha Ghati uses the same table.</li>
+              <li>Signs, nakshatras, yogas and padas are decided exactly at their boundaries: a longitude exactly on a boundary belongs to the division that starts there (<code>ZodiacDivision</code>).</li>
+              <li>Each tithi boundary is settled on one instant, so neighbouring days report the same end time.</li>
+              <li><code>getDayDetails()</code> lists the same festivals and vrats as the yearly calendar for that date.</li>
+              <li><code>Lagna_Full_Day</code> includes partial intervals that overlap the sunrise-to-next-sunrise Panchang day.</li>
+              <li><code>Chandra_Vaasa</code> uses Moon-rashi direction as the primary field and preserves the older nakshatra-pada Vaasa under <code>nakshatra_pada_vaasa</code>.</li>
+              <li>Nakshatra-derived current windows such as Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa are selected from the calculation time, not blindly from the first sunrise window.</li>
+              <li>Eclipse output separates global classification from local visibility classification with <code>global_eclipse_type</code> and <code>local_eclipse_type</code>.</li>
+              <li><code>Day_Types.apparent_solar_noon</code> is the astronomical solar transit.</li>
+              <li><code>Abhijit_Muhurta.daylight_midpoint</code> is the sunrise-to-sunset midpoint used for Abhijit calculation.</li>
+              <li>Proportional periods such as Hora, Choghadiya, daytime/nighttime Muhurtas, Prahara, the fivefold daytime divisions, Vijaya, Nishitha, Godhuli, Pratah Sandhya, and Sayahna Sandhya use actual local dinamana or ratrimana where their rule depends on day or night length.</li>
+              <li>Arunodaya, Pradosha, and Madhyahna Sandhya use fixed ghati offsets from actual local sunrise, sunset, or solar noon; the ghati itself remains 24 elapsed minutes.</li>
+              <li>Generated <code>today</code>, <code>month</code>, and <code>raw</code> JSON include <code>calendar_period_windows</code> with sidereal and Sayana ayana/ritu windows alongside samvat, samvatsara, and lunar-month windows.</li>
+              <li>Daily detail payloads in <code>today</code> and <code>raw</code> output include dual ayana/ṛtu systems — <strong>Nirayana (sidereal / constellation-based)</strong> as <code>Ayana</code>/<code>Ritu</code> and explicit <code>Nirayana_*</code>, plus <strong>Sayana (tropical / seasonal)</strong> as <code>Sayana_Ayana</code>/<code>Sayana_Ritu</code> — with locale-stable <code>*_Key</code> fields and system labels, plus <code>Mahadiksha_Guidance</code> where the selected output profile includes day details.</li>
+            </ul>
+          </div>
         </section>
 
         <section id="configuration" class="content-section">
@@ -2438,6 +2463,12 @@ $tithi = $selected['Panchanga']['Current_Tithi_At_Input_Now']['name'];</code></p
                 occasions. Manvādi and Yugādi rules may resolve in both adhika and nija months, so the runtime date count is
                 not forced to equal 96.</li>
             </ul>
+          <div class="info-box">
+            <h3>Ṣaṇṇavati Śrāddha (96-fold canonical system)</h3>
+            <p>The daily Panchanga payload includes <code>Shannavati_Shraddha</code>, resolved through a dedicated source-aware Śrāddha layer. The default profile is <code>dharma_sindhu</code> and can be changed with <code>PANCHANG_SHANNAVATI_PROFILE</code>.</p>
+            <p>The canonical nominal taxonomy is 96 memberships: 12 Amāvāsyā, 4 Yugādi, 14 Manvādi, 12 Saṅkrānti, 12 Vaidhṛti, 12 Vyatīpāta, 15 Mahālaya, 5 Aṣṭakā, 5 Anvaṣṭakā, and 5 Pūrvēdhyu. Runtime occurrences are intentionally <strong>not forced to exactly 96 physical dates</strong>; adhika-māsa, tithi-vṛddhi/kṣaya, overlaps, and qualifying nitya-yoga manifestations are preserved.</p>
+            <p>The resolver reuses the existing tithi, Saṅkrānti, and Yoga interval engines, adds Kutapa/Rauhiṇa/Śrāddha-Aparāhṇa daylight windows, supports Amānta/Pūrṇimānta month normalization, and permits multiple Ṣaṇṇavati memberships on one civil date.</p>
+          </div>
           </div>
           <div class="methods-section">
             <h3>Methods</h3>
@@ -3845,7 +3876,7 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <tr>
                 <td><code>panchang_today.php</code></td>
                 <td>Generates today's complete panchang and muhurta evaluation</td>
-                <td><code>today_panchang.json</code></td>
+                <td><code>today.json</code> (also prints status text)</td>
               </tr>
               <tr>
                 <td><code>panchang_festivals.php [year] [all|festivals|vrats]</code></td>
@@ -3860,15 +3891,24 @@ $panchangService = CliBootstrap::makePanchangService();</code></pre>
               <tr>
                 <td><code>panchang_month_output.php [year] [month]</code></td>
                 <td>Exports monthly panchang data; defaults to current month when no year/month is passed</td>
-                <td>Prints to stdout</td>
+                <td><code>month_YYYY_MM.json</code>; JSON on stdout when piped or redirected</td>
               </tr>
               <tr>
-                <td><code>panchang_raw_output.php</code></td>
+                <td><code>panchang_raw_output.php [year] [start] [end]</code></td>
                 <td>Combines today's data, festivals, and eclipses</td>
-                <td><code>meta.json</code>, <code>festivals_YYYY.json</code>, etc.</td>
+                <td><code>raw_output_YYYY_YYYY.json</code>; JSON on stdout when piped or redirected</td>
               </tr>
             </tbody>
           </table>
+          <p>Scripts write into <code>scripts/output/{calendar_type}/{locale}/</code>.</p>
+          <div class="code-block-wrapper">
+            <div class="code-header"><span class="code-title">All Exporters</span></div>
+            <pre><code class="language-bash">php scripts/panchang_today.php
+php scripts/panchang_month_output.php 2026 5
+php scripts/panchang_festivals.php 2026
+php scripts/panchang_eclipses.php 2026 2032
+php scripts/panchang_raw_output.php 2026 2026 2032</code></pre>
+          </div>
           <h3>Usage Examples</h3>
           <div class="code-block-wrapper">
             <div class="code-header"><span class="code-title">Generate Today's Panchang</span></div>
@@ -3899,6 +3939,14 @@ php panchang_month_output.php 2026 5 > month_2026_05.json</code></pre>
             <pre><code class="language-bash">PANCHANG_LOCALE=hi PANCHANG_CALENDAR_TYPE=purnimanta php panchang_today.php</code></pre>
           </div>
           <p>Supported locales: <code>en</code>, <code>hi</code>, <code>gu</code>. Calendar types: <code>amanta</code>, <code>purnimanta</code>.</p>
+          <h3>Development</h3>
+          <div class="code-block-wrapper">
+            <div class="code-header"><span class="code-title">Tests and Static Analysis</span></div>
+            <pre><code class="language-bash">composer install
+composer test
+composer phpstan
+composer lint:check</code></pre>
+          </div>
         </section>
 
         <section id="configuration-reference" class="content-section">
@@ -4019,6 +4067,93 @@ php panchang_month_output.php 2026 5 > month_2026_05.json</code></pre>
               </tr>
             </tbody>
           </table>
+
+          <h3>Bārhaspatya Saṃvatsara (Mean Jupiter Year) Models</h3>
+          <p>The package supports four distinct mathematical models for the traditional 60-name <strong>Bārhaspatya Saṃvatsara</strong> (Brihaspati Samvatsara) cycle. It does <strong>not</strong> lock users to a single model: it uses a <strong>smart default with opt-in Strategy selection</strong>.</p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Model Key</th><th>Status</th><th>Family</th><th>Calculation basis</th><th>Recommended use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>classical_ss</code> <strong>(default)</strong></td><td><code>canonical</code></td><td><code>traditional_barhaspatya</code></td><td>Sewell–Dīkṣit / Sūrya-Siddhānta with bīja (Article 59)</td><td>Standard panchanga, academic baseline, zero ephemeris overhead</td></tr>
+              <tr><td><code>makaranda</code></td><td><code>experimental</code></td><td><code>traditional_mean_jupiter</code></td><td>Makaranda 1478 bīja mean-Jupiter (research projection)</td><td>Research; often closer to published Drik <em>intraday</em> times — <strong>not</strong> Drik’s formula</td></tr>
+              <tr><td><code>grahalaghava</code></td><td><code>experimental</code></td><td><code>traditional_mean_jupiter</code></td><td>Grahalāghava (Gaṇeśa Daivajña, 1520) mean-Jupiter research projection</td><td>Regional Western/Central historical comparison</td></tr>
+              <tr><td><code>modern_ephemeris</code></td><td><code>astronomical_comparator</code></td><td><code>modern_ephemeris</code></td><td>Prograde geocentric sidereal Jupiter rāśi ingress (JPL when configured)</td><td>Astrology / gochara / physical transit comparison</td></tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">Why <code>classical_ss</code> is the package default</h4>
+            <ol>
+              <li><strong>Zero external dependencies</strong> for this cycle — pure PHP mean-motion math (no JPL kernel required for the name).</li>
+              <li><strong>Source-defined Bārhaspatya rule</strong> aligned with Sewell &amp; Dīkṣit, <em>The Indian Calendar</em> (1896), Article 59.</li>
+              <li><strong>Stable calendar-date alignment</strong> with published media series on the <em>civil date</em> of transitions for most of the modern test span — without conflating traditional reckoning with physical Jupiter ingress.</li>
+            </ol>
+            <p><strong>Do not</strong> change the package default to Makaranda, Graha-lāghava, or JPL merely because one series is closer to Drik Panchang over a subset of years. Drik remains an external validation reference, not the source of package constants. Projection models keep the <strong>classical 60-name phase</strong> and only retime boundaries.</p>
+          </div>
+          <h4>Decision matrix</h4>
+          <table class="data-table">
+            <thead><tr><th>Application</th><th>Recommended model</th></tr></thead>
+            <tbody>
+              <tr><td>Standard panchanga / general apps</td><td><code>classical_ss</code> (default)</td></tr>
+              <tr><td>Closer published-media <em>intraday</em> research</td><td><code>makaranda</code> (opt-in, experimental)</td></tr>
+              <tr><td>Western/Central historical mean-Jupiter research</td><td><code>grahalaghava</code> (opt-in, experimental)</td></tr>
+              <tr><td>Birth charts / physical Guru gochara</td><td><code>modern_ephemeris</code> (opt-in; needs AstronomyService)</td></tr>
+            </tbody>
+          </table>
+          <div class="code-block-wrapper">
+            <div class="code-header"><span class="code-title">config/panchang.php</span></div>
+            <pre><code class="language-php">return [
+    'defaults' =&gt; [
+        // Keep classical_ss unless you knowingly opt into another strategy.
+        'brihaspati_samvatsara_model' =&gt; env(
+            'PANCHANG_BRIHASPATI_SAMVATSARA_MODEL',
+            'classical_ss'
+        ),
+    ],
+];</code></pre>
+          </div>
+          <h4>Calendar period field keys</h4>
+          <table class="data-table">
+            <thead><tr><th>Field</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>samvatsara_brihaspati</code></td><td>Configured / package default strategy</td></tr>
+              <tr><td><code>samvatsara_brihaspati_classical</code></td><td>Explicit <code>classical_ss</code></td></tr>
+              <tr><td><code>samvatsara_brihaspati_makaranda</code></td><td>Explicit Makaranda</td></tr>
+              <tr><td><code>samvatsara_brihaspati_grahalaghava</code></td><td>Explicit Grahalāghava</td></tr>
+              <tr><td><code>samvatsara_brihaspati_modern</code></td><td>Explicit modern ephemeris</td></tr>
+            </tbody>
+          </table>
+          <p>Windows carry <code>brihaspati_model</code>, <code>brihaspati_model_status</code>, <code>brihaspati_model_family</code>, and <code>brihaspati_model_variant</code> so consumers can see authority, not only the timing curve.</p>
+          <div class="code-block-wrapper">
+            <div class="code-header"><span class="code-title">Selecting a Bārhaspatya model</span></div>
+            <pre><code class="language-php">use JayeshMepani\PanchangCore\Astronomy\BrihaspatiSamvatsaraService;
+
+$service = new BrihaspatiSamvatsaraService($astronomyService); // astronomy only required for modern_ephemeris
+
+// 1. Package default (classical_ss unless config overrides)
+$default = $service-&gt;getBrihaspatiSamvatsaraInfo($date);
+
+// 2. Explicit canonical classical
+$classical = $service-&gt;getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_CLASSICAL_SS
+);
+
+// 3. Experimental Makaranda research model
+$makaranda = $service-&gt;getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_MAKARANDA
+);
+
+// 4. Physical ephemeris comparator (JPL geocentric sidereal ingress)
+$modern = $service-&gt;getBrihaspatiSamvatsaraInfo(
+    $date,
+    BrihaspatiSamvatsaraService::MODEL_MODERN_EPHEMERIS
+);
+
+// Catalogue: status, family, recommended_use, requires_astronomy_service
+$catalogue = BrihaspatiSamvatsaraService::supportedModels();</code></pre>
+          </div>
         </section>
 
         <section id="batch-processing" class="content-section">
@@ -6979,6 +7114,20 @@ $details = $panchang->getDayDetails($date, $lat, $lon, $tz, 0.0, null, 'purniman
               files are optional runtime data for strict JPL mode and are distributed separately from this package.</p>
             <p>For more details, see the <a href="https://github.com/jayeshmepani/panchang-core/blob/main/LICENSE"
                 target="_blank" rel="noopener">full license text</a>.</p>
+          </div>
+          <div class="info-box">
+            <h3>Credits</h3>
+            <p>Built by <a href="https://github.com/jayeshmepani" target="_blank" rel="noopener">Jayesh Mepani (Jayesh Patel)</a>. Astronomical calculations run on <a href="https://github.com/jayeshmepani/jpl-ephemeris" target="_blank" rel="noopener">JPL Moshier Ephemeris (JME)</a> through <a href="https://github.com/jayeshmepani/jpl-moshier-ephemeris-php" target="_blank" rel="noopener">jpl-moshier-ephemeris-php</a>.</p>
+            <p>JME and its bindings build on third-party work:</p>
+            <ul>
+              <li>JPL DE440 / DE441 planetary and lunar ephemerides (NASA/JPL; Park et al. 2021)</li>
+              <li>CALCEPH (CNRS, Observatoire de Paris, Observatoire de la Côte d'Azur), CeCILL-B, bundled in the binding as a runtime library</li>
+              <li>Stephen L. Moshier's plan404 / Astronomical Almanac analytical theories</li>
+              <li>ELP2000-82B lunar theory (M. Chapront-Touzé and J. Chapront); C implementation by Serhii Tsyba</li>
+              <li>VSOP87 planetary theory (P. Bretagnon and G. Francou); C code by Greg A. Miller (VSOP87-Multilang)</li>
+              <li>Jean Meeus, <em>Astronomical Algorithms</em>; Espenak and Meeus ΔT polynomials (NASA); ERFA (BSD 3-Clause); Yale Bright Star Catalogue</li>
+            </ul>
+            <p>Full credits, license terms, and required notices: <a href="https://github.com/jayeshmepani/jpl-ephemeris/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener">JME THIRD_PARTY_NOTICES.md</a>.</p>
           </div>
         </section>
 
