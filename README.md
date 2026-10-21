@@ -190,6 +190,10 @@ $modern = $service->getBrihaspatiSamvatsaraInfo(
 $catalogue = BrihaspatiSamvatsaraService::supportedModels();
 ```
 - `Amrita_Kaal` is calculated independently from nakshatra-specific Amrita ghati offsets, not from Varjyam.
+- `Varjyam` gives Mula its two windows, at 20 and 56 ghatis; electional Visha Ghati uses the same table.
+- Signs, nakshatras, yogas and padas are decided exactly at their boundaries: a longitude exactly on a boundary belongs to the division that starts there (`ZodiacDivision`).
+- Each tithi boundary is settled on one instant, so neighbouring days report the same end time.
+- `getDayDetails()` lists the same festivals and vrats as the yearly calendar for that date.
 - `Lagna_Full_Day` includes partial intervals that overlap the sunrise-to-next-sunrise Panchang day.
 - `Chandra_Vaasa` uses Moon-rashi direction as the primary field and preserves the older nakshatra-pada Vaasa under `nakshatra_pada_vaasa`.
 - Nakshatra-derived current windows such as Anandadi Yoga, Amritadi Yoga, and nakshatra-pada Chandra Vaasa are selected from the calculation time, not blindly from the first sunrise window.

@@ -222,7 +222,7 @@ These are present in the codebase but are **not** represented as fully verified 
 | `ElectionalEvaluator.php` | `calculateTransitMoorthy()` | **Legacy heuristic:** Unverified moorthy classifier |
 | `ElectionalEvaluator.php` | `calculateBhadra()` legacy moon-sign heuristic | **Legacy heuristic:** Prefer live-timed alternative in PanchangService |
 | `ElectionalEvaluator.php` | `calculateAmritaKaal()` legacy Choghadiya-based helper | **Legacy heuristic:** Prefer authoritative Amrita calculation |
-| `ElectionalEvaluator.php` | `calculateVarjyam()` legacy Visha Ghati helper | **Legacy heuristic:** Prefer KP System-based calculation |
+| `ElectionalEvaluator.php` | `calculateVarjyam()` Visha Ghati helper | Reads the shared Varjyam ghati table (Mula has two starts, 20 and 56 ghatis); prefer the live-timed `Varjyam` windows for daily use |
 
 **Where the package has a more authoritative live-timed alternative, that alternative should be preferred over these helpers.**
 

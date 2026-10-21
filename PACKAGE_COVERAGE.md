@@ -470,7 +470,7 @@ The package covers:
 
 - varjyam window generation
 - active varjyam status
-- multiple varjyam windows where applicable
+- multiple varjyam windows where applicable, including both Mula windows (20 and 56 ghatis)
 - amrita kaal availability
 - amrita kaal active/inactive status
 - independent Amrita ghati-offset calculation, not a derived "Varjyam end" shortcut

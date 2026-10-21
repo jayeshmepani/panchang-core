@@ -1264,9 +1264,9 @@ $varjyam_start_iso = $details['Varjyam']['varjyam_start_iso']; // "28/03/2026 03
 // - Comparing across timezones</code></pre>
 
             <h4 style="margin-top: 1.5rem;">3. Multiple Varjyam Windows</h4>
-            <p>Varjyam can occur <strong>0, 1, or 2 times</strong> per day depending on nakshatra transitions:</p>
+            <p>Varjyam can occur <strong>0, 1, or 2 times</strong> per day depending on nakshatra transitions. Mula carries two Varjyam windows (at 20 and 56 ghatis), so a day in Mula can list one more window:</p>
             <pre style="margin-top: 0.5rem; padding: 0.5rem; background: var(--color-bg-tertiary); border-radius: 4px;"><code>// Check how many windows exist
-$windowCount = $details['Varjyam']['window_count']; // 0, 1, or 2
+$windowCount = $details['Varjyam']['window_count']; // usually 0, 1, or 2
 
 // Access all windows
 foreach ($details['Varjyam']['windows'] as $window) {
@@ -1373,7 +1373,7 @@ echo "Pada: $pada\n";                // Pada: 2
 
 // Get longitude range
 $range = Nakshatra::Ashwini->getLongitudeRange();
-echo $range['start'] . "° - " . $range['end'] . "°\n"; // 0° - 13.333°</code></pre>
+echo $range['start'] . "° - " . $range['end'] . "°\n"; // 0° - 13.333° (exactly 360/27)</code></pre>
           </div>
           <div class="enum-cases">
             <h3>Cases</h3>
@@ -5072,17 +5072,30 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
         </section>
         <section id="breaking-changes" class="content-section">
           <h2>Release and Upgrade Notes</h2>
-          <p class="lead">Release history and compatibility notes from v1.0.0 through v11.5.1.</p>
+          <p class="lead">Release history and compatibility notes from v1.0.0 through v11.6.0.</p>
 
           <div class="info-box is-danger">
             <h3>Upgrade Notes</h3>
-            <p>Review the version-specific notes below before upgrading. The published <strong>v11.5.1 — JME 2.0.0 Compatibility and Runtime Update</strong> moves Panchang Core to the 2.0.0 PHP FFI wrapper and its rebuilt native runtimes. Panchang Core calculation rules and public methods are unchanged. The published <strong>v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</strong> evaluates true-of-date ayanamsa at the requested instant, refines generation work, and corrects local eclipse visibility results. Sidereal values and generated JSON can differ from earlier mean Lahiri results. The published <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong> fixes the Pitru Paksha Gajachchhaya Amavasya timing and names Uttara Phalguni for Tripushkar. The preceding <strong>v11.4.0</strong> implements dynamic 30-Ghati and 60-Ghati Vedic timekeeping. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline and harmonized its remainder classifications with classical <em>Muhurta Chintamani</em> canons. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya and era-year alignment major release.</p>
+            <p>Review the version-specific notes below before upgrading. <strong>v11.6.0 — Exact Zodiac Boundaries, Tithi Window and Varjyam Corrections</strong> makes sign, nakshatra, yoga and pada boundaries exact, settles each tithi boundary on one instant, gives Mula its two Varjyam windows, corrects Panchaka Rahita sums, and makes day details list the same festivals as the yearly calendar. Festival and vrat dates in the 2026 yearly calendars are unchanged. The published <strong>v11.5.1 — JME 2.0.0 Compatibility and Runtime Update</strong> moves Panchang Core to the 2.0.0 PHP FFI wrapper and its rebuilt native runtimes. Panchang Core calculation rules and public methods are unchanged. The published <strong>v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</strong> evaluates true-of-date ayanamsa at the requested instant, refines generation work, and corrects local eclipse visibility results. Sidereal values and generated JSON can differ from earlier mean Lahiri results. The published <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong> fixes the Pitru Paksha Gajachchhaya Amavasya timing and names Uttara Phalguni for Tripushkar. The preceding <strong>v11.4.0</strong> implements dynamic 30-Ghati and 60-Ghati Vedic timekeeping. The preceding <strong>v11.3.0</strong> release introduced the full-day continuous Panchaka Rahita timeline and harmonized its remainder classifications with classical <em>Muhurta Chintamani</em> canons. The preceding <strong>v11.2.0</strong> release added the Ṣaṇṇavati Śrāddha catalogue, new ancestral-rite identities, updated localized outputs, adhika/nija month handling, and related calendar documentation. <strong>v11.1.0</strong> corrected Amāvāsyā public naming. <strong>v11.0.0</strong> remains the multi-model Bārhaspatya and era-year alignment major release.</p>
           </div>
 
           <div class="info-box">
             <h3>Current Documentation Snapshot</h3>
-            <p>This documentation reflects <strong>v11.5.1</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. The current sidereal convention is True Citra Lahiri with a true-of-date correction evaluated at the requested instant. Generated sidereal values can differ from the mean Lahiri results used in earlier releases. Version 11.5.1 updates the PHP FFI wrapper dependency; it does not change Panchang Core calculation rules or methods. The existing calendar, observance, and timekeeping coverage remains documented below.</p>
-            <p>Generated today, month, and raw output includes calendar-period windows with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields, nighttime divisions, and Mahadiksha guidance where included. The v11.5.0 astronomy and generation summary appears below. Published yoga correction notes: <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong>. Chandra Darshana textual and gate specification: <a href="Chandra_Darshana.md">Chandra Darshana</a>. Amāvāsyā/Pūrṇimā naming taxonomy: <a href="AMAVASYA_PURNIMA_NAMING_TAXONOMY.md">naming taxonomy</a>. Chronology wording for eras and year-names: <a href="../MASTER.md">MASTER</a>. Developer decision matrix for Bṛhaspati models: package <a href="../README.md">README</a>.</p>
+            <p>This documentation reflects <strong>v11.6.0</strong>: <strong>354</strong> festival identities and <strong>126</strong> vrat identities, with Amanta/Purnimanta output in English, Hindi, and Gujarati. The current sidereal convention is True Citra Lahiri with a true-of-date correction evaluated at the requested instant. Generated sidereal values can differ from the mean Lahiri results used in earlier releases. Version 11.6.0 makes zodiac boundaries exact, settles tithi boundaries on a single instant, and corrects Varjyam and Panchaka Rahita; it does not change festival or vrat rules. The existing calendar, observance, and timekeeping coverage remains documented below.</p>
+            <p>Generated today, month, and raw output includes calendar-period windows with Nirayana and Sayana ayana/ṛtu windows and regional Saṃvatsara windows; day-detail payloads expose Nirayana and Sayana ayana/ṛtu fields, nighttime divisions, and Mahadiksha guidance where included. The v11.6.0 boundary and Varjyam summary and the v11.5.0 astronomy and generation summary appear below. Published yoga correction notes: <strong>v11.4.1 — Gajachchhaya and Tripushkar Yoga Corrections</strong>. Chandra Darshana textual and gate specification: <a href="Chandra_Darshana.md">Chandra Darshana</a>. Amāvāsyā/Pūrṇimā naming taxonomy: <a href="AMAVASYA_PURNIMA_NAMING_TAXONOMY.md">naming taxonomy</a>. Chronology wording for eras and year-names: <a href="../MASTER.md">MASTER</a>. Developer decision matrix for Bṛhaspati models: package <a href="../README.md">README</a>.</p>
+          </div>
+
+          <div class="info-box">
+            <h3>v11.6.0 — Exact Zodiac Boundaries, Tithi Window and Varjyam Corrections</h3>
+            <ul>
+              <li><strong>Exact zodiac boundaries:</strong> Signs, nakshatras, yogas and padas are decided by an exact comparison at each boundary. A longitude exactly on a boundary, such as 30° or 40°, belongs to the division that starts there. Nakshatra and pada spans are exactly 360/27 and 360/108 degrees. <code>ZodiacDivision</code> exposes <code>rashiIndex()</code>, <code>nakshatraIndex()</code>, <code>nakshatraPada()</code> and <code>segment()</code>.</li>
+              <li><strong>Tithi boundaries:</strong> Each tithi boundary is settled on one instant, so neighbouring days report the same end time. When the same tithi is present at sunrise on two consecutive days, the next tithi is not treated as starting on the first of those days. Prabodhini (Devutthana) Ekadashi falls on 21 November 2026 and 10 November 2027.</li>
+              <li><strong>Apparent positions:</strong> Positions use the ephemeris apparent values directly, without an additional aberration override.</li>
+              <li><strong>Varjyam:</strong> Mula has two Varjyam windows, at 20 and 56 ghatis. Electional Visha Ghati reads the same Varjyam table and lists every start in <code>visha_ghati_start_constants</code>.</li>
+              <li><strong>Panchaka Rahita:</strong> Sums use the tithi number 1 to 30 as it stands.</li>
+              <li><strong>Day details:</strong> The festivals and vrats listed by <code>getDayDetails()</code> match the yearly calendar for that date; a once-a-year festival appears only on the date the yearly calendar selects.</li>
+              <li><strong>Compatibility:</strong> Existing calls remain available and no new inputs are required. Festival and vrat dates in the 2026 yearly calendars are unchanged; sidereal values, boundary times, Varjyam windows and Panchak results can differ slightly. Regenerate stored calendar files to reflect this release.</li>
+            </ul>
           </div>
 
           <div class="info-box">
@@ -5124,9 +5137,16 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
           <h3>Published Releases</h3>
           <ol class="release-list" aria-label="Published package releases">
             <li class="release-row is-latest">
+              <span class="release-tag">11.6.0</span>
+              <div class="release-body">
+                <div class="release-heading"><span class="release-title">v11.6.0 — Exact Zodiac Boundaries, Tithi Window and Varjyam Corrections</span><span class="release-meta">Latest Release</span></div>
+                <p class="release-note">Makes sign, nakshatra, yoga and pada boundaries exact, settles each tithi boundary on one instant, gives Mula its two Varjyam windows, corrects Panchaka Rahita sums, and lists the same festivals in day details as in the yearly calendar. Festival and vrat dates in the 2026 yearly calendars are unchanged.</p>
+              </div>
+            </li>
+            <li class="release-row">
               <span class="release-tag">11.5.1</span>
               <div class="release-body">
-                <div class="release-heading"><span class="release-title">v11.5.1 — JME 2.0.0 Compatibility and Runtime Update</span><span class="release-meta">Latest Release</span></div>
+                <div class="release-heading"><span class="release-title">v11.5.1 — JME 2.0.0 Compatibility and Runtime Update</span><span class="release-meta">Release</span></div>
                 <p class="release-note">Updates the PHP FFI wrapper requirement to 2.0.0 and uses its rebuilt native runtimes. Panchang Core calculation rules, public methods, and input requirements are unchanged.</p>
               </div>
             </li>
@@ -5551,6 +5571,21 @@ $vaishnavaFestivals = $vaishnava['Festivals'];</code></pre>
               </div>
             </li>
           </ol>
+
+          <h3>v11.6.0 — Exact Zodiac Boundaries, Tithi Window and Varjyam Corrections</h3>
+          <p class="lead">Exact boundaries for signs, nakshatras, yogas, padas and tithis, with Varjyam, Panchaka Rahita and day-detail corrections. Festival and vrat rules are unchanged.</p>
+
+          <div class="info-box">
+            <h4 style="margin-block-start: 0; margin-block-end: var(--space-3); font-size: var(--text-md);">What changes</h4>
+            <ul>
+              <li><strong>Zodiac boundaries:</strong> A longitude exactly on a sign, nakshatra, yoga or pada boundary belongs to the division that starts there.</li>
+              <li><strong>Tithi boundaries:</strong> Every tithi boundary is settled on one instant. Prabodhini (Devutthana) Ekadashi is on 21 November 2026 and 10 November 2027.</li>
+              <li><strong>Varjyam:</strong> Mula has two windows, at 20 and 56 ghatis; electional Visha Ghati uses the same table.</li>
+              <li><strong>Panchaka Rahita:</strong> Uses the tithi number 1 to 30 unchanged.</li>
+              <li><strong>Day details:</strong> Festival lists match the yearly calendar for the same date.</li>
+              <li><strong>Compatibility:</strong> Existing calls remain available. Regenerate stored output files after upgrading.</li>
+            </ul>
+          </div>
 
           <h3>v11.5.0 — True Citra Lahiri Astronomy and Panchanga Performance</h3>
           <p class="lead">Prepared release focused on true-of-date sidereal astronomy, precise calculation-time handling, and reduced repeated work during calendar generation.</p>
