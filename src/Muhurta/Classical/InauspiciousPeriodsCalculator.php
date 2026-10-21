@@ -18,7 +18,7 @@ class InauspiciousPeriodsCalculator
     private const int PERIOD_GHATIS = 4;
 
     /** @var array<int, array{name:string, amrita:int[], varjyam:int[]}> */
-    private const array NAKSHATRA_AMRITA_VARJYAM_OFFSETS = [
+    public const array NAKSHATRA_AMRITA_VARJYAM_OFFSETS = [
         0 => ['name' => 'Ashwini', 'amrita' => [42], 'varjyam' => [50]],
         1 => ['name' => 'Bharani', 'amrita' => [48], 'varjyam' => [24]],
         2 => ['name' => 'Krittika', 'amrita' => [54], 'varjyam' => [30]],

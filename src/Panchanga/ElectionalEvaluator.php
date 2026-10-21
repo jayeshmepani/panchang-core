@@ -10,6 +10,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Muhurta\Classical\InauspiciousPeriodsCalculator;
 
 /** Electional Astrology (Muhurta) evaluator. */
 final class ElectionalEvaluator
@@ -26,14 +27,6 @@ final class ElectionalEvaluator
         8 => ['name' => 'Roga', 'english' => 'Disease', 'severity' => 'high'],
         9 => ['name' => 'Rahita', 'english' => 'Auspicious', 'severity' => 'none'],
         0 => ['name' => 'Rahita', 'english' => 'Auspicious', 'severity' => 'none'],
-    ];
-
-    /** Package Visha Ghati constants used for the legacy Varjyam helper. */
-    private const array VISHA_GHATI_CONSTANTS = [
-        1 => 50, 2 => 4, 3 => 30, 4 => 40, 5 => 14, 6 => 21, 7 => 30, 8 => 20, 9 => 32,
-        10 => 30, 11 => 20, 12 => 1, 13 => 21, 14 => 20, 15 => 14, 16 => 14, 17 => 10,
-        18 => 14, 19 => 20, 20 => 20, 21 => 20, 22 => 10, 23 => 10, 24 => 18, 25 => 16,
-        26 => 30, 27 => 30,
     ];
 
     /** Package Dagdha Tithi mapping attributed to Muhurta Chintamani. */
@@ -279,24 +272,26 @@ final class ElectionalEvaluator
         ];
     }
 
+    /**
+     * Varjyam (Visha Ghati, Nakshatra Tyajya): every Nakshatra carries a 4-ghati
+     * window starting at its tabulated ghati (Mula has two, at 20 and 56).
+     */
     public static function calculateVarjyam(int $nakshatraNumber, float $nakshatraStartTime, float $nakshatraDurationMinutes): array
     {
-        $vishaGhati = self::VISHA_GHATI_CONSTANTS[$nakshatraNumber] ?? 0;
-        $hasDosha = $vishaGhati > 0;
+        $offsets = InauspiciousPeriodsCalculator::NAKSHATRA_AMRITA_VARJYAM_OFFSETS[($nakshatraNumber - 1) % 27]['varjyam'];
 
         return [
             'source' => Localization::translate('Source', 'Visha Ghati constants'),
             'nakshatra_number' => $nakshatraNumber,
             'nakshatra_name' => Nakshatra::from(($nakshatraNumber - 1) % 27)->getName(),
             'nakshatra_number_base' => 1,
-            'visha_ghati_start_constant' => $vishaGhati,
+            'visha_ghati_start_constant' => $offsets[0],
+            'visha_ghati_start_constants' => $offsets,
             'visha_ghati_duration_ghatis' => 4,
             'is_special_varjyam' => false,
-            'has_dosha' => $hasDosha,
-            'severity' => $hasDosha ? 'high' : 'none',
-            'description' => $hasDosha
-                ? Localization::translate('String', 'Varjyam (Visha Ghati)') . ' - ' . Localization::translate('Common', 'Inauspicious')
-                : Localization::translate('String', 'No Varjyam'),
+            'has_dosha' => true,
+            'severity' => 'high',
+            'description' => Localization::translate('String', 'Varjyam (Visha Ghati)') . ' - ' . Localization::translate('Common', 'Inauspicious'),
         ];
     }
 
