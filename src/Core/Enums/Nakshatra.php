@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 
 /**
  * Nakṣatra Enumeration.
@@ -129,8 +130,8 @@ enum Nakshatra: int
      */
     public function getLongitudeRange(): array
     {
-        $start = $this->value * 13.3333333333;
-        $end = ($this->value + 1) * 13.3333333333;
+        $start = $this->value * ZodiacDivision::DEGREES_PER_NAKSHATRA;
+        $end = ($this->value + 1) * ZodiacDivision::DEGREES_PER_NAKSHATRA;
 
         return [
             'start' => $start,
@@ -147,14 +148,7 @@ enum Nakshatra: int
      */
     public static function fromLongitude(float $longitude): self
     {
-        $normalized = fmod($longitude, 360.0);
-        if ($normalized < 0) {
-            $normalized += 360.0;
-        }
-
-        $index = (int) floor($normalized / 13.3333333333);
-
-        return self::from($index);
+        return self::from(ZodiacDivision::nakshatraIndex($longitude));
     }
 
     /**
@@ -166,15 +160,6 @@ enum Nakshatra: int
      */
     public static function getPada(float $longitude): int
     {
-        $normalized = fmod($longitude, 360.0);
-        if ($normalized < 0) {
-            $normalized += 360.0;
-        }
-
-        $nakshatraIndex = (int) floor($normalized / 13.3333333333);
-        $nakshatraStart = $nakshatraIndex * 13.3333333333;
-        $progress = $normalized - $nakshatraStart;
-
-        return (int) floor($progress / 3.3333333333) + 1;
+        return ZodiacDivision::nakshatraPada($longitude);
     }
 }

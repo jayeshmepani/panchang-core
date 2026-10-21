@@ -11,6 +11,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Yoga;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 
 /** Interval Tracker - Collects astronomical windows for Tithi, Nakshatra, etc. */
 class IntervalTracker
@@ -75,7 +76,7 @@ class IntervalTracker
 
         for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
             $moonLongitude = $this->transitEngine->getMoonLongitude($cursor + 0.000001);
-            $nakshatraIndex = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+            $nakshatraIndex = ZodiacDivision::nakshatraIndex($moonLongitude);
             $startAngle = $nakshatraIndex * (360.0 / 27.0);
             $targetAngle = ($nakshatraIndex + 1) * (360.0 / 27.0);
 
@@ -146,13 +147,12 @@ class IntervalTracker
 
         for ($guard = 0; $guard < 12 && $cursor < $jdEnd; $guard++) {
             $moonLongitude = AstroCore::normalize($this->transitEngine->getMoonLongitude($cursor + 0.000001));
-            $nakshatraIndex = (int) floor($moonLongitude / 13.333333333333334);
-            $nakshatraStart = $nakshatraIndex * 13.333333333333334;
-            $pada = (int) floor(($moonLongitude - $nakshatraStart) / 3.3333333333333335) + 1;
-            $pada = max(1, min(4, $pada));
+            $nakshatraIndex = ZodiacDivision::nakshatraIndex($moonLongitude);
+            $nakshatraStart = $nakshatraIndex * ZodiacDivision::DEGREES_PER_NAKSHATRA;
+            $pada = ZodiacDivision::nakshatraPada($moonLongitude);
 
-            $startAngle = $nakshatraStart + (($pada - 1) * 3.3333333333333335);
-            $targetAngle = $nakshatraStart + ($pada * 3.3333333333333335);
+            $startAngle = $nakshatraStart + (($pada - 1) * ZodiacDivision::DEGREES_PER_PADA);
+            $targetAngle = $nakshatraStart + ($pada * ZodiacDivision::DEGREES_PER_PADA);
             if ($targetAngle >= 360.0) {
                 $targetAngle = 360.0;
             }
@@ -191,7 +191,7 @@ class IntervalTracker
 
         for ($guard = 0; $guard < 2 && $cursor < $jdEnd; $guard++) {
             $sunLongitude = $this->transitEngine->getSunLongitude($cursor + 0.000001);
-            $nakshatraIndex = ((int) floor($sunLongitude / (360.0 / 27.0))) % 27;
+            $nakshatraIndex = ZodiacDivision::nakshatraIndex($sunLongitude);
             $targetAngle = ($nakshatraIndex + 1) * (360.0 / 27.0);
             $endJd = $this->transitEngine->findAngleCrossing(
                 $cursor,
@@ -220,7 +220,7 @@ class IntervalTracker
 
         for ($guard = 0; $guard < 4 && $cursor < $jdEnd; $guard++) {
             $sum = AstroCore::normalize($this->transitEngine->getSunMoonSum($cursor + 0.000001));
-            $yogaIndex = (int) floor($sum / (360.0 / 27.0));
+            $yogaIndex = ZodiacDivision::segment($sum, 27);
             $startAngle = $yogaIndex * (360.0 / 27.0);
             $targetAngle = ($yogaIndex + 1) * (360.0 / 27.0);
 

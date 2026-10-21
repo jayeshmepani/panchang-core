@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 
 /**
  * Māsa (Lunar Month) Enumeration.
@@ -43,14 +44,7 @@ enum Masa: int
      */
     public static function fromSunLongitude(float $sunLon): self
     {
-        $normalized = fmod($sunLon, 360.0);
-        if ($normalized < 0) {
-            $normalized += 360.0;
-        }
-
-        $index = (int) floor($normalized / 30.0);
-
-        return self::from($index);
+        return self::from(ZodiacDivision::rashiIndex($sunLon));
     }
 
     /**

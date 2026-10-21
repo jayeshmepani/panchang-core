@@ -9,6 +9,7 @@ use DateTimeZone;
 use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JmeEph\FFI\JmeEphFFI;
 use RuntimeException;
 
@@ -137,7 +138,7 @@ class LagnaTableCalculator
 
     private function getSignIndexAtJd(JmeEphFFI $jme, float $jd, float $lat, float $lon, float $ayanamsa): int
     {
-        return (int) floor($this->getAscendantSiderealAtJd($jme, $jd, $lat, $lon, $ayanamsa) / 30.0) % 12;
+        return ZodiacDivision::rashiIndex($this->getAscendantSiderealAtJd($jme, $jd, $lat, $lon, $ayanamsa));
     }
 
     private function findPreviousLagnaTransition(

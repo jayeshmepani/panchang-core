@@ -19,6 +19,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Ritu;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 use JayeshMepani\PanchangCore\Panchanga\Doshas\BhadraCalculator;
@@ -540,8 +541,8 @@ class PanchangService
         $jdCivilEnd = $this->toJulianDayFromCarbon($civilEnd, $tz);
         $sunLonCivilStart = $this->getSunLongitude($jdCivilStart);
         $sunLonCivilEnd = $this->getSunLongitude($jdCivilEnd);
-        $civilStartSign = (int) floor($sunLonCivilStart / 30.0) % 12;
-        $civilEndSign = (int) floor($sunLonCivilEnd / 30.0) % 12;
+        $civilStartSign = ZodiacDivision::rashiIndex($sunLonCivilStart);
+        $civilEndSign = ZodiacDivision::rashiIndex($sunLonCivilEnd);
 
         $punyaKaal = null;
         $sankrantiRashi = null;
@@ -1229,8 +1230,8 @@ class PanchangService
         $jdCivilEnd = $this->toJulianDayFromCarbon($civilEnd, $tz);
         $sunLonCivilStart = $this->getSunLongitude($jdCivilStart);
         $sunLonCivilEnd = $this->getSunLongitude($jdCivilEnd);
-        $currentSign = (int) floor($sunLonCivilStart / 30.0);
-        $nextSunriseSign = (int) floor($sunLonCivilEnd / 30.0);
+        $currentSign = ZodiacDivision::rashiIndex($sunLonCivilStart);
+        $nextSunriseSign = ZodiacDivision::rashiIndex($sunLonCivilEnd);
         $sankrantiRashi = null;
         $sankrantiJd = null;
         if ($currentSign !== $nextSunriseSign) {

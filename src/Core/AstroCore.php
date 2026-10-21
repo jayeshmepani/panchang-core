@@ -63,7 +63,7 @@ final readonly class AstroCore
      */
     public static function getSign(float $lon): int
     {
-        return ((int) floor($lon / 30.0)) % 12;
+        return ZodiacDivision::rashiIndex($lon);
     }
 
     /**

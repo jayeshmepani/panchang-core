@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JmeEph\FFI\JmeEphFFI;
 use Throwable;
 
@@ -186,8 +187,8 @@ trait PanchangBirthMonthHelpersTrait
         $sunAtStart = $this->getSunLongitude($startAmavasya);
         $sunAtEnd = $this->getSunLongitude($endAmavasya);
 
-        $signAtStart = (int) floor($sunAtStart / 30.0) % 12;
-        $signAtEnd = (int) floor($sunAtEnd / 30.0) % 12;
+        $signAtStart = ZodiacDivision::rashiIndex($sunAtStart);
+        $signAtEnd = ZodiacDivision::rashiIndex($sunAtEnd);
 
         // Count sign crossings between the two Amavasyas
         // The sun moves ~1°/day, so in ~29.5 days it moves ~29.5° ≈ 1 sign.

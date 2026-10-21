@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga\Doshas;
 
 use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JayeshMepani\PanchangCore\Festivals\Utils\BhadraEngine;
 
 /** Bhadra Calculator - Handles Vishti Karana period detection. */
@@ -38,7 +39,7 @@ class BhadraCalculator
                 $actualEnd = min($jdEnd, $vEndJd);
 
                 if ($actualStart < $actualEnd) {
-                    $moonRasi = (int) floor($this->transitEngine->getMoonLongitude($actualStart) / 30.0);
+                    $moonRasi = ZodiacDivision::rashiIndex($this->transitEngine->getMoonLongitude($actualStart));
                     $bhadraPeriods[] = $this->bhadraEngine->calculateBhadra(
                         $jdStart,
                         $vStartJd,

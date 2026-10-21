@@ -16,6 +16,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Ritu;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JayeshMepani\PanchangCore\Festivals\FestivalService;
 use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
 use Throwable;
@@ -744,8 +745,8 @@ trait PanchangCalendarApiTrait
         $sunriseBirth = $this->buildBirthArray($sunrise, $lat, $lon, $tz, $elevation);
         $sunMoon = $this->getSunMoonLongitudes($sunriseBirth);
         $moonLongitude = (float) $sunMoon['Moon'];
-        $nakIndex = (int) floor($moonLongitude / (360.0 / 27.0)) + 1;
-        $moonSign = (int) floor($moonLongitude / 30.0);
+        $nakIndex = ZodiacDivision::nakshatraIndex($moonLongitude) + 1;
+        $moonSign = ZodiacDivision::rashiIndex($moonLongitude);
         $ascLongitude = $this->astronomy->getAscendant($sunriseBirth);
 
         return [
@@ -796,8 +797,8 @@ trait PanchangCalendarApiTrait
         $currentBirth = $this->buildBirthArray($at, $lat, $lon, $tz, $elevation);
         $sunMoon = $this->getSunMoonLongitudes($currentBirth);
         $moonLongitude = (float) ($sunMoon['Moon'] ?? 0.0);
-        $moonSignIdx = ((int) floor($moonLongitude / 30.0)) % 12;
-        $nakshatraIdxCurrent = ((int) floor($moonLongitude / (360.0 / 27.0))) % 27;
+        $moonSignIdx = ZodiacDivision::rashiIndex($moonLongitude);
+        $nakshatraIdxCurrent = ZodiacDivision::nakshatraIndex($moonLongitude);
         $currentTithi = $this->panchanga->calculateTithi((float) ($sunMoon['Sun'] ?? 0.0), $moonLongitude);
         $currentAscLongitude = $this->astronomy->getAscendant($currentBirth);
 

@@ -19,6 +19,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Enums\Vara;
 use JayeshMepani\PanchangCore\Core\Enums\Yoga;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 
 class PanchangaEngine
 {
@@ -304,7 +305,7 @@ class PanchangaEngine
 
     public function getHinduMonth(float $sunLon, float $moonLon, string $paksha = 'Shukla'): array
     {
-        $base = ((int) floor($sunLon / 30.0) + 1) % 12;
+        $base = (ZodiacDivision::rashiIndex($sunLon) + 1) % 12;
         $am = $paksha === 'Shukla' ? $base : ($base - 1 + 12) % 12;
 
         return [

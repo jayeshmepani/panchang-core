@@ -12,6 +12,7 @@ use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
 use JayeshMepani\PanchangCore\Core\Enums\Tithi;
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JayeshMepani\PanchangCore\Panchanga\ElectionalEvaluator;
 use JayeshMepani\PanchangCore\Panchanga\KalaNirnayaEngine;
 
@@ -304,8 +305,8 @@ trait PanchangSelectiveApiTrait
             $civilEnd = $civilStart->addDay();
             $jdCivilStart = $this->toJulianDayFromCarbon($civilStart, $tz);
             $jdCivilEnd = $this->toJulianDayFromCarbon($civilEnd, $tz);
-            $civilStartSign = (int) floor($this->getSunLongitude($jdCivilStart) / 30.0) % 12;
-            $civilEndSign = (int) floor($this->getSunLongitude($jdCivilEnd) / 30.0) % 12;
+            $civilStartSign = ZodiacDivision::rashiIndex($this->getSunLongitude($jdCivilStart));
+            $civilEndSign = ZodiacDivision::rashiIndex($this->getSunLongitude($jdCivilEnd));
 
             $punyaKaal = null;
             $sankrantiRashi = null;

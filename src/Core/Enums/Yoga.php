@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Core\Enums;
 
 use JayeshMepani\PanchangCore\Core\Localization;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 
 /**
  * Yoga Enumeration.
@@ -50,14 +51,7 @@ enum Yoga: int
 
     public static function fromAngle(float $angle): self
     {
-        $normalized = fmod($angle, 360.0);
-        if ($normalized < 0) {
-            $normalized += 360.0;
-        }
-
-        $index = (int) floor($normalized / 13.3333333333);
-
-        return self::from($index);
+        return self::from(ZodiacDivision::segment($angle, 27));
     }
 
     public static function getFractionRemainingAtAngle(float $angle): float
@@ -67,7 +61,7 @@ enum Yoga: int
             $normalized += 360.0;
         }
 
-        return 1.0 - (fmod($normalized, 13.3333333333) / 13.3333333333);
+        return 1.0 - (fmod($normalized, ZodiacDivision::DEGREES_PER_NAKSHATRA) / ZodiacDivision::DEGREES_PER_NAKSHATRA);
     }
 
     /**

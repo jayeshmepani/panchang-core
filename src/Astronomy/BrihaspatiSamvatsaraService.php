@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use DateTimeInterface;
 use InvalidArgumentException;
 use JayeshMepani\PanchangCore\Core\Enums\Samvatsara;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JmeEph\FFI\JmeEphFFI;
 use RuntimeException;
 use Throwable;
@@ -1355,7 +1356,7 @@ final class BrihaspatiSamvatsaraService
 
     private function rashiIndex(float $longitude): int
     {
-        return ((int) floor($this->normalizeDegrees($longitude) / 30.0)) % 12;
+        return ZodiacDivision::rashiIndex($longitude);
     }
 
     private function normalizeDegrees(float $degrees): float

@@ -7,6 +7,7 @@ namespace JayeshMepani\PanchangCore\Festivals;
 use Carbon\CarbonImmutable;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Masa;
+use JayeshMepani\PanchangCore\Core\ZodiacDivision;
 use JayeshMepani\PanchangCore\Festivals\Support\FestivalShared;
 
 /**
@@ -76,7 +77,7 @@ trait FestivalMonthTithiSupport
             $normalizedLongitude += 360.0;
         }
 
-        return (int) floor($normalizedLongitude / 30.0) === $requiredSunSign;
+        return ZodiacDivision::rashiIndex($normalizedLongitude) === $requiredSunSign;
     }
 
     /**
