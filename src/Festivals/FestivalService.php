@@ -161,6 +161,7 @@ class FestivalService
         bool $includeExtraWinners = false,
         string $selection = 'all',
         ?string $tradition = null,
+        ?array $onlyNames = null,
     ): array
     {
         $festivals = [];
@@ -177,6 +178,10 @@ class FestivalService
         $paksha = $tithi['paksha'] ?? 'Shukla';
 
         foreach ($this->expandFestivalRules() as $name => $rules) {
+            if ($onlyNames !== null && !in_array($name, $onlyNames, true)) {
+                continue;
+            }
+
             if (!$this->shouldIncludeFestivalRules($rules, $selection)) {
                 continue;
             }

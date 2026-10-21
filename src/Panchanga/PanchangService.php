@@ -65,6 +65,9 @@ class PanchangService
         'Janaki Jayanti',
     ];
 
+    /** Day offsets where a yearly single observance can recur: one lunar month or nakshatra cycle away. */
+    private const array SINGLE_OBSERVANCE_SIBLING_OFFSETS = [24, 33];
+
     private const int BODY_LONGITUDE_CACHE_MAX = 5000;
 
     private const int BODY_LONGITUDE_CACHE_TRIM_TO = 2500;
@@ -649,22 +652,13 @@ class PanchangService
         DebugTrace::log('panchang.day', 'tomorrow snapshot built');
         $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, null, $calendarType);
         DebugTrace::log('panchang.day', 'festival snapshots built');
-        $festivals = $this->festivalService->resolveFestivalsForDate(
-            $date,
-            $todaySnapshot,
-            $tomorrowSnapshot,
-            $yesterdaySnapshot,
-            fn(CarbonImmutable $historicalDate): array => $this->getFestivalSnapshot(
-                $historicalDate,
-                $lat,
-                $lon,
-                $tz,
-                $elevation,
-                null,
-                $calendarType,
-            ),
-        );
-        $festivals = $this->retainFestivalsForDate($festivals, $date->toDateString());
+        // Same winner selection as the yearly calendar: resolve the neighbouring days and keep
+        // the observance that the adjacent-day consolidation assigns to this date.
+        $festivals = $this->buildFestivalRangeCalendar($date, $date, $lat, $lon, $tz, $elevation, null, $calendarType)['by_date'][$date->toDateString()] ?? [];
+        $singleObservanceNames = array_values(array_intersect(array_column($festivals, 'name_key'), self::YEARLY_SINGLE_OBSERVANCE_FESTIVALS));
+        if ($singleObservanceNames !== []) {
+            $festivals = $this->withoutYearlySingleObservanceLosers($festivals, $singleObservanceNames, $date, $lat, $lon, $tz, $elevation, $calendarType);
+        }
 
         $shannavatiShraddha = $this->festivalService->resolveShannavatiForDate(
             $date,
@@ -1403,6 +1397,54 @@ class PanchangService
             'Yoga_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'yoga', $tz), $this->intervalTracker->collectYogaIntervals($jdSunrise, $jdNextSunrise)),
             'Karana_Windows' => array_map(fn(array $interval): array => $this->formatTransitionWindow($interval, 'karana', $tz), $this->intervalTracker->collectKaranaIntervals($jdSunrise, $jdNextSunrise)),
         ];
+    }
+
+    /**
+     * Apply the yearly one-occurrence-per-year selection to a single day. The competing
+     * occurrence of these observances lies one lunar month (or nakshatra cycle) away, so only
+     * those spans are resolved, for just the affected names.
+     *
+     * @param array<int, array<string, mixed>> $festivals
+     * @param array<int, string> $names
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function withoutYearlySingleObservanceLosers(array $festivals, array $names, CarbonImmutable $date, float $lat, float $lon, string $tz, float $elevation, CalendarType $calendarType): array
+    {
+        $dateKey = $date->toDateString();
+        $flat = [];
+        foreach ($festivals as $festival) {
+            if (in_array($festival['name_key'] ?? null, $names, true)) {
+                $flat[] = ['date' => $dateKey, 'festival' => $festival];
+            }
+        }
+
+        [$nearest, $farthest] = self::SINGLE_OBSERVANCE_SIBLING_OFFSETS;
+        foreach ([-1, 1] as $direction) {
+            $first = $date->addDays($direction * $nearest);
+            $last = $date->addDays($direction * $farthest);
+            $windowStart = $first->min($last)->max($date->startOfYear());
+            $windowEnd = $first->max($last)->min($date->endOfYear()->startOfDay());
+            if ($windowEnd->lessThan($windowStart)) {
+                continue;
+            }
+
+            foreach ($this->buildFestivalRangeCalendar($windowStart, $windowEnd, $lat, $lon, $tz, $elevation, null, $calendarType, 'all', null, $names)['flat'] as $entry) {
+                $flat[] = $entry;
+            }
+        }
+
+        $kept = [];
+        foreach ($this->consolidateYearlySingleObservanceFestivals($flat) as $entry) {
+            if ($entry['date'] === $dateKey) {
+                $kept[] = $entry['festival']['name_key'] ?? null;
+            }
+        }
+
+        return array_values(array_filter(
+            $festivals,
+            static fn(array $festival): bool => !in_array($festival['name_key'] ?? null, $names, true) || in_array($festival['name_key'], $kept, true),
+        ));
     }
 
     private function buildDayNightMeasures(CarbonImmutable $sunrise, CarbonImmutable $sunset, CarbonImmutable $nextSunrise): array

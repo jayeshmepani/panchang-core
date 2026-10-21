@@ -944,6 +944,7 @@ trait PanchangCalendarApiTrait
         CalendarType|string $calendarType = CalendarType::Amanta,
         string $selection = 'all',
         ?string $tradition = null,
+        ?array $onlyNames = null,
     ): array {
         if (is_string($calendarType)) {
             $calendarType = match (strtolower($calendarType)) {
@@ -978,7 +979,7 @@ trait PanchangCalendarApiTrait
             $todaySnapshot = $this->getFestivalSnapshot($date, $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $tomorrowSnapshot = $this->getFestivalSnapshot($date->addDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
             $yesterdaySnapshot = $this->getFestivalSnapshot($date->subDay(), $lat, $lon, $tz, $elevation, $calculationAt, $calendarType, false);
-            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, $fetchHistoricalSnapshot, false, $selection, $tradition);
+            $festivals = $this->festivalService->resolveFestivalsForDate($date, $todaySnapshot, $tomorrowSnapshot, $yesterdaySnapshot, $fetchHistoricalSnapshot, false, $selection, $tradition, $onlyNames);
 
             foreach ($festivals as $festival) {
                 $festival = $this->withFestivalTimingWindow($festival, $tz);
