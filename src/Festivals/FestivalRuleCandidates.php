@@ -34,6 +34,12 @@ trait FestivalRuleCandidates
             ];
         }
 
+        // When both sunrises carry the same tithi the next tithi starts after tomorrow's
+        // sunrise and belongs to the following day pair.
+        if ($todayAbs === $tomorrowAbs) {
+            return null;
+        }
+
         // Handle transition (e.g., 30 -> 1)
         $todayPlusOne = ($todayAbs % 30) + 1;
         if ($todayPlusOne === $targetAbs) {

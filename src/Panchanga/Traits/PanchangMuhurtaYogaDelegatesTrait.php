@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JayeshMepani\PanchangCore\Panchanga\Traits;
 
 use Carbon\CarbonImmutable;
+use JayeshMepani\PanchangCore\Astronomy\Math\TransitEngine;
 use JayeshMepani\PanchangCore\Core\AstroCore;
 use JayeshMepani\PanchangCore\Core\Enums\Nakshatra;
 use JayeshMepani\PanchangCore\Core\Enums\Rasi;
@@ -533,7 +534,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             $jd2 = $jd1 + $step;
             $f1 = $this->signedDiff($angleFn($jd2), $targetAngle);
             if ($f0 === 0.0) {
-                return $jd1;
+                return TransitEngine::settleAngleCrossing($jd1, $targetAngle, $angleFn);
             }
 
             if ($f0 === 0.0 || (abs($f1 - $f0) < 180.0 && (($f0 < 0 && $f1 > 0) || ($f0 > 0 && $f1 < 0)))) {
@@ -568,7 +569,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
 
             $fMid = $this->signedDiff($angleFn($mid), $targetAngle);
             if (abs($fMid) < 1e-6) {
-                return $mid;
+                return TransitEngine::settleAngleCrossing($mid, $targetAngle, $angleFn);
             }
 
             if (($fLow < 0 && $fMid > 0) || ($fLow > 0 && $fMid < 0)) {
@@ -580,7 +581,7 @@ trait PanchangMuhurtaYogaDelegatesTrait
             }
         }
 
-        return ($low + $high) / 2.0;
+        return TransitEngine::settleAngleCrossing(($low + $high) / 2.0, $targetAngle, $angleFn);
     }
 
     private function signedDiff(float $angle, float $target): float

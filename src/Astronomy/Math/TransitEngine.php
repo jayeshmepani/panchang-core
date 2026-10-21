@@ -11,6 +11,8 @@ use JmeEph\FFI\JmeEphFFI;
 /** Transit Engine - Handles astronomical crossing and low-level math. */
 class TransitEngine
 {
+    private const float CROSSING_SETTLE_HALF_WIDTH_DAYS = 1.0e-5;
+
     private const int DEFAULT_BODY_LONGITUDE_CACHE_MAX = 5000;
 
     private const int DEFAULT_BODY_LONGITUDE_CACHE_TRIM_TO = 2500;
@@ -81,7 +83,7 @@ class TransitEngine
             $jd2 = $jd1 + $step;
             $f1 = $this->signedDiff($angleFn($jd2), $targetAngle);
             if ($f0 === 0.0) {
-                return $jd1;
+                return self::settleAngleCrossing($jd1, $targetAngle, $angleFn);
             }
 
             if ($f0 === 0.0 || (abs($f1 - $f0) < 180.0 && (($f0 < 0 && $f1 > 0) || ($f0 > 0 && $f1 < 0)))) {
@@ -116,7 +118,7 @@ class TransitEngine
 
             $fMid = $this->signedDiff($angleFn($mid), $targetAngle);
             if (abs($fMid) < 1e-6) {
-                return $mid;
+                return self::settleAngleCrossing($mid, $targetAngle, $angleFn);
             }
 
             if (($fLow < 0 && $fMid > 0) || ($fLow > 0 && $fMid < 0)) {
@@ -128,7 +130,47 @@ class TransitEngine
             }
         }
 
-        return ($low + $high) / 2.0;
+        return self::settleAngleCrossing(($low + $high) / 2.0, $targetAngle, $angleFn);
+    }
+
+    /**
+     * Settle a crossing estimate onto the first double at which the angle has reached the target.
+     *
+     * Search paths starting from different days stop their secant iterations at slightly
+     * different points; bisecting a fixed-width bracket down to adjacent doubles makes every
+     * caller land on the same instant for the same physical crossing.
+     */
+    public static function settleAngleCrossing(float $estimate, float $targetAngle, callable $angleFn): float
+    {
+        $offset = static function (float $jd) use ($targetAngle, $angleFn): float {
+            $diff = AstroCore::normalize((float) $angleFn($jd) - $targetAngle);
+
+            return $diff > 180.0 ? $diff - 360.0 : $diff;
+        };
+
+        $low = $estimate - self::CROSSING_SETTLE_HALF_WIDTH_DAYS;
+        $high = $estimate + self::CROSSING_SETTLE_HALF_WIDTH_DAYS;
+        $lowBefore = $offset($low) < 0.0;
+        $highBefore = $offset($high) < 0.0;
+        if ($lowBefore === $highBefore) {
+            return $estimate;
+        }
+
+        while (true) {
+            $mid = ($low + $high) / 2.0;
+            if ($mid <= $low || $mid >= $high) {
+                break;
+            }
+
+            $midBefore = $offset($mid) < 0.0;
+            if ($midBefore === $lowBefore && $offset($mid) !== 0.0) {
+                $low = $mid;
+            } else {
+                $high = $mid;
+            }
+        }
+
+        return $high;
     }
 
     public function signedDiff(float $angle, float $target): float
